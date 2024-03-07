@@ -29,7 +29,7 @@ public protocol GradeListInteractor {
         ignoreCache: Bool
     ) -> AnyPublisher<GradeListData, Error>
     func updateGradingPeriod(id: String?)
-    func isWhatIfScoreEnabled() -> Bool
+    func isWhatIfScoreFlagEnabled() -> Bool
 }
 
 public final class GradeListInteractorLive: GradeListInteractor {
@@ -201,7 +201,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
         )
     }
 
-    public func isWhatIfScoreEnabled() -> Bool {
+    public func isWhatIfScoreFlagEnabled() -> Bool {
         ExperimentalFeature.whatIfScore.isEnabled && AppEnvironment.shared.app == .student
     }
 

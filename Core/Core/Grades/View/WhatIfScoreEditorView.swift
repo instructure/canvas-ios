@@ -27,66 +27,74 @@ struct WhatIfScoreEditorView: View {
     // MARK: - Private properties
 
     @State private var whatIfScore = ""
+    @State private var leftColumnWidth: CGFloat?
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     var body: some View {
-        ZStack {
-            Color.black
-                .opacity(0.4)
-                .edgesIgnoringSafeArea(.all)
-            VStack(spacing: 0) {
-                titleLabel
-                HStack(spacing: 0) {
-                    labels
-                    scoreTexts
-                }
-                .overlay(
-                    RoundedRectangle(cornerRadius: 4)
-                        .stroke(Color.textDark, lineWidth: 0.25)
-                )
-                .padding(.bottom, 14)
-                .padding(.horizontal, 24)
+        GeometryReader { geometry in
+            ZStack {
+                Color.black
+                    .opacity(0.4)
+                    .edgesIgnoringSafeArea(.all)
+                VStack(spacing: 0) {
+                    titleLabel
+                    VStack(spacing: 0) {
+                        whatIfRow(geometry: geometry).frame(minHeight: 30)
+                        Divider()
+                        maximumRow(geometry: geometry).frame(minHeight: 30)
+                    }
+                    .padding(.horizontal, 20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 4)
+                            .stroke(Color.textDark, lineWidth: 0.25)
+                    )
+                    .padding(.bottom, 14)
+                    .padding(.horizontal, 24)
 
-                Divider()
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 0.5)
-                    .padding(.all, 0)
-
-                HStack(spacing: 0) {
-                    cancelButton
                     Divider()
-                        .frame(minWidth: 0, maxWidth: 0.5, minHeight: 0, maxHeight: .infinity)
-                    doneButton
+
+                    HStack(spacing: 0) {
+                        cancelButton
+                        doneButton
+                    }
+                    .overlay(content: { HStack { Divider() } })
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 44)
-                .padding([.horizontal, .bottom], 0)
+                .background(.ultraThickMaterial)
+                .cornerRadius(10)
+                .frame(maxWidth: 0.7 * geometry.size.width)
             }
-            .background(.ultraThickMaterial)
-            .cornerRadius(10)
-            .padding(.horizontal, 48)
+            .onPreferenceChange(ViewBoundsKey.self, perform: { value in
+                leftColumnWidth = value.max { lh, rh in
+                    lh.bounds.width < rh.bounds.width
+                }?.bounds.width
+            })
         }
+        .animation(.none, value: leftColumnWidth)
     }
 
-    private var labels: some View {
-        VStack(alignment: .leading, spacing: 0) {
+    private func whatIfRow(geometry: GeometryProxy) -> some View {
+        HStack(alignment: .center, spacing: 0) {
             whatIfLabel
-            Divider()
-            maximumLabel
+                .frame(minWidth: leftColumnWidth, alignment: .leading)
+                .transformAnchorPreference(key: ViewBoundsKey.self, value: .bounds) { preferences, bounds in
+                    preferences = [.init(viewId: 0, bounds: geometry[bounds])]
+                }
+            whatIfScoreText
+                .padding(.leading, 8)
+            revertButton
         }
-        .padding(.leading, 20)
-        .frame(height: 89)
     }
 
-    private var scoreTexts: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack(spacing: 8) {
-                whatIfScoreText
-                Spacer()
-                revertButton
-            }
-            Divider()
+    private func maximumRow(geometry: GeometryProxy) -> some View {
+        HStack(alignment: .center, spacing: 8) {
+            maximumLabel
+                .frame(minWidth: leftColumnWidth, alignment: .leading)
+                .transformAnchorPreference(key: ViewBoundsKey.self, value: .bounds) { preferences, bounds in
+                    preferences = [.init(viewId: 1, bounds: geometry[bounds])]
+                }
             maximumScoreText
         }
-        .padding(.trailing, 20)
-        .frame(height: 89)
+        .frame(minHeight: 42)
     }
 
     private var revertButton: some View {
@@ -95,10 +103,12 @@ struct WhatIfScoreEditorView: View {
         } label: {
             Image(uiImage: .replyLine)
                 .resizable()
-                .frame(width: 14, height: 14)
+                .frame(width: uiScale.iconScale * 14,
+                       height: uiScale.iconScale * 14)
                 .foregroundColor(.textDark)
         }
-        .frame(width: 44, height: 42)
+        .frame(width: 44)
+        .frame(minHeight: 42)
         .padding(.trailing, -16)
         .accessibilityLabel(Text("Revert"))
         .accessibilityHint(Text("Double tap to remove what-if score"))
@@ -106,9 +116,14 @@ struct WhatIfScoreEditorView: View {
 
     private var titleLabel: some View {
         Text("What-if Score")
-            .font(.system(size: 17, weight: .semibold, design: .default))
+            .font(
+                .system(
+                    size: UIFontMetrics.default.scaledValue(for: 17),
+                    weight: .semibold,
+                    design: .default
+                )
+            )
             .multilineTextAlignment(.center)
-            .frame(height: 25)
             .padding(.top, 16)
             .padding(.bottom, 12)
             .padding(.horizontal, 16)
@@ -116,35 +131,52 @@ struct WhatIfScoreEditorView: View {
 
     private var whatIfLabel: some View {
         Text("What-if")
-            .font(.system(size: 13, weight: .regular, design: .default))
-            .padding(.vertical, 12)
-            .padding(.trailing, 0)
+            .font(
+                .system(
+                    size: UIFontMetrics.default.scaledValue(for: 13),
+                    weight: .regular,
+                    design: .default
+                )
+            )
             .accessibilityHidden(true)
     }
 
     private var maximumLabel: some View {
         Text("Maximum")
-            .font(.system(size: 13, weight: .regular, design: .default))
-            .padding(.vertical, 12)
-            .padding(.trailing, 0)
+            .font(
+                .system(
+                    size: UIFontMetrics.default.scaledValue(for: 13),
+                    weight: .regular,
+                    design: .default
+                )
+            )
             .accessibilityHidden(true)
     }
 
     private var whatIfScoreText: some View {
         TextField("44", text: $whatIfScore)
             .keyboardType(.decimalPad)
-            .font(.system(size: 13, weight: .regular, design: .default))
-            .frame(height: 19)
-            .padding(.vertical, 12)
+            .font(
+                .system(
+                    size: UIFontMetrics.default.scaledValue(for: 13),
+                    weight: .regular,
+                    design: .default
+                )
+            )
             .accessibilityLabel(Text("What-if score is \(whatIfScore)"))
     }
 
     private var maximumScoreText: some View {
-        Text("100")
-            .font(.system(size: 13, weight: .regular, design: .default))
-            .frame(height: 19)
-            .padding(.vertical, 12)
-            .accessibilityLabel(Text("Maximum score is 100."))
+        Text(verbatim: "100")
+            .font(
+                .system(
+                    size: UIFontMetrics.default.scaledValue(for: 13),
+                    weight: .regular,
+                    design: .default
+                )
+            )
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibilityLabel(Text(verbatim: "Maximum score is 100."))
     }
 
     private var cancelButton: some View {
@@ -155,7 +187,8 @@ struct WhatIfScoreEditorView: View {
                 .fontWeight(.semibold)
                 .foregroundStyle(Color.blue)
                 .multilineTextAlignment(.center)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                .padding(12)
+                .frame(maxWidth: .infinity, alignment: .center)
         }
     }
 
@@ -167,12 +200,14 @@ struct WhatIfScoreEditorView: View {
             Text("Done")
                 .foregroundStyle(Color.blue)
                 .multilineTextAlignment(.center)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                .padding(12)
+                .frame(maxWidth: .infinity, alignment: .center)
         }
     }
 }
 
 #if DEBUG
+
 struct WhatIfScoreEditorViewPreview: PreviewProvider {
     static var previews: some View {
         WhatIfScoreEditorView(

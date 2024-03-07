@@ -97,7 +97,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         }
         .navigationTitle(String(localized: "Grades"))
         .toolbar {
-            RevertWhatIfScoreButton(isWhatIfScoreEnabled: viewModel.isWhatIfScoreEnabled) {
+            RevertWhatIfScoreButton(isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn) {
                 viewModel.isShowingRevertDialog = true
             }
         }
@@ -305,18 +305,17 @@ public struct GradeListView: View, ScreenViewTrackable {
             .frame(minHeight: 51)
             .padding(.horizontal, 16)
 
-            if viewModel.isWhatIfScoreEnabled {
+            if viewModel.isWhatIfScoreFlagEnabled {
                 Divider()
 
-                Toggle(isOn: $viewModel.isWhatIfScoreOn) {
+                Toggle(isOn: $viewModel.isWhatIfScoreModeOn) {
                     Text("Show What-if Score", bundle: .core)
                         .foregroundStyle(Color.textDarkest)
                         .font(.regular16)
-                        .fixedSize()
-                        .lineLimit(1)
+                        .multilineTextAlignment(.leading)
                 }
                 .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
-                .frame(height: 51)
+                .frame(minHeight: 51)
                 .padding(.horizontal, 16)
             }
         }
@@ -422,17 +421,12 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func listSectionView(title: String?) -> some View {
-        VStack(spacing: 2) {
-            HStack(spacing: 0) {
-                Text(title ?? "")
-                    .foregroundStyle(Color.textDark)
-                    .font(.semibold14)
-                    .padding(.horizontal, 16)
-                Spacer()
-            }
-        }
-        .frame(height: 35)
-        .padding(.horizontal, -16)
+        Text(title ?? "")
+            .foregroundStyle(Color.textDark)
+            .font(.semibold14)
+            .padding(.horizontal, 16)
+            .frame(maxWidth: .infinity, minHeight: 35, alignment: .leading)
+            .padding(.horizontal, -16)
     }
 
     @ViewBuilder
@@ -447,7 +441,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             GradeRowView(
                 assignment: assignment,
                 userID: userID,
-                isWhatIfScoreEnabled: viewModel.isWhatIfScoreEnabled
+                isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn
             ) {
                 isScoreEditorPresented.toggle()
             }
@@ -455,7 +449,6 @@ public struct GradeListView: View, ScreenViewTrackable {
         .listRowInsets(EdgeInsets())
         .iOS16RemoveListRowSeparatorLeadingInset()
         .swipeActions(edge: .trailing) { revertWhatIfScoreSwipeButton }
-//        .buttonStyle(ContextButton(contextColor: courseColor))
         .accessibilityAction(named: Text("Edit What-if score")) {
             isScoreEditorPresented.toggle()
         }
@@ -498,14 +491,12 @@ public struct GradeListView: View, ScreenViewTrackable {
 
 // This is workaround, because .toolbar doesn't allow optional `ToolBarContent`.
 private struct RevertWhatIfScoreButton: ToolbarContent {
-    let isWhatIfScoreEnabled: Bool
+    let isWhatIfScoreModeOn: Bool
     let buttonDidTap: () -> Void
 
     var body: some ToolbarContent {
         ToolbarItemGroup(placement: .navigationBarTrailing) {
-            if isWhatIfScoreEnabled {
-                HStack {
-                    Spacer()
+            if isWhatIfScoreModeOn {
                     Button(action: {
                         buttonDidTap()
                     }) {
@@ -513,9 +504,10 @@ private struct RevertWhatIfScoreButton: ToolbarContent {
                             .resizable()
                             .foregroundColor(Color.white)
                     }
+                    .frame(alignment: .leading)
                     .accessibilityLabel(Text("Revert"))
                     .accessibilityHint(Text("Double tap to revert to official score."))
-                }
+
             }
         }
     }

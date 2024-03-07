@@ -21,7 +21,7 @@ import SwiftUI
 public struct GradeRowView: View {
     public let assignment: Assignment
     public let userID: String?
-    public let isWhatIfScoreEnabled: Bool
+    public let isWhatIfScoreModeOn: Bool
     public let editScoreButtonDidTap: () -> Void
 
     public var body: some View {
@@ -30,7 +30,7 @@ public struct GradeRowView: View {
             HStack(spacing: 0) {
                 assignmentDetailsView
                 Spacer()
-                if isWhatIfScoreEnabled {
+                if isWhatIfScoreModeOn {
                     gradeText.padding(.leading, 16)
                     editButton
                 } else {
@@ -116,7 +116,7 @@ struct GradeRowViewPreview: PreviewProvider {
                 updateScoreStatistics: false
             ),
             userID: "",
-            isWhatIfScoreEnabled: true,
+            isWhatIfScoreModeOn: true,
             editScoreButtonDidTap: {}
         )
     }
