@@ -18,11 +18,11 @@
 
 import SwiftUI
 
-enum FileVisibility: CaseIterable, Identifiable {
-    case inheritCourse
-    case courseMembers
-    case institutionMembers
-    case publiclyAvailable
+enum FileVisibility: String, CaseIterable, Identifiable {
+    case inheritCourse = "inherit"
+    case courseMembers = "course"
+    case institutionMembers = "institution"
+    case publiclyAvailable = "public"
 
     var id: FileVisibility { self }
     var label: Text {

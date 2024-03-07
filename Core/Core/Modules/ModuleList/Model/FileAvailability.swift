@@ -18,19 +18,19 @@
 
 import SwiftUI
 
-enum FileAvailability: CaseIterable, Identifiable {
-    case publish
-    case unpublish
-    case onlyWithLink
-    case scheduleAvailability
+enum FileAvailability: CaseIterable, Identifiable, Equatable {
+    case published
+    case unpublished
+    case hidden
+    case scheduledAvailability
 
     var id: FileAvailability { self }
     var label: Text {
         switch self {
-        case .publish: return Text("Publish")
-        case .unpublish: return Text("Unpublish")
-        case .onlyWithLink: return Text("Only Available With Link")
-        case .scheduleAvailability: return Text("Schedule Availability")
+        case .published: return Text("Publish")
+        case .unpublished: return Text("Unpublish")
+        case .hidden: return Text("Only Available With Link")
+        case .scheduledAvailability: return Text("Schedule Availability")
         }
     }
     var isLastCase: Bool {

@@ -73,9 +73,9 @@ class UpdateFile: APIUseCase {
     let request: PutFileRequest
     let scope: Scope
 
-    init(fileID: String, name: String, locked: Bool, hidden: Bool, unlockAt: Date?, lockAt: Date?) {
-        request = PutFileRequest(fileID: fileID, name: name, locked: locked, hidden: hidden, unlockAt: unlockAt, lockAt: lockAt)
-        scope = .where(#keyPath(File.id), equals: fileID)
+    init(request: PutFileRequest) {
+        self.request = request
+        scope = .where(#keyPath(File.id), equals: request.fileID)
     }
 }
 

@@ -23,7 +23,7 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
     // Outputs
     @Published public private(set) var isLoading = false
     @Published public private(set) var isScheduleDateSectionVisible = false
-    @Published public private(set) var selectedAvailability: FileAvailability = .publish
+    @Published public private(set) var selectedAvailability: FileAvailability = .published
     @Published public private(set) var selectedVisibility: FileVisibility = .inheritCourse
     @Published public private(set) var availableFrom: Date?
     @Published public private(set) var availableUntil: Date?
@@ -45,7 +45,7 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
         availabilityDidSelect
             .assign(to: &$selectedAvailability)
         availabilityDidSelect
-            .map { $0 == .scheduleAvailability }
+            .map { $0 == .scheduledAvailability }
             .assign(to: &$isScheduleDateSectionVisible)
         visibilityDidSelect
             .assign(to: &$selectedVisibility)
