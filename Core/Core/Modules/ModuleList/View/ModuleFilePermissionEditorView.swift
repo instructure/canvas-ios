@@ -103,6 +103,7 @@ struct ModuleFilePermissionEditorView: View {
         } label: {
             Text("Done")
         }
+        .disabled(!viewModel.isDoneButtonActive)
     }
 
     private var separator: some View {
@@ -115,7 +116,15 @@ struct ModuleFilePermissionEditorView: View {
 
 struct ModuleFilePermissionEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = ModuleFilePermissionEditorViewModel(router: AppEnvironment.shared.router)
+        let interactor = ModulePublishInteractor(app: .teacher, courseId: "1")
+        let viewModel = ModuleFilePermissionEditorViewModel(
+            fileId: "",
+            moduleId: "",
+            moduleItemId: "",
+            courseId: "",
+            interactor: interactor,
+            router: AppEnvironment.shared.router
+        )
         ModuleFilePermissionEditorView(viewModel: viewModel)
     }
 }

@@ -22,6 +22,7 @@ import SwiftUI
 class ModuleFilePermissionEditorViewModel: ObservableObject {
     // Outputs
     @Published public private(set) var isLoading = false
+    @Published public private(set) var isDoneButtonActive = true
     @Published public private(set) var isScheduleDateSectionVisible = false
     @Published public private(set) var selectedAvailability: FileAvailability = .published
     @Published public private(set) var selectedVisibility: FileVisibility = .inheritCourse
@@ -37,10 +38,26 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
     public let availableFromDidSelect = PassthroughSubject<Date?, Never>()
     public let availableUntilDidSelect = PassthroughSubject<Date?, Never>()
 
+    private typealias Permissions = ModulePublishInteractor.FilePermissions
     private let router: Router
+    private let fileId: String
+    private let moduleId: String
+    private let moduleItemId: String
+    private let courseId: String
     private var subscriptions = Set<AnyCancellable>()
 
-    init(router: Router) {
+    init(
+        fileId: String,
+        moduleId: String,
+        moduleItemId: String,
+        courseId: String,
+        interactor: ModulePublishInteractor,
+        router: Router
+    ) {
+        self.fileId = fileId
+        self.moduleId = moduleId
+        self.moduleItemId = moduleItemId
+        self.courseId = courseId
         self.router = router
         availabilityDidSelect
             .assign(to: &$selectedAvailability)
@@ -53,5 +70,52 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
             .assign(to: &$availableFrom)
         availableUntilDidSelect
             .assign(to: &$availableUntil)
+        cancelDidPress
+            .sink { [weak router] editor in
+                router?.dismiss(editor)
+            }
+            .store(in: &subscriptions)
+        doneDidPress
+            .mapToValue(true)
+            .assign(to: &$isLoading)
+        doneDidPress
+            .mapToValue(false)
+            .assign(to: &$isDoneButtonActive)
+        doneDidPress
+            .compactMap { [weak self] host -> (UIViewController, Permissions)? in
+                guard let self else { return nil }
+                return (
+                    host,
+                    Permissions(
+                        fileId: fileId,
+                        moduleId: moduleId,
+                        moduleItemId: moduleItemId,
+                        courseId: courseId,
+                        unlockAt: availableFrom,
+                        lockAt: availableUntil,
+                        availability: selectedAvailability,
+                        visibility: selectedVisibility
+                    )
+                )
+            }
+            .flatMap { [interactor] data in
+                return interactor
+                    .changeFilePublishState(filePermissions: data.1)
+                    .map { data.0 }
+                    .mapToResult()
+            }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] result in
+                guard let self else { return }
+
+                switch result {
+                case .failure:
+                    isLoading = false
+                    isDoneButtonActive = true
+                case .success(let host):
+                    router.dismiss(host)
+                }
+            }
+            .store(in: &subscriptions)
     }
 }

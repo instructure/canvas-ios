@@ -31,15 +31,17 @@ class ModuleItemCell: UITableViewCell {
     @IBOutlet weak var publishInProgressIndicator: CircleProgressView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
     @IBOutlet weak var completedStatusView: UIImageView!
-    @IBOutlet weak var publishMenuButton: UIButton! {
-        didSet {
-            publishMenuButton.showsMenuAsPrimaryAction = true
-        }
-    }
+    @IBOutlet weak var publishMenuButton: UIButton!
 
-    let env = AppEnvironment.shared
-    var publishStateObserver: AnyCancellable?
-    var isFirstUpdate = true
+    private let env = AppEnvironment.shared
+    private var publishStateObserver: AnyCancellable?
+    private var isFirstUpdate = true
+    private weak var host: UIViewController?
+    private var moduleItemId: String?
+    private var fileId: String?
+    private var moduleId: String?
+    private var courseId: String?
+    private var publishInteractor: ModulePublishInteractor?
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -54,6 +56,12 @@ class ModuleItemCell: UITableViewCell {
         publishInteractor: ModulePublishInteractor,
         host: UIViewController
     ) {
+        self.host = host
+        self.publishInteractor = publishInteractor
+        moduleId = item.moduleID
+        moduleItemId = item.id
+        fileId = item.type.fileId
+        courseId = item.courseID
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         let isLocked = item.isLocked || item.masteryPath?.locked == true
@@ -104,15 +112,36 @@ class ModuleItemCell: UITableViewCell {
         nameLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).nameLabel"
         dueLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueLabel"
 
+        publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
         switch item.type {
         case .file:
-            publishMenuButton.isHidden = true
+            publishMenuButton.showsMenuAsPrimaryAction = false
             accessibilityCustomActions = []
+            publishMenuButton.addTarget(self, action: #selector(presentFilePermissionEditorDialog), for: .primaryActionTriggered)
         default:
-            publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
+            publishMenuButton.showsMenuAsPrimaryAction = true
+            publishMenuButton.removeTarget(self, action: #selector(presentFilePermissionEditorDialog), for: .primaryActionTriggered)
         }
 
         subscribeToPublishStateUpdates(item, publishInteractor: publishInteractor, host: host)
+    }
+
+    @objc
+    private func presentFilePermissionEditorDialog() {
+        guard let host, let fileId, let moduleId, let moduleItemId, let courseId, let publishInteractor else {
+            return
+        }
+        let viewModel = ModuleFilePermissionEditorViewModel(
+            fileId: fileId,
+            moduleId: moduleId,
+            moduleItemId: moduleItemId,
+            courseId: courseId,
+            interactor: publishInteractor,
+            router: env.router
+        )
+        let editorView = ModuleFilePermissionEditorView(viewModel: viewModel)
+        let hostController = CoreHostingController(editorView)
+        env.router.show(hostController, from: host, options: .modal(isDismissable: false, embedInNav: true))
     }
 
     private func subscribeToPublishStateUpdates(
@@ -130,7 +159,11 @@ class ModuleItemCell: UITableViewCell {
                 guard let self, let host else { return }
                 let animated = !isFirstUpdate
                 isFirstUpdate = false
-                updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, host: host)
+
+                if !item.type.isFile {
+                    updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, host: host)
+                }
+
                 updatePublishedUIState(isUpdating: isUpdating, isItemPublished: item.published ?? false, animated: animated)
                 updateA11yLabelForPublishState(moduleItem: item)
             }

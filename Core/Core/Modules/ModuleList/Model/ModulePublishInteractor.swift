@@ -19,6 +19,17 @@
 import Combine
 
 class ModulePublishInteractor {
+    public struct FilePermissions {
+        let fileId: String
+        let moduleId: String
+        let moduleItemId: String
+        let courseId: String
+
+        let unlockAt: Date?
+        let lockAt: Date?
+        let availability: FileAvailability
+        let visibility: FileVisibility
+    }
     public let isPublishActionAvailable: Bool
     public let moduleItemsUpdating = CurrentValueSubject<Set<String>, Never>(Set())
     public let statusUpdates = PassthroughSubject<String, Never>()
@@ -44,10 +55,7 @@ class ModulePublishInteractor {
             action: action
         )
         ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
-            .getEntities(
-                ignoreCache: true,
-                keepObservingDatabaseChanges: false
-            )
+            .getEntities(ignoreCache: true)
             .mapToVoid()
             .sink(receiveCompletion: { [weak moduleItemsUpdating, weak statusUpdates] result in
                 guard let moduleItemsUpdating else { return }
@@ -55,6 +63,34 @@ class ModulePublishInteractor {
                 statusUpdates?.send(result.moduleItemStatusUpdateText(for: action))
             }, receiveValue: {})
             .store(in: &subscriptions)
+    }
+
+    func changeFilePublishState(filePermissions: FilePermissions) -> AnyPublisher<Void, Error> {
+        moduleItemsUpdating.value.insert(filePermissions.moduleItemId)
+        let request = PutFileRequest(
+            fileID: filePermissions.fileId,
+            visibility: filePermissions.visibility,
+            availability: filePermissions.availability,
+            unlockAt: filePermissions.unlockAt,
+            lockAt: filePermissions.lockAt
+        )
+        let useCase = UpdateFile(request: request)
+        return ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
+            .getEntities(ignoreCache: true)
+            .flatMap { _ in
+                let useCase = GetModuleItem(
+                    courseID: filePermissions.courseId,
+                    moduleID: filePermissions.moduleId,
+                    itemID: filePermissions.moduleItemId
+                )
+                return ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
+                    .getEntities(ignoreCache: true)
+            }
+            .mapToVoid()
+            .handleEvents(receiveCompletion: { [weak moduleItemsUpdating] _ in
+                moduleItemsUpdating?.value.remove(filePermissions.moduleItemId)
+            })
+            .eraseToAnyPublisher()
     }
 }
 
