@@ -26,7 +26,11 @@ extension CourseSyncAnnouncementsInteractor {
 }
 
 public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncementsInteractor {
-    public init() {}
+    let htmlParser: HTMLParser
+
+    public init(htmlParser: HTMLParser) {
+        self.htmlParser = htmlParser
+    }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         Publishers
@@ -47,7 +51,11 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     }
 
     private func fetchAnnouncements(courseId: String) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetAnnouncements(context: .course(courseId)))
+        return ReactiveStore(useCase: GetAnnouncements(context: .course(courseId)))
+            .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.message, htmlParser: htmlParser)
+            .mapToVoid()
+            .eraseToAnyPublisher()
     }
 
     private func fetchFeatureFlags(courseId: String) -> AnyPublisher<Void, Error> {

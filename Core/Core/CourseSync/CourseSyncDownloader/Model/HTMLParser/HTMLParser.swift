@@ -19,7 +19,7 @@
 import Foundation
 import Combine
 
-class HTMLParser {
+public class HTMLParser {
 
     private let imageRegex: NSRegularExpression
     private let fileLinkRegex: NSRegularExpression
@@ -57,7 +57,6 @@ class HTMLParser {
         return imageURLs.publisher
             .setFailureType(to: URLError.self)
             .flatMap { url in
-                print(url)
                 return self.interactor.download(url)
                     .map {
                         return (url, $0)
@@ -70,7 +69,6 @@ class HTMLParser {
             .flatMap { [unowned self] (url, result) in
                 return self.interactor.save(result)
                     .map {
-                        print($0)
                         return (url, $0)
                     }
             }

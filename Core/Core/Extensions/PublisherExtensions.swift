@@ -18,6 +18,7 @@
 
 import Combine
 import CombineExt
+import CoreData
 
 public extension Publisher {
     func sink() -> AnyCancellable {
@@ -34,5 +35,64 @@ public extension Publisher {
             }
         )
         .eraseToAnyPublisher()
+    }
+}
+
+public extension Publisher where Output: Collection, Output.Element: NSManagedObject, Failure == Error {
+    func parseHtmlContent(attribute keyPath: WritableKeyPath<Output.Element, String>, htmlParser: HTMLParser) -> AnyPublisher<[Output.Element], Error> {
+        return self.flatMap { dataArray in
+                Publishers.Sequence(sequence: dataArray)
+                    .setFailureType(to: Error.self)
+                    .flatMap { element in
+                        let value = element[keyPath: keyPath]
+                        return htmlParser.parse(value)
+                            .map {
+                                return (element, $0)
+                            }
+                    }
+                    .map { (element: Output.Element, parsedAttribute: String) -> Output.Element in
+                        var newElement = element
+                        newElement[keyPath: keyPath] = parsedAttribute
+                        return newElement
+                    }
+                    .map { element in
+                        if let context = element.managedObjectContext {
+                            try? context.save()
+                        }
+                        return element
+                    }
+                    .collect()
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    func parseHtmlContent(attribute keyPath: WritableKeyPath<Output.Element, String?>, htmlParser: HTMLParser) -> AnyPublisher<[Output.Element], Error> {
+        return self.flatMap { dataArray in
+                Publishers.Sequence(sequence: dataArray)
+                    .setFailureType(to: Error.self)
+                    .flatMap { element in
+                        let value = element[keyPath: keyPath]
+                        return htmlParser.parse(value ?? "")
+                            .map {
+                                return (element, $0)
+                            }
+                    }
+                    .map { (element: Output.Element, parsedAttribute: String) -> Output.Element in
+                        var newElement = element
+                        newElement[keyPath: keyPath] = parsedAttribute
+                        return newElement
+                    }
+                    .receive(on: DispatchQueue.main)
+                    .map { element in
+                        if let context = element.managedObjectContext {
+                            try? context.save()
+                        }
+                        return element
+                    }
+                    .collect()
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
     }
 }

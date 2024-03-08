@@ -32,7 +32,6 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     }
 
     func download( _ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), URLError> {
-        let resultValue = PassthroughSubject<(data: Data, response: URLResponse), URLError>()
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
@@ -47,11 +46,11 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     func save(_ result: (data: Data, response: URLResponse)) -> AnyPublisher<URL, Error> {
         var saveURL = URL.Directories.documents.appendingPathComponent(UUID.string)
         if let url = result.response.url {
-            saveURL = URL.Directories.documents.appendingPathComponent(url.lastPathComponent)
+            saveURL = URL.Directories.documents.appendingPathComponent("\(UUID.string)\(url.lastPathComponent)")
         }
 
         do {
-            try result.data.write(to: saveURL)
+            try result.data.write(to: saveURL, options: [.withoutOverwriting])
             return Result.Publisher(saveURL).eraseToAnyPublisher()
         } catch {
             return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()

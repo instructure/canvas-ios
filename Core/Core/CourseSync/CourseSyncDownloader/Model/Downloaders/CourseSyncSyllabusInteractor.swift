@@ -26,7 +26,11 @@ extension CourseSyncSyllabusInteractor {
 }
 
 public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteractor, CourseSyncContentInteractor {
-    public init() {}
+    let htmlParser: HTMLParser
+
+    public init(htmlParser: HTMLParser) {
+        self.htmlParser = htmlParser
+    }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         Publishers
@@ -42,10 +46,10 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
         fetchCourseSettingsAndGetSyllabusSummaryState(courseId: courseId)
             .filter { $0 }
             .mapToVoid()
-            .flatMap {
+            .flatMap { [htmlParser] in
                 Publishers
-                    .Zip(Self.fetchAssignments(courseId: courseId),
-                         Self.fetchEvents(courseId: courseId))
+                    .Zip(Self.fetchAssignments(courseId: courseId, htmlParser: htmlParser),
+                         Self.fetchEvents(courseId: courseId, htmlParser: htmlParser))
             }
             .mapToVoid()
             .eraseToAnyPublisher()
@@ -59,16 +63,18 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
             .eraseToAnyPublisher()
     }
 
-    private static func fetchAssignments(courseId: String) -> AnyPublisher<Void, Error> {
+    private static func fetchAssignments(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCalendarEvents(context: .course(courseId), type: .assignment))
             .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.details, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
-    private static func fetchEvents(courseId: String) -> AnyPublisher<Void, Error> {
+    private static func fetchEvents(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCalendarEvents(context: .course(courseId), type: .event))
             .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.details, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

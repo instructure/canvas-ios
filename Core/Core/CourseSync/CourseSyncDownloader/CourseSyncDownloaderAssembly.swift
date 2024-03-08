@@ -20,17 +20,21 @@ import Foundation
 
 public enum CourseSyncDownloaderAssembly {
 
-    public static func makeInteractor() -> CourseSyncInteractor {
+    public static func makeInteractor(env: AppEnvironment = .shared) -> CourseSyncInteractor {
+        let loginSession = env.currentSession!
+        let downloadInteractor = HTMLDownloadInteractorLive(loginSession: loginSession)
+        let htmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor)
+
         let contentInteractors: [CourseSyncContentInteractor] = [
-            CourseSyncPagesInteractorLive(),
+            CourseSyncPagesInteractorLive(htmlParser: htmlParser),
             CourseSyncPeopleInteractorLive(),
-            CourseSyncAssignmentsInteractorLive(),
+            CourseSyncAssignmentsInteractorLive(htmlParser: htmlParser),
             CourseSyncGradesInteractorLive(userId: AppEnvironment.shared.currentSession?.userID ?? "self"),
-            CourseSyncSyllabusInteractorLive(),
+            CourseSyncSyllabusInteractorLive(htmlParser: htmlParser),
             CourseSyncConferencesInteractorLive(),
-            CourseSyncAnnouncementsInteractorLive(),
-            CourseSyncQuizzesInteractorLive(),
-            CourseSyncDiscussionsInteractorLive(),
+            CourseSyncAnnouncementsInteractorLive(htmlParser: htmlParser),
+            CourseSyncQuizzesInteractorLive(htmlParser: htmlParser),
+            CourseSyncDiscussionsInteractorLive(htmlParser: htmlParser),
         ]
         let scheduler = DispatchQueue(
             label: "com.instructure.icanvas.core.course-sync-download"

@@ -25,15 +25,10 @@ public extension CourseSyncPagesInteractor {
 }
 
 public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, CourseSyncContentInteractor {
-
-    let loginSession: LoginSession
-    let downloadInteractor: HTMLDownloadInteractorLive
     let htmlParser: HTMLParser
 
-    public init() {
-        loginSession = AppEnvironment.shared.currentSession!
-        downloadInteractor = HTMLDownloadInteractorLive(loginSession: loginSession)
-        htmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor)
+    public init(htmlParser: HTMLParser) {
+        self.htmlParser = htmlParser
     }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
@@ -43,36 +38,16 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
                     context: .course(courseId)
                 )
             )
-            .getEntities(ignoreCache: true),
+            .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.body, htmlParser: htmlParser),
+
             ReactiveStore(
                 useCase: GetPages(
                     context: .course(courseId)
                 )
             )
             .getEntities(ignoreCache: true)
-            .flatMap { pages in
-                Publishers.Sequence(sequence: pages)
-                    .setFailureType(to: Error.self)
-                    .flatMap { page in
-                        print("START PARSE")
-                        return self.htmlParser.parse(page.body)
-                            .map {
-                                print("PARSED")
-                                return (page, $0)
-                            }
-                    }
-                    .map { (page, parsedBody) in
-                        page.body = parsedBody
-                        return page
-                    }
-                    .map { page in
-                        if let context = page.managedObjectContext {
-                            try? context.save()
-                            print("SAVED")
-                        }
-                    }
-                    .collect()
-            }
+            .parseHtmlContent(attribute: \.body, htmlParser: htmlParser)
         )
         .map { _ in () }
         .eraseToAnyPublisher()

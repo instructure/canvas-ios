@@ -24,14 +24,17 @@ public extension CourseSyncDiscussionsInteractor {
 }
 
 public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteractor {
+    let htmlParser: HTMLParser
 
-    public init() {}
+    public init(htmlParser: HTMLParser) {
+        self.htmlParser = htmlParser
+    }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
-        Self.fetchTopics(courseId: courseId)
+        Self.fetchTopics(courseId: courseId, htmlParser: htmlParser)
             .flatMap { $0.publisher }
             .filter { $0.discussionSubEntryCount > 0 && $0.anonymousState == nil }
-            .flatMap { Self.getDiscussionView(courseId: courseId, topicId: $0.id) }
+            .flatMap { [htmlParser] in Self.getDiscussionView(courseId: courseId, topicId: $0.id, htmlParser: htmlParser) }
             .collect()
             .mapToVoid()
             .eraseToAnyPublisher()
@@ -39,18 +42,26 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
     // MARK: - Private Methods
 
-    private static func fetchTopics(courseId: String) -> AnyPublisher<[DiscussionTopic], Error> {
-        ReactiveStore(useCase: GetDiscussionTopics(context: .course(courseId)))
+    private static func fetchTopics(
+        courseId: String,
+        htmlParser: HTMLParser
+    ) -> AnyPublisher<[DiscussionTopic], Error> {
+
+        return ReactiveStore(useCase: GetDiscussionTopics(context: .course(courseId)))
             .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.message, htmlParser: htmlParser)
             .eraseToAnyPublisher()
     }
 
     private static func getDiscussionView(
         courseId: String,
-        topicId: String
+        topicId: String,
+        htmlParser: HTMLParser
     ) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
+
+        return ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
             .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.message, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
