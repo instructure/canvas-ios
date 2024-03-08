@@ -47,14 +47,14 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
     public let availableFromDidSelect = PassthroughSubject<Date?, Never>()
     public let availableUntilDidSelect = PassthroughSubject<Date?, Never>()
 
-    private typealias Permission = ModulePublishInteractor.FilePermission
-    private typealias Context = ModulePublishInteractor.FileContext
+    private typealias Permission = ModulePublishInteractorLive.FilePermission
+    private typealias Context = ModulePublishInteractorLive.FileContext
     private let router: Router
-    private let fileContext: ModulePublishInteractor.FileContext
+    private let fileContext: ModulePublishInteractorLive.FileContext
     private var subscriptions = Set<AnyCancellable>()
 
     init(
-        fileContext: ModulePublishInteractor.FileContext,
+        fileContext: ModulePublishInteractorLive.FileContext,
         interactor: ModulePublishInteractor,
         router: Router
     ) {
@@ -101,7 +101,7 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
     }
 
     private func loadInitialState(
-        fileContext: ModulePublishInteractor.FileContext,
+        fileContext: ModulePublishInteractorLive.FileContext,
         interactor: ModulePublishInteractor
     ) {
         interactor

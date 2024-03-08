@@ -24,28 +24,28 @@ class ModulePublishInteractorTests: CoreTestCase {
 
     func testPublishAvailability() {
         ExperimentalFeature.teacherBulkPublish.isEnabled = false
-        var testee = ModulePublishInteractor(app: nil, courseId: "")
+        var testee = ModulePublishInteractorLive(app: nil, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractor(app: .parent, courseId: "")
+        testee = ModulePublishInteractorLive(app: .parent, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractor(app: .student, courseId: "")
+        testee = ModulePublishInteractorLive(app: .student, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractor(app: .teacher, courseId: "")
+        testee = ModulePublishInteractorLive(app: .teacher, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
 
         ExperimentalFeature.teacherBulkPublish.isEnabled = true
-        testee = ModulePublishInteractor(app: nil, courseId: "")
+        testee = ModulePublishInteractorLive(app: nil, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractor(app: .parent, courseId: "")
+        testee = ModulePublishInteractorLive(app: .parent, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractor(app: .student, courseId: "")
+        testee = ModulePublishInteractorLive(app: .student, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractor(app: .teacher, courseId: "")
+        testee = ModulePublishInteractorLive(app: .teacher, courseId: "")
         XCTAssertTrue(testee.isPublishActionAvailable)
     }
 
     func testUpdatesItemPublishState() {
-        let testee = ModulePublishInteractor(app: .teacher, courseId: "testCourseId")
+        let testee = ModulePublishInteractorLive(app: .teacher, courseId: "testCourseId")
         let itemUpdateExpectation = expectation(description: "Item updates received")
         let subscription = testee
             .moduleItemsUpdating
@@ -69,7 +69,7 @@ class ModulePublishInteractorTests: CoreTestCase {
     }
 
     func testSendsStatusUpdateMessagesOnItemPublishing() {
-        let testee = ModulePublishInteractor(app: .teacher, courseId: "testCourseId")
+        let testee = ModulePublishInteractorLive(app: .teacher, courseId: "testCourseId")
         let expectation = expectation(description: "Published update received")
         let subscription = testee
             .statusUpdates
@@ -91,7 +91,7 @@ class ModulePublishInteractorTests: CoreTestCase {
     }
 
     func testChangeFilePublishState() {
-        let testee = ModulePublishInteractor(app: .teacher, courseId: "testCourseId")
+        let testee = ModulePublishInteractorLive(app: .teacher, courseId: "testCourseId")
         let unlockAt = Date().addDays(1)
         let lockAt = unlockAt.addDays(2)
         let mockFileUpdateRequest = PutFileRequest(
@@ -142,7 +142,7 @@ class ModulePublishInteractorTests: CoreTestCase {
     }
 
     func testGetFilePermission() {
-        let testee = ModulePublishInteractor(app: .teacher, courseId: "testCourseId")
+        let testee = ModulePublishInteractorLive(app: .teacher, courseId: "testCourseId")
         let mockGetFileRequest = GetFileRequest(
             context: .course("testCourseId"),
             fileID: "testFileId",

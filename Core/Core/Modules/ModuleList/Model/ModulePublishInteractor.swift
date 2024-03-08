@@ -18,7 +18,27 @@
 
 import Combine
 
-class ModulePublishInteractor {
+protocol ModulePublishInteractor {
+    var isPublishActionAvailable: Bool { get }
+    var moduleItemsUpdating: CurrentValueSubject<Set<String>, Never> { get }
+    var statusUpdates: PassthroughSubject<String, Never> { get }
+
+    func changeItemPublishedState(
+        moduleId: String,
+        moduleItemId: String,
+        action: PutModuleItemPublishRequest.Action
+    )
+    func changeFilePublishState(
+        fileContext: ModulePublishInteractorLive.FileContext,
+        filePermissions: ModulePublishInteractorLive.FilePermission
+    ) -> AnyPublisher<Void, Error>
+
+    func getFilePermission(
+        fileContext: ModulePublishInteractorLive.FileContext
+    ) -> AnyPublisher<ModulePublishInteractorLive.FilePermission, Error>
+}
+
+class ModulePublishInteractorLive: ModulePublishInteractor {
     public struct FileContext {
         let fileId: String
         let moduleId: String

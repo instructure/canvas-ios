@@ -26,29 +26,49 @@ class ModulePublishInteractorPreview: ModulePublishInteractor {
         case error
         case data
     }
+    var isPublishActionAvailable = true
+    var moduleItemsUpdating = CurrentValueSubject<Set<String>, Never>(Set())
+    var statusUpdates = PassthroughSubject<String, Never>()
+
     private let state: MockState
 
     init(state: MockState) {
         self.state = state
-        super.init(app: .teacher, courseId: "")
     }
 
-    override func getFilePermission(
-        fileContext: ModulePublishInteractor.FileContext
-    ) -> AnyPublisher<ModulePublishInteractor.FilePermission, Error> {
+    func getFilePermission(
+        fileContext: ModulePublishInteractorLive.FileContext
+    ) -> AnyPublisher<ModulePublishInteractorLive.FilePermission, Error> {
         switch state {
         case .loading:
             return Empty(completeImmediately: false).eraseToAnyPublisher()
         case .error:
             return Fail(error: NSError.internalError()).eraseToAnyPublisher()
         case .data:
-            let data = ModulePublishInteractor.FilePermission(unlockAt: Date(),
-                                                              lockAt: Date(),
-                                                              availability: .scheduledAvailability,
-                                                              visibility: .institutionMembers)
+            let data = ModulePublishInteractorLive.FilePermission(
+                unlockAt: Date(),
+                lockAt: Date(),
+                availability: .scheduledAvailability,
+                visibility: .institutionMembers
+            )
             return Just(data).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
     }
+
+    func changeItemPublishedState(
+        moduleId: String,
+        moduleItemId: String,
+        action: PutModuleItemPublishRequest.Action
+    ) {
+    }
+
+    func changeFilePublishState(
+        fileContext: ModulePublishInteractorLive.FileContext,
+        filePermissions: ModulePublishInteractorLive.FilePermission
+    ) -> AnyPublisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+
 }
 
 #endif
