@@ -242,6 +242,7 @@ public struct CheckmarkRow<Label: View>: View {
                 }
             }
         }
+        .accessibilityAddTraits(isChecked ? [.isSelected] : [])
     }
 }
 
@@ -302,6 +303,7 @@ public struct DatePickerRow<Label: View>: View {
                 }
                 .opacity(date == nil ? 0.3 : 1)
                 .disabled(date == nil)
+                .accessibilityLabel("Clear date")
             }
             .frame(minHeight: 36) // To always have the same height despite datepicker visibility
         }

@@ -119,9 +119,15 @@ class ModuleItemCell: UITableViewCell {
 
         publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
         switch item.type {
-        case .file:
+        case .file: // files open a dedicated dialog and don't use the context menu
             publishMenuButton.showsMenuAsPrimaryAction = false
-            accessibilityCustomActions = []
+            accessibilityCustomActions = [
+                .init(
+                    name: "Edit permissions",
+                    target: self,
+                    selector: #selector(presentFilePermissionEditorDialog)
+                )
+            ]
             publishMenuButton.addTarget(self, action: #selector(presentFilePermissionEditorDialog), for: .primaryActionTriggered)
         default:
             publishMenuButton.showsMenuAsPrimaryAction = true
@@ -233,12 +239,19 @@ class ModuleItemCell: UITableViewCell {
 
     private func updateA11yLabelForPublishState(moduleItem: ModuleItem) {
         if !publishedIconView.isHidden {
+            let publishedText = {
+                if let availability = moduleItem.fileAvailability {
+                    return availability.a11yLabel
+                } else {
+                    return moduleItem.published == true
+                        ? String(localized: "published")
+                        : String(localized: "unpublished")
+                }
+            }()
             accessibilityLabel = [
                 moduleItem.type?.label,
                 moduleItem.title,
-                moduleItem.published == true
-                    ? String(localized: "published")
-                    : String(localized: "unpublished"),
+                publishedText,
             ].compactMap { $0 }.joined(separator: ", ")
         }
     }

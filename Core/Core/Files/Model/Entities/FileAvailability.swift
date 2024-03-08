@@ -33,6 +33,14 @@ public enum FileAvailability: Int, CaseIterable, Identifiable, Equatable {
         case .scheduledAvailability: return Text("Schedule Availability")
         }
     }
+    public var a11yLabel: String {
+        switch self {
+        case .published: return String(localized: "Published")
+        case .unpublished: return String(localized: "Unpublished")
+        case .hidden: return String(localized: "Only Available With Link")
+        case .scheduledAvailability: return String(localized: "Scheduled Availability")
+        }
+    }
     public var isLastCase: Bool {
         Self.allCases.last == self
     }
