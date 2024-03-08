@@ -25,6 +25,7 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
         case error
         case data
     }
+
     // Outputs
     @Published public private(set) var state: State = .loading
     @Published public private(set) var isUploading = false

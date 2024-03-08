@@ -89,6 +89,109 @@ class ModulePublishInteractorTests: CoreTestCase {
         waitForExpectations(timeout: 0.1)
         subscription.cancel()
     }
+
+    func testChangeFilePublishState() {
+        let testee = ModulePublishInteractor(app: .teacher, courseId: "testCourseId")
+        let unlockAt = Date().addDays(1)
+        let lockAt = unlockAt.addDays(2)
+        let mockFileUpdateRequest = PutFileRequest(
+            fileID: "testFileId",
+            visibility: .courseMembers,
+            availability: .scheduledAvailability,
+            unlockAt: unlockAt,
+            lockAt: lockAt
+        )
+        let mockModuleItemRefreshRequest = GetModuleItemRequest(
+            courseID: "testCourseId",
+            moduleID: "testModuleId",
+            itemID: "testModuleItemId",
+            include: [.content_details]
+        )
+        let fileUpdateMock = api.mock(mockFileUpdateRequest, value: .make())
+        fileUpdateMock.suspend()
+        api.mock(mockModuleItemRefreshRequest, value: .make())
+
+        let expectation = expectation(description: "Publish finished")
+
+        // WHEN
+        let subscription = testee
+            .changeFilePublishState(
+                fileContext: .init(
+                    fileId: "testFileId",
+                    moduleId: "testModuleId",
+                    moduleItemId: "testModuleItemId",
+                    courseId: "testCourseId"
+                ),
+                filePermissions: .init(
+                    unlockAt: unlockAt,
+                    lockAt: lockAt,
+                    availability: .scheduledAvailability,
+                    visibility: .courseMembers
+                )
+            )
+            .sink(receiveCompletion: { completion in
+                if case .finished = completion {
+                    expectation.fulfill()
+                }
+            }, receiveValue: {})
+        fileUpdateMock.resume()
+
+        // THEN
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+    }
+
+    func testGetFilePermission() {
+        let testee = ModulePublishInteractor(app: .teacher, courseId: "testCourseId")
+        let mockGetFileRequest = GetFileRequest(
+            context: .course("testCourseId"),
+            fileID: "testFileId",
+            include: []
+        )
+        let unlockAt = Date().addDays(1)
+        let lockAt = unlockAt.addDays(2)
+        let getFileMock = api.mock(
+            mockGetFileRequest,
+            value: .make(
+                id: "testFileId",
+                unlock_at: unlockAt,
+                locked: false,
+                hidden: false,
+                lock_at: lockAt,
+                visibility_level: FileVisibility.institutionMembers.rawValue
+            )
+        )
+        getFileMock.suspend()
+        let finishExpectation = expectation(description: "Get operation finished")
+        let valueExpectation = expectation(description: "Permission received")
+
+        // WHEN
+        let subscription = testee
+            .getFilePermission(
+                fileContext: .init(
+                    fileId: "testFileId",
+                    moduleId: "testModuleId",
+                    moduleItemId: "testModuleItemId",
+                    courseId: "testCourseId"
+                )
+            )
+            .sink { completion in
+                if case .finished = completion {
+                    finishExpectation.fulfill()
+                }
+            } receiveValue: { permission in
+                valueExpectation.fulfill()
+                XCTAssertEqual(permission.availability, .scheduledAvailability)
+                XCTAssertEqual(permission.visibility, .institutionMembers)
+                XCTAssertEqual(permission.lockAt!.timeIntervalSince1970, lockAt.timeIntervalSince1970, accuracy: 0.1)
+                XCTAssertEqual(permission.unlockAt!.timeIntervalSince1970, unlockAt.timeIntervalSince1970, accuracy: 0.1)
+            }
+
+        // THEN
+        getFileMock.resume()
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+    }
 }
 
 class TestStatusUpdateTests: XCTestCase {
