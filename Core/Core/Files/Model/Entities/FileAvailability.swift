@@ -18,14 +18,14 @@
 
 import SwiftUI
 
-enum FileAvailability: CaseIterable, Identifiable, Equatable {
-    case published
-    case unpublished
-    case hidden
-    case scheduledAvailability
+public enum FileAvailability: Int, CaseIterable, Identifiable, Equatable {
+    case published = 0
+    case unpublished = 1
+    case hidden = 2
+    case scheduledAvailability = 3
 
-    var id: FileAvailability { self }
-    var label: Text {
+    public var id: FileAvailability { self }
+    public var label: Text {
         switch self {
         case .published: return Text("Publish")
         case .unpublished: return Text("Unpublish")
@@ -33,7 +33,19 @@ enum FileAvailability: CaseIterable, Identifiable, Equatable {
         case .scheduledAvailability: return Text("Schedule Availability")
         }
     }
-    var isLastCase: Bool {
+    public var isLastCase: Bool {
         Self.allCases.last == self
+    }
+
+    public init(moduleItem: APIModuleItem) {
+        if moduleItem.published == false {
+            self = .unpublished
+        } else if moduleItem.content_details?.hidden == true {
+            self = .hidden
+        } else if moduleItem.content_details?.unlock_at != nil || moduleItem.content_details?.lock_at != nil {
+            self = .scheduledAvailability
+        } else {
+            self = .published
+        }
     }
 }

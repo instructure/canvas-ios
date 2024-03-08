@@ -72,7 +72,12 @@ class ModuleItemCell: UITableViewCell {
         iconView.image = item.masteryPath?.locked == true ? UIImage.lockLine : item.type?.icon
         contentStackView.setCustomSpacing(16, after: iconView)
         iconView.isHidden = (iconView.image == nil)
-        publishedIconView.published = item.published
+
+        if let fileAvailability = item.fileAvailability {
+            publishedIconView.setupState(with: fileAvailability)
+        } else {
+            publishedIconView.published = item.published
+        }
 
         completedStatusView.isHidden = env.app == .teacher || item.completionRequirement == nil
         completedStatusView.image = item.completed == true ? .checkLine : .emptyLine
@@ -164,7 +169,17 @@ class ModuleItemCell: UITableViewCell {
                     updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, host: host)
                 }
 
-                updatePublishedUIState(isUpdating: isUpdating, isItemPublished: item.published ?? false, animated: animated)
+                let availability: FileAvailability = {
+                    if let availability = item.fileAvailability {
+                        return availability
+                    }
+                    return item.published == true ? .published : .unpublished
+                }()
+                updatePublishedUIState(
+                    isUpdating: isUpdating,
+                    availability: availability,
+                    animated: animated
+                )
                 updateA11yLabelForPublishState(moduleItem: item)
             }
     }
@@ -197,13 +212,13 @@ class ModuleItemCell: UITableViewCell {
         }()
     }
 
-    private func updatePublishedUIState(isUpdating: Bool, isItemPublished: Bool, animated: Bool) {
+    private func updatePublishedUIState(isUpdating: Bool, availability: FileAvailability, animated: Bool) {
         if isUpdating {
             publishInProgressIndicator?.startAnimating()
         }
 
         publishInProgressIndicator?.alpha = isUpdating ? 0 : 1
-        publishedIconView?.published = isItemPublished
+        publishedIconView?.setupState(with: availability)
         publishedIconView?.alpha = isUpdating ? 1 : 0
 
         UIView.animate(withDuration: animated ? 0.3 : 0.0) { [weak publishInProgressIndicator, weak publishedIconView] in
