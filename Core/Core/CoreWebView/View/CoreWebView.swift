@@ -584,9 +584,7 @@ extension CoreWebView {
 
         themeSwitcher = CoreWebViewThemeSwitcherLive(host: self)
         themeSwitcher?.pinHostAndButton(inside: parent)
-
-        let parentStyle = parent.viewController?.traitCollection.userInterfaceStyle ?? .unspecified
-        themeSwitcher?.updateUserInterfaceStyle(with: parentStyle)
+        themeSwitcher?.updateUserInterfaceStyle(with: .current)
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
