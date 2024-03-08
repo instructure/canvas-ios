@@ -55,7 +55,7 @@ struct ModuleFilePermissionEditorView: View {
             EditorSection(label: Text("Availability")) {
                 ForEach(FileAvailability.allCases) { availability in
                     let binding = Binding {
-                        viewModel.selectedAvailability == availability
+                        viewModel.availability == availability
                     } set: { _ in
                         viewModel.availabilityDidSelect.send(availability)
                     }
@@ -72,7 +72,7 @@ struct ModuleFilePermissionEditorView: View {
             EditorSection(label: Text("Visibility")) {
                 ForEach(FileVisibility.allCases) { visibility in
                     let binding = Binding {
-                        viewModel.selectedVisibility == visibility
+                        viewModel.visibility == visibility
                     } set: { _ in
                         viewModel.visibilityDidSelect.send(visibility)
                     }
@@ -95,12 +95,14 @@ struct ModuleFilePermissionEditorView: View {
         VStack(spacing: 0) {
             separator.padding(.leading, 16)
             DatePickerRow(date: fromBinding,
-                          defaultDate: viewModel.defaultAvailableDate,
+                          defaultDate: viewModel.defaultFromDate,
+                          validUntil: viewModel.availableUntil?.addMinutes(-1) ?? .distantFuture,
                           label: Text("From"))
             .animation(.default, value: viewModel.availableFrom)
             separator.padding(.leading, 16)
             DatePickerRow(date: untilBinding,
-                          defaultDate: viewModel.defaultAvailableDate,
+                          defaultDate: viewModel.defaultUntilDate,
+                          validFrom: viewModel.availableFrom?.addMinutes(1) ?? .distantPast,
                           label: Text("Until"))
             .animation(.default, value: viewModel.availableUntil)
         }
@@ -140,30 +142,36 @@ struct ModuleFilePermissionEditorView_Previews: PreviewProvider {
         let dataInteractor = ModulePublishInteractorPreview(state: .data)
 
         let dataViewModel = ModuleFilePermissionEditorViewModel(
-            fileId: "",
-            moduleId: "",
-            moduleItemId: "",
-            courseId: "",
+            fileContext: .init(
+                fileId: "",
+                moduleId: "",
+                moduleItemId: "",
+                courseId: ""
+            ),
             interactor: dataInteractor,
             router: AppEnvironment.shared.router
         )
         ModuleFilePermissionEditorView(viewModel: dataViewModel)
             .previewDisplayName("Data")
         let loadingViewModel = ModuleFilePermissionEditorViewModel(
-            fileId: "",
-            moduleId: "",
-            moduleItemId: "",
-            courseId: "",
+            fileContext: .init(
+                fileId: "",
+                moduleId: "",
+                moduleItemId: "",
+                courseId: ""
+            ),
             interactor: loadingInteractor,
             router: AppEnvironment.shared.router
         )
         ModuleFilePermissionEditorView(viewModel: loadingViewModel)
             .previewDisplayName("Loading")
         let errorViewModel = ModuleFilePermissionEditorViewModel(
-            fileId: "",
-            moduleId: "",
-            moduleItemId: "",
-            courseId: "",
+            fileContext: .init(
+                fileId: "",
+                moduleId: "",
+                moduleItemId: "",
+                courseId: ""
+            ),
             interactor: errorInteractor,
             router: AppEnvironment.shared.router
         )

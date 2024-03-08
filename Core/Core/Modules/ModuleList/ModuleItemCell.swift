@@ -126,7 +126,7 @@ class ModuleItemCell: UITableViewCell {
                     name: "Edit permissions",
                     target: self,
                     selector: #selector(presentFilePermissionEditorDialog)
-                )
+                ),
             ]
             publishMenuButton.addTarget(self, action: #selector(presentFilePermissionEditorDialog), for: .primaryActionTriggered)
         default:
@@ -143,10 +143,12 @@ class ModuleItemCell: UITableViewCell {
             return
         }
         let viewModel = ModuleFilePermissionEditorViewModel(
-            fileId: fileId,
-            moduleId: moduleId,
-            moduleItemId: moduleItemId,
-            courseId: courseId,
+            fileContext: .init(
+                fileId: fileId,
+                moduleId: moduleId,
+                moduleItemId: moduleItemId,
+                courseId: courseId
+            ),
             interactor: publishInteractor,
             router: env.router
         )

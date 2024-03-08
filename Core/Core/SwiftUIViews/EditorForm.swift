@@ -250,14 +250,20 @@ public struct DatePickerRow<Label: View>: View {
     @Binding public var date: Date?
     private let label: Label
     private let defaultDate: Date
+    private let validFrom: Date
+    private let validUntil: Date
 
     public init(
         date: Binding<Date?>,
         defaultDate: Date = .now,
+        validFrom: Date = .distantPast,
+        validUntil: Date = .distantFuture,
         label: Label
     ) {
         self._date = date.animation()
         self.defaultDate = defaultDate
+        self.validFrom = validFrom
+        self.validUntil = validUntil
         self.label = label
     }
 
@@ -270,6 +276,7 @@ public struct DatePickerRow<Label: View>: View {
                     let binding = Binding(get: { date ?? defaultDate },
                                           set: { newDate in date = newDate })
                     DatePicker(selection: binding,
+                               in: validFrom...validUntil,
                                displayedComponents: [.date, .hourAndMinute],
                                label: {})
                 } else {
