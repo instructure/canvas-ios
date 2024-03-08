@@ -84,6 +84,12 @@ struct ModuleFilePermissionEditorView: View {
         }
         .animation(.default, value: viewModel.isScheduleDateSectionVisible)
         .navigationBarItems(trailing: doneNavButton)
+        .alert(isPresented: $viewModel.showError) {
+            Alert(
+                title: Text("Something went wrong"),
+                message: Text("There was an unexpected error. Please try again.")
+            )
+        }
     }
 
     @ViewBuilder

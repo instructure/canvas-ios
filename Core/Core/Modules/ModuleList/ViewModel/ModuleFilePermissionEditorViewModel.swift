@@ -36,6 +36,7 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
     @Published public private(set) var availableUntil: Date?
     @Published public private(set) var defaultFromDate = Date().startOfDay()
     @Published public private(set) var defaultUntilDate = Date().startOfDay()
+    @Published public var showError = false
 
     // Inputs
     public let cancelDidPress = PassthroughSubject<UIViewController, Never>()
@@ -95,7 +96,6 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         handleDoneButtonPress(interactor: interactor)
-
         loadInitialState(fileContext: fileContext, interactor: interactor)
     }
 
@@ -164,6 +164,7 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
                 case .failure:
                     isUploading = false
                     isDoneButtonActive = true
+                    showError = true
                 case .success(let host):
                     router.dismiss(host)
                 }
