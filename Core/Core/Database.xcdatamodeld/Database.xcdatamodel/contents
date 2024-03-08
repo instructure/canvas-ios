@@ -492,6 +492,7 @@
         <attribute name="userID" optional="YES" attributeType="String"/>
         <attribute name="userRaw" optional="YES" attributeType="Binary"/>
         <attribute name="uuid" optional="YES" attributeType="String"/>
+        <attribute name="visibilityLevelRaw" optional="YES" attributeType="String"/>
         <relationship name="conversationMessage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConversationMessage" inverseName="attachmentsRaw" inverseEntity="ConversationMessage"/>
         <relationship name="discussionEntry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionEntry" inverseName="attachment" inverseEntity="DiscussionEntry"/>
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="attachments" inverseEntity="DiscussionTopic"/>

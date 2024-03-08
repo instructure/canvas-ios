@@ -28,7 +28,30 @@ struct ModuleFilePermissionEditorView: View {
     }
 
     var body: some View {
-        EditorForm(isSpinning: viewModel.isLoading) {
+        SwiftUI.Group {
+            switch viewModel.state {
+            case .loading:
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            case .error:
+                InteractivePanda(
+                    scene: FilesPanda(),
+                    title: Text("Something went wrong"),
+                    subtitle: Text("There was an unexpected error. Please try again.")
+                )
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            case .data:
+                form
+            }
+        }
+        .background(Color.backgroundLightest)
+        .navigationTitle(Text("Edit Permissions"))
+        .navigationBarItems(leading: cancelNavButton)
+    }
+
+    private var form: some View {
+        EditorForm(isSpinning: viewModel.isUploading) {
             EditorSection(label: Text("Availability")) {
                 ForEach(FileAvailability.allCases) { availability in
                     let binding = Binding {
@@ -60,11 +83,7 @@ struct ModuleFilePermissionEditorView: View {
             }
         }
         .animation(.default, value: viewModel.isScheduleDateSectionVisible)
-        .navigationBarItems(
-            leading: cancelNavButton,
-            trailing: doneNavButton
-        )
-        .navigationTitle(Text("Edit Permissions"))
+        .navigationBarItems(trailing: doneNavButton)
     }
 
     @ViewBuilder
@@ -116,16 +135,40 @@ struct ModuleFilePermissionEditorView: View {
 
 struct ModuleFilePermissionEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        let interactor = ModulePublishInteractor(app: .teacher, courseId: "1")
-        let viewModel = ModuleFilePermissionEditorViewModel(
+        let loadingInteractor = ModulePublishInteractorPreview(state: .loading)
+        let errorInteractor = ModulePublishInteractorPreview(state: .error)
+        let dataInteractor = ModulePublishInteractorPreview(state: .data)
+
+        let dataViewModel = ModuleFilePermissionEditorViewModel(
             fileId: "",
             moduleId: "",
             moduleItemId: "",
             courseId: "",
-            interactor: interactor,
+            interactor: dataInteractor,
             router: AppEnvironment.shared.router
         )
-        ModuleFilePermissionEditorView(viewModel: viewModel)
+        ModuleFilePermissionEditorView(viewModel: dataViewModel)
+            .previewDisplayName("Data")
+        let loadingViewModel = ModuleFilePermissionEditorViewModel(
+            fileId: "",
+            moduleId: "",
+            moduleItemId: "",
+            courseId: "",
+            interactor: loadingInteractor,
+            router: AppEnvironment.shared.router
+        )
+        ModuleFilePermissionEditorView(viewModel: loadingViewModel)
+            .previewDisplayName("Loading")
+        let errorViewModel = ModuleFilePermissionEditorViewModel(
+            fileId: "",
+            moduleId: "",
+            moduleItemId: "",
+            courseId: "",
+            interactor: errorInteractor,
+            router: AppEnvironment.shared.router
+        )
+        ModuleFilePermissionEditorView(viewModel: errorViewModel)
+            .previewDisplayName("Error")
     }
 }
 

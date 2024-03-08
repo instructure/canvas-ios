@@ -50,6 +50,7 @@ public struct APIFile: Codable, Equatable {
     var preview_url: APIURL?
     let avatar: APIFileToken?
     var usage_rights: APIUsageRights?
+    let visibility_level: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -76,6 +77,7 @@ public struct APIFile: Codable, Equatable {
         case preview_url
         case avatar
         case usage_rights
+        case visibility_level
     }
 
     init(
@@ -102,7 +104,8 @@ public struct APIFile: Codable, Equatable {
         lock_explanation: String?,
         preview_url: APIURL?,
         avatar: APIFileToken?,
-        usage_rights: APIUsageRights?
+        usage_rights: APIUsageRights?,
+        visibility_level: String?
     ) {
         self.id = id
         self.uuid = uuid
@@ -128,6 +131,7 @@ public struct APIFile: Codable, Equatable {
         self.preview_url = preview_url
         self.avatar = avatar
         self.usage_rights = usage_rights
+        self.visibility_level = visibility_level
     }
 
     public init(from decoder: Decoder) throws {
@@ -156,6 +160,7 @@ public struct APIFile: Codable, Equatable {
         preview_url = try container.decodeURLIfPresent(forKey: .preview_url)
         avatar = try container.decodeIfPresent(APIFileToken.self, forKey: .avatar)
         usage_rights = try container.decodeIfPresent(APIUsageRights.self, forKey: .usage_rights)
+        visibility_level = try container.decodeIfPresent(String.self, forKey: .visibility_level)
     }
 }
 
@@ -234,7 +239,8 @@ public extension APIFile {
         lock_explanation: String? = nil,
         preview_url: URL? = nil,
         avatar: APIFileToken? = nil,
-        usage_rights: APIUsageRights? = nil
+        usage_rights: APIUsageRights? = nil,
+        visibility_level: String? = nil
     ) -> APIFile {
         return APIFile(
             id: id,
@@ -260,7 +266,8 @@ public extension APIFile {
             lock_explanation: lock_explanation,
             preview_url: APIURL(rawValue: preview_url),
             avatar: avatar,
-            usage_rights: usage_rights
+            usage_rights: usage_rights,
+            visibility_level: visibility_level
         )
     }
 }

@@ -18,14 +18,14 @@
 
 import SwiftUI
 
-enum FileVisibility: String, CaseIterable, Identifiable {
+public enum FileVisibility: String, CaseIterable, Identifiable {
     case inheritCourse = "inherit"
     case courseMembers = "course"
     case institutionMembers = "institution"
     case publiclyAvailable = "public"
 
-    var id: FileVisibility { self }
-    var label: Text {
+    public var id: FileVisibility { self }
+    public var label: Text {
         switch self {
         case .inheritCourse: return Text("Inherit From Course")
         case .courseMembers: return Text("Course Members")
@@ -33,7 +33,7 @@ enum FileVisibility: String, CaseIterable, Identifiable {
         case .publiclyAvailable: return Text("Public")
         }
     }
-    var isLastCase: Bool {
+    public var isLastCase: Bool {
         Self.allCases.last == self
     }
 }

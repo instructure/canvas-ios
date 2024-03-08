@@ -19,12 +19,13 @@
 import Combine
 
 class ModulePublishInteractor {
-    public struct FilePermissions {
+    public struct FileContext {
         let fileId: String
         let moduleId: String
         let moduleItemId: String
         let courseId: String
-
+    }
+    public struct FilePermission {
         let unlockAt: Date?
         let lockAt: Date?
         let availability: FileAvailability
@@ -65,31 +66,64 @@ class ModulePublishInteractor {
             .store(in: &subscriptions)
     }
 
-    func changeFilePublishState(filePermissions: FilePermissions) -> AnyPublisher<Void, Error> {
-        moduleItemsUpdating.value.insert(filePermissions.moduleItemId)
-        let request = PutFileRequest(
-            fileID: filePermissions.fileId,
-            visibility: filePermissions.visibility,
-            availability: filePermissions.availability,
-            unlockAt: filePermissions.unlockAt,
-            lockAt: filePermissions.lockAt
-        )
-        let useCase = UpdateFile(request: request)
-        return ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
-            .getEntities(ignoreCache: true)
-            .flatMap { _ in
-                let useCase = GetModuleItem(
-                    courseID: filePermissions.courseId,
-                    moduleID: filePermissions.moduleId,
-                    itemID: filePermissions.moduleItemId
-                )
-                return ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
-                    .getEntities(ignoreCache: true)
-            }
-            .mapToVoid()
+    func changeFilePublishState(
+        fileContext: FileContext,
+        filePermissions: FilePermission
+    ) -> AnyPublisher<Void, Error> {
+        moduleItemsUpdating.value.insert(fileContext.moduleItemId)
+        let updateFilePermissions = {
+            let request = PutFileRequest(
+                fileID: fileContext.fileId,
+                visibility: filePermissions.visibility,
+                availability: filePermissions.availability,
+                unlockAt: filePermissions.unlockAt,
+                lockAt: filePermissions.lockAt
+            )
+            let useCase = UpdateFile(request: request)
+            return ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
+                .getEntities(ignoreCache: true)
+                .mapToVoid()
+        }
+        let refreshModuleItem = {
+            let useCase = GetModuleItem(
+                courseID: fileContext.courseId,
+                moduleID: fileContext.moduleId,
+                itemID: fileContext.moduleItemId
+            )
+            return ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
+                .getEntities(ignoreCache: true)
+                .mapToVoid()
+        }
+        return updateFilePermissions()
+            .flatMap { refreshModuleItem() }
             .handleEvents(receiveCompletion: { [weak moduleItemsUpdating] _ in
-                moduleItemsUpdating?.value.remove(filePermissions.moduleItemId)
+                moduleItemsUpdating?.value.remove(fileContext.moduleItemId)
             })
+            .eraseToAnyPublisher()
+    }
+
+    func getFilePermission(
+        fileContext: FileContext
+    ) -> AnyPublisher<FilePermission, Error> {
+        let useCase = GetFile(
+            context: .course(fileContext.courseId),
+            fileID: fileContext.fileId
+        )
+        return ReactiveStore(useCase: useCase)
+            .getEntities()
+            .tryMap { files -> FilePermission in
+                guard let file = files.first,
+                      let visibility = file.visibilityLevel
+                else {
+                    throw NSError.internalError()
+                }
+                return FilePermission(
+                    unlockAt: file.unlockAt,
+                    lockAt: file.lockAt,
+                    availability: file.availability,
+                    visibility: visibility
+                )
+            }
             .eraseToAnyPublisher()
     }
 }

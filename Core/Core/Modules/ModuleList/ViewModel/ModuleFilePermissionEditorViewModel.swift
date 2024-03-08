@@ -20,8 +20,14 @@ import Combine
 import SwiftUI
 
 class ModuleFilePermissionEditorViewModel: ObservableObject {
+    enum State {
+        case loading
+        case error
+        case data
+    }
     // Outputs
-    @Published public private(set) var isLoading = false
+    @Published public private(set) var state: State = .loading
+    @Published public private(set) var isUploading = false
     @Published public private(set) var isDoneButtonActive = true
     @Published public private(set) var isScheduleDateSectionVisible = false
     @Published public private(set) var selectedAvailability: FileAvailability = .published
@@ -38,7 +44,8 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
     public let availableFromDidSelect = PassthroughSubject<Date?, Never>()
     public let availableUntilDidSelect = PassthroughSubject<Date?, Never>()
 
-    private typealias Permissions = ModulePublishInteractor.FilePermissions
+    private typealias Permission = ModulePublishInteractor.FilePermission
+    private typealias Context = ModulePublishInteractor.FileContext
     private let router: Router
     private let fileId: String
     private let moduleId: String
@@ -77,22 +84,24 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
             .store(in: &subscriptions)
         doneDidPress
             .mapToValue(true)
-            .assign(to: &$isLoading)
+            .assign(to: &$isUploading)
         doneDidPress
             .mapToValue(false)
             .assign(to: &$isDoneButtonActive)
         doneDidPress
-            .compactMap { [weak self] host -> (UIViewController, Permissions)? in
+            .compactMap { [weak self] host -> (UIViewController, Context, Permission)? in
                 guard let self else { return nil }
                 return (
                     host,
-                    Permissions(
+                    Context(
                         fileId: fileId,
                         moduleId: moduleId,
                         moduleItemId: moduleItemId,
-                        courseId: courseId,
-                        unlockAt: availableFrom,
-                        lockAt: availableUntil,
+                        courseId: courseId
+                    ),
+                    Permission(
+                        unlockAt: (selectedAvailability == .scheduledAvailability ? availableFrom : nil),
+                        lockAt: (selectedAvailability == .scheduledAvailability ? availableUntil : nil),
                         availability: selectedAvailability,
                         visibility: selectedVisibility
                     )
@@ -100,7 +109,10 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
             }
             .flatMap { [interactor] data in
                 return interactor
-                    .changeFilePublishState(filePermissions: data.1)
+                    .changeFilePublishState(
+                        fileContext: data.1,
+                        filePermissions: data.2
+                    )
                     .map { data.0 }
                     .mapToResult()
             }
@@ -110,12 +122,40 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
 
                 switch result {
                 case .failure:
-                    isLoading = false
+                    isUploading = false
                     isDoneButtonActive = true
                 case .success(let host):
                     router.dismiss(host)
                 }
             }
+            .store(in: &subscriptions)
+
+        interactor
+            .getFilePermission(
+                fileContext: .init(
+                    fileId: fileId,
+                    moduleId: moduleId,
+                    moduleItemId: moduleItemId,
+                    courseId: courseId
+                )
+            )
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished:
+                    self?.state = .data
+                case .failure:
+                    self?.state = .error
+                }
+            }, receiveValue: { [weak self] filePermission in
+                if filePermission.availability == .scheduledAvailability {
+                    self?.availableFrom = filePermission.unlockAt
+                    self?.availableUntil = filePermission.lockAt
+                }
+
+                self?.visibilityDidSelect.send(filePermission.visibility)
+                self?.availabilityDidSelect.send(filePermission.availability)
+            })
             .store(in: &subscriptions)
     }
 }
