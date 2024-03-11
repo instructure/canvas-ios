@@ -55,7 +55,7 @@ final class CoreWebViewThemeSwitcherButton: UIButton {
         var config = UIButton.Configuration.borderedProminent()
         config.cornerStyle = .capsule
         config.background.strokeWidth = 1.0
-        config.image = UIImage(named: "unionLine", in: .core, with: .none)
+        config.image = .unionLine
         config.imagePadding = 9.5
         config.imagePlacement = .leading
         config.preferredSymbolConfigurationForImage = .init(scale: .medium)
