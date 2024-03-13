@@ -20,7 +20,7 @@ import UIKit
 import Core
 
 class CourseDetailsViewController: HorizontalMenuViewController {
-    private var gradesViewController: GradeListViewController!
+    private var gradesViewController: UIViewController!
     private var syllabusViewController: Core.SyllabusViewController!
     private var summaryViewController: Core.SyllabusSummaryViewController!
     var courseID: String = ""
@@ -98,8 +98,11 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureGrades() {
-        gradesViewController = GradeListViewController.create(courseID: courseID, userID: studentID, colorDelegate: self)
-        gradesViewController.gradeListCellIconDelegate = self
+        gradesViewController = GradListAssembly.makeGradeListViewController(
+            env: AppEnvironment.shared,
+            courseID: courseID,
+            userID: studentID
+        )
         viewControllers.append(gradesViewController)
     }
 
@@ -254,18 +257,6 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
             }
         case .summary:
             return NSLocalizedString("Summary", comment: "")
-        }
-    }
-}
-
-extension CourseDetailsViewController: GradeListCellIconDelegate {
-    public func iconImage(for assignment: Assignment?) -> UIImage? {
-        //  all quizzes in parent come back as `lockedForUser` so it's always
-        //  showing the lock icon rather than the quiz icon
-        if assignment?.quizID != nil {
-            return .quizLine
-        } else {
-            return assignment?.icon
         }
     }
 }

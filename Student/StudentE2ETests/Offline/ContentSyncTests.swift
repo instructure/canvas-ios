@@ -280,7 +280,7 @@ class OfflineContentSyncTests: OfflineE2ETest {
         let gradeAssignmentCell = Grade.gradesAssignmentButton(assignment: assignment).waitUntil(.visible)
         let gradeItem = Grade.gradeLabel(assignmentCell: gradeAssignmentCell).waitUntil(.visible)
         XCTAssertTrue(totalGrade.isVisible)
-        XCTAssertTrue(totalGrade.waitUntil(.label(expected: "100%")).hasLabel(label: "100%"))
+        XCTAssertTrue(totalGrade.waitUntil(.label(expected: "Total grade is 100%")).hasLabel(label: "Total grade is 100%"))
         XCTAssertTrue(gradeItem.isVisible)
         XCTAssertTrue(gradeItem.waitUntil(.label(expected: "Grade, 1 out of 1 (A)")).hasLabel(label: "Grade, 1 out of 1 (A)"))
     }

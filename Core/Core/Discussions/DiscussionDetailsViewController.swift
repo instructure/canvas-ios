@@ -361,7 +361,12 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
             )
         } else {
             let isFutureDiscussion: Bool = {
-                guard let unlockDate = topic.assignment?.unlockAt else {
+                // Discussions in the future might not have an assignment,
+                // but their posted at date can still be in the future.
+                guard let assignment = topic.assignment else {
+                    return topic.postedAt ?? Date.distantPast > Date()
+                }
+                guard let unlockDate = assignment.unlockAt else {
                     return false
                 }
                 return unlockDate > Date()

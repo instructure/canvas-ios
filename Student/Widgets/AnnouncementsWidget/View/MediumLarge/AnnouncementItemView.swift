@@ -55,7 +55,6 @@ struct AnnouncementItemView: View {
                     Spacer()
                 }
             }
-            .compatibleContainerBackground(Color.backgroundLightest)
         }
     }
 }

@@ -70,3 +70,9 @@ extension String {
 
 extension String: Error {
 }
+
+extension ReferenceWritableKeyPath {
+    var string: String {
+        NSExpression(forKeyPath: self).keyPath
+    }
+}

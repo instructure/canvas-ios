@@ -138,6 +138,8 @@ public extension UIImage {
     static var moduleSolid: UIImage { UIImage(named: "moduleSolid", in: .core, compatibleWith: nil)! }
     static var moreLine: UIImage { UIImage(named: "moreLine", in: .core, compatibleWith: nil)! }
     static var moreSolid: UIImage { UIImage(named: "moreSolid", in: .core, compatibleWith: nil)! }
+    static var nextUnreadLine: UIImage { UIImage(named: "nextUnreadLine", in: .core, compatibleWith: nil)! }
+    static var nextUnreadSolid: UIImage { UIImage(named: "nextUnreadSolid", in: .core, compatibleWith: nil)! }
     static var noLine: UIImage { UIImage(named: "noLine", in: .core, compatibleWith: nil)! }
     static var noSolid: UIImage { UIImage(named: "noSolid", in: .core, compatibleWith: nil)! }
     static var noteLine: UIImage { UIImage(named: "noteLine", in: .core, compatibleWith: nil)! }
@@ -196,6 +198,8 @@ public extension UIImage {
     static var troubleSolid: UIImage { UIImage(named: "troubleSolid", in: .core, compatibleWith: nil)! }
     static var unlockLine: UIImage { UIImage(named: "unlockLine", in: .core, compatibleWith: nil)! }
     static var unlockSolid: UIImage { UIImage(named: "unlockSolid", in: .core, compatibleWith: nil)! }
+    static var unmutedLine: UIImage { UIImage(named: "unmutedLine", in: .core, compatibleWith: nil)! }
+    static var unmutedSolid: UIImage { UIImage(named: "unmutedSolid", in: .core, compatibleWith: nil)! }
     static var userLine: UIImage { UIImage(named: "userLine", in: .core, compatibleWith: nil)! }
     static var userSolid: UIImage { UIImage(named: "userSolid", in: .core, compatibleWith: nil)! }
     static var videoLine: UIImage { UIImage(named: "videoLine", in: .core, compatibleWith: nil)! }
@@ -373,6 +377,8 @@ public extension Image {
     static var moduleSolid: Image { Image("moduleSolid", bundle: .core) }
     static var moreLine: Image { Image("moreLine", bundle: .core) }
     static var moreSolid: Image { Image("moreSolid", bundle: .core) }
+    static var nextUnreadLine: Image { Image("nextUnreadLine", bundle: .core) }
+    static var nextUnreadSolid: Image { Image("nextUnreadSolid", bundle: .core) }
     static var noLine: Image { Image("noLine", bundle: .core) }
     static var noSolid: Image { Image("noSolid", bundle: .core) }
     static var noteLine: Image { Image("noteLine", bundle: .core) }
@@ -431,6 +437,8 @@ public extension Image {
     static var troubleSolid: Image { Image("troubleSolid", bundle: .core) }
     static var unlockLine: Image { Image("unlockLine", bundle: .core) }
     static var unlockSolid: Image { Image("unlockSolid", bundle: .core) }
+    static var unmutedLine: Image { Image("unmutedLine", bundle: .core) }
+    static var unmutedSolid: Image { Image("unmutedSolid", bundle: .core) }
     static var userLine: Image { Image("userLine", bundle: .core) }
     static var userSolid: Image { Image("userSolid", bundle: .core) }
     static var videoLine: Image { Image("videoLine", bundle: .core) }

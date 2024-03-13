@@ -26,6 +26,13 @@ public extension Array {
         guard let element = element else { return }
         append(element)
     }
+
+    subscript(safeIndex index: Int) -> Element? {
+        guard index < count else {
+            return nil
+        }
+        return self[index]
+    }
 }
 
 extension Array where Element: UIBarButtonItem {

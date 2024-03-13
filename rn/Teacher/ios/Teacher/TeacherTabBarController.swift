@@ -21,7 +21,8 @@ import CanvasCore
 import Core
 import UserNotifications
 
-class TeacherTabBarController: UITabBarController {
+class TeacherTabBarController: UITabBarController, SnackBarProvider {
+    let snackBarViewModel = SnackBarViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,7 @@ class TeacherTabBarController: UITabBarController {
         tabBar.useGlobalNavStyle()
         NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
+        addSnackBar()
     }
 
     override func viewDidAppear(_ animated: Bool) {

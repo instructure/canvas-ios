@@ -38,9 +38,9 @@ packages:
   SwiftUIIntrospect:
     url: https://github.com/siteline/swiftui-introspect.git
     exactVersion: 1.1.1
-projectReferences:
-  TestsFoundation:
-    path: ../TestsFoundation/TestsFoundation.xcodeproj
+  Swifter:
+    url: https://github.com/httpswift/swifter
+    version: 1.5.0
 targets:
   Core:    
     type: framework
@@ -72,7 +72,7 @@ targets:
       - path: CoreTests
     dependencies:
       - target: Core
-      - target: TestsFoundation/TestsFoundation
+      - target: TestsFoundation
   CoreTester:
     type: application
     platform: iOS
@@ -84,13 +84,27 @@ targets:
       - path: CoreTester
     dependencies:
       - target: Core
+  TestsFoundation:
+    sources:
+      - path: TestsFoundation
+        createIntermediateGroups: true
+    type: framework
+    platform: iOS
+    dependencies:
+      - sdk: XCTest.framework
+      - target: Core
+      - package: Swifter
+    preBuildScripts:
+      - path: ../scripts/swiftLint.sh
+        name: SwiftLint
+        basedOnDependencyAnalysis: false
 schemes:
   Core:
     build:
       targets:
         Core: all
     test:
-      targets: [CoreTests, CoreTester]
+      targets: [CoreTests, CoreTester, TestsFoundation]
       testPlans:
         - path: ../TestPlans/CoreTests.xctestplan
           defaultPlan: true

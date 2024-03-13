@@ -7,15 +7,15 @@ targets:
     settings:
       APPLICATION_EXTENSION_API_ONLY: false
       SWIFT_EMIT_LOC_STRINGS: true
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas.2u
-        INFOPLIST_FILE: Student/Info.plist
-        CODE_SIGN_ENTITLEMENTS: Student/Student.entitlements
-        TARGETED_DEVICE_FAMILY: 1,2
+      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas.2u
+      INFOPLIST_FILE: Student/Info.plist
+      CODE_SIGN_ENTITLEMENTS: Student/Student.entitlements
+      TARGETED_DEVICE_FAMILY: 1,2
     sources:
       - path: ./
         excludes:
           - ".swiftlint.yml"
+      - path: ../Settings.bundle
     dependencies:
       - package: PSPDFKit
       - package: Heap
@@ -59,4 +59,10 @@ schemes:
       targets:
         Student: all
     test:
-      targets: [Core/CoreTests, Core/CoreTester, StudentUnitTests]
+      targets:
+        - Core/CoreTests
+        - StudentUnitTests
+        - name: Core/CoreTester
+          skipped: true
+      gatherCoverageData: true
+      coverageTargets: [Core/CoreTests, Student]

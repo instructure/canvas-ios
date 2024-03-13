@@ -97,6 +97,7 @@ const whitelist = [
   'mini-arrow-up',
   'module',
   'more',
+  'next-unread',
   'no',
   'note',
   'numbered-list',
@@ -126,6 +127,7 @@ const whitelist = [
   'trash',
   'trouble', // cancel
   'unlock',
+  'unmuted', // bell / notification icon
   'user',
   'video',
   'warning',

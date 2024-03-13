@@ -29,6 +29,7 @@ public class AddMessage: APIUseCase {
     let mediaCommentID: String?
     let mediaCommentType: MediaCommentType?
     let recipientIDs: [String]?
+    let includedMessages: [String]?
 
     public init(
         conversationID: String,
@@ -36,7 +37,8 @@ public class AddMessage: APIUseCase {
         body: String,
         mediaCommentID: String? = nil,
         mediaCommentType: MediaCommentType? = nil,
-        recipientIDs: [String]? = nil
+        recipientIDs: [String]? = nil,
+        includedMessages: [String]? = nil
     ) {
         self.conversationID = conversationID
         self.attachmentIDs = attachmentIDs
@@ -44,6 +46,7 @@ public class AddMessage: APIUseCase {
         self.mediaCommentID = mediaCommentID
         self.mediaCommentType = mediaCommentType
         self.recipientIDs = recipientIDs
+        self.includedMessages = includedMessages
     }
 
     public let cacheKey: String? = nil
@@ -54,7 +57,8 @@ public class AddMessage: APIUseCase {
             body: body,
             media_comment_id: mediaCommentID,
             media_comment_type: mediaCommentType,
-            recipients: recipientIDs
+            recipients: recipientIDs,
+            included_messages: includedMessages
         ))
     }
 
