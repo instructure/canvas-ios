@@ -18,20 +18,23 @@
 
 import Foundation
 import Combine
+import CombineSchedulers
 
 protocol HTMLDownloadInteractor {
-    func download(_ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), URLError>
+    func download(_ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), Error>
     func save(_ result: (data: Data, response: URLResponse)) -> AnyPublisher<URL, Error>
 }
 
 class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     private let loginSession: LoginSession
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
-    init(loginSession: LoginSession) {
+    init(loginSession: LoginSession, scheduler: AnySchedulerOf<DispatchQueue>) {
         self.loginSession = loginSession
+        self.scheduler = scheduler
     }
 
-    func download( _ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), URLError> {
+    func download( _ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), Error> {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
@@ -40,6 +43,10 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         }
 
         return URLSession.shared.dataTaskPublisher(for: request)
+            .mapError { urlError -> Error in
+                return urlError
+            }
+            .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
@@ -50,7 +57,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         }
 
         do {
-            try result.data.write(to: saveURL, options: [.withoutOverwriting])
+            try result.data.write(to: saveURL, options: [.atomic, .noFileProtection])
             return Result.Publisher(saveURL).eraseToAnyPublisher()
         } catch {
             return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()

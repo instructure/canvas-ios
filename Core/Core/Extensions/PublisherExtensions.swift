@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import Combine
 import CombineExt
 import CoreData
@@ -39,7 +40,7 @@ public extension Publisher {
 }
 
 public extension Publisher where Output: Collection, Output.Element: NSManagedObject, Failure == Error {
-    func parseHtmlContent(attribute keyPath: WritableKeyPath<Output.Element, String>, htmlParser: HTMLParser) -> AnyPublisher<[Output.Element], Error> {
+    func parseHtmlContent(attribute keyPath: ReferenceWritableKeyPath<Output.Element, String>, htmlParser: HTMLParser) -> AnyPublisher<[Output.Element], Error> {
         return self.flatMap { dataArray in
                 Publishers.Sequence(sequence: dataArray)
                     .setFailureType(to: Error.self)
@@ -50,24 +51,20 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                                 return (element, $0)
                             }
                     }
-                    .map { (element: Output.Element, parsedAttribute: String) -> Output.Element in
-                        var newElement = element
-                        newElement[keyPath: keyPath] = parsedAttribute
-                        return newElement
-                    }
-                    .map { element in
+                    .receive(on: DispatchQueue.main)
+                    .map { (element: Output.Element, parsedAttribute: String) in
                         if let context = element.managedObjectContext {
+                            element[keyPath: keyPath] = parsedAttribute
                             try? context.save()
                         }
                         return element
                     }
                     .collect()
-                    .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
 
-    func parseHtmlContent(attribute keyPath: WritableKeyPath<Output.Element, String?>, htmlParser: HTMLParser) -> AnyPublisher<[Output.Element], Error> {
+    func parseHtmlContent(attribute keyPath: ReferenceWritableKeyPath<Output.Element, String?>, htmlParser: HTMLParser) -> AnyPublisher<[Output.Element], Error> {
         return self.flatMap { dataArray in
                 Publishers.Sequence(sequence: dataArray)
                     .setFailureType(to: Error.self)
@@ -78,21 +75,26 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                                 return (element, $0)
                             }
                     }
-                    .map { (element: Output.Element, parsedAttribute: String) -> Output.Element in
-                        var newElement = element
-                        newElement[keyPath: keyPath] = parsedAttribute
-                        return newElement
-                    }
                     .receive(on: DispatchQueue.main)
-                    .map { element in
+                    .map { (element: Output.Element, parsedAttribute: String) -> Output.Element in
                         if let context = element.managedObjectContext {
+                            element[keyPath: keyPath] = parsedAttribute
                             try? context.save()
                         }
                         return element
                     }
                     .collect()
-                    .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
+    }
+
+    func replaceAttribute<AttributeType>(attribute keyPath: ReferenceWritableKeyPath<Output.Element, AttributeType>, newValue: AttributeType) -> AnyPublisher<[Output.Element], Error> {
+        self.map { dataArray in
+            dataArray.map { element in
+                element[keyPath: keyPath] = newValue
+                return element
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }

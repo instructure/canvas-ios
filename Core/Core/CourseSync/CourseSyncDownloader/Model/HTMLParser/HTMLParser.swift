@@ -33,39 +33,20 @@ public class HTMLParser {
         self.loginSession = loginSession
         self.interactor = downloadInteractor
 
-        do {
-            self.imageRegex = try NSRegularExpression(pattern: "<img[^>]*src=\"([^\"]*)\"[^>]*>")
-        } catch {
-            self.imageRegex = NSRegularExpression()
-        }
-
-        do {
-            self.fileLinkRegex = try NSRegularExpression(pattern: "<a[^>]*class=\"instructure_file_link[^>]*href=\"([^\"]*)\"[^>]*>")
-        } catch {
-            self.fileLinkRegex = NSRegularExpression()
-        }
-
-        do {
-            self.internalFileRegex = try NSRegularExpression(pattern: ".*\(loginSession.baseURL).*files/(\\d+)")
-        } catch {
-            self.internalFileRegex = NSRegularExpression()
-        }
+        self.imageRegex = (try? NSRegularExpression(pattern: "<img[^>]*src=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
+        self.fileLinkRegex = (try? NSRegularExpression(pattern: "<a[^>]*class=\"instructure_file_link[^>]*href=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
+        self.internalFileRegex = (try? NSRegularExpression(pattern: ".*\(loginSession.baseURL).*files/(\\d+)")) ?? NSRegularExpression()
     }
 
     func parse(_ content: String) -> AnyPublisher<String, Error> {
         let imageURLs = findImageMatches(content)
         return imageURLs.publisher
-            .setFailureType(to: URLError.self)
             .flatMap { url in
                 return self.interactor.download(url)
                     .map {
                         return (url, $0)
                     }
             }
-            .mapError { error in
-                return error
-            }
-            .replaceError(with: (URL.Directories.documents, (Data(), URLResponse())))
             .flatMap { [unowned self] (url, result) in
                 return self.interactor.save(result)
                     .map {
@@ -76,7 +57,7 @@ public class HTMLParser {
             .map { [content] urls in
                 var newContent = content
                 urls.forEach { (originalURL, localURL) in
-                    newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: localURL.absoluteString)
+                    newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: localURL.lastPathComponent)
                 }
                 return newContent
             }
@@ -86,15 +67,22 @@ public class HTMLParser {
     func findImageMatches(_ content: String) -> [URL] {
         imageRegex
             .matches(in: content, range: NSRange(location: 0, length: content.count))
-            .compactMap { result in
-                let rawString = NSString(string: content).substring(with: result.range)
-                let groupedAttributes = rawString.split(separator: " ")
-                let url = groupedAttributes
-                    .last(where: {$0.contains("src=")})?
-                    .replacingOccurrences(of: "src=\"", with: "")
-                    .replacingOccurrences(of: "\"", with: "")
-                return url
+            .compactMap { match in
+                if let wholeRange = Range(match.range(at: 1), in: content) {
+                    let url = String(content[wholeRange])
+                    return url
+                }
+                return ""
             }
+//            .compactMap { result in
+//                let rawString = NSString(string: content).substring(with: result.range)
+//                let groupedAttributes = rawString.split(separator: " ")
+//                let url = groupedAttributes
+//                    .last(where: {$0.contains("src=")})?
+//                    .replacingOccurrences(of: "src=\"", with: "")
+//                    .replacingOccurrences(of: "\"", with: "")
+//                return url
+//            }
             .compactMap { rawURL in
                 URL(string: rawURL)
             }

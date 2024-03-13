@@ -86,7 +86,7 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         } else {
             groups.refresh()
         }
-        pages.refresh(force: true)
+        pages.refresh(force: false)
         NotificationCenter.default.post(moduleItem: .page(pageURL), completedRequirement: .view, courseID: context.id)
     }
 
@@ -114,7 +114,16 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         setupTitleViewInNavbar(title: page.title)
         optionsButton.accessibilityIdentifier = "PageDetails.options"
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
-        webView.loadHTMLString(page.body, baseURL: page.htmlURL)
+
+        // Offline image are stored in the Documents folder which cannot be accessed by the webview by default
+        webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
+        webView.loadFileURL(Bundle.main.bundleURL, allowingReadAccessTo: Bundle.main.bundleURL)
+        if let resourceURL = Bundle.main.resourceURL {
+            webView.loadFileURL(resourceURL, allowingReadAccessTo: resourceURL)
+        }
+
+        webView.loadHTMLString(page.body, baseURL: URL.Directories.documents)
+//        webView.loadHTMLString(page.body, baseURL: page.htmlURL)
     }
 
     private func updatePages() {

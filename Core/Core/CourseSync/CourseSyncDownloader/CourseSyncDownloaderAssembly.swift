@@ -21,8 +21,12 @@ import Foundation
 public enum CourseSyncDownloaderAssembly {
 
     public static func makeInteractor(env: AppEnvironment = .shared) -> CourseSyncInteractor {
+        let scheduler = DispatchQueue(
+            label: "com.instructure.icanvas.core.course-sync-download"
+        ).eraseToAnyScheduler()
+
         let loginSession = env.currentSession!
-        let downloadInteractor = HTMLDownloadInteractorLive(loginSession: loginSession)
+        let downloadInteractor = HTMLDownloadInteractorLive(loginSession: loginSession, scheduler: scheduler)
         let htmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor)
 
         let contentInteractors: [CourseSyncContentInteractor] = [
@@ -36,9 +40,6 @@ public enum CourseSyncDownloaderAssembly {
             CourseSyncQuizzesInteractorLive(htmlParser: htmlParser),
             CourseSyncDiscussionsInteractorLive(htmlParser: htmlParser),
         ]
-        let scheduler = DispatchQueue(
-            label: "com.instructure.icanvas.core.course-sync-download"
-        ).eraseToAnyScheduler()
         let progressInteractor = CourseSyncProgressObserverInteractorLive()
         let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, activityName: "Offline Sync")
 
