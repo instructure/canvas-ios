@@ -23,7 +23,7 @@ import Foundation
 
 public class ReactiveStore<U: UseCase> {
     private let offlineModeInteractor: OfflineModeInteractor?
-    private let useCase: U
+    internal let useCase: U
     private let context: NSManagedObjectContext
 
     // MARK: - Init

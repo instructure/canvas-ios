@@ -20,6 +20,6 @@ import Foundation
 
 private class Placeholder {}
 
-internal extension Bundle {
+public extension Bundle {
     static let student = Bundle(for: Placeholder.self)
 }

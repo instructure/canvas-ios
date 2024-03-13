@@ -155,9 +155,8 @@ class CalendarTests: E2ETestCase {
         let calendarTab = Helper.TabBar.calendarTab.waitUntil(.visible)
         XCTAssertTrue(calendarTab.isVisible)
 
-        calendarTab.hit()
-
         // MARK: Navigate to Recurring event and check recurrency
+        calendarTab.hit()
         let recurringEventItem1 = Helper.navigateToEvent(event: events.recurring!)
         let recurringEventTitle1 = Helper.titleLabelOfEvent(eventCell: recurringEventItem1).waitUntil(.visible)
         XCTAssertTrue(recurringEventItem1.isVisible)
@@ -219,8 +218,8 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(courseCell2.waitUntil(.selected).isSelected)
 
         // MARK: Change filter to first course
-        courseCell1.actionUntilElementCondition(action: .tap, condition: .selected, gracePeriod: 2)
-        courseCell2.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 2)
+        courseCell1.actionUntilElementCondition(action: .tap, condition: .selected, gracePeriod: 3)
+        courseCell2.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 3)
         XCTAssertTrue(courseCell1.isSelected)
         XCTAssertTrue(courseCell2.isUnselected)
 
@@ -232,27 +231,27 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Change filter to second course
         filterButton.hit()
-        courseCell1.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 2)
-        courseCell2.actionUntilElementCondition(action: .tap, condition: .selected, gracePeriod: 2)
+        courseCell1.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 3)
+        courseCell2.actionUntilElementCondition(action: .tap, condition: .selected, gracePeriod: 3)
         XCTAssertTrue(courseCell1.isUnselected)
         XCTAssertTrue(courseCell2.isSelected)
 
         doneButton.hit()
-        eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish, gracePeriod: 2)
-        eventItem2 = Helper.eventCell(event: event2).waitUntil(.visible, gracePeriod: 2)
+        eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish, gracePeriod: 3)
+        eventItem2 = Helper.eventCell(event: event2).waitUntil(.visible, gracePeriod: 3)
         XCTAssertTrue(eventItem1.isVanished)
         XCTAssertTrue(eventItem2.isVisible)
 
         // MARK: Change filter to no course selected
         filterButton.hit()
-        courseCell1.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 2)
-        courseCell2.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 2)
+        courseCell1.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 3)
+        courseCell2.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 3)
         XCTAssertTrue(courseCell1.isUnselected)
         XCTAssertTrue(courseCell2.isUnselected)
 
         doneButton.hit()
-        eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish, gracePeriod: 2)
-        eventItem2 = Helper.eventCell(event: event2).waitUntil(.vanish, gracePeriod: 2)
+        eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish, gracePeriod: 3)
+        eventItem2 = Helper.eventCell(event: event2).waitUntil(.vanish, gracePeriod: 3)
         XCTAssertTrue(eventItem1.isVanished)
         XCTAssertTrue(eventItem2.isVanished)
     }

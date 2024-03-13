@@ -55,7 +55,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/conversations": nil,
     "/conversations/compose": { url, params, userInfo in
         if ExperimentalFeature.nativeStudentInbox.isEnabled {
-            return ComposeMessageAssembly.makeNewMessageViewController(env: AppEnvironment.shared)
+            return ComposeMessageAssembly.makeComposeMessageViewController(env: AppEnvironment.shared)
         } else {
             return HelmViewController(moduleName: "/conversations/compose", url: url, params: params, userInfo: userInfo)
         }
@@ -246,7 +246,11 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID/grades": { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
-        return GradeListViewController.create(courseID: courseID)
+        return GradListAssembly.makeGradeListViewController(
+            env: AppEnvironment.shared,
+            courseID: courseID,
+            userID: AppEnvironment.shared.currentSession?.userID
+        )
     },
 
     "/courses/:courseID/modules": { _, params, _ in

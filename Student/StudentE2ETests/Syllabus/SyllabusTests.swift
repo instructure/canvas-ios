@@ -65,4 +65,30 @@ class SyllabusTests: E2ETestCase {
         XCTAssertTrue(summaryCalendarEventTitle.isVisible)
         XCTAssertTrue(summaryCalendarEventTitle.hasLabel(label: calendarEvent.title))
     }
+
+    func testCourseSummaryDisabled() {
+        // MARK: Seed the usual stuff with a course summary disabled
+        let student = seeder.createUser()
+        let course = SyllabusHelper.createCourseWithSyllabus()
+        seeder.updateCourseSettings(course: course, syllabus_course_summary: false)
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Seed an assignment and a calendar event
+        AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.addMinutes(30))
+        CalendarHelper.createCalendarEvent(course: course, endDate: Date.now.addMinutes(30))
+
+        // MARK: Get the user logged in, navigate to Syllabus, check "Syllabus" tab
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Syllabus, check if tabs (syllabus, summary) are not visible
+        SyllabusHelper.navigateToSyllabus(course: course)
+        let navBar = SyllabusHelper.navBar(course: course).waitUntil(.visible)
+        let syllabusTab = SyllabusHelper.syllabusTab.waitUntil(.vanish)
+        let summaryTab = SyllabusHelper.summaryTab.waitUntil(.vanish)
+        XCTAssertTrue(navBar.isVisible)
+        XCTAssertTrue(syllabusTab.isVanished)
+        XCTAssertTrue(summaryTab.isVanished)
+    }
 }

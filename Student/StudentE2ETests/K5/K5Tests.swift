@@ -123,7 +123,7 @@ class K5Tests: K5E2ETestCase {
 
         let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
         XCTAssertTrue(totalGrade.isVisible)
-        XCTAssertTrue(totalGrade.hasLabel(label: "100%"))
+        XCTAssertTrue(totalGrade.hasLabel(label: "Total grade is 100%"))
 
         let assignmentGrade = GradesHelper.cell(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentGrade.isVisible)
@@ -202,7 +202,7 @@ class K5Tests: K5E2ETestCase {
         let homeroom = seeder.createK5Course()
         let course = seeder.createCourse()
         let assignmentsCount = 12
-        let assignments = AssignmentsHelper.createAssignments(in: course, count: assignmentsCount, dueDate: .now.addDays(-1))
+        AssignmentsHelper.createAssignments(in: course, count: assignmentsCount, dueDate: .now.addDays(-1))
         seeder.enrollStudent(student, in: homeroom)
         seeder.enrollStudent(student, in: course)
 

@@ -26,11 +26,26 @@ class MessageDetailsViewModel: ObservableObject {
     @Published public private(set) var conversations: [Conversation] = []
     @Published public private(set) var starred: Bool = false
 
-    public let title = NSLocalizedString("Message Details", comment: "")
+    public let title = String(localized: "Message Details")
+
+    @Published public var isShowingCancelDialog = false
+    public let confirmAlert = ConfirmationAlertViewModel(
+        title: String(localized: "Are your sure?"),
+        message: String(localized:
+           """
+           It will permanently delete this message from your profile.
+           """),
+        cancelButtonTitle: String(localized: "No"),
+        confirmButtonTitle: String(localized: "Yes"),
+        isDestructive: false
+    )
 
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
     public let starDidTap = PassthroughSubject<Bool, Never>()
+    public let deleteConversationDidTap = PassthroughSubject<(conversationId: String, viewController: WeakViewController), Never>()
+    public let deleteConversationMessageDidTap = PassthroughSubject<(conversationId: String, messageId: String, viewController: WeakViewController), Never>()
+    public let updateState = PassthroughSubject<ConversationWorkflowState, Never>()
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -47,11 +62,76 @@ class MessageDetailsViewModel: ObservableObject {
         setupInputBindings(router: router)
     }
 
-    public func moreTapped(message: ConversationMessage?, viewController: WeakViewController) {
+    public func conversationMoreTapped(viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(
             image: .replyLine,
-            title: NSLocalizedString("Reply", comment: ""),
+            title: String(localized: "Reply"),
+            accessibilityIdentifier: "MessageDetails.reply"
+        ) {
+            self.replyTapped(message: nil, viewController: viewController)
+        }
+        sheet.addAction(
+            image: .replyAllLine,
+            title: String(localized: "Reply All"),
+            accessibilityIdentifier: "MessageDetails.replyAll"
+        ) {
+            self.replyAllTapped(message: nil, viewController: viewController)
+        }
+
+        sheet.addAction(
+            image: .forwardLine,
+            title: String(localized: "Forward"),
+            accessibilityIdentifier: "MessageDetails.forward"
+        ) {
+            self.forwardTapped(message: nil, viewController: viewController)
+        }
+
+        if (conversations.first?.workflowState == .read) {
+            sheet.addAction(
+                image: .nextUnreadLine,
+                title: String(localized: "Mark as Unread"),
+                accessibilityIdentifier: "MessageDetails.markAsUnread"
+            ) {
+                self.updateState.send(.unread)
+            }
+        } else {
+            sheet.addAction(
+                image: .emailLine,
+                title: String(localized: "Mark as Read"),
+                accessibilityIdentifier: "MessageDetails.markAsRead"
+            ) {
+                self.updateState.send(.read)
+            }
+        }
+
+        if conversations.first?.workflowState != .archived {
+            sheet.addAction(
+                image: .archiveLine,
+                title: String(localized: "Archive"),
+                accessibilityIdentifier: "MessageDetails.archive"
+            ) {
+                self.updateState.send(.archived)
+            }
+        }
+
+        sheet.addAction(
+            image: .trashLine,
+            title: String(localized: "Delete Conversation"),
+            accessibilityIdentifier: "MessageDetails.delete"
+        ) {
+            if let conversationId = self.conversations.first?.id {
+                self.deleteConversationDidTap.send((conversationId, viewController))
+            }
+        }
+        router.show(sheet, from: viewController, options: .modal())
+    }
+
+    public func messageMoreTapped(message: ConversationMessage?, viewController: WeakViewController) {
+        let sheet = BottomSheetPickerViewController.create()
+        sheet.addAction(
+            image: .replyLine,
+            title: String(localized: "Reply"),
             accessibilityIdentifier: "MessageDetails.reply"
         ) {
             if let message {
@@ -60,46 +140,58 @@ class MessageDetailsViewModel: ObservableObject {
         }
         sheet.addAction(
             image: .replyAllLine,
-            title: NSLocalizedString("Reply All", comment: ""),
+            title: String(localized: "Reply All"),
             accessibilityIdentifier: "MessageDetails.replyAll"
         ) {
-            self.replyAllTapped(viewController: viewController)
+            if let message {
+                self.replyAllTapped(message: message, viewController: viewController)
+            }
         }
 
         sheet.addAction(
             image: .forwardLine,
-            title: NSLocalizedString("Forward", comment: ""),
-            accessibilityIdentifier: "MessageDetails.markAllRead"
-        ) {}
-
-        sheet.addAction(
-            image: .archiveLine,
-            title: NSLocalizedString("Archive", comment: ""),
-            accessibilityIdentifier: "MessageDetails.archive"
-        ) {}
+            title: String(localized: "Forward"),
+            accessibilityIdentifier: "MessageDetails.forward"
+        ) {
+            self.forwardTapped(message: message, viewController: viewController)
+        }
 
         sheet.addAction(
             image: .trashLine,
-            title: NSLocalizedString("Delete", comment: ""),
+            title: String(localized: "Delete Message"),
             accessibilityIdentifier: "MessageDetails.delete"
-        ) {}
+        ) {
+            if let conversationId = self.conversations.first?.id, let messageId = message?.id {
+                self.deleteConversationMessageDidTap.send((conversationId: conversationId, messageId: messageId, viewController: viewController))
+            }
+        }
         router.show(sheet, from: viewController, options: .modal())
     }
 
-    public func replyTapped(message: ConversationMessage, viewController: WeakViewController) {
+    public func forwardTapped(message: ConversationMessage? = nil, viewController: WeakViewController) {
         if let conversation = conversations.first {
             router.show(
-                ComposeMessageAssembly.makeReplyMessageViewController(conversation: conversation, author: message.authorID),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .forward(conversation: conversation, message: message))),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
         }
     }
 
-    public func replyAllTapped(viewController: WeakViewController) {
+    public func replyTapped(message: ConversationMessage?, viewController: WeakViewController) {
         if let conversation = conversations.first {
             router.show(
-                ComposeMessageAssembly.makeReplyMessageViewController(conversation: conversation),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .reply(conversation: conversation, message: message))),
+                from: viewController,
+                options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
+            )
+        }
+    }
+
+    public func replyAllTapped(message: ConversationMessage?, viewController: WeakViewController) {
+        if let conversation = conversations.first {
+            router.show(
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .replyAll(conversation: conversation, message: message))),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
@@ -117,7 +209,7 @@ class MessageDetailsViewModel: ObservableObject {
         interactor.messages
             .map { messages in
                 messages.map {
-                    MessageViewModel(item: $0, myID: self.myID, userMap: self.interactor.userMap)
+                    MessageViewModel(item: $0, myID: self.myID, userMap: self.interactor.userMap, router: self.router)
                 }
             }
             .assign(to: &$messages)
@@ -137,10 +229,60 @@ class MessageDetailsViewModel: ObservableObject {
             }
             .sink()
             .store(in: &subscriptions)
+
         starDidTap
             .map { starred in
                 interactor.updateStarred(starred: starred) }
             .sink()
+            .store(in: &subscriptions)
+
+        updateState
+            .compactMap { [weak self] state -> (messageId: String, state: ConversationWorkflowState)? in
+                if let messageId = self?.conversations.first?.id {
+                    return (messageId: messageId, state: state)
+                } else {
+                    return nil
+                }
+            }
+            .map { interactor.updateState(messageId: $0.messageId, state: $0.state) }
+            .sink()
+            .store(in: &subscriptions)
+
+        deleteConversationDidTap
+            .handleEvents(receiveOutput: { [weak self] _ in
+                self?.isShowingCancelDialog = true
+            })
+            .flatMap { [confirmAlert] value in
+                confirmAlert.userConfirmation().map { value }
+            }
+            .sink { [weak self] (conversationId, viewController) in
+                if let self {
+                    interactor.deleteConversation(conversationId: conversationId)
+                        .sink()
+                        .store(in: &subscriptions)
+                }
+                self?.router.dismiss(viewController)
+            }
+            .store(in: &subscriptions)
+
+        deleteConversationMessageDidTap
+            .handleEvents(receiveOutput: { [weak self] _ in
+                self?.isShowingCancelDialog = true
+            })
+            .flatMap { [confirmAlert] value in
+                confirmAlert.userConfirmation().map { value }
+            }
+            .sink { [weak self] (conversationId, messageId, viewController) in
+                if let self {
+                    interactor.deleteConversationMessage(conversationId: conversationId, messageId: messageId)
+                        .sink()
+                        .store(in: &subscriptions)
+                }
+                if self?.messages.count ?? 0 <= 1 {
+                    self?.router.dismiss(viewController)
+                }
+                self?.refreshDidTrigger.send({ })
+            }
             .store(in: &subscriptions)
     }
 }

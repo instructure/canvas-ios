@@ -79,17 +79,19 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
         conversationStore.refreshWithFuture(force: true)
     }
 
-    public func updateStarred(starred: Bool) -> Future<Void, Never> {
-        Future { [weak self] promise in
-            guard let self else {
-                return promise(.success(()))
-            }
-            let request = StarConversationRequest(id: self.conversationID, starred: starred)
-            self.env.api.makeRequest(request, callback: { _, _, _ in
-                self.conversationStore.refresh(force: true) { _ in
-                    return promise(.success(()))
-                }
-            })
-        }
+    public func updateStarred(starred: Bool) -> Future<URLResponse?, Error> {
+        return StarConversation(id: conversationID, starred: starred).fetchWithFuture()
+    }
+
+    public func updateState(messageId: String, state: ConversationWorkflowState) -> Future<URLResponse?, Error> {
+        return UpdateConversationState(id: messageId, state: state).fetchWithFuture()
+    }
+
+    public func deleteConversation(conversationId: String) -> Future<URLResponse?, Error> {
+        return DeleteConversation(id: conversationId).fetchWithFuture()
+    }
+
+    public func deleteConversationMessage(conversationId: String, messageId: String) -> Future<URLResponse?, Error> {
+        return DeleteConversationMessage(id: conversationId, removeIds: [messageId]).fetchWithFuture()
     }
 }

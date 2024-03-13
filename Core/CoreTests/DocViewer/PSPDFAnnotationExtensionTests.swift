@@ -124,7 +124,13 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
         XCTAssert(annotation is DocViewerCommentReplyAnnotation)
-        XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
+
+        // Reply comment annotations shouldn't have any dimensions otherwise they won't render on web
+        var expectedAPIAnnotation = apiAnnotation
+        expectedAPIAnnotation.width = nil
+        expectedAPIAnnotation.rect = nil
+
+        XCTAssertEqual(annotation?.apiAnnotation(), expectedAPIAnnotation)
         XCTAssertEqual(annotation?.contents, "comment")
         XCTAssertEqual((annotation as! DocViewerCommentReplyAnnotation).inReplyToName, "5")
     }

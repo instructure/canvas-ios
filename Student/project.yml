@@ -27,8 +27,6 @@ include:
 projectReferences:
   CanvasCore:
     path: ../CanvasCore/CanvasCore.xcodeproj
-  TestsFoundation:
-    path: ../TestsFoundation/TestsFoundation.xcodeproj
   Core:
     path: ../Core/Core.xcodeproj
 packages:
@@ -37,7 +35,7 @@ packages:
     exactVersion: 9.0.1
   Firebase:
     url: https://github.com/firebase/firebase-ios-sdk.git
-    exactVersion: 9.6.0
+    exactVersion: 10.21.0
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 13.0.1

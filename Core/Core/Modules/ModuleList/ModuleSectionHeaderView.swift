@@ -23,6 +23,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var collapsableIndicator: UIImageView!
     @IBOutlet weak var lockedButton: UIButton!
+    @IBOutlet weak var publishMenuButton: UIButton!
 
     var isExpanded = true
     var onTap: (() -> Void)?
@@ -38,13 +39,21 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         loadFromXib().backgroundColor = .backgroundLight
     }
 
-    func update(_ module: Module, section: Int, isExpanded: Bool, onTap: @escaping () -> Void) {
+    func update(
+        _ module: Module,
+        section: Int,
+        isExpanded: Bool,
+        host: UIViewController,
+        publishInteractor: ModulePublishInteractor,
+        onTap: @escaping () -> Void
+    ) {
         self.isExpanded = isExpanded
         self.onTap = onTap
         titleLabel.text = module.name
         publishedIconView.published = module.published
         lockedButton.isHidden = module.state != .locked
         collapsableIndicator.transform = CGAffineTransform(rotationAngle: isExpanded ? 0 : .pi)
+        setupPublishMenu(host: host, publishInteractor: publishInteractor)
         accessibilityLabel = [
             module.name,
             publishedIconView.isHidden ? "" :
@@ -57,6 +66,14 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         ].joined(separator: ", ")
         accessibilityTraits.insert(.button)
         accessibilityIdentifier = "ModuleList.\(section)"
+
+        if publishMenuButton.menu == nil {
+            publishMenuButton.menu = .makePublishModuleMenu(host: host)
+            publishMenuButton.showsMenuAsPrimaryAction = true
+        }
+
+        publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
+        accessibilityCustomActions = publishMenuButton.isHidden ? [] : .modulePublishA11yActions(host: host)
     }
 
     @IBAction func handleTap() {
@@ -70,5 +87,17 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
 
     @IBAction func lockTapped() {
         onLockTap?()
+    }
+
+    private func setupPublishMenu(
+        host: UIViewController,
+        publishInteractor: ModulePublishInteractor
+    ) {
+        if publishMenuButton.menu == nil {
+            publishMenuButton.menu = .makePublishModuleMenu(host: host)
+            publishMenuButton.showsMenuAsPrimaryAction = true
+        }
+
+        publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
     }
 }

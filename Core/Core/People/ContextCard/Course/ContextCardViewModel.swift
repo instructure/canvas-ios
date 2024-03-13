@@ -100,7 +100,7 @@ public class ContextCardViewModel: ObservableObject {
     }
 
     public func assignment(with id: String) -> Assignment? {
-        env.database.viewContext.first(where: #keyPath(Assignment.id), equals: id)
+        env.database.viewContext.first(where: (\Assignment.id).string, equals: id)
     }
 
     public func openNewMessageComposer(controller: UIViewController) {
