@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import SwiftUI
 
 class ModuleFilePermissionEditorViewModel: ObservableObject {
@@ -52,14 +53,18 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
     private let router: Router
     private let fileContext: ModulePublishInteractorLive.FileContext
     private var subscriptions = Set<AnyCancellable>()
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     init(
         fileContext: ModulePublishInteractorLive.FileContext,
         interactor: ModulePublishInteractor,
-        router: Router
+        router: Router,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.fileContext = fileContext
         self.router = router
+        self.scheduler = scheduler
+
         availabilityDidSelect
             .assign(to: &$availability)
         availabilityDidSelect
@@ -67,7 +72,45 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
             .assign(to: &$isScheduleDateSectionVisible)
         visibilityDidSelect
             .assign(to: &$visibility)
+        cancelDidPress
+            .sink { [weak router] editor in
+                router?.dismiss(editor)
+            }
+            .store(in: &subscriptions)
 
+        handleDateChangeEvents()
+        handleDoneButtonPress(interactor: interactor)
+        loadInitialState(fileContext: fileContext, interactor: interactor)
+    }
+
+    private func loadInitialState(
+        fileContext: ModulePublishInteractorLive.FileContext,
+        interactor: ModulePublishInteractor
+    ) {
+        interactor
+            .getFilePermission(fileContext: fileContext)
+            .receive(on: scheduler)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished:
+                    self?.state = .data
+                case .failure:
+                    self?.state = .error
+                }
+            }, receiveValue: { [weak self] filePermission in
+                if filePermission.availability == .scheduledAvailability {
+                    self?.availableFromDidSelect.send(filePermission.unlockAt)
+                    self?.availableUntilDidSelect.send(filePermission.lockAt)
+                }
+
+                self?.visibilityDidSelect.send(filePermission.visibility)
+                self?.availabilityDidSelect.send(filePermission.availability)
+            })
+            .store(in: &subscriptions)
+
+    }
+
+    private func handleDateChangeEvents() {
         availableFromDidSelect
             .assign(to: &$availableFrom)
         availableFromDidSelect
@@ -89,42 +132,6 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
                 return Date().startOfDay()
             }
             .assign(to: &$defaultFromDate)
-
-        cancelDidPress
-            .sink { [weak router] editor in
-                router?.dismiss(editor)
-            }
-            .store(in: &subscriptions)
-
-        handleDoneButtonPress(interactor: interactor)
-        loadInitialState(fileContext: fileContext, interactor: interactor)
-    }
-
-    private func loadInitialState(
-        fileContext: ModulePublishInteractorLive.FileContext,
-        interactor: ModulePublishInteractor
-    ) {
-        interactor
-            .getFilePermission(fileContext: fileContext)
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { [weak self] completion in
-                switch completion {
-                case .finished:
-                    self?.state = .data
-                case .failure:
-                    self?.state = .error
-                }
-            }, receiveValue: { [weak self] filePermission in
-                if filePermission.availability == .scheduledAvailability {
-                    self?.availableFromDidSelect.send(filePermission.unlockAt)
-                    self?.availableUntilDidSelect.send(filePermission.lockAt)
-                }
-
-                self?.visibilityDidSelect.send(filePermission.visibility)
-                self?.availabilityDidSelect.send(filePermission.availability)
-            })
-            .store(in: &subscriptions)
-
     }
 
     private func handleDoneButtonPress(interactor: ModulePublishInteractor) {
@@ -157,7 +164,7 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
                     .map { data.0 }
                     .mapToResult()
             }
-            .receive(on: RunLoop.main)
+            .receive(on: scheduler)
             .sink { [weak self] result in
                 guard let self else { return }
 

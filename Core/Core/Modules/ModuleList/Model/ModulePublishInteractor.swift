@@ -39,13 +39,13 @@ protocol ModulePublishInteractor {
 }
 
 class ModulePublishInteractorLive: ModulePublishInteractor {
-    public struct FileContext {
+    public struct FileContext: Equatable {
         let fileId: String
         let moduleId: String
         let moduleItemId: String
         let courseId: String
     }
-    public struct FilePermission {
+    public struct FilePermission: Equatable {
         let unlockAt: Date?
         let lockAt: Date?
         let availability: FileAvailability
