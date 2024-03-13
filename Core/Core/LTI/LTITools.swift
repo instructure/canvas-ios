@@ -173,6 +173,21 @@ public class LTITools: NSObject {
                 self.env.router.show(controller, from: view, options: .modal(.overFullScreen, embedInNav: true, addDoneButton: true)) {
                     completionHandler(true)
                 }
+            } else if response.name?.contains("Studio") == true {
+                let controller = CoreWebViewController()
+                controller.webView.load(URLRequest(url: url))
+
+                self.env.router.show(
+                    controller,
+                    from: view,
+                    options: .modal(
+                        .overFullScreen,
+                        embedInNav: true,
+                        addDoneButton: true
+                    )
+                ) {
+                    completionHandler(true)
+                }
             } else if self.openInSafari {
                 self.env.loginDelegate?.openExternalURLinSafari(url)
                 completionHandler(true)
