@@ -64,10 +64,14 @@ public struct IndeterminateBarProgressViewStyle: ProgressViewStyle {
 }
 
 extension ProgressViewStyle where Self == IndeterminateBarProgressViewStyle {
-    static func indeterminateBar(
-        foregroundColor: Color = .accentColor,
-        backgroundColor: Color = .accentColor.opacity(0.2)
-    ) -> IndeterminateBarProgressViewStyle {
+    static func indeterminateBar(color: Color = .accentColor) -> IndeterminateBarProgressViewStyle {
+        .init(
+            foregroundColor: color,
+            backgroundColor: color.opacity(ProgressViewStyleConstants.backgroundOpacity)
+        )
+    }
+
+    static func indeterminateBar(foregroundColor: Color, backgroundColor: Color) -> IndeterminateBarProgressViewStyle {
         IndeterminateBarProgressViewStyle(
             foregroundColor: foregroundColor,
             backgroundColor: backgroundColor
