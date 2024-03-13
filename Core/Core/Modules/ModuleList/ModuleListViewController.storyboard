@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +21,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="EF8-7Z-xiu" customClass="ListBackgroundView" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="144.5" width="375" height="252.5"/>
+                                    <rect key="frame" x="0.0" y="197" width="375" height="252.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a9E-bq-N0r">
@@ -209,6 +209,55 @@
                                             <outlet property="publishedIconView" destination="Bkc-gN-FAf" id="Ip4-XX-kd2"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ModuleItemSubHeaderCell" id="aLr-ne-o87" customClass="ModuleItemSubHeaderCell" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="116.5" width="375" height="52.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aLr-ne-o87" id="5hb-KW-tnG">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="v2z-IC-2dj">
+                                                    <rect key="frame" x="16" y="14" width="343" height="24.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text subheader" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="44z-ru-sPS" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="2.5" width="315" height="19.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                            <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Ou-Da-aJ7" customClass="PublishedIconView" customModule="Core">
+                                                            <rect key="frame" x="319" y="0.5" width="24" height="24"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="24" id="0gu-gN-xeS"/>
+                                                                <constraint firstAttribute="width" constant="24" id="Ejz-bp-D50"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="44z-ru-sPS" firstAttribute="leading" secondItem="v2z-IC-2dj" secondAttribute="leading" id="Sf8-fA-Dil"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="v2z-IC-2dj" firstAttribute="top" secondItem="5hb-KW-tnG" secondAttribute="top" constant="14" id="HB1-ZH-Ibf"/>
+                                                <constraint firstAttribute="bottom" secondItem="v2z-IC-2dj" secondAttribute="bottom" constant="14" id="NcH-jc-Yjg"/>
+                                                <constraint firstAttribute="trailing" secondItem="v2z-IC-2dj" secondAttribute="trailing" constant="16" id="gUQ-Yz-GrM"/>
+                                                <constraint firstItem="v2z-IC-2dj" firstAttribute="leading" secondItem="5hb-KW-tnG" secondAttribute="leadingMargin" id="pw2-eZ-FaD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="fullDivider" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="indentConstraint" destination="Sf8-fA-Dil" id="fvx-TH-WB6"/>
+                                            <outlet property="label" destination="44z-ru-sPS" id="Ldm-0q-hvo"/>
+                                            <outlet property="publishedIconView" destination="8Ou-Da-aJ7" id="qAs-dF-Wo8"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="7Lx-vO-xSZ" id="LsL-8O-RvQ"/>
@@ -249,6 +298,9 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="44z-ru-sPS">
+            <size key="intrinsicContentSize" width="117" height="19.5"/>
+        </designable>
         <designable name="ECd-PX-fxS">
             <size key="intrinsicContentSize" width="263" height="19.5"/>
         </designable>

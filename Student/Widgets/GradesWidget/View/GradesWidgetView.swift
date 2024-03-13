@@ -44,8 +44,11 @@ struct GradesWidgetView: View {
             default:
                 MediumLargeGradesView(model: model, lineCount: lineCountByFamily[family] ?? 1)
             }
+        } else if model.isLoggedIn {
+            EmptyView(title: Text("Grades"), message: Text("No Grades To Display"))
+        } else {
+            EmptyView(title: Text("Grades"), message: Text("Please log in via the application"))
         }
-        .widgetBackground(backgroundView: Color.clear)
     }
 
     init(model: GradeModel) {

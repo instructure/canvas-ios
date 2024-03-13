@@ -439,7 +439,6 @@ SPEC REPOS:
     - boost-for-react-native
     - Firebase
     - FirebaseABTesting
-    - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCoreExtension
     - FirebaseCoreInternal
@@ -594,6 +593,6 @@ SPEC CHECKSUMS:
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
 
-PODFILE CHECKSUM: 52e5ceb4f97b27d4b8bb2f722365168f3f644383
+PODFILE CHECKSUM: 786d8b9ce77f1ab00091bdddd28da3f4ae78bc54
 
 COCOAPODS: 1.15.2

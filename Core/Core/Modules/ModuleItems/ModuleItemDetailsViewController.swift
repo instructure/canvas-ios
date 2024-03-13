@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-public final class ModuleItemDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+public final class ModuleItemDetailsViewController: DownloadableViewController, ColoredNavViewProtocol {
     var onEmbedContainer: ((UIViewController) -> Void)?
 
     private let env = AppEnvironment.shared
@@ -49,7 +49,7 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
         self?.updateNavBar()
     }
 
-    private var item: ModuleItem? { store.first }
+    var item: ModuleItem? { store.first }
     private var observations: [NSKeyValueObservation]?
     private var isMarkingModule = false
 

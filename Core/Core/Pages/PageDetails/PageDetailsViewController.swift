@@ -19,10 +19,8 @@
 import UIKit
 import mobile_offline_downloader_ios
 
-public class PageDetailsViewController: DownloadableViewController, ColoredNavViewProtocol {
+public final class PageDetailsViewController: DownloadableViewController, ColoredNavViewProtocol {
     var updated: ((Page, Course) -> Void)?
-
-public final class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var optionsButton = UIBarButtonItem(image: .moreLine, style: .plain, target: self, action: #selector(showOptions))
     @IBOutlet weak var webViewContainer: UIView!
     let webView = CoreWebView()

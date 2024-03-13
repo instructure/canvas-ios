@@ -326,7 +326,6 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
     }
 
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        Analytics.logEvent(name, parameters: parameters)
     }
 
     private func initializeTracking() {
