@@ -157,6 +157,21 @@ open class CoreWebView: WKWebView {
             guard let src = message.body as? String else { return }
             self?.loadFrame(src: src)
         }
+        resizeForFullScreen()
+    }
+
+    private var fullScreenObservation: NSKeyValueObservation?
+
+    private func resizeForFullScreen() {
+        if #available(iOSApplicationExtension 16.0, *) {
+            fullScreenObservation = observe(\.fullscreenState, options: []) { webView, _  in
+                if webView.fullscreenState == .inFullscreen {
+                    webView.translatesAutoresizingMaskIntoConstraints = true
+                    webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                    webView.frame = webView.superview!.frame
+                }
+            }
+        }
     }
 
     @discardableResult

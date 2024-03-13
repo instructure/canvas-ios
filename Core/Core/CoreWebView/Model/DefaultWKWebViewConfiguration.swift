@@ -27,7 +27,12 @@ public extension WKWebViewConfiguration {
     }
 
     func applyDefaultSettings() {
+        if #available(iOSApplicationExtension 16, *) {
+            preferences.isElementFullscreenEnabled = true
+        }
         allowsInlineMediaPlayback = true
+        allowsPictureInPictureMediaPlayback = true
+        allowsAirPlayForMediaPlayback = true
         processPool = CoreWebView.processPool
     }
 }
