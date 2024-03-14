@@ -22,6 +22,8 @@ struct ModulePublishItem {
     let title: String
     let confirmMessage: String
     let action: PutModuleItemPublishRequest.Action
+    let actionSubject: PutModuleItemPublishRequest.ActionSubject
+
     var icon: UIImage {
         switch action {
         case .publish: return .completeLine

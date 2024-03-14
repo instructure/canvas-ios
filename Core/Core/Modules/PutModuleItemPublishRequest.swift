@@ -32,6 +32,10 @@ struct PutModuleItemPublishRequest: APIRequestable {
 
         var isPublished: Bool { self == .publish ? true : false }
     }
+    enum ActionSubject: Equatable {
+        case modulesAndItems
+        case onlyModules
+    }
 
     let path: String
     let body: Body?

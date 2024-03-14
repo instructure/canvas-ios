@@ -141,7 +141,10 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         else { return }
 
         let button = UIBarButtonItem(image: .moreLine)
-        button.menu = .makePublishModulesMenu(host: self)
+        button.menu = .makePublishAllModulesMenu(host: self) { action, subject in
+            print("⚠️ isPublished: \(action.isPublished ? "✅" : "❌")")
+            print("⚠️ isModulesAndItems: \(subject == .modulesAndItems ? "✅" : "❌")")
+        }
         button.accessibilityLabel = String(localized: "Publish options")
         navigationItem.setRightBarButton(button, animated: true)
     }

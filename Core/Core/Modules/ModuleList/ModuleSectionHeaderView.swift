@@ -68,12 +68,16 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         accessibilityIdentifier = "ModuleList.\(section)"
 
         if publishMenuButton.menu == nil {
-            publishMenuButton.menu = .makePublishModuleMenu(host: host)
+            publishMenuButton.menu = .makePublishModuleMenu(host: host) { [weak self] action, subject in
+                self?.didPerformPublishAction(action: action, subject: subject)
+            }
             publishMenuButton.showsMenuAsPrimaryAction = true
         }
 
         publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
-        accessibilityCustomActions = publishMenuButton.isHidden ? [] : .modulePublishA11yActions(host: host)
+        accessibilityCustomActions = publishMenuButton.isHidden ? [] : .modulePublishA11yActions(host: host) { [weak self] action, subject in
+            self?.didPerformPublishAction(action: action, subject: subject)
+        }
     }
 
     @IBAction func handleTap() {
@@ -94,10 +98,17 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         publishInteractor: ModulePublishInteractor
     ) {
         if publishMenuButton.menu == nil {
-            publishMenuButton.menu = .makePublishModuleMenu(host: host)
+            publishMenuButton.menu = .makePublishModuleMenu(host: host) { [weak self] action, subject in
+                self?.didPerformPublishAction(action: action, subject: subject)
+            }
             publishMenuButton.showsMenuAsPrimaryAction = true
         }
 
         publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
+    }
+
+    private func didPerformPublishAction(action: PutModuleItemPublishRequest.Action, subject: PutModuleItemPublishRequest.ActionSubject) {
+        print("⚠️ isPublished: \(action.isPublished ? "✅" : "❌")")
+        print("⚠️ isModulesAndItems: \(subject == .modulesAndItems ? "✅" : "❌")")
     }
 }
