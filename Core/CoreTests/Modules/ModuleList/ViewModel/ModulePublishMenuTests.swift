@@ -34,7 +34,7 @@ class ModulePublishMenuTests: XCTestCase {
     // MARK: - All Modules Actions
 
     func testPublishAllModulesAndItems() {
-        let testee = UIMenu.makePublishModulesMenu(host: hostView, router: router)
+        let testee = UIMenu.makePublishAllModulesMenu(host: hostView, router: router) { _ in }
         let publishMenu = testee.children[0] as! UIMenu
         let publishAll = publishMenu.children[0] as! UIAction
 
@@ -47,8 +47,8 @@ class ModulePublishMenuTests: XCTestCase {
                    defaultActionTitle: "Publish")
     }
 
-    func testPublishModulesOnly() {
-        let testee = UIMenu.makePublishModulesMenu(host: hostView, router: router)
+    func testPublishAllModulesOnly() {
+        let testee = UIMenu.makePublishAllModulesMenu(host: hostView, router: router) { _ in }
         let publishMenu = testee.children[0] as! UIMenu
         let publishModules = publishMenu.children[1] as! UIAction
 
@@ -62,7 +62,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testUnpublishAllModulesAndItems() {
-        let testee = UIMenu.makePublishModulesMenu(host: hostView, router: router)
+        let testee = UIMenu.makePublishAllModulesMenu(host: hostView, router: router) { _ in }
         let unpublishMenu = testee.children[1] as! UIMenu
         let unpublishAll = unpublishMenu.children[0] as! UIAction
 
@@ -78,7 +78,7 @@ class ModulePublishMenuTests: XCTestCase {
     // MARK: - Module Actions
 
     func testPublishModuleAndAllItems() {
-        let testee = UIMenu.makePublishModuleMenu(host: hostView, router: router)
+        let testee = UIMenu.makePublishModuleMenu(host: hostView, router: router) { _ in }
         let publishMenu = testee.children[0] as! UIMenu
         let publishModule = publishMenu.children[0] as! UIAction
 
@@ -92,19 +92,19 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testPublishModuleAndAllItemsA11yAction() {
-        let testee = [UIAccessibilityCustomAction].modulePublishA11yActions(host: hostView,
-                                                                            router: router)[0]
+        let testee = [UIAccessibilityCustomAction].makePublishModuleA11yActions(host: hostView, router: router) { _ in }
+        let action = testee[0]
 
-        _ = testee.actionHandler!(testee)
+        _ = action.actionHandler!(action)
 
-        XCTAssertEqual(testee.name, "Publish Module And All Items")
+        XCTAssertEqual(action.name, "Publish Module And All Items")
         checkAlert(title: "Publish?",
                    message: "This will make the module and all items visible to students.",
                    defaultActionTitle: "Publish")
     }
 
     func testPublishModuleOnly() {
-        let testee = UIMenu.makePublishModuleMenu(host: hostView, router: router)
+        let testee = UIMenu.makePublishModuleMenu(host: hostView, router: router) { _ in }
         let publishMenu = testee.children[0] as! UIMenu
         let publishModule = publishMenu.children[1] as! UIAction
 
@@ -118,19 +118,19 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testPublishModuleOnlyA11yAction() {
-        let testee = [UIAccessibilityCustomAction].modulePublishA11yActions(host: hostView,
-                                                                            router: router)[1]
+        let testee = [UIAccessibilityCustomAction].makePublishModuleA11yActions(host: hostView, router: router) { _ in }
+        let action = testee[1]
 
-        _ = testee.actionHandler!(testee)
+        _ = action.actionHandler!(action)
 
-        XCTAssertEqual(testee.name, "Publish Module Only")
+        XCTAssertEqual(action.name, "Publish Module Only")
         checkAlert(title: "Publish?",
                    message: "This will make only the module visible to students.",
                    defaultActionTitle: "Publish")
     }
 
     func testUnpublishModule() {
-        let testee = UIMenu.makePublishModuleMenu(host: hostView, router: router)
+        let testee = UIMenu.makePublishModuleMenu(host: hostView, router: router) { _ in }
         let publishMenu = testee.children[1] as! UIMenu
         let publishModule = publishMenu.children[0] as! UIAction
 
@@ -144,12 +144,12 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testUnpublishModuleA11yAction() {
-        let testee = [UIAccessibilityCustomAction].modulePublishA11yActions(host: hostView,
-                                                                            router: router)[2]
+        let testee = [UIAccessibilityCustomAction].makePublishModuleA11yActions(host: hostView, router: router) { _ in }
+        let action = testee[2]
 
-        _ = testee.actionHandler!(testee)
+        _ = action.actionHandler!(action)
 
-        XCTAssertEqual(testee.name, "Unpublish Module And All Items")
+        XCTAssertEqual(action.name, "Unpublish Module And All Items")
         checkAlert(title: "Unpublish?",
                    message: "This will make the module and all items invisible to students.",
                    defaultActionTitle: "Unpublish")
@@ -177,10 +177,10 @@ class ModulePublishMenuTests: XCTestCase {
 
     func testPublishItemA11yAction() {
         let actionExpectation = expectation(description: "Action performed")
-        let testee = [UIAccessibilityCustomAction].moduleItemPublishA11yActions(action: .publish,
-                                                                                host: hostView,
-                                                                                router: router,
-                                                                                actionDidPerform: { actionExpectation.fulfill() })[0]
+        let testee = [UIAccessibilityCustomAction].makePublishModuleItemA11yActions(action: .publish,
+                                                                                    host: hostView,
+                                                                                    router: router,
+                                                                                    actionDidPerform: { actionExpectation.fulfill() })[0]
 
         _ = testee.actionHandler!(testee)
 
@@ -211,10 +211,10 @@ class ModulePublishMenuTests: XCTestCase {
 
     func testUnpublishItemA11yAction() {
         let actionExpectation = expectation(description: "Action performed")
-        let testee = [UIAccessibilityCustomAction].moduleItemPublishA11yActions(action: .unpublish,
-                                                                                host: hostView,
-                                                                                router: router,
-                                                                                actionDidPerform: { actionExpectation.fulfill() })[0]
+        let testee = [UIAccessibilityCustomAction].makePublishModuleItemA11yActions(action: .unpublish,
+                                                                                    host: hostView,
+                                                                                    router: router,
+                                                                                    actionDidPerform: { actionExpectation.fulfill() })[0]
 
         _ = testee.actionHandler!(testee)
 
@@ -232,7 +232,11 @@ class ModulePublishMenuTests: XCTestCase {
         message: String,
         defaultActionTitle: String
     ) {
-        let alert = router.lastViewController as! UIAlertController
+        guard let alert = router.lastViewController as? UIAlertController else {
+            XCTFail("Alert not found")
+            return
+        }
+
         let routerCall = router.viewControllerCalls.last!
         XCTAssertEqual(routerCall.0, alert)
         XCTAssertEqual(routerCall.1, hostView)

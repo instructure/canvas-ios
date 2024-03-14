@@ -68,15 +68,15 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         accessibilityIdentifier = "ModuleList.\(section)"
 
         if publishMenuButton.menu == nil {
-            publishMenuButton.menu = .makePublishModuleMenu(host: host) { [weak self] action, subject in
-                self?.didPerformPublishAction(action: action, subject: subject)
+            publishMenuButton.menu = .makePublishModuleMenu(host: host) { [weak self] action in
+                self?.didPerformPublishAction(action: action)
             }
             publishMenuButton.showsMenuAsPrimaryAction = true
         }
 
         publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
-        accessibilityCustomActions = publishMenuButton.isHidden ? [] : .modulePublishA11yActions(host: host) { [weak self] action, subject in
-            self?.didPerformPublishAction(action: action, subject: subject)
+        accessibilityCustomActions = publishMenuButton.isHidden ? [] : .makePublishModuleA11yActions(host: host) { [weak self] action in
+            self?.didPerformPublishAction(action: action)
         }
     }
 
@@ -98,8 +98,8 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         publishInteractor: ModulePublishInteractor
     ) {
         if publishMenuButton.menu == nil {
-            publishMenuButton.menu = .makePublishModuleMenu(host: host) { [weak self] action, subject in
-                self?.didPerformPublishAction(action: action, subject: subject)
+            publishMenuButton.menu = .makePublishModuleMenu(host: host) { [weak self] action in
+                self?.didPerformPublishAction(action: action)
             }
             publishMenuButton.showsMenuAsPrimaryAction = true
         }
@@ -107,8 +107,8 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
     }
 
-    private func didPerformPublishAction(action: PutModuleItemPublishRequest.Action, subject: PutModuleItemPublishRequest.ActionSubject) {
-        print("⚠️ isPublished: \(action.isPublished ? "✅" : "❌")")
-        print("⚠️ isModulesAndItems: \(subject == .modulesAndItems ? "✅" : "❌")")
+    private func didPerformPublishAction(action: ModulePublishAction) {
+        print("⚠️ isPublished: \(action.isPublish ? "✅" : "❌")")
+        print("⚠️ isModulesAndItems: \(action.subject == .modulesAndItems ? "✅" : "❌")")
     }
 }

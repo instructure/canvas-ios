@@ -34,7 +34,7 @@ class ModulePublishInteractor {
     func changeItemPublishedState(
         moduleId: String,
         moduleItemId: String,
-        action: PutModuleItemPublishRequest.Action
+        action: ModulePublishAction
     ) {
         moduleItemsUpdating.value.insert(moduleItemId)
         let useCase = PutModuleItemPublishState(
@@ -60,7 +60,7 @@ class ModulePublishInteractor {
 
 extension Subscribers.Completion<Error> {
 
-    func moduleItemStatusUpdateText(for action: PutModuleItemPublishRequest.Action) -> String {
+    func moduleItemStatusUpdateText(for action: ModulePublishAction) -> String {
         switch self {
         case .finished:
             switch action {
