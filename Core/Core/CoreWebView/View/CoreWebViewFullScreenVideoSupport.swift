@@ -40,7 +40,7 @@ extension CoreWebView {
             let matchFullScreenContainerSizeAndFadeIn: (WKWebView) -> Void = { webView in
                 webView.translatesAutoresizingMaskIntoConstraints = true
                 webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                webView.frame = webView.superview!.frame
+                webView.frame = webView.superview?.frame ?? .zero
                 webView.superview?.alpha = 0
                 UIView.animate(withDuration: 0.3) {
                     webView.superview?.alpha = 1
