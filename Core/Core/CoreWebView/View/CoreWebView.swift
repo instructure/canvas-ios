@@ -52,6 +52,7 @@ open class CoreWebView: WKWebView {
     private var isThemeInverted: Bool {
         themeSwitcher?.isThemeInverted ?? false
     }
+    private var fullScreenVideoSupport: FullScreenVideoSupport?
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -156,21 +157,6 @@ open class CoreWebView: WKWebView {
         handle("loadFrameSource") { [weak self] message in
             guard let src = message.body as? String else { return }
             self?.loadFrame(src: src)
-        }
-        resizeForFullScreen()
-    }
-
-    private var fullScreenObservation: NSKeyValueObservation?
-
-    private func resizeForFullScreen() {
-        if #available(iOSApplicationExtension 16.0, *) {
-            fullScreenObservation = observe(\.fullscreenState, options: []) { webView, _  in
-                if webView.fullscreenState == .inFullscreen {
-                    webView.translatesAutoresizingMaskIntoConstraints = true
-                    webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                    webView.frame = webView.superview!.frame
-                }
-            }
         }
     }
 
@@ -598,8 +584,15 @@ extension CoreWebView {
         guard let parent else { return }
 
         themeSwitcher = CoreWebViewThemeSwitcherLive(host: self)
-        themeSwitcher?.pinHostAndButton(inside: parent)
+        themeSwitcher?.pinHostAndButton(
+            inside: parent,
+            leading: leading,
+            trailing: trailing,
+            top: top,
+            bottom: bottom
+        )
         themeSwitcher?.updateUserInterfaceStyle(with: .current)
+        fullScreenVideoSupport = .init(webView: self)
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

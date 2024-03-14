@@ -126,4 +126,10 @@ extension UIView {
             pin(inside: superview, leading: nil, trailing: nil, top: 0, bottom: 0)
         }
     }
+
+    public func constraintsAffecting(view: UIView) -> [NSLayoutConstraint] {
+        constraints.filter { constraint in
+            constraint.firstItem as? NSObject == view || constraint.secondItem  as? NSObject == view
+        }
+    }
 }
