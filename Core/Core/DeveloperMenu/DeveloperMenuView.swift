@@ -122,6 +122,9 @@ public struct DeveloperMenuView: View {
                 UIPasteboard.general.string = appDir
                 snackBarViewModel.showSnack("App Directory copied to clipboard.")
             },
+            DeveloperMenuItem("Text Recognition", icon: .disclosure) {
+                router.show(TextRecognizerViewController(nibName: nil, bundle: .core), from: controller)
+            }
         ])
 
         if let sharedDirectory {

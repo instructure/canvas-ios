@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class TextSubmissionViewController: UIViewController, ErrorViewController, RichContentEditorDelegate {
+class TextSubmissionViewController: UIViewController, ErrorViewController, RichContentEditorDelegate, TextRecognizerViewControllerDelegate {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
 
@@ -29,6 +29,8 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
     let env = AppEnvironment.shared
     var keyboard: KeyboardTransitioning?
     var userID: String!
+    var submitButton: UIBarButtonItem!
+    private lazy var textRecognizerViewController = TextRecognizerViewController(nibName: nil, bundle: .core)
 
     static func create(courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
@@ -41,13 +43,21 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        textRecognizerViewController.delegate = self
         view.backgroundColor = .backgroundLightest
         title = NSLocalizedString("Text Entry", bundle: .student, comment: "")
 
         navigationController?.navigationBar.useModalStyle()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Submit", bundle: .student, comment: ""), style: .plain, target: self, action: #selector(submit))
+        submitButton =  UIBarButtonItem(title: NSLocalizedString("Submit", bundle: .student, comment: ""), style: .plain, target: self, action: #selector(submit))
+        let textRecognizerButton = UIBarButtonItem(
+            image: UIImage(systemName: "wand.and.stars.inverse"),
+            style: .plain,
+            target: self,
+            action: #selector(textRecognizerButtonDidTap)
+        )
+        navigationItem.rightBarButtonItems = [submitButton, textRecognizerButton]
         navigationItem.rightBarButtonItem?.accessibilityIdentifier = "TextSubmission.submitButton"
-        navigationItem.rightBarButtonItem?.isEnabled = false
+        submitButton.isEnabled = false
         addCancelButton(side: .left)
 
         editor.delegate = self
@@ -63,7 +73,7 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
     }
 
     func rce(_ editor: RichContentEditorViewController, canSubmit: Bool) {
-        navigationItem.rightBarButtonItem?.isEnabled = canSubmit
+        submitButton.isEnabled = canSubmit
     }
 
     func rce(_ editor: RichContentEditorViewController, didError error: Error) {
@@ -85,6 +95,20 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
                     self.dismiss(animated: true, completion: nil)
                 }
             } }
+        }
+    }
+
+    @objc private func textRecognizerButtonDidTap() {
+        AppEnvironment.shared.router.show(
+            textRecognizerViewController,
+            from: self
+        )
+    }
+
+    func didFinishTextScanning(_ string: String) {
+        DispatchQueue.main.async { [weak self] in
+            self?.editor.setHTML(string)
+            self?.editor.focus()
         }
     }
 }
