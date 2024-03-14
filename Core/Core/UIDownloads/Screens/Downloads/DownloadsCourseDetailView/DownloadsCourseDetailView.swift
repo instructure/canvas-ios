@@ -63,6 +63,11 @@ struct DownloadsCourseDetailView: View, Navigatable {
     private var padBody: some View {
         NavigationView {
             content
+                .onAppear {
+                    if selection == nil {
+                        selection = viewModel.categories.first
+                    }
+                }
         }
         .navigationBarBackButtonHidden(true)
         .accentColor(.white)
@@ -81,11 +86,6 @@ struct DownloadsCourseDetailView: View, Navigatable {
                             .padding(.leading, -8)
                     }
                 }
-            }
-        }
-        .onAppear {
-            if selection == nil {
-                selection = viewModel.categories.first
             }
         }
         .introspect(
