@@ -87,9 +87,6 @@ public class RichContentEditorViewController: UIViewController {
         guard previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle else { return }
         getHTML { [weak self] htmlString in
             self?.html = htmlString
-            if self?.traitCollection.userInterfaceStyle != .dark {
-                self?.webView.updateHtmlContentView()
-            }
         }
     }
 
