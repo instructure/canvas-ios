@@ -18,6 +18,7 @@
 
 @testable import Core
 import Combine
+import CombineSchedulers
 import XCTest
 
 class ModuleFilePermissionEditorViewModelTests: CoreTestCase {
@@ -30,8 +31,7 @@ class ModuleFilePermissionEditorViewModelTests: CoreTestCase {
 
     func testLoadInitialStateFailure() {
         let mockInteractor = MockModulePublishInteractor()
-        mockInteractor.mockedGetFilePermissionResult = .failure(NSError.internalError())
-        mockInteractor.expectedFileContextForGetFilePermission = fileContext
+        mockInteractor.getFilePermissionResult = .failure(NSError.internalError())
 
         let testee = ModuleFilePermissionEditorViewModel(
             fileContext: fileContext,
@@ -41,13 +41,14 @@ class ModuleFilePermissionEditorViewModelTests: CoreTestCase {
         )
 
         XCTAssertEqual(testee.state, .error)
+        XCTAssertEqual(mockInteractor.receivedFileContextForGetFilePermission, fileContext)
     }
 
     func testLoadInitialStateSucceeds() {
         let unlockAt = Date()
         let lockAt = Date()
         let mockInteractor = MockModulePublishInteractor()
-        mockInteractor.mockedGetFilePermissionResult = .success(
+        mockInteractor.getFilePermissionResult = .success(
             .init(
                 unlockAt: unlockAt,
                 lockAt: lockAt,
@@ -55,7 +56,6 @@ class ModuleFilePermissionEditorViewModelTests: CoreTestCase {
                 visibility: .institutionMembers
             )
         )
-        mockInteractor.expectedFileContextForGetFilePermission = fileContext
 
         let testee = ModuleFilePermissionEditorViewModel(
             fileContext: fileContext,
@@ -64,6 +64,7 @@ class ModuleFilePermissionEditorViewModelTests: CoreTestCase {
             scheduler: .immediate
         )
 
+        XCTAssertEqual(mockInteractor.receivedFileContextForGetFilePermission, fileContext)
         XCTAssertEqual(testee.state, .data)
         XCTAssertEqual(testee.availableFrom, unlockAt)
         XCTAssertEqual(testee.availableUntil, lockAt)
@@ -71,9 +72,109 @@ class ModuleFilePermissionEditorViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.availability, .scheduledAvailability)
         XCTAssertTrue(testee.isDoneButtonActive)
         XCTAssertTrue(testee.isScheduleDateSectionVisible)
-        XCTAssertEqual(testee.defaultFromDate, unlockAt.addDays(-1))
-        XCTAssertEqual(testee.defaultUntilDate, unlockAt.addDays(1))
+        XCTAssertEqual(
+            testee.defaultFromDate.timeIntervalSince1970,
+            unlockAt.addDays(-1).timeIntervalSince1970,
+            accuracy: 0.1
+        )
+        XCTAssertEqual(
+            testee.defaultUntilDate.timeIntervalSince1970,
+            unlockAt.addDays(1).timeIntervalSince1970,
+            accuracy: 0.1
+        )
         XCTAssertFalse(testee.isUploading)
+    }
+
+    func testSuccessfulFilePermissionChange() {
+        let mockInteractor = MockModulePublishInteractor()
+        mockInteractor.getFilePermissionResult = .success(
+            .init(
+                unlockAt: nil,
+                lockAt: nil,
+                availability: .hidden,
+                visibility: .institutionMembers
+            )
+        )
+        let testScheduler = DispatchQueue.test
+        let testee = ModuleFilePermissionEditorViewModel(
+            fileContext: fileContext,
+            interactor: mockInteractor,
+            router: router,
+            scheduler: testScheduler.eraseToAnyScheduler()
+        )
+        let unlockAt = Date()
+        let lockAt = Date()
+        mockInteractor.changeFilePublishStateResult = .success(())
+        let viewHost = UIViewController()
+
+        // WHEN
+        testee.availableFromDidSelect.send(unlockAt)
+        testee.availableUntilDidSelect.send(lockAt)
+        testee.availabilityDidSelect.send(.scheduledAvailability)
+        testee.visibilityDidSelect.send(.inheritCourse)
+        testee.doneDidPress.send(viewHost)
+
+        // THEN
+        XCTAssertEqual(mockInteractor.receivedFileContextForChangeFilePublishState, fileContext)
+        XCTAssertEqual(mockInteractor.receivedFilePermissionsForChangeFilePublishState,
+                       .init(
+                           unlockAt: unlockAt,
+                           lockAt: lockAt,
+                           availability: .scheduledAvailability,
+                           visibility: .inheritCourse
+                       )
+        )
+        XCTAssertTrue(testee.isUploading)
+        XCTAssertFalse(testee.isDoneButtonActive)
+        testScheduler.advance()
+        XCTAssertEqual(router.dismissed, viewHost)
+    }
+
+    func testFailedFilePermissionChange() {
+        let mockInteractor = MockModulePublishInteractor()
+        mockInteractor.getFilePermissionResult = .success(
+            .init(
+                unlockAt: nil,
+                lockAt: nil,
+                availability: .hidden,
+                visibility: .institutionMembers
+            )
+        )
+        let testScheduler = DispatchQueue.test
+        let testee = ModuleFilePermissionEditorViewModel(
+            fileContext: fileContext,
+            interactor: mockInteractor,
+            router: router,
+            scheduler: testScheduler.eraseToAnyScheduler()
+        )
+        let unlockAt = Date()
+        let lockAt = Date()
+        mockInteractor.changeFilePublishStateResult = .failure(NSError.internalError())
+        let viewHost = UIViewController()
+
+        // WHEN
+        testee.availableFromDidSelect.send(unlockAt)
+        testee.availableUntilDidSelect.send(lockAt)
+        testee.availabilityDidSelect.send(.scheduledAvailability)
+        testee.visibilityDidSelect.send(.inheritCourse)
+        testee.doneDidPress.send(viewHost)
+
+        // THEN
+        XCTAssertEqual(mockInteractor.receivedFileContextForChangeFilePublishState, fileContext)
+        XCTAssertEqual(mockInteractor.receivedFilePermissionsForChangeFilePublishState,
+                       .init(
+                           unlockAt: unlockAt,
+                           lockAt: lockAt,
+                           availability: .scheduledAvailability,
+                           visibility: .inheritCourse
+                       )
+        )
+        XCTAssertTrue(testee.isUploading)
+        XCTAssertFalse(testee.isDoneButtonActive)
+        testScheduler.advance()
+        XCTAssertFalse(testee.isUploading)
+        XCTAssertTrue(testee.isDoneButtonActive)
+        XCTAssertTrue(testee.showError)
     }
 }
 
@@ -88,30 +189,29 @@ private class MockModulePublishInteractor: ModulePublishInteractor {
         action: PutModuleItemPublishRequest.Action
     ) {}
 
-    var expectedFileContextForChangeFilePublishState: ModulePublishInteractorLive.FileContext?
-    var expectedFilePermissionsForChangeFilePublishState: ModulePublishInteractorLive.FilePermission?
-    var mockedChangeFilePublishStateResult: Result<Void, Error>?
+    private(set) var receivedFileContextForChangeFilePublishState: ModulePublishInteractorLive.FileContext?
+    private(set) var receivedFilePermissionsForChangeFilePublishState: ModulePublishInteractorLive.FilePermission?
+    var changeFilePublishStateResult: Result<Void, Error>?
 
     func changeFilePublishState(
         fileContext: ModulePublishInteractorLive.FileContext,
         filePermissions: ModulePublishInteractorLive.FilePermission
     ) -> AnyPublisher<Void, Error> {
-        XCTAssertEqual(expectedFileContextForChangeFilePublishState, fileContext)
-        XCTAssertEqual(expectedFilePermissionsForChangeFilePublishState, filePermissions)
-        return mockedChangeFilePublishStateResult!
+        receivedFileContextForChangeFilePublishState = fileContext
+        receivedFilePermissionsForChangeFilePublishState = filePermissions
+        return changeFilePublishStateResult!
             .publisher
             .eraseToAnyPublisher()
     }
 
-    var expectedFileContextForGetFilePermission: ModulePublishInteractorLive.FileContext?
-    var mockedGetFilePermissionResult: Result<ModulePublishInteractorLive.FilePermission, Error>?
+    private(set) var receivedFileContextForGetFilePermission: ModulePublishInteractorLive.FileContext?
+    var getFilePermissionResult: Result<ModulePublishInteractorLive.FilePermission, Error>?
 
     func getFilePermission(
         fileContext: ModulePublishInteractorLive.FileContext
     ) -> AnyPublisher<ModulePublishInteractorLive.FilePermission, Error> {
-        XCTAssertEqual(expectedFileContextForGetFilePermission, fileContext)
-
-        return mockedGetFilePermissionResult!
+        receivedFileContextForGetFilePermission = fileContext
+        return getFilePermissionResult!
             .publisher
             .eraseToAnyPublisher()
     }
