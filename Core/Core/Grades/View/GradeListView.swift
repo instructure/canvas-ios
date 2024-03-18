@@ -285,6 +285,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             .foregroundStyle(Color.textDarkest)
             .font(.semibold28)
             .accessibilityLabel(Text("\(courseName) course"))
+            .fixedSize(horizontal: false, vertical: true)
     }
 
     @ViewBuilder
