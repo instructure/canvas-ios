@@ -583,7 +583,7 @@ extension CoreWebView {
         guard let parent else { return }
 
         themeSwitcher = CoreWebViewThemeSwitcherLive(host: self)
-        themeSwitcher?.pinHostAndButton(inside: parent)
+        themeSwitcher?.pinHostAndButton(inside: parent, leading: leading, trailing: trailing, top: top, bottom: bottom)
         themeSwitcher?.updateUserInterfaceStyle(with: .current)
     }
 
