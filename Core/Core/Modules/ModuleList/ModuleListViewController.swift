@@ -141,9 +141,8 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         else { return }
 
         let button = UIBarButtonItem(image: .moreLine)
-        button.menu = .makePublishAllModulesMenu(host: self) { action in
-            print("⚠️ isPublished: \(action.isPublish ? "✅" : "❌")")
-            print("⚠️ isModulesAndItems: \(action.subject == .modulesAndItems ? "✅" : "❌")")
+        button.menu = .makePublishAllModulesMenu(host: self) { [weak self] action in
+            self?.didPerformPublishAction(action: action)
         }
         button.accessibilityLabel = String(localized: "Publish options")
         navigationItem.setRightBarButton(button, animated: true)
@@ -158,6 +157,12 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
             .sink(receiveValue: { [weak self] update in
                 self?.findSnackBarViewModel()?.showSnack(update)
             })
+    }
+
+    private func didPerformPublishAction(action: ModulePublishAction) {
+        let viewModel = ModulePublishProgressViewModel(action: action, allModules: true, router: env.router)
+        let viewController = CoreHostingController(ModulePublishProgressView(viewModel: viewModel))
+        env.router.show(viewController, from: self, options: .modal(isDismissable: true, embedInNav: true))
     }
 
     private func reloadCourse() {

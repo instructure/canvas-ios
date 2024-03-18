@@ -108,7 +108,11 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     }
 
     private func didPerformPublishAction(action: ModulePublishAction) {
-        print("⚠️ isPublished: \(action.isPublish ? "✅" : "❌")")
-        print("⚠️ isModulesAndItems: \(action.subject == .modulesAndItems ? "✅" : "❌")")
+        guard let sourceViewController = viewController else { return }
+
+        let router = AppEnvironment.shared.router
+        let viewModel = ModulePublishProgressViewModel(action: action, allModules: false, router: router)
+        let viewController = CoreHostingController(ModulePublishProgressView(viewModel: viewModel))
+        router.show(viewController, from: sourceViewController, options: .modal(isDismissable: true, embedInNav: true))
     }
 }
