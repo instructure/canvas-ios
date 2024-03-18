@@ -25,12 +25,12 @@ public enum FileVisibility: String, CaseIterable, Identifiable {
     case publiclyAvailable = "public"
 
     public var id: FileVisibility { self }
-    public var label: Text {
+    public var label: String {
         switch self {
-        case .inheritCourse: return Text("Inherit From Course")
-        case .courseMembers: return Text("Course Members")
-        case .institutionMembers: return Text("Institution Members")
-        case .publiclyAvailable: return Text("Public")
+        case .inheritCourse: return String(localized: "Inherit From Course")
+        case .courseMembers: return String(localized: "Course Members")
+        case .institutionMembers: return String(localized: "Institution Members")
+        case .publiclyAvailable: return String(localized: "Public")
         }
     }
     public var isLastCase: Bool {

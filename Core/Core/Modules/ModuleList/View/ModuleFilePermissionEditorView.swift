@@ -76,7 +76,7 @@ struct ModuleFilePermissionEditorView: View {
                     } set: { _ in
                         viewModel.visibilityDidSelect.send(visibility)
                     }
-                    CheckmarkRow(isChecked: binding, label: visibility.label)
+                    CheckmarkRow(isChecked: binding, label: Text(visibility.label))
                     separator.hidden(visibility.isLastCase ? true : false)
                 }
 
