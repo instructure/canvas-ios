@@ -59,7 +59,7 @@ struct ModuleFilePermissionEditorView: View {
                     } set: { _ in
                         viewModel.availabilityDidSelect.send(availability)
                     }
-                    CheckmarkRow(isChecked: binding, label: availability.label)
+                    CheckmarkRow(isChecked: binding, label: Text(availability.label))
                         .animation(.none, value: viewModel.isScheduleDateSectionVisible)
                     separator.hidden(availability.isLastCase ? true : false)
                 }

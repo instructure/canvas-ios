@@ -16,8 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-
 public enum FileAvailability: Int, CaseIterable, Identifiable, Equatable {
     case published = 0
     case unpublished = 1
@@ -25,20 +23,20 @@ public enum FileAvailability: Int, CaseIterable, Identifiable, Equatable {
     case scheduledAvailability = 3
 
     public var id: FileAvailability { self }
-    public var label: Text {
+    public var label: String {
         switch self {
-        case .published: return Text("Publish")
-        case .unpublished: return Text("Unpublish")
-        case .hidden: return Text("Only Available With Link")
-        case .scheduledAvailability: return Text("Schedule Availability")
+        case .published: return String(localized: "Publish")
+        case .unpublished: return String(localized: "Unpublish")
+        case .hidden: return String(localized: "Only Available With Link")
+        case .scheduledAvailability: return String(localized: "Schedule Availability")
         }
     }
     public var a11yLabel: String {
         switch self {
-        case .published: return String(localized: "Published")
-        case .unpublished: return String(localized: "Unpublished")
-        case .hidden: return String(localized: "Only Available With Link")
-        case .scheduledAvailability: return String(localized: "Scheduled Availability")
+        case .published: return String(localized: "published")
+        case .unpublished: return String(localized: "unpublished")
+        case .hidden: return String(localized: "only available with link")
+        case .scheduledAvailability: return String(localized: "scheduled availability")
         }
     }
     public var isLastCase: Bool {
