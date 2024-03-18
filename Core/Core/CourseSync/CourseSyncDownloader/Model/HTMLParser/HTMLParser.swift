@@ -24,6 +24,7 @@ public class HTMLParser {
     private let imageRegex: NSRegularExpression
     private let fileLinkRegex: NSRegularExpression
     private let internalFileRegex: NSRegularExpression
+    private let relativeURLRegex: NSRegularExpression
 
     private let loginSession: LoginSession
     private let interactor: HTMLDownloadInteractor
@@ -36,10 +37,13 @@ public class HTMLParser {
         self.imageRegex = (try? NSRegularExpression(pattern: "<img[^>]*src=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
         self.fileLinkRegex = (try? NSRegularExpression(pattern: "<a[^>]*class=\"instructure_file_link[^>]*href=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
         self.internalFileRegex = (try? NSRegularExpression(pattern: ".*\(loginSession.baseURL).*files/(\\d+)")) ?? NSRegularExpression()
+        self.relativeURLRegex = (try? NSRegularExpression(pattern: "^(?:[a-z+]+:)?//")) ?? NSRegularExpression()
     }
 
-    func parse(_ content: String) -> AnyPublisher<String, Error> {
-        let imageURLs = findImageMatches(content)
+    func parse(_ content: String, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
+        let imageURLs = findRegexMatches(content, pattern: imageRegex)
+        let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex)
+
         return imageURLs.publisher
             .flatMap { url in
                 return self.interactor.download(url)
@@ -57,15 +61,26 @@ public class HTMLParser {
             .map { [content] urls in
                 var newContent = content
                 urls.forEach { (originalURL, localURL) in
-                    newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: localURL.lastPathComponent)
+                    let newURL = "file://\(localURL.path)"
+                    newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: newURL)
+                }
+                return newContent
+            }
+            .map { content in
+                var newContent = content
+                relativeURLs.forEach { relativeURL in
+                    if let baseURL {
+                        let newURL = baseURL.appendingPathComponent(relativeURL.path)
+                        newContent = newContent.replacingOccurrences(of: relativeURL.absoluteString, with: newURL.absoluteString)
+                    }
                 }
                 return newContent
             }
             .eraseToAnyPublisher()
     }
 
-    func findImageMatches(_ content: String) -> [URL] {
-        imageRegex
+    func findRegexMatches(_ content: String, pattern: NSRegularExpression) -> [URL] {
+        pattern
             .matches(in: content, range: NSRange(location: 0, length: content.count))
             .compactMap { match in
                 if let wholeRange = Range(match.range(at: 1), in: content) {

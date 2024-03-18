@@ -155,7 +155,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             Text("Description", bundle: .core)
                 .font(.medium16).foregroundColor(.textDark)
                 .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
-            WebView(html: html, canToggleTheme: true)
+            WebView(html: html, baseURL: URL.Directories.documents, canToggleTheme: true)
                 .frameToFit()
         } else {
             Section(label: Text("Description", bundle: .core)) {

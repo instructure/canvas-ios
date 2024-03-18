@@ -88,7 +88,7 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
             .eraseToAnyPublisher()
     }
 
-    func replaceAttribute<AttributeType>(attribute keyPath: ReferenceWritableKeyPath<Output.Element, AttributeType>, newValue: AttributeType) -> AnyPublisher<[Output.Element], Error> {
+    func replaceValue<AttributeType>(attribute keyPath: ReferenceWritableKeyPath<Output.Element, AttributeType>, newValue: AttributeType) -> AnyPublisher<[Output.Element], Error> {
         self.map { dataArray in
             dataArray.map { element in
                 element[keyPath: keyPath] = newValue

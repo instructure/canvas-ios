@@ -53,7 +53,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     func save(_ result: (data: Data, response: URLResponse)) -> AnyPublisher<URL, Error> {
         var saveURL = URL.Directories.documents.appendingPathComponent(UUID.string)
         if let url = result.response.url {
-            saveURL = URL.Directories.documents.appendingPathComponent("\(UUID.string)\(url.lastPathComponent)")
+            saveURL = URL.Directories.documents.appendingPathComponent("\(url.lastPathComponent)")
         }
 
         do {

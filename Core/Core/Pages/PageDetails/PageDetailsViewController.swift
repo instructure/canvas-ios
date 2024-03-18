@@ -117,13 +117,19 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
 
         // Offline image are stored in the Documents folder which cannot be accessed by the webview by default
         webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
-        webView.loadFileURL(Bundle.main.bundleURL, allowingReadAccessTo: Bundle.main.bundleURL)
-        if let resourceURL = Bundle.main.resourceURL {
-            webView.loadFileURL(resourceURL, allowingReadAccessTo: resourceURL)
-        }
-
         webView.loadHTMLString(page.body, baseURL: URL.Directories.documents)
-//        webView.loadHTMLString(page.body, baseURL: page.htmlURL)
+
+        // TODO: remove if we use original replacing
+        // Offline with separate html file
+//        let offlinePagePath = URL.Directories.documents.appendingPathComponent("pages-\(page.id)-body.html")
+//        if (FileManager.default.fileExists(atPath: offlinePagePath.path)) {
+//            webView.loadFileURL(offlinePagePath, allowingReadAccessTo: URL.Directories.documents)
+//        } else {
+//            webView.loadHTMLString(page.body, baseURL: page.htmlURL)
+//        }
+
+        print(page.body)
+        print()
     }
 
     private func updatePages() {

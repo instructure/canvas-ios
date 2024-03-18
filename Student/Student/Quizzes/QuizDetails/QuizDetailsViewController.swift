@@ -157,7 +157,8 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
             : NSLocalizedString("Instructions", comment: "")
         var html = quiz?.lockExplanation ?? quiz?.details ?? ""
         if html.isEmpty { html = NSLocalizedString("No Content", comment: "") }
-        instructionsWebView.loadHTMLString(html, baseURL: quiz?.htmlURL)
+        instructionsWebView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
+        instructionsWebView.loadHTMLString(html, baseURL: URL.Directories.documents)
         scrollView.isHidden = quiz == nil
         let title = takeButtonTitle
         takeButton.setTitle(title, for: .normal)

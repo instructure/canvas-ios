@@ -407,7 +407,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         descriptionHeadingLabel?.text = quiz == nil
             ? NSLocalizedString("Description", bundle: .student, comment: "")
             : NSLocalizedString("Instructions", bundle: .student, comment: "")
-        webView.loadHTMLString(presenter?.assignmentDescription() ?? "", baseURL: baseURL)
+        webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
+        webView.loadHTMLString(presenter?.assignmentDescription() ?? "", baseURL: URL.Directories.documents)
         updateGradeCell(assignment, submission: submission)
 
         guard let presenter = presenter else { return }
