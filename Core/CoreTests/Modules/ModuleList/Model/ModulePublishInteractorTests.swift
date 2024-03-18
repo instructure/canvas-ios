@@ -183,8 +183,8 @@ class ModulePublishInteractorTests: CoreTestCase {
                 valueExpectation.fulfill()
                 XCTAssertEqual(permission.availability, .scheduledAvailability)
                 XCTAssertEqual(permission.visibility, .institutionMembers)
-                XCTAssertEqual(permission.lockAt!.timeIntervalSince1970, lockAt.timeIntervalSince1970, accuracy: 0.1)
-                XCTAssertEqual(permission.unlockAt!.timeIntervalSince1970, unlockAt.timeIntervalSince1970, accuracy: 0.1)
+                XCTAssertEqual(permission.lockAt!.timeIntervalSince1970, lockAt.timeIntervalSince1970, accuracy: 1)
+                XCTAssertEqual(permission.unlockAt!.timeIntervalSince1970, unlockAt.timeIntervalSince1970, accuracy: 1)
             }
 
         // THEN

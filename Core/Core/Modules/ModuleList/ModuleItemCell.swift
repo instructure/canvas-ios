@@ -121,13 +121,13 @@ class ModuleItemCell: UITableViewCell {
         switch item.type {
         case .file: // files open a dedicated dialog and don't use the context menu
             publishMenuButton.showsMenuAsPrimaryAction = false
-            accessibilityCustomActions = [
+            accessibilityCustomActions = publishInteractor.isPublishActionAvailable ? [
                 .init(
                     name: "Edit permissions",
                     target: self,
                     selector: #selector(presentFilePermissionEditorDialog)
                 ),
-            ]
+            ] : []
             publishMenuButton.addTarget(self, action: #selector(presentFilePermissionEditorDialog), for: .primaryActionTriggered)
         default:
             publishMenuButton.showsMenuAsPrimaryAction = true
