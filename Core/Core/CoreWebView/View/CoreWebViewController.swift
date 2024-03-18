@@ -48,6 +48,7 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
         super.viewDidLoad()
         view.addSubview(webView)
         webView.pin(inside: view)
+        webView.activateFullScreenSupport()
 
         if isInteractionLimited {
             setupLimitedInteractionNotification()

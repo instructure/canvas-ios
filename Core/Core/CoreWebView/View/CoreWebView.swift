@@ -318,6 +318,11 @@ open class CoreWebView: WKWebView {
             }
         """
     }
+
+    // Call this method if you didn't add the webview into the view hierarchy with the `pinWithThemeSwitchButton` method.
+    public func activateFullScreenSupport() {
+        fullScreenVideoSupport = .init(webView: self)
+    }
 }
 
 extension CoreWebView: WKNavigationDelegate {
@@ -592,7 +597,7 @@ extension CoreWebView {
             bottom: bottom
         )
         themeSwitcher?.updateUserInterfaceStyle(with: .current)
-        fullScreenVideoSupport = .init(webView: self)
+        activateFullScreenSupport()
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
