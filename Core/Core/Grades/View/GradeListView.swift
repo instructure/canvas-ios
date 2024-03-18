@@ -57,7 +57,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     public var body: some View {
         GeometryReader { geometry in
             ZStack {
-                RefreshableScrollView {
+                RefreshableScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
                         switch viewModel.state {
                         case .initialLoading:
@@ -149,38 +149,33 @@ public struct GradeListView: View, ScreenViewTrackable {
         if isRefreshing {
             GeometryReader { proxy in
                 loadingView()
-                    .padding(.top, 16)
+                    .padding(.vertical, 16)
                     .frame(width: proxy.size.width)
                     .frame(minHeight: proxy.size.height)
             }
         } else if isEmpty {
-            GeometryReader { proxy in
-                emptyView()
-                    .padding(.top, 16)
-                    .frame(width: proxy.size.width)
-                    .frame(minHeight: proxy.size.height)
-            }
+            emptyView()
+                .padding(.vertical, 16)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
             assignmentListView(
                 courseColor: gradeListData.courseColor,
                 assignmentSections: gradeListData.assignmentSections,
                 userID: gradeListData.userID
             )
+            .frame(minHeight: 208, maxHeight: .infinity)
             .accessibilityFocused($accessibilityFocus, equals: .list)
-            Spacer(minLength: 0)
         }
     }
 
     @ViewBuilder
     private func emptyView() -> some View {
-        Spacer()
         InteractivePanda(
             scene: SpacePanda(),
             title: String(localized: "No Assignments"),
             subtitle: String(localized: "It looks like assignments haven’t been created in this space yet.")
         )
         .padding(.horizontal, 16)
-        Spacer()
     }
 
     @ViewBuilder
@@ -497,17 +492,16 @@ private struct RevertWhatIfScoreButton: ToolbarContent {
     var body: some ToolbarContent {
         ToolbarItemGroup(placement: .navigationBarTrailing) {
             if isWhatIfScoreModeOn {
-                    Button(action: {
-                        buttonDidTap()
-                    }) {
-                        Image(uiImage: .replyLine)
-                            .resizable()
-                            .foregroundColor(Color.white)
-                    }
-                    .frame(alignment: .leading)
-                    .accessibilityLabel(Text("Revert"))
-                    .accessibilityHint(Text("Double tap to revert to official score."))
-
+                Button(action: {
+                    buttonDidTap()
+                }) {
+                    Image(uiImage: .replyLine)
+                        .resizable()
+                        .foregroundColor(Color.white)
+                }
+                .frame(alignment: .leading)
+                .accessibilityLabel(Text("Revert"))
+                .accessibilityHint(Text("Double tap to revert to official score."))
             }
         }
     }
