@@ -29,7 +29,7 @@ public extension UIViewController {
             presentingViewController,
             presentingViewController?.tabBarController,
         ]
-        
+
         let provider = possibleProviders
             .compactMap { $0 as? SnackBarProvider }
             .first
