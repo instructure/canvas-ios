@@ -61,6 +61,7 @@ final class GradeListInteractorPreview: GradeListInteractor {
     }
 
     func updateGradingPeriod(id _: String?) {}
+    func isWhatIfScoreFlagEnabled() -> Bool { true }
 }
 
 #endif
