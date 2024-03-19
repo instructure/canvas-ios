@@ -28,7 +28,7 @@ extension ModulePublishProgressViewModel {
 
         func start(shouldFail: Bool) {
             let total = 7
-            let errorTreshold = 3
+            let errorTreshold = 5
             let interval = 0.5
             for i in 0...total {
                 guard !shouldFail || i <= errorTreshold else { break }
@@ -94,7 +94,7 @@ final class ModulePublishProgressViewModel: ObservableObject {
     // MARK: - Input
 
     let didTapDismiss = PassthroughSubject<WeakViewController, Never>()
-    let didTapCancel = PassthroughSubject<WeakViewController, Never>()
+    let didTapCancel = PassthroughSubject<(WeakViewController, String), Never>()
     let didTapDone = PassthroughSubject<WeakViewController, Never>()
 
     // MARK: - Private
@@ -157,11 +157,12 @@ final class ModulePublishProgressViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         didTapCancel
-            .sink {
-                print("⚠️ ❌ Did tap cancel")
+            .sink { weakVC, snackBarTitle in
                 // TODO: send cancel request silently: no spinner, no errors
-                router.dismiss($0)
-                // TODO: show snackbar ""
+                let snackBarViewModel = weakVC.value.findSnackBarViewModel()
+                router.dismiss(weakVC) {
+                    snackBarViewModel?.showSnack(snackBarTitle)
+                }
             }
             .store(in: &subscriptions)
 

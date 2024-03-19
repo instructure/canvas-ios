@@ -23,7 +23,17 @@ public protocol SnackBarProvider {
 public extension UIViewController {
 
     func findSnackBarViewModel() -> SnackBarViewModel? {
-        (tabBarController as? SnackBarProvider)?.snackBarViewModel
+        let possibleProviders = [
+            self,
+            tabBarController,
+            presentingViewController,
+            presentingViewController?.tabBarController,
+        ]
+        
+        let provider = possibleProviders
+            .compactMap { $0 as? SnackBarProvider }
+            .first
+        return provider?.snackBarViewModel
     }
 }
 

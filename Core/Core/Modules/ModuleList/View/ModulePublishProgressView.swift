@@ -74,8 +74,9 @@ struct ModulePublishProgressView: View {
 
     @ViewBuilder
     private var cancelButton: some View {
+        let snackBarTitle = String(localized: "Update cancelled")
         Button {
-            viewModel.didTapCancel.send(viewController)
+            viewModel.didTapCancel.send((viewController, snackBarTitle))
         } label: {
             Text("Cancel").navigationBarButtonStyle()
         }
