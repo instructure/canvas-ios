@@ -43,7 +43,9 @@ public enum FileAvailability: Int, CaseIterable, Identifiable, Equatable {
         Self.allCases.last == self
     }
 
-    public init(moduleItem: APIModuleItem) {
+    public init?(moduleItem: APIModuleItem) {
+        guard moduleItem.content.isFile else { return nil }
+
         if moduleItem.published == false {
             self = .unpublished
         } else if moduleItem.content_details?.hidden == true {

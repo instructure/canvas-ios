@@ -177,12 +177,7 @@ class ModuleItemCell: UITableViewCell {
                     updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, host: host)
                 }
 
-                let availability: FileAvailability = {
-                    if let availability = item.fileAvailability {
-                        return availability
-                    }
-                    return item.published == true ? .published : .unpublished
-                }()
+                let availability = item.fileAvailability ?? (item.published == true ? .published : .unpublished)
                 updatePublishedUIState(
                     isUpdating: isUpdating,
                     availability: availability,

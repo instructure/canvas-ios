@@ -21,8 +21,16 @@ import XCTest
 
 class FileAvailabilityTests: XCTestCase {
 
+    func testNilStateFromAPIResponse() {
+        let apiModuleItem = APIModuleItem.make(content: .page(""), published: true, content_details: nil)
+
+        let testee = FileAvailability(moduleItem: apiModuleItem)
+
+        XCTAssertEqual(testee, nil)
+    }
+
     func testHiddenStateFromAPIResponse() {
-        let apiModuleItem = APIModuleItem.make(published: true, content_details: .make(hidden: true))
+        let apiModuleItem = APIModuleItem.make(content: .file(""), published: true, content_details: .make(hidden: true))
 
         let testee = FileAvailability(moduleItem: apiModuleItem)
 
@@ -30,15 +38,15 @@ class FileAvailabilityTests: XCTestCase {
     }
 
     func testPublishedStateFromAPIResponse() {
-        let apiModuleItem = APIModuleItem.make(published: true, content_details: nil)
+        let apiModuleItem = APIModuleItem.make(content: .file(""), published: true, content_details: nil)
 
         let testee = FileAvailability(moduleItem: apiModuleItem)
 
         XCTAssertEqual(testee, .published)
     }
 
-    func testUnPublishedStateFromAPIResponse() {
-        let apiModuleItem = APIModuleItem.make(published: false, content_details: nil)
+    func testUnpublishedStateFromAPIResponse() {
+        let apiModuleItem = APIModuleItem.make(content: .file(""), published: false, content_details: nil)
 
         let testee = FileAvailability(moduleItem: apiModuleItem)
 
@@ -46,7 +54,7 @@ class FileAvailabilityTests: XCTestCase {
     }
 
     func testScheduledWithUnlockStateFromAPIResponse() {
-        let apiModuleItem = APIModuleItem.make(published: true, content_details: .make(unlock_at: Date()))
+        let apiModuleItem = APIModuleItem.make(content: .file(""), published: true, content_details: .make(unlock_at: Date()))
 
         let testee = FileAvailability(moduleItem: apiModuleItem)
 
@@ -54,7 +62,7 @@ class FileAvailabilityTests: XCTestCase {
     }
 
     func testScheduledWithLockDateStateFromAPIResponse() {
-        let apiModuleItem = APIModuleItem.make(published: true, content_details: .make(lock_at: Date()))
+        let apiModuleItem = APIModuleItem.make(content: .file(""), published: true, content_details: .make(lock_at: Date()))
 
         let testee = FileAvailability(moduleItem: apiModuleItem)
 
