@@ -26,7 +26,7 @@ protocol ModulePublishInteractor {
     func changeItemPublishedState(
         moduleId: String,
         moduleItemId: String,
-        action: PutModuleItemPublishRequest.Action
+        action: ModulePublishAction
     )
     func changeFilePublishState(
         fileContext: ModulePublishInteractorLive.FileContext,

@@ -58,7 +58,7 @@ class ModulePublishInteractorPreview: ModulePublishInteractor {
     func changeItemPublishedState(
         moduleId: String,
         moduleItemId: String,
-        action: PutModuleItemPublishRequest.Action
+        action: ModulePublishAction
     ) {
     }
 

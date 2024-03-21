@@ -186,7 +186,7 @@ private class MockModulePublishInteractor: ModulePublishInteractor {
     func changeItemPublishedState(
         moduleId: String,
         moduleItemId: String,
-        action: PutModuleItemPublishRequest.Action
+        action: ModulePublishAction
     ) {}
 
     private(set) var receivedFileContextForChangeFilePublishState: ModulePublishInteractorLive.FileContext?
