@@ -20,7 +20,7 @@ import SwiftUI
 
 public enum FileVisibility: String, CaseIterable, Identifiable {
     case inheritCourse = "inherit"
-    case courseMembers = "course"
+    case courseMembers = "context"
     case institutionMembers = "institution"
     case publiclyAvailable = "public"
 

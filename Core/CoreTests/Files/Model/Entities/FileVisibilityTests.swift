@@ -23,7 +23,7 @@ class FileVisibilityTests: XCTestCase {
 
     func testAPIRawValues() {
         XCTAssertEqual(FileVisibility.inheritCourse.rawValue, "inherit")
-        XCTAssertEqual(FileVisibility.courseMembers.rawValue, "course")
+        XCTAssertEqual(FileVisibility.courseMembers.rawValue, "context")
         XCTAssertEqual(FileVisibility.institutionMembers.rawValue, "institution")
         XCTAssertEqual(FileVisibility.publiclyAvailable.rawValue, "public")
     }
