@@ -31,15 +31,17 @@ class ModuleItemCell: UITableViewCell {
     @IBOutlet weak var publishInProgressIndicator: CircleProgressView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
     @IBOutlet weak var completedStatusView: UIImageView!
-    @IBOutlet weak var publishMenuButton: UIButton! {
-        didSet {
-            publishMenuButton.showsMenuAsPrimaryAction = true
-        }
-    }
+    @IBOutlet weak var publishMenuButton: UIButton!
 
-    let env = AppEnvironment.shared
-    var publishStateObserver: AnyCancellable?
-    var isFirstUpdate = true
+    private let env = AppEnvironment.shared
+    private var publishStateObserver: AnyCancellable?
+    private var isFirstUpdate = true
+    private weak var host: UIViewController?
+    private var moduleItemId: String?
+    private var fileId: String?
+    private var moduleId: String?
+    private var courseId: String?
+    private var publishInteractor: ModulePublishInteractor?
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -54,6 +56,12 @@ class ModuleItemCell: UITableViewCell {
         publishInteractor: ModulePublishInteractor,
         host: UIViewController
     ) {
+        self.host = host
+        self.publishInteractor = publishInteractor
+        moduleId = item.moduleID
+        moduleItemId = item.id
+        fileId = item.type.fileId
+        courseId = item.courseID
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         let isLocked = item.isLocked || item.masteryPath?.locked == true
@@ -64,7 +72,12 @@ class ModuleItemCell: UITableViewCell {
         iconView.image = item.masteryPath?.locked == true ? UIImage.lockLine : item.type?.icon
         contentStackView.setCustomSpacing(16, after: iconView)
         iconView.isHidden = (iconView.image == nil)
-        publishedIconView.published = item.published
+
+        if let fileAvailability = item.fileAvailability {
+            publishedIconView.setupState(with: fileAvailability)
+        } else {
+            publishedIconView.published = item.published
+        }
 
         completedStatusView.isHidden = env.app == .teacher || item.completionRequirement == nil
         completedStatusView.image = item.completed == true ? .checkLine : .emptyLine
@@ -104,15 +117,44 @@ class ModuleItemCell: UITableViewCell {
         nameLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).nameLabel"
         dueLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueLabel"
 
+        publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
         switch item.type {
-        case .file:
-            publishMenuButton.isHidden = true
-            accessibilityCustomActions = []
+        case .file: // files open a dedicated dialog and don't use the context menu
+            publishMenuButton.showsMenuAsPrimaryAction = false
+            accessibilityCustomActions = publishInteractor.isPublishActionAvailable ? [
+                .init(
+                    name: "Edit permissions",
+                    target: self,
+                    selector: #selector(presentFilePermissionEditorDialog)
+                ),
+            ] : []
+            publishMenuButton.addTarget(self, action: #selector(presentFilePermissionEditorDialog), for: .primaryActionTriggered)
         default:
-            publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
+            publishMenuButton.showsMenuAsPrimaryAction = true
+            publishMenuButton.removeTarget(self, action: #selector(presentFilePermissionEditorDialog), for: .primaryActionTriggered)
         }
 
         subscribeToPublishStateUpdates(item, publishInteractor: publishInteractor, host: host)
+    }
+
+    @objc
+    private func presentFilePermissionEditorDialog() {
+        guard let host, let fileId, let moduleId, let moduleItemId, let courseId, let publishInteractor else {
+            return
+        }
+        let viewModel = ModuleFilePermissionEditorViewModel(
+            fileContext: .init(
+                fileId: fileId,
+                moduleId: moduleId,
+                moduleItemId: moduleItemId,
+                courseId: courseId
+            ),
+            interactor: publishInteractor,
+            router: env.router
+        )
+        let editorView = ModuleFilePermissionEditorView(viewModel: viewModel)
+        let hostController = CoreHostingController(editorView)
+        env.router.show(hostController, from: host, options: .modal(isDismissable: false, embedInNav: true))
     }
 
     private func subscribeToPublishStateUpdates(
@@ -130,8 +172,17 @@ class ModuleItemCell: UITableViewCell {
                 guard let self, let host else { return }
                 let animated = !isFirstUpdate
                 isFirstUpdate = false
-                updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, host: host)
-                updatePublishedUIState(isUpdating: isUpdating, isItemPublished: item.published ?? false, animated: animated)
+
+                if !item.type.isFile {
+                    updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, host: host)
+                }
+
+                let availability = item.fileAvailability ?? (item.published == true ? .published : .unpublished)
+                updatePublishedUIState(
+                    isUpdating: isUpdating,
+                    availability: availability,
+                    animated: animated
+                )
                 updateA11yLabelForPublishState(moduleItem: item)
             }
     }
@@ -164,13 +215,13 @@ class ModuleItemCell: UITableViewCell {
         }()
     }
 
-    private func updatePublishedUIState(isUpdating: Bool, isItemPublished: Bool, animated: Bool) {
+    private func updatePublishedUIState(isUpdating: Bool, availability: FileAvailability, animated: Bool) {
         if isUpdating {
             publishInProgressIndicator?.startAnimating()
         }
 
         publishInProgressIndicator?.alpha = isUpdating ? 0 : 1
-        publishedIconView?.published = isItemPublished
+        publishedIconView?.setupState(with: availability)
         publishedIconView?.alpha = isUpdating ? 1 : 0
 
         UIView.animate(withDuration: animated ? 0.3 : 0.0) { [weak publishInProgressIndicator, weak publishedIconView] in
@@ -185,12 +236,19 @@ class ModuleItemCell: UITableViewCell {
 
     private func updateA11yLabelForPublishState(moduleItem: ModuleItem) {
         if !publishedIconView.isHidden {
+            let publishedText = {
+                if let availability = moduleItem.fileAvailability {
+                    return availability.a11yLabel
+                } else {
+                    return moduleItem.published == true
+                        ? String(localized: "published")
+                        : String(localized: "unpublished")
+                }
+            }()
             accessibilityLabel = [
                 moduleItem.type?.label,
                 moduleItem.title,
-                moduleItem.published == true
-                    ? String(localized: "published")
-                    : String(localized: "unpublished"),
+                publishedText,
             ].compactMap { $0 }.joined(separator: ", ")
         }
     }

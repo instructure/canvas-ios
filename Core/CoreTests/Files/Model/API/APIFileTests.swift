@@ -101,8 +101,10 @@ class APIFileTests: XCTestCase {
         XCTAssertEqual(request.method, .put)
         XCTAssertEqual(request.path, "files/43")
         let json = String(data: try APIJSONEncoder().encode(XCTUnwrap(request.body)), encoding: .utf8)
+        XCTAssertEqual(json?.contains("\"name\":\"\""), true)
         XCTAssertEqual(json?.contains("\"unlock_at\":null"), true)
         XCTAssertEqual(json?.contains("\"lock_at\":null"), true)
+        XCTAssertEqual(json?.contains("\"visibility_level\":\"\""), false)
     }
 
     func testPutFolderRequest() {
