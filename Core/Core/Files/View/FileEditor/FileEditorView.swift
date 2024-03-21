@@ -290,7 +290,7 @@ public struct FileEditorView: View {
         switch itemID {
         case .file(let fileID):
             saveUsageRights {
-                UpdateFile(fileID: fileID, name: name, locked: locked, hidden: hidden, unlockAt: unlockAt, lockAt: lockAt)
+                UpdateFile(request: PutFileRequest(fileID: fileID, name: name, locked: locked, hidden: hidden, unlockAt: unlockAt, lockAt: lockAt))
                     .fetch { result, _, error in performUIUpdate { self.saved(result != nil, error: error) } }
             }
         case .folder(let folderID):

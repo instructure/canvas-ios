@@ -50,6 +50,7 @@ public struct APIFile: Codable, Equatable {
     var preview_url: APIURL?
     let avatar: APIFileToken?
     var usage_rights: APIUsageRights?
+    let visibility_level: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -76,6 +77,7 @@ public struct APIFile: Codable, Equatable {
         case preview_url
         case avatar
         case usage_rights
+        case visibility_level
     }
 
     init(
@@ -102,7 +104,8 @@ public struct APIFile: Codable, Equatable {
         lock_explanation: String?,
         preview_url: APIURL?,
         avatar: APIFileToken?,
-        usage_rights: APIUsageRights?
+        usage_rights: APIUsageRights?,
+        visibility_level: String?
     ) {
         self.id = id
         self.uuid = uuid
@@ -128,6 +131,7 @@ public struct APIFile: Codable, Equatable {
         self.preview_url = preview_url
         self.avatar = avatar
         self.usage_rights = usage_rights
+        self.visibility_level = visibility_level
     }
 
     public init(from decoder: Decoder) throws {
@@ -156,6 +160,7 @@ public struct APIFile: Codable, Equatable {
         preview_url = try container.decodeURLIfPresent(forKey: .preview_url)
         avatar = try container.decodeIfPresent(APIFileToken.self, forKey: .avatar)
         usage_rights = try container.decodeIfPresent(APIUsageRights.self, forKey: .usage_rights)
+        visibility_level = try container.decodeIfPresent(String.self, forKey: .visibility_level)
     }
 }
 
@@ -234,7 +239,8 @@ public extension APIFile {
         lock_explanation: String? = nil,
         preview_url: URL? = nil,
         avatar: APIFileToken? = nil,
-        usage_rights: APIUsageRights? = nil
+        usage_rights: APIUsageRights? = nil,
+        visibility_level: String? = nil
     ) -> APIFile {
         return APIFile(
             id: id,
@@ -260,7 +266,8 @@ public extension APIFile {
             lock_explanation: lock_explanation,
             preview_url: APIURL(rawValue: preview_url),
             avatar: avatar,
-            usage_rights: usage_rights
+            usage_rights: usage_rights,
+            visibility_level: visibility_level
         )
     }
 }
@@ -568,7 +575,12 @@ struct PostFolderRequest: APIRequestable {
 struct PutFileRequest: APIRequestable {
     typealias Response = APIFile
     struct Body: Codable {
-        let name: String
+        let name: String?
+        let serializeName: Bool
+
+        let visibility_level: String?
+        let serializeVisibility: Bool
+
         let locked: Bool
         let hidden: Bool
         let unlock_at: Date?
@@ -576,7 +588,15 @@ struct PutFileRequest: APIRequestable {
 
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(name, forKey: .name)
+
+            if serializeName {
+                try container.encode(name, forKey: .name)
+            }
+
+            if serializeVisibility {
+                try container.encode(visibility_level, forKey: .visibility_level)
+            }
+
             try container.encode(locked, forKey: .locked)
             try container.encode(hidden, forKey: .hidden)
             // Auto-generated code omits the nil value properties.
@@ -586,16 +606,61 @@ struct PutFileRequest: APIRequestable {
         }
     }
 
-    let fileID: String
     let body: Body?
-
-    init(fileID: String, name: String, locked: Bool, hidden: Bool, unlockAt: Date?, lockAt: Date?) {
-        self.fileID = fileID
-        body = Body(name: name, locked: locked, hidden: hidden, unlock_at: unlockAt, lock_at: lockAt)
-    }
-
     var method: APIMethod { .put }
     var path: String { "files/\(fileID)" }
+    let fileID: String
+
+    init(
+        fileID: String,
+        name: String,
+        locked: Bool,
+        hidden: Bool,
+        unlockAt: Date?,
+        lockAt: Date?
+    ) {
+        self.fileID = fileID
+        body = Body(
+            name: name,
+            serializeName: true,
+            visibility_level: nil,
+            serializeVisibility: false,
+            locked: locked,
+            hidden: hidden,
+            unlock_at: unlockAt,
+            lock_at: lockAt
+        )
+    }
+
+    init(
+        fileID: String,
+        visibility: FileVisibility,
+        availability: FileAvailability,
+        unlockAt: Date?,
+        lockAt: Date?
+    ) {
+        self.fileID = fileID
+        let locked = (availability == .unpublished)
+        let hidden = (availability == .hidden)
+        var lock_at: Date?
+        var unlock_at: Date?
+
+        if availability == .scheduledAvailability {
+            lock_at = lockAt
+            unlock_at = unlockAt
+        }
+
+        body = Body(
+            name: nil,
+            serializeName: false,
+            visibility_level: visibility.rawValue,
+            serializeVisibility: true,
+            locked: locked,
+            hidden: hidden,
+            unlock_at: unlock_at,
+            lock_at: lock_at
+        )
+    }
 }
 
 // https://canvas.instructure.com/doc/api/files.html#method.folders.update
@@ -608,7 +673,16 @@ struct PutFolderRequest: APIRequestable {
 
     init(folderID: String, name: String, locked: Bool, hidden: Bool, unlockAt: Date?, lockAt: Date?) {
         self.folderID = folderID
-        body = Body(name: name, locked: locked, hidden: hidden, unlock_at: unlockAt, lock_at: lockAt)
+        body = Body(
+            name: name,
+            serializeName: true,
+            visibility_level: nil,
+            serializeVisibility: false,
+            locked: locked,
+            hidden: hidden,
+            unlock_at: unlockAt,
+            lock_at: lockAt
+        )
     }
 
     var method: APIMethod { .put }

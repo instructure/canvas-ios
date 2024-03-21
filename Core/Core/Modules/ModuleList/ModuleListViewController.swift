@@ -58,7 +58,10 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
             AppEnvironment.shared.userDefaults?.collapsedModules = collapsedIDs
         }
     }
-    private lazy var publishInteractor = ModulePublishInteractor(app: AppEnvironment.shared.app, courseId: courseID)
+    private lazy var publishInteractor = ModulePublishInteractorLive(
+        app: AppEnvironment.shared.app,
+        courseId: courseID
+    )
     private var snackBarUpdatesSubscription: AnyCancellable?
 
     public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {

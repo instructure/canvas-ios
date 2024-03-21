@@ -44,6 +44,15 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var masteryPathItem: ModuleItem?
     @NSManaged public var masteryPath: MasteryPath?
     @NSManaged public var moduleItem: ModuleItem? // inverse of masteryPathItem
+    @NSManaged public var fileAvailabilityRaw: NSNumber?
+
+    /// In case the module item is a file it can have 4 states of availability. Only used for the teacher modules list.
+    public var fileAvailability: FileAvailability? {
+        get {
+            guard let fileAvailabilityRaw else { return nil }
+            return FileAvailability(rawValue: fileAvailabilityRaw.intValue) }
+        set { fileAvailabilityRaw = NSNumber(value: newValue?.rawValue) }
+    }
 
     public var published: Bool? {
         get { return publishedRaw?.boolValue }
@@ -162,6 +171,7 @@ public class ModuleItem: NSManagedObject {
         model.lockExplanation = item.content_details?.lock_explanation
         model.completionRequirement = item.completion_requirement
         model.courseID = courseID
+        model.fileAvailability = .init(moduleItem: item)
 
         if updateMasteryPath {
             if let masteryPath = item.mastery_paths, masteryPath.selected_set_id == nil {
