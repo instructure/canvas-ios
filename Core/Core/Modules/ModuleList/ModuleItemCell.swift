@@ -141,7 +141,7 @@ class ModuleItemCell: UITableViewCell {
         publishInteractor: ModulePublishInteractor,
         host: UIViewController
     ) {
-        let action: PutModuleItemPublishRequest.Action = moduleItem.published == true ? .unpublish : .publish
+        let action: ModulePublishAction = moduleItem.published == true ? .unpublish : .publish
         let performUpdate = {
             publishInteractor.changeItemPublishedState(
                 moduleId: moduleItem.moduleID,
@@ -156,7 +156,7 @@ class ModuleItemCell: UITableViewCell {
                 return []
             }
 
-            return .moduleItemPublishA11yActions(
+            return .makePublishModuleItemA11yActions(
                 action: action,
                 host: host,
                 actionDidPerform: performUpdate

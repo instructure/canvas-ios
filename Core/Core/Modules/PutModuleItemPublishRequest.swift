@@ -26,12 +26,6 @@ struct PutModuleItemPublishRequest: APIRequestable {
         }
         let module_item: ModuleItem
     }
-    enum Action: Equatable {
-        case publish
-        case unpublish
-
-        var isPublished: Bool { self == .publish ? true : false }
-    }
 
     let path: String
     let body: Body?
@@ -44,12 +38,12 @@ struct PutModuleItemPublishRequest: APIRequestable {
         courseId: String,
         moduleId: String,
         moduleItemId: String,
-        action: Action
+        action: ModulePublishAction
     ) {
         self.courseId = courseId
         self.moduleItemId = moduleItemId
         path = "courses/\(courseId)/modules/\(moduleId)/items/\(moduleItemId)"
-        body = Body(module_item: .init(published: action.isPublished))
+        body = Body(module_item: .init(published: action.isPublish))
     }
 }
 
@@ -60,14 +54,14 @@ struct PutModuleItemPublishState: APIUseCase {
     let request: PutModuleItemPublishRequest
     var scope: Scope { Scope(predicate: predicate, order: []) }
 
-    private let action: PutModuleItemPublishRequest.Action
+    private let action: ModulePublishAction
     private let predicate: NSPredicate
 
     init(
         courseId: String,
         moduleId: String,
         moduleItemId: String,
-        action: PutModuleItemPublishRequest.Action
+        action: ModulePublishAction
     ) {
         self.action = action
         predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
@@ -92,6 +86,6 @@ struct PutModuleItemPublishState: APIUseCase {
             return
         }
 
-        model.published = action.isPublished
+        model.published = action.isPublish
     }
 }

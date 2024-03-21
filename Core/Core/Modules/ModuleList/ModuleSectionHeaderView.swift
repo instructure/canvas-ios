@@ -68,12 +68,16 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         accessibilityIdentifier = "ModuleList.\(section)"
 
         if publishMenuButton.menu == nil {
-            publishMenuButton.menu = .makePublishModuleMenu(host: host)
+            publishMenuButton.menu = .makePublishModuleMenu(host: host) { [weak self] action in
+                self?.didPerformPublishAction(action: action)
+            }
             publishMenuButton.showsMenuAsPrimaryAction = true
         }
 
         publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
-        accessibilityCustomActions = publishMenuButton.isHidden ? [] : .modulePublishA11yActions(host: host)
+        accessibilityCustomActions = publishMenuButton.isHidden ? [] : .makePublishModuleA11yActions(host: host) { [weak self] action in
+            self?.didPerformPublishAction(action: action)
+        }
     }
 
     @IBAction func handleTap() {
@@ -94,10 +98,21 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         publishInteractor: ModulePublishInteractor
     ) {
         if publishMenuButton.menu == nil {
-            publishMenuButton.menu = .makePublishModuleMenu(host: host)
+            publishMenuButton.menu = .makePublishModuleMenu(host: host) { [weak self] action in
+                self?.didPerformPublishAction(action: action)
+            }
             publishMenuButton.showsMenuAsPrimaryAction = true
         }
 
         publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
+    }
+
+    private func didPerformPublishAction(action: ModulePublishAction) {
+        guard let sourceViewController = viewController else { return }
+
+        let router = AppEnvironment.shared.router
+        let viewModel = ModulePublishProgressViewModel(action: action, allModules: false, router: router)
+        let viewController = CoreHostingController(ModulePublishProgressView(viewModel: viewModel))
+        router.show(viewController, from: sourceViewController, options: .modal(isDismissable: true, embedInNav: true))
     }
 }
