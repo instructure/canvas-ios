@@ -175,18 +175,17 @@ class ModuleListViewControllerTests: CoreTestCase {
             .make(id: "3", position: 3, title: "A1", published: false),
         ])
         loadView()
+        // published/unpublished is not included because dependency is not injected
         XCTAssertEqual(header(forSection: 0).titleLabel.text, "A")
-        XCTAssertEqual(header(forSection: 0).publishIndicatorView.publishedIconView.published, false)
-        XCTAssertEqual(header(forSection: 0).accessibilityLabel, "A, unpublished, expanded")
+        XCTAssertEqual(header(forSection: 0).accessibilityLabel, "A, expanded")
         XCTAssert(header(forSection: 0).accessibilityTraits.contains(.button))
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 0)).nameLabel.text, "A1")
-        XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 0)).accessibilityLabel, "assignment, A1, unpublished")
+        XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 0)).accessibilityLabel, "assignment, A1")
         XCTAssertEqual(header(forSection: 1).titleLabel.text, "B")
-        XCTAssertEqual(header(forSection: 1).publishIndicatorView.publishedIconView.published, true)
-        XCTAssertEqual(header(forSection: 1).accessibilityLabel, "B, published, expanded")
+        XCTAssertEqual(header(forSection: 1).accessibilityLabel, "B, expanded")
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 1)).nameLabel.text, "B1")
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 1, section: 1)).nameLabel.text, "B2")
-        XCTAssertEqual(moduleItemCell(at: IndexPath(row: 1, section: 1)).accessibilityLabel, "assignment, B2, published")
+        XCTAssertEqual(moduleItemCell(at: IndexPath(row: 1, section: 1)).accessibilityLabel, "assignment, B2")
     }
 
     func testEmptyItems() {
@@ -310,11 +309,11 @@ class ModuleListViewControllerTests: CoreTestCase {
         drainMainQueue()
         let before = header(forSection: 0)
         XCTAssertTrue(before.isExpanded)
-        XCTAssertEqual(before.accessibilityLabel, "Module 1, published, expanded")
+        XCTAssertEqual(before.accessibilityLabel, "Module 1, expanded")
         before.handleTap()
         let after = header(forSection: 0)
         XCTAssertFalse(after.isExpanded)
-        XCTAssertEqual(before.accessibilityLabel, "Module 1, published, expanded")
+        XCTAssertEqual(before.accessibilityLabel, "Module 1, expanded")
 
         let viewController = ModuleListViewController.create(courseID: "1")
         viewController.view.layoutIfNeeded()
@@ -344,14 +343,14 @@ class ModuleListViewControllerTests: CoreTestCase {
             ),
         ])
         loadView()
+        // published/unpublished is not included because dependency is not injected
         let cell = try XCTUnwrap(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModuleItemCell)
         XCTAssertEqual(cell.nameLabel.text, "I am a sub header")
         XCTAssertEqual(cell.indentConstraint.constant, 20)
-        XCTAssertEqual(cell.publishIndicatorView.publishedIconView.published, true)
         XCTAssertTrue(cell.isUserInteractionEnabled)
-        XCTAssertEqual(cell.accessibilityLabel, "I am a sub header, published")
+        XCTAssertEqual(cell.accessibilityLabel, "I am a sub header")
         let other = try XCTUnwrap(viewController.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ModuleItemCell)
-        XCTAssertEqual(other.accessibilityLabel, "other subheader, unpublished")
+        XCTAssertEqual(other.accessibilityLabel, "other subheader")
 
     }
 

@@ -32,6 +32,7 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var htmlURL: URL?
     @NSManaged public var url: URL?
     @NSManaged public var publishedRaw: NSNumber?
+    @NSManaged public var canBeUnpublished: Bool
     @NSManaged public var typeRaw: Data?
     @NSManaged public var module: Module?
     @NSManaged public var dueAt: Date?
@@ -164,6 +165,7 @@ public class ModuleItem: NSManagedObject {
         model.htmlURL = item.html_url
         model.url = item.url
         model.published = item.published
+        model.canBeUnpublished = item.unpublishable ?? true
         model.type = item.content
         model.pointsPossible = item.content_details?.points_possible
         model.dueAt = item.content_details?.due_at

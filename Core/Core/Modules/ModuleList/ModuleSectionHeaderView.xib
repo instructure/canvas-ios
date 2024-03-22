@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,8 +14,7 @@
             <connections>
                 <outlet property="collapsableIndicator" destination="Cc0-w5-zrP" id="WP6-7I-9g1"/>
                 <outlet property="lockedButton" destination="x61-b5-ndv" id="RUM-F9-hDo"/>
-                <outlet property="publishIndicatorView" destination="aaS-Cs-4pH" id="sWv-rZ-Ry8"/>
-                <outlet property="publishMenuButton" destination="qoD-av-3pS" id="AzC-BO-a5K"/>
+                <outlet property="publishControl" destination="VG6-pE-JNB" id="HaO-55-4Ak"/>
                 <outlet property="titleLabel" destination="4NE-AM-KWx" id="rib-Ss-7wW"/>
             </connections>
         </placeholder>
@@ -48,7 +48,7 @@
                             </userDefinedRuntimeAttributes>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Module Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NE-AM-KWx" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="28" y="0.5" width="231" height="24"/>
+                            <rect key="frame" x="28" y="0.5" width="211" height="24"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x61-b5-ndv" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="263" y="0.5" width="24" height="24"/>
+                            <rect key="frame" x="243" y="0.5" width="24" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="BdE-LF-Z1J"/>
                                 <constraint firstAttribute="height" constant="24" id="yh7-8k-Y2A"/>
@@ -70,25 +70,14 @@
                                 <action selector="lockTapped" destination="-1" eventType="primaryActionTriggered" id="krv-OU-TIo"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aaS-Cs-4pH" customClass="ModuleItemPublishIndicatorView" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="291" y="0.5" width="24" height="24"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VG6-pE-JNB" userLabel="Publish Control" customClass="ModulePublishControl" customModule="Core" customModuleProvider="target">
+                            <rect key="frame" x="271" y="0.5" width="72" height="24"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="24" id="7LC-8C-zkS"/>
-                                <constraint firstAttribute="height" constant="24" id="hNd-ut-4Ze"/>
+                                <constraint firstAttribute="height" constant="24" id="NEG-Xs-mfs"/>
+                                <constraint firstAttribute="width" constant="72" id="cul-sg-wBI"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoD-av-3pS">
-                            <rect key="frame" x="319" y="0.5" width="24" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="24" id="88a-uo-K9W"/>
-                                <constraint firstAttribute="width" constant="24" id="Zfl-gn-YS3"/>
-                            </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="moreLine">
-                                <color key="baseForegroundColor" name="textDarkest"/>
-                            </buttonConfiguration>
-                        </button>
                     </subviews>
                 </stackView>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JmO-Tg-r8P" customClass="DividerView" customModule="Core" customModuleProvider="target">
@@ -130,23 +119,22 @@
     </objects>
     <designables>
         <designable name="4NE-AM-KWx">
-            <size key="intrinsicContentSize" width="129.5" height="24"/>
+            <size key="intrinsicContentSize" width="126" height="24"/>
         </designable>
         <designable name="Cc0-w5-zrP">
             <size key="intrinsicContentSize" width="24" height="24"/>
         </designable>
         <designable name="x61-b5-ndv">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="24" height="24"/>
         </designable>
     </designables>
     <resources>
         <image name="miniArrowUpSolid" width="24" height="24"/>
-        <image name="moreLine" width="24" height="24"/>
         <namedColor name="backgroundLight">
             <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="textDarkest">
-            <color red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
