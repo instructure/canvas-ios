@@ -145,8 +145,10 @@ class ModuleItemCell: UITableViewCell {
             .modulesUpdating
             .value
             .contains(item.moduleID)
+        let isUpdating = isItemUpdating || isParentModuleUpdating
 
-        publishIndicatorView.update(isPublishInProgress: isItemUpdating || isParentModuleUpdating)
+        publishIndicatorView.update(isPublishInProgress: isUpdating)
+        publishMenuButton.isEnabled = !isUpdating
     }
 
     @objc
@@ -193,6 +195,7 @@ class ModuleItemCell: UITableViewCell {
                     updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, host: host)
                 }
 
+                publishMenuButton.isEnabled = !isUpdating
                 updatePublishedState(item)
                 publishIndicatorView.update(isPublishInProgress: isUpdating)
                 updateA11yLabelForPublishState(moduleItem: item)
@@ -207,6 +210,7 @@ class ModuleItemCell: UITableViewCell {
             .receive(on: RunLoop.main)
             .sink { [weak self] isUpdating in
                 guard let self else { return }
+                publishMenuButton.isEnabled = !isUpdating
                 publishIndicatorView.update(isPublishInProgress: isUpdating)
             }
             .store(in: &publishStateObservers)

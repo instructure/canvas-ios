@@ -108,7 +108,6 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         modules.refresh()
         tabs.refresh()
 
-        setupRefreshWhenModulesPublished()
         setupPublishActionSnackBarUpdates()
     }
 
@@ -152,6 +151,18 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         }
         button.accessibilityLabel = String(localized: "Publish options")
         navigationItem.setRightBarButton(button, animated: true)
+
+        publishInteractor
+            .modulesUpdating
+            .receive(on: RunLoop.main)
+            .map { [modules] modulesUpdating in
+                let allModules = modules.all.map { $0.id }
+                return Set(modulesUpdating) == Set(allModules)
+            }
+            .sink { isAllModulesUpdating in
+                button.isEnabled = !isAllModulesUpdating
+            }
+            .store(in: &subscriptions)
     }
 
     private func setupPublishActionSnackBarUpdates() {
@@ -160,17 +171,6 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
             .sink(receiveValue: { [weak self] update in
                 self?.findSnackBarViewModel()?.showSnack(update)
             })
-            .store(in: &subscriptions)
-    }
-
-    private func setupRefreshWhenModulesPublished() {
-        publishInteractor
-            .modulesUpdating
-            .dropFirst()
-            .filter { $0.isEmpty }
-            .sink { [weak self] _ in
-                self?.modules.refresh(force: true)
-            }
             .store(in: &subscriptions)
     }
 

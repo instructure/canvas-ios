@@ -50,6 +50,7 @@ class BulkPublishPublisher: Publisher {
     private let moduleIds: [String]
     private let action: ModulePublishAction
     private let scheduler: AnySchedulerOf<DispatchQueue>
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(
         api: API,
@@ -73,6 +74,7 @@ class BulkPublishPublisher: Publisher {
     }
 
     private func sendBulkPublishRequest() {
+        subject.send(.running(progress: 0))
         let request = PutBulkPublishModulesRequest(
             courseId: courseId,
             moduleIds: moduleIds,
@@ -82,7 +84,6 @@ class BulkPublishPublisher: Publisher {
             guard let self else { return }
 
             if let progressId = response?.progress?.progress?.id {
-                subject.send(.running(progress: 0))
                 pollDelayed(id: progressId)
             } else {
                 subject.send(completion: .failure(error ?? NSError.internalError()))
@@ -98,8 +99,7 @@ class BulkPublishPublisher: Publisher {
 
             if response.isCompleted {
                 subject.send(.running(progress: 1))
-                subject.send(.completed)
-                subject.send(completion: .finished)
+                refreshModules()
             } else {
                 subject.send(.running(progress: response.progress / 100.0))
                 pollDelayed(id: id)
@@ -111,5 +111,17 @@ class BulkPublishPublisher: Publisher {
         scheduler.schedule(after: scheduler.now.advanced(by: 1)) { [weak self] in
             self?.pollProgress(id: id)
         }
+    }
+
+    private func refreshModules() {
+        let useCase = GetModules(courseID: courseId)
+        ReactiveStore(useCase: useCase)
+            .forceRefresh()
+            .sink { [weak self] _ in
+                guard let self else { return }
+                subject.send(.completed)
+                subject.send(completion: .finished)
+            } receiveValue: { _ in }
+            .store(in: &subscriptions)
     }
 }

@@ -32,6 +32,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     private var publishInteractor: ModulePublishInteractor?
     private var module: Module?
     private var publishStateObserver: AnyCancellable?
+    private var host: UIViewController?
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -61,6 +62,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         self.isExpanded = isExpanded
         self.publishInteractor = publishInteractor
         self.onTap = onTap
+        self.host = host
         titleLabel.text = module.name
         publishIndicatorView.isHidden = (module.published == nil)
         publishIndicatorView.update(availability: module.published == true ? .published : .unpublished)
@@ -88,9 +90,6 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         }
 
         publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
-        accessibilityCustomActions = publishMenuButton.isHidden ? [] : .makePublishModuleA11yActions(host: host) { [weak self] action in
-            self?.didPerformPublishAction(action: action)
-        }
         subscribeToPublishStateUpdates(module, publishInteractor: publishInteractor)
     }
 
@@ -105,6 +104,14 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
 
     @IBAction func lockTapped() {
         onLockTap?()
+    }
+
+    private func updateA11yCustomActions() {
+        guard let host else { return }
+        let isPublishActionsAvailable = (!publishMenuButton.isHidden && publishMenuButton.isEnabled)
+        accessibilityCustomActions = isPublishActionsAvailable ? [] : .makePublishModuleA11yActions(host: host) { [weak self] action in
+            self?.didPerformPublishAction(action: action)
+        }
     }
 
     private func setupPublishMenu(
@@ -150,10 +157,14 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
             .sink { [weak self] isPublishing in
                 guard let self else { return }
                 publishIndicatorView.update(isPublishInProgress: isPublishing)
+                publishMenuButton.isEnabled = !isPublishing
+                updateA11yCustomActions()
             }
 
         // Do an instant update because the subscription is delayed
         let isUpdating = publishInteractor.modulesUpdating.value.contains(item.id)
         publishIndicatorView.update(isPublishInProgress: isUpdating)
+        publishMenuButton.isEnabled = !isUpdating
+        updateA11yCustomActions()
     }
 }

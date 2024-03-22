@@ -109,6 +109,7 @@ struct ModulePublishProgressView: View {
             ProgressView(value: viewModel.progress)
                 .progressViewStyle(.determinateBar(color: viewModel.progressViewColor))
                 .padding(.bottom, 8)
+                .animation(.default, value: viewModel.progress)
         }
         .padding(.horizontal, 16)
     }
