@@ -21,7 +21,9 @@ import Combine
 protocol ModulePublishInteractor {
     var isPublishActionAvailable: Bool { get }
     var moduleItemsUpdating: CurrentValueSubject<Set<String>, Never> { get }
+    var modulesUpdating: CurrentValueSubject<Set<String>, Never> { get }
     var statusUpdates: PassthroughSubject<String, Never> { get }
+    var isModulePublishInProgress: Bool { get }
 
     func changeItemPublishedState(
         moduleId: String,
@@ -36,6 +38,17 @@ protocol ModulePublishInteractor {
     func getFilePermission(
         fileContext: ModulePublishInteractorLive.FileContext
     ) -> AnyPublisher<ModulePublishInteractorLive.FilePermission, Error>
+
+    func bulkPublish(
+        moduleIds: [String],
+        action: ModulePublishAction
+    ) -> AnyPublisher<BulkPublishPublisher.PublishProgress, Error>
+}
+
+extension ModulePublishInteractor {
+    var isModulePublishInProgress: Bool {
+        !modulesUpdating.value.isEmpty
+    }
 }
 
 class ModulePublishInteractorLive: ModulePublishInteractor {
@@ -53,13 +66,16 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
     }
     public let isPublishActionAvailable: Bool
     public let moduleItemsUpdating = CurrentValueSubject<Set<String>, Never>(Set())
+    public let modulesUpdating = CurrentValueSubject<Set<String>, Never>(Set())
     public let statusUpdates = PassthroughSubject<String, Never>()
 
     private let courseId: String
+    private let api: API
     private var subscriptions = Set<AnyCancellable>()
 
-    init(app: AppEnvironment.App?, courseId: String) {
+    init(app: AppEnvironment.App?, courseId: String, api: API = AppEnvironment.shared.api) {
         self.courseId = courseId
+        self.api = api
         isPublishActionAvailable = app == .teacher && ExperimentalFeature.teacherBulkPublish.isEnabled
     }
 
@@ -145,6 +161,24 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
                 )
             }
             .eraseToAnyPublisher()
+    }
+
+    func bulkPublish(
+        moduleIds: [String],
+        action: ModulePublishAction
+    ) -> AnyPublisher<BulkPublishPublisher.PublishProgress, Error> {
+        BulkPublishPublisher(
+            api: api,
+            courseId: courseId,
+            moduleIds: moduleIds,
+            action: action
+        )
+        .handleEvents(receiveSubscription: { [weak self] _ in
+            self?.modulesUpdating.value.formUnion(moduleIds)
+        }, receiveCompletion: { [weak self] _ in
+            self?.modulesUpdating.value.subtract(moduleIds)
+        })
+        .eraseToAnyPublisher()
     }
 }
 

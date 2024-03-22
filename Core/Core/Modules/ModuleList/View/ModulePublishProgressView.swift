@@ -172,5 +172,14 @@ private extension View {
 }
 
 #Preview {
-    ModulePublishProgressView(viewModel: .init(action: .publish(.onlyModules), allModules: true, router: AppEnvironment.shared.router))
+    let interactor = ModulePublishInteractorPreview(state: .loading)
+    return ModulePublishProgressView(
+        viewModel: .init(
+            action: .publish(.onlyModules),
+            allModules: true,
+            moduleIds: [],
+            interactor: interactor,
+            router: AppEnvironment.shared.router
+        )
+    )
 }

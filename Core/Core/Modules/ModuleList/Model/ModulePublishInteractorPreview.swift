@@ -28,6 +28,7 @@ class ModulePublishInteractorPreview: ModulePublishInteractor {
     }
     var isPublishActionAvailable = true
     var moduleItemsUpdating = CurrentValueSubject<Set<String>, Never>(Set())
+    var modulesUpdating = CurrentValueSubject<Set<String>, Never>(Set())
     var statusUpdates = PassthroughSubject<String, Never>()
 
     private let state: MockState
@@ -69,6 +70,9 @@ class ModulePublishInteractorPreview: ModulePublishInteractor {
         Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
+    func bulkPublish(moduleIds: [String], action: ModulePublishAction) -> AnyPublisher<BulkPublishPublisher.PublishProgress, Error> {
+        Just(.completed).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
 }
 
 #endif

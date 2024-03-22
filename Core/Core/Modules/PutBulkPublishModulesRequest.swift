@@ -27,9 +27,12 @@ struct PutBulkPublishModulesRequest: APIRequestable {
     }
     struct Response: CodableEquatable {
         struct Progress: CodableEquatable {
-            let id: String
+            struct Progress: CodableEquatable {
+                let id: String
+            }
+            let progress: Progress?
         }
-        let progress: Progress
+        let progress: Progress?
     }
 
     let path: String

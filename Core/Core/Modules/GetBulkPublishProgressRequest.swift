@@ -28,7 +28,7 @@ struct GetBulkPublishProgressRequest: APIRequestable {
     }
 
     let path: String
-    let method: APIMethod = .put
+    let method: APIMethod = .get
 
     init(modulePublishProgressId: String) {
         path = "progress/\(modulePublishProgressId)"

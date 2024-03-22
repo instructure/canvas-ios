@@ -63,6 +63,7 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         courseId: courseID
     )
     private var snackBarUpdatesSubscription: AnyCancellable?
+    private var subscriptions = Set<AnyCancellable>()
 
     public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let controller = loadFromStoryboard()
@@ -106,6 +107,9 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         colors.refresh()
         modules.refresh()
         tabs.refresh()
+
+        setupRefreshWhenModulesPublished()
+        setupPublishActionSnackBarUpdates()
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -134,7 +138,6 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
 
         if spinnerView.isHidden, emptyView.isHidden, errorView.isHidden {
             setupBulkPublishButtonInNavBar()
-            setupPublishActionSnackBarUpdates()
         }
     }
 
@@ -152,18 +155,34 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
     }
 
     private func setupPublishActionSnackBarUpdates() {
-        guard snackBarUpdatesSubscription == nil else {
-            return
-        }
-        snackBarUpdatesSubscription = publishInteractor
+        publishInteractor
             .statusUpdates
             .sink(receiveValue: { [weak self] update in
                 self?.findSnackBarViewModel()?.showSnack(update)
             })
+            .store(in: &subscriptions)
+    }
+
+    private func setupRefreshWhenModulesPublished() {
+        publishInteractor
+            .modulesUpdating
+            .dropFirst()
+            .filter { $0.isEmpty }
+            .sink { [weak self] _ in
+                self?.modules.refresh(force: true)
+            }
+            .store(in: &subscriptions)
     }
 
     private func didPerformPublishAction(action: ModulePublishAction) {
-        let viewModel = ModulePublishProgressViewModel(action: action, allModules: true, router: env.router)
+        let moduleIds = modules.map { $0.id }
+        let viewModel = ModulePublishProgressViewModel(
+            action: action,
+            allModules: true,
+            moduleIds: moduleIds,
+            interactor: publishInteractor,
+            router: env.router
+        )
         let viewController = CoreHostingController(ModulePublishProgressView(viewModel: viewModel))
         env.router.show(viewController, from: self, options: .modal(isDismissable: true, embedInNav: true))
     }

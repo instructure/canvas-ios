@@ -35,6 +35,13 @@ class BulkPublishPublisher: Publisher {
                 self = .running(progress: response.progress)
             }
         }
+
+        public var progress: Float? {
+            if case .running(let progress) = self {
+                return progress
+            }
+            return nil
+        }
     }
 
     private let subject = PassthroughSubject<PublishProgress, Error>()
@@ -74,7 +81,7 @@ class BulkPublishPublisher: Publisher {
         api.makeRequest(request) { [weak self] response, _, error in
             guard let self else { return }
 
-            if let progressId = response?.progress.id {
+            if let progressId = response?.progress?.progress?.id {
                 subject.send(.running(progress: 0))
                 pollDelayed(id: progressId)
             } else {
@@ -90,10 +97,11 @@ class BulkPublishPublisher: Publisher {
             guard let response else { return pollDelayed(id: id) }
 
             if response.isCompleted {
+                subject.send(.running(progress: 1))
                 subject.send(.completed)
                 subject.send(completion: .finished)
             } else {
-                subject.send(.running(progress: response.progress))
+                subject.send(.running(progress: response.progress / 100.0))
                 pollDelayed(id: id)
             }
         }

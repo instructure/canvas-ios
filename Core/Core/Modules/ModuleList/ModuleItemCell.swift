@@ -27,15 +27,13 @@ class ModuleItemCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dueLabel: UILabel!
     @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var publishedIconView: PublishedIconView!
-    @IBOutlet weak var publishInProgressIndicator: CircleProgressView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
     @IBOutlet weak var completedStatusView: UIImageView!
     @IBOutlet weak var publishMenuButton: UIButton!
+    @IBOutlet weak var publishIndicatorView: ModuleItemPublishIndicatorView!
 
     private let env = AppEnvironment.shared
-    private var publishStateObserver: AnyCancellable?
-    private var isFirstUpdate = true
+    private var publishStateObservers = Set<AnyCancellable>()
     private weak var host: UIViewController?
     private var moduleItemId: String?
     private var fileId: String?
@@ -45,8 +43,8 @@ class ModuleItemCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        publishStateObserver = nil
-        isFirstUpdate = true
+        publishIndicatorView.prepareForReuse()
+        publishStateObservers.removeAll()
     }
 
     func update(
@@ -72,13 +70,6 @@ class ModuleItemCell: UITableViewCell {
         iconView.image = item.masteryPath?.locked == true ? UIImage.lockLine : item.type?.icon
         contentStackView.setCustomSpacing(16, after: iconView)
         iconView.isHidden = (iconView.image == nil)
-
-        if let fileAvailability = item.fileAvailability {
-            publishedIconView.setupState(with: fileAvailability)
-        } else {
-            publishedIconView.published = item.published
-        }
-
         completedStatusView.isHidden = env.app == .teacher || item.completionRequirement == nil
         completedStatusView.image = item.completed == true ? .checkLine : .emptyLine
         completedStatusView.tintColor = item.completed == true ? .backgroundSuccess : .borderMedium
@@ -137,6 +128,27 @@ class ModuleItemCell: UITableViewCell {
         subscribeToPublishStateUpdates(item, publishInteractor: publishInteractor, host: host)
     }
 
+    private func updatePublishedState(_ item: ModuleItem) {
+        let availability = item.fileAvailability ?? (item.published == true ? .published : .unpublished)
+        publishIndicatorView.update(availability: availability)
+    }
+
+    private func updatePublishInProgressState(
+        _ item: ModuleItem,
+        publishInteractor: ModulePublishInteractor
+    ) {
+        let isItemUpdating = publishInteractor
+            .moduleItemsUpdating
+            .value
+            .contains(item.id)
+        let isParentModuleUpdating = publishInteractor
+            .modulesUpdating
+            .value
+            .contains(item.moduleID)
+
+        publishIndicatorView.update(isPublishInProgress: isItemUpdating || isParentModuleUpdating)
+    }
+
     @objc
     private func presentFilePermissionEditorDialog() {
         guard let host, let fileId, let moduleId, let moduleItemId, let courseId, let publishInteractor else {
@@ -162,29 +174,42 @@ class ModuleItemCell: UITableViewCell {
         publishInteractor: ModulePublishInteractor,
         host: UIViewController
     ) {
-        guard publishStateObserver == nil else { return }
+        guard publishStateObservers.isEmpty else { return }
 
-        publishStateObserver = publishInteractor
+        // We have to do an instant update because the update via subscription is delayed
+        updatePublishedState(item)
+        updatePublishInProgressState(item, publishInteractor: publishInteractor)
+
+        publishInteractor
             .moduleItemsUpdating
+            .dropFirst()
             .map { $0.contains(item.id) }
             .removeDuplicates()
+            .receive(on: RunLoop.main)
             .sink { [weak self, weak host] isUpdating in
                 guard let self, let host else { return }
-                let animated = !isFirstUpdate
-                isFirstUpdate = false
 
                 if !item.type.isFile {
                     updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, host: host)
                 }
 
-                let availability = item.fileAvailability ?? (item.published == true ? .published : .unpublished)
-                updatePublishedUIState(
-                    isUpdating: isUpdating,
-                    availability: availability,
-                    animated: animated
-                )
+                updatePublishedState(item)
+                publishIndicatorView.update(isPublishInProgress: isUpdating)
                 updateA11yLabelForPublishState(moduleItem: item)
             }
+            .store(in: &publishStateObservers)
+
+        publishInteractor
+            .modulesUpdating
+            .dropFirst()
+            .map { $0.contains(item.moduleID) }
+            .removeDuplicates()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] isUpdating in
+                guard let self else { return }
+                publishIndicatorView.update(isPublishInProgress: isUpdating)
+            }
+            .store(in: &publishStateObservers)
     }
 
     private func updatePublishMenuActions(
@@ -215,27 +240,8 @@ class ModuleItemCell: UITableViewCell {
         }()
     }
 
-    private func updatePublishedUIState(isUpdating: Bool, availability: FileAvailability, animated: Bool) {
-        if isUpdating {
-            publishInProgressIndicator?.startAnimating()
-        }
-
-        publishInProgressIndicator?.alpha = isUpdating ? 0 : 1
-        publishedIconView?.setupState(with: availability)
-        publishedIconView?.alpha = isUpdating ? 1 : 0
-
-        UIView.animate(withDuration: animated ? 0.3 : 0.0) { [weak publishInProgressIndicator, weak publishedIconView] in
-            publishInProgressIndicator?.alpha = isUpdating ? 1 : 0
-            publishedIconView?.alpha = isUpdating ? 0 : 1
-        } completion: { [weak publishInProgressIndicator] _ in
-            if !isUpdating {
-                publishInProgressIndicator?.stopAnimating()
-            }
-        }
-    }
-
     private func updateA11yLabelForPublishState(moduleItem: ModuleItem) {
-        if !publishedIconView.isHidden {
+        if !publishIndicatorView.isHidden {
             let publishedText = {
                 if let availability = moduleItem.fileAvailability {
                     return availability.a11yLabel
