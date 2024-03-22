@@ -20,8 +20,8 @@ import Combine
 import UIKit
 
 class ModuleItemPublishIndicatorView: UIView {
-    @IBOutlet private unowned var publishedIconView: PublishedIconView!
-    @IBOutlet private unowned var publishInProgressIndicator: CircleProgressView!
+    @IBOutlet unowned var publishedIconView: PublishedIconView!
+    @IBOutlet unowned var publishInProgressIndicator: CircleProgressView!
 
     private var isFirstUpdate = true
 

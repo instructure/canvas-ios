@@ -192,6 +192,23 @@ class ModulePublishInteractorTests: CoreTestCase {
         waitForExpectations(timeout: 0.1)
         subscription.cancel()
     }
+
+    func testBulkPublishUpdatesModulesBeingUpdatedList() {
+        let testee = ModulePublishInteractorLive(app: .teacher, courseId: "testCourseId")
+        let updatesReceived = expectation(description: "Module IDs being updated published")
+        let subscription = testee
+            .modulesUpdating
+            .collect(3)
+            .sink { updates in
+                XCTAssertEqual(updates, [Set(), Set(["1", "2"]), Set()])
+                updatesReceived.fulfill()
+            }
+
+        let testOperation = testee.bulkPublish(moduleIds: ["1", "2"], action: .publish(.onlyModules)).sink()
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+        testOperation.cancel()
+    }
 }
 
 class TestStatusUpdateTests: XCTestCase {

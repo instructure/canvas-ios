@@ -90,7 +90,15 @@ private extension ModulePublishProgressViewModelTests {
         action: ModulePublishAction = .publish(.onlyModules),
         allModules: Bool = false
     ) -> ModulePublishProgressViewModel {
-        .init(action: action, allModules: allModules, router: router)
+        let interactor = MockModulePublishInteractor()
+        interactor.bulkPublishResult = Just(.completed).setFailureType(to: Error.self).eraseToAnyPublisher()
+        return .init(
+            action: action,
+            allModules: allModules,
+            moduleIds: [],
+            interactor: interactor,
+            router: router
+        )
     }
 
     final class SnackBarProviderMock: UIViewController, SnackBarProvider {

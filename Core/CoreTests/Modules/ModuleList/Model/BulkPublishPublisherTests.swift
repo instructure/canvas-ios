@@ -39,6 +39,7 @@ class BulkPublishPublisherTests: CoreTestCase {
             moduleIds: ["moduleId1", "moduleId2"],
             action: .publish(.modulesAndItems)
         )
+        .dropFirst() // ignore first 0% state
 
         // THEN
         XCTAssertFailure(testee)
@@ -48,7 +49,7 @@ class BulkPublishPublisherTests: CoreTestCase {
         let testScheduler: TestSchedulerOf<DispatchQueue> = DispatchQueue.test
         let publishRequestMock = api.mock(
             bulkPublishRequest,
-            value: .init(progress: .init(id: "progressId"))
+            value: .init(progress: .init(.init(progress: .init(id: "progressId"))))
         )
         publishRequestMock.suspend()
         let pollRequest = GetBulkPublishProgressRequest(modulePublishProgressId: "progressId")
@@ -63,7 +64,7 @@ class BulkPublishPublisherTests: CoreTestCase {
         let streamPublished = expectation(description: "Stream published")
 
         let subscription = testee
-            .collect(4)
+            .collect(5)
             .sink { completion in
                 streamCompleted.fulfill()
                 if case .failure = completion {
@@ -75,8 +76,9 @@ class BulkPublishPublisherTests: CoreTestCase {
                     progressUpdates,
                     [
                         .running(progress: 0),
-                        .running(progress: 20),
-                        .running(progress: 80),
+                        .running(progress: 0.2),
+                        .running(progress: 0.8),
+                        .running(progress: 1),
                         .completed,
                     ]
                 )
