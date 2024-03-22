@@ -22,7 +22,7 @@ import CombineSchedulers
 
 protocol HTMLDownloadInteractor {
     func download(_ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), Error>
-    func save(_ result: (data: Data, response: URLResponse)) -> AnyPublisher<URL, Error>
+    func save(_ result: (data: Data, response: URLResponse), prefix: String) -> AnyPublisher<URL, Error>
 }
 
 class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
@@ -50,16 +50,20 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             .eraseToAnyPublisher()
     }
 
-    func save(_ result: (data: Data, response: URLResponse)) -> AnyPublisher<URL, Error> {
+    func save(_ result: (data: Data, response: URLResponse), prefix: String) -> AnyPublisher<URL, Error> {
         var saveURL = URL.Directories.documents.appendingPathComponent(UUID.string)
         if let url = result.response.url {
-            saveURL = URL.Directories.documents.appendingPathComponent("\(url.lastPathComponent)")
+            saveURL = URL.Directories.documents.appendingPathComponent("\(prefix)/\(url.lastPathComponent)")
         }
 
         do {
+            let rootURL = URL.Directories.documents.appendingPathComponent("\(prefix)")
+            try FileManager.default.createDirectory(atPath: rootURL.path, withIntermediateDirectories: true, attributes: nil)
+            FileManager.default.createFile(atPath: saveURL.path, contents: nil)
             try result.data.write(to: saveURL, options: [.atomic, .noFileProtection])
             return Result.Publisher(saveURL).eraseToAnyPublisher()
         } catch {
+            print("\(error)")
             return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()
         }
     }

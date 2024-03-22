@@ -30,6 +30,7 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
     var context = Context.currentUser
     let env = AppEnvironment.shared
     var pageURL = ""
+    let networkStateService = NetworkAvailabilityServiceLive()
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -88,6 +89,8 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         }
         pages.refresh(force: false)
         NotificationCenter.default.post(moduleItem: .page(pageURL), completedRequirement: .view, courseID: context.id)
+
+        networkStateService.startMonitoring()
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -115,21 +118,18 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         optionsButton.accessibilityIdentifier = "PageDetails.options"
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
 
-        // Offline image are stored in the Documents folder which cannot be accessed by the webview by default
-        webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
-        webView.loadHTMLString(page.body, baseURL: URL.Directories.documents)
-
-        // TODO: remove if we use original replacing
         // Offline with separate html file
-//        let offlinePagePath = URL.Directories.documents.appendingPathComponent("pages-\(page.id)-body.html")
-//        if (FileManager.default.fileExists(atPath: offlinePagePath.path)) {
-//            webView.loadFileURL(offlinePagePath, allowingReadAccessTo: URL.Directories.documents)
-//        } else {
-//            webView.loadHTMLString(page.body, baseURL: page.htmlURL)
-//        }
-
-        print(page.body)
-        print()
+        let rootURL = URL.Directories.documents.appendingPathComponent("page-\(page.id)")
+        let offlinePagePath = rootURL.appendingPathComponent("body.html")
+        if (networkStateService.status == nil || networkStateService.status?.isConnected == false) && FileManager.default.fileExists(atPath: offlinePagePath.path) {
+            // Offline image are stored in the Documents folder which cannot be accessed by the webview by default
+            webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
+            let rawHtmlValue = try? String(contentsOf: offlinePagePath, encoding: .utf8)
+            webView.loadHTMLString(rawHtmlValue ?? "", baseURL: rootURL)
+        } else {
+            webView.loadHTMLString(page.body, baseURL: page.htmlURL)
+        }
+        networkStateService.stopMonitoring()
     }
 
     private func updatePages() {

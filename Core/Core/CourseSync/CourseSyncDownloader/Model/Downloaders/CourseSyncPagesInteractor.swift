@@ -39,17 +39,7 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
                 )
             )
             .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.body, htmlParser: htmlParser)
-            .map { (pages: [Page]) in
-                pages.map { (page: Page) in
-                    let saveURL = URL.Directories.documents.appendingPathComponent("pages-\(page.id)-body.html")
-                    do {
-                        try page.body.write(to: saveURL, atomically: true, encoding: .utf8)
-                    } catch {
-                        print("ERROR: \(error)")
-                    }
-                }
-            },
+            .parseHtmlContent(attribute: \.body, id: \.id, baseURLKey: \.htmlURL, htmlParser: htmlParser),
 
             ReactiveStore(
                 useCase: GetPages(
@@ -57,18 +47,7 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
                 )
             )
             .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.body, htmlParser: htmlParser)
-            // TODO: remove if we use original replacing
-            .map { (pages: [Page]) in
-                pages.map { (page: Page) in
-                    let saveURL = URL.Directories.documents.appendingPathComponent("pages-\(page.id)-body.html")
-                    do {
-                        try page.body.write(to: saveURL, atomically: true, encoding: .utf8)
-                    } catch {
-                        print("ERROR: \(error)")
-                    }
-                }
-            }
+            .parseHtmlContent(attribute: \.body, id: \.id, baseURLKey: \.htmlURL, htmlParser: htmlParser)
         )
         .map { _ in () }
         .eraseToAnyPublisher()

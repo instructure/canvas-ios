@@ -66,7 +66,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     private static func fetchAssignments(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCalendarEvents(context: .course(courseId), type: .assignment))
             .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.details, htmlParser: htmlParser)
+            .parseHtmlContent(attribute: \.details, id: \.id, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
@@ -74,7 +74,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     private static func fetchEvents(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCalendarEvents(context: .course(courseId), type: .event))
             .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.details, htmlParser: htmlParser)
+            .parseHtmlContent(attribute: \.details, id: \.id, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

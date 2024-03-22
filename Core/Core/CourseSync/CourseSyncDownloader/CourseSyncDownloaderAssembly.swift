@@ -27,17 +27,20 @@ public enum CourseSyncDownloaderAssembly {
 
         let loginSession = env.currentSession!
         let downloadInteractor = HTMLDownloadInteractorLive(loginSession: loginSession, scheduler: scheduler)
+        let pageHtmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor, prefix: "page")
+        let assignmentHtmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor, prefix: "assignment")
+        let quizHtmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor, prefix: "quiz")
         let htmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor)
 
         let contentInteractors: [CourseSyncContentInteractor] = [
-            CourseSyncPagesInteractorLive(htmlParser: htmlParser),
+            CourseSyncPagesInteractorLive(htmlParser: pageHtmlParser),
             CourseSyncPeopleInteractorLive(),
-            CourseSyncAssignmentsInteractorLive(htmlParser: htmlParser),
+            CourseSyncAssignmentsInteractorLive(htmlParser: assignmentHtmlParser),
             CourseSyncGradesInteractorLive(userId: AppEnvironment.shared.currentSession?.userID ?? "self"),
             CourseSyncSyllabusInteractorLive(htmlParser: htmlParser),
             CourseSyncConferencesInteractorLive(),
             CourseSyncAnnouncementsInteractorLive(htmlParser: htmlParser),
-            CourseSyncQuizzesInteractorLive(htmlParser: htmlParser),
+            CourseSyncQuizzesInteractorLive(htmlParser: quizHtmlParser),
             CourseSyncDiscussionsInteractorLive(htmlParser: htmlParser),
         ]
         let progressInteractor = CourseSyncProgressObserverInteractorLive()

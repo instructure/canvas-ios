@@ -55,7 +55,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
             useCase: GetQuizzes(courseID: courseId)
         )
         .getEntities(ignoreCache: true)
-        .parseHtmlContent(attribute: \.details, htmlParser: htmlParser)
+        .parseHtmlContent(attribute: \.details, id: \.id, htmlParser: htmlParser)
         .flatMap { [htmlParser] in
             $0.publisher
                 .filter { $0.quizType != .quizzes_next }
@@ -71,7 +71,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
             useCase: GetQuiz(courseID: courseId, quizID: quizId)
         )
         .getEntities(ignoreCache: true)
-        .parseHtmlContent(attribute: \.details, htmlParser: htmlParser)
+        .parseHtmlContent(attribute: \.details, id: \.id, htmlParser: htmlParser)
         .mapToVoid()
         .eraseToAnyPublisher()
     }

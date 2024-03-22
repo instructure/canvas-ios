@@ -29,10 +29,12 @@ public class HTMLParser {
     private let loginSession: LoginSession
     private let interactor: HTMLDownloadInteractor
     private var subscriptions = Set<AnyCancellable>()
+    public let prefix: String
 
-    init(loginSession: LoginSession, downloadInteractor: HTMLDownloadInteractor) {
+    init(loginSession: LoginSession, downloadInteractor: HTMLDownloadInteractor, prefix: String = "") {
         self.loginSession = loginSession
         self.interactor = downloadInteractor
+        self.prefix = prefix
 
         self.imageRegex = (try? NSRegularExpression(pattern: "<img[^>]*src=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
         self.fileLinkRegex = (try? NSRegularExpression(pattern: "<a[^>]*class=\"instructure_file_link[^>]*href=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
@@ -40,7 +42,7 @@ public class HTMLParser {
         self.relativeURLRegex = (try? NSRegularExpression(pattern: "^(?:[a-z+]+:)?//")) ?? NSRegularExpression()
     }
 
-    func parse(_ content: String, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
+    func parse(_ content: String, resourceId: String, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
         let imageURLs = findRegexMatches(content, pattern: imageRegex)
         let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex)
 
@@ -52,7 +54,7 @@ public class HTMLParser {
                     }
             }
             .flatMap { [unowned self] (url, result) in
-                return self.interactor.save(result)
+                return self.interactor.save(result, prefix: "\(self.prefix)-\(resourceId)")
                     .map {
                         return (url, $0)
                     }
@@ -61,7 +63,8 @@ public class HTMLParser {
             .map { [content] urls in
                 var newContent = content
                 urls.forEach { (originalURL, localURL) in
-                    let newURL = "file://\(localURL.path)"
+//                    let newURL = "file://\(localURL.path)"
+                    let newURL = "\(localURL.lastPathComponent)"
                     newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: newURL)
                 }
                 return newContent

@@ -40,22 +40,52 @@ public extension Publisher {
 }
 
 public extension Publisher where Output: Collection, Output.Element: NSManagedObject, Failure == Error {
-    func parseHtmlContent(attribute keyPath: ReferenceWritableKeyPath<Output.Element, String>, htmlParser: HTMLParser) -> AnyPublisher<[Output.Element], Error> {
+    func parseHtmlContent(
+        attribute keyPath: ReferenceWritableKeyPath<Output.Element, String>,
+        id: ReferenceWritableKeyPath<Output.Element, String>,
+        baseURLKey: ReferenceWritableKeyPath<Output.Element, URL?>? = nil,
+        htmlParser: HTMLParser
+    ) -> AnyPublisher<[Output.Element], Error> {
         return self.flatMap { dataArray in
                 Publishers.Sequence(sequence: dataArray)
                     .setFailureType(to: Error.self)
+                    .map { element in
+                        let resourceId = element[keyPath: id]
+                        let rootURL = URL.Directories.documents.appendingPathComponent("\(htmlParser.prefix)-\(resourceId)")
+                        try? FileManager.default.removeItem(at: rootURL)
+                        return element
+                    }
                     .flatMap { element in
                         let value = element[keyPath: keyPath]
-                        return htmlParser.parse(value)
+                        let resourceId = element[keyPath: id]
+                        var baseURL: URL? = nil
+                        if let baseURLKey {
+                            baseURL = element[keyPath: baseURLKey]
+                        }
+                        return htmlParser.parse(value, resourceId: resourceId, baseURL: baseURL)
                             .map {
                                 return (element, $0)
                             }
                     }
                     .receive(on: DispatchQueue.main)
+//                    .map { (element: Output.Element, parsedAttribute: String) in
+//                        if let context = element.managedObjectContext {
+//                            element[keyPath: keyPath] = parsedAttribute
+//                            try? context.save()
+//                        }
+//                        return element
+//                    }
                     .map { (element: Output.Element, parsedAttribute: String) in
-                        if let context = element.managedObjectContext {
-                            element[keyPath: keyPath] = parsedAttribute
-                            try? context.save()
+                        let resourceId = element[keyPath: id]
+                        let rootURL = URL.Directories.documents.appendingPathComponent("\(htmlParser.prefix)-\(resourceId)")
+                        let saveURL = rootURL.appendingPathComponent("body.html")
+                        do {
+
+                            try FileManager.default.createDirectory(atPath: rootURL.path, withIntermediateDirectories: true, attributes: nil)
+                            FileManager.default.createFile(atPath: saveURL.path, contents: nil)
+                            try parsedAttribute.write(to: saveURL, atomically: true, encoding: .utf8)
+                        } catch {
+                            Swift.print("ERROR: \(error)")
                         }
                         return element
                     }
@@ -64,13 +94,23 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
             .eraseToAnyPublisher()
     }
 
-    func parseHtmlContent(attribute keyPath: ReferenceWritableKeyPath<Output.Element, String?>, htmlParser: HTMLParser) -> AnyPublisher<[Output.Element], Error> {
+    func parseHtmlContent(
+        attribute keyPath: ReferenceWritableKeyPath<Output.Element, String?>,
+        id: ReferenceWritableKeyPath<Output.Element, String>,
+        baseURLKey: ReferenceWritableKeyPath<Output.Element, URL?>? = nil,
+        htmlParser: HTMLParser
+    ) -> AnyPublisher<[Output.Element], Error> {
         return self.flatMap { dataArray in
                 Publishers.Sequence(sequence: dataArray)
                     .setFailureType(to: Error.self)
                     .flatMap { element in
                         let value = element[keyPath: keyPath]
-                        return htmlParser.parse(value ?? "")
+                        let resourceId = element[keyPath: id]
+                        var baseURL: URL? = nil
+                        if let baseURLKey {
+                            baseURL = element[keyPath: baseURLKey]
+                        }
+                        return htmlParser.parse(value ?? "", resourceId: resourceId, baseURL: baseURL)
                             .map {
                                 return (element, $0)
                             }

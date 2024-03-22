@@ -58,7 +58,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
             )
         )
         .getEntities(ignoreCache: true)
-        .parseHtmlContent(attribute: \.comment, htmlParser: htmlParser)
+        .parseHtmlContent(attribute: \.comment, id: \.id, htmlParser: htmlParser)
         .map { _ in () }
         .eraseToAnyPublisher()
     }
