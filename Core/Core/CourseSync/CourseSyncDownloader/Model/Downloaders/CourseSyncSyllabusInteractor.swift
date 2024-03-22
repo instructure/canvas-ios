@@ -26,10 +26,12 @@ extension CourseSyncSyllabusInteractor {
 }
 
 public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteractor, CourseSyncContentInteractor {
-    let htmlParser: HTMLParser
+    let assignmentEventHtmlParser: HTMLParser
+    let calendarEventHtmlParser: HTMLParser
 
-    public init(htmlParser: HTMLParser) {
-        self.htmlParser = htmlParser
+    public init(assignmentEventHtmlParser: HTMLParser, calendarEventHtmlParser: HTMLParser) {
+        self.assignmentEventHtmlParser = assignmentEventHtmlParser
+        self.calendarEventHtmlParser = calendarEventHtmlParser
     }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
@@ -46,10 +48,10 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
         fetchCourseSettingsAndGetSyllabusSummaryState(courseId: courseId)
             .filter { $0 }
             .mapToVoid()
-            .flatMap { [htmlParser] in
+            .flatMap { [assignmentEventHtmlParser, calendarEventHtmlParser] in
                 Publishers
-                    .Zip(Self.fetchAssignments(courseId: courseId, htmlParser: htmlParser),
-                         Self.fetchEvents(courseId: courseId, htmlParser: htmlParser))
+                    .Zip(Self.fetchAssignments(courseId: courseId, htmlParser: assignmentEventHtmlParser),
+                         Self.fetchEvents(courseId: courseId, htmlParser: calendarEventHtmlParser))
             }
             .mapToVoid()
             .eraseToAnyPublisher()
@@ -66,6 +68,14 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     private static func fetchAssignments(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCalendarEvents(context: .course(courseId), type: .assignment))
             .getEntities(ignoreCache: true)
+            .map { (assignments: [CalendarEvent]) -> [CalendarEvent] in
+                assignments.forEach { a in
+                    if let index = a.id.firstIndex(of: "_") {
+                        a.id = String(a.id.suffix(from: a.id.index(index, offsetBy: 1)))
+                    }
+                }
+                return assignments
+            }
             .parseHtmlContent(attribute: \.details, id: \.id, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()

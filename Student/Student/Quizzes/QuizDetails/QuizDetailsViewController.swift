@@ -42,6 +42,7 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
     @IBOutlet weak var timeLimitValueLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     let titleSubtitleView = TitleSubtitleView.create()
+    var offlineModeInteractor: OfflineModeInteractor?
 
     var color: UIColor?
     var courseID = ""
@@ -61,10 +62,14 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
         self?.update()
     }
 
-    static func create(courseID: String, quizID: String) -> QuizDetailsViewController {
+    static func create(
+        courseID: String,
+        quizID: String,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> QuizDetailsViewController {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
         controller.quizID = quizID
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
@@ -157,8 +162,19 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
             : NSLocalizedString("Instructions", comment: "")
         var html = quiz?.lockExplanation ?? quiz?.details ?? ""
         if html.isEmpty { html = NSLocalizedString("No Content", comment: "") }
-        instructionsWebView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
-        instructionsWebView.loadHTMLString(html, baseURL: URL.Directories.documents)
+
+        let prefix = OfflineFolderPrefix.quiz.rawValue
+        let rootURL = URL.Directories.documents.appendingPathComponent("\(prefix)-\(quizID)")
+        let offlinePath = rootURL.appendingPathComponent("body.html")
+        if offlineModeInteractor?.isNetworkOffline() == true && FileManager.default.fileExists(atPath: offlinePath.path) {
+            // Offline image are stored in the Documents folder which cannot be accessed by the webview by default
+            instructionsWebView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
+            let rawHtmlValue = try? String(contentsOf: offlinePath, encoding: .utf8)
+            instructionsWebView.loadHTMLString(rawHtmlValue ?? "", baseURL: rootURL)
+        } else {
+            instructionsWebView.loadHTMLString(html, baseURL: quiz?.htmlURL)
+        }
+
         scrollView.isHidden = quiz == nil
         let title = takeButtonTitle
         takeButton.setTitle(title, for: .normal)

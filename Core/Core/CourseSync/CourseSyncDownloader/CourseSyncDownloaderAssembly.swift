@@ -27,9 +27,12 @@ public enum CourseSyncDownloaderAssembly {
 
         let loginSession = env.currentSession!
         let downloadInteractor = HTMLDownloadInteractorLive(loginSession: loginSession, scheduler: scheduler)
-        let pageHtmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor, prefix: "page")
-        let assignmentHtmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor, prefix: "assignment")
-        let quizHtmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor, prefix: "quiz")
+        let pageHtmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor, prefix: OfflineFolderPrefix.page.rawValue)
+        let assignmentHtmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor, prefix: OfflineFolderPrefix.assignment.rawValue)
+        let quizHtmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor, prefix: OfflineFolderPrefix.quiz.rawValue)
+        let announcementHtmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor, prefix: OfflineFolderPrefix.announcement.rawValue)
+        let discussionHtmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor, prefix: OfflineFolderPrefix.discussion.rawValue)
+        let calendarEventHtmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor, prefix: OfflineFolderPrefix.calendarEvent.rawValue)
         let htmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor)
 
         let contentInteractors: [CourseSyncContentInteractor] = [
@@ -37,11 +40,11 @@ public enum CourseSyncDownloaderAssembly {
             CourseSyncPeopleInteractorLive(),
             CourseSyncAssignmentsInteractorLive(htmlParser: assignmentHtmlParser),
             CourseSyncGradesInteractorLive(userId: AppEnvironment.shared.currentSession?.userID ?? "self"),
-            CourseSyncSyllabusInteractorLive(htmlParser: htmlParser),
+            CourseSyncSyllabusInteractorLive(assignmentEventHtmlParser: assignmentHtmlParser, calendarEventHtmlParser: calendarEventHtmlParser),
             CourseSyncConferencesInteractorLive(),
-            CourseSyncAnnouncementsInteractorLive(htmlParser: htmlParser),
+            CourseSyncAnnouncementsInteractorLive(htmlParser: announcementHtmlParser),
             CourseSyncQuizzesInteractorLive(htmlParser: quizHtmlParser),
-            CourseSyncDiscussionsInteractorLive(htmlParser: htmlParser),
+            CourseSyncDiscussionsInteractorLive(htmlParser: discussionHtmlParser),
         ]
         let progressInteractor = CourseSyncProgressObserverInteractorLive()
         let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, activityName: "Offline Sync")

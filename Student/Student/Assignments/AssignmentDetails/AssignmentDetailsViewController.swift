@@ -407,8 +407,17 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         descriptionHeadingLabel?.text = quiz == nil
             ? NSLocalizedString("Description", bundle: .student, comment: "")
             : NSLocalizedString("Instructions", bundle: .student, comment: "")
-        webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
-        webView.loadHTMLString(presenter?.assignmentDescription() ?? "", baseURL: URL.Directories.documents)
+
+        let prefix = OfflineFolderPrefix.assignment.rawValue
+        let rootURL = URL.Directories.documents.appendingPathComponent("\(prefix)-\(assignmentID)")
+        let offlinePath = rootURL.appendingPathComponent("body.html")
+        if offlineModeInteractor?.isNetworkOffline() == true && FileManager.default.fileExists(atPath: offlinePath.path) {
+            webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
+            let rawHtmlValue = try? String(contentsOf: offlinePath, encoding: .utf8)
+            webView.loadHTMLString(rawHtmlValue ?? "", baseURL: rootURL)
+        } else {
+            webView.loadHTMLString(presenter?.assignmentDescription() ?? "", baseURL: nil)
+        }
         updateGradeCell(assignment, submission: submission)
 
         guard let presenter = presenter else { return }

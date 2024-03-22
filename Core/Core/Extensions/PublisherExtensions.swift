@@ -58,7 +58,7 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                     .flatMap { element in
                         let value = element[keyPath: keyPath]
                         let resourceId = element[keyPath: id]
-                        var baseURL: URL? = nil
+                        var baseURL: URL?
                         if let baseURLKey {
                             baseURL = element[keyPath: baseURLKey]
                         }
@@ -103,38 +103,48 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
         return self.flatMap { dataArray in
                 Publishers.Sequence(sequence: dataArray)
                     .setFailureType(to: Error.self)
-                    .flatMap { element in
-                        let value = element[keyPath: keyPath]
+                    .map { element in
                         let resourceId = element[keyPath: id]
-                        var baseURL: URL? = nil
+                        let rootURL = URL.Directories.documents.appendingPathComponent("\(htmlParser.prefix)-\(resourceId)")
+                        try? FileManager.default.removeItem(at: rootURL)
+                        return element
+                    }
+                    .flatMap { element in
+                        let value = element[keyPath: keyPath] ?? ""
+                        let resourceId = element[keyPath: id]
+                        var baseURL: URL?
                         if let baseURLKey {
                             baseURL = element[keyPath: baseURLKey]
                         }
-                        return htmlParser.parse(value ?? "", resourceId: resourceId, baseURL: baseURL)
+                        return htmlParser.parse(value, resourceId: resourceId, baseURL: baseURL)
                             .map {
                                 return (element, $0)
                             }
                     }
                     .receive(on: DispatchQueue.main)
-                    .map { (element: Output.Element, parsedAttribute: String) -> Output.Element in
-                        if let context = element.managedObjectContext {
-                            element[keyPath: keyPath] = parsedAttribute
-                            try? context.save()
+//                    .map { (element: Output.Element, parsedAttribute: String) in
+//                        if let context = element.managedObjectContext {
+//                            element[keyPath: keyPath] = parsedAttribute
+//                            try? context.save()
+//                        }
+//                        return element
+//                    }
+                    .map { (element: Output.Element, parsedAttribute: String) in
+                        let resourceId = element[keyPath: id]
+                        let rootURL = URL.Directories.documents.appendingPathComponent("\(htmlParser.prefix)-\(resourceId)")
+                        let saveURL = rootURL.appendingPathComponent("body.html")
+                        do {
+
+                            try FileManager.default.createDirectory(atPath: rootURL.path, withIntermediateDirectories: true, attributes: nil)
+                            FileManager.default.createFile(atPath: saveURL.path, contents: nil)
+                            try parsedAttribute.write(to: saveURL, atomically: true, encoding: .utf8)
+                        } catch {
+                            Swift.print("ERROR: \(error)")
                         }
                         return element
                     }
                     .collect()
             }
             .eraseToAnyPublisher()
-    }
-
-    func replaceValue<AttributeType>(attribute keyPath: ReferenceWritableKeyPath<Output.Element, AttributeType>, newValue: AttributeType) -> AnyPublisher<[Output.Element], Error> {
-        self.map { dataArray in
-            dataArray.map { element in
-                element[keyPath: keyPath] = newValue
-                return element
-            }
-        }
-        .eraseToAnyPublisher()
     }
 }

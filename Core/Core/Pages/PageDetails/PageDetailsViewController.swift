@@ -59,11 +59,19 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         app == .teacher && page?.isFrontPage != true
     }
 
-    public static func create(context: Context, pageURL: String, app: App) -> PageDetailsViewController {
+    private var offlineModeInteractor: OfflineModeInteractor?
+
+    public static func create(
+        context: Context,
+        pageURL: String,
+        app: App,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
+    ) -> PageDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.pageURL = pageURL
         controller.app = app
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
@@ -119,9 +127,10 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
 
         // Offline with separate html file
-        let rootURL = URL.Directories.documents.appendingPathComponent("page-\(page.id)")
+        let prefix = OfflineFolderPrefix.page.rawValue
+        let rootURL = URL.Directories.documents.appendingPathComponent("\(prefix)-\(page.id)")
         let offlinePagePath = rootURL.appendingPathComponent("body.html")
-        if (networkStateService.status == nil || networkStateService.status?.isConnected == false) && FileManager.default.fileExists(atPath: offlinePagePath.path) {
+        if offlineModeInteractor?.isNetworkOffline() == true && FileManager.default.fileExists(atPath: offlinePagePath.path) {
             // Offline image are stored in the Documents folder which cannot be accessed by the webview by default
             webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
             let rawHtmlValue = try? String(contentsOf: offlinePagePath, encoding: .utf8)
