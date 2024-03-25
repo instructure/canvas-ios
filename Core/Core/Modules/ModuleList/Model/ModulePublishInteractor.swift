@@ -107,7 +107,7 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
             .sink(receiveCompletion: { [weak moduleItemsUpdating, weak statusUpdates] result in
                 guard let moduleItemsUpdating else { return }
                 moduleItemsUpdating.value.remove(moduleItemId)
-                statusUpdates?.send(result.moduleItemStatusUpdateText(for: action))
+                statusUpdates?.send(result.publishStatusUpdateText(for: action, isAllModules: false))
             }, receiveValue: {})
             .store(in: &subscriptions)
     }
@@ -195,9 +195,10 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
 
         interactor
             .progress
-            .sink(receiveCompletion: { [weak self, weak interactor] _ in
+            .sink(receiveCompletion: { [weak self, weak interactor] result in
                 guard let self, let interactor else { return }
                 modulesUpdating.value.subtract(moduleIds)
+                statusUpdates.send(result.publishStatusUpdateText(for: action, isAllModules: moduleIds.count > 1))
 
                 if let index = bulkPublishInteractors.firstIndex(of: interactor) {
                     bulkPublishInteractors.remove(at: index)
@@ -239,17 +240,62 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
 
 extension Subscribers.Completion<Error> {
 
-    func moduleItemStatusUpdateText(for action: ModulePublishAction) -> String {
+    func publishStatusUpdateText(for action: ModulePublishAction, isAllModules: Bool) -> String {
+        let isPublish = action.isPublish
         switch self {
         case .finished:
-            switch action {
-            case .publish: return String(localized: "Item Published")
-            case .unpublish: return String(localized: "Item Unpublished")
+            switch action.subject {
+            case .none:
+                return isPublish
+                    ? String(localized: "Item Published")
+                    : String(localized: "Item Unpublished")
+            case .onlyModules:
+                if isAllModules {
+                    return isPublish
+                        ? String(localized: "Only Modules published")
+                        : String(localized: "Only Modules unpublished")
+                } else {
+                    return isPublish
+                        ? String(localized: "Only Module published")
+                        : String(localized: "Only Module unpublished")
+                }
+            case .modulesAndItems:
+                if isAllModules {
+                    return isPublish
+                        ? String(localized: "All Modules and all Items published")
+                        : String(localized: "All Modules and all Items unpublished")
+                } else {
+                    return isPublish
+                        ? String(localized: "Module and all Items published")
+                        : String(localized: "Module and all Items unpublished")
+                }
             }
         case .failure:
-            switch action {
-            case .publish: return String(localized: "Failed To Publish Item")
-            case .unpublish: return String(localized: "Failed To Unpublish Item")
+            switch action.subject {
+            case .none:
+                return isPublish
+                    ? String(localized: "Failed To Publish Item")
+                    : String(localized: "Failed To Unpublish Item")
+            case .onlyModules:
+                if isAllModules {
+                    return isPublish
+                        ? String(localized: "Failed to publish only Modules")
+                        : String(localized: "Failed to unpublish only Modules")
+                } else {
+                    return isPublish
+                        ? String(localized: "Failed to publish only Module")
+                        : String(localized: "Failed to unpublish only Module")
+                }
+            case .modulesAndItems:
+                if isAllModules {
+                    return isPublish
+                        ? String(localized: "Failed to publish all Modules and all Items")
+                        : String(localized: "Failed to unpublish all Modules and all Items")
+                } else {
+                    return isPublish
+                        ? String(localized: "Failed to publish Module and all Items")
+                        : String(localized: "Failed to unpublish Module and all Items")
+                }
             }
         }
     }

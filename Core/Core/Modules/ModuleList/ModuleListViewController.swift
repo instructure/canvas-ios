@@ -59,7 +59,6 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         }
     }
     private lazy var publishInteractor = ModulesAssembly.publishInteractor(for: courseID)
-    private var snackBarUpdatesSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
 
     public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
@@ -104,8 +103,6 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         colors.refresh()
         modules.refresh()
         tabs.refresh()
-
-        setupPublishActionSnackBarUpdates()
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -159,15 +156,6 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
             .sink { isAllModulesUpdating in
                 button.isEnabled = !isAllModulesUpdating
             }
-            .store(in: &subscriptions)
-    }
-
-    private func setupPublishActionSnackBarUpdates() {
-        publishInteractor
-            .statusUpdates
-            .sink(receiveValue: { [weak self] update in
-                self?.findSnackBarViewModel()?.showSnack(update)
-            })
             .store(in: &subscriptions)
     }
 

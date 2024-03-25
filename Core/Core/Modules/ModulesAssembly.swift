@@ -16,10 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 
 class ModulesAssembly {
     private static var publishInteractorsByCourseIds: [String: ModulePublishInteractor] = [:]
+    private static var subscriptions = Set<AnyCancellable>()
 
     public static func publishInteractor(for courseId: String) -> ModulePublishInteractor {
         if let interactor = publishInteractorsByCourseIds[courseId] {
@@ -28,6 +29,14 @@ class ModulesAssembly {
 
         let interactor = ModulePublishInteractorLive(courseId: courseId)
         publishInteractorsByCourseIds[courseId] = interactor
+
+        interactor
+            .statusUpdates
+            .sink { update in
+                AppEnvironment.shared.topViewController?.findSnackBarViewModel()?.showSnack(update)
+            }
+            .store(in: &subscriptions)
+
         return interactor
     }
 }
