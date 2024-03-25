@@ -209,6 +209,48 @@ class ModulePublishInteractorTests: CoreTestCase {
         subscription.cancel()
         testOperation.cancel()
     }
+
+    func testBulkPublishCancel() {
+        let bulkPublishRequest = PutBulkPublishModulesRequest(
+            courseId: "testCourseId",
+            moduleIds: ["moduleId1", "moduleId2"],
+            action: .publish(.modulesAndItems)
+        )
+        api.mock(
+            bulkPublishRequest,
+            value: .init(progress: .init(.init(progress: .init(id: "progressId"))))
+        )
+        let pollRequest = GetBulkPublishProgressRequest(modulePublishProgressId: "progressId")
+        let pollRequestMock = api.mock(
+            pollRequest,
+            value: .init(completion: 0.0, workflow_state: "running")
+        )
+        // Simulate long progress by blocking the progress poll response
+        pollRequestMock.suspend()
+        let testee = ModulePublishInteractorLive(app: .teacher, courseId: "testCourseId")
+        _ = testee.bulkPublish(moduleIds: ["moduleId1", "moduleId2"], action: .publish(.onlyModules))
+        XCTAssertEqual(testee.modulesUpdating.value, Set(["moduleId1", "moduleId2"]))
+        let cancelRequest = PostCancelBulkPublishRequest(progressId: "progressId")
+        let cancelCalled = expectation(description: "Cancel called")
+        api.mock(withData: cancelRequest) { _ in
+            cancelCalled.fulfill()
+            return (nil, nil, nil)
+        }
+        let modulesRefreshed = expectation(description: "Modules list refreshed")
+        let moduleRefreshRequest = GetModulesRequest(courseID: "testCourseId")
+        api.mock(moduleRefreshRequest) { _ in
+            modulesRefreshed.fulfill()
+            return (nil, nil, nil)
+        }
+
+        // WHEN
+        testee.cancelBulkPublish(moduleIds: ["moduleId1", "moduleId2"], action: .publish(.onlyModules))
+
+        // THEN
+        drainMainQueue()
+        XCTAssertTrue(testee.modulesUpdating.value.isEmpty)
+        wait(for: [cancelCalled, modulesRefreshed], timeout: 0.1)
+    }
 }
 
 class TestStatusUpdateTests: XCTestCase {

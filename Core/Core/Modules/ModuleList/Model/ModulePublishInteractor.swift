@@ -175,6 +175,10 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
 
     // MARK: - Bulk Publish
 
+    /**
+     - returns: A publisher emitting progress state objects.
+     To cancel the bulk publish call the `cancelBulkPublish` method.
+     */
     func bulkPublish(
         moduleIds: [String],
         action: ModulePublishAction
@@ -247,7 +251,6 @@ extension Subscribers.Completion<Error> {
             case .publish: return String(localized: "Failed To Publish Item")
             case .unpublish: return String(localized: "Failed To Unpublish Item")
             }
-
         }
     }
 }
