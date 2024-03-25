@@ -53,6 +53,7 @@ class BulkPublishInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private var pollRetryCount = 0
     private var maxPollRetryCount = 4
+    private var bulkPublishTask: APITask?
 
     public init(
         api: API,
@@ -69,13 +70,17 @@ class BulkPublishInteractor {
         sendBulkPublishRequest()
     }
 
+    deinit {
+        bulkPublishTask?.cancel()
+    }
+
     private func sendBulkPublishRequest() {
         let request = PutBulkPublishModulesRequest(
             courseId: courseId,
             moduleIds: moduleIds,
             action: action
         )
-        api.makeRequest(request) { [weak self] response, _, error in
+        bulkPublishTask = api.makeRequest(request) { [weak self] response, _, error in
             guard let self else { return }
 
             if let progressId = response?.progress?.progress?.id {

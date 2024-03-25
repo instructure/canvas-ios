@@ -184,7 +184,6 @@ class ModuleItemCell: UITableViewCell {
 
         publishInteractor
             .moduleItemsUpdating
-            .dropFirst()
             .map { $0.contains(item.id) }
             .removeDuplicates()
             .receive(on: RunLoop.main)
@@ -204,7 +203,6 @@ class ModuleItemCell: UITableViewCell {
 
         publishInteractor
             .modulesUpdating
-            .dropFirst()
             .map { $0.contains(item.moduleID) }
             .removeDuplicates()
             .receive(on: RunLoop.main)

@@ -67,12 +67,15 @@ final class ModulePublishProgressViewModelTests: CoreTestCase {
 
     func testDidTapCancel() {
         let vc = SnackBarProviderMock()
-        let testee = makeViewModel()
+        let mockInteractor = MockModulePublishInteractor()
+        let testee = makeViewModel(interactor: mockInteractor)
 
         testee.didTapCancel.send((.init(vc), "some snack"))
 
         XCTAssertEqual(router.dismissed, vc)
         XCTAssertEqual(vc.snackBarViewModel.visibleSnack, "some snack")
+        XCTAssertEqual(mockInteractor.cancelledBulkPublish?.moduleIds, ["2", "3"])
+        XCTAssertEqual(mockInteractor.cancelledBulkPublish?.action, .publish(.onlyModules))
     }
 
     func testDidTapDone() {
@@ -88,14 +91,14 @@ final class ModulePublishProgressViewModelTests: CoreTestCase {
 private extension ModulePublishProgressViewModelTests {
     func makeViewModel(
         action: ModulePublishAction = .publish(.onlyModules),
-        allModules: Bool = false
+        allModules: Bool = false,
+        interactor: MockModulePublishInteractor = MockModulePublishInteractor()
     ) -> ModulePublishProgressViewModel {
-        let interactor = MockModulePublishInteractor()
         interactor.bulkPublishResult = Just(.completed).setFailureType(to: Error.self).eraseToAnyPublisher()
         return .init(
             action: action,
             allModules: allModules,
-            moduleIds: [],
+            moduleIds: ["2", "3"],
             interactor: interactor,
             router: router
         )

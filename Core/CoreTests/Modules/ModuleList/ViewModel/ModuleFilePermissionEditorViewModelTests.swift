@@ -225,6 +225,8 @@ class MockModulePublishInteractor: ModulePublishInteractor {
         bulkPublishResult!
     }
 
+    var cancelledBulkPublish: (moduleIds: [String], action: ModulePublishAction)?
     func cancelBulkPublish(moduleIds: [String], action: ModulePublishAction) {
+        cancelledBulkPublish = (moduleIds: moduleIds, action: action)
     }
 }
