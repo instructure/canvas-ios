@@ -31,6 +31,14 @@ public class HTMLParser {
     private var subscriptions = Set<AnyCancellable>()
     public let prefix: String
 
+    public var sessionId: String {
+        loginSession.uniqueID
+    }
+
+    public var sectionName: String {
+        interactor.sectionName
+    }
+
     init(loginSession: LoginSession, downloadInteractor: HTMLDownloadInteractor, prefix: String = "") {
         self.loginSession = loginSession
         self.interactor = downloadInteractor
@@ -39,10 +47,11 @@ public class HTMLParser {
         self.imageRegex = (try? NSRegularExpression(pattern: "<img[^>]*src=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
         self.fileLinkRegex = (try? NSRegularExpression(pattern: "<a[^>]*class=\"instructure_file_link[^>]*href=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
         self.internalFileRegex = (try? NSRegularExpression(pattern: ".*\(loginSession.baseURL).*files/(\\d+)")) ?? NSRegularExpression()
+
         self.relativeURLRegex = (try? NSRegularExpression(pattern: "^(?:[a-z+]+:)?//")) ?? NSRegularExpression()
     }
 
-    func parse(_ content: String, resourceId: String, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
+    func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
         let imageURLs = findRegexMatches(content, pattern: imageRegex)
         let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex)
 
@@ -54,7 +63,7 @@ public class HTMLParser {
                     }
             }
             .flatMap { [unowned self] (url, result) in
-                return self.interactor.save(result, prefix: "\(self.prefix)-\(resourceId)")
+                return self.interactor.save(result, courseId: courseId, prefix: "\(self.prefix)-\(resourceId)")
                     .map {
                         return (url, $0)
                     }
@@ -63,7 +72,6 @@ public class HTMLParser {
             .map { [content] urls in
                 var newContent = content
                 urls.forEach { (originalURL, localURL) in
-//                    let newURL = "file://\(localURL.path)"
                     let newURL = "\(localURL.lastPathComponent)"
                     newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: newURL)
                 }
@@ -92,15 +100,6 @@ public class HTMLParser {
                 }
                 return ""
             }
-//            .compactMap { result in
-//                let rawString = NSString(string: content).substring(with: result.range)
-//                let groupedAttributes = rawString.split(separator: " ")
-//                let url = groupedAttributes
-//                    .last(where: {$0.contains("src=")})?
-//                    .replacingOccurrences(of: "src=\"", with: "")
-//                    .replacingOccurrences(of: "\"", with: "")
-//                return url
-//            }
             .compactMap { rawURL in
                 URL(string: rawURL)
             }

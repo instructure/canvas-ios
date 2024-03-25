@@ -41,6 +41,19 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
         .eraseToAnyPublisher()
     }
 
+    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        let rootURL = URL.Directories.documents.appendingPathComponent(URL.Paths.Offline.courseSectionFolder(sessionId: htmlParser.sessionId, courseId: courseId, sectionName: htmlParser.sectionName))
+
+        let fileUrls = (try? FileManager.default.contentsOfDirectory(at: rootURL, includingPropertiesForKeys: nil)) ?? []
+        return fileUrls
+            .publisher
+            .compactMap { try? FileManager.default.removeItem(at: $0) }
+            .map { try? FileManager.default.removeItem(at: rootURL) }
+            .collect()
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+
     private func getCustomColors(courseId _: String) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetCustomColors()
@@ -55,7 +68,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
             useCase: GetQuizzes(courseID: courseId)
         )
         .getEntities(ignoreCache: true)
-        .parseHtmlContent(attribute: \.details, id: \.id, baseURLKey: \.htmlURL, htmlParser: htmlParser)
+        .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
         .flatMap { [htmlParser] in
             $0.publisher
                 .filter { $0.quizType != .quizzes_next }
@@ -71,7 +84,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
             useCase: GetQuiz(courseID: courseId, quizID: quizId)
         )
         .getEntities(ignoreCache: true)
-        .parseHtmlContent(attribute: \.details, id: \.id, baseURLKey: \.htmlURL, htmlParser: htmlParser)
+        .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
         .mapToVoid()
         .eraseToAnyPublisher()
     }

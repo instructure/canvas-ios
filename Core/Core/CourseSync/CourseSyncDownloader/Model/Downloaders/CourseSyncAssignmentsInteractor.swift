@@ -44,6 +44,19 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
         .eraseToAnyPublisher()
     }
 
+    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        let rootURL = URL.Directories.documents.appendingPathComponent(URL.Paths.Offline.courseSectionFolder(sessionId: htmlParser.sessionId, courseId: courseId, sectionName: htmlParser.sectionName))
+
+        let fileUrls = (try? FileManager.default.contentsOfDirectory(at: rootURL, includingPropertiesForKeys: nil)) ?? []
+        return fileUrls
+            .publisher
+            .compactMap { try? FileManager.default.removeItem(at: $0) }
+            .map { try? FileManager.default.removeItem(at: rootURL) }
+            .collect()
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+
     private static func getSubmissionComments(
         courseID: String,
         assignmentID: String,
@@ -58,7 +71,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
             )
         )
         .getEntities(ignoreCache: true)
-        .parseHtmlContent(attribute: \.comment, id: \.id, htmlParser: htmlParser)
+        .parseHtmlContent(attribute: \.comment, id: \.id, courseId: courseID, htmlParser: htmlParser)
         .map { _ in () }
         .eraseToAnyPublisher()
     }

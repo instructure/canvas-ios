@@ -88,6 +88,10 @@ public extension URL {
             public static func courseFolder(sessionID: String, courseId: String) -> String {
                 "\(sessionID)/Offline/Files/course-\(courseId)"
             }
+
+            public static func courseSectionFolder(sessionId: String, courseId: String, sectionName: String) -> String {
+                "\(sessionId)/Offline/course-\(courseId)/\(sectionName)"
+            }
         }
     }
 

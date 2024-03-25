@@ -42,6 +42,35 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
             .eraseToAnyPublisher()
     }
 
+    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        let rootURLAssignmentEvent = URL.Directories.documents.appendingPathComponent(
+            URL.Paths.Offline.courseSectionFolder(
+                sessionId: assignmentEventHtmlParser.sessionId,
+                courseId: courseId,
+                sectionName: assignmentEventHtmlParser.sectionName
+            )
+        )
+        let rootURLCalendarEvent = URL.Directories.documents.appendingPathComponent(
+            URL.Paths.Offline.courseSectionFolder(
+                sessionId: calendarEventHtmlParser.sessionId,
+                courseId: courseId,
+                sectionName: calendarEventHtmlParser.sectionName
+            )
+        )
+        let assignmentEventUrls = (try? FileManager.default.contentsOfDirectory(at: rootURLAssignmentEvent, includingPropertiesForKeys: nil)) ?? []
+        let calendarEventUrls = (try? FileManager.default.contentsOfDirectory(at: rootURLCalendarEvent, includingPropertiesForKeys: nil)) ?? []
+        let fileUrls = assignmentEventUrls + calendarEventUrls
+
+        return fileUrls
+            .publisher
+            .compactMap { try? FileManager.default.removeItem(at: $0) }
+            .map { try? FileManager.default.removeItem(at: rootURLAssignmentEvent) }
+            .map { try? FileManager.default.removeItem(at: rootURLCalendarEvent) }
+            .collect()
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+
     // MARK: - Syllabus Summary
 
     private func fetchSyllabusSummary(courseId: String) -> AnyPublisher<Void, Error> {
@@ -76,7 +105,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
                 }
                 return assignments
             }
-            .parseHtmlContent(attribute: \.details, id: \.id, htmlParser: htmlParser)
+            .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
@@ -84,7 +113,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     private static func fetchEvents(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCalendarEvents(context: .course(courseId), type: .event))
             .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.details, id: \.id, htmlParser: htmlParser)
+            .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

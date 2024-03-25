@@ -29,6 +29,7 @@ public protocol CourseSyncInteractor {
 public protocol CourseSyncContentInteractor {
     var associatedTabType: TabName { get }
     func getContent(courseId: String) -> AnyPublisher<Void, Error>
+    func cleanContent(courseId: String) -> AnyPublisher<Void, Never>
 }
 
 public final class CourseSyncInteractorLive: CourseSyncInteractor {
@@ -182,7 +183,6 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         unowned let unownedSelf = self
 
         guard let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
-              entry.tabs[tabIndex].selectionState == .selected,
               entry.tabs[tabIndex].state != .downloaded
         else {
             return Just(()).eraseToAnyPublisher()
@@ -193,28 +193,35 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             return Just(()).eraseToAnyPublisher()
         }
 
-        return interactor.getContent(courseId: entry.courseId)
-            .receive(on: scheduler)
-            .updateLoadingState {
-                unownedSelf.setState(
-                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                    state: .loading(nil)
-                )
-            }
-            .updateDownloadedState {
-                unownedSelf.setState(
-                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                    state: .downloaded
-                )
-            }
-            .catch { _ in
-                unownedSelf.setState(
-                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                    state: .error
-                )
-                return Just(()).eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
+        print(entry.tabs[tabIndex])
+        switch entry.tabs[tabIndex].selectionState {
+        case .deselected:
+            return interactor.cleanContent(courseId: entry.courseId)
+                .eraseToAnyPublisher()
+        default:
+            return interactor.getContent(courseId: entry.courseId)
+                .receive(on: scheduler)
+                .updateLoadingState {
+                    unownedSelf.setState(
+                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                        state: .loading(nil)
+                    )
+                }
+                .updateDownloadedState {
+                    unownedSelf.setState(
+                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                        state: .downloaded
+                    )
+                }
+                .catch { _ in
+                    unownedSelf.setState(
+                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                        state: .error
+                    )
+                    return Just(()).eraseToAnyPublisher()
+                }
+                .eraseToAnyPublisher()
+        }
     }
 
     private func downloadFiles(for entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {

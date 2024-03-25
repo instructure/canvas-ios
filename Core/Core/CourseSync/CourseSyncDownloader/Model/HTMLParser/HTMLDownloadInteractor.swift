@@ -21,16 +21,19 @@ import Combine
 import CombineSchedulers
 
 protocol HTMLDownloadInteractor {
+    var sectionName: String { get }
     func download(_ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), Error>
-    func save(_ result: (data: Data, response: URLResponse), prefix: String) -> AnyPublisher<URL, Error>
+    func save(_ result: (data: Data, response: URLResponse), courseId: String, prefix: String) -> AnyPublisher<URL, Error>
 }
 
 class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     private let loginSession: LoginSession
     private let scheduler: AnySchedulerOf<DispatchQueue>
+    public let sectionName: String
 
-    init(loginSession: LoginSession, scheduler: AnySchedulerOf<DispatchQueue>) {
+    init(loginSession: LoginSession, sectionName: String, scheduler: AnySchedulerOf<DispatchQueue>) {
         self.loginSession = loginSession
+        self.sectionName = sectionName
         self.scheduler = scheduler
     }
 
@@ -50,14 +53,15 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             .eraseToAnyPublisher()
     }
 
-    func save(_ result: (data: Data, response: URLResponse), prefix: String) -> AnyPublisher<URL, Error> {
-        var saveURL = URL.Directories.documents.appendingPathComponent(UUID.string)
+    func save(_ result: (data: Data, response: URLResponse), courseId: String, prefix: String) -> AnyPublisher<URL, Error> {
+        let rootURL = URL.Directories.documents.appendingPathComponent(URL.Paths.Offline.courseSectionFolder(sessionId: loginSession.uniqueID, courseId: courseId, sectionName: sectionName))
+        var saveURL = rootURL.appendingPathComponent(UUID.string)
         if let url = result.response.url {
-            saveURL = URL.Directories.documents.appendingPathComponent("\(prefix)/\(url.lastPathComponent)")
+            saveURL = rootURL.appendingPathComponent("\(prefix)/\(url.lastPathComponent)")
         }
 
         do {
-            let rootURL = URL.Directories.documents.appendingPathComponent("\(prefix)")
+            let rootURL = rootURL.appendingPathComponent("\(prefix)")
             try FileManager.default.createDirectory(atPath: rootURL.path, withIntermediateDirectories: true, attributes: nil)
             FileManager.default.createFile(atPath: saveURL.path, contents: nil)
             try result.data.write(to: saveURL, options: [.atomic, .noFileProtection])

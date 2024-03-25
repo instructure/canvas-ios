@@ -53,7 +53,7 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     private func fetchAnnouncements(courseId: String) -> AnyPublisher<Void, Error> {
         return ReactiveStore(useCase: GetAnnouncements(context: .course(courseId)))
             .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.message, id: \.id, htmlParser: htmlParser)
+            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
@@ -66,6 +66,19 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
         ReactiveStore(useCase: useCase)
             .getEntities(ignoreCache: true)
             .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
+    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        let rootURL = URL.Directories.documents.appendingPathComponent(URL.Paths.Offline.courseSectionFolder(sessionId: htmlParser.sessionId, courseId: courseId, sectionName: htmlParser.sectionName))
+
+        let fileUrls = (try? FileManager.default.contentsOfDirectory(at: rootURL, includingPropertiesForKeys: nil)) ?? []
+        return fileUrls
+            .publisher
+            .compactMap { try? FileManager.default.removeItem(at: $0) }
+            .map { try? FileManager.default.removeItem(at: rootURL) }
+            .collect()
+            .map { _ in () }
             .eraseToAnyPublisher()
     }
 }

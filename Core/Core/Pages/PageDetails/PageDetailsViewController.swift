@@ -30,7 +30,6 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
     var context = Context.currentUser
     let env = AppEnvironment.shared
     var pageURL = ""
-    let networkStateService = NetworkAvailabilityServiceLive()
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -97,8 +96,6 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         }
         pages.refresh(force: false)
         NotificationCenter.default.post(moduleItem: .page(pageURL), completedRequirement: .view, courseID: context.id)
-
-        networkStateService.startMonitoring()
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -128,7 +125,13 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
 
         // Offline with separate html file
         let prefix = OfflineFolderPrefix.page.rawValue
-        let rootURL = URL.Directories.documents.appendingPathComponent("\(prefix)-\(page.id)")
+        let rootURL = URL.Directories.documents.appendingPathComponent(
+            URL.Paths.Offline.courseSectionFolder(
+                sessionId: env.currentSession?.uniqueID ?? "",
+                courseId: courses.first?.id ?? "",
+                sectionName: "Pages"
+            )
+        ).appendingPathComponent("\(prefix)-\(page.id)")
         let offlinePagePath = rootURL.appendingPathComponent("body.html")
         if offlineModeInteractor?.isNetworkOffline() == true && FileManager.default.fileExists(atPath: offlinePagePath.path) {
             // Offline image are stored in the Documents folder which cannot be accessed by the webview by default
@@ -138,7 +141,6 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         } else {
             webView.loadHTMLString(page.body, baseURL: page.htmlURL)
         }
-        networkStateService.stopMonitoring()
     }
 
     private func updatePages() {

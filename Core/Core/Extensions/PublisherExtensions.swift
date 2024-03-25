@@ -43,15 +43,16 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
     func parseHtmlContent(
         attribute keyPath: ReferenceWritableKeyPath<Output.Element, String>,
         id: ReferenceWritableKeyPath<Output.Element, String>,
+        courseId: String,
         baseURLKey: ReferenceWritableKeyPath<Output.Element, URL?>? = nil,
         htmlParser: HTMLParser
     ) -> AnyPublisher<[Output.Element], Error> {
+        let rootURL = URL.Directories.documents
+            .appendingPathComponent(URL.Paths.Offline.courseSectionFolder(sessionId: htmlParser.sessionId, courseId: courseId, sectionName: htmlParser.sectionName))
         return self.flatMap { dataArray in
                 Publishers.Sequence(sequence: dataArray)
                     .setFailureType(to: Error.self)
                     .map { element in
-                        let resourceId = element[keyPath: id]
-                        let rootURL = URL.Directories.documents.appendingPathComponent("\(htmlParser.prefix)-\(resourceId)")
                         try? FileManager.default.removeItem(at: rootURL)
                         return element
                     }
@@ -62,26 +63,19 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                         if let baseURLKey {
                             baseURL = element[keyPath: baseURLKey]
                         }
-                        return htmlParser.parse(value, resourceId: resourceId, baseURL: baseURL)
+                        return htmlParser.parse(value, resourceId: resourceId, courseId: courseId, baseURL: baseURL)
                             .map {
                                 return (element, $0)
                             }
                     }
                     .receive(on: DispatchQueue.main)
-//                    .map { (element: Output.Element, parsedAttribute: String) in
-//                        if let context = element.managedObjectContext {
-//                            element[keyPath: keyPath] = parsedAttribute
-//                            try? context.save()
-//                        }
-//                        return element
-//                    }
                     .map { (element: Output.Element, parsedAttribute: String) in
                         let resourceId = element[keyPath: id]
-                        let rootURL = URL.Directories.documents.appendingPathComponent("\(htmlParser.prefix)-\(resourceId)")
-                        let saveURL = rootURL.appendingPathComponent("body.html")
+                        let saveFolder = rootURL.appendingPathComponent("\(htmlParser.prefix)-\(resourceId)")
+                        let saveURL = saveFolder.appendingPathComponent("body.html")
                         do {
 
-                            try FileManager.default.createDirectory(atPath: rootURL.path, withIntermediateDirectories: true, attributes: nil)
+                            try FileManager.default.createDirectory(atPath: saveFolder.path, withIntermediateDirectories: true, attributes: nil)
                             FileManager.default.createFile(atPath: saveURL.path, contents: nil)
                             try parsedAttribute.write(to: saveURL, atomically: true, encoding: .utf8)
                         } catch {
@@ -97,15 +91,16 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
     func parseHtmlContent(
         attribute keyPath: ReferenceWritableKeyPath<Output.Element, String?>,
         id: ReferenceWritableKeyPath<Output.Element, String>,
+        courseId: String,
         baseURLKey: ReferenceWritableKeyPath<Output.Element, URL?>? = nil,
         htmlParser: HTMLParser
     ) -> AnyPublisher<[Output.Element], Error> {
+        let rootURL = URL.Directories.documents
+            .appendingPathComponent(URL.Paths.Offline.courseSectionFolder(sessionId: htmlParser.sessionId, courseId: courseId, sectionName: htmlParser.sectionName))
         return self.flatMap { dataArray in
                 Publishers.Sequence(sequence: dataArray)
                     .setFailureType(to: Error.self)
                     .map { element in
-                        let resourceId = element[keyPath: id]
-                        let rootURL = URL.Directories.documents.appendingPathComponent("\(htmlParser.prefix)-\(resourceId)")
                         try? FileManager.default.removeItem(at: rootURL)
                         return element
                     }
@@ -116,26 +111,19 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                         if let baseURLKey {
                             baseURL = element[keyPath: baseURLKey]
                         }
-                        return htmlParser.parse(value, resourceId: resourceId, baseURL: baseURL)
+                        return htmlParser.parse(value, resourceId: resourceId, courseId: courseId, baseURL: baseURL)
                             .map {
                                 return (element, $0)
                             }
                     }
                     .receive(on: DispatchQueue.main)
-//                    .map { (element: Output.Element, parsedAttribute: String) in
-//                        if let context = element.managedObjectContext {
-//                            element[keyPath: keyPath] = parsedAttribute
-//                            try? context.save()
-//                        }
-//                        return element
-//                    }
                     .map { (element: Output.Element, parsedAttribute: String) in
                         let resourceId = element[keyPath: id]
-                        let rootURL = URL.Directories.documents.appendingPathComponent("\(htmlParser.prefix)-\(resourceId)")
-                        let saveURL = rootURL.appendingPathComponent("body.html")
+                        let saveFolder = rootURL.appendingPathComponent("\(htmlParser.prefix)-\(resourceId)")
+                        let saveURL = saveFolder.appendingPathComponent("body.html")
                         do {
 
-                            try FileManager.default.createDirectory(atPath: rootURL.path, withIntermediateDirectories: true, attributes: nil)
+                            try FileManager.default.createDirectory(atPath: saveFolder.path, withIntermediateDirectories: true, attributes: nil)
                             FileManager.default.createFile(atPath: saveURL.path, contents: nil)
                             try parsedAttribute.write(to: saveURL, atomically: true, encoding: .utf8)
                         } catch {

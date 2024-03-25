@@ -40,6 +40,19 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
             .eraseToAnyPublisher()
     }
 
+    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        let rootURL = URL.Directories.documents.appendingPathComponent(URL.Paths.Offline.courseSectionFolder(sessionId: htmlParser.sessionId, courseId: courseId, sectionName: htmlParser.sectionName))
+
+        let fileUrls = (try? FileManager.default.contentsOfDirectory(at: rootURL, includingPropertiesForKeys: nil)) ?? []
+        return fileUrls
+            .publisher
+            .compactMap { try? FileManager.default.removeItem(at: $0) }
+            .map { try? FileManager.default.removeItem(at: rootURL) }
+            .collect()
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+
     // MARK: - Private Methods
 
     private static func fetchTopics(
@@ -49,7 +62,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
         return ReactiveStore(useCase: GetDiscussionTopics(context: .course(courseId)))
             .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.message, id: \.id, htmlParser: htmlParser)
+            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
             .eraseToAnyPublisher()
     }
 
@@ -61,7 +74,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
         return ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
             .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.message, id: \.id, htmlParser: htmlParser)
+            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
