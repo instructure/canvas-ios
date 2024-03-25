@@ -73,6 +73,9 @@ class ModulePublishInteractorPreview: ModulePublishInteractor {
     func bulkPublish(moduleIds: [String], action: ModulePublishAction) -> AnyPublisher<BulkPublishInteractor.PublishProgress, Error> {
         Just(.completed).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
+
+    func cancelBulkPublish(moduleIds: [String], action: ModulePublishAction) {
+    }
 }
 
 #endif

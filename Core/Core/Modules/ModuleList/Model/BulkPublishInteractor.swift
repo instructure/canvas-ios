@@ -43,11 +43,12 @@ class BulkPublishInteractor {
     }
 
     public let progress = CurrentValueSubject<PublishProgress, Error>(.running(progress: 0))
+    public let moduleIds: [String]
+    public let action: ModulePublishAction
+    public private(set) var progressId: String?
 
     private let api: API
     private let courseId: String
-    private let moduleIds: [String]
-    private let action: ModulePublishAction
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     private var pollRetryCount = 0
@@ -78,6 +79,7 @@ class BulkPublishInteractor {
             guard let self else { return }
 
             if let progressId = response?.progress?.progress?.id {
+                self.progressId = progressId
                 pollDelayed(id: progressId)
             } else {
                 progress.send(completion: .failure(error ?? NSError.internalError()))

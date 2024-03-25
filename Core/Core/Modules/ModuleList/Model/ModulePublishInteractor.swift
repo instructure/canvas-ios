@@ -43,6 +43,11 @@ protocol ModulePublishInteractor {
         moduleIds: [String],
         action: ModulePublishAction
     ) -> AnyPublisher<BulkPublishInteractor.PublishProgress, Error>
+
+    func cancelBulkPublish(
+        moduleIds: [String],
+        action: ModulePublishAction
+    )
 }
 
 extension ModulePublishInteractor {
@@ -168,6 +173,8 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
             .eraseToAnyPublisher()
     }
 
+    // MARK: - Bulk Publish
+
     func bulkPublish(
         moduleIds: [String],
         action: ModulePublishAction
@@ -196,6 +203,33 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
             .store(in: &subscriptions)
 
         return interactor.progress.eraseToAnyPublisher()
+    }
+
+    func cancelBulkPublish(
+        moduleIds: [String],
+        action: ModulePublishAction
+    ) {
+        let index = bulkPublishInteractors.firstIndex {
+            $0.moduleIds == moduleIds && $0.action == action
+        }
+        guard let index else { return }
+
+        let interactor = bulkPublishInteractors.remove(at: index)
+
+        guard let progressId = interactor.progressId else { return }
+        let request = PostCancelBulkPublishRequest(progressId: progressId)
+        let courseId = courseId
+
+        api
+            .makeRequest(request)
+            .flatMap { _ in
+                ReactiveStore(useCase: GetModules(courseID: courseId))
+                    .forceRefresh()
+            }
+            .sink(receiveCompletion: { [weak self] _ in
+                self?.modulesUpdating.value.subtract(moduleIds)
+            }, receiveValue: { _ in })
+            .store(in: &subscriptions)
     }
 }
 

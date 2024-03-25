@@ -224,4 +224,7 @@ class MockModulePublishInteractor: ModulePublishInteractor {
     ) -> AnyPublisher<BulkPublishInteractor.PublishProgress, Error> {
         bulkPublishResult!
     }
+
+    func cancelBulkPublish(moduleIds: [String], action: ModulePublishAction) {
+    }
 }

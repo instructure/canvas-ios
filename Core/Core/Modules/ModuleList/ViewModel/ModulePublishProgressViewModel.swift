@@ -98,7 +98,7 @@ final class ModulePublishProgressViewModel: ObservableObject {
 
         didTapCancel
             .sink { weakVC, snackBarTitle in
-                // TODO: send cancel request silently: no spinner, no errors
+                interactor.cancelBulkPublish(moduleIds: moduleIds, action: action)
                 let snackBarViewModel = weakVC.value.findSnackBarViewModel()
                 router.dismiss(weakVC) {
                     snackBarViewModel?.showSnack(snackBarTitle)
