@@ -21,7 +21,7 @@ import Combine
 import CombineSchedulers
 import XCTest
 
-class BulkPublishPublisherTests: CoreTestCase {
+class BulkPublishInteractorTests: CoreTestCase {
 
     private let bulkPublishRequest = PutBulkPublishModulesRequest(
         courseId: "1",
@@ -33,12 +33,13 @@ class BulkPublishPublisherTests: CoreTestCase {
         api.mock(bulkPublishRequest, error: NSError.internalError(code: 7357))
 
         // WHEN
-        let testee = BulkPublishPublisher(
+        let testee = BulkPublishInteractor(
             api: api,
             courseId: "1",
             moduleIds: ["moduleId1", "moduleId2"],
             action: .publish(.modulesAndItems)
         )
+            .progress
         .dropFirst() // ignore first 0% state
 
         // THEN
@@ -53,7 +54,7 @@ class BulkPublishPublisherTests: CoreTestCase {
         )
         publishRequestMock.suspend()
         let pollRequest = GetBulkPublishProgressRequest(modulePublishProgressId: "progressId")
-        let testee = BulkPublishPublisher(
+        let testee = BulkPublishInteractor(
             api: api,
             courseId: "1",
             moduleIds: ["moduleId1", "moduleId2"],
@@ -64,6 +65,7 @@ class BulkPublishPublisherTests: CoreTestCase {
         let streamPublished = expectation(description: "Stream published")
 
         let subscription = testee
+            .progress
             .collect(5)
             .sink { completion in
                 streamCompleted.fulfill()
@@ -101,10 +103,6 @@ class BulkPublishPublisherTests: CoreTestCase {
         testScheduler.advance(by: 1.1)
 
         api.mock(pollRequest,
-                 value: .init(completion: 80, workflow_state: "running"))
-        testScheduler.advance(by: 1.1)
-
-        api.mock(pollRequest,
                  value: .init(completion: 100, workflow_state: "completed"))
         testScheduler.advance(by: 1.1)
 
@@ -120,7 +118,7 @@ class BulkPublishPublisherTests: CoreTestCase {
         )
         publishRequestMock.suspend()
         let pollRequest = GetBulkPublishProgressRequest(modulePublishProgressId: "progressId")
-        let testee = BulkPublishPublisher(
+        let testee = BulkPublishInteractor(
             api: api,
             courseId: "1",
             moduleIds: ["moduleId1", "moduleId2"],
@@ -131,6 +129,7 @@ class BulkPublishPublisherTests: CoreTestCase {
         let streamPublished = expectation(description: "Stream published")
 
         let subscription = testee
+            .progress
             .sink { completion in
                 streamCompleted.fulfill()
                 if case .finished = completion {

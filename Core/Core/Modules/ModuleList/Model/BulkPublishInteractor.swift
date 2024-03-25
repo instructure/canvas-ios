@@ -19,9 +19,7 @@
 import Combine
 import CombineSchedulers
 
-class BulkPublishPublisher: Publisher {
-    typealias Output = PublishProgress
-    typealias Failure = Error
+class BulkPublishInteractor {
     typealias ProgressId = String
 
     public enum PublishProgress: Equatable {
@@ -44,7 +42,8 @@ class BulkPublishPublisher: Publisher {
         }
     }
 
-    private let subject = PassthroughSubject<PublishProgress, Error>()
+    public let progress = CurrentValueSubject<PublishProgress, Error>(.running(progress: 0))
+
     private let api: API
     private let courseId: String
     private let moduleIds: [String]
@@ -66,17 +65,10 @@ class BulkPublishPublisher: Publisher {
         self.moduleIds = moduleIds
         self.action = action
         self.scheduler = scheduler
-    }
-
-    public func receive<S>(subscriber: S) where S: Subscriber, S.Failure == Failure, S.Input == Output {
-        subject
-            .removeDuplicates()
-            .receive(subscriber: subscriber)
         sendBulkPublishRequest()
     }
 
     private func sendBulkPublishRequest() {
-        subject.send(.running(progress: 0))
         let request = PutBulkPublishModulesRequest(
             courseId: courseId,
             moduleIds: moduleIds,
@@ -88,7 +80,7 @@ class BulkPublishPublisher: Publisher {
             if let progressId = response?.progress?.progress?.id {
                 pollDelayed(id: progressId)
             } else {
-                subject.send(completion: .failure(error ?? NSError.internalError()))
+                progress.send(completion: .failure(error ?? NSError.internalError()))
             }
         }
     }
@@ -101,7 +93,7 @@ class BulkPublishPublisher: Publisher {
                 pollRetryCount += 1
 
                 if pollRetryCount > maxPollRetryCount {
-                    subject.send(completion: .failure(NSError.internalError()))
+                    progress.send(completion: .failure(NSError.internalError()))
                     return
                 } else {
                     return pollDelayed(id: id)
@@ -109,11 +101,11 @@ class BulkPublishPublisher: Publisher {
             }
 
             if response.isCompleted {
-                subject.send(.running(progress: 1))
+                progress.send(.running(progress: 1))
                 refreshModules()
             } else {
                 pollRetryCount = 0
-                subject.send(.running(progress: response.progress / 100.0))
+                progress.send(.running(progress: response.progress / 100.0))
                 pollDelayed(id: id)
             }
         }
@@ -131,9 +123,17 @@ class BulkPublishPublisher: Publisher {
             .forceRefresh()
             .sink { [weak self] _ in
                 guard let self else { return }
-                subject.send(.completed)
-                subject.send(completion: .finished)
+                progress.send(.completed)
+                progress.send(completion: .finished)
             } receiveValue: { _ in }
             .store(in: &subscriptions)
+    }
+}
+
+extension BulkPublishInteractor: Equatable {
+    static func == (lhs: BulkPublishInteractor, rhs: BulkPublishInteractor) -> Bool {
+        lhs.courseId == rhs.courseId &&
+        lhs.action == rhs.action &&
+        lhs.moduleIds == rhs.moduleIds
     }
 }

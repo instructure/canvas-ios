@@ -217,11 +217,11 @@ class MockModulePublishInteractor: ModulePublishInteractor {
             .eraseToAnyPublisher()
     }
 
-    var bulkPublishResult: AnyPublisher<BulkPublishPublisher.PublishProgress, Error>?
+    var bulkPublishResult: AnyPublisher<BulkPublishInteractor.PublishProgress, Error>?
     func bulkPublish(
         moduleIds: [String],
         action: ModulePublishAction
-    ) -> AnyPublisher<BulkPublishPublisher.PublishProgress, Error> {
+    ) -> AnyPublisher<BulkPublishInteractor.PublishProgress, Error> {
         bulkPublishResult!
     }
 }

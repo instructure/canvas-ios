@@ -112,6 +112,7 @@ final class ModulePublishProgressViewModel: ObservableObject {
 
         let publishTask = interactor
             .bulkPublish(moduleIds: moduleIds, action: action)
+            .removeDuplicates()
             .mapToResult() // This is to make it connectable, the stream will never fail but failure will be received as a result value
             .share()
             .makeConnectable()

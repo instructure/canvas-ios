@@ -42,7 +42,7 @@ protocol ModulePublishInteractor {
     func bulkPublish(
         moduleIds: [String],
         action: ModulePublishAction
-    ) -> AnyPublisher<BulkPublishPublisher.PublishProgress, Error>
+    ) -> AnyPublisher<BulkPublishInteractor.PublishProgress, Error>
 }
 
 extension ModulePublishInteractor {
@@ -72,6 +72,7 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
     private let courseId: String
     private let api: API
     private var subscriptions = Set<AnyCancellable>()
+    private var bulkPublishInteractors: [BulkPublishInteractor] = []
 
     init(
         app: AppEnvironment.App? = AppEnvironment.shared.app,
@@ -170,19 +171,31 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
     func bulkPublish(
         moduleIds: [String],
         action: ModulePublishAction
-    ) -> AnyPublisher<BulkPublishPublisher.PublishProgress, Error> {
-        BulkPublishPublisher(
+    ) -> AnyPublisher<BulkPublishInteractor.PublishProgress, Error> {
+        let interactor = BulkPublishInteractor(
             api: api,
             courseId: courseId,
             moduleIds: moduleIds,
             action: action
         )
-        .handleEvents(receiveSubscription: { [weak self] _ in
-            self?.modulesUpdating.value.formUnion(moduleIds)
-        }, receiveCompletion: { [weak self] _ in
-            self?.modulesUpdating.value.subtract(moduleIds)
-        })
-        .eraseToAnyPublisher()
+
+        bulkPublishInteractors.append(interactor)
+        modulesUpdating.value.formUnion(moduleIds)
+
+        interactor
+            .progress
+            .sink(receiveCompletion: { [weak self, weak interactor] _ in
+                guard let self, let interactor else { return }
+                modulesUpdating.value.subtract(moduleIds)
+
+                if let index = bulkPublishInteractors.firstIndex(of: interactor) {
+                    bulkPublishInteractors.remove(at: index)
+                }
+            }, receiveValue: { _ in
+            })
+            .store(in: &subscriptions)
+
+        return interactor.progress.eraseToAnyPublisher()
     }
 }
 

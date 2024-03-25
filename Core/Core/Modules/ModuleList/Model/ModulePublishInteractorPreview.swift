@@ -70,7 +70,7 @@ class ModulePublishInteractorPreview: ModulePublishInteractor {
         Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
-    func bulkPublish(moduleIds: [String], action: ModulePublishAction) -> AnyPublisher<BulkPublishPublisher.PublishProgress, Error> {
+    func bulkPublish(moduleIds: [String], action: ModulePublishAction) -> AnyPublisher<BulkPublishInteractor.PublishProgress, Error> {
         Just(.completed).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
