@@ -73,7 +73,11 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
     private let api: API
     private var subscriptions = Set<AnyCancellable>()
 
-    init(app: AppEnvironment.App?, courseId: String, api: API = AppEnvironment.shared.api) {
+    init(
+        app: AppEnvironment.App? = AppEnvironment.shared.app,
+        courseId: String,
+        api: API = AppEnvironment.shared.api
+    ) {
         self.courseId = courseId
         self.api = api
         isPublishActionAvailable = app == .teacher && ExperimentalFeature.teacherBulkPublish.isEnabled
