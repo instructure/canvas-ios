@@ -114,7 +114,7 @@ class ModuleItemCell: UITableViewCell {
             publishMenuButton.showsMenuAsPrimaryAction = false
             accessibilityCustomActions = publishInteractor.isPublishActionAvailable ? [
                 .init(
-                    name: "Edit permissions",
+                    name: String(localized: "Edit permissions"),
                     target: self,
                     selector: #selector(presentFilePermissionEditorDialog)
                 ),
@@ -182,36 +182,28 @@ class ModuleItemCell: UITableViewCell {
         updatePublishedState(item)
         updatePublishInProgressState(item, publishInteractor: publishInteractor)
 
-        publishInteractor
-            .moduleItemsUpdating
-            .map { $0.contains(item.id) }
-            .removeDuplicates()
-            .receive(on: RunLoop.main)
-            .sink { [weak self, weak host] isUpdating in
-                guard let self, let host else { return }
+        Publishers.CombineLatest(
+            publishInteractor.moduleItemsUpdating.map { $0.contains(item.id) },
+            publishInteractor.modulesUpdating.map { $0.contains(item.moduleID) }
+        )
+        .map { (itemUpdating, parentModuleUpdating) in
+            itemUpdating || parentModuleUpdating
+        }
+        .removeDuplicates()
+        .receive(on: RunLoop.main)
+        .sink { [weak self, weak host] isUpdating in
+            guard let self, let host else { return }
 
-                if !item.type.isFile {
-                    updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, host: host)
-                }
-
-                publishMenuButton.isEnabled = !isUpdating
-                updatePublishedState(item)
-                publishIndicatorView.update(isPublishInProgress: isUpdating)
-                updateA11yLabelForPublishState(moduleItem: item)
+            if !item.type.isFile {
+                updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, host: host)
             }
-            .store(in: &publishStateObservers)
 
-        publishInteractor
-            .modulesUpdating
-            .map { $0.contains(item.moduleID) }
-            .removeDuplicates()
-            .receive(on: RunLoop.main)
-            .sink { [weak self] isUpdating in
-                guard let self else { return }
-                publishMenuButton.isEnabled = !isUpdating
-                publishIndicatorView.update(isPublishInProgress: isUpdating)
-            }
-            .store(in: &publishStateObservers)
+            publishMenuButton.isEnabled = !isUpdating
+            updatePublishedState(item)
+            publishIndicatorView.update(isPublishInProgress: isUpdating)
+            updateA11yLabelForPublishState(moduleItem: item)
+        }
+        .store(in: &publishStateObservers)
     }
 
     private func updatePublishMenuActions(
