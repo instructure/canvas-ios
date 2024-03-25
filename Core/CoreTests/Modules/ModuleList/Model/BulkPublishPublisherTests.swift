@@ -111,4 +111,49 @@ class BulkPublishPublisherTests: CoreTestCase {
         waitForExpectations(timeout: 1)
         subscription.cancel()
     }
+
+    func testPollingFailsAfterRetries() {
+        let testScheduler: TestSchedulerOf<DispatchQueue> = DispatchQueue.test
+        let publishRequestMock = api.mock(
+            bulkPublishRequest,
+            value: .init(progress: .init(.init(progress: .init(id: "progressId"))))
+        )
+        publishRequestMock.suspend()
+        let pollRequest = GetBulkPublishProgressRequest(modulePublishProgressId: "progressId")
+        let testee = BulkPublishPublisher(
+            api: api,
+            courseId: "1",
+            moduleIds: ["moduleId1", "moduleId2"],
+            action: .publish(.modulesAndItems),
+            scheduler: testScheduler.eraseToAnyScheduler()
+        )
+        let streamCompleted = expectation(description: "Stream completed")
+        let streamPublished = expectation(description: "Stream published")
+
+        let subscription = testee
+            .sink { completion in
+                streamCompleted.fulfill()
+                if case .finished = completion {
+                    XCTFail("Stream unexpectedly succeeded")
+                }
+            } receiveValue: { progressUpdates in
+                streamPublished.fulfill()
+                XCTAssertEqual(
+                    progressUpdates,
+                    .running(progress: 0)
+                )
+            }
+
+        api.mock(pollRequest,
+                 error: NSError.instructureError("testError"))
+        publishRequestMock.resume()
+        testScheduler.advance(by: 1.1)
+        testScheduler.advance(by: 1.1)
+        testScheduler.advance(by: 1.1)
+        testScheduler.advance(by: 1.1)
+        testScheduler.advance(by: 1.1)
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
 }

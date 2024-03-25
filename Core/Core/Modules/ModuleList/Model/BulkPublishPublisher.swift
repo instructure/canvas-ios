@@ -51,6 +51,8 @@ class BulkPublishPublisher: Publisher {
     private let action: ModulePublishAction
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
+    private var pollRetryCount = 0
+    private var maxPollRetryCount = 4
 
     public init(
         api: API,
@@ -95,12 +97,22 @@ class BulkPublishPublisher: Publisher {
         let request = GetBulkPublishProgressRequest(modulePublishProgressId: id)
         api.makeRequest(request) { [weak self] response, _, _ in
             guard let self else { return }
-            guard let response else { return pollDelayed(id: id) }
+            guard let response else {
+                pollRetryCount += 1
+
+                if pollRetryCount > maxPollRetryCount {
+                    subject.send(completion: .failure(NSError.internalError()))
+                    return
+                } else {
+                    return pollDelayed(id: id)
+                }
+            }
 
             if response.isCompleted {
                 subject.send(.running(progress: 1))
                 refreshModules()
             } else {
+                pollRetryCount = 0
                 subject.send(.running(progress: response.progress / 100.0))
                 pollDelayed(id: id)
             }
