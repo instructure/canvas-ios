@@ -39,6 +39,9 @@ public struct APIModuleItem: Codable, Equatable {
         public let points_possible: Double?
         public let locked_for_user: Bool?
         public let lock_explanation: String?
+        public let hidden: Bool?
+        public let unlock_at: Date?
+        public let lock_at: Date?
     }
 
     public let id: ID
@@ -241,13 +244,19 @@ extension APIModuleItem.ContentDetails {
         due_at: Date? = nil,
         points_possible: Double? = nil,
         locked_for_user: Bool? = nil,
-        lock_explanation: String? = nil
+        lock_explanation: String? = nil,
+        hidden: Bool? = nil,
+        unlock_at: Date? = nil,
+        lock_at: Date? = nil
     ) -> APIModuleItem.ContentDetails {
         return APIModuleItem.ContentDetails(
             due_at: due_at,
             points_possible: points_possible,
             locked_for_user: locked_for_user,
-            lock_explanation: lock_explanation
+            lock_explanation: lock_explanation,
+            hidden: hidden,
+            unlock_at: unlock_at,
+            lock_at: lock_at
         )
     }
 }

@@ -27,7 +27,7 @@ public enum GradeArrangementOptions {
 }
 
 public final class GradeListViewModel: ObservableObject {
-    typealias RefreshCompletion = (() -> Void)
+    typealias RefreshCompletion = () -> Void
     typealias IgnoreCache = Bool
 
     enum ViewState: Equatable {
@@ -45,17 +45,26 @@ public final class GradeListViewModel: ObservableObject {
     // MARK: - Output
 
     @Published private(set) var state: ViewState = .initialLoading
-    @Published public var isWhatIfScoreOn = false
+    @Published public var isWhatIfScoreModeOn = false
+    @Published public var isWhatIfScoreFlagEnabled = false
     public var courseID: String { interactor.courseID }
 
     // MARK: - Input
 
-    let pullToRefreshDidTrigger = PassthroughRelay<(RefreshCompletion)?>()
+    let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
     let didSelectAssignment = PassthroughRelay<(WeakViewController, Assignment)>()
+    let confirmRevertAlertViewModel = ConfirmationAlertViewModel(
+        title: String(localized: "Revert to Official Score?"),
+        message: String(localized: "This will revert all your what-if scores in this course to the official score."),
+        cancelButtonTitle: String(localized: "Cancel"),
+        confirmButtonTitle: String(localized: "Revert"),
+        isDestructive: false
+    )
 
     // MARK: - Input / Output
 
     @Published var baseOnGradedAssignment = true
+    @Published var isShowingRevertDialog = false
     let selectedGradingPeriod = PassthroughRelay<GradingPeriod?>()
     let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.groupName)
 
@@ -74,6 +83,8 @@ public final class GradeListViewModel: ObservableObject {
         self.interactor = interactor
 
         let triggerRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion?)>()
+
+        isWhatIfScoreFlagEnabled = interactor.isWhatIfScoreFlagEnabled()
 
         pullToRefreshDidTrigger
             .sink {

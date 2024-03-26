@@ -139,3 +139,19 @@ public enum ModuleItemType: Equatable, Codable {
         }
     }
 }
+
+public extension Optional where Wrapped == ModuleItemType {
+
+    var isFile: Bool {
+        if case .file = self {
+            return true
+        }
+        return false
+    }
+    var fileId: String? {
+        if case .file(let fileId) = self {
+            return fileId
+        }
+        return nil
+    }
+}

@@ -21,6 +21,8 @@ import SwiftUI
 public struct GradeRowView: View {
     public let assignment: Assignment
     public let userID: String?
+    public let isWhatIfScoreModeOn: Bool
+    public let editScoreButtonDidTap: () -> Void
 
     public var body: some View {
         HStack(alignment: .top, spacing: 0) {
@@ -28,10 +30,16 @@ public struct GradeRowView: View {
             HStack(spacing: 0) {
                 assignmentDetailsView
                 Spacer()
-                gradeText
+                if isWhatIfScoreModeOn {
+                    gradeText.padding(.leading, 16)
+                    editButton
+                } else {
+                    gradeText.padding(.horizontal, 20)
+                }
             }
             .padding(.vertical, 12)
         }
+        .background(Color.backgroundLightest)
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("GradeListCell.\(assignment.id)")
     }
@@ -73,7 +81,6 @@ public struct GradeRowView: View {
         ) ?? "")
             .font(.regular16)
             .foregroundStyle(Color.textDarkest)
-            .padding(.horizontal, 16)
             .accessibilityLabel(Text(
                 GradeFormatter.a11yString(
                     from: assignment,
@@ -82,6 +89,18 @@ public struct GradeRowView: View {
                 )
                 .flatMap { String(localized: "Grade") + ", " + $0 } ?? ""
             ))
+    }
+
+    private var editButton: some View {
+        Button {
+            editScoreButtonDidTap()
+        } label: {
+            Image(uiImage: .editLine)
+                .resizable()
+                .frame(width: 20, height: 20)
+        }
+        .frame(width: 44, height: 44)
+        .padding(.trailing, 6)
     }
 }
 
@@ -96,7 +115,9 @@ struct GradeRowViewPreview: PreviewProvider {
                 updateSubmission: false,
                 updateScoreStatistics: false
             ),
-            userID: ""
+            userID: "",
+            isWhatIfScoreModeOn: true,
+            editScoreButtonDidTap: {}
         )
     }
 }

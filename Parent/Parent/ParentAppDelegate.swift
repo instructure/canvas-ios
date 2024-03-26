@@ -266,9 +266,9 @@ extension ParentAppDelegate {
         guard !testing else { return }
         if FirebaseOptions.defaultOptions()?.apiKey != nil {
             FirebaseApp.configure()
+            configureRemoteConfig()
             Analytics.shared.handler = self
         }
-        configureRemoteConfig()
     }
 }
 

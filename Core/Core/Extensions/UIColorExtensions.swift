@@ -49,7 +49,7 @@ extension UIColor {
     public var hexString: String { hexString(userInterfaceStyle: .current) }
     public var intValue: UInt32 { intValue(userInterfaceStyle: .current) }
     /** Returns the color for the current app appearance. */
-    private var interfaceStyleColor: UIColor { resolvedColor(with: .current) }
+    private var interfaceStyleColor: UIColor { resolvedColor(with: .init(userInterfaceStyle: .current)) }
 
     public convenience init(intValue value: UInt32) {
         self.init(

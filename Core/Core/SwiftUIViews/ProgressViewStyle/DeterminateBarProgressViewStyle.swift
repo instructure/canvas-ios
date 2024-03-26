@@ -57,10 +57,14 @@ public struct DeterminateBarProgressViewStyle: ProgressViewStyle {
 }
 
 extension ProgressViewStyle where Self == DeterminateBarProgressViewStyle {
-    static func determinateBar(
-        foregroundColor: Color = .accentColor,
-        backgroundColor: Color = .accentColor.opacity(0.2)
-    ) -> DeterminateBarProgressViewStyle {
+    static func determinateBar(color: Color = .accentColor) -> DeterminateBarProgressViewStyle {
+        .init(
+            foregroundColor: color,
+            backgroundColor: color.opacity(ProgressViewStyleConstants.backgroundOpacity)
+        )
+    }
+
+    static func determinateBar(foregroundColor: Color, backgroundColor: Color) -> DeterminateBarProgressViewStyle {
         DeterminateBarProgressViewStyle(
             foregroundColor: foregroundColor,
             backgroundColor: backgroundColor
@@ -76,7 +80,7 @@ struct DeterminateBarProgressViewStyle_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
 
         ProgressView(value: 0.75)
-            .progressViewStyle(.determinateBar())
+            .progressViewStyle(.determinateBar(color: .red))
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
 
