@@ -32,7 +32,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     private var publishInteractor: ModulePublishInteractor?
     private var module: Module?
     private var publishStateObserver: AnyCancellable?
-    private var host: UIViewController?
+    private weak var host: UIViewController?
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
