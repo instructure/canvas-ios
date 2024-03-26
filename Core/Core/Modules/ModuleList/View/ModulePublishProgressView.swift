@@ -172,6 +172,8 @@ private extension View {
     }
 }
 
+#if DEBUG
+
 #Preview {
     let interactor = ModulePublishInteractorPreview(state: .loading)
     return ModulePublishProgressView(
@@ -184,3 +186,5 @@ private extension View {
         )
     )
 }
+
+#endif
