@@ -257,15 +257,32 @@ class TestStatusUpdateTests: XCTestCase {
 
     func testModuleItemUpdates() {
         var testee: Subscribers.Completion<Error> = .finished
-        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .publish), "Item Published")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish, isAllModules: false), "Item Published")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish, isAllModules: false), "Item Unpublished")
+        testee = .failure(NSError.internalError())
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish, isAllModules: false), "Failed To Publish Item")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish, isAllModules: false), "Failed To Unpublish Item")
 
         testee = .finished
-        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .unpublish), "Item Unpublished")
-
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.onlyModules), isAllModules: false), "Only Module published")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.onlyModules), isAllModules: false), "Only Module unpublished")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.onlyModules), isAllModules: true), "Only Modules published")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.onlyModules), isAllModules: true), "Only Modules unpublished")
         testee = .failure(NSError.internalError())
-        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .publish), "Failed To Publish Item")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.onlyModules), isAllModules: false), "Failed to publish only Module")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.onlyModules), isAllModules: false), "Failed to unpublish only Module")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.onlyModules), isAllModules: true), "Failed to publish only Modules")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.onlyModules), isAllModules: true), "Failed to unpublish only Modules")
 
+        testee = .finished
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.modulesAndItems), isAllModules: false), "Module and all Items published")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.modulesAndItems), isAllModules: false), "Module and all Items unpublished")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.modulesAndItems), isAllModules: true), "All Modules and all Items published")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.modulesAndItems), isAllModules: true), "All Modules and all Items unpublished")
         testee = .failure(NSError.internalError())
-        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .unpublish), "Failed To Unpublish Item")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.modulesAndItems), isAllModules: false), "Failed to publish Module and all Items")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.modulesAndItems), isAllModules: false), "Failed to unpublish Module and all Items")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.modulesAndItems), isAllModules: true), "Failed to publish all Modules and all Items")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.modulesAndItems), isAllModules: true), "Failed to unpublish all Modules and all Items")
     }
 }

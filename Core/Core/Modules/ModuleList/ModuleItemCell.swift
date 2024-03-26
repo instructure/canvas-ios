@@ -102,7 +102,11 @@ class ModuleItemCell: UITableViewCell {
             a11yLabels.append(NSLocalizedString("locked", bundle: .core, comment: ""))
         }
         accessibilityLabel = a11yLabels.compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: ", ")
-        updateA11yLabelForPublishState(moduleItem: item)
+        let isPublishing: Bool = {
+            publishInteractor.moduleItemsUpdating.value.contains(item.id) ||
+            publishInteractor.modulesUpdating.value.contains(item.moduleID)
+        }()
+        updateA11yLabelForPublishState(moduleItem: item, isPublishing: isPublishing)
 
         accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row)"
         nameLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).nameLabel"
@@ -195,13 +199,13 @@ class ModuleItemCell: UITableViewCell {
             guard let self, let host else { return }
 
             if !item.type.isFile {
-                updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, host: host)
+                updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, isPublishing: isUpdating, host: host)
             }
 
             publishMenuButton.isEnabled = !isUpdating
             updatePublishedState(item)
             publishIndicatorView.update(isPublishInProgress: isUpdating)
-            updateA11yLabelForPublishState(moduleItem: item)
+            updateA11yLabelForPublishState(moduleItem: item, isPublishing: isUpdating)
         }
         .store(in: &publishStateObservers)
     }
@@ -209,6 +213,7 @@ class ModuleItemCell: UITableViewCell {
     private func updatePublishMenuActions(
         moduleItem: ModuleItem,
         publishInteractor: ModulePublishInteractor,
+        isPublishing: Bool,
         host: UIViewController
     ) {
         let action: ModulePublishAction = moduleItem.published == true ? .unpublish : .publish
@@ -222,7 +227,7 @@ class ModuleItemCell: UITableViewCell {
         publishMenuButton.menu = .makePublishModuleItemMenu(action: action, host: host, actionDidPerform: performUpdate)
 
         accessibilityCustomActions = {
-            if publishMenuButton.isHidden {
+            if publishMenuButton.isHidden || isPublishing {
                 return []
             }
 
@@ -234,9 +239,12 @@ class ModuleItemCell: UITableViewCell {
         }()
     }
 
-    private func updateA11yLabelForPublishState(moduleItem: ModuleItem) {
+    private func updateA11yLabelForPublishState(moduleItem: ModuleItem, isPublishing: Bool) {
         if !publishIndicatorView.isHidden {
             let publishedText = {
+                if isPublishing {
+                    return String(localized: "Publish state modification in progress")
+                }
                 if let availability = moduleItem.fileAvailability {
                     return availability.a11yLabel
                 } else {
