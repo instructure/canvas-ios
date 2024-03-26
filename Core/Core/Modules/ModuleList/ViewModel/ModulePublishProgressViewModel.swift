@@ -171,4 +171,11 @@ final class ModulePublishProgressViewModel: ObservableObject {
             .connect()
             .store(in: &subscriptions)
     }
+
+    deinit {
+        for subscription in subscriptions {
+            subscription.cancel()
+        }
+        subscriptions.removeAll()
+    }
 }

@@ -72,6 +72,10 @@ class BulkPublishInteractor {
 
     deinit {
         bulkPublishTask?.cancel()
+        for subscription in subscriptions {
+            subscription.cancel()
+        }
+        subscriptions.removeAll()
     }
 
     private func sendBulkPublishRequest() {
