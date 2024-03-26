@@ -19,7 +19,7 @@
 import Foundation
 
 public enum APIMethod: String {
-    case delete, get, post, put, head
+    case delete, get, post, put, head, patch
 }
 
 public enum APIQueryItem: Equatable {

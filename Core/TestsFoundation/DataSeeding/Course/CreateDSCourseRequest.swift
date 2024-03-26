@@ -41,18 +41,25 @@ extension CreateDSCourseRequest {
         let start_at: Date?
         let end_at: Date?
         let default_view: DSDefaultView?
+        let enrollment_term_id: String?
+        let hide_final_grades: Bool?
 
         public init(
-                name: String,
-                syllabus_body: String? = nil,
-                start_at: Date? = nil,
-                end_at: Date? = nil,
-                default_view: DSDefaultView? = nil) {
+            name: String,
+            syllabus_body: String? = nil,
+            start_at: Date? = nil,
+            end_at: Date? = nil,
+            default_view: DSDefaultView? = nil,
+            enrollment_term_id: String? = nil,
+            hide_final_grades: Bool = false
+        ) {
             self.name = name
             self.syllabus_body = syllabus_body
             self.start_at = start_at
             self.end_at = end_at
             self.default_view = default_view
+            self.enrollment_term_id = enrollment_term_id
+            self.hide_final_grades = hide_final_grades
         }
     }
 

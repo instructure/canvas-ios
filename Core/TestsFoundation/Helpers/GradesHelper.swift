@@ -20,6 +20,7 @@ import Core
 
 public class GradesHelper: BaseHelper {
     public static var totalGrade: XCUIElement { app.find(id: "CourseTotalGrade") }
+    public static var filterButton: XCUIElement { app.find(type: .popUpButton) }
 
     public static func labelOfAG(assignmentGroup: DSAssignmentGroup) -> XCUIElement {
         return app.find(label: assignmentGroup.name, type: .staticText)
@@ -56,6 +57,24 @@ public class GradesHelper: BaseHelper {
         return totalGrade.waitUntil(.visible).waitUntil(.label(expected: value)).isVisible
     }
 
+    public static func navigateToAssignments(course: DSCourse) {
+        DashboardHelper.courseCard(course: course).hit()
+        CourseDetailsHelper.cell(type: .assignments).hit()
+    }
+
+    public static func navigateToGrades(course: DSCourse) {
+        DashboardHelper.courseCard(course: course).hit()
+        CourseDetailsHelper.cell(type: .grades).hit()
+    }
+
+    public struct Filter {
+        public static func optionButton(gradingPeriod: DSGradingPeriod? = nil) -> XCUIElement {
+            let label = gradingPeriod?.title ?? "All"
+            return app.find(type: .collectionView).find(label: label, type: .button)
+        }
+    }
+
+    // MARK: Data Seeding
     @discardableResult
     public static func submitAssignment(course: DSCourse, student: DSUser, assignment: DSAssignment, body: String? = nil) -> DSSubmission {
         return seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody: .init(
@@ -103,13 +122,54 @@ public class GradesHelper: BaseHelper {
             requestBody: .init(excuse: true))
     }
 
-    public static func navigateToAssignments(course: DSCourse) {
-        DashboardHelper.courseCard(course: course).hit()
-        CourseDetailsHelper.cell(type: .assignments).hit()
+    public static func createEnrollmentTerm(
+        name: String = "Test Enrollment Term",
+        startAt: Date = Date.now.addMonths(-1),
+        endAt: Date = Date.now.addMonths(1)
+    ) -> DSEnrollmentTerm {
+        return seeder.createEnrollmentTerm(name: name, startAt: startAt, endAt: endAt)
     }
 
-    public static func navigateToGrades(course: DSCourse) {
-        DashboardHelper.courseCard(course: course).hit()
-        CourseDetailsHelper.cell(type: .grades).hit()
+    public static func createGradingPeriodSet(
+        title: String = "Test Grading Period",
+        enrollmentTerms: [DSEnrollmentTerm]? = []
+    ) -> DSGradingPeriodSet {
+        return seeder.createGradingPeriodSet(title: title, enrollmentTerms: enrollmentTerms ?? [createEnrollmentTerm()])
+    }
+
+    public static func addGradingPeriod(
+        gradingPeriodSet: DSGradingPeriodSet,
+        title: String = "Test Grading Period",
+        startDate: Date = Date.now.addDays(-1),
+        endDate: Date = Date.now.addDays(1),
+        closeDate: Date = Date.now.addDays(1)
+    ) -> DSGradingPeriod {
+        return seeder.addGradingPeriod(
+            gradingPeriodSet: gradingPeriodSet,
+            title: title,
+            startDate: startDate,
+            endDate: endDate,
+            closeDate: closeDate
+        )
+    }
+
+    @discardableResult
+    public static func createTestGradingPeriods(enrollmentTerm: DSEnrollmentTerm) -> [DSGradingPeriod] {
+        let gradingPeriodSet = createGradingPeriodSet(enrollmentTerms: [enrollmentTerm])
+        let firstGP = addGradingPeriod(
+            gradingPeriodSet: gradingPeriodSet,
+            title: "First GP",
+            startDate: Date.now,
+            endDate: Date.now.addSeconds(120),
+            closeDate: Date.now.addSeconds(120)
+        )
+        let secondGP = addGradingPeriod(
+            gradingPeriodSet: gradingPeriodSet,
+            title: "Second GP",
+            startDate: Date.now.addSeconds(240),
+            endDate: Date.now.addSeconds(360),
+            closeDate: Date.now.addSeconds(360)
+        )
+        return [firstGP, secondGP]
     }
 }
