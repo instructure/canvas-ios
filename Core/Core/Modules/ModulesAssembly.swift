@@ -32,6 +32,7 @@ class ModulesAssembly {
 
         interactor
             .statusUpdates
+            .receive(on: RunLoop.main)
             .sink { update in
                 AppEnvironment.shared.topViewController?.findSnackBarViewModel()?.showSnack(update)
             }

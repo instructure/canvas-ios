@@ -69,16 +69,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         lockedButton.isHidden = module.state != .locked
         collapsableIndicator.transform = CGAffineTransform(rotationAngle: isExpanded ? 0 : .pi)
         setupPublishMenu(host: host, publishInteractor: publishInteractor)
-        accessibilityLabel = [
-            module.name,
-            publishIndicatorView.isHidden ? "" :
-            module.published == true
-                ? NSLocalizedString("published", bundle: .core, comment: "")
-                : NSLocalizedString("unpublished", bundle: .core, comment: ""),
-            isExpanded
-                ? NSLocalizedString("expanded", bundle: .core, comment: "")
-                : NSLocalizedString("collapsed", bundle: .core, comment: ""),
-        ].joined(separator: ", ")
+        updateA11yLabel(module: module)
         accessibilityTraits.insert(.button)
         accessibilityIdentifier = "ModuleList.\(section)"
 
@@ -108,10 +99,30 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
 
     private func updateA11yCustomActions() {
         guard let host else { return }
-        let isPublishActionsAvailable = (!publishMenuButton.isHidden && publishMenuButton.isEnabled)
-        accessibilityCustomActions = isPublishActionsAvailable ? [] : .makePublishModuleA11yActions(host: host) { [weak self] action in
+        let isPublishActionsNotAvailable = publishMenuButton.isHidden || !publishMenuButton.isEnabled
+        accessibilityCustomActions = isPublishActionsNotAvailable ? [] : .makePublishModuleA11yActions(host: host) { [weak self] action in
             self?.didPerformPublishAction(action: action)
         }
+    }
+
+    private func updateA11yLabel(module: Module) {
+        let publishedState: String = {
+            if !publishMenuButton.isEnabled {
+                return String(localized: "Publish state modification in progress")
+            }
+            return module.published == true
+                ? NSLocalizedString("published", bundle: .core, comment: "")
+                : NSLocalizedString("unpublished", bundle: .core, comment: "")
+
+        }()
+        accessibilityLabel = [
+            module.name,
+            publishIndicatorView.isHidden ? "" :
+            publishedState,
+            isExpanded
+                ? NSLocalizedString("expanded", bundle: .core, comment: "")
+                : NSLocalizedString("collapsed", bundle: .core, comment: ""),
+        ].joined(separator: ", ")
     }
 
     private func setupPublishMenu(
@@ -159,6 +170,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
                 publishIndicatorView.update(isPublishInProgress: isPublishing)
                 publishMenuButton.isEnabled = !isPublishing
                 updateA11yCustomActions()
+                updateA11yLabel(module: item)
             }
 
         // Do an instant update because the subscription is delayed
