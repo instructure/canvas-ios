@@ -20,9 +20,22 @@ import UIKit
 
 final class ModulePublishControl: UIView {
 
+    private enum Size {
+        static let iconWidth: CGFloat = 24
+        static let iconHeight: CGFloat = 24
+        static let iconSpacing: CGFloat = 4
+        static let paddingTrailing: CGFloat = 16
+        static let hitAreaWidth: CGFloat = 88
+        static let hitAreaMinHeight: CGFloat = 24
+    }
+
     private var publishedView: ModuleItemPublishIndicatorView!
     private var publishButton: UIButton!
     private var clearButton: ClearButton!
+    
+    private var stackView: UIStackView!
+    private var topBottomStackViewConstraints: [NSLayoutConstraint] = []
+    private var centerStackViewConstraint: NSLayoutConstraint?
 
     private(set) var menu: UIMenu?
     private var primaryAction: (() -> Void)?
@@ -63,7 +76,7 @@ final class ModulePublishControl: UIView {
         publishButton = .init(configuration: configuration)
         publishButton.translatesAutoresizingMaskIntoConstraints = false
 
-        let stackView = UIStackView(arrangedSubviews: [publishedView, publishButton])
+        stackView = UIStackView(arrangedSubviews: [publishedView, publishButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.alignment = .center
@@ -71,22 +84,25 @@ final class ModulePublishControl: UIView {
         stackView.distribution = .equalSpacing
 
         NSLayoutConstraint.activate([
-            publishedView.widthAnchor.constraint(equalToConstant: 24),
-            publishButton.widthAnchor.constraint(equalToConstant: 24),
+            publishedView.widthAnchor.constraint(equalToConstant: Size.iconWidth),
+            publishButton.widthAnchor.constraint(equalToConstant: Size.iconWidth),
             publishButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
         ])
 
         addSubview(stackView)
-        NSLayoutConstraint.activate([
+        topBottomStackViewConstraints = [
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ]
+        NSLayoutConstraint.activate(topBottomStackViewConstraints)
+        NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Size.paddingTrailing),
         ])
 
         clearButton = ClearButton()
         clearButton.subButtons = [publishedView.publishedButton, publishButton]
-        clearButton.setClearImage(size: CGSize(width: 72, height: 24))
+        clearButton.setClearImage(size: CGSize(width: Size.hitAreaWidth, height: Size.hitAreaMinHeight))
 
         addSubview(clearButton)
         NSLayoutConstraint.activate([
@@ -99,6 +115,16 @@ final class ModulePublishControl: UIView {
         publishedView.accessibilityElementsHidden = true
         publishButton.accessibilityElementsHidden = true
         clearButton.accessibilityElementsHidden = true
+    }
+
+    func constraintIconsCenterTo(_ guide: UIView) {
+        guide.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.deactivate(topBottomStackViewConstraints)
+        centerStackViewConstraint?.isActive = false
+
+        centerStackViewConstraint = stackView.centerYAnchor.constraint(equalTo: guide.centerYAnchor)
+        centerStackViewConstraint?.isActive = true
     }
 
     func prepareForReuse() {
@@ -189,6 +215,8 @@ private final class ClearButton: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
 
         configuration = UIButton.Configuration.plain()
+        configuration?.contentInsets.leading = 0
+        configuration?.contentInsets.trailing = 0
     }
 
     func setClearImage(size: CGSize) {

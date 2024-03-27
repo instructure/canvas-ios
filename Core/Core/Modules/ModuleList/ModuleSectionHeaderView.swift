@@ -23,6 +23,8 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var collapsableIndicator: UIImageView!
     @IBOutlet weak var lockedButton: UIButton!
     @IBOutlet weak var publishControl: ModulePublishControl!
+    @IBOutlet weak var publishControlGuide: UIView!
+    @IBOutlet weak var contentStackViewTrailingConstraint: NSLayoutConstraint!
 
     var isExpanded = true
     var onTap: (() -> Void)?
@@ -73,6 +75,9 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         accessibilityIdentifier = "ModuleList.\(section)"
 
         publishControl.isHidden = !shouldShowPublishControl
+        publishControlGuide.isHidden = !shouldShowPublishControl
+        contentStackViewTrailingConstraint.constant = shouldShowPublishControl ? 0 : 16
+        publishControl.constraintIconsCenterTo(publishControlGuide)
         updatePublishedState(module)
 
         // Do an instant update because the subscription is delayed

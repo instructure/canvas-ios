@@ -30,6 +30,7 @@ class ModuleItemCell: UITableViewCell {
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
     @IBOutlet weak var completedStatusView: UIImageView!
     @IBOutlet weak var publishControl: ModulePublishControl!
+    @IBOutlet weak var contentStackViewTrailingConstraint: NSLayoutConstraint!
 
     private let env = AppEnvironment.shared
     private var publishStateObservers = Set<AnyCancellable>()
@@ -94,6 +95,7 @@ class ModuleItemCell: UITableViewCell {
         dueLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueLabel"
 
         publishControl.isHidden = !shouldShowPublishControl
+        contentStackViewTrailingConstraint.constant = shouldShowPublishControl ? 0 : 16
 
         // We have to do an instant update because the update via subscription is delayed
         updatePublishControl(item)
