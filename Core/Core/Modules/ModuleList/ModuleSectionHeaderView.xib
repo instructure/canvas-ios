@@ -13,8 +13,8 @@
             <connections>
                 <outlet property="collapsableIndicator" destination="Cc0-w5-zrP" id="WP6-7I-9g1"/>
                 <outlet property="lockedButton" destination="x61-b5-ndv" id="RUM-F9-hDo"/>
+                <outlet property="publishIndicatorView" destination="aaS-Cs-4pH" id="sWv-rZ-Ry8"/>
                 <outlet property="publishMenuButton" destination="qoD-av-3pS" id="AzC-BO-a5K"/>
-                <outlet property="publishedIconView" destination="gfV-EK-A87" id="IIa-rP-55K"/>
                 <outlet property="titleLabel" destination="4NE-AM-KWx" id="rib-Ss-7wW"/>
             </connections>
         </placeholder>
@@ -70,14 +70,14 @@
                                 <action selector="lockTapped" destination="-1" eventType="primaryActionTriggered" id="krv-OU-TIo"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="publishSolid" translatesAutoresizingMaskIntoConstraints="NO" id="gfV-EK-A87" customClass="PublishedIconView" customModule="Core">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aaS-Cs-4pH" customClass="ModuleItemPublishIndicatorView" customModule="Core" customModuleProvider="target">
                             <rect key="frame" x="291" y="0.5" width="24" height="24"/>
-                            <color key="tintColor" red="0.0" green="0.67450980392156867" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="24" id="7Gg-D8-aK5"/>
-                                <constraint firstAttribute="height" constant="24" id="zty-p2-3gn"/>
+                                <constraint firstAttribute="width" constant="24" id="7LC-8C-zkS"/>
+                                <constraint firstAttribute="height" constant="24" id="hNd-ut-4Ze"/>
                             </constraints>
-                        </imageView>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoD-av-3pS">
                             <rect key="frame" x="319" y="0.5" width="24" height="24"/>
                             <constraints>
@@ -130,19 +130,18 @@
     </objects>
     <designables>
         <designable name="4NE-AM-KWx">
-            <size key="intrinsicContentSize" width="126" height="24"/>
+            <size key="intrinsicContentSize" width="129.5" height="24"/>
         </designable>
         <designable name="Cc0-w5-zrP">
             <size key="intrinsicContentSize" width="24" height="24"/>
         </designable>
         <designable name="x61-b5-ndv">
-            <size key="intrinsicContentSize" width="24" height="24"/>
+            <size key="intrinsicContentSize" width="30" height="30"/>
         </designable>
     </designables>
     <resources>
         <image name="miniArrowUpSolid" width="24" height="24"/>
         <image name="moreLine" width="24" height="24"/>
-        <image name="publishSolid" width="24" height="24"/>
         <namedColor name="backgroundLight">
             <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

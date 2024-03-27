@@ -19,33 +19,6 @@
 import Combine
 import SwiftUI
 
-// TODO: remove
-extension ModulePublishProgressViewModel {
-    final class DummyInteractor {
-        typealias State = ModulePublishProgressViewModel.ViewState
-        let state = CurrentValueSubject<State, Never>(.inProgress)
-        let progress = CurrentValueSubject<Double, Never>(0)
-
-        func start(shouldFail: Bool) {
-            let total = 7
-            let errorTreshold = 5
-            let interval = 0.5
-            for i in 0...total {
-                guard !shouldFail || i <= errorTreshold else { break }
-                DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * interval) { [weak self] in
-                    let stateValue: State = switch i {
-                    case total: .completed
-                    case errorTreshold: shouldFail ? .error : .inProgress
-                    default: .inProgress
-                    }
-                    self?.state.send(stateValue)
-                    self?.progress.send(Double(i) / Double(total))
-                }
-            }
-        }
-    }
-}
-
 final class ModulePublishProgressViewModel: ObservableObject {
 
     enum ViewState {
@@ -101,8 +74,8 @@ final class ModulePublishProgressViewModel: ObservableObject {
 
     private let action: ModulePublishAction
     private let allModules: Bool
-
-    private let interactor: DummyInteractor
+    private let moduleIds: [String]
+    private let interactor: ModulePublishInteractor
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -110,47 +83,14 @@ final class ModulePublishProgressViewModel: ObservableObject {
     init(
         action: ModulePublishAction,
         allModules: Bool,
-        interactor: DummyInteractor = .init(),
-        router: Router
+        moduleIds: [String],
+        interactor: ModulePublishInteractor,
+        router: Router = AppEnvironment.shared.router
     ) {
         self.action = action
         self.allModules = allModules
+        self.moduleIds = moduleIds
         self.interactor = interactor
-
-        interactor.state
-            .assign(to: &$state)
-
-        interactor.state
-            .map {
-                switch $0 {
-                case .inProgress:
-                        .accentColor
-                case .completed:
-                        .backgroundSuccess
-                case .error:
-                        .backgroundDanger
-                }
-            }
-            .assign(to: &$progressViewColor)
-
-        interactor.state
-            .map {
-                switch $0 {
-                case .inProgress:
-                        .cancel
-                case .completed:
-                        .done
-                case .error:
-                        .done
-                }
-            }
-            .assign(to: &$trailingBarButton)
-
-        interactor.progress
-            .assign(to: &$progress)
-
-        // TODO: remove
-        interactor.start(shouldFail: !allModules)
 
         didTapDismiss
             .sink { router.dismiss($0) }
@@ -158,7 +98,7 @@ final class ModulePublishProgressViewModel: ObservableObject {
 
         didTapCancel
             .sink { weakVC, snackBarTitle in
-                // TODO: send cancel request silently: no spinner, no errors
+                interactor.cancelBulkPublish(moduleIds: moduleIds, action: action)
                 let snackBarViewModel = weakVC.value.findSnackBarViewModel()
                 router.dismiss(weakVC) {
                     snackBarViewModel?.showSnack(snackBarTitle)
@@ -168,6 +108,52 @@ final class ModulePublishProgressViewModel: ObservableObject {
 
         didTapDone
             .sink { router.dismiss($0) }
+            .store(in: &subscriptions)
+
+        interactor
+            .bulkPublish(moduleIds: moduleIds, action: action)
+            .removeDuplicates()
+            .mapToResult()
+            .sink { [weak self] state in
+                guard let self else { return }
+                progress = {
+                    guard case .success(let progressObject) = state else {
+                        return 0
+                    }
+
+                    return Double(progressObject.progress)
+                }()
+                trailingBarButton = {
+                    switch state {
+                    case .success(let progressObject):
+                        switch progressObject {
+                        case .completed: return .done
+                        case .running: return .cancel
+                        }
+                    case .failure: return .done
+                    }
+                }()
+                progressViewColor = {
+                    switch state {
+                    case .success(let progressObject):
+                        switch progressObject {
+                        case .completed: return .backgroundSuccess
+                        case .running: return .accentColor
+                        }
+                    case .failure: return .backgroundDanger
+                    }
+                }()
+                self.state = {
+                    switch state {
+                    case .success(let progressObject):
+                        switch progressObject {
+                        case .completed: return .completed
+                        case .running: return .inProgress
+                        }
+                    case .failure: return .error
+                    }
+                }()
+            }
             .store(in: &subscriptions)
     }
 }

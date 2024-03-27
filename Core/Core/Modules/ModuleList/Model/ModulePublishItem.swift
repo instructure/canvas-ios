@@ -18,7 +18,7 @@
 
 import Foundation
 
-enum ModulePublishAction {
+enum ModulePublishAction: Equatable {
     enum Subject: Equatable {
         case modulesAndItems
         case onlyModules
