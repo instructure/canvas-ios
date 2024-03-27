@@ -45,7 +45,7 @@ struct DeterminateCircleProgressViewStyle: ProgressViewStyle {
                     color,
                     lineWidth: lineWidth
                 )
-                .opacity(0.2)
+                .opacity(ProgressViewStyleConstants.backgroundOpacity)
             Circle()
                 .trim(from: 0, to: progress)
                 .stroke(

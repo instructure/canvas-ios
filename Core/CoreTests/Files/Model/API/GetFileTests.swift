@@ -36,7 +36,7 @@ class GetFileTests: CoreTestCase {
     }
 
     func testUpdateFile() {
-        let useCase = UpdateFile(fileID: "1", name: "f", locked: true, hidden: false, unlockAt: nil, lockAt: nil)
+        let useCase = UpdateFile(request: PutFileRequest(fileID: "1", name: "f", locked: true, hidden: false, unlockAt: nil, lockAt: nil))
         XCTAssertEqual(useCase.cacheKey, nil)
         XCTAssertEqual(useCase.request.body?.locked, true)
         XCTAssertEqual(useCase.scope, .where(#keyPath(File.id), equals: "1"))

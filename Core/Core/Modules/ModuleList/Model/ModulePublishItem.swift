@@ -18,15 +18,38 @@
 
 import Foundation
 
-struct ModulePublishItem {
-    enum Action: Equatable {
-        case publish
-        case unpublish
+enum ModulePublishAction {
+    enum Subject: Equatable {
+        case modulesAndItems
+        case onlyModules
     }
 
+    case publish(Subject?)
+    case unpublish(Subject?)
+
+    var isPublish: Bool {
+        switch self {
+        case .publish: true
+        case .unpublish: false
+        }
+    }
+
+    var subject: Subject? {
+        switch self {
+        case .publish(let actionSubject): actionSubject
+        case .unpublish(let actionSubject): actionSubject
+        }
+    }
+
+    static let publish = Self.publish(nil)
+    static let unpublish = Self.unpublish(nil)
+}
+
+struct ModulePublishItem {
     let title: String
     let confirmMessage: String
-    let action: Action
+    let action: ModulePublishAction
+
     var icon: UIImage {
         switch action {
         case .publish: return .completeLine

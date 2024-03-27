@@ -31,6 +31,9 @@ public class SnackBarViewModel: ObservableObject {
     private var stack: [String] = []
     private let onScreenTime: CGFloat = 2
 
+    public init() {
+    }
+
     // MARK: - Inputs
 
     public func showSnack(_ snack: String) {

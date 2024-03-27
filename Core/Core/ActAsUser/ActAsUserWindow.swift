@@ -70,6 +70,17 @@ public class ActAsUserWindow: UIWindow {
             }
         }
     }
+
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle else { return }
+
+        NotificationCenter.default.post(
+            name: .windowUserInterfaceStyleDidChange,
+            object: nil,
+            userInfo: ["style": traitCollection.userInterfaceStyle]
+        )
+    }
 }
 
 class ActAsUserOverlay: UIView {
