@@ -409,7 +409,13 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             : NSLocalizedString("Instructions", bundle: .student, comment: "")
 
         let prefix = OfflineFolderPrefix.assignment.rawValue
-        let rootURL = URL.Directories.documents.appendingPathComponent("\(prefix)-\(assignmentID)")
+        let rootURL = URL.Directories.documents.appendingPathComponent(
+            URL.Paths.Offline.courseSectionFolder(
+                sessionId: env.currentSession?.uniqueID ?? "",
+                courseId: courseID,
+                sectionName: OfflineContainerPrefix.Assignments.rawValue
+            )
+        ).appendingPathComponent("\(prefix)-\(assignmentID)")
         let offlinePath = rootURL.appendingPathComponent("body.html")
         if offlineModeInteractor?.isNetworkOffline() == true && FileManager.default.fileExists(atPath: offlinePath.path) {
             webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)

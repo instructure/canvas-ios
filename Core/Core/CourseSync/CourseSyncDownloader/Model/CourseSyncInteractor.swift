@@ -193,7 +193,6 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             return Just(()).eraseToAnyPublisher()
         }
 
-        print(entry.tabs[tabIndex])
         switch entry.tabs[tabIndex].selectionState {
         case .deselected:
             return interactor.cleanContent(courseId: entry.courseId)

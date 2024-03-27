@@ -164,7 +164,13 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
         if html.isEmpty { html = NSLocalizedString("No Content", comment: "") }
 
         let prefix = OfflineFolderPrefix.quiz.rawValue
-        let rootURL = URL.Directories.documents.appendingPathComponent("\(prefix)-\(quizID)")
+        let rootURL = URL.Directories.documents.appendingPathComponent(
+            URL.Paths.Offline.courseSectionFolder(
+                sessionId: env.currentSession?.uniqueID ?? "",
+                courseId: courses.first?.id ?? "",
+                sectionName: OfflineContainerPrefix.Quizzes.rawValue
+            )
+        ).appendingPathComponent("\(prefix)-\(quizID)")
         let offlinePath = rootURL.appendingPathComponent("body.html")
         if offlineModeInteractor?.isNetworkOffline() == true && FileManager.default.fileExists(atPath: offlinePath.path) {
             // Offline image are stored in the Documents folder which cannot be accessed by the webview by default

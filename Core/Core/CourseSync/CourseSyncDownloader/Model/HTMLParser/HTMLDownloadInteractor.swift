@@ -54,17 +54,23 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     }
 
     func save(_ result: (data: Data, response: URLResponse), courseId: String, prefix: String) -> AnyPublisher<URL, Error> {
-        let rootURL = URL.Directories.documents.appendingPathComponent(URL.Paths.Offline.courseSectionFolder(sessionId: loginSession.uniqueID, courseId: courseId, sectionName: sectionName))
+        let rootURL = URL.Directories.documents.appendingPathComponent(
+            URL.Paths.Offline.courseSectionFolder(
+                sessionId: loginSession.uniqueID,
+                courseId: courseId,
+                sectionName: sectionName
+            )
+        ).appendingPathComponent(prefix)
         var saveURL = rootURL.appendingPathComponent(UUID.string)
         if let url = result.response.url {
-            saveURL = rootURL.appendingPathComponent("\(prefix)/\(url.lastPathComponent)")
+            let fileName = url.lastPathComponent.urlSafePercentEncoded
+            saveURL = rootURL.appendingPathComponent(fileName)
         }
 
         do {
-            let rootURL = rootURL.appendingPathComponent("\(prefix)")
             try FileManager.default.createDirectory(atPath: rootURL.path, withIntermediateDirectories: true, attributes: nil)
             FileManager.default.createFile(atPath: saveURL.path, contents: nil)
-            try result.data.write(to: saveURL, options: [.atomic, .noFileProtection])
+            try result.data.write(to: saveURL, options: .atomic)
             return Result.Publisher(saveURL).eraseToAnyPublisher()
         } catch {
             print("\(error)")

@@ -129,7 +129,7 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
             URL.Paths.Offline.courseSectionFolder(
                 sessionId: env.currentSession?.uniqueID ?? "",
                 courseId: courses.first?.id ?? "",
-                sectionName: "Pages"
+                sectionName: OfflineContainerPrefix.Pages.rawValue
             )
         ).appendingPathComponent("\(prefix)-\(page.id)")
         let offlinePagePath = rootURL.appendingPathComponent("body.html")
