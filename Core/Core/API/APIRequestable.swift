@@ -224,7 +224,7 @@ extension APIRequestable {
             components.percentEncodedQueryItems = percentEncodedQueryItems + actAsUserQueryItem
         } else if !queryItems.isEmpty {
             components.queryItems = (components.queryItems ?? []) + self.queryItems + actAsUserQueryItem
-        } else {
+        } else if !actAsUserQueryItem.isEmpty {
             components.queryItems = (components.queryItems ?? []) + actAsUserQueryItem
         }
 

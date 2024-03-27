@@ -173,10 +173,14 @@ class SubmissionButtonPresenter: NSObject {
             let submissionId = assignment.submission?.id,
             let userID = assignment.submission?.userID,
             let course: Course = env.database.viewContext.fetch(scope: courseScope).first
-        else { return }
+        else {
+            return
+        }
 
-        env.api.makeRequest(CanvaDocsSessionRequest(submissionId: submissionId)) { [weak self] response, _, _ in
-            guard let self = self, let docViewerSessionURL = response?.canvadocs_session_url else { return }
+        env.api.makeRequest(CanvaDocsSessionRequest(submissionId: submissionId), refreshToken: false) { [weak self] response, _, _ in
+            guard let self = self, let docViewerSessionURL = response?.canvadocs_session_url else {
+                return
+            }
 
             let viewModel = StudentAnnotationSubmissionViewModel(documentURL: docViewerSessionURL.rawValue,
                                                                  courseID: assignment.courseID,
