@@ -34,11 +34,13 @@ class BulkPublishInteractor {
             }
         }
 
-        public var progress: Float? {
-            if case .running(let progress) = self {
+        public var progress: Float {
+            switch self {
+            case .running(let progress):
                 return progress
+            case .completed:
+                return 1
             }
-            return nil
         }
     }
 
@@ -72,10 +74,6 @@ class BulkPublishInteractor {
 
     deinit {
         bulkPublishTask?.cancel()
-        for subscription in subscriptions {
-            subscription.cancel()
-        }
-        subscriptions.removeAll()
     }
 
     private func sendBulkPublishRequest() {

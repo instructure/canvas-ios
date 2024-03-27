@@ -110,72 +110,50 @@ final class ModulePublishProgressViewModel: ObservableObject {
             .sink { router.dismiss($0) }
             .store(in: &subscriptions)
 
-        let publishTask = interactor
+        interactor
             .bulkPublish(moduleIds: moduleIds, action: action)
             .removeDuplicates()
-            .mapToResult() // This is to make it connectable, the stream will never fail but failure will be received as a result value
-            .share()
-            .makeConnectable()
-
-        publishTask
-            .compactMap { state -> Double? in
-                guard case .success(let progressObject) = state,
-                      let progress = progressObject.progress else {
-                    return nil
-                }
-
-                return Double(progress)
-            }
-            .assign(to: &$progress)
-
-        publishTask
-            .map { state -> TrailingBarButton in
-                switch state {
-                case .success(let progressObject):
-                    switch progressObject {
-                    case .completed: return .done
-                    case .running: return .cancel
+            .mapToResult()
+            .sink { [weak self] state in
+                guard let self else { return }
+                progress = {
+                    guard case .success(let progressObject) = state else {
+                        return 0
                     }
-                case .failure: return .done
-                }
-            }
-            .assign(to: &$trailingBarButton)
 
-        publishTask
-            .map { state -> Color in
-                switch state {
-                case .success(let progressObject):
-                    switch progressObject {
-                    case .completed: return .backgroundSuccess
-                    case .running: return .accentColor
+                    return Double(progressObject.progress)
+                }()
+                trailingBarButton = {
+                    switch state {
+                    case .success(let progressObject):
+                        switch progressObject {
+                        case .completed: return .done
+                        case .running: return .cancel
+                        }
+                    case .failure: return .done
                     }
-                case .failure: return .backgroundDanger
-                }
-            }
-            .assign(to: &$progressViewColor)
-
-        publishTask
-            .map { state -> ViewState in
-                switch state {
-                case .success(let progressObject):
-                    switch progressObject {
-                    case .completed: return .completed
-                    case .running: return .inProgress
+                }()
+                progressViewColor = {
+                    switch state {
+                    case .success(let progressObject):
+                        switch progressObject {
+                        case .completed: return .backgroundSuccess
+                        case .running: return .accentColor
+                        }
+                    case .failure: return .backgroundDanger
                     }
-                case .failure: return .error
-                }
+                }()
+                self.state = {
+                    switch state {
+                    case .success(let progressObject):
+                        switch progressObject {
+                        case .completed: return .completed
+                        case .running: return .inProgress
+                        }
+                    case .failure: return .error
+                    }
+                }()
             }
-            .assign(to: &$state)
-
-        publishTask
-            .connect()
             .store(in: &subscriptions)
-    }
-
-    deinit {
-        for subscription in subscriptions {
-            subscription.cancel()
-        }
-        subscriptions.removeAll()
     }
 }

@@ -193,7 +193,8 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
         bulkPublishInteractors.append(interactor)
         modulesUpdating.value.formUnion(moduleIds)
 
-        interactor
+        var subscription: AnyCancellable?
+        subscription = interactor
             .progress
             .sink(receiveCompletion: { [weak self, weak interactor] result in
                 guard let self, let interactor else { return }
@@ -203,9 +204,9 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
                 if let index = bulkPublishInteractors.firstIndex(of: interactor) {
                     bulkPublishInteractors.remove(at: index)
                 }
+                subscription?.cancel()
             }, receiveValue: { _ in
             })
-            .store(in: &subscriptions)
 
         return interactor.progress.eraseToAnyPublisher()
     }
