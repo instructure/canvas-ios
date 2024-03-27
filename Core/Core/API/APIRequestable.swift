@@ -220,12 +220,12 @@ extension APIRequestable {
             }
         }()
 
-        if !queryItems.isEmpty || !percentEncodedQueryItems.isEmpty {
-            if useExtendedPercentEncoding {
-                components.percentEncodedQueryItems = percentEncodedQueryItems + actAsUserQueryItem
-            } else {
-                components.queryItems = (components.queryItems ?? []) + self.queryItems + actAsUserQueryItem
-            }
+        if useExtendedPercentEncoding, !percentEncodedQueryItems.isEmpty {
+            components.percentEncodedQueryItems = percentEncodedQueryItems + actAsUserQueryItem
+        } else if !queryItems.isEmpty {
+            components.queryItems = (components.queryItems ?? []) + self.queryItems + actAsUserQueryItem
+        } else {
+            components.queryItems = (components.queryItems ?? []) + actAsUserQueryItem
         }
 
         // The conditional path prefixing *should* have made this impossible to fail
