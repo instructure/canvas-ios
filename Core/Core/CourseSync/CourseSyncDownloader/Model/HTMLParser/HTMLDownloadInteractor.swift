@@ -63,7 +63,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         ).appendingPathComponent(prefix)
         var saveURL = rootURL.appendingPathComponent(UUID.string)
         if let url = result.response.url {
-            let fileName = url.lastPathComponent.urlSafePercentEncoded
+            let fileName = url.lastPathComponent
             saveURL = rootURL.appendingPathComponent(fileName)
         }
 
