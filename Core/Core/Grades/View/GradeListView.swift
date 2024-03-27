@@ -444,7 +444,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         }
         .listRowInsets(EdgeInsets())
         .iOS16RemoveListRowSeparatorLeadingInset()
-        .swipeActions(edge: .trailing) { revertWhatIfScoreSwipeButton }
+        .swipeActions(edge: .trailing) { revertWhatIfScoreSwipeButton() }
         .accessibilityAction(named: Text("Edit What-if score")) {
             isScoreEditorPresented.toggle()
         }
@@ -472,16 +472,19 @@ public struct GradeListView: View, ScreenViewTrackable {
         }
     }
 
-    private var revertWhatIfScoreSwipeButton: some View {
-        Button {
-            viewModel.isShowingRevertDialog = true
-        } label: {
-            Image(uiImage: .replyLine)
-                .resizable()
-                .frame(width: 24, height: 24)
-                .foregroundColor(Color.textLightest)
+    @ViewBuilder
+    private func revertWhatIfScoreSwipeButton() -> some View {
+        if viewModel.isWhatIfScoreModeOn {
+            Button {
+                viewModel.isShowingRevertDialog = true
+            } label: {
+                Image(uiImage: .replyLine)
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .foregroundColor(Color.textLightest)
+            }
+            .tint(Color.backgroundDark)
         }
-        .tint(Color.backgroundDark)
     }
 }
 
