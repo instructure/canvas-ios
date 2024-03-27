@@ -226,6 +226,8 @@ extension APIRequestable {
             } else {
                 components.queryItems = (components.queryItems ?? []) + self.queryItems + actAsUserQueryItem
             }
+        } else if !actAsUserQueryItem.isEmpty {
+            components.queryItems = actAsUserQueryItem
         }
 
         // The conditional path prefixing *should* have made this impossible to fail

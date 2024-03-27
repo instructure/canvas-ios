@@ -174,6 +174,11 @@ class APIRequestableTests: XCTestCase {
         XCTAssertEqual(try GetQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: "78"), expected)
     }
 
+    func testActAsUserIDWhenThereAreNoURLParams() {
+        let expected = expectedUrlRequest(path: "api/v1/date?as_user_id=78")
+        XCTAssertEqual(try GetDate().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: "78"), expected)
+    }
+
     func testUrlRequest() {
         var expected = expectedUrlRequest(path: "api/v1/post")
         expected.httpMethod = "POST"
