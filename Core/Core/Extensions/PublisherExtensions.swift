@@ -49,13 +49,10 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
     ) -> AnyPublisher<[Output.Element], Error> {
         let rootURL = URL.Directories.documents
             .appendingPathComponent(URL.Paths.Offline.courseSectionFolder(sessionId: htmlParser.sessionId, courseId: courseId, sectionName: htmlParser.sectionName))
-        return self.flatMap { dataArray in
+        return self
+            .flatMap { dataArray in
                 Publishers.Sequence(sequence: dataArray)
                     .setFailureType(to: Error.self)
-                    .map { element in
-                        try? FileManager.default.removeItem(at: rootURL)
-                        return element
-                    }
                     .flatMap { element in
                         let value = element[keyPath: keyPath]
                         let resourceId = element[keyPath: id]
@@ -95,15 +92,16 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
         baseURLKey: ReferenceWritableKeyPath<Output.Element, URL?>? = nil,
         htmlParser: HTMLParser
     ) -> AnyPublisher<[Output.Element], Error> {
-        let rootURL = URL.Directories.documents
-            .appendingPathComponent(URL.Paths.Offline.courseSectionFolder(sessionId: htmlParser.sessionId, courseId: courseId, sectionName: htmlParser.sectionName))
-        return self.flatMap { dataArray in
+        let rootURL = URL.Directories.documents.appendingPathComponent(
+            URL.Paths.Offline.courseSectionFolder(
+                sessionId: htmlParser.sessionId,
+                courseId: courseId,
+                sectionName: htmlParser.sectionName)
+        )
+        return self
+            .flatMap { dataArray in
                 Publishers.Sequence(sequence: dataArray)
                     .setFailureType(to: Error.self)
-                    .map { element in
-                        try? FileManager.default.removeItem(at: rootURL)
-                        return element
-                    }
                     .flatMap { element in
                         let value = element[keyPath: keyPath] ?? ""
                         let resourceId = element[keyPath: id]
@@ -122,9 +120,8 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                         let saveFolder = rootURL.appendingPathComponent("\(htmlParser.prefix)-\(resourceId)")
                         let saveURL = saveFolder.appendingPathComponent("body.html")
                         do {
-
                             try FileManager.default.createDirectory(atPath: saveFolder.path, withIntermediateDirectories: true, attributes: nil)
-                            FileManager.default.createFile(atPath: saveURL.path, contents: nil)
+                            let result = FileManager.default.createFile(atPath: saveURL.path, contents: nil)
                             try parsedAttribute.write(to: saveURL, atomically: true, encoding: .utf8)
                         } catch {
                             Swift.print("ERROR: \(error)")

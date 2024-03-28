@@ -68,9 +68,8 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         }
 
         do {
-            try FileManager.default.createDirectory(atPath: rootURL.path, withIntermediateDirectories: true, attributes: nil)
-            FileManager.default.createFile(atPath: saveURL.path, contents: nil)
-            try result.data.write(to: saveURL, options: .atomic)
+            try FileManager.default.createDirectory(at: rootURL, withIntermediateDirectories: true, attributes: nil)
+            FileManager.default.createFile(atPath: saveURL.path, contents: result.data, attributes: nil)
             return Result.Publisher(saveURL).eraseToAnyPublisher()
         } catch {
             print("\(error)")

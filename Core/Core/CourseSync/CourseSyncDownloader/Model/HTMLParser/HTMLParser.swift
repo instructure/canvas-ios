@@ -56,13 +56,14 @@ public class HTMLParser {
         let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex)
 
         return imageURLs.publisher
-            .flatMap(maxPublishers: .max(1)) { url in
+            .flatMap(maxPublishers: .max(5)) { url in
                 return self.interactor.download(url)
                     .map {
                         return (url, $0)
                     }
             }
-            .flatMap(maxPublishers: .max(1)) { [unowned self] (url, result) in
+            .receive(on: DispatchQueue.main)
+            .flatMap(maxPublishers: .max(5)) { [unowned self] (url, result) in
                 return self.interactor.save(result, courseId: courseId, prefix: "\(self.prefix)-\(resourceId)")
                     .map {
                         return (url, $0)

@@ -198,26 +198,34 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             return interactor.cleanContent(courseId: entry.courseId)
                 .eraseToAnyPublisher()
         default:
-            return interactor.getContent(courseId: entry.courseId)
-                .receive(on: scheduler)
-                .updateLoadingState {
-                    unownedSelf.setState(
-                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                        state: .loading(nil)
-                    )
+            return Just(()).eraseToAnyPublisher()
+                .flatMap {
+                    interactor.cleanContent(courseId: entry.courseId)
+                        .eraseToAnyPublisher()
                 }
-                .updateDownloadedState {
-                    unownedSelf.setState(
-                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                        state: .downloaded
-                    )
-                }
-                .catch { _ in
-                    unownedSelf.setState(
-                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                        state: .error
-                    )
-                    return Just(()).eraseToAnyPublisher()
+                .flatMap { [scheduler] in
+                    interactor.getContent(courseId: entry.courseId)
+                        .receive(on: scheduler)
+                        .updateLoadingState {
+                            unownedSelf.setState(
+                                selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                                state: .loading(nil)
+                            )
+                        }
+                        .updateDownloadedState {
+                            unownedSelf.setState(
+                                selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                                state: .downloaded
+                            )
+                        }
+                        .catch { _ in
+                            unownedSelf.setState(
+                                selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                                state: .error
+                            )
+                            return Just(()).eraseToAnyPublisher()
+                        }
+                        .eraseToAnyPublisher()
                 }
                 .eraseToAnyPublisher()
         }
