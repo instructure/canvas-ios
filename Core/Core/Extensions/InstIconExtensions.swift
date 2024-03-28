@@ -124,6 +124,8 @@ public extension UIImage {
     static var ltiSolid: UIImage { UIImage(named: "ltiSolid", in: .core, compatibleWith: nil)! }
     static var markerLine: UIImage { UIImage(named: "markerLine", in: .core, compatibleWith: nil)! }
     static var markerSolid: UIImage { UIImage(named: "markerSolid", in: .core, compatibleWith: nil)! }
+    static var masteryLogoLine: UIImage { UIImage(named: "masteryLogoLine", in: .core, compatibleWith: nil)! }
+    static var masteryLogoSolid: UIImage { UIImage(named: "masteryLogoSolid", in: .core, compatibleWith: nil)! }
     static var masteryPathsLine: UIImage { UIImage(named: "masteryPathsLine", in: .core, compatibleWith: nil)! }
     static var masteryPathsSolid: UIImage { UIImage(named: "masteryPathsSolid", in: .core, compatibleWith: nil)! }
     static var miniArrowDownLine: UIImage { UIImage(named: "miniArrowDownLine", in: .core, compatibleWith: nil)! }
@@ -363,6 +365,8 @@ public extension Image {
     static var ltiSolid: Image { Image("ltiSolid", bundle: .core) }
     static var markerLine: Image { Image("markerLine", bundle: .core) }
     static var markerSolid: Image { Image("markerSolid", bundle: .core) }
+    static var masteryLogoLine: Image { Image("masteryLogoLine", bundle: .core) }
+    static var masteryLogoSolid: Image { Image("masteryLogoSolid", bundle: .core) }
     static var masteryPathsLine: Image { Image("masteryPathsLine", bundle: .core) }
     static var masteryPathsSolid: Image { Image("masteryPathsSolid", bundle: .core) }
     static var miniArrowDownLine: Image { Image("miniArrowDownLine", bundle: .core) }

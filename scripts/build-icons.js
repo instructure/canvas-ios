@@ -90,6 +90,7 @@ const whitelist = [
   'lock',
   'lti',
   'marker',
+  'mastery-logo',
   'mastery-paths',
   'mini-arrow-down',
   'mini-arrow-end',

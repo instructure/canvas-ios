@@ -178,6 +178,7 @@ public class LTITools: NSObject {
                 completionHandler(true)
             } else {
                 let safari = SFSafariViewController(url: url)
+                safari.modalPresentationCapturesStatusBarAppearance = true
                 self.env.router.show(safari, from: view, options: .modal(.overFullScreen)) {
                     completionHandler(true)
                 }
