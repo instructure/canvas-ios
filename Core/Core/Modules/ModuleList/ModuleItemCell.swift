@@ -291,3 +291,14 @@ private extension ModuleItem {
         type.isFile || published == false || canBeUnpublished
     }
 }
+
+private extension FileAvailability {
+    var a11yLabel: String {
+        switch self {
+        case .published: return String(localized: "published")
+        case .unpublished: return String(localized: "unpublished")
+        case .hidden: return String(localized: "only available with link")
+        case .scheduledAvailability: return String(localized: "scheduled availability")
+        }
+    }
+}
