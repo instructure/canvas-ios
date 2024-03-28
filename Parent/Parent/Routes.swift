@@ -147,7 +147,20 @@ let router = Router(routes: [
     RouteHandler("/about") { _, _, _ in
         AboutAssembly.makeAboutViewController()
     },
+
+    RouteHandler("/:context/:contextID/pages/:url") {
+        pageViewController(url: $0, params: $1, userInfo: $2)
+    },
+
+    RouteHandler("/:context/:contextID/wiki/:url") {
+        pageViewController(url: $0, params: $1, userInfo: $2)
+    },
 ])
+
+private func pageViewController(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
+    return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
+}
 
 private func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard url.queryItems?.contains(where: { $0.name == "preview" }) != true else {

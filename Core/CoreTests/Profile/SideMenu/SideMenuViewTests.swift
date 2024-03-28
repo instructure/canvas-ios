@@ -27,7 +27,7 @@ class SideMenuViewTests: CoreTestCase {
         super.setUp()
         api.mock(GetAccountHelpLinks(for: .student), value: nil)
         api.mock(GetContextPermissions(context: .account("self"), permissions: [.becomeUser]), value: .make(become_user: true))
-        api.mock(GetGlobalNavExternalPlacements(), value: [])
+        api.mock(GetGlobalNavExternalToolsPlacements(enrollment: .student), value: [])
         api.mock(GetUserSettings(userID: "self"), value: .make())
         api.mock(GetUserProfile(userID: "self"), value: .make(
             name: "Eve",
