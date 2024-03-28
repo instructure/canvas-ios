@@ -82,7 +82,8 @@ struct SideMenuMainSection: View {
                 PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
                     launchLTI(url: tool.url)
                 } label: {
-                    SideMenuItem(id: "lti.\(tool.domain ?? "").\(tool.definitionID)", image: imageForDomain(tool.domain),
+                    SideMenuItem(id: "lti.\(tool.domain ?? "").\(tool.definitionID)",
+                                 image: imageForDomain(tool.domain),
                                  title: Text("\(tool.title)", bundle: .core))
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
