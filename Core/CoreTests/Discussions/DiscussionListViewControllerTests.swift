@@ -177,7 +177,10 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.pointsLabel.text, "21 pts")
     }
 
-    private func mockCourseAndAssignmentWith(restrict_quantitative_data: Bool?) {
+    private func mockCourseAndAssignmentWith(
+        restrict_quantitative_data: Bool?,
+        isAnonymousDiscussion: Bool = false
+    ) {
         api.mock(
             GetCourse(courseID: "1"),
             value: .make(
@@ -191,6 +194,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
 
         api.mock(controller.topics, value: [
             .make(
+                anonymous_state: isAnonymousDiscussion ? "anonymous" : nil,
                 assignment: .make(has_overrides: true, points_possible: 21),
                 assignment_id: "1",
                 html_url: URL(string: "/courses/1/discussion_topics/2"),
@@ -241,5 +245,34 @@ class DiscussionListViewControllerTests: CoreTestCase {
         controller.errorView.retryButton.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.errorView.isHidden, true)
         XCTAssertEqual(controller.emptyView.isHidden, false)
+    }
+
+    func testAnonymousDiscussionWhenRedesignIsDisabled() {
+        // Given
+        mockCourseAndAssignmentWith(restrict_quantitative_data: false, isAnonymousDiscussion: true)
+
+        // When
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        // Then
+        let cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? Core.DiscussionListCell
+        XCTAssertEqual(cell?.statusLabel.text, "Not supported")
+        XCTAssertEqual(cell?.contentView.alpha, 0.5)
+    }
+
+    func testAnonymousDiscussionWhenRedesignIsEnabled() {
+        // Given
+        api.mock(GetEnabledFeatureFlagsRequest(context: .course("1")), value: ["react_discussions_post"])
+        mockCourseAndAssignmentWith(restrict_quantitative_data: false, isAnonymousDiscussion: true)
+
+        // When
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        // Then
+        let cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? Core.DiscussionListCell
+        XCTAssertEqual(cell?.statusLabel.text, "Closed")
+        XCTAssertEqual(cell?.contentView.alpha, 1)
     }
 }

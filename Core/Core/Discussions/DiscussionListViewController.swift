@@ -54,7 +54,9 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
         self?.update()
     }
     /** This is required for the router to help decide if the hybrid discussion details or the native one should be launched. */
-    private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context))
+    private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context)) { [weak self] in
+        self?.update()
+    }
     private var offlineModeInteractor: OfflineModeInteractor?
 
     public static func create(context: Context, offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> DiscussionListViewController {
@@ -226,7 +228,7 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
         let cell: DiscussionListCell = tableView.dequeue(for: indexPath)
         let topic = topics[indexPath]
         cell.update(topic: topic, isTeacher: course?.first?.hasTeacherEnrollment == true, color: color)
-        if topic?.anonymousState != nil {
+        if topic?.anonymousState != nil && !featureFlags.isFeatureFlagEnabled(.discussionRedesign) {
             cell.selectionStyle = .none
             cell.contentView.alpha = 0.5
             cell.statusLabel.text = NSLocalizedString("Not supported", bundle: .core, comment: "")
