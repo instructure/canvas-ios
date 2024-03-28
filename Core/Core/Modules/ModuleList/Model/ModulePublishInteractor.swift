@@ -21,7 +21,9 @@ import Combine
 protocol ModulePublishInteractor {
     var isPublishActionAvailable: Bool { get }
     var moduleItemsUpdating: CurrentValueSubject<Set<String>, Never> { get }
+    var modulesUpdating: CurrentValueSubject<Set<String>, Never> { get }
     var statusUpdates: PassthroughSubject<String, Never> { get }
+    var isModulePublishInProgress: Bool { get }
 
     func changeItemPublishedState(
         moduleId: String,
@@ -36,6 +38,22 @@ protocol ModulePublishInteractor {
     func getFilePermission(
         fileContext: ModulePublishInteractorLive.FileContext
     ) -> AnyPublisher<ModulePublishInteractorLive.FilePermission, Error>
+
+    func bulkPublish(
+        moduleIds: [String],
+        action: ModulePublishAction
+    ) -> AnyPublisher<BulkPublishInteractor.PublishProgress, Error>
+
+    func cancelBulkPublish(
+        moduleIds: [String],
+        action: ModulePublishAction
+    )
+}
+
+extension ModulePublishInteractor {
+    var isModulePublishInProgress: Bool {
+        !modulesUpdating.value.isEmpty
+    }
 }
 
 class ModulePublishInteractorLive: ModulePublishInteractor {
@@ -53,13 +71,21 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
     }
     public let isPublishActionAvailable: Bool
     public let moduleItemsUpdating = CurrentValueSubject<Set<String>, Never>(Set())
+    public let modulesUpdating = CurrentValueSubject<Set<String>, Never>(Set())
     public let statusUpdates = PassthroughSubject<String, Never>()
 
     private let courseId: String
+    private let api: API
     private var subscriptions = Set<AnyCancellable>()
+    private var bulkPublishInteractors: [BulkPublishInteractor] = []
 
-    init(app: AppEnvironment.App?, courseId: String) {
+    init(
+        app: AppEnvironment.App? = AppEnvironment.shared.app,
+        courseId: String,
+        api: API = AppEnvironment.shared.api
+    ) {
         self.courseId = courseId
+        self.api = api
         isPublishActionAvailable = app == .teacher && ExperimentalFeature.teacherBulkPublish.isEnabled
     }
 
@@ -81,7 +107,7 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
             .sink(receiveCompletion: { [weak moduleItemsUpdating, weak statusUpdates] result in
                 guard let moduleItemsUpdating else { return }
                 moduleItemsUpdating.value.remove(moduleItemId)
-                statusUpdates?.send(result.moduleItemStatusUpdateText(for: action))
+                statusUpdates?.send(result.publishStatusUpdateText(for: action, isAllModules: false))
             }, receiveValue: {})
             .store(in: &subscriptions)
     }
@@ -146,23 +172,132 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
             }
             .eraseToAnyPublisher()
     }
+
+    // MARK: - Bulk Publish
+
+    /**
+     - returns: A publisher emitting progress state objects.
+     To cancel the bulk publish call the `cancelBulkPublish` method.
+     */
+    func bulkPublish(
+        moduleIds: [String],
+        action: ModulePublishAction
+    ) -> AnyPublisher<BulkPublishInteractor.PublishProgress, Error> {
+        let interactor = BulkPublishInteractor(
+            api: api,
+            courseId: courseId,
+            moduleIds: moduleIds,
+            action: action
+        )
+
+        bulkPublishInteractors.append(interactor)
+        modulesUpdating.value.formUnion(moduleIds)
+
+        var subscription: AnyCancellable?
+        subscription = interactor
+            .progress
+            .sink(receiveCompletion: { [weak self, weak interactor] result in
+                guard let self, let interactor else { return }
+                modulesUpdating.value.subtract(moduleIds)
+                statusUpdates.send(result.publishStatusUpdateText(for: action, isAllModules: moduleIds.count > 1))
+
+                if let index = bulkPublishInteractors.firstIndex(of: interactor) {
+                    bulkPublishInteractors.remove(at: index)
+                }
+                subscription?.cancel()
+            }, receiveValue: { _ in
+            })
+
+        return interactor.progress.eraseToAnyPublisher()
+    }
+
+    func cancelBulkPublish(
+        moduleIds: [String],
+        action: ModulePublishAction
+    ) {
+        let index = bulkPublishInteractors.firstIndex {
+            $0.moduleIds == moduleIds && $0.action == action
+        }
+        guard let index else { return }
+
+        let interactor = bulkPublishInteractors.remove(at: index)
+
+        guard let progressId = interactor.progressId else { return }
+        let request = PostCancelBulkPublishRequest(progressId: progressId)
+        let courseId = courseId
+
+        api
+            .makeRequest(request)
+            .flatMap { _ in
+                ReactiveStore(useCase: GetModules(courseID: courseId))
+                    .forceRefresh()
+            }
+            .sink(receiveCompletion: { [weak self] _ in
+                self?.modulesUpdating.value.subtract(moduleIds)
+            }, receiveValue: { _ in })
+            .store(in: &subscriptions)
+    }
 }
 
 extension Subscribers.Completion<Error> {
 
-    func moduleItemStatusUpdateText(for action: ModulePublishAction) -> String {
+    func publishStatusUpdateText(for action: ModulePublishAction, isAllModules: Bool) -> String {
+        let isPublish = action.isPublish
         switch self {
         case .finished:
-            switch action {
-            case .publish: return String(localized: "Item Published")
-            case .unpublish: return String(localized: "Item Unpublished")
+            switch action.subject {
+            case .none:
+                return isPublish
+                    ? String(localized: "Item Published")
+                    : String(localized: "Item Unpublished")
+            case .onlyModules:
+                if isAllModules {
+                    return isPublish
+                        ? String(localized: "Only Modules published")
+                        : String(localized: "Only Modules unpublished")
+                } else {
+                    return isPublish
+                        ? String(localized: "Only Module published")
+                        : String(localized: "Only Module unpublished")
+                }
+            case .modulesAndItems:
+                if isAllModules {
+                    return isPublish
+                        ? String(localized: "All Modules and all Items published")
+                        : String(localized: "All Modules and all Items unpublished")
+                } else {
+                    return isPublish
+                        ? String(localized: "Module and all Items published")
+                        : String(localized: "Module and all Items unpublished")
+                }
             }
         case .failure:
-            switch action {
-            case .publish: return String(localized: "Failed To Publish Item")
-            case .unpublish: return String(localized: "Failed To Unpublish Item")
+            switch action.subject {
+            case .none:
+                return isPublish
+                    ? String(localized: "Failed To Publish Item")
+                    : String(localized: "Failed To Unpublish Item")
+            case .onlyModules:
+                if isAllModules {
+                    return isPublish
+                        ? String(localized: "Failed to publish only Modules")
+                        : String(localized: "Failed to unpublish only Modules")
+                } else {
+                    return isPublish
+                        ? String(localized: "Failed to publish only Module")
+                        : String(localized: "Failed to unpublish only Module")
+                }
+            case .modulesAndItems:
+                if isAllModules {
+                    return isPublish
+                        ? String(localized: "Failed to publish all Modules and all Items")
+                        : String(localized: "Failed to unpublish all Modules and all Items")
+                } else {
+                    return isPublish
+                        ? String(localized: "Failed to publish Module and all Items")
+                        : String(localized: "Failed to unpublish Module and all Items")
+                }
             }
-
         }
     }
 }

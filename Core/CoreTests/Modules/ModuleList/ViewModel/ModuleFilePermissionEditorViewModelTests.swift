@@ -178,9 +178,10 @@ class ModuleFilePermissionEditorViewModelTests: CoreTestCase {
     }
 }
 
-private class MockModulePublishInteractor: ModulePublishInteractor {
+class MockModulePublishInteractor: ModulePublishInteractor {
     var isPublishActionAvailable = false
     let moduleItemsUpdating = CurrentValueSubject<Set<String>, Never>(Set())
+    let modulesUpdating = CurrentValueSubject<Set<String>, Never>(Set())
     let statusUpdates = PassthroughSubject<String, Never>()
 
     func changeItemPublishedState(
@@ -214,5 +215,18 @@ private class MockModulePublishInteractor: ModulePublishInteractor {
         return getFilePermissionResult!
             .publisher
             .eraseToAnyPublisher()
+    }
+
+    var bulkPublishResult: AnyPublisher<BulkPublishInteractor.PublishProgress, Error>?
+    func bulkPublish(
+        moduleIds: [String],
+        action: ModulePublishAction
+    ) -> AnyPublisher<BulkPublishInteractor.PublishProgress, Error> {
+        bulkPublishResult!
+    }
+
+    var cancelledBulkPublish: (moduleIds: [String], action: ModulePublishAction)?
+    func cancelBulkPublish(moduleIds: [String], action: ModulePublishAction) {
+        cancelledBulkPublish = (moduleIds: moduleIds, action: action)
     }
 }

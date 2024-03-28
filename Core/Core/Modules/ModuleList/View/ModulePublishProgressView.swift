@@ -109,6 +109,7 @@ struct ModulePublishProgressView: View {
             ProgressView(value: viewModel.progress)
                 .progressViewStyle(.determinateBar(color: viewModel.progressViewColor))
                 .padding(.bottom, 8)
+                .animation(.default, value: viewModel.progress)
         }
         .padding(.horizontal, 16)
     }
@@ -171,6 +172,19 @@ private extension View {
     }
 }
 
+#if DEBUG
+
 #Preview {
-    ModulePublishProgressView(viewModel: .init(action: .publish(.onlyModules), allModules: true, router: AppEnvironment.shared.router))
+    let interactor = ModulePublishInteractorPreview(state: .loading)
+    return ModulePublishProgressView(
+        viewModel: .init(
+            action: .publish(.onlyModules),
+            allModules: true,
+            moduleIds: [],
+            interactor: interactor,
+            router: AppEnvironment.shared.router
+        )
+    )
 }
+
+#endif

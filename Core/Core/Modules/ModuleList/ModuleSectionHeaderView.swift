@@ -16,22 +16,33 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 
 class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var collapsableIndicator: UIImageView!
     @IBOutlet weak var lockedButton: UIButton!
     @IBOutlet weak var publishMenuButton: UIButton!
+    @IBOutlet weak var publishIndicatorView: ModuleItemPublishIndicatorView!
 
     var isExpanded = true
     var onTap: (() -> Void)?
     var onLockTap: (() -> Void)?
 
+    private var publishInteractor: ModulePublishInteractor?
+    private var module: Module?
+    private var publishStateObserver: AnyCancellable?
+    private weak var host: UIViewController?
+
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         loadFromXib().backgroundColor = .backgroundLight
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        publishStateObserver = nil
+        publishIndicatorView.prepareForReuse()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -47,23 +58,18 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         publishInteractor: ModulePublishInteractor,
         onTap: @escaping () -> Void
     ) {
+        self.module = module
         self.isExpanded = isExpanded
+        self.publishInteractor = publishInteractor
         self.onTap = onTap
+        self.host = host
         titleLabel.text = module.name
-        publishedIconView.published = module.published
+        publishIndicatorView.isHidden = (module.published == nil)
+        publishIndicatorView.update(availability: module.published == true ? .published : .unpublished)
         lockedButton.isHidden = module.state != .locked
         collapsableIndicator.transform = CGAffineTransform(rotationAngle: isExpanded ? 0 : .pi)
         setupPublishMenu(host: host, publishInteractor: publishInteractor)
-        accessibilityLabel = [
-            module.name,
-            publishedIconView.isHidden ? "" :
-            module.published == true
-                ? NSLocalizedString("published", bundle: .core, comment: "")
-                : NSLocalizedString("unpublished", bundle: .core, comment: ""),
-            isExpanded
-                ? NSLocalizedString("expanded", bundle: .core, comment: "")
-                : NSLocalizedString("collapsed", bundle: .core, comment: ""),
-        ].joined(separator: ", ")
+        updateA11yLabel(module: module)
         accessibilityTraits.insert(.button)
         accessibilityIdentifier = "ModuleList.\(section)"
 
@@ -75,9 +81,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         }
 
         publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
-        accessibilityCustomActions = publishMenuButton.isHidden ? [] : .makePublishModuleA11yActions(host: host) { [weak self] action in
-            self?.didPerformPublishAction(action: action)
-        }
+        subscribeToPublishStateUpdates(module, publishInteractor: publishInteractor)
     }
 
     @IBAction func handleTap() {
@@ -91,6 +95,34 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
 
     @IBAction func lockTapped() {
         onLockTap?()
+    }
+
+    private func updateA11yCustomActions() {
+        guard let host else { return }
+        let isPublishActionsNotAvailable = publishMenuButton.isHidden || !publishMenuButton.isEnabled
+        accessibilityCustomActions = isPublishActionsNotAvailable ? [] : .makePublishModuleA11yActions(host: host) { [weak self] action in
+            self?.didPerformPublishAction(action: action)
+        }
+    }
+
+    private func updateA11yLabel(module: Module) {
+        let publishedState: String = {
+            if !publishMenuButton.isEnabled {
+                return String(localized: "Publish state modification in progress")
+            }
+            return module.published == true
+                ? NSLocalizedString("published", bundle: .core, comment: "")
+                : NSLocalizedString("unpublished", bundle: .core, comment: "")
+
+        }()
+        accessibilityLabel = [
+            module.name,
+            publishIndicatorView.isHidden ? "" :
+            publishedState,
+            isExpanded
+                ? NSLocalizedString("expanded", bundle: .core, comment: "")
+                : NSLocalizedString("collapsed", bundle: .core, comment: ""),
+        ].joined(separator: ", ")
     }
 
     private func setupPublishMenu(
@@ -108,11 +140,43 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     }
 
     private func didPerformPublishAction(action: ModulePublishAction) {
-        guard let sourceViewController = viewController else { return }
+        guard let sourceViewController = viewController,
+              let publishInteractor,
+              let module
+        else { return }
 
-        let router = AppEnvironment.shared.router
-        let viewModel = ModulePublishProgressViewModel(action: action, allModules: false, router: router)
+        let viewModel = ModulePublishProgressViewModel(
+            action: action,
+            allModules: false,
+            moduleIds: [module.id],
+            interactor: publishInteractor
+        )
         let viewController = CoreHostingController(ModulePublishProgressView(viewModel: viewModel))
-        router.show(viewController, from: sourceViewController, options: .modal(isDismissable: true, embedInNav: true))
+        AppEnvironment.shared.router.show(viewController, from: sourceViewController, options: .modal(isDismissable: true, embedInNav: true))
+    }
+
+    private func subscribeToPublishStateUpdates(
+        _ item: Module,
+        publishInteractor: ModulePublishInteractor
+    ) {
+        guard publishStateObserver == nil else { return }
+
+        publishStateObserver = publishInteractor
+            .modulesUpdating
+            .map { $0.contains(item.id) }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] isPublishing in
+                guard let self else { return }
+                publishIndicatorView.update(isPublishInProgress: isPublishing)
+                publishMenuButton.isEnabled = !isPublishing
+                updateA11yCustomActions()
+                updateA11yLabel(module: item)
+            }
+
+        // Do an instant update because the subscription is delayed
+        let isUpdating = publishInteractor.modulesUpdating.value.contains(item.id)
+        publishIndicatorView.update(isPublishInProgress: isUpdating)
+        publishMenuButton.isEnabled = !isUpdating
+        updateA11yCustomActions()
     }
 }
