@@ -117,7 +117,7 @@ final class ModulePublishControl: UIView {
         clearButton.accessibilityElementsHidden = true
     }
 
-    func constraintIconsCenterTo(_ guide: UIView) {
+    func constrainIconsCenterTo(_ guide: UIView) {
         guide.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.deactivate(topBottomStackViewConstraints)

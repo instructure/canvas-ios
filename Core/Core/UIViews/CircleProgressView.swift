@@ -113,6 +113,11 @@ public class CircleProgressView: UIView {
         updateProgress()
     }
 
+    public func setRemovedOnCompletion(to value: Bool) {
+        morph.isRemovedOnCompletion = value
+        rotate.isRemovedOnCompletion = value
+    }
+
     func ring(_ thickness: CGFloat) -> CGPath {
         return UIBezierPath(
             arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2),

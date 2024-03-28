@@ -45,6 +45,8 @@ class ModuleItemPublishIndicatorView: UIView {
     }
 
     func update(isPublishInProgress isUpdating: Bool, animationDuration: TimeInterval) {
+        publishInProgressIndicator.setRemovedOnCompletion(to: !isUpdating)
+
         if isUpdating {
             publishInProgressIndicator.startAnimating()
         }

@@ -77,7 +77,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         publishControl.isHidden = !shouldShowPublishControl
         publishControlGuide.isHidden = !shouldShowPublishControl
         contentStackViewTrailingConstraint.constant = shouldShowPublishControl ? 0 : 16
-        publishControl.constraintIconsCenterTo(publishControlGuide)
+        publishControl.constrainIconsCenterTo(publishControlGuide)
         updatePublishedState(module)
 
         // Do an instant update because the subscription is delayed
