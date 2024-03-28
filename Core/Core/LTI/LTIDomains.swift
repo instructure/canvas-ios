@@ -26,7 +26,7 @@ public enum LTIDomains: String {
     public var icon: Image {
         switch self {
         case .studio: return .studioLine
-        case .masteryConnect: return .masteryLogoLine
+        case .masteryConnect: return .masteryLTI
         default: return Self.defaultIcon
         }
     }
