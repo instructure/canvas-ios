@@ -51,7 +51,7 @@ extension CreateDSCourseRequest {
             end_at: Date? = nil,
             default_view: DSDefaultView? = nil,
             enrollment_term_id: String? = nil,
-            hide_final_grades: Bool = false
+            hide_final_grades: Bool? = nil
         ) {
             self.name = name
             self.syllabus_body = syllabus_body

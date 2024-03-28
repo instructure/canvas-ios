@@ -319,4 +319,33 @@ class GradesTests: E2ETestCase {
         XCTAssertTrue(gradeLabelOfAssignment1.hasLabel(label: "Grade, \(gradeOfAssignment1) out of \(Int(maxPointOfAssignment))"))
         XCTAssertTrue(gradeLabelOfAssignment2.hasLabel(label: "Grade, \(gradeOfAssignment2) out of \(Int(maxPointOfAssignment))"))
     }
+
+    func testHiddenFinalGrade() {
+        // MARK: Seed the usual stuff with 2 graded assignments
+        let student = seeder.createUser()
+        let course = seeder.createCourse(hide_final_grades: true)
+        seeder.enrollStudent(student, in: course)
+        let assignments = GradesHelper.createAssignments(course: course, count: 2)
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
+        GradesHelper.gradeAssignments(grades: ["100", "100"], course: course, assignments: assignments, user: student)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
+        DashboardHelper.turnOnShowGrades()
+        courseCard.waitUntil(.visible)
+        let gradePill = DashboardHelper.courseCardGradeLabel(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertTrue(gradePill.isVisible)
+        XCTAssertTrue(gradePill.hasLabel(label: "lockSolid"))
+
+        // MARK: Navigate to grades and check if final grade is hidden
+        GradesHelper.navigateToGrades(course: course)
+        let lockIcon = GradesHelper.lockIcon.waitUntil(.visible)
+        let totalGrade = GradesHelper.totalGrade.waitUntil(.vanish)
+        XCTAssertTrue(lockIcon.isVisible)
+        XCTAssertTrue(totalGrade.isVanished)
+    }
 }

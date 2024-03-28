@@ -23,7 +23,8 @@ extension DataSeeder {
         start_at: Date? = nil,
         end_at: Date? = nil,
         default_view: DSDefaultView? = nil,
-        enrollmentTerm: DSEnrollmentTerm? = nil
+        enrollmentTerm: DSEnrollmentTerm? = nil,
+        hide_final_grades: Bool? = nil
     ) -> DSCourse {
         let requestedBody = CreateDSCourseRequest.Body(
             course: .init(
@@ -32,7 +33,8 @@ extension DataSeeder {
                 start_at: start_at,
                 end_at: end_at,
                 default_view: default_view,
-                enrollment_term_id: enrollmentTerm?.id ?? nil
+                enrollment_term_id: enrollmentTerm?.id ?? nil,
+                hide_final_grades: hide_final_grades
             )
         )
         let request = CreateDSCourseRequest(body: requestedBody)
