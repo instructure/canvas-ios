@@ -247,6 +247,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 Image(uiImage: .lockLine)
                     .resizable()
                     .frame(width: 40, height: 40)
+                    .accessibilityIdentifier("lockIcon")
             }
             .padding(.top, 12)
             .padding(.horizontal, 16)

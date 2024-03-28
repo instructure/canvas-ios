@@ -87,7 +87,7 @@ class CourseDetailsTests: E2ETestCase {
         // MARK: Seed the usual stuff with additional contents
         let student = seeder.createUser()
         let course = SyllabusHelper.createCourseWithSyllabus()
-        let module = ModulesHelper.createModule(course: course)
+        ModulesHelper.createModule(course: course)
         let frontPage = PagesHelper.createPage(course: course, frontPage: true)
         let assignment = AssignmentsHelper.createAssignment(course: course)
         seeder.enrollStudent(student, in: course)
