@@ -74,13 +74,6 @@ public final class ModuleItemSequenceViewController: UIViewController {
         store.refresh(force: true)
     }
 
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if let viewController = pages.currentPage {
-            observations = syncNavigationBar(with: viewController)
-        }
-    }
-
     private func update(embed: Bool) {
         if store.requested, store.pending {
             return

@@ -154,10 +154,10 @@ extension UIViewController {
                 self?.navigationItem.titleView = item.titleView
             },
             viewController.navigationItem.observe(\.rightBarButtonItems) { [weak self] item, _ in
-                self?.navigationItem.rightBarButtonItems = (item.rightBarButtonItems ?? []) + right
+                self?.navigationItem.rightBarButtonItems = ((item.rightBarButtonItems ?? []) + right).removeDuplicates()
             },
             viewController.navigationItem.observe(\.leftBarButtonItems) { [weak self] item, _ in
-                self?.navigationItem.leftBarButtonItems = (item.leftBarButtonItems ?? []) + left
+                self?.navigationItem.leftBarButtonItems = ((item.leftBarButtonItems ?? []) + left).removeDuplicates()
             },
             viewController.navigationItem.observe(\.leftItemsSupplementBackButton) { [weak self] item, _ in
                 self?.navigationItem.leftItemsSupplementBackButton = item.leftItemsSupplementBackButton || leftItemsSupplementBackButton
