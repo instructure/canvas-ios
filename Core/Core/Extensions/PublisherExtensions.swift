@@ -121,7 +121,7 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                         let saveURL = saveFolder.appendingPathComponent("body.html")
                         do {
                             try FileManager.default.createDirectory(atPath: saveFolder.path, withIntermediateDirectories: true, attributes: nil)
-                            let result = FileManager.default.createFile(atPath: saveURL.path, contents: nil)
+                            FileManager.default.createFile(atPath: saveURL.path, contents: nil)
                             try parsedAttribute.write(to: saveURL, atomically: true, encoding: .utf8)
                         } catch {
                             Swift.print("ERROR: \(error)")
