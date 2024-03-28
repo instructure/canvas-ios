@@ -29,13 +29,13 @@ class CourseSyncAnnouncementsInteractorLiveTests: CoreTestCase {
     }
 
     func testAssociatedTab() {
-        XCTAssertEqual(CourseSyncAnnouncementsInteractorLive().associatedTabType, .announcements)
+        XCTAssertEqual(CourseSyncAnnouncementsInteractorLive(htmlParser: getHTMLParser()).associatedTabType, .announcements)
     }
 
     func testSavedDataPopulatesViewController() {
         // MARK: - GIVEN
         setupMocks()
-        XCTAssertFinish(CourseSyncAnnouncementsInteractorLive().getContent(courseId: "testCourse"))
+        XCTAssertFinish(CourseSyncAnnouncementsInteractorLive(htmlParser: getHTMLParser()).getContent(courseId: "testCourse"))
         API.resetMocks()
 
         // MARK: - WHEN
@@ -55,7 +55,7 @@ class CourseSyncAnnouncementsInteractorLiveTests: CoreTestCase {
     }
 
     func testFailuresReported() {
-        let testee = CourseSyncAnnouncementsInteractorLive()
+        let testee = CourseSyncAnnouncementsInteractorLive(htmlParser: getHTMLParser())
 
         setupMocks()
         api.mock(GetCustomColors(),
@@ -91,5 +91,10 @@ class CourseSyncAnnouncementsInteractorLiveTests: CoreTestCase {
                  ])
         api.mock(GetEnabledFeatureFlags(context: .course("testCourse")),
                  value: [])
+    }
+
+    private func getHTMLParser() -> HTMLParser {
+        let interactor = HTMLDownloadInteractorMock()
+        return HTMLParser(loginSession: environment.currentSession!, downloadInteractor: interactor)
     }
 }

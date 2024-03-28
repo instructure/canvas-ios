@@ -793,6 +793,11 @@ private class CourseSyncSyllabusInteractorMock: CourseSyncSyllabusInteractor {
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
+            .eraseToAnyPublisher()
+    }
 }
 
 private class CourseSyncConferencesInteractorMock: CourseSyncConferencesInteractor {
@@ -806,6 +811,11 @@ private class CourseSyncConferencesInteractorMock: CourseSyncConferencesInteract
         expectation.fulfill()
         return Just(())
             .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
             .eraseToAnyPublisher()
     }
 }
@@ -823,6 +833,11 @@ private class CourseSyncQuizzesInteractorMock: CourseSyncQuizzesInteractor {
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
+            .eraseToAnyPublisher()
+    }
 }
 
 private class CourseSyncDiscussionsInteractorMock: CourseSyncDiscussionsInteractor {
@@ -838,11 +853,21 @@ private class CourseSyncDiscussionsInteractorMock: CourseSyncDiscussionsInteract
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
+            .eraseToAnyPublisher()
+    }
 }
 
 private class CourseSyncDiscussionsInteractorPublisherMock: CourseSyncDiscussionsInteractor {
     func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
         Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
+            .eraseToAnyPublisher()
     }
 }
 
@@ -852,6 +877,11 @@ private class CourseSyncPagesInteractorMock: CourseSyncPagesInteractor {
     func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
         publisher.eraseToAnyPublisher()
     }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
+            .eraseToAnyPublisher()
+    }
 }
 
 private class CourseSyncAssignmentsInteractorMock: CourseSyncAssignmentsInteractor {
@@ -859,6 +889,11 @@ private class CourseSyncAssignmentsInteractorMock: CourseSyncAssignmentsInteract
 
     func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
         publisher.eraseToAnyPublisher()
+    }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
+            .eraseToAnyPublisher()
     }
 }
 
