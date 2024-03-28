@@ -113,11 +113,6 @@ public class CircleProgressView: UIView {
         updateProgress()
     }
 
-    public func setRemovedOnCompletion(to value: Bool) {
-        morph.isRemovedOnCompletion = value
-        rotate.isRemovedOnCompletion = value
-    }
-
     func ring(_ thickness: CGFloat) -> CGPath {
         return UIBezierPath(
             arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2),
@@ -135,10 +130,14 @@ public class CircleProgressView: UIView {
     }
 
     public func startAnimating() {
+        setRemovedOnCompletion(to: false)
+
         progress = nil
     }
 
     public func stopAnimating() {
+        setRemovedOnCompletion(to: true)
+
         clearAnimation()
     }
 
@@ -146,5 +145,10 @@ public class CircleProgressView: UIView {
         fill.removeAnimation(forKey: morphKey)
         layer.removeAnimation(forKey: rotateKey)
         fill.strokeEnd = 0
+    }
+
+    private func setRemovedOnCompletion(to value: Bool) {
+        morph.isRemovedOnCompletion = value
+        rotate.isRemovedOnCompletion = value
     }
 }
