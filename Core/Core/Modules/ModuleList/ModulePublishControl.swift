@@ -32,7 +32,7 @@ final class ModulePublishControl: UIView {
     private var publishedView: ModuleItemPublishIndicatorView!
     private var publishButton: UIButton!
     private var clearButton: ClearButton!
-    
+
     private var stackView: UIStackView!
     private var topBottomStackViewConstraints: [NSLayoutConstraint] = []
     private var centerStackViewConstraint: NSLayoutConstraint?
