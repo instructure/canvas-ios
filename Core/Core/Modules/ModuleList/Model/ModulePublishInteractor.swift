@@ -18,12 +18,14 @@
 
 import Combine
 
-protocol ModulePublishInteractor {
+protocol ModulePublishInteractor: AnyObject {
     var isPublishActionAvailable: Bool { get }
     var moduleItemsUpdating: CurrentValueSubject<Set<String>, Never> { get }
     var modulesUpdating: CurrentValueSubject<Set<String>, Never> { get }
     var statusUpdates: PassthroughSubject<String, Never> { get }
-    var isModulePublishInProgress: Bool { get }
+
+    func isModulePublishInProgress(_ module: Module) -> Bool
+    func isModuleItemPublishInProgress(_ moduleItem: ModuleItem) -> Bool
 
     func changeItemPublishedState(
         moduleId: String,
@@ -51,8 +53,14 @@ protocol ModulePublishInteractor {
 }
 
 extension ModulePublishInteractor {
-    var isModulePublishInProgress: Bool {
-        !modulesUpdating.value.isEmpty
+    func isModulePublishInProgress(_ module: Module) -> Bool {
+        modulesUpdating.value.contains(module.id)
+    }
+
+    func isModuleItemPublishInProgress(_ moduleItem: ModuleItem) -> Bool {
+        let isItemUpdating = moduleItemsUpdating.value.contains(moduleItem.id)
+        let isParentModuleUpdating = modulesUpdating.value.contains(moduleItem.moduleID)
+        return isItemUpdating || isParentModuleUpdating
     }
 }
 

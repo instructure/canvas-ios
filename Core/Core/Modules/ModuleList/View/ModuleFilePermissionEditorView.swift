@@ -139,6 +139,17 @@ struct ModuleFilePermissionEditorView: View {
     }
 }
 
+private extension FileAvailability {
+    var label: String {
+        switch self {
+        case .published: return String(localized: "Publish")
+        case .unpublished: return String(localized: "Unpublish")
+        case .hidden: return String(localized: "Only Available With Link")
+        case .scheduledAvailability: return String(localized: "Schedule Availability")
+        }
+    }
+}
+
 #if DEBUG
 
 struct ModuleFilePermissionEditorView_Previews: PreviewProvider {

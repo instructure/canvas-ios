@@ -20,45 +20,70 @@ import Combine
 import UIKit
 
 class ModuleItemPublishIndicatorView: UIView {
-    @IBOutlet unowned var publishedIconView: PublishedIconView!
+    @IBOutlet unowned var publishedButton: UIButton!
     @IBOutlet unowned var publishInProgressIndicator: CircleProgressView!
-
-    private var isFirstUpdate = true
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadFromXib()
     }
 
+    init() {
+        super.init(frame: .zero)
+        loadFromXib()
+    }
+
     func prepareForReuse() {
-        publishedIconView.alpha = 1
+        publishedButton.alpha = 1
         publishInProgressIndicator.alpha = 0
         publishInProgressIndicator.stopAnimating()
-        isFirstUpdate = true
+        isHidden = false
     }
 
-    func update(availability: FileAvailability) {
-        publishedIconView.setupState(with: availability)
+    func update(availability: FileAvailability?) {
+        setupState(with: availability)
     }
 
-    func update(isPublishInProgress: Bool) {
-        let animated = !isFirstUpdate
-        isFirstUpdate = false
-        updatePublishedUIState(isUpdating: isPublishInProgress, animated: animated)
-    }
-
-    private func updatePublishedUIState(isUpdating: Bool, animated: Bool) {
+    func update(isPublishInProgress isUpdating: Bool, animationDuration: TimeInterval) {
         if isUpdating {
             publishInProgressIndicator.startAnimating()
         }
 
-        UIView.animate(withDuration: animated ? 0.3 : 0.0) { [weak publishInProgressIndicator, weak publishedIconView] in
+        UIView.animate(withDuration: animationDuration) { [weak publishInProgressIndicator, weak publishedButton] in
             publishInProgressIndicator?.alpha = isUpdating ? 1 : 0
-            publishedIconView?.alpha = isUpdating ? 0 : 1
+            publishedButton?.alpha = isUpdating ? 0 : 1
         } completion: { [weak publishInProgressIndicator] _ in
             if !isUpdating {
                 publishInProgressIndicator?.stopAnimating()
             }
         }
+    }
+
+    private func setupState(with fileAvilability: FileAvailability?) {
+        guard let fileAvilability else {
+            isHidden = true
+            return
+        }
+
+        let image: UIImage
+        let tintColor: UIColor
+        switch fileAvilability {
+        case .published:
+            image = .publishSolid
+            tintColor = UIColor.backgroundSuccess
+        case .unpublished:
+            image = .noSolid
+            tintColor = UIColor.ash
+        case .hidden:
+            image = .offLine
+            tintColor = UIColor.textWarning
+        case .scheduledAvailability:
+            image = .calendarMonthLine
+            tintColor = UIColor.textWarning
+        }
+
+        publishedButton.setImage(image, for: .normal)
+        publishedButton.tintColor = tintColor
+        isHidden = false
     }
 }
