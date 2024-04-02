@@ -92,7 +92,9 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.useContextColor(color)
+        if AppEnvironment.shared.app != .parent {
+            navigationController?.navigationBar.useContextColor(color)
+        }
     }
 
     @objc private func refresh() {
@@ -101,10 +103,12 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         }
     }
 
+    // Parent uses a different coloring logic so we prevent any update here. 
     private func updateNavBar() {
         guard
             let name = context.contextType == .course ? courses.first?.name : groups.first?.name,
-            let color = context.contextType == .course ? courses.first?.color : groups.first?.color
+            let color = context.contextType == .course ? courses.first?.color : groups.first?.color,
+            AppEnvironment.shared.app != .parent
         else { return }
         updateNavBar(subtitle: name, color: color)
     }
