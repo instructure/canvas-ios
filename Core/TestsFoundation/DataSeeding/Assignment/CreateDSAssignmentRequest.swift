@@ -43,6 +43,7 @@ extension CreateDSAssignmentRequest {
         let due_at: Date?
         let lock_at: Date?
         let unlock_at: Date?
+        let assignment_group_id: String?
 
         public init(name: String = "Assignment Name",
                     description: String? = nil,
@@ -52,7 +53,8 @@ extension CreateDSAssignmentRequest {
                     grading_type: GradingType? = nil,
                     due_at: Date? = nil,
                     lock_at: Date? = nil,
-                    unlock_at: Date? = nil) {
+                    unlock_at: Date? = nil,
+                    assignment_group_id: String? = nil) {
             self.name = name
             self.description = description
             self.published = published
@@ -62,6 +64,7 @@ extension CreateDSAssignmentRequest {
             self.due_at = due_at
             self.lock_at = lock_at
             self.unlock_at = unlock_at
+            self.assignment_group_id = assignment_group_id
         }
     }
 
