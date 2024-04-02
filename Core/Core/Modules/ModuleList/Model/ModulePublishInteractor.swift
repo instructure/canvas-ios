@@ -94,7 +94,7 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
     ) {
         self.courseId = courseId
         self.api = api
-        isPublishActionAvailable = app == .teacher && ExperimentalFeature.teacherBulkPublish.isEnabled
+        isPublishActionAvailable = app == .teacher
     }
 
     func changeItemPublishedState(
