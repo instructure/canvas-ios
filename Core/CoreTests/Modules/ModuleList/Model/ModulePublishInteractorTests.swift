@@ -23,25 +23,14 @@ import XCTest
 class ModulePublishInteractorTests: CoreTestCase {
 
     func testPublishAvailability() {
-        ExperimentalFeature.teacherBulkPublish.isEnabled = false
         var testee = ModulePublishInteractorLive(app: nil, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
+        XCTAssertEqual(testee.isPublishActionAvailable, false)
         testee = ModulePublishInteractorLive(app: .parent, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
+        XCTAssertEqual(testee.isPublishActionAvailable, false)
         testee = ModulePublishInteractorLive(app: .student, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
+        XCTAssertEqual(testee.isPublishActionAvailable, false)
         testee = ModulePublishInteractorLive(app: .teacher, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
-
-        ExperimentalFeature.teacherBulkPublish.isEnabled = true
-        testee = ModulePublishInteractorLive(app: nil, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractorLive(app: .parent, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractorLive(app: .student, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractorLive(app: .teacher, courseId: "")
-        XCTAssertTrue(testee.isPublishActionAvailable)
+        XCTAssertEqual(testee.isPublishActionAvailable, true)
     }
 
     func testUpdatesItemPublishState() {

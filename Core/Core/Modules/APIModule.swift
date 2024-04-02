@@ -60,6 +60,8 @@ public struct APIModuleItem: Codable, Equatable {
     public let url: URL?
     /// Only present if the caller has permission to view unpublished items
     public let published: Bool?
+    /// Indicates whether the item is allowed to be unpublished. This could be false e.g. when related assignment already has submissions.
+    public let unpublishable: Bool?
     public let content_details: ContentDetails? // include[]=content_details not available in sequence call
     public var completion_requirement: CompletionRequirement? // not available in sequence call
     public let mastery_paths: APIMasteryPath? // include[]=mastery_paths
@@ -74,6 +76,7 @@ public struct APIModuleItem: Codable, Equatable {
         html_url: URL?,
         url: URL?,
         published: Bool?,
+        unpublishable: Bool?,
         content_details: ContentDetails?,
         completion_requirement: CompletionRequirement?,
         mastery_paths: APIMasteryPath?
@@ -87,6 +90,7 @@ public struct APIModuleItem: Codable, Equatable {
         self.html_url = html_url
         self.url = url
         self.published = published
+        self.unpublishable = unpublishable
         self.content_details = content_details
         self.completion_requirement = completion_requirement
         self.mastery_paths = mastery_paths
@@ -101,6 +105,7 @@ public struct APIModuleItem: Codable, Equatable {
         case html_url
         case url
         case published
+        case unpublishable
         case content
         case content_details
         case completion_requirement
@@ -117,6 +122,7 @@ public struct APIModuleItem: Codable, Equatable {
         html_url = try container.decodeIfPresent(URL.self, forKey: .html_url)
         url = try container.decodeIfPresent(URL.self, forKey: .url)
         published = try container.decodeIfPresent(Bool.self, forKey: .published)
+        unpublishable = try container.decodeIfPresent(Bool.self, forKey: .unpublishable)
         content = try ModuleItemType?(from: decoder)
         content_details = try container.decodeIfPresent(ContentDetails.self, forKey: .content_details)
         completion_requirement = try container.decodeIfPresent(CompletionRequirement.self, forKey: .completion_requirement)
@@ -218,6 +224,7 @@ extension APIModuleItem {
         html_url: URL? = URL(string: "https://canvas.example.edu/courses/222/modules/items/768"),
         url: URL? = URL(string: "https://canvas.example.edu/api/v1/courses/222/assignments/987"),
         published: Bool? = nil,
+        unpublishable: Bool? = nil,
         content_details: ContentDetails? = nil,
         completion_requirement: CompletionRequirement? = nil,
         mastery_paths: APIMasteryPath? = nil
@@ -232,6 +239,7 @@ extension APIModuleItem {
             html_url: html_url,
             url: url,
             published: published,
+            unpublishable: unpublishable,
             content_details: content_details,
             completion_requirement: completion_requirement,
             mastery_paths: mastery_paths

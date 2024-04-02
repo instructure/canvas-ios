@@ -61,6 +61,17 @@ class ModuleItemTests: CoreTestCase {
         XCTAssertNil(ModuleItem.save(empty, forCourse: "1", in: databaseClient).published)
     }
 
+    func testSaveCanBeUnpublished() {
+        let unpublishable = APIModuleItem.make(unpublishable: true)
+        XCTAssertEqual(ModuleItem.save(unpublishable, forCourse: "1", in: databaseClient).canBeUnpublished, true)
+
+        let notUnpublishable = APIModuleItem.make(unpublishable: false)
+        XCTAssertEqual(ModuleItem.save(notUnpublishable, forCourse: "1", in: databaseClient).canBeUnpublished, false)
+
+        let empty = APIModuleItem.make(unpublishable: nil)
+        XCTAssertEqual(ModuleItem.save(empty, forCourse: "1", in: databaseClient).canBeUnpublished, true)
+    }
+
     func testVisibleWhenLocked() {
         let assignment = ModuleItem.make(from: .make(content: .assignment("1")))
         XCTAssertTrue(assignment.visibleWhenLocked)
