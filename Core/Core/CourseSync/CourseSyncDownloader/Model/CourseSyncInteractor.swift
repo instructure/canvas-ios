@@ -23,6 +23,7 @@ import Foundation
 
 public protocol CourseSyncInteractor {
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never>
+    func cleanContent(for courseIds: [String]) -> AnyPublisher<Void, Never>
     func cancel()
 }
 
@@ -55,6 +56,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private let courseListInteractor: CourseListInteractor
     private let backgroundActivity: BackgroundActivity
+    private let env: AppEnvironment
 
     /**
      - parameters:
@@ -70,7 +72,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         notificationInteractor: CourseSyncNotificationInteractor,
         courseListInteractor: CourseListInteractor,
         backgroundActivity: BackgroundActivity,
-        scheduler: AnySchedulerOf<DispatchQueue>
+        scheduler: AnySchedulerOf<DispatchQueue>,
+        env: AppEnvironment
     ) {
         self.contentInteractors = contentInteractors
         self.filesInteractor = filesInteractor
@@ -80,6 +83,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         self.notificationInteractor = notificationInteractor
         self.backgroundActivity = backgroundActivity
         self.scheduler = scheduler
+        self.env = env
 
         listenToCancellationEvent()
     }
@@ -128,6 +132,20 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             )
 
         return courseSyncEntries.eraseToAnyPublisher()
+    }
+
+    public func cleanContent(for courseIds: [String]) -> AnyPublisher<Void, Never> {
+        return courseIds.publisher
+            .compactMap { [weak self] courseId in
+                let rootURL = URL.Directories.documents
+                    .appendingPathComponent(self?.env.currentSession?.uniqueID ?? "")
+                    .appendingPathComponent("Offline")
+                    .appendingPathComponent("course-\(courseId)")
+                try? FileManager.default.removeItem(at: rootURL)
+            }
+            .collect()
+            .mapToVoid()
+            .eraseToAnyPublisher()
     }
 
     public func cancel() {

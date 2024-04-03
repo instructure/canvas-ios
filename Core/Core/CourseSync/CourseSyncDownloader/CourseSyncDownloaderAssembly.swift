@@ -67,6 +67,7 @@ public enum CourseSyncDownloaderAssembly {
                                                                                                      progressInteractor: progressInteractor),
                                         courseListInteractor: AllCoursesAssembly.makeCourseListInteractor(),
                                         backgroundActivity: backgroundActivity,
-                                        scheduler: scheduler)
+                                        scheduler: scheduler,
+                                        env: env)
     }
 }

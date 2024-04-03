@@ -160,15 +160,25 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .flatMap { view in
                 confirmAlert.userConfirmation().map { view }
             }
-            .flatMap { [weak self] view in
-                self?.state = .loading
-                return selectorInteractor.getSelectedCourseEntries()
-                    .delay(for: .milliseconds(500), scheduler: RunLoop.main)
-                    .receive(on: DispatchQueue.main)
-                    .handleEvents(receiveOutput: { entries in
-                        NotificationCenter.default.post(name: .OfflineSyncTriggered, object: entries)
-                        AppEnvironment.shared.router.dismiss(view)
-                    })
+            .flatMap { [self] view in
+                self.state = .loading
+
+                return Publishers.Zip(
+                    selectorInteractor.getUnSelectedCourseIds()
+                        .delay(for: .milliseconds(500), scheduler: RunLoop.main)
+                        .receive(on: DispatchQueue.main)
+                        .handleEvents(receiveOutput: { entries in
+                            NotificationCenter.default.post(name: .OfflineSyncCleanTrigged, object: entries)
+                            AppEnvironment.shared.router.dismiss(view)
+                        }),
+                    selectorInteractor.getSelectedCourseEntries()
+                        .delay(for: .milliseconds(500), scheduler: RunLoop.main)
+                        .receive(on: DispatchQueue.main)
+                        .handleEvents(receiveOutput: { entries in
+                            NotificationCenter.default.post(name: .OfflineSyncTriggered, object: entries)
+                            AppEnvironment.shared.router.dismiss(view)
+                        })
+                ).eraseToAnyPublisher()
             }
             .sink()
             .store(in: &subscriptions)
@@ -194,6 +204,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
 
 extension Notification.Name {
     static let OfflineSyncTriggered = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncTriggered")
+    static let OfflineSyncCleanTrigged = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCleanTriggered")
     static let OfflineSyncCancelled = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCancelled")
     static let OfflineSyncCompleted = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCompleted")
 }

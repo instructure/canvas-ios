@@ -112,6 +112,15 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
             .eraseToAnyPublisher()
     }
 
+    func getUnSelectedCourseIds() -> AnyPublisher<[String], Never> {
+        mockData
+            .map { entries in
+                entries.map { $0.courseId }
+            }
+            .replaceEmpty(with: [])
+            .eraseToAnyPublisher()
+    }
+
     func getCourseName() -> AnyPublisher<String, Never> {
         Just("").eraseToAnyPublisher()
     }
