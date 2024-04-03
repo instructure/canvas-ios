@@ -61,7 +61,7 @@ public enum CourseSyncDownloaderAssembly {
 
         return CourseSyncInteractorLive(contentInteractors: contentInteractors,
                                         filesInteractor: CourseSyncFilesInteractorLive(),
-                                        modulesInteractor: CourseSyncModulesInteractorLive(),
+                                        modulesInteractor: CourseSyncModulesInteractorLive(pageHtmlParser: pageHtmlParser, quizHtmlParser: quizHtmlParser),
                                         progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
                                         notificationInteractor: CourseSyncNotificationInteractor(notificationManager: .shared,
                                                                                                      progressInteractor: progressInteractor),
