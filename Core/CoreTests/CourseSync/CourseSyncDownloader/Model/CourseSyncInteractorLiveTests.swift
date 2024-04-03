@@ -87,7 +87,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
@@ -140,7 +141,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[2].selectionState = .selected
         entries[0].files[0].selectionState = .selected
@@ -181,7 +183,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].selectionState = .partiallySelected
         entries[0].tabs[2].selectionState = .selected
@@ -223,7 +226,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[2].selectionState = .partiallySelected
         entries[0].files[0].selectionState = .selected
@@ -265,7 +269,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
 
@@ -298,7 +303,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[1].selectionState = .selected
 
@@ -331,7 +337,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[2].selectionState = .selected
         entries[0].files[0].selectionState = .selected
@@ -368,7 +375,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[3].selectionState = .selected
 
@@ -390,7 +398,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[4].selectionState = .selected
 
@@ -416,7 +425,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[5].selectionState = .selected
 
@@ -442,7 +452,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[6].selectionState = .selected
 
@@ -465,7 +476,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[7].selectionState = .selected
 
@@ -489,7 +501,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
 
         entries[0].tabs.removeAll()
@@ -531,7 +544,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
@@ -583,7 +597,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
@@ -618,7 +633,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
@@ -654,7 +670,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             notificationInteractor: courseSyncNotificationMock,
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
 
@@ -681,7 +698,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: listInteractorMock,
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
 
         // WHEN
@@ -707,7 +725,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: backgroundActivityMock,
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
 
@@ -741,7 +760,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                    progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: backgroundActivityMock,
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
 

@@ -155,6 +155,11 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
         getSelectedCourseEntriesSubject.eraseToAnyPublisher()
     }
 
+    let getUnSelectedCourseIdsSubject = PassthroughSubject<[String], Never>()
+    func getUnSelectedCourseIds() -> AnyPublisher<[String], Never> {
+        getUnSelectedCourseIdsSubject.eraseToAnyPublisher()
+    }
+
     let selectedCountSubject = PassthroughSubject<Int, Never>()
     func observeSelectedCount() -> AnyPublisher<Int, Never> {
         selectedCountSubject.eraseToAnyPublisher()
@@ -180,9 +185,14 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
 
 class CourseSyncInteractorMock: CourseSyncInteractor {
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Never>()
+    let courseSyncCleanSubject = PassthroughSubject<Void, Never>()
 
     func downloadContent(for _: [Core.CourseSyncEntry]) -> AnyPublisher<[Core.CourseSyncEntry], Never> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
+    }
+
+    func cleanContent(for courseIds: [String]) -> AnyPublisher<Void, Never> {
+        courseSyncCleanSubject.eraseToAnyPublisher()
     }
 
     func cancel() {}
