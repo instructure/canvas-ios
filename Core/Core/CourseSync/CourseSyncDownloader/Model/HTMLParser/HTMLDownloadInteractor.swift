@@ -50,7 +50,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             request.setValue("Authentication", forHTTPHeaderField: "Bearer \(loginSession.accessToken ?? "")")
         }
 
-        return publisherProvider.getProvider(for: request)
+        return publisherProvider.getPublisher(for: request)
             .mapError { urlError -> Error in
                 return urlError
             }

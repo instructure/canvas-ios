@@ -16,15 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+@testable import Core
 import Foundation
+import XCTest
 import Combine
 
-protocol URLSessionDataTaskPublisherProvider {
-    func getPublisher(for: URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), URLError>
-}
+class URLSessionDataTaskPublisherProviderTests: CoreTestCase {
 
-class URLSessionDataTaskPublisherProviderLive: URLSessionDataTaskPublisherProvider {
-    func getPublisher(for request: URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), URLError> {
-        return URLSession.shared.dataTaskPublisher(for: request).eraseToAnyPublisher()
+    var subscriptions: [AnyCancellable] = []
+
+    func testrovider() {
+        let testee = URLSessionDataTaskPublisherProviderLive()
+        let url = URL(string: "https://instructure.com/logo.png")!
+        let request = URLRequest(url: url)
+        testee.getPublisher(for: request)
+            .sink(receiveCompletion: { _ in }, receiveValue: { result in
+                XCTAssertEqual(result.response.url, url)
+            })
+            .store(in: &subscriptions)
+
     }
 }

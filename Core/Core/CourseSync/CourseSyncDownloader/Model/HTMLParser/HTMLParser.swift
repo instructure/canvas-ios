@@ -19,7 +19,14 @@
 import Foundation
 import Combine
 
-public class HTMLParser {
+public protocol HTMLParser {
+    var sessionId: String { get }
+    var prefix: String { get }
+    var sectionName: String { get }
+    func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL?) -> AnyPublisher<String, Error>
+}
+
+public class HTMLParserLive: HTMLParser {
 
     private let imageRegex: NSRegularExpression
     private let fileLinkRegex: NSRegularExpression
@@ -51,7 +58,7 @@ public class HTMLParser {
         self.relativeURLRegex = (try? NSRegularExpression(pattern: "^(?:[a-z+]+:)?//")) ?? NSRegularExpression()
     }
 
-    func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
+    public func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
         let imageURLs = findRegexMatches(content, pattern: imageRegex)
         let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex)
         let rootURL = getRootURL(courseId: courseId, prefix: prefix, resourceId: resourceId)

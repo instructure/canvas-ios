@@ -30,7 +30,7 @@ class HTMLParserTests: CoreTestCase {
 
     func testReplacingLinks() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParser(loginSession: environment.currentSession!, downloadInteractor: interactor, prefix: testPrefix)
+        testee = HTMLParserLive(loginSession: environment.currentSession!, downloadInteractor: interactor, prefix: testPrefix)
 
         let baseURL = URL(string: "https://instructure.com")
         let urlToDownload = "https://instructure.com/logo.png"
@@ -55,7 +55,7 @@ class HTMLParserTests: CoreTestCase {
 
     func testReplacingRelativeLinks() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParser(loginSession: environment.currentSession!, downloadInteractor: interactor)
+        testee = HTMLParserLive(loginSession: environment.currentSession!, downloadInteractor: interactor)
 
         let baseURL = URL(string: "https://instructure.com")!
         let urlToDownload = "https://instructure.com/logo.png"
@@ -79,7 +79,7 @@ class HTMLParserTests: CoreTestCase {
 
     func testSavingBaseContent() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParser(loginSession: environment.currentSession!, downloadInteractor: interactor)
+        testee = HTMLParserLive(loginSession: environment.currentSession!, downloadInteractor: interactor)
 
         let baseURL = URL(string: "https://instructure.com")
         let urlToDownload = "https://instructure.com/logo.png"

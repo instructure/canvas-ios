@@ -100,7 +100,7 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
                                 textEncodingName: nil
                             ))
 
-        func getProvider(for request: URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), URLError> {
+        func getPublisher(for request: URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), URLError> {
             return Just(testResponse)
                 .setFailureType(to: URLError.self)
                 .eraseToAnyPublisher()
