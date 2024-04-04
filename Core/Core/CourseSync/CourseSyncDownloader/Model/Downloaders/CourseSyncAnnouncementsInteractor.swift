@@ -53,7 +53,7 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     private func fetchAnnouncements(courseId: String) -> AnyPublisher<Void, Error> {
         return ReactiveStore(useCase: GetAnnouncements(context: .course(courseId)))
             .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
+            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

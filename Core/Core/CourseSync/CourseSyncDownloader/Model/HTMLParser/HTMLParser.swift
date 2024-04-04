@@ -54,31 +54,24 @@ public class HTMLParser {
     func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
         let imageURLs = findRegexMatches(content, pattern: imageRegex)
         let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex)
+        let rootURL = getRootURL(courseId: courseId, prefix: prefix, resourceId: resourceId)
 
         return imageURLs.publisher
-            .flatMap(maxPublishers: .max(5)) { url in
+            .flatMap(maxPublishers: .max(5)) { url in // Download images to local Documents folder, return the (original link - content data) tuple
                 return self.interactor.download(url)
                     .map {
                         return (url, $0)
                     }
             }
-            .receive(on: DispatchQueue.main)
-            .flatMap(maxPublishers: .max(5)) { [unowned self] (url, result) in
-                return self.interactor.save(result, courseId: courseId, prefix: "\(self.prefix)-\(resourceId)")
+            .receive(on: DispatchQueue.main) // Receive on main, because of the file operations
+            .flatMap(maxPublishers: .max(5)) { [interactor] (url, result) in // Save the data to local file, return the (original link - local link) tuple
+                return interactor.save(result, courseId: courseId, prefix: "\(self.prefix)-\(resourceId)")
                     .map {
                         return (url, $0)
                     }
             }
-            .collect()
-            .map { [content] urls in
-                var newContent = content
-                urls.forEach { (originalURL, localURL) in
-                    let newURL = "\(localURL.lastPathComponent)"
-                    newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: newURL)
-                }
-                return newContent
-            }
-            .map { content in
+            .collect() // Wait for all image download to finish and handle as an array
+            .map { [content] urls in // Replace relative links with baseULR based absolute links. The baseURL in the webviews will be different from the original one to load the local images
                 var newContent = content
                 relativeURLs.forEach { relativeURL in
                     if let baseURL {
@@ -86,7 +79,18 @@ public class HTMLParser {
                         newContent = newContent.replacingOccurrences(of: relativeURL.absoluteString, with: newURL.absoluteString)
                     }
                 }
+                return (newContent, urls)
+            }
+            .map { (content, urls) in // Replace all original links with the local ones, return the replaced string content
+                var newContent = content
+                urls.forEach { (originalURL, localURL) in
+                    let newURL = "\(localURL.lastPathComponent)"
+                    newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: newURL)
+                }
                 return newContent
+            }
+            .flatMap { [interactor, rootURL] content in // Save html parsed html string content to file. It will be loaded in offline mode
+                return interactor.saveBaseContent(content: content, folderURL: rootURL)
             }
             .eraseToAnyPublisher()
     }
@@ -104,6 +108,17 @@ public class HTMLParser {
             .compactMap { rawURL in
                 URL(string: rawURL)
             }
+    }
+
+    func getRootURL(courseId: String, prefix: String, resourceId: String) -> URL {
+        return URL.Directories.documents.appendingPathComponent(
+            URL.Paths.Offline.courseSectionFolder(
+                sessionId: loginSession.uniqueID,
+                courseId: courseId,
+                sectionName: sectionName
+            )
+        )
+        .appendingPathComponent("\(prefix)-\(resourceId)")
     }
 
 }

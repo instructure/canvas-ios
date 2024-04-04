@@ -62,7 +62,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
         return ReactiveStore(useCase: GetDiscussionTopics(context: .course(courseId)))
             .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
+//            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
             .eraseToAnyPublisher()
     }
 
@@ -74,7 +74,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
         return ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
             .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
+//            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

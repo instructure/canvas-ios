@@ -40,6 +40,7 @@ public extension Publisher {
 }
 
 public extension Publisher where Output: Collection, Output.Element: NSManagedObject, Failure == Error {
+
     func parseHtmlContent(
         attribute keyPath: ReferenceWritableKeyPath<Output.Element, String>,
         id: ReferenceWritableKeyPath<Output.Element, String>,
@@ -47,8 +48,6 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
         baseURLKey: ReferenceWritableKeyPath<Output.Element, URL?>? = nil,
         htmlParser: HTMLParser
     ) -> AnyPublisher<[Output.Element], Error> {
-        let rootURL = URL.Directories.documents
-            .appendingPathComponent(URL.Paths.Offline.courseSectionFolder(sessionId: htmlParser.sessionId, courseId: courseId, sectionName: htmlParser.sectionName))
         return self
             .flatMap { dataArray in
                 Publishers.Sequence(sequence: dataArray)
@@ -61,24 +60,7 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                             baseURL = element[keyPath: baseURLKey]
                         }
                         return htmlParser.parse(value, resourceId: resourceId, courseId: courseId, baseURL: baseURL)
-                            .map {
-                                return (element, $0)
-                            }
-                    }
-                    .receive(on: DispatchQueue.main)
-                    .map { (element: Output.Element, parsedAttribute: String) in
-                        let resourceId = element[keyPath: id]
-                        let saveFolder = rootURL.appendingPathComponent("\(htmlParser.prefix)-\(resourceId)")
-                        let saveURL = saveFolder.appendingPathComponent("body.html")
-                        do {
-
-                            try FileManager.default.createDirectory(atPath: saveFolder.path, withIntermediateDirectories: true, attributes: nil)
-                            FileManager.default.createFile(atPath: saveURL.path, contents: nil)
-                            try parsedAttribute.write(to: saveURL, atomically: true, encoding: .utf8)
-                        } catch {
-                            Swift.print("ERROR: \(error)")
-                        }
-                        return element
+                            .map { _ in return element }
                     }
                     .collect()
             }
@@ -92,12 +74,6 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
         baseURLKey: ReferenceWritableKeyPath<Output.Element, URL?>? = nil,
         htmlParser: HTMLParser
     ) -> AnyPublisher<[Output.Element], Error> {
-        let rootURL = URL.Directories.documents.appendingPathComponent(
-            URL.Paths.Offline.courseSectionFolder(
-                sessionId: htmlParser.sessionId,
-                courseId: courseId,
-                sectionName: htmlParser.sectionName)
-        )
         return self
             .flatMap { dataArray in
                 Publishers.Sequence(sequence: dataArray)
@@ -110,23 +86,7 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                             baseURL = element[keyPath: baseURLKey]
                         }
                         return htmlParser.parse(value, resourceId: resourceId, courseId: courseId, baseURL: baseURL)
-                            .map {
-                                return (element, $0)
-                            }
-                    }
-                    .receive(on: DispatchQueue.main)
-                    .map { (element: Output.Element, parsedAttribute: String) in
-                        let resourceId = element[keyPath: id]
-                        let saveFolder = rootURL.appendingPathComponent("\(htmlParser.prefix)-\(resourceId)")
-                        let saveURL = saveFolder.appendingPathComponent("body.html")
-                        do {
-                            try FileManager.default.createDirectory(atPath: saveFolder.path, withIntermediateDirectories: true, attributes: nil)
-                            FileManager.default.createFile(atPath: saveURL.path, contents: nil)
-                            try parsedAttribute.write(to: saveURL, atomically: true, encoding: .utf8)
-                        } catch {
-                            Swift.print("ERROR: \(error)")
-                        }
-                        return element
+                            .map { _ in return element }
                     }
                     .collect()
             }

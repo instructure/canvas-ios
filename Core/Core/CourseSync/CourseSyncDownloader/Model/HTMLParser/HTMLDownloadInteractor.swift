@@ -24,6 +24,7 @@ protocol HTMLDownloadInteractor {
     var sectionName: String { get }
     func download(_ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), Error>
     func save(_ result: (data: Data, response: URLResponse), courseId: String, prefix: String) -> AnyPublisher<URL, Error>
+    func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error>
 }
 
 class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
@@ -75,5 +76,17 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             print("\(error)")
             return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()
         }
+    }
+
+    func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error> {
+        let saveURL = folderURL.appendingPathComponent("body.html")
+        do {
+            try FileManager.default.createDirectory(atPath: folderURL.path, withIntermediateDirectories: true, attributes: nil)
+            FileManager.default.createFile(atPath: saveURL.path, contents: nil)
+            try content.write(to: saveURL, atomically: true, encoding: .utf8)
+        } catch {
+            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save base content")))).eraseToAnyPublisher()
+        }
+        return Result.Publisher(content).eraseToAnyPublisher()
     }
 }
