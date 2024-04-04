@@ -69,6 +69,7 @@ struct ModulePublishProgressView: View {
             viewModel.didTapDismiss.send(viewController)
         } label: {
             Image.xLine.navigationBarButtonStyle()
+                .accessibilityLabel(Text("Dismiss"))
         }
     }
 
@@ -104,33 +105,40 @@ struct ModulePublishProgressView: View {
     @ViewBuilder
     private var progressViewArea: some View {
         VStack(spacing: 8) {
-            progressText
+            Text(progressTitle())
                 .font(.regular14).foregroundStyle(Color.textDarkest)
             ProgressView(value: viewModel.progress)
                 .progressViewStyle(.determinateBar(color: viewModel.progressViewColor))
                 .padding(.bottom, 8)
+                .animation(.default, value: viewModel.progress)
         }
         .padding(.horizontal, 16)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(progressTitle(forAccessibility: true)))
     }
 
-    @ViewBuilder
-    private var progressText: some View {
+    private func progressTitle(forAccessibility: Bool = false) -> String {
+        let percentage = Int(viewModel.progress * 100)
+
         switch viewModel.state {
         case .inProgress:
-            let percentage = Int(viewModel.progress * 100)
             if viewModel.isPublish {
-                Text("Publishing \(percentage)%")
+                return String(localized: "Publishing \(percentage)%")
             } else {
-                Text("Unpublishing \(percentage)%")
+                return String(localized: "Unpublishing \(percentage)%")
             }
         case .completed:
             if viewModel.isPublish {
-                Text("Published 100%")
+                return String(localized: "Published 100%")
             } else {
-                Text("Unpublished 100%")
+                return String(localized: "Unpublished 100%")
             }
         case .error:
-            Text("Update failed")
+            if forAccessibility {
+                return String(localized: "Update failed at \(percentage)%")
+            } else {
+                return String(localized: "Update failed")
+            }
         }
     }
 
@@ -171,6 +179,19 @@ private extension View {
     }
 }
 
+#if DEBUG
+
 #Preview {
-    ModulePublishProgressView(viewModel: .init(action: .publish(.onlyModules), allModules: true, router: AppEnvironment.shared.router))
+    let interactor = ModulePublishInteractorPreview(state: .loading)
+    return ModulePublishProgressView(
+        viewModel: .init(
+            action: .publish(.onlyModules),
+            allModules: true,
+            moduleIds: [],
+            interactor: interactor,
+            router: AppEnvironment.shared.router
+        )
+    )
 }
+
+#endif

@@ -23,25 +23,14 @@ import XCTest
 class ModulePublishInteractorTests: CoreTestCase {
 
     func testPublishAvailability() {
-        ExperimentalFeature.teacherBulkPublish.isEnabled = false
         var testee = ModulePublishInteractorLive(app: nil, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
+        XCTAssertEqual(testee.isPublishActionAvailable, false)
         testee = ModulePublishInteractorLive(app: .parent, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
+        XCTAssertEqual(testee.isPublishActionAvailable, false)
         testee = ModulePublishInteractorLive(app: .student, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
+        XCTAssertEqual(testee.isPublishActionAvailable, false)
         testee = ModulePublishInteractorLive(app: .teacher, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
-
-        ExperimentalFeature.teacherBulkPublish.isEnabled = true
-        testee = ModulePublishInteractorLive(app: nil, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractorLive(app: .parent, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractorLive(app: .student, courseId: "")
-        XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractorLive(app: .teacher, courseId: "")
-        XCTAssertTrue(testee.isPublishActionAvailable)
+        XCTAssertEqual(testee.isPublishActionAvailable, true)
     }
 
     func testUpdatesItemPublishState() {
@@ -192,21 +181,97 @@ class ModulePublishInteractorTests: CoreTestCase {
         waitForExpectations(timeout: 0.1)
         subscription.cancel()
     }
+
+    func testBulkPublishUpdatesModulesBeingUpdatedList() {
+        let testee = ModulePublishInteractorLive(app: .teacher, courseId: "testCourseId")
+        let updatesReceived = expectation(description: "Module IDs being updated published")
+        let subscription = testee
+            .modulesUpdating
+            .collect(3)
+            .sink { updates in
+                XCTAssertEqual(updates, [Set(), Set(["1", "2"]), Set()])
+                updatesReceived.fulfill()
+            }
+
+        let testOperation = testee.bulkPublish(moduleIds: ["1", "2"], action: .publish(.onlyModules)).sink()
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+        testOperation.cancel()
+    }
+
+    func testBulkPublishCancel() {
+        let bulkPublishRequest = PutBulkPublishModulesRequest(
+            courseId: "testCourseId",
+            moduleIds: ["moduleId1", "moduleId2"],
+            action: .publish(.modulesAndItems)
+        )
+        api.mock(
+            bulkPublishRequest,
+            value: .init(progress: .init(.init(progress: .init(id: "progressId"))))
+        )
+        let pollRequest = GetBulkPublishProgressRequest(modulePublishProgressId: "progressId")
+        let pollRequestMock = api.mock(
+            pollRequest,
+            value: .init(completion: 0.0, workflow_state: "running")
+        )
+        // Simulate long progress by blocking the progress poll response
+        pollRequestMock.suspend()
+        let testee = ModulePublishInteractorLive(app: .teacher, courseId: "testCourseId")
+        _ = testee.bulkPublish(moduleIds: ["moduleId1", "moduleId2"], action: .publish(.onlyModules))
+        XCTAssertEqual(testee.modulesUpdating.value, Set(["moduleId1", "moduleId2"]))
+        let cancelRequest = PostCancelBulkPublishRequest(progressId: "progressId")
+        let cancelCalled = expectation(description: "Cancel called")
+        api.mock(withData: cancelRequest) { _ in
+            cancelCalled.fulfill()
+            return (nil, nil, nil)
+        }
+        let modulesRefreshed = expectation(description: "Modules list refreshed")
+        let moduleRefreshRequest = GetModulesRequest(courseID: "testCourseId")
+        api.mock(moduleRefreshRequest) { _ in
+            modulesRefreshed.fulfill()
+            return (nil, nil, nil)
+        }
+
+        // WHEN
+        testee.cancelBulkPublish(moduleIds: ["moduleId1", "moduleId2"], action: .publish(.onlyModules))
+
+        // THEN
+        drainMainQueue()
+        XCTAssertTrue(testee.modulesUpdating.value.isEmpty)
+        wait(for: [cancelCalled, modulesRefreshed], timeout: 0.1)
+    }
 }
 
 class TestStatusUpdateTests: XCTestCase {
 
     func testModuleItemUpdates() {
         var testee: Subscribers.Completion<Error> = .finished
-        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .publish), "Item Published")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish, isAllModules: false), "Item Published")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish, isAllModules: false), "Item Unpublished")
+        testee = .failure(NSError.internalError())
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish, isAllModules: false), "Failed To Publish Item")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish, isAllModules: false), "Failed To Unpublish Item")
 
         testee = .finished
-        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .unpublish), "Item Unpublished")
-
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.onlyModules), isAllModules: false), "Only Module published")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.onlyModules), isAllModules: false), "Only Module unpublished")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.onlyModules), isAllModules: true), "Only Modules published")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.onlyModules), isAllModules: true), "Only Modules unpublished")
         testee = .failure(NSError.internalError())
-        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .publish), "Failed To Publish Item")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.onlyModules), isAllModules: false), "Failed to publish only Module")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.onlyModules), isAllModules: false), "Failed to unpublish only Module")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.onlyModules), isAllModules: true), "Failed to publish only Modules")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.onlyModules), isAllModules: true), "Failed to unpublish only Modules")
 
+        testee = .finished
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.modulesAndItems), isAllModules: false), "Module and all Items published")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.modulesAndItems), isAllModules: false), "Module and all Items unpublished")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.modulesAndItems), isAllModules: true), "All Modules and all Items published")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.modulesAndItems), isAllModules: true), "All Modules and all Items unpublished")
         testee = .failure(NSError.internalError())
-        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .unpublish), "Failed To Unpublish Item")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.modulesAndItems), isAllModules: false), "Failed to publish Module and all Items")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.modulesAndItems), isAllModules: false), "Failed to unpublish Module and all Items")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .publish(.modulesAndItems), isAllModules: true), "Failed to publish all Modules and all Items")
+        XCTAssertEqual(testee.publishStatusUpdateText(for: .unpublish(.modulesAndItems), isAllModules: true), "Failed to unpublish all Modules and all Items")
     }
 }

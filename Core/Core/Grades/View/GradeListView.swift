@@ -247,6 +247,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 Image(uiImage: .lockLine)
                     .resizable()
                     .frame(width: 40, height: 40)
+                    .accessibilityIdentifier("lockIcon")
             }
             .padding(.top, 12)
             .padding(.horizontal, 16)
@@ -292,7 +293,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     private func togglesView() -> some View {
         VStack(spacing: 0) {
             Toggle(isOn: $viewModel.baseOnGradedAssignment) {
-                Text("Base on graded assignments", bundle: .core)
+                Text("Based on graded assignments", bundle: .core)
                     .foregroundStyle(Color.textDarkest)
                     .font(.regular16)
                     .multilineTextAlignment(.leading)

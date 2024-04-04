@@ -27,26 +27,30 @@ class ModuleItemCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dueLabel: UILabel!
     @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var publishedIconView: PublishedIconView!
-    @IBOutlet weak var publishInProgressIndicator: CircleProgressView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
     @IBOutlet weak var completedStatusView: UIImageView!
-    @IBOutlet weak var publishMenuButton: UIButton!
+    @IBOutlet weak var publishControl: ModulePublishControl!
+    @IBOutlet weak var contentStackViewTrailingConstraint: NSLayoutConstraint!
 
     private let env = AppEnvironment.shared
-    private var publishStateObserver: AnyCancellable?
-    private var isFirstUpdate = true
+    private var publishStateObservers = Set<AnyCancellable>()
     private weak var host: UIViewController?
+
+    private var publishInteractor: ModulePublishInteractor?
+    private var shouldShowPublishControl: Bool = false
+
+    // stored IDs for FilePermissionEditor
     private var moduleItemId: String?
     private var fileId: String?
     private var moduleId: String?
     private var courseId: String?
-    private var publishInteractor: ModulePublishInteractor?
+
+    // MARK: - Update
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        publishStateObserver = nil
-        isFirstUpdate = true
+        publishControl.prepareForReuse()
+        publishStateObservers.removeAll()
     }
 
     func update(
@@ -58,31 +62,49 @@ class ModuleItemCell: UITableViewCell {
     ) {
         self.host = host
         self.publishInteractor = publishInteractor
+        shouldShowPublishControl = publishInteractor.isPublishActionAvailable
         moduleId = item.moduleID
         moduleItemId = item.id
         fileId = item.type.fileId
         courseId = item.courseID
+
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
+
         let isLocked = item.isLocked || item.masteryPath?.locked == true
         isUserInteractionEnabled = env.app == .teacher || !isLocked
+
         nameLabel.setText(item.title, style: .textCellTitle)
         nameLabel.isEnabled = isUserInteractionEnabled
         nameLabel.textColor = nameLabel.isEnabled ? .textDarkest : .textLight
+
         iconView.image = item.masteryPath?.locked == true ? UIImage.lockLine : item.type?.icon
         contentStackView.setCustomSpacing(16, after: iconView)
         iconView.isHidden = (iconView.image == nil)
 
-        if let fileAvailability = item.fileAvailability {
-            publishedIconView.setupState(with: fileAvailability)
-        } else {
-            publishedIconView.published = item.published
-        }
-
         completedStatusView.isHidden = env.app == .teacher || item.completionRequirement == nil
         completedStatusView.image = item.completed == true ? .checkLine : .emptyLine
         completedStatusView.tintColor = item.completed == true ? .backgroundSuccess : .borderMedium
+
         indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier
+
+        updateDueLabel(item)
+
+        accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row)"
+        nameLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).nameLabel"
+        dueLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueLabel"
+
+        publishControl.isHidden = !shouldShowPublishControl
+        contentStackViewTrailingConstraint.constant = shouldShowPublishControl ? 0 : 16
+
+        // We have to do an instant update because the update via subscription is delayed
+        updatePublishControl(item)
+        updatePublishInProgressState(item, isUpdating: publishInteractor.isModuleItemPublishInProgress(item))
+
+        subscribeToPublishStateUpdates(item, publishInteractor: publishInteractor, host: host)
+    }
+
+    private func updateDueLabel(_ item: ModuleItem) {
         let dueAt = item.dueAt.flatMap { DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .none) }
         let points: String? = item.pointsPossible.flatMap {
             if item.hideQuantitativeData {
@@ -106,36 +128,142 @@ class ModuleItemCell: UITableViewCell {
             accessoryView = nil
         }
         dueLabel.isHidden = dueLabel.text == nil
-        var a11yLabels = [item.type?.label, item.title, dueLabel.text]
-        if item.isLocked {
-            a11yLabels.append(NSLocalizedString("locked", bundle: .core, comment: ""))
+    }
+
+    private func updateA11yLabel(_ item: ModuleItem, isPublishing: Bool) {
+        var a11yLabels: [String?] = [
+            item.type?.label,
+            item.title,
+        ]
+
+        if shouldShowPublishControl {
+            let publishedText = {
+                if isPublishing {
+                    return String(localized: "Publish state modification in progress")
+                }
+
+                if let availability = item.fileAvailability {
+                    return availability.a11yLabel
+                } else {
+                    return item.published == true
+                        ? String(localized: "published")
+                        : String(localized: "unpublished")
+                }
+            }()
+            a11yLabels.append(publishedText)
+        } else {
+            a11yLabels.append(contentsOf: [
+                dueLabel.text,
+                item.isLocked ? String(localized: "locked") : nil,
+            ])
         }
+
         accessibilityLabel = a11yLabels.compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: ", ")
-        updateA11yLabelForPublishState(moduleItem: item)
+    }
 
-        accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row)"
-        nameLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).nameLabel"
-        dueLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueLabel"
+    // MARK: - Publish
 
-        publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
+    private func subscribeToPublishStateUpdates(
+        _ item: ModuleItem,
+        publishInteractor: ModulePublishInteractor,
+        host: UIViewController
+    ) {
+        guard publishStateObservers.isEmpty else { return }
+
+        Publishers.CombineLatest(
+            publishInteractor.moduleItemsUpdating.map { $0.contains(item.id) },
+            publishInteractor.modulesUpdating.map { $0.contains(item.moduleID) }
+        )
+        .map { (itemUpdating, parentModuleUpdating) in
+            itemUpdating || parentModuleUpdating
+        }
+        .removeDuplicates()
+        .receive(on: RunLoop.main)
+        .sink { [weak self] isUpdating in
+            guard let self else { return }
+
+            updatePublishControl(item)
+            updatePublishInProgressState(item, isUpdating: isUpdating)
+        }
+        .store(in: &publishStateObservers)
+    }
+
+    private func updatePublishControl(_ item: ModuleItem) {
+        publishControl.isEnabled = item.shouldEnablePublishControl
+        updatePublishedState(item)
+    }
+
+    private func updatePublishedState(_ item: ModuleItem) {
+        let availability = item.fileAvailability ?? (item.published == true ? .published : .unpublished)
+        publishControl.update(availability: availability)
+    }
+
+    private func updatePublishInProgressState(_ item: ModuleItem, isUpdating: Bool) {
+        updatePublishButtonAction(item, isPublishing: isUpdating)
+        publishControl.update(isPublishInProgress: isUpdating)
+        updateA11yLabel(item, isPublishing: isUpdating)
+    }
+
+    private func updatePublishButtonAction(_ item: ModuleItem, isPublishing: Bool) {
+        guard let host else { return }
+
+        if !shouldShowPublishControl || isPublishing {
+            publishControl.setPrimaryAction(nil)
+            accessibilityCustomActions = []
+            return
+        }
+
         switch item.type {
         case .file: // files open a dedicated dialog and don't use the context menu
-            publishMenuButton.showsMenuAsPrimaryAction = false
-            accessibilityCustomActions = publishInteractor.isPublishActionAvailable ? [
+            publishControl.setPrimaryAction { [weak self] in
+                self?.presentFilePermissionEditorDialog()
+            }
+            accessibilityCustomActions = [
                 .init(
-                    name: "Edit permissions",
+                    name: String(localized: "Edit permissions"),
                     target: self,
                     selector: #selector(presentFilePermissionEditorDialog)
                 ),
-            ] : []
-            publishMenuButton.addTarget(self, action: #selector(presentFilePermissionEditorDialog), for: .primaryActionTriggered)
+            ]
         default:
-            publishMenuButton.showsMenuAsPrimaryAction = true
-            publishMenuButton.removeTarget(self, action: #selector(presentFilePermissionEditorDialog), for: .primaryActionTriggered)
-        }
+            if item.shouldEnablePublishControl {
+                let action: ModulePublishAction = item.published == true ? .unpublish : .publish
+                let performUpdate: () -> Void = { [weak publishInteractor] in
+                    publishInteractor?.changeItemPublishedState(
+                        moduleId: item.moduleID,
+                        moduleItemId: item.id,
+                        action: action
+                    )
+                }
 
-        subscribeToPublishStateUpdates(item, publishInteractor: publishInteractor, host: host)
+                publishControl.setPrimaryActionToMenu(
+                    .makePublishModuleItemMenu(
+                        action: action,
+                        host: host,
+                        actionDidPerform: performUpdate
+                    )
+                )
+                accessibilityCustomActions = .makePublishModuleItemA11yActions(
+                    action: action,
+                    host: host,
+                    actionDidPerform: performUpdate
+                )
+            } else {
+                publishControl.setPrimaryAction { [weak self] in
+                    self?.showCantUnpublishSnackBar()
+                }
+                accessibilityCustomActions = []
+            }
+        }
     }
+
+    @objc
+    private func showCantUnpublishSnackBar() {
+        let message = String(localized: "Can’t unpublish, if there are student submissions.")
+        host?.findSnackBarViewModel()?.showSnack(message)
+    }
+
+    // MARK: - File Permissions
 
     @objc
     private func presentFilePermissionEditorDialog() {
@@ -156,100 +284,21 @@ class ModuleItemCell: UITableViewCell {
         let hostController = CoreHostingController(editorView)
         env.router.show(hostController, from: host, options: .modal(isDismissable: false, embedInNav: true))
     }
+}
 
-    private func subscribeToPublishStateUpdates(
-        _ item: ModuleItem,
-        publishInteractor: ModulePublishInteractor,
-        host: UIViewController
-    ) {
-        guard publishStateObserver == nil else { return }
-
-        publishStateObserver = publishInteractor
-            .moduleItemsUpdating
-            .map { $0.contains(item.id) }
-            .removeDuplicates()
-            .sink { [weak self, weak host] isUpdating in
-                guard let self, let host else { return }
-                let animated = !isFirstUpdate
-                isFirstUpdate = false
-
-                if !item.type.isFile {
-                    updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, host: host)
-                }
-
-                let availability = item.fileAvailability ?? (item.published == true ? .published : .unpublished)
-                updatePublishedUIState(
-                    isUpdating: isUpdating,
-                    availability: availability,
-                    animated: animated
-                )
-                updateA11yLabelForPublishState(moduleItem: item)
-            }
+private extension ModuleItem {
+    var shouldEnablePublishControl: Bool {
+        type.isFile || published == false || canBeUnpublished
     }
+}
 
-    private func updatePublishMenuActions(
-        moduleItem: ModuleItem,
-        publishInteractor: ModulePublishInteractor,
-        host: UIViewController
-    ) {
-        let action: ModulePublishAction = moduleItem.published == true ? .unpublish : .publish
-        let performUpdate = {
-            publishInteractor.changeItemPublishedState(
-                moduleId: moduleItem.moduleID,
-                moduleItemId: moduleItem.id,
-                action: action
-            )
-        }
-        publishMenuButton.menu = .makePublishModuleItemMenu(action: action, host: host, actionDidPerform: performUpdate)
-
-        accessibilityCustomActions = {
-            if publishMenuButton.isHidden {
-                return []
-            }
-
-            return .makePublishModuleItemA11yActions(
-                action: action,
-                host: host,
-                actionDidPerform: performUpdate
-            )
-        }()
-    }
-
-    private func updatePublishedUIState(isUpdating: Bool, availability: FileAvailability, animated: Bool) {
-        if isUpdating {
-            publishInProgressIndicator?.startAnimating()
-        }
-
-        publishInProgressIndicator?.alpha = isUpdating ? 0 : 1
-        publishedIconView?.setupState(with: availability)
-        publishedIconView?.alpha = isUpdating ? 1 : 0
-
-        UIView.animate(withDuration: animated ? 0.3 : 0.0) { [weak publishInProgressIndicator, weak publishedIconView] in
-            publishInProgressIndicator?.alpha = isUpdating ? 1 : 0
-            publishedIconView?.alpha = isUpdating ? 0 : 1
-        } completion: { [weak publishInProgressIndicator] _ in
-            if !isUpdating {
-                publishInProgressIndicator?.stopAnimating()
-            }
-        }
-    }
-
-    private func updateA11yLabelForPublishState(moduleItem: ModuleItem) {
-        if !publishedIconView.isHidden {
-            let publishedText = {
-                if let availability = moduleItem.fileAvailability {
-                    return availability.a11yLabel
-                } else {
-                    return moduleItem.published == true
-                        ? String(localized: "published")
-                        : String(localized: "unpublished")
-                }
-            }()
-            accessibilityLabel = [
-                moduleItem.type?.label,
-                moduleItem.title,
-                publishedText,
-            ].compactMap { $0 }.joined(separator: ", ")
+private extension FileAvailability {
+    var a11yLabel: String {
+        switch self {
+        case .published: return String(localized: "published")
+        case .unpublished: return String(localized: "unpublished")
+        case .hidden: return String(localized: "only available with link")
+        case .scheduledAvailability: return String(localized: "scheduled availability")
         }
     }
 }

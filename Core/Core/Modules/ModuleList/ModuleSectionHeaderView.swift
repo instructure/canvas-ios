@@ -16,22 +16,35 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 
 class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var collapsableIndicator: UIImageView!
     @IBOutlet weak var lockedButton: UIButton!
-    @IBOutlet weak var publishMenuButton: UIButton!
+    @IBOutlet weak var publishControl: ModulePublishControl!
+    @IBOutlet weak var publishControlGuide: UIView!
+    @IBOutlet weak var contentStackViewTrailingConstraint: NSLayoutConstraint!
 
     var isExpanded = true
     var onTap: (() -> Void)?
     var onLockTap: (() -> Void)?
 
+    private var publishInteractor: ModulePublishInteractor?
+    private var shouldShowPublishControl: Bool = false
+    private var module: Module?
+    private var publishStateObserver: AnyCancellable?
+    private weak var host: UIViewController?
+
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         loadFromXib().backgroundColor = .backgroundLight
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        publishStateObserver = nil
+        publishControl.prepareForReuse()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -47,37 +60,30 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         publishInteractor: ModulePublishInteractor,
         onTap: @escaping () -> Void
     ) {
+        self.module = module
         self.isExpanded = isExpanded
+        self.publishInteractor = publishInteractor
+        shouldShowPublishControl = publishInteractor.isPublishActionAvailable
         self.onTap = onTap
+        self.host = host
         titleLabel.text = module.name
-        publishedIconView.published = module.published
+
         lockedButton.isHidden = module.state != .locked
         collapsableIndicator.transform = CGAffineTransform(rotationAngle: isExpanded ? 0 : .pi)
-        setupPublishMenu(host: host, publishInteractor: publishInteractor)
-        accessibilityLabel = [
-            module.name,
-            publishedIconView.isHidden ? "" :
-            module.published == true
-                ? NSLocalizedString("published", bundle: .core, comment: "")
-                : NSLocalizedString("unpublished", bundle: .core, comment: ""),
-            isExpanded
-                ? NSLocalizedString("expanded", bundle: .core, comment: "")
-                : NSLocalizedString("collapsed", bundle: .core, comment: ""),
-        ].joined(separator: ", ")
+
         accessibilityTraits.insert(.button)
         accessibilityIdentifier = "ModuleList.\(section)"
 
-        if publishMenuButton.menu == nil {
-            publishMenuButton.menu = .makePublishModuleMenu(host: host) { [weak self] action in
-                self?.didPerformPublishAction(action: action)
-            }
-            publishMenuButton.showsMenuAsPrimaryAction = true
-        }
+        publishControl.isHidden = !shouldShowPublishControl
+        publishControlGuide.isHidden = !shouldShowPublishControl
+        contentStackViewTrailingConstraint.constant = shouldShowPublishControl ? 0 : 16
+        publishControl.constrainIconsCenterTo(publishControlGuide)
+        updatePublishedState(module)
 
-        publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
-        accessibilityCustomActions = publishMenuButton.isHidden ? [] : .makePublishModuleA11yActions(host: host) { [weak self] action in
-            self?.didPerformPublishAction(action: action)
-        }
+        // Do an instant update because the subscription is delayed
+        updatePublishInProgressState(module, isUpdating: publishInteractor.isModulePublishInProgress(module))
+
+        subscribeToPublishStateUpdates(module, publishInteractor: publishInteractor)
     }
 
     @IBAction func handleTap() {
@@ -93,26 +99,89 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         onLockTap?()
     }
 
-    private func setupPublishMenu(
-        host: UIViewController,
-        publishInteractor: ModulePublishInteractor
-    ) {
-        if publishMenuButton.menu == nil {
-            publishMenuButton.menu = .makePublishModuleMenu(host: host) { [weak self] action in
-                self?.didPerformPublishAction(action: action)
+    private func updateA11yLabel(_ module: Module, isPublishing: Bool) {
+        let publishedState: String? = {
+            if isPublishing {
+                return String(localized: "Publish state modification in progress")
             }
-            publishMenuButton.showsMenuAsPrimaryAction = true
+
+            guard let published = module.published, shouldShowPublishControl else {
+                return nil
+            }
+
+            return published
+                ? String(localized: "published")
+                : String(localized: "unpublished")
+        }()
+
+        accessibilityLabel = [
+            module.name,
+            publishedState,
+            isExpanded
+                ? String(localized: "expanded")
+                : String(localized: "collapsed"),
+        ].compactMap { $0 }.joined(separator: ", ")
+    }
+
+    private func updatePublishedState(_ module: Module) {
+        publishControl.update(availability: module.published.map({ $0 ? .published : .unpublished }))
+    }
+
+    private func updatePublishInProgressState(_ module: Module, isUpdating: Bool) {
+        updatePublishButtonAction(module, isPublishing: isUpdating)
+        publishControl.update(isPublishInProgress: isUpdating)
+        updateA11yLabel(module, isPublishing: isUpdating)
+    }
+
+    private func updatePublishButtonAction(_ module: Module, isPublishing: Bool) {
+        guard let host else { return }
+
+        if !shouldShowPublishControl || isPublishing {
+            publishControl.setPrimaryAction(nil)
+            accessibilityCustomActions = []
+            return
         }
 
-        publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
+        guard publishControl.menu == nil else { return }
+
+        publishControl.setPrimaryActionToMenu(
+            .makePublishModuleMenu(host: host) { [weak self] action in
+                self?.didPerformPublishAction(action: action)
+            }
+        )
+        accessibilityCustomActions = .makePublishModuleA11yActions(host: host) { [weak self] action in
+            self?.didPerformPublishAction(action: action)
+        }
     }
 
     private func didPerformPublishAction(action: ModulePublishAction) {
-        guard let sourceViewController = viewController else { return }
+        guard let sourceViewController = viewController,
+              let publishInteractor,
+              let module
+        else { return }
 
-        let router = AppEnvironment.shared.router
-        let viewModel = ModulePublishProgressViewModel(action: action, allModules: false, router: router)
+        let viewModel = ModulePublishProgressViewModel(
+            action: action,
+            allModules: false,
+            moduleIds: [module.id],
+            interactor: publishInteractor
+        )
         let viewController = CoreHostingController(ModulePublishProgressView(viewModel: viewModel))
-        router.show(viewController, from: sourceViewController, options: .modal(isDismissable: true, embedInNav: true))
+        AppEnvironment.shared.router.show(viewController, from: sourceViewController, options: .modal(isDismissable: true, embedInNav: true))
+    }
+
+    private func subscribeToPublishStateUpdates(
+        _ module: Module,
+        publishInteractor: ModulePublishInteractor
+    ) {
+        guard publishStateObserver == nil else { return }
+
+        publishStateObserver = publishInteractor
+            .modulesUpdating
+            .map { $0.contains(module.id) }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] isPublishing in
+                self?.updatePublishInProgressState(module, isUpdating: isPublishing)
+            }
     }
 }
