@@ -22,6 +22,7 @@ import CombineSchedulers
 
 protocol HTMLDownloadInteractor {
     var sectionName: String { get }
+    func download(_ url: URL, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<(data: Data, response: URLResponse), Error>
     func download(_ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), Error>
     func save(_ result: (data: Data, response: URLResponse), courseId: String, prefix: String) -> AnyPublisher<URL, Error>
     func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error>
@@ -38,7 +39,10 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         self.scheduler = scheduler
     }
 
-    func download( _ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), Error> {
+    func download(
+        _ url: URL,
+        publisherProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
+    ) -> AnyPublisher<(data: Data, response: URLResponse), Error> {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
@@ -46,12 +50,16 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             request.setValue("Authentication", forHTTPHeaderField: "Bearer \(loginSession.accessToken ?? "")")
         }
 
-        return URLSession.shared.dataTaskPublisher(for: request)
+        return publisherProvider.getProvider(for: request)
             .mapError { urlError -> Error in
                 return urlError
             }
             .receive(on: scheduler)
             .eraseToAnyPublisher()
+    }
+
+    func download(_ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), Error> {
+        return download(url, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
     func save(_ result: (data: Data, response: URLResponse), courseId: String, prefix: String) -> AnyPublisher<URL, Error> {

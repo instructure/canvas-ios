@@ -95,7 +95,7 @@ public class HTMLParser {
             .eraseToAnyPublisher()
     }
 
-    func findRegexMatches(_ content: String, pattern: NSRegularExpression) -> [URL] {
+    private func findRegexMatches(_ content: String, pattern: NSRegularExpression) -> [URL] {
         pattern
             .matches(in: content, range: NSRange(location: 0, length: content.count))
             .compactMap { match in
@@ -110,7 +110,7 @@ public class HTMLParser {
             }
     }
 
-    func getRootURL(courseId: String, prefix: String, resourceId: String) -> URL {
+    private func getRootURL(courseId: String, prefix: String, resourceId: String) -> URL {
         return URL.Directories.documents.appendingPathComponent(
             URL.Paths.Offline.courseSectionFolder(
                 sessionId: loginSession.uniqueID,

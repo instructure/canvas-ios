@@ -207,7 +207,6 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         }
 
         guard let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) else {
-            assertionFailure("No interactor found for selected tab: \(tabName)")
             return Just(()).eraseToAnyPublisher()
         }
 

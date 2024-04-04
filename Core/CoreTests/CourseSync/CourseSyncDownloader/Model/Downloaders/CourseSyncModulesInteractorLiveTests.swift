@@ -25,7 +25,7 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        testee = CourseSyncModulesInteractorLive()
+        testee = CourseSyncModulesInteractorLive(pageHtmlParser: getHTMLParser(), quizHtmlParser: getHTMLParser())
     }
 
     override func tearDown() {
@@ -197,5 +197,10 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
             ),
             error: NSError.instructureError("")
         )
+    }
+
+    private func getHTMLParser() -> HTMLParser {
+        let interactor = HTMLDownloadInteractorMock()
+        return HTMLParser(loginSession: environment.currentSession!, downloadInteractor: interactor)
     }
 }
