@@ -127,5 +127,4 @@ public class HTMLParserLive: HTMLParser {
         )
         .appendingPathComponent("\(prefix)-\(resourceId)")
     }
-
 }
