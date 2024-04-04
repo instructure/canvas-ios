@@ -111,6 +111,10 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
         )
         ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
             .getEntities(ignoreCache: true)
+            .compactMap { $0.first }
+            .flatMap { moduleItem in
+                moduleItem.updatePublishedStateOnAssociatedItem()
+            }
             .mapToVoid()
             .sink(receiveCompletion: { [weak moduleItemsUpdating, weak statusUpdates] result in
                 guard let moduleItemsUpdating else { return }
@@ -145,11 +149,19 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
                 itemID: fileContext.moduleItemId
             )
             return ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
-                .getEntities(ignoreCache: true)
-                .mapToVoid()
+                .forceRefresh()
+        }
+        let refreshFile = {
+            let useCase = GetFile(
+                context: .course(fileContext.courseId),
+                fileID: fileContext.fileId
+            )
+            return ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
+                .forceRefresh()
         }
         return updateFilePermissions()
             .flatMap { refreshModuleItem() }
+            .flatMap { refreshFile() }
             .handleEvents(receiveCompletion: { [weak moduleItemsUpdating] _ in
                 moduleItemsUpdating?.value.remove(fileContext.moduleItemId)
             })

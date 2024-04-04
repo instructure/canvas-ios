@@ -81,11 +81,9 @@ extension Array where Element == ModuleId {
 extension Array where Element == Module {
 
     func refreshPublishStateOnAssociatedItems() -> some Publisher<Void, Never> {
-        Future { promise in
-            let allItems = flatMap { $0.items }
-            allItems.forEach { $0.updatePublishedStateOnAssociatedItem() }
-            promise(.success(()))
-        }
+        let allItems = flatMap { $0.items }
+        return Publishers.Sequence(sequence: allItems)
+            .flatMap { $0.updatePublishedStateOnAssociatedItem() }
     }
 
     func refreshFilePublishedStates(courseId: String) -> some Publisher<Void, Never> {
@@ -109,32 +107,39 @@ extension Array where Element == Module {
 
 extension ModuleItem {
 
-    func updatePublishedStateOnAssociatedItem() {
-        guard let context = managedObjectContext,
-              let published
-        else { return }
+    func updatePublishedStateOnAssociatedItem() -> Future<Void, Never> {
+        Future { [weak self] promise in
+            defer { promise(.success(())) }
 
-        context.performAndWait {
-            switch type {
-            case .assignment(let id):
-                let assignment: Assignment? = context.first(where: (\Assignment.id).string, equals: id)
-                assignment?.published = published
-            case .discussion(let id):
-                let discussion: DiscussionTopic? = context.first(where: (\DiscussionTopic.id).string, equals: id)
-                discussion?.published = published
-            case .page(let id):
-                let page: Page? = context.first(where: (\Page.id).string, equals: id)
-                page?.published = published
-            case .quiz(let id):
-                let quiz: Quiz? = context.first(where: (\Quiz.id).string, equals: id)
-                quiz?.published = published
-            case .file:
-                // Files have more granular published states so we can't use the flag from the module item
-                break
-            default: break
+            guard let self,
+                  let context = managedObjectContext,
+                  let published
+            else { return }
+
+            let type = type
+
+            context.performAndWait {
+                switch type {
+                case .assignment(let id):
+                    let assignment: Assignment? = context.first(where: (\Assignment.id).string, equals: id)
+                    assignment?.published = published
+                case .discussion(let id):
+                    let discussion: DiscussionTopic? = context.first(where: (\DiscussionTopic.id).string, equals: id)
+                    discussion?.published = published
+                case .page(let id):
+                    let page: Page? = context.first(where: (\Page.id).string, equals: id)
+                    page?.published = published
+                case .quiz(let id):
+                    let quiz: Quiz? = context.first(where: (\Quiz.id).string, equals: id)
+                    quiz?.published = published
+                case .file:
+                    // Files have more granular published states so we can't use the flag from the module item
+                    break
+                default: break
+                }
+
+                try? context.save()
             }
-
-            try? context.save()
         }
     }
 }
