@@ -41,6 +41,15 @@ enum ModulePublishAction: Equatable {
         }
     }
 
+    var updatesModuleItems: Bool {
+        guard let subject else { return true }
+
+        switch subject {
+        case .modulesAndItems: return true
+        case .onlyModules: return false
+        }
+    }
+
     static let publish = Self.publish(nil)
     static let unpublish = Self.unpublish(nil)
 }
