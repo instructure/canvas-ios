@@ -51,7 +51,7 @@ class BulkPublishInteractor {
 
     private let api: API
     private let courseId: String
-    private let localStateRefresher: BulkPublishLocalStateRefresh
+    private let localStateRefresher: BulkPublishLocalStateRefresher
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     private var pollRetryCount = 0
@@ -63,7 +63,7 @@ class BulkPublishInteractor {
         courseId: String,
         moduleIds: [String],
         action: ModulePublishAction,
-        localStateRefresher: BulkPublishLocalStateRefresh,
+        localStateRefresher: BulkPublishLocalStateRefresher,
         scheduler: AnySchedulerOf<DispatchQueue> = .global()
     ) {
         self.api = api

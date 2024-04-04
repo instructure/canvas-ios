@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class BulkPublishLocalStateRefreshTests: CoreTestCase {
+class BulkPublishLocalStateRefresherTests: CoreTestCase {
 
     func testLocalStateRefresh() {
         // MARK: Save items for module items all published
@@ -69,7 +69,7 @@ class BulkPublishLocalStateRefreshTests: CoreTestCase {
             value: .make(id: "f1", hidden: true)
         )
 
-        let testee = BulkPublishLocalStateRefreshLive(
+        let testee = BulkPublishLocalStateRefresherLive(
             courseId: "c1",
             moduleIds: ["m1"],
             action: .unpublish(.modulesAndItems)

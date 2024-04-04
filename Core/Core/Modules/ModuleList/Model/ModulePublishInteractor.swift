@@ -208,7 +208,7 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
             courseId: courseId,
             moduleIds: moduleIds,
             action: action,
-            localStateRefresher: BulkPublishLocalStateRefreshLive(
+            localStateRefresher: BulkPublishLocalStateRefresherLive(
                 courseId: courseId,
                 moduleIds: moduleIds,
                 action: action

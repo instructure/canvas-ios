@@ -160,7 +160,7 @@ class BulkPublishInteractorTests: CoreTestCase {
     }
 }
 
-struct MockBulkPublishLocalStateRefresh: BulkPublishLocalStateRefresh {
+struct MockBulkPublishLocalStateRefresh: BulkPublishLocalStateRefresher {
 
     func refreshStates() -> any Publisher<Void, Error> {
         Just(()).setFailureType(to: Error.self)

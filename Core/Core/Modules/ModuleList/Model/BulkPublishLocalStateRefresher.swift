@@ -23,11 +23,11 @@ import CombineExt
  This entity is responsible to keep the published state of objects associated to module items (assignments, pages, files, etc)
  up-to-date after a bulk publish action has been taken place.
  */
-protocol BulkPublishLocalStateRefresh {
+protocol BulkPublishLocalStateRefresher {
     func refreshStates() -> any Publisher<Void, Error>
 }
 
-struct BulkPublishLocalStateRefreshLive: BulkPublishLocalStateRefresh {
+struct BulkPublishLocalStateRefresherLive: BulkPublishLocalStateRefresher {
     private let courseId: String
     private let moduleIds: [String]
     private let moduleItemsUpdated: Bool
