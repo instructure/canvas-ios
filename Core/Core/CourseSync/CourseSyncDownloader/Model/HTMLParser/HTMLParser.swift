@@ -79,7 +79,6 @@ public class HTMLParserLive: HTMLParser {
             .collect() // Wait for all image download to finish and handle as an array
             .map { [content] urls in // Replace relative links with baseULR based absolute links. The baseURL in the webviews will be different from the original one to load the local images
                 var newContent = content
-                print(relativeURLs)
                 relativeURLs.forEach { relativeURL in
                     if let baseURL {
                         let newURL = baseURL.appendingPathComponent(relativeURL.path)
@@ -94,6 +93,7 @@ public class HTMLParserLive: HTMLParser {
                     let newURL = "\(localURL.lastPathComponent)"
                     newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: newURL)
                 }
+                print(newContent)
                 return newContent
             }
             .flatMap { [interactor, rootURL] content in // Save html parsed html string content to file. It will be loaded in offline mode)
