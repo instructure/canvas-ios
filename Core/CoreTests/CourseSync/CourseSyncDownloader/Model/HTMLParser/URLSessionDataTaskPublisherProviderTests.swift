@@ -27,7 +27,7 @@ class URLSessionDataTaskPublisherProviderTests: CoreTestCase {
 
     func testrovider() {
         let testee = URLSessionDataTaskPublisherProviderLive()
-        let url = URL(string: "https://instructure.com/logo.png")!
+        let url = URL(string: "https://www.instructure.com/logo.png")!
         let request = URLRequest(url: url)
         testee.getPublisher(for: request)
             .sink(receiveCompletion: { _ in }, receiveValue: { result in

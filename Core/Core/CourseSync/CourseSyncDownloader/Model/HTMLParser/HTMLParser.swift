@@ -54,13 +54,12 @@ public class HTMLParserLive: HTMLParser {
         self.imageRegex = (try? NSRegularExpression(pattern: "<img[^>]*src=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
         self.fileLinkRegex = (try? NSRegularExpression(pattern: "<a[^>]*class=\"instructure_file_link[^>]*href=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
         self.internalFileRegex = (try? NSRegularExpression(pattern: ".*\(loginSession.baseURL).*files/(\\d+)")) ?? NSRegularExpression()
-
-        self.relativeURLRegex = (try? NSRegularExpression(pattern: "^(?:[a-z+]+:)?//")) ?? NSRegularExpression()
+        self.relativeURLRegex = (try? NSRegularExpression(pattern: "<.+(src|href)=\"(.+((\\.|\\/)\\.+)*)\".*>")) ?? NSRegularExpression()
     }
 
     public func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
         let imageURLs = findRegexMatches(content, pattern: imageRegex)
-        let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex)
+        let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex, groupCount: 2).filter { url in url.host ==  nil }
         let rootURL = getRootURL(courseId: courseId, prefix: prefix, resourceId: resourceId)
 
         return imageURLs.publisher
@@ -80,6 +79,7 @@ public class HTMLParserLive: HTMLParser {
             .collect() // Wait for all image download to finish and handle as an array
             .map { [content] urls in // Replace relative links with baseULR based absolute links. The baseURL in the webviews will be different from the original one to load the local images
                 var newContent = content
+                print(relativeURLs)
                 relativeURLs.forEach { relativeURL in
                     if let baseURL {
                         let newURL = baseURL.appendingPathComponent(relativeURL.path)
@@ -96,18 +96,21 @@ public class HTMLParserLive: HTMLParser {
                 }
                 return newContent
             }
-            .flatMap { [interactor, rootURL] content in // Save html parsed html string content to file. It will be loaded in offline mode
+            .flatMap { [interactor, rootURL] content in // Save html parsed html string content to file. It will be loaded in offline mode)
                 return interactor.saveBaseContent(content: content, folderURL: rootURL)
             }
             .eraseToAnyPublisher()
     }
 
-    private func findRegexMatches(_ content: String, pattern: NSRegularExpression) -> [URL] {
+    private func findRegexMatches(_ content: String, pattern: NSRegularExpression, groupCount: Int = 1) -> [URL] {
         pattern
             .matches(in: content, range: NSRange(location: 0, length: content.count))
             .compactMap { match in
-                if let wholeRange = Range(match.range(at: 1), in: content) {
-                    let url = String(content[wholeRange])
+                if let wholeRange = Range(match.range(at: groupCount), in: content) {
+                    var url = String(content[wholeRange])
+                    if let index = url.firstIndex(of: "\"") { // Remove Swift's wrong Regex Group handling
+                        url = String(url.prefix(upTo: index))
+                    }
                     return url
                 }
                 return ""

@@ -29,7 +29,7 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
     let testPrefix = "test"
     let testResponse = (data: Data(base64Encoded: "aGVsbG8=")!,
                         response: URLResponse.init(
-                            url: URL(string: "https://instructure.com/logo.png")!,
+                            url: URL(string: "https://www.instructure.com/logo.png")!,
                             mimeType: nil,
                             expectedContentLength: 100,
                             textEncodingName: nil
@@ -39,14 +39,14 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
 
     func testDownload() {
         let testee = HTMLDownloadInteractorLive(loginSession: environment.currentSession!, sectionName: testSectionName, scheduler: .main)
-        let url = URL(string: "https://instructure.com/logo.png")!
+        let url = URL(string: "https://www.instructure.com/logo.png")!
         let mockPublisherProvider = URLSessionDataTaskPublisherProviderMock()
         testee.download(url, publisherProvider: mockPublisherProvider)
             .sink(receiveCompletion: { _ in }, receiveValue: { result in
                 let response = result.response
                 let data = result.data
 
-                XCTAssertEqual(response.url, URL(string: "https://instructure.com/logo.png"))
+                XCTAssertEqual(response.url, URL(string: "https://www.instructure.com/logo.png"))
                 XCTAssertEqual(data, Data(base64Encoded: "aGVsbG8=")!)
             })
             .store(in: &subscriptions)
@@ -94,7 +94,7 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
     class URLSessionDataTaskPublisherProviderMock: URLSessionDataTaskPublisherProvider {
         let testResponse = (data: Data(base64Encoded: "aGVsbG8=")!,
                             response: URLResponse.init(
-                                url: URL(string: "https://instructure.com/logo.png")!,
+                                url: URL(string: "https://www.instructure.com/logo.png")!,
                                 mimeType: nil,
                                 expectedContentLength: 100,
                                 textEncodingName: nil

@@ -57,9 +57,11 @@ class HTMLParserTests: CoreTestCase {
         let interactor = HTMLDownloadInteractorMock()
         testee = HTMLParserLive(loginSession: environment.currentSession!, downloadInteractor: interactor)
 
-        let baseURL = URL(string: "https://instructure.com")!
-        let urlToDownload = "https://instructure.com/logo.png"
-        let relativeURL = "/some_image.png"
+        let baseURL = URL(string: "https://www.instructure.com")!
+        let urlToDownload = "https://www.instructure.com/logo.png"
+        let relativeURL = """
+<a href="/some_image.png">
+"""
         let testHTMLContent: String = """
             <h1>Hello world!</h1>
         Some random content
@@ -79,10 +81,10 @@ class HTMLParserTests: CoreTestCase {
 
     func testSavingBaseContent() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParserLive(loginSession: environment.currentSession!, downloadInteractor: interactor)
+        testee = HTMLParserLive(loginSession: environment.currentSession!, downloadInteractor: interactor, prefix: "test")
 
-        let baseURL = URL(string: "https://instructure.com")
-        let urlToDownload = "https://instructure.com/logo.png"
+        let baseURL = URL(string: "https://www.instructure.com")
+        let urlToDownload = "https://www.instructure.com/logo.png"
         let testHTMLContent: String = """
             <h1>Hello world!</h1>
         Some random content
@@ -102,9 +104,7 @@ class HTMLParserTests: CoreTestCase {
         testee.parse(testHTMLContent, resourceId: testResourceId, courseId: testCourseId, baseURL: baseURL)
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in
                 XCTAssertEqual(interactor.savedBaseContents.count, 1)
-                XCTAssertEqual(interactor.savedBaseContents.first!,
-                   rootURL
-                )
+                XCTAssertEqual(interactor.savedBaseContents.first!, rootURL)
             })
             .store(in: &subscriptions)
     }
