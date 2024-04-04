@@ -51,6 +51,7 @@ class BulkPublishInteractor {
 
     private let api: API
     private let courseId: String
+    private let localStateRefresher: BulkPublishLocalStateRefresh
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     private var pollRetryCount = 0
@@ -62,12 +63,14 @@ class BulkPublishInteractor {
         courseId: String,
         moduleIds: [String],
         action: ModulePublishAction,
+        localStateRefresher: BulkPublishLocalStateRefresh,
         scheduler: AnySchedulerOf<DispatchQueue> = .global()
     ) {
         self.api = api
         self.courseId = courseId
         self.moduleIds = moduleIds
         self.action = action
+        self.localStateRefresher = localStateRefresher
         self.scheduler = scheduler
         sendBulkPublishRequest()
     }
@@ -111,7 +114,14 @@ class BulkPublishInteractor {
 
             if response.isCompleted {
                 progress.send(.running(progress: 1))
-                refreshModules()
+                localStateRefresher
+                    .refreshStates()
+                    .sink { [weak progress] _ in
+                        progress?.send(.completed)
+                        progress?.send(completion: .finished)
+                    } receiveValue: { _ in
+                    }
+                    .store(in: &subscriptions)
             } else {
                 pollRetryCount = 0
                 progress.send(.running(progress: response.progress / 100.0))
@@ -124,18 +134,6 @@ class BulkPublishInteractor {
         scheduler.schedule(after: scheduler.now.advanced(by: 1)) { [weak self] in
             self?.pollProgress(id: id)
         }
-    }
-
-    private func refreshModules() {
-        let useCase = GetModules(courseID: courseId)
-        ReactiveStore(useCase: useCase)
-            .forceRefresh()
-            .sink { [weak self] _ in
-                guard let self else { return }
-                progress.send(.completed)
-                progress.send(completion: .finished)
-            } receiveValue: { _ in }
-            .store(in: &subscriptions)
     }
 }
 

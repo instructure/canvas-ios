@@ -195,7 +195,12 @@ class ModulePublishInteractorLive: ModulePublishInteractor {
             api: api,
             courseId: courseId,
             moduleIds: moduleIds,
-            action: action
+            action: action,
+            localStateRefresher: BulkPublishLocalStateRefresh(
+                courseId: courseId,
+                moduleIds: moduleIds,
+                action: action
+            )
         )
 
         bulkPublishInteractors.append(interactor)
