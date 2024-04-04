@@ -153,7 +153,7 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attempt X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDm-Ca-2nK" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Attempt X" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDm-Ca-2nK" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                                                 <rect key="frame" x="16" y="24" width="65" height="19"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -163,7 +163,7 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haT-9w-5d7" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="haT-9w-5d7" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
                                                                 <rect key="frame" x="97" y="16.5" width="262" height="34"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" title="Button"/>
@@ -175,11 +175,13 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="haT-9w-5d7" firstAttribute="leading" relation="lessThanOrEqual" secondItem="CDm-Ca-2nK" secondAttribute="trailing" constant="16" id="2oy-BJ-J4e"/>
+                                                            <constraint firstItem="haT-9w-5d7" firstAttribute="leading" secondItem="CDm-Ca-2nK" secondAttribute="trailing" constant="16" id="2oy-BJ-J4e"/>
+                                                            <constraint firstItem="haT-9w-5d7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nww-it-yxh" secondAttribute="top" constant="4" id="3r0-vi-zye"/>
                                                             <constraint firstItem="5ai-Uj-QdL" firstAttribute="centerX" secondItem="nww-it-yxh" secondAttribute="centerX" id="Brg-0i-Wow"/>
                                                             <constraint firstAttribute="bottom" secondItem="CDm-Ca-2nK" secondAttribute="bottom" constant="16" id="EhR-1q-vuR"/>
                                                             <constraint firstItem="5ai-Uj-QdL" firstAttribute="top" secondItem="nww-it-yxh" secondAttribute="top" id="SvA-5S-24I"/>
                                                             <constraint firstItem="5ai-Uj-QdL" firstAttribute="width" secondItem="nww-it-yxh" secondAttribute="width" id="YXC-03-IbB"/>
+                                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="haT-9w-5d7" secondAttribute="bottom" constant="4" id="jyW-QV-1hL"/>
                                                             <constraint firstAttribute="trailing" secondItem="haT-9w-5d7" secondAttribute="trailing" constant="16" id="ln9-WT-Ze0"/>
                                                             <constraint firstItem="CDm-Ca-2nK" firstAttribute="leading" secondItem="nww-it-yxh" secondAttribute="leading" constant="16" id="osH-ny-rrS"/>
                                                             <constraint firstItem="CDm-Ca-2nK" firstAttribute="top" secondItem="nww-it-yxh" secondAttribute="top" constant="24" id="tia-Xi-Kqo"/>
