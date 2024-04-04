@@ -74,7 +74,7 @@ class HTMLParserTests: CoreTestCase {
         testee.parse(testHTMLContent, resourceId: testResourceId, courseId: testCourseId, baseURL: baseURL)
             .sink(receiveCompletion: { _ in }, receiveValue: { result in
                 XCTAssertFalse(result.contains("<a href=\"\(relativeURL)\">Relative test</a>"))
-                XCTAssertTrue(result.contains("<a href=\"\(baseURL)/\(relativeURL)\">Relative test</a>"))
+                XCTAssertTrue(result.contains("<a href=\"\(baseURL)\(relativeURL)\">Relative test</a>"))
             })
             .store(in: &subscriptions)
     }
