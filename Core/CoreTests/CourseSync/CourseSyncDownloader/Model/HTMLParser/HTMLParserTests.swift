@@ -59,16 +59,13 @@ class HTMLParserTests: CoreTestCase {
 
         let baseURL = URL(string: "https://www.instructure.com")!
         let urlToDownload = "https://www.instructure.com/logo.png"
-        let relativeURL = """
-<a href="/some_image.png">
-"""
         let testHTMLContent: String = """
             <h1>Hello world!</h1>
         Some random content
         <p>paragraph test</p>
         <img src="\(urlToDownload)">
         some simple text
-        <a href="\(relativeURL)">Relative test</a>
+        <a href="/some_image.png">Relative test</a>
         """
 
         testee.parse(testHTMLContent, resourceId: testResourceId, courseId: testCourseId, baseURL: baseURL)
