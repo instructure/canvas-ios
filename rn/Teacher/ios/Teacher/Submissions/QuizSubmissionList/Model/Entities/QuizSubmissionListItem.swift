@@ -26,24 +26,40 @@ public struct QuizSubmissionListItem: Equatable {
     public let score: String?
     public let avatarURL: URL?
 
-    public static func make(users: [QuizSubmissionUser], submissions: [QuizSubmission]) -> [QuizSubmissionListItem] {
-        users.map { user in
+    public static func make(
+        users: [QuizSubmissionUser],
+        submissions: [QuizSubmission],
+        isAnonymous: Bool
+    ) -> [QuizSubmissionListItem] {
+        users.enumerated().map { index, user in
             var status: QuizSubmissionWorkflowState = .untaken
             var score: String?
-            if let submission = submissions.first(where: {$0.userID == user.id}) {
+            if let submission = submissions.first(where: { $0.userID == user.id }) {
                 status = submission.workflowState
                 if let submissionScore = submission.score {
                     let truncated = GradeFormatter.truncate(submissionScore)
                     score = String(truncated.stringValue)
                 }
             }
+
+            let displayName: String
+            let avatarURL: URL?
+
+            if isAnonymous {
+                displayName = String(localized: "Student \(index + 1)", bundle: .core)
+                avatarURL = nil
+            } else {
+                displayName = User.displayName(user.name, pronouns: user.pronouns)
+                avatarURL = user.avatarURL
+            }
+
             return QuizSubmissionListItem(
                 id: user.id,
-                displayName: User.displayName(user.name, pronouns: user.pronouns),
+                displayName: displayName,
                 name: user.name,
                 status: status,
                 score: score,
-                avatarURL: user.avatarURL
+                avatarURL: avatarURL
             )
         }
     }
@@ -52,20 +68,19 @@ public struct QuizSubmissionListItem: Equatable {
 #if DEBUG
 
 public extension QuizSubmissionListItem {
-    static func make(id: String = "0")
-    -> QuizSubmissionListItem {
+    static func make(id _: String = "0")
+        -> QuizSubmissionListItem {
         let mockObject = QuizSubmissionListItem(id: "1", displayName: "Student", name: "Student", status: .complete, score: "5", avatarURL: nil)
         return mockObject
     }
 }
 
 public extension Array where Element == QuizSubmissionListItem {
-
     static func make(count: Int)
-    -> [QuizSubmissionListItem] {
-        (0..<count).reduce(into: [], { partialResult, index in
+        -> [QuizSubmissionListItem] {
+        (0 ..< count).reduce(into: []) { partialResult, index in
             partialResult.append(.make(id: "\(index)"))
-        })
+        }
     }
 }
 
