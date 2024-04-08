@@ -132,23 +132,23 @@ class SubmissionListViewControllerTests: TeacherTestCase {
         let cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SubmissionListCell
 
         assigment?.anonymizeStudents = true
-        cell?.update(assigment, submission: submission)
+        cell?.update(assigment, submission: submission, row: <#Int#>)
         XCTAssertEqual(cell?.nameLabel.text, "Student")
 
         submission?.groupID = "1"
-        cell?.update(assigment, submission: submission)
+        cell?.update(assigment, submission: submission, row: <#Int#>)
         XCTAssertEqual(cell?.nameLabel.text, "Group")
 
         assigment?.anonymizeStudents = false
         submission?.groupName = "Group One"
-        cell?.update(assigment, submission: submission)
+        cell?.update(assigment, submission: submission, row: <#Int#>)
         XCTAssertEqual(cell?.nameLabel.text, "Group One")
 
         submission?.groupID = nil
         submission?.groupName = nil
         submission?.user?.name = "Alice"
         submission?.user?.pronouns = "She/Her"
-        cell?.update(assigment, submission: submission)
+        cell?.update(assigment, submission: submission, row: <#Int#>)
         XCTAssertEqual(cell?.nameLabel.text, "Alice (She/Her)")
     }
 }
