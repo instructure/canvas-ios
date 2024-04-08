@@ -114,8 +114,8 @@ public final class GradeListViewModel: ObservableObject {
         triggerRefresh.prepend((false, nil))
             .receive(on: scheduler)
             .flatMapLatest { [weak self] params -> AnyPublisher<ViewState, Never> in
-                guard let self = self else {
-                    return Empty(completeImmediately: false).eraseToAnyPublisher()
+                guard let self else {
+                    return Empty(completeImmediately: true).eraseToAnyPublisher()
                 }
                 let ignoreCache = params.0
                 let refreshCompletion = params.1
@@ -134,8 +134,8 @@ public final class GradeListViewModel: ObservableObject {
                 .first()
                 .receive(on: scheduler)
                 .flatMap { [weak self] listData -> AnyPublisher<ViewState, Never> in
-                    guard let self = self else {
-                        return Empty(completeImmediately: false).eraseToAnyPublisher()
+                    guard let self else {
+                        return Empty(completeImmediately: true).eraseToAnyPublisher()
                     }
                     lastKnownDataState = listData
 
