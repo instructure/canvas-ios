@@ -73,7 +73,14 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
     }
 
     func update() {
-        guard assignment.requested && !assignment.pending && submissions.requested && !submissions.pending && !submissions.hasNextPage else { return }
+        guard assignment.requested && !assignment.pending
+                && submissions.requested && !submissions.pending
+                && !submissions.hasNextPage
+                && enrollments.requested && !enrollments.pending
+                && !enrollments.hasNextPage
+        else {
+            return
+        }
 
         if !submissions.useCase.shuffled, assignment.first?.anonymizeStudents == true {
             submissions.useCase.shuffled = true
