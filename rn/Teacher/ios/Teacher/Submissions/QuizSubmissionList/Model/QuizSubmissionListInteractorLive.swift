@@ -50,7 +50,11 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
         self.quizID = quizID
 
         Publishers
-            .CombineLatest3(usersStore.allObjects, submissionsStore.allObjects, quizStore.allObjects.compactMap { $0.first } )
+            .CombineLatest3(
+                usersStore.allObjects,
+                submissionsStore.allObjects,
+                quizStore.allObjects.compactMap { $0.first }
+            )
             .map {
                 QuizSubmissionListItem.make(users: $0.0, submissions: $0.1, isAnonymous: $0.2.anonymousSubmissions)
             }
