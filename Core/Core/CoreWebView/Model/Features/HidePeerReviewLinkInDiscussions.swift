@@ -22,7 +22,6 @@ private class HidePeerReviewLinkInWebDiscussions: CoreWebViewFeature {
             .discussions-peer-review {
                 display: none;
             }
-        }
         """
 
         let cssString = css.components(separatedBy: .newlines).joined()

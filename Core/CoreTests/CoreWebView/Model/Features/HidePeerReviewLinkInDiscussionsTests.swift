@@ -21,7 +21,7 @@ import XCTest
 
 class HidePeerReviewLinkInDiscussionsTests: XCTestCase {
 
-    func testDisplayStleSetToNone() {
+    func testDisplayStyleSetToNone() {
         let mockLinkDelegate = MockCoreWebViewLinkDelegate()
         let webView = CoreWebView(features: [.hidePeerReviewLinkInWebDiscussions])
         webView.linkDelegate = mockLinkDelegate
