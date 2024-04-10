@@ -46,7 +46,7 @@ class QuizSubmissionListItemTests: TeacherTestCase {
         XCTAssertEqual(testee.count, 2)
         XCTAssertEqual(testee[0].id, "1")
         XCTAssertEqual(testee[0].displayName, "Student 1")
-        XCTAssertEqual(testee[0].name, "John")
+        XCTAssertEqual(testee[0].name, nil)
         XCTAssertEqual(testee[0].status, .untaken)
         XCTAssertNil(testee[0].score)
         XCTAssertEqual(testee[0].avatarURL, nil)
