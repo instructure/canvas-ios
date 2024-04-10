@@ -28,32 +28,25 @@ public protocol HTMLParser {
 
 public class HTMLParserLive: HTMLParser {
 
-    private let imageRegex: NSRegularExpression
-    private let fileLinkRegex: NSRegularExpression
-    private let internalFileRegex: NSRegularExpression
-    private let relativeURLRegex: NSRegularExpression
-
-    private let loginSession: LoginSession
-    private let interactor: HTMLDownloadInteractor
-    private var subscriptions = Set<AnyCancellable>()
-    public let prefix: String
-
-    public var sessionId: String {
-        loginSession.uniqueID
-    }
+    public var sessionId: String
 
     public var sectionName: String {
         interactor.sectionName
     }
 
-    init(loginSession: LoginSession, downloadInteractor: HTMLDownloadInteractor, prefix: String = "") {
-        self.loginSession = loginSession
+    private let imageRegex: NSRegularExpression
+    private let relativeURLRegex: NSRegularExpression
+
+    private let interactor: HTMLDownloadInteractor
+    private var subscriptions = Set<AnyCancellable>()
+    public let prefix: String
+
+    init(sessionId: String, downloadInteractor: HTMLDownloadInteractor, prefix: String = "") {
+        self.sessionId = sessionId
         self.interactor = downloadInteractor
         self.prefix = prefix
 
         self.imageRegex = (try? NSRegularExpression(pattern: "<img[^>]*src=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
-        self.fileLinkRegex = (try? NSRegularExpression(pattern: "<a[^>]*class=\"instructure_file_link[^>]*href=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
-        self.internalFileRegex = (try? NSRegularExpression(pattern: ".*\(loginSession.baseURL).*files/(\\d+)")) ?? NSRegularExpression()
         self.relativeURLRegex = (try? NSRegularExpression(pattern: "<.+(src|href)=\"(.+((\\.|\\/)\\.+)*)\".*>")) ?? NSRegularExpression()
     }
 
@@ -63,21 +56,20 @@ public class HTMLParserLive: HTMLParser {
         let rootURL = getRootURL(courseId: courseId, prefix: prefix, resourceId: resourceId)
 
         return imageURLs.publisher
-            .flatMap(maxPublishers: .max(5)) { url in // Download images to local Documents folder, return the (original link - content data) tuple
-                return self.interactor.download(url)
+            .flatMap(maxPublishers: .max(5)) { [interactor] url in // Download images to local Documents folder, return the (original link - content data) tuple
+                return interactor.download(url)
                     .map {
                         return (url, $0)
                     }
             }
-            .receive(on: DispatchQueue.main) // Receive on main, because of the file operations
-            .flatMap(maxPublishers: .max(5)) { [interactor] (url, result) in // Save the data to local file, return the (original link - local link) tuple
-                return interactor.save(result, courseId: courseId, prefix: "\(self.prefix)-\(resourceId)")
+            .flatMap { [interactor, prefix] (url, result) in // Save the data to local file, return the (original link - local link) tuple
+                return interactor.save(result, courseId: courseId, prefix: "\(prefix)-\(resourceId)")
                     .map {
                         return (url, $0)
                     }
             }
             .collect() // Wait for all image download to finish and handle as an array
-            .map { [content] urls in // Replace relative links with baseULR based absolute links. The baseURL in the webviews will be different from the original one to load the local images
+            .map { [content] urls in // Replace relative links with baseURL based absolute links. The baseURL in the webviews will be different from the original one to load the local images
                 var newContent = content
                 relativeURLs.forEach { relativeURL in
                     if let baseURL {
@@ -93,7 +85,6 @@ public class HTMLParserLive: HTMLParser {
                     let newURL = "\(localURL.lastPathComponent)"
                     newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: newURL)
                 }
-                print(newContent)
                 return newContent
             }
             .flatMap { [interactor, rootURL] content in // Save html parsed html string content to file. It will be loaded in offline mode)
@@ -123,7 +114,7 @@ public class HTMLParserLive: HTMLParser {
     private func getRootURL(courseId: String, prefix: String, resourceId: String) -> URL {
         return URL.Directories.documents.appendingPathComponent(
             URL.Paths.Offline.courseSectionFolder(
-                sessionId: loginSession.uniqueID,
+                sessionId: sessionId,
                 courseId: courseId,
                 sectionName: sectionName
             )

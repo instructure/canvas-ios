@@ -25,25 +25,74 @@ public enum CourseSyncDownloaderAssembly {
             label: "com.instructure.icanvas.core.course-sync-download"
         ).eraseToAnyScheduler()
 
-        let loginSession = env.currentSession!
+        let sessionId = env.currentSession?.uniqueID ?? ""
+        let loginSession = env.currentSession
 
-        let pageDownloadInteractor = HTMLDownloadInteractorLive(loginSession: loginSession, sectionName: OfflineContainerPrefix.Pages.rawValue, scheduler: scheduler)
-        let pageHtmlParser = HTMLParserLive(loginSession: loginSession, downloadInteractor: pageDownloadInteractor, prefix: OfflineFolderPrefix.page.rawValue)
+        let pageDownloadInteractor = HTMLDownloadInteractorLive(
+            loginSession: loginSession,
+            sectionName: OfflineContainerPrefix.Pages.rawValue,
+            scheduler: scheduler
+        )
+        let pageHtmlParser = HTMLParserLive(
+            sessionId: sessionId,
+            downloadInteractor: pageDownloadInteractor,
+            prefix: OfflineFolderPrefix.page.rawValue
+        )
 
-        let assignmentDownloadInteractor = HTMLDownloadInteractorLive(loginSession: loginSession, sectionName: OfflineContainerPrefix.Assignments.rawValue, scheduler: scheduler)
-        let assignmentHtmlParser = HTMLParserLive(loginSession: loginSession, downloadInteractor: assignmentDownloadInteractor, prefix: OfflineFolderPrefix.assignment.rawValue)
+        let assignmentDownloadInteractor = HTMLDownloadInteractorLive(
+            loginSession: loginSession,
+            sectionName: OfflineContainerPrefix.Assignments.rawValue,
+            scheduler: scheduler
+        )
+        let assignmentHtmlParser = HTMLParserLive(
+            sessionId: sessionId,
+            downloadInteractor: assignmentDownloadInteractor,
+            prefix: OfflineFolderPrefix.assignment.rawValue
+        )
 
-        let quizDownloadInteractor = HTMLDownloadInteractorLive(loginSession: loginSession, sectionName: OfflineContainerPrefix.Quizzes.rawValue, scheduler: scheduler)
-        let quizHtmlParser = HTMLParserLive(loginSession: loginSession, downloadInteractor: quizDownloadInteractor, prefix: OfflineFolderPrefix.quiz.rawValue)
+        let quizDownloadInteractor = HTMLDownloadInteractorLive(
+            loginSession: loginSession,
+            sectionName: OfflineContainerPrefix.Quizzes.rawValue,
+            scheduler: scheduler
+        )
+        let quizHtmlParser = HTMLParserLive(
+            sessionId: sessionId,
+            downloadInteractor: quizDownloadInteractor,
+            prefix: OfflineFolderPrefix.quiz.rawValue
+        )
 
-        let announcementDownloadInteractor = HTMLDownloadInteractorLive(loginSession: loginSession, sectionName: OfflineContainerPrefix.Announcements.rawValue, scheduler: scheduler)
-        let announcementHtmlParser = HTMLParserLive(loginSession: loginSession, downloadInteractor: announcementDownloadInteractor, prefix: OfflineFolderPrefix.announcement.rawValue)
+        let announcementDownloadInteractor = HTMLDownloadInteractorLive(
+            loginSession: loginSession,
+            sectionName: OfflineContainerPrefix.Announcements.rawValue,
+            scheduler: scheduler
+        )
+        let announcementHtmlParser = HTMLParserLive(
+            sessionId: sessionId,
+            downloadInteractor: announcementDownloadInteractor,
+            prefix: OfflineFolderPrefix.announcement.rawValue
+        )
 
-        let discussionDownloadInteractor = HTMLDownloadInteractorLive(loginSession: loginSession, sectionName: OfflineContainerPrefix.Discussions.rawValue, scheduler: scheduler)
-        let discussionHtmlParser = HTMLParserLive(loginSession: loginSession, downloadInteractor: discussionDownloadInteractor, prefix: OfflineFolderPrefix.discussion.rawValue)
+        let discussionDownloadInteractor = HTMLDownloadInteractorLive(
+            loginSession: loginSession,
+            sectionName: OfflineContainerPrefix.Discussions.rawValue,
+            scheduler: scheduler
+        )
+        let discussionHtmlParser = HTMLParserLive(
+            sessionId: sessionId,
+            downloadInteractor: discussionDownloadInteractor,
+            prefix: OfflineFolderPrefix.discussion.rawValue
+        )
 
-        let calendarEventDownloadInteractor = HTMLDownloadInteractorLive(loginSession: loginSession, sectionName: OfflineContainerPrefix.CalendarEvents.rawValue, scheduler: scheduler)
-        let calendarEventHtmlParser = HTMLParserLive(loginSession: loginSession, downloadInteractor: calendarEventDownloadInteractor, prefix: OfflineFolderPrefix.calendarEvent.rawValue)
+        let calendarEventDownloadInteractor = HTMLDownloadInteractorLive(
+            loginSession: loginSession,
+            sectionName: OfflineContainerPrefix.CalendarEvents.rawValue,
+            scheduler: scheduler
+        )
+        let calendarEventHtmlParser = HTMLParserLive(
+            sessionId: sessionId,
+            downloadInteractor: calendarEventDownloadInteractor,
+            prefix: OfflineFolderPrefix.calendarEvent.rawValue
+        )
 
         let contentInteractors: [CourseSyncContentInteractor] = [
             CourseSyncPagesInteractorLive(htmlParser: pageHtmlParser),

@@ -94,7 +94,7 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         } else {
             groups.refresh()
         }
-        pages.refresh(force: false)
+        pages.refresh(force: true)
         NotificationCenter.default.post(moduleItem: .page(pageURL), completedRequirement: .view, courseID: context.id)
     }
 
@@ -136,15 +136,15 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
                 sectionName: OfflineContainerPrefix.Pages.rawValue
             )
         ).appendingPathComponent("\(prefix)-\(page.id)")
-        let offlinePagePath = rootURL.appendingPathComponent("body.html")
-        if offlineModeInteractor?.isNetworkOffline() == true && FileManager.default.fileExists(atPath: offlinePagePath.path) {
-            // Offline image are stored in the Documents folder which cannot be accessed by the webview by default
-            webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
-            let rawHtmlValue = try? String(contentsOf: offlinePagePath, encoding: .utf8)
-            webView.loadHTMLString(rawHtmlValue ?? "", baseURL: rootURL)
-        } else {
-            webView.loadHTMLString(page.body, baseURL: page.htmlURL)
-        }
+        let offlinePath = rootURL.appendingPathComponent("body.html")
+
+        webView.loadContent(
+            isOffline: offlineModeInteractor?.isNetworkOffline(),
+            filePath: offlinePath,
+            content: page.body,
+            originalBaseURL: nil,
+            offlineBaseURL: rootURL
+        )
     }
 
     private func updatePages() {

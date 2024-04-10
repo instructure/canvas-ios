@@ -57,16 +57,12 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
                 sectionName: calendarEventHtmlParser.sectionName
             )
         )
-        let assignmentEventUrls = (try? FileManager.default.contentsOfDirectory(at: rootURLAssignmentEvent, includingPropertiesForKeys: nil)) ?? []
-        let calendarEventUrls = (try? FileManager.default.contentsOfDirectory(at: rootURLCalendarEvent, includingPropertiesForKeys: nil)) ?? []
-        let fileUrls = assignmentEventUrls + calendarEventUrls
 
-        return fileUrls
-            .publisher
-            .compactMap { try? FileManager.default.removeItem(at: $0) }
-            .map { try? FileManager.default.removeItem(at: rootURLAssignmentEvent) }
-            .map { try? FileManager.default.removeItem(at: rootURLCalendarEvent) }
-            .collect()
+        return Just(())
+            .handleEvents(receiveOutput: {
+                try? FileManager.default.removeItem(at: rootURLAssignmentEvent)
+                try? FileManager.default.removeItem(at: rootURLCalendarEvent)
+            })
             .map { _ in () }
             .eraseToAnyPublisher()
     }
@@ -98,6 +94,8 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
         ReactiveStore(useCase: GetCalendarEvents(context: .course(courseId), type: .assignment))
             .getEntities(ignoreCache: true)
             .map { (assignments: [CalendarEvent]) -> [CalendarEvent] in
+                // AssignmentEvent objects' ids are synthetic ids, which means they contain the type as prefix: assignment_987.
+                // We store the prefix separately so it doesn't neccessary
                 assignments.forEach { a in
                     if let index = a.id.firstIndex(of: "_") {
                         a.id = String(a.id.suffix(from: a.id.index(index, offsetBy: 1)))

@@ -29,11 +29,11 @@ protocol HTMLDownloadInteractor {
 }
 
 class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
-    private let loginSession: LoginSession
+    private let loginSession: LoginSession?
     private let scheduler: AnySchedulerOf<DispatchQueue>
     public let sectionName: String
 
-    init(loginSession: LoginSession, sectionName: String, scheduler: AnySchedulerOf<DispatchQueue>) {
+    init(loginSession: LoginSession?, sectionName: String, scheduler: AnySchedulerOf<DispatchQueue>) {
         self.loginSession = loginSession
         self.sectionName = sectionName
         self.scheduler = scheduler
@@ -43,19 +43,17 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         _ url: URL,
         publisherProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
     ) -> AnyPublisher<(data: Data, response: URLResponse), Error> {
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
 
-        if url.baseURL == loginSession.baseURL {
-            request.setValue("Authentication", forHTTPHeaderField: "Bearer \(loginSession.accessToken ?? "")")
+        if let loginSession, let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID) {
+            return publisherProvider.getPublisher(for: request)
+                .mapError { urlError -> Error in
+                    return urlError
+                }
+                .receive(on: scheduler)
+                .eraseToAnyPublisher()
+        } else {
+            return Fail(error: NSError.instructureError(String(localized: "Failed to construct request"))).eraseToAnyPublisher()
         }
-
-        return publisherProvider.getPublisher(for: request)
-            .mapError { urlError -> Error in
-                return urlError
-            }
-            .receive(on: scheduler)
-            .eraseToAnyPublisher()
     }
 
     func download(_ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), Error> {
@@ -65,7 +63,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     func save(_ result: (data: Data, response: URLResponse), courseId: String, prefix: String) -> AnyPublisher<URL, Error> {
         let rootURL = URL.Directories.documents.appendingPathComponent(
             URL.Paths.Offline.courseSectionFolder(
-                sessionId: loginSession.uniqueID,
+                sessionId: loginSession?.uniqueID ?? "",
                 courseId: courseId,
                 sectionName: sectionName
             )
@@ -81,7 +79,6 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             FileManager.default.createFile(atPath: saveURL.path, contents: result.data, attributes: nil)
             return Result.Publisher(saveURL).eraseToAnyPublisher()
         } catch {
-            print("\(error)")
             return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()
         }
     }

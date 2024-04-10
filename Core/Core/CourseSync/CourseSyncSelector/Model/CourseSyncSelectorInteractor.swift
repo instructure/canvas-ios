@@ -178,7 +178,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .map { courses in
                 return courses.map { $0.courseId }
             }
-            .map {Array(Set($0))}
+            .map { Array(Set($0)) }
             .replaceError(with: [])
             .first()
             .eraseToAnyPublisher()

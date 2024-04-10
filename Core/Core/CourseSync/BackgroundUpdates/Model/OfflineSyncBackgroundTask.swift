@@ -127,12 +127,10 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
         selectedItemsInteractor
             .getSelectedCourseEntries()
             .flatMap { _ in selectedItemsInteractor.getUnSelectedCourseIds()}
-            .map { entries in
+            .flatMap { entries in
                 syncInteractor.cleanContent(for: entries)
             }
-            .sink(receiveCompletion: { result in
-                Swift.print(result)
-            }, receiveValue: { _ in })
+            .sink()
             .store(in: &subscriptions)
 
         selectedItemsInteractor

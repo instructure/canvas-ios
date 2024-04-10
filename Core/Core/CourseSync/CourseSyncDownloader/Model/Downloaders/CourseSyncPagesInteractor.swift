@@ -61,12 +61,11 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
                 sectionName: htmlParser.sectionName
             )
         )
-        let fileUrls = (try? FileManager.default.contentsOfDirectory(at: rootURL, includingPropertiesForKeys: nil)) ?? []
-        return fileUrls
-            .publisher
-            .compactMap { (try? FileManager.default.removeItem(at: $0)) }
-            .map { (try? FileManager.default.removeItem(at: rootURL)) }
-            .collect()
+
+        return Just(())
+            .handleEvents(receiveOutput: {
+                try? FileManager.default.removeItem(at: rootURL)
+            })
             .map { _ in () }
             .eraseToAnyPublisher()
     }

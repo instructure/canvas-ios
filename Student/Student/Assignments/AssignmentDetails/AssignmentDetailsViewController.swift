@@ -417,13 +417,14 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             )
         ).appendingPathComponent("\(prefix)-\(assignmentID)")
         let offlinePath = rootURL.appendingPathComponent("body.html")
-        if offlineModeInteractor?.isNetworkOffline() == true && FileManager.default.fileExists(atPath: offlinePath.path) {
-            webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
-            let rawHtmlValue = try? String(contentsOf: offlinePath, encoding: .utf8)
-            webView.loadHTMLString(rawHtmlValue ?? "", baseURL: rootURL)
-        } else {
-            webView.loadHTMLString(presenter?.assignmentDescription() ?? "", baseURL: nil)
-        }
+        webView.loadContent(
+            isOffline: offlineModeInteractor?.isNetworkOffline(),
+            filePath: offlinePath,
+            content: presenter?.assignmentDescription(),
+            originalBaseURL: nil,
+            offlineBaseURL: rootURL
+        )
+
         updateGradeCell(assignment, submission: submission)
 
         guard let presenter = presenter else { return }

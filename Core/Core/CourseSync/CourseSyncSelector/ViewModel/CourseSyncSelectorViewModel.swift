@@ -160,8 +160,8 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .flatMap { view in
                 confirmAlert.userConfirmation().map { view }
             }
-            .flatMap { [self] view in
-                self.state = .loading
+            .flatMap { [weak self] view in
+                self?.state = .loading
 
                 return Publishers.Zip(
                     selectorInteractor.getUnSelectedCourseIds()
