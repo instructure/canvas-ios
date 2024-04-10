@@ -21,7 +21,7 @@ import Core
 public struct QuizSubmissionListItem: Equatable {
     public let id: String
     public let displayName: String
-    public let name: String
+    public let name: String?
     public let status: QuizSubmissionWorkflowState
     public let score: String?
     public let avatarURL: URL?
@@ -44,19 +44,22 @@ public struct QuizSubmissionListItem: Equatable {
 
             let displayName: String
             let avatarURL: URL?
+            let name: String?
 
             if isAnonymous {
                 displayName = String(localized: "Student \(index + 1)", bundle: .core)
                 avatarURL = nil
+                name = nil
             } else {
                 displayName = User.displayName(user.name, pronouns: user.pronouns)
                 avatarURL = user.avatarURL
+                name = user.name
             }
 
             return QuizSubmissionListItem(
                 id: user.id,
                 displayName: displayName,
-                name: user.name,
+                name: name,
                 status: status,
                 score: score,
                 avatarURL: avatarURL
