@@ -18,9 +18,8 @@
 
 import Foundation
 import UIKit
-import Core
 
-class CalendarEventDetailsViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
+public class CalendarEventDetailsViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationAddressLabel: UILabel!
     @IBOutlet weak var locationHeadingLabel: UILabel!
@@ -31,9 +30,9 @@ class CalendarEventDetailsViewController: ScreenViewTrackableViewController, Col
     @IBOutlet weak var webViewContainer: UIView!
     let webView = CoreWebView()
     let refreshControl = CircleRefreshControl()
-    let titleSubtitleView = TitleSubtitleView.create()
+    public let titleSubtitleView = TitleSubtitleView.create()
 
-    var color: UIColor?
+    public var color: UIColor?
     let env = AppEnvironment.shared
     var eventID = ""
     public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/calendar")
@@ -46,13 +45,13 @@ class CalendarEventDetailsViewController: ScreenViewTrackableViewController, Col
         self?.update()
     }
 
-    static func create(eventID: String) -> CalendarEventDetailsViewController {
+    public static func create(eventID: String) -> CalendarEventDetailsViewController {
         let controller = loadFromStoryboard()
         controller.eventID = eventID
         return controller
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: NSLocalizedString("Event Details", comment: ""))
@@ -74,7 +73,7 @@ class CalendarEventDetailsViewController: ScreenViewTrackableViewController, Col
         events.refresh()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useContextColor(color)
     }

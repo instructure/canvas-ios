@@ -3661,6 +3661,9 @@
         }
       }
     },
+    "Calendar" : {
+      "comment" : "Calendar page title"
+    },
     "Cancel" : {
       "localizations" : {
         "ar" : {
