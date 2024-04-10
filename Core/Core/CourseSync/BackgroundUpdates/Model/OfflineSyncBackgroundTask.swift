@@ -126,7 +126,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
 
         selectedItemsInteractor
             .getSelectedCourseEntries()
-            .flatMap { _ in selectedItemsInteractor.getUnSelectedCourseIds()}
+            .flatMap { _ in selectedItemsInteractor.getDeselectedCourseIds()}
             .flatMap { entries in
                 syncInteractor.cleanContent(for: entries)
             }

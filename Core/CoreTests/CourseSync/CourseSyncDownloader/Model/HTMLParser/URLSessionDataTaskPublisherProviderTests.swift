@@ -25,7 +25,7 @@ class URLSessionDataTaskPublisherProviderTests: CoreTestCase {
 
     var subscriptions: [AnyCancellable] = []
 
-    func testrovider() {
+    func testProvider() {
         let testee = URLSessionDataTaskPublisherProviderLive()
         let url = URL(string: "https://www.instructure.com/logo.png")!
         let request = URLRequest(url: url)

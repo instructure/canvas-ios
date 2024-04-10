@@ -27,19 +27,16 @@ public protocol HTMLParser {
 }
 
 public class HTMLParserLive: HTMLParser {
-
-    public var sessionId: String
-
     public var sectionName: String {
         interactor.sectionName
     }
+    public let sessionId: String
+    public let prefix: String
 
     private let imageRegex: NSRegularExpression
     private let relativeURLRegex: NSRegularExpression
-
     private let interactor: HTMLDownloadInteractor
     private var subscriptions = Set<AnyCancellable>()
-    public let prefix: String
 
     init(sessionId: String, downloadInteractor: HTMLDownloadInteractor, prefix: String = "") {
         self.sessionId = sessionId
