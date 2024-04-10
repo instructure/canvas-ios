@@ -52,7 +52,7 @@ public class PlannerViewController: UIViewController {
         view.backgroundColor = .backgroundLightest
         navigationItem.titleView = Brand.shared.headerImageView()
         navigationItem.leftBarButtonItem = profileButton
-        navigationItem.rightBarButtonItems = [ addNoteButton, todayButton ]
+        navigationItem.rightBarButtonItems = ExperimentalFeature.teacherCalendar.isEnabled ? [todayButton] : [addNoteButton, todayButton]
         profileButton.accessibilityIdentifier = "PlannerCalendar.profileButton"
         profileButton.accessibilityLabel = NSLocalizedString("Profile Menu", bundle: .core, comment: "")
         addNoteButton.accessibilityIdentifier = "PlannerCalendar.addNoteButton"
