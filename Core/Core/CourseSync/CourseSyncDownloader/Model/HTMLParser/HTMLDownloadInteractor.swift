@@ -29,14 +29,16 @@ protocol HTMLDownloadInteractor {
 }
 
 class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
+    public let sectionName: String
     private let loginSession: LoginSession?
     private let scheduler: AnySchedulerOf<DispatchQueue>
-    public let sectionName: String
+    private let fileManager: FileManager
 
-    init(loginSession: LoginSession?, sectionName: String, scheduler: AnySchedulerOf<DispatchQueue>) {
+    init(loginSession: LoginSession?, sectionName: String, scheduler: AnySchedulerOf<DispatchQueue>, fileManager: FileManager = .default) {
         self.loginSession = loginSession
         self.sectionName = sectionName
         self.scheduler = scheduler
+        self.fileManager = fileManager
     }
 
     func download(
@@ -73,8 +75,8 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         let saveURL = rootURL.appendingPathComponent(fileName)
 
         do {
-            try FileManager.default.createDirectory(at: rootURL, withIntermediateDirectories: true, attributes: nil)
-            try FileManager.default.moveItem(at: localURL, to: saveURL)
+            try fileManager.createDirectory(at: rootURL, withIntermediateDirectories: true, attributes: nil)
+            try fileManager.moveItem(at: localURL, to: saveURL)
             return Result.Publisher(saveURL).eraseToAnyPublisher()
         } catch {
             print("ASDASD: \(error)")
@@ -85,8 +87,8 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error> {
         let saveURL = folderURL.appendingPathComponent("body.html")
         do {
-            try FileManager.default.createDirectory(atPath: folderURL.path, withIntermediateDirectories: true, attributes: nil)
-            FileManager.default.createFile(atPath: saveURL.path, contents: nil)
+            try fileManager.createDirectory(atPath: folderURL.path, withIntermediateDirectories: true, attributes: nil)
+            fileManager.createFile(atPath: saveURL.path, contents: nil)
             try content.write(to: saveURL, atomically: true, encoding: .utf8)
         } catch {
             return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save base content")))).eraseToAnyPublisher()

@@ -79,14 +79,20 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                 Publishers.Sequence(sequence: dataArray)
                     .setFailureType(to: Error.self)
                     .flatMap { element in
-                        let value = element[keyPath: keyPath] ?? ""
-                        let resourceId = element[keyPath: id]
-                        var baseURL: URL?
-                        if let baseURLKey {
-                            baseURL = element[keyPath: baseURLKey]
+                        if let value = element[keyPath: keyPath] { // Parse only non null attributes
+                            let resourceId = element[keyPath: id]
+                            var baseURL: URL?
+                            if let baseURLKey {
+                                baseURL = element[keyPath: baseURLKey]
+                            }
+                            return htmlParser.parse(value, resourceId: resourceId, courseId: courseId, baseURL: baseURL)
+                                .map { _ in return element }
+                                .eraseToAnyPublisher()
+                        } else {
+                            return Just(element)
+                                .setFailureType(to: Error.self)
+                                .eraseToAnyPublisher()
                         }
-                        return htmlParser.parse(value, resourceId: resourceId, courseId: courseId, baseURL: baseURL)
-                            .map { _ in return element }
                     }
                     .collect()
             }
