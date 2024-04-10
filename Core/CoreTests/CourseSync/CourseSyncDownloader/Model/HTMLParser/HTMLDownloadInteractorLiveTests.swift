@@ -87,7 +87,7 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
 
     class URLSessionDataTaskPublisherProviderMock: URLSessionDataTaskPublisherProvider {
         let testString = "hello"
-        let savedURL = URL.Directories.documents.appendingPathComponent("test.png")
+        let savedURL = URL.Directories.documents.appendingPathComponent("logo.png")
 
         func getPublisher(for request: URLRequest) -> AnyPublisher<URL, Error> {
             let savedData = testString.data(using: .utf8)

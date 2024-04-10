@@ -58,13 +58,12 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
             )
         )
 
-        return Just(())
-            .handleEvents(receiveOutput: {
-                try? FileManager.default.removeItem(at: rootURLAssignmentEvent)
-                try? FileManager.default.removeItem(at: rootURLCalendarEvent)
-            })
-            .map { _ in () }
-            .eraseToAnyPublisher()
+        return Publishers.Zip(
+            FileManager.default.removeItemPublisher(at: rootURLAssignmentEvent),
+            FileManager.default.removeItemPublisher(at: rootURLCalendarEvent)
+        )
+        .mapToVoid()
+        .eraseToAnyPublisher()
     }
 
     // MARK: - Syllabus Summary

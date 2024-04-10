@@ -47,12 +47,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
     public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
         let rootURL = URL.Directories.documents.appendingPathComponent(URL.Paths.Offline.courseSectionFolder(sessionId: htmlParser.sessionId, courseId: courseId, sectionName: htmlParser.sectionName))
 
-        return Just(())
-            .handleEvents(receiveOutput: {
-                try? FileManager.default.removeItem(at: rootURL)
-            })
-            .map { _ in () }
-            .eraseToAnyPublisher()
+        return FileManager.default.removeItemPublisher(at: rootURL)
     }
 
     private static func getSubmissionComments(

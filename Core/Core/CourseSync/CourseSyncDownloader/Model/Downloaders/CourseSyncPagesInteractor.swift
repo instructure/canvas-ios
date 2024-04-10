@@ -62,11 +62,6 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
             )
         )
 
-        return Just(())
-            .handleEvents(receiveOutput: {
-                try? FileManager.default.removeItem(at: rootURL)
-            })
-            .map { _ in () }
-            .eraseToAnyPublisher()
+        return FileManager.default.removeItemPublisher(at: rootURL)
     }
 }
