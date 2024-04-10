@@ -20,11 +20,21 @@ import Foundation
 import Combine
 
 protocol URLSessionDataTaskPublisherProvider {
-    func getPublisher(for: URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), URLError>
+    func getPublisher(for: URLRequest) -> AnyPublisher<URL, Error>
 }
 
 class URLSessionDataTaskPublisherProviderLive: URLSessionDataTaskPublisherProvider {
-    func getPublisher(for request: URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), URLError> {
-        return URLSession.shared.dataTaskPublisher(for: request).eraseToAnyPublisher()
+    func getPublisher(for request: URLRequest) -> AnyPublisher<URL, Error> {
+        return Future { promise in
+            Task {
+                do {
+                    let (result, _) = try await URLSession.shared.download(for: request)
+                    promise(.success(result))
+                } catch {
+                    promise(.failure(NSError.instructureError(error.localizedDescription)))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }

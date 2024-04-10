@@ -30,32 +30,32 @@ class HTMLParserTests: CoreTestCase {
 
     func testReplacingLinks() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParserLive(loginSession: environment.currentSession!, downloadInteractor: interactor, prefix: testPrefix)
+        testee = HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor, prefix: testPrefix)
 
         let baseURL = URL(string: "https://instructure.com")
-        let urlToDownload = "https://instructure.com/logo.png"
+        let urlToDownload = URL(string: "https://instructure.com/logo.png")!
         let testHTMLContent: String = """
             <h1>Hello world!</h1>
         Some random content
         <p>paragraph test</p>
-        <img src="\(urlToDownload)">
+        <img src="\(urlToDownload.absoluteString)">
         """
 
         testee.parse(testHTMLContent, resourceId: testResourceId, courseId: testCourseId, baseURL: baseURL)
             .sink(receiveCompletion: { _ in }, receiveValue: { result in
-                let isURLDownloaded = interactor.urls[URL(string: urlToDownload)!]
+                let isURLDownloaded = interactor.fileNames[urlToDownload.lastPathComponent]
                 XCTAssertNotNil(isURLDownloaded)
                 XCTAssertTrue(isURLDownloaded!)
 
-                XCTAssertFalse(result.contains(urlToDownload))
-                XCTAssertTrue(result.contains(URL.Directories.documents.appendingPathComponent("local-0").lastPathComponent))
+                XCTAssertFalse(result.contains("https://instructure.com/logo.png"))
+                XCTAssertTrue(result.contains(URL.Directories.documents.appendingPathComponent(urlToDownload.lastPathComponent).lastPathComponent))
             })
             .store(in: &subscriptions)
     }
 
     func testReplacingRelativeLinks() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParserLive(loginSession: environment.currentSession!, downloadInteractor: interactor)
+        testee = HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor)
 
         let baseURL = URL(string: "https://www.instructure.com")!
         let urlToDownload = "https://www.instructure.com/logo.png"
@@ -78,7 +78,7 @@ class HTMLParserTests: CoreTestCase {
 
     func testSavingBaseContent() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParserLive(loginSession: environment.currentSession!, downloadInteractor: interactor, prefix: "test")
+        testee = HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor, prefix: "test")
 
         let baseURL = URL(string: "https://www.instructure.com")
         let urlToDownload = "https://www.instructure.com/logo.png"
@@ -110,29 +110,28 @@ class HTMLParserTests: CoreTestCase {
 class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
 
     var sectionName: String = "MockSectionName"
-    var urls: [URL: Bool] = [:]
+    var fileNames: [String: Bool] = [:]
     private var counter: Int = 0
     var savedBaseContents: [URL] = []
 
-    func download(_ url: URL, publisherProvider: Core.URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()) -> AnyPublisher<(data: Data, response: URLResponse), Error> {
-        urls[url] = false
+    func download(_ url: URL, publisherProvider: Core.URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()) -> AnyPublisher<URL, Error> {
+        fileNames[url.lastPathComponent] = false
 
-        return Just((data: Data(), response: .init(url: url, mimeType: nil, expectedContentLength: 0, textEncodingName: nil)))
+        return Just(url)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    func download(_ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), Error> {
+    func download(_ url: URL) -> AnyPublisher<URL, Error> {
         download(url, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
-    func save(_ result: (data: Data, response: URLResponse), courseId: String, prefix: String) -> AnyPublisher<URL, Error> {
-        let localURL = URL.Directories.documents.appendingPathComponent("local-\(counter)")
+    func copy(_ localURL: URL, courseId: String, prefix: String) -> AnyPublisher<URL, Error> {
+        let saveURL = URL.Directories.documents.appendingPathComponent(localURL.lastPathComponent)
         counter += 1
-        if let url = result.response.url {
-            urls[url] = true
-        }
-        return Just(localURL)
+        fileNames[localURL.lastPathComponent] = true
+
+        return Just(saveURL)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }

@@ -27,27 +27,21 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
     let testResourceId = "2"
     let testSectionName = "test"
     let testPrefix = "test"
-    let testResponse = (data: Data(base64Encoded: "aGVsbG8=")!,
-                        response: URLResponse.init(
-                            url: URL(string: "https://www.instructure.com/logo.png")!,
-                            mimeType: nil,
-                            expectedContentLength: 100,
-                            textEncodingName: nil
-                        ))
+    let testURL = URL(string: "https://www.instructure.com/logo.png")!
 
     var subscriptions: [AnyCancellable] = []
 
     func testDownload() {
         let testee = HTMLDownloadInteractorLive(loginSession: environment.currentSession!, sectionName: testSectionName, scheduler: .main)
-        let url = URL(string: "https://www.instructure.com/logo.png")!
         let mockPublisherProvider = URLSessionDataTaskPublisherProviderMock()
-        testee.download(url, publisherProvider: mockPublisherProvider)
-            .sink(receiveCompletion: { _ in }, receiveValue: { result in
-                let response = result.response
-                let data = result.data
+        testee.download(testURL, publisherProvider: mockPublisherProvider)
+            .sink(receiveCompletion: { _ in }, receiveValue: { [testURL] result in
 
-                XCTAssertEqual(response.url, URL(string: "https://www.instructure.com/logo.png"))
-                XCTAssertEqual(data, Data(base64Encoded: "aGVsbG8=")!)
+                let data = try? String(contentsOf: result, encoding: .utf8)
+
+                XCTAssertNotEqual(result, testURL)
+                XCTAssertEqual(result, URL.Directories.documents.appendingPathComponent(testURL.lastPathComponent))
+                XCTAssertEqual(data, "hello")
             })
             .store(in: &subscriptions)
     }
@@ -65,7 +59,7 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
             .appendingPathComponent("\(testPrefix)-\(testResourceId)")
         let saveURL = rootURL.appendingPathComponent("logo.png")
 
-        testee.save(testResponse, courseId: testCourseId, prefix: "\(testPrefix)-\(testResourceId)")
+        testee.copy(URL(string: "https://www.instructure.com/logo.png")!, courseId: testCourseId, prefix: "\(testPrefix)-\(testResourceId)")
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in
                 XCTAssertTrue(FileManager.default.fileExists(atPath: saveURL.path))
             })
@@ -92,17 +86,15 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
     }
 
     class URLSessionDataTaskPublisherProviderMock: URLSessionDataTaskPublisherProvider {
-        let testResponse = (data: Data(base64Encoded: "aGVsbG8=")!,
-                            response: URLResponse.init(
-                                url: URL(string: "https://www.instructure.com/logo.png")!,
-                                mimeType: nil,
-                                expectedContentLength: 100,
-                                textEncodingName: nil
-                            ))
+        let testString = "hello"
+        let savedURL = URL.Directories.documents.appendingPathComponent("test.png")
 
-        func getPublisher(for request: URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), URLError> {
-            return Just(testResponse)
-                .setFailureType(to: URLError.self)
+        func getPublisher(for request: URLRequest) -> AnyPublisher<URL, Error> {
+            let savedData = testString.data(using: .utf8)
+            FileManager.default.createFile(atPath: savedURL.path, contents: savedData)
+
+            return Just(savedURL)
+                .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
     }

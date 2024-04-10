@@ -56,14 +56,14 @@ public class HTMLParserLive: HTMLParser {
         let rootURL = getRootURL(courseId: courseId, prefix: prefix, resourceId: resourceId)
 
         return imageURLs.publisher
-            .flatMap(maxPublishers: .max(5)) { [interactor] url in // Download images to local Documents folder, return the (original link - content data) tuple
+            .flatMap(maxPublishers: .max(5)) { [interactor] url in // Download images to local Documents folder, return the (original link - local link) tuple
                 return interactor.download(url)
                     .map {
                         return (url, $0)
                     }
             }
-            .flatMap { [interactor, prefix] (url, result) in // Save the data to local file, return the (original link - local link) tuple
-                return interactor.save(result, courseId: courseId, prefix: "\(prefix)-\(resourceId)")
+            .flatMap { [interactor, prefix] (url, localURL) in // Save the data to local file, return the (original link - local link) tuple
+                return interactor.copy(localURL, courseId: courseId, prefix: "\(prefix)-\(resourceId)")
                     .map {
                         return (url, $0)
                     }
