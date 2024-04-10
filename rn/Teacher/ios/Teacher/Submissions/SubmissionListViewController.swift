@@ -238,10 +238,10 @@ class SubmissionListCell: UITableViewCell {
         if assignment?.anonymizeStudents != false {
             if submission?.groupID != nil {
                 avatarView.icon = .groupLine
-                nameLabel.text = String(localized: "Group \(row)", comment: "")
+                nameLabel.text = String(localized: "Group \(row)")
             } else {
                 avatarView.icon = .userLine
-                nameLabel.text = String(localized: "Student \(row)", comment: "")
+                nameLabel.text = String(localized: "Student \(row)")
             }
         } else if let name = submission?.groupName {
             avatarView.name = name

@@ -47,7 +47,7 @@ public struct QuizSubmissionListItem: Equatable {
             let name: String?
 
             if isAnonymous {
-                displayName = String(localized: "Student \(index + 1)", bundle: .core)
+                displayName = String(localized: "Student \(index + 1)")
                 avatarURL = nil
                 name = nil
             } else {
