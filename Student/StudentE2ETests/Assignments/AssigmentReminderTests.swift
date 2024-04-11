@@ -185,7 +185,6 @@ class AssignmentReminderTests: E2ETestCase {
         // MARK: Close app, wait for the reminder
         XCUIDevice.shared.press(.home)
         let notificationBanner = ReminderHelper.notificationBanner.waitUntil(.visible, timeout: 90)
-        let notificationLabel = notificationBanner.label
         XCTAssertTrue(notificationBanner.isVisible)
         XCTAssertTrue(notificationBanner.hasLabel(label: "This assignment is due in 3 hours", strict: false))
     }
@@ -275,5 +274,102 @@ class AssignmentReminderTests: E2ETestCase {
         yesButton.hit()
         fiveMinutesBeforeLabel.waitUntil(.visible, timeout: 5)
         XCTAssertTrue(fiveMinutesBeforeLabel.isVanished)
+    }
+
+    func testDuplicatedAssignmentReminder() {
+        // MARK: Seed the usual stuff
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Create an assignment
+        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry], dueDate: .now.addMinutes(7))
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Assignments and check visibility
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+
+        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
+        XCTAssertTrue(assignmentButton.isVisible)
+        XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
+
+        // MARK: Tap on the assignment and check details
+        assignmentButton.hit()
+        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
+        XCTAssertTrue(detailsNavBar.isVisible)
+
+        let dueLabel = DetailsHelper.due.waitUntil(.visible)
+        XCTAssertTrue(dueLabel.isVisible)
+
+        let reminderLabel = DetailsHelper.reminder.waitUntil(.visible)
+        XCTAssertTrue(reminderLabel.isVisible)
+
+        let addReminderButton = DetailsHelper.addReminder.waitUntil(.visible)
+        XCTAssertTrue(addReminderButton.isVisible)
+
+        // MARK: Tap "Add reminder" button, check elements
+        addReminderButton.hit()
+        let fiveMinButton = ReminderHelper.fiveMinButton.waitUntil(.visible)
+        let fifteenMinButton = ReminderHelper.fifteenMinButton.waitUntil(.visible)
+        let thirtyMinButton = ReminderHelper.thirtyMinButton.waitUntil(.visible)
+        let oneHourButton = ReminderHelper.oneHourButton.waitUntil(.visible)
+        let oneDayButton = ReminderHelper.oneDayButton.waitUntil(.visible)
+        let oneWeekButton = ReminderHelper.oneWeekButton.waitUntil(.visible)
+        let customButton = ReminderHelper.customButton.waitUntil(.visible)
+        let doneButton = ReminderHelper.doneButton.waitUntil(.visible)
+        XCTAssertTrue(fiveMinButton.isVisible)
+        XCTAssertTrue(fifteenMinButton.isVisible)
+        XCTAssertTrue(thirtyMinButton.isVisible)
+        XCTAssertTrue(oneHourButton.isVisible)
+        XCTAssertTrue(oneDayButton.isVisible)
+        XCTAssertTrue(oneWeekButton.isVisible)
+        XCTAssertTrue(customButton.isVisible)
+        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertTrue(doneButton.isDisabled)
+
+        // MARK: Choose "5 Minutes Before", check detail screen
+        XCTAssertTrue(fiveMinButton.waitUntil(.visible).isVisible)
+        XCTAssertTrue(doneButton.waitUntil(.visible).isVisible)
+
+        fiveMinButton.hit()
+        doneButton.hit()
+        reminderLabel.waitUntil(.visible)
+        let fiveMinutesBeforeLabel = app.find(label: "5 minutes before", type: .staticText).waitUntil(.visible)
+        XCTAssertTrue(reminderLabel.isVisible)
+        XCTAssertTrue(fiveMinutesBeforeLabel.isVisible)
+        XCTAssertTrue(addReminderButton.waitUntil(.visible).isVisible)
+
+        // MARK: Tap "Add reminder" button again, choose custom
+        addReminderButton.hit()
+        XCTAssertTrue(customButton.waitUntil(.visible).isVisible)
+
+        customButton.hit()
+        let numberPicker = ReminderHelper.numberPickerWheel.waitUntil(.visible)
+        let timeUnitPicker = ReminderHelper.timeUnitPickerWheel.waitUntil(.visible)
+        XCTAssertTrue(numberPicker.isVisible)
+        XCTAssertTrue(timeUnitPicker.isVisible)
+        XCTAssertTrue(numberPicker.hasValue(value: "1"))
+        XCTAssertTrue(timeUnitPicker.hasValue(value: "Minutes Before"))
+
+        // MARK: Set to the same (5 minutes)
+        numberPicker.adjust(toPickerWheelValue: "5")
+        timeUnitPicker.adjust(toPickerWheelValue: "Minutes Before")
+        XCTAssertTrue(numberPicker.hasValue(value: "5"))
+        XCTAssertTrue(timeUnitPicker.hasValue(value: "Minutes Before"))
+
+        // MARK: Check warning message
+        doneButton.hit()
+        let okButton = ReminderHelper.okButton.waitUntil(.visible)
+        let reminderCreationFailed = ReminderHelper.reminderCreationFailed.waitUntil(.visible)
+        let youHaveAlreadySet = ReminderHelper.youHaveAlreadySet.waitUntil(.visible)
+        XCTAssertTrue(okButton.isVisible)
+        XCTAssertTrue(reminderCreationFailed.isVisible)
+        XCTAssertTrue(youHaveAlreadySet.isVisible)
     }
 }

@@ -186,6 +186,10 @@ public class AssignmentsHelper: BaseHelper {
                 app.find(label: "Please choose a future time for your reminder!", type: .staticText)
             }
 
+            public static var youHaveAlreadySet: XCUIElement {
+                app.find(label: "You have already set a reminder for this time.", type: .staticText)
+            }
+
             // Custom date
             public static var numberPickerWheel: XCUIElement {
                 app.find(id: "AssignmentReminder.numberPicker", type: .picker).waitUntil(.visible).find(type: .pickerWheel)
