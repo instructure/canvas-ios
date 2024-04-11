@@ -77,6 +77,7 @@ public struct AssignmentRemindersView: View {
                 Text(title)
                     .foregroundStyle(Color.textDark)
                     .font(.regular14)
+                    .accessibilityIdentifier("AssignmentDetails.reminder")
                 Text(description)
                     .padding(.top, 4)
                     .foregroundStyle(Color.textDarkest)
@@ -96,6 +97,7 @@ public struct AssignmentRemindersView: View {
                     .padding(.vertical, 16)
                     .padding(.leading, 16)
             }
+            .accessibilityIdentifier("AssignmentDetails.addReminder")
         }
         .padding(.bottom, 28)
         .padding(.top, 24)
