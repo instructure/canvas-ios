@@ -104,9 +104,10 @@ public class ImageLoader {
     init(url: URL, frame: CGRect, callback: @escaping (Result<LoadedImage, Error>) -> Void) {
         self.callback = callback
         self.frame = frame
+        let keyBase = url.absoluteStringWithoutTokenQuery
         self.key = url.pathExtension == "svg"
-            ? "\(url.absoluteString)@\(frame.width)x\(frame.height)"
-            : url.absoluteString
+            ? "\(keyBase)@\(frame.width)x\(frame.height)"
+            : keyBase
         self.url = url
     }
 
@@ -253,4 +254,18 @@ public func greatestCommonFactor(_ a: Int, _ b: Int) -> Int {
         (a, b) = (b, a % b)
     }
     return a
+}
+
+private extension URL {
+    var absoluteStringWithoutTokenQuery: String {
+        guard var components = URLComponents(url: self, resolvingAgainstBaseURL: false),
+              let tokenIndex = components.queryItems?.firstIndex(where: { $0.name == "token" })
+        else {
+            return absoluteString
+        }
+
+        components.queryItems?.remove(at: tokenIndex)
+
+        return components.url?.absoluteString ?? absoluteString
+    }
 }
