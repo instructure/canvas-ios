@@ -65,6 +65,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
                     CourseSyncEntry(
                         name: course.name,
                         id: "courses/\(course.courseId)",
+                        hasFrontPage: course.hasFrontPage,
                         tabs: mappedTabs,
                         files: files
                     )
@@ -75,6 +76,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
                 CourseSyncEntry(
                     name: course.name,
                     id: "courses/\(course.courseId)",
+                    hasFrontPage: course.hasFrontPage,
                     tabs: mappedTabs,
                     files: []
                 )
