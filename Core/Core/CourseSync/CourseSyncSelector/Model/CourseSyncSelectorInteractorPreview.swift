@@ -29,7 +29,7 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
     ) {
         mockData = CurrentValueRelay<[CourseSyncEntry]>([
             .init(name: "Black Hole",
-                  id: "0", 
+                  id: "0",
                   hasFrontPage: false,
                   tabs: [
                       .init(id: "0", name: "Assignments", type: .assignments),

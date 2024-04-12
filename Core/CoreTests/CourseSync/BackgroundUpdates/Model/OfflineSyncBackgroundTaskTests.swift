@@ -25,6 +25,7 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
     private let mockSyncAccountsCalculator = MockOfflineSyncAccountsInteractor()
     let mockSyncEntry = CourseSyncEntry(name: "",
                                         id: "",
+                                        hasFrontPage: false,
                                         tabs: [.init(id: "", name: "", type: .assignments)],
                                         files: [])
 

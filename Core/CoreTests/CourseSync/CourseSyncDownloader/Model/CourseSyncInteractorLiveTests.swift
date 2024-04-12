@@ -48,6 +48,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             CourseSyncEntry(
                 name: "entry-1",
                 id: "entry-1",
+                hasFrontPage: false,
                 tabs: [
                     .init(id: "tab-assignments", name: "Assignments", type: .assignments),
                     .init(id: "tab-pages", name: "Pages", type: .pages),
