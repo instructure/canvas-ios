@@ -36,10 +36,11 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
         testee.download(testURL, publisherProvider: mockPublisherProvider)
             .sink(receiveCompletion: { _ in }, receiveValue: { [testURL] result in
 
-                let data = try? String(contentsOf: result, encoding: .utf8)
+                let data = try? String(contentsOf: result.tempURL, encoding: .utf8)
 
-                XCTAssertNotEqual(result, testURL)
-                XCTAssertEqual(result, URL.Directories.documents.appendingPathComponent(testURL.lastPathComponent))
+                XCTAssertNotEqual(result.tempURL, testURL)
+                XCTAssertEqual(result.tempURL, URL.Directories.documents.appendingPathComponent(testURL.lastPathComponent))
+                XCTAssertEqual(result.fileName, testURL.lastPathComponent)
                 XCTAssertEqual(data, "hello")
             })
             .store(in: &subscriptions)
@@ -58,7 +59,7 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
             .appendingPathComponent("\(testSectionName)-\(testResourceId)")
         let saveURL = rootURL.appendingPathComponent("logo.png")
 
-        testee.copy(URL(string: "https://www.instructure.com/logo.png")!, courseId: testCourseId, resourceId: testResourceId)
+        testee.copy(URL(string: "https://www.instructure.com/logo.png")!, fileName: "logo.png", courseId: testCourseId, resourceId: testResourceId)
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in
                 XCTAssertTrue(FileManager.default.fileExists(atPath: saveURL.path))
             })
@@ -88,11 +89,11 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
         let testString = "hello"
         let savedURL = URL.Directories.documents.appendingPathComponent("logo.png")
 
-        func getPublisher(for request: URLRequest) -> AnyPublisher<URL, Error> {
+        func getPublisher(for request: URLRequest) -> AnyPublisher<(tempURL: URL, fileName: String), Error> {
             let savedData = testString.data(using: .utf8)
             FileManager.default.createFile(atPath: savedURL.path, contents: savedData)
 
-            return Just(savedURL)
+            return Just((tempURL: savedURL, fileName: "logo.png"))
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }

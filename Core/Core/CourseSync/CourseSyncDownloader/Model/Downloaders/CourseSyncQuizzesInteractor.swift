@@ -42,7 +42,11 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
     }
 
     public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
-        let rootURL = URL.Directories.documents.appendingPathComponent(URL.Paths.Offline.courseSectionFolder(sessionId: htmlParser.sessionId, courseId: courseId, sectionName: htmlParser.sectionName))
+        let rootURL = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: htmlParser.sessionId,
+            courseId: courseId,
+            sectionName: htmlParser.sectionName
+        )
 
         return FileManager.default.removeItemPublisher(at: rootURL)
     }

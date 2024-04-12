@@ -113,20 +113,20 @@ class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
     private var counter: Int = 0
     var savedBaseContents: [URL] = []
 
-    func download(_ url: URL, publisherProvider: Core.URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()) -> AnyPublisher<URL, Error> {
+    func download(_ url: URL, publisherProvider: Core.URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()) -> AnyPublisher<(tempURL: URL, fileName: String), Error> {
         fileNames[url.lastPathComponent] = false
 
-        return Just(url)
+        return Just((tempURL: url, fileName: url.lastPathComponent))
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    func download(_ url: URL) -> AnyPublisher<URL, Error> {
+    func download(_ url: URL) -> AnyPublisher<(tempURL: URL, fileName: String), Error> {
         download(url, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
-    func copy(_ localURL: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
-        let saveURL = URL.Directories.documents.appendingPathComponent(localURL.lastPathComponent)
+    func copy(_ localURL: URL, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+        let saveURL = URL.Directories.documents.appendingPathComponent(fileName)
         counter += 1
         fileNames[localURL.lastPathComponent] = true
 

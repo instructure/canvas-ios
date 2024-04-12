@@ -22,9 +22,9 @@ import CombineSchedulers
 
 protocol HTMLDownloadInteractor {
     var sectionName: String { get }
-    func download(_ url: URL, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<URL, Error>
-    func download(_ url: URL) -> AnyPublisher<URL, Error>
-    func copy(_ localURL: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error>
+    func download(_ url: URL, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<(tempURL: URL, fileName: String), Error>
+    func download(_ url: URL) -> AnyPublisher<(tempURL: URL, fileName: String), Error>
+    func copy(_ tempURL: URL, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<URL, Error>
     func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error>
 }
 
@@ -44,7 +44,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     func download(
         _ url: URL,
         publisherProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
-    ) -> AnyPublisher<URL, Error> {
+    ) -> AnyPublisher<(tempURL: URL, fileName: String), Error> {
 
         if let loginSession, let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID) {
             return publisherProvider.getPublisher(for: request)
@@ -58,11 +58,11 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         }
     }
 
-    func download(_ url: URL) -> AnyPublisher<URL, Error> {
+    func download(_ url: URL) -> AnyPublisher<(tempURL: URL, fileName: String), Error> {
         return download(url, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
-    func copy(_ localURL: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+    func copy(_ tempURL: URL, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
         let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: loginSession?.uniqueID ?? "",
             courseId: courseId,
@@ -70,14 +70,15 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             resourceId: resourceId
         )
 
-        let fileName = localURL.lastPathComponent
         let saveURL = rootURL.appendingPathComponent(fileName)
 
         do {
             try fileManager.createDirectory(at: rootURL, withIntermediateDirectories: true, attributes: nil)
-            try fileManager.moveItem(at: localURL, to: saveURL)
+            try? FileManager.default.removeItem(at: saveURL)
+            try fileManager.moveItem(at: tempURL, to: saveURL)
             return Result.Publisher(saveURL).eraseToAnyPublisher()
         } catch {
+            print("ERROR: \(error)")
             return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()
         }
     }

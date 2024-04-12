@@ -31,7 +31,7 @@ class URLSessionDataTaskPublisherProviderTests: CoreTestCase {
         let request = URLRequest(url: url)
         testee.getPublisher(for: request)
             .sink(receiveCompletion: { _ in }, receiveValue: { result in
-                FileManager.default.fileExists(atPath: result.path)
+                FileManager.default.fileExists(atPath: result.tempURL.path)
             })
             .store(in: &subscriptions)
 

@@ -56,8 +56,9 @@ public class HTMLParserLive: HTMLParser {
                         return (url, $0)
                     }
             }
-            .flatMap { [interactor] (url, localURL) in // Save the data to local file, return the (original link - local link) tuple
-                return interactor.copy(localURL, courseId: courseId, resourceId: resourceId)
+            .flatMap { [interactor] (url, downloadResult) in // Save the data to local file, return the (original link - local link) tuple
+                let (tempURL, fileName) = downloadResult
+                return interactor.copy(tempURL, fileName: fileName, courseId: courseId, resourceId: resourceId)
                     .map {
                         return (url, $0)
                     }

@@ -43,19 +43,15 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     }
 
     public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
-        let rootURLAssignmentEvent = URL.Directories.documents.appendingPathComponent(
-            URL.Paths.Offline.courseSectionFolder(
-                sessionId: assignmentEventHtmlParser.sessionId,
-                courseId: courseId,
-                sectionName: assignmentEventHtmlParser.sectionName
-            )
+        let rootURLAssignmentEvent = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: assignmentEventHtmlParser.sessionId,
+            courseId: courseId,
+            sectionName: assignmentEventHtmlParser.sectionName
         )
-        let rootURLCalendarEvent = URL.Directories.documents.appendingPathComponent(
-            URL.Paths.Offline.courseSectionFolder(
-                sessionId: calendarEventHtmlParser.sessionId,
-                courseId: courseId,
-                sectionName: calendarEventHtmlParser.sectionName
-            )
+        let rootURLCalendarEvent = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: calendarEventHtmlParser.sessionId,
+            courseId: courseId,
+            sectionName: calendarEventHtmlParser.sectionName
         )
 
         return Publishers.Zip(
