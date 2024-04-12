@@ -19,26 +19,6 @@
 import SwiftUI
 
 public struct InteractivePanda: View {
-    public struct Config: Equatable {
-        public let scene: PandaScene
-        public let title: String?
-        public let subtitle: String?
-
-        public init(
-            scene: PandaScene,
-            title: String? = nil,
-            subtitle: String? = nil
-        ) {
-            self.scene = scene
-            self.title = title
-            self.subtitle = subtitle
-        }
-
-        public static func == (lhs: InteractivePanda.Config, rhs: InteractivePanda.Config) -> Bool {
-            lhs.title == rhs.title && lhs.subtitle == rhs.subtitle
-        }
-
-    }
     private let scene: PandaScene
     private let title: Text?
     private let subtitle: Text?

@@ -48,26 +48,14 @@ public struct BaseScreenConfig: Equatable {
         refreshable: Bool = true,
         showsIndicators: Bool = true,
         scrollAxes: Axis.Set = .vertical,
-        errorPanda: PandaScene = (NoResultsPanda() as PandaScene),
-        errorPandaTitle: String = String(localized: "Something Went Wrong"),
-        errorPandaSubtitle: String = String(localized: "Pull to refresh to try again"),
-        emptyPanda: PandaScene = (SpacePanda() as PandaScene),
-        emptyPandaTitle: String = String(localized: "This screen is empty"),
-        emptyPandaSubtitle: String = String(localized: "Pull to refresh to reload")
+        errorPandaConfig: InteractivePanda.Config = .error(),
+        emptyPandaConfig: InteractivePanda.Config = .empty()
     ) {
         self.refreshable = refreshable
         self.showsIndicators = showsIndicators
         self.scrollAxes = scrollAxes
-        errorPandaConfig = .init(
-            scene: errorPanda,
-            title: errorPandaTitle,
-            subtitle: errorPandaSubtitle
-        )
-        emptyPandaConfig = .init(
-            scene: emptyPanda,
-            title: emptyPandaTitle,
-            subtitle: emptyPandaSubtitle
-        )
+        self.errorPandaConfig = errorPandaConfig
+        self.emptyPandaConfig = emptyPandaConfig
     }
 }
 
