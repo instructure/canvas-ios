@@ -105,17 +105,9 @@ public struct BaseScreen<Content>: View where Content: View {
             case .loading:
                 loadingIndicator
             case .error:
-                panda(config: .init(
-                    scene: (NoResultsPanda() as PandaScene),
-                    title: String(localized: "Something Went Wrong"),
-                    subtitle: String(localized: "Pull to refresh to try again")
-                ))
+                panda(config: config.errorPandaConfig)
             case .empty:
-                panda(config: .init(
-                    scene: (SpacePanda() as PandaScene),
-                    title: String(localized: "This screen is empty"),
-                    subtitle: String(localized: "Pull to refresh to reload")
-                ))
+                panda(config: config.emptyPandaConfig)
             case .data:
                 GeometryReader { geometry in
                     let content = content(geometry)
@@ -130,7 +122,6 @@ public struct BaseScreen<Content>: View where Content: View {
                             refreshAction: refreshAction
                         )
                         .frame(width: geometry.size.width, height: geometry.size.height)
-                        .background(Color.backgroundLightest)
                     } else {
                         ScrollView(
                             config.scrollAxes,
@@ -139,9 +130,9 @@ public struct BaseScreen<Content>: View where Content: View {
                             content
                         }
                         .frame(width: geometry.size.width, height: geometry.size.height)
-                        .background(Color.backgroundLightest)
                     }
                 }
+                .background(Color.backgroundLightest)
             }
         }
         .animation(.default, value: state)
