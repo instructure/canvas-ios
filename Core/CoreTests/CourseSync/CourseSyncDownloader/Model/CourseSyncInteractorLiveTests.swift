@@ -465,9 +465,45 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
     }
 
     func testStartsModulesDownload() {
+        let expectation = expectation(description: "Modules download started")
+        let mockModulesInteractor = CourseSyncModulesInteractorMock(expectation: expectation)
         let testee = CourseSyncInteractorLive(
             contentInteractors: [
                 pagesInteractor,
+                assignmentsInteractor,
+            ],
+            filesInteractor: filesInteractor,
+            modulesInteractor: mockModulesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
+            scheduler: .immediate,
+            env: environment
+        )
+        entries[0].tabs[7].selectionState = .selected
+
+        let subscription = testee.downloadContent(for: entries).sink()
+        wait(for: [expectation], timeout: 0.1)
+        subscription.cancel()
+    }
+
+    func testStartsFrontPageDownload() {
+        let expectation = expectation(description: "Front page download started")
+        let mockPagesInteractor = CourseSyncPagesInteractorMock(expectation: expectation)
+        entries = [
+            CourseSyncEntry(
+                name: "entry-1",
+                id: "entry-1",
+                hasFrontPage: true,
+                tabs: [ .init(id: "tab-assignments", name: "Assignments", type: .assignments)],
+                files: []
+            ),
+        ]
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [
+                mockPagesInteractor,
                 assignmentsInteractor,
             ],
             filesInteractor: filesInteractor,
@@ -480,10 +516,10 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             scheduler: .immediate,
             env: environment
         )
-        entries[0].tabs[7].selectionState = .selected
+        entries[0].tabs[0].selectionState = .selected
 
         let subscription = testee.downloadContent(for: entries).sink()
-
+        wait(for: [expectation], timeout: 0.1)
         subscription.cancel()
     }
 
@@ -894,9 +930,15 @@ private class CourseSyncDiscussionsInteractorPublisherMock: CourseSyncDiscussion
 
 private class CourseSyncPagesInteractorMock: CourseSyncPagesInteractor {
     let publisher = PassthroughSubject<Void, Error>()
+    let expectation: XCTestExpectation?
+
+    init(expectation: XCTestExpectation? = nil) {
+        self.expectation = expectation
+    }
 
     func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
-        publisher.eraseToAnyPublisher()
+        expectation?.fulfill()
+        return publisher.eraseToAnyPublisher()
     }
 
     func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
@@ -936,8 +978,15 @@ private class CourseSyncFilesInteractorMock: CourseSyncFilesInteractor {
 }
 
 private class CourseSyncModulesInteractorMock: CourseSyncModulesInteractor {
+    let expectation: XCTestExpectation?
+
+    init(expectation: XCTestExpectation? = nil) {
+        self.expectation = expectation
+    }
+
     func getModuleItems(courseId _: String) -> AnyPublisher<[Core.ModuleItem], Error> {
-        Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
+        expectation?.fulfill()
+        return Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
     func getAssociatedModuleItems(courseId _: String, moduleItemTypes _: Set<Core.TabName>, moduleItems _: [Core.ModuleItem]) -> AnyPublisher<Void, Error> {
