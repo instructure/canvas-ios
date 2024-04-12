@@ -408,14 +408,12 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             ? NSLocalizedString("Description", bundle: .student, comment: "")
             : NSLocalizedString("Instructions", bundle: .student, comment: "")
 
-        let prefix = OfflineFolderPrefix.assignment.rawValue
-        let rootURL = URL.Directories.documents.appendingPathComponent(
-            URL.Paths.Offline.courseSectionFolder(
-                sessionId: env.currentSession?.uniqueID ?? "",
-                courseId: courseID,
-                sectionName: OfflineContainerPrefix.Assignments.rawValue
-            )
-        ).appendingPathComponent("\(prefix)-\(assignmentID)")
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: courseID,
+            sectionName: OfflineFolderPrefix.assignments.rawValue,
+            resourceId: assignmentID
+        )
         let offlinePath = rootURL.appendingPathComponent("body.html")
         webView.loadContent(
             isOffline: offlineModeInteractor?.isNetworkOffline(),

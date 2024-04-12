@@ -21,7 +21,6 @@ import Combine
 
 public protocol HTMLParser {
     var sessionId: String { get }
-    var prefix: String { get }
     var sectionName: String { get }
     func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL?) -> AnyPublisher<String, Error>
 }
@@ -31,17 +30,15 @@ public class HTMLParserLive: HTMLParser {
         interactor.sectionName
     }
     public let sessionId: String
-    public let prefix: String
 
     private let imageRegex: NSRegularExpression
     private let relativeURLRegex: NSRegularExpression
     private let interactor: HTMLDownloadInteractor
     private var subscriptions = Set<AnyCancellable>()
 
-    init(sessionId: String, downloadInteractor: HTMLDownloadInteractor, prefix: String = "") {
+    init(sessionId: String, downloadInteractor: HTMLDownloadInteractor) {
         self.sessionId = sessionId
         self.interactor = downloadInteractor
-        self.prefix = prefix
 
         self.imageRegex = (try? NSRegularExpression(pattern: "<img[^>]*src=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
         self.relativeURLRegex = (try? NSRegularExpression(pattern: "<.+(src|href)=\"(.+((\\.|\\/)\\.+)*)\".*>")) ?? NSRegularExpression()
@@ -50,7 +47,7 @@ public class HTMLParserLive: HTMLParser {
     public func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
         let imageURLs = findRegexMatches(content, pattern: imageRegex)
         let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex, groupCount: 2).filter { url in url.host ==  nil }
-        let rootURL = getRootURL(courseId: courseId, prefix: prefix, resourceId: resourceId)
+        let rootURL = getRootURL(courseId: courseId, resourceId: resourceId)
 
         return imageURLs.publisher
             .flatMap(maxPublishers: .max(5)) { [interactor] url in // Download images to local Documents folder, return the (original link - local link) tuple
@@ -59,8 +56,8 @@ public class HTMLParserLive: HTMLParser {
                         return (url, $0)
                     }
             }
-            .flatMap { [interactor, prefix] (url, localURL) in // Save the data to local file, return the (original link - local link) tuple
-                return interactor.copy(localURL, courseId: courseId, prefix: "\(prefix)-\(resourceId)")
+            .flatMap { [interactor] (url, localURL) in // Save the data to local file, return the (original link - local link) tuple
+                return interactor.copy(localURL, courseId: courseId, resourceId: resourceId)
                     .map {
                         return (url, $0)
                     }
@@ -108,7 +105,7 @@ public class HTMLParserLive: HTMLParser {
             }
     }
 
-    private func getRootURL(courseId: String, prefix: String, resourceId: String) -> URL {
+    private func getRootURL(courseId: String, resourceId: String) -> URL {
         return URL.Directories.documents.appendingPathComponent(
             URL.Paths.Offline.courseSectionFolder(
                 sessionId: sessionId,
@@ -116,6 +113,6 @@ public class HTMLParserLive: HTMLParser {
                 sectionName: sectionName
             )
         )
-        .appendingPathComponent("\(prefix)-\(resourceId)")
+        .appendingPathComponent("\(sectionName)-\(resourceId)")
     }
 }

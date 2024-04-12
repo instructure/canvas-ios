@@ -163,23 +163,20 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
         var html = quiz?.lockExplanation ?? quiz?.details ?? ""
         if html.isEmpty { html = NSLocalizedString("No Content", comment: "") }
 
-        let prefix = OfflineFolderPrefix.quiz.rawValue
-        let rootURL = URL.Directories.documents.appendingPathComponent(
-            URL.Paths.Offline.courseSectionFolder(
-                sessionId: env.currentSession?.uniqueID ?? "",
-                courseId: courses.first?.id ?? "",
-                sectionName: OfflineContainerPrefix.Quizzes.rawValue
-            )
-        ).appendingPathComponent("\(prefix)-\(quizID)")
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: courses.first?.id ?? "",
+            sectionName: OfflineFolderPrefix.quizzes.rawValue,
+            resourceId: quizID
+        )
         let offlinePath = rootURL.appendingPathComponent("body.html")
-        if offlineModeInteractor?.isNetworkOffline() == true && FileManager.default.fileExists(atPath: offlinePath.path) {
-            // Offline image are stored in the Documents folder which cannot be accessed by the webview by default
-            instructionsWebView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
-            let rawHtmlValue = try? String(contentsOf: offlinePath, encoding: .utf8)
-            instructionsWebView.loadHTMLString(rawHtmlValue ?? "", baseURL: rootURL)
-        } else {
-            instructionsWebView.loadHTMLString(html, baseURL: quiz?.htmlURL)
-        }
+        instructionsWebView.loadContent(
+            isOffline: offlineModeInteractor?.isNetworkOffline(),
+            filePath: offlinePath,
+            content: html,
+            originalBaseURL: quiz?.htmlURL,
+            offlineBaseURL: rootURL
+        )
 
         scrollView.isHidden = quiz == nil
         let title = takeButtonTitle

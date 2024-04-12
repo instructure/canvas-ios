@@ -26,7 +26,6 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
     let testCourseId = "1"
     let testResourceId = "2"
     let testSectionName = "test"
-    let testPrefix = "test"
     let testURL = URL(string: "https://www.instructure.com/logo.png")!
 
     var subscriptions: [AnyCancellable] = []
@@ -56,10 +55,10 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
                     sectionName: testSectionName
                 )
             )
-            .appendingPathComponent("\(testPrefix)-\(testResourceId)")
+            .appendingPathComponent("\(testSectionName)-\(testResourceId)")
         let saveURL = rootURL.appendingPathComponent("logo.png")
 
-        testee.copy(URL(string: "https://www.instructure.com/logo.png")!, courseId: testCourseId, prefix: "\(testPrefix)-\(testResourceId)")
+        testee.copy(URL(string: "https://www.instructure.com/logo.png")!, courseId: testCourseId, resourceId: testResourceId)
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in
                 XCTAssertTrue(FileManager.default.fileExists(atPath: saveURL.path))
             })
@@ -76,7 +75,7 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
                     sectionName: testSectionName
                 )
             )
-            .appendingPathComponent("\(testPrefix)-\(testResourceId)")
+            .appendingPathComponent("\(testSectionName)-\(testResourceId)")
 
         testee.saveBaseContent(content: "test", folderURL: rootURL)
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in

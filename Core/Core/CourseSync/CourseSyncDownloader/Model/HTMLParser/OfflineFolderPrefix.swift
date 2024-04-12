@@ -19,19 +19,10 @@
 import Foundation
 
 public enum OfflineFolderPrefix: String {
-    case page
-    case assignment
-    case announcement
-    case discussion
-    case quiz
-    case calendarEvent
-}
-
-public enum OfflineContainerPrefix: String {
-    case Pages
-    case Assignments
-    case Announcements
-    case Discussions
-    case Quizzes
-    case CalendarEvents
+    case pages
+    case assignments
+    case announcements
+    case discussions
+    case quizzes
+    case calendarEvents
 }

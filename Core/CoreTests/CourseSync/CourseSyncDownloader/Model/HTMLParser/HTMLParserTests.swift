@@ -25,12 +25,11 @@ class HTMLParserTests: CoreTestCase {
     var testee: HTMLParser!
     let testCourseId: String = "1"
     let testResourceId: String = "2"
-    let testPrefix: String = "test"
     var subscriptions: [AnyCancellable] = []
 
     func testReplacingLinks() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor, prefix: testPrefix)
+        testee = HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor)
 
         let baseURL = URL(string: "https://instructure.com")
         let urlToDownload = URL(string: "https://instructure.com/logo.png")!
@@ -78,7 +77,7 @@ class HTMLParserTests: CoreTestCase {
 
     func testSavingBaseContent() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor, prefix: "test")
+        testee = HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor)
 
         let baseURL = URL(string: "https://www.instructure.com")
         let urlToDownload = "https://www.instructure.com/logo.png"
@@ -96,7 +95,7 @@ class HTMLParserTests: CoreTestCase {
                     sectionName: interactor.sectionName
                 )
             )
-            .appendingPathComponent("\(testPrefix)-\(testResourceId)")
+            .appendingPathComponent("\(interactor.sectionName)-\(testResourceId)")
 
         testee.parse(testHTMLContent, resourceId: testResourceId, courseId: testCourseId, baseURL: baseURL)
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in
@@ -126,7 +125,7 @@ class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
         download(url, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
-    func copy(_ localURL: URL, courseId: String, prefix: String) -> AnyPublisher<URL, Error> {
+    func copy(_ localURL: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
         let saveURL = URL.Directories.documents.appendingPathComponent(localURL.lastPathComponent)
         counter += 1
         fileNames[localURL.lastPathComponent] = true

@@ -128,14 +128,12 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
 
         // Offline with separate html file
-        let prefix = OfflineFolderPrefix.page.rawValue
-        let rootURL = URL.Directories.documents.appendingPathComponent(
-            URL.Paths.Offline.courseSectionFolder(
-                sessionId: env.currentSession?.uniqueID ?? "",
-                courseId: courses.first?.id ?? "",
-                sectionName: OfflineContainerPrefix.Pages.rawValue
-            )
-        ).appendingPathComponent("\(prefix)-\(page.id)")
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: courses.first?.id ?? "",
+            sectionName: OfflineFolderPrefix.pages.rawValue,
+            resourceId: page.id
+        )
         let offlinePath = rootURL.appendingPathComponent("body.html")
 
         webView.loadContent(

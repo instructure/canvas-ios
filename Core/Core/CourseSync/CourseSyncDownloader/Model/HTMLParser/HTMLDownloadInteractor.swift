@@ -24,7 +24,7 @@ protocol HTMLDownloadInteractor {
     var sectionName: String { get }
     func download(_ url: URL, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<URL, Error>
     func download(_ url: URL) -> AnyPublisher<URL, Error>
-    func copy(_ localURL: URL, courseId: String, prefix: String) -> AnyPublisher<URL, Error>
+    func copy(_ localURL: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error>
     func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error>
 }
 
@@ -62,14 +62,13 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         return download(url, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
-    func copy(_ localURL: URL, courseId: String, prefix: String) -> AnyPublisher<URL, Error> {
-        let rootURL = URL.Directories.documents.appendingPathComponent(
-            URL.Paths.Offline.courseSectionFolder(
-                sessionId: loginSession?.uniqueID ?? "",
-                courseId: courseId,
-                sectionName: sectionName
-            )
-        ).appendingPathComponent(prefix)
+    func copy(_ localURL: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: loginSession?.uniqueID ?? "",
+            courseId: courseId,
+            sectionName: sectionName,
+            resourceId: resourceId
+        )
 
         let fileName = localURL.lastPathComponent
         let saveURL = rootURL.appendingPathComponent(fileName)
@@ -79,7 +78,6 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             try fileManager.moveItem(at: localURL, to: saveURL)
             return Result.Publisher(saveURL).eraseToAnyPublisher()
         } catch {
-            print("ASDASD: \(error)")
             return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()
         }
     }

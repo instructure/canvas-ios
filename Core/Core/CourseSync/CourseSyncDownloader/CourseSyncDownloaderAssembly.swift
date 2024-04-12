@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import CombineSchedulers
 
 public enum CourseSyncDownloaderAssembly {
 
@@ -28,71 +29,12 @@ public enum CourseSyncDownloaderAssembly {
         let sessionId = env.currentSession?.uniqueID ?? ""
         let loginSession = env.currentSession
 
-        let pageDownloadInteractor = HTMLDownloadInteractorLive(
-            loginSession: loginSession,
-            sectionName: OfflineContainerPrefix.Pages.rawValue,
-            scheduler: scheduler
-        )
-        let pageHtmlParser = HTMLParserLive(
-            sessionId: sessionId,
-            downloadInteractor: pageDownloadInteractor,
-            prefix: OfflineFolderPrefix.page.rawValue
-        )
-
-        let assignmentDownloadInteractor = HTMLDownloadInteractorLive(
-            loginSession: loginSession,
-            sectionName: OfflineContainerPrefix.Assignments.rawValue,
-            scheduler: scheduler
-        )
-        let assignmentHtmlParser = HTMLParserLive(
-            sessionId: sessionId,
-            downloadInteractor: assignmentDownloadInteractor,
-            prefix: OfflineFolderPrefix.assignment.rawValue
-        )
-
-        let quizDownloadInteractor = HTMLDownloadInteractorLive(
-            loginSession: loginSession,
-            sectionName: OfflineContainerPrefix.Quizzes.rawValue,
-            scheduler: scheduler
-        )
-        let quizHtmlParser = HTMLParserLive(
-            sessionId: sessionId,
-            downloadInteractor: quizDownloadInteractor,
-            prefix: OfflineFolderPrefix.quiz.rawValue
-        )
-
-        let announcementDownloadInteractor = HTMLDownloadInteractorLive(
-            loginSession: loginSession,
-            sectionName: OfflineContainerPrefix.Announcements.rawValue,
-            scheduler: scheduler
-        )
-        let announcementHtmlParser = HTMLParserLive(
-            sessionId: sessionId,
-            downloadInteractor: announcementDownloadInteractor,
-            prefix: OfflineFolderPrefix.announcement.rawValue
-        )
-
-        let discussionDownloadInteractor = HTMLDownloadInteractorLive(
-            loginSession: loginSession,
-            sectionName: OfflineContainerPrefix.Discussions.rawValue,
-            scheduler: scheduler
-        )
-        let discussionHtmlParser = HTMLParserLive(
-            sessionId: sessionId,
-            downloadInteractor: discussionDownloadInteractor,
-            prefix: OfflineFolderPrefix.discussion.rawValue
-        )
-
-        let calendarEventDownloadInteractor = HTMLDownloadInteractorLive(
-            loginSession: loginSession,
-            sectionName: OfflineContainerPrefix.CalendarEvents.rawValue,
-            scheduler: scheduler
-        )
-        let calendarEventHtmlParser = HTMLParserLive(
-            sessionId: sessionId,
-            downloadInteractor: calendarEventDownloadInteractor,
-            prefix: OfflineFolderPrefix.calendarEvent.rawValue
-        )
+        let pageHtmlParser = getHTMLParser(for: .pages, loginSession: loginSession, scheduler: scheduler)
+        let assignmentHtmlParser = getHTMLParser(for: .assignments, loginSession: loginSession, scheduler: scheduler)
+        let quizHtmlParser = getHTMLParser(for: .quizzes, loginSession: loginSession, scheduler: scheduler)
+        let announcementHtmlParser = getHTMLParser(for: .announcements, loginSession: loginSession, scheduler: scheduler)
+        let discussionHtmlParser = getHTMLParser(for: .discussions, loginSession: loginSession, scheduler: scheduler)
+        let calendarEventHtmlParser = getHTMLParser(for: .calendarEvents, loginSession: loginSession, scheduler: scheduler)
 
         let contentInteractors: [CourseSyncContentInteractor] = [
             CourseSyncPagesInteractorLive(htmlParser: pageHtmlParser),
@@ -118,5 +60,20 @@ public enum CourseSyncDownloaderAssembly {
                                         backgroundActivity: backgroundActivity,
                                         scheduler: scheduler,
                                         env: env)
+    }
+
+    private static func getHTMLParser(for section: OfflineFolderPrefix, loginSession: LoginSession?, scheduler: AnySchedulerOf<DispatchQueue>) -> HTMLParser {
+        let sessionId = loginSession?.uniqueID ?? ""
+
+        let interactor = HTMLDownloadInteractorLive(
+            loginSession: loginSession,
+            sectionName: section.rawValue,
+            scheduler: scheduler
+        )
+
+        return HTMLParserLive(
+            sessionId: sessionId,
+            downloadInteractor: interactor
+        )
     }
 }
