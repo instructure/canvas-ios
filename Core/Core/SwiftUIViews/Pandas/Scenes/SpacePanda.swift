@@ -27,6 +27,8 @@ public struct SpacePanda: PandaScene {
     public var height: CGFloat { 180 }
     public var foreground: AnyView { AnyView(AstronautPanda(imageName: foregroundFileName)) }
     public var background: AnyView { AnyView(Stars(imageName: backgroundFileName)) }
+
+    public init() {}
 }
 
 private struct Stars: View {
