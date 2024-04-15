@@ -75,6 +75,7 @@ final public class File: NSManagedObject {
     @NSManaged public var contextRaw: Data?
     @NSManaged public var userRaw: Data?
     @NSManaged public var usageRights: UsageRights?
+    @NSManaged public var visibilityLevelRaw: String?
 
     // Submission TurnItIn data
     @NSManaged public var similarityScore: Double
@@ -101,6 +102,28 @@ final public class File: NSManagedObject {
     public var context: FileUploadContext? {
         get { return contextRaw.flatMap { try? JSONDecoder().decode(FileUploadContext.self, from: $0) } }
         set { contextRaw = newValue.flatMap { try? JSONEncoder().encode($0) } }
+    }
+
+    public var visibilityLevel: FileVisibility? {
+        get {
+            guard let visibilityLevelRaw else { return nil }
+            return FileVisibility(rawValue: visibilityLevelRaw)
+        }
+        set {
+            visibilityLevelRaw = newValue?.rawValue
+        }
+    }
+
+    public var availability: FileAvailability {
+        if locked {
+            return .unpublished
+        } else if hidden {
+            return .hidden
+        } else if unlockAt != nil || lockAt != nil {
+            return .scheduledAvailability
+        } else {
+            return .published
+        }
     }
 
     var user: User? {
@@ -175,6 +198,7 @@ extension File: WriteableModel {
         model.usageRights = item.usage_rights.map {
             UsageRights.save($0, to: model.usageRights, in: client)
         }
+        model.visibilityLevelRaw = item.visibility_level
         model.items?.forEach { $0.name = item.display_name }
         return model
     }

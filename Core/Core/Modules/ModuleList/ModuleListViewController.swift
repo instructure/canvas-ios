@@ -70,8 +70,8 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
             AppEnvironment.shared.userDefaults?.collapsedModules = collapsedIDs
         }
     }
-    private lazy var publishInteractor = ModulePublishInteractor(app: AppEnvironment.shared.app, courseId: courseID)
-    private var snackBarUpdatesSubscription: AnyCancellable?
+    private lazy var publishInteractor = ModulesAssembly.publishInteractor(for: courseID)
+    private var subscriptions = Set<AnyCancellable>()
 
     public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let controller = loadFromStoryboard()
@@ -155,7 +155,6 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
 
         if spinnerView.isHidden, emptyView.isHidden, errorView.isHidden {
             setupBulkPublishButtonInNavBar()
-            setupPublishActionSnackBarUpdates()
         }
     }
 
@@ -165,20 +164,36 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         else { return }
 
         let button = UIBarButtonItem(image: .moreLine)
-        button.menu = .makePublishModulesMenu(host: self)
+        button.menu = .makePublishAllModulesMenu(host: self) { [weak self] action in
+            self?.didPerformPublishAction(action: action)
+        }
         button.accessibilityLabel = String(localized: "Publish options")
         navigationItem.setRightBarButton(button, animated: true)
+
+        publishInteractor
+            .modulesUpdating
+            .receive(on: RunLoop.main)
+            .map { [modules] modulesUpdating in
+                let allModules = modules.all.map { $0.id }
+                return Set(modulesUpdating) == Set(allModules)
+            }
+            .sink { isAllModulesUpdating in
+                button.isEnabled = !isAllModulesUpdating
+            }
+            .store(in: &subscriptions)
     }
 
-    private func setupPublishActionSnackBarUpdates() {
-        guard snackBarUpdatesSubscription == nil else {
-            return
-        }
-        snackBarUpdatesSubscription = publishInteractor
-            .statusUpdates
-            .sink(receiveValue: { [weak self] update in
-                self?.findSnackBarViewModel()?.showSnack(update)
-            })
+    private func didPerformPublishAction(action: ModulePublishAction) {
+        let moduleIds = modules.map { $0.id }
+        let viewModel = ModulePublishProgressViewModel(
+            action: action,
+            allModules: true,
+            moduleIds: moduleIds,
+            interactor: publishInteractor,
+            router: env.router
+        )
+        let viewController = CoreHostingController(ModulePublishProgressView(viewModel: viewModel))
+        env.router.show(viewController, from: self, options: .modal(isDismissable: true, embedInNav: true))
     }
 
     private func reloadCourse() {

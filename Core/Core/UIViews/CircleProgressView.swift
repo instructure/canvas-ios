@@ -130,10 +130,14 @@ public class CircleProgressView: UIView {
     }
 
     public func startAnimating() {
+        setRemovedOnCompletion(to: false)
+
         progress = nil
     }
 
     public func stopAnimating() {
+        setRemovedOnCompletion(to: true)
+
         clearAnimation()
     }
 
@@ -141,5 +145,10 @@ public class CircleProgressView: UIView {
         fill.removeAnimation(forKey: morphKey)
         layer.removeAnimation(forKey: rotateKey)
         fill.strokeEnd = 0
+    }
+
+    private func setRemovedOnCompletion(to value: Bool) {
+        morph.isRemovedOnCompletion = value
+        rotate.isRemovedOnCompletion = value
     }
 }

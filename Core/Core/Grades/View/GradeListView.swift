@@ -20,6 +20,10 @@ import Combine
 import SwiftUI
 
 public struct GradeListView: View, ScreenViewTrackable {
+    private enum AccessibilityFocusArea: Hashable, Equatable {
+        case list, editor
+    }
+
     // MARK: - Dependencies
 
     @ObservedObject private var viewModel: GradeListViewModel
@@ -30,6 +34,9 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     // MARK: - Private properties
 
+    @State private var offsets = CGSize.zero
+    @State private var isScoreEditorPresented = false
+    @AccessibilityFocusState private var accessibilityFocus: AccessibilityFocusArea?
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -49,45 +56,59 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     public var body: some View {
         GeometryReader { geometry in
-            RefreshableScrollView {
-                VStack(spacing: 0) {
-                    switch viewModel.state {
-                    case .initialLoading:
-                        loadingView()
-                    case let .refreshing(data):
-                        dataView(
-                            data,
-                            isRefreshing: true,
-                            isEmpty: false
-                        )
-                    case let .data(data):
-                        dataView(
-                            data,
-                            isRefreshing: false,
-                            isEmpty: false
-                        )
-                    case let .empty(data):
-                        dataView(
-                            data,
-                            isRefreshing: false,
-                            isEmpty: true
-                        )
-                    case .error:
-                        errorView()
+            ZStack {
+                RefreshableScrollView(showsIndicators: false) {
+                    VStack(spacing: 0) {
+                        switch viewModel.state {
+                        case .initialLoading:
+                            loadingView()
+                        case let .refreshing(data):
+                            dataView(
+                                data,
+                                isRefreshing: true,
+                                isEmpty: false
+                            )
+                        case let .data(data):
+                            dataView(
+                                data,
+                                isRefreshing: false,
+                                isEmpty: false
+                            )
+                        case let .empty(data):
+                            dataView(
+                                data,
+                                isRefreshing: false,
+                                isEmpty: true
+                            )
+                        case .error:
+                            errorView()
+                        }
                     }
+                    .frame(width: geometry.size.width)
+                    .frame(minHeight: geometry.size.height)
+                } refreshAction: { endRefreshing in
+                    viewModel.pullToRefreshDidTrigger.accept(endRefreshing)
                 }
-                .frame(width: geometry.size.width)
-                .frame(minHeight: geometry.size.height)
-            } refreshAction: { endRefreshing in
-                viewModel.pullToRefreshDidTrigger.accept(endRefreshing)
+                .accessibilityHidden(isScoreEditorPresented)
+                .background(Color.backgroundLightest)
+                whatIfScoreEditorView()
             }
-            .background(Color.backgroundLightest)
+            .animation(.smooth, value: isScoreEditorPresented)
         }
         .navigationTitle(String(localized: "Grades"))
+        .toolbar {
+            RevertWhatIfScoreButton(isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn) {
+                viewModel.isShowingRevertDialog = true
+            }
+        }
+        .confirmationAlert(
+            isPresented: $viewModel.isShowingRevertDialog,
+            presenting: viewModel.confirmRevertAlertViewModel
+        )
     }
 
     @ViewBuilder
-    func loadingView() -> some View {
+    private func loadingView() -> some View {
         ZStack {
             ProgressView()
                 .progressViewStyle(.indeterminateCircle())
@@ -128,37 +149,33 @@ public struct GradeListView: View, ScreenViewTrackable {
         if isRefreshing {
             GeometryReader { proxy in
                 loadingView()
-                    .padding(.top, 16)
+                    .padding(.vertical, 16)
                     .frame(width: proxy.size.width)
                     .frame(minHeight: proxy.size.height)
             }
         } else if isEmpty {
-            GeometryReader { proxy in
-                emptyView()
-                    .padding(.top, 16)
-                    .frame(width: proxy.size.width)
-                    .frame(minHeight: proxy.size.height)
-            }
+            emptyView()
+                .padding(.vertical, 16)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
             assignmentListView(
                 courseColor: gradeListData.courseColor,
                 assignmentSections: gradeListData.assignmentSections,
                 userID: gradeListData.userID
             )
-            Spacer(minLength: 0)
+            .frame(minHeight: 208, maxHeight: .infinity)
+            .accessibilityFocused($accessibilityFocus, equals: .list)
         }
     }
 
     @ViewBuilder
     private func emptyView() -> some View {
-        Spacer()
         InteractivePanda(
             scene: SpacePanda(),
             title: String(localized: "No Assignments"),
             subtitle: String(localized: "It looks like assignments haven’t been created in this space yet.")
         )
         .padding(.horizontal, 16)
-        Spacer()
     }
 
     @ViewBuilder
@@ -230,6 +247,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 Image(uiImage: .lockLine)
                     .resizable()
                     .frame(width: 40, height: 40)
+                    .accessibilityIdentifier("lockIcon")
             }
             .padding(.top, 12)
             .padding(.horizontal, 16)
@@ -268,13 +286,14 @@ public struct GradeListView: View, ScreenViewTrackable {
             .foregroundStyle(Color.textDarkest)
             .font(.semibold28)
             .accessibilityLabel(Text("\(courseName) course"))
+            .fixedSize(horizontal: false, vertical: true)
     }
 
     @ViewBuilder
     private func togglesView() -> some View {
         VStack(spacing: 0) {
             Toggle(isOn: $viewModel.baseOnGradedAssignment) {
-                Text("Base on graded assignments", bundle: .core)
+                Text("Based on graded assignments", bundle: .core)
                     .foregroundStyle(Color.textDarkest)
                     .font(.regular16)
                     .multilineTextAlignment(.leading)
@@ -283,18 +302,19 @@ public struct GradeListView: View, ScreenViewTrackable {
             .frame(minHeight: 51)
             .padding(.horizontal, 16)
 
-//            Divider()
-//
-//            Toggle(isOn: $viewModel.isWhatIfScoreOn) {
-//                Text("Show What-if Score", bundle: .core)
-//                    .foregroundStyle(Color.textDarkest)
-//                    .font(.regular16)
-//                    .fixedSize()
-//                    .lineLimit(1)
-//            }
-//            .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
-//            .frame(height: 51)
-//            .padding(.horizontal, 16)
+            if viewModel.isWhatIfScoreFlagEnabled {
+                Divider()
+
+                Toggle(isOn: $viewModel.isWhatIfScoreModeOn) {
+                    Text("Show What-if Score", bundle: .core)
+                        .foregroundStyle(Color.textDarkest)
+                        .font(.regular16)
+                        .multilineTextAlignment(.leading)
+                }
+                .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
+                .frame(minHeight: 51)
+                .padding(.horizontal, 16)
+            }
         }
     }
 
@@ -377,32 +397,116 @@ public struct GradeListView: View, ScreenViewTrackable {
         assignmentSections: [GradeListData.AssignmentSections],
         userID: String
     ) -> some View {
-        ForEach(assignmentSections) { section in
-            Section(header:
-                VStack(spacing: 2) {
-                    HStack(spacing: 0) {
-                        Text(section.title ?? "")
-                            .foregroundStyle(Color.textDark)
-                            .font(.semibold14)
-                            .padding(.horizontal, 16)
-                        Spacer()
-                    }
-                    .frame(height: 51)
-                    Divider()
-                }
-                .background(Color.backgroundLight)
-            ) {
-                LazyVStack(spacing: 0) {
+        List {
+            ForEach(assignmentSections) { section in
+                Section(header: listSectionView(title: section.title)) {
                     ForEach(section.assignments) { assignment in
-                        Button {
-                            viewModel.didSelectAssignment.accept((viewController, assignment))
-                        } label: {
-                            GradeRowView(assignment: assignment, userID: userID)
-                        }
-                        .buttonStyle(ContextButton(contextColor: courseColor))
-                        Divider()
+                        listRowView(
+                            assignment: assignment,
+                            userID: userID,
+                            courseColor: courseColor
+                        )
                     }
                 }
+                .listSectionSeparator(.hidden)
+            }
+        }
+        .background(Color.backgroundLightest)
+        .iOS16HideListScrollContentBackground()
+        .listStyle(.plain)
+    }
+
+    @ViewBuilder
+    private func listSectionView(title: String?) -> some View {
+        Text(title ?? "")
+            .foregroundStyle(Color.textDark)
+            .font(.semibold14)
+            .padding(.horizontal, 16)
+            .frame(maxWidth: .infinity, minHeight: 35, alignment: .leading)
+            .padding(.horizontal, -16)
+    }
+
+    @ViewBuilder
+    private func listRowView(
+        assignment: Assignment,
+        userID: String,
+        courseColor _: UIColor?
+    ) -> some View {
+        Button {
+            viewModel.didSelectAssignment.accept((viewController, assignment))
+        } label: {
+            GradeRowView(
+                assignment: assignment,
+                userID: userID,
+                isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn
+            ) {
+                isScoreEditorPresented.toggle()
+            }
+        }
+        .listRowInsets(EdgeInsets())
+        .iOS16RemoveListRowSeparatorLeadingInset()
+        .swipeActions(edge: .trailing) { revertWhatIfScoreSwipeButton() }
+        .accessibilityAction(named: Text("Edit What-if score")) {
+            isScoreEditorPresented.toggle()
+        }
+        .accessibilityAction(named: Text("Revert to official score")) {
+            viewModel.isShowingRevertDialog = true
+        }
+    }
+
+    @ViewBuilder
+    private func whatIfScoreEditorView() -> some View {
+        if isScoreEditorPresented {
+            WhatIfScoreEditorView(isPresented: $isScoreEditorPresented) {}
+                .accessibilitySortPriority(1)
+                .accessibilityFocused($accessibilityFocus, equals: .editor)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        accessibilityFocus = .editor
+                    }
+                }
+                .onDisappear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        accessibilityFocus = .list
+                    }
+                }
+        }
+    }
+
+    @ViewBuilder
+    private func revertWhatIfScoreSwipeButton() -> some View {
+        if viewModel.isWhatIfScoreModeOn {
+            Button {
+                viewModel.isShowingRevertDialog = true
+            } label: {
+                Image(uiImage: .replyLine)
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .foregroundColor(Color.textLightest)
+            }
+            .tint(Color.backgroundDark)
+        }
+    }
+}
+
+// This is workaround, because .toolbar doesn't allow optional `ToolBarContent`.
+private struct RevertWhatIfScoreButton: ToolbarContent {
+    let isWhatIfScoreModeOn: Bool
+    let buttonDidTap: () -> Void
+
+    var body: some ToolbarContent {
+        ToolbarItemGroup(placement: .navigationBarTrailing) {
+            if isWhatIfScoreModeOn {
+                Button(action: {
+                    buttonDidTap()
+                }) {
+                    Image(uiImage: .replyLine)
+                        .resizable()
+                        .foregroundColor(Color.white)
+                }
+                .frame(alignment: .leading)
+                .accessibilityLabel(Text("Revert"))
+                .accessibilityHint(Text("Double tap to revert to official score."))
             }
         }
     }

@@ -22,7 +22,7 @@ struct SideMenuMainSection: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
 
-    @ObservedObject private var tools: Store<GetGlobalNavExternalPlacements>
+    @ObservedObject private var tools: Store<GetGlobalNavExternalToolsPlacements>
     @State private var unreadCount: UInt = 0
     @State private var canUpdateAvatar: Bool = false
 
@@ -45,7 +45,7 @@ struct SideMenuMainSection: View {
     init(_ enrollment: HelpLinkEnrollment, offlineModeViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())) {
         self.enrollment = enrollment
         let env = AppEnvironment.shared
-        self.tools = env.subscribe(GetGlobalNavExternalPlacements())
+        self.tools = env.subscribe(GetGlobalNavExternalToolsPlacements(enrollment: enrollment))
         self.offlineModeViewModel = offlineModeViewModel
     }
 
@@ -76,23 +76,24 @@ struct SideMenuMainSection: View {
                     SideMenuItem(id: "files", image: .folderLine, title: Text("Files", bundle: .core))
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
+            }
 
-                Button {
-                    showDownloads()
+            Button {
+                showDownloads()
+            } label: {
+                SideMenuItem(id: "downloads", image: Image(systemName: "checkmark.icloud"), title: Text("Downloads", bundle: .core))
+            }
+            .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
+
+            ForEach(Array(tools), id: \.self) { tool in
+                PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
+                    launchLTI(url: tool.url)
                 } label: {
-                    SideMenuItem(id: "downloads", image: Image(systemName: "checkmark.icloud"), title: Text("Downloads", bundle: .core))
+                    SideMenuItem(id: "lti.\(tool.domain ?? "").\(tool.definitionID)",
+                                 image: imageForDomain(tool.domain),
+                                 title: Text("\(tool.title)", bundle: .core))
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
-
-                ForEach(Array(tools), id: \.self) { tool in
-                    PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
-                        launchLTI(url: tool.url)
-                    } label: {
-                        SideMenuItem(id: "lti.\(tool.domain ?? "").\(tool.definitionID)", image: imageForDomain(tool.domain),
-                                     title: Text("\(tool.title)", bundle: .core))
-                    }
-                    .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
-                }
             }
 
             if enrollment == .student || enrollment == .teacher {
@@ -111,14 +112,11 @@ struct SideMenuMainSection: View {
     }
 
     func imageForDomain(_ domain: String?) -> Image {
-        var image = Image.ltiLine
-        guard let domain = domain else {
-            return image
+        guard let ltiDomain = LTIDomains(rawValue: domain ?? "") else {
+            return LTIDomains.defaultIcon
         }
-        if domain == "arc.instructure.com" {
-            image = .studioLine
-        }
-        return image
+
+        return ltiDomain.icon
     }
 
     func route(to: String, options: RouteOptions = .push) {

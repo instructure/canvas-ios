@@ -108,8 +108,7 @@ struct DashboardOfflineSyncProgressCardView: View {
     private func progressBar(progress: Float) -> some View {
         ProgressView(value: progress)
             .progressViewStyle(
-                .determinateBar(foregroundColor: .textLightest,
-                                backgroundColor: .textLightest.opacity(0.2))
+                .determinateBar(color: .textLightest)
             )
             .animation(.default, value: progress)
     }

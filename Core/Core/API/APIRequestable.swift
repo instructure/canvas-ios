@@ -19,7 +19,7 @@
 import Foundation
 
 public enum APIMethod: String {
-    case delete, get, post, put, head
+    case delete, get, post, put, head, patch
 }
 
 public enum APIQueryItem: Equatable {
@@ -220,12 +220,12 @@ extension APIRequestable {
             }
         }()
 
-        if !queryItems.isEmpty || !percentEncodedQueryItems.isEmpty {
-            if useExtendedPercentEncoding {
-                components.percentEncodedQueryItems = percentEncodedQueryItems + actAsUserQueryItem
-            } else {
-                components.queryItems = (components.queryItems ?? []) + self.queryItems + actAsUserQueryItem
-            }
+        if useExtendedPercentEncoding, !percentEncodedQueryItems.isEmpty {
+            components.percentEncodedQueryItems = percentEncodedQueryItems + actAsUserQueryItem
+        } else if !queryItems.isEmpty {
+            components.queryItems = (components.queryItems ?? []) + self.queryItems + actAsUserQueryItem
+        } else if !actAsUserQueryItem.isEmpty {
+            components.queryItems = (components.queryItems ?? []) + actAsUserQueryItem
         }
 
         // The conditional path prefixing *should* have made this impossible to fail
