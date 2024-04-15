@@ -19,7 +19,6 @@
 import Combine
 import Foundation
 import UIKit
-import Combine
 
 class ModuleItemCell: UITableViewCell {
     static let IndentMultiplier: CGFloat = 10
@@ -140,7 +139,6 @@ class ModuleItemCell: UITableViewCell {
         }
         dueLabel.isHidden = dueLabel.text == nil
         prepareForDownload()
-        subscribeToPublishStateUpdates(item, publishInteractor: publishInteractor, host: host)
     }
 
     private func updateA11yLabel(_ item: ModuleItem, isPublishing: Bool) {
