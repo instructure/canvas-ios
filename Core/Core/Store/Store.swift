@@ -72,6 +72,10 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     public private(set) var requested: Bool = false
     public private(set) var error: Error?
 
+    #if DEBUG
+    public var isDebugLoggingEnabled = false
+    #endif
+
     private var next: GetNextRequest<U.Response>? {
         didSet {
             hasNextPageSubject.send(next != nil)
@@ -273,6 +277,12 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     // MARK: - Private Methods
 
     private func notify() {
+        #if DEBUG
+        if isDebugLoggingEnabled {
+            logDebugInfo(controller: frc)
+        }
+        #endif
+
         performUIUpdate {
             self.eventHandler()
             self.changes = []
@@ -376,6 +386,20 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         allObjectsSubject.send(all)
         publishState()
     }
+
+    #if DEBUG
+
+    private func logDebugInfo(controller: NSFetchedResultsController<U.Model>) {
+        let objectsInContext = controller.managedObjectContext.registeredObjects.filter { $0 is U.Model }
+        print("====================")
+        print("\(type(of: self)) controllerDidChangeContent")
+        print("\nObjects in context\n", objectsInContext)
+        print("\nFetch request\n", controller.fetchRequest)
+        print("\nFetched objects\n", controller.fetchedObjects ?? [])
+        print("\n====================")
+    }
+
+    #endif
 
     // MARK: -
 }

@@ -20,7 +20,8 @@ import UIKit
 import CanvasCore
 import Core
 
-class StudentTabBarController: UITabBarController {
+class StudentTabBarController: UITabBarController, SnackBarProvider {
+    let snackBarViewModel = SnackBarViewModel()
     private var previousSelectedIndex = 0
 
     lazy var downloadingBarView = DownloadingBarView()
@@ -60,6 +61,7 @@ class StudentTabBarController: UITabBarController {
 
         attachDownloadingBarView()
         attachConnectionBarView()
+        addSnackBar()
     }
 
     override func viewDidAppear(_ animated: Bool) {

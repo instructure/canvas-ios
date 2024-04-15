@@ -19,9 +19,8 @@
 import UIKit
 import mobile_offline_downloader_ios
 
-public class PageDetailsViewController: DownloadableViewController, ColoredNavViewProtocol {
+public final class PageDetailsViewController: DownloadableViewController, ColoredNavViewProtocol {
     var updated: ((Page, Course) -> Void)?
-
     lazy var optionsButton = UIBarButtonItem(image: .moreLine, style: .plain, target: self, action: #selector(showOptions))
     @IBOutlet weak var webViewContainer: UIView!
     let webView = CoreWebView()
@@ -98,13 +97,13 @@ public class PageDetailsViewController: DownloadableViewController, ColoredNavVi
         navigationController?.navigationBar.useContextColor(color)
     }
 
-    @objc func refresh() {
+    @objc private func refresh() {
         pages.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
     }
 
-    func updateNavBar() {
+    private func updateNavBar() {
         guard
             let name = context.contextType == .course ? courses.first?.name : groups.first?.name,
             let color = context.contextType == .course ? courses.first?.color : groups.first?.color
@@ -112,7 +111,7 @@ public class PageDetailsViewController: DownloadableViewController, ColoredNavVi
         updateNavBar(subtitle: name, color: color)
     }
 
-    func update() {
+    private func update() {
         guard let page = page else { return }
         setupTitleViewInNavbar(title: page.title)
         optionsButton.accessibilityIdentifier = "PageDetails.options"
@@ -131,7 +130,7 @@ public class PageDetailsViewController: DownloadableViewController, ColoredNavVi
         localPages?.refresh()
     }
 
-    @objc func showOptions(_ sender: UIBarButtonItem) {
+    @objc private func showOptions(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(AlertAction(NSLocalizedString("Edit", bundle: .core, comment: ""), style: .default) { [weak self] _ in
             guard let self = self, let page = self.page else { return }
@@ -148,7 +147,7 @@ public class PageDetailsViewController: DownloadableViewController, ColoredNavVi
         env.router.show(alert, from: self, options: .modal())
     }
 
-    func showDeleteConfirmation() {
+    private func showDeleteConfirmation() {
         let alert = UIAlertController(title: NSLocalizedString("Are you sure you want to delete this page?", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
         alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
         alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .destructive) { [weak self] _ in
@@ -157,7 +156,7 @@ public class PageDetailsViewController: DownloadableViewController, ColoredNavVi
         env.router.show(alert, from: self)
     }
 
-    func deletePage() {
+    private func deletePage() {
         guard let page = page else { return }
         env.api.makeRequest(DeletePageRequest(context: context, url: page.url)) { [weak self] (_, _, error) in performUIUpdate {
             guard let self = self else { return }

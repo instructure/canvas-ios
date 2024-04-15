@@ -28,6 +28,5 @@ struct GradesWidget: Widget {
         }
         .configurationDisplayName(NSLocalizedString("Grades", comment: "Name of the grades widget"))
         .description(NSLocalizedString("View the latest grades from assignments and your favorite courses.", comment: "Description of the grades widget"))
-        .contentMarginsDisabled()
     }
 }

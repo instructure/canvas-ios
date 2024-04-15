@@ -22,50 +22,11 @@ import CoreData
 import Foundation
 
 public class ReactiveStore<U: UseCase> {
-    public enum State: Equatable {
-        public static func == (lhs: ReactiveStore<U>.State, rhs: ReactiveStore<U>.State) -> Bool {
-            switch (lhs, rhs) {
-            case (.loading, .loading): return true
-            case let (.error(lError), .error(rError)):
-                guard type(of: lhs) == type(of: rhs) else { return false }
-                let error1 = lError as NSError
-                let error2 = rError as NSError
-                return error1.domain == error2.domain && error1.code == error2.code
-            case let (.data(lData), .data(rData)): return lData == rData
-            default: return false
-            }
-        }
-
-        case loading, error(Error), data([U.Model])
-
-        /// If the enum's case is `.data` then extracts and returns all models.
-        public var allItems: [U.Model]? {
-            if case let .data(data) = self {
-                return data
-            } else {
-                return nil
-            }
-        }
-
-        /// If the enum's case is `.data` then extracts and returns the first item.
-        public var firstItem: U.Model? {
-            allItems?.first
-        }
-    }
-
     private let offlineModeInteractor: OfflineModeInteractor?
-    private let useCase: U
+    internal let useCase: U
     private let context: NSManagedObjectContext
 
-    private var next: GetNextRequest<U.Response>?
-
-    private let forceRefreshRelay = PassthroughRelay<Void>()
-    private let stateRelay = CurrentValueRelay<State>(.loading)
-
-    private var cancellable: AnyCancellable?
-    private var subscriptions = Set<AnyCancellable>()
-
-    // MARK: -
+    // MARK: - Init
 
     public init(
         offlineModeInteractor: OfflineModeInteractor? = OfflineModeAssembly.make(),
@@ -75,107 +36,58 @@ public class ReactiveStore<U: UseCase> {
         self.offlineModeInteractor = offlineModeInteractor
         self.useCase = useCase
         self.context = context
-
-        unowned let unownedSelf = self
-
-        forceRefreshRelay
-            .flatMap { _ in unownedSelf.getEntities().replaceError(with: []) }
-            .sink()
-            .store(in: &subscriptions)
     }
 
-    public func cancel() {
-        cancellable?.cancel()
-        cancellable = nil
-    }
-
-    public func forceFetchEntities() -> AnyPublisher<Void, Never> {
-        forceRefreshRelay.accept(())
-        return Just(())
-            .setFailureType(to: Never.self)
-            .eraseToAnyPublisher()
-    }
-
-    /// Calling this function will keep the instance in memory until `cancel()` is called. The recommended approach is calling `cancel()` from the interactor's deinit function.
-    public func observeEntities(forceFetch: Bool = false, loadAllPages: Bool = false) -> AnyPublisher<State, Never> {
-        cancellable?.cancel()
-        cancellable = nil
-
+    /// Produces a list of entities for the given UseCase.
+    /// When the device is connected to the internet and there's no valid cache, it makes a request to the API and saves the response to the database. If there's valid cache, it returns it.
+    /// By default it downloads all pages, and validates cache unless specificied differently.
+    /// When the device is offline, it will read data from Core Data.
+    /// - Parameters:
+    ///     - ignoreCache: Indicates if the request should check the available cache first.
+    ///         If it's set to **false**, it will validate the cache's expiration and return it if it's still valid. If the cache has expired it will make a request to the API.
+    ///         If it's set to **true**, it will make a request to the API.
+    ///         Defaults to **false**.
+    ///     - loadAllPages: Tells the request if it should load all the pages or just the first one. Defaults to **true**.
+    ///     - keepObservingDatabaseChanges: Tells the request to keep observing database changes after the API response is downloaded and saved. Defaults to **false**.
+    ///
+    /// - Returns: A list of entities or an error.
+    public func getEntities(
+        ignoreCache: Bool = false,
+        loadAllPages: Bool = true,
+        keepObservingDatabaseChanges: Bool = false
+    ) -> AnyPublisher<[U.Model], Error> {
         let scope = useCase.scope
         let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
 
-        let entitiesPublisher: AnyPublisher<[U.Model], Error>
+        var entitiesPublisher: AnyPublisher<[U.Model], Error>
 
         if offlineModeInteractor?.isOfflineModeEnabled() == true {
-            entitiesPublisher = fetchEntitiesFromDatabase(fetchRequest: request)
+            entitiesPublisher = Self.fetchEntitiesFromDatabase(
+                fetchRequest: request,
+                context: context
+            )
         } else {
-            entitiesPublisher = forceFetch ?
-                fetchEntitiesFromAPI(useCase: useCase, loadAllPages: loadAllPages, fetchRequest: request) :
-                fetchEntitiesFromCache(fetchRequest: request)
+            entitiesPublisher = ignoreCache ?
+                Self.fetchEntitiesFromAPI(
+                    useCase: useCase,
+                    loadAllPages: loadAllPages,
+                    fetchRequest: request,
+                    context: context
+                ) :
+                Self.fetchEntitiesFromCache(
+                    useCase: useCase,
+                    fetchRequest: request,
+                    context: context
+                )
         }
 
-        unowned let unownedSelf = self
-
-        cancellable = entitiesPublisher
-            .handleEvents(receiveSubscription: { _ in
-                unownedSelf.stateRelay.accept(.loading)
-            })
-            .catch {
-                unownedSelf.stateRelay.accept(.error($0))
-                return Empty<[U.Model], Never>(completeImmediately: false)
-                    .setFailureType(to: Never.self)
-                    .eraseToAnyPublisher()
-            }
-            .sink(
-                receiveValue: { value in
-                    unownedSelf.stateRelay.accept(.data(value))
-                }
-            )
-
-        return stateRelay.eraseToAnyPublisher()
-    }
-
-    public func observeEntitiesWithError(forceFetch: Bool = false, loadAllPages: Bool = false) -> AnyPublisher<[U.Model], Error> {
-        let scope = useCase.scope
-        let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
-        request.predicate = scope.predicate
-        request.sortDescriptors = scope.order
-
-        let entitiesPublisher: AnyPublisher<[U.Model], Error>
-
-        if offlineModeInteractor?.isOfflineModeEnabled() == true {
-            entitiesPublisher = fetchEntitiesFromDatabase(fetchRequest: request)
-        } else {
-            entitiesPublisher = forceFetch ?
-                fetchEntitiesFromAPI(useCase: useCase, loadAllPages: loadAllPages, fetchRequest: request) :
-                fetchEntitiesFromCache(fetchRequest: request)
+        if !keepObservingDatabaseChanges {
+            entitiesPublisher = entitiesPublisher.first().eraseToAnyPublisher()
         }
 
         return entitiesPublisher
-    }
-
-    /**
-     This method returns entities for the UseCase from CoreData if the application is in offline mode.
-     In online mode entities are always fetched from the API by downloading all pages. The result is then cached
-     to the database and emitted by the publisher this method returns. After this the publisher finishes.
-     */
-    public func getEntities() -> AnyPublisher<[U.Model], Error> {
-        let scope = useCase.scope
-        let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
-        request.predicate = scope.predicate
-        request.sortDescriptors = scope.order
-
-        if offlineModeInteractor?.isOfflineModeEnabled() == true {
-            return fetchEntitiesFromDatabase(fetchRequest: request)
-                .first()
-                .eraseToAnyPublisher()
-        } else {
-            return fetchEntitiesFromAPI(useCase: useCase, loadAllPages: true, fetchRequest: request)
-                .first()
-                .eraseToAnyPublisher()
-        }
     }
 
     public func getEntitiesFromDatabase() -> AnyPublisher<[U.Model], Error> {
@@ -184,57 +96,89 @@ public class ReactiveStore<U: UseCase> {
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
 
-        return fetchEntitiesFromDatabase(fetchRequest: request)
+        return Self.fetchEntitiesFromDatabase(fetchRequest: request, context: context)
             .first()
             .eraseToAnyPublisher()
     }
 
-    private func fetchEntitiesFromCache<T: NSManagedObject>(
-        fetchRequest: NSFetchRequest<T>
-    ) -> AnyPublisher<[T], Error> {
-        unowned let unownedSelf = self
+    /// Refreshes the entities by requesting the latest data from the API. The returned publisher will emit once the refresh has finished, then it completes.
+    public func forceRefresh(loadAllPages: Bool = true) -> AnyPublisher<Void, Never> {
+        getEntities(
+            ignoreCache: true,
+            loadAllPages: loadAllPages,
+            keepObservingDatabaseChanges: false
+        )
+        .replaceError(with: [])
+        .setFailureType(to: Never.self)
+        .map { _ in () }
+        .eraseToAnyPublisher()
+    }
 
+    private static func fetchEntitiesFromCache<T: NSManagedObject>(
+        useCase: U,
+        fetchRequest: NSFetchRequest<T>,
+        context: NSManagedObjectContext
+    ) -> AnyPublisher<[T], Error> {
         return useCase.hasCacheExpired()
             .setFailureType(to: Error.self)
             .flatMap { hasExpired -> AnyPublisher<[T], Error> in
                 if hasExpired {
-                    return unownedSelf.fetchEntitiesFromAPI(
-                        useCase: unownedSelf.useCase,
+                    return Self.fetchEntitiesFromAPI(
+                        useCase: useCase,
                         loadAllPages: false,
-                        fetchRequest: fetchRequest
+                        fetchRequest: fetchRequest,
+                        context: context
                     )
                 } else {
-                    return unownedSelf.fetchEntitiesFromDatabase(fetchRequest: fetchRequest)
+                    return Self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: context)
                 }
             }
             .eraseToAnyPublisher()
     }
 
-    private func fetchEntitiesFromAPI<T: NSManagedObject>(
-        useCase: any UseCase,
+    private static func fetchEntitiesFromAPI<T: NSManagedObject>(
+        useCase: U,
+        getNextUseCase: GetNextUseCase<U>? = nil,
         loadAllPages: Bool,
-        fetchRequest: NSFetchRequest<T>
+        fetchRequest: NSFetchRequest<T>,
+        context: NSManagedObjectContext
     ) -> AnyPublisher<[T], Error> {
+        let useCaseToFetch: Future<URLResponse?, Error>
 
-        return useCase.fetchWithFuture()
-            .handleEvents(receiveOutput: { [weak self] urlResponse in
-                if let urlResponse {
-                    self?.next = self?.useCase.getNext(from: urlResponse)
+        if let getNextUseCase {
+            useCaseToFetch = getNextUseCase.fetchWithFuture()
+        } else {
+            useCaseToFetch = useCase.fetchWithFuture()
+        }
+
+        return useCaseToFetch
+            .map {
+                if let urlResponse = $0 {
+                    return useCase.getNext(from: urlResponse)
                 } else {
-                    self?.next = nil
+                    return nil
                 }
-            })
-            .flatMap { _ in self.fetchAllPagesIfNeeded(loadAllPages, fetchRequest: fetchRequest) }
-            .flatMap { _ in self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest) }
+            }
+            .flatMap {
+                Self.fetchAllPagesIfNeeded(
+                    useCase: useCase,
+                    loadAllPages: loadAllPages,
+                    nextResponse: $0,
+                    fetchRequest: fetchRequest,
+                    context: context
+                )
+            }
+            .flatMap { _ in Self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: context) }
             .eraseToAnyPublisher()
     }
 
-    private func fetchAllPagesIfNeeded<T: NSManagedObject>(
-        _ loadAllPages: Bool,
-        fetchRequest: NSFetchRequest<T>
+    private static func fetchAllPagesIfNeeded<T: NSManagedObject>(
+        useCase: U,
+        loadAllPages: Bool,
+        nextResponse: GetNextRequest<U.Response>?,
+        fetchRequest: NSFetchRequest<T>,
+        context: NSManagedObjectContext
     ) -> AnyPublisher<Void, Error> {
-        unowned let unownedSelf = self
-
         let voidPublisher: () -> AnyPublisher<Void, Error> = {
             Just(())
                 .setFailureType(to: Error.self)
@@ -245,14 +189,16 @@ public class ReactiveStore<U: UseCase> {
             return voidPublisher()
         }
 
-        return getNextPage()
+        return getNextPage(useCase: useCase, nextResponse: nextResponse)
             .setFailureType(to: Error.self)
             .flatMap { nextPageUseCase -> AnyPublisher<Void, Error> in
                 if let nextPageUseCase {
-                    return unownedSelf.fetchEntitiesFromAPI(
-                        useCase: nextPageUseCase,
+                    return Self.fetchEntitiesFromAPI(
+                        useCase: useCase,
+                        getNextUseCase: nextPageUseCase,
                         loadAllPages: true,
-                        fetchRequest: fetchRequest
+                        fetchRequest: fetchRequest,
+                        context: context
                     )
                     .map { _ in () }
                     .eraseToAnyPublisher()
@@ -263,24 +209,27 @@ public class ReactiveStore<U: UseCase> {
             .eraseToAnyPublisher()
     }
 
-    private func getNextPage() -> AnyPublisher<GetNextUseCase<U>?, Never> {
-        if let next {
+    private static func getNextPage(
+        useCase: U,
+        nextResponse: GetNextRequest<U.Response>?
+    ) -> AnyPublisher<GetNextUseCase<U>?, Never> {
+        if let nextResponse {
             return Just(
                 GetNextUseCase(
                     parent: useCase,
-                    request: next
+                    request: nextResponse
                 )
             ).eraseToAnyPublisher()
         } else {
-            next = nil
             return Just(nil).eraseToAnyPublisher()
         }
     }
 
-    private func fetchEntitiesFromDatabase<T: NSManagedObject>(
+    private static func fetchEntitiesFromDatabase<T: NSManagedObject>(
         fetchRequest: NSFetchRequest<T>,
         sectionNameKeyPath _: String? = nil,
-        cacheName _: String? = nil
+        cacheName _: String? = nil,
+        context: NSManagedObjectContext
     ) -> AnyPublisher<[T], Error> {
         FetchedResultsPublisher(
             request: fetchRequest,

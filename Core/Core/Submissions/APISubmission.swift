@@ -63,6 +63,7 @@ public struct APISubmissionGroup: Codable, Equatable {
 // https://canvas.instructure.com/doc/api/submissions.html#SubmissionComment
 public struct APISubmissionComment: Codable, Equatable {
     let id: String
+    let attempt: Int?
     let author_id: ID?
     let author_name: String
     let author: APISubmissionCommentAuthor
@@ -213,6 +214,7 @@ extension APISubmission {
 extension APISubmissionComment {
     public static func make(
         id: String = "1",
+        attempt: Int? = 0,
         author_id: ID? = "1",
         author_name: String = "Steve",
         author: APISubmissionCommentAuthor = .make(),
@@ -224,6 +226,7 @@ extension APISubmissionComment {
     ) -> APISubmissionComment {
         return APISubmissionComment(
             id: id,
+            attempt: attempt,
             author_id: author_id,
             author_name: author_name,
             author: author,
@@ -467,29 +470,33 @@ public struct PutSubmissionGradeRequest: APIRequestable {
             let media_comment_type: MediaCommentType?
             let text_comment: String?
             let file_ids: [String]?
+            let attempt: Int?
 
-            public init(text: String, forGroup: Bool = false) {
+            public init(text: String, forGroup: Bool = false, attempt: Int?) {
                 group_comment = forGroup
                 media_comment_id = nil
                 media_comment_type = nil
                 file_ids = nil
                 text_comment = text
+                self.attempt = attempt
             }
 
-            public init(mediaID: String, type: MediaCommentType, forGroup: Bool = false) {
+            public init(mediaID: String, type: MediaCommentType, forGroup: Bool = false, attempt: Int?) {
                 group_comment = forGroup
                 media_comment_id = mediaID
                 media_comment_type = type
                 text_comment = forGroup ? NSLocalizedString("This is a media comment", bundle: .core, comment: "") : ""
                 file_ids = nil
+                self.attempt = attempt
             }
 
-            public init(fileIDs: [String], forGroup: Bool = false) {
+            public init(fileIDs: [String], forGroup: Bool = false, attempt: Int?) {
                 group_comment = forGroup
                 file_ids = fileIDs
                 media_comment_id = nil
                 media_comment_type = nil
                 text_comment = ""
+                self.attempt = attempt
             }
         }
         public struct Submission: Codable, Equatable {

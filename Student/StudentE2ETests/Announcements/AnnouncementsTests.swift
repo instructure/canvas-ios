@@ -23,6 +23,14 @@ class AnnouncementsTests: E2ETestCase {
     typealias DetailsHelper = Helper.Details
     typealias AccountNotifications = Helper.AccountNotifications
 
+    override func tearDown() {
+        // Disable discussion redesign feature flag
+        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .off)
+        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.off.rawValue)
+
+        super.tearDown()
+    }
+
     func testAnnouncementsMatchWebOrder() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
@@ -38,15 +46,15 @@ class AnnouncementsTests: E2ETestCase {
 
         let firstAnnouncement = AnnouncementsHelper.cell(index: 0).waitUntil(.visible)
         XCTAssertTrue(firstAnnouncement.isVisible)
-        XCTAssertTrue(firstAnnouncement.label.contains(announcements[2].title))
+        XCTAssertTrue(firstAnnouncement.hasLabel(label: announcements[2].title, strict: false))
 
         let secondAnnouncement = AnnouncementsHelper.cell(index: 1).waitUntil(.visible)
         XCTAssertTrue(secondAnnouncement.isVisible)
-        XCTAssertTrue(secondAnnouncement.label.contains(announcements[1].title))
+        XCTAssertTrue(secondAnnouncement.hasLabel(label: announcements[1].title, strict: false))
 
         let thirdAnnouncement = AnnouncementsHelper.cell(index: 2).waitUntil(.visible)
         XCTAssertTrue(thirdAnnouncement.isVisible)
-        XCTAssertTrue(thirdAnnouncement.label.contains(announcements[0].title))
+        XCTAssertTrue(thirdAnnouncement.hasLabel(label: announcements[0].title, strict: false))
     }
 
     func testAnnouncementsTitleAndMessage() {
@@ -69,11 +77,11 @@ class AnnouncementsTests: E2ETestCase {
         firstAnnouncement.hit()
         let announcementTitle = DetailsHelper.title.waitUntil(.visible)
         XCTAssertTrue(announcementTitle.isVisible)
-        XCTAssertEqual(announcementTitle.label, announcement.title)
+        XCTAssertTrue(announcementTitle.hasLabel(label: announcement.title))
 
         let announcementMessage = DetailsHelper.message.waitUntil(.visible)
         XCTAssertTrue(announcementMessage.isVisible)
-        XCTAssertEqual(announcementMessage.label, announcement.message)
+        XCTAssertTrue(announcementMessage.hasLabel(label: announcement.message))
     }
 
     func testAnnouncementToggle() {
@@ -94,12 +102,10 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(announcementTitle.isVisible)
 
         // MARK: Check visibility toggle and dismiss button of the announcement notificaiton
-        let toggleButton = AccountNotifications.toggleButton(notification: globalAnnouncement)
-            .waitUntil(.visible)
+        let toggleButton = AccountNotifications.toggleButton(notification: globalAnnouncement).waitUntil(.visible)
         XCTAssertTrue(toggleButton.isVisible)
-        var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement)
-            .waitUntil(.vanish)
-        XCTAssertFalse(dismissButton.isVisible)
+        var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement).waitUntil(.vanish)
+        XCTAssertTrue(dismissButton.isVanished)
 
         // MARK: Tap the toggle button and check visibility of dismiss button again
         toggleButton.hit()
@@ -109,11 +115,73 @@ class AnnouncementsTests: E2ETestCase {
         // MARK: Check the message of the announcement
         let announcementMessage = Helper.notificationMessage(announcement: globalAnnouncement).waitUntil(.visible)
         XCTAssertTrue(announcementMessage.isVisible)
-        XCTAssertEqual(announcementMessage.label, globalAnnouncement.message)
+        XCTAssertTrue(announcementMessage.hasLabel(label: globalAnnouncement.message))
 
         // MARK: Tap dismiss button and check the visibility
         dismissButton.hit()
         dismissButton = dismissButton.waitUntil(.vanish)
-        XCTAssertFalse(dismissButton.isVisible)
+        XCTAssertTrue(dismissButton.isVanished)
+    }
+
+    func testAnnouncementWithDiscussionRedesignFeatureFlagEnabled() {
+        typealias NewDiscussion = DiscussionsHelper.NewDetails
+
+        // MARK: Seed the usual stuff with an announcement, enable NewDiscussion feature
+        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .allowedOn)
+        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.allowedOn.rawValue)
+
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let announcement = Helper.createAnnouncement(course: course)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Discussions and check visibility of buttons and labels
+        Helper.navigateToAnnouncementsPage(course: course)
+        let announcementsButton = Helper.cell(index: 0).waitUntil(.visible)
+        XCTAssertTrue(announcementsButton.isVisible)
+        XCTAssertTrue(announcementsButton.hasLabel(label: announcement.title, strict: false))
+
+        announcementsButton.hit()
+        let searchField = NewDiscussion.searchField.waitUntil(.visible)
+        let filterByLabel = NewDiscussion.filterByLabel.waitUntil(.visible)
+        let sortButton = NewDiscussion.sortButton.waitUntil(.visible)
+        let viewSplitScreenButton = NewDiscussion.viewSplitScreenButton.waitUntil(.visible)
+        let subscribeButton = NewDiscussion.subscribeButton.waitUntil(.visible)
+        let manageDiscussionButton = NewDiscussion.manageDiscussionButton.waitUntil(.visible)
+        let announcementTitle = NewDiscussion.discussionTitle(discussion: announcement).waitUntil(.visible)
+        let announcementBody = NewDiscussion.discussionBody(discussion: announcement).waitUntil(.visible)
+        let replyButton = NewDiscussion.replyButton.waitUntil(.vanish)
+        XCTAssertTrue(searchField.isVisible)
+        XCTAssertTrue(searchField.hasValue(value: "Search entries or author..."))
+        XCTAssertTrue(filterByLabel.isVisible)
+        XCTAssertTrue(sortButton.isVisible)
+        XCTAssertTrue(sortButton.hasLabel(label: "Sorted by Descending", strict: false))
+        XCTAssertTrue(viewSplitScreenButton.isVisible)
+        XCTAssertTrue(subscribeButton.isVisible)
+        XCTAssertTrue(manageDiscussionButton.isVisible)
+        XCTAssertTrue(announcementTitle.isVisible)
+        XCTAssertTrue(announcementBody.isVisible)
+        XCTAssertTrue(replyButton.isVanished)
+
+        viewSplitScreenButton.hit()
+        let viewInlineButton = NewDiscussion.viewInlineButton.waitUntil(.visible)
+        XCTAssertTrue(viewSplitScreenButton.isVanished)
+        XCTAssertTrue(viewInlineButton.isVisible)
+
+        subscribeButton.hit()
+        let unsubscribeButton = NewDiscussion.unsubscribeButton.waitUntil(.visible)
+        XCTAssertTrue(subscribeButton.isVanished)
+        XCTAssertTrue(unsubscribeButton.isVisible)
+
+        manageDiscussionButton.hit()
+        let markAllAsReadButton = NewDiscussion.markAllAsRead.waitUntil(.visible)
+        let markAllAsUnreadButton = NewDiscussion.markAllAsUnread.waitUntil(.visible)
+        XCTAssertTrue(markAllAsReadButton.isVisible)
+        XCTAssertTrue(markAllAsUnreadButton.isVisible)
     }
 }

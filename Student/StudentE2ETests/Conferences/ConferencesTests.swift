@@ -31,6 +31,9 @@ class ConferencesTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Conferences
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
         Helper.navigateToConferences(course: course)
         let navBar = Helper.navBar.waitUntil(.visible)
         let newConferencesHeader = Helper.newConferencesHeader.waitUntil(.visible)

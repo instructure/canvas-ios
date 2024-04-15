@@ -47,7 +47,7 @@ class GradesTests: E2ETestCase {
         let courseCardGradeLabel = DashboardHelperParent.courseGradeLabel(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
         XCTAssertTrue(courseCardGradeLabel.isVisible)
-        XCTAssertTrue(courseCardGradeLabel.hasLabel(label: totalGrade))
+        XCTAssertTrue(courseCardGradeLabel.hasLabel(label: totalGrade), "\(courseCardGradeLabel.label) != \(totalGrade)")
 
         // MARK: Tap on course, check grades
         courseCard.hit()
@@ -59,7 +59,7 @@ class GradesTests: E2ETestCase {
         let passFailAssignmentCell = GradesHelper.cell(assignment: passFailAssignment).waitUntil(.visible)
         let passFailAssignmentGrade = passFailAssignmentCell.find(labelContaining: "Grade", type: .staticText).waitUntil(.visible)
         XCTAssertTrue(courseTotalGradeLabel.isVisible)
-        XCTAssertTrue(courseTotalGradeLabel.hasLabel(label: totalGrade))
+        XCTAssertTrue(courseTotalGradeLabel.hasLabel(label: "Total grade is \(totalGrade)"))
         XCTAssertTrue(pointsAssignmentCell.isVisible)
         XCTAssertTrue(pointsAssignmentGrade.isVisible)
         XCTAssertTrue(pointsAssignmentGrade.hasLabel(label: "6 out of 10", strict: false))
@@ -88,8 +88,8 @@ class GradesTests: E2ETestCase {
         Helper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Grade assignments, get the user logged in, tap on course
-        let grades = ["6", "7", "8"]
-        let totalGrade = "D"
+        let grades = ["7.9", "79%", "complete"]
+        let totalGrade = "B"
         Helper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
 
         logInDSUser(parent)
@@ -105,7 +105,7 @@ class GradesTests: E2ETestCase {
         let percentAssignmentCell = GradesHelper.cell(assignment: percentAssignment).waitUntil(.visible)
         let passFailAssignmentCell = GradesHelper.cell(assignment: passFailAssignment).waitUntil(.visible)
         XCTAssertTrue(courseTotalGradeLabel.isVisible)
-        XCTAssertTrue(courseTotalGradeLabel.hasLabel(label: totalGrade))
+        XCTAssertTrue(courseTotalGradeLabel.hasLabel(label: "Total grade is \(totalGrade)"))
         XCTAssertTrue(pointsAssignmentCell.isVisible)
         XCTAssertTrue(percentAssignmentCell.isVisible)
         XCTAssertTrue(passFailAssignmentCell.isVisible)

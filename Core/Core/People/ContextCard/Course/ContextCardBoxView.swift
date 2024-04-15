@@ -51,9 +51,9 @@ struct ContextCardBoxView: View {
 struct ContextCardBoxView_Previews: PreviewProvider {
     static var previews: some View {
         let stack = HStack {
-            ContextCardBoxView(title: Text("56,5%"), subTitle: Text("Grade before posting"), selectedColor: .blue)
-            ContextCardBoxView(title: Text("86,5%"), subTitle: Text("Grade after posting"))
-            ContextCardBoxView(title: Text("86,5%"), subTitle: Text("Grade override"))
+            ContextCardBoxView(title: Text(verbatim: "56,5%"), subTitle: Text(verbatim: "Grade before posting"), selectedColor: .blue)
+            ContextCardBoxView(title: Text(verbatim: "86,5%"), subTitle: Text(verbatim: "Grade after posting"))
+            ContextCardBoxView(title: Text(verbatim: "86,5%"), subTitle: Text(verbatim: "Grade override"))
         }.previewLayout(.sizeThatFits)
 
         stack

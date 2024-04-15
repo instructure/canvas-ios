@@ -29,7 +29,7 @@ public class GetWidgetAnnouncements: CollectionUseCase {
         GetAllAnnouncementsRequest(contextCodes: courseContextCodes)
     }
     public var scope: Scope {
-        .all(orderBy: #keyPath(CDWidgetAnnouncement.date))
+        .all(orderBy: #keyPath(CDWidgetAnnouncement.date), ascending: false)
     }
     public var ttl: TimeInterval {
         Self.Timeout

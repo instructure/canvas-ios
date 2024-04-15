@@ -1,0 +1,66 @@
+{
+  "configurations" : [
+    {
+      "id" : "F222A9EC-9C71-4E01-9FC5-A202C673E0E5",
+      "name" : "Default",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Student.xcodeproj",
+      "identifier" : "492704721CF4AF7100C631C6",
+      "name" : "Student"
+    }
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "ActAsUserTests",
+        "AnnouncementsTests\/testAnnouncementsMatchWebOrder()",
+        "AssignmentsTests\/testAssignmentDueDate()",
+        "CalendarTests\/testCourseFilter()",
+        "CalendarTests\/testRecurringEvent()",
+        "CollaborationsTests",
+        "ConferencesTests",
+        "DashboardTests\/testAnnouncementBelowInvite()",
+        "DashboardTests\/testDashboardEditButtonDisplaysCorrectCourses()",
+        "DashboardTests\/testNavigateToDashboard()",
+        "DiscussionsTests\/testAssignmentDiscussion()",
+        "GradeTotalsTests",
+        "GradesTests\/testLetterGrades()",
+        "GradesTests\/testPassFailGrades()",
+        "GradesTests\/testPercentageGrades()",
+        "GradingStandardsTests",
+        "HelpTests",
+        "K5Tests",
+        "LoginTests\/testLoginMultipleUsers()",
+        "LoginTests\/testLoginWithLastUser()",
+        "LoginTests\/testLoginWithoutUsernameAndPassword()",
+        "LoginTests\/testWrongUsernameAndPassword()",
+        "LogoutTests",
+        "PagesTests\/testDeepLinks()",
+        "PeopleTests",
+        "PeopleTests\/testPeopleListAndContextCard()",
+        "PeopleTests\/testPeopleListUpdatesAfterEnrollmentOfPersonIsDeleted()",
+        "SettingsTests\/testAbout()",
+        "SettingsTests\/testAppearanceSetting()",
+        "SettingsTests\/testCanvasOnGitHub()",
+        "SettingsTests\/testLandingPageSetting()",
+        "SettingsTests\/testPairWithObserverQRAppearance()",
+        "SettingsTests\/testPrivacyPolicy()",
+        "SettingsTests\/testSubscribeToCalendarFeed()",
+        "SettingsTests\/testTermsOfUse()"
+      ],
+      "target" : {
+        "containerPath" : "container:Student.xcodeproj",
+        "identifier" : "E8C6F4CF23D626220086B865",
+        "name" : "StudentE2ETests"
+      }
+    }
+  ],
+  "version" : 1
+}

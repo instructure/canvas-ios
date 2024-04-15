@@ -25,13 +25,12 @@ class DashboardTests: E2ETestCase {
 
     func testDashboard() {
         // MARK: Seed the usual stuff
-        let users = seeder.createUsers(1)
+        let student = seeder.createUser()
         let course1 = seeder.createCourse()
-        let student = users[0]
 
         // MARK: Check for empty dashboard
         logInDSUser(student)
-        let noCoursesLabel = app.find(label: "No Courses").waitUntil(.visible)
+        let noCoursesLabel = Helper.noCoursesLabel.waitUntil(.visible)
         XCTAssertTrue(noCoursesLabel.isVisible)
 
         // MARK: Check for course1
@@ -59,7 +58,7 @@ class DashboardTests: E2ETestCase {
         navBarBackButton.hit()
         pullToRefresh()
         XCTAssertTrue(courseCard2.waitUntil(.visible).isVisible)
-        XCTAssertFalse(courseCard1.waitUntil(.visible).isVisible)
+        XCTAssertTrue(courseCard1.waitUntil(.vanish).isVanished)
     }
 
     func testAnnouncementBelowInvite() {
@@ -69,12 +68,13 @@ class DashboardTests: E2ETestCase {
 
         // MARK: Check for empty dashboard
         logInDSUser(student)
-        XCTAssertTrue(app.find(label: "No Courses").waitUntil(.visible).isVisible)
+        let noCoursesLabel = Helper.noCoursesLabel.waitUntil(.visible)
+        XCTAssertTrue(noCoursesLabel.isVisible)
 
         // MARK: Create an enrollment and an announcement
         let enrollment = seeder.enrollStudent(student, in: course, state: .invited)
         let announcement = AnnouncementsHelper.postAccountNotification()
-        Helper.pullToRefresh()
+        pullToRefresh(x: 1)
 
         // MARK: Check visibility and order of the enrollment and the announcement
         let courseAcceptButton = CourseInvitations.acceptButton(enrollment: enrollment).waitUntil(.visible)
@@ -85,8 +85,13 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(notificationToggleButton.isVisible)
         XCTAssertLessThan(courseAcceptButton.frame.maxY, notificationToggleButton.frame.minY)
 
+        // MARK: Dismiss the notification
         notificationToggleButton.hit()
-        AccountNotifications.dismissButton(notification: announcement).hit()
+        let dismissButton = AccountNotifications.dismissButton(notification: announcement).waitUntil(.visible)
+        XCTAssertTrue(dismissButton.isVisible)
+
+        dismissButton.hit()
+        XCTAssertTrue(dismissButton.waitUntil(.vanish).isVanished)
     }
 
     func testNavigateToDashboard() {
@@ -100,11 +105,12 @@ class DashboardTests: E2ETestCase {
         logInDSUser(student)
         var courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
-        courseCard.hit()
 
         // MARK: Navigate to pages of course and open front page
+        courseCard.hit()
         CourseDetailsHelper.cell(type: .pages).hit()
         PagesHelper.frontPage.hit()
+        XCTAssertTrue(courseCard.isVanished)
 
         // MARK: Tap dashboard tab and check visibility of course card and label
         Helper.TabBar.dashboardTab.hit()
@@ -124,7 +130,7 @@ class DashboardTests: E2ETestCase {
         logInDSUser(student)
         let courseCard = Helper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
-        XCTAssertTrue(courseCard.label.contains(course.name))
+        XCTAssertTrue(courseCard.hasLabel(label: course.name, strict: false))
     }
 
     func testDashboardEditButtonDisplaysCorrectCourses() {
@@ -143,11 +149,11 @@ class DashboardTests: E2ETestCase {
         logInDSUser(student)
         var courseCard1 = Helper.courseCard(course: courses[0]).waitUntil(.visible)
         XCTAssertTrue(courseCard1.isVisible)
-        XCTAssertTrue(courseCard1.label.contains(courses[0].name))
+        XCTAssertTrue(courseCard1.hasLabel(label: courses[0].name, strict: false))
 
         var courseCard2 = Helper.courseCard(course: courses[1]).waitUntil(.visible)
         XCTAssertTrue(courseCard2.isVisible)
-        XCTAssertTrue(courseCard2.label.contains(courses[1].name))
+        XCTAssertTrue(courseCard2.hasLabel(label: courses[1].name, strict: false))
 
         // MARK: Tap edit button
         Helper.editButton.hit()
@@ -155,15 +161,15 @@ class DashboardTests: E2ETestCase {
         // MARK: Completed, Active, Invited courses should be listed
         courseCard1 = Helper.courseCard(course: courses[0]).waitUntil(.visible)
         XCTAssertTrue(courseCard1.isVisible)
-        XCTAssertTrue(courseCard1.label.contains(courses[0].name))
+        XCTAssertTrue(courseCard1.hasLabel(label: courses[0].name, strict: false))
 
         courseCard2 = Helper.courseCard(course: courses[1]).waitUntil(.visible)
         XCTAssertTrue(courseCard2.isVisible)
-        XCTAssertTrue(courseCard2.label.contains(courses[1].name))
+        XCTAssertTrue(courseCard2.hasLabel(label: courses[1].name, strict: false))
 
         let courseCard3 = Helper.courseCard(course: courses[2]).waitUntil(.visible)
         XCTAssertTrue(courseCard3.isVisible)
-        XCTAssertTrue(courseCard3.label.contains(courses[2].name))
+        XCTAssertTrue(courseCard3.hasLabel(label: courses[2].name, strict: false))
 
         // MARK: Creation Pending, Deleted, Inactive, Rejected should not be listed
         let courseCard4 = Helper.courseCard(course: courses[3]).waitUntil(.vanish)
@@ -247,5 +253,81 @@ class DashboardTests: E2ETestCase {
         courseCardGradeLabel.waitUntil(.vanish)
         XCTAssertTrue(courseCard.isVisible)
         XCTAssertTrue(courseCardGradeLabel.isVanished)
+    }
+
+    func testCourseCardReorder() {
+        // MARK: Seed the usual stuff with 2 courses
+        let student = seeder.createUser()
+        let courses = seeder.createCourses(count: 2)
+        seeder.enrollStudent(student, in: courses[0])
+        seeder.enrollStudent(student, in: courses[1])
+
+        // MARK: Get the user logged in, check course cards
+        logInDSUser(student)
+        let courseCard1 = Helper.courseCard(course: courses[0]).waitUntil(.visible)
+        let courseCard2 = Helper.courseCard(course: courses[1]).waitUntil(.visible)
+        XCTAssertTrue(courseCard1.isVisible)
+        XCTAssertTrue(courseCard2.isVisible)
+
+        // MARK: Reorder course cards, check if successful
+        let courseCard1FrameBefore = courseCard1.frame
+        let courseCard2FrameBefore = courseCard2.frame
+        courseCard1.tapAndHoldAndDragToElement(element: courseCard2)
+        let courseCard1FrameAfter = courseCard1.frame
+        let courseCard2FrameAfter = courseCard2.frame
+        XCTAssertEqual(courseCard1FrameAfter, courseCard2FrameBefore)
+        XCTAssertEqual(courseCard2FrameAfter, courseCard1FrameBefore)
+
+        // MARK: Logout then login again to test if the changes are stored properly
+        logOut()
+        logInDSUser(student)
+        courseCard1.waitUntil(.visible)
+        courseCard2.waitUntil(.visible)
+        XCTAssertTrue(courseCard1.isVisible)
+        XCTAssertTrue(courseCard2.isVisible)
+        XCTAssertEqual(courseCard1FrameAfter, courseCard2FrameBefore)
+        XCTAssertEqual(courseCard2FrameAfter, courseCard1FrameBefore)
+    }
+
+    func testCourseNicknameAndColor() {
+        // MARK: Seed the usual stuff
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        let courseNickname = "Course Nickname"
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Get the user logged in, check course card
+        logInDSUser(student)
+        let courseCard = Helper.courseCard(course: course).waitUntil(.visible)
+        let courseOptionsButton = Helper.courseOptionsButton(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertTrue(courseOptionsButton.isVisible)
+
+        // MARK: Navigate to Customize Course screen, check options
+        courseOptionsButton.hit()
+        let customizeCourseButton = Helper.CourseOptions.customizeCourseButton.waitUntil(.visible)
+        XCTAssertTrue(customizeCourseButton.isVisible)
+
+        customizeCourseButton.hit()
+        let nicknameTextField = Helper.CourseOptions.CustomizeCourse.nicknameTextField.waitUntil(.visible)
+        let doneButton = Helper.CourseOptions.CustomizeCourse.doneButton.waitUntil(.visible)
+        XCTAssertTrue(nicknameTextField.isVisible)
+        XCTAssertTrue(doneButton.isVisible)
+
+        for courseColor in Helper.CourseOptions.CustomizeCourse.CourseColor.allCases {
+            let colorButton = Helper.CourseOptions.CustomizeCourse.colorButton(color: courseColor).waitUntil(.visible)
+            XCTAssertTrue(colorButton.isVisible)
+        }
+
+        // MARK: Set nickname and color for course
+        nicknameTextField.cutText()
+        nicknameTextField.writeText(text: courseNickname)
+
+        let randomColorButton = Helper.CourseOptions.CustomizeCourse.colorButton(color: .allCases.randomElement()!).waitUntil(.visible)
+        XCTAssertTrue(randomColorButton.isVisible)
+
+        randomColorButton.hit()
+        doneButton.hit()
+        XCTAssertTrue(courseCard.waitUntil(.visible).hasLabel(label: courseNickname, strict: false))
     }
 }

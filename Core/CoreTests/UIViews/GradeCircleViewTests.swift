@@ -29,14 +29,14 @@ class GradeCircleViewTests: CoreTestCase {
 
     func testItHidesWhenNoSubmission() {
         let a = Assignment.make()
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertTrue(view.isHidden)
     }
 
     func testItHidesWhenSubmissionIsUnsubmitted() {
         let a = Assignment.make()
         a.submission = Submission.make(from: .make(workflow_state: .unsubmitted))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertTrue(view.isHidden)
     }
 
@@ -46,7 +46,7 @@ class GradeCircleViewTests: CoreTestCase {
             grade: nil,
             workflow_state: .submitted
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertTrue(view.isHidden)
     }
 
@@ -56,14 +56,14 @@ class GradeCircleViewTests: CoreTestCase {
             grade: "complete",
             workflow_state: .graded
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertTrue(view.circlePoints.isHidden)
         XCTAssertTrue(view.circleLabel.isHidden)
         XCTAssertFalse(view.circleComplete.isHidden)
         XCTAssertTrue(view.circleComplete.image == UIImage.checkSolid)
 
         a.submission?.grade = "incomplete"
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertFalse(view.circleComplete.isHidden)
         XCTAssertTrue(view.circleComplete.image == UIImage.xLine)
     }
@@ -75,7 +75,7 @@ class GradeCircleViewTests: CoreTestCase {
             score: 10,
             workflow_state: .graded
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertFalse(view.circlePoints.isHidden)
         XCTAssertFalse(view.circleLabel.isHidden)
         XCTAssertTrue(view.circleComplete.isHidden)
@@ -89,7 +89,7 @@ class GradeCircleViewTests: CoreTestCase {
             score: 10,
             workflow_state: .graded
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertTrue(view.circlePoints.isHidden)
         XCTAssertTrue(view.circleLabel.isHidden)
         XCTAssertFalse(view.circleComplete.isHidden)
@@ -105,7 +105,7 @@ class GradeCircleViewTests: CoreTestCase {
             score: 80,
             workflow_state: .graded
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertEqual(view.circlePoints.text, "80")
         XCTAssertEqual(view.gradeCircle?.progress, 0.8)
         XCTAssertEqual(view.gradeCircle?.accessibilityLabel, "Scored 80 out of 100 points possible")
@@ -122,7 +122,7 @@ class GradeCircleViewTests: CoreTestCase {
             score: 80,
             workflow_state: .graded
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertEqual(view.circlePoints.isHidden, true)
         XCTAssertEqual(view.gradeCircle?.progress, 1.0)
         XCTAssertEqual(view.gradeCircle?.accessibilityLabel, nil)
@@ -140,10 +140,10 @@ class GradeCircleViewTests: CoreTestCase {
             score: 80,
             workflow_state: .graded
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertFalse(view.latePenaltyLabel.isHidden)
         XCTAssertFalse(view.finalGradeLabel.isHidden)
-        XCTAssertEqual(view.latePenaltyLabel.text, "Late penalty (-10 pts)")
+        XCTAssertEqual(view.latePenaltyLabel.text, "Late Penalty: -10 pts")
         XCTAssertEqual(view.finalGradeLabel.text, "Final Grade: 80 pts")
     }
 
@@ -160,7 +160,7 @@ class GradeCircleViewTests: CoreTestCase {
             score: 80,
             workflow_state: .graded
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertTrue(view.latePenaltyLabel.isHidden)
         XCTAssertTrue(view.finalGradeLabel.isHidden)
     }
@@ -175,17 +175,17 @@ class GradeCircleViewTests: CoreTestCase {
             score: 80,
             workflow_state: .graded
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertTrue(view.displayGrade.isHidden)
 
         a.gradingType = .gpa_scale
         a.submission?.grade = "3.8"
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertFalse(view.displayGrade.isHidden)
         XCTAssertEqual(view.displayGrade.text, "3.8 GPA")
 
         a.submission?.late = true
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertTrue(view.displayGrade.isHidden)
     }
 
@@ -200,16 +200,16 @@ class GradeCircleViewTests: CoreTestCase {
             score: 80,
             workflow_state: .graded
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertTrue(view.displayGrade.isHidden)
 
         a.gradingType = .gpa_scale
         a.submission?.grade = "3.8"
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertTrue(view.displayGrade.isHidden)
 
         a.submission?.late = true
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertTrue(view.displayGrade.isHidden)
     }
 
@@ -223,7 +223,7 @@ class GradeCircleViewTests: CoreTestCase {
             score: 80,
             workflow_state: .graded
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertEqual(view.circleLabel.text, "Points")
         XCTAssertEqual(view.outOfLabel.text, "Out of 100 pts")
         XCTAssertTrue(view.latePenaltyLabel.isHidden)
@@ -234,7 +234,7 @@ class GradeCircleViewTests: CoreTestCase {
         let a = Assignment.make(from: .make(
             submission: .make(excused: true)
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertFalse(view.isHidden)
         XCTAssertTrue(view.circlePoints.isHidden)
         XCTAssertTrue(view.circleLabel.isHidden)
@@ -251,7 +251,7 @@ class GradeCircleViewTests: CoreTestCase {
                                                               score: 77,
                                                               workflow_state: .graded)
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertFalse(view.isHidden)
         XCTAssertFalse(view.circlePoints.isHidden)
         XCTAssertEqual(view.circlePoints.text, "77")
@@ -271,7 +271,7 @@ class GradeCircleViewTests: CoreTestCase {
                                                               score: 77,
                                                               workflow_state: .graded)
         ))
-        view.update(a)
+        view.update(a, submission: a.submission)
         XCTAssertFalse(view.isHidden)
         XCTAssertTrue(view.circlePoints.isHidden)
         XCTAssertTrue(view.circleLabel.isHidden)

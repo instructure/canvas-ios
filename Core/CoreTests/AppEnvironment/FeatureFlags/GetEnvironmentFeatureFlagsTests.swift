@@ -53,6 +53,7 @@ class GetEnvironmentFeatureFlagsTests: CoreTestCase {
         let response = [
             "send_usage_metrics": true,
             "new_discussions": false,
+            "react_discussions_post": true,
         ]
 
         // UseCase
@@ -63,7 +64,7 @@ class GetEnvironmentFeatureFlagsTests: CoreTestCase {
             to: databaseClient
         )
         let all: [FeatureFlag] = databaseClient.fetch()
-        XCTAssertEqual(all.count, 2)
+        XCTAssertEqual(all.count, 3)
 
         // send_usage_metrics
         let sendUsageMetrics: FeatureFlag? = databaseClient.first(
@@ -100,6 +101,25 @@ class GetEnvironmentFeatureFlagsTests: CoreTestCase {
         )
         XCTAssertEqual(
             newDiscussions?.context?.canvasContextID,
+            context.canvasContextID
+        )
+
+        // react_discussion
+        let reactDiscussionsPost: FeatureFlag? = databaseClient.first(
+            where: #keyPath(FeatureFlag.name),
+            equals: "react_discussions_post"
+        )
+        XCTAssertNotNil(reactDiscussionsPost)
+        XCTAssertEqual(
+            reactDiscussionsPost?.name,
+            "react_discussions_post"
+        )
+        XCTAssertEqual(
+            reactDiscussionsPost?.enabled,
+            true
+        )
+        XCTAssertEqual(
+            reactDiscussionsPost?.context?.canvasContextID,
             context.canvasContextID
         )
     }

@@ -72,7 +72,8 @@ class APIConversationTests: CoreTestCase {
             body: "This is a reply",
             media_comment_id: nil,
             media_comment_type: nil,
-            recipients: ["1"]
+            recipients: ["1"],
+            included_messages: nil
         ))
         XCTAssertEqual(request.path, "conversations/1/add_message")
         XCTAssertEqual(request.method, .post)
@@ -86,7 +87,8 @@ class APIConversationTests: CoreTestCase {
             context_code: "course_5",
             media_comment_id: "1",
             media_comment_type: .audio,
-            attachment_ids: ["1"]
+            attachment_ids: ["1"],
+            group_conversation: true
         )
         let request = PostConversationRequest(body: body)
         XCTAssertEqual(request.path, "conversations")

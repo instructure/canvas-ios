@@ -29,6 +29,7 @@ public class UploadFileComment {
     var files: UploadManager.Store?
     var placeholderID: String?
     let userID: String
+    let attempt: Int?
     var task: APITask?
     lazy var context = env.database.newBackgroundContext()
     var uploadContext: FileUploadContext {
@@ -42,13 +43,15 @@ public class UploadFileComment {
         assignmentID: String,
         userID: String,
         isGroup: Bool,
-        batchID: String
+        batchID: String,
+        attempt: Int?
     ) {
         self.assignmentID = assignmentID
         self.courseID = courseID
         self.isGroup = isGroup
         self.userID = userID
         self.batchID = batchID
+        self.attempt = attempt
     }
 
     public func cancel() {
@@ -90,6 +93,9 @@ public class UploadFileComment {
             placeholder.createdAt = Date()
             placeholder.id = "placeholder-\(UploadFileComment.placeholderSuffix)"
             placeholder.userID = self.userID
+            if let attempt = self.attempt {
+                placeholder.attemptFromAPI = NSNumber(value: attempt)
+            }
             do {
                 try self.context.save()
                 self.placeholderID = placeholder.id
@@ -102,7 +108,7 @@ public class UploadFileComment {
     }
 
     func putComment(fileIDs: [String]) {
-        let body = PutSubmissionGradeRequest.Body(comment: .init(fileIDs: fileIDs, forGroup: isGroup))
+        let body = PutSubmissionGradeRequest.Body(comment: .init(fileIDs: fileIDs, forGroup: isGroup, attempt: attempt))
         task = env.api.makeRequest(PutSubmissionGradeRequest(courseID: courseID, assignmentID: assignmentID, userID: userID, body: body)) { data, _, error in
             self.task = nil
             guard error == nil, let submission = data, let comment = submission.submission_comments?.last else {

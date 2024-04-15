@@ -1,0 +1,1 @@
+${PROJECT_DIR}/../scripts/check-required-keys.sh

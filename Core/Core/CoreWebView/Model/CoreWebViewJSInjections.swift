@@ -24,12 +24,7 @@ import Foundation
 extension CoreWebView {
 
     public static func jsString(_ string: String?) -> String {
-        guard var string else { return "null" }
-
-        // These will cause JS syntax errors, removing them will alter character rendering however
-        if let stripped = string.applyingTransform(.stripCombiningMarks, reverse: false) {
-            string = stripped
-        }
+        guard let string else { return "null" }
 
         let escaped = string
             .replacingOccurrences(of: "\\", with: "\\\\")
@@ -106,7 +101,12 @@ extension CoreWebView {
                     a.href = iframe.src
                     iframe.parentNode.replaceChild(a, iframe)
                 }
-                if (/\\/(courses|accounts)\\/[^\\/]+\\/external_tools\\/retrieve/.test(iframe.src)) {
+                if (
+                    // Office 365 embeds use sharepoint.com host with a custom path, not following regular LTI launch urls.
+                    // Tapping on the Launch External Tool button will treat this as an external url dropping the user to Safari.
+                    /sharepoint\\.com.*embed/.test(iframe.src) ||
+                    /\\/(courses|accounts)\\/[^\\/]+\\/external_tools\\/retrieve/.test(iframe.src)
+                ) {
                     replace(iframe)
                 } else if (/\\/media_objects_iframe\\/m-\\w+/.test(iframe.src)) {
                     const match = iframe.src.match(/\\/media_objects_iframe\\/(m-\\w+)/)

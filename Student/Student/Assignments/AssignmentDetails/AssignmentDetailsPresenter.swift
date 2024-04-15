@@ -32,8 +32,13 @@ enum OnlineUploadState {
 
 protocol AssignmentDetailsViewProtocol: SubmissionButtonViewProtocol {
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?)
-    func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?)
+    func update(assignment: Assignment, quiz: Quiz?, submission: Submission?, baseURL: URL?)
     func showSubmitAssignmentButton(title: String?)
+    func updateAttemptPickerButton(isActive: Bool,
+                                   attemptDate: String,
+                                   items: [UIAction])
+    func updateGradeCell(_ assignment: Assignment, submission: Submission?)
+    func updateAttemptInfo(attemptNumber: String)
 }
 
 class AssignmentDetailsPresenter {
@@ -51,6 +56,11 @@ class AssignmentDetailsPresenter {
     lazy var assignments = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: includes)) { [weak self] in
         self?.update()
     }
+    lazy var submissions = env.subscribe(GetSubmission(context: .course(courseID), assignmentID: assignmentID, userID: userID)) { [weak self] in
+        self?.updateSubmissionPickerButton()
+        self?.selectLatestSubmissionIfNecessary()
+        self?.update()
+    }
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
     }
@@ -58,6 +68,7 @@ class AssignmentDetailsPresenter {
         self?.update()
     }
     lazy var features = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID))) { [weak self] in
+        self?.updateSubmissionPickerButton()
         self?.update()
     }
 
@@ -67,7 +78,7 @@ class AssignmentDetailsPresenter {
     weak var view: AssignmentDetailsViewProtocol?
     let courseID: String
     let assignmentID: String
-    var userID: String?
+    var userID: String = ""
     let fragment: String?
     var fragmentHash: String? {
         guard let fragment = fragment, !fragment.isEmpty else { return nil }
@@ -105,6 +116,20 @@ class AssignmentDetailsPresenter {
     }
     private var fileCleanupPending = true
     private var submissionFinishedNotification: NSObjectProtocol?
+    private var validSubmissions: [Submission] {
+        submissions.all.filter { $0.submittedAt != nil }
+    }
+    private var selectedSubmission: Submission? {
+        didSet {
+            if let selectedSubmission {
+                updateAttemptInfo(submission: selectedSubmission)
+            }
+
+            if let assignment {
+                view?.updateGradeCell(assignment, submission: selectedSubmission)
+            }
+        }
+    }
 
     init(view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.view = view
@@ -129,6 +154,9 @@ class AssignmentDetailsPresenter {
     }
 
     func update() {
+        if submissions.requested == false || submissions.pending {
+            return
+        }
         if quizzes?.useCase.quizID != assignment?.quizID {
             quizzes = assignment?.quizID.flatMap { quizID in env.subscribe(GetQuiz(courseID: courseID, quizID: quizID)) { [weak self] in
                 self?.update()
@@ -148,7 +176,7 @@ class AssignmentDetailsPresenter {
         let title = submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: onlineUploadState)
         view?.showSubmitAssignmentButton(title: title)
         view?.updateNavBar(subtitle: course.name, backgroundColor: course.color)
-        view?.update(assignment: assignment, quiz: quizzes?.first, baseURL: baseURL)
+        view?.update(assignment: assignment, quiz: quizzes?.first, submission: selectedSubmission ?? assignment.submission, baseURL: baseURL)
     }
 
     func updateArc() {
@@ -185,6 +213,46 @@ class AssignmentDetailsPresenter {
         }
     }
 
+    private func updateSubmissionPickerButton() {
+        let isActive = validSubmissions.count > 1 && features.isFeatureFlagEnabled(.assignmentEnhancements)
+        let items: [UIAction] = {
+            guard isActive else { return [] }
+            return validSubmissions.map { submission in
+                let attemptNumber = String.localizedStringWithFormat(
+                    NSLocalizedString("Attempt %d", bundle: .core, comment: ""),
+                    submission.attempt
+                )
+                let date = submission.submittedAt?.dateTimeString ?? ""
+                return UIAction(title: date, subtitle: attemptNumber) { [weak self] _ in
+                    self?.selectedSubmission = submission
+                }
+            }
+        }()
+        let attemptDate = validSubmissions.first?.submittedAt?.dateTimeString ?? ""
+        view?.updateAttemptPickerButton(isActive: isActive,
+                                        attemptDate: attemptDate,
+                                        items: items)
+    }
+
+    private func updateAttemptInfo(submission: Submission) {
+        let attemptNumber = String.localizedStringWithFormat(
+            NSLocalizedString("Attempt %d", bundle: .core, comment: ""),
+            submission.attempt
+        )
+        view?.updateAttemptInfo(attemptNumber: attemptNumber)
+    }
+
+    private func selectLatestSubmissionIfNecessary() {
+        if let selectedSubmission {
+            if let latestSubmission = validSubmissions.first, latestSubmission.attempt > selectedSubmission.attempt {
+                // A new attempt arrived possibly from a new submission, switch to that
+                self.selectedSubmission = latestSubmission
+            }
+        } else {
+            selectedSubmission = validSubmissions.first
+        }
+    }
+
     func viewIsReady() {
         colors.refresh()
         courses.refresh(force: true)
@@ -192,6 +260,7 @@ class AssignmentDetailsPresenter {
         arc.refresh()
         onlineUpload.refresh()
         features.refresh()
+        submissions.refresh()
 
         NotificationCenter.default.addObserver(self, selector: #selector(quizRefresh(_:)), name: .quizRefresh, object: nil)
         NotificationCenter.default.addObserver(
@@ -207,6 +276,7 @@ class AssignmentDetailsPresenter {
         assignments.refresh(force: true)
         quizzes?.refresh(force: true)
         features.refresh(force: true)
+        submissions.refresh(force: true)
 
         submissionButtonPresenter.arcID = .pending
         arc.refresh(force: true)
@@ -232,10 +302,13 @@ class AssignmentDetailsPresenter {
     }
 
     func routeToSubmission(view: UIViewController) {
-        guard let userID = userID else {
-            return
+        var route = "/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(userID)"
+
+        if let selectedSubmission {
+            route += "?selectedAttempt=\(selectedSubmission.attempt)"
         }
-        env.router.route(to: "/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(userID)", from: view)
+
+        env.router.route(to: route, from: view)
     }
 
     func route(to url: URL, from view: UIViewController) -> Bool {

@@ -287,6 +287,7 @@ public struct PostAddMessageRequest: APIRequestable {
         let media_comment_id: String?
         let media_comment_type: MediaCommentType?
         let recipients: [String]?
+        let included_messages: [String]?
     }
 
     let conversationID: String
@@ -308,11 +309,35 @@ public struct PostConversationRequest: APIRequestable {
         public let media_comment_id: String?
         public let media_comment_type: MediaCommentType?
         public let attachment_ids: [String]?
-        public let group_conversation: Bool? = true
+        public let group_conversation: Bool?
         public let force_new: Bool? = nil // Setting this seems to cause the api to ignore group_conversation
     }
 
     public let body: Body?
     public var path = "conversations"
     public let method = APIMethod.post
+}
+
+public struct DeleteConversationRequest: APIRequestable {
+    public typealias Response = APIConversation
+
+    public var path: String { "conversations/\(id)" }
+    public let method = APIMethod.delete
+
+    let id: String
+}
+
+public struct DeleteConversationMessageRequest: APIRequestable {
+    public typealias Response = APIConversation
+
+    public struct Body: Encodable, Equatable {
+        public let remove: [String]
+    }
+
+    public var path: String { "conversations/\(id)/remove_messages" }
+    public let method = APIMethod.post
+
+    let id: String
+
+    public let body: Body?
 }

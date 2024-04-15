@@ -56,10 +56,6 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
         }
     }
 
-    deinit {
-        offlineFlagStore.cancel()
-    }
-
     public func isFeatureFlagEnabled() -> Bool {
         featureFlagEnabled.value
     }
@@ -101,8 +97,9 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
 
     private func subscribeToOfflineFeatureFlagChanges() {
         offlineFlagStore
-            .observeEntities()
-            .compactMap { $0.firstItem }
+            .getEntities(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .compactMap { $0.first }
             .map { $0.enabled }
             .subscribe(featureFlagEnabled)
             .store(in: &subscriptions)

@@ -225,11 +225,6 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     func update() {
         guard fixStudentGroupTopic() else { return }
 
-        if topic.state == .empty {
-            // Topic was deleted, go back.
-            env.router.dismiss(self)
-        }
-
         let courseID = context.contextType == .group ? group.first?.courseID : context.id
         if assignment?.useCase.assignmentID != topic.first?.assignmentID, let courseID = courseID {
             assignment = topic.first?.assignmentID.map {
@@ -366,7 +361,12 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
             )
         } else {
             let isFutureDiscussion: Bool = {
-                guard let unlockDate = topic.assignment?.unlockAt else {
+                // Discussions in the future might not have an assignment,
+                // but their posted at date can still be in the future.
+                guard let assignment = topic.assignment else {
+                    return topic.postedAt ?? Date.distantPast > Date()
+                }
+                guard let unlockDate = assignment.unlockAt else {
                     return false
                 }
                 return unlockDate > Date()

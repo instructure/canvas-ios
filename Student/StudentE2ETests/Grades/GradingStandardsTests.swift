@@ -30,21 +30,24 @@ class GradingStandardsTests: E2ETestCase {
         // MARK: Create 2 assignments
         let assignments = GradesHelper.createAssignments(course: course, count: 2)
 
+        // MARK: Get the user logged in
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Create submissions for both
         GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Navigate to grades
         GradesHelper.navigateToGrades(course: course)
-        XCTAssertTrue(app.find(label: "Total Grade").waitUntil(.visible).isVisible)
-        XCTAssertTrue(GradesHelper.totalGrade.waitUntil(.visible).hasLabel(label: "N/A (F)"))
+        let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
+        XCTAssertTrue(totalGrade.hasLabel(label: "Total grade is N/A (F)"))
 
         // MARK: Check if total is updating accordingly
         GradesHelper.gradeAssignments(grades: ["100"], course: course, assignments: [assignments[0]], user: student)
-        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "100% (A)"))
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 100% (A)"))
 
         GradesHelper.gradeAssignments(grades: ["0"], course: course, assignments: [assignments[1]], user: student)
-        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "50% (F)"))
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 50% (F)"))
     }
 }

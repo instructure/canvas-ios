@@ -31,6 +31,49 @@ class APIQueryItemTests: XCTestCase {
         XCTAssertEqual(APIQueryItem.optionalBool("do_it", false).toURLQueryItems(), [URLQueryItem(name: "do_it", value: "0")])
         XCTAssertEqual(APIQueryItem.optionalBool("do_it", nil).toURLQueryItems(), [])
     }
+
+    func testToPercentEncodedQueryItems() {
+        XCTAssertEqual(
+            APIQueryItem.name("param").toPercentEncodedURLQueryItems(),
+            [URLQueryItem(name: "param", value: nil)]
+        )
+        XCTAssertEqual(
+            APIQueryItem.value("a", "b").toPercentEncodedURLQueryItems(),
+            [URLQueryItem(name: "a", value: "b")]
+        )
+        XCTAssertEqual(
+            APIQueryItem.array("include", [ "a", "b" ]).toPercentEncodedURLQueryItems(),
+            [URLQueryItem(name: "include%5B%5D", value: "a"), URLQueryItem(name: "include%5B%5D", value: "b")]
+        )
+        XCTAssertEqual(
+            APIQueryItem.include([ "a", "b" ]).toPercentEncodedURLQueryItems(),
+            [URLQueryItem(name: "include%5B%5D", value: "a"), URLQueryItem(name: "include%5B%5D", value: "b")]
+        )
+        XCTAssertEqual(
+            APIQueryItem.optionalValue("date", "2024-01-01T12:00:00+01:00").toPercentEncodedURLQueryItems(),
+            [URLQueryItem(name: "date", value: "2024-01-01T12%3A00%3A00%2B01%3A00")]
+        )
+        XCTAssertEqual(
+            APIQueryItem.perPage(10).toPercentEncodedURLQueryItems(),
+            [URLQueryItem(name: "per_page", value: "10")]
+        )
+        XCTAssertEqual(
+            APIQueryItem.bool("do_it", true).toPercentEncodedURLQueryItems(),
+            [URLQueryItem(name: "do_it", value: "1")]
+        )
+        XCTAssertEqual(
+            APIQueryItem.bool("do_it", false).toPercentEncodedURLQueryItems(),
+            [URLQueryItem(name: "do_it", value: "0")]
+        )
+        XCTAssertEqual(
+            APIQueryItem.optionalBool("do_it", false).toPercentEncodedURLQueryItems(),
+            [URLQueryItem(name: "do_it", value: "0")]
+        )
+        XCTAssertEqual(
+            APIQueryItem.optionalBool("do_it", nil).toPercentEncodedURLQueryItems(),
+            []
+        )
+    }
 }
 
 class APIRequestableTests: XCTestCase {

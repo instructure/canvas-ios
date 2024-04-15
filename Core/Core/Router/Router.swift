@@ -227,7 +227,17 @@ open class Router {
             from.present(nav ?? view, animated: animated, completion: completion)
         case .detail:
             if from.splitViewController == nil || from.isInSplitViewDetail || from.splitViewController?.isCollapsed == true {
-                from.show(view, sender: nil)
+                let presenterViewWithoutNavController = (from.navigationController == nil)
+                let viewIsEmbeddedInNavController = (view.navigationController != nil)
+
+                // If we call `show` on a viewcontroller without navigation controller it will present as a modal
+                // and will cause a crash since `view` already has a parent view controller (its freshly created navigation controller).
+                // This case is most probably an unintended navigation so we swallow it.
+                if presenterViewWithoutNavController, viewIsEmbeddedInNavController {
+                    Analytics.shared.logError(name: "Invalid presentation state.", reason: nil)
+                } else {
+                    from.show(view, sender: nil)
+                }
             } else {
                 from.showDetailViewController(nav ?? view, sender: from)
             }

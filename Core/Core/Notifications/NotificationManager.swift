@@ -20,16 +20,6 @@ import Combine
 import Foundation
 import UserNotifications
 
-public protocol UserNotificationCenterProtocol: AnyObject {
-    func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)
-    func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?)
-    func getPendingNotificationRequests(completionHandler: @escaping ([UNNotificationRequest]) -> Void)
-    func removePendingNotificationRequests(withIdentifiers identifiers: [String])
-    var delegate: UNUserNotificationCenterDelegate? { get set }
-}
-
-extension UNUserNotificationCenter: UserNotificationCenterProtocol {}
-
 public class NotificationManager {
     public static let RouteURLKey = "com.instructure.core.router.notification-url"
 
@@ -92,9 +82,14 @@ public class NotificationManager {
         }
     }
 
-    public func notify(identifier: String, title: String, body: String, route: String?) -> Future<Void, Error> {
+    public func notify(
+        identifier: String,
+        title: String,
+        body: String,
+        route: String?
+    ) -> Future<Void, Error> {
         Future<Void, Error> { [self] promise in
-            self.notify(identifier: identifier, title: title, body: body, route: route) { error in
+            notify(identifier: identifier, title: title, body: body, route: route) { error in
                 if let error {
                     promise(.failure(error))
                 } else {

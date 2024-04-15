@@ -28,7 +28,7 @@ public protocol PagesViewControllerDataSource: AnyObject {
     @objc optional func pagesViewController(_ pages: PagesViewController, didTransitionTo page: UIViewController)
 }
 
-public class PagesViewController: UIViewController, UIScrollViewDelegate {
+public final class PagesViewController: UIViewController, UIScrollViewDelegate {
     public weak var dataSource: PagesViewControllerDataSource?
     public weak var delegate: PagesViewControllerDelegate?
     public let scrollView = UIScrollView()
@@ -167,12 +167,12 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
         return true
     }
 
-    func notifyUpdated() {
+    private func notifyUpdated() {
         UIAccessibility.post(notification: .pageScrolled, argument: currentPage.title)
         delegate?.pagesViewController?(self, didTransitionTo: currentPage)
     }
 
-    func embedPage(_ page: UIViewController, at: Int) {
+    private func embedPage(_ page: UIViewController, at: Int) {
         addChild(page)
         scrollView.insertSubview(page.view, at: at)
         page.view.tag = 1

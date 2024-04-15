@@ -26,6 +26,7 @@ public class MessageDetailsInteractorPreview: MessageDetailsInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var subject = CurrentValueSubject<String, Never>("")
     public var messages = CurrentValueSubject<[ConversationMessage], Never>([])
+    public var conversation = CurrentValueSubject<[Conversation], Never>([])
     public var starred = CurrentValueSubject<Bool, Never>(true)
     public var userMap: [String: ConversationParticipant] = [:]
 
@@ -50,11 +51,35 @@ public class MessageDetailsInteractorPreview: MessageDetailsInteractor {
         }
     }
 
-    public func updateStarred(starred: Bool) -> Future<Void, Never> {
-        Future<Void, Never> { promise in
+    public func updateStarred(starred: Bool) -> Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.starred.send(!starred)
-                promise(.success(()))
+                promise(.success(nil))
+            }
+        }
+    }
+
+    public func updateState(messageId: String, state: ConversationWorkflowState) -> Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                promise(.success(nil))
+            }
+        }
+    }
+
+    public func deleteConversation(conversationId: String) -> Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                promise(.success(nil))
+            }
+        }
+    }
+
+    public func deleteConversationMessage(conversationId: String, messageId: String) -> Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                promise(.success(nil))
             }
         }
     }

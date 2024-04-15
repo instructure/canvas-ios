@@ -34,7 +34,13 @@ public struct MessageDetailsView: View {
             case .data:
                 detailsView
             case .empty, .error:
-                Text("There was an error loading the message. Pull to refresh to try again.", bundle: .core)
+                VStack(alignment: .center, spacing: 0) {
+                    Text("There was an error loading the message. Pull to refresh to try again.", bundle: .core)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 12)
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 24)
             }
         }
         refreshAction: { onComplete in
@@ -44,6 +50,7 @@ public struct MessageDetailsView: View {
         }
         .background(Color.backgroundLightest)
         .navigationTitle(model.title)
+        .navigationBarStyle(.color(Brand.shared.navBackground))
         .navigationBarItems(trailing: moreButton)
     }
 
@@ -59,10 +66,12 @@ public struct MessageDetailsView: View {
     private var detailsView: some View {
         VStack(spacing: 0) {
             headerView
-                .padding(.horizontal, 16)
-                .padding(.vertical, 24)
             messageList
         }
+        .confirmationAlert(
+            isPresented: $model.isShowingCancelDialog,
+            presenting: model.confirmAlert
+        )
     }
 
     private var headerView: some View {
@@ -72,11 +81,13 @@ public struct MessageDetailsView: View {
             Spacer()
             starButton
         }
+        .frame(height: 81)
+        .padding(.horizontal, 16)
     }
 
     private var moreButton: some View {
         Button(action: {
-            model.moreTapped(viewController: controller)
+            model.conversationMoreTapped(viewController: controller)
         }, label: {
             Image
                 .moreLine
@@ -110,8 +121,8 @@ public struct MessageDetailsView: View {
                 Color.borderMedium
                     .frame(height: 0.5)
                 MessageView(model: message,
-                            replyDidTap: { model.replyTapped(viewController: controller) },
-                            moreDidTap: { model.moreTapped(viewController: controller) })
+                            replyDidTap: { model.replyTapped(message: message.conversationMessage, viewController: controller) },
+                            moreDidTap: { model.messageMoreTapped(message: message.conversationMessage, viewController: controller) })
                 .padding(16)
 
             }

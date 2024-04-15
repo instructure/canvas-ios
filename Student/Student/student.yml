@@ -1,0 +1,68 @@
+---
+targets:
+  Student:    
+    type: application
+    platform: iOS
+    transitivelyLinkDependencies: false
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: false
+      SWIFT_EMIT_LOC_STRINGS: true
+      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas.2u
+      INFOPLIST_FILE: Student/Info.plist
+      CODE_SIGN_ENTITLEMENTS: Student/Student.entitlements
+      TARGETED_DEVICE_FAMILY: 1,2
+    sources:
+      - path: ./
+        excludes:
+          - ".swiftlint.yml"
+      - path: ../Settings.bundle
+    dependencies:
+      - package: PSPDFKit
+      - package: Heap
+      - package: AWSSDK
+        product: AWSCore
+      - package: AWSSDK
+        product: AWSLambda
+      - package: AWSSDK
+        product: AWSSNS
+      - package: BugfenderLibrary
+      - package: Intercom
+      - target: CanvasCore/CanvasCore
+      - target: Core/Core
+      - target: SubmitAssignment
+      - target: Widgets
+    preBuildScripts:
+      - path: ../../scripts/swiftLint.sh
+        name: SwiftLint
+        basedOnDependencyAnalysis: false
+      - path: ../../scripts/startPackager.sh
+        name: Start Packager
+        basedOnDependencyAnalysis: false
+      - path: ../../scripts/build-rn-code-images.sh
+        name: Build React Native Code and Images
+        basedOnDependencyAnalysis: false
+      - path: ../../scripts/build-check-keys.sh
+        name: Check Required Secret Keys
+        basedOnDependencyAnalysis: false
+      - path: ../../scripts/build-crashlytics.sh
+        name: --> SHOULD BE THE LAST ONE ! - Crashlitycs Upload DSYM
+        basedOnDependencyAnalysis: true
+        inputFiles:
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist
+          - $(BUILT_PRODUCTS_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist
+          - $(BUILT_PRODUCTS_DIR)/$(EXECUTABLE_PATH)
+schemes:
+  Student:
+    build:
+      targets:
+        Student: all
+    test:
+      targets:
+        - Core/CoreTests
+        - StudentUnitTests
+        - name: Core/CoreTester
+          skipped: true
+      gatherCoverageData: true
+      coverageTargets: [Core/CoreTests, Student]

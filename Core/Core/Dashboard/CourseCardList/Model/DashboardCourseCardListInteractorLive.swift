@@ -18,6 +18,22 @@
 
 import Combine
 
+public protocol DashboardCourseCardListInteractor {
+    // MARK: - Outputs
+
+    var state: CurrentValueSubject<StoreState, Never> { get }
+    var courseCardList: CurrentValueSubject<[DashboardCard], Never> { get }
+
+    // MARK: - Inputs
+
+    func refresh() -> Future<Void, Never>
+    func uploadCardPositions()
+
+    // MARK: - Init
+
+    init(env: AppEnvironment, showOnlyTeacherEnrollment: Bool)
+}
+
 public class DashboardCourseCardListInteractorLive: DashboardCourseCardListInteractor {
     // MARK: - Outputs
 
@@ -28,7 +44,6 @@ public class DashboardCourseCardListInteractorLive: DashboardCourseCardListInter
 
     private let courseCardListStore: Store<GetDashboardCards>
     private let courseListStore: Store<GetDashboardCourses>
-
     private var subscriptions = Set<AnyCancellable>()
 
     public required init(env: AppEnvironment = .shared, showOnlyTeacherEnrollment: Bool) {
@@ -73,5 +88,10 @@ public class DashboardCourseCardListInteractorLive: DashboardCourseCardListInter
                 }
                 .store(in: &self.subscriptions)
         }
+    }
+
+    public func uploadCardPositions() {
+        guard case .data = state.value else { return }
+        PutDashboardCardPositions(cards: courseCardList.value).fetch()
     }
 }

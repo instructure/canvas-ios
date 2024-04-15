@@ -25,9 +25,8 @@ class AssignmentsTests: E2ETestCase {
 
     func testSubmitAssignmentWithShareExtension() {
         // MARK: Seed the usual stuff
-        let users = seeder.createUsers(1)
+        let student = seeder.createUser()
         let course = seeder.createCourse()
-        let student = users[0]
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create assignment for testing share extension
@@ -35,6 +34,8 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Share a photo using Canvas app share extension
         let shareSuccessful = Helper.sharePhotoUsingCanvasSE(course: course, assignment: assignment)
@@ -43,9 +44,8 @@ class AssignmentsTests: E2ETestCase {
 
     func testViewAssignmentAndDetails() {
         // MARK: Seed the usual stuff
-        let users = seeder.createUsers(1)
+        let student = seeder.createUser()
         let course = seeder.createCourse()
-        let student = users[0]
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
@@ -53,6 +53,8 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
@@ -61,7 +63,7 @@ class AssignmentsTests: E2ETestCase {
 
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        XCTAssertTrue(assignmentButton.label.contains(assignment.name))
+        XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
@@ -70,44 +72,48 @@ class AssignmentsTests: E2ETestCase {
 
         let nameLabel = DetailsHelper.name.waitUntil(.visible)
         XCTAssertTrue(nameLabel.isVisible)
-        XCTAssertEqual(nameLabel.label, assignment.name)
+        XCTAssertTrue(nameLabel.hasLabel(label: assignment.name))
 
         let pointsLabel = DetailsHelper.points.waitUntil(.visible)
         XCTAssertTrue(pointsLabel.isVisible)
-        XCTAssertEqual(pointsLabel.label, "\(assignment.points_possible!) pt")
+        XCTAssertTrue(pointsLabel.hasLabel(label: "\(assignment.points_possible!) pt"))
 
         let statusLabel = DetailsHelper.status.waitUntil(.visible)
         XCTAssertTrue(statusLabel.isVisible)
-        XCTAssertEqual(statusLabel.label, "Not Submitted")
+        XCTAssertTrue(statusLabel.hasLabel(label: "Not Submitted"))
 
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
         XCTAssertTrue(dueLabel.isVisible)
-        XCTAssertEqual(dueLabel.label, "No Due Date")
+        XCTAssertTrue(dueLabel.hasLabel(label: "No Due Date"))
 
         let submissionTypesLabel = DetailsHelper.submissionTypes.waitUntil(.visible)
         XCTAssertTrue(submissionTypesLabel.isVisible)
-        XCTAssertEqual(submissionTypesLabel.label, "Text Entry")
-
-        let submissionsButton = DetailsHelper.submissionsButton.waitUntil(.visible)
-        XCTAssertTrue(submissionsButton.isVisible)
-
-        let submissionsButtonLabel = DetailsHelper.submissionsButtonLabel.waitUntil(.visible)
-        XCTAssertTrue(submissionsButtonLabel.isVisible)
-        XCTAssertEqual(submissionsButtonLabel.label, "Submission & Rubric")
+        XCTAssertTrue(submissionTypesLabel.hasLabel(label: "Text Entry"))
 
         let descriptionLabel = DetailsHelper.description(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(descriptionLabel.isVisible)
-        XCTAssertEqual(descriptionLabel.label, assignment.description)
+        XCTAssertTrue(descriptionLabel.hasLabel(label: assignment.description!))
 
         let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.visible)
         XCTAssertTrue(submitAssignmentButton.isVisible)
+        XCTAssertTrue(submitAssignmentButton.hasLabel(label: "Submit Assignment"))
+
+        let submissionButton = DetailsHelper.submissionButton.waitUntil(.visible)
+        XCTAssertTrue(submissionButton.isVisible)
+        XCTAssertTrue(submissionButton.hasLabel(label: "Submission & Rubric"))
+
+        GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
+        pullToRefresh()
+        XCTAssertTrue(statusLabel.waitUntil(.visible).hasLabel(label: "Submitted"))
+
+        XCTAssertTrue(submitAssignmentButton.waitUntil(.visible).isVisible)
+        XCTAssertTrue(submitAssignmentButton.hasLabel(label: "Resubmit Assignment"))
     }
 
     func testSubmitAssignment() {
         // MARK: Seed the usual stuff
-        let users = seeder.createUsers(1)
+        let student = seeder.createUser()
         let course = seeder.createCourse()
-        let student = users[0]
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
@@ -115,6 +121,8 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Navigate to Assignments and tap the assignment
         Helper.navigateToAssignments(course: course)
@@ -135,12 +143,12 @@ class AssignmentsTests: E2ETestCase {
 
         let submissionCancelButton = SubmissionHelper.cancelButton.waitUntil(.visible)
         XCTAssertTrue(submissionCancelButton.isVisible)
-        XCTAssertEqual(submissionCancelButton.label, "Cancel")
+        XCTAssertTrue(submissionCancelButton.hasLabel(label: "Cancel"))
 
         var submissionSubmitButton = SubmissionHelper.submitButton.waitUntil(.visible)
         XCTAssertTrue(submissionSubmitButton.isVisible)
-        XCTAssertFalse(submissionSubmitButton.isEnabled)
-        XCTAssertEqual(submissionSubmitButton.label, "Submit")
+        XCTAssertTrue(submissionSubmitButton.isDisabled)
+        XCTAssertTrue(submissionSubmitButton.hasLabel(label: "Submit"))
 
         let textField = SubmissionHelper.textField.waitUntil(.visible)
         XCTAssertTrue(textField.isVisible)
@@ -157,31 +165,30 @@ class AssignmentsTests: E2ETestCase {
         // MARK: Check if submission was successful
         let successfulSubmissionLabel = DetailsHelper.successfulSubmissionLabel.waitUntil(.visible)
         XCTAssertTrue(successfulSubmissionLabel.isVisible)
-        XCTAssertEqual(successfulSubmissionLabel.label, "Successfully submitted!")
+        XCTAssertTrue(successfulSubmissionLabel.hasLabel(label: "Successfully submitted!"))
 
         submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.visible)
         XCTAssertTrue(submitAssignmentButton.isVisible)
-        XCTAssertEqual(submitAssignmentButton.label, "Resubmit Assignment")
+        XCTAssertTrue(submitAssignmentButton.hasLabel(label: "Resubmit Assignment"))
     }
 
     func testAssignmentDueDate() {
         // MARK: Seed the usual stuff
-        let users = seeder.createUsers(1)
+        let student = seeder.createUser()
         let course = seeder.createCourse()
-        let student = users[0]
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create 2 assignments (1 due yesterday and 1 due tomorrow)
         let yesterdaysDate = Date.now.addDays(-1)
-        let yesterdaysAssignment = Helper.createAssignment(
-            course: course, name: "Yesterdays Assignment", dueDate: yesterdaysDate)
+        let yesterdaysAssignment = Helper.createAssignment(course: course, name: "Yesterdays Assignment", dueDate: yesterdaysDate)
 
         let tomorrowsDate = Date.now.addDays(1)
-        let tomorrowsAssignment = Helper.createAssignment(
-            course: course, name: "Tomorrows Assignment", dueDate: tomorrowsDate)
+        let tomorrowsAssignment = Helper.createAssignment(course: course, name: "Tomorrows Assignment", dueDate: tomorrowsDate)
 
         // MARK: Get the user logged in
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Navigate to Assignments
         Helper.navigateToAssignments(course: course)
@@ -189,15 +196,213 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(navBar.isVisible)
 
         // MARK: Check Yesterdays Assignment due date
-        let yesterdaysAssignmentButton = Helper.assignmentButton(assignment: yesterdaysAssignment)
-            .waitUntil(.visible)
+        let yesterdaysAssignmentButton = Helper.assignmentButton(assignment: yesterdaysAssignment).waitUntil(.visible)
         XCTAssertTrue(yesterdaysAssignmentButton.isVisible)
-        XCTAssertTrue(yesterdaysAssignmentButton.label.contains("Due Yesterday"))
+        XCTAssertTrue(yesterdaysAssignmentButton.hasLabel(label: "Due Yesterday", strict: false))
 
         // MARK: Check Tomorrows Assignment due date
-        let tomorrowsAssignmentButton = Helper.assignmentButton(assignment: tomorrowsAssignment)
-            .waitUntil(.visible)
+        let tomorrowsAssignmentButton = Helper.assignmentButton(assignment: tomorrowsAssignment).waitUntil(.visible)
         XCTAssertTrue(tomorrowsAssignmentButton.isVisible)
-        XCTAssertTrue(tomorrowsAssignmentButton.label.contains("Due Tomorrow"))
+        XCTAssertTrue(tomorrowsAssignmentButton.hasLabel(label: "Due Tomorrow", strict: false))
+    }
+
+    func testLockedAssignment() {
+        // MARK: Seed the usual stuff with a locked assignment
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let lockedAssignment = Helper.createAssignment(
+            course: course,
+            name: "Locked Assignment",
+            dueDate: Date.now.addDays(-1),
+            lockAt: Date.now)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Assignments
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+
+        // MARK: Check Locked Assignment
+        let lockedAssignmentButton = Helper.assignmentButton(assignment: lockedAssignment).waitUntil(.visible)
+        XCTAssertTrue(lockedAssignmentButton.isVisible)
+        XCTAssertTrue(lockedAssignmentButton.hasLabel(label: "Availability: Closed", strict: false))
+
+        lockedAssignmentButton.hit()
+        let lockSectionElement = DetailsHelper.lockSection.waitUntil(.visible)
+        let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.vanish)
+        XCTAssertTrue(lockSectionElement.isVisible)
+        XCTAssertTrue(submitAssignmentButton.isVanished)
+    }
+
+    func testFutureAssignment() {
+        // MARK: Seed the usual stuff with a future assignment
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let futureAssignment = Helper.createAssignment(
+            course: course,
+            name: "Future Assignment",
+            dueDate: Date.now.addDays(3),
+            unlockAt: Date.now.addDays(1))
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Assignments
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+
+        // MARK: Check Future Assignment
+        let futureAssignmentButton = Helper.assignmentButton(assignment: futureAssignment).waitUntil(.visible)
+        XCTAssertTrue(futureAssignmentButton.isVisible)
+
+        futureAssignmentButton.hit()
+        let lockIcon = DetailsHelper.lockIcon.waitUntil(.visible)
+        let lockSectionElement = DetailsHelper.lockSection.waitUntil(.visible)
+        let isLockedLabel = DetailsHelper.isLockedLabel.waitUntil(.visible)
+        let pandaLockedImage = DetailsHelper.pandaLockedImage.waitUntil(.visible)
+        let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.vanish)
+        XCTAssertTrue(lockIcon.isVisible)
+        XCTAssertTrue(lockSectionElement.isVisible)
+        XCTAssertTrue(isLockedLabel.isVisible)
+        XCTAssertTrue(pandaLockedImage.isVisible)
+        XCTAssertTrue(submitAssignmentButton.isVanished)
+    }
+
+    func testExcusedStatus() {
+        // MARK: Seed the usual stuff with an assignment
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let assignment = Helper.createAssignment(course: course)
+        GradesHelper.excuseStudentFromAssignment(course: course, assignment: assignment, user: student)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Assignments
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+
+        // MARK: Check Assignment
+        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
+        XCTAssertTrue(assignmentButton.isVisible)
+
+        assignmentButton.hit()
+        let excusedLabel = DetailsHelper.gradeDisplayGrade.waitUntil(.visible)
+        XCTAssertTrue(excusedLabel.isVisible)
+        XCTAssertTrue(excusedLabel.hasLabel(label: "Excused"))
+    }
+
+    func testAttemptSelectorAndSubmissionAndRubricScreen() {
+        // MARK: Seed the usual stuff with an assignment
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let assignment = Helper.createAssignment(course: course)
+        let rubric = Helper.createRubric(in: course, rubricAssociationId: assignment.id, rubricAssociationType: .assignment)
+        GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
+        sleep(1)
+        GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Assignments
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+
+        // MARK: Check Assignment
+        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
+        XCTAssertTrue(assignmentButton.isVisible)
+
+        // MARK: Check ViewSubmissions
+        assignmentButton.hit()
+        let viewSubmissionButton = DetailsHelper.viewSubmissionButton.waitUntil(.visible)
+        XCTAssertTrue(viewSubmissionButton.isVisible)
+
+        viewSubmissionButton.hit()
+        let commentsButton = DetailsHelper.SubmissionComments.commentsButton.waitUntil(.visible)
+        let filesButton = DetailsHelper.SubmissionComments.filesButton.waitUntil(.visible)
+        let rubricButton = DetailsHelper.SubmissionComments.rubricButton.waitUntil(.visible)
+        let addMediaButton = DetailsHelper.SubmissionComments.addMediaButton.waitUntil(.visible)
+        let addCommentButton = DetailsHelper.SubmissionComments.addCommentButton.waitUntil(.visible)
+        let drawerGripper = DetailsHelper.SubmissionDetails.drawerGripper.waitUntil(.visible)
+        let commentTextView = DetailsHelper.SubmissionComments.commentTextView.waitUntil(.visible)
+        XCTAssertTrue(commentsButton.isVisible)
+        XCTAssertTrue(filesButton.isVisible)
+        XCTAssertTrue(rubricButton.isVisible)
+        XCTAssertTrue(addMediaButton.isVisible)
+        XCTAssertTrue(addCommentButton.isVisible)
+        XCTAssertTrue(addCommentButton.isDisabled)
+        XCTAssertTrue(drawerGripper.isVisible)
+        XCTAssertTrue(commentTextView.isVisible)
+
+        // MARK: Check attemptSelector
+        drawerGripper.tapAndHoldAndDragToElement(element: commentTextView)
+        let attemptPickerToggle = DetailsHelper.SubmissionDetails.attemptPickerToggle.waitUntil(.visible)
+        XCTAssertTrue(attemptPickerToggle.isVisible)
+
+        attemptPickerToggle.hit()
+        let attemptPicker = DetailsHelper.SubmissionDetails.attemptPicker.waitUntil(.visible)
+        let pickerWheel = DetailsHelper.SubmissionDetails.pickerWheel.waitUntil(.visible)
+        XCTAssertTrue(attemptPicker.isVisible)
+        XCTAssertTrue(pickerWheel.isVisible)
+        XCTAssertTrue(pickerWheel.hasValue(value: "Attempt 2", strict: false))
+
+        pickerWheel.tapAndHoldAndDragToElement(element: attemptPickerToggle)
+        XCTAssertTrue(pickerWheel.hasValue(value: "Attempt 1", strict: false))
+
+        // MARK: Check adding a comment
+        attemptPickerToggle.hit()
+        drawerGripper.tapAndHoldAndDragToElement(element: attemptPickerToggle)
+        commentTextView.writeText(text: "Test Comment")
+        XCTAssertTrue(addCommentButton.waitUntil(.visible).isVisible)
+        XCTAssertTrue(addCommentButton.isEnabled)
+
+        addCommentButton.hit()
+        let chatBubble = DetailsHelper.SubmissionComments.chatBubble.waitUntil(.visible)
+        XCTAssertTrue(chatBubble.isVisible)
+
+        // MARK: Check rubric
+        rubricButton.hit()
+        let rubricTitle = DetailsHelper.SubmissionComments.rubricTitle(rubric: rubric).waitUntil(.visible)
+        let rubricDescriptionButton = DetailsHelper.SubmissionComments.rubricDescriptionButton(rubric: rubric).waitUntil(.visible)
+        let rubricRatingZero = DetailsHelper.SubmissionComments.rubricRatingButton(rubric: rubric, index: 0).waitUntil(.visible)
+        let rubricRatingOne = DetailsHelper.SubmissionComments.rubricRatingButton(rubric: rubric, index: 1).waitUntil(.visible)
+        XCTAssertTrue(rubricTitle.isVisible)
+        XCTAssertTrue(rubricDescriptionButton.isVisible)
+        XCTAssertTrue(rubricRatingZero.isVisible)
+        XCTAssertTrue(rubricRatingOne.isVisible)
+        XCTAssertTrue(rubricRatingZero.hasLabel(label: rubric.data[0].ratings[1].description, strict: false))
+        XCTAssertTrue(rubricRatingOne.hasLabel(label: rubric.data[0].ratings[0].description, strict: false))
+
+        rubricRatingOne.hit()
+        let rubricRatingTitle = DetailsHelper.SubmissionComments.rubricRatingTitle(rubric: rubric).waitUntil(.visible)
+        XCTAssertTrue(rubricRatingTitle.isVisible)
+        XCTAssertTrue(rubricRatingTitle.hasLabel(label: rubric.data[0].ratings[0].description))
+
+        rubricRatingZero.hit()
+        XCTAssertTrue(rubricRatingTitle.waitUntil(.visible).isVisible)
+        XCTAssertTrue(rubricRatingTitle.hasLabel(label: rubric.data[0].ratings[1].description))
+
+        rubricDescriptionButton.hit()
+        let rubricLongDescriptionLabel = DetailsHelper.SubmissionComments
+            .rubricLongDescriptionLabel(rubric: rubric).waitUntil(.visible)
+        XCTAssertTrue(rubricLongDescriptionLabel.isVisible)
     }
 }

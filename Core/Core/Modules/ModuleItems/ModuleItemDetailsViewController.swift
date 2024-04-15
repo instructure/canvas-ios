@@ -19,10 +19,10 @@
 import Foundation
 import UIKit
 
-public class ModuleItemDetailsViewController: DownloadableViewController, ColoredNavViewProtocol {
+public final class ModuleItemDetailsViewController: DownloadableViewController, ColoredNavViewProtocol {
     var onEmbedContainer: ((UIViewController) -> Void)?
 
-    let env = AppEnvironment.shared
+    private let env = AppEnvironment.shared
     var courseID: String!
     var moduleID: String!
     var itemID: String!
@@ -34,7 +34,7 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
     @IBOutlet weak var lockedTitleLabel: UILabel!
     @IBOutlet weak var spinnerView: CircleProgressView!
 
-    lazy var optionsButton = UIBarButtonItem(image: UIImage.moreLine, style: .plain, target: self, action: #selector(optionsButtonPressed))
+    private lazy var optionsButton = UIBarButtonItem(image: UIImage.moreLine, style: .plain, target: self, action: #selector(optionsButtonPressed))
 
     lazy var store = env.subscribe(GetModuleItem(courseID: courseID, moduleID: moduleID, itemID: itemID)) { [weak self] in
         self?.update()
@@ -50,7 +50,7 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
     }
 
     var item: ModuleItem? { store.first }
-    var observations: [NSKeyValueObservation]?
+    private var observations: [NSKeyValueObservation]?
     private var isMarkingModule = false
 
     public static func create(courseID: String, moduleID: String, itemID: String) -> Self {
@@ -61,7 +61,7 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
         return controller
     }
 
-    override public func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: NSLocalizedString("Module Item", bundle: .core, comment: ""))
@@ -73,9 +73,10 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
         store.refresh(force: true)
         course.refresh()
         colors.refresh()
+        spinnerView.isHidden = true
     }
 
-    func update() {
+    private func update() {
         guard store.requested, !store.pending, !isMarkingModule else { return }
         let itemViewController = self.itemViewController()
         let showLocked = env.app != .teacher && item?.visibleWhenLocked != true && item?.lockedForUser == true
@@ -84,7 +85,6 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
         if let lockExplanation = item?.lockExplanation {
             self.lockExplanation.loadHTMLString("<p class=\"lock-explanation\">\(lockExplanation)</p>")
         }
-        spinnerView.isHidden = true
         errorView.isHidden = itemViewController != nil && store.error == nil
         container.isHidden = !lockedView.isHidden || !errorView.isHidden
         children.forEach { $0.unembed() }
@@ -104,8 +104,10 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
         updateNavBar()
     }
 
-    func updateNavBar() {
-        spinnerView.color = course.first?.color
+    private func updateNavBar() {
+        // When embedded view controllers adapt course color for their own spinner view,
+        // we should enable this line below.
+//        spinnerView.color = course.first?.color
         updateNavBar(subtitle: course.first?.name, color: course.first?.color)
         let title: String
         switch item?.type {
@@ -131,8 +133,8 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
     }
 
     private func addDownloadBarButtonItem() {
-        navigationItem.rightBarButtonItems = []
         if item?.completionRequirementType == .must_mark_done {
+            navigationItem.rightBarButtonItems = []
             navigationItem.rightBarButtonItems?.append(optionsButton)
         }
         guard reachability.isConnected else {
@@ -140,6 +142,7 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
         }
         switch item?.type {
         case .externalTool, .page, .file:
+            navigationItem.rightBarButtonItems = []
             navigationItem.rightBarButtonItems?.append(downloadBarButtonItem)
             downloadButton.isHidden = false
         default:
@@ -147,7 +150,7 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
         }
     }
 
-    func itemViewController() -> UIViewController? {
+    private func itemViewController() -> UIViewController? {
         guard let item = item else { return nil }
         switch item.type {
         case .externalURL(let url):
@@ -175,11 +178,11 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
         }
     }
 
-    @objc func retryButtonPressed() {
+    @objc private func retryButtonPressed() {
         store.refresh(force: true)
     }
 
-    @objc func optionsButtonPressed(_ sender: UIBarButtonItem) {
+    @objc private func optionsButtonPressed(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(AlertAction(
             item?.completed == true
@@ -194,7 +197,7 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
         env.router.show(alert, from: self, options: .modal())
     }
 
-    func markAsDone() {
+    private func markAsDone() {
         spinnerView.isHidden = false
         let request = PutMarkModuleItemDone(courseID: courseID, moduleID: moduleID, moduleItemID: itemID, done: item?.completed == false)
         env.api.makeRequest(request) { [weak self] _, _, error in performUIUpdate {
@@ -208,7 +211,7 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
         } }
     }
 
-    func markAsViewed() {
+    private func markAsViewed() {
         let request = PostMarkModuleItemRead(courseID: courseID, moduleID: moduleID, moduleItemID: itemID)
         env.api.makeRequest(request) { [weak self] _, _, error in performUIUpdate {
             if error == nil {

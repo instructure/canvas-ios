@@ -23,6 +23,7 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var subject = CurrentValueSubject<String, Never>("")
     public var messages = CurrentValueSubject<[ConversationMessage], Never>([])
+    public var conversation = CurrentValueSubject<[Conversation], Never>([])
     public var starred = CurrentValueSubject<Bool, Never>(false)
     public var userMap: [String: ConversationParticipant] = [:]
 
@@ -40,6 +41,11 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
         conversationStore
             .statePublisher
             .subscribe(state)
+            .store(in: &subscriptions)
+
+        conversationStore
+            .allObjects
+            .subscribe(conversation)
             .store(in: &subscriptions)
 
         conversationStore
@@ -73,17 +79,19 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
         conversationStore.refreshWithFuture(force: true)
     }
 
-    public func updateStarred(starred: Bool) -> Future<Void, Never> {
-        Future { [weak self] promise in
-            guard let self else {
-                return promise(.success(()))
-            }
-            let request = StarConversationRequest(id: self.conversationID, starred: starred)
-            self.env.api.makeRequest(request, callback: { _, _, _ in
-                self.conversationStore.refresh(force: true) { _ in
-                    return promise(.success(()))
-                }
-            })
-        }
+    public func updateStarred(starred: Bool) -> Future<URLResponse?, Error> {
+        return StarConversation(id: conversationID, starred: starred).fetchWithFuture()
+    }
+
+    public func updateState(messageId: String, state: ConversationWorkflowState) -> Future<URLResponse?, Error> {
+        return UpdateConversationState(id: messageId, state: state).fetchWithFuture()
+    }
+
+    public func deleteConversation(conversationId: String) -> Future<URLResponse?, Error> {
+        return DeleteConversation(id: conversationId).fetchWithFuture()
+    }
+
+    public func deleteConversationMessage(conversationId: String, messageId: String) -> Future<URLResponse?, Error> {
+        return DeleteConversationMessage(id: conversationId, removeIds: [messageId]).fetchWithFuture()
     }
 }

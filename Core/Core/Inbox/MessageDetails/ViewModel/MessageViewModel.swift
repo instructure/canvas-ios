@@ -18,7 +18,8 @@
 
 import SwiftUI
 
-public struct MessageViewModel: Identifiable, Equatable {
+public class MessageViewModel: Identifiable {
+
     public let id: String
     public let body: String
     public let author: String
@@ -28,10 +29,15 @@ public struct MessageViewModel: Identifiable, Equatable {
     public let attachments: [File]
     public let mediaComment: MediaComment?
     public let showAttachments: Bool
+    public let conversationMessage: ConversationMessage
 
-    public init(item: ConversationMessage, myID: String, userMap: [String: ConversationParticipant]) {
+    private let router: Router
+    public var controller: WeakViewController?
+
+    public init(item: ConversationMessage, myID: String, userMap: [String: ConversationParticipant], router: Router) {
         self.id = item.id
         self.body = item.body
+        self.router = router
 
         let from = userMap[ item.authorID ]?.displayName ?? ""
         let to = item.localizedAudience(myID: myID, userMap: userMap)
@@ -44,5 +50,38 @@ public struct MessageViewModel: Identifiable, Equatable {
         self.attachments = item.attachments
         self.mediaComment = item.mediaComment
         self.showAttachments = !attachments.isEmpty || mediaComment != nil
+
+        self.conversationMessage = item
+    }
+
+    public func handleURL(_ url: URL) -> OpenURLAction.Result {
+        if let top = controller {
+            router.route(to: url, from: top, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
+        }
+        return .handled
+    }
+}
+
+extension String {
+    func toAttributedStringWithLinks(type: NSTextCheckingResult.CheckingType = .allTypes) -> AttributedString {
+
+        var attributedString = AttributedString(self)
+
+        guard let detector = try? NSDataDetector(types: type.rawValue) else {
+            return attributedString
+        }
+
+        let matches = detector.matches(in: self, options: [], range: NSRange(location: 0, length: count))
+
+        for match in matches {
+            let range = match.range
+            let startIndex = attributedString.index(attributedString.startIndex, offsetByCharacters: range.lowerBound)
+            let endIndex = attributedString.index(startIndex, offsetByCharacters: range.length)
+            // Set the url for links
+            if match.resultType == .link, let url = match.url {
+                attributedString[startIndex..<endIndex].link = url
+            }
+        }
+        return attributedString
     }
 }

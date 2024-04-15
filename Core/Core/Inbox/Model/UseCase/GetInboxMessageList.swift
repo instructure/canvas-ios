@@ -39,7 +39,7 @@ public class GetInboxMessageList: CollectionUseCase {
         return Scope(predicate: predicate, order: order)
     }
 
-    public var messageScope: InboxMessageScope = .all
+    public var messageScope: InboxMessageScope = .inbox
     public var context: Context?
     private let currentUserId: String
 

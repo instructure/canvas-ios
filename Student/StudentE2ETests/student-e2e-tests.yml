@@ -1,0 +1,34 @@
+---
+targets:
+  StudentE2ETests:    
+    type: bundle.ui-testing
+    platform: iOS
+    settings:
+      ENABLE_TESTABILITY: true
+      TEST_TARGET_NAME: Student
+    sources:
+      - path: ./
+        excludes:
+          - ".swiftlint.yml"
+    dependencies:
+      - target: Core/Core
+      - target: Core/TestsFoundation
+schemes:
+  E2ETests-iPad-Student:
+    build:
+      targets:
+        Student: all
+    test:
+      targets: StudentE2ETests
+      testPlans:
+        - path: ../../TestPlans/IPadStudentTests.xctestplan
+          defaultPlan: true
+  E2ETests-Student:
+    build:
+      targets:
+        Student: all
+    test:
+      targets: StudentE2ETests
+      testPlans:
+        - path: ../../TestPlans/StudentE2E.xctestplan
+          defaultPlan: true

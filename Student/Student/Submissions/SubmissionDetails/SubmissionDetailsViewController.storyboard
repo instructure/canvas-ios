@@ -1,63 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="lato_regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Submission Details View Controller-->
         <scene sceneID="RqT-cb-7Go">
             <objects>
                 <viewController storyboardIdentifier="SubmissionDetailsViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l3A-rq-KxF" customClass="SubmissionDetailsViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bcu-XY-Y5h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNE-3D-zl2" customClass="SubmissionDetailsEmptyView" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EAM-Lb-Jft" customClass="SubmissionDetailsLockedEmptyView" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAc-d9-7i7">
-                                <rect key="frame" x="0.0" y="39" width="375" height="534"/>
+                                <rect key="frame" x="0.0" y="60" width="375" height="493"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Iq-2N-D4G" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
-                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.attemptPickerToggle"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="c1S-ft-Bsw">
+                                <rect key="frame" x="16" y="8" width="343" height="51"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5h3-p7-4c5">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="51"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                        <color key="textColor" name="textDark"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Iq-2N-D4G" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="313" y="0.0" width="30" height="51"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.attemptPickerToggle"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                        <color key="tintColor" name="textDarkest"/>
+                                        <inset key="titleEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="4" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal">
+                                            <color key="titleColor" name="textDark"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pickerButtonTapped:" destination="l3A-rq-KxF" eventType="touchUpInside" id="Q9L-ki-qe4"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="4ET-91-dZS"/>
+                                    <constraint firstAttribute="height" constant="51" id="ksX-K9-tbO"/>
                                 </constraints>
-                                <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="4"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="pickerButtonTapped:" destination="l3A-rq-KxF" eventType="touchUpInside" id="Q9L-ki-qe4"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u5L-w3-mKu" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="341" y="16" width="18" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="d6K-gN-0PI"/>
-                                    <constraint firstAttribute="width" constant="18" id="zdF-j0-28M"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="miniArrowDownSolid"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDark"/>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
+                            </stackView>
                             <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z8l-gf-K01">
-                                <rect key="frame" x="0.0" y="38" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="59" width="375" height="216"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.attemptPicker"/>
                             </pickerView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FS1-GB-kdN" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="16" y="38" width="343" height="1"/>
+                                <rect key="frame" x="16" y="59" width="343" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="eo0-QM-how"/>
                                 </constraints>
@@ -72,11 +80,13 @@
                         <viewLayoutGuide key="safeArea" id="Bea-4p-X3b"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="u5L-w3-mKu" secondAttribute="trailing" constant="16" id="576-kH-3Z0"/>
+                            <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="c1S-ft-Bsw" secondAttribute="trailing" constant="16" id="3jU-tz-mQi"/>
                             <constraint firstItem="FS1-GB-kdN" firstAttribute="leading" secondItem="bcu-XY-Y5h" secondAttribute="leading" constant="16" id="7rg-jZ-IMg"/>
+                            <constraint firstItem="c1S-ft-Bsw" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" constant="8" id="9Z3-e2-afK"/>
                             <constraint firstItem="ac8-45-rao" firstAttribute="bottom" secondItem="Bea-4p-X3b" secondAttribute="bottom" constant="2" id="DNT-bc-RmK"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="bottom" secondItem="pNE-3D-zl2" secondAttribute="bottom" id="FAL-2f-Lut"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="ac8-45-rao" secondAttribute="trailing" id="Fvv-Fw-X8e"/>
+                            <constraint firstItem="FS1-GB-kdN" firstAttribute="top" secondItem="c1S-ft-Bsw" secondAttribute="bottom" id="HGp-Hh-hg8"/>
                             <constraint firstItem="OAc-d9-7i7" firstAttribute="top" secondItem="FS1-GB-kdN" secondAttribute="bottom" id="KYL-Ok-7ua"/>
                             <constraint firstItem="pNE-3D-zl2" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" id="Mc9-sM-Te4"/>
                             <constraint firstItem="z8l-gf-K01" firstAttribute="trailing" secondItem="Bea-4p-X3b" secondAttribute="trailing" id="Mjf-XO-1RO"/>
@@ -89,27 +99,23 @@
                             <constraint firstItem="ac8-45-rao" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Bea-4p-X3b" secondAttribute="top" id="dQD-Sk-A89"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="bottom" secondItem="OAc-d9-7i7" secondAttribute="bottom" constant="50" id="eA4-7r-3Ap"/>
                             <constraint firstItem="z8l-gf-K01" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="eS9-Ez-DZK"/>
-                            <constraint firstItem="z8l-gf-K01" firstAttribute="top" secondItem="9Iq-2N-D4G" secondAttribute="bottom" id="fAx-Fc-aoI"/>
-                            <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="9Iq-2N-D4G" secondAttribute="trailing" id="fZj-Ph-om1"/>
                             <constraint firstAttribute="trailing" secondItem="FS1-GB-kdN" secondAttribute="trailing" constant="16" id="hOW-ji-Ao7"/>
                             <constraint firstItem="EAM-Lb-Jft" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" id="hXv-Ld-Phi"/>
-                            <constraint firstItem="FS1-GB-kdN" firstAttribute="top" secondItem="9Iq-2N-D4G" secondAttribute="bottom" id="ixb-lK-9w6"/>
                             <constraint firstItem="OAc-d9-7i7" firstAttribute="trailing" secondItem="Bea-4p-X3b" secondAttribute="trailing" id="jse-aL-OdG"/>
-                            <constraint firstItem="u5L-w3-mKu" firstAttribute="centerY" secondItem="9Iq-2N-D4G" secondAttribute="centerY" constant="6" id="llN-MQ-nIO"/>
-                            <constraint firstItem="9Iq-2N-D4G" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="n9E-ws-2Km"/>
                             <constraint firstItem="EAM-Lb-Jft" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="qCv-OG-ra3"/>
-                            <constraint firstItem="9Iq-2N-D4G" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" id="r2S-Du-uhE"/>
+                            <constraint firstItem="z8l-gf-K01" firstAttribute="top" secondItem="c1S-ft-Bsw" secondAttribute="bottom" id="qVN-8N-QnT"/>
+                            <constraint firstItem="c1S-ft-Bsw" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" constant="16" id="tyQ-ad-for"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="attemptLabel" destination="5h3-p7-4c5" id="5qz-3t-O2l"/>
                         <outlet property="contentView" destination="OAc-d9-7i7" id="xfM-xF-980"/>
                         <outlet property="drawer" destination="ac8-45-rao" id="r8P-vQ-czH"/>
                         <outlet property="emptyView" destination="pNE-3D-zl2" id="WQS-H9-pBe"/>
                         <outlet property="lockedEmptyView" destination="EAM-Lb-Jft" id="wV7-dY-BB3"/>
                         <outlet property="picker" destination="z8l-gf-K01" id="K9b-dG-QGh"/>
                         <outlet property="pickerButton" destination="9Iq-2N-D4G" id="9io-yg-ETE"/>
-                        <outlet property="pickerButtonArrow" destination="u5L-w3-mKu" id="hyC-Hn-5NC"/>
                         <outlet property="pickerButtonDivider" destination="FS1-GB-kdN" id="EFw-ol-chr"/>
                     </connections>
                 </viewController>
@@ -120,7 +126,15 @@
     </scenes>
     <designables>
         <designable name="9Iq-2N-D4G">
-            <size key="intrinsicContentSize" width="151" height="38"/>
+            <size key="intrinsicContentSize" width="30" height="29"/>
         </designable>
     </designables>
+    <resources>
+        <namedColor name="textDark">
+            <color red="0.33333333333333331" green="0.396078431372549" blue="0.44705882352941179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textDarkest">
+            <color red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

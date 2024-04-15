@@ -20,43 +20,31 @@ import Combine
 import CombineExt
 
 public class ComposeMessageInteractorLive: ComposeMessageInteractor {
-    // MARK: - Outputs
-    public var state = CurrentValueSubject<StoreState, Never>(.loading)
-    public var courses = CurrentValueSubject<[InboxCourse], Never>([])
-
-    // MARK: - Private
-    private var subscriptions = Set<AnyCancellable>()
-    private let courseListStore: Store<GetInboxCourseList>
-
-    public init(env: AppEnvironment) {
-        self.courseListStore = env.subscribe(GetInboxCourseList())
-
-        courseListStore
-            .statePublisher
-            .subscribe(state)
-            .store(in: &subscriptions)
-
-        courseListStore
-            .allObjects
-            .subscribe(courses)
-            .store(in: &subscriptions)
-        courseListStore.exhaust()
+    public func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error> {
+        CreateConversation(
+            subject: parameters.subject,
+            body: parameters.body,
+            recipientIDs: parameters.recipientIDs,
+            canvasContextID: parameters.context.canvasContextID,
+            attachmentIDs: parameters.attachmentIDs,
+            groupConversation: parameters.groupConversation
+        )
+        .fetchWithFuture()
     }
 
-    public func send(parameters: MessageParameters) -> Future<Void, Error> {
-        Future<Void, Error> { promise in
-            CreateConversation(
-                subject: parameters.subject,
+    public func addConversationMessage(parameters: MessageParameters) -> Future<URLResponse?, Error> {
+        if let conversationID = parameters.conversationID {
+            return AddMessage(
+                conversationID: conversationID,
+                attachmentIDs: parameters.attachmentIDs,
                 body: parameters.body,
                 recipientIDs: parameters.recipientIDs,
-                canvasContextID: parameters.context.canvasContextID,
-                attachmentIDs: parameters.attachmentIDs)
-            .fetch { _, _, error in
-                if let error = error {
-                    promise(.failure(error))
-                } else {
-                    promise(.success(()))
-                }
+                includedMessages: parameters.includedMessages
+            )
+            .fetchWithFuture()
+        } else {
+            return Future<URLResponse?, Error> { promise in
+                promise(.failure(NSError.instructureError(String(localized: "Invalid conversation ID"))))
             }
         }
     }

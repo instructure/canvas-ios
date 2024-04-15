@@ -108,11 +108,11 @@ extension ModuleItemCell {
         let downloadButton: DownloadButton = .init(frame: .zero)
         downloadButton.mainTintColor = course?.color ?? Brand.shared.linkColor
         downloadButton.currentState = .idle
-        hStackView.addArrangedSubview(downloadButton)
-        if let index = hStackView.arrangedSubviews.firstIndex(where: {$0 == completedStatusView}) {
-            hStackView.insertArrangedSubview(downloadButton, at: index)
+        contentStackView.addArrangedSubview(downloadButton)
+        if let index = contentStackView.arrangedSubviews.firstIndex(where: {$0 == completedStatusView}) {
+            contentStackView.insertArrangedSubview(downloadButton, at: index)
         } else {
-            hStackView.addArrangedSubview(downloadButton)
+            contentStackView.addArrangedSubview(downloadButton)
         }
         downloadButton.translatesAutoresizingMaskIntoConstraints = false
         downloadButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
@@ -125,33 +125,33 @@ extension ModuleItemCell {
     }
 
     private func downloadButton() -> DownloadButton? {
-        hStackView.arrangedSubviews.first(where: { $0 is DownloadButton }) as? DownloadButton
+        contentStackView.arrangedSubviews.first(where: { $0 is DownloadButton }) as? DownloadButton
     }
 
     private func addSavedImage() {
-        if !hStackView.arrangedSubviews.contains(where: { $0.tag == 888 }) {
+        if !contentStackView.arrangedSubviews.contains(where: { $0.tag == 888 }) {
             let imageView = UIImageView(image: .init(systemName: "checkmark.icloud"))
             imageView.tag = 888
-            hStackView.addArrangedSubview(imageView)
+            contentStackView.addArrangedSubview(imageView)
             imageView.translatesAutoresizingMaskIntoConstraints = false
             imageView.widthAnchor.constraint(equalToConstant: 25).isActive = true
         }
     }
 
     private func removeSavedImage() {
-        if let imageView = hStackView.arrangedSubviews.first(where: { $0.tag == 888 }) {
+        if let imageView = contentStackView.arrangedSubviews.first(where: { $0.tag == 888 }) {
             imageView.removeFromSuperview()
         }
     }
 
     private func addActivityIndicator() -> UIActivityIndicatorView {
-        if let activityIndicator = hStackView.arrangedSubviews.first(where: { $0.tag == 555 }) as? UIActivityIndicatorView {
+        if let activityIndicator = contentStackView.arrangedSubviews.first(where: { $0.tag == 555 }) as? UIActivityIndicatorView {
             return activityIndicator
         } else {
             let activityIndicator = UIActivityIndicatorView()
             activityIndicator.color = .lightGray
             activityIndicator.tag = 555
-            hStackView.addArrangedSubview(activityIndicator)
+            contentStackView.addArrangedSubview(activityIndicator)
             activityIndicator.translatesAutoresizingMaskIntoConstraints = false
             activityIndicator.widthAnchor.constraint(equalToConstant: 25).isActive = true
             return activityIndicator
@@ -159,7 +159,7 @@ extension ModuleItemCell {
     }
 
     private func removeActivityIndicator() {
-        if let activityIndicator = hStackView.arrangedSubviews.first(where: { $0.tag == 555 }) {
+        if let activityIndicator = contentStackView.arrangedSubviews.first(where: { $0.tag == 555 }) {
             activityIndicator.removeFromSuperview()
         }
     }
