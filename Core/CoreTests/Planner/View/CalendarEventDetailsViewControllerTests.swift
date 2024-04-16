@@ -17,11 +17,10 @@
 //
 
 import XCTest
-@testable import Student
 @testable import Core
 import TestsFoundation
 
-class CalendarEventDetailsViewControllerTests: StudentTestCase {
+class CalendarEventDetailsViewControllerTests: CoreTestCase {
     lazy var controller = CalendarEventDetailsViewController.create(eventID: "1")
 
     override func setUp() {
