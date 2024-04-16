@@ -16,22 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Foundation
 
 public extension InstUI {
-    enum PaddingStyle: CGFloat {
-        case standard = 16
-        case paragraphTop = 24
-        case paragraphBottom = 28
-    }
-}
-
-public extension View {
-
-    @inlinable func paddingStyle(
-        _ edges: Edge.Set = .all,
-        _ padding: InstUI.PaddingStyle? = nil
-    ) -> some View {
-        self.padding(edges, padding?.rawValue)
-    }
+    enum Styles {}
 }

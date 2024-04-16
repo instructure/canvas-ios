@@ -18,22 +18,32 @@
 
 import SwiftUI
 
-public extension InstUI {
-    enum ParagraphStyle {
+public extension InstUI.Styles {
+    enum Text {
         case heading
+        case infoTitle
+        case infoDescription
     }
 }
 
 public extension View {
 
-    func paragraphStyle(_ paragraphStyle: InstUI.ParagraphStyle) -> some View {
-        switch paragraphStyle {
+    @ViewBuilder
+    func textStyle(_ textStyle: InstUI.Styles.Text) -> some View {
+        switch textStyle {
         case .heading:
             self
-                .textStyle(.heading)
-                .paddingStyle(.horizontal, .standard)
-                .paddingStyle(.top, .paragraphTop)
-                .paddingStyle(.bottom, .paragraphBottom)
+                .font(.semibold22, lineHeight: .fit)
+                .foregroundStyle(Color.textDarkest)
+                .accessibilityAddTraits(.isHeader)
+        case .infoTitle:
+            self
+                .font(.regular14)
+                .foregroundStyle(Color.textDark)
+        case .infoDescription:
+            self
+                .font(.regular16, lineHeight: .fit)
+                .foregroundStyle(Color.textDarkest)
         }
     }
 }
