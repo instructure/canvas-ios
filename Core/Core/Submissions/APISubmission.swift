@@ -331,7 +331,7 @@ public struct GetSubmissionRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        return [ .array("include", [ "submission_comments", "submission_history", "user", "rubric_assessment"]) ]
+        return [ .array("include", [ "submission_comments", "submission_history", "user", "rubric_assessment", "group"]) ]
     }
 }
 

@@ -21,7 +21,7 @@ import SwiftUI
 public struct QuizSubmissionListItemViewModel: Identifiable, Equatable {
     public let id: String
     public let displayName: String
-    public let name: String
+    public let name: String?
     public let status: String
     public let statusColor: Color
     public let score: String?

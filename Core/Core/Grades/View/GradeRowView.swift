@@ -65,11 +65,9 @@ public struct GradeRowView: View {
             let submission = assignment.submissions?.first { $0.userID == userID }
             let status = submission?.status ?? .notSubmitted
 
-            if assignment.isOnline {
-                Text(status.text)
-                    .foregroundStyle(Color(status.color))
-                    .font(.regular14)
-            }
+            Text(status.text)
+                .foregroundStyle(Color(status.color))
+                .font(.regular14)
         }
     }
 
