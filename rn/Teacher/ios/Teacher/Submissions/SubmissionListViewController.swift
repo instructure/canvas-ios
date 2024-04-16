@@ -199,7 +199,7 @@ extension SubmissionListViewController: UITableViewDataSource, UITableViewDelega
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SubmissionListCell = tableView.dequeue(for: indexPath)
-        cell.update(assignment.first, submission: submissions[indexPath])
+        cell.update(assignment.first, submission: submissions[indexPath], row: indexPath.row + 1)
         return cell
     }
 
@@ -232,16 +232,16 @@ class SubmissionListCell: UITableViewCell {
         needsGradingView.layer.cornerRadius = needsGradingView.frame.height / 2
     }
 
-    func update(_ assignment: Assignment?, submission: Submission?) {
+    func update(_ assignment: Assignment?, submission: Submission?, row: Int) {
         accessibilityIdentifier = "SubmissionListCell.\(submission?.userID ?? "")"
         backgroundColor = .backgroundLightest
         if assignment?.anonymizeStudents != false {
             if submission?.groupID != nil {
                 avatarView.icon = .groupLine
-                nameLabel.text = NSLocalizedString("Group", comment: "")
+                nameLabel.text = String(localized: "Group \(row)")
             } else {
                 avatarView.icon = .userLine
-                nameLabel.text = NSLocalizedString("Student", comment: "")
+                nameLabel.text = String(localized: "Student \(row)")
             }
         } else if let name = submission?.groupName {
             avatarView.name = name

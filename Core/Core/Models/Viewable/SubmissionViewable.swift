@@ -44,7 +44,7 @@ extension SubmissionViewable {
     }
 
     public var submissionStatusIsHidden: Bool {
-        return submissionTypes.contains(.none) || submissionTypes.contains(.not_graded)
+        return submissionTypes.contains(.not_graded)
     }
 
     public var submissionStatusColor: UIColor {

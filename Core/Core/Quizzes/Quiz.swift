@@ -58,6 +58,7 @@ public class Quiz: NSManagedObject {
     @NSManaged public var title: String
     @NSManaged public var unlockAt: Date?
     @NSManaged public var unpublishable: Bool
+    @NSManaged public var anonymousSubmissions: Bool
 
     public var course: Course? {
         managedObjectContext?.first(where: #keyPath(Course.id), equals: courseID)
@@ -205,6 +206,7 @@ extension Quiz {
         model.unpublishable = item.unpublishable == true
         let orderDate = (item.quiz_type == .assignment ? item.due_at : item.lock_at) ?? Date.distantFuture
         model.order = orderDate.isoString()
+        model.anonymousSubmissions = item.anonymous_submissions ?? false
         return model
     }
 }

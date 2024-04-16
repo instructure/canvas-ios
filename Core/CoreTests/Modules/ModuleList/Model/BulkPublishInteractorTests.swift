@@ -37,7 +37,8 @@ class BulkPublishInteractorTests: CoreTestCase {
             api: api,
             courseId: "1",
             moduleIds: ["moduleId1", "moduleId2"],
-            action: .publish(.modulesAndItems)
+            action: .publish(.modulesAndItems),
+            localStateRefresher: MockBulkPublishLocalStateRefresh()
         )
             .progress
         .dropFirst() // ignore first 0% state
@@ -59,6 +60,7 @@ class BulkPublishInteractorTests: CoreTestCase {
             courseId: "1",
             moduleIds: ["moduleId1", "moduleId2"],
             action: .publish(.modulesAndItems),
+            localStateRefresher: MockBulkPublishLocalStateRefresh(),
             scheduler: testScheduler.eraseToAnyScheduler()
         )
         let streamCompleted = expectation(description: "Stream completed")
@@ -123,6 +125,7 @@ class BulkPublishInteractorTests: CoreTestCase {
             courseId: "1",
             moduleIds: ["moduleId1", "moduleId2"],
             action: .publish(.modulesAndItems),
+            localStateRefresher: MockBulkPublishLocalStateRefresh(),
             scheduler: testScheduler.eraseToAnyScheduler()
         )
         let streamCompleted = expectation(description: "Stream completed")
@@ -154,5 +157,12 @@ class BulkPublishInteractorTests: CoreTestCase {
 
         waitForExpectations(timeout: 1)
         subscription.cancel()
+    }
+}
+
+struct MockBulkPublishLocalStateRefresh: BulkPublishLocalStateRefresher {
+
+    func refreshStates() -> any Publisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self)
     }
 }

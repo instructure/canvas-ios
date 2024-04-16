@@ -150,7 +150,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                 .getEntities(ignoreCache: true)
                 .flatMap { [filesInteractor] files -> AnyPublisher<Void, Error> in
                     guard let file = files.first, let url = file.url, let fileID = file.id, let mimeClass = file.mimeClass else {
-                        return Empty(completeImmediately: false)
+                        return Empty(completeImmediately: true)
                             .setFailureType(to: Error.self)
                             .eraseToAnyPublisher()
                     }
