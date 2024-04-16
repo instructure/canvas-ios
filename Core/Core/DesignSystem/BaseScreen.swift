@@ -65,6 +65,7 @@ public struct BaseScreen<Content>: View where Content: View {
         { $0() }
     }
 
+    @Environment(\.sizeCategory) private var sizeCategory
     private let state: ScreenState
     private let config: BaseScreenConfig
     private let refreshAction: (@escaping RefreshCompletion) -> Void

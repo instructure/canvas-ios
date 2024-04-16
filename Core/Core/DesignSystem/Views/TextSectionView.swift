@@ -19,6 +19,7 @@
 import SwiftUI
 
 public struct TextSectionView: View {
+    @Environment(\.sizeCategory) private var sizeCategory
     private let title: String
     private let description: String
 
