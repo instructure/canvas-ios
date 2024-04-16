@@ -119,9 +119,8 @@ public class HTMLParserLive: HTMLParser {
 }
 
 public extension Publisher where Output: Collection, Output.Element: NSManagedObject, Failure == Error {
-
-    func parseHtmlContent(
-        attribute keyPath: ReferenceWritableKeyPath<Output.Element, String>,
+    func parseHtmlContent<T>(
+        attribute keyPath: ReferenceWritableKeyPath<Output.Element, T>,
         id: ReferenceWritableKeyPath<Output.Element, String>,
         courseId: String,
         baseURLKey: ReferenceWritableKeyPath<Output.Element, URL?>? = nil,
@@ -131,47 +130,21 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
             .flatMap { dataArray in
                 Publishers.Sequence(sequence: dataArray)
                     .setFailureType(to: Error.self)
-                    .flatMap { element in
-                        let value = element[keyPath: keyPath]
-                        let resourceId = element[keyPath: id]
-                        var baseURL: URL?
-                        if let baseURLKey {
-                            baseURL = element[keyPath: baseURLKey]
-                        }
-                        return htmlParser.parse(value, resourceId: resourceId, courseId: courseId, baseURL: baseURL)
-                            .map { _ in return element }
-                    }
-                    .collect()
-            }
-            .eraseToAnyPublisher()
-    }
-
-    func parseHtmlContent(
-        attribute keyPath: ReferenceWritableKeyPath<Output.Element, String?>,
-        id: ReferenceWritableKeyPath<Output.Element, String>,
-        courseId: String,
-        baseURLKey: ReferenceWritableKeyPath<Output.Element, URL?>? = nil,
-        htmlParser: HTMLParser
-    ) -> AnyPublisher<[Output.Element], Error> {
-        return self
-            .flatMap { dataArray in
-                Publishers.Sequence(sequence: dataArray)
-                    .setFailureType(to: Error.self)
-                    .flatMap { element in
-                        guard let value = element[keyPath: keyPath] else { // Parse only non null attributes
+                    .flatMap { element -> AnyPublisher<Self.Output.Element, Error> in
+                        if let value = element[keyPath: keyPath] as? String { // Parse only non null attributes
+                            let resourceId = element[keyPath: id]
+                            var baseURL: URL?
+                            if let baseURLKey {
+                                baseURL = element[keyPath: baseURLKey]
+                            }
+                            return htmlParser.parse(value, resourceId: resourceId, courseId: courseId, baseURL: baseURL)
+                                .map { _ in element }
+                                .eraseToAnyPublisher()
+                        } else {
                             return Just(element)
                                 .setFailureType(to: Error.self)
                                 .eraseToAnyPublisher()
                         }
-
-                        let resourceId = element[keyPath: id]
-                        var baseURL: URL?
-                        if let baseURLKey {
-                            baseURL = element[keyPath: baseURLKey]
-                        }
-                        return htmlParser.parse(value, resourceId: resourceId, courseId: courseId, baseURL: baseURL)
-                            .map { _ in return element }
-                            .eraseToAnyPublisher()
                     }
                     .collect()
             }
