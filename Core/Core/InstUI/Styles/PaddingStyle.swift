@@ -18,17 +18,19 @@
 
 import SwiftUI
 
-public enum PaddingStyle: CGFloat {
-    case standard = 16
-    case paragraphTop = 24
-    case paragraphBottom = 28
+public extension InstUI {
+    enum PaddingStyle: CGFloat {
+        case standard = 16
+        case paragraphTop = 24
+        case paragraphBottom = 28
+    }
 }
 
 public extension View {
 
     @inlinable func paddingStyle(
         _ edges: Edge.Set = .all,
-        _ padding: PaddingStyle? = nil
+        _ padding: InstUI.PaddingStyle? = nil
     ) -> some View {
         self.padding(edges, padding?.rawValue)
     }

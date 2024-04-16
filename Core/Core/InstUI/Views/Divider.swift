@@ -18,30 +18,30 @@
 
 import SwiftUI
 
-public enum CoreTextStyle {
-    case heading
-    case infoTitle
-    case infoDescription
-}
-
-public extension View {
-
-    @ViewBuilder
-    func textStyle(_ textStyle: CoreTextStyle) -> some View {
-        switch textStyle {
-        case .heading:
-            self
-                .font(.semibold22, lineHeight: .fit)
-                .foregroundStyle(Color.textDarkest)
-                .accessibilityAddTraits(.isHeader)
-        case .infoTitle:
-            self
-                .font(.regular14)
-                .foregroundStyle(Color.textDark)
-        case .infoDescription:
-            self
-                .font(.regular16, lineHeight: .fit)
-                .foregroundStyle(Color.textDarkest)
+public extension InstUI {
+    struct Divider: View {
+        public var body: some View {
+            Divider().overlay(Color.borderMedium)
         }
     }
 }
+
+#if DEBUG
+
+#Preview("Vertical") {
+    VStack {
+        Text(verbatim: "AAA")
+        InstUI.Divider()
+        Text(verbatim: "BBB")
+    }
+}
+
+#Preview("Horizontal") {
+    HStack {
+        Text(verbatim: "AAA")
+        InstUI.Divider()
+        Text(verbatim: "BBB")
+    }
+}
+
+#endif

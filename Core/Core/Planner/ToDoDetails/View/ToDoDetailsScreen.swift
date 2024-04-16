@@ -26,7 +26,7 @@ public struct ToDoDetailsScreen: View {
     }
 
     public var body: some View {
-        BaseScreen(state: .data, config: viewModel.screenConfig) { _ in
+        InstUI.BaseScreen(state: .data, config: viewModel.screenConfig) { _ in
             eventContent
         }
         .navigationTitle(viewModel.navigationTitle)
@@ -40,12 +40,12 @@ public struct ToDoDetailsScreen: View {
                     .paragraphStyle(.heading)
             }
             if let date = viewModel.date {
-                TextSectionView(title: String(localized: "Date"),
-                                description: date)
+                InstUI.TextSectionView(title: String(localized: "Date"),
+                                       description: date)
             }
             if let description = viewModel.description {
-                TextSectionView(title: String(localized: "Description"),
-                                description: description)
+                InstUI.TextSectionView(title: String(localized: "Description"),
+                                       description: description)
             }
         }
     }

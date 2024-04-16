@@ -16,22 +16,4 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-
-public enum ParagraphStyle {
-    case heading
-}
-
-public extension View {
-
-    func paragraphStyle(_ paragraphStyle: ParagraphStyle) -> some View {
-        switch paragraphStyle {
-        case .heading:
-            self
-                .textStyle(.heading)
-                .paddingStyle(.horizontal, .standard)
-                .paddingStyle(.top, .paragraphTop)
-                .paddingStyle(.bottom, .paragraphBottom)
-        }
-    }
-}
+public enum InstUI {}

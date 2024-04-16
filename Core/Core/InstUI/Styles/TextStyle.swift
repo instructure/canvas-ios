@@ -18,32 +18,32 @@
 
 import SwiftUI
 
-public struct CoreDividerView: View {
-    private static let dividerColor = Color(UIColor { traits in
-        traits.isDarkInterface ? .oxford : .tiara
-    })
-
-    public var body: some View {
-        Divider().overlay(Self.dividerColor)
+public extension InstUI {
+    enum TextStyle {
+        case heading
+        case infoTitle
+        case infoDescription
     }
 }
 
-#if DEBUG
+public extension View {
 
-#Preview("Vertical") {
-    VStack {
-        Text(verbatim: "AAA")
-        CoreDividerView()
-        Text(verbatim: "BBB")
+    @ViewBuilder
+    func textStyle(_ textStyle: InstUI.TextStyle) -> some View {
+        switch textStyle {
+        case .heading:
+            self
+                .font(.semibold22, lineHeight: .fit)
+                .foregroundStyle(Color.textDarkest)
+                .accessibilityAddTraits(.isHeader)
+        case .infoTitle:
+            self
+                .font(.regular14)
+                .foregroundStyle(Color.textDark)
+        case .infoDescription:
+            self
+                .font(.regular16, lineHeight: .fit)
+                .foregroundStyle(Color.textDarkest)
+        }
     }
 }
-
-#Preview("Horizontal") {
-    HStack {
-        Text(verbatim: "AAA")
-        CoreDividerView()
-        Text(verbatim: "BBB")
-    }
-}
-
-#endif

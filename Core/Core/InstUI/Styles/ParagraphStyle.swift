@@ -18,21 +18,22 @@
 
 import SwiftUI
 
-struct BaseScreenTesterScreen: View {
-    @State var state = InstUI.ScreenState.loading
+public extension InstUI {
+    enum ParagraphStyle {
+        case heading
+    }
+}
 
-    var body: some View {
-        InstUI.BaseScreen(state: state) { _ in
-            Text(verbatim: "Content")
+public extension View {
+
+    func paragraphStyle(_ paragraphStyle: InstUI.ParagraphStyle) -> some View {
+        switch paragraphStyle {
+        case .heading:
+            self
+                .textStyle(.heading)
+                .paddingStyle(.horizontal, .standard)
+                .paddingStyle(.top, .paragraphTop)
+                .paddingStyle(.bottom, .paragraphBottom)
         }
-        .overlay(alignment: .bottom) {
-            Picker("", selection: $state) {
-                ForEach(InstUI.ScreenState.allCases) { state in
-                    Text(state.rawValue.capitalized).tag(state)
-                }
-            }
-            .padding()
-        }
-        .navigationTitle(Text(verbatim: "Base Screen Test"))
     }
 }

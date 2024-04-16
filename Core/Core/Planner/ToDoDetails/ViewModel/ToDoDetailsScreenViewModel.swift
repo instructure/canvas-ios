@@ -23,7 +23,7 @@ public class ToDoDetailsScreenViewModel: ObservableObject {
     public let title: String?
     public let date: String?
     public let description: String?
-    public let screenConfig = BaseScreenConfig(refreshable: false)
+    public let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
     public init(plannable: Plannable) {
         title = plannable.title
