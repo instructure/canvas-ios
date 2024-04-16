@@ -32,7 +32,6 @@ public class CalendarEventDetailsViewController: ScreenViewTrackableViewControll
     let refreshControl = CircleRefreshControl()
     public let titleSubtitleView = TitleSubtitleView.create()
     var offlineModeInteractor: OfflineModeInteractor?
-    public let titleSubtitleView = TitleSubtitleView.create()
 
     public var color: UIColor?
     let env = AppEnvironment.shared
