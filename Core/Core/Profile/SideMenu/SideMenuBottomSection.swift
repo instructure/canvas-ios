@@ -77,9 +77,9 @@ struct SideMenuBottomSection: View {
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             }
-            
+
             Button {
-                
+                showLiveChat()
             } label: {
                 SideMenuItem(id: "livechat", image: Image(systemName: "questionmark.bubble"), title: Text("Live Chat", bundle: .core))
             }
@@ -200,6 +200,13 @@ struct SideMenuBottomSection: View {
         let helpViewController = CoreHostingController(helpView)
         helpViewController.title = root.text
         env.router.show(helpViewController, from: controller.value, options: .modal(.formSheet, embedInNav: true, addDoneButton: true), analyticsRoute: "/profile/help")
+    }
+
+    public func showLiveChat() {
+        let chatView = LiveChatView()
+        let chatViewController = CoreHostingController(chatView)
+        chatViewController.title = "Live Chat"
+        env.router.show(chatViewController, from: controller.value, options: .modal(.formSheet, embedInNav: true, addDoneButton: true), analyticsRoute: "/profile/chat")
     }
 
     private static func readDevMenuVisibilityFromUserDefaults() -> Bool {

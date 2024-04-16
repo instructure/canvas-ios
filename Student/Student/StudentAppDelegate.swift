@@ -233,6 +233,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             remoteConfig.activate { _, _ in
                 let keys = remoteConfig.allKeys(from: .remote)
                 for key in keys {
+                    RemoteConfigManager.shared.saveRemoteConfig(key: key, value: remoteConfig.configValue(forKey: key).stringValue)
                     guard let feature = ExperimentalFeature(rawValue: key) else { continue }
                     let value = remoteConfig.configValue(forKey: key).boolValue
                     feature.isEnabled = value
