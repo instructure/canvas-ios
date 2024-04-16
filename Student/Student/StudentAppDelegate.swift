@@ -25,7 +25,6 @@ import Combine
 import Core
 import Firebase
 import Heap
-import Intercom
 import PSPDFKit
 import UIKit
 import UserNotifications
@@ -90,7 +89,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         }
         setupAWS()
         setupBugfender()
-        setupIntercom()
         return true
     }
 
@@ -108,39 +106,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     func setupBugfender() {
         guard let bugfenderKey = Secret.bugfenderKey.string else { return }
         Bugfender.activateLogger(bugfenderKey)
-    }
-    func setupIntercom() {
-        if let apiKey = Secret.intercomApiKey.string,
-            let appId = Secret.intercomAppId.string,
-            !apiKey.isEmpty && !appId.isEmpty {
-            Intercom.setApiKey(apiKey, forAppId: appId)
-        }
-    }
-    func setIntercomUser(session: LoginSession, userEmail: String?) {
-        let attributes = ICMUserAttributes()
-        if let email = userEmail,
-            !email.isEmpty {
-            attributes.email = email
-        } else if let email = session.userEmail,
-            !email.isEmpty {
-            attributes.email = email
-        }
-        if !session.userName.isEmpty {
-            attributes.name = session.userName
-        }
-        if !session.userID.isEmpty {
-            attributes.userId = session.userID
-        }
-        Intercom.loginUser(with: attributes) { result in
-            switch result {
-            case .success:
-                // Handle success
-                print("Intercom login success")
-            case .failure(let error):
-                // Handle error
-                print("Intercom login error: \(error.localizedDescription)")
-            }
-        }
     }
 
     func setup(session: LoginSession) {
@@ -173,7 +138,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
             NotificationManager.shared.subscribeToPushChannel()
-            self.setIntercomUser(session: session, userEmail: apiProfile?.primary_email)
 
             let isK5StudentView = self.environment.userDefaults?.isK5StudentView ?? false
             if isK5StudentView {

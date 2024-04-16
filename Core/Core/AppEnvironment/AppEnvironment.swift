@@ -19,7 +19,6 @@
 import Foundation
 import Combine
 import CoreData
-import Intercom
 import SwiftUI
 import WidgetKit
 
@@ -93,7 +92,6 @@ open class AppEnvironment {
         userDefaults = nil
         refreshWidgets()
         deleteUserData(session: session)
-        Intercom.logout()
     }
 
     private func deleteUserData(session: LoginSession) {

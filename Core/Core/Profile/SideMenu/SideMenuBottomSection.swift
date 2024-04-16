@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Intercom
 import SwiftUI
 
 struct SideMenuBottomSection: View {
@@ -80,9 +79,9 @@ struct SideMenuBottomSection: View {
             }
             
             Button {
-                Intercom.present()
+                
             } label: {
-                SideMenuItem(id: "intercom", image: Image(systemName: "questionmark.bubble"), title: Text("Live Chat", bundle: .core))
+                SideMenuItem(id: "livechat", image: Image(systemName: "questionmark.bubble"), title: Text("Live Chat", bundle: .core))
             }
             .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
 

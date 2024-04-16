@@ -26,7 +26,6 @@ targets:
       - package: AWSSDK
         product: AWSSNS
       - package: BugfenderLibrary
-      - package: Intercom
       - target: CanvasCore/CanvasCore
       - target: Core/Core
       - target: SubmitAssignment
