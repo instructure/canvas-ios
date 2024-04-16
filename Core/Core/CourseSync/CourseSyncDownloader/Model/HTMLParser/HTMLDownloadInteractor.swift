@@ -78,7 +78,6 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             try fileManager.moveItem(at: tempURL, to: saveURL)
             return Result.Publisher(saveURL).eraseToAnyPublisher()
         } catch {
-            print("ERROR: \(error)")
             return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()
         }
     }

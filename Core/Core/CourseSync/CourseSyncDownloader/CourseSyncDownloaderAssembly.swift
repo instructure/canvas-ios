@@ -26,15 +26,14 @@ public enum CourseSyncDownloaderAssembly {
             label: "com.instructure.icanvas.core.course-sync-download"
         ).eraseToAnyScheduler()
 
-        let sessionId = env.currentSession?.uniqueID ?? ""
         let loginSession = env.currentSession
 
-        let pageHtmlParser = getHTMLParser(for: .pages, loginSession: loginSession, scheduler: scheduler)
-        let assignmentHtmlParser = getHTMLParser(for: .assignments, loginSession: loginSession, scheduler: scheduler)
-        let quizHtmlParser = getHTMLParser(for: .quizzes, loginSession: loginSession, scheduler: scheduler)
-        let announcementHtmlParser = getHTMLParser(for: .announcements, loginSession: loginSession, scheduler: scheduler)
-        let discussionHtmlParser = getHTMLParser(for: .discussions, loginSession: loginSession, scheduler: scheduler)
-        let calendarEventHtmlParser = getHTMLParser(for: .calendarEvents, loginSession: loginSession, scheduler: scheduler)
+        let pageHtmlParser = makeHTMLParser(for: .pages, loginSession: loginSession, scheduler: scheduler)
+        let assignmentHtmlParser = makeHTMLParser(for: .assignments, loginSession: loginSession, scheduler: scheduler)
+        let quizHtmlParser = makeHTMLParser(for: .quizzes, loginSession: loginSession, scheduler: scheduler)
+        let announcementHtmlParser = makeHTMLParser(for: .announcements, loginSession: loginSession, scheduler: scheduler)
+        let discussionHtmlParser = makeHTMLParser(for: .discussions, loginSession: loginSession, scheduler: scheduler)
+        let calendarEventHtmlParser = makeHTMLParser(for: .calendarEvents, loginSession: loginSession, scheduler: scheduler)
 
         let contentInteractors: [CourseSyncContentInteractor] = [
             CourseSyncPagesInteractorLive(htmlParser: pageHtmlParser),
@@ -62,7 +61,11 @@ public enum CourseSyncDownloaderAssembly {
                                         env: env)
     }
 
-    private static func getHTMLParser(for section: OfflineFolderPrefix, loginSession: LoginSession?, scheduler: AnySchedulerOf<DispatchQueue>) -> HTMLParser {
+    private static func makeHTMLParser(
+        for section: OfflineFolderPrefix,
+        loginSession: LoginSession?,
+        scheduler: AnySchedulerOf<DispatchQueue>
+    ) -> HTMLParser {
         let sessionId = loginSession?.uniqueID ?? ""
 
         let interactor = HTMLDownloadInteractorLive(

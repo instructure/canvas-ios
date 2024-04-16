@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import CoreData
 import Combine
 
 public protocol HTMLParser {
@@ -115,5 +115,66 @@ public class HTMLParserLive: HTMLParser {
             )
         )
         .appendingPathComponent("\(sectionName)-\(resourceId)")
+    }
+}
+
+public extension Publisher where Output: Collection, Output.Element: NSManagedObject, Failure == Error {
+
+    func parseHtmlContent(
+        attribute keyPath: ReferenceWritableKeyPath<Output.Element, String>,
+        id: ReferenceWritableKeyPath<Output.Element, String>,
+        courseId: String,
+        baseURLKey: ReferenceWritableKeyPath<Output.Element, URL?>? = nil,
+        htmlParser: HTMLParser
+    ) -> AnyPublisher<[Output.Element], Error> {
+        return self
+            .flatMap { dataArray in
+                Publishers.Sequence(sequence: dataArray)
+                    .setFailureType(to: Error.self)
+                    .flatMap { element in
+                        let value = element[keyPath: keyPath]
+                        let resourceId = element[keyPath: id]
+                        var baseURL: URL?
+                        if let baseURLKey {
+                            baseURL = element[keyPath: baseURLKey]
+                        }
+                        return htmlParser.parse(value, resourceId: resourceId, courseId: courseId, baseURL: baseURL)
+                            .map { _ in return element }
+                    }
+                    .collect()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    func parseHtmlContent(
+        attribute keyPath: ReferenceWritableKeyPath<Output.Element, String?>,
+        id: ReferenceWritableKeyPath<Output.Element, String>,
+        courseId: String,
+        baseURLKey: ReferenceWritableKeyPath<Output.Element, URL?>? = nil,
+        htmlParser: HTMLParser
+    ) -> AnyPublisher<[Output.Element], Error> {
+        return self
+            .flatMap { dataArray in
+                Publishers.Sequence(sequence: dataArray)
+                    .setFailureType(to: Error.self)
+                    .flatMap { element in
+                        guard let value = element[keyPath: keyPath] else { // Parse only non null attributes
+                            return Just(element)
+                                .setFailureType(to: Error.self)
+                                .eraseToAnyPublisher()
+                        }
+
+                        let resourceId = element[keyPath: id]
+                        var baseURL: URL?
+                        if let baseURLKey {
+                            baseURL = element[keyPath: baseURLKey]
+                        }
+                        return htmlParser.parse(value, resourceId: resourceId, courseId: courseId, baseURL: baseURL)
+                            .map { _ in return element }
+                            .eraseToAnyPublisher()
+                    }
+                    .collect()
+            }
+            .eraseToAnyPublisher()
     }
 }
