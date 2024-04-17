@@ -22,11 +22,14 @@ import XCTest
 class ToDoDetailsScreenViewModelTests: CoreTestCase {
 
     func testProperties() {
-        let todoDate = Date()
-        let apiPlannable = APIPlannable.make(plannable: .init(
-            details: "TestDetails",
-            title: "TestTitle"
-        ))
+        let todoDate = Date().addMonths(3)
+        let apiPlannable = APIPlannable.make(
+            plannable: .init(
+                details: "TestDetails",
+                title: "TestTitle"
+            ),
+            plannable_date: todoDate
+        )
         let plannable = Plannable.make(from: apiPlannable,
                                        in: databaseClient)
 
