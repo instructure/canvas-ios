@@ -64,7 +64,7 @@ struct CustomizeCourseView: View {
             ZStack {
                 Color(color).frame(width: width, height: height)
                 if let url = imageDownloadURL {
-                    RemoteImage(url, width: width, height: height)
+                    RemoteImage(url, width: width, height: height, shouldHandleAnimatedGif: true)
                         .opacity(hideColorOverlay ? 1 : 0.4)
                 }
             }

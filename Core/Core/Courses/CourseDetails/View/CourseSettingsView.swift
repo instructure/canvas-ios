@@ -70,7 +70,7 @@ public struct CourseSettingsView: View, ScreenViewTrackable {
             ZStack {
                 Color(viewModel.courseColor ?? .ash).frame(width: width, height: height)
                 if let url = viewModel.imageURL {
-                    RemoteImage(url, width: width, height: height)
+                    RemoteImage(url, width: width, height: height, shouldHandleAnimatedGif: true)
                         .opacity(viewModel.hideColorOverlay == true ? 1 : 0.4)
                         .accessibility(hidden: true)
                 }

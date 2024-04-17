@@ -22,36 +22,40 @@ public struct RemoteImage: View {
     public let url: URL
     public let width: CGFloat
     public let height: CGFloat
+    private let shouldHandleAnimatedGif: Bool
 
     @State private var loader: ImageLoader?
     @State private var loadedURL: URL?
     @State private var image: LoadedImage?
+    @State private var animated: Bool = false
     @State private var started: Bool = false
 
     @State private var currentFrameIndex = 0
     @State private var animationRepeatedCount = 0
     @State private var frameAnimationTimer: Timer?
 
-    public init(_ url: URL, width: CGFloat, height: CGFloat) {
+    public init(_ url: URL, width: CGFloat, height: CGFloat, shouldHandleAnimatedGif: Bool = false) {
         self.url = url
         self.width = width
         self.height = height
+        self.shouldHandleAnimatedGif = shouldHandleAnimatedGif
     }
 
     public var body: some View {
-        if let image = image?.image.images?[currentFrameIndex] ?? image?.image {
-            let isURLChanged = (url.pathComponents != loadedURL?.pathComponents)
+        let isURLChanged = url.pathComponents != loadedURL?.pathComponents
+        let hasContent = image != nil || animated
 
-            if isURLChanged {
-                emptyState.onAppear {
-                    resetState()
-                    load()
-                }
-            } else {
-                Image(uiImage: image.withRenderingMode(.alwaysOriginal))
-                    .resizable().scaledToFill()
-                    .frame(width: width, height: height)
+        if hasContent && isURLChanged {
+            emptyState.onAppear {
+                resetState()
+                load()
             }
+        } else if let image = image?.image.images?[currentFrameIndex] ?? image?.image {
+            Image(uiImage: image.withRenderingMode(.alwaysOriginal))
+                .resizable().scaledToFill()
+                .frame(width: width, height: height)
+        } else if animated {
+            WebView(url: url)
         } else {
             emptyState.onAppear {
                 load()
@@ -79,23 +83,43 @@ public struct RemoteImage: View {
         guard !started else { return }
         started = true
         let localURL = url // Create a local copy in case it changes while the previous image is still loading
-        loader = ImageLoader(url: localURL, frame: CGRect(x: 0, y: 0, width: width, height: height)) { result in
+        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+        loader = ImageLoader(url: localURL, frame: frame, shouldFailForAnimatedGif: shouldHandleAnimatedGif) { result in
             loader = nil
-            guard case .success(let loaded) = result else { return }
-            self.image = loaded
-            self.loadedURL = localURL
-            if let count = loaded.image.images?.count, count > 0 {
-                let frameAnimationTimer = Timer(timeInterval: loaded.image.duration / Double(count), repeats: true) { _ in
-                    self.currentFrameIndex = (self.currentFrameIndex + 1) % count
-                    guard self.currentFrameIndex == 0 else { return }
-                    self.animationRepeatedCount += 1
-                    guard loaded.repeatCount > 0, self.animationRepeatedCount >= loaded.repeatCount else { return }
-                    self.frameAnimationTimer?.invalidate()
-                    self.frameAnimationTimer = nil
-                    self.currentFrameIndex = count - 1 // stay on end frame
+
+            if shouldHandleAnimatedGif {
+                if case .failure(LoadedImage.Error.animatedGifFound) = result {
+                    animated = true
+                    image = nil
+                    loadedURL = localURL
+                } else {
+                    animated = false
+                    loader = ImageLoader(url: localURL, frame: frame, shouldFailForAnimatedGif: shouldHandleAnimatedGif) { result in
+                        loader = nil
+                        guard case .success(let loaded) = result else { return }
+                        image = loaded
+                        loadedURL = localURL
+                    }
+                    loader?.load()
                 }
-                RunLoop.current.add(frameAnimationTimer, forMode: .common)
-                self.frameAnimationTimer = frameAnimationTimer
+            } else {
+                animated = false
+                guard case .success(let loaded) = result else { return }
+                self.image = loaded
+                self.loadedURL = localURL
+                if let count = loaded.image.images?.count, count > 0 {
+                    let frameAnimationTimer = Timer(timeInterval: loaded.image.duration / Double(count), repeats: true) { _ in
+                        self.currentFrameIndex = (self.currentFrameIndex + 1) % count
+                        guard self.currentFrameIndex == 0 else { return }
+                        self.animationRepeatedCount += 1
+                        guard loaded.repeatCount > 0, self.animationRepeatedCount >= loaded.repeatCount else { return }
+                        self.frameAnimationTimer?.invalidate()
+                        self.frameAnimationTimer = nil
+                        self.currentFrameIndex = count - 1 // stay on end frame
+                    }
+                    RunLoop.current.add(frameAnimationTimer, forMode: .common)
+                    self.frameAnimationTimer = frameAnimationTimer
+                }
             }
         }
         loader?.load()
