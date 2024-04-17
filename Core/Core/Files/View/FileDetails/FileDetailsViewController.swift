@@ -198,13 +198,13 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         doneLoading()
     }
 
-    func embedWebView(for url: URL, isLocalURL: Bool = true, handleDarkMode: Bool = true) {
-        let webView = CoreWebView(features: handleDarkMode ? [.invertColorsInDarkMode] : [])
+    func embedWebView(for url: URL, isLocalURL: Bool = true, isImageWrapper: Bool = false) {
+        let webView = CoreWebView(features: isImageWrapper ? [] : [.invertColorsInDarkMode])
         contentView.addSubview(webView)
-        if handleDarkMode {
-            webView.pinWithThemeSwitchButton(inside: contentView)
-        } else {
+        if isImageWrapper {
             webView.pin(inside: contentView)
+        } else {
+            webView.pinWithThemeSwitchButton(inside: contentView)
         }
         webView.linkDelegate = self
         webView.accessibilityLabel = "FileDetails.webView"
@@ -392,7 +392,7 @@ extension FileDetailsViewController: UIScrollViewDelegate {
     func embedImageOrWebView(for url: URL) {
         imageLoader = ImageLoader(url: url, frame: .zero, shouldFailForAnimatedGif: true) { [weak self] result in
             if case .failure(ImageLoaderError.animatedGifFound) = result {
-                self?.embedWebView(for: url, handleDarkMode: false)
+                self?.embedWebView(for: url, isImageWrapper: true)
                 self?.imageLoader = nil
             } else {
                 self?.embedImageView(for: url)
