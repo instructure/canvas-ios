@@ -21,6 +21,10 @@ import WebKit
 import Combine
 
 public struct LoadedImage {
+    public enum Error: Swift.Error {
+        case animatedGifFound
+    }
+
     let image: UIImage
     let repeatCount: Int
 }
@@ -67,7 +71,7 @@ extension UIImageView {
         return loader?.load()
     }
 
-    public func load(url: URL, result: Result<LoadedImage, Error>) {
+    private func load(url: URL, result: Result<LoadedImage, Error>) {
         guard self.url == url else { return }
         if case .success(let cached) = result {
             image = cached.image
@@ -93,6 +97,8 @@ public class ImageLoader {
     let url: URL
     var webView: WKWebView?
 
+    private let shouldFailForAnimatedGif: Bool
+
     private static var rendered: [String: LoadedImage] = [:]
     private static var loading: [String: [ImageLoader]] = [:]
 
@@ -101,7 +107,7 @@ public class ImageLoader {
         loading = [:]
     }
 
-    init(url: URL, frame: CGRect, callback: @escaping (Result<LoadedImage, Error>) -> Void) {
+    init(url: URL, frame: CGRect, shouldFailForAnimatedGif: Bool = false, callback: @escaping (Result<LoadedImage, Error>) -> Void) {
         self.callback = callback
         self.frame = frame
         let keyBase = url.absoluteStringWithoutTokenQuery
@@ -109,6 +115,7 @@ public class ImageLoader {
             ? "\(keyBase)@\(frame.width)x\(frame.height)"
             : keyBase
         self.url = url
+        self.shouldFailForAnimatedGif = shouldFailForAnimatedGif
     }
 
     func cancel() {
@@ -144,8 +151,10 @@ public class ImageLoader {
         let type = response?.mimeType
         if type?.hasPrefix("image/svg") == true || url.pathExtension.lowercased() == "svg" {
             performUIUpdate { self.svgFrom(data: data) }
-        } else if type == "image/gif" || url.pathExtension.lowercased() == "gif" {
-            gifFrom(data: data)
+        } else if shouldFailForAnimatedGif
+                    && (type == "image/gif" || url.pathExtension.lowercased() == "gif")
+                    && isAnimatedGif(data: data) {
+            handle(nil, 0, LoadedImage.Error.animatedGifFound)
         } else {
             handle(UIImage(data: data)?.normalize())
         }
@@ -199,6 +208,12 @@ public class ImageLoader {
     }
 
     // MARK: - GIF to UIImage.animatedImage
+
+    func isAnimatedGif(data: Data) -> Bool {
+        guard let source = CGImageSourceCreateWithData(data as CFData, nil) else { return false }
+        let count = CGImageSourceGetCount(source)
+        return count > 1
+    }
 
     func gifFrom(data: Data) {
         guard let source = CGImageSourceCreateWithData(data as CFData, nil) else { return handle(UIImage(data: data)) }

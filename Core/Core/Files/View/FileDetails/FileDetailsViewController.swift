@@ -61,6 +61,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     private var accessReportInteractor: FileAccessReportInteractor?
     private var subscriptions = Set<AnyCancellable>()
     private var offlineFileInteractor: OfflineFileInteractor?
+    private var imageLoader: ImageLoader?
 
     public static func create(context: Context?, fileID: String, originURL: URLComponents? = nil, assignmentID: String? = nil,
                               offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileDetailsViewController {
@@ -197,10 +198,14 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         doneLoading()
     }
 
-    func embedWebView(for url: URL, isLocalURL: Bool = true) {
-        let webView = CoreWebView(features: [.invertColorsInDarkMode])
+    func embedWebView(for url: URL, isLocalURL: Bool = true, handleDarkMode: Bool = true) {
+        let webView = CoreWebView(features: handleDarkMode ? [.invertColorsInDarkMode] : [])
         contentView.addSubview(webView)
-        webView.pinWithThemeSwitchButton(inside: contentView)
+        if handleDarkMode {
+            webView.pinWithThemeSwitchButton(inside: contentView)
+        } else {
+            webView.pin(inside: contentView)
+        }
         webView.linkDelegate = self
         webView.accessibilityLabel = "FileDetails.webView"
         progressView.progress = 0
@@ -370,7 +375,7 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
         case (_, let type) where type?.hasPrefix("audio/") == true:
             embedAudioView(for: localURL)
         case ("image", _), (_, "image/heic"):
-            embedImageView(for: localURL)
+            embedImageOrWebView(for: localURL)
         case (_, "model/vnd.usdz+zip"):
             embedQLThumbnail()
         case ("pdf", _):
@@ -384,6 +389,19 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
 }
 
 extension FileDetailsViewController: UIScrollViewDelegate {
+    func embedImageOrWebView(for url: URL) {
+        imageLoader = ImageLoader(url: url, frame: .zero, shouldFailForAnimatedGif: true) { [weak self] result in
+            if case .failure(LoadedImage.Error.animatedGifFound) = result {
+                self?.embedWebView(for: url, handleDarkMode: false)
+                self?.imageLoader = nil
+            } else {
+                self?.embedImageView(for: url)
+                self?.imageLoader = nil
+            }
+        }
+        imageLoader?.load()
+    }
+
     func embedImageView(for url: URL) {
         let image = UIImageView(image: UIImage(contentsOfFile: url.path))
         image.accessibilityIdentifier = "FileDetails.imageView"
