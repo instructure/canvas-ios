@@ -42,6 +42,7 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
             CourseSyncEntry(
                 name: "course-name-1",
                 id: "courses/course-id-1",
+                hasFrontPage: false,
                 tabs: [
                     .init(id: "courses/course-id-1/tabs/files", name: "tab-files", type: .files)
                 ],
@@ -77,6 +78,7 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
             CourseSyncEntry(
                 name: "course-name-1",
                 id: "courses/course-id-1",
+                hasFrontPage: false,
                 tabs: [],
                 files: []
             )

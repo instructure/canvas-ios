@@ -182,6 +182,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         downloaders.append(downloadFiles(for: entry))
         downloaders.append(downloadModules(for: entry))
 
+        if !entry.selectedTabs.contains(.pages), entry.hasFrontPage {
+            downloaders.append(downloadFrontPage(entry: entry))
+        }
+
         return downloaders
             .zip()
             .receive(on: scheduler)
@@ -419,6 +423,15 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         }
 
         return downloaders
+    }
+
+    private func downloadFrontPage(entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
+        guard let interactor = contentInteractors.first(where: { $0.associatedTabType == .pages }) else {
+            return Just(()).eraseToAnyPublisher()
+        }
+        return interactor.getContent(courseId: entry.courseId)
+            .catch { _ in Just(()).eraseToAnyPublisher() }
+            .eraseToAnyPublisher()
     }
 
     private func removeUnavailableFiles(courseId: String, newFileIDs: [String] = []) -> AnyPublisher<Void, Never> {
