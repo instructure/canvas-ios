@@ -20,15 +20,6 @@ import UIKit
 import WebKit
 import Combine
 
-public struct LoadedImage {
-    public enum Error: Swift.Error {
-        case animatedGifFound
-    }
-
-    let image: UIImage
-    let repeatCount: Int
-}
-
 private var urlHandle: UInt8 = 0
 private var loaderHandle: UInt8 = 0
 
@@ -71,26 +62,22 @@ extension UIImageView {
         return loader?.load()
     }
 
-    private func load(url: URL, result: Result<LoadedImage, Error>) {
+    private func load(url: URL, result: Result<UIImage, Error>) {
         guard self.url == url else { return }
-        if case .success(let cached) = result {
-            image = cached.image
-            if let images = cached.image.images {
-                image = images.last
-                if !UIAccessibility.isReduceMotionEnabled {
-                    animationDuration = cached.image.duration
-                    animationImages = images
-                    animationRepeatCount = cached.repeatCount
-                    startAnimating()
-                }
-            }
+        if case .success(let image) = result {
+            self.image = image
         }
         loader = nil
     }
 }
 
+public enum ImageLoaderError: Swift.Error {
+    case animatedGifFound
+}
+
 public class ImageLoader {
-    let callback: (Result<LoadedImage, Error>) -> Void
+
+    let callback: (Result<UIImage, Error>) -> Void
     let frame: CGRect
     let key: String
     var task: APITask?
@@ -99,7 +86,7 @@ public class ImageLoader {
 
     private let shouldFailForAnimatedGif: Bool
 
-    private static var rendered: [String: LoadedImage] = [:]
+    private static var rendered: [String: UIImage] = [:]
     private static var loading: [String: [ImageLoader]] = [:]
 
     static func reset() {
@@ -107,7 +94,7 @@ public class ImageLoader {
         loading = [:]
     }
 
-    init(url: URL, frame: CGRect, shouldFailForAnimatedGif: Bool = false, callback: @escaping (Result<LoadedImage, Error>) -> Void) {
+    init(url: URL, frame: CGRect, shouldFailForAnimatedGif: Bool = false, callback: @escaping (Result<UIImage, Error>) -> Void) {
         self.callback = callback
         self.frame = frame
         let keyBase = url.absoluteStringWithoutTokenQuery
@@ -140,42 +127,43 @@ public class ImageLoader {
             if let data = data, error == nil {
                 self.imageFrom(data: data, response: response as? HTTPURLResponse)
             } else {
-                self.handle(nil, 0, error)
+                self.handle(nil, error)
             }
         }
         task?.resume()
         return task
     }
 
-    func imageFrom(data: Data, response: HTTPURLResponse? = nil) {
+    private func imageFrom(data: Data, response: HTTPURLResponse? = nil) {
         let type = response?.mimeType
         if type?.hasPrefix("image/svg") == true || url.pathExtension.lowercased() == "svg" {
             performUIUpdate { self.svgFrom(data: data) }
         } else if shouldFailForAnimatedGif
                     && (type == "image/gif" || url.pathExtension.lowercased() == "gif")
                     && isAnimatedGif(data: data) {
-            handle(nil, 0, LoadedImage.Error.animatedGifFound)
+            handle(nil, ImageLoaderError.animatedGifFound)
         } else {
             handle(UIImage(data: data)?.normalize())
         }
     }
 
-    func handle(_ image: UIImage?, _ repeatCount: Int = 0, _ error: Error? = nil) {
-        performUIUpdate { self.notify(image, repeatCount, error) }
+    private func handle(_ image: UIImage?, _ error: Error? = nil) {
+        performUIUpdate { self.notify(image, error) }
     }
 
-    func notify(_ image: UIImage?, _ repeatCount: Int, _ error: Error? = nil) {
-        let result: Result<LoadedImage, Error>
-        if let image = image {
-            let loaded = LoadedImage(image: image, repeatCount: repeatCount)
-            if !url.isFileURL { ImageLoader.rendered[key] = loaded }
-            result = .success(loaded)
+    private func notify(_ image: UIImage?, _ error: Error? = nil) {
+        let result: Result<UIImage, Error>
+        if let image {
+            if !url.isFileURL { ImageLoader.rendered[key] = image }
+            result = .success(image)
         } else {
             result = .failure(error ?? NSError.internalError())
         }
+
         for loader in ImageLoader.loading[key] ?? [] {
             loader.callback(result)
         }
+
         ImageLoader.loading[key] = nil
     }
 
@@ -201,74 +189,19 @@ public class ImageLoader {
         view.handle("svg") { [weak self] _ in
             self?.webView?.takeSnapshot(with: nil) { snapshot, error in
                 self?.webView = nil
-                self?.handle(snapshot, 0, error)
+                self?.handle(snapshot, error)
             }
         }
         view.loadHTMLString(html, baseURL: url)
     }
 
-    // MARK: - GIF to UIImage.animatedImage
+    // MARK: - GIF
 
     func isAnimatedGif(data: Data) -> Bool {
         guard let source = CGImageSourceCreateWithData(data as CFData, nil) else { return false }
         let count = CGImageSourceGetCount(source)
         return count > 1
     }
-
-    func gifFrom(data: Data) {
-        guard let source = CGImageSourceCreateWithData(data as CFData, nil) else { return handle(UIImage(data: data)) }
-        let count = CGImageSourceGetCount(source)
-        guard count > 1 else { return handle(UIImage(data: data)) }
-        var delays: [Int] = [] // in centiseconds
-        var commonFactor: Int?
-        for index in 0..<count {
-            let delay = Int(round(gifDelayAt(index, source: source) * 100.0))
-            delays.append(delay)
-            commonFactor = greatestCommonFactor(delay, commonFactor ?? delay)
-        }
-        var images: [UIImage] = []
-        var duration = 0
-        for index in 0..<count {
-            if let cgImage = CGImageSourceCreateImageAtIndex(source, index, nil), let factor = commonFactor {
-                let image = UIImage(cgImage: cgImage)
-                duration += delays[index]
-                for _ in 0..<(delays[index] / factor) {
-                    images.append(image)
-                }
-            }
-        }
-        handle(UIImage.animatedImage(with: images, duration: Double(duration) / 100.0), gifLoopCount(source: source))
-    }
-
-    func gifDelayAt(_ index: Int, source: CGImageSource) -> TimeInterval {
-        if let properties = CGImageSourceCopyPropertiesAtIndex(source, index, nil),
-            let gif = (properties as NSDictionary)[kCGImagePropertyGIFDictionary] as? NSDictionary,
-            let delay = gif[kCGImagePropertyGIFDelayTime] as? TimeInterval {
-            return max(delay, 0.02)
-        }
-        return 0.1
-    }
-
-    func gifLoopCount(source: CGImageSource) -> Int {
-        if let properties = CGImageSourceCopyProperties(source, nil),
-            let gif = (properties as NSDictionary)[kCGImagePropertyGIFDictionary] as? NSDictionary,
-            let count = gif[kCGImagePropertyGIFLoopCount] as? Int {
-            return count
-        }
-        return 1
-    }
-}
-
-/// Use Euclid's method to find the largest factor in common between two `Int`s.
-/// 
-/// - Returns: Greatest common `Int` factor of `a` and `b`.
-public func greatestCommonFactor(_ a: Int, _ b: Int) -> Int {
-    var a = a
-    var b = b
-    while b != 0 {
-        (a, b) = (b, a % b)
-    }
-    return a
 }
 
 private extension URL {

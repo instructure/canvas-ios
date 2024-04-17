@@ -391,7 +391,7 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
 extension FileDetailsViewController: UIScrollViewDelegate {
     func embedImageOrWebView(for url: URL) {
         imageLoader = ImageLoader(url: url, frame: .zero, shouldFailForAnimatedGif: true) { [weak self] result in
-            if case .failure(LoadedImage.Error.animatedGifFound) = result {
+            if case .failure(ImageLoaderError.animatedGifFound) = result {
                 self?.embedWebView(for: url, handleDarkMode: false)
                 self?.imageLoader = nil
             } else {

@@ -26,13 +26,9 @@ public struct RemoteImage: View {
 
     @State private var loader: ImageLoader?
     @State private var loadedURL: URL?
-    @State private var image: LoadedImage?
+    @State private var image: UIImage?
     @State private var animated: Bool = false
     @State private var started: Bool = false
-
-    @State private var currentFrameIndex = 0
-    @State private var animationRepeatedCount = 0
-    @State private var frameAnimationTimer: Timer?
 
     public init(_ url: URL, width: CGFloat, height: CGFloat, shouldHandleAnimatedGif: Bool = false) {
         self.url = url
@@ -50,7 +46,7 @@ public struct RemoteImage: View {
                 resetState()
                 load()
             }
-        } else if let image = image?.image.images?[currentFrameIndex] ?? image?.image {
+        } else if let image {
             Image(uiImage: image.withRenderingMode(.alwaysOriginal))
                 .resizable().scaledToFill()
                 .frame(width: width, height: height)
@@ -69,26 +65,25 @@ public struct RemoteImage: View {
     }
 
     private func resetState() {
-        frameAnimationTimer?.invalidate()
-        frameAnimationTimer = nil
         loader?.cancel()
         loader = nil
-        currentFrameIndex = 0
-        animationRepeatedCount = 0
         started = false
         image = nil
+        animated = false
     }
 
     private func load() {
         guard !started else { return }
         started = true
+
         let localURL = url // Create a local copy in case it changes while the previous image is still loading
         let frame = CGRect(x: 0, y: 0, width: width, height: height)
+
         loader = ImageLoader(url: localURL, frame: frame, shouldFailForAnimatedGif: shouldHandleAnimatedGif) { result in
             loader = nil
 
             if shouldHandleAnimatedGif {
-                if case .failure(LoadedImage.Error.animatedGifFound) = result {
+                if case .failure(ImageLoaderError.animatedGifFound) = result {
                     animated = true
                     image = nil
                     loadedURL = localURL
@@ -96,30 +91,17 @@ public struct RemoteImage: View {
                     animated = false
                     loader = ImageLoader(url: localURL, frame: frame, shouldFailForAnimatedGif: shouldHandleAnimatedGif) { result in
                         loader = nil
-                        guard case .success(let loaded) = result else { return }
-                        image = loaded
-                        loadedURL = localURL
+                        guard case .success(let image) = result else { return }
+                        self.image = image
+                        self.loadedURL = localURL
                     }
                     loader?.load()
                 }
             } else {
                 animated = false
-                guard case .success(let loaded) = result else { return }
-                self.image = loaded
+                guard case .success(let image) = result else { return }
+                self.image = image
                 self.loadedURL = localURL
-                if let count = loaded.image.images?.count, count > 0 {
-                    let frameAnimationTimer = Timer(timeInterval: loaded.image.duration / Double(count), repeats: true) { _ in
-                        self.currentFrameIndex = (self.currentFrameIndex + 1) % count
-                        guard self.currentFrameIndex == 0 else { return }
-                        self.animationRepeatedCount += 1
-                        guard loaded.repeatCount > 0, self.animationRepeatedCount >= loaded.repeatCount else { return }
-                        self.frameAnimationTimer?.invalidate()
-                        self.frameAnimationTimer = nil
-                        self.currentFrameIndex = count - 1 // stay on end frame
-                    }
-                    RunLoop.current.add(frameAnimationTimer, forMode: .common)
-                    self.frameAnimationTimer = frameAnimationTimer
-                }
             }
         }
         loader?.load()
