@@ -79,23 +79,21 @@ public struct RemoteImage: View {
         let localURL = url // Create a local copy in case it changes while the previous image is still loading
         let frame = CGRect(x: 0, y: 0, width: width, height: height)
 
-        loader = ImageLoader(url: localURL, frame: frame, shouldFailForAnimatedGif: shouldHandleAnimatedGif) { result in
+        executeLoad(localURL: localURL, frame: frame, handleAnimatedGif: shouldHandleAnimatedGif)
+    }
+
+    private func executeLoad(localURL: URL, frame: CGRect, handleAnimatedGif: Bool) {
+        loader = ImageLoader(url: localURL, frame: frame, shouldFailForAnimatedGif: handleAnimatedGif) { result in
             loader = nil
 
-            if shouldHandleAnimatedGif {
+            if handleAnimatedGif {
                 if case .failure(ImageLoaderError.animatedGifFound) = result {
                     animated = true
                     image = nil
                     loadedURL = localURL
                 } else {
-                    animated = false
-                    loader = ImageLoader(url: localURL, frame: frame, shouldFailForAnimatedGif: shouldHandleAnimatedGif) { result in
-                        loader = nil
-                        guard case .success(let image) = result else { return }
-                        self.image = image
-                        self.loadedURL = localURL
-                    }
-                    loader?.load()
+                    // load already cached UIImage
+                    executeLoad(localURL: localURL, frame: frame, handleAnimatedGif: false)
                 }
             } else {
                 animated = false
