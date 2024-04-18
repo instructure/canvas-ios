@@ -39,13 +39,22 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
         useCache: Bool
     ) -> AnyPublisher<CourseSyncEntry, Error> {
         let tabs = Array(course.tabs).offlineSupportedTabs()
-        let mappedTabs = tabs.map {
+        var mappedTabs = tabs.map {
             CourseSyncEntry.Tab(
                 id: "courses/\(course.courseId)/tabs/\($0.id)",
                 name: $0.label,
                 type: $0.name
             )
         }
+        mappedTabs.append(
+            CourseSyncEntry.Tab(
+                id: "courses/\(course.courseId)/tabs/additional-content",
+                name: "Additional Content",
+                type: .additionalContent,
+                selectionState: .selected
+            )
+        )
+
         if tabs.isFilesTabEnabled() {
             return filesInteractor.getFiles(courseId: course.courseId, useCache: useCache)
                 .map { files in

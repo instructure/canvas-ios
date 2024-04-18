@@ -108,7 +108,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never> {
         courseSyncEntries
             .replaceError(with: [])
-            .map { $0.allSatisfy { $0.isEverythingSelected } }
+            .map { $0.allSatisfy { $0.isFullContentSync } }
             .replaceEmpty(with: true)
             .eraseToAnyPublisher()
     }

@@ -63,7 +63,9 @@ public struct CourseSyncEntry: Equatable {
 
     var isCollapsed: Bool = true
     var selectionState: ListCellView.SelectionState = .deselected
-    var isEverythingSelected: Bool = false
+    var isFullContentSync: Bool {
+        selectionState == .selected
+    }
 
     var state: State = .loading(nil)
 
@@ -179,7 +181,6 @@ public struct CourseSyncEntry: Equatable {
         tabs.indices.forEach { tabs[$0].selectionState = selectionState }
         files.indices.forEach { files[$0].selectionState = selectionState }
         self.selectionState = selectionState
-        isEverythingSelected = selectionState == .selected ? true : false
     }
 
     mutating func selectTab(id: String, selectionState: ListCellView.SelectionState) {
@@ -189,30 +190,11 @@ public struct CourseSyncEntry: Equatable {
             files.indices.forEach { files[$0].selectionState = selectionState }
         }
 
-        // Selecting modules or grades will select every other tab because they are needed to compose modules/grades.
-        if selectionState == .selected {
-            if tabs[id: id]?.type == .modules || tabs[id: id]?.type == .grades || tabs[id: id]?.type == .pages {
-                for tab in tabs where tab.type != .modules && tab.type != .grades && tab.type != .pages {
-                    selectTab(id: tab.id, selectionState: .selected)
-                }
-            }
-            // Deselecting a tab other than modules or grades will deselect modules and grades.
-        } else if selectionState == .deselected {
-            if tabs[id: id]?.type != .modules, tabs[id: id]?.type != .grades, tabs[id: id]?.type != .pages {
-                for tab in tabs where tab.type == .modules || tab.type == .grades || tab.type == .pages {
-                    selectTab(id: tab.id, selectionState: .deselected)
-                }
-            }
-        }
-
-        isEverythingSelected = (selectedTabsCount == tabs.count) && (selectedFilesCount == files.count)
         self.selectionState = selectedTabsCount > 0 ? .partiallySelected : .deselected
     }
 
     mutating func selectFile(id: String, selectionState: ListCellView.SelectionState) {
         files[id: id]?.selectionState = selectionState == .selected ? .selected : .deselected
-
-        isEverythingSelected = (selectedTabsCount == tabs.count) && (selectedFilesCount == files.count)
 
         guard var fileTab = tabs.first(where: { $0.type == TabName.files }) else {
             return

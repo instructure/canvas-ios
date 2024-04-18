@@ -204,13 +204,32 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private func downloadTabContent(for entry: CourseSyncEntry, tabName: TabName) -> AnyPublisher<Void, Never> {
         unowned let unownedSelf = self
 
-        guard let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
-              entry.tabs[tabIndex].state != .downloaded
-        else {
-            return Just(()).eraseToAnyPublisher()
+//        guard let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
+//              entry.tabs[tabIndex].state != .downloaded
+//        else {
+//            return Just(()).eraseToAnyPublisher()
+//        }
+
+        var tabId: String?
+        var interactor: CourseSyncContentInteractor?
+
+        if entry.isFullContentSync {
+            interactor = contentInteractors.first(where: { $0.associatedTabType == tabName })
+
+            if let tab = entry.tabs.first(where: { $0.type == tabName }) {
+                tabId = tab.id
+            } else if let tab = entry.tabs.first(where: { $0.type == .additionalContent }) {
+                tabId = tab.id
+            }
+        } else if entry.selectedTabs.contains(tabName) {
+            interactor = contentInteractors.first(where: { $0.associatedTabType == tabName })
+            tabId = entry.tabs.first(where: { $0.type == tabName })?.id
         }
 
-        guard let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) else {
+        guard
+            let interactor,
+            let tabId,
+            let tabIndex = entry.tabs.firstIndex(where: { $0.id == tabId }) else {
             return Just(()).eraseToAnyPublisher()
         }
 
@@ -229,19 +248,19 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                         .receive(on: scheduler)
                         .updateLoadingState {
                             unownedSelf.setState(
-                                selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                                selection: .tab(entry.id, tabId),
                                 state: .loading(nil)
                             )
                         }
                         .updateDownloadedState {
                             unownedSelf.setState(
-                                selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                                selection: .tab(entry.id, tabId),
                                 state: .downloaded
                             )
                         }
                         .catch { _ in
                             unownedSelf.setState(
-                                selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                                selection: .tab(entry.id, tabId),
                                 state: .error
                             )
                             return Just(()).eraseToAnyPublisher()

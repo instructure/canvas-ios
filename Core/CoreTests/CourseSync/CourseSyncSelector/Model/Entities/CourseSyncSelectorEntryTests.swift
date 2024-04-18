@@ -204,22 +204,22 @@ class CourseSyncEntryTests: XCTestCase {
                 CourseSyncEntry.File.make(id: "file2", displayName: "file2"),
             ]
         )
-        XCTAssertEqual(entry.isEverythingSelected, false)
+        XCTAssertEqual(entry.isFullContentSync, false)
 
         entry.selectTab(id: "tab1", selectionState: .selected)
-        XCTAssertEqual(entry.isEverythingSelected, false)
+        XCTAssertEqual(entry.isFullContentSync, false)
 
         entry.selectTab(id: "tab2", selectionState: .deselected)
-        XCTAssertEqual(entry.isEverythingSelected, false)
+        XCTAssertEqual(entry.isFullContentSync, false)
 
         entry.selectTab(id: "tab2", selectionState: .selected)
-        XCTAssertEqual(entry.isEverythingSelected, true)
+        XCTAssertEqual(entry.isFullContentSync, true)
 
         entry.selectFile(id: "file1", selectionState: .deselected)
-        XCTAssertEqual(entry.isEverythingSelected, false)
+        XCTAssertEqual(entry.isFullContentSync, false)
 
         entry.selectFile(id: "file1", selectionState: .selected)
-        XCTAssertEqual(entry.isEverythingSelected, true)
+        XCTAssertEqual(entry.isFullContentSync, true)
     }
 
     func testSelectionCount() {
