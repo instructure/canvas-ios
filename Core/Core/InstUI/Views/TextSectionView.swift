@@ -24,7 +24,7 @@ public extension InstUI {
         private let title: String
         private let description: String
 
-        init(title: String, description: String) {
+        public init(title: String, description: String) {
             self.title = title
             self.description = description
         }

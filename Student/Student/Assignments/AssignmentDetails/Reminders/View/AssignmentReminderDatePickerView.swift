@@ -88,12 +88,14 @@ public struct AssignmentReminderDatePickerView: View {
 
             }
             .pickerStyle(WheelPickerStyle())
+            .accessibilityIdentifier("AssignmentReminder.numberPicker")
             Picker(selection: $viewModel.customMetric) {
                 ForEach(AssignmentReminderTimeMetric.allCases) {
                     Text($0.pickerTitle).tag($0)
                 }
             } label: {}
             .pickerStyle(WheelPickerStyle())
+            .accessibilityIdentifier("AssignmentReminder.timeUnitPicker")
         }
         .font(.regular16)
         .foregroundStyle(Color.textDarkest)
