@@ -160,11 +160,12 @@ public class ImageLoader {
             result = .failure(error ?? NSError.internalError())
         }
 
-        for loader in ImageLoader.loading[key] ?? [] {
+        let activeLoaders = ImageLoader.loading[key] ?? []
+        ImageLoader.loading[key] = nil
+
+        for loader in activeLoaders {
             loader.callback(result)
         }
-
-        ImageLoader.loading[key] = nil
     }
 
     // MARK: - SVG snapshot
