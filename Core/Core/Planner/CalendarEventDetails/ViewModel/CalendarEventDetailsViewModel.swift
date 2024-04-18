@@ -24,8 +24,6 @@ public class CalendarEventDetailsViewModel: ObservableObject {
     @Published public private(set) var state: InstUI.ScreenState = .loading
     @Published public private(set) var title: String?
     @Published public private(set) var date: String?
-    @Published public private(set) var schedule: String?
-    @Published public private(set) var location: String?
     @Published public private(set) var locationInfo: [InstUI.TextSectionView.SectionData] = []
     @Published public private(set) var details: InstUI.TextSectionView.SectionData?
     @Published public private(set) var contextColor: Color?
@@ -64,18 +62,33 @@ public class CalendarEventDetailsViewModel: ObservableObject {
                 guard let self else { return }
                 self.contextColor = Color(contextColor)
                 title = event.title
+
+                if event.isAllDay {
+                    date = event.startAt?.dateOnlyString
+                } else if let start = event.startAt, let end = event.endAt {
+                    date = start.intervalStringTo(end)
+                } else {
+                    date = event.startAt?.dateTimeString
+                }
+
+                if let seriesInfo = event.seriesInNaturalLanguage {
+                    date?.append("\n\(seriesInfo)")
+                } else {
+                    date?.append("\n\(String(localized: "Does Not Repeat"))")
+                }
+
                 locationInfo = {
                     var result: [InstUI.TextSectionView.SectionData] = []
-                    if let address = event.locationAddress {
-                        result.append(
-                            .init(title: String(localized: "Address"),
-                                  description: address)
-                        )
-                    }
                     if let locationName = event.locationName, locationName.nonEmpty {
                         result.append(
                             .init(title: String(localized: "Location"),
                                   description: locationName)
+                        )
+                    }
+                    if let address = event.locationAddress {
+                        result.append(
+                            .init(title: String(localized: "Address"),
+                                  description: address)
                         )
                     }
                     return result
@@ -87,14 +100,6 @@ public class CalendarEventDetailsViewModel: ObservableObject {
                         description: details,
                         isRichContent: true
                     )
-                }
-
-                if event.isAllDay {
-                    date = event.startAt?.dateOnlyString
-                } else if let start = event.startAt, let end = event.endAt {
-                    date = start.intervalStringTo(end)
-                } else {
-                    date = event.startAt?.dateTimeString
                 }
             }
             .store(in: &subscriptions)
