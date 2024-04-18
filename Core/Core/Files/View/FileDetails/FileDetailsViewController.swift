@@ -198,28 +198,39 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         doneLoading()
     }
 
-    func embedWebView(for url: URL, isLocalURL: Bool = true, isImageWrapper: Bool = false) {
-        let webView = CoreWebView(features: isImageWrapper ? [] : [.invertColorsInDarkMode])
+    func embedWebView(for url: URL, isLocalURL: Bool = true) {
+        let webView = CoreWebView(features: [.invertColorsInDarkMode])
         contentView.addSubview(webView)
-        if isImageWrapper {
-            webView.pin(inside: contentView)
-        } else {
-            webView.pinWithThemeSwitchButton(inside: contentView)
-        }
+        webView.pinWithThemeSwitchButton(inside: contentView)
         webView.linkDelegate = self
         webView.accessibilityLabel = "FileDetails.webView"
         progressView.progress = 0
-        loadObservation = webView.observe(\.estimatedProgress, options: .new) { [weak self] webView, _ in
-            self?.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
-            guard webView.estimatedProgress >= 1 else { return }
-            self?.loadObservation = nil
-            self?.doneLoading()
-        }
+        setupLoadObservation(for: webView)
 
         if isLocalURL {
             webView.loadFileURL(url, allowingReadAccessTo: url)
         } else {
             webView.load(URLRequest(url: url))
+        }
+    }
+
+    func embedImageWrappedInWebView(for url: URL) {
+        let webView = ImageWrapperUIKitWebView()
+        contentView.addSubview(webView)
+        webView.pin(inside: contentView)
+        webView.accessibilityLabel = "FileDetails.webView"
+        progressView.progress = 0
+        setupLoadObservation(for: webView)
+
+        webView.loadImageURL(url, baseURL: URL.Directories.temporary, fill: false, restrictZoom: false)
+    }
+
+    private func setupLoadObservation(for webView: WKWebView) {
+        loadObservation = webView.observe(\.estimatedProgress, options: .new) { [weak self] webView, _ in
+            self?.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
+            guard webView.estimatedProgress >= 1 else { return }
+            self?.loadObservation = nil
+            self?.doneLoading()
         }
     }
 
@@ -389,10 +400,10 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
 }
 
 extension FileDetailsViewController: UIScrollViewDelegate {
-    func embedImageOrWebView(for url: URL) {
+    private func embedImageOrWebView(for url: URL) {
         imageLoader = ImageLoader(url: url, frame: .zero, shouldFailForAnimatedGif: true) { [weak self] result in
             if case .failure(ImageLoaderError.animatedGifFound) = result {
-                self?.embedWebView(for: url, isImageWrapper: true)
+                self?.embedImageWrappedInWebView(for: url)
                 self?.imageLoader = nil
             } else {
                 self?.embedImageView(for: url)
@@ -402,7 +413,7 @@ extension FileDetailsViewController: UIScrollViewDelegate {
         imageLoader?.load()
     }
 
-    func embedImageView(for url: URL) {
+    private func embedImageView(for url: URL) {
         let image = UIImageView(image: UIImage(contentsOfFile: url.path))
         image.accessibilityIdentifier = "FileDetails.imageView"
         image.accessibilityLabel = files.first?.displayName ?? NSLocalizedString("File", bundle: .core, comment: "")

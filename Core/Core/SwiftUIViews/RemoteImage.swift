@@ -51,7 +51,8 @@ public struct RemoteImage: View {
                 .resizable().scaledToFill()
                 .frame(width: width, height: height)
         } else if animated {
-            WebView(url: url)
+            ImageWrapperWebView(url: url)
+                .frame(width: width, height: height)
         } else {
             emptyState.onAppear {
                 load()
