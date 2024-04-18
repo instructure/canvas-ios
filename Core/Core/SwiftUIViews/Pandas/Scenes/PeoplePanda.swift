@@ -26,6 +26,8 @@ public struct PeoplePanda: PandaScene {
     }
     public var height: CGFloat { 180 }
     public var background: AnyView { AnyView(BouncyImage(imageFileName: self.backgroundFileName)) }
+
+    public init() {}
 }
 
 struct PeoplePanda_Previews: PreviewProvider {

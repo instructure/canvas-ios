@@ -64,7 +64,7 @@ struct SideMenuBottomSection: View {
         VStack(spacing: 0) {
             if showDevMenu {
                 SideMenuDeveloperOptionsSection(onDeveloperMenuTap: {
-                    route(to: "/dev-menu", options: .modal(embedInNav: true))
+                    route(to: "/dev-menu", options: .modal(.fullScreen, isDismissable: false, embedInNav: true))
                 })
                 Divider()
             }
