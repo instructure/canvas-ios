@@ -66,6 +66,10 @@ extension String {
             CharacterSet.decimalDigits.contains(char)
         }
     }
+
+    public var nonEmpty: Bool {
+        !isEmpty
+    }
 }
 
 extension String: Error {
