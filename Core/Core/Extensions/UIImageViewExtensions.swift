@@ -87,6 +87,7 @@ public class ImageLoader {
     private let shouldFailForAnimatedGif: Bool
 
     private static var rendered: [String: UIImage] = [:]
+    private static var isAnimated: [String: Bool] = [:]
     private static var loading: [String: [ImageLoader]] = [:]
 
     static func reset() {
@@ -112,13 +113,21 @@ public class ImageLoader {
 
     @discardableResult
     func load() -> APITask? {
+        if shouldFailForAnimatedGif && ImageLoader.isAnimated[key] == true {
+            callback(.failure(ImageLoaderError.animatedGifFound))
+            return nil
+        }
+
         if let loaded = ImageLoader.rendered[key] {
             callback(.success(loaded))
             return nil
-        } else if ImageLoader.loading[key] != nil {
+        }
+
+        if ImageLoader.loading[key] != nil {
             ImageLoader.loading[key]?.append(self)
             return nil
         }
+
         ImageLoader.loading[key] = []
         ImageLoader.loading[key]?.append(self)
 
@@ -138,11 +147,17 @@ public class ImageLoader {
         let type = response?.mimeType
         if type?.hasPrefix("image/svg") == true || url.pathExtension.lowercased() == "svg" {
             performUIUpdate { self.svgFrom(data: data) }
-        } else if shouldFailForAnimatedGif
-                    && (type == "image/gif" || url.pathExtension.lowercased() == "gif")
+        } else if (type == "image/gif" || url.pathExtension.lowercased() == "gif")
                     && isAnimatedGif(data: data) {
-            handle(nil, ImageLoaderError.animatedGifFound)
+            ImageLoader.isAnimated[key] = true
+
+            if shouldFailForAnimatedGif {
+                handle(nil, ImageLoaderError.animatedGifFound)
+            } else {
+                handle(UIImage(data: data))
+            }
         } else {
+            ImageLoader.isAnimated[key] = false
             handle(UIImage(data: data)?.normalize())
         }
     }

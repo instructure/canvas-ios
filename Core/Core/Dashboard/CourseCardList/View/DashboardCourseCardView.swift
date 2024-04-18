@@ -87,7 +87,8 @@ struct DashboardCourseCardView: View {
     private func courseImage(width: CGFloat, height: CGFloat = 80) -> some View {
         ZStack(alignment: .topLeading) {
             Color(courseCard.color).frame(width: width, height: height)
-            courseCard.imageURL.map { RemoteImage($0, width: width, height: height, shouldHandleAnimatedGif: true) }?
+            // disable animated GIFs to avoid creating multiple WebViews
+            courseCard.imageURL.map { RemoteImage($0, width: width, height: height, shouldHandleAnimatedGif: false) }?
                 .opacity(hideColorOverlay ? 1 : 0.4)
                 .clipped()
                 // Fix big course image consuming tap events.
