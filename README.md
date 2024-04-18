@@ -217,4 +217,4 @@ Change the `username`, `password`, and `host` to your test credentials. You can 
 
 ## Xcode Templates
 
-Xcode templates can be found under the `templates` directory. Copy the contents of that directory to ~/Library/Developer/Xcode/Templates/. Run `make sync` to update your project after you have created your files from these templates.
+Xcode templates can be found under the `templates` directory. Copy the contents of that directory to `~/Library/Developer/Xcode/Templates/`. Run `make sync` to update your project after you have created your files from these templates.
