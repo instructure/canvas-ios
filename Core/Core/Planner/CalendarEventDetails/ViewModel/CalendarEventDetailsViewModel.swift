@@ -26,8 +26,9 @@ public class CalendarEventDetailsViewModel: ObservableObject {
     @Published public private(set) var date: String?
     @Published public private(set) var locationInfo: [InstUI.TextSectionView.SectionData] = []
     @Published public private(set) var details: InstUI.TextSectionView.SectionData?
-    @Published public private(set) var contextColor: Color?
+    @Published public private(set) var contextColor: UIColor?
     public let pageTitle = String(localized: "Event Details")
+    @Published public private(set) var pageSubTitle: String?
     public let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar")
 
     private let interactor: CalendarEventDetailsInteractor
@@ -60,8 +61,9 @@ public class CalendarEventDetailsViewModel: ObservableObject {
                 }
             } receiveValue: { [weak self] (event, contextColor) in
                 guard let self else { return }
-                self.contextColor = Color(contextColor)
+                self.contextColor = contextColor
                 title = event.title
+                pageSubTitle = event.contextName
 
                 if event.isAllDay {
                     date = event.startAt?.dateOnlyString

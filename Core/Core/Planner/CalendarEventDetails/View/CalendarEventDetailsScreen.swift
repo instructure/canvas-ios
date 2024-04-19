@@ -34,7 +34,8 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
         ) { _ in
             eventContent
         }
-        .navigationTitle(viewModel.pageTitle)
+        .navigationTitle(viewModel.pageTitle, subtitle: viewModel.pageSubTitle)
+        .navigationBarStyle(.color(viewModel.contextColor))
     }
 
     private var eventContent: some View {
