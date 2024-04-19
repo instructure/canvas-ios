@@ -42,6 +42,7 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
     @IBOutlet weak var timeLimitValueLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     let titleSubtitleView = TitleSubtitleView.create()
+    var offlineModeInteractor: OfflineModeInteractor?
 
     var color: UIColor?
     var courseID = ""
@@ -61,10 +62,14 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
         self?.update()
     }
 
-    static func create(courseID: String, quizID: String) -> QuizDetailsViewController {
+    static func create(
+        courseID: String,
+        quizID: String,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> QuizDetailsViewController {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
         controller.quizID = quizID
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
@@ -157,7 +162,22 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
             : NSLocalizedString("Instructions", comment: "")
         var html = quiz?.lockExplanation ?? quiz?.details ?? ""
         if html.isEmpty { html = NSLocalizedString("No Content", comment: "") }
-        instructionsWebView.loadHTMLString(html, baseURL: quiz?.htmlURL)
+
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: courses.first?.id ?? "",
+            sectionName: OfflineFolderPrefix.quizzes.rawValue,
+            resourceId: quizID
+        )
+        let offlinePath = rootURL.appendingPathComponent("body.html")
+        instructionsWebView.loadContent(
+            isOffline: offlineModeInteractor?.isNetworkOffline(),
+            filePath: offlinePath,
+            content: html,
+            originalBaseURL: quiz?.htmlURL,
+            offlineBaseURL: rootURL
+        )
+
         scrollView.isHidden = quiz == nil
         let title = takeButtonTitle
         takeButton.setTitle(title, for: .normal)

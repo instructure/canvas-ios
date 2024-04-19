@@ -58,11 +58,19 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         app == .teacher && page?.isFrontPage != true
     }
 
-    public static func create(context: Context, pageURL: String, app: App) -> PageDetailsViewController {
+    private var offlineModeInteractor: OfflineModeInteractor?
+
+    public static func create(
+        context: Context,
+        pageURL: String,
+        app: App,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
+    ) -> PageDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.pageURL = pageURL
         controller.app = app
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
@@ -118,7 +126,23 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         setupTitleViewInNavbar(title: page.title)
         optionsButton.accessibilityIdentifier = "PageDetails.options"
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
-        webView.loadHTMLString(page.body, baseURL: page.htmlURL)
+
+        // Offline with separate html file
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: courses.first?.id ?? "",
+            sectionName: OfflineFolderPrefix.pages.rawValue,
+            resourceId: page.id
+        )
+        let offlinePath = rootURL.appendingPathComponent("body.html")
+
+        webView.loadContent(
+            isOffline: offlineModeInteractor?.isNetworkOffline(),
+            filePath: offlinePath,
+            content: page.body,
+            originalBaseURL: nil,
+            offlineBaseURL: rootURL
+        )
     }
 
     private func updatePages() {

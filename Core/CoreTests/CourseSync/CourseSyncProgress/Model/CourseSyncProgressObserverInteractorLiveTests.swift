@@ -31,6 +31,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
             CourseSyncEntry(
                 name: "course-1",
                 id: "course-1",
+                hasFrontPage: false,
                 tabs: [],
                 files: [
                     .make(id: "file-1", displayName: "file-1", bytesToDownload: 1000),
@@ -230,6 +231,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
             .init(
                 name: "course-name",
                 id: "course-id",
+                hasFrontPage: false,
                 tabs: [
                     .init(id: "tab-assignments", name: "Assignments", type: .assignments, state: .loading(0.5), selectionState: .selected),
                     .init(id: "tab-files", name: "Files", type: .files, state: .loading(0.5), selectionState: .selected),

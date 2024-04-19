@@ -290,6 +290,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
             CourseSyncEntry(
                 name: "course-name-1",
                 id: "courses/course-id-1",
+                hasFrontPage: false,
                 tabs: [
                     .init(id: "courses/course-id-1/tabs/files", name: "tab-files", type: .files, state: .error),
                     .init(id: "courses/course-id-1/tabs/assignments", name: "tab-assignments", type: .assignments, state: .downloaded),
@@ -379,6 +380,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
             CourseSyncEntry(
                 name: "course-name-1",
                 id: "courses/course-id-1",
+                hasFrontPage: false,
                 tabs: [
                     .init(id: "courses/course-id-1/tabs/files", name: "tab-files", type: .files),
                     .init(id: "courses/course-id-1/tabs/assignments", name: "tab-assignments", type: .assignments),

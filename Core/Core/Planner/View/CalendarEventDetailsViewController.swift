@@ -31,6 +31,7 @@ public class CalendarEventDetailsViewController: ScreenViewTrackableViewControll
     let webView = CoreWebView()
     let refreshControl = CircleRefreshControl()
     public let titleSubtitleView = TitleSubtitleView.create()
+    var offlineModeInteractor: OfflineModeInteractor?
 
     public var color: UIColor?
     let env = AppEnvironment.shared
@@ -45,9 +46,10 @@ public class CalendarEventDetailsViewController: ScreenViewTrackableViewControll
         self?.update()
     }
 
-    public static func create(eventID: String) -> CalendarEventDetailsViewController {
+    public static func create(eventID: String, offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> CalendarEventDetailsViewController {
         let controller = loadFromStoryboard()
         controller.eventID = eventID
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
@@ -102,6 +104,20 @@ public class CalendarEventDetailsViewController: ScreenViewTrackableViewControll
         locationNameLabel.text = event.locationName
         locationAddressLabel.text = event.locationAddress
         if let html = event.details {
+            let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+                sessionId: env.currentSession?.uniqueID ?? "",
+                courseId: event.context.id,
+                sectionName: OfflineFolderPrefix.calendarEvents.rawValue,
+                resourceId: eventID
+            )
+            let offlinePath = rootURL.appendingPathComponent("body.html")
+            webView.loadContent(
+                isOffline: offlineModeInteractor?.isNetworkOffline(),
+                filePath: offlinePath,
+                content: html,
+                originalBaseURL: event.htmlURL,
+                offlineBaseURL: rootURL
+            )
             webView.loadHTMLString(html, baseURL: event.htmlURL)
         }
     }

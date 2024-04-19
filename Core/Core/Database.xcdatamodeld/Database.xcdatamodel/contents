@@ -318,6 +318,7 @@
     <entity name="CourseSyncSelectorCourse" representedClassName="Core.CourseSyncSelectorCourse" syncable="YES">
         <attribute name="courseCode" attributeType="String"/>
         <attribute name="courseId" attributeType="String"/>
+        <attribute name="hasFrontPage" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="tabs" toMany="YES" deletionRule="Nullify" destinationEntity="Tab" inverseName="course" inverseEntity="Tab"/>
     </entity>

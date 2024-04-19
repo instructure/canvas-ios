@@ -26,9 +26,17 @@ public protocol CourseSyncModulesInteractor {
 
 public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor {
     private let filesInteractor: CourseSyncFilesInteractor
+    private let pageHtmlParser: HTMLParser
+    private let quizHtmlParser: HTMLParser
 
-    public init(filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive()) {
+    public init(
+        filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive(),
+        pageHtmlParser: HTMLParser,
+        quizHtmlParser: HTMLParser
+    ) {
         self.filesInteractor = filesInteractor
+        self.pageHtmlParser = pageHtmlParser
+        self.quizHtmlParser = quizHtmlParser
     }
 
     public func getModuleItems(courseId: String) -> AnyPublisher<[ModuleItem], Error> {
@@ -96,11 +104,12 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         let urls = moduleItems.compactMap { $0.type?.pageUrl }
 
         return urls.publisher
-            .flatMap {
+            .flatMap { [pageHtmlParser] in
                 ReactiveStore(
                     useCase: GetPage(context: .course(courseId), url: $0)
                 )
                 .getEntities(ignoreCache: true)
+                .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: pageHtmlParser)
             }
             .collect()
             .mapToVoid()
@@ -114,11 +123,12 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         let ids = moduleItems.compactMap { $0.type?.quizzId }
 
         return ids.publisher
-            .flatMap {
+            .flatMap { [quizHtmlParser] in
                 ReactiveStore(
                     useCase: GetQuiz(courseID: courseId, quizID: $0)
                 )
                 .getEntities(ignoreCache: true)
+                .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: quizHtmlParser)
             }
             .collect()
             .mapToVoid()

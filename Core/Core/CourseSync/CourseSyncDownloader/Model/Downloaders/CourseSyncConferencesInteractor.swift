@@ -37,6 +37,10 @@ public final class CourseSyncConferencesInteractorLive: CourseSyncConferencesInt
             .eraseToAnyPublisher()
     }
 
+    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        return Just(()).eraseToAnyPublisher()
+    }
+
     private func fetchColors() -> AnyPublisher<Void, Error> {
         fetchUseCase(GetCustomColors())
     }
