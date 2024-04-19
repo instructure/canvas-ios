@@ -74,23 +74,23 @@ public class CalendarEventDetailsViewModel: ObservableObject {
                 }
 
                 if let seriesInfo = event.seriesInNaturalLanguage {
-                    date?.append("\n\(seriesInfo)")
+                    date?.append("\n\(String(localized: "Repeats")) \(seriesInfo)")
                 } else {
                     date?.append("\n\(String(localized: "Does Not Repeat"))")
                 }
 
                 locationInfo = {
                     var result: [InstUI.TextSectionView.SectionData] = []
-                    if let locationName = event.locationName, locationName.nonEmpty {
-                        result.append(
-                            .init(title: String(localized: "Location"),
-                                  description: locationName)
+                    if let locationName = event.locationName, locationName.isNotEmpty {
+                        result.append(.init(
+                            title: String(localized: "Location"),
+                            description: locationName)
                         )
                     }
-                    if let address = event.locationAddress {
-                        result.append(
-                            .init(title: String(localized: "Address"),
-                                  description: address)
+                    if let address = event.locationAddress, address.isNotEmpty {
+                        result.append(.init(
+                            title: String(localized: "Address"),
+                            description: address)
                         )
                     }
                     return result

@@ -67,7 +67,7 @@ extension String {
         }
     }
 
-    public var nonEmpty: Bool {
+    public var isNotEmpty: Bool {
         !isEmpty
     }
 }

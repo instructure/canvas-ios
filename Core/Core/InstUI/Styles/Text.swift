@@ -43,7 +43,7 @@ public extension View {
         case .infoDescription:
             self
                 .font(.regular16, lineHeight: .fit)
-                .foregroundStyle(Color.textDarkest)
+                .foregroundStyle(Color.textDark)
         }
     }
 }

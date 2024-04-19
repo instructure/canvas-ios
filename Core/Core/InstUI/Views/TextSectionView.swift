@@ -20,7 +20,7 @@ import SwiftUI
 
 public extension InstUI {
     struct TextSectionView: View {
-        public struct SectionData: Identifiable {
+        public struct SectionData: Identifiable, Equatable {
             public var id: String { title + description }
 
             public let title: String
@@ -71,7 +71,8 @@ public extension InstUI {
                                 if sectionData.isRichContent {
                                     WebView(
                                         html: sectionData.description,
-                                        features: [.disableDefaultBodyMargin]
+                                        features: [.disableDefaultBodyMargin],
+                                        canToggleTheme: true
                                     )
                                     .frameToFit()
                                 } else {
