@@ -254,6 +254,7 @@ open class CoreWebView: WKWebView {
         let fontCSS: String
         let style = Typography.Style.body
         let uiFont = style.uiFont
+        let marginsDisabled = features.contains { $0 is DisableDefaultBodyMargin }
 
         if AppEnvironment.shared.k5.isK5Enabled {
             font = "BalsamiqSans-Regular"
@@ -271,7 +272,7 @@ open class CoreWebView: WKWebView {
                 -webkit-tap-highlight-color: transparent;
             }
             body {
-                margin: 16px;
+                margin: \(marginsDisabled ? 0 : 16)px;
             }
             p {
                 font-size: \(uiFont.pointSize)px;

@@ -69,9 +69,11 @@ public extension InstUI {
                                     .textStyle(.infoTitle)
 
                                 if sectionData.isRichContent {
-                                    WebView(html: sectionData.description)
-                                        .frameToFit()
-                                        .padding(.horizontal, -1.0 * InstUI.Styles.Padding.standard.rawValue)
+                                    WebView(
+                                        html: sectionData.description,
+                                        features: [.disableDefaultBodyMargin]
+                                    )
+                                    .frameToFit()
                                 } else {
                                     Text(sectionData.description)
                                         .textStyle(.infoDescription)
