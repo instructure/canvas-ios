@@ -596,3 +596,16 @@ extension CoreWebView {
         themeSwitcher?.updateUserInterfaceStyle(with: traitCollection.userInterfaceStyle)
     }
 }
+
+// MARK: Offline parsing
+extension CoreWebView {
+    public func loadContent(isOffline: Bool?, filePath: URL?, content: String?, originalBaseURL: URL?, offlineBaseURL: URL?) {
+        if let filePath, isOffline == true && FileManager.default.fileExists(atPath: filePath.path) {
+            loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
+            let rawHtmlValue = try? String(contentsOf: filePath, encoding: .utf8)
+            loadHTMLString(rawHtmlValue ?? "", baseURL: offlineBaseURL)
+        } else {
+            loadHTMLString(content ?? "", baseURL: originalBaseURL)
+        }
+    }
+}

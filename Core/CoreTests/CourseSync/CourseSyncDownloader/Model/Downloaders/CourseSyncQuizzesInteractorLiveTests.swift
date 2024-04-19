@@ -24,7 +24,7 @@ class CourseSyncQuizzesInteractorLiveTests: CoreTestCase {
     func testSuccessfulFetch() {
         mockQuizzes()
 
-        let testee = CourseSyncQuizzesInteractorLive()
+        let testee = CourseSyncQuizzesInteractorLive(htmlParser: getHTMLParser())
 
         XCTAssertFinish(testee.getContent(courseId: "testCourse"))
         let quizzes: [Quiz] = databaseClient.fetch(scope: .all(orderBy: "id"))
@@ -72,5 +72,10 @@ class CourseSyncQuizzesInteractorLiveTests: CoreTestCase {
         )
         api.mock(getQuiz2, value: apiQuiz2)
         api.mock(getSubmission2, value: GetQuizSubmissionRequest.Response(quiz_submissions: [.make()]))
+    }
+
+    private func getHTMLParser() -> HTMLParser {
+        let interactor = HTMLDownloadInteractorMock()
+        return HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor)
     }
 }

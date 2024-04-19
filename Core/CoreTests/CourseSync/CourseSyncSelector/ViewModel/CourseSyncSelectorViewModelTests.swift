@@ -104,9 +104,10 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 
     func testUpdateStateSucceeds() {
         let mockItem = CourseSyncEntry(name: "",
-                                               id: "test",
-                                               tabs: [],
-                                               files: [])
+                                       id: "test",
+                                       hasFrontPage: false,
+                                       tabs: [],
+                                       files: [])
         mockSelectorInteractor.courseSyncEntriesSubject.send([mockItem])
         waitUntil(shouldFail: true) {
             testee.state == .data
@@ -114,7 +115,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         XCTAssertEqual(testee.cells.count, 1)
         XCTAssertTrue(testee.leftNavBarButtonVisible)
 
-        guard case .item(let item) = testee.cells[0] else {
+        guard case let .item(item) = testee.cells[0] else {
             return XCTFail()
         }
 
@@ -135,9 +136,9 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 
 class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
     required init(
-        courseID: String? = nil,
-        courseSyncListInteractor: CourseSyncListInteractor,
-        sessionDefaults: SessionDefaults
+        courseID _: String? = nil,
+        courseSyncListInteractor _: CourseSyncListInteractor,
+        sessionDefaults _: SessionDefaults
     ) {}
 
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Error>()
@@ -153,6 +154,11 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
     let getSelectedCourseEntriesSubject = PassthroughSubject<[Core.CourseSyncEntry], Never>()
     func getSelectedCourseEntries() -> AnyPublisher<[Core.CourseSyncEntry], Never> {
         getSelectedCourseEntriesSubject.eraseToAnyPublisher()
+    }
+
+    let getDeselectedCourseIdsSubject = PassthroughSubject<[String], Never>()
+    func getDeselectedCourseIds() -> AnyPublisher<[String], Never> {
+        getDeselectedCourseIdsSubject.eraseToAnyPublisher()
     }
 
     let selectedCountSubject = PassthroughSubject<Int, Never>()
@@ -180,9 +186,14 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
 
 class CourseSyncInteractorMock: CourseSyncInteractor {
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Never>()
+    let courseSyncCleanSubject = PassthroughSubject<Void, Never>()
 
     func downloadContent(for _: [Core.CourseSyncEntry]) -> AnyPublisher<[Core.CourseSyncEntry], Never> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
+    }
+
+    func cleanContent(for _: [String]) -> AnyPublisher<Void, Never> {
+        courseSyncCleanSubject.eraseToAnyPublisher()
     }
 
     func cancel() {}
@@ -191,7 +202,7 @@ class CourseSyncInteractorMock: CourseSyncInteractor {
 class CourseSyncListInteractorMock: CourseSyncListInteractor {
     let courseSyncEntrySubject = PassthroughSubject<[CourseSyncEntry], Error>()
 
-    func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
+    func getCourseSyncEntries(filter _: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
         courseSyncEntrySubject.eraseToAnyPublisher()
     }
 }
@@ -199,7 +210,7 @@ class CourseSyncListInteractorMock: CourseSyncListInteractor {
 class CourseSyncEntryComposerInteractorMock: CourseSyncEntryComposerInteractor {
     let courseSyncEntrySubject = PassthroughSubject<CourseSyncEntry, Error>()
 
-    func composeEntry(from course: Core.CourseSyncSelectorCourse, useCache: Bool) -> AnyPublisher<Core.CourseSyncEntry, Error> {
+    func composeEntry(from _: Core.CourseSyncSelectorCourse, useCache _: Bool) -> AnyPublisher<Core.CourseSyncEntry, Error> {
         courseSyncEntrySubject.eraseToAnyPublisher()
     }
 }

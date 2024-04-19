@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+@testable import Core
 import Combine
 import CombineExt
-import Core
 import XCTest
 
 class PublisherExtensionsTests: XCTestCase {
@@ -77,5 +77,64 @@ class PublisherExtensionsTests: XCTestCase {
         // MARK: - GIVEN
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(receivedProgress, false)
+    }
+
+    func testStringParsing() {
+        let pages = [
+            Page.make()
+        ]
+        let testCourseId = "1"
+        let parser = HTMLParserMock()
+
+        var testee: AnyPublisher<[Page], Error> {
+            Just(pages)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+
+        testee
+            .parseHtmlContent(attribute: \.body, id: \.id, courseId: testCourseId, htmlParser: parser)
+            .sink(receiveCompletion: { _ in}, receiveValue: { _ in
+                XCTAssertTrue(parser.parseCalled)
+            })
+            .store(in: &subscriptions)
+
+    }
+
+    func testOptionalStringParsing() {
+        let discussionTopics = [
+            DiscussionTopic.make()
+        ]
+        let testCourseId = "1"
+        let parser = HTMLParserMock()
+
+        var testee: AnyPublisher<[DiscussionTopic], Error> {
+            Just(discussionTopics)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+
+        testee
+            .parseHtmlContent(attribute: \.message, id: \.id, courseId: testCourseId, htmlParser: parser)
+            .sink(receiveCompletion: { _ in}, receiveValue: { _ in
+                XCTAssertTrue(parser.parseCalled)
+            })
+            .store(in: &subscriptions)
+
+    }
+
+    class HTMLParserMock: HTMLParser {
+        var sessionId: String = "testSession"
+
+        var prefix: String = "testPrefix"
+
+        var sectionName: String = "testSection"
+
+        var parseCalled = false
+
+        func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL?) -> AnyPublisher<String, Error> {
+            parseCalled = true
+            return Just("").setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
     }
 }

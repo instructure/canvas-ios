@@ -76,10 +76,9 @@ public class CourseDetailsViewModel: ObservableObject {
     public init(context: Context, offlineModeInteractor: OfflineModeInteractor) {
         self.context = context
         self.offlineModeInteractor = offlineModeInteractor
-        self.showHome = false
+        self.showHome = AppEnvironment.shared.app != .teacher
         bindSplitViewModeObserverToSelectionManager()
         bindCellSelectionStateToCellViewModels()
-        hideHomeTabWhenOfflineModeChanges()
     }
 
     // MARK: - Preview Support
@@ -129,17 +128,6 @@ public class CourseDetailsViewModel: ObservableObject {
         splitModeObserver.isCollapsed
             .subscribe(selectionViewModel.isSplitViewCollapsed)
             .store(in: &subscriptions)
-    }
-
-    private func hideHomeTabWhenOfflineModeChanges() {
-        // For the teacher app home is always hidden
-        if isTeacher {
-            return
-        }
-        offlineModeInteractor
-            .observeIsOfflineMode()
-            .map { !$0 }
-            .assign(to: &$showHome)
     }
 
     private func updateCellSelectionStates(on cells: [CourseDetailsCellViewModel], selectedIndex: Int?) {
@@ -195,7 +183,7 @@ public class CourseDetailsViewModel: ObservableObject {
 
     private func setupHome(course: Course) {
         // Even if there's no home view for the course we still want to reset the split detail view when moving back/to the course details
-        if !showHome || offlineModeInteractor.isOfflineModeEnabled() {
+        if !showHome {
             // We need to drop the # from color otherwise it will be treated as the fragment of the url and not the value of contextColor
             homeRoute = URL(string: "/empty?contextColor=\(courseColor.resolvedColor(with: .light).darkenToEnsureContrast(against: .textLightest).hexString.dropFirst())")
             return

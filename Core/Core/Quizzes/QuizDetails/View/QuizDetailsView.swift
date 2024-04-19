@@ -127,7 +127,7 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
             Text("Description", bundle: .core)
                 .font(.medium16).foregroundColor(.textDark)
                 .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16)).accessibility(identifier: "QuizDetails.description")
-            WebView(html: html, canToggleTheme: true)
+            WebView(html: html, baseURL: URL.Directories.documents, canToggleTheme: true)
                 .frameToFit()
         } else {
             QuizDetailsSection(label: Text("Description", bundle: .core)) {

@@ -24,6 +24,7 @@ class CourseSyncEntryTests: XCTestCase {
     func testCourseId() {
         let testee = CourseSyncEntry(name: "",
                                      id: "courses/3",
+                                     hasFrontPage: false,
                                      tabs: [],
                                      files: [])
         XCTAssertEqual(testee.courseId, "3")
@@ -45,6 +46,7 @@ class CourseSyncEntryTests: XCTestCase {
         var entry = CourseSyncEntry(
             name: "1",
             id: "1",
+            hasFrontPage: false,
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
                 CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
@@ -67,6 +69,7 @@ class CourseSyncEntryTests: XCTestCase {
         var entry = CourseSyncEntry(
             name: "1",
             id: "1",
+            hasFrontPage: false,
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
                 CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
@@ -92,6 +95,7 @@ class CourseSyncEntryTests: XCTestCase {
         var entry = CourseSyncEntry(
             name: "1",
             id: "1",
+            hasFrontPage: false,
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
                 CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
@@ -114,6 +118,7 @@ class CourseSyncEntryTests: XCTestCase {
         var entry = CourseSyncEntry(
             name: "1",
             id: "1",
+            hasFrontPage: false,
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
                 CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
@@ -136,6 +141,7 @@ class CourseSyncEntryTests: XCTestCase {
         var entry = CourseSyncEntry(
             name: "1",
             id: "1",
+            hasFrontPage: false,
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
                 CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
@@ -161,6 +167,7 @@ class CourseSyncEntryTests: XCTestCase {
         var entry = CourseSyncEntry(
             name: "1",
             id: "1",
+            hasFrontPage: false,
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
                 CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
@@ -187,6 +194,7 @@ class CourseSyncEntryTests: XCTestCase {
         var entry = CourseSyncEntry(
             name: "1",
             id: "1",
+            hasFrontPage: false,
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
                 CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
@@ -218,6 +226,7 @@ class CourseSyncEntryTests: XCTestCase {
         var entry = CourseSyncEntry(
             name: "1",
             id: "1",
+            hasFrontPage: false,
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
                 CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),

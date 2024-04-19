@@ -34,6 +34,7 @@ public protocol CourseSyncSelectorInteractor: AnyObject {
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func toggleAllCoursesSelection(isSelected: Bool)
     func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncEntry], Never>
+    func getDeselectedCourseIds() -> AnyPublisher<[String], Never>
     func getCourseName() -> AnyPublisher<String, Never>
 }
 
@@ -166,6 +167,18 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncEntry], Never> {
         courseSyncEntries
             .map { $0.filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected } }
+            .replaceError(with: [])
+            .first()
+            .eraseToAnyPublisher()
+    }
+
+    func getDeselectedCourseIds() -> AnyPublisher<[String], Never> {
+        courseSyncEntries
+            .map { $0.filter { $0.selectionState == .deselected } }
+            .map { courses in
+                return courses.map { $0.courseId }
+            }
+            .map { Array(Set($0)) }
             .replaceError(with: [])
             .first()
             .eraseToAnyPublisher()

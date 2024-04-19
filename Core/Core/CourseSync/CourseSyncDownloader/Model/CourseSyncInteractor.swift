@@ -23,12 +23,14 @@ import Foundation
 
 public protocol CourseSyncInteractor {
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never>
+    func cleanContent(for courseIds: [String]) -> AnyPublisher<Void, Never>
     func cancel()
 }
 
 public protocol CourseSyncContentInteractor {
     var associatedTabType: TabName { get }
     func getContent(courseId: String) -> AnyPublisher<Void, Error>
+    func cleanContent(courseId: String) -> AnyPublisher<Void, Never>
 }
 
 public final class CourseSyncInteractorLive: CourseSyncInteractor {
@@ -54,6 +56,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private let courseListInteractor: CourseListInteractor
     private let backgroundActivity: BackgroundActivity
+    private let env: AppEnvironment
 
     /**
      - parameters:
@@ -69,7 +72,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         notificationInteractor: CourseSyncNotificationInteractor,
         courseListInteractor: CourseListInteractor,
         backgroundActivity: BackgroundActivity,
-        scheduler: AnySchedulerOf<DispatchQueue>
+        scheduler: AnySchedulerOf<DispatchQueue>,
+        env: AppEnvironment
     ) {
         self.contentInteractors = contentInteractors
         self.filesInteractor = filesInteractor
@@ -79,6 +83,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         self.notificationInteractor = notificationInteractor
         self.backgroundActivity = backgroundActivity
         self.scheduler = scheduler
+        self.env = env
 
         listenToCancellationEvent()
     }
@@ -129,6 +134,20 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         return courseSyncEntries.eraseToAnyPublisher()
     }
 
+    public func cleanContent(for courseIds: [String]) -> AnyPublisher<Void, Never> {
+        return courseIds.publisher
+            .compactMap { [weak self] courseId in
+                let rootURL = URL.Directories.documents
+                    .appendingPathComponent(self?.env.currentSession?.uniqueID ?? "")
+                    .appendingPathComponent("Offline")
+                    .appendingPathComponent("course-\(courseId)")
+                try? FileManager.default.removeItem(at: rootURL)
+            }
+            .collect()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
     public func cancel() {
         downloadSubscription?.cancel()
         downloadSubscription = nil
@@ -163,6 +182,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         downloaders.append(downloadFiles(for: entry))
         downloaders.append(downloadModules(for: entry))
 
+        if !entry.selectedTabs.contains(.pages), entry.hasFrontPage {
+            downloaders.append(downloadFrontPage(entry: entry))
+        }
+
         return downloaders
             .zip()
             .receive(on: scheduler)
@@ -182,39 +205,51 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         unowned let unownedSelf = self
 
         guard let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
-              entry.tabs[tabIndex].selectionState == .selected,
               entry.tabs[tabIndex].state != .downloaded
         else {
             return Just(()).eraseToAnyPublisher()
         }
 
         guard let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) else {
-            assertionFailure("No interactor found for selected tab: \(tabName)")
             return Just(()).eraseToAnyPublisher()
         }
 
-        return interactor.getContent(courseId: entry.courseId)
-            .receive(on: scheduler)
-            .updateLoadingState {
-                unownedSelf.setState(
-                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                    state: .loading(nil)
-                )
-            }
-            .updateDownloadedState {
-                unownedSelf.setState(
-                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                    state: .downloaded
-                )
-            }
-            .catch { _ in
-                unownedSelf.setState(
-                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                    state: .error
-                )
-                return Just(()).eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
+        switch entry.tabs[tabIndex].selectionState {
+        case .deselected:
+            return interactor.cleanContent(courseId: entry.courseId)
+                .eraseToAnyPublisher()
+        default:
+            return Just(()).eraseToAnyPublisher()
+                .flatMap {
+                    interactor.cleanContent(courseId: entry.courseId)
+                        .eraseToAnyPublisher()
+                }
+                .flatMap { [scheduler] in
+                    interactor.getContent(courseId: entry.courseId)
+                        .receive(on: scheduler)
+                        .updateLoadingState {
+                            unownedSelf.setState(
+                                selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                                state: .loading(nil)
+                            )
+                        }
+                        .updateDownloadedState {
+                            unownedSelf.setState(
+                                selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                                state: .downloaded
+                            )
+                        }
+                        .catch { _ in
+                            unownedSelf.setState(
+                                selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                                state: .error
+                            )
+                            return Just(()).eraseToAnyPublisher()
+                        }
+                        .eraseToAnyPublisher()
+                }
+                .eraseToAnyPublisher()
+        }
     }
 
     private func downloadFiles(for entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
@@ -388,6 +423,15 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         }
 
         return downloaders
+    }
+
+    private func downloadFrontPage(entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
+        guard let interactor = contentInteractors.first(where: { $0.associatedTabType == .pages }) else {
+            return Just(()).eraseToAnyPublisher()
+        }
+        return interactor.getContent(courseId: entry.courseId)
+            .catch { _ in Just(()).eraseToAnyPublisher() }
+            .eraseToAnyPublisher()
     }
 
     private func removeUnavailableFiles(courseId: String, newFileIDs: [String] = []) -> AnyPublisher<Void, Never> {

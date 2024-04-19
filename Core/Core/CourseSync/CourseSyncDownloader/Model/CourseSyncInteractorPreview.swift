@@ -25,6 +25,10 @@ final class CourseSyncInteractorPreview: CourseSyncInteractor {
         Just([]).eraseToAnyPublisher()
     }
 
+    func cleanContent(for entries: [String]) -> AnyPublisher<Void, Never> {
+        Just(()).eraseToAnyPublisher()
+    }
+
     func cancel() {}
 }
 
