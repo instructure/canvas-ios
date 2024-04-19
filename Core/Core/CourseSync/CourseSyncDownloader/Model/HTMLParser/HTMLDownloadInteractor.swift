@@ -24,6 +24,7 @@ protocol HTMLDownloadInteractor {
     var sectionName: String { get }
     func download(_ url: URL, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<(tempURL: URL, fileName: String), Error>
     func download(_ url: URL) -> AnyPublisher<(tempURL: URL, fileName: String), Error>
+    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error>
     func copy(_ tempURL: URL, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<URL, Error>
     func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error>
 }
@@ -39,6 +40,29 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         self.sectionName = sectionName
         self.scheduler = scheduler
         self.fileManager = fileManager
+    }
+
+    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+        let fileID = url.lastPathComponent
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: loginSession?.uniqueID ?? "",
+            courseId: courseId,
+            sectionName: sectionName,
+            resourceId: resourceId
+        )
+        let saveURL = rootURL.appendingPathComponent(fileID)
+
+        return DownloadTaskPublisher(parameters:
+            DownloadTaskParameters(
+                remoteURL: url,
+                localURL: saveURL,
+                fileID: fileID
+            )
+        )
+        .map { _ in
+            return saveURL
+        }
+        .eraseToAnyPublisher()
     }
 
     func download(
