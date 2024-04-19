@@ -82,12 +82,13 @@ public extension InstUI {
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .paddingStyle(.top, .paragraphTop)
+                            // .combine doesn't work for WebView
+                            .accessibilityElement(children: sectionData.isRichContent ? .contain : .combine)
                         }
                     }
                     .paddingStyle(.horizontal, .standard)
                     .paddingStyle(.bottom, .paragraphBottom)
                 }
-                .accessibilityElement(children: .combine)
             }
         }
     }
