@@ -21,6 +21,22 @@ import Foundation
 public enum APIError: LocalizedError {
     case unauthorized(localizedMessage: String) // Permission issue even after a successful token refresh
 
+    static let forbidden = NSError.instructureError(
+        NSLocalizedString(
+            "You are not authorized to perform this action",
+            bundle: .core,
+            comment: ""
+        )
+    )
+
+    static let unexpected = NSError.instructureError(
+        NSLocalizedString(
+            "There was an unexpected error. Please try again.",
+            bundle: .core,
+            comment: ""
+        )
+    )
+
     public var errorDescription: String? {
         switch self {
         case .unauthorized(let message): return message
@@ -40,8 +56,12 @@ public enum APIError: LocalizedError {
                 return NSError.instructureError(message)
             }
         }
-        if let status = (response as? HTTPURLResponse)?.statusCode, status >= 400 {
-            return NSError.instructureError(NSLocalizedString("There was an unexpected error. Please try again.", bundle: .core, comment: ""))
+        if let status = (response as? HTTPURLResponse)?.statusCode {
+            if status == 403 {
+                return forbidden
+            } else if status >= 400 {
+                return unexpected
+            }
         }
         return error
     }
