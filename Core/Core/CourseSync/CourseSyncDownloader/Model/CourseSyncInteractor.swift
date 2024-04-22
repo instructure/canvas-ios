@@ -260,17 +260,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                                 state: .downloaded
                             )
                         }
-                        .tryCatch { err in
-                            if err as NSError == NSError.instructureError("Failed to save base content") ||
-                                err as NSError == APIError.forbidden {
-                                unownedSelf.setState(
-                                    selection: .tab(entry.id, tabId),
-                                    state: .downloaded
-                                )
-                                return Just(()).eraseToAnyPublisher()
-                            } else {
-                                throw err
-                            }
+                        .tryCatch {
+                            unownedSelf.handleNonFatalErrors(
+                                error: $0,
+                                selection: .tab(entry.id, tabId),
+                                state: .downloaded
+                            )
                         }
                         .catch { _ in
                             unownedSelf.setState(
@@ -282,6 +277,26 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                         .eraseToAnyPublisher()
                 }
                 .eraseToAnyPublisher()
+        }
+    }
+
+    private func handleNonFatalErrors(
+        error: Error,
+        selection: CourseEntrySelection,
+        state: CourseSyncEntry.State
+    ) -> AnyPublisher<Void, Error> {
+        if  error as NSError == NSError.instructureError("Failed to save base content") ||
+            error as NSError == APIError.forbidden ||
+            error as NSError == APIError.notFound {
+            setState(
+                selection: selection,
+                state: state
+            )
+            return Just(())
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        } else {
+            return Fail(error: error).eraseToAnyPublisher()
         }
     }
 
@@ -422,16 +437,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     state: .downloaded
                 )
             }
-            .tryCatch { err in
-                if err as NSError == APIError.forbidden {
-                    unownedSelf.setState(
-                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                        state: .downloaded
-                    )
-                    return Just(()).eraseToAnyPublisher()
-                } else {
-                    throw err
-                }
+            .tryCatch { 
+                unownedSelf.handleNonFatalErrors(
+                    error: $0,
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .downloaded
+                )
             }
             .catch { _ in
                 unownedSelf.setState(
