@@ -29,6 +29,8 @@ public struct NoResultsPanda: PandaScene {
         foreground: CGSize(width: 0, height: 0))
     }
     public var height: CGFloat { 168 }
+
+    public init() {}
 }
 
 struct NoResultsPanda_Previews: PreviewProvider {

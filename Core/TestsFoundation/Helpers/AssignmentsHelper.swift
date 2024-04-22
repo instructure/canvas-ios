@@ -88,6 +88,16 @@ public class AssignmentsHelper: BaseHelper {
         public static var pandaLockedImage: XCUIElement { app.find(id: "PandaLocked", type: .image) }
         public static var submissionAndRubricButton: XCUIElement { app.find(label: "Submission & Rubric", type: .button) }
 
+        // Reminder
+        public static var reminder: XCUIElement { app.find(id: "AssignmentDetails.reminder") }
+        public static var addReminder: XCUIElement { app.find(id: "AssignmentDetails.addReminder") }
+        public static var removeReminder: XCUIElement { app.find(label: "xLine", type: .button) }
+        public static var removalLabel: XCUIElement { app.find(label: "Delete Reminder", type: .staticText)}
+        public static var removalAreYouSureLabel: XCUIElement { app.find(labelContaining: "Are you sure", type: .staticText)}
+        public static var noButton: XCUIElement { app.find(label: "No", type: .button) }
+        public static var yesButton: XCUIElement { app.find(label: "Yes", type: .button) }
+
+        // Other
         public static var backButton: XCUIElement {
             app.find(idStartingWith: "Assignment Details", type: .navigationBar).find(label: "Back", type: .button)
         }
@@ -152,6 +162,50 @@ public class AssignmentsHelper: BaseHelper {
 
             public static func rubricLongDescriptionLabel(rubric: DSRubric) -> XCUIElement {
                 return app.find(label: rubric.data[0].long_description!, type: .staticText)
+            }
+        }
+
+        public struct Reminder {
+            public static var fiveMinButton: XCUIElement { app.find(label: "5 Minutes Before", type: .button) }
+            public static var fifteenMinButton: XCUIElement { app.find(label: "15 Minutes Before", type: .button) }
+            public static var thirtyMinButton: XCUIElement { app.find(label: "30 Minutes Before", type: .button) }
+            public static var oneHourButton: XCUIElement { app.find(label: "1 Hour Before", type: .button) }
+            public static var oneDayButton: XCUIElement { app.find(label: "1 Day Before", type: .button) }
+            public static var oneWeekButton: XCUIElement { app.find(label: "1 Week Before", type: .button) }
+            public static var customButton: XCUIElement { app.find(label: "Custom", type: .button) }
+            public static var doneButton: XCUIElement { app.find(label: "Done", type: .button) }
+
+            // Alert message
+            public static var okButton: XCUIElement { app.find(label: "OK", type: .button) }
+
+            public static var reminderCreationFailed: XCUIElement {
+                app.find(label: "Reminder Creation Failed", type: .staticText)
+            }
+
+            public static var chooseFutureTime: XCUIElement {
+                app.find(label: "Please choose a future time for your reminder!", type: .staticText)
+            }
+
+            public static var youHaveAlreadySet: XCUIElement {
+                app.find(label: "You have already set a reminder for this time.", type: .staticText)
+            }
+
+            // Custom date
+            public static var numberPickerWheel: XCUIElement {
+                app.find(id: "AssignmentReminder.numberPicker", type: .picker).waitUntil(.visible).find(type: .pickerWheel)
+            }
+
+            public static var timeUnitPickerWheel: XCUIElement {
+                app.find(id: "AssignmentReminder.timeUnitPicker", type: .picker).waitUntil(.visible).find(type: .pickerWheel)
+            }
+
+            // Notification Banner
+            public static var notificationBanner: XCUIElement {
+                XCUIApplication(bundleIdentifier: "com.apple.springboard")
+                  .otherElements["Notification"]
+                  .descendants(matching: .any)
+                  .matching(NSPredicate(format: "label CONTAINS[c] ', now,'"))
+                  .firstMatch
             }
         }
 
