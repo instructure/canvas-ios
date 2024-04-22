@@ -39,19 +39,22 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
         event.isAllDay = true
         event.startAt = startDate
         let testee = CalendarEventDetailsViewModel(interactor: mockInteractor)
-        XCTAssertTrue(testee.date!.hasPrefix("Jan 1, 1970\n"))
+        var expectedDate = startDate.dateOnlyString
+        XCTAssertTrue(testee.date!.hasPrefix("\(expectedDate)\n"))
 
         event.isAllDay = false
         event.startAt = startDate
         event.endAt = endDate
         testee.reload {}
-        XCTAssertTrue(testee.date!.hasPrefix("Jan 1, 1970, 1:00 – 2:00 AM\n"))
+        expectedDate = startDate.intervalStringTo(endDate)
+        XCTAssertTrue(testee.date!.hasPrefix("\(expectedDate)\n"))
 
         event.isAllDay = false
         event.startAt = startDate
         event.endAt = nil
         testee.reload {}
-        XCTAssertTrue(testee.date!.hasPrefix("Jan 1, 1970 at 1:00 AM\n"))
+        expectedDate = startDate.dateTimeString
+        XCTAssertTrue(testee.date!.hasPrefix("\(expectedDate)\n"))
     }
 
     func testEventSeriesInfo() {
