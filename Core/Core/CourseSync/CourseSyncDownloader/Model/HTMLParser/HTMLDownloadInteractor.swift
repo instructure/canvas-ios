@@ -43,26 +43,12 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     }
 
     func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
-        let fileID = url.lastPathComponent
-        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
-            sessionId: loginSession?.uniqueID ?? "",
-            courseId: courseId,
-            sectionName: sectionName,
-            resourceId: resourceId
-        )
-        let saveURL = rootURL.appendingPathComponent(fileID)
-
-        return DownloadTaskPublisher(parameters:
-            DownloadTaskParameters(
-                remoteURL: url,
-                localURL: saveURL,
-                fileID: fileID
-            )
-        )
-        .map { _ in
-            return saveURL
-        }
-        .eraseToAnyPublisher()
+        let downloadURL = url.appendingPathComponent("download")
+        return download(downloadURL)
+            .flatMap { (tempURL: URL, fileName: String) in
+                self.copy(tempURL, fileName: fileName, courseId: courseId, resourceId: resourceId)
+            }
+            .eraseToAnyPublisher()
     }
 
     func download(
