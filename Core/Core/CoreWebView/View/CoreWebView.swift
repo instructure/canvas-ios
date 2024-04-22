@@ -377,7 +377,7 @@ extension CoreWebView: WKNavigationDelegate {
         // Forward decision to delegate
         if action.navigationType == .linkActivated, let url = action.request.url,
             linkDelegate?.handleLink(url) == true {
-            return decisionHandler(.cancel)
+            return decisionHandler(.allow)
         }
 
         decisionHandler(.allow)
