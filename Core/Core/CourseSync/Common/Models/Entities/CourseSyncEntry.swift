@@ -125,7 +125,7 @@ public struct CourseSyncEntry: Equatable {
             }
 
         let tabsSize = tabs
-            .filter { $0.type != TabName.files  && $0.type != TabName.additionalContent }
+            .filter { $0.type != TabName.files && $0.type != TabName.additionalContent }
             .filter { $0.selectionState == .selected }
             .reduce(0) { partialResult, tab in
                 partialResult + tab.bytesDownloaded
@@ -190,19 +190,37 @@ public struct CourseSyncEntry: Equatable {
             files.indices.forEach { files[$0].selectionState = selectionState }
         }
 
-        self.selectionState = selectedTabsCount > 0 ? .partiallySelected : .deselected
+        if selectedTabsCount == tabs.count, selectedFilesCount == files.count {
+            self.selectionState = .selected
+        } else if selectedTabsCount > 0 {
+            self.selectionState = .partiallySelected
+        } else {
+            self.selectionState = .deselected
+        }
     }
 
     mutating func selectFile(id: String, selectionState: ListCellView.SelectionState) {
         files[id: id]?.selectionState = selectionState == .selected ? .selected : .deselected
 
-        guard var fileTab = tabs.first(where: { $0.type == TabName.files }) else {
+        guard var fileTabId = tabs.first(where: { $0.type == TabName.files })?.id else {
             return
         }
-        fileTab.selectionState = selectedFilesCount > 0 ? .partiallySelected : .deselected
-        tabs[id: fileTab.id] = fileTab
 
-        self.selectionState = selectedTabsCount > 0 ? .partiallySelected : .deselected
+        if selectedFilesCount == files.count {
+            tabs[id: fileTabId]?.selectionState = .selected
+        } else if selectedFilesCount > 0 {
+            tabs[id: fileTabId]?.selectionState = .partiallySelected
+        } else {
+            tabs[id: fileTabId]?.selectionState = .deselected
+        }
+
+        if selectedTabsCount == tabs.count, selectedFilesCount == files.count {
+            self.selectionState = .selected
+        } else if selectedTabsCount > 0 {
+            self.selectionState = .partiallySelected
+        } else {
+            self.selectionState = .deselected
+        }
     }
 
     mutating func updateCourseState(state: State) {
