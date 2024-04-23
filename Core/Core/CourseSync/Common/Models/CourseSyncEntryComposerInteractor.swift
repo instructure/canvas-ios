@@ -51,7 +51,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
                 id: "courses/\(course.courseId)/tabs/additional-content",
                 name: "Additional Content",
                 type: .additionalContent,
-                selectionState: .selected
+                selectionState: .deselected
             )
         )
 
