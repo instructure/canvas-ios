@@ -285,7 +285,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         selection: CourseEntrySelection,
         state: CourseSyncEntry.State
     ) -> AnyPublisher<Void, Error> {
-        if error as NSError == NSError.instructureError("Failed to save base content") ||
+        if  error as NSError == NSError.instructureError("Failed to save base content") ||
+            error as NSError == NSError.instructureError("That page has been disabled for this course") ||
             error as NSError == APIError.forbidden ||
             error as NSError == APIError.notFound {
             setState(
