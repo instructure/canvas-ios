@@ -20,7 +20,6 @@
 import XCTest
 
 class CourseSyncEntryTests: XCTestCase {
-
     func testCourseId() {
         let testee = CourseSyncEntry(name: "",
                                      id: "courses/3",
@@ -37,8 +36,7 @@ class CourseSyncEntryTests: XCTestCase {
                                           url: URL(string: "/")!,
                                           mimeClass: "",
                                           updatedAt: nil,
-                                          bytesToDownload: 0
-        )
+                                          bytesToDownload: 0)
         XCTAssertEqual(testee.fileId, "2")
     }
 
@@ -91,78 +89,6 @@ class CourseSyncEntryTests: XCTestCase {
         XCTAssertEqual(entry.selectedTabsCount, 2)
     }
 
-    func testModuleSelection() {
-        var entry = CourseSyncEntry(
-            name: "1",
-            id: "1",
-            hasFrontPage: false,
-            tabs: [
-                CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
-                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
-                CourseSyncEntry.Tab(id: "tab3", name: "tab3", type: .modules),
-                CourseSyncEntry.Tab(id: "tab4", name: "tab4", type: .grades),
-            ],
-            files: []
-        )
-        XCTAssertEqual(entry.selectionState, .deselected)
-        XCTAssertEqual(entry.selectedTabsCount, 0)
-
-        entry.selectTab(id: "tab3", selectionState: .selected)
-        XCTAssertEqual(entry.tabs[0].selectionState, .selected)
-        XCTAssertEqual(entry.tabs[1].selectionState, .selected)
-        XCTAssertEqual(entry.tabs[2].selectionState, .selected)
-        XCTAssertEqual(entry.tabs[3].selectionState, .deselected)
-    }
-
-    func testGradesSelection() {
-        var entry = CourseSyncEntry(
-            name: "1",
-            id: "1",
-            hasFrontPage: false,
-            tabs: [
-                CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
-                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
-                CourseSyncEntry.Tab(id: "tab3", name: "tab3", type: .modules),
-                CourseSyncEntry.Tab(id: "tab4", name: "tab4", type: .grades),
-            ],
-            files: []
-        )
-        XCTAssertEqual(entry.selectionState, .deselected)
-        XCTAssertEqual(entry.selectedTabsCount, 0)
-
-        entry.selectTab(id: "tab4", selectionState: .selected)
-        XCTAssertEqual(entry.tabs[0].selectionState, .selected)
-        XCTAssertEqual(entry.tabs[1].selectionState, .selected)
-        XCTAssertEqual(entry.tabs[2].selectionState, .deselected)
-        XCTAssertEqual(entry.tabs[3].selectionState, .selected)
-    }
-
-    func testModulesAndGradesDeselection() {
-        var entry = CourseSyncEntry(
-            name: "1",
-            id: "1",
-            hasFrontPage: false,
-            tabs: [
-                CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
-                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
-                CourseSyncEntry.Tab(id: "tab3", name: "tab3", type: .modules),
-                CourseSyncEntry.Tab(id: "tab4", name: "tab4", type: .grades),
-            ],
-            files: []
-        )
-        entry.selectCourse(selectionState: .selected)
-        XCTAssertEqual(entry.tabs[0].selectionState, .selected)
-        XCTAssertEqual(entry.tabs[1].selectionState, .selected)
-        XCTAssertEqual(entry.tabs[2].selectionState, .selected)
-        XCTAssertEqual(entry.tabs[3].selectionState, .selected)
-
-        entry.selectTab(id: "tab1", selectionState: .deselected)
-        XCTAssertEqual(entry.tabs[0].selectionState, .deselected)
-        XCTAssertEqual(entry.tabs[1].selectionState, .selected)
-        XCTAssertEqual(entry.tabs[2].selectionState, .deselected)
-        XCTAssertEqual(entry.tabs[3].selectionState, .deselected)
-    }
-
     func testFileSelection() {
         var entry = CourseSyncEntry(
             name: "1",
@@ -190,7 +116,7 @@ class CourseSyncEntryTests: XCTestCase {
         XCTAssertEqual(entry.selectedFilesCount, 1)
     }
 
-    func testEverythingSelected() {
+    func testFullContentSync() {
         var entry = CourseSyncEntry(
             name: "1",
             id: "1",
@@ -209,16 +135,20 @@ class CourseSyncEntryTests: XCTestCase {
         entry.selectTab(id: "tab1", selectionState: .selected)
         XCTAssertEqual(entry.isFullContentSync, false)
 
-        entry.selectTab(id: "tab2", selectionState: .deselected)
-        XCTAssertEqual(entry.isFullContentSync, false)
-
         entry.selectTab(id: "tab2", selectionState: .selected)
         XCTAssertEqual(entry.isFullContentSync, true)
 
-        entry.selectFile(id: "file1", selectionState: .deselected)
+        entry.selectTab(id: "tab2", selectionState: .deselected)
         XCTAssertEqual(entry.isFullContentSync, false)
 
         entry.selectFile(id: "file1", selectionState: .selected)
+        entry.selectFile(id: "file2", selectionState: .selected)
+        XCTAssertEqual(entry.isFullContentSync, true)
+
+        entry.selectFile(id: "file2", selectionState: .deselected)
+        XCTAssertEqual(entry.isFullContentSync, false)
+
+        entry.selectCourse(selectionState: .selected)
         XCTAssertEqual(entry.isFullContentSync, true)
     }
 
