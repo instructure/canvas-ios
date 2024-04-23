@@ -29,7 +29,6 @@ class CourseSyncItemSelectionTests: XCTestCase {
                             files: [],
                             isCollapsed: false,
                             selectionState: .deselected,
-                            isEverythingSelected: false,
                             state: .loading(nil)),
             CourseSyncEntry(name: "",
                             id: "2",
@@ -44,7 +43,6 @@ class CourseSyncItemSelectionTests: XCTestCase {
                             ],
                             isCollapsed: false,
                             selectionState: .deselected,
-                            isEverythingSelected: false,
                             state: .loading(nil)),
         ]
 
