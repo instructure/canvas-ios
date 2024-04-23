@@ -77,7 +77,7 @@ public struct CourseSyncEntry: Equatable {
             }
 
         let tabsSize = tabs
-            .filter { $0.type != TabName.files }
+            .filter { $0.type != TabName.files && $0.type != TabName.additionalContent }
             .reduce(0) { partialResult, tab in
                 partialResult + tab.bytesToDownload
             }
@@ -107,7 +107,7 @@ public struct CourseSyncEntry: Equatable {
             }
 
         let tabsSize = tabs
-            .filter { $0.type != TabName.files }
+            .filter { $0.type != TabName.files && $0.type != TabName.additionalContent }
             .filter { $0.selectionState == .selected }
             .reduce(0) { partialResult, tab in
                 partialResult + tab.bytesToDownload
@@ -125,7 +125,7 @@ public struct CourseSyncEntry: Equatable {
             }
 
         let tabsSize = tabs
-            .filter { $0.type != TabName.files }
+            .filter { $0.type != TabName.files  && $0.type != TabName.additionalContent }
             .filter { $0.selectionState == .selected }
             .reduce(0) { partialResult, tab in
                 partialResult + tab.bytesDownloaded
@@ -147,7 +147,7 @@ public struct CourseSyncEntry: Equatable {
             }
 
         let totalTabsProgress = tabs
-            .filter { $0.type != TabName.files }
+            .filter { $0.type != TabName.files && $0.type != TabName.additionalContent }
             .filter { $0.selectionState == .selected }
             .reduce(0 as Float) { partialResult, tab in
                 switch tab.state {
@@ -158,7 +158,7 @@ public struct CourseSyncEntry: Equatable {
             }
 
         let selectedTabs = tabs
-            .filter { $0.type != TabName.files }
+            .filter { $0.type != TabName.files && $0.type != TabName.additionalContent }
             .filter { $0.selectionState == .selected }
 
         let selectedCount = (Float(selectedFilesCount) + Float(selectedTabs.count))

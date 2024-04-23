@@ -285,7 +285,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         selection: CourseEntrySelection,
         state: CourseSyncEntry.State
     ) -> AnyPublisher<Void, Error> {
-        if  error as NSError == NSError.instructureError("Failed to save base content") ||
+        if error as NSError == NSError.instructureError("Failed to save base content") ||
             error as NSError == APIError.forbidden ||
             error as NSError == APIError.notFound {
             setState(
@@ -437,7 +437,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     state: .downloaded
                 )
             }
-            .tryCatch { 
+            .tryCatch {
                 unownedSelf.handleNonFatalErrors(
                     error: $0,
                     selection: .tab(entry.id, entry.tabs[tabIndex].id),
