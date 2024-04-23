@@ -35,7 +35,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/calendar": { url, _, _ in
         if let eventID = url.queryItems?.first(where: { $0.name == "event_id" })?.value {
-           return CalendarEventDetailsViewController.create(eventID: eventID)
+            return PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
        }
        let controller = PlannerViewController.create()
        controller.view.tintColor = Brand.shared.primary
@@ -44,12 +44,12 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/calendar_events/:eventID": { _, params, _ in
         guard let eventID = params["eventID"] else { return nil }
-        return CalendarEventDetailsViewController.create(eventID: eventID)
+        return PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
     },
 
     "/:context/:contextID/calendar_events/:eventID": { _, params, _ in
         guard let eventID = params["eventID"] else { return nil }
-        return CalendarEventDetailsViewController.create(eventID: eventID)
+        return PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
     },
 
     "/conversations": nil,

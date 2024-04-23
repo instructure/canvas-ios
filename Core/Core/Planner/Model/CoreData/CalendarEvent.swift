@@ -45,6 +45,8 @@ final public class CalendarEvent: NSManagedObject, WriteableModel {
     @NSManaged public var details: String?
     @NSManaged public var locationName: String?
     @NSManaged public var locationAddress: String?
+    /// The event repetition in human readable format
+    @NSManaged public var seriesInNaturalLanguage: String?
 
     public var context: Context {
         get { return Context(canvasContextID: contextRaw) ?? .currentUser }
@@ -84,6 +86,7 @@ final public class CalendarEvent: NSManagedObject, WriteableModel {
         model.details = item.description
         model.locationName = item.location_name
         model.locationAddress = item.location_address
+        model.seriesInNaturalLanguage = item.series_natural_language
         return model
     }
 }
