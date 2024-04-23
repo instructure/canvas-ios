@@ -50,7 +50,7 @@ class CalendarEventDetailsInteractorTests: CoreTestCase {
         XCTAssertFailure(testee.getCalendarEvent())
     }
 
-    func testLoadsEventIfColorAPIFailes() {
+    func testLoadsEventIfColorAPIFails() {
         let mockAPIEvent: APICalendarEvent = .make(id: "testEventID")
         api.mock(GetCustomColorsRequest(),
                  error: NSError.internalError())

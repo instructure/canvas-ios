@@ -21,6 +21,8 @@ import SwiftUI
 public extension InstUI.Styles {
     enum Text {
         case heading
+        /// Text below heading
+        case headingInfo
         case infoTitle
         case infoDescription
     }
@@ -36,6 +38,10 @@ public extension View {
                 .font(.semibold22, lineHeight: .fit)
                 .foregroundStyle(Color.textDarkest)
                 .accessibilityAddTraits(.isHeader)
+        case .headingInfo:
+            self
+                .font(.regular16, lineHeight: .fit)
+                .foregroundStyle(Color.textDark)
         case .infoTitle:
             self
                 .font(.regular14)
@@ -43,7 +49,7 @@ public extension View {
         case .infoDescription:
             self
                 .font(.regular16, lineHeight: .fit)
-                .foregroundStyle(Color.textDark)
+                .foregroundStyle(Color.textDarkest)
         }
     }
 }

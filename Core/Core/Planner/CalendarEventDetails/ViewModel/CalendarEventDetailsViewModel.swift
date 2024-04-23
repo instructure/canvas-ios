@@ -22,13 +22,13 @@ import SwiftUI
 public class CalendarEventDetailsViewModel: ObservableObject {
     // MARK: Output
     @Published public private(set) var state: InstUI.ScreenState = .loading
-    @Published public private(set) var title: String?
+    @Published public private(set) var title: String = ""
     @Published public private(set) var date: String?
-    @Published public private(set) var locationInfo: [InstUI.TextSectionView.SectionData] = []
-    @Published public private(set) var details: InstUI.TextSectionView.SectionData?
+    @Published public private(set) var locationInfo: [InstUI.TextSectionView.Model] = []
+    @Published public private(set) var details: InstUI.TextSectionView.Model?
     @Published public private(set) var contextColor: UIColor?
     public let pageTitle = String(localized: "Event Details")
-    @Published public private(set) var pageSubTitle: String?
+    @Published public private(set) var pageSubtitle: String?
     public let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar")
 
     private let interactor: CalendarEventDetailsInteractor
@@ -63,7 +63,7 @@ public class CalendarEventDetailsViewModel: ObservableObject {
                 guard let self else { return }
                 self.contextColor = contextColor
                 title = event.title
-                pageSubTitle = event.contextName
+                pageSubtitle = event.contextName
 
                 if event.isAllDay {
                     date = event.startAt?.dateOnlyString
@@ -80,7 +80,7 @@ public class CalendarEventDetailsViewModel: ObservableObject {
                 }
 
                 locationInfo = {
-                    var result: [InstUI.TextSectionView.SectionData] = []
+                    var result: [InstUI.TextSectionView.Model] = []
                     if let locationName = event.locationName, locationName.isNotEmpty {
                         result.append(.init(
                             title: String(localized: "Location"),

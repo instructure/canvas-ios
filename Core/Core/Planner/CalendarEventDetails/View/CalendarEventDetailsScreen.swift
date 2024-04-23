@@ -34,26 +34,13 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
         ) { _ in
             eventContent
         }
-        .navigationTitle(viewModel.pageTitle, subtitle: viewModel.pageSubTitle)
+        .navigationTitle(viewModel.pageTitle, subtitle: viewModel.pageSubtitle)
         .navigationBarStyle(.color(viewModel.contextColor))
     }
 
     private var eventContent: some View {
         VStack(alignment: .leading, spacing: 0) {
-            if viewModel.title != nil || viewModel.date != nil {
-                VStack(alignment: .leading, spacing: 4) {
-                    if let title = viewModel.title {
-                        Text(title)
-                            .textStyle(.heading)
-                    }
-                    if let date = viewModel.date {
-                        Text(date)
-                            .textStyle(.infoDescription)
-                    }
-                }
-                .paragraphStyle(.heading)
-            }
-
+            InstUI.Header(title: viewModel.title, subtitle: viewModel.date)
             InstUI.TextSectionView(viewModel.locationInfo)
             InstUI.TextSectionView(viewModel.details)
         }

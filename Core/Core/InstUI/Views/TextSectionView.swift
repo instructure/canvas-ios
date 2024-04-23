@@ -20,7 +20,7 @@ import SwiftUI
 
 public extension InstUI {
     struct TextSectionView: View {
-        public struct SectionData: Identifiable, Equatable {
+        public struct Model: Identifiable, Equatable {
             public var id: String { title + description }
 
             public let title: String
@@ -34,7 +34,7 @@ public extension InstUI {
             }
         }
         @Environment(\.sizeCategory) private var sizeCategory
-        private let sectionData: [SectionData]
+        private let sectionData: [Model]
 
         public init(
             title: String,
@@ -46,11 +46,11 @@ public extension InstUI {
             ]
         }
 
-        public init(_ sectionData: [SectionData]) {
+        public init(_ sectionData: [Model]) {
             self.sectionData = sectionData
         }
 
-        public init(_ sectionData: SectionData?) {
+        public init(_ sectionData: Model?) {
             self.sectionData = (sectionData == nil ? [] : [sectionData!])
         }
 
@@ -64,17 +64,24 @@ public extension InstUI {
 
                     VStack(alignment: .leading, spacing: 0) {
                         ForEach(sectionData) { sectionData in
-                            VStack(alignment: .leading, spacing: 4) {
+                            VStack(
+                                alignment: .leading,
+                                spacing: InstUI.Styles.Padding.textVertical.rawValue
+                            ) {
                                 Text(sectionData.title)
                                     .textStyle(.infoTitle)
 
                                 if sectionData.isRichContent {
                                     WebView(
                                         html: sectionData.description,
-                                        features: [.disableDefaultBodyMargin],
+                                        features: [],
                                         canToggleTheme: true
                                     )
                                     .frameToFit()
+                                    .padding(
+                                        .horizontal,
+                                        -InstUI.Styles.Padding.standard.rawValue
+                                    )
                                 } else {
                                     Text(sectionData.description)
                                         .textStyle(.infoDescription)
@@ -125,28 +132,15 @@ public extension InstUI {
 }
 
 #Preview("Long Text") {
-    InstUI.TextSectionView(title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt rhoncus",
-                           description:
-                            """
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt rhoncus\
-                            rutrum. Donec tempus vulputate posuere. Aenean blandit nunc vitae tempus sodales.\
-                            In vehicula venenatis tempus. In pharetra aliquet neque, non viverra massa sodales eget.\
-                            Etiam hendrerit tincidunt placerat. Suspendisse et lacus a metus tempor gravida.
-                            New line!
-                            """)
+    InstUI.TextSectionView(title: InstUI.PreviewData.loremIpsumMedium,
+                           description: InstUI.PreviewData.loremIpsumLong)
 }
 
 #Preview("Multiple Sections") {
     InstUI.TextSectionView([
         .init(
-            title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt rhoncus",
-            description: """
-                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt rhoncus\
-                         rutrum. Donec tempus vulputate posuere. Aenean blandit nunc vitae tempus sodales.\
-                         In vehicula venenatis tempus. In pharetra aliquet neque, non viverra massa sodales eget.\
-                         Etiam hendrerit tincidunt placerat. Suspendisse et lacus a metus tempor gravida.
-                         New line!
-                         """
+            title: InstUI.PreviewData.loremIpsumMedium,
+            description: InstUI.PreviewData.loremIpsumLong
         ),
         .init(
             title: "Description",

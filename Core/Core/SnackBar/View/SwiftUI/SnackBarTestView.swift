@@ -27,18 +27,13 @@ public struct SnackBarTestView: View {
         HStack(spacing: 0) {
             Spacer()
             Button {
-                viewModel.showSnack("Lorem ipsum")
+                viewModel.showSnack(InstUI.PreviewData.loremIpsumShort)
             } label: {
                 Text(verbatim: "Short Snack")
             }
             Spacer()
             Button {
-                viewModel.showSnack("""
-                                    Lorem ipsum dolor sit Lamet, consectetur adipiscing elit. \
-                                    Etiam tincidunt rhoncus rutrum. Donec tempus vulputate posuere. \
-                                    Aenean blandit nunc vitae tempus sodales. In vehicula venenatis tempus.
-                                    """
-                )
+                viewModel.showSnack(InstUI.PreviewData.loremIpsumLong)
             } label: {
                 Text(verbatim: "Long Snack")
             }

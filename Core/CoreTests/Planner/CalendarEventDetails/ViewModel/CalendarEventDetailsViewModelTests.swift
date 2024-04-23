@@ -138,7 +138,7 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
         let testee = CalendarEventDetailsViewModel(interactor: mockInteractor)
 
         XCTAssertEqual(testee.pageTitle, "Event Details")
-        XCTAssertEqual(testee.pageSubTitle, "test context")
+        XCTAssertEqual(testee.pageSubtitle, "test context")
         XCTAssertEqual(testee.contextColor, .red)
         XCTAssertEqual(testee.title, "test title")
         XCTAssertEqual(testee.pageViewEvent, .init(eventName: "/calendar"))
