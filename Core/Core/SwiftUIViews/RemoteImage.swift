@@ -88,7 +88,7 @@ public struct RemoteImage: View {
             loader = nil
 
             if handleAnimatedGif {
-                if case .failure(ImageLoaderError.animatedGifFound) = result {
+                if result.error as? ImageLoaderError == .animatedGifFound {
                     animated = true
                     image = nil
                     loadedURL = localURL
@@ -98,7 +98,7 @@ public struct RemoteImage: View {
                 }
             } else {
                 animated = false
-                guard case .success(let image) = result else { return }
+                guard let image = result.value else { return }
                 self.image = image
                 self.loadedURL = localURL
             }

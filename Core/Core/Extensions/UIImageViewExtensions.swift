@@ -51,6 +51,7 @@ extension UIImageView {
     @discardableResult
     public func load(url: URL?) -> APITask? {
         guard self.url != url else { return nil }
+
         self.url = url
         loader = nil
         image = nil
@@ -59,14 +60,17 @@ extension UIImageView {
                 self?.load(url: url, result: result)
             }
         }
+
         return loader?.load()
     }
 
-    private func load(url: URL, result: Result<UIImage, Error>) {
+    func load(url: URL, result: Result<UIImage, Error>) {
         guard self.url == url else { return }
-        if case .success(let image) = result {
+
+        if let image = result.value {
             self.image = image
         }
+
         loader = nil
     }
 }
@@ -92,6 +96,7 @@ public class ImageLoader {
 
     static func reset() {
         rendered = [:]
+        isAnimated = [:]
         loading = [:]
     }
 
@@ -185,7 +190,7 @@ public class ImageLoader {
 
     // MARK: - SVG snapshot
 
-    func svgFrom(data: Data) {
+    private func svgFrom(data: Data) {
         let config = WKWebViewConfiguration()
         config.websiteDataStore = .nonPersistent()
         let view = WKWebView(frame: frame, configuration: config)
@@ -213,7 +218,7 @@ public class ImageLoader {
 
     // MARK: - GIF
 
-    func isAnimatedGif(data: Data) -> Bool {
+    private func isAnimatedGif(data: Data) -> Bool {
         guard let source = CGImageSourceCreateWithData(data as CFData, nil) else { return false }
         let count = CGImageSourceGetCount(source)
         return count > 1
