@@ -64,14 +64,7 @@ public class HTMLParserLive: HTMLParser {
 
         let imageParser: AnyPublisher<[(URL, URL)], Error> =  imageURLs.publisher
             .flatMap(maxPublishers: .max(5)) { [interactor] url in // Download images to local Documents folder, return the (original link - local link) tuple
-                return interactor.download(url)
-                    .map {
-                        return (url, $0)
-                    }
-            }
-            .flatMap { [interactor] (url, downloadResult) in // Save the data to local file, return the (original link - local link) tuple
-                let (tempURL, fileName) = downloadResult
-                return interactor.copy(tempURL, fileName: fileName, courseId: courseId, resourceId: resourceId)
+                return interactor.download(url, courseId: courseId, resourceId: resourceId)
                     .map {
                         return (url, $0)
                     }

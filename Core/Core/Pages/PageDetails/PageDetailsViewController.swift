@@ -197,4 +197,15 @@ extension PageDetailsViewController: CoreWebViewLinkDelegate {
     public func finishedNavigation() {
         UIAccessibility.post(notification: .screenChanged, argument: titleSubtitleView)
     }
+
+    public func handleLink(_ url: URL) -> Bool {
+        print(url.pathComponents)
+        if OfflineModeAssembly.make().isNetworkOffline() && url.pathComponents.count == 1 {
+            return false
+        } else {
+            AppEnvironment.shared.router.route(to: url, from: routeLinksFrom)
+            return true
+        }
+    }
+    public var routeLinksFrom: UIViewController { self }
 }

@@ -22,10 +22,10 @@ import CombineSchedulers
 
 protocol HTMLDownloadInteractor {
     var sectionName: String { get }
-    func download(_ url: URL, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<(tempURL: URL, fileName: String), Error>
-    func download(_ url: URL) -> AnyPublisher<(tempURL: URL, fileName: String), Error>
+    func download(_ url: URL, courseId: String, resourceId: String, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<URL, Error>
+    func download(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error>
     func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error>
-    func copy(_ tempURL: URL, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<URL, Error>
+    func downloadFile(_ url: URL, courseId: String, resourceId: String, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<URL, Error>
     func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error>
 }
 
@@ -42,37 +42,46 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         self.fileManager = fileManager
     }
 
-    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+    func downloadFile(
+        _ url: URL,
+        courseId: String,
+        resourceId: String,
+        publisherProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
+    ) -> AnyPublisher<URL, Error> {
         let downloadURL = url.appendingPathComponent("download")
-        return download(downloadURL)
-            .flatMap { (tempURL: URL, fileName: String) in
-                self.copy(tempURL, fileName: fileName, courseId: courseId, resourceId: resourceId)
-            }
-            .eraseToAnyPublisher()
+        return download(downloadURL, courseId: courseId, resourceId: resourceId, publisherProvider: publisherProvider)
+    }
+
+    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+        return downloadFile(url, courseId: courseId, resourceId: resourceId, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
     func download(
         _ url: URL,
+        courseId: String,
+        resourceId: String,
         publisherProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
-    ) -> AnyPublisher<(tempURL: URL, fileName: String), Error> {
-
+    ) -> AnyPublisher<URL, Error> {
         if let loginSession, let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID) {
             return publisherProvider.getPublisher(for: request)
                 .mapError { urlError -> Error in
                     return urlError
                 }
                 .receive(on: scheduler)
+                .flatMap { [unowned self] (tempURL: URL, fileName: String) in
+                    return self.copy(tempURL, fileName: fileName, courseId: courseId, resourceId: resourceId)
+                }
                 .eraseToAnyPublisher()
         } else {
             return Fail(error: NSError.instructureError(String(localized: "Failed to construct request"))).eraseToAnyPublisher()
         }
     }
 
-    func download(_ url: URL) -> AnyPublisher<(tempURL: URL, fileName: String), Error> {
-        return download(url, publisherProvider: URLSessionDataTaskPublisherProviderLive())
+    func download(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+        return download(url, courseId: courseId, resourceId: resourceId, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
-    func copy(_ tempURL: URL, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+    private func copy(_ tempURL: URL, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
         let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: loginSession?.uniqueID ?? "",
             courseId: courseId,
