@@ -376,8 +376,13 @@ extension CoreWebView: WKNavigationDelegate {
 
         // Forward decision to delegate
         if action.navigationType == .linkActivated, let url = action.request.url,
-            linkDelegate?.handleLink(url) == true {
-            return decisionHandler(.allow)
+           linkDelegate?.handleLink(url) == true {
+            if OfflineModeAssembly.make().isNetworkOffline() {
+                return decisionHandler(.allow)
+            } else {
+                return decisionHandler(.cancel)
+            }
+
         }
 
         decisionHandler(.allow)
