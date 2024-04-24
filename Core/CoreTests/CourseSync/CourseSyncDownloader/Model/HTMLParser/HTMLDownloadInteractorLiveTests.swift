@@ -33,35 +33,14 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
     func testDownload() {
         let testee = HTMLDownloadInteractorLive(loginSession: environment.currentSession!, sectionName: testSectionName, scheduler: .main)
         let mockPublisherProvider = URLSessionDataTaskPublisherProviderMock()
-        testee.download(testURL, publisherProvider: mockPublisherProvider)
+        testee.download(testURL, courseId: testCourseId, resourceId: testResourceId, publisherProvider: mockPublisherProvider)
             .sink(receiveCompletion: { _ in }, receiveValue: { [testURL] result in
 
-                let data = try? String(contentsOf: result.tempURL, encoding: .utf8)
+                let data = try? String(contentsOf: result, encoding: .utf8)
 
-                XCTAssertNotEqual(result.tempURL, testURL)
-                XCTAssertEqual(result.tempURL, URL.Directories.documents.appendingPathComponent(testURL.lastPathComponent))
-                XCTAssertEqual(result.fileName, testURL.lastPathComponent)
+                XCTAssertNotEqual(result, testURL)
+                XCTAssertEqual(result, URL.Directories.documents.appendingPathComponent(testURL.lastPathComponent))
                 XCTAssertEqual(data, "hello")
-            })
-            .store(in: &subscriptions)
-    }
-
-    func testFileSave() {
-        let testee = HTMLDownloadInteractorLive(loginSession: environment.currentSession!, sectionName: testSectionName, scheduler: .main)
-
-        let rootURL = URL.Directories.documents.appendingPathComponent(
-                URL.Paths.Offline.courseSectionFolder(
-                    sessionId: environment.currentSession!.uniqueID,
-                    courseId: testCourseId,
-                    sectionName: testSectionName
-                )
-            )
-            .appendingPathComponent("\(testSectionName)-\(testResourceId)")
-        let saveURL = rootURL.appendingPathComponent("logo.png")
-
-        testee.copy(URL(string: "https://www.instructure.com/logo.png")!, fileName: "logo.png", courseId: testCourseId, resourceId: testResourceId)
-            .sink(receiveCompletion: { _ in }, receiveValue: { _ in
-                XCTAssertTrue(FileManager.default.fileExists(atPath: saveURL.path))
             })
             .store(in: &subscriptions)
     }

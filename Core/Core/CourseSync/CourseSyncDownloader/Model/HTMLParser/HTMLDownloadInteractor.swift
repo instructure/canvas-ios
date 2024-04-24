@@ -22,10 +22,10 @@ import CombineSchedulers
 
 protocol HTMLDownloadInteractor {
     var sectionName: String { get }
-    func download(_ url: URL, courseId: String, resourceId: String, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<URL, Error>
-    func download(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error>
-    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error>
-    func downloadFile(_ url: URL, courseId: String, resourceId: String, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<URL, Error>
+    func download(_ url: URL, courseId: String, resourceId: String, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<String, Error>
+    func download(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error>
+    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error>
+    func downloadFile(_ url: URL, courseId: String, resourceId: String, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<String, Error>
     func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error>
 }
 
@@ -47,12 +47,28 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         courseId: String,
         resourceId: String,
         publisherProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
-    ) -> AnyPublisher<URL, Error> {
+    ) -> AnyPublisher<String, Error> {
+        let fileID = url.lastPathComponent
         let downloadURL = url.appendingPathComponent("download")
-        return download(downloadURL, courseId: courseId, resourceId: resourceId, publisherProvider: publisherProvider)
+        if let loginSession, let request = try? downloadURL.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID) {
+            return publisherProvider.getPublisher(for: request)
+                .mapError { urlError -> Error in
+                    return urlError
+                }
+                .receive(on: scheduler)
+                .flatMap { [unowned self] (tempURL: URL, fileName: String) in
+                    return self.copyFile(tempURL, fileId: fileID, fileName: fileName, courseId: courseId, resourceId: resourceId)
+                        .map { [sectionName] _ in
+                            "\(loginSession.baseURL)/courses/\(courseId)/files/\(sectionName)/\(resourceId)/\(fileID)/offline"
+                        }
+                }
+                .eraseToAnyPublisher()
+        } else {
+            return Fail(error: NSError.instructureError(String(localized: "Failed to construct request"))).eraseToAnyPublisher()
+        }
     }
 
-    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
         return downloadFile(url, courseId: courseId, resourceId: resourceId, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
@@ -61,7 +77,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         courseId: String,
         resourceId: String,
         publisherProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
-    ) -> AnyPublisher<URL, Error> {
+    ) -> AnyPublisher<String, Error> {
         if let loginSession, let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID) {
             return publisherProvider.getPublisher(for: request)
                 .mapError { urlError -> Error in
@@ -77,11 +93,23 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         }
     }
 
-    func download(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+    func download(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
         return download(url, courseId: courseId, resourceId: resourceId, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
-    private func copy(_ tempURL: URL, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+    func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error> {
+        let saveURL = folderURL.appendingPathComponent("body.html")
+        do {
+            try fileManager.createDirectory(atPath: folderURL.path, withIntermediateDirectories: true, attributes: nil)
+            fileManager.createFile(atPath: saveURL.path, contents: nil)
+            try content.write(to: saveURL, atomically: true, encoding: .utf8)
+        } catch {
+            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save base content")))).eraseToAnyPublisher()
+        }
+        return Result.Publisher(content).eraseToAnyPublisher()
+    }
+
+    private func copy(_ tempURL: URL, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
         let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: loginSession?.uniqueID ?? "",
             courseId: courseId,
@@ -95,21 +123,29 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             try fileManager.createDirectory(at: rootURL, withIntermediateDirectories: true, attributes: nil)
             try? FileManager.default.removeItem(at: saveURL)
             try fileManager.moveItem(at: tempURL, to: saveURL)
-            return Result.Publisher(saveURL).eraseToAnyPublisher()
+            return Result.Publisher(saveURL.lastPathComponent).eraseToAnyPublisher()
         } catch {
             return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()
         }
     }
 
-    func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error> {
-        let saveURL = folderURL.appendingPathComponent("body.html")
+    private func copyFile(_ tempURL: URL, fileId: String, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: loginSession?.uniqueID ?? "",
+            courseId: courseId,
+            sectionName: sectionName,
+            resourceId: resourceId
+        ).appendingPathComponent("file-\(fileId)")
+
+        let saveURL = rootURL.appendingPathComponent(fileName)
+
         do {
-            try fileManager.createDirectory(atPath: folderURL.path, withIntermediateDirectories: true, attributes: nil)
-            fileManager.createFile(atPath: saveURL.path, contents: nil)
-            try content.write(to: saveURL, atomically: true, encoding: .utf8)
+            try fileManager.createDirectory(at: rootURL, withIntermediateDirectories: true, attributes: nil)
+            try? FileManager.default.removeItem(at: saveURL)
+            try fileManager.moveItem(at: tempURL, to: saveURL)
+            return Result.Publisher(saveURL.path).eraseToAnyPublisher()
         } catch {
-            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save base content")))).eraseToAnyPublisher()
+            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()
         }
-        return Result.Publisher(content).eraseToAnyPublisher()
     }
 }

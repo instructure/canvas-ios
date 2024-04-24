@@ -58,9 +58,11 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
         self?.update()
     }
+    public var offlineFileSource: OfflineFileSource?
     private var accessReportInteractor: FileAccessReportInteractor?
     private var subscriptions = Set<AnyCancellable>()
     private var offlineFileInteractor: OfflineFileInteractor?
+
 
     public static func create(context: Context?, fileID: String, originURL: URLComponents? = nil, assignmentID: String? = nil,
                               offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileDetailsViewController {
@@ -69,6 +71,26 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         controller.context = context
         controller.fileID = fileID
         controller.originURL = originURL
+        controller.offlineFileInteractor = offlineFileInteractor
+
+        if let context {
+            controller.accessReportInteractor = FileAccessReportInteractor(context: context,
+                                                                           fileID: fileID,
+                                                                           api: controller.env.api)
+        }
+
+        return controller
+    }
+
+    public static func create(
+            context: Context?,
+            fileID: String,
+            offlineFileSource: OfflineFileSource,
+            offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileDetailsViewController {
+        let controller = loadFromStoryboard()
+        controller.context = context
+        controller.fileID = fileID
+        controller.offlineFileSource = offlineFileSource
         controller.offlineFileInteractor = offlineFileInteractor
 
         if let context {
@@ -274,11 +296,11 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
             return nil
         }
         if offlineFileInteractor?.isOffline == true, let contextId = context?.id {
+            if offlineFileSource == nil {
+                offlineFileSource = .Public(sessionID: sessionID, courseID: contextId, fileID: fileID, fileName: name)
+            }
             return offlineFileInteractor?.filePath(
-                sessionID: sessionID,
-                courseId: contextId,
-                fileID: fileID,
-                fileName: name
+                source: offlineFileSource
             )
         }
         return "\(sessionID)/\(fileID)/\(name)"

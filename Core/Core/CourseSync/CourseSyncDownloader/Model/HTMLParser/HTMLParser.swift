@@ -52,7 +52,7 @@ public class HTMLParserLive: HTMLParser {
         let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex, groupCount: 2).filter { url in url.host ==  nil }
         let rootURL = getRootURL(courseId: courseId, resourceId: resourceId)
 
-        let fileParser: AnyPublisher<[(URL, URL)], Error> = fileURLs.publisher // Download the files to local Documents folder, return the (original link - local link) tuple
+        let fileParser: AnyPublisher<[(URL, String)], Error> = fileURLs.publisher // Download the files to local Documents folder, return the (original link - local link) tuple
             .flatMap { [interactor] url in
                 return interactor.downloadFile(url, courseId: courseId, resourceId: resourceId)
                     .map {
@@ -62,7 +62,7 @@ public class HTMLParserLive: HTMLParser {
             .collect()
             .eraseToAnyPublisher()
 
-        let imageParser: AnyPublisher<[(URL, URL)], Error> =  imageURLs.publisher
+        let imageParser: AnyPublisher<[(URL, String)], Error> =  imageURLs.publisher
             .flatMap(maxPublishers: .max(5)) { [interactor] url in // Download images to local Documents folder, return the (original link - local link) tuple
                 return interactor.download(url, courseId: courseId, resourceId: resourceId)
                     .map {
@@ -89,11 +89,10 @@ public class HTMLParserLive: HTMLParser {
             }
             return (newContent, urls)
         }
-        .map { (content: String, urls: [(URL, URL)]) in // Replace all original links with the local ones, return the replaced string content
+        .map { (content: String, urls: [(URL, String)]) in // Replace all original links with the local ones, return the replaced string content
             var newContent = content
-            urls.forEach { (originalURL, localURL) in
-                let newURL = "\(localURL.lastPathComponent)"
-                newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: newURL)
+            urls.forEach { (originalURL, localPath) in
+                newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: localPath)
             }
             return newContent
         }
