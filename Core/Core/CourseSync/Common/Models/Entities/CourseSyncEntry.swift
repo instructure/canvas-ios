@@ -40,9 +40,13 @@ public struct CourseSyncEntry: Equatable {
     /// List of available tabs coming from the API + a manually added tab named "Additional Content" that is responsible for tracking the download of hidden tabs and such.
     var tabs: [CourseSyncEntry.Tab]
 
-    /// The number of tabs that are selectable by the user. Since "Additional Content" is always added manually to the list, we need to substract 1 from the list count.
+    /// The number of tabs that are selectable by the user. When "Additional Content" is  added manually to the list, we need to substract 1 from the list count.
     var selectableTabsCount: Int {
-        tabs.count - 1
+        if tabs.filter({ $0.type == .additionalContent }).first != nil {
+            return tabs.count - 1
+        } else {
+            return tabs.count
+        }
     }
 
     /// Returns partially or fully selected tabs. "Additional Content" doesn't count.

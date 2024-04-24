@@ -180,4 +180,30 @@ class CourseSyncEntryTests: XCTestCase {
         entry.selectFile(id: "file2", selectionState: .selected)
         XCTAssertEqual(entry.selectionCount, 2)
     }
+
+    func testSelectedTabs() {
+        var entry = CourseSyncEntry(
+            name: "1",
+            id: "1",
+            hasFrontPage: false,
+            tabs: [
+                CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
+                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+                CourseSyncEntry.Tab(id: "tab3", name: "tab3", type: .additionalContent),
+            ],
+            files: [
+                CourseSyncEntry.File.make(id: "file1", displayName: "file1"),
+                CourseSyncEntry.File.make(id: "file2", displayName: "file2"),
+            ]
+        )
+        entry.tabs[0].selectionState = .selected
+        entry.tabs[1].selectionState = .selected
+        entry.tabs[2].selectionState = .selected
+
+        XCTAssertEqual(entry.selectableTabsCount, 2)
+        XCTAssertEqual(entry.selectedTabs[0].rawValue, "assignments")
+        XCTAssertEqual(entry.selectedTabs[1].rawValue, "files")
+        XCTAssertEqual(entry.byteCountableSelectedTabs.count, 1)
+        XCTAssertEqual(entry.byteCountableSelectedTabs[0].id, "tab1")
+    }
 }
