@@ -21,6 +21,8 @@ import SwiftUI
 public extension InstUI.Styles {
     enum Padding: CGFloat {
         case standard = 16
+        case cellTop = 12
+        case cellBottom = 14
         case paragraphTop = 24
         case paragraphBottom = 28
         /// When displaying multiple Text components below each other we use this spacing to separate them

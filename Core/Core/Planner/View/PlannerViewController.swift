@@ -167,8 +167,18 @@ extension PlannerViewController: CalendarViewControllerDelegate {
     }
 
     func calendarWillFilter() {
-        let filter = PlannerFilterViewController.create(studentID: studentID)
-        env.router.show(filter, from: self, options: .modal(embedInNav: true, addDoneButton: true), analyticsRoute: "/calendar/filter")
+        let filter = PlannerAssembly.makeFilterViewController(observedUserId: studentID)
+        env.router.show(
+            filter,
+            from: self,
+            options: .modal(
+                embedInNav: true,
+                addDoneButton: true
+            ),
+            analyticsRoute: "/calendar/filter"
+        )
+//        let filter = PlannerFilterViewController.create(studentID: studentID)
+//        env.router.show(filter, from: self, options: .modal(embedInNav: true, addDoneButton: true), analyticsRoute: "/calendar/filter")
     }
 
     func numberOfCalendars() -> Int? {
