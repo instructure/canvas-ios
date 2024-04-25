@@ -99,7 +99,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
         switch viewModel.state {
         case .waiting:
             VStack(spacing: 15) {
-                Text("Preparing Files For Upload")
+                Text("Preparing Files For Upload", bundle: .core)
                     .font(.regular14)
                     .foregroundColor(.textDarkest)
                 progressView()

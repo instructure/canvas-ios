@@ -78,7 +78,7 @@ public struct GroupContextCardView: View {
                     UIAccessibility.post(notification: .screenChanged, argument: nil)
                 }
             } else {
-                EmptyPanda(.Unsupported, title: Text("Something went wrong"), message: Text("There was an error while communicating with the server"))
+                EmptyPanda(.Unsupported, title: Text("Something went wrong", bundle: .core), message: Text("There was an error while communicating with the server", bundle: .core))
             }
         }
     }

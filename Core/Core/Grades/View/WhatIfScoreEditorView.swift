@@ -110,12 +110,12 @@ struct WhatIfScoreEditorView: View {
         .frame(width: 44)
         .frame(minHeight: 42)
         .padding(.trailing, -16)
-        .accessibilityLabel(Text("Revert"))
-        .accessibilityHint(Text("Double tap to remove what-if score"))
+        .accessibilityLabel(Text("Revert", bundle: .core))
+        .accessibilityHint(Text("Double tap to remove what-if score", bundle: .core))
     }
 
     private var titleLabel: some View {
-        Text("What-if Score")
+        Text("What-if Score", bundle: .core)
             .font(
                 .system(
                     size: UIFontMetrics.default.scaledValue(for: 17),
@@ -130,7 +130,7 @@ struct WhatIfScoreEditorView: View {
     }
 
     private var whatIfLabel: some View {
-        Text("What-if")
+        Text("What-if", bundle: .core)
             .font(
                 .system(
                     size: UIFontMetrics.default.scaledValue(for: 13),
@@ -142,7 +142,7 @@ struct WhatIfScoreEditorView: View {
     }
 
     private var maximumLabel: some View {
-        Text("Maximum")
+        Text("Maximum", bundle: .core)
             .font(
                 .system(
                     size: UIFontMetrics.default.scaledValue(for: 13),
@@ -163,7 +163,7 @@ struct WhatIfScoreEditorView: View {
                     design: .default
                 )
             )
-            .accessibilityLabel(Text("What-if score is \(whatIfScore)"))
+            .accessibilityLabel(Text("What-if score is \(whatIfScore)", bundle: .core))
     }
 
     private var maximumScoreText: some View {
@@ -176,14 +176,14 @@ struct WhatIfScoreEditorView: View {
                 )
             )
             .frame(maxWidth: .infinity, alignment: .leading)
-            .accessibilityLabel(Text(verbatim: "Maximum score is 100."))
+            .accessibilityLabel(Text("Maximum score is 100.", bundle: .core))
     }
 
     private var cancelButton: some View {
         Button {
             isPresented = false
         } label: {
-            Text("Cancel")
+            Text("Cancel", bundle: .core)
                 .fontWeight(.semibold)
                 .foregroundStyle(Color.blue)
                 .multilineTextAlignment(.center)
@@ -197,7 +197,7 @@ struct WhatIfScoreEditorView: View {
             isPresented = false
             doneButtonDidTap?()
         } label: {
-            Text("Done")
+            Text("Done", bundle: .core)
                 .foregroundStyle(Color.blue)
                 .multilineTextAlignment(.center)
                 .padding(12)

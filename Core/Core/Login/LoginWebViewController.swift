@@ -35,9 +35,9 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         public var text: Text {
             switch self {
             case .invalidDomain:
-                return Text("Go back and make sure you entered a valid institution name.")
+                return Text("Go back and make sure you entered a valid institution name.", bundle: .core)
             case .timeout:
-                return Text("We received no response from the institution.\nGo back and make sure you entered a valid institution name.")
+                return Text("We received no response from the institution.\nGo back and make sure you entered a valid institution name.", bundle: .core)
             }
         }
     }
@@ -235,7 +235,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
 
     private func showFailedPanda(reason: FailureReason) {
         let panda = InteractivePanda(scene: NoResultsPanda(),
-                                     title: Text("Failed to Load Login Page"),
+                                     title: Text("Failed to Load Login Page", bundle: .core),
                                      subtitle: reason.text)
         let hostVC = CoreHostingController(panda)
         addChild(hostVC)

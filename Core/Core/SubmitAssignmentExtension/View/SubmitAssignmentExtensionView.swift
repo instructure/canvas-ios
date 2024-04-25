@@ -47,7 +47,7 @@ public struct SubmitAssignmentExtensionView: View {
     }
 
     private var notLoggedInView: some View {
-        Text("Please log in via the application")
+        Text("Please log in via the application", bundle: .core)
             .foregroundColor(.textDarkest)
             .font(.regular16)
             .navigationBarGlobal()
@@ -99,7 +99,7 @@ public struct SubmitAssignmentExtensionView: View {
     @ViewBuilder
     private var placeholder: some View {
         if viewModel.comment.isEmpty {
-            Text("Add comment (optional)", comment: "")
+            Text("Add comment (optional)", bundle: .core)
                 .foregroundColor(.textDark)
                 .font(.regular16)
                 .padding(.top, 21)

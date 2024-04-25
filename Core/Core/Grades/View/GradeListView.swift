@@ -285,7 +285,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         Text(courseName)
             .foregroundStyle(Color.textDarkest)
             .font(.semibold28)
-            .accessibilityLabel(Text("\(courseName) course"))
+            .accessibilityLabel(Text("\(courseName) course", bundle: .core))
             .fixedSize(horizontal: false, vertical: true)
     }
 
@@ -446,10 +446,10 @@ public struct GradeListView: View, ScreenViewTrackable {
         .listRowInsets(EdgeInsets())
         .iOS16RemoveListRowSeparatorLeadingInset()
         .swipeActions(edge: .trailing) { revertWhatIfScoreSwipeButton() }
-        .accessibilityAction(named: Text("Edit What-if score")) {
+        .accessibilityAction(named: Text("Edit What-if score", bundle: .core)) {
             isScoreEditorPresented.toggle()
         }
-        .accessibilityAction(named: Text("Revert to official score")) {
+        .accessibilityAction(named: Text("Revert to official score", bundle: .core)) {
             viewModel.isShowingRevertDialog = true
         }
     }
@@ -505,8 +505,8 @@ private struct RevertWhatIfScoreButton: ToolbarContent {
                         .foregroundColor(Color.white)
                 }
                 .frame(alignment: .leading)
-                .accessibilityLabel(Text("Revert"))
-                .accessibilityHint(Text("Double tap to revert to official score."))
+                .accessibilityLabel(Text("Revert", bundle: .core))
+                .accessibilityHint(Text("Double tap to revert to official score.", bundle: .core))
             }
         }
     }

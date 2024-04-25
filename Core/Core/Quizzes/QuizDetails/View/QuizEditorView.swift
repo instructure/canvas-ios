@@ -81,7 +81,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
                 accessCodeSection
                 assignmentOverridesSection
             case .error(let errorMessage):
-                EmptyPanda(.Unsupported, title: Text("Something went wrong"), message: Text(errorMessage))
+                EmptyPanda(.Unsupported, title: Text("Something went wrong", bundle: .core), message: Text(errorMessage))
             default:
                 Spacer()
             }

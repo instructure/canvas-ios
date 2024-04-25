@@ -34,7 +34,7 @@ struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModelProtocol>: Vie
                         Spacer()
                     }
                     if viewModel.noSubmissionTypes {
-                        Text("Tap to view submissions list.")
+                        Text("Tap to view submissions list.", bundle: .core)
                             .font(.regular16).foregroundColor(.textDarkest)
                     } else if viewModel.paperSubmissionTypes {
                         HStack(alignment: .top, spacing: 0) {
