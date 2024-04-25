@@ -59,13 +59,13 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: NSLocalizedString("Announcements", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Announcements", bundle: .core))
 
-        addButton.accessibilityLabel = NSLocalizedString("Create Announcement", bundle: .core, comment: "")
+        addButton.accessibilityLabel = String(localized: "Create Announcement", bundle: .core)
 
-        emptyMessageLabel.text = NSLocalizedString("It looks like announcements haven’t been created in this space yet.", bundle: .core, comment: "")
-        emptyTitleLabel.text = NSLocalizedString("No Announcements", bundle: .core, comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading announcements. Pull to refresh to try again.", bundle: .core, comment: "")
+        emptyMessageLabel.text = String(localized: "It looks like announcements haven’t been created in this space yet.", bundle: .core)
+        emptyTitleLabel.text = String(localized: "No Announcements", bundle: .core)
+        errorView.messageLabel.text = String(localized: "There was an error loading announcements. Pull to refresh to try again.", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         loadingView.color = nil
@@ -144,17 +144,17 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
     func deleteTopic(at indexPath: IndexPath, completionHandler: @escaping (Bool) -> Void) {
         guard let topicID = topics[indexPath]?.id else { return completionHandler(false) }
         let alert = UIAlertController(
-            title: NSLocalizedString("Delete Announcement", bundle: .core, comment: ""),
-            message: NSLocalizedString("Are you sure you would like to delete this announcement?", bundle: .core, comment: ""),
+            title: String(localized: "Delete Announcement", bundle: .core),
+            message: String(localized: "Are you sure you would like to delete this announcement?", bundle: .core),
             preferredStyle: .alert
         )
-        alert.addAction(AlertAction(NSLocalizedString("Delete", bundle: .core, comment: ""), style: .destructive) { _ in
+        alert.addAction(AlertAction(String(localized: "Delete", bundle: .core), style: .destructive) { _ in
             let useCase = DeleteDiscussionTopic(context: self.context, topicID: topicID)
             useCase.fetch { [weak self] _, _, error in performUIUpdate {
                 if let error = error { self?.showError(error) }
             } }
         })
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
         env.router.show(alert, from: self, options: .modal())
         completionHandler(true)
     }
@@ -180,7 +180,7 @@ extension AnnouncementListViewController: UITableViewDataSource, UITableViewDele
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         var actions: [UIContextualAction] = []
         if topics[indexPath]?.canDelete == true {
-            let action = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", bundle: .core, comment: "")) { [weak self] (_, _, handler) in
+            let action = UIContextualAction(style: .destructive, title: String(localized: "Delete", bundle: .core)) { [weak self] (_, _, handler) in
                 self?.deleteTopic(at: indexPath, completionHandler: handler)
             }
             action.backgroundColor = .backgroundDanger
@@ -214,9 +214,9 @@ class AnnouncementListCell: UITableViewCell {
         if let delayed = topic?.delayedPostAt, delayed > Clock.now {
             iconImageView.icon = .calendarClockLine
             iconImageView.state = nil
-            dateText = String.localizedStringWithFormat(NSLocalizedString("Delayed until %@", bundle: .core, comment: ""), delayed.dateTimeString)
+            dateText = String.localizedStringWithFormat(String(localized: "Delayed until %@", bundle: .core), delayed.dateTimeString)
         } else if let replyAt = topic?.lastReplyAt {
-            dateText = String.localizedStringWithFormat(NSLocalizedString("Last post %@", bundle: .core, comment: ""), replyAt.dateTimeString)
+            dateText = String.localizedStringWithFormat(String(localized: "Last post %@", bundle: .core), replyAt.dateTimeString)
         } else {
             dateText = topic?.postedAt?.dateTimeString
         }

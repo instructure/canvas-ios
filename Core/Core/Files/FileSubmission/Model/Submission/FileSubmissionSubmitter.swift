@@ -60,7 +60,7 @@ public class FileSubmissionSubmitter {
             }
 
             guard let response = response else {
-                let validError: Error = error ?? NSError.instructureError(NSLocalizedString("Submission failed due to unknown error.", bundle: .core, comment: ""))
+                let validError: Error = error ?? NSError.instructureError(String(localized: "Submission failed due to unknown error.", bundle: .core))
                 submission.submissionError = validError.localizedDescription
                 submission.isSubmitted = false
                 try? context.saveAndNotify()

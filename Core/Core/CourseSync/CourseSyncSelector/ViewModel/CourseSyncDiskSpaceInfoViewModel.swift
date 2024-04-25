@@ -26,7 +26,7 @@ class CourseSyncDiskSpaceInfoViewModel: ObservableObject {
 
     init(interactor: DiskSpaceInteractor, app: AppEnvironment.App) {
         let diskSpace = interactor.getDiskSpace()
-        let format = NSLocalizedString("%@ of %@ Used", bundle: .core, comment: "42 GB of 64 GB Used")
+        let format = String(localized: "%@ of %@ Used", bundle: .core, comment: "42 GB of 64 GB Used")
         let diskUsage = String.localizedStringWithFormat(format,
                                                          diskSpace.used.humanReadableFileSize,
                                                          diskSpace.total.humanReadableFileSize)
@@ -43,11 +43,11 @@ class CourseSyncDiskSpaceInfoViewModel: ObservableObject {
         self.appName = appName
 
         a11yLabel = [
-            NSLocalizedString("Storage Info", bundle: .core, comment: ""),
+            String(localized: "Storage Info", bundle: .core),
             diskUsage,
-            NSLocalizedString("Other Apps", bundle: .core, comment: "") + String(format: " %.1f%%", 100 * chart.other),
+            String(localized: "Other Apps", bundle: .core) + String(format: " %.1f%%", 100 * chart.other),
             appName + String(format: " %.1f%%", 100 * chart.app),
-            NSLocalizedString("Remaining", bundle: .core, comment: "") + String(format: " %.1f%%", 100 * chart.free),
+            String(localized: "Remaining", bundle: .core) + String(format: " %.1f%%", 100 * chart.free),
         ].joined(separator: ",")
     }
 }

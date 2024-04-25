@@ -39,7 +39,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     @IBOutlet weak var toolbarShareButton: UIBarButtonItem!
     @IBOutlet weak var viewModulesButton: UIButton!
 
-    lazy var editButton = UIBarButtonItem(title: NSLocalizedString("Edit", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(edit))
+    lazy var editButton = UIBarButtonItem(title: String(localized: "Edit", bundle: .core), style: .plain, target: self, action: #selector(edit))
     lazy var shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share(_:)))
 
     var assignmentID: String?
@@ -85,11 +85,11 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         view.backgroundColor = .backgroundLightest
         contentView.backgroundColor = .backgroundLightest
 
-        arButton.setTitle(NSLocalizedString("Augment Reality", bundle: .core, comment: ""), for: .normal)
+        arButton.setTitle(String(localized: "Augment Reality", bundle: .core), for: .normal)
         arButton.isHidden = true
         arImageView.isHidden = true
 
-        copiedLabel.text = NSLocalizedString("Copied!", bundle: .core, comment: "")
+        copiedLabel.text = String(localized: "Copied!", bundle: .core)
 
         lockView.isHidden = true
 
@@ -107,10 +107,10 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         toolbar.isHidden = env.app != .teacher
         toolbar.tintColor = Brand.shared.linkColor
         toolbarLinkButton.accessibilityIdentifier = "FileDetails.copyButton"
-        toolbarLinkButton.accessibilityLabel = NSLocalizedString("Copy Link", bundle: .core, comment: "")
+        toolbarLinkButton.accessibilityLabel = String(localized: "Copy Link", bundle: .core)
         toolbarShareButton.accessibilityIdentifier = "FileDetails.shareButton"
 
-        viewModulesButton.setTitle(NSLocalizedString("View Modules", bundle: .core, comment: ""), for: .normal)
+        viewModulesButton.setTitle(String(localized: "View Modules", bundle: .core), for: .normal)
         viewModulesButton.isHidden = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(fileEdited(_:)), name: .init("file-edit"), object: nil)
@@ -350,10 +350,10 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
     }
 
     private func showFileNoLongerExistsDialog() {
-        let alert = UIAlertController(title: NSLocalizedString("File No Longer Exists", bundle: .core, comment: ""),
-                                      message: NSLocalizedString("The file has been deleted by the author.", bundle: .core, comment: ""),
+        let alert = UIAlertController(title: String(localized: "File No Longer Exists", bundle: .core),
+                                      message: String(localized: "The file has been deleted by the author.", bundle: .core),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Close", bundle: .core, comment: ""),
+        alert.addAction(UIAlertAction(title: String(localized: "Close", bundle: .core),
                                       style: .default,
                                       handler: { [env] _ in
             env.router.dismiss(self)
@@ -387,7 +387,7 @@ extension FileDetailsViewController: UIScrollViewDelegate {
     func embedImageView(for url: URL) {
         let image = UIImageView(image: UIImage(contentsOfFile: url.path))
         image.accessibilityIdentifier = "FileDetails.imageView"
-        image.accessibilityLabel = files.first?.displayName ?? NSLocalizedString("File", bundle: .core, comment: "")
+        image.accessibilityLabel = files.first?.displayName ?? String(localized: "File", bundle: .core)
         image.isAccessibilityElement = true
         let imageSize = image.frame.size
         let scroll = UIScrollView(frame: contentView.bounds)

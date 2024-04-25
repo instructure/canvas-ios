@@ -43,8 +43,8 @@ public extension NotificationManager {
     }
 
     func sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: Int) -> Future<Void, Error> {
-        let title = NSLocalizedString("Offline Content Sync Success", bundle: .core, comment: "")
-        let bodyFormat = NSLocalizedString("offline_sync_finished", bundle: .core, comment: "")
+        let title = String(localized: "Offline Content Sync Success", bundle: .core)
+        let bodyFormat = String(localized: "offline_sync_finished", bundle: .core)
         let body = String.localizedStringWithFormat(bodyFormat, syncedItemsCount, syncedItemsCount)
 
         return notify(identifier: "OfflineSyncCompletedSuccessfully", title: title, body: body, route: nil)
@@ -55,8 +55,8 @@ public extension NotificationManager {
      */
     @discardableResult
     func sendOfflineSyncFailedNotificationAndWait() -> Bool {
-        let title = NSLocalizedString("Offline Content Sync Failed", bundle: .core, comment: "")
-        let body = NSLocalizedString("One or more items failed to sync.", bundle: .core, comment: "")
+        let title = String(localized: "Offline Content Sync Failed", bundle: .core)
+        let body = String(localized: "One or more items failed to sync.", bundle: .core)
         let semaphore = DispatchSemaphore(value: 0)
         var isScheduled = false
         notify(identifier: "OfflineSyncFailed", title: title, body: body, route: nil) { error in

@@ -84,7 +84,7 @@ struct LoginUsePolicyView: View {
             }).disabled(!viewModel.isAccepted)
         )
         .alert(isPresented: $viewModel.showError) {
-            Alert(title: Text(viewModel.errorText ?? NSLocalizedString("Something went wrong", bundle: .core, comment: "")))
+            Alert(title: Text(viewModel.errorText ?? String(localized: "Something went wrong", bundle: .core)))
         }
     }
 }

@@ -23,7 +23,7 @@ public class TermsOfServiceViewController: UIViewController {
     let webView = CoreWebView()
 
     public override func viewDidLoad() {
-        title = NSLocalizedString("Terms of Use", bundle: .core, comment: "")
+        title = String(localized: "Terms of Use", bundle: .core)
         view.backgroundColor = .backgroundLightest
         view.addSubview(webView)
         webView.pin(inside: view)
@@ -41,7 +41,7 @@ public class TermsOfServiceViewController: UIViewController {
         let label = UILabel(frame: view.frame)
         label.numberOfLines = 2
         label.textAlignment = .center
-        label.text = NSLocalizedString("There was a problem retrieving the Terms of Use.", bundle: .core, comment: "")
+        label.text = String(localized: "There was a problem retrieving the Terms of Use.", bundle: .core)
         view.addSubview(label)
     }
 }

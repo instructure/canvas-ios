@@ -31,9 +31,9 @@ class AttachmentPickerViewModel: ObservableObject {
     @Published public var isAudioRecordVisible: Bool = false
     @Published public private(set) var fileList: [File] = []
     @Published public var isFileErrorOccured: Bool = false
-    public let title = NSLocalizedString("Attachments", bundle: .core, comment: "")
-    public let fileErrorTitle = NSLocalizedString("Error", bundle: .core, comment: "")
-    public let fileErrorMessage = NSLocalizedString("Failed to add attachment. Please try again!", bundle: .core, comment: "")
+    public let title = String(localized: "Attachments", bundle: .core)
+    public let fileErrorTitle = String(localized: "Error", bundle: .core)
+    public let fileErrorMessage = String(localized: "Failed to add attachment. Please try again!", bundle: .core)
 
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let doneButtonDidTap = PassthroughRelay<WeakViewController>()
@@ -61,28 +61,28 @@ class AttachmentPickerViewModel: ObservableObject {
 
         sheet.addAction(
             image: .documentLine,
-            title: NSLocalizedString("Upload file", bundle: .core, comment: ""),
+            title: String(localized: "Upload file", bundle: .core),
             accessibilityIdentifier: nil
         ) { [weak self] in
             self?.isFilePickerVisible = true
         }
         sheet.addAction(
             image: .imageLine,
-            title: NSLocalizedString("Upload photo", bundle: .core, comment: ""),
+            title: String(localized: "Upload photo", bundle: .core),
             accessibilityIdentifier: nil
         ) { [weak self] in
             self?.isImagePickerVisible = true
         }
         sheet.addAction(
             image: .cameraLine,
-            title: NSLocalizedString("Take photo", bundle: .core, comment: ""),
+            title: String(localized: "Take photo", bundle: .core),
             accessibilityIdentifier: nil
         ) { [weak self] in
             self?.isTakePhotoVisible = true
         }
         sheet.addAction(
             image: .audioLine,
-            title: NSLocalizedString("Record audio", bundle: .core, comment: ""),
+            title: String(localized: "Record audio", bundle: .core),
             accessibilityIdentifier: nil
         ) { [weak self] in
             self?.isAudioRecordVisible = true
@@ -91,7 +91,7 @@ class AttachmentPickerViewModel: ObservableObject {
     }
 
     func showFileErrorDialog() {
-        let actionTitle = NSLocalizedString("OK", bundle: .core, comment: "")
+        let actionTitle = String(localized: "OK", bundle: .core)
         let alert = UIAlertController(title: fileErrorTitle, message: fileErrorMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: actionTitle, style: .default) { [weak self] _ in
             self?.isImagePickerVisible = false

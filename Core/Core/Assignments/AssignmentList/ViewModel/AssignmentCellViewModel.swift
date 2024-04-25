@@ -59,25 +59,25 @@ public class AssignmentCellViewModel: ObservableObject {
             return nil
         }
 
-        let format = NSLocalizedString("d_needs_grading", bundle: .core, comment: "")
+        let format = String(localized: "d_needs_grading", bundle: .core)
         return String.localizedStringWithFormat(format, assignment.needsGradingCount).localizedUppercase
     }
 
     public var formattedDueDate: String {
         if let lockAt = assignment.lockAt, Clock.now > lockAt {
-            return NSLocalizedString("Availability: Closed", bundle: .core, comment: "")
+            return String(localized: "Availability: Closed", bundle: .core)
         }
 
         if assignment.hasMultipleDueDates {
-            return NSLocalizedString("Multiple Due Dates", bundle: .core, comment: "")
+            return String(localized: "Multiple Due Dates", bundle: .core)
         }
 
         if let dueAt = assignment.dueAt {
-            let format = NSLocalizedString("Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>")
+            let format = String(localized: "Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>")
             return String.localizedStringWithFormat(format, dueAt.relativeDateTimeString)
         }
 
-        return NSLocalizedString("No Due Date", bundle: .core, comment: "")
+        return String(localized: "No Due Date", bundle: .core)
     }
 
     private var isTeacher: Bool {

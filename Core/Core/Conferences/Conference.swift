@@ -56,14 +56,14 @@ public final class Conference: NSManagedObject {
     var statusText: String {
         if let date = endedAt {
             return String.localizedStringWithFormat(
-                NSLocalizedString("Concluded %@", bundle: .core, comment: "concluded datetime"),
+                String(localized: "Concluded %@", bundle: .core, comment: "concluded datetime"),
                 date.dateTimeString
             )
         }
         if startedAt != nil {
-            return NSLocalizedString("In Progress", bundle: .core, comment: "")
+            return String(localized: "In Progress", bundle: .core)
         }
-        return NSLocalizedString("Not Started", bundle: .core, comment: "")
+        return String(localized: "Not Started", bundle: .core)
     }
 
     var statusLongText: NSAttributedString {
@@ -72,7 +72,7 @@ public final class Conference: NSManagedObject {
             status.append(NSAttributedString(string: statusText, attributes: [.foregroundColor: statusColor]))
             status.append(NSAttributedString(string: " | "))
             status.append(NSAttributedString(string: String.localizedStringWithFormat(
-                NSLocalizedString("Started %@", bundle: .core, comment: "started datetime"),
+                String(localized: "Started %@", bundle: .core, comment: "started datetime"),
                 date.dateTimeString
             )))
             return status

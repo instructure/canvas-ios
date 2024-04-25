@@ -57,14 +57,14 @@ extension SubmissionViewable {
 
     public var submissionStatusText: String {
         if !isSubmitted {
-            return NSLocalizedString("Not Submitted", bundle: .core, comment: "")
+            return String(localized: "Not Submitted", bundle: .core)
         }
 
         if submission?.workflowState == .graded {
-            return NSLocalizedString("Graded", bundle: .core, comment: "")
+            return String(localized: "Graded", bundle: .core)
         }
 
-        return NSLocalizedString("Submitted", bundle: .core, comment: "")
+        return String(localized: "Submitted", bundle: .core)
     }
     public var submissionDateText: String? {
         submission?.submittedAt?.dateTimeString
@@ -72,7 +72,7 @@ extension SubmissionViewable {
     public var submissionAttemptNumberText: String? {
         guard let attempt = submission?.attempt else { return nil }
 
-        let format = NSLocalizedString("Attempt %d", bundle: .core, comment: "")
+        let format = String(localized: "Attempt %d", bundle: .core)
         return String.localizedStringWithFormat(format, attempt)
     }
 
@@ -82,7 +82,7 @@ extension SubmissionViewable {
 
     public var latePenaltyText: String? {
         guard submission?.late == true, let deducted = submission?.pointsDeducted else { return nil }
-        let format = NSLocalizedString("late_penalty_g_pts", bundle: .core, comment: "")
+        let format = String(localized: "late_penalty_g_pts", bundle: .core)
         return String.localizedStringWithFormat(format, -deducted)
     }
 

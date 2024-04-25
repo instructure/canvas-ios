@@ -22,11 +22,11 @@ import XCTest
 class CourseHomePropertiesTests: XCTestCase {
 
     func testHomeSubLabel() {
-        XCTAssertEqual(CourseDefaultView.assignments.homeSubLabel, NSLocalizedString("Assignments", bundle: .core, comment: ""))
-        XCTAssertEqual(CourseDefaultView.feed.homeSubLabel, NSLocalizedString("Recent Activity", bundle: .core, comment: ""))
-        XCTAssertEqual(CourseDefaultView.modules.homeSubLabel, NSLocalizedString("Course Modules", bundle: .core, comment: ""))
-        XCTAssertEqual(CourseDefaultView.syllabus.homeSubLabel, NSLocalizedString("Syllabus", bundle: .core, comment: ""))
-        XCTAssertEqual(CourseDefaultView.wiki.homeSubLabel, NSLocalizedString("Front Page", bundle: .core, comment: ""))
+        XCTAssertEqual(CourseDefaultView.assignments.homeSubLabel, String(localized: "Assignments", bundle: .core))
+        XCTAssertEqual(CourseDefaultView.feed.homeSubLabel, String(localized: "Recent Activity", bundle: .core))
+        XCTAssertEqual(CourseDefaultView.modules.homeSubLabel, String(localized: "Course Modules", bundle: .core))
+        XCTAssertEqual(CourseDefaultView.syllabus.homeSubLabel, String(localized: "Syllabus", bundle: .core))
+        XCTAssertEqual(CourseDefaultView.wiki.homeSubLabel, String(localized: "Front Page", bundle: .core))
     }
 
     func testHomeRoute() {

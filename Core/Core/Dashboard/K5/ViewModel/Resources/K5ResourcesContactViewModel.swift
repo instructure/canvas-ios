@@ -43,7 +43,7 @@ public struct K5ResourcesContactViewModel {
     public init(_ user: APIUser, courses: [Course]) {
         let firstActiveEnrollment = user.enrollments?.first { $0.enrollment_state == .active }
         let firstActiveRole = firstActiveEnrollment?.role
-        let role = firstActiveRole == Role.teacher.rawValue ? NSLocalizedString("Teacher", bundle: .core, comment: "") : NSLocalizedString("Teacher's Assistant", bundle: .core, comment: "")
+        let role = firstActiveRole == Role.teacher.rawValue ? String(localized: "Teacher", bundle: .core) : String(localized: "Teacher's Assistant", bundle: .core)
         let courseCode: String = {
             if let courseId = firstActiveEnrollment?.course_id {
                 return "course_\(courseId)"

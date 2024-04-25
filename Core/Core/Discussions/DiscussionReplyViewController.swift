@@ -69,7 +69,7 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
     }()
     let attachBadge = UIView()
     lazy var sendButton = UIBarButtonItem(
-        title: NSLocalizedString("Send", bundle: .core, comment: ""), style: .done,
+        title: String(localized: "Send", bundle: .core), style: .done,
         target: self, action: #selector(sendReply)
     )
 
@@ -136,8 +136,8 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         view.backgroundColor = .backgroundLightest
         navigationItem.titleView = titleSubtitleView
         titleSubtitleView.title = editEntryID != nil
-            ? NSLocalizedString("Edit", bundle: .core, comment: "")
-            : NSLocalizedString("Reply", bundle: .core, comment: "")
+            ? String(localized: "Edit", bundle: .core)
+            : String(localized: "Reply", bundle: .core)
 
         addCancelButton(side: .left)
         attachButton.accessibilityIdentifier = "DiscussionEditReply.attachmentButton"
@@ -146,15 +146,15 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         navigationItem.rightBarButtonItem = sendButton
 
         editor.delegate = self
-        editor.placeholder = NSLocalizedString("Add message", bundle: .core, comment: "")
-        editor.a11yLabel = NSLocalizedString("Message", bundle: .core, comment: "")
+        editor.placeholder = String(localized: "Add message", bundle: .core)
+        editor.a11yLabel = String(localized: "Message", bundle: .core)
         editor.webView.autoresizesHeight = true
         editor.webView.heightAnchor.constraint(equalToConstant: 64).isActive = true
         editor.webView.scrollView.alwaysBounceVertical = false
         embed(editor, in: editorContainer)
 
         viewMoreButton.isHidden = true
-        viewMoreButton.setTitle(NSLocalizedString("View More", bundle: .core, comment: ""), for: .normal)
+        viewMoreButton.setTitle(String(localized: "View More", bundle: .core), for: .normal)
         viewMoreButton.layer.borderColor = UIColor.borderMedium.cgColor
         viewMoreButton.layer.borderWidth = 1 / UIScreen.main.scale
 
@@ -241,10 +241,10 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         )
 
         if attachmentURL == nil {
-            attachButton.accessibilityLabel = NSLocalizedString("Edit attachment (none)", bundle: .core, comment: "")
+            attachButton.accessibilityLabel = String(localized: "Edit attachment (none)", bundle: .core)
             attachBadge.isHidden = true
         } else {
-            attachButton.accessibilityLabel = NSLocalizedString("Edit attachment (1)", bundle: .core, comment: "")
+            attachButton.accessibilityLabel = String(localized: "Edit attachment (1)", bundle: .core)
             attachBadge.isHidden = false
         }
     }
@@ -256,8 +256,8 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
             self.view.layoutIfNeeded()
         }
         viewMoreButton.setTitle(isExpanded
-            ? NSLocalizedString("View Less", bundle: .core, comment: "")
-            : NSLocalizedString("View More", bundle: .core, comment: ""),
+            ? String(localized: "View Less", bundle: .core)
+            : String(localized: "View More", bundle: .core),
         for: .normal)
         webView.scrollView.isScrollEnabled = isExpanded
     }
@@ -314,7 +314,7 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         }
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-            UIAccessibility.announce(NSLocalizedString("Reply sent", bundle: .core, comment: "VoiceOver announcement after a reply was successfully posted."))
+            UIAccessibility.announce(String(localized: "Reply sent", bundle: .core, comment: "VoiceOver announcement after a reply was successfully posted."))
         }
         env.router.dismiss(self)
     }
@@ -327,7 +327,7 @@ extension DiscussionReplyViewController: FilePickerDelegate, QLPreviewController
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(
             image: .eyeLine,
-            title: NSLocalizedString("View", bundle: .core, comment: ""),
+            title: String(localized: "View", bundle: .core),
             accessibilityIdentifier: "DiscussionEditReply.viewMenuAction"
         ) { [weak self] in
             guard let self = self else { return }
@@ -337,7 +337,7 @@ extension DiscussionReplyViewController: FilePickerDelegate, QLPreviewController
         }
         sheet.addAction(
             image: .trashLine,
-            title: NSLocalizedString("Delete", bundle: .core, comment: ""),
+            title: String(localized: "Delete", bundle: .core),
             accessibilityIdentifier: "DiscussionEditReply.deleteMenuAction"
         ) { [weak self] in
             guard let self = self, let url = self.attachmentURL else { return }

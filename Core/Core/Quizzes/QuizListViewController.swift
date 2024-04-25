@@ -55,11 +55,11 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: NSLocalizedString("Quizzes", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Quizzes", bundle: .core))
 
-        emptyMessageLabel.text = NSLocalizedString("It looks like quizzes haven’t been created in this space yet.", bundle: .core, comment: "")
-        emptyTitleLabel.text = NSLocalizedString("No Quizzes", bundle: .core, comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading quizzes. Pull to refresh to try again.", bundle: .core, comment: "")
+        emptyMessageLabel.text = String(localized: "It looks like quizzes haven’t been created in this space yet.", bundle: .core)
+        emptyTitleLabel.text = String(localized: "No Quizzes", bundle: .core)
+        errorView.messageLabel.text = String(localized: "There was an error loading quizzes. Pull to refresh to try again.", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         loadingView.color = nil

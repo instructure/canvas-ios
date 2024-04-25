@@ -183,8 +183,8 @@ public class ModuleItem: NSManagedObject {
                 path.moduleID = item.module_id.value
                 path.position = Double(item.position) + 0.5
                 path.title = item.mastery_paths?.locked == true
-                    ? String.localizedStringWithFormat(NSLocalizedString("Locked until \"%@\" is graded", bundle: .core, comment: ""), item.title)
-                    : NSLocalizedString("Select a Path", bundle: .core, comment: "")
+                    ? String.localizedStringWithFormat(String(localized: "Locked until \"%@\" is graded", bundle: .core), item.title)
+                    : String(localized: "Select a Path", bundle: .core)
                 path.indent = item.indent
                 path.type = item.content
                 path.masteryPath = MasteryPath.save(masteryPath, in: context)

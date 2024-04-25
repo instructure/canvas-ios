@@ -111,8 +111,8 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
 
         EditorSection(label: Text("Description", bundle: .core)) {
             RichContentEditor(
-                placeholder: NSLocalizedString("Add description", bundle: .core, comment: ""),
-                a11yLabel: NSLocalizedString("Description", bundle: .core, comment: ""),
+                placeholder: String(localized: "Add description", bundle: .core),
+                a11yLabel: String(localized: "Description", bundle: .core),
                 html: $viewModel.description,
                 context: .course(viewModel.courseID),
                 uploadTo: .context(.course(viewModel.courseID)),
@@ -179,7 +179,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
                 Divider()
                 IntFieldRow(
                     label: Text("Allowed Attempts", bundle: .core),
-                    placeholder: NSLocalizedString("Unlimited", bundle: .core, comment: ""),
+                    placeholder: String(localized: "Unlimited", bundle: .core),
                     value: $viewModel.allowedAttempts
                 )
                 .accessibilityIdentifier("QuizEditor.allowedAttempts")
@@ -213,7 +213,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
                 Divider()
                 TextFieldRow(
                     label: Text("Access Code", bundle: .core),
-                    placeholder: NSLocalizedString("Enter code", bundle: .core, comment: ""),
+                    placeholder: String(localized: "Enter code", bundle: .core),
                     text: $viewModel.accessCode
                 )
                 .accessibilityIdentifier("QuizEditor.accessCode")

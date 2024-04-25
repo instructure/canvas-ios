@@ -136,8 +136,8 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         webView.uiDelegate = self
         webView.handle("selfRegistrationError") { [weak self] _ in performUIUpdate {
             self?.showAlert(
-                title: NSLocalizedString("Self Registration Not Allowed", bundle: .core, comment: ""),
-                message: NSLocalizedString("Contact your school to create an account.", bundle: .core, comment: "")
+                title: String(localized: "Self Registration Not Allowed", bundle: .core),
+                message: String(localized: "Contact your school to create an account.", bundle: .core)
             )
         } }
     }
@@ -291,7 +291,7 @@ extension LoginWebViewController: WKNavigationDelegate {
         } else if queryItems?.first(where: { $0.name == "error" })?.value == "access_denied" {
             // access_denied is the only currently implemented error code
             // https://canvas.instructure.com/doc/api/file.oauth.html#oauth2-flow-2
-            let error = NSError.instructureError(NSLocalizedString("Authentication failed. Most likely the user denied the request for access.", bundle: .core, comment: ""))
+            let error = NSError.instructureError(String(localized: "Authentication failed. Most likely the user denied the request for access.", bundle: .core))
             self.showError(error)
             return decisionHandler(.cancel)
         }
@@ -340,18 +340,18 @@ extension LoginWebViewController: WKNavigationDelegate {
             return
         }
         performUIUpdate {
-            let alert = UIAlertController(title: NSLocalizedString("Login", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: String(localized: "Login", bundle: .core), message: nil, preferredStyle: .alert)
             alert.addTextField { textField in
-                textField.placeholder = NSLocalizedString("Username", bundle: .core, comment: "")
+                textField.placeholder = String(localized: "Username", bundle: .core)
             }
             alert.addTextField { textField in
-                textField.placeholder = NSLocalizedString("Password", bundle: .core, comment: "")
+                textField.placeholder = String(localized: "Password", bundle: .core)
                 textField.isSecureTextEntry = true
             }
-            alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel) { _ in
+            alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel) { _ in
                 completionHandler(.performDefaultHandling, nil)
             })
-            alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { _ in
+            alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
                 if let username = alert.textFields?.first?.text, let password = alert.textFields?.last?.text {
                     let credential = URLCredential(user: username, password: password, persistence: .forSession)
                     completionHandler(.useCredential, credential)

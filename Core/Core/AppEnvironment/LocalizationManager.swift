@@ -57,11 +57,11 @@ public class LocalizationManager {
         let env = AppEnvironment.shared
         guard needsRestart, let root = env.window?.rootViewController else { return then() }
         let alert = UIAlertController(
-            title: NSLocalizedString("Updated Language Settings", bundle: .core, comment: ""),
-            message: NSLocalizedString("The app needs to restart to use the new language settings. Please relaunch the app.", bundle: .core, comment: ""),
+            title: String(localized: "Updated Language Settings", bundle: .core),
+            message: String(localized: "The app needs to restart to use the new language settings. Please relaunch the app.", bundle: .core),
             preferredStyle: .alert
         )
-        alert.addAction(AlertAction(NSLocalizedString("Close App", bundle: .core, comment: ""), style: .default) { _ in
+        alert.addAction(AlertAction(String(localized: "Close App", bundle: .core), style: .default) { _ in
             UIControl().sendAction(suspend, to: app, for: nil)
         })
         if let presented = root.presentedViewController { // QR login alert

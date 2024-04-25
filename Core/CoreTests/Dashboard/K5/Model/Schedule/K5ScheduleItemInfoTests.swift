@@ -24,15 +24,15 @@ class K5ScheduleItemInfoTests: CoreTestCase {
 
     func testSubmittedLabelAvailableOnlyForNonLateSubmissions() {
         let containsSubmittedLabel: ([(text: String, color: Color)]) -> Bool = { labels in
-            return labels.contains { $0.text == NSLocalizedString("Submitted", bundle: .core, comment: "") }
+            return labels.contains { $0.text == String(localized: "Submitted", bundle: .core) }
         }
         XCTAssertTrue(containsSubmittedLabel(APIPlannable.make(submissions: .make(submitted: true, late: false)).k5ScheduleLabels))
         XCTAssertFalse(containsSubmittedLabel(APIPlannable.make(submissions: .make(submitted: true, late: true)).k5ScheduleLabels))
     }
 
     func testScheduleSubjectName() {
-        XCTAssertEqual(APIPlannable.make(plannable_type: "calendar_event").k5ScheduleSubject(courseInfoByCourseIDs: [:]).name, NSLocalizedString("To Do", bundle: .core, comment: ""))
-        XCTAssertEqual(APIPlannable.make(plannable_type: "other", context_name: nil).k5ScheduleSubject(courseInfoByCourseIDs: [:]).name, NSLocalizedString("To Do", bundle: .core, comment: ""))
+        XCTAssertEqual(APIPlannable.make(plannable_type: "calendar_event").k5ScheduleSubject(courseInfoByCourseIDs: [:]).name, String(localized: "To Do", bundle: .core))
+        XCTAssertEqual(APIPlannable.make(plannable_type: "other", context_name: nil).k5ScheduleSubject(courseInfoByCourseIDs: [:]).name, String(localized: "To Do", bundle: .core))
         XCTAssertEqual(APIPlannable.make(plannable_type: "other", context_name: "testName").k5ScheduleSubject(courseInfoByCourseIDs: [:]).name, "testName")
     }
 
@@ -77,7 +77,7 @@ class K5ScheduleItemInfoTests: CoreTestCase {
 
     func testDueText() {
         let allDayTestee = APIPlannable.make(plannable: .init(all_day: true, details: nil, end_at: nil, points_possible: nil, start_at: nil, title: nil))
-        XCTAssertEqual(allDayTestee.k5ScheduleDueText, NSLocalizedString("All Day", bundle: .core, comment: ""))
+        XCTAssertEqual(allDayTestee.k5ScheduleDueText, String(localized: "All Day", bundle: .core))
 
         let intervalTestee = APIPlannable.make(plannable: .init(all_day: nil, details: nil, end_at: Date().add(.hour, number: 1), points_possible: nil, start_at: Date(), title: nil))
         XCTAssertTrue(intervalTestee.k5ScheduleDueText.contains(" – "))

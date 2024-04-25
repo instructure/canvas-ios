@@ -111,14 +111,14 @@ class ModuleItemCell: UITableViewCell {
                 return nil
             } else {
                 return String.localizedStringWithFormat(
-                    NSLocalizedString("%@ pts", bundle: .core, comment: ""),
+                    String(localized: "%@ pts", bundle: .core),
                     NSNumber(value: $0)
                 )
             }
         }
         let requirement = item.completionRequirement?.description
         if let masteryPath = item.masteryPath, masteryPath.needsSelection, !masteryPath.locked {
-            let format = NSLocalizedString("d_options", bundle: .core, comment: "")
+            let format = String(localized: "d_options", bundle: .core)
             dueLabel.setText(String.localizedStringWithFormat(format, masteryPath.numberOfOptions), style: .textCellSupportingText)
             dueLabel.textColor = tintColor
             accessoryView = UIImageView(image: .masteryPathsLine)

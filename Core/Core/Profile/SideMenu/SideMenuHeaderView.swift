@@ -115,7 +115,7 @@ struct SideMenuHeaderView: View {
 
     public func showError(_ error: Error) {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Dismiss", bundle: .core, comment: ""), style: .default))
+        alert.addAction(AlertAction(String(localized: "Dismiss", bundle: .core), style: .default))
         env.router.show(alert, from: controller.value, options: .modal())
     }
 }

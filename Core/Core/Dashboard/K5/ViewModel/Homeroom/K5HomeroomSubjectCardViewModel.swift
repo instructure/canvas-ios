@@ -66,15 +66,15 @@ extension K5HomeroomSubjectCardViewModel {
             var highlightedText = ""
 
             if dueToday > 0 {
-                text = String(format: NSLocalizedString("%d due today", bundle: .core, comment: "Number of assignments due today"), dueToday)
+                text = String(format: String(localized: "%d due today", bundle: .core, comment: "Number of assignments due today"), dueToday)
             }
 
             if missing > 0 {
-                highlightedText = String(format: NSLocalizedString("%d missing", bundle: .core, comment: "Number of missing submissions"), missing)
+                highlightedText = String(format: String(localized: "%d missing", bundle: .core, comment: "Number of missing submissions"), missing)
             }
 
             if text.isEmpty && highlightedText.isEmpty {
-                text = NSLocalizedString("Nothing Due Today", bundle: .core, comment: "No due assignments for today")
+                text = String(localized: "Nothing Due Today", bundle: .core, comment: "No due assignments for today")
             } else if !text.isEmpty && !highlightedText.isEmpty {
                 text += " | "
             }

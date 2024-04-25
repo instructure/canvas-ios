@@ -133,7 +133,7 @@ extension Quiz: DueViewable, GradeViewable, LockStatusViewable {
 
     public var allowedAttemptsText: String {
         if allowedAttempts < 1 {
-            return NSLocalizedString("Unlimited", bundle: .core, comment: "")
+            return String(localized: "Unlimited", bundle: .core)
         }
         return NumberFormatter.localizedString(from: NSNumber(value: allowedAttempts), number: .none)
     }
@@ -143,13 +143,13 @@ extension Quiz: DueViewable, GradeViewable, LockStatusViewable {
     }
 
     public var nQuestionsText: String {
-        let format = NSLocalizedString("d_questions", bundle: .core, comment: "")
+        let format = String(localized: "d_questions", bundle: .core)
         return String.localizedStringWithFormat(format, questionCount)
     }
 
     public var timeLimitText: String? {
         guard var limit = timeLimit else {
-            return NSLocalizedString("None", bundle: .core, comment: "")
+            return String(localized: "None", bundle: .core)
         }
         limit += submission?.extraTime ?? 0
         let formatter = DateComponentsFormatter()
@@ -224,9 +224,9 @@ public enum QuizHideResults: String, Codable, CaseIterable {
     public var text: String {
         switch self {
         case .always:
-            return NSLocalizedString("No", bundle: .core, comment: "")
+            return String(localized: "No", bundle: .core)
         case .until_after_last_attempt:
-            return NSLocalizedString("After Last Attempt", bundle: .core, comment: "")
+            return String(localized: "After Last Attempt", bundle: .core)
         }
     }
 }
@@ -237,30 +237,30 @@ public enum QuizType: String, Codable, CaseIterable {
     public var sectionTitle: String {
         switch self {
         case .assignment:
-            return NSLocalizedString("Assignments", bundle: .core, comment: "")
+            return String(localized: "Assignments", bundle: .core)
         case .practice_quiz:
-            return NSLocalizedString("Practice Quizzes", bundle: .core, comment: "")
+            return String(localized: "Practice Quizzes", bundle: .core)
         case .graded_survey:
-            return NSLocalizedString("Graded Surveys", bundle: .core, comment: "")
+            return String(localized: "Graded Surveys", bundle: .core)
         case .survey:
-            return NSLocalizedString("Surveys", bundle: .core, comment: "")
+            return String(localized: "Surveys", bundle: .core)
         case .quizzes_next:
-            return NSLocalizedString("New Quizzes", bundle: .core, comment: "")
+            return String(localized: "New Quizzes", bundle: .core)
         }
     }
 
     public var name: String {
         switch self {
         case .assignment:
-            return NSLocalizedString("Graded Quiz", bundle: .core, comment: "")
+            return String(localized: "Graded Quiz", bundle: .core)
         case .practice_quiz:
-            return NSLocalizedString("Practice Quiz", bundle: .core, comment: "")
+            return String(localized: "Practice Quiz", bundle: .core)
         case .graded_survey:
-            return NSLocalizedString("Graded Survey", bundle: .core, comment: "")
+            return String(localized: "Graded Survey", bundle: .core)
         case .survey:
-            return NSLocalizedString("Ungraded Survey", bundle: .core, comment: "")
+            return String(localized: "Ungraded Survey", bundle: .core)
         case .quizzes_next:
-            return NSLocalizedString("New Quiz", bundle: .core, comment: "")
+            return String(localized: "New Quiz", bundle: .core)
         }
     }
 }
@@ -271,11 +271,11 @@ public enum ScoringPolicy: String, Codable, CaseIterable {
     public var text: String {
         switch self {
         case .keep_latest:
-            return NSLocalizedString("Latest", bundle: .core, comment: "")
+            return String(localized: "Latest", bundle: .core)
         case .keep_highest:
-            return NSLocalizedString("Highest", bundle: .core, comment: "")
+            return String(localized: "Highest", bundle: .core)
         case .keep_average:
-            return NSLocalizedString("Average", bundle: .core, comment: "")
+            return String(localized: "Average", bundle: .core)
         }
     }
 }

@@ -28,8 +28,8 @@ public enum CourseSyncFrequency: Int, CaseIterable {
         #if DEBUG
         case .osBased: return "As frequent as the OS allows (DEBUG)"
         #endif
-        case .daily: return NSLocalizedString("Daily", bundle: .core, comment: "")
-        case .weekly: return NSLocalizedString("Weekly", bundle: .core, comment: "")
+        case .daily: return String(localized: "Daily", bundle: .core)
+        case .weekly: return String(localized: "Weekly", bundle: .core)
         }
     }
 

@@ -22,7 +22,7 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
     @Published public private(set) var state: QuizDetailsViewModelState = .loading
 
     public private(set) var courseColor: UIColor?
-    public var title: String { NSLocalizedString("Quiz Details", bundle: .core, comment: "") }
+    public var title: String { String(localized: "Quiz Details", bundle: .core) }
     public var subtitle: String { courseUseCase.first?.name ?? "" }
     public var showSubmissions: Bool { courseUseCase.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true }
     public private(set) var assignmentSubmissionBreakdownViewModel: AssignmentSubmissionBreakdownViewModel?

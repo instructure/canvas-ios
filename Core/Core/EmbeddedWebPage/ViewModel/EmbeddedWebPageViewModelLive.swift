@@ -80,10 +80,10 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
             // announcements/\(id) shows a navigation bar at the top
             // so we need to use discussion topics
             urlPathComponent = "discussion_topics/\(id)"
-            navTitle = NSLocalizedString("Announcement Details", bundle: .core, comment: "")
+            navTitle = String(localized: "Announcement Details", bundle: .core)
         case .discussion(let id):
             urlPathComponent = "discussion_topics/\(id)"
-            navTitle = NSLocalizedString("Discussion Details", bundle: .core, comment: "")
+            navTitle = String(localized: "Discussion Details", bundle: .core)
         }
 
         self.url = {

@@ -39,10 +39,10 @@ class CourseSyncSettingsInteractorLive: CourseSyncSettingsInteractor {
         let settings = storedSettings
 
         guard settings.isAutoSyncEnabled else {
-            return NSLocalizedString("Manual", bundle: .core, comment: "")
+            return String(localized: "Manual", bundle: .core)
         }
 
-        let format = NSLocalizedString("%@ Auto", bundle: .core, comment: "Weekly Auto / Daily Auto Synchronization Frequency")
+        let format = String(localized: "%@ Auto", bundle: .core, comment: "Weekly Auto / Daily Auto Synchronization Frequency")
         return String.localizedStringWithFormat(format, settings.syncFrequency.stringValue)
     }
 

@@ -42,9 +42,9 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var progressView: FilePickerProgressView!
     @IBOutlet weak var dividerView: UIView!
 
-    public var submitButtonTitle = NSLocalizedString("Submit", bundle: .core, comment: "")
+    public var submitButtonTitle = String(localized: "Submit", bundle: .core)
     /// The cancel button that shows while the files are being uploaded
-    public var cancelButtonTitle = NSLocalizedString("Cancel", bundle: .core, comment: "")
+    public var cancelButtonTitle = String(localized: "Cancel", bundle: .core)
 
     let env = AppEnvironment.shared
     public weak var delegate: FilePickerControllerDelegate?
@@ -68,13 +68,13 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         view.backgroundColor = .backgroundLightest
         sourcesTabBar.barTintColor = .backgroundLightest
         tableView.tableFooterView = UIView(frame: .zero)
-        emptyView.titleText = NSLocalizedString("Choose a File", bundle: .core, comment: "")
-        emptyView.bodyText = NSLocalizedString("Attach files to your submission by tapping an option below.", bundle: .core, comment: "")
+        emptyView.titleText = String(localized: "Choose a File", bundle: .core)
+        emptyView.bodyText = String(localized: "Attach files to your submission by tapping an option below.", bundle: .core)
 
         var tabBarItems: [UITabBarItem] = []
         if sources.contains(.audio) {
             let item = UITabBarItem(
-                title: NSLocalizedString("Audio", bundle: .core, comment: ""),
+                title: String(localized: "Audio", bundle: .core),
                 image: .addAudioLine,
                 tag: FilePickerSource.audio.rawValue
             )
@@ -83,7 +83,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         }
         if sources.contains(.camera) {
             let item = UITabBarItem(
-                title: NSLocalizedString("Camera", bundle: .core, comment: ""),
+                title: String(localized: "Camera", bundle: .core),
                 image: .addCameraLine,
                 tag: FilePickerSource.camera.rawValue
             )
@@ -92,7 +92,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         }
         if sources.contains(.library) {
             let item = UITabBarItem(
-                title: NSLocalizedString("Library", bundle: .core, comment: ""),
+                title: String(localized: "Library", bundle: .core),
                 image: .addImageLine,
                 tag: FilePickerSource.library.rawValue
             )
@@ -101,7 +101,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         }
         if sources.contains(.files) {
             let item = UITabBarItem(
-                title: NSLocalizedString("Files", bundle: .core, comment: ""),
+                title: String(localized: "Files", bundle: .core),
                 image: .addDocumentLine,
                 tag: FilePickerSource.files.rawValue
             )
@@ -110,7 +110,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         }
         if sources.contains(.documentScan) {
             let item = UITabBarItem(
-                title: NSLocalizedString("Scanner", bundle: .core, comment: ""),
+                title: String(localized: "Scanner", bundle: .core),
                 image: UIImage(systemName: "doc.text.viewfinder")?.imageWithoutBaseline(),
                 tag: FilePickerSource.documentScan.rawValue
             )
@@ -148,7 +148,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         }
         showProgressBar()
         let progress: Float = Float(sent) / Float(total)
-        let format: String = NSLocalizedString("Uploading %@ of %@", bundle: .core, comment: "")
+        let format: String = String(localized: "Uploading %@ of %@", bundle: .core)
         progressView.text = String.localizedStringWithFormat(format, sent.humanReadableFileSize, total.humanReadableFileSize)
         progressView.progress = progress
     }
@@ -159,7 +159,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         if inProgress {
             navigationController?.setToolbarHidden(false, animated: true)
             navigationItem.leftBarButtonItems = []
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Dismiss", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Dismiss", bundle: .core), style: .plain, target: self, action: #selector(close))
             navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
             let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancelClicked))
             cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
@@ -171,11 +171,11 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         } else if failed {
             navigationController?.setToolbarHidden(false, animated: true)
             navigationItem.leftBarButtonItems = []
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Done", bundle: .core), style: .plain, target: self, action: #selector(close))
             navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
-            let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancelClicked))
+            let cancelButton = UIBarButtonItem(title: String(localized: "Cancel", bundle: .core), style: .plain, target: self, action: #selector(cancelClicked))
             cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
-            let retryButton = UIBarButtonItem(title: NSLocalizedString("Retry", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(retry))
+            let retryButton = UIBarButtonItem(title: String(localized: "Retry", bundle: .core), style: .plain, target: self, action: #selector(retry))
             retryButton.accessibilityIdentifier = "FilePicker.retryButton"
             toolbarItems = [
                 cancelButton,
@@ -184,7 +184,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             ]
         } else {
             navigationController?.setToolbarHidden(true, animated: true)
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancelClicked))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: String(localized: "Cancel", bundle: .core), style: .plain, target: self, action: #selector(cancelClicked))
             navigationItem.leftBarButtonItem?.accessibilityIdentifier = "FilePicker.cancelButton"
             let submitButton = UIBarButtonItem(title: submitButtonTitle, style: .done, target: self, action: #selector(submit))
             submitButton.isEnabled = delegate?.canSubmit(self) == true
@@ -391,11 +391,11 @@ extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
 
 extension FilePickerViewController: FilePickerCellDelegate {
     func removeFile(_ file: File) {
-        let title = NSLocalizedString("Remove File", bundle: .core, comment: "")
-        let message = NSLocalizedString("Are you sure you want to remove this file?", bundle: .core, comment: "")
+        let title = String(localized: "Remove File", bundle: .core)
+        let message = String(localized: "Are you sure you want to remove this file?", bundle: .core)
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-        alert.addAction(AlertAction(NSLocalizedString("Remove", bundle: .core, comment: ""), style: .default, handler: {_ in
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "Remove", bundle: .core), style: .default, handler: {_ in
             UploadManager.shared.cancel(file: file)
         }))
         env.router.show(alert, from: self, options: .modal())

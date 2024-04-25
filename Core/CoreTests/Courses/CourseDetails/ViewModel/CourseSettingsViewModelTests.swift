@@ -53,11 +53,11 @@ class CourseSettingsViewModelTests: CoreTestCase {
         XCTAssertNil(section.title)
         XCTAssertEqual(picker.selected, IndexPath(row: 3, section: 0))
         XCTAssertEqual(section.items, [
-            ItemPickerItem(title: NSLocalizedString("Assignments List", bundle: .core, comment: "")),
-            ItemPickerItem(title: NSLocalizedString("Course Activity Stream", bundle: .core, comment: "")),
-            ItemPickerItem(title: NSLocalizedString("Course Modules", bundle: .core, comment: "")),
-            ItemPickerItem(title: NSLocalizedString("Syllabus", bundle: .core, comment: "")),
-            ItemPickerItem(title: NSLocalizedString("Pages Front Page", bundle: .core, comment: "")),
+            ItemPickerItem(title: String(localized: "Assignments List", bundle: .core)),
+            ItemPickerItem(title: String(localized: "Course Activity Stream", bundle: .core)),
+            ItemPickerItem(title: String(localized: "Course Modules", bundle: .core)),
+            ItemPickerItem(title: String(localized: "Syllabus", bundle: .core)),
+            ItemPickerItem(title: String(localized: "Pages Front Page", bundle: .core)),
         ])
 
         XCTAssertEqual(testee.newDefaultView, .syllabus)

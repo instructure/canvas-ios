@@ -29,9 +29,9 @@ public class GradeFormatter {
         var localizedString: String {
             switch self {
             case .complete:
-                return NSLocalizedString("Complete", bundle: .core, comment: "")
+                return String(localized: "Complete", bundle: .core)
             case .incomplete:
-                return NSLocalizedString("Incomplete", bundle: .core, comment: "")
+                return String(localized: "Incomplete", bundle: .core)
             }
         }
     }
@@ -97,7 +97,7 @@ public class GradeFormatter {
         guard var formattedGrade = formattedGrade else { return nil }
 
         formattedGrade = formattedGrade.replacingOccurrences(of: " / ", with: "/")
-        formattedGrade = formattedGrade.replacingOccurrences(of: "/", with: " " + NSLocalizedString("out of", bundle: .core, comment: "5 out of 10") + " ")
+        formattedGrade = formattedGrade.replacingOccurrences(of: "/", with: " " + String(localized: "out of", bundle: .core, comment: "5 out of 10") + " ")
 
         return formattedGrade
     }
@@ -109,7 +109,7 @@ public class GradeFormatter {
     public func string(from submission: Submission?) -> String? {
         let isExcused = submission?.excused == true
         guard let submission = submission, let score = submission.score, !isExcused else {
-            let excused = NSLocalizedString("Excused", bundle: .core, comment: "")
+            let excused = String(localized: "Excused", bundle: .core)
             switch gradeStyle {
             case .short: return isExcused ? excused : nil
             case .medium: return isExcused ? medium(score: excused) : medium(score: placeholder)
@@ -138,14 +138,14 @@ public class GradeFormatter {
         case .gpa_scale:
             if hideScores {
                 if let grade = submission.grade, !grade.containsNumber {
-                    return String.localizedStringWithFormat(NSLocalizedString("%@ GPA", bundle: .core, comment: ""), grade)
+                    return String.localizedStringWithFormat(String(localized: "%@ GPA", bundle: .core), grade)
                 }
                 return nil
             }
             switch gradeStyle {
             case .short:
                 guard let grade = submission.grade else { return nil }
-                return String.localizedStringWithFormat(NSLocalizedString("%@ GPA", bundle: .core, comment: ""), grade)
+                return String.localizedStringWithFormat(String(localized: "%@ GPA", bundle: .core), grade)
             case .medium:
                 return medium(score: score, grade: submission.grade)
             }
@@ -207,12 +207,12 @@ public class GradeFormatter {
     public static func shortString(for assignment: Assignment?, submission: Submission?) -> String {
         guard assignment?.gradingType != .not_graded else { return "" }
 
-        let placeholder = NSLocalizedString("--", bundle: .core, comment: "placeholder for the score of an ungraded submission")
+        let placeholder = String(localized: "--", bundle: .core, comment: "placeholder for the score of an ungraded submission")
         guard let assignment = assignment, let submission = submission,
             submission.workflowState != .unsubmitted, !submission.needsGrading
         else { return placeholder }
 
-        guard submission.excused != true else { return NSLocalizedString("Excused", bundle: .core, comment: "") }
+        guard submission.excused != true else { return String(localized: "Excused", bundle: .core) }
 
         return gradeString(for: assignment, submission: submission) ?? placeholder
     }
@@ -235,13 +235,13 @@ public class GradeFormatter {
         default:
             switch grade {
             case "pass":
-                return NSLocalizedString("Pass", bundle: .core, comment: "")
+                return String(localized: "Pass", bundle: .core)
             case "fail":
-                return NSLocalizedString("Fail", bundle: .core, comment: "")
+                return String(localized: "Fail", bundle: .core)
             case "complete":
-                return NSLocalizedString("Complete", bundle: .core, comment: "")
+                return String(localized: "Complete", bundle: .core)
             case "incomplete":
-                return NSLocalizedString("Incomplete", bundle: .core, comment: "")
+                return String(localized: "Incomplete", bundle: .core)
             default:
                 if shouldHideScore, grade?.containsNumber == true { return "" }
                 return grade.flatMap { Double($0) }
@@ -261,12 +261,12 @@ public class GradeFormatter {
         }
         if let grade = grade {
             return String.localizedStringWithFormat(
-                NSLocalizedString("%@/%@ (%@)", bundle: .core, comment: "score/points possible (grade)"),
+                String(localized: "%@/%@ (%@)", bundle: .core, comment: "score/points possible (grade)"),
                 scoreString, possibleString, grade
             )
         }
         return String.localizedStringWithFormat(
-            NSLocalizedString("%@/%@", bundle: .core, comment: "score/points"),
+            String(localized: "%@/%@", bundle: .core, comment: "score/points"),
             scoreString, possibleString
         )
     }

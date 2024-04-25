@@ -70,7 +70,7 @@ public class CourseSettingsViewModel: ObservableObject {
 
         let selected: IndexPath? = options.firstIndex(of: newDefaultView).flatMap { IndexPath(row: $0, section: 0) }
         let itemPicker = ItemPickerViewController.create(
-            title: NSLocalizedString("Set \"Home\" to...", bundle: .core, comment: ""),
+            title: String(localized: "Set \"Home\" to...", bundle: .core),
             sections: sections,
             selected: selected,
             didSelect: {

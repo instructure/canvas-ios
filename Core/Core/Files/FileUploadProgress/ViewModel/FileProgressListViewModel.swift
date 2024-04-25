@@ -41,7 +41,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     @Published public private(set) var state: FileProgressListViewState = .waiting
     @Published public private(set) var leftBarButton: BarButtonItemViewModel?
     @Published public private(set) var rightBarButton: BarButtonItemViewModel?
-    public let title = NSLocalizedString("Submission", bundle: .core, comment: "")
+    public let title = String(localized: "Submission", bundle: .core)
     public let submissionID: NSManagedObjectID
     public weak var delegate: FileProgressListViewModelDelegate?
 
@@ -112,16 +112,16 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     }
 
     private func showCancelDialog() {
-        let title = NSLocalizedString("Cancel Submission?", bundle: .core, comment: "")
-        let message = NSLocalizedString("This will cancel and delete your upload.", bundle: .core, comment: "")
+        let title = String(localized: "Cancel Submission?", bundle: .core)
+        let message = String(localized: "This will cancel and delete your upload.", bundle: .core)
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Yes", bundle: .core, comment: ""), style: .destructive) { [weak self] _ in
+        alert.addAction(AlertAction(String(localized: "Yes", bundle: .core), style: .destructive) { [weak self] _ in
             guard let self = self else { return }
             self.dismissSubject.send {
                 self.delegate?.fileProgressViewModelCancel(self)
             }
         })
-        alert.addAction(AlertAction(NSLocalizedString("No", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "No", bundle: .core), style: .cancel))
         presentDialogSubject.send(alert)
     }
 
@@ -150,16 +150,16 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             return
         }
 
-        let title = NSLocalizedString("Remove From List?", bundle: .core, comment: "")
-        let message = NSLocalizedString("This will cancel and delete your upload.", bundle: .core, comment: "")
+        let title = String(localized: "Remove From List?", bundle: .core)
+        let message = String(localized: "This will cancel and delete your upload.", bundle: .core)
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Yes", bundle: .core, comment: ""), style: .destructive) { [weak self] _ in
+        alert.addAction(AlertAction(String(localized: "Yes", bundle: .core), style: .destructive) { [weak self] _ in
             guard let self = self else { return }
             self.dismissSubject.send {
                 self.delegate?.fileProgressViewModel(self, delete: fileUploadItemID)
             }
         })
-        alert.addAction(AlertAction(NSLocalizedString("No", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "No", bundle: .core), style: .cancel))
         presentDialogSubject.send(alert)
     }
 
@@ -173,7 +173,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
         case .waiting:
             state = .waiting
         case .uploading:
-            let format = NSLocalizedString("Uploading %@ of %@", bundle: .core, comment: "")
+            let format = String(localized: "Uploading %@ of %@", bundle: .core)
 
             let progress: Float
             let totalUploadedSize: Int
@@ -195,10 +195,10 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             )
             state = .uploading(progressText: progressText, progress: progress)
         case .failedUpload:
-            state = .failed(message: NSLocalizedString("One or more files failed to upload. Check your internet connection and retry to submit.", bundle: .core, comment: ""), error: nil)
+            state = .failed(message: String(localized: "One or more files failed to upload. Check your internet connection and retry to submit.", bundle: .core), error: nil)
             isErrorDisplayed = true
         case .failedSubmission(message: let message):
-            let format = NSLocalizedString("submission_failed_for_files", bundle: .core, comment: "")
+            let format = String(localized: "submission_failed_for_files", bundle: .core)
             let title = String.localizedStringWithFormat(format, submission.files.count)
             state = .failed(message: title, error: message)
             isErrorDisplayed = true
@@ -208,7 +208,7 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
     }
 
     private func updateNavBarButtons() {
-        let cancelButton = BarButtonItemViewModel(title: NSLocalizedString("Cancel", bundle: .core, comment: "")) { [weak self] in
+        let cancelButton = BarButtonItemViewModel(title: String(localized: "Cancel", bundle: .core)) { [weak self] in
             self?.showCancelDialog()
         }
         switch state {
@@ -217,19 +217,19 @@ public class FileProgressListViewModel: FileProgressListViewModelProtocol {
             rightBarButton = nil
         case .uploading:
             leftBarButton = cancelButton
-            rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Dismiss", bundle: .core, comment: "")) { [weak self] in
+            rightBarButton = BarButtonItemViewModel(title: String(localized: "Dismiss", bundle: .core)) { [weak self] in
                 self?.flowCompleted()
             }
         case .failed:
             leftBarButton = cancelButton
-            rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Retry", bundle: .core, comment: "")) { [weak self] in
+            rightBarButton = BarButtonItemViewModel(title: String(localized: "Retry", bundle: .core)) { [weak self] in
                 guard let self = self else { return }
                 self.delegate?.fileProgressViewModelRetry(self)
                 self.isErrorDisplayed = false
             }
         case .success:
             leftBarButton = nil
-            rightBarButton = BarButtonItemViewModel(title: NSLocalizedString("Done", bundle: .core, comment: "")) { [weak self] in
+            rightBarButton = BarButtonItemViewModel(title: String(localized: "Done", bundle: .core)) { [weak self] in
                 guard let self = self else { return }
                 self.delegate?.fileProgressViewModel(self, didAcknowledgeSuccess: self.submissionID)
                 self.flowCompleted()

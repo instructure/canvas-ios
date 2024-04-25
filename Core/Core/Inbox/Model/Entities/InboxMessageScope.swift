@@ -23,11 +23,11 @@ public enum InboxMessageScope: String, CaseIterable, Hashable {
 
     public var localizedName: String {
         switch self {
-        case .inbox: return NSLocalizedString("Inbox", bundle: .core, comment: "")
-        case .unread: return NSLocalizedString("Unread", bundle: .core, comment: "")
-        case .starred: return NSLocalizedString("Starred", bundle: .core, comment: "")
-        case .sent: return NSLocalizedString("Sent", bundle: .core, comment: "")
-        case .archived: return NSLocalizedString("Archived", bundle: .core, comment: "")
+        case .inbox: return String(localized: "Inbox", bundle: .core)
+        case .unread: return String(localized: "Unread", bundle: .core)
+        case .starred: return String(localized: "Starred", bundle: .core)
+        case .sent: return String(localized: "Sent", bundle: .core)
+        case .archived: return String(localized: "Archived", bundle: .core)
         }
     }
 

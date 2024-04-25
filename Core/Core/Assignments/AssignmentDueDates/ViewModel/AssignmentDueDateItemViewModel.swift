@@ -31,24 +31,24 @@ public struct AssignmentDueDateItemViewModel: Identifiable, Equatable {
         self.id = item.id
 
         if let dueAt = item.dueAt {
-            let format = NSLocalizedString("Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>")
+            let format = String(localized: "Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>")
             self.title = String.localizedStringWithFormat(format, dueAt.dateTimeString)
         } else {
-            self.title = NSLocalizedString("No Due Date", bundle: .core, comment: "")
+            self.title = String(localized: "No Due Date", bundle: .core)
         }
 
-        self.assignee = item.title ?? NSLocalizedString("Everyone", bundle: .core, comment: "")
+        self.assignee = item.title ?? String(localized: "Everyone", bundle: .core)
 
         if let unlockAt = item.unlockAt?.dateTimeString {
             self.from = unlockAt
         } else {
-            self.fromEmptyAccessibility = NSLocalizedString("No available from date set.", bundle: .core, comment: "")
+            self.fromEmptyAccessibility = String(localized: "No available from date set.", bundle: .core)
         }
 
         if let lockAt = item.lockAt?.dateTimeString {
             self.until = lockAt
         } else {
-            self.untilEmptyAccessibility = NSLocalizedString("No available until date set.", bundle: .core, comment: "")
+            self.untilEmptyAccessibility = String(localized: "No available until date set.", bundle: .core)
         }
     }
 }

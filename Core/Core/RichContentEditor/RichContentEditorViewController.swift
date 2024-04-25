@@ -207,18 +207,18 @@ public class RichContentEditorViewController: UIViewController {
 
     func editLink(href: String?, text: String?) {
         backupRange()
-        let alert = UIAlertController(title: NSLocalizedString("Link to Website URL", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: String(localized: "Link to Website URL", bundle: .core), message: nil, preferredStyle: .alert)
         alert.addTextField { (field: UITextField) in
-            field.placeholder = NSLocalizedString("Text", bundle: .core, comment: "")
+            field.placeholder = String(localized: "Text", bundle: .core)
             field.text = text
         }
         alert.addTextField { (field: UITextField) in
-            field.placeholder = NSLocalizedString("URL", bundle: .core, comment: "")
+            field.placeholder = String(localized: "URL", bundle: .core)
             field.text = href
             field.keyboardType = .URL
         }
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-        alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { [weak self] _ in
             let text = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             var href = alert.textFields?[1].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             if !href.isEmpty, URLComponents.parse(href).scheme == nil {
@@ -292,7 +292,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
                 } else if let url = info[.mediaURL] as? URL {
                     self.createFile(url, isRetry: false, then: self.uploadMedia)
                 } else {
-                    throw NSError.instructureError(NSLocalizedString("No image found from image picker", bundle: .core, comment: ""))
+                    throw NSError.instructureError(String(localized: "No image found from image picker", bundle: .core))
                 }
             } catch {
                 self.showError(error)
@@ -373,7 +373,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
             "url": file.url?.absoluteString,
             "mediaEntryID": file.mediaEntryID,
             "uploadError": file.uploadError,
-            "uploadErrorTitle": NSLocalizedString("Failed Upload", bundle: .core, comment: ""),
+            "uploadErrorTitle": String(localized: "Failed Upload", bundle: .core),
             "bytesSent": file.bytesSent,
             "size": file.size,
         ] })

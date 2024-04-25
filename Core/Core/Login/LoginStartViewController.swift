@@ -89,9 +89,9 @@ class LoginStartViewController: UIViewController {
         animatableLogo.tintColor = logoView.tintColor
         previousLoginsView.isHidden = true
         self.lastLoginAccount = nil
-        previousLoginsLabel.text = NSLocalizedString("Previous Logins", bundle: .core, comment: "")
-        whatsNewLabel.text = NSLocalizedString("We've made a few changes.", bundle: .core, comment: "")
-        whatsNewLink.setTitle(NSLocalizedString("See what's new.", bundle: .core, comment: ""), for: .normal)
+        previousLoginsLabel.text = String(localized: "Previous Logins", bundle: .core)
+        whatsNewLabel.text = String(localized: "We've made a few changes.", bundle: .core)
+        whatsNewLink.setTitle(String(localized: "See what's new.", bundle: .core), for: .normal)
         whatsNewContainer.isHidden = loginDelegate?.whatsNewURL == nil
         wordmarkLabel.attributedText = NSAttributedString.init(string: (
             Bundle.main.isParentApp ? "PARENT"
@@ -100,7 +100,7 @@ class LoginStartViewController: UIViewController {
         ), attributes: [.kern: 2])
         wordmarkLabel.textColor = .textDarkest
         logoView.superview?.accessibilityLabel = "Canvas " + (wordmarkLabel.text ?? "")
-        let loginText = NSLocalizedString("Log In", bundle: .core, comment: "")
+        let loginText = String(localized: "Log In", bundle: .core)
         if MDMManager.shared.host != nil {
             findSchoolButton.isHidden = true
             lastLoginButton.setTitle(loginText, for: .normal)
@@ -145,7 +145,7 @@ class LoginStartViewController: UIViewController {
     }
 
     func configureButtons() {
-        canvasNetworkButton.setTitle(NSLocalizedString("Canvas Network", bundle: .core, comment: ""), for: .normal)
+        canvasNetworkButton.setTitle(String(localized: "Canvas Network", bundle: .core), for: .normal)
         canvasNetworkButton.isHidden = loginDelegate?.supportsCanvasNetwork == false || MDMManager.shared.host != nil
         useQRCodeDivider.isHidden = canvasNetworkButton.isHidden
     }
@@ -291,12 +291,12 @@ class LoginStartViewController: UIViewController {
         guard isNetworkOnline() else { return }
         if app == .parent {
             let sheet = BottomSheetPickerViewController.create()
-            sheet.addAction(image: nil, title: NSLocalizedString("I have a Canvas account", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(image: nil, title: String(localized: "I have a Canvas account", bundle: .core)) { [weak self] in
                 self?.showLoginQRCodeTutorial()
             }
             sheet.addAction(
                 image: nil,
-                title: NSLocalizedString("I don't have a Canvas account", bundle: .core, comment: ""),
+                title: String(localized: "I don't have a Canvas account", bundle: .core),
                 accessibilityIdentifier: "LoginStart.dontHaveAccountAction"
             ) { [weak self] in
                 self?.showInstructionsToPairFromStudentApp()
@@ -316,13 +316,13 @@ class LoginStartViewController: UIViewController {
         switch method {
         case .normalLogin:
             method = .canvasLogin
-            authenticationMethodLabel.text = NSLocalizedString("Canvas Login", bundle: .core, comment: "")
+            authenticationMethodLabel.text = String(localized: "Canvas Login", bundle: .core)
         case .canvasLogin:
             method = .siteAdminLogin
-            authenticationMethodLabel.text = NSLocalizedString("Site Admin Login", bundle: .core, comment: "")
+            authenticationMethodLabel.text = String(localized: "Site Admin Login", bundle: .core)
         case .siteAdminLogin:
             method = .manualOAuthLogin
-            authenticationMethodLabel.text = NSLocalizedString("Manual OAuth Login", bundle: .core, comment: "")
+            authenticationMethodLabel.text = String(localized: "Manual OAuth Login", bundle: .core)
         case .manualOAuthLogin:
             method = .normalLogin
             authenticationMethodLabel.text = nil
@@ -358,12 +358,12 @@ class LoginStartViewController: UIViewController {
         }
         var cancelled = false
         let loading = UIAlertController(
-            title: NSLocalizedString("Logging you in", bundle: .core, comment: ""),
-            message: NSLocalizedString("Please wait, this might take a minute.", bundle: .core, comment: ""),
+            title: String(localized: "Logging you in", bundle: .core),
+            message: String(localized: "Please wait, this might take a minute.", bundle: .core),
             preferredStyle: .alert
         )
         loading.addAction(UIAlertAction(
-            title: NSLocalizedString("Cancel", bundle: .core, comment: ""),
+            title: String(localized: "Cancel", bundle: .core),
             style: .cancel,
             handler: { _ in cancelled = true }
         ))
@@ -388,13 +388,13 @@ class LoginStartViewController: UIViewController {
     func showQRCodeError() {
         Analytics.shared.logEvent("qr_code_login_failure")
         showAlert(
-            title: NSLocalizedString("Login Error", bundle: .core, comment: ""),
-            message: NSLocalizedString("Please generate another QR Code and try again.", bundle: .core, comment: "")
+            title: String(localized: "Login Error", bundle: .core),
+            message: String(localized: "Please generate another QR Code and try again.", bundle: .core)
         )
     }
 
     private func alternateFindSchoolButton() {
-        findSchoolButton.setTitle(NSLocalizedString("Find another school", bundle: .core, comment: ""), for: .normal)
+        findSchoolButton.setTitle(String(localized: "Find another school", bundle: .core), for: .normal)
         findSchoolButton.backgroundColorName = "white"
         findSchoolButton.textColorName = "oxford"
         findSchoolButton.borderColorName = "oxford"

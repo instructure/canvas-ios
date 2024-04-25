@@ -31,19 +31,19 @@ public enum AlertThresholdType: String, CaseIterable, Codable {
     public var name: String {
         switch self {
         case .courseGradeLow:
-            return NSLocalizedString("Course grade below", bundle: .core, comment: "")
+            return String(localized: "Course grade below", bundle: .core)
         case .courseGradeHigh:
-            return NSLocalizedString("Course grade above", bundle: .core, comment: "")
+            return String(localized: "Course grade above", bundle: .core)
         case .assignmentMissing:
-            return NSLocalizedString("Assignment missing", bundle: .core, comment: "")
+            return String(localized: "Assignment missing", bundle: .core)
         case .assignmentGradeLow:
-            return NSLocalizedString("Assignment grade below", bundle: .core, comment: "")
+            return String(localized: "Assignment grade below", bundle: .core)
         case .assignmentGradeHigh:
-            return NSLocalizedString("Assignment grade above", bundle: .core, comment: "")
+            return String(localized: "Assignment grade above", bundle: .core)
         case .institutionAnnouncement:
-            return NSLocalizedString("Institution announcements", bundle: .core, comment: "")
+            return String(localized: "Institution announcements", bundle: .core)
         case .courseAnnouncement:
-            return NSLocalizedString("Course announcements", bundle: .core, comment: "")
+            return String(localized: "Course announcements", bundle: .core)
         }
     }
 
@@ -51,19 +51,19 @@ public enum AlertThresholdType: String, CaseIterable, Codable {
         let title: String
         switch self {
         case .courseGradeLow:
-            title = NSLocalizedString("Course Grade Below %d", bundle: .core, comment: "")
+            title = String(localized: "Course Grade Below %d", bundle: .core)
         case .courseGradeHigh:
-            title = NSLocalizedString("Course Grade Above %d", bundle: .core, comment: "")
+            title = String(localized: "Course Grade Above %d", bundle: .core)
         case .assignmentMissing:
-            title = NSLocalizedString("Assignment Missing", bundle: .core, comment: "")
+            title = String(localized: "Assignment Missing", bundle: .core)
         case .assignmentGradeLow:
-            title = NSLocalizedString("Assignment Grade Below %d", bundle: .core, comment: "")
+            title = String(localized: "Assignment Grade Below %d", bundle: .core)
         case .assignmentGradeHigh:
-            title = NSLocalizedString("Assignment Grade Above %d", bundle: .core, comment: "")
+            title = String(localized: "Assignment Grade Above %d", bundle: .core)
         case .courseAnnouncement:
-            title = NSLocalizedString("Course Announcement", bundle: .core, comment: "")
+            title = String(localized: "Course Announcement", bundle: .core)
         case .institutionAnnouncement:
-            title = NSLocalizedString("Institution Announcement", bundle: .core, comment: "")
+            title = String(localized: "Institution Announcement", bundle: .core)
         }
         return String.localizedStringWithFormat(title, value ?? 0)
     }

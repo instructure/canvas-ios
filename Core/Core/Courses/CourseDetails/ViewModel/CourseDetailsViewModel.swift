@@ -204,8 +204,8 @@ public class CourseDetailsViewModel: ObservableObject {
 
         if tabs.error != nil {
             state = .empty(
-                title: NSLocalizedString("Something went wrong", bundle: .core, comment: ""),
-                message: NSLocalizedString("There was an unexpected error. Please try again.", bundle: .core, comment: "")
+                title: String(localized: "Something went wrong", bundle: .core),
+                message: String(localized: "There was an unexpected error. Please try again.", bundle: .core)
             )
             return
         }

@@ -410,7 +410,7 @@ extension CoreWebView: WKUIDelegate {
     ) {
         guard let from = linkDelegate?.routeLinksFrom else { return completionHandler(false) }
         let alert = UIAlertController(title: frame.request.url?.host, message: message, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { _ in
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
             completionHandler(true)
         })
         AppEnvironment.shared.router.show(alert, from: from, options: .modal())
@@ -424,10 +424,10 @@ extension CoreWebView: WKUIDelegate {
     ) {
         guard let from = linkDelegate?.routeLinksFrom else { return completionHandler(false) }
         let alert = UIAlertController(title: frame.request.url?.host, message: message, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel) { _ in
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel) { _ in
             completionHandler(false)
         })
-        alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { _ in
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
             completionHandler(true)
         })
         AppEnvironment.shared.router.show(alert, from: from, options: .modal())
@@ -443,10 +443,10 @@ extension CoreWebView: WKUIDelegate {
         guard let from = linkDelegate?.routeLinksFrom else { return completionHandler(defaultText) }
         let alert = UIAlertController(title: frame.request.url?.host, message: prompt, preferredStyle: .alert)
         alert.addTextField()
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel) { _ in
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel) { _ in
             completionHandler(nil)
         })
-        alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { _ in
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
             completionHandler(alert.textFields?[0].text)
         })
         AppEnvironment.shared.router.show(alert, from: from, options: .modal())

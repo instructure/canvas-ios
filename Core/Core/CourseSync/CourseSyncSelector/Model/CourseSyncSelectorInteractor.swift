@@ -186,7 +186,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
 
     func getCourseName() -> AnyPublisher<String, Never> {
         guard let courseID else {
-            return Just(NSLocalizedString("All Courses", bundle: .core, comment: "")).eraseToAnyPublisher()
+            return Just(String(localized: "All Courses", bundle: .core)).eraseToAnyPublisher()
         }
 
         return courseSyncEntries
