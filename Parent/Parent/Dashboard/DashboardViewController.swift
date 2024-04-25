@@ -140,10 +140,10 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
 
     func updateBadgeCount() {
         profileButton.addBadge(number: badgeCount, color: currentColor)
-        profileButton.accessibilityLabel = NSLocalizedString("Settings", comment: "")
+        profileButton.accessibilityLabel = String(localized: "Settings", bundle: .parent)
         if badgeCount > 0 {
             profileButton.accessibilityHint = String.localizedStringWithFormat(
-                NSLocalizedString("conversation_unread_messages", bundle: .core, comment: ""),
+                String(localized: "conversation_unread_messages", bundle: .parent),
                 badgeCount
             )
         }
@@ -172,13 +172,13 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
             let displayName = Core.User.displayName(student.shortName, pronouns: student.pronouns)
             titleLabel.text = displayName
             dropdownButton.accessibilityLabel = String.localizedStringWithFormat(
-                NSLocalizedString("Current student: %@. Tap to switch students", comment: ""),
+                String(localized: "Current student: %@. Tap to switch students", bundle: .parent),
                 displayName
             )
         } else {
             avatarView.isHidden = true
-            titleLabel.text = NSLocalizedString("Add Student", comment: "")
-            dropdownButton.accessibilityLabel = NSLocalizedString("Add Student", comment: "")
+            titleLabel.text = String(localized: "Add Student", bundle: .parent)
+            dropdownButton.accessibilityLabel = String(localized: "Add Student", bundle: .parent)
         }
     }
 
@@ -223,7 +223,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         let courses = currentStudentID.flatMap {
             CourseListViewController.create(studentID: $0)
         } ?? AdminViewController.create()
-        courses.tabBarItem.title = NSLocalizedString("Courses", comment: "Courses Tab")
+        courses.tabBarItem.title = String(localized: "Courses", bundle: .parent, comment: "Courses Tab")
         courses.tabBarItem.image = .coursesTab
         courses.tabBarItem.selectedImage = .coursesTabActive
         courses.tabBarItem.accessibilityIdentifier = "TabBar.coursesTab"
@@ -235,7 +235,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         let calendar = currentStudentID.flatMap {
             PlannerViewController.create(studentID: $0, selectedDate: selectedDate)
         } ?? AdminViewController.create()
-        calendar.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar Tab")
+        calendar.tabBarItem.title = String(localized: "Calendar", bundle: .parent, comment: "Calendar Tab")
         calendar.tabBarItem.image = .calendarTab
         calendar.tabBarItem.selectedImage = .calendarTabActive
         calendar.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
@@ -243,7 +243,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         let alerts = currentStudentID.flatMap {
             ObserverAlertListViewController.create(studentID: $0)
         } ?? AdminViewController.create()
-        alerts.tabBarItem.title = NSLocalizedString("Alerts", comment: "Alerts Tab")
+        alerts.tabBarItem.title = String(localized: "Alerts", bundle: .parent, comment: "Alerts Tab")
         alerts.tabBarItem.image = .alertsTab
         alerts.tabBarItem.selectedImage = .alertsTabActive
         alerts.tabBarItem.accessibilityIdentifier = "TabBar.alertsTab"
@@ -331,7 +331,7 @@ class AddStudentButton: UIButton {
         }
         configuration = config
 
-        setTitle(NSLocalizedString("Add Student", comment: ""), for: .normal)
+        setTitle(String(localized: "Add Student", bundle: .parent), for: .normal)
         setTitleColor(.textDarkest, for: .normal)
         titleLabel?.numberOfLines = 1
 

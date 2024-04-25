@@ -49,9 +49,9 @@ class ObserverAlertListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-        emptyMessageLabel.text = NSLocalizedString("There's nothing to be notified of yet.", comment: "")
-        emptyTitleLabel.text = NSLocalizedString("No Alerts", comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading alerts. Pull to refresh to try again.", comment: "")
+        emptyMessageLabel.text = String(localized: "There's nothing to be notified of yet.", bundle: .parent)
+        emptyTitleLabel.text = String(localized: "No Alerts", bundle: .parent)
+        errorView.messageLabel.text = String(localized: "There was an error loading alerts. Pull to refresh to try again.", bundle: .parent)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         tableView.backgroundColor = .backgroundLightest
@@ -94,11 +94,11 @@ class ObserverAlertListViewController: UIViewController {
 
     private func showItemLockedMessage() {
         let alert = UIAlertController(
-            title: NSLocalizedString("Locked", bundle: .core, comment: ""),
-            message: NSLocalizedString("The linked item is no longer available.", bundle: .core, comment: ""),
+            title: String(localized: "Locked", bundle: .parent),
+            message: String(localized: "The linked item is no longer available.", bundle: .parent),
             preferredStyle: .alert
         )
-        alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .parent), style: .cancel))
         env.router.show(alert, from: self, options: .modal())
     }
 }
@@ -140,7 +140,7 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let id = alerts[indexPath.row]?.id else { return nil }
         return UISwipeActionsConfiguration(actions: [
-            UIContextualAction(style: .destructive, title: NSLocalizedString("Dismiss", comment: "")) { (_, _, completed) in
+            UIContextualAction(style: .destructive, title: String(localized: "Dismiss", bundle: .parent)) { (_, _, completed) in
                 DismissObserverAlert(alertID: id).fetch { (_, _, error) in
                     completed(error == nil)
                 }
@@ -159,7 +159,7 @@ class ObserverAlertListCell: UITableViewCell {
     func update(alert: ObserverAlert?, threshold: UInt?) {
         backgroundColor = .backgroundLightest
         unreadView.isHidden = alert?.workflowState != .unread
-        unreadView.accessibilityLabel = NSLocalizedString("Unread", comment: "")
+        unreadView.accessibilityLabel = String(localized: "Unread", bundle: .parent)
         typeLabel.text = alert?.alertType.title(for: threshold)
         titleLabel.text = alert?.title
         dateLabel.text = alert?.actionDate?.dateTimeString
@@ -186,7 +186,7 @@ class ObserverAlertListCell: UITableViewCell {
 
     private func updateTitleToLockedState() {
         var newTypeText = typeLabel.text ?? ""
-        let lockedText = NSLocalizedString("Locked", bundle: .core, comment: "")
+        let lockedText = String(localized: "Locked", bundle: .parent)
 
         if newTypeText.isEmpty {
             newTypeText = lockedText
