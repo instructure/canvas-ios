@@ -181,10 +181,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         downloaders.append(downloadFiles(for: entry))
         downloaders.append(downloadModules(for: entry))
-
-        if !entry.selectedTabs.contains(.pages), entry.hasFrontPage {
-            downloaders.append(downloadFrontPage(entry: entry))
-        }
+        downloaders.append(downloadFrontPage(entry: entry))
 
         return downloaders
             .zip()
@@ -201,7 +198,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                 }
                 unownedSelf.setState(
                     selection: .tab(entry.id, additionalContentTabId),
-                    state: state
+                    state: state,
+                    isFinalUpdate: true
                 )
             }
             .map { _ in () }
@@ -230,23 +228,17 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         guard
             let interactor,
             let tabId,
-            let tabIndex = entry.tabs.firstIndex(where: { $0.id == tabId }),
-            entry.tabs[tabIndex].selectionState == .selected else {
+            let tabIndex = entry.tabs.firstIndex(where: { $0.id == tabId })
+        else {
             return Just(()).eraseToAnyPublisher()
         }
 
-        let isAdditionalContentTab = entry.tabs[tabIndex].type == .additionalContent
-
         switch entry.tabs[tabIndex].selectionState {
         case .deselected:
-            return interactor.cleanContent(courseId: entry.courseId)
-                .eraseToAnyPublisher()
+            return interactor.cleanContent(courseId: entry.courseId).eraseToAnyPublisher()
         default:
             return Just(()).eraseToAnyPublisher()
-                .flatMap {
-                    interactor.cleanContent(courseId: entry.courseId)
-                        .eraseToAnyPublisher()
-                }
+                .flatMap { interactor.cleanContent(courseId: entry.courseId).eraseToAnyPublisher() }
                 .flatMap { [scheduler] in
                     interactor.getContent(courseId: entry.courseId)
                         .receive(on: scheduler)
@@ -257,7 +249,6 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                             )
                         }
                         .updateDownloadedState {
-                            guard !isAdditionalContentTab else { return }
                             unownedSelf.setState(
                                 selection: .tab(entry.id, tabId),
                                 state: .downloaded
@@ -271,10 +262,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                             )
                         }
                         .catch { _ in
-//                            unownedSelf.setState(
-//                                selection: .tab(entry.id, tabId),
-//                                state: .error
-//                            )
+                            unownedSelf.setState(
+                                selection: .tab(entry.id, tabId),
+                                state: .error
+                            )
                             return Just(()).eraseToAnyPublisher()
                         }
                         .eraseToAnyPublisher()
@@ -288,10 +279,13 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         selection: CourseEntrySelection,
         state: CourseSyncEntry.State
     ) -> AnyPublisher<Void, Error> {
-        if error as NSError == NSError.instructureError("Failed to save base content") ||
-            error as NSError == NSError.instructureError("That page has been disabled for this course") ||
-            error as NSError == APIError.forbidden ||
-            error as NSError == APIError.notFound {
+        let err = error as NSError
+        if err.domain == NSError.Constants.domain,
+           err.code == NSError.Constants.forbidden ||
+           err.code == NSError.Constants.notFound ||
+           err.code == NSError.Constants.unexpected ||
+           err == NSError.instructureError("Failed to save base content") ||
+           err == NSError.instructureError("The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.") {
             setState(
                 selection: selection,
                 state: state
@@ -305,9 +299,21 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     }
 
     private func downloadFiles(for entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
+        var tabId: String?
+
+        if entry.isFullContentSync {
+            if let tab = entry.tabs.first(where: { $0.type == .files }) {
+                tabId = tab.id
+            } else if let tab = entry.tabs.first(where: { $0.type == .additionalContent }) {
+                tabId = tab.id
+            }
+        } else if entry.selectedTabs.contains(.files) {
+            tabId = entry.tabs.first(where: { $0.type == .files })?.id
+        }
+
         guard
-            let tabIndex = entry.tabs.firstIndex(where: { $0.type == .files }),
-            entry.files.count > 0,
+            let tabId,
+            let tabIndex = entry.tabs.firstIndex(where: { $0.id == tabId }),
             entry.tabs[tabIndex].selectionState == .selected ||
             entry.tabs[tabIndex].selectionState == .partiallySelected
         else {
@@ -316,7 +322,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         let files = entry.files.filter { $0.selectionState == .selected }
 
-        guard !files.isEmpty, entry.tabs[tabIndex].state != .downloaded else {
+        guard !files.isEmpty else {
             return removeUnavailableFiles(
                 courseId: entry.courseId,
                 newFileIDs: files.map { $0.fileId }
@@ -434,8 +440,6 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             return Just(()).eraseToAnyPublisher()
         }
 
-        let isAdditionalContentTab = entry.tabs[tabIndex].type == .additionalContent
-
         return modulesInteractor.getModuleItems(courseId: entry.courseId)
             .flatMap {
                 unownedSelf.getModuleSubItems(entry: entry, moduleItems: $0)
@@ -463,11 +467,11 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     state: .downloaded
                 )
             }
-            .catch { err in
-//                unownedSelf.setState(
-//                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
-//                    state: .error
-//                )
+            .catch { _ in
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .error
+                )
                 return Just(()).eraseToAnyPublisher()
             }
             .replaceError(with: ())
@@ -501,7 +505,9 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     }
 
     private func downloadFrontPage(entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
-        guard let interactor = contentInteractors.first(where: { $0.associatedTabType == .pages }) else {
+        guard !entry.selectedTabs.contains(.pages), entry.hasFrontPage,
+              let interactor = contentInteractors.first(where: { $0.associatedTabType == .pages })
+        else {
             return Just(()).eraseToAnyPublisher()
         }
         return interactor.getContent(courseId: entry.courseId)
@@ -519,7 +525,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     }
 
     /// Updates entry state in memory and writes it to Core Data. In addition it also writes file progress to Core Data.
-    private func setState(selection: CourseEntrySelection, state: CourseSyncEntry.State) {
+    private func setState(selection: CourseEntrySelection, state: CourseSyncEntry.State, isFinalUpdate: Bool = false) {
         var entries = safeCourseSyncEntriesValue
 
         switch selection {
@@ -527,8 +533,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             entries[id: entryID]?.updateCourseState(state: state)
             progressWriterInteractor.saveStateProgress(id: entryID, selection: selection, state: state)
         case let .tab(entryID, tabID):
-            entries[id: entryID]?.updateTabState(id: tabID, state: state)
-            progressWriterInteractor.saveStateProgress(id: tabID, selection: selection, state: state)
+            if selection.isAdditionalContentTab, state == .downloaded || state == .error, !isFinalUpdate {
+                entries[id: entryID]?.updateAdditionalContentResults(isSuccessful: state == .downloaded)
+            } else {
+                entries[id: entryID]?.updateTabState(id: tabID, state: state)
+                progressWriterInteractor.saveStateProgress(id: tabID, selection: selection, state: state)
+            }
         case let .file(entryID, fileID):
             entries[id: entryID]?.updateFileState(id: fileID, state: state)
             progressWriterInteractor.saveStateProgress(id: fileID, selection: selection, state: state)
@@ -543,6 +553,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private func resetEntryStates(entries: [CourseSyncEntry]) -> [CourseSyncEntry] {
         entries.map { entry in
             var cpy = entry
+            cpy.clearAdditionalContentResults()
             if cpy.state != .downloaded {
                 cpy.updateCourseState(state: .loading(nil))
             } else {
