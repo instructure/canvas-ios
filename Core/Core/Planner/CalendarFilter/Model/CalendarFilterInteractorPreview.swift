@@ -27,18 +27,15 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
 
     }
 
-    public func observeFilter() -> AnyPublisher<CDCalendarFilter, Never> {
-        let filter: CDCalendarFilter = env.database.viewContext.insert()
-
+    public func loadFilters(ignoreCache: Bool) -> any Publisher<[CDCalendarFilterEntry], Error> {
         let makeFilterEntry: (String, Context) -> CDCalendarFilterEntry = { name, context in
             let entry: CDCalendarFilterEntry = self.env.database.viewContext.insert()
             entry.name = name
             entry.context = context
-            entry.filter = filter
             return entry
         }
 
-        filter.entries = {
+        let filters: [CDCalendarFilterEntry] = {
             var filters: [CDCalendarFilterEntry] = []
             filters.append(makeFilterEntry("Test User", .user("1")))
 
@@ -52,29 +49,23 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
             filters.append(makeFilterEntry("Black Holes Group", .group("1")))
             filters.append(makeFilterEntry("Cosmology Group", .group("2")))
             filters.append(makeFilterEntry("From Planets to the Cosmos Group", .group("3")))
-            return Set(filters)
+            return filters
         }()
 
-        filter.entries.forEach { filter in
+        filters.forEach { filter in
             let color: ContextColor = env.database.viewContext.insert()
             color.canvasContextID = filter.rawContextID
             color.color = .random
         }
 
-        return Just(filter).eraseToAnyPublisher()
+        return Just(filters).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
-    public func load(ignoreCache: Bool) -> any Publisher<Void, Error> {
-        Just(()).setFailureType(to: Error.self)
+    public func observeSelectedContexts() -> AnyPublisher<Set<Context>, Never> {
+        Just(Set()).eraseToAnyPublisher()
     }
 
-    public func updateFilteredContext(_ context: Context, isSelected: Bool) {
-    }
-
-    public func selectAll() {
-    }
-
-    public func deselectAll() {
+    public func updateFilteredContexts(_ context: [Context], isSelected: Bool) {
     }
 }
 

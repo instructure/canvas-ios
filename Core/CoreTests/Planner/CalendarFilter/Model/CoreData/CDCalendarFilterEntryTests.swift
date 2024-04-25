@@ -22,16 +22,6 @@ import XCTest
 
 class CDCalendarFilterEntryTests: CoreTestCase {
 
-    func testColor() {
-        let testee: CDCalendarFilterEntry = databaseClient.insert()
-        let testColor = UIColor(hexString: "#FF0000")!
-
-        testee.color = Color(testColor)
-
-        XCTAssertEqual(testee.rawColorHex, "#ff0000")
-        XCTAssertEqual(testee.color, Color(testColor))
-    }
-
     func testContext() {
         let testee: CDCalendarFilterEntry = databaseClient.insert()
         let testContext = Context(.group, id: "g1")

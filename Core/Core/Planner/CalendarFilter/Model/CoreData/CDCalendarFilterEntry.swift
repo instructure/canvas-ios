@@ -21,7 +21,8 @@ import SwiftUI
 
 public class CDCalendarFilterEntry: NSManagedObject {
     @NSManaged public var name: String
-    @NSManaged public var filter: CDCalendarFilter
+    /// For the observer role we have a separate list of filters for each observed student
+    @NSManaged public var observedUserId: String?
     @NSManaged public private(set) var rawContextID: String
 
     public var context: Context {

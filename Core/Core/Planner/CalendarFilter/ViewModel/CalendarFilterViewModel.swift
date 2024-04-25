@@ -41,7 +41,7 @@ public class CalendarFilterViewModel: ObservableObject {
         observeDataChanges()
         load(ignoreCache: false)
         forwardSelectionChangesToInteractor()
-        forwardSelectAllActionsToInteractor()
+        handleSelectAllActions()
     }
 
     public func refresh(completion: @escaping () -> Void) {
@@ -55,14 +55,35 @@ public class CalendarFilterViewModel: ObservableObject {
         completionCallback: (() -> Void)? = nil
     ) {
         interactor
-            .load(ignoreCache: false)
+            .loadFilters(ignoreCache: false)
             .sink { [weak self] completion in
+                guard let self else { return }
                 switch completion {
-                case .finished: self?.state = .data
-                case .failure: self?.state = .error
+                case .finished:
+                    // In this case the stream completed without publishing
+                    if self.state == .loading {
+                        self.state = .empty
+                    }
+                case .failure:
+                    self.state = .error
                 }
                 completionCallback?()
-            } receiveValue: { _ in
+            } receiveValue: { [weak self] filters in
+                guard let self else { return }
+                let containsUserFilter = filters.contains { $0.context.contextType == .user }
+
+                if filters.isEmpty || (filters.count == 1 && containsUserFilter) {
+                    state = .empty
+                } else {
+                    state = .data
+                    userFilter = filters.first { $0.context.contextType == .user }
+                    courseFilters = filters
+                        .filter { $0.context.contextType == .course }
+                        .sorted()
+                    groupFilters = filters
+                        .filter { $0.context.contextType == .group }
+                        .sorted()
+                }
             }
             .store(in: &subscriptions)
     }
@@ -70,63 +91,38 @@ public class CalendarFilterViewModel: ObservableObject {
     private func forwardSelectionChangesToInteractor() {
         didToggleSelection
             .sink { [weak interactor] (context, isSelected) in
-                interactor?.updateFilteredContext(context, isSelected: isSelected)
+                interactor?.updateFilteredContexts([context], isSelected: isSelected)
             }
             .store(in: &subscriptions)
     }
 
-    private func forwardSelectAllActionsToInteractor() {
+    private func handleSelectAllActions() {
         didTapRightNavButton
-            .flatMap { [interactor] in
-                interactor
-                    .observeFilter()
-                    .map(\.selectedContexts.isEmpty)
-                    .first()
+            .compactMap { [weak self] _ -> ([Context], Bool)? in
+                guard let self else { return nil }
+
+                var allContexts = courseFilters.map { $0.context }
+                allContexts.append(contentsOf: groupFilters.map { $0.context })
+                allContexts.appendUnwrapped(userFilter?.context)
+                return (allContexts, selectedContexts.isEmpty)
             }
-            .sink { [interactor] isNothingSelected in
-                if isNothingSelected {
-                    interactor.selectAll()
-                } else {
-                    interactor.deselectAll()
-                }
+            .sink { [interactor] (contexts, isSelect) in
+                interactor.updateFilteredContexts(contexts, isSelected: isSelect)
             }
             .store(in: &subscriptions)
     }
 
     private func observeDataChanges() {
         interactor
-            .observeFilter()
-            .map(\.selectedContexts)
+            .observeSelectedContexts()
             .assign(to: \.selectedContexts, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
         interactor
-            .observeFilter()
-            .map(\.entries)
-            .map { $0.first { $0.context.contextType == .user } }
-            .assign(to: \.userFilter, on: self, ownership: .weak)
-            .store(in: &subscriptions)
-
-        interactor
-            .observeFilter()
-            .map { Array($0.entries) }
-            .sink { [weak self] filterEntries in
-                guard let self else { return }
-
-                courseFilters = filterEntries
-                    .filter { $0.context.contextType == .course }
-                    .sorted()
-                groupFilters = filterEntries
-                    .filter { $0.context.contextType == .group }
-                    .sorted()
-            }
-            .store(in: &subscriptions)
-
-        interactor
-            .observeFilter()
+            .observeSelectedContexts()
             .map {
-                $0.selectedContexts.isEmpty ? String(localized: "Select all")
-                                            : String(localized: "Deselect all")
+                $0.isEmpty ? String(localized: "Select all")
+                           : String(localized: "Deselect all")
             }
             .assign(to: \.rightNavButtonTitle, on: self, ownership: .weak)
             .store(in: &subscriptions)

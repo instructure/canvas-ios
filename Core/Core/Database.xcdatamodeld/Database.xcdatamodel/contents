@@ -151,15 +151,10 @@
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
     </entity>
-    <entity name="CDCalendarFilter" representedClassName="Core.CDCalendarFilter" syncable="YES">
-        <attribute name="observedUserId" optional="YES" attributeType="String"/>
-        <attribute name="rawSelectedContexts" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
-        <relationship name="entries" toMany="YES" deletionRule="Cascade" destinationEntity="CDCalendarFilterEntry" inverseName="filter" inverseEntity="CDCalendarFilterEntry"/>
-    </entity>
     <entity name="CDCalendarFilterEntry" representedClassName="Core.CDCalendarFilterEntry" syncable="YES">
         <attribute name="name" attributeType="String"/>
+        <attribute name="observedUserId" optional="YES" attributeType="String"/>
         <attribute name="rawContextID" attributeType="String"/>
-        <relationship name="filter" maxCount="1" deletionRule="Nullify" destinationEntity="CDCalendarFilter" inverseName="entries" inverseEntity="CDCalendarFilter"/>
     </entity>
     <entity name="CDCourseSyncDownloadProgress" representedClassName="Core.CDCourseSyncDownloadProgress" syncable="YES">
         <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

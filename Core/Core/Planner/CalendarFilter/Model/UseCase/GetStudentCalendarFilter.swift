@@ -20,15 +20,15 @@ import CoreData
 import Combine
 import SwiftUI
 
-class GetStudentCalendarFilter: UseCase {
+class GetStudentCalendarFilters: UseCase {
     struct APIResponse: Codable {
         let courses: [APICourse]
         let groups: [APIGroup]
     }
-    typealias Model = CDCalendarFilter
+    typealias Model = CDCalendarFilterEntry
     typealias Response = APIResponse
     let cacheKey: String? = "calendar/filters"
-    let scope: Scope = .all
+    let scope: Scope = .where((\CDCalendarFilterEntry.observedUserId).string, equals: nil)
 
     private var subscriptions = Set<AnyCancellable>()
     private let userName: String
@@ -109,8 +109,10 @@ class GetStudentCalendarFilter: UseCase {
                 return filter
             }
         }())
-
-        let filter: CDCalendarFilter = client.first(scope: .all) ?? client.insert()
-        filter.entries = Set(filters)
     }
+
+    func reset(context: NSManagedObjectContext) {
+        context.delete(context.fetch(scope: scope) as [CDCalendarFilterEntry])
+    }
+
 }

@@ -140,7 +140,6 @@ extension InstUI {
                             .foregroundStyle(Color.textDarkest)
                             .frame(maxWidth: .infinity,
                                    alignment: .leading)
-
                     }
                     .padding(.leading, 22)
                     .paddingStyle(.trailing, .standard)

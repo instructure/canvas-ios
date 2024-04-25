@@ -62,4 +62,14 @@ class SessionDefaultsTests: XCTestCase {
 
         XCTAssertEqual(testee, [item1, item2, item3])
     }
+
+    func testCalendarFilters() {
+        defaults.setCalendarSelectedContexts(Set([.course("c1"), .user("u1")]), observedStudentId: nil)
+        defaults.setCalendarSelectedContexts(Set([.group("g1")]), observedStudentId: "s1")
+        defaults.setCalendarSelectedContexts(Set([.group("g2")]), observedStudentId: "s2")
+
+        XCTAssertEqual(defaults.calendarSelectedContexts(for: nil), Set([.course("c1"), .user("u1")]))
+        XCTAssertEqual(defaults.calendarSelectedContexts(for: "s1"), Set([.group("g1")]))
+        XCTAssertEqual(defaults.calendarSelectedContexts(for: "s2"), Set([.group("g2")]))
+    }
 }

@@ -21,16 +21,15 @@ import Combine
 public protocol CalendarFilterInteractor: AnyObject {
     init(observedUserId: String?, env: AppEnvironment)
 
-    func observeFilter() -> AnyPublisher<CDCalendarFilter, Never>
-    func load(ignoreCache: Bool) -> any Publisher<Void, Error>
-    func updateFilteredContext(_ context: Context, isSelected: Bool)
-    func selectAll()
-    func deselectAll()
+    func loadFilters(ignoreCache: Bool) -> any Publisher<[CDCalendarFilterEntry], Error>
+
+    func observeSelectedContexts() -> AnyPublisher<Set<Context>, Never>
+    func updateFilteredContexts(_ context: [Context], isSelected: Bool)
 }
 
 public class CalendarFilterInteractorLive: CalendarFilterInteractor {
     private let observedUserId: String?
-    private let filterEntity = CurrentValueSubject<CDCalendarFilter?, Never>(nil)
+    private let selectedFilters = CurrentValueSubject<Set<Context>, Never>(Set())
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
@@ -40,90 +39,53 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
     ) {
         self.observedUserId = observedUserId
         self.env = env
-        startObservingDatabase()
+        loadSelectedContexts()
     }
 
-    public func observeFilter() -> AnyPublisher<CDCalendarFilter, Never> {
-        filterEntity
-            .compactMap { $0 }
-            .eraseToAnyPublisher()
-    }
-
-    public func updateFilteredContext(_ context: Context, isSelected: Bool) {
-        updateFilteredContext([context], isSelected: isSelected)
-    }
-
-    public func load(ignoreCache: Bool) -> any Publisher<Void, Error> {
+    public func loadFilters(ignoreCache: Bool) -> any Publisher<[CDCalendarFilterEntry], Error> {
         switch env.app {
         case .parent:
-            return Fail<Void, Error>(error: NSError.internalError())
+            return Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
         case .student:
             guard let userName = env.currentSession?.userName,
                   let userId = env.currentSession?.userID
             else {
-                return Fail<Void, Error>(error: NSError.internalError())
+                return Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
             }
-            let useCase = GetStudentCalendarFilter(currentUserName: userName,
-                                                   currentUserId: userId)
+            let useCase = GetStudentCalendarFilters(currentUserName: userName,
+                                                    currentUserId: userId)
             return ReactiveStore(useCase: useCase)
-                    .getEntities(ignoreCache: ignoreCache)
-                    .mapToVoid()
+                .getEntities(ignoreCache: ignoreCache)
         case .teacher:
-            return Fail<Void, Error>(error: NSError.internalError())
+            return Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
         case .none:
-            return Fail<Void, Error>(error: NSError.internalError())
+            return Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
         }
     }
 
-    public func selectAll() {
-        guard let filter = filterEntity.value else { return }
-        updateFilteredContext(filter.entries.map(\.context), isSelected: true)
+    public func observeSelectedContexts() -> AnyPublisher<Set<Context>, Never> {
+        selectedFilters
+            .compactMap { $0 }
+            .eraseToAnyPublisher()
     }
 
-    public func deselectAll() {
-        guard let filter = filterEntity.value,
-              let dbContext = filter.managedObjectContext
-        else { return }
+    public func updateFilteredContexts(_ contexts: [Context], isSelected: Bool) {
+        guard var defaults = env.userDefaults else { return }
 
-        dbContext.perform {
-            filter.selectedContexts = Set()
-            try? dbContext.save()
+        var selectedContexts = defaults.calendarSelectedContexts(for: observedUserId)
+
+        if isSelected {
+            selectedContexts.formUnion(contexts)
+        } else {
+            selectedContexts.subtract(contexts)
         }
+
+        defaults.setCalendarSelectedContexts(selectedContexts, observedStudentId: observedUserId)
+        selectedFilters.send(selectedContexts)
     }
 
-    private func updateFilteredContext(_ contexts: [Context], isSelected: Bool) {
-        guard let filter = filterEntity.value,
-              let dbContext = filter.managedObjectContext
-        else { return }
-
-        dbContext.perform {
-            var selectedContexts = filter.selectedContexts
-
-            if isSelected {
-                selectedContexts.formUnion(contexts)
-            } else {
-                selectedContexts.subtract(contexts)
-            }
-
-            filter.selectedContexts = selectedContexts
-            try? dbContext.save()
-        }
-    }
-
-    private func startObservingDatabase() {
-        let scope = Scope.where(
-            (\CDCalendarFilter.observedUserId).string,
-            equals: observedUserId,
-            sortDescriptors: []
-        )
-        let useCase = LocalUseCase<CDCalendarFilter>(scope: scope)
-        ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
-            .getEntities(keepObservingDatabaseChanges: true)
-            .replaceError(with: [])
-            .compactMap { $0.first }
-            .sink { [weak filterEntity] in
-                filterEntity?.send($0)
-            }
-            .store(in: &subscriptions)
+    private func loadSelectedContexts() {
+        guard let defaults = env.userDefaults else { return }
+        selectedFilters.send(defaults.calendarSelectedContexts(for: observedUserId))
     }
 }
