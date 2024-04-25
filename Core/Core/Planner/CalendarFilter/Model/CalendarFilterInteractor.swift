@@ -56,6 +56,16 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
                                                     currentUserId: userId)
             return ReactiveStore(useCase: useCase)
                 .getEntities(ignoreCache: ignoreCache)
+                .flatMap { [weak self] filters -> AnyPublisher<[CDCalendarFilterEntry], Error> in
+                    guard let self else {
+                        return Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
+                            .eraseToAnyPublisher()
+                    }
+                    return clearNotAvailableSelectedContexts(filters: filters)
+                        .map { filters }
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
         case .teacher:
             return Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
         case .none:
@@ -82,6 +92,19 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
 
         defaults.setCalendarSelectedContexts(selectedContexts, observedStudentId: observedUserId)
         selectedFilters.send(selectedContexts)
+    }
+
+    // MARK: - Private
+
+    private func clearNotAvailableSelectedContexts(filters: [CDCalendarFilterEntry]) -> Future<Void, Never> {
+        Future { [weak self] promise in
+            defer { promise(.success(())) }
+            guard let self else { return }
+            let availableContexts = filters.map { $0.context }
+            let selectedContexts = selectedFilters.value
+            let noLongerAvailableSelectedContexts = selectedContexts.subtracting(availableContexts)
+            updateFilteredContexts(Array(noLongerAvailableSelectedContexts), isSelected: false)
+        }
     }
 
     private func loadSelectedContexts() {

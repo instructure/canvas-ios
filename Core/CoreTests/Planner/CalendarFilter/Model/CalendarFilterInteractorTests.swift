@@ -1,0 +1,54 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2024-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+@testable import Core
+import XCTest
+
+class CalendarFilterInteractorTests: CoreTestCase {
+
+    func testClearsNoLongerAvailableSelectedContexts() {
+        environment.userDefaults!.setCalendarSelectedContexts(
+            Set([
+                .course("1"),
+                .course("2"),
+                .group("1"),
+                .group("2"),
+            ]),
+            observedStudentId: nil
+        )
+        let coursesRequest = GetCurrentUserCoursesRequest(
+            enrollmentState: .active,
+            state: [.current_and_concluded],
+            includes: []
+        )
+        let groupsRequest = GetGroupsRequest(context: .currentUser)
+        api.mock(coursesRequest, value: [.make(id: "2")])
+        api.mock(groupsRequest, value: [.make(id: "2")])
+        let testee = CalendarFilterInteractorLive(observedUserId: nil, env: environment)
+
+        // WHEN
+        XCTAssertFinish(testee.loadFilters(ignoreCache: false))
+
+        // THEN
+        XCTAssertEqual(environment.userDefaults!.calendarSelectedContexts(for: nil),
+                       Set([
+                        .course("2"),
+                        .group("2"),
+                       ]))
+    }
+}
