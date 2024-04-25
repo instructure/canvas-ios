@@ -111,7 +111,7 @@ struct SubmissionGrades: View {
                         HStack {
                             Text("Late", bundle: .teacher)
                             Spacer()
-                            Text("\(-deducted, specifier: "%g") pts", bundle: .teacher)
+                            Text("\(-deducted, specifier: "%g") pts", bundle: .core)
                         }
                         .font(.medium14).foregroundColor(.textWarning)
                         .padding(EdgeInsets(top: -10, leading: 16, bottom: -4, trailing: 16))

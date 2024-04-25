@@ -306,7 +306,7 @@ struct RubricAssessor: View {
     }
 
     private func promptCustomGrade(_ criteria: Rubric, assessment: APIRubricAssessment?) {
-        let format = String(localized: "out_of_g_pts", bundle: .teacher)
+        let format = String(localized: "out_of_g_pts", bundle: .core)
         let message = String.localizedStringWithFormat(format, criteria.points)
         let prompt = UIAlertController(title: String(localized: "Customize Grade", bundle: .teacher), message: message, preferredStyle: .alert)
         prompt.addTextField { field in

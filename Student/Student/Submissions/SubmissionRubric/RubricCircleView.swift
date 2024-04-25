@@ -80,7 +80,7 @@ class RubricCircleView: UIView {
             let font: UIFont
             let color: UIColor
             let bgColor: UIColor
-            let format = String(localized: "g_points", bundle: .student)
+            let format = String(localized: "g_points", bundle: .core)
             var a11yLabel: String = String.localizedStringWithFormat(format, Double(Int(r)))
             a11yLabel += " " + description
 
