@@ -185,12 +185,19 @@ public struct CourseSyncEntry: Equatable {
         let tabsError = tabs.contains { $0.state == .error }
         let filesError = files.contains { $0.state == .error }
 
-        return state == .error || tabsError || filesError
+        return state == .error || tabsError || filesError || hasAdditionalContentError
     }
 
     var hasFileError: Bool {
         files.contains { $0.state == .error }
     }
+
+    var hasAdditionalContentError: Bool {
+        additionalContentDownloadResults.contains { !$0}
+    }
+
+    typealias IsDownloadSuccessful = Bool
+    var additionalContentDownloadResults: [IsDownloadSuccessful] = []
 
     mutating func selectCourse(selectionState: ListCellView.SelectionState) {
         tabs.indices.forEach { tabs[$0].selectionState = selectionState }
@@ -252,6 +259,14 @@ public struct CourseSyncEntry: Equatable {
         if let index = files.firstIndex(where: { $0.id == id }) {
             files[index].state = state
         }
+    }
+
+    mutating func updateAdditionalContentResults(isSuccessful: Bool) {
+        additionalContentDownloadResults.append(isSuccessful)
+    }
+
+    mutating func clearAdditionalContentResults() {
+        additionalContentDownloadResults.removeAll()
     }
 }
 
