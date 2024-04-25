@@ -40,10 +40,10 @@ class UrlSubmissionViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         loadingView?.backgroundColor = .backgroundLightest
-        title = NSLocalizedString("Website Address", comment: "")
+        title = String(localized: "Website Address", bundle: .student)
         textField.accessibilityLabel = title
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .plain, target: self, action: #selector(submit))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Submit", bundle: .student), style: .plain, target: self, action: #selector(submit))
         navigationItem.rightBarButtonItem?.accessibilityIdentifier = "URLSubmission.submit"
         addCancelButton(side: .left)
     }

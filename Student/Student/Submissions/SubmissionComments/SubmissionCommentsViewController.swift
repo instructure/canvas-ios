@@ -63,20 +63,20 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         addCommentBorderView.backgroundColor = .backgroundLightest
         addCommentBorderView.layer.borderColor = UIColor.borderMedium.cgColor
         addCommentBorderView.layer.borderWidth = 1 / UIScreen.main.scale
-        addCommentButton.accessibilityLabel = NSLocalizedString("Send comment", bundle: .student, comment: "")
-        addCommentTextView.accessibilityLabel = NSLocalizedString("Add a comment or reply to previous comments", bundle: .student, comment: "")
-        addCommentTextView.placeholder = NSLocalizedString("Comment", bundle: .student, comment: "")
+        addCommentButton.accessibilityLabel = String(localized: "Send comment", bundle: .student)
+        addCommentTextView.accessibilityLabel = String(localized: "Add a comment or reply to previous comments", bundle: .student)
+        addCommentTextView.placeholder = String(localized: "Comment", bundle: .student)
         addCommentTextView.placeholderColor = .textDark
         addCommentTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         addCommentTextView.adjustsFontForContentSizeCategory = true
         addCommentTextView.textColor = .textDarkest
         addCommentView.backgroundColor = .backgroundLightest
         emptyContainer.isHidden = true
-        emptyLabel.text = NSLocalizedString("Have questions about your assignment?\nMessage your instructor.", bundle: .student, comment: "")
+        emptyLabel.text = String(localized: "Have questions about your assignment?\nMessage your instructor.", bundle: .student)
         emptyImageView.image = UIImage(named: Panda.NoComments.name, in: .core, compatibleWith: nil)
         tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
         tableView.keyboardDismissMode = .onDrag
-        addMediaButton.accessibilityLabel = NSLocalizedString("Add media attachment", bundle: .student, comment: "")
+        addMediaButton.accessibilityLabel = String(localized: "Add media attachment", bundle: .student)
 
         presenter?.viewIsReady()
     }
@@ -95,7 +95,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
 
     @IBAction func addMediaButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(AlertAction(NSLocalizedString("Record Audio", bundle: .student, comment: ""), style: .default) { _ in
+        alert.addAction(AlertAction(String(localized: "Record Audio", bundle: .student), style: .default) { _ in
             AudioRecorderViewController.requestPermission { [weak self] allowed in
                 guard let self = self else { return }
                 guard allowed else {
@@ -107,7 +107,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
                 self.showMediaController(controller)
             }
         })
-        alert.addAction(AlertAction(NSLocalizedString("Record Video", bundle: .student, comment: ""), style: .default) { _ in
+        alert.addAction(AlertAction(String(localized: "Record Video", bundle: .student), style: .default) { _ in
             VideoRecorder.requestPermission { [weak self] allowed in
                 guard let self = self else { return }
                 guard allowed else {
@@ -129,15 +129,15 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
                 }
             }
         })
-        alert.addAction(AlertAction(NSLocalizedString("Choose File", bundle: .student, comment: ""), style: .default) { [weak self] _ in
+        alert.addAction(AlertAction(String(localized: "Choose File", bundle: .student), style: .default) { [weak self] _ in
             let picker = FilePickerViewController.create()
             picker.delegate = self
-            picker.title = NSLocalizedString("Attachments", bundle: .student, comment: "")
-            picker.submitButtonTitle = NSLocalizedString("Send", bundle: .student, comment: "")
+            picker.title = String(localized: "Attachments", bundle: .student)
+            picker.submitButtonTitle = String(localized: "Send", bundle: .student)
             let nav = UINavigationController(rootViewController: picker)
             self?.present(nav, animated: true, completion: nil)
         })
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .student), style: .cancel))
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = sender.bounds
         present(alert, animated: true)
