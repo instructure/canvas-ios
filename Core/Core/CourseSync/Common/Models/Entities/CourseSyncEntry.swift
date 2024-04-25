@@ -62,7 +62,7 @@ public struct CourseSyncEntry: Equatable {
         selectedTabs.count
     }
 
-    /// "Additional Content" and "Files" tab don't count towards the final download size.
+    /// "Additional Content" and "Files" tabs don't count towards the final download size.
     var byteCountableSelectedTabs: [CourseSyncEntry.Tab] {
         tabs
             .filter { $0.type != TabName.files && $0.type != TabName.additionalContent }
@@ -181,6 +181,7 @@ public struct CourseSyncEntry: Equatable {
         return (totalFilesProgress + totalTabsProgress) / selectedCount
     }
 
+    /// Returns **true** if any of the visible or hidden tabs or files failed to download.
     var hasError: Bool {
         let tabsError = tabs.contains { $0.state == .error }
         let filesError = files.contains { $0.state == .error }
@@ -197,7 +198,7 @@ public struct CourseSyncEntry: Equatable {
     }
 
     typealias IsDownloadSuccessful = Bool
-    var additionalContentDownloadResults: [IsDownloadSuccessful] = []
+    private(set) var additionalContentDownloadResults: [IsDownloadSuccessful] = []
 
     mutating func selectCourse(selectionState: ListCellView.SelectionState) {
         tabs.indices.forEach { tabs[$0].selectionState = selectionState }

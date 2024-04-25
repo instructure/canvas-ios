@@ -166,6 +166,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .eraseToAnyPublisher()
     }
 
+    /// Collects and manages downloaders for a single course and publishes the final state update.
     private func downloadCourseDetails(_ entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
         unowned let unownedSelf = self
 
@@ -206,6 +207,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .eraseToAnyPublisher()
     }
 
+    /// Downloads tab content based on the currently received course entry and tab.
+    /// It's called iteratively where each iteration is one of the currently supported offline downloadable tab.
+    /// If the user choses to sync the whole course, then:
+    ///     - We first check if the received tab is already part of the visible course tabs and set the tab id that needs to be updated.
+    ///     - If it isn't part of the visible tabs, then this is an "Additional Content" download, so we set the tab id accordingly.
+    /// Otherwise we check if the currently received tab has been selected by the user.
     private func downloadTabContent(for entry: CourseSyncEntry, tabName: TabName) -> AnyPublisher<Void, Never> {
         unowned let unownedSelf = self
 
@@ -274,30 +281,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         }
     }
 
-    private func handleNonFatalErrors(
-        error: Error,
-        selection: CourseEntrySelection,
-        state: CourseSyncEntry.State
-    ) -> AnyPublisher<Void, Error> {
-        let err = error as NSError
-        if err.domain == NSError.Constants.domain,
-           err.code == NSError.Constants.forbidden ||
-           err.code == NSError.Constants.notFound ||
-           err.code == NSError.Constants.unexpected ||
-           err == NSError.instructureError("Failed to save base content") ||
-           err == NSError.instructureError("The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.") {
-            setState(
-                selection: selection,
-                state: state
-            )
-            return Just(())
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        } else {
-            return Fail(error: error).eraseToAnyPublisher()
-        }
-    }
-
+    /// Downloads files for a single course.
+    /// If the user choses to sync the whole course, then:
+    ///     - We first check if the files tab is already part of the visible course tabs and set the tab id that needs to be updated.
+    ///     - If it isn't part of the visible tabs, then this is an "Additional Content" download, so we set the tab id accordingly.
+    /// Otherwise we check if the files tab has been fully or partially selected by the user,
+    /// and we download the selected files.
     private func downloadFiles(for entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
         var tabId: String?
 
@@ -320,7 +309,13 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             return removeUnavailableFiles(courseId: entry.courseId)
         }
 
-        let files = entry.files.filter { $0.selectionState == .selected }
+        let files = entry.files.filter { 
+            if entry.isFullContentSync {
+                return true
+            } else {
+                return $0.selectionState == .selected
+            }
+        }
 
         guard !files.isEmpty else {
             return removeUnavailableFiles(
@@ -417,6 +412,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         .eraseToAnyPublisher()
     }
 
+    /// Downloads modules tab for a single course.
+    /// If the user choses to sync the whole course, then:
+    ///     - We first check if the modules tab is already part of the visible course tabs and set the tab id that needs to be updated.
+    ///     - If it isn't part of the visible tabs, then this is an "Additional Content" download, so we set the tab id accordingly.
+    /// Otherwise we check if the modules tab has been selected by the user.
+    /// Additionally, it iterates through module items and downloads the tab content from the appropriate API.
     private func downloadModules(for entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
         var tabId: String?
 
@@ -474,10 +475,13 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                 )
                 return Just(()).eraseToAnyPublisher()
             }
-            .replaceError(with: ())
             .eraseToAnyPublisher()
     }
 
+    /// Downloads module items for a single course.
+    /// Some module items:
+    ///     - are downloadable by simply querying the course's tab list like `/courses/:id/discussions`,
+    ///     - some need to be explicitily called like `/courses/:id/pages/:id`.
     private func getModuleSubItems(entry: CourseSyncEntry, moduleItems: [ModuleItem]) -> [AnyPublisher<Void, Error>] {
         let tabsForRegularDownload = Set(moduleItems.tabItemsToRequestByList).subtracting(Set(entry.selectedTabs))
         let tabsForModuleItemDownload = Set(moduleItems.tabItemsToRequestByID)
@@ -524,6 +528,34 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         .eraseToAnyPublisher()
     }
 
+    /// Some courses are setup in a way that there are no visible tabs except e.g.: Modules, Front Page, etc.
+    /// When the user choses to sync the whole course, we'll try to fetch every tab content from the different APIs.
+    /// Some of these APIs will respond with an error when trying to fetch hidden tabs. We swallow these errors and let
+    /// the download continue.
+    private func handleNonFatalErrors(
+        error: Error,
+        selection: CourseEntrySelection,
+        state: CourseSyncEntry.State
+    ) -> AnyPublisher<Void, Error> {
+        let err = error as NSError
+        if err.domain == NSError.Constants.domain,
+           err.code == NSError.Constants.forbidden ||
+           err.code == NSError.Constants.notFound ||
+           err.code == NSError.Constants.unexpected ||
+           err == NSError.instructureError("Failed to save base content") ||
+           err == NSError.instructureError("The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.") {
+            setState(
+                selection: selection,
+                state: state
+            )
+            return Just(())
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        } else {
+            return Fail(error: error).eraseToAnyPublisher()
+        }
+    }
+
     /// Updates entry state in memory and writes it to Core Data. In addition it also writes file progress to Core Data.
     private func setState(selection: CourseEntrySelection, state: CourseSyncEntry.State, isFinalUpdate: Bool = false) {
         var entries = safeCourseSyncEntriesValue
@@ -533,6 +565,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             entries[id: entryID]?.updateCourseState(state: state)
             progressWriterInteractor.saveStateProgress(id: entryID, selection: selection, state: state)
         case let .tab(entryID, tabID):
+            /// When there's an "Additional Content" tab, there are most likely multiple hidden tabs that need to be downloaded.
+            /// Since each entry has only 1 "Additional Content" tab but there are multiple downloads going on in the background,
+            /// we don't want to do updates like `Loading` -> `Downloaded` then again `Loading`.
+            /// Instead, we silently collect the results and only publish it once the entry finished downloading.
             if selection.isAdditionalContentTab, state == .downloaded || state == .error, !isFinalUpdate {
                 entries[id: entryID]?.updateAdditionalContentResults(isSuccessful: state == .downloaded)
             } else {
