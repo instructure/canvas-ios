@@ -55,43 +55,29 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
             )
         )
 
-        if tabs.isFilesTabEnabled() {
-            return filesInteractor.getFiles(courseId: course.courseId, useCache: useCache)
-                .map { files in
-                    files.map {
-                        CourseSyncEntry.File(
-                            id: "courses/\(course.courseId)/files/\($0.id ?? Foundation.UUID().uuidString)",
-                            displayName: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
-                            fileName: $0.filename,
-                            url: $0.url!,
-                            mimeClass: $0.mimeClass!,
-                            updatedAt: $0.updatedAt,
-                            bytesToDownload: $0.size
-                        )
-                    }
-                }
-                .map { files in
-                    CourseSyncEntry(
-                        name: course.name,
-                        id: "courses/\(course.courseId)",
-                        hasFrontPage: course.hasFrontPage,
-                        tabs: mappedTabs,
-                        files: files
+        return filesInteractor.getFiles(courseId: course.courseId, useCache: useCache)
+            .map { files in
+                files.map {
+                    CourseSyncEntry.File(
+                        id: "courses/\(course.courseId)/files/\($0.id ?? Foundation.UUID().uuidString)",
+                        displayName: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
+                        fileName: $0.filename,
+                        url: $0.url!,
+                        mimeClass: $0.mimeClass!,
+                        updatedAt: $0.updatedAt,
+                        bytesToDownload: $0.size
                     )
                 }
-                .eraseToAnyPublisher()
-        } else {
-            return Just(
+            }
+            .map { files in
                 CourseSyncEntry(
                     name: course.name,
                     id: "courses/\(course.courseId)",
                     hasFrontPage: course.hasFrontPage,
                     tabs: mappedTabs,
-                    files: []
+                    files: files
                 )
-            )
-            .setFailureType(to: Error.self)
+            }
             .eraseToAnyPublisher()
-        }
     }
 }
