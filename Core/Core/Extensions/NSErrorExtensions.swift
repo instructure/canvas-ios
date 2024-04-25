@@ -22,6 +22,10 @@ extension NSError {
     public struct Constants {
         static let domain = "com.instructure"
         static let internalError = "Internal Error"
+
+        static let forbidden = 1000
+        static let notFound = 1001
+        static let unexpected = 2000
     }
 
     public static func internalError(code: Int = 0) -> NSError {
@@ -30,6 +34,20 @@ extension NSError {
 
     public static func instructureError(_ errorMsg: String, code: Int = 0) -> NSError {
         return NSError(domain: Constants.domain, code: code, userInfo: [NSLocalizedDescriptionKey: errorMsg])
+    }
+
+    public static func errorCodeForHttpResponse(_ response: URLResponse?) -> Int {
+        guard let response = response as? HTTPURLResponse else {
+            return 0
+        }
+        let status = response.statusCode
+        if status == 403 {
+            return Constants.forbidden
+        } else if status == 404 {
+            return Constants.notFound
+        } else {
+            return Constants.unexpected
+        }
     }
 
     public var shouldRecordInCrashlytics: Bool {

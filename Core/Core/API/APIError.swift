@@ -21,30 +21,6 @@ import Foundation
 public enum APIError: LocalizedError {
     case unauthorized(localizedMessage: String) // Permission issue even after a successful token refresh
 
-    static let notFound = NSError.instructureError(
-        NSLocalizedString(
-            "There was an unexpected error. Please try again.",
-            bundle: .core,
-            comment: ""
-        )
-    )
-
-    static let forbidden = NSError.instructureError(
-        NSLocalizedString(
-            "You are not authorized to perform this action",
-            bundle: .core,
-            comment: ""
-        )
-    )
-
-    static let unexpected = NSError.instructureError(
-        NSLocalizedString(
-            "There was an unexpected error. Please try again.",
-            bundle: .core,
-            comment: ""
-        )
-    )
-
     public var errorDescription: String? {
         switch self {
         case .unauthorized(let message): return message
@@ -61,19 +37,25 @@ public enum APIError: LocalizedError {
             }
 
             if let message = message {
-                return NSError.instructureError(message)
+                return NSError.instructureError(
+                    message,
+                    code: NSError.errorCodeForHttpResponse(response)
+                )
             }
         }
-        if let status = (response as? HTTPURLResponse)?.statusCode {
-            if status == 403 {
-                return forbidden
-            } else if status == 404 {
-                return notFound
-            } else if status >= 400 {
-                return unexpected
-            }
+
+        if let response {
+            return NSError.instructureError(
+                NSLocalizedString(
+                    "There was an unexpected error. Please try again.",
+                    bundle: .core,
+                    comment: ""
+                ),
+                code: NSError.errorCodeForHttpResponse(response)
+            )
+        } else {
+            return error
         }
-        return error
     }
 
     private static func extractMessage(from json: [String: Any]) -> String? {
