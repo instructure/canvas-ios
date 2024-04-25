@@ -36,10 +36,10 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
         testee.download(testURL, courseId: testCourseId, resourceId: testResourceId, publisherProvider: mockPublisherProvider)
             .sink(receiveCompletion: { _ in }, receiveValue: { [testURL] result in
 
-                let data = try? String(contentsOf: result, encoding: .utf8)
+                let data = try? String(contentsOf: URL(string: result)!, encoding: .utf8)
 
-                XCTAssertNotEqual(result, testURL)
-                XCTAssertEqual(result, URL.Directories.documents.appendingPathComponent(testURL.lastPathComponent))
+                XCTAssertNotEqual(result, testURL.path)
+                XCTAssertEqual(result, URL.Directories.documents.appendingPathComponent(testURL.lastPathComponent).path)
                 XCTAssertEqual(data, "hello")
             })
             .store(in: &subscriptions)

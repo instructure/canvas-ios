@@ -21,20 +21,20 @@ import Foundation
 import Combine
 
 class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
-    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
         return downloadFile(url, courseId: courseId, resourceId: resourceId, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
-    func downloadFile(_ url: URL, courseId: String, resourceId: String, publisherProvider: Core.URLSessionDataTaskPublisherProvider) -> AnyPublisher<URL, Error> {
-        fileNames[url.lastPathComponent] = false
+    func downloadFile(_ url: URL, courseId: String, resourceId: String, publisherProvider: Core.URLSessionDataTaskPublisherProvider) -> AnyPublisher<String, Error> {
+        fileNames.append(url.lastPathComponent)
 
-        return Just(url)
+        return Just(url.path)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
     var sectionName: String = "MockSectionName"
-    var fileNames: [String: Bool] = [:]
+    var fileNames: [String] = []
     private var counter: Int = 0
     var savedBaseContents: [URL] = []
 
@@ -43,22 +43,20 @@ class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
         courseId: String,
         resourceId: String,
         publisherProvider: Core.URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
-    ) -> AnyPublisher<URL, Error> {
-        fileNames[url.lastPathComponent] = false
+    ) -> AnyPublisher<String, Error> {
+        fileNames.append(url.lastPathComponent)
 
-        return Just(url)
+        return Just(url.path)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    func download(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+    func download(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
         download(url, courseId: courseId, resourceId: resourceId, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
     private func copy(_ localURL: URL, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
         let saveURL = URL.Directories.documents.appendingPathComponent(fileName)
-        counter += 1
-        fileNames[localURL.lastPathComponent] = true
 
         return Just(saveURL)
             .setFailureType(to: Error.self)

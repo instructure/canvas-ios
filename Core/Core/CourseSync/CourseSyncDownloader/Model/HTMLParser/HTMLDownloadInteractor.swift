@@ -56,11 +56,16 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                     return urlError
                 }
                 .receive(on: scheduler)
-                .flatMap { [unowned self] (tempURL: URL, fileName: String) in
-                    return self.copyFile(tempURL, fileId: fileID, fileName: fileName, courseId: courseId, resourceId: resourceId)
-                        .map { [sectionName] _ in
-                            "\(loginSession.baseURL)/courses/\(courseId)/files/\(sectionName)/\(resourceId)/\(fileID)/offline"
-                        }
+                .flatMap { [weak self] (tempURL: URL, fileName: String) in
+                    if let self {
+                        return self.copyFile(tempURL, fileId: fileID, fileName: fileName, courseId: courseId, resourceId: resourceId)
+                            .map { [sectionName] _ in
+                                "\(loginSession.baseURL)/courses/\(courseId)/files/\(sectionName)/\(resourceId)/\(fileID)/offline"
+                            }
+                            .eraseToAnyPublisher()
+                    } else {
+                        return Fail(error: NSError.instructureError(String(localized: "Failed to copy file"))).eraseToAnyPublisher()
+                    }
                 }
                 .eraseToAnyPublisher()
         } else {
@@ -84,8 +89,9 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                     return urlError
                 }
                 .receive(on: scheduler)
-                .flatMap { [unowned self] (tempURL: URL, fileName: String) in
-                    return self.copy(tempURL, fileName: fileName, courseId: courseId, resourceId: resourceId)
+                .flatMap { [weak self] (tempURL: URL, fileName: String) in
+                    return self?.copy(tempURL, fileName: fileName, courseId: courseId, resourceId: resourceId) ??
+                    Fail(error: NSError.instructureError(String(localized: "Failed to copy file"))).eraseToAnyPublisher()
                 }
                 .eraseToAnyPublisher()
         } else {
