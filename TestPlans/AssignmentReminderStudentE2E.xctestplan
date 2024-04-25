@@ -1,0 +1,60 @@
+{
+  "configurations" : [
+    {
+      "id" : "441E1DAE-2EC4-4450-844B-2176637D5DC0",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Student.xcodeproj",
+      "identifier" : "8FD2A76760D57F6AC5D5C101",
+      "name" : "Student"
+    }
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "ActAsUserTests",
+        "AnnouncementsTests",
+        "AssignmentsTests",
+        "CalendarTests",
+        "CollaborationsTests",
+        "ConferencesTests",
+        "CourseDetailsTests",
+        "DashboardTests",
+        "DiscussionsTests",
+        "FeatureFlagOfflineTests",
+        "FilesTests",
+        "GradeTotalsTests",
+        "GradesTests",
+        "GradingPeriodsTests",
+        "GradingStandardsTests",
+        "HelpTests",
+        "InboxTests",
+        "K5Tests",
+        "LoginTests",
+        "LogoutTests",
+        "ModulesTests",
+        "OfflineContentSyncTests",
+        "OfflineTests",
+        "PagesTests",
+        "PeopleTests",
+        "ProfileTests",
+        "QuizzesTests",
+        "SettingsTests",
+        "SyllabusTests",
+        "ToDoTests"
+      ],
+      "target" : {
+        "containerPath" : "container:Student.xcodeproj",
+        "identifier" : "A5253DAAB36ECE6D2EB5B620",
+        "name" : "StudentE2ETests"
+      }
+    }
+  ],
+  "version" : 1
+}
