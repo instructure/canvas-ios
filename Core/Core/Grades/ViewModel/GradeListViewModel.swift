@@ -54,10 +54,10 @@ public final class GradeListViewModel: ObservableObject {
     let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
     let didSelectAssignment = PassthroughRelay<(WeakViewController, Assignment)>()
     let confirmRevertAlertViewModel = ConfirmationAlertViewModel(
-        title: String(localized: "Revert to Official Score?"),
-        message: String(localized: "This will revert all your what-if scores in this course to the official score."),
-        cancelButtonTitle: String(localized: "Cancel"),
-        confirmButtonTitle: String(localized: "Revert"),
+        title: String(localized: "Revert to Official Score?", bundle: .core),
+        message: String(localized: "This will revert all your what-if scores in this course to the official score.", bundle: .core),
+        cancelButtonTitle: String(localized: "Cancel", bundle: .core),
+        confirmButtonTitle: String(localized: "Revert", bundle: .core),
         isDestructive: false
     )
 

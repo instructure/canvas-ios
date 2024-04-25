@@ -143,7 +143,7 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         button.menu = .makePublishAllModulesMenu(host: self) { [weak self] action in
             self?.didPerformPublishAction(action: action)
         }
-        button.accessibilityLabel = String(localized: "Publish options")
+        button.accessibilityLabel = String(localized: "Publish options", bundle: .core)
         navigationItem.setRightBarButton(button, animated: true)
 
         publishInteractor

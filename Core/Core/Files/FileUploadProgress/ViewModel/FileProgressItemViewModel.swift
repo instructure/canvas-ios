@@ -32,7 +32,7 @@ public class FileProgressItemViewModel: ObservableObject {
             case .waiting, .readyForUpload: return ""
             case .uploading(progress: let progress):
                 let percentage = Int(100 * progress)
-                return String(localized: "Upload in progress \(percentage)%")
+                return String(localized: "Upload in progress \(percentage)%", bundle: .core)
             case .uploaded: return NSLocalizedString("Upload completed.", comment: "")
             case .error: return NSLocalizedString("Upload failed.", comment: "")
             }

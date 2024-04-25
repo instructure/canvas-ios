@@ -142,10 +142,10 @@ struct ModuleFilePermissionEditorView: View {
 private extension FileAvailability {
     var label: String {
         switch self {
-        case .published: return String(localized: "Publish")
-        case .unpublished: return String(localized: "Unpublish")
-        case .hidden: return String(localized: "Only Available With Link")
-        case .scheduledAvailability: return String(localized: "Schedule Availability")
+        case .published: return String(localized: "Publish", bundle: .core)
+        case .unpublished: return String(localized: "Unpublish", bundle: .core)
+        case .hidden: return String(localized: "Only Available With Link", bundle: .core)
+        case .scheduledAvailability: return String(localized: "Schedule Availability", bundle: .core)
         }
     }
 }

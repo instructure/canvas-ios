@@ -139,22 +139,22 @@ class ModuleItemCell: UITableViewCell {
         if shouldShowPublishControl {
             let publishedText = {
                 if isPublishing {
-                    return String(localized: "Publish state modification in progress")
+                    return String(localized: "Publish state modification in progress", bundle: .core)
                 }
 
                 if let availability = item.fileAvailability {
                     return availability.a11yLabel
                 } else {
                     return item.published == true
-                        ? String(localized: "published")
-                        : String(localized: "unpublished")
+                        ? String(localized: "published", bundle: .core)
+                        : String(localized: "unpublished", bundle: .core)
                 }
             }()
             a11yLabels.append(publishedText)
         } else {
             a11yLabels.append(contentsOf: [
                 dueLabel.text,
-                item.isLocked ? String(localized: "locked") : nil,
+                item.isLocked ? String(localized: "locked", bundle: .core) : nil,
             ])
         }
 
@@ -220,7 +220,7 @@ class ModuleItemCell: UITableViewCell {
             }
             accessibilityCustomActions = [
                 .init(
-                    name: String(localized: "Edit permissions"),
+                    name: String(localized: "Edit permissions", bundle: .core),
                     target: self,
                     selector: #selector(presentFilePermissionEditorDialog)
                 ),
@@ -259,7 +259,7 @@ class ModuleItemCell: UITableViewCell {
 
     @objc
     private func showCantUnpublishSnackBar() {
-        let message = String(localized: "Can’t unpublish, if there are student submissions.")
+        let message = String(localized: "Can’t unpublish, if there are student submissions.", bundle: .core)
         host?.findSnackBarViewModel()?.showSnack(message)
     }
 
@@ -295,10 +295,10 @@ private extension ModuleItem {
 private extension FileAvailability {
     var a11yLabel: String {
         switch self {
-        case .published: return String(localized: "published")
-        case .unpublished: return String(localized: "unpublished")
-        case .hidden: return String(localized: "only available with link")
-        case .scheduledAvailability: return String(localized: "scheduled availability")
+        case .published: return String(localized: "published", bundle: .core)
+        case .unpublished: return String(localized: "unpublished", bundle: .core)
+        case .hidden: return String(localized: "only available with link", bundle: .core)
+        case .scheduledAvailability: return String(localized: "scheduled availability", bundle: .core)
         }
     }
 }

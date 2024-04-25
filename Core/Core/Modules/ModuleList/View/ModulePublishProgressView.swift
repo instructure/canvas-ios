@@ -123,21 +123,21 @@ struct ModulePublishProgressView: View {
         switch viewModel.state {
         case .inProgress:
             if viewModel.isPublish {
-                return String(localized: "Publishing \(percentage)%")
+                return String(localized: "Publishing \(percentage)%", bundle: .core)
             } else {
-                return String(localized: "Unpublishing \(percentage)%")
+                return String(localized: "Unpublishing \(percentage)%", bundle: .core)
             }
         case .completed:
             if viewModel.isPublish {
-                return String(localized: "Published 100%")
+                return String(localized: "Published 100%", bundle: .core)
             } else {
-                return String(localized: "Unpublished 100%")
+                return String(localized: "Unpublished 100%", bundle: .core)
             }
         case .error:
             if forAccessibility {
-                return String(localized: "Update failed at \(percentage)%")
+                return String(localized: "Update failed at \(percentage)%", bundle: .core)
             } else {
-                return String(localized: "Update failed")
+                return String(localized: "Update failed", bundle: .core)
             }
         }
     }

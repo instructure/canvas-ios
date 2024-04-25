@@ -95,7 +95,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             }
             .animation(.smooth, value: isScoreEditorPresented)
         }
-        .navigationTitle(String(localized: "Grades"))
+        .navigationTitle(String(localized: "Grades", bundle: .core))
         .toolbar {
             RevertWhatIfScoreButton(isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn) {
                 viewModel.isShowingRevertDialog = true
@@ -172,8 +172,8 @@ public struct GradeListView: View, ScreenViewTrackable {
     private func emptyView() -> some View {
         InteractivePanda(
             scene: SpacePanda(),
-            title: String(localized: "No Assignments"),
-            subtitle: String(localized: "It looks like assignments haven’t been created in this space yet.")
+            title: String(localized: "No Assignments", bundle: .core),
+            subtitle: String(localized: "It looks like assignments haven’t been created in this space yet.", bundle: .core)
         )
         .padding(.horizontal, 16)
     }
@@ -183,8 +183,8 @@ public struct GradeListView: View, ScreenViewTrackable {
         Spacer()
         InteractivePanda(
             scene: NoResultsPanda(),
-            title: String(localized: "Something Went Wrong"),
-            subtitle: String(localized: "Pull to refresh to try again.")
+            title: String(localized: "Something Went Wrong", bundle: .core),
+            subtitle: String(localized: "Pull to refresh to try again.", bundle: .core)
         )
         .padding(.horizontal, 16)
         Spacer()
@@ -327,7 +327,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             Button {
                 viewModel.selectedGradingPeriod.accept(nil)
             } label: {
-                gradingAndArrangeText(title: String(localized: "All"))
+                gradingAndArrangeText(title: String(localized: "All", bundle: .core))
             }
             ForEach(gradingPeriods) { gradingPeriod in
                 if let title = gradingPeriod.title {
@@ -344,7 +344,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                     if let title = currentGradingPeriod?.title {
                         gradingAndArrangeText(title: title)
                     } else {
-                        gradingAndArrangeText(title: String(localized: "All"))
+                        gradingAndArrangeText(title: String(localized: "All", bundle: .core))
                     }
                 },
                 icon: { Image.arrowOpenDownSolid.resizable().frame(width: 12, height: 12) }
@@ -360,21 +360,21 @@ public struct GradeListView: View, ScreenViewTrackable {
             Button {
                 viewModel.selectedGroupByOption.accept(.groupName)
             } label: {
-                gradingAndArrangeText(title: String(localized: "By Group"))
+                gradingAndArrangeText(title: String(localized: "By Group", bundle: .core))
             }
             Button {
                 viewModel.selectedGroupByOption.accept(.dueDate)
             } label: {
-                gradingAndArrangeText(title: String(localized: "By Due Date"))
+                gradingAndArrangeText(title: String(localized: "By Due Date", bundle: .core))
             }
         } label: {
             Label(
                 title: {
                     switch viewModel.selectedGroupByOption.value {
                     case .dueDate:
-                        gradingAndArrangeText(title: String(localized: "Arrange By Due Date"))
+                        gradingAndArrangeText(title: String(localized: "Arrange By Due Date", bundle: .core))
                     case .groupName:
-                        gradingAndArrangeText(title: String(localized: "Arrange By Group"))
+                        gradingAndArrangeText(title: String(localized: "Arrange By Group", bundle: .core))
                     }
                 },
                 icon: { Image.arrowOpenDownSolid.resizable().frame(width: 12, height: 12) }
