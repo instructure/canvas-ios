@@ -81,7 +81,13 @@ public struct CourseSyncEntry: Equatable {
     }
 
     var isCollapsed: Bool = true
-    var selectionState: ListCellView.SelectionState = .deselected
+    var selectionState: ListCellView.SelectionState = .deselected {
+        didSet {
+            if isFullContentSync, let index = tabs.firstIndex(where: { $0.type == .additionalContent}) {
+                tabs[index].selectionState = .selected
+            }
+        }
+    }
     var isFullContentSync: Bool {
         selectionState == .selected
     }

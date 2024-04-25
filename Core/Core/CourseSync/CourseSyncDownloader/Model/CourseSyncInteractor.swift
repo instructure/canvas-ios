@@ -231,9 +231,11 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             let interactor,
             let tabId,
             let tabIndex = entry.tabs.firstIndex(where: { $0.id == tabId }),
-            entry.tabs[tabIndex].state != .downloaded else {
+            entry.tabs[tabIndex].selectionState == .selected else {
             return Just(()).eraseToAnyPublisher()
         }
+
+        let isAdditionalContentTab = entry.tabs[tabIndex].type == .additionalContent
 
         switch entry.tabs[tabIndex].selectionState {
         case .deselected:
@@ -255,6 +257,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                             )
                         }
                         .updateDownloadedState {
+                            guard !isAdditionalContentTab else { return }
                             unownedSelf.setState(
                                 selection: .tab(entry.id, tabId),
                                 state: .downloaded
@@ -268,10 +271,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                             )
                         }
                         .catch { _ in
-                            unownedSelf.setState(
-                                selection: .tab(entry.id, tabId),
-                                state: .error
-                            )
+//                            unownedSelf.setState(
+//                                selection: .tab(entry.id, tabId),
+//                                state: .error
+//                            )
                             return Just(()).eraseToAnyPublisher()
                         }
                         .eraseToAnyPublisher()
@@ -285,7 +288,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         selection: CourseEntrySelection,
         state: CourseSyncEntry.State
     ) -> AnyPublisher<Void, Error> {
-        if  error as NSError == NSError.instructureError("Failed to save base content") ||
+        if error as NSError == NSError.instructureError("Failed to save base content") ||
             error as NSError == NSError.instructureError("That page has been disabled for this course") ||
             error as NSError == APIError.forbidden ||
             error as NSError == APIError.notFound {
@@ -409,14 +412,29 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     }
 
     private func downloadModules(for entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
+        var tabId: String?
+
+        if entry.isFullContentSync {
+            if let tab = entry.tabs.first(where: { $0.type == .modules }) {
+                tabId = tab.id
+            } else if let tab = entry.tabs.first(where: { $0.type == .additionalContent }) {
+                tabId = tab.id
+            }
+        } else if entry.selectedTabs.contains(.modules) {
+            tabId = entry.tabs.first(where: { $0.type == .modules })?.id
+        }
+
         unowned let unownedSelf = self
 
-        guard let tabIndex = entry.tabs.firstIndex(where: { $0.type == .modules }),
-              entry.tabs[tabIndex].selectionState == .selected,
-              entry.tabs[tabIndex].state != .downloaded
+        guard
+            let tabId,
+            let tabIndex = entry.tabs.firstIndex(where: { $0.id == tabId }),
+            entry.tabs[tabIndex].selectionState == .selected
         else {
             return Just(()).eraseToAnyPublisher()
         }
+
+        let isAdditionalContentTab = entry.tabs[tabIndex].type == .additionalContent
 
         return modulesInteractor.getModuleItems(courseId: entry.courseId)
             .flatMap {
@@ -445,13 +463,14 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     state: .downloaded
                 )
             }
-            .catch { _ in
-                unownedSelf.setState(
-                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                    state: .error
-                )
+            .catch { err in
+//                unownedSelf.setState(
+//                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+//                    state: .error
+//                )
                 return Just(()).eraseToAnyPublisher()
             }
+            .replaceError(with: ())
             .eraseToAnyPublisher()
     }
 
