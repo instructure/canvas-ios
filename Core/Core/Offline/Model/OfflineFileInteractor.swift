@@ -64,7 +64,9 @@ public final class OfflineFileInteractorLive: OfflineFileInteractor {
         let folderURL = URL.Paths.Offline.courseSectionResourceFolderURL(sessionId: sessionID, courseId: courseId, sectionName: section, resourceId: resourceId)
             .appendingPathComponent("file-\(fileID)")
 
-        return (try? FileManager.default.contentsOfDirectory(atPath: folderURL.path))?.first ?? ""
+        let absoluteURL = "\(folderURL.path)/\((try? FileManager.default.contentsOfDirectory(atPath: folderURL.path))?.first ?? "")"
+        let relativeURL = absoluteURL.replacingOccurrences(of: URL.Directories.documents.path, with: "")
+        return relativeURL
     }
 
     private func isItemAvailableOffline(sessionID: String?, courseId: String?, section: String?, resourceId: String?, fileID: String?) -> Bool {

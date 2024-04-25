@@ -480,7 +480,6 @@ private func fileDetails(url: URLComponents, params: [String: String], userInfo:
 }
 
 private func offlineFileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
-    print("ASDASD")
     guard let courseID = params["courseID"],
           let section = params["section"],
           let resourceID = params["resourceID"],

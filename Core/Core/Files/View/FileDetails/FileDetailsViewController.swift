@@ -63,7 +63,6 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     private var subscriptions = Set<AnyCancellable>()
     private var offlineFileInteractor: OfflineFileInteractor?
 
-
     public static func create(context: Context?, fileID: String, originURL: URLComponents? = nil, assignmentID: String? = nil,
                               offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
