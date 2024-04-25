@@ -69,7 +69,7 @@ extension FileUploadProgressObserver: URLSessionTaskDelegate {
                 if let error = error {
                     item.uploadError = error.localizedDescription
                 } else {
-                    item.uploadError = NSLocalizedString("Upload failed due to unknown reason.", comment: "")
+                    item.uploadError = NSLocalizedString("Upload failed due to unknown reason.", bundle: .core, comment: "")
                 }
             }
 

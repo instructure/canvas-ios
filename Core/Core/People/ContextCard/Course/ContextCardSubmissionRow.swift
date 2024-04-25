@@ -77,9 +77,9 @@ struct ContextCardSubmissionRow: View {
         }()
         self.a11ySubmissionStatus = {
             if submission.needsGrading {
-                return NSLocalizedString("NEEDS GRADING", comment: "")
+                return NSLocalizedString("NEEDS GRADING", bundle: .core, comment: "")
             } else if submission.workflowState == .graded, submission.score != nil, let grade = GradeFormatter.string(from: assignment, submission: submission) {
-                return NSLocalizedString("grade", comment: "") + " " + grade
+                return NSLocalizedString("grade", bundle: .core, comment: "") + " " + grade
             } else {
                 return ""
             }

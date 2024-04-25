@@ -36,7 +36,7 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
             .rightBarButtonItems {
                 [
                     UIBarButtonItemWithCompletion(
-                        title: NSLocalizedString("Edit", comment: ""),
+                        title: NSLocalizedString("Edit", bundle: .core, comment: ""),
                         actionHandler: {
                             viewModel.editTapped(router: env.router, viewController: controller)
                         }

@@ -38,25 +38,25 @@ class CourseSyncSelectorViewModel: ObservableObject {
     @Published public var isShowingConfirmationDialog = false
 
     public let confirmAlert = ConfirmationAlertViewModel(
-        title: NSLocalizedString("Sync Offline Content?", comment: ""),
+        title: NSLocalizedString("Sync Offline Content?", bundle: .core, comment: ""),
         message: "", // Updated when selected item count changes
-        cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
-        confirmButtonTitle: NSLocalizedString("Sync", comment: ""),
+        cancelButtonTitle: NSLocalizedString("Cancel", bundle: .core, comment: ""),
+        confirmButtonTitle: NSLocalizedString("Sync", bundle: .core, comment: ""),
         isDestructive: false
     )
 
     public let labels = (
         noCourses: (
-            title: NSLocalizedString("No Courses", comment: ""),
-            message: NSLocalizedString("Your courses will be listed here, and then you can make them available for offline usage.", comment: "")
+            title: NSLocalizedString("No Courses", bundle: .core, comment: ""),
+            message: NSLocalizedString("Your courses will be listed here, and then you can make them available for offline usage.", bundle: .core, comment: "")
         ),
         noItems: (
-            title: NSLocalizedString("No Course Content", comment: ""),
-            message: NSLocalizedString("The course content will be listed here, and then you can make them available for offline usage.", comment: "")
+            title: NSLocalizedString("No Course Content", bundle: .core, comment: ""),
+            message: NSLocalizedString("The course content will be listed here, and then you can make them available for offline usage.", bundle: .core, comment: "")
         ),
         error: (
-            title: NSLocalizedString("Something went wrong", comment: ""),
-            message: NSLocalizedString("There was an unexpected error.", comment: "")
+            title: NSLocalizedString("Something went wrong", bundle: .core, comment: ""),
+            message: NSLocalizedString("There was an unexpected error.", bundle: .core, comment: "")
         )
     )
 
@@ -121,8 +121,8 @@ class CourseSyncSelectorViewModel: ObservableObject {
         interactor
             .observeIsEverythingSelected()
             .map { $0
-                ? NSLocalizedString("Deselect All", comment: "")
-                : NSLocalizedString("Select All", comment: "")
+                ? NSLocalizedString("Deselect All", bundle: .core, comment: "")
+                : NSLocalizedString("Select All", bundle: .core, comment: "")
             }
             .assign(to: &$leftNavBarTitle)
     }
@@ -132,8 +132,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .observeSelectedSize()
             .map {
                 let template = NSLocalizedString(
-                    "This will sync ~%@ content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network.",
-                    comment: ""
+                    "This will sync ~%@ content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network.", bundle: .core, comment: ""
                 )
                 return String.localizedStringWithFormat(template, $0.humanReadableFileSize)
             }

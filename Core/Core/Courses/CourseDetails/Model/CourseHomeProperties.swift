@@ -21,15 +21,15 @@ extension CourseDefaultView {
     var homeSubLabel: String? {
         switch self {
         case .assignments:
-            return NSLocalizedString("Assignments", comment: "")
+            return NSLocalizedString("Assignments", bundle: .core, comment: "")
         case .feed:
-            return NSLocalizedString("Recent Activity", comment: "")
+            return NSLocalizedString("Recent Activity", bundle: .core, comment: "")
         case .modules:
-            return NSLocalizedString("Course Modules", comment: "")
+            return NSLocalizedString("Course Modules", bundle: .core, comment: "")
         case .syllabus:
-            return NSLocalizedString("Syllabus", comment: "")
+            return NSLocalizedString("Syllabus", bundle: .core, comment: "")
         case .wiki:
-            return NSLocalizedString("Front Page", comment: "")
+            return NSLocalizedString("Front Page", bundle: .core, comment: "")
         }
     }
 

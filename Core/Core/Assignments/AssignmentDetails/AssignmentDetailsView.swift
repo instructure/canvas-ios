@@ -49,7 +49,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
         states
             .background(Color.backgroundLightest)
             .navigationBarStyle(.color(course.first?.color))
-            .navigationTitle(NSLocalizedString("Assignment Details", comment: ""), subtitle: course.first?.name)
+            .navigationTitle(NSLocalizedString("Assignment Details", bundle: .core, comment: ""), subtitle: course.first?.name)
             .rightBarButtonItems(editButton)
             .onAppear {
                 refreshAssignments()
@@ -221,16 +221,16 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
      */
     private func editButton() -> [UIBarButtonItemWithCompletion] {
         [
-            UIBarButtonItemWithCompletion(title: NSLocalizedString("Edit", comment: "")) { [_isTeacherEnrollment] in
+            UIBarButtonItemWithCompletion(title: NSLocalizedString("Edit", bundle: .core, comment: "")) { [_isTeacherEnrollment] in
                 if _isTeacherEnrollment.wrappedValue {
                     env.router.route(to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
                                      from: controller,
                                      options: .modal(isDismissable: false, embedInNav: true))
                 } else {
                     let alert = UIAlertController(title: NSLocalizedString("Error", bundle: .core, comment: ""),
-                                                  message: NSLocalizedString("You are not authorized to perform this action", comment: ""),
+                                                  message: NSLocalizedString("You are not authorized to perform this action", bundle: .core, comment: ""),
                                                   preferredStyle: .alert)
-                    alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default))
+                    alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .default))
                     env.router.show(alert, from: controller, options: .modal())
                 }
             },

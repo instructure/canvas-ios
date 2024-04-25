@@ -66,15 +66,15 @@ public class ConversationDetailViewController: UIViewController {
             mapUsers(conversation: conversations.first)
             if refreshControl.isRefreshing { refreshControl.endRefreshing() }
             tableView?.reloadData()
-            title = conversations.first?.subject.isEmpty ?? true ? NSLocalizedString("No Subject", comment: "") : conversations.first?.subject
+            title = conversations.first?.subject.isEmpty ?? true ? NSLocalizedString("No Subject", bundle: .core, comment: "") : conversations.first?.subject
             let lastMessage = conversations.first?.messages.first
             let lastParticipantCount = lastMessage?.participantIDs.count ?? 0
             if lastMessage?.authorID == myID || lastParticipantCount > 2 {
                 replyButton.setImage(.replyAllSolid, for: .normal)
-                replyButton.accessibilityLabel = NSLocalizedString("Reply All", comment: "")
+                replyButton.accessibilityLabel = NSLocalizedString("Reply All", bundle: .core, comment: "")
             } else {
                 replyButton.setImage(.replySolid, for: .normal)
-                replyButton.accessibilityLabel = NSLocalizedString("Reply", comment: "")
+                replyButton.accessibilityLabel = NSLocalizedString("Reply", bundle: .core, comment: "")
             }
         }
     }
@@ -116,7 +116,7 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
         var actions: [UIContextualAction] = []
 
         if msg.authorID != myID {
-            let reply = UIContextualAction(style: .normal, title: NSLocalizedString("Reply", comment: "")) { [weak self] _, _, success in
+            let reply = UIContextualAction(style: .normal, title: NSLocalizedString("Reply", bundle: .core, comment: "")) { [weak self] _, _, success in
                 self?.showReplyFor(indexPath, all: false)
                 success(true)
             }
@@ -126,7 +126,7 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
         }
 
         if msg.authorID == myID || msg.participantIDs.count > 2 {
-            let replyAll = UIContextualAction(style: .normal, title: NSLocalizedString("Reply All", comment: "")) { [weak self] _, _, success in
+            let replyAll = UIContextualAction(style: .normal, title: NSLocalizedString("Reply All", bundle: .core, comment: "")) { [weak self] _, _, success in
                 self?.showReplyFor(indexPath, all: true)
                 success(true)
             }

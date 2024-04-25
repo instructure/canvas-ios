@@ -458,17 +458,17 @@ public enum GradingType: String, Codable, CaseIterable {
     var string: String {
         switch self {
         case .percent:
-            return NSLocalizedString("Percentage", comment: "")
+            return NSLocalizedString("Percentage", bundle: .core, comment: "")
         case .pass_fail:
-            return NSLocalizedString("Complete/Incomplete", comment: "")
+            return NSLocalizedString("Complete/Incomplete", bundle: .core, comment: "")
         case .points:
-            return NSLocalizedString("Points", comment: "")
+            return NSLocalizedString("Points", bundle: .core, comment: "")
         case .letter_grade:
-            return NSLocalizedString("Letter Grade", comment: "")
+            return NSLocalizedString("Letter Grade", bundle: .core, comment: "")
         case .gpa_scale:
-            return NSLocalizedString("GPA Scale", comment: "")
+            return NSLocalizedString("GPA Scale", bundle: .core, comment: "")
         case .not_graded:
-            return NSLocalizedString("Not Graded", comment: "")
+            return NSLocalizedString("Not Graded", bundle: .core, comment: "")
         }
     }
 }

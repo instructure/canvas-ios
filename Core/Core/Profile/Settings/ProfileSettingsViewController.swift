@@ -164,8 +164,8 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
             return CourseSyncSettingsInteractorLive(storage: defaults).getOfflineSyncSettingsLabel()
         }()
-        return Section(NSLocalizedString("Offline Content", comment: ""), rows: [
-                Row(NSLocalizedString("Synchronization", comment: ""),
+        return Section(NSLocalizedString("Offline Content", bundle: .core, comment: ""), rows: [
+                Row(NSLocalizedString("Synchronization", bundle: .core, comment: ""),
                     detail: detailLabel,
                     isSupportedOffline: true) { [weak self] in
                         guard let self = self else { return }
@@ -260,7 +260,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     private var aboutRow: [Row] {
         return [
-            Row(NSLocalizedString("About", comment: ""), isSupportedOffline: true) { [weak self] in
+            Row(NSLocalizedString("About", bundle: .core, comment: ""), isSupportedOffline: true) { [weak self] in
                 guard let self else { return }
                 self.env.router.route(to: "/about", from: self)
             },

@@ -44,7 +44,7 @@ public struct CourseSettingsView: View, ScreenViewTrackable {
                 editor(width: geometry.size.width)
             }
         }
-        .navigationTitle(NSLocalizedString("Customize Course", comment: ""), subtitle: viewModel.courseName)
+        .navigationTitle(NSLocalizedString("Customize Course", bundle: .core, comment: ""), subtitle: viewModel.courseName)
         .navBarItems(
             leading: {
                 Button(action: cancelTapped) {
@@ -60,7 +60,7 @@ public struct CourseSettingsView: View, ScreenViewTrackable {
         )
         .onAppear(perform: viewModel.viewDidAppear)
         .alert(isPresented: $viewModel.showError) {
-            Alert(title: Text(viewModel.errorText ?? NSLocalizedString("Something went wrong", comment: "")))
+            Alert(title: Text(viewModel.errorText ?? NSLocalizedString("Something went wrong", bundle: .core, comment: "")))
         }
     }
 
@@ -87,7 +87,7 @@ public struct CourseSettingsView: View, ScreenViewTrackable {
     private var nameRow: some View {
         TextFieldRow(
             label: Text("Name", bundle: .core),
-            placeholder: NSLocalizedString("Add Course Name", comment: ""),
+            placeholder: NSLocalizedString("Add Course Name", bundle: .core, comment: ""),
             text: $viewModel.newName
         )
     }

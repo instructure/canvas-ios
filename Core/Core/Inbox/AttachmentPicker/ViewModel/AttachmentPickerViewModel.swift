@@ -31,9 +31,9 @@ class AttachmentPickerViewModel: ObservableObject {
     @Published public var isAudioRecordVisible: Bool = false
     @Published public private(set) var fileList: [File] = []
     @Published public var isFileErrorOccured: Bool = false
-    public let title = NSLocalizedString("Attachments", comment: "")
-    public let fileErrorTitle = NSLocalizedString("Error", comment: "")
-    public let fileErrorMessage = NSLocalizedString("Failed to add attachment. Please try again!", comment: "")
+    public let title = NSLocalizedString("Attachments", bundle: .core, comment: "")
+    public let fileErrorTitle = NSLocalizedString("Error", bundle: .core, comment: "")
+    public let fileErrorMessage = NSLocalizedString("Failed to add attachment. Please try again!", bundle: .core, comment: "")
 
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let doneButtonDidTap = PassthroughRelay<WeakViewController>()

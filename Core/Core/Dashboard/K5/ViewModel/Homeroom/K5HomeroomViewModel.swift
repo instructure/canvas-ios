@@ -69,9 +69,9 @@ public class K5HomeroomViewModel: ObservableObject {
         let newWelcomeText: String
 
         if let userName = profile.first?.name {
-            newWelcomeText = NSLocalizedString("Welcome, \(userName)!", comment: "Welcome, username!")
+            newWelcomeText = NSLocalizedString("Welcome, \(userName)!", bundle: .core, comment: "Welcome, username!")
         } else {
-            newWelcomeText = NSLocalizedString("Welcome!", comment: "")
+            newWelcomeText = NSLocalizedString("Welcome!", bundle: .core, comment: "")
         }
 
         if newWelcomeText != welcomeText {

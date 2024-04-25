@@ -69,7 +69,7 @@ public struct K5ScheduleMissingItemsView: View {
     }
 
     private var missingItemsText: String {
-        let format = isOpened ? NSLocalizedString("hide_%d_missing_items", comment: "") : NSLocalizedString("show_%d_missing_items", comment: "")
+        let format = isOpened ? NSLocalizedString("hide_%d_missing_items", bundle: .core, comment: "") : NSLocalizedString("show_%d_missing_items", bundle: .core, comment: "")
         return String.localizedStringWithFormat(format, missingItems.count)
     }
 }

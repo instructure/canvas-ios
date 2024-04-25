@@ -67,7 +67,7 @@ public class AttachmentCopyService {
 
     private func load(attachment: NSItemProvider, callback: @escaping (Result<URL, Error>) -> Void) {
         guard let uti = attachment.uti else {
-            let error = NSError.instructureError(NSLocalizedString("Format not supported", comment: ""))
+            let error = NSError.instructureError(NSLocalizedString("Format not supported", bundle: .core, comment: ""))
             callback(.failure(error))
             return
         }
@@ -100,7 +100,7 @@ public class AttachmentCopyService {
                     try data.write(to: newURL)
                 } else {
                     Analytics.shared.logEvent("processing_file", parameters: ["type": "unknown", "class": "\(type(of: coding))"])
-                    throw NSError.instructureError(NSLocalizedString("Format not supported", comment: ""))
+                    throw NSError.instructureError(NSLocalizedString("Format not supported", bundle: .core, comment: ""))
                 }
                 callback(.success(newURL))
             } catch {
@@ -118,7 +118,7 @@ public class AttachmentCopyService {
         } else if let error = error {
             result = .failure(error)
         } else {
-            result = .failure(NSError.instructureError(NSLocalizedString("No supported files to submit", comment: "")))
+            result = .failure(NSError.instructureError(NSLocalizedString("No supported files to submit", bundle: .core, comment: "")))
         }
 
         state.send(.completed(result))

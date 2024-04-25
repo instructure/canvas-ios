@@ -92,7 +92,7 @@ public struct SubmitAssignmentExtensionView: View {
             .padding(.trailing, -20) // Offset parent's padding so our scrollbar will be in line with parent's scrollbar
             .padding(.leading, -5) // Offset TextEditor's default padding so we'll be in line with the course and assignment picker cells
             .overlay(placeholder, alignment: .topLeading)
-            .accessibilityLabel(NSLocalizedString("Add optional comment", comment: ""))
+            .accessibilityLabel(NSLocalizedString("Add optional comment", bundle: .core, comment: ""))
             .toolbar { hideKeyboardButton }
     }
 
@@ -199,7 +199,7 @@ public struct SubmitAssignmentExtensionView: View {
 
     private var filesSection: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(String.localizedStringWithFormat(NSLocalizedString("d_items", comment: ""), viewModel.previews.count))
+            Text(String.localizedStringWithFormat(NSLocalizedString("d_items", bundle: .core, comment: ""), viewModel.previews.count))
                 .font(.regular12)
                 .foregroundColor(.textDark)
             ScrollView(.horizontal, showsIndicators: false) {

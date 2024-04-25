@@ -37,7 +37,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Pair with Observer", bundle: .core, comment: "")
-        instructionsLabel.text = NSLocalizedString("Have your parent scan this QR code from the Canvas Parent app to pair with you.", comment: "")
+        instructionsLabel.text = NSLocalizedString("Have your parent scan this QR code from the Canvas Parent app to pair with you.", bundle: .core, comment: "")
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(actionShare(sender:)))
     }
@@ -92,7 +92,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
         qrCodeImageView.accessibilityIdentifier = "QRCodeImage"
         qrCodeContainer.isHidden = false
         let attrStr = NSAttributedString(
-            string: NSLocalizedString("Pairing Code: ", comment: ""),
+            string: NSLocalizedString("Pairing Code: ", bundle: .core, comment: ""),
             attributes: [
                 NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20),
                 NSAttributedString.Key.foregroundColor: UIColor.textDarkest,

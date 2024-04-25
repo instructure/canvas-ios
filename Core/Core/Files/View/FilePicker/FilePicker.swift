@@ -176,10 +176,10 @@ extension FilePicker: FilePickerControllerDelegate {
         batchAction = action
         let uiViewController = FilePickerViewController.create()
         uiViewController.delegate = self
-        uiViewController.title = NSLocalizedString("Attachments", comment: "")
-        uiViewController.submitButtonTitle = NSLocalizedString("Send", comment: "")
+        uiViewController.title = NSLocalizedString("Attachments", bundle: .core, comment: "")
+        uiViewController.submitButtonTitle = NSLocalizedString("Send", bundle: .core, comment: "")
         uiViewController.loadViewIfNeeded()
-        uiViewController.emptyView.bodyText = NSLocalizedString("Attach files by tapping an option below.", comment: "")
+        uiViewController.emptyView.bodyText = NSLocalizedString("Attach files by tapping an option below.", bundle: .core, comment: "")
         env.router.show(uiViewController, from: from, options: .modal(embedInNav: true))
     }
 

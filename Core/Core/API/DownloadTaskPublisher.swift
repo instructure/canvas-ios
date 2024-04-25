@@ -117,10 +117,7 @@ final class DownloadTaskSubscription<SubscriberType: Subscriber>: NSObject,
         } catch {
             _ = subscriber?.receive(completion: .failure(
                 NSError.instructureError(
-                    NSLocalizedString(
-                        "Couldn't save the file.",
-                        comment: ""
-                    )
+                    NSLocalizedString("Couldn't save the file.", bundle: .core, comment: "")
                 )
             ))
             return

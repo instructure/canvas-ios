@@ -26,7 +26,7 @@ public class AboutViewModel: ObservableObject {
         .email(),
         .version(),
     ]
-    public let title = NSLocalizedString("About", comment: "")
+    public let title = NSLocalizedString("About", bundle: .core, comment: "")
     public let entries: [AboutInfoEntry]
 
     public init(entries: [AboutInfoEntry] = DefaultEntries) {

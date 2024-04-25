@@ -157,8 +157,8 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
     }
 
     private func showAlertDialog(message: String) {
-        let dismissAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel)
-        let alert = UIAlertController(title: NSLocalizedString("Error Details", comment: ""), message: message, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .cancel)
+        let alert = UIAlertController(title: NSLocalizedString("Error Details", bundle: .core, comment: ""), message: message, preferredStyle: .alert)
         alert.addAction(dismissAction)
         controller.value.present(alert, animated: true)
     }

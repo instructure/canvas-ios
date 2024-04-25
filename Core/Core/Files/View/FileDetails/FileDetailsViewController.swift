@@ -350,10 +350,10 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
     }
 
     private func showFileNoLongerExistsDialog() {
-        let alert = UIAlertController(title: NSLocalizedString("File No Longer Exists", comment: ""),
-                                      message: NSLocalizedString("The file has been deleted by the author.", comment: ""),
+        let alert = UIAlertController(title: NSLocalizedString("File No Longer Exists", bundle: .core, comment: ""),
+                                      message: NSLocalizedString("The file has been deleted by the author.", bundle: .core, comment: ""),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: ""),
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Close", bundle: .core, comment: ""),
                                       style: .default,
                                       handler: { [env] _ in
             env.router.dismiss(self)

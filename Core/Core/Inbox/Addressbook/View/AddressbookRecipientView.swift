@@ -96,7 +96,7 @@ public struct AddressbookRecipientView: View {
                     viewModel.recipientDidTap.send(viewModel.allRecipient)
                 }, label: {
                     HStack(alignment: .center, spacing: 16) {
-                        Avatar(name: NSLocalizedString("All", comment: ""), url: nil, size: 36, isAccessible: false)
+                        Avatar(name: NSLocalizedString("All", bundle: .core, comment: ""), url: nil, size: 36, isAccessible: false)
                         VStack(alignment: .leading, spacing: 8) {
                             Text(viewModel.allRecipient.displayName)
                                 .font(.regular16)

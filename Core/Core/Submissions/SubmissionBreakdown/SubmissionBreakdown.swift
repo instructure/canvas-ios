@@ -45,7 +45,7 @@ struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModelProtocol>: Vie
                                 total: viewModel.submissionCount
                             )
                             Text(String.localizedStringWithFormat(
-                                NSLocalizedString("there_are_d_assignees_without_grades", comment: ""),
+                                NSLocalizedString("there_are_d_assignees_without_grades", bundle: .core, comment: ""),
                                 viewModel.ungraded + viewModel.unsubmitted
                             ))
                                 .font(.regular14).foregroundColor(.textDarkest)

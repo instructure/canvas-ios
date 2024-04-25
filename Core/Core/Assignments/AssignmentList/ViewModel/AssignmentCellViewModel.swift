@@ -59,7 +59,7 @@ public class AssignmentCellViewModel: ObservableObject {
             return nil
         }
 
-        let format = NSLocalizedString("d_needs_grading", comment: "")
+        let format = NSLocalizedString("d_needs_grading", bundle: .core, comment: "")
         return String.localizedStringWithFormat(format, assignment.needsGradingCount).localizedUppercase
     }
 
@@ -69,7 +69,7 @@ public class AssignmentCellViewModel: ObservableObject {
         }
 
         if assignment.hasMultipleDueDates {
-            return NSLocalizedString("Multiple Due Dates", comment: "")
+            return NSLocalizedString("Multiple Due Dates", bundle: .core, comment: "")
         }
 
         if let dueAt = assignment.dueAt {

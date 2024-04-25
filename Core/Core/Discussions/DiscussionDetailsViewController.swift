@@ -599,7 +599,7 @@ extension DiscussionDetailsViewController {
         if topic.subscribed {
             sheet.addAction(
                 image: .noSolid,
-                title: NSLocalizedString("Unsubscribe", comment: ""),
+                title: NSLocalizedString("Unsubscribe", bundle: .core, comment: ""),
                 accessibilityIdentifier: "DiscussionDetails.unsubscribe"
             ) { [weak self] in
                 self?.subscribe(false)
@@ -607,7 +607,7 @@ extension DiscussionDetailsViewController {
         } else {
             sheet.addAction(
                 image: .checkSolid,
-                title: NSLocalizedString("Subscribe", comment: ""),
+                title: NSLocalizedString("Subscribe", bundle: .core, comment: ""),
                 accessibilityIdentifier: "DiscussionDetails.subscribe"
             ) { [weak self] in
                 self?.subscribe(true)

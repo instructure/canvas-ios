@@ -26,8 +26,8 @@ class StudentViewCellViewModelTests: CoreTestCase {
         let testee = StudentViewCellViewModel(course: course)
 
         XCTAssertEqual(testee.iconImage, .userLine)
-        XCTAssertEqual(testee.label, NSLocalizedString("Student View", comment: ""))
-        XCTAssertEqual(testee.subtitle, NSLocalizedString("Opens in Canvas Student", comment: ""))
+        XCTAssertEqual(testee.label, NSLocalizedString("Student View", bundle: .core, comment: ""))
+        XCTAssertEqual(testee.subtitle, NSLocalizedString("Opens in Canvas Student", bundle: .core, comment: ""))
         XCTAssertEqual(testee.accessoryIconType, .externalLink)
         XCTAssertEqual(testee.tabID, "student_view")
     }

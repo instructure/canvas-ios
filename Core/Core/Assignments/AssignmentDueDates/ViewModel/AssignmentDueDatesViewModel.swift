@@ -23,7 +23,7 @@ class AssignmentDueDatesViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var dueDates: [AssignmentDueDateItemViewModel] = []
-    public let title = NSLocalizedString("Due Dates", comment: "")
+    public let title = NSLocalizedString("Due Dates", bundle: .core, comment: "")
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()

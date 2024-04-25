@@ -37,7 +37,7 @@ public struct AssignmentDueDateItemViewModel: Identifiable, Equatable {
             self.title = NSLocalizedString("No Due Date", bundle: .core, comment: "")
         }
 
-        self.assignee = item.title ?? NSLocalizedString("Everyone", comment: "")
+        self.assignee = item.title ?? NSLocalizedString("Everyone", bundle: .core, comment: "")
 
         if let unlockAt = item.unlockAt?.dateTimeString {
             self.from = unlockAt

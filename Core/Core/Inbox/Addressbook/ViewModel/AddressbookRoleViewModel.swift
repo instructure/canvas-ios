@@ -60,7 +60,7 @@ class AddressbookRoleViewModel: ObservableObject {
         var isNotStudent = false
         if let userId = env.currentSession?.userID {
             roleRecipients.forEach { (roleName, recipients) in
-                if roleName != NSLocalizedString("Students", comment: "") && recipients.flatMap({ $0.ids }).contains(userId) {
+                if roleName != NSLocalizedString("Students", bundle: .core, comment: "") && recipients.flatMap({ $0.ids }).contains(userId) {
                     isNotStudent = true
                     return
                 }
@@ -182,17 +182,17 @@ private extension SearchRecipient {
     static func roleName(from enrollmentName: String) -> String {
         switch enrollmentName {
         case "TeacherEnrollment":
-            return NSLocalizedString("Teachers", comment: "")
+            return NSLocalizedString("Teachers", bundle: .core, comment: "")
         case "StudentEnrollment":
-            return NSLocalizedString("Students", comment: "")
+            return NSLocalizedString("Students", bundle: .core, comment: "")
         case "ObserverEnrollment":
-            return NSLocalizedString("Observers", comment: "")
+            return NSLocalizedString("Observers", bundle: .core, comment: "")
         case "TaEnrollment":
-            return NSLocalizedString("Teaching Assistants", comment: "")
+            return NSLocalizedString("Teaching Assistants", bundle: .core, comment: "")
         case "DesignerEnrollment":
-            return NSLocalizedString("Course Designers", comment: "")
+            return NSLocalizedString("Course Designers", bundle: .core, comment: "")
         default:
-            return NSLocalizedString("Others", comment: "")
+            return NSLocalizedString("Others", bundle: .core, comment: "")
         }
     }
 }

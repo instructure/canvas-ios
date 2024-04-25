@@ -51,7 +51,7 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
         conversationStore
             .allObjects
             .map {
-                $0.first?.subject ?? NSLocalizedString("No Subject", comment: "")
+                $0.first?.subject ?? NSLocalizedString("No Subject", bundle: .core, comment: "")
             }
             .subscribe(subject)
             .store(in: &subscriptions)

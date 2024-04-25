@@ -25,7 +25,7 @@ class LoginFindSchoolViewController: UIViewController {
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchField: UITextField!
 
-    private lazy var nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(nextPressed))
+    private lazy var nextButton = UIBarButtonItem(title: NSLocalizedString("Next", bundle: .core, comment: ""), style: .done, target: self, action: #selector(nextPressed))
 
     var accounts = [APIAccountResult]()
     var api: API = API()

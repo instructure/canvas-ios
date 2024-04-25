@@ -349,13 +349,13 @@ public class GetSubmissions: CollectionUseCase {
             case .notSubmitted:
                 return SubmissionStatus.notSubmitted.text
             case .needsGrading:
-                return NSLocalizedString("Needs Grading", comment: "")
+                return NSLocalizedString("Needs Grading", bundle: .core, comment: "")
             case .graded:
-                return NSLocalizedString("Graded", comment: "")
+                return NSLocalizedString("Graded", bundle: .core, comment: "")
             case .scoreBelow(let score):
-                return String.localizedStringWithFormat(NSLocalizedString("Scored below %g", comment: ""), score)
+                return String.localizedStringWithFormat(NSLocalizedString("Scored below %g", bundle: .core, comment: ""), score)
             case .scoreAbove(let score):
-                return String.localizedStringWithFormat(NSLocalizedString("Scored above %g", comment: ""), score)
+                return String.localizedStringWithFormat(NSLocalizedString("Scored above %g", bundle: .core, comment: ""), score)
             case .user(let userID):
                 let user: User? = AppEnvironment.shared.database.viewContext.first(where: #keyPath(User.id), equals: userID)
                 return user?.shortName

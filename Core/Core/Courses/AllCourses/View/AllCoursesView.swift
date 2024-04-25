@@ -51,7 +51,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarStyle(.global)
-        .navigationTitle(NSLocalizedString("All Courses", comment: ""), subtitle: nil)
+        .navigationTitle(NSLocalizedString("All Courses", bundle: .core, comment: ""), subtitle: nil)
     }
 
     @ViewBuilder
@@ -75,7 +75,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
 
                 SearchBar(
                     text: binding,
-                    placeholder: NSLocalizedString("Search", comment: ""),
+                    placeholder: NSLocalizedString("Search", bundle: .core, comment: ""),
                     onCancel: { withAnimation { scrollView.scrollTo(0, anchor: .top) } }
                 )
 

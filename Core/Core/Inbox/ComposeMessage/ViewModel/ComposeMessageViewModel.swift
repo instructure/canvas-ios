@@ -206,7 +206,7 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     private func showResultDialog(title: String, message: String, completion: (() -> Void)? = nil) {
-        let actionTitle = NSLocalizedString("OK", comment: "")
+        let actionTitle = NSLocalizedString("OK", bundle: .core, comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: actionTitle, style: .default) { _ in
             completion?()
@@ -253,8 +253,8 @@ class ComposeMessageViewModel: ObservableObject {
             .sink(receiveCompletion: { completion in
                 if case .failure = completion {
                     Logger.shared.error("ComposeMessageView message failure")
-                    let title = NSLocalizedString("Message could not be sent", comment: "")
-                    let message = NSLocalizedString("Please try again!", comment: "")
+                    let title = NSLocalizedString("Message could not be sent", bundle: .core, comment: "")
+                    let message = NSLocalizedString("Please try again!", bundle: .core, comment: "")
                     self.showResultDialog(title: title, message: message)
                     self.isSendingMessage = false
                 }

@@ -55,17 +55,17 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        title = NSLocalizedString("To Do", comment: "")
+        title = NSLocalizedString("To Do", bundle: .core, comment: "")
         navigationItem.leftBarButtonItem = profileButton
         navigationItem.titleView = Brand.shared.headerImageView()
 
-        emptyDescLabel.text = NSLocalizedString("Your to do list is empty. Time to recharge.", comment: "")
-        emptyTitleLabel.text = NSLocalizedString("Well Done!", comment: "")
+        emptyDescLabel.text = NSLocalizedString("Your to do list is empty. Time to recharge.", bundle: .core, comment: "")
+        emptyTitleLabel.text = NSLocalizedString("Well Done!", bundle: .core, comment: "")
         emptyView.accessibilityLabel = "\(emptyTitleLabel.text!) \(emptyDescLabel.text!)"
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading items to do. Pull to refresh to try again.", comment: "")
+        errorView.messageLabel.text = NSLocalizedString("There was an error loading items to do. Pull to refresh to try again.", bundle: .core, comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
-        profileButton.accessibilityLabel = NSLocalizedString("Profile Menu", comment: "")
+        profileButton.accessibilityLabel = NSLocalizedString("Profile Menu", bundle: .core, comment: "")
 
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = CircleRefreshControl()
@@ -99,7 +99,7 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
     }
 
     @objc func refresh() {
-        UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Refreshing", comment: "Downloading new content has started"))
+        UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Refreshing", bundle: .core, comment: "Downloading new content has started"))
         lastVoiceoverAnnouncement = nil
         todos.exhaust(force: true) { [weak self] _ in
             if self?.todos.hasNextPage == false {
@@ -125,7 +125,7 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
         } else if errorView.isHidden == false {
             announcement = errorView.messageLabel.text
         } else {
-            announcement = String.localizedStringWithFormat(NSLocalizedString("%d items", comment: ""), todos.count)
+            announcement = String.localizedStringWithFormat(NSLocalizedString("%d items", bundle: .core, comment: ""), todos.count)
         }
 
         if let announcement = announcement {
@@ -161,7 +161,7 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let ignore = UIContextualAction(style: .destructive, title: NSLocalizedString("Done", comment: "")) { [weak self] _, _, done in
+        let ignore = UIContextualAction(style: .destructive, title: NSLocalizedString("Done", bundle: .core, comment: "")) { [weak self] _, _, done in
             self?.ignoreTodo(at: indexPath)
             done(true)
         }

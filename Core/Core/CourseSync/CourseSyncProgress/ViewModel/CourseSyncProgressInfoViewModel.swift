@@ -40,10 +40,10 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
             .map { progress in
                 if progress.isFinished {
                     if progress.error != nil {
-                        return .finishedWithError(title: NSLocalizedString("Offline Content Sync Failed", comment: ""),
-                                                  subtitle: NSLocalizedString("One or more files failed to sync. Check your internet connection and retry to submit.", comment: ""))
+                        return .finishedWithError(title: NSLocalizedString("Offline Content Sync Failed", bundle: .core, comment: ""),
+                                                  subtitle: NSLocalizedString("One or more files failed to sync. Check your internet connection and retry to submit.", bundle: .core, comment: ""))
                     } else {
-                        let format = NSLocalizedString("Success! Downloaded %@ of %@", comment: "")
+                        let format = NSLocalizedString("Success! Downloaded %@ of %@", bundle: .core, comment: "")
                         let message = String.localizedStringWithFormat(format,
                                                                        progress.bytesDownloaded.humanReadableFileSize,
                                                                        progress.bytesToDownload.humanReadableFileSize)

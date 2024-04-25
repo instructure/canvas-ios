@@ -60,7 +60,7 @@ class ComposeRecipientsView: UIView {
         editButton.setImage(.addressBookLine, for: .normal)
         editButton.tintColor = .textDark
         editButton.translatesAutoresizingMaskIntoConstraints = false
-        editButton.accessibilityLabel = NSLocalizedString("Edit Recipients", comment: "")
+        editButton.accessibilityLabel = NSLocalizedString("Edit Recipients", bundle: .core, comment: "")
         addSubview(editButton)
         NSLayoutConstraint.activate([
             editButton.heightAnchor.constraint(equalToConstant: 44),
@@ -73,7 +73,7 @@ class ComposeRecipientsView: UIView {
     func addPlaceholder() {
         placeholder = UILabel()
         placeholder.translatesAutoresizingMaskIntoConstraints = false
-        placeholder.text = NSLocalizedString("To", comment: "")
+        placeholder.text = NSLocalizedString("To", bundle: .core, comment: "")
         placeholder.textColor = .ash
         placeholder.font = .scaledNamedFont(.medium16)
         addSubview(placeholder)

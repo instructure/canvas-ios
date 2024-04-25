@@ -88,10 +88,10 @@ public class AllCoursesCellViewModel: ObservableObject {
         isOfflineIndicatorVisible = isItemAvailableOffline
         isFavoriteStarDisabled = offlineModeInteractor.isOfflineModeEnabled()
 
-        let offlineText = isOfflineIndicatorVisible ? NSLocalizedString("Available offline", comment: "") : nil
+        let offlineText = isOfflineIndicatorVisible ? NSLocalizedString("Available offline", bundle: .core, comment: "") : nil
         let publishedText = !(app == .teacher) ? nil : item.isPublished ?
-            NSLocalizedString("published", comment: "") :
-            NSLocalizedString("unpublished", comment: "")
+            NSLocalizedString("published", bundle: .core, comment: "") :
+            NSLocalizedString("unpublished", bundle: .core, comment: "")
         cellAccessibilityLabelText = [
             item.name,
             item.termName,
@@ -101,7 +101,7 @@ public class AllCoursesCellViewModel: ObservableObject {
         ]
         .compactMap { $0 }.joined(separator: ", ")
 
-        favoriteButtonAccessibilityText = pending ? NSLocalizedString("Updating", comment: "") : NSLocalizedString("Favorite", comment: "")
+        favoriteButtonAccessibilityText = pending ? NSLocalizedString("Updating", bundle: .core, comment: "") : NSLocalizedString("Favorite", bundle: .core, comment: "")
         favoriteButtonTraits = (item.isFavourite && !pending) ? .isSelected : []
     }
 

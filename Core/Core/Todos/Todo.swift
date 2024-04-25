@@ -82,14 +82,14 @@ public final class Todo: NSManagedObject, WriteableModel {
 
     public var dueText: String {
         guard let dueAt = assignment.dueAt else {
-            return NSLocalizedString("No Due Date", comment: "")
+            return NSLocalizedString("No Due Date", bundle: .core, comment: "")
         }
-        let format = NSLocalizedString("Due %@", comment: "")
+        let format = NSLocalizedString("Due %@", bundle: .core, comment: "")
         return String.localizedStringWithFormat(format, dueAt.relativeDateTimeStringWithDayOfWeek)
     }
 
     public var needsGradingText: String {
-        let format = NSLocalizedString("d_needs_grading", comment: "")
+        let format = NSLocalizedString("d_needs_grading", bundle: .core, comment: "")
         return String.localizedStringWithFormat(format, needsGradingCount).localizedUppercase
     }
 }

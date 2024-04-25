@@ -68,8 +68,8 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         view.backgroundColor = .backgroundLightest
         sourcesTabBar.barTintColor = .backgroundLightest
         tableView.tableFooterView = UIView(frame: .zero)
-        emptyView.titleText = NSLocalizedString("Choose a File", comment: "")
-        emptyView.bodyText = NSLocalizedString("Attach files to your submission by tapping an option below.", comment: "")
+        emptyView.titleText = NSLocalizedString("Choose a File", bundle: .core, comment: "")
+        emptyView.bodyText = NSLocalizedString("Attach files to your submission by tapping an option below.", bundle: .core, comment: "")
 
         var tabBarItems: [UITabBarItem] = []
         if sources.contains(.audio) {

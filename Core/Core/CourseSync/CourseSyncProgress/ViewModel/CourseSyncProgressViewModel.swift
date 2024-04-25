@@ -38,27 +38,27 @@ class CourseSyncProgressViewModel: ObservableObject {
 
     public let labels = (
         noCourses: (
-            title: NSLocalizedString("No Courses", comment: ""),
-            message: NSLocalizedString("Your courses will be listed here, and then you can make them available for offline usage.", comment: "")
+            title: NSLocalizedString("No Courses", bundle: .core, comment: ""),
+            message: NSLocalizedString("Your courses will be listed here, and then you can make them available for offline usage.", bundle: .core, comment: "")
         ),
         noItems: (
-            title: NSLocalizedString("No Course Content", comment: ""),
-            message: NSLocalizedString("The course content will be listed here, and then you can make them available for offline usage.", comment: "")
+            title: NSLocalizedString("No Course Content", bundle: .core, comment: ""),
+            message: NSLocalizedString("The course content will be listed here, and then you can make them available for offline usage.", bundle: .core, comment: "")
         ),
         error: (
-            title: NSLocalizedString("Something went wrong", comment: ""),
-            message: NSLocalizedString("There was an unexpected error.", comment: "")
+            title: NSLocalizedString("Something went wrong", bundle: .core, comment: ""),
+            message: NSLocalizedString("There was an unexpected error.", bundle: .core, comment: "")
         )
     )
 
     public let confirmAlert = ConfirmationAlertViewModel(
-        title: NSLocalizedString("Cancel Sync?", comment: ""),
+        title: NSLocalizedString("Cancel Sync?", bundle: .core, comment: ""),
         message: NSLocalizedString(
            """
            It will stop offline content sync. You can do it again later.
-           """, comment: ""),
-        cancelButtonTitle: NSLocalizedString("No", comment: ""),
-        confirmButtonTitle: NSLocalizedString("Yes", comment: ""),
+           """, bundle: .core, comment: ""),
+        cancelButtonTitle: NSLocalizedString("No", bundle: .core, comment: ""),
+        confirmButtonTitle: NSLocalizedString("Yes", bundle: .core, comment: ""),
         isDestructive: false
     )
 

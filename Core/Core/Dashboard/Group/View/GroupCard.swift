@@ -37,7 +37,7 @@ struct GroupCard: View {
                     Text(group.name)
                         .font(.semibold18).foregroundColor(.textDarkest)
                         .lineLimit(2).fixedSize(horizontal: false, vertical: true)
-                    Text(course?.name ?? NSLocalizedString("Account Group", comment: ""))
+                    Text(course?.name ?? NSLocalizedString("Account Group", bundle: .core, comment: ""))
                         .font(.semibold16).foregroundColor(group.dashboardCardColor)
                         .lineLimit(2).fixedSize(horizontal: false, vertical: true)
                     course?.termName.map { Text($0.localizedUppercase) }

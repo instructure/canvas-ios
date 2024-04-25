@@ -43,11 +43,11 @@ class CourseSyncDiskSpaceInfoViewModel: ObservableObject {
         self.appName = appName
 
         a11yLabel = [
-            NSLocalizedString("Storage Info", comment: ""),
+            NSLocalizedString("Storage Info", bundle: .core, comment: ""),
             diskUsage,
-            NSLocalizedString("Other Apps", comment: "") + String(format: " %.1f%%", 100 * chart.other),
+            NSLocalizedString("Other Apps", bundle: .core, comment: "") + String(format: " %.1f%%", 100 * chart.other),
             appName + String(format: " %.1f%%", 100 * chart.app),
-            NSLocalizedString("Remaining", comment: "") + String(format: " %.1f%%", 100 * chart.free),
+            NSLocalizedString("Remaining", bundle: .core, comment: "") + String(format: " %.1f%%", 100 * chart.free),
         ].joined(separator: ",")
     }
 }

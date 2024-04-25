@@ -72,7 +72,7 @@ struct CustomizeCourseView: View {
                 .clipped()
             TextFieldRow(
                 label: Text("Nickname", bundle: .core),
-                placeholder: NSLocalizedString("Add Course Nickname", comment: ""),
+                placeholder: NSLocalizedString("Add Course Nickname", bundle: .core, comment: ""),
                 text: $name
             )
             Divider()
@@ -106,7 +106,7 @@ struct CustomizeCourseView: View {
             } }
             Divider()
         }
-            .navigationTitle(NSLocalizedString("Customize Course", comment: ""), subtitle: name)
+            .navigationTitle(NSLocalizedString("Customize Course", bundle: .core, comment: ""), subtitle: name)
             .navigationBarItems(
                 leading: Button(action: cancel, label: {
                     Text("Cancel", bundle: .core).fontWeight(.regular)

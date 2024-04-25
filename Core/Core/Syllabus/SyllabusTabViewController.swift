@@ -50,7 +50,7 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
     open override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
-        setupTitleViewInNavbar(title: NSLocalizedString("Course Syllabus", comment: ""))
+        setupTitleViewInNavbar(title: NSLocalizedString("Course Syllabus", bundle: .core, comment: ""))
         view.backgroundColor = UIColor.backgroundLightest
 
         settings.refresh()
@@ -91,7 +91,7 @@ extension SyllabusTabViewController: HorizontalPagedMenuDelegate {
 
     public func menuItemTitle(at: IndexPath) -> String {
         return viewControllers.count > at.row && viewControllers[at.row] === syllabus
-            ? NSLocalizedString("Syllabus", comment: "")
-            : NSLocalizedString("Summary", comment: "")
+            ? NSLocalizedString("Syllabus", bundle: .core, comment: "")
+            : NSLocalizedString("Summary", bundle: .core, comment: "")
     }
 }

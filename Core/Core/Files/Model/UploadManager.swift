@@ -311,7 +311,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 for file in successfullyUploadedFiles {
                     file.id = nil
                     file.taskID = nil
-                    file.uploadError = NSLocalizedString("File upload failed. Please cancel your submission and try uploading again.", comment: "")
+                    file.uploadError = NSLocalizedString("File upload failed. Please cancel your submission and try uploading again.", bundle: .core, comment: "")
                 }
             }
         }

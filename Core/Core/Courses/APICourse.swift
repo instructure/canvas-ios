@@ -114,15 +114,15 @@ public enum CourseDefaultView: String, Codable, CaseIterable {
     var string: String {
         switch self {
         case .assignments:
-            return NSLocalizedString("Assignments List", comment: "")
+            return NSLocalizedString("Assignments List", bundle: .core, comment: "")
         case .feed:
-            return NSLocalizedString("Course Activity Stream", comment: "")
+            return NSLocalizedString("Course Activity Stream", bundle: .core, comment: "")
         case .modules:
-            return NSLocalizedString("Course Modules", comment: "")
+            return NSLocalizedString("Course Modules", bundle: .core, comment: "")
         case .syllabus:
-            return NSLocalizedString("Syllabus", comment: "")
+            return NSLocalizedString("Syllabus", bundle: .core, comment: "")
         case .wiki:
-            return NSLocalizedString("Pages Front Page", comment: "")
+            return NSLocalizedString("Pages Front Page", bundle: .core, comment: "")
         }
     }
 }

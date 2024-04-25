@@ -177,12 +177,12 @@ extension UIViewController {
     }
 
     public func showPermissionError(_ error: PermissionError) {
-        let alert = UIAlertController(title: NSLocalizedString("Permission Needed", comment: ""), message: error.message, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Settings", comment: ""), style: .default) { _ in
+        let alert = UIAlertController(title: NSLocalizedString("Permission Needed", bundle: .core, comment: ""), message: error.message, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("Settings", bundle: .core, comment: ""), style: .default) { _ in
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
             AppEnvironment.shared.loginDelegate?.openExternalURL(url)
         })
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
         AppEnvironment.shared.router.show(alert, from: self, options: .modal())
     }
 
@@ -216,11 +216,11 @@ extension UIViewController {
         var message: String {
             switch self {
             case .camera:
-                return NSLocalizedString("You must enable Camera permissions in Settings.", comment: "")
+                return NSLocalizedString("You must enable Camera permissions in Settings.", bundle: .core, comment: "")
             case .microphone:
-                return NSLocalizedString("You must enable Microphone permissions in Settings.", comment: "")
+                return NSLocalizedString("You must enable Microphone permissions in Settings.", bundle: .core, comment: "")
             case .notifications:
-                return NSLocalizedString("You must allow notifications in Settings to set reminders.", comment: "")
+                return NSLocalizedString("You must allow notifications in Settings to set reminders.", bundle: .core, comment: "")
             }
         }
     }

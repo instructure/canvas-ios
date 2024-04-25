@@ -69,7 +69,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 if fetchError != nil {
-                    self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+                    self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", bundle: .core, comment: ""))
                     return
                 }
 
@@ -91,7 +91,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 if fetchError != nil {
-                    self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+                    self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", bundle: .core, comment: ""))
                     return
                 }
 
@@ -107,7 +107,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 if fetchError != nil {
-                    self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+                    self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", bundle: .core, comment: ""))
                     return
                 }
                 self.assignmentGroups = self.env.database.viewContext.fetch(scope: useCase.scope)
@@ -146,13 +146,13 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
 
     func validate() -> Bool {
         if title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            let errorMessage = NSLocalizedString("A title is required", comment: "")
+            let errorMessage = NSLocalizedString("A title is required", bundle: .core, comment: "")
             showError(title: errorMessage)
             return false
         }
 
         if requireAccessCode && accessCode.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            let errorMessage = NSLocalizedString("You must enter an access code", comment: "")
+            let errorMessage = NSLocalizedString("You must enter an access code", bundle: .core, comment: "")
             showError(title: errorMessage)
             return false
         }
@@ -161,7 +161,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
 
     private func showError(title: String) {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .cancel))
         showErrorPopupSubject.send(alert)
     }
 
@@ -200,7 +200,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
                 guard let self = self else { return }
                 if error != nil {
                     self.state = .ready
-                    let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: "")
+                    let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", bundle: .core, comment: "")
                     self.showError(title: errorMessage)
                     return
                 } else {
@@ -215,7 +215,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
     public func quizTypeTapped(router: Router, viewController: WeakViewController) {
         let options = availableQuizTypes
         router.show(ItemPickerViewController.create(
-            title: NSLocalizedString("Quiz Type", comment: ""),
+            title: NSLocalizedString("Quiz Type", bundle: .core, comment: ""),
             sections: [ ItemPickerSection(items: options.map {
                 ItemPickerItem(title: $0.name)
             }), ],
@@ -230,7 +230,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
         guard let selectedGroup = assignmentGroup else { return}
         let options = assignmentGroups
         router.show(ItemPickerViewController.create(
-            title: NSLocalizedString("Assignment Group", comment: ""),
+            title: NSLocalizedString("Assignment Group", bundle: .core, comment: ""),
             sections: [ ItemPickerSection(items: options.map {
                 ItemPickerItem(title: $0.name)
             }), ],
@@ -244,7 +244,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
     public func scoreToKeepTapped(router: Router, viewController: WeakViewController) {
         let options = ScoringPolicy.allCases
         router.show(ItemPickerViewController.create(
-            title: NSLocalizedString("Quiz Score to Keep", comment: ""),
+            title: NSLocalizedString("Quiz Score to Keep", bundle: .core, comment: ""),
             sections: [ ItemPickerSection(items: options.map {
                 ItemPickerItem(title: $0.text)
             }), ],

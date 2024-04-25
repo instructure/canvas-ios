@@ -291,12 +291,12 @@ class LoginStartViewController: UIViewController {
         guard isNetworkOnline() else { return }
         if app == .parent {
             let sheet = BottomSheetPickerViewController.create()
-            sheet.addAction(image: nil, title: NSLocalizedString("I have a Canvas account", comment: "")) { [weak self] in
+            sheet.addAction(image: nil, title: NSLocalizedString("I have a Canvas account", bundle: .core, comment: "")) { [weak self] in
                 self?.showLoginQRCodeTutorial()
             }
             sheet.addAction(
                 image: nil,
-                title: NSLocalizedString("I don't have a Canvas account", comment: ""),
+                title: NSLocalizedString("I don't have a Canvas account", bundle: .core, comment: ""),
                 accessibilityIdentifier: "LoginStart.dontHaveAccountAction"
             ) { [weak self] in
                 self?.showInstructionsToPairFromStudentApp()

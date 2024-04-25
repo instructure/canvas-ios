@@ -35,7 +35,7 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var toLabel: UILabel!
 
     lazy var attachButton = UIBarButtonItem(image: .paperclipLine, style: .plain, target: self, action: #selector(attach))
-    lazy var sendButton = UIBarButtonItem(title: NSLocalizedString("Send", comment: ""), style: .done, target: self, action: #selector(send))
+    lazy var sendButton = UIBarButtonItem(title: NSLocalizedString("Send", bundle: .core, comment: ""), style: .done, target: self, action: #selector(send))
 
     let batchID = UUID.string
     lazy var attachments = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
@@ -71,7 +71,7 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
         view.backgroundColor = .backgroundLightest
 
         addCancelButton(side: .left)
-        attachButton.accessibilityLabel = NSLocalizedString("Add Attachments", comment: "")
+        attachButton.accessibilityLabel = NSLocalizedString("Add Attachments", bundle: .core, comment: "")
         attachButton.accessibilityIdentifier = "ComposeReply.attachButton"
         sendButton.isEnabled = false
         sendButton.accessibilityIdentifier = "ComposeReply.sendButton"
@@ -81,12 +81,12 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
         attachmentsContainer.isHidden = true
         attachmentsController.showOptions = { [weak self] in self?.showOptions(for: $0) }
 
-        bodyView.placeholder = NSLocalizedString("Message", comment: "")
+        bodyView.placeholder = NSLocalizedString("Message", bundle: .core, comment: "")
         bodyView.placeholderColor = UIColor.textDark
         bodyView.font = .scaledNamedFont(.medium16)
         bodyView.textColor = .textDarkest
         bodyView.textContainerInset = UIEdgeInsets(top: 15.5, left: 11, bottom: 15, right: 11)
-        bodyView.accessibilityLabel = NSLocalizedString("Message", comment: "")
+        bodyView.accessibilityLabel = NSLocalizedString("Message", bundle: .core, comment: "")
         if env.app == .parent {
             students.refresh()
         }
@@ -108,8 +108,8 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
 
     func update() {
         title = all
-            ? NSLocalizedString("Reply All", comment: "")
-            : NSLocalizedString("Reply", comment: "")
+            ? NSLocalizedString("Reply All", bundle: .core, comment: "")
+            : NSLocalizedString("Reply", bundle: .core, comment: "")
 
         guard let conversation = conversation,
             let message = message,

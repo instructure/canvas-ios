@@ -55,7 +55,7 @@ public struct AssignmentListView: View, ScreenViewTrackable {
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarStyle(.color(viewModel.courseColor))
-        .navigationTitle(NSLocalizedString("Assignments", comment: ""), subtitle: viewModel.courseName)
+        .navigationTitle(NSLocalizedString("Assignments", bundle: .core, comment: ""), subtitle: viewModel.courseName)
         .navigationBarGenericBackButton()
         .onAppear(perform: viewModel.viewDidAppear)
         .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)

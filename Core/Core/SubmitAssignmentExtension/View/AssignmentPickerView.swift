@@ -48,7 +48,7 @@ public struct AssignmentPickerView: View {
             error(message: message)
         case .data(let assignments):
             if assignments.isEmpty {
-                error(message: NSLocalizedString("There are no active assignments in this course.", comment: ""))
+                error(message: NSLocalizedString("There are no active assignments in this course.", bundle: .core, comment: ""))
             } else {
                 self.assignments(assignments: assignments)
             }

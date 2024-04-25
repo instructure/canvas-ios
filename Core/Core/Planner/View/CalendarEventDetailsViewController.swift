@@ -56,7 +56,7 @@ public class CalendarEventDetailsViewController: ScreenViewTrackableViewControll
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: NSLocalizedString("Event Details", comment: ""))
+        setupTitleViewInNavbar(title: NSLocalizedString("Event Details", bundle: .core, comment: ""))
         webViewContainer.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: webViewContainer)
         webView.autoresizesHeight = true
@@ -67,7 +67,7 @@ public class CalendarEventDetailsViewController: ScreenViewTrackableViewControll
         scrollView.refreshControl = refreshControl
 
         dateLabel.text = ""
-        locationHeadingLabel.text = NSLocalizedString("Location", comment: "")
+        locationHeadingLabel.text = NSLocalizedString("Location", bundle: .core, comment: "")
         locationView.isHidden = true
         titleLabel.text = ""
 
