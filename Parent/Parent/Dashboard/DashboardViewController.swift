@@ -143,7 +143,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         profileButton.accessibilityLabel = String(localized: "Settings", bundle: .parent)
         if badgeCount > 0 {
             profileButton.accessibilityHint = String.localizedStringWithFormat(
-                String(localized: "conversation_unread_messages", bundle: .parent),
+                String(localized: "conversation_unread_messages", bundle: .core),
                 badgeCount
             )
         }
