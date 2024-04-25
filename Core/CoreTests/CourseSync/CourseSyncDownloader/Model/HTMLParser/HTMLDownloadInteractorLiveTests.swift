@@ -45,6 +45,21 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
             .store(in: &subscriptions)
     }
 
+    func testFileDownload() {
+        let testee = HTMLDownloadInteractorLive(loginSession: environment.currentSession!, sectionName: testSectionName, scheduler: .main)
+        let mockPublisherProvider = URLSessionDataTaskPublisherProviderMock()
+        testee.downloadFile(testURL, courseId: testCourseId, resourceId: testResourceId, publisherProvider: mockPublisherProvider)
+            .sink(receiveCompletion: { _ in }, receiveValue: { [testURL] result in
+
+                let data = try? String(contentsOf: URL(string: result)!, encoding: .utf8)
+
+                XCTAssertNotEqual(result, testURL.path)
+                XCTAssertEqual(result, URL.Directories.documents.appendingPathComponent(testURL.lastPathComponent).path)
+                XCTAssertEqual(data, "hello")
+            })
+            .store(in: &subscriptions)
+    }
+
     func testBaseContentSave() {
         let testee = HTMLDownloadInteractorLive(loginSession: environment.currentSession!, sectionName: testSectionName, scheduler: .main)
 
