@@ -34,7 +34,7 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
         ) { _ in
             VStack(spacing: 0) {
                 if let filter = viewModel.userFilter {
-                    InstUI.CheckBoxCell(
+                    InstUI.CheckboxCell(
                         name: filter.name,
                         isSelected: selectionBinding(context: filter.context),
                         color: filter.color
@@ -45,7 +45,7 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
                     InstUI.ListSectionHeader(name: String(localized: "Courses"))
 
                     ForEach(viewModel.courseFilters) { filter in
-                        InstUI.CheckBoxCell(
+                        InstUI.CheckboxCell(
                             name: filter.name,
                             isSelected: selectionBinding(context: filter.context),
                             color: filter.color
@@ -57,7 +57,7 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
                     InstUI.ListSectionHeader(name: String(localized: "Groups"))
 
                     ForEach(viewModel.groupFilters) { filter in
-                        InstUI.CheckBoxCell(
+                        InstUI.CheckboxCell(
                             name: filter.name,
                             isSelected: selectionBinding(context: filter.context),
                             color: filter.color
@@ -83,96 +83,6 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
             viewModel.selectedContexts.contains(context)
         } set: { newValue in
             viewModel.didToggleSelection.send((context, isSelected: newValue))
-        }
-    }
-}
-
-extension InstUI {
-
-    public struct ListSectionHeader: View {
-        private let name: String
-
-        public init(name: String) {
-            self.name = name
-        }
-
-        public var body: some View {
-            VStack(spacing: 0) {
-                Text(name)
-                    .font(.semibold14)
-                    .foregroundStyle(Color.textDark)
-                    .paddingStyle(.all, .standard)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                InstUI.Divider()
-            }
-            .background(Color.backgroundLight)
-        }
-    }
-}
-
-extension InstUI {
-
-    public struct CheckBoxCell: View {
-        private let name: String
-        @Binding private var isSelected: Bool
-        private let color: Color
-
-        public init(name: String, isSelected: Binding<Bool>, color: Color) {
-            self.name = name
-            self._isSelected = isSelected
-            self.color = color
-        }
-
-        public var body: some View {
-            VStack(spacing: 0) {
-                Button {
-                    isSelected.toggle()
-                } label: {
-                    HStack(spacing: 18) {
-                        InstUI.CheckBox(
-                            isSelected: isSelected,
-                            color: color
-                        )
-                        .animation(.default, value: isSelected)
-                        Text(name)
-                            .font(.regular16, lineHeight: .fit)
-                            .multilineTextAlignment(.leading)
-                            .foregroundStyle(Color.textDarkest)
-                            .frame(maxWidth: .infinity,
-                                   alignment: .leading)
-                    }
-                    .padding(.leading, 22)
-                    .paddingStyle(.trailing, .standard)
-                    .paddingStyle(.top, .cellTop)
-                    .paddingStyle(.bottom, .cellBottom)
-
-                }
-                InstUI.Divider()
-            }
-        }
-    }
-}
-
-extension InstUI {
-
-    public struct CheckBox: View {
-        @ScaledMetric private var uiScale: CGFloat = 1
-        private let isSelected: Bool
-        private let color: Color
-
-        public init(
-            isSelected: Bool,
-            color: Color
-        ) {
-            self.isSelected = isSelected
-            self.color = color
-        }
-
-        public var body: some View {
-            let image: Image = isSelected ? .checkboxSelected : .checkbox
-            return image
-                .size(uiScale.iconScale * 24)
-                .foregroundStyle(color)
         }
     }
 }

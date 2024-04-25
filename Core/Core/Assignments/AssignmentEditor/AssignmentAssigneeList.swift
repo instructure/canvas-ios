@@ -84,7 +84,7 @@ struct AssigmentAssigneeList: View {
             Divider()
         }
 
-        if !sections.isEmpty { Section(header: ListSectionHeader { Text("Course Sections", bundle: .core) }) {
+        if !sections.isEmpty { Section(header: ListSectionHeaderOld { Text("Course Sections", bundle: .core) }) {
             Divider()
             ForEach(sections.all, id: \.id) { section in
                 ButtonRow(action: { select(.section(section.id)) }, content: {
@@ -100,7 +100,7 @@ struct AssigmentAssigneeList: View {
             }
         } }
 
-        if !groups.isEmpty { Section(header: ListSectionHeader { Text("Groups", bundle: .core) }) {
+        if !groups.isEmpty { Section(header: ListSectionHeaderOld { Text("Groups", bundle: .core) }) {
             Divider()
             ForEach(groups.all, id: \.id) { group in
                 ButtonRow(action: { select(.group(group.id)) }, content: {
@@ -116,7 +116,7 @@ struct AssigmentAssigneeList: View {
             }
         } }
 
-        if !students.isEmpty { Section(header: ListSectionHeader { Text("Students", bundle: .core) }) {
+        if !students.isEmpty { Section(header: ListSectionHeaderOld { Text("Students", bundle: .core) }) {
             Divider()
             ForEach(students.all, id: \.id) { student in
                 ButtonRow(action: { select(.student(student.id)) }, content: {
