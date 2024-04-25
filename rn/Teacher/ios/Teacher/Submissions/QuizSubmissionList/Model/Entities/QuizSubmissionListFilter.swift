@@ -23,9 +23,9 @@ public enum QuizSubmissionListFilter: String, CaseIterable, Hashable {
 
     public var localizedName: String {
         switch self {
-        case .all: return NSLocalizedString("All Submissions", comment: "")
-        case .submitted: return NSLocalizedString("Submitted", comment: "")
-        case .notSubmitted: return NSLocalizedString("Not Submitted", comment: "")
+        case .all: return String(localized: "All Submissions", bundle: .teacher)
+        case .submitted: return String(localized: "Submitted", bundle: .teacher)
+        case .notSubmitted: return String(localized: "Not Submitted", bundle: .teacher)
         }
     }
 

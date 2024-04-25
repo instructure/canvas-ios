@@ -48,7 +48,7 @@ class StudentAnnotationSubmissionViewerViewModel: ObservableObject {
             if let session = session?.canvadocs_session_url?.rawValue {
                 result = .success(session)
             } else {
-                let errorResult = error ?? NSError.instructureError(NSLocalizedString("Unknown Error", bundle: .core, comment: ""))
+                let errorResult = error ?? NSError.instructureError(String(localized: "Unknown Error", bundle: .teacher))
                 result = .failure(errorResult)
             }
 

@@ -41,7 +41,7 @@ struct CommentLibraryList: View {
     private var emptyView: some View {
         VStack {
             Spacer()
-            Text("No suggestions available", bundle: .core)
+            Text("No suggestions available", bundle: .teacher)
                 .font(.regular17)
                 .foregroundColor(.textDarkest)
                 .frame(maxWidth: .infinity, alignment: .center)

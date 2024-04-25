@@ -40,7 +40,7 @@ struct SimilarityScore: View {
 
     var body: some View {
         let content = HStack(spacing: 0) {
-            Text("Similarity Score")
+            Text("Similarity Score", bundle: .teacher)
                 .font(.semibold14).foregroundColor(.textDarkest)
             Spacer()
             switch status {
@@ -60,12 +60,12 @@ struct SimilarityScore: View {
                 Image.clockLine
                     .size(18).foregroundColor(.white)
                     .padding(4).background(Color.backgroundDark).cornerRadius(4)
-                    .accessibility(label: Text("Pending"))
+                    .accessibility(label: Text("Pending", bundle: .teacher))
             default:
                 Image.warningLine
                     .size(18).foregroundColor(.white)
                     .padding(4).background(Color.backgroundDanger).cornerRadius(4)
-                    .accessibility(label: Text("Error"))
+                    .accessibility(label: Text("Error", bundle: .teacher))
             }
             if url != nil {
                 Spacer().frame(width: 8)

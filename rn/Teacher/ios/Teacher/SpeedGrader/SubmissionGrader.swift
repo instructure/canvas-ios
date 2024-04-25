@@ -182,7 +182,7 @@ struct SubmissionGrader: View {
     var attemptToggle: some View {
         if let first = attempts.first, attempts.count == 1 {
             HStack {
-                Text("Attempt \(attempt ?? 1)").font(.regular14)
+                Text("Attempt \(attempt ?? 1)", bundle: .teacher).font(.regular14)
                 Spacer()
                 Text(first.submittedAt?.dateTimeString ?? "")
                     .font(.regular14)
@@ -196,7 +196,7 @@ struct SubmissionGrader: View {
                 showAttempts.toggle()
             }, label: {
                 HStack {
-                    Text("Attempt \(attempt ?? 1)").font(.regular14)
+                    Text("Attempt \(attempt ?? 1)", bundle: .teacher).font(.regular14)
                     Spacer()
                     Text(selected.submittedAt?.dateTimeString ?? "")
                         .font(.regular14)
@@ -242,14 +242,14 @@ struct SubmissionGrader: View {
     private func segmentedTitles() -> [String] {
         let filesString: String!
         if selected.type == .online_upload, let count = selected.attachments?.count, count > 0 {
-            filesString = String(localized: "Files (\(count))")
+            filesString = String(localized: "Files (\(count))", bundle: .teacher)
         } else {
-            filesString = NSLocalizedString("Files", comment: "")
+            filesString = String(localized: "Files", bundle: .teacher)
         }
 
         return [
-            NSLocalizedString("Grades", comment: ""),
-            NSLocalizedString("Comments", comment: ""),
+            String(localized: "Grades", bundle: .teacher),
+            String(localized: "Comments", bundle: .teacher),
             filesString,
         ]
     }
