@@ -23,8 +23,9 @@ extension NSError {
         static let domain = "com.instructure"
         static let internalError = "Internal Error"
 
-        static let forbidden = 1000
-        static let notFound = 1001
+        static let unauthorized = 1000
+        static let forbidden = 1001
+        static let notFound = 1002
         static let unexpected = 2000
     }
 
@@ -41,7 +42,9 @@ extension NSError {
             return 0
         }
         let status = response.statusCode
-        if status == 403 {
+        if status == 401 {
+            return Constants.unauthorized
+        } else if status == 403 {
             return Constants.forbidden
         } else if status == 404 {
             return Constants.notFound

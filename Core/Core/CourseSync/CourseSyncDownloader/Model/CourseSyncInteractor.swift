@@ -309,7 +309,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             return removeUnavailableFiles(courseId: entry.courseId)
         }
 
-        let files = entry.files.filter { 
+        let files = entry.files.filter {
             if entry.isFullContentSync {
                 return true
             } else {
@@ -543,7 +543,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
            err.code == NSError.Constants.notFound ||
            err.code == NSError.Constants.unexpected ||
            err == NSError.instructureError("Failed to save base content") ||
-           err == NSError.instructureError("The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.") {
+           err == NSError.instructureError("The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.") ||
+           error is APIError {
             setState(
                 selection: selection,
                 state: state

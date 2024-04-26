@@ -70,7 +70,7 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
         )
     }
 
-    func testFilesNotMappedWithoutFilesTab() {
+    func testFilesMappedEvenWithoutFilesTab() {
         let mock = CourseSyncFilesInteractorMock()
         let testee = CourseSyncEntryComposerInteractorLive(filesInteractor: mock)
         let course = CourseSyncSelectorCourse.save(

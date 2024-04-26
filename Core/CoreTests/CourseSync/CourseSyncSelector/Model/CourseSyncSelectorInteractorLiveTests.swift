@@ -193,7 +193,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries[0].selectableTabsCount, 0)
         XCTAssertEqual(entries[0].tabs.count, 1)
-        XCTAssertEqual(entries[0].files.count, 0)
+        XCTAssertEqual(entries[0].files.count, 1)
         subscription.cancel()
     }
 
