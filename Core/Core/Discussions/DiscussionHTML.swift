@@ -91,7 +91,7 @@ public enum DiscussionHTML {
         if entry.isRemoved {
             return """
             <p class="\(Styles.deleted)">
-                \(t(NSLocalizedString("Deleted this reply.", bundle: .core, comment: "")))
+                \(t(String(localized: "Deleted this reply.", bundle: .core)))
             </p>
             """
         }
@@ -192,7 +192,7 @@ public enum DiscussionHTML {
         isRead:\(entry.isRead),
         isRemoved:\(entry.isRemoved),
         likeCountShort:\(s(entry.likeCount <= 0 ? nil : String.localizedStringWithFormat(
-            NSLocalizedString("(%d)", bundle: .core, comment: "number of likes next to the like button"),
+            String(localized: "(%d)", bundle: .core, comment: "number of likes next to the like button"),
             entry.likeCount
         ))),
         likeCountText:\(s(entry.likeCount > 0 ? entry.likeCountText : "")),
@@ -238,7 +238,7 @@ public enum DiscussionHTML {
             h(Discussion.ReplyButton, topic),
             h(Discussion.GroupTopicChildren, props),
             entries.length > 0 && h('h2', { class: \(s(.heading)) },
-                \(s(NSLocalizedString("Replies", bundle: .core, comment: "")))
+                \(s(String(localized: "Replies", bundle: .core)))
             ),
             entries.map(entry => h(Discussion.Entry, { key: entry.id, topic, entry, depth: 0, maxDepth, canLike }))
         )
@@ -287,9 +287,9 @@ public enum DiscussionHTML {
             h('a', {
                 style: '\(Styles.font(.semibold, 16))text-decoration:none',
                 href: `${id}/reply`,
-                'aria-label': \(s(NSLocalizedString("Reply to main discussion", bundle: .core, comment: "")))
+                'aria-label': \(s(String(localized: "Reply to main discussion", bundle: .core)))
             },
-                \(s(NSLocalizedString("Reply", bundle: .core, comment: "")))
+                \(s(String(localized: "Reply", bundle: .core)))
             )
         )
     }
@@ -299,9 +299,9 @@ public enum DiscussionHTML {
         return h(Fragment, null,
             h('div', { class: \(s(.divider)) }),
             h('div', { class: \(s(.groupTopicChildren)), style: `background:${contextColor}33` },
-                h('p', null, \(s(NSLocalizedString(
+                h('p', null, \(s(String(localized:
                     "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to.",
-                    bundle: .core, comment: ""
+                    bundle: .core
                 )))),
                 groupTopicChildren.map(({ id, name, topicID }) => h('a', {
                     key: id,
@@ -322,7 +322,7 @@ public enum DiscussionHTML {
         class: \(s(.entry))
     },
         h('div', { class: entry.isRead ? \(s(.read)) : \(s(.unread)) },
-            \(s(NSLocalizedString("Unread", bundle: .core, comment: "")))
+            \(s(String(localized: "Unread", bundle: .core)))
         ),
         h(Discussion.Header, entry),
         h('div', { class: \(s(.entryContent)) },
@@ -335,7 +335,7 @@ public enum DiscussionHTML {
                 href: `${topic.id}/replies/${entry.id}`,
                 class: \(s(.moreReplies))
             },
-                \(s(NSLocalizedString("View more replies", bundle: .core, comment: "")))
+                \(s(String(localized: "View more replies", bundle: .core)))
             ),
             depth < maxDepth && entry.replies && entry.replies.map(entry =>
                 h(Discussion.Entry, { key: entry.id, topic, entry, depth: depth + 1, maxDepth, canLike })
@@ -350,14 +350,14 @@ public enum DiscussionHTML {
                 h('a', {
                     href: `${topic.id}/entries/${entry.id}/replies`,
                     class: \(s(.reply)),
-                    'aria-label': \(s(NSLocalizedString("Reply to thread", bundle: .core, comment: "")))
+                    'aria-label': \(s(String(localized: "Reply to thread", bundle: .core)))
                 },
-                    \(s(NSLocalizedString("Reply", bundle: .core, comment: "")))
+                    \(s(String(localized: "Reply", bundle: .core)))
                 ),
                 h('div', { class: \(s(.replyPipe)) })
             ),
             h('button', {
-                "aria-label": \(s(NSLocalizedString("Show more options", bundle: .core, comment: ""))),
+                "aria-label": \(s(String(localized: "Show more options", bundle: .core))),
                 class: \(s(.moreOptions)),
                 onClick: event => {
                     const button = event.target.closest(".\(Styles.moreOptions)")
@@ -383,7 +383,7 @@ public enum DiscussionHTML {
                         type: 'checkbox',
                         checked: entry.isLiked,
                         class: \(s(.hiddenCheck)),
-                        'aria-label': \(s(NSLocalizedString("Like", bundle: .core, comment: "like action"))),
+                        'aria-label': \(s(String(localized: "Like", bundle: .core, comment: "like action"))),
                         onInput: event => {
                             window.webkit.messageHandlers.like.postMessage({ entryID: entry.id, isLiked: event.target.checked })
                         }

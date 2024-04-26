@@ -67,30 +67,30 @@ public class RichContentToolbarView: UIView {
         super.awakeFromNib()
         backgroundColor = .backgroundLightest
         translatesAutoresizingMaskIntoConstraints = false
-        undoButton.accessibilityLabel = NSLocalizedString("Undo", bundle: .core, comment: "")
-        redoButton.accessibilityLabel = NSLocalizedString("Redo", bundle: .core, comment: "")
-        boldButton.accessibilityLabel = NSLocalizedString("Bold", bundle: .core, comment: "")
-        italicButton.accessibilityLabel = NSLocalizedString("Italic", bundle: .core, comment: "")
-        textColorButton.accessibilityLabel = NSLocalizedString("Text Color", bundle: .core, comment: "")
-        unorderedButton.accessibilityLabel = NSLocalizedString("Unordered List", bundle: .core, comment: "")
-        orderedButton.accessibilityLabel = NSLocalizedString("Ordered List", bundle: .core, comment: "")
-        linkButton.accessibilityLabel = NSLocalizedString("Link", bundle: .core, comment: "")
-        cameraButton.accessibilityLabel = NSLocalizedString("Camera", bundle: .core, comment: "")
-        libraryButton.accessibilityLabel = NSLocalizedString("Image", bundle: .core, comment: "")
+        undoButton.accessibilityLabel = String(localized: "Undo", bundle: .core)
+        redoButton.accessibilityLabel = String(localized: "Redo", bundle: .core)
+        boldButton.accessibilityLabel = String(localized: "Bold", bundle: .core)
+        italicButton.accessibilityLabel = String(localized: "Italic", bundle: .core)
+        textColorButton.accessibilityLabel = String(localized: "Text Color", bundle: .core)
+        unorderedButton.accessibilityLabel = String(localized: "Unordered List", bundle: .core)
+        orderedButton.accessibilityLabel = String(localized: "Ordered List", bundle: .core)
+        linkButton.accessibilityLabel = String(localized: "Link", bundle: .core)
+        cameraButton.accessibilityLabel = String(localized: "Camera", bundle: .core)
+        libraryButton.accessibilityLabel = String(localized: "Image", bundle: .core)
         toolsView.backgroundColor = .backgroundLightest
 
         let colors = colorPickerStack.arrangedSubviews
-        colors[0].accessibilityValue = NSLocalizedString("white", bundle: .core, comment: "")
-        colors[1].accessibilityValue = NSLocalizedString("black", bundle: .core, comment: "")
-        colors[2].accessibilityValue = NSLocalizedString("grey", bundle: .core, comment: "")
-        colors[3].accessibilityValue = NSLocalizedString("red", bundle: .core, comment: "")
-        colors[4].accessibilityValue = NSLocalizedString("orange", bundle: .core, comment: "")
-        colors[5].accessibilityValue = NSLocalizedString("yellow", bundle: .core, comment: "")
-        colors[6].accessibilityValue = NSLocalizedString("green", bundle: .core, comment: "")
-        colors[7].accessibilityValue = NSLocalizedString("blue", bundle: .core, comment: "")
-        colors[8].accessibilityValue = NSLocalizedString("purple", bundle: .core, comment: "")
+        colors[0].accessibilityValue = String(localized: "white", bundle: .core)
+        colors[1].accessibilityValue = String(localized: "black", bundle: .core)
+        colors[2].accessibilityValue = String(localized: "grey", bundle: .core)
+        colors[3].accessibilityValue = String(localized: "red", bundle: .core)
+        colors[4].accessibilityValue = String(localized: "orange", bundle: .core)
+        colors[5].accessibilityValue = String(localized: "yellow", bundle: .core)
+        colors[6].accessibilityValue = String(localized: "green", bundle: .core)
+        colors[7].accessibilityValue = String(localized: "blue", bundle: .core)
+        colors[8].accessibilityValue = String(localized: "purple", bundle: .core)
         for color in colors {
-            color.accessibilityLabel = NSLocalizedString("Set text color", bundle: .core, comment: "")
+            color.accessibilityLabel = String(localized: "Set text color", bundle: .core)
         }
 
         colorPickerHeight.constant = 0

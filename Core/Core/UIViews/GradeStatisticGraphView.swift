@@ -111,15 +111,15 @@ public class GradeStatisticGraphView: UIView {
         formatter.maximumFractionDigits = 1
 
         minLabel.text = String.localizedStringWithFormat(
-            NSLocalizedString("Low: %@", bundle: .core, comment: ""),
+            String(localized: "Low: %@", bundle: .core),
             formatter.string(from: NSNumber(value: stats.min)) ?? ""
         )
         averageLabel.text = String.localizedStringWithFormat(
-            NSLocalizedString("Mean: %@", bundle: .core, comment: ""),
+            String(localized: "Mean: %@", bundle: .core),
             formatter.string(from: NSNumber(value: stats.mean)) ?? ""
         )
         maxLabel.text = String.localizedStringWithFormat(
-            NSLocalizedString("High: %@", bundle: .core, comment: ""),
+            String(localized: "High: %@", bundle: .core),
             formatter.string(from: NSNumber(value: stats.max)) ?? ""
         )
 

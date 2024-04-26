@@ -66,15 +66,15 @@ public enum BaseEnrollmentType: String, CaseIterable {
     var name: String {
         switch self {
         case .designer:
-            return NSLocalizedString("Designers", bundle: .core, comment: "")
+            return String(localized: "Designers", bundle: .core)
         case .observer:
-            return NSLocalizedString("Observers", bundle: .core, comment: "")
+            return String(localized: "Observers", bundle: .core)
         case .student:
-            return NSLocalizedString("Students", bundle: .core, comment: "")
+            return String(localized: "Students", bundle: .core)
         case .ta:
-            return NSLocalizedString("Teaching Assistants", bundle: .core, comment: "")
+            return String(localized: "Teaching Assistants", bundle: .core)
         case .teacher:
-            return NSLocalizedString("Teachers", bundle: .core, comment: "")
+            return String(localized: "Teachers", bundle: .core)
         }
     }
 }

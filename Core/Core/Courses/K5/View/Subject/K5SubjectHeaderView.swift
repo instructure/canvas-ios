@@ -28,7 +28,7 @@ struct K5SubjectHeaderView: View {
             backgroundColor
             if let imageUrl {
                 GeometryReader { geometry in
-                    RemoteImage(imageUrl, width: geometry.size.width, height: 113)
+                    RemoteImage(imageUrl, width: geometry.size.width, height: 113, shouldHandleAnimatedGif: true)
                         .clipped()
                         .contentShape(Path(CGRect(x: 0, y: 0, width: geometry.size.width, height: geometry.size.height)))
                 }

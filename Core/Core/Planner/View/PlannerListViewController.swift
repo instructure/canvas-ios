@@ -51,9 +51,9 @@ public class PlannerListViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        emptyStateHeader.text = NSLocalizedString("No Events Today!", bundle: .core, comment: "")
-        emptyStateSubHeader.text = NSLocalizedString("It looks like a great day to rest, relax, and recharge.", bundle: .core, comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading events. Pull to refresh to try again.", bundle: .core, comment: "")
+        emptyStateHeader.text = String(localized: "No Events Today!", bundle: .core)
+        emptyStateSubHeader.text = String(localized: "It looks like a great day to rest, relax, and recharge.", bundle: .core)
+        errorView.messageLabel.text = String(localized: "There was an error loading events. Pull to refresh to try again.", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(retryAfterError), for: .primaryActionTriggered)
 
         refreshControl.addTarget(self, action: #selector(plannerListWillRefresh), for: .primaryActionTriggered)
@@ -159,7 +159,7 @@ class PlannerListCell: UITableViewCell {
         dueDate.setText(dueDateText, style: .textCellSupportingText)
         icon.image = p?.icon()
         let pointsText: String? = p?.pointsPossible.flatMap {
-            let format = NSLocalizedString("g_points", bundle: .core, comment: "")
+            let format = String(localized: "g_points", bundle: .core)
             return String.localizedStringWithFormat(format, $0)
         }
         points.setText(pointsText, style: .textCellSupportingText)

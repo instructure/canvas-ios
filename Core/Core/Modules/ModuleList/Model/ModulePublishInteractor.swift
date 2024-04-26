@@ -273,54 +273,54 @@ extension Subscribers.Completion<Error> {
             switch action.subject {
             case .none:
                 return isPublish
-                    ? String(localized: "Item Published")
-                    : String(localized: "Item Unpublished")
+                    ? String(localized: "Item Published", bundle: .core)
+                    : String(localized: "Item Unpublished", bundle: .core)
             case .onlyModules:
                 if isAllModules {
                     return isPublish
-                        ? String(localized: "Only Modules published")
-                        : String(localized: "Only Modules unpublished")
+                        ? String(localized: "Only Modules published", bundle: .core)
+                        : String(localized: "Only Modules unpublished", bundle: .core)
                 } else {
                     return isPublish
-                        ? String(localized: "Only Module published")
-                        : String(localized: "Only Module unpublished")
+                        ? String(localized: "Only Module published", bundle: .core)
+                        : String(localized: "Only Module unpublished", bundle: .core)
                 }
             case .modulesAndItems:
                 if isAllModules {
                     return isPublish
-                        ? String(localized: "All Modules and all Items published")
-                        : String(localized: "All Modules and all Items unpublished")
+                        ? String(localized: "All Modules and all Items published", bundle: .core)
+                        : String(localized: "All Modules and all Items unpublished", bundle: .core)
                 } else {
                     return isPublish
-                        ? String(localized: "Module and all Items published")
-                        : String(localized: "Module and all Items unpublished")
+                        ? String(localized: "Module and all Items published", bundle: .core)
+                        : String(localized: "Module and all Items unpublished", bundle: .core)
                 }
             }
         case .failure:
             switch action.subject {
             case .none:
                 return isPublish
-                    ? String(localized: "Failed To Publish Item")
-                    : String(localized: "Failed To Unpublish Item")
+                    ? String(localized: "Failed To Publish Item", bundle: .core)
+                    : String(localized: "Failed To Unpublish Item", bundle: .core)
             case .onlyModules:
                 if isAllModules {
                     return isPublish
-                        ? String(localized: "Failed to publish only Modules")
-                        : String(localized: "Failed to unpublish only Modules")
+                        ? String(localized: "Failed to publish only Modules", bundle: .core)
+                        : String(localized: "Failed to unpublish only Modules", bundle: .core)
                 } else {
                     return isPublish
-                        ? String(localized: "Failed to publish only Module")
-                        : String(localized: "Failed to unpublish only Module")
+                        ? String(localized: "Failed to publish only Module", bundle: .core)
+                        : String(localized: "Failed to unpublish only Module", bundle: .core)
                 }
             case .modulesAndItems:
                 if isAllModules {
                     return isPublish
-                        ? String(localized: "Failed to publish all Modules and all Items")
-                        : String(localized: "Failed to unpublish all Modules and all Items")
+                        ? String(localized: "Failed to publish all Modules and all Items", bundle: .core)
+                        : String(localized: "Failed to unpublish all Modules and all Items", bundle: .core)
                 } else {
                     return isPublish
-                        ? String(localized: "Failed to publish Module and all Items")
-                        : String(localized: "Failed to unpublish Module and all Items")
+                        ? String(localized: "Failed to publish Module and all Items", bundle: .core)
+                        : String(localized: "Failed to unpublish Module and all Items", bundle: .core)
                 }
             }
         }

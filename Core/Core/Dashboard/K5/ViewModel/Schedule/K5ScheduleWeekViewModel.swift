@@ -19,7 +19,7 @@
 import SwiftUI
 
 public class K5ScheduleWeekViewModel: ObservableObject {
-    public let todayViewId = NSLocalizedString("Today", comment: "")
+    public let todayViewId = String(localized: "Today", bundle: .core)
 
     public let weekRange: Range<Date>
     public let isTodayButtonAvailable: Bool

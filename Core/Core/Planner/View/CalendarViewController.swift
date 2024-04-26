@@ -94,7 +94,7 @@ class CalendarViewController: ScreenViewTrackableViewController {
         }
         monthButton.configuration?.background.backgroundColor = .clear
         monthButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 28)
-        monthButton.accessibilityLabel = NSLocalizedString("Show a month at a time", bundle: .core, comment: "")
+        monthButton.accessibilityLabel = String(localized: "Show a month at a time", bundle: .core)
 
         updateFilterButton()
 
@@ -148,13 +148,13 @@ class CalendarViewController: ScreenViewTrackableViewController {
         }
 
         if let count = delegate?.numberOfCalendars() {
-            let template = NSLocalizedString("Calendars (%d)", bundle: .core, comment: "")
+            let template = String(localized: "Calendars (%d)", bundle: .core)
             filterButton.setTitle(String.localizedStringWithFormat(template, count), for: .normal)
-            let a11y = NSLocalizedString("filter_events_d_calendars_selected", bundle: .core, comment: "")
+            let a11y = String(localized: "filter_events_d_calendars_selected", bundle: .core)
             filterButton.accessibilityLabel = String.localizedStringWithFormat(a11y, count)
         } else {
-            filterButton.setTitle(NSLocalizedString("Calendars", bundle: .core, comment: ""), for: .normal)
-            filterButton.accessibilityLabel = NSLocalizedString("Filter events", bundle: .core, comment: "")
+            filterButton.setTitle(String(localized: "Calendars", bundle: .core), for: .normal)
+            filterButton.accessibilityLabel = String(localized: "Filter events", bundle: .core)
         }
     }
 
@@ -263,7 +263,7 @@ extension CalendarViewController: PagesViewControllerDataSource, PagesViewContro
         // Announced with accessibilityScroll
         days.title = isExpanded ? monthPageTitleFormatter.string(from: selectedDate)
             : String.localizedStringWithFormat(
-                NSLocalizedString("Week of %@", bundle: .core, comment: ""),
+                String(localized: "Week of %@", bundle: .core),
                 DateFormatter.localizedString(from: selectedDate, dateStyle: .long, timeStyle: .none)
             )
         return days

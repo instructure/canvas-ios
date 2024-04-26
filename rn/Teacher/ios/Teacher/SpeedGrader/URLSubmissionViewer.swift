@@ -33,7 +33,7 @@ struct URLSubmissionViewer: View {
         ScrollView {
             VStack(spacing: 0) {
                 HStack {
-                    Text("This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted.")
+                    Text("This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted.", bundle: .teacher)
                         .font(.regular16).foregroundColor(.textDarkest)
                     Spacer()
                 }
@@ -60,7 +60,7 @@ struct URLSubmissionViewer: View {
                             Image(uiImage: image)
                                 .resizable()
                                 .aspectRatio(image.size, contentMode: .fill)
-                                .accessibility(label: Text("URL Preview Image"))
+                                .accessibility(label: Text("URL Preview Image", bundle: .teacher))
                         })
                             .padding(.horizontal, -16)
                     } else {
@@ -76,7 +76,7 @@ struct URLSubmissionViewer: View {
                         }
                     }
                 } else {
-                    Text("Preview Unavailable")
+                    Text("Preview Unavailable", bundle: .teacher)
                         .font(.regular16).foregroundColor(.textDark)
                 }
             }

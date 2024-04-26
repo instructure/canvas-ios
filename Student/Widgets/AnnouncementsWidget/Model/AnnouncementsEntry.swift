@@ -24,25 +24,25 @@ class AnnouncementsEntry: WidgetModel {
 
         return AnnouncementsEntry(announcementItems: [
             AnnouncementItem(
-                title: NSLocalizedString("Finals are moving to next week.", comment: "Example announcement title"),
+                title: String(localized: "Finals are moving to next week.", comment: "Example announcement title"),
                 date: Date(),
                 url: url,
-                authorName: NSLocalizedString("Thomas McKempis", comment: "Example author name"),
-                courseName: NSLocalizedString("Introduction to the Solar System", comment: "Example course name"),
+                authorName: String(localized: "Thomas McKempis", comment: "Example author name"),
+                courseName: String(localized: "Introduction to the Solar System", comment: "Example course name"),
                 courseColor: .electric),
             AnnouncementItem(
-                title: NSLocalizedString("Zoo Field Trip!", comment: "Example announcement title"),
+                title: String(localized: "Zoo Field Trip!", comment: "Example announcement title"),
                 date: Date().addDays(-1),
                 url: url,
-                authorName: NSLocalizedString("Susan Jorgenson", comment: "Example author name"),
-                courseName: NSLocalizedString("Biology 201", comment: "Example course name"),
+                authorName: String(localized: "Susan Jorgenson", comment: "Example author name"),
+                courseName: String(localized: "Biology 201", comment: "Example course name"),
                 courseColor: .barney),
             AnnouncementItem(
-                title: NSLocalizedString("Read Moby Dick by end of week.", comment: "Example announcement title"),
+                title: String(localized: "Read Moby Dick by end of week.", comment: "Example announcement title"),
                 date: Date().addDays(-5),
                 url: url,
-                authorName: NSLocalizedString("Janet Hammond", comment: "Example author name"),
-                courseName: NSLocalizedString("American literature IV", comment: "Example course name"),
+                authorName: String(localized: "Janet Hammond", comment: "Example author name"),
+                courseName: String(localized: "American literature IV", comment: "Example course name"),
                 courseColor: .shamrock),
         ])
     }

@@ -155,7 +155,7 @@ struct AddressbookRoleView: View {
                 viewModel.recipientDidTap.send(viewModel.allRecipient)
             }, label: {
                 HStack(alignment: .center, spacing: 16) {
-                    Avatar(name: NSLocalizedString("All", comment: ""), url: nil, size: 36, isAccessible: false)
+                    Avatar(name: String(localized: "All", bundle: .core), url: nil, size: 36, isAccessible: false)
                     VStack(alignment: .leading, spacing: 8) {
                         Text("All in \(viewModel.recipientContext.name)", bundle: .core)
                             .font(.regular16)

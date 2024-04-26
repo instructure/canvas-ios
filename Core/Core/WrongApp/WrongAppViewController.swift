@@ -38,26 +38,26 @@ public class WrongAppViewController: UIViewController {
     public override func viewDidLoad() {
         view.backgroundColor = .backgroundLightest
         navigationController?.setNavigationBarHidden(true, animated: false)
-        messageTitle?.text = NSLocalizedString("Whoops!", bundle: .core, comment: "")
+        messageTitle?.text = String(localized: "Whoops!", bundle: .core)
         messageDescription?.text = String.localizedStringWithFormat(
-            NSLocalizedString("It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store.", bundle: .core, comment: ""), (
-            Bundle.main.isParentApp ? NSLocalizedString("a parent", bundle: .core, comment: "Embedded in 'enrolled in any courses as %@'") :
-            Bundle.main.isTeacherApp ? NSLocalizedString("a teacher", bundle: .core, comment: "Embedded in 'enrolled in any courses as %@'") :
-            NSLocalizedString("a student", bundle: .core, comment: "Embedded in 'enrolled in any courses as %@'")
+            String(localized: "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store.", bundle: .core), (
+            Bundle.main.isParentApp ? String(localized: "a parent", bundle: .core, comment: "Embedded in 'enrolled in any courses as %@'") :
+            Bundle.main.isTeacherApp ? String(localized: "a teacher", bundle: .core, comment: "Embedded in 'enrolled in any courses as %@'") :
+            String(localized: "a student", bundle: .core, comment: "Embedded in 'enrolled in any courses as %@'")
         ))
 
-        loginButton?.setTitle(NSLocalizedString("Log In Again", bundle: .core, comment: "").localizedUppercase, for: .normal)
-        canvasGuidesButton?.setTitle(NSLocalizedString("Canvas Guides", bundle: .core, comment: "").localizedUppercase, for: .normal)
+        loginButton?.setTitle(String(localized: "Log In Again", bundle: .core).localizedUppercase, for: .normal)
+        canvasGuidesButton?.setTitle(String(localized: "Canvas Guides", bundle: .core).localizedUppercase, for: .normal)
         canvasGuidesButton?.isHidden = !Bundle.main.isParentApp
 
         parentButton?.isHidden = Bundle.main.isParentApp
-        parentButton?.accessibilityLabel = NSLocalizedString("Canvas Parent", bundle: .core, comment: "")
+        parentButton?.accessibilityLabel = String(localized: "Canvas Parent", bundle: .core)
 
         studentButton?.isHidden = Bundle.main.isStudentApp
-        studentButton?.accessibilityLabel = NSLocalizedString("Canvas Student", bundle: .core, comment: "")
+        studentButton?.accessibilityLabel = String(localized: "Canvas Student", bundle: .core)
 
         teacherButton?.isHidden = Bundle.main.isTeacherApp
-        teacherButton?.accessibilityLabel = NSLocalizedString("Canvas Teacher", bundle: .core, comment: "")
+        teacherButton?.accessibilityLabel = String(localized: "Canvas Teacher", bundle: .core)
     }
 
     @IBAction func loginAgainButtonPressed(_ sender: UIButton) {

@@ -54,7 +54,7 @@ public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         nameLabel.text = name
-        setupTitleViewInNavbar(title: NSLocalizedString("External URL", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "External URL", bundle: .core))
         colors.refresh()
         courses?.refresh()
     }

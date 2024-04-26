@@ -88,7 +88,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     @IBOutlet weak var submissionRubricButton: UIButton? {
         didSet {
             var buttonConfig = UIButton.Configuration.plain()
-            buttonConfig.title = String(localized: "Submission & Rubric")
+            buttonConfig.title = String(localized: "Submission & Rubric", bundle: .student)
             buttonConfig.baseForegroundColor = Brand.shared.linkColor
             buttonConfig.imagePlacement = .trailing
             buttonConfig.imagePadding = 4
@@ -171,7 +171,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         // Navigation Bar
         navigationItem.titleView = titleSubtitleView
-        titleSubtitleView.title = NSLocalizedString("Assignment Details", bundle: .student, comment: "")
+        titleSubtitleView.title = String(localized: "Assignment Details", bundle: .student)
 
         // Loading
         scrollView?.isHidden = true
@@ -190,21 +190,21 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         submissionTypesSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.submissionTypes"
 
         // Localization
-        dueSection?.header.text = NSLocalizedString("Due", bundle: .student, comment: "")
-        submissionTypesSection?.header.text = NSLocalizedString("Submission Types", bundle: .student, comment: "")
-        fileTypesSection?.header.text = NSLocalizedString("File Types", bundle: .student, comment: "")
-        gradeHeadingLabel?.text = NSLocalizedString("Grade", bundle: .student, comment: "")
-        descriptionHeadingLabel?.text = NSLocalizedString("Description", bundle: .student, comment: "")
-        quizAttemptsLabel?.text = NSLocalizedString("Allowed Attempts:", bundle: .student, comment: "")
-        quizHeadingLabel?.text = NSLocalizedString("Settings", bundle: .student, comment: "")
-        quizQuestionsLabel?.text = NSLocalizedString("Questions:", bundle: .student, comment: "")
-        quizTimeLimitLabel?.text = NSLocalizedString("Time Limit:", bundle: .student, comment: "")
-        submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
-        submittedDetailsLabel?.text = NSLocalizedString("Your submission is now waiting to be graded.", bundle: .student, comment: "")
-        submissionButton?.setTitle(NSLocalizedString("Submission & Rubric", bundle: .student, comment: ""), for: .normal)
-        attemptsHeadingLabel.text = NSLocalizedString("Attempts", comment: "")
-        attemptsAllowedLabel.text = NSLocalizedString("Attempts Allowed:", comment: "")
-        attemptsUsedLabel.text = NSLocalizedString("Attempts Used:", comment: "")
+        dueSection?.header.text = String(localized: "Due", bundle: .student)
+        submissionTypesSection?.header.text = String(localized: "Submission Types", bundle: .student)
+        fileTypesSection?.header.text = String(localized: "File Types", bundle: .student)
+        gradeHeadingLabel?.text = String(localized: "Grade", bundle: .student)
+        descriptionHeadingLabel?.text = String(localized: "Description", bundle: .student)
+        quizAttemptsLabel?.text = String(localized: "Allowed Attempts:", bundle: .student)
+        quizHeadingLabel?.text = String(localized: "Settings", bundle: .student)
+        quizQuestionsLabel?.text = String(localized: "Questions:", bundle: .student)
+        quizTimeLimitLabel?.text = String(localized: "Time Limit:", bundle: .student)
+        submittedLabel?.text = String(localized: "Successfully submitted!", bundle: .student)
+        submittedDetailsLabel?.text = String(localized: "Your submission is now waiting to be graded.", bundle: .student)
+        submissionButton?.setTitle(String(localized: "Submission & Rubric", bundle: .student), for: .normal)
+        attemptsHeadingLabel.text = String(localized: "Attempts", bundle: .student)
+        attemptsAllowedLabel.text = String(localized: "Attempts Allowed:", bundle: .student)
+        attemptsUsedLabel.text = String(localized: "Attempts Used:", bundle: .student)
         attemptsAllowedValueLabel.text = nil
         attemptsUsedValueLabel.text = nil
 
@@ -304,7 +304,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         submissionRubricButtonSection?.isHidden = true
         submittedLabel?.textColor = .textDarkest
-        submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
+        submittedLabel?.text = String(localized: "Successfully submitted!", bundle: .student)
         submittedDetailsLabel?.isHidden = false
         changeSubmittedIconVisibility(to: true)
 
@@ -344,31 +344,31 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     func updateSubmissionLabels(state: OnlineUploadState) {
         switch state {
         case .reSubmissionFailed:
-            submittedLabel?.text = NSLocalizedString("Resubmission Failed", bundle: .core, comment: "")
+            submittedLabel?.text = String(localized: "Resubmission Failed", bundle: .student)
             submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
             submittedDetailsLabel?.isHidden = true
-            fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
+            fileSubmissionButton?.setTitle(String(localized: "Tap to view details", bundle: .student), for: .normal)
             changeSubmittedIconVisibility(to: false)
             return
         case .failed:
-            submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
+            submittedLabel?.text = String(localized: "Submission Failed", bundle: .student)
             submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
             submittedDetailsLabel?.isHidden = true
-            fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
+            fileSubmissionButton?.setTitle(String(localized: "Tap to view details", bundle: .student), for: .normal)
             changeSubmittedIconVisibility(to: false)
             return
         case .uploading:
-            submittedLabel?.text = NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
+            submittedLabel?.text = String(localized: "Submission Uploading...", bundle: .student)
             submittedLabel?.textColor = .textDarkest
             submittedDetailsLabel?.isHidden = true
-            fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+            fileSubmissionButton?.setTitle(String(localized: "Tap to view progress", bundle: .student), for: .normal)
             changeSubmittedIconVisibility(to: false)
             return
         case .staged:
-            submittedLabel?.text = NSLocalizedString("Submission In Progress...", bundle: .core, comment: "")
+            submittedLabel?.text = String(localized: "Submission In Progress...", bundle: .student)
             submittedLabel?.textColor = .textDarkest
             submittedDetailsLabel?.isHidden = true
-            fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+            fileSubmissionButton?.setTitle(String(localized: "Tap to view progress", bundle: .student), for: .normal)
             changeSubmittedIconVisibility(to: false)
             return
         case .completed:
@@ -397,17 +397,17 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         statusLabel?.text = status.text
         dueSection?.subHeader.text = assignment.dueAt.flatMap {
             $0.dateTimeString
-        } ?? NSLocalizedString("No Due Date", bundle: .core, comment: "")
+        } ?? String(localized: "No Due Date", bundle: .student)
         submissionTypesSection?.subHeader.text = assignment.submissionTypeText
         fileTypesSection?.subHeader.text = assignment.fileTypeText
         fileTypesSection?.isHidden = !assignment.hasFileTypes
         attemptsAllowedValueLabel.text = assignment.allowedAttempts > 0
             ? NumberFormatter.localizedString(from: NSNumber(value: assignment.allowedAttempts), number: .none)
-            : NSLocalizedString("Unlimited", comment: "")
+            : String(localized: "Unlimited", bundle: .student)
         attemptsUsedValueLabel.text = NumberFormatter.localizedString(from: NSNumber(value: assignment.usedAttempts), number: .none)
         descriptionHeadingLabel?.text = quiz == nil
-            ? NSLocalizedString("Description", bundle: .student, comment: "")
-            : NSLocalizedString("Instructions", bundle: .student, comment: "")
+            ? String(localized: "Description", bundle: .student)
+            : String(localized: "Instructions", bundle: .student)
 
         let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: env.currentSession?.uniqueID ?? "",

@@ -25,9 +25,9 @@ let RemindableActionURLKey = "RemindableActionURL"
 extension NotificationManager {
     func setReminder(for event: CalendarEvent, at date: Date, studentID: String, callback: @escaping (Error?) -> Void) {
         let content = UNMutableNotificationContent()
-        content.title = NSLocalizedString("Event reminder", comment: "")
+        content.title = String(localized: "Event reminder", bundle: .parent)
         content.body = String.localizedStringWithFormat(
-            NSLocalizedString("%@ will begin at %@", comment: ""),
+            String(localized: "%@ will begin at %@", bundle: .parent),
             event.title,
             event.startAt!.dateTimeString
         )
@@ -40,9 +40,9 @@ extension NotificationManager {
 
     func setReminder(for assignment: Assignment, at date: Date, studentID: String, callback: @escaping (Error?) -> Void) {
         let content = UNMutableNotificationContent()
-        content.title = NSLocalizedString("Assignment reminder", comment: "")
+        content.title = String(localized: "Assignment reminder", bundle: .parent)
         content.body = assignment.dueAt.map { String.localizedStringWithFormat(
-            NSLocalizedString("%@ is due at %@", comment: ""),
+            String(localized: "%@ is due at %@", bundle: .parent),
             assignment.name,
             $0.dateTimeString
         ) } ?? assignment.name

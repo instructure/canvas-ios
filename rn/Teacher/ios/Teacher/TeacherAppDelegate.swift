@@ -375,7 +375,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
             refreshToken: session.refreshToken,
             userAvatarURL: nil,
             userID: fakeStudentID,
-            userName: NSLocalizedString("Test Student", comment: ""),
+            userName: String(localized: "Test Student", bundle: .teacher),
             userEmail: session.userEmail,
             clientID: session.clientID,
             clientSecret: session.clientSecret

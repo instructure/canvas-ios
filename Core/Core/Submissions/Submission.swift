@@ -300,15 +300,15 @@ extension Submission {
         switch type {
         case .basic_lti_launch, .external_tool, .online_quiz:
             return String.localizedStringWithFormat(
-                NSLocalizedString("Attempt %d", bundle: .core, comment: ""),
+                String(localized: "Attempt %d", bundle: .core),
                 attempt
             )
         case .discussion_topic:
             return discussionEntriesOrdered.first?.message?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
         case .media_recording:
             return mediaComment?.mediaType == .audio
-                ? NSLocalizedString("Audio", bundle: .core, comment: "")
-                : NSLocalizedString("Video", bundle: .core, comment: "")
+                ? String(localized: "Audio", bundle: .core)
+                : String(localized: "Video", bundle: .core)
         case .online_text_entry:
             return body?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
         case .online_upload:
@@ -350,13 +350,13 @@ public enum SubmissionStatus {
     public var text: String {
         switch self {
         case .late:
-            return NSLocalizedString("Late", bundle: .core, comment: "")
+            return String(localized: "Late", bundle: .core)
         case .missing:
-            return NSLocalizedString("Missing", bundle: .core, comment: "")
+            return String(localized: "Missing", bundle: .core)
         case .submitted:
-            return NSLocalizedString("Submitted", bundle: .core, comment: "")
+            return String(localized: "Submitted", bundle: .core)
         case .notSubmitted:
-            return NSLocalizedString("Not Submitted", bundle: .core, comment: "")
+            return String(localized: "Not Submitted", bundle: .core)
         }
     }
 
@@ -403,29 +403,29 @@ public enum SubmissionType: String, Codable {
     public var localizedString: String {
         switch self {
         case .discussion_topic:
-            return NSLocalizedString("Discussion Comment", bundle: .core, comment: "")
+            return String(localized: "Discussion Comment", bundle: .core)
         case .external_tool, .basic_lti_launch:
-            return NSLocalizedString("External Tool", bundle: .core, comment: "")
+            return String(localized: "External Tool", bundle: .core)
         case .media_recording:
-            return NSLocalizedString("Media Recording", bundle: .core, comment: "")
+            return String(localized: "Media Recording", bundle: .core)
         case .none:
-            return NSLocalizedString("No Submission", bundle: .core, comment: "")
+            return String(localized: "No Submission", bundle: .core)
         case .not_graded:
-            return NSLocalizedString("Not Graded", bundle: .core, comment: "")
+            return String(localized: "Not Graded", bundle: .core)
         case .online_quiz:
-            return NSLocalizedString("Quiz", bundle: .core, comment: "")
+            return String(localized: "Quiz", bundle: .core)
         case .online_text_entry:
-            return NSLocalizedString("Text Entry", bundle: .core, comment: "")
+            return String(localized: "Text Entry", bundle: .core)
         case .online_upload:
-            return NSLocalizedString("File Upload", bundle: .core, comment: "")
+            return String(localized: "File Upload", bundle: .core)
         case .online_url:
-            return NSLocalizedString("Website URL", bundle: .core, comment: "")
+            return String(localized: "Website URL", bundle: .core)
         case .on_paper:
-            return NSLocalizedString("On Paper", bundle: .core, comment: "")
+            return String(localized: "On Paper", bundle: .core)
         case .wiki_page:
-            return NSLocalizedString("Page", bundle: .core, comment: "")
+            return String(localized: "Page", bundle: .core)
         case .student_annotation:
-            return NSLocalizedString("Student Annotation", bundle: .core, comment: "")
+            return String(localized: "Student Annotation", bundle: .core)
 
         }
     }

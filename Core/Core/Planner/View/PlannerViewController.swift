@@ -53,11 +53,11 @@ public class PlannerViewController: UIViewController {
         navigationItem.leftBarButtonItem = profileButton
         navigationItem.rightBarButtonItems = ExperimentalFeature.teacherCalendar.isEnabled ? [todayButton] : [addNoteButton, todayButton]
         profileButton.accessibilityIdentifier = "PlannerCalendar.profileButton"
-        profileButton.accessibilityLabel = NSLocalizedString("Profile Menu", bundle: .core, comment: "")
+        profileButton.accessibilityLabel = String(localized: "Profile Menu", bundle: .core)
         addNoteButton.accessibilityIdentifier = "PlannerCalendar.addNoteButton"
-        addNoteButton.accessibilityLabel = NSLocalizedString("Add Planner Note", bundle: .core, comment: "")
+        addNoteButton.accessibilityLabel = String(localized: "Add Planner Note", bundle: .core)
         todayButton.accessibilityIdentifier = "PlannerCalendar.todayButton"
-        todayButton.accessibilityLabel = NSLocalizedString("Go to today", bundle: .core, comment: "")
+        todayButton.accessibilityLabel = String(localized: "Go to today", bundle: .core)
 
         addChild(calendar)
         view.addSubview(calendar.view)

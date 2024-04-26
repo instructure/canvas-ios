@@ -34,7 +34,7 @@ public  class ConversationListCell: UITableViewCell {
         unreadView.isHidden = conversation.workflowState != .unread
         let subject = !conversation.subject.isEmpty
             ? conversation.subject
-            : NSLocalizedString("(No subject)", comment: "")
+            : String(localized: "(No subject)", bundle: .core)
         subjectLabel.text = subject
         dateLabel.text = conversation.lastMessageAt?.relativeDateTimeString ?? ""
         contextLabel.text = conversation.contextName
@@ -42,7 +42,7 @@ public  class ConversationListCell: UITableViewCell {
 
         accessibilityIdentifier = "ConversationListCell.\(conversation.id)"
         accessibilityLabel = String.localizedStringWithFormat(
-            NSLocalizedString("%@, in %@, the last message was on %@ %@", comment: "label for conversation row with context, subject, & last message date & text"),
+            String(localized: "%@, in %@, the last message was on %@ %@", bundle: .core, comment: "label for conversation row with context, subject, & last message date & text"),
             subject,
             conversation.contextName ?? "",
             conversation.lastMessageAt?.dateTimeString ?? "",
@@ -50,7 +50,7 @@ public  class ConversationListCell: UITableViewCell {
         )
         if conversation.workflowState == .unread {
             accessibilityLabel = String.localizedStringWithFormat(
-                NSLocalizedString("%@, unread", comment: "added to conversation label when unread"),
+                String(localized: "%@, unread", bundle: .core, comment: "added to conversation label when unread"),
                 accessibilityLabel!
             )
         }

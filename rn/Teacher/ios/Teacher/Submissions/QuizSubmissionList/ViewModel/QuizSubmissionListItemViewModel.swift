@@ -33,10 +33,10 @@ public struct QuizSubmissionListItemViewModel: Identifiable, Equatable {
         self.displayName = item.displayName
         self.name = item.name
         if item.status == .untaken {
-            self.status = NSLocalizedString("Not Submitted", comment: "")
+            self.status = String(localized: "Not Submitted", bundle: .teacher)
             self.statusColor = .textDarkest
         } else {
-            self.status = NSLocalizedString("Submitted", comment: "")
+            self.status = String(localized: "Submitted", bundle: .teacher)
             self.statusColor = .textSuccess
 
         }
