@@ -50,8 +50,6 @@ class OfflineFileInteractorTests: CoreTestCase {
     func testGetFilePathSwitchWithPublicSource() {
         let sessionId = "sessionId"
         let courseId = "courseId"
-        let sectionName = "sectionName"
-        let resourceId = "resourceId"
         let fileId = "fileId"
         let fileName = "test.txt"
         let source = OfflineFileSource.Public(sessionID: sessionId, courseID: courseId, fileID: fileId, fileName: fileName)
