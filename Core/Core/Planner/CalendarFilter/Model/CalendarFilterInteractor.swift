@@ -49,15 +49,36 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
     public func loadFilters(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error> {
         let errorPublisher = Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
             .eraseToAnyPublisher()
+
+        guard let userName = env.currentSession?.userName,
+              let userId = env.currentSession?.userID
+        else {
+            return errorPublisher
+        }
+
         switch env.app {
         case .parent:
-            return errorPublisher
-        case .student:
-            guard let userName = env.currentSession?.userName,
-                  let userId = env.currentSession?.userID
-            else {
+            guard let observedUserId else {
                 return errorPublisher
             }
+            let useCase = GetParentCalendarFilters(
+                currentUserName: userName,
+                currentUserId: userId,
+                observedStudentId: observedUserId
+            )
+            return ReactiveStore(useCase: useCase)
+                .getEntities(ignoreCache: ignoreCache)
+                .flatMap { [weak self] filters in
+                    guard let self else {
+                        return errorPublisher
+                    }
+                    return clearNotAvailableSelectedContexts(filters: filters)
+                        .map { filters }
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                .eraseToAnyPublisher()
+        case .student:
             let useCase = GetStudentCalendarFilters(currentUserName: userName,
                                                     currentUserId: userId)
             return ReactiveStore(useCase: useCase)
@@ -135,6 +156,9 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         NotificationCenter
             .default
             .publisher(for: UserDefaults.didChangeNotification)
+            // We delay one cycle to avoid a crash occuring when the observed student changes
+            // which also modifies userdefaults violating "Exclusive Access to Memory".
+            .receive(on: RunLoop.main)
             .compactMap { [env, observedUserId] _ in
                 env.userDefaults?.calendarSelectedContexts(for: observedUserId)
             }

@@ -20,39 +20,48 @@ import CoreData
 import Combine
 import SwiftUI
 
-class GetStudentCalendarFilters: UseCase {
+class GetParentCalendarFilters: UseCase {
     struct APIResponse: Codable {
         let courses: [APICourse]
         let groups: [APIGroup]
     }
     typealias Model = CDCalendarFilterEntry
     typealias Response = APIResponse
-    let cacheKey: String? = "calendar/filters"
-    let scope: Scope = .where((\CDCalendarFilterEntry.observedUserId).string, equals: nil)
+    var cacheKey: String? { "calendar/filters/observing/\(observedUserId)" }
+    var scope: Scope { .where((\CDCalendarFilterEntry.observedUserId).string, equals: observedUserId) }
 
     private var subscriptions = Set<AnyCancellable>()
     private let userName: String
     private let userId: String
+    private let observedUserId: String
 
-    init(currentUserName: String, currentUserId: String) {
+    init(
+        currentUserName: String,
+        currentUserId: String,
+        observedStudentId: String
+    ) {
         userName = currentUserName
         userId = currentUserId
+        self.observedUserId = observedStudentId
     }
 
     func makeRequest(
         environment: AppEnvironment,
         completionHandler: @escaping RequestCallback
     ) {
-        let coursesRequest = GetCurrentUserCoursesRequest(
+        let coursesRequest = GetCoursesRequest(
             enrollmentState: .active,
-            state: [.current_and_concluded],
-            includes: []
+            enrollmentType: .observer,
+            state: [.available],
+            perPage: 100
         )
         let coursesFetch = environment.api
             .makeRequest(coursesRequest)
-            .map {
-                let courses = $0.body
-                return courses.filter { $0.workflow_state != .unpublished }
+            .map { [observedUserId] in
+                let courses = $0.body.filter {
+                    $0.enrollments?.contains { $0.associated_user_id?.value == observedUserId } == true
+                }
+                return courses
             }
 
         let groupsRequest = GetGroupsRequest(context: .currentUser)
@@ -91,17 +100,20 @@ class GetStudentCalendarFilters: UseCase {
         let filter: CDCalendarFilterEntry = client.insert()
         filter.context = .user(userId)
         filter.name = userName
+        filter.observedUserId = observedUserId
 
         courses.forEach { course in
             let filter: CDCalendarFilterEntry = client.insert()
             filter.context = .course(course.id.rawValue)
             filter.name = course.name ?? ""
+            filter.observedUserId = observedUserId
         }
 
         groups.forEach { group in
             let filter: CDCalendarFilterEntry = client.insert()
             filter.context = .group(group.id.rawValue)
             filter.name = group.name
+            filter.observedUserId = observedUserId
         }
     }
 
