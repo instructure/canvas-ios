@@ -31,10 +31,10 @@ public final class OfflineFileInteractorLive: OfflineFileInteractor {
     // MARK: Public functions
     public func filePath(source: OfflineFileSource?) -> String {
         switch source {
-            case .Private(let sessionID, let courseID, let sectionName, let resourceID, let fileID):
-                return filePath(sessionID: sessionID, courseId: courseID, section: sectionName, resourceId: resourceID, fileID: fileID)
-            case .Public(let sessionID, let courseID, let fileID, let fileName):
-                return filePath(sessionID: sessionID, courseId: courseID, fileID: fileID, fileName: fileName)
+        case .Private(let sessionID, let courseID, let sectionName, let resourceID, let fileID):
+            return filePath(sessionID: sessionID, courseId: courseID, section: sectionName, resourceId: resourceID, fileID: fileID)
+        case .Public(let sessionID, let courseID, let fileID, let fileName):
+            return filePath(sessionID: sessionID, courseId: courseID, fileID: fileID, fileName: fileName)
         case .none:
             return ""
         }
@@ -64,9 +64,14 @@ public final class OfflineFileInteractorLive: OfflineFileInteractor {
         let folderURL = URL.Paths.Offline.courseSectionResourceFolderURL(sessionId: sessionID, courseId: courseId, sectionName: section, resourceId: resourceId)
             .appendingPathComponent("file-\(fileID)")
 
-        let absoluteURL = "\(folderURL.path)/\((try? FileManager.default.contentsOfDirectory(atPath: folderURL.path))?.first ?? "")"
-        let relativeURL = absoluteURL.replacingOccurrences(of: URL.Directories.documents.path, with: "")
-        return relativeURL
+        let fileName = (try? FileManager.default.contentsOfDirectory(atPath: folderURL.path))?.first
+        if let fileName {
+            let absoluteURL = "\(folderURL.path)/\(fileName)"
+            let relativeURL = absoluteURL.replacingOccurrences(of: URL.Directories.documents.path, with: "")
+            return relativeURL
+        } else {
+            return ""
+        }
     }
 
     private func isItemAvailableOffline(sessionID: String?, courseId: String?, section: String?, resourceId: String?, fileID: String?) -> Bool {
@@ -77,7 +82,7 @@ public final class OfflineFileInteractorLive: OfflineFileInteractor {
         return ((try? FileManager.default.contentsOfDirectory(atPath: folderURL.path))?.first != nil)
     }
 
-    public  func filePath(sessionID: String, courseId: String, fileID: String, fileName: String) -> String {
+    public func filePath(sessionID: String, courseId: String, fileID: String, fileName: String) -> String {
         // Offline synced files are organized by the courseId in a folder.
         URL.Paths.Offline.courseFolder(
             sessionID: sessionID,
