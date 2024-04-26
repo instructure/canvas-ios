@@ -35,7 +35,7 @@ public class PlannerViewController: UIViewController {
     public var selectedDate: Date = Clock.now
     var studentID: String?
 
-    private lazy var calendarFilterInteractor: CalendarFilterInteractor = CalendarFilterInteractorLive(observedUserId: studentID)
+    lazy var calendarFilterInteractor: CalendarFilterInteractor = CalendarFilterInteractorLive(observedUserId: studentID)
     private var subscriptions = Set<AnyCancellable>()
 
     public static func create(studentID: String? = nil, selectedDate: Date = Clock.now) -> PlannerViewController {
