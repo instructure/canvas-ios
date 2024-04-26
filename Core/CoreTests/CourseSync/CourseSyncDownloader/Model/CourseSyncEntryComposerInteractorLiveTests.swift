@@ -95,7 +95,17 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
                         type: .additionalContent
                     ),
                 ],
-                files: []
+                files: [
+                    .init(
+                        id: "courses/course-id-1/files/file-1",
+                        displayName: "file-displayname-1",
+                        fileName: "file-name-1",
+                        url: URL(string: "https://canvas.instructure.com/files/1/download")!,
+                        mimeClass: "image",
+                        updatedAt: Date(timeIntervalSince1970: 1000),
+                        bytesToDownload: 1000
+                    ),
+                ]
             )
         )
     }
