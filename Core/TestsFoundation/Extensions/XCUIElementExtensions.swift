@@ -43,6 +43,7 @@ public extension XCUIElement {
         public enum Target {
             case onApp
             case onElement
+            case customApp(_ customApp: XCUIApplication)
         }
 
         case swipeUp(_ target: Target = .onApp)
@@ -218,21 +219,29 @@ public extension XCUIElement {
                 switch target {
                 case .onApp: app.swipeUp()
                 case .onElement: swipeUp()
+                case .customApp(let customApp):
+                    customApp.swipeUp()
                 }
             case .swipeDown(let target):
                 switch target {
                 case .onApp: app.swipeDown()
                 case .onElement: swipeDown()
+                case .customApp(let customApp):
+                    customApp.swipeDown()
                 }
             case .swipeRight(let target):
                 switch target {
                 case .onApp: app.swipeRight()
                 case .onElement: swipeRight()
+                case .customApp(let customApp):
+                    customApp.swipeRight()
                 }
             case .swipeLeft(let target):
                 switch target {
                 case .onApp: app.swipeLeft()
                 case .onElement: swipeLeft()
+                case .customApp(let customApp):
+                    customApp.swipeLeft()
                 }
             case .forceTap: forceTap()
             case .longTap: longTap()
