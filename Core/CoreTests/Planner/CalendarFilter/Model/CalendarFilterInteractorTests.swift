@@ -21,6 +21,16 @@ import XCTest
 
 class CalendarFilterInteractorTests: CoreTestCase {
 
+    override func setUp() {
+        super.setUp()
+        environment.userDefaults!.reset()
+    }
+
+    override func tearDown() {
+        environment.userDefaults!.reset()
+        super.tearDown()
+    }
+
     func testClearsNoLongerAvailableSelectedContexts() {
         environment.userDefaults!.setCalendarSelectedContexts(
             Set([
@@ -50,5 +60,58 @@ class CalendarFilterInteractorTests: CoreTestCase {
                         .course("2"),
                         .group("2"),
                        ]))
+    }
+
+    func testUpdatesSelectedContexts() {
+        environment.userDefaults!.setCalendarSelectedContexts(
+            Set([
+                .course("c1"),
+            ]),
+            observedStudentId: nil
+        )
+        let coursesRequest = GetCurrentUserCoursesRequest(
+            enrollmentState: .active,
+            state: [.current_and_concluded],
+            includes: []
+        )
+        let groupsRequest = GetGroupsRequest(context: .currentUser)
+        api.mock(coursesRequest, value: [.make(id: "c1")])
+        api.mock(groupsRequest, value: [.make(id: "g1")])
+        let testee = CalendarFilterInteractorLive(observedUserId: nil, env: environment)
+
+        // WHEN
+        XCTAssertFinish(testee.loadFilters(ignoreCache: false))
+
+        // THEN
+        XCTAssertEqual(environment.userDefaults!.calendarSelectedContexts(for: nil), Set([.course("c1")]))
+        XCTAssertSingleOutputEquals(testee.observeSelectedContexts().first(), Set([.course("c1")]))
+
+        // WHEN
+        testee.updateFilteredContexts([.course("c1")], isSelected: false)
+
+        // THEN
+        XCTAssertEqual(environment.userDefaults!.calendarSelectedContexts(for: nil), Set())
+        XCTAssertSingleOutputEquals(testee.observeSelectedContexts().first(), Set())
+    }
+
+    func testSynchronizesSelectedContextsBetweenDifferentInteractors() {
+        let coursesRequest = GetCurrentUserCoursesRequest(
+            enrollmentState: .active,
+            state: [.current_and_concluded],
+            includes: []
+        )
+        api.mock(coursesRequest, value: [.make(id: "c1")])
+
+        let testee1 = CalendarFilterInteractorLive(observedUserId: nil, env: environment)
+        let testee2 = CalendarFilterInteractorLive(observedUserId: nil, env: environment)
+        XCTAssertSingleOutputEquals(testee1.observeSelectedContexts().first(), Set())
+        XCTAssertSingleOutputEquals(testee2.observeSelectedContexts().first(), Set())
+
+        // WHEN
+        testee1.updateFilteredContexts([.course("c1")], isSelected: true)
+
+        // THEN
+        XCTAssertSingleOutputEquals(testee1.observeSelectedContexts().first(), Set([.course("c1")]))
+        XCTAssertSingleOutputEquals(testee2.observeSelectedContexts().first(), Set([.course("c1")]))
     }
 }

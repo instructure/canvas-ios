@@ -862,11 +862,6 @@
         <attribute name="typeRaw" optional="YES" attributeType="String"/>
         <attribute name="userID" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="Planner" representedClassName="Core.Planner" syncable="YES">
-        <attribute name="availableCourseIDs" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
-        <attribute name="hiddenCourseIDs" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
-        <attribute name="studentID" optional="YES" attributeType="String"/>
-    </entity>
     <entity name="Quiz" representedClassName="Core.Quiz" syncable="YES">
         <attribute name="accessCode" optional="YES" attributeType="String"/>
         <attribute name="allowedAttempts" optional="YES" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES"/>

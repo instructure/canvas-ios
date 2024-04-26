@@ -22,6 +22,7 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
     public var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
 
     @ObservedObject private var viewModel: CalendarFilterViewModel
+    @Environment(\.viewController) private var viewController
 
     public init(viewModel: CalendarFilterViewModel) {
         self.viewModel = viewModel
@@ -73,6 +74,13 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
                     viewModel.didTapRightNavButton.send()
                 } label: {
                     Text(viewModel.rightNavButtonTitle)
+                }
+            }
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    viewModel.didTapDoneButton.send(viewController.value)
+                } label: {
+                    Text("Done", bundle: .core)
                 }
             }
         }

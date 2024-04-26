@@ -32,16 +32,26 @@ public class CalendarFilterViewModel: ObservableObject {
     // MARK: - Inputs
     public let didToggleSelection = PassthroughSubject<(context: Context, isSelected: Bool), Never>()
     public let didTapRightNavButton = PassthroughSubject<Void, Never>()
+    public let didTapDoneButton = PassthroughSubject<UIViewController, Never>()
 
     private let interactor: CalendarFilterInteractor
+    private let router: Router
+    private let didDismissPicker: () -> Void
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(interactor: CalendarFilterInteractor) {
+    public init(
+        interactor: CalendarFilterInteractor,
+        router: Router = AppEnvironment.shared.router,
+        didDismissPicker: @escaping () -> Void
+    ) {
         self.interactor = interactor
+        self.router = router
+        self.didDismissPicker = didDismissPicker
         observeDataChanges()
         load(ignoreCache: false)
         forwardSelectionChangesToInteractor()
         handleSelectAllActions()
+        handleDoneButtonTap()
     }
 
     public func refresh(completion: @escaping () -> Void) {
@@ -55,7 +65,7 @@ public class CalendarFilterViewModel: ObservableObject {
         completionCallback: (() -> Void)? = nil
     ) {
         interactor
-            .loadFilters(ignoreCache: false)
+            .loadFilters(ignoreCache: ignoreCache)
             .sink { [weak self] completion in
                 guard let self else { return }
                 switch completion {
@@ -108,6 +118,14 @@ public class CalendarFilterViewModel: ObservableObject {
             }
             .sink { [interactor] (contexts, isSelect) in
                 interactor.updateFilteredContexts(contexts, isSelected: isSelect)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func handleDoneButtonTap() {
+        didTapDoneButton
+            .sink { [router, didDismissPicker] host in
+                router.dismiss(host, completion: didDismissPicker)
             }
             .store(in: &subscriptions)
     }

@@ -27,7 +27,7 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
 
     }
 
-    public func loadFilters(ignoreCache: Bool) -> any Publisher<[CDCalendarFilterEntry], Error> {
+    public func loadFilters(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error> {
         let makeFilterEntry: (String, Context) -> CDCalendarFilterEntry = { name, context in
             let entry: CDCalendarFilterEntry = self.env.database.viewContext.insert()
             entry.name = name
@@ -66,6 +66,14 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
     }
 
     public func updateFilteredContexts(_ context: [Context], isSelected: Bool) {
+    }
+
+    public func contextsForAPIFiltering() -> [Context] {
+        []
+    }
+
+    public func numberOfUserSelectedContexts() -> Int {
+        0
     }
 }
 

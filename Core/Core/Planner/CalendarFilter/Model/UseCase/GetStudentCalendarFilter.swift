@@ -48,7 +48,12 @@ class GetStudentCalendarFilters: UseCase {
             state: [.current_and_concluded],
             includes: []
         )
-        let coursesFetch = environment.api.makeRequest(coursesRequest)
+        let coursesFetch = environment.api
+            .makeRequest(coursesRequest)
+            .map {
+                let courses = $0.body
+                return courses.filter { $0.workflow_state != .unpublished }
+            }
 
         let groupsRequest = GetGroupsRequest(context: .currentUser)
         let groupsFetch = environment.api.makeRequest(groupsRequest)
@@ -57,7 +62,7 @@ class GetStudentCalendarFilters: UseCase {
             .CombineLatest(coursesFetch, groupsFetch)
             .map {
                 APIResponse(
-                    courses: $0.0.body,
+                    courses: $0.0,
                     groups: $0.1.body
                 )
             }

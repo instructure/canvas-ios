@@ -21,10 +21,13 @@ import Combine
 public protocol CalendarFilterInteractor: AnyObject {
     init(observedUserId: String?, env: AppEnvironment)
 
-    func loadFilters(ignoreCache: Bool) -> any Publisher<[CDCalendarFilterEntry], Error>
+    func loadFilters(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error>
 
     func observeSelectedContexts() -> AnyPublisher<Set<Context>, Never>
     func updateFilteredContexts(_ context: [Context], isSelected: Bool)
+
+    func contextsForAPIFiltering() -> [Context]
+    func numberOfUserSelectedContexts() -> Int
 }
 
 public class CalendarFilterInteractorLive: CalendarFilterInteractor {
@@ -40,42 +43,45 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         self.observedUserId = observedUserId
         self.env = env
         loadSelectedContexts()
+        observeUserDefaultChanges()
     }
 
-    public func loadFilters(ignoreCache: Bool) -> any Publisher<[CDCalendarFilterEntry], Error> {
+    public func loadFilters(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error> {
+        let errorPublisher = Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
+            .eraseToAnyPublisher()
         switch env.app {
         case .parent:
-            return Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
+            return errorPublisher
         case .student:
             guard let userName = env.currentSession?.userName,
                   let userId = env.currentSession?.userID
             else {
-                return Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
+                return errorPublisher
             }
             let useCase = GetStudentCalendarFilters(currentUserName: userName,
                                                     currentUserId: userId)
             return ReactiveStore(useCase: useCase)
                 .getEntities(ignoreCache: ignoreCache)
-                .flatMap { [weak self] filters -> AnyPublisher<[CDCalendarFilterEntry], Error> in
+                .flatMap { [weak self] filters in
                     guard let self else {
-                        return Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
-                            .eraseToAnyPublisher()
+                        return errorPublisher
                     }
                     return clearNotAvailableSelectedContexts(filters: filters)
                         .map { filters }
                         .setFailureType(to: Error.self)
                         .eraseToAnyPublisher()
                 }
+                .eraseToAnyPublisher()
         case .teacher:
-            return Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
+            return errorPublisher
         case .none:
-            return Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
+            return errorPublisher
         }
     }
 
     public func observeSelectedContexts() -> AnyPublisher<Set<Context>, Never> {
         selectedFilters
-            .compactMap { $0 }
+            .removeDuplicates()
             .eraseToAnyPublisher()
     }
 
@@ -94,6 +100,19 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         selectedFilters.send(selectedContexts)
     }
 
+    public func contextsForAPIFiltering() -> [Context] {
+        switch env.app {
+        case .parent, .student, .none:
+            return Array(selectedFilters.value)
+        case .teacher:
+            return []
+        }
+    }
+
+    public func numberOfUserSelectedContexts() -> Int {
+        selectedFilters.value.count
+    }
+
     // MARK: - Private
 
     private func clearNotAvailableSelectedContexts(filters: [CDCalendarFilterEntry]) -> Future<Void, Never> {
@@ -110,5 +129,18 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
     private func loadSelectedContexts() {
         guard let defaults = env.userDefaults else { return }
         selectedFilters.send(defaults.calendarSelectedContexts(for: observedUserId))
+    }
+
+    private func observeUserDefaultChanges() {
+        NotificationCenter
+            .default
+            .publisher(for: UserDefaults.didChangeNotification)
+            .compactMap { [env, observedUserId] _ in
+                env.userDefaults?.calendarSelectedContexts(for: observedUserId)
+            }
+            .sink { [selectedFilters] selectedContexts in
+                selectedFilters.send(selectedContexts)
+            }
+            .store(in: &subscriptions)
     }
 }

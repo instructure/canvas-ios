@@ -34,9 +34,9 @@ public enum PlannerAssembly {
         return host
     }
 
-    public static func makeFilterViewController(observedUserId: String?) -> UIViewController {
+    public static func makeFilterViewController(observedUserId: String?, didDismissPicker: @escaping () -> Void) -> UIViewController {
         let interactor = CalendarFilterInteractorLive(observedUserId: observedUserId)
-        let viewModel = CalendarFilterViewModel(interactor: interactor)
+        let viewModel = CalendarFilterViewModel(interactor: interactor, didDismissPicker: didDismissPicker)
         let view = CalendarFilterScreen(viewModel: viewModel)
         let host = CoreHostingController(view)
         return host
@@ -52,7 +52,7 @@ public enum PlannerAssembly {
 
     public static func makeFilterScreenPreview() -> some View {
         let interactor = CalendarFilterInteractorPreview(observedUserId: nil, env: .shared)
-        let viewModel = CalendarFilterViewModel(interactor: interactor)
+        let viewModel = CalendarFilterViewModel(interactor: interactor, didDismissPicker: {})
         return CalendarFilterScreen(viewModel: viewModel)
     }
 
