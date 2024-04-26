@@ -64,7 +64,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                             }
                             .eraseToAnyPublisher()
                     } else {
-                        return Fail(error: NSError.instructureError(String(localized: "Failed to copy file"))).eraseToAnyPublisher()
+                        return Fail(error: NSError.instructureError(String(localized: "Failed to copy file", bundle: .core))).eraseToAnyPublisher()
                     }
                 }
                 .eraseToAnyPublisher()
@@ -131,7 +131,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             try fileManager.moveItem(at: tempURL, to: saveURL)
             return Result.Publisher(saveURL.lastPathComponent).eraseToAnyPublisher()
         } catch {
-            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()
+            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image", bundle: .core)))).eraseToAnyPublisher()
         }
     }
 
@@ -151,7 +151,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             try fileManager.moveItem(at: tempURL, to: saveURL)
             return Result.Publisher(saveURL.path).eraseToAnyPublisher()
         } catch {
-            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()
+            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image", bundle: .core)))).eraseToAnyPublisher()
         }
     }
 }
