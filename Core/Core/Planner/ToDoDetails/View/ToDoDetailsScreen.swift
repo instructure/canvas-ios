@@ -40,11 +40,11 @@ public struct ToDoDetailsScreen: View {
                     .paragraphStyle(.heading)
             }
             if let date = viewModel.date {
-                InstUI.TextSectionView(title: String(localized: "Date"),
+                InstUI.TextSectionView(title: String(localized: "Date", bundle: .core),
                                        description: date)
             }
             if let description = viewModel.description {
-                InstUI.TextSectionView(title: String(localized: "Description"),
+                InstUI.TextSectionView(title: String(localized: "Description", bundle: .core),
                                        description: description)
             }
         }

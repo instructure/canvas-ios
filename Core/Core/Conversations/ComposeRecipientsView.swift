@@ -60,7 +60,7 @@ class ComposeRecipientsView: UIView {
         editButton.setImage(.addressBookLine, for: .normal)
         editButton.tintColor = .textDark
         editButton.translatesAutoresizingMaskIntoConstraints = false
-        editButton.accessibilityLabel = NSLocalizedString("Edit Recipients", comment: "")
+        editButton.accessibilityLabel = String(localized: "Edit Recipients", bundle: .core)
         addSubview(editButton)
         NSLayoutConstraint.activate([
             editButton.heightAnchor.constraint(equalToConstant: 44),
@@ -73,7 +73,7 @@ class ComposeRecipientsView: UIView {
     func addPlaceholder() {
         placeholder = UILabel()
         placeholder.translatesAutoresizingMaskIntoConstraints = false
-        placeholder.text = NSLocalizedString("To", comment: "")
+        placeholder.text = String(localized: "To", bundle: .core)
         placeholder.textColor = .ash
         placeholder.font = .scaledNamedFont(.medium16)
         addSubview(placeholder)
@@ -103,7 +103,7 @@ class ComposeRecipientsView: UIView {
     }
 
     func updatePills() {
-        additionalRecipients.text = String.localizedStringWithFormat(NSLocalizedString("+%d", bundle: .core, comment: ""), recipients.count - 1)
+        additionalRecipients.text = String.localizedStringWithFormat(String(localized: "+%d", bundle: .core), recipients.count - 1)
         additionalRecipients.isHidden = recipients.count <= 1 || isExpanded
 
         pills.forEach { $0.removeFromSuperview() }

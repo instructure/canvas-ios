@@ -27,7 +27,7 @@ public class CalendarEventDetailsViewModel: ObservableObject {
     @Published public private(set) var locationInfo: [InstUI.TextSectionView.Model] = []
     @Published public private(set) var details: InstUI.TextSectionView.Model?
     @Published public private(set) var contextColor: UIColor?
-    public let pageTitle = String(localized: "Event Details")
+    public let pageTitle = String(localized: "Event Details", bundle: .core)
     @Published public private(set) var pageSubtitle: String?
     public let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar")
 
@@ -74,22 +74,22 @@ public class CalendarEventDetailsViewModel: ObservableObject {
                 }
 
                 if let seriesInfo = event.seriesInNaturalLanguage {
-                    date?.append("\n\(String(localized: "Repeats")) \(seriesInfo)")
+                    date?.append("\n\(String(localized: "Repeats", bundle: .core)) \(seriesInfo)")
                 } else {
-                    date?.append("\n\(String(localized: "Does Not Repeat"))")
+                    date?.append("\n\(String(localized: "Does Not Repeat", bundle: .core))")
                 }
 
                 locationInfo = {
                     var result: [InstUI.TextSectionView.Model] = []
                     if let locationName = event.locationName, locationName.isNotEmpty {
                         result.append(.init(
-                            title: String(localized: "Location"),
+                            title: String(localized: "Location", bundle: .core),
                             description: locationName)
                         )
                     }
                     if let address = event.locationAddress, address.isNotEmpty {
                         result.append(.init(
-                            title: String(localized: "Address"),
+                            title: String(localized: "Address", bundle: .core),
                             description: address)
                         )
                     }
@@ -98,7 +98,7 @@ public class CalendarEventDetailsViewModel: ObservableObject {
 
                 if let details = event.details {
                     self.details = .init(
-                        title: String(localized: "Details"),
+                        title: String(localized: "Details", bundle: .core),
                         description: details,
                         isRichContent: true
                     )

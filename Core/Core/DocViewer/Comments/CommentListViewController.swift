@@ -49,19 +49,19 @@ class CommentListViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        navigationItem.title = NSLocalizedString("Comments", bundle: .core, comment: "")
+        navigationItem.title = String(localized: "Comments", bundle: .core)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed(_:)))
 
         replyBorderView.backgroundColor = .backgroundLightest
         replyBorderView.layer.borderWidth = 1 / UIScreen.main.scale
         replyBorderView.layer.borderColor = UIColor.borderMedium.cgColor
         replyTextView.placeholderColor = .textDark
-        replyTextView.placeholder = NSLocalizedString("Reply", bundle: .core, comment: "")
+        replyTextView.placeholder = String(localized: "Reply", bundle: .core)
         replyTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         replyTextView.adjustsFontForContentSizeCategory = true
-        replyTextView.accessibilityLabel = NSLocalizedString("Reply to the annotation or previous comments", bundle: .core, comment: "")
+        replyTextView.accessibilityLabel = String(localized: "Reply to the annotation or previous comments", bundle: .core)
         replyTextView.textColor = .textDarkest
-        replyButton.accessibilityLabel = NSLocalizedString("Send comment", bundle: .core, comment: "")
+        replyButton.accessibilityLabel = String(localized: "Send comment", bundle: .core)
         replyView.backgroundColor = .backgroundLight
 
         if (metadata?.permissions ?? APIDocViewerPermissions.none) == APIDocViewerPermissions.none {
@@ -124,12 +124,12 @@ extension CommentListViewController: UITableViewDataSource {
 extension CommentListViewController: CommentListCellDelegate {
     func deletePressed(on comment: DocViewerCommentReplyAnnotation) {
         let alert = UIAlertController(
-            title: NSLocalizedString("Delete Comment", bundle: .core, comment: ""),
-            message: NSLocalizedString("Are you sure you would like to delete this comment?", bundle: .core, comment: ""),
+            title: String(localized: "Delete Comment", bundle: .core),
+            message: String(localized: "Are you sure you would like to delete this comment?", bundle: .core),
             preferredStyle: .alert
         )
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-        alert.addAction(AlertAction(NSLocalizedString("Delete", bundle: .core, comment: ""), style: .destructive) { _ in
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "Delete", bundle: .core), style: .destructive) { _ in
             guard let index = self.comments.firstIndex(of: comment) else { return }
             self.document?.remove(annotations: [comment], options: nil)
             self.comments.remove(at: index)

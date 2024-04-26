@@ -34,6 +34,6 @@ class AssignmentReminderTimeFormatter: DateComponentsFormatter {
             return nil
         }
 
-        return String(localized: "\(formatted) before", comment: "10 minutes before")
+        return String(localized: "\(formatted) before", bundle: .student, comment: "10 minutes before")
     }
 }

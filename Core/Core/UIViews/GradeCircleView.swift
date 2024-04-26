@@ -146,7 +146,7 @@ public class GradeCircleView: UIView {
             circleComplete.isHidden = false
             gradeCircle?.progress = 1
             displayGrade.isHidden = false
-            displayGrade.text = NSLocalizedString("Excused", bundle: .core, comment: "")
+            displayGrade.text = String(localized: "Excused", bundle: .core)
         }
 
         // Update for hidden quantitative data

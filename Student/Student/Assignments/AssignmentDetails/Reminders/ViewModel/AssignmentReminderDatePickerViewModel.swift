@@ -47,7 +47,7 @@ class AssignmentReminderDatePickerViewModel: ObservableObject {
         buttonTitles = {
             let formatter = AssignmentReminderTimeFormatter()
             var result = Self.predefinedIntervals.map { formatter.string(from: $0)?.capitalized ?? "" }
-            result.append(String(localized: "Custom"))
+            result.append(String(localized: "Custom", bundle: .student))
             return result
         }()
     }

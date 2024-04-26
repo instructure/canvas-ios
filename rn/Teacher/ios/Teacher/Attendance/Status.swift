@@ -24,9 +24,9 @@ public enum Attendance: String, Codable {
 
     var label: String {
         switch self {
-        case .present: return NSLocalizedString("Present", comment: "")
-        case .late: return NSLocalizedString("Late", comment: "")
-        case .absent: return NSLocalizedString("Absent", comment: "")
+        case .present: return String(localized: "Present", bundle: .teacher)
+        case .late: return String(localized: "Late", bundle: .teacher)
+        case .absent: return String(localized: "Absent", bundle: .teacher)
         }
     }
 

@@ -102,10 +102,10 @@ public struct MessageDetailsView: View {
             model.starDidTap.send(!model.starred)
         }, label: {
             var star = Image.starLine
-            var a11yLabel = NSLocalizedString("Un-starred", bundle: .core, comment: "")
+            var a11yLabel = String(localized: "Un-starred", bundle: .core)
             if model.starred {
                 star = Image.starSolid
-                a11yLabel = NSLocalizedString("Starred", bundle: .core, comment: "")
+                a11yLabel = String(localized: "Starred", bundle: .core)
             }
             return star
                 .size(30)

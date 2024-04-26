@@ -76,14 +76,14 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: NSLocalizedString("Quiz Details", comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Quiz Details", bundle: .student))
 
-        attemptsLabel.text = NSLocalizedString("Allowed Attempts:", comment: "")
-        dueHeadingLabel.text = NSLocalizedString("Due", comment: "")
-        instructionsHeadingLabel.text = NSLocalizedString("Instructions", comment: "")
-        questionsLabel.text = NSLocalizedString("Questions:", comment: "")
-        settingsHeadingLabel.text = NSLocalizedString("Settings", comment: "")
-        timeLimitLabel.text = NSLocalizedString("Time Limit:", comment: "")
+        attemptsLabel.text = String(localized: "Allowed Attempts:", bundle: .student)
+        dueHeadingLabel.text = String(localized: "Due", bundle: .student)
+        instructionsHeadingLabel.text = String(localized: "Instructions", bundle: .student)
+        questionsLabel.text = String(localized: "Questions:", bundle: .student)
+        settingsHeadingLabel.text = String(localized: "Settings", bundle: .student)
+        timeLimitLabel.text = String(localized: "Time Limit:", bundle: .student)
 
         instructionsContainer.addSubview(instructionsWebView)
         instructionsWebView.pinWithThemeSwitchButton(inside: instructionsContainer)
@@ -139,29 +139,29 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
             statusIconView.tintColor = .textSuccess
             statusLabel.textColor = .textSuccess
             statusLabel.text = String.localizedStringWithFormat(
-                NSLocalizedString("Submitted %@", comment: "Submitted date"),
+                String(localized: "Submitted %@", bundle: .student, comment: "Submitted date"),
                 finishedAt.dateTimeString
             )
         } else if submission?.attempt ?? 0 > 1 {
             statusIconView.image = .completeSolid
             statusIconView.tintColor = .textSuccess
             statusLabel.textColor = .textSuccess
-            statusLabel.text = NSLocalizedString("Submitted", comment: "")
+            statusLabel.text = String(localized: "Submitted", bundle: .student)
         } else {
             statusIconView.image = .noSolid
             statusIconView.tintColor = .textDark
             statusLabel.textColor = .textDark
-            statusLabel.text = NSLocalizedString("Not Submitted", comment: "")
+            statusLabel.text = String(localized: "Not Submitted", bundle: .student)
         }
         dueLabel.text = quiz?.dueText
         attemptsValueLabel.text = quiz?.allowedAttemptsText
         questionsValueLabel.text = quiz?.questionCountText
         timeLimitValueLabel.text = quiz?.timeLimitText
         instructionsHeadingLabel.text = quiz?.lockedForUser == true
-            ? NSLocalizedString("Locked", comment: "")
-            : NSLocalizedString("Instructions", comment: "")
+            ? String(localized: "Locked", bundle: .student)
+            : String(localized: "Instructions", bundle: .student)
         var html = quiz?.lockExplanation ?? quiz?.details ?? ""
-        if html.isEmpty { html = NSLocalizedString("No Content", comment: "") }
+        if html.isEmpty { html = String(localized: "No Content", bundle: .student) }
 
         let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: env.currentSession?.uniqueID ?? "",
@@ -193,16 +193,16 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
         guard let quiz = quizzes.first, !quizzes.pending else { return nil }
         if quiz.canTake {
             guard let submission = quiz.submission else {
-                return NSLocalizedString("Take Quiz", comment: "")
+                return String(localized: "Take Quiz", bundle: .student)
             }
             if submission.canResume {
-                return NSLocalizedString("Resume Quiz", comment: "")
+                return String(localized: "Resume Quiz", bundle: .student)
             }
             return submission.finishedAt != nil || submission.attempt > 1
-                ? NSLocalizedString("Retake Quiz", comment: "")
-                : NSLocalizedString("Take Quiz", comment: "")
+                ? String(localized: "Retake Quiz", bundle: .student)
+                : String(localized: "Take Quiz", bundle: .student)
         } else if quiz.resultsURL != nil {
-            return NSLocalizedString("View Results", comment: "")
+            return String(localized: "View Results", bundle: .student)
         }
         return nil
     }

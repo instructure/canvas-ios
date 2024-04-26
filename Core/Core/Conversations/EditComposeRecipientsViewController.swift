@@ -57,7 +57,7 @@ class EditComposeRecipientsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         view.frame.size.height = 304
-        titleLabel.text = NSLocalizedString("Recipients", bundle: .core, comment: "")
+        titleLabel.text = String(localized: "Recipients", bundle: .core)
         teachers.exhaust(force: false)
         tas.exhaust(force: false)
     }

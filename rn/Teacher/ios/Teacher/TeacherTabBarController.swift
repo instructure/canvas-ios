@@ -60,7 +60,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
         let cardView = CoreHostingController(DashboardContainerView(shouldShowGroupList: false,
                                                                showOnlyTeacherEnrollment: true))
         let dashboard = DashboardContainerViewController(rootViewController: cardView) { HelmSplitViewController() }
-        dashboard.tabBarItem.title = NSLocalizedString("Courses", comment: "")
+        dashboard.tabBarItem.title = String(localized: "Courses", bundle: .teacher)
         dashboard.tabBarItem.image = .coursesTab
         dashboard.tabBarItem.selectedImage = .coursesTabActive
         dashboard.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
@@ -74,7 +74,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
             HelmNavigationController(rootViewController: EmptyViewController()),
         ]
         split.view.tintColor = Brand.shared.primary
-        split.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
+        split.tabBarItem.title = String(localized: "Calendar", bundle: .teacher, comment: "Calendar page title")
         split.tabBarItem.image = .calendarTab
         split.tabBarItem.selectedImage = .calendarTabActive
         split.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
@@ -85,7 +85,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
 
     func toDoTab() -> UIViewController {
         let todo = HelmNavigationController(rootViewController: TodoListViewController.create())
-        todo.tabBarItem.title = NSLocalizedString("To Do", comment: "")
+        todo.tabBarItem.title = String(localized: "To Do", bundle: .teacher)
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
         todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
@@ -112,7 +112,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
         empty.navigationBar.useGlobalNavStyle()
 
         inboxSplit.viewControllers = [inboxController, empty]
-        let title = NSLocalizedString("Inbox", comment: "Inbox tab title")
+        let title = String(localized: "Inbox", bundle: .teacher, comment: "Inbox tab title")
         inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
         inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
         inboxSplit.extendedLayoutIncludesOpaqueBars = true

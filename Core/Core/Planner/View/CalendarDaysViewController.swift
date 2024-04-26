@@ -152,7 +152,7 @@ class CalendarDayButton: UIButton {
                 dot.isHidden = d >= activityDotCount
             }
             accessibilityLabel = String.localizedStringWithFormat(
-                NSLocalizedString("date_d_events", bundle: .core, comment: ""),
+                String(localized: "date_d_events", bundle: .core),
                 DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none),
                 activityDotCount
             )

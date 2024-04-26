@@ -102,7 +102,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     private func updateA11yLabel(_ module: Module, isPublishing: Bool) {
         let publishedState: String? = {
             if isPublishing {
-                return String(localized: "Publish state modification in progress")
+                return String(localized: "Publish state modification in progress", bundle: .core)
             }
 
             guard let published = module.published, shouldShowPublishControl else {
@@ -110,16 +110,16 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
             }
 
             return published
-                ? String(localized: "published")
-                : String(localized: "unpublished")
+                ? String(localized: "published", bundle: .core)
+                : String(localized: "unpublished", bundle: .core)
         }()
 
         accessibilityLabel = [
             module.name,
             publishedState,
             isExpanded
-                ? String(localized: "expanded")
-                : String(localized: "collapsed"),
+                ? String(localized: "expanded", bundle: .core)
+                : String(localized: "collapsed", bundle: .core),
         ].compactMap { $0 }.joined(separator: ", ")
     }
 

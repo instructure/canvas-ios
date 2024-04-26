@@ -27,10 +27,10 @@ public enum FileVisibility: String, CaseIterable, Identifiable {
     public var id: FileVisibility { self }
     public var label: String {
         switch self {
-        case .inheritCourse: return String(localized: "Inherit From Course")
-        case .courseMembers: return String(localized: "Course Members")
-        case .institutionMembers: return String(localized: "Institution Members")
-        case .publiclyAvailable: return String(localized: "Public")
+        case .inheritCourse: return String(localized: "Inherit From Course", bundle: .core)
+        case .courseMembers: return String(localized: "Course Members", bundle: .core)
+        case .institutionMembers: return String(localized: "Institution Members", bundle: .core)
+        case .publiclyAvailable: return String(localized: "Public", bundle: .core)
         }
     }
     public var isLastCase: Bool {

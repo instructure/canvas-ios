@@ -59,7 +59,7 @@ public class AttachmentCardsViewController: UIViewController {
         for (index, a) in self.attachments.enumerated() {
             let card = getCard(cardIndex)
             if a.uploadError != nil {
-                card.updateFile(name: NSLocalizedString("Failed. Tap for options", bundle: .core, comment: ""), icon: .warningLine)
+                card.updateFile(name: String(localized: "Failed. Tap for options", bundle: .core), icon: .warningLine)
                 card.iconView?.tintColor = .textDanger
             } else if a.isUploading, a.size > 0 {
                 card.updateProgress(name: a.displayName ?? a.localFileURL?.lastPathComponent, sent: a.bytesSent, of: a.size)
@@ -247,8 +247,8 @@ class AttachmentCardView: UIView {
         }()
         let progress = Double(sent) / Double(total)
         button.accessibilityLabel = String.localizedStringWithFormat(
-            NSLocalizedString("Uploading %@ is at %@", bundle: .core, comment: ""),
-            name ?? NSLocalizedString("File", bundle: .core, comment: ""),
+            String(localized: "Uploading %@ is at %@", bundle: .core),
+            name ?? String(localized: "File", bundle: .core),
             NumberFormatter.localizedString(from: NSNumber(value: progress), number: .percent)
         )
         progressView.isHidden = false

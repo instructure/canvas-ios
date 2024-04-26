@@ -45,9 +45,9 @@ class CourseListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-        emptyMessageLabel.text = NSLocalizedString("Your child’s courses might not be published yet.", comment: "")
-        emptyTitleLabel.text = NSLocalizedString("No Courses", comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading courses. Pull to refresh to try again.", comment: "")
+        emptyMessageLabel.text = String(localized: "Your child’s courses might not be published yet.", bundle: .parent)
+        emptyTitleLabel.text = String(localized: "No Courses", bundle: .parent)
+        errorView.messageLabel.text = String(localized: "There was an error loading courses. Pull to refresh to try again.", bundle: .parent)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         spinnerView.color = nil
@@ -129,7 +129,7 @@ class CourseListCell: UITableViewCell {
 
         if course.hideTotalGrade {
             // this condition also triggers when multipleGradingPeriodsEnabled is true, currentGradingPeriodID is nil and totalsForAllGradingPeriodsOption is false
-            return course.hideFinalGrades ? "" : NSLocalizedString("N/A", comment: "")
+            return course.hideFinalGrades ? "" : String(localized: "N/A", bundle: .parent)
         }
 
         var grade = enrollment.computedCurrentGrade
@@ -152,12 +152,12 @@ class CourseListCell: UITableViewCell {
                 return enrollment.convertedLetterGrade(gradingPeriodID: enrollment.currentGradingPeriodID,
                                                        gradingScheme: course.gradingScheme)
             } else {
-                return NSLocalizedString("No Grade", comment: "")
+                return String(localized: "No Grade", bundle: .parent)
             }
         }
 
         guard let scoreNoNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNoNil)) else {
-            return grade ?? NSLocalizedString("No Grade", comment: "")
+            return grade ?? String(localized: "No Grade", bundle: .parent)
         }
 
         if let grade = grade {

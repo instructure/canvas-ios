@@ -56,7 +56,7 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
 
     func setupLimitedInteractionNotification() {
         let n = NotificationView()
-        n.messageLabel.text = NSLocalizedString("Interactions on this page are limited by your institution.", bundle: .core, comment: "")
+        n.messageLabel.text = String(localized: "Interactions on this page are limited by your institution.", bundle: .core)
         n.showDismiss = true
         n.dismissHandler = { [weak self] in
             self?.limitedInteractionView?.removeFromSuperview()

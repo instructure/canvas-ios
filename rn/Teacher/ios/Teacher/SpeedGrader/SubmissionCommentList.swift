@@ -80,7 +80,7 @@ struct SubmissionCommentList: View {
                         }
                     // Assume already loaded by parent, so skip loading & error
                     case .loading, .empty, .error:
-                        EmptyPanda(.NoComments, message: Text("There are no messages yet."))
+                        EmptyPanda(.NoComments, message: Text("There are no messages yet.", bundle: .teacher))
                             .frame(minWidth: geometry.size.width, minHeight: geometry.size.height - 40)
                     }
                 }
@@ -110,11 +110,11 @@ struct SubmissionCommentList: View {
                         .onTapGesture {
                             showCommentLibrary = commentLibrary.shouldShow
                         }
-                        .accessibilityAction(named: Text("Open comment library", bundle: .core)) {
+                        .accessibilityAction(named: Text("Open comment library", bundle: .teacher)) {
                             if commentLibrary.shouldShow {
                                 showCommentLibrary = true
                             } else {
-                                UIAccessibility.post(notification: .screenChanged, argument: NSLocalizedString("Comment library is not available", bundle: .teacher, comment: ""))
+                                UIAccessibility.post(notification: .screenChanged, argument: String(localized: "Comment library is not available", bundle: .teacher))
                             }
                         }
                 }
@@ -151,13 +151,13 @@ struct SubmissionCommentList: View {
                     .foregroundColor(.textDark)
                     .padding(EdgeInsets(top: 11, leading: 11, bottom: 11, trailing: 11))
             })
-                .accessibility(label: Text("Add Attachment"))
+                .accessibility(label: Text("Add Attachment", bundle: .teacher))
                 .identifier("SubmissionComments.addMediaButton")
                 .actionSheet(isPresented: $showMediaOptions) {
-                    ActionSheet(title: Text("Add Attachment"), buttons: [
-                        .default(Text("Record Audio"), action: recordAudio),
-                        .default(Text("Record Video"), action: recordVideo),
-                        .default(Text("Choose Files"), action: chooseFile),
+                    ActionSheet(title: Text("Add Attachment", bundle: .teacher), buttons: [
+                        .default(Text("Record Audio", bundle: .teacher), action: recordAudio),
+                        .default(Text("Record Video", bundle: .teacher), action: recordVideo),
+                        .default(Text("Choose Files", bundle: .teacher), action: chooseFile),
                         .cancel(),
                     ])
                 }
@@ -188,7 +188,7 @@ struct SubmissionCommentList: View {
         ).fetch { comment, error in
             if error != nil || comment == nil {
                 self.comment = text
-                self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.")
+                self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.", bundle: .teacher)
             }
         }
     }
@@ -237,7 +237,7 @@ struct SubmissionCommentList: View {
             attempt: commentAttempt
         ).fetch { comment, error in
             if error != nil || comment == nil {
-                self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.")
+                self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.", bundle: .teacher)
             }
         }
     }
@@ -264,7 +264,7 @@ struct SubmissionCommentList: View {
             attempt: commentAttempt
         ).fetch { comment, error in
             if error != nil || comment == nil {
-                self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.")
+                self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.", bundle: .teacher)
             }
         }
     }

@@ -52,17 +52,17 @@ public class PlannerFilterViewController: UIViewController, ErrorViewController 
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString("Calendars", bundle: .core, comment: "")
+        navigationItem.title = String(localized: "Calendars", bundle: .core)
 
         let refresh = CircleRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.refreshControl = refresh
         tableView.registerHeaderFooterView(SectionHeaderView.self)
-        headerLabel.text = NSLocalizedString("Tap to select the courses you want to see on the calendar.", bundle: .core, comment: "")
+        headerLabel.text = String(localized: "Tap to select the courses you want to see on the calendar.", bundle: .core)
 
-        emptyTitleLabel.text = NSLocalizedString("No Courses", bundle: .core, comment: "")
-        emptyMessageLabel.text = NSLocalizedString("Your child's courses might not be published yet.", bundle: .core, comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading courses. Pull to refresh to try again.", bundle: .core, comment: "")
+        emptyTitleLabel.text = String(localized: "No Courses", bundle: .core)
+        emptyMessageLabel.text = String(localized: "Your child's courses might not be published yet.", bundle: .core)
+        errorView.messageLabel.text = String(localized: "There was an error loading courses. Pull to refresh to try again.", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(refresh(_:)), for: .primaryActionTriggered)
         emptyStateView.isHidden = true
         errorView.isHidden = true
@@ -125,7 +125,7 @@ extension PlannerFilterViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 0 else { return nil }
         let header = tableView.dequeueHeaderFooter(SectionHeaderView.self)
-        header.titleLabel?.text = NSLocalizedString("Courses", bundle: .core, comment: "")
+        header.titleLabel?.text = String(localized: "Courses", bundle: .core)
         return header
     }
 }
