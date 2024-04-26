@@ -27,26 +27,26 @@ public struct CompletionRequirement: Codable, Equatable {
         switch type {
         case .must_view:
             return completed != true
-                ? NSLocalizedString("View", bundle: .core, comment: "")
-                : NSLocalizedString("Viewed", bundle: .core, comment: "")
+                ? String(localized: "View", bundle: .core)
+                : String(localized: "Viewed", bundle: .core)
         case .must_submit:
             return completed != true
-                ? NSLocalizedString("Submit", bundle: .core, comment: "")
-                : NSLocalizedString("Submitted", bundle: .core, comment: "")
+                ? String(localized: "Submit", bundle: .core)
+                : String(localized: "Submitted", bundle: .core)
         case .must_contribute:
             return completed != true
-                ? NSLocalizedString("Contribute", bundle: .core, comment: "")
-                : NSLocalizedString("Contributed", bundle: .core, comment: "")
+                ? String(localized: "Contribute", bundle: .core)
+                : String(localized: "Contributed", bundle: .core)
         case .min_score:
             guard let score = NSNumber(value: min_score) else { return nil }
             let template = completed != true
-                ? NSLocalizedString("Score at least %@", bundle: .core, comment: "")
-                : NSLocalizedString("Scored at least %@", bundle: .core, comment: "")
+                ? String(localized: "Score at least %@", bundle: .core)
+                : String(localized: "Scored at least %@", bundle: .core)
             return String.localizedStringWithFormat(template, score)
         case .must_mark_done:
             return completed != true
-                ? NSLocalizedString("Mark done", bundle: .core, comment: "")
-                : NSLocalizedString("Marked done", bundle: .core, comment: "")
+                ? String(localized: "Mark done", bundle: .core)
+                : String(localized: "Marked done", bundle: .core)
         }
     }
 }

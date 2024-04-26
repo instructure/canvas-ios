@@ -54,7 +54,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                 .receive(on: scheduler)
                 .eraseToAnyPublisher()
         } else {
-            return Fail(error: NSError.instructureError(String(localized: "Failed to construct request"))).eraseToAnyPublisher()
+            return Fail(error: NSError.instructureError(String(localized: "Failed to construct request", bundle: .core))).eraseToAnyPublisher()
         }
     }
 
@@ -78,7 +78,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             try fileManager.moveItem(at: tempURL, to: saveURL)
             return Result.Publisher(saveURL).eraseToAnyPublisher()
         } catch {
-            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()
+            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image", bundle: .core)))).eraseToAnyPublisher()
         }
     }
 
@@ -89,7 +89,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             fileManager.createFile(atPath: saveURL.path, contents: nil)
             try content.write(to: saveURL, atomically: true, encoding: .utf8)
         } catch {
-            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save base content")))).eraseToAnyPublisher()
+            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save base content", bundle: .core)))).eraseToAnyPublisher()
         }
         return Result.Publisher(content).eraseToAnyPublisher()
     }

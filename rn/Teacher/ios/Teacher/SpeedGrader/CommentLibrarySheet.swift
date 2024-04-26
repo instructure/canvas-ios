@@ -47,14 +47,14 @@ struct CommentLibrarySheet: View {
     @ViewBuilder
     var headerView: some View {
         ZStack {
-            Text("Comment Library", bundle: .core).font(.semibold17).foregroundColor(.textDarkest)
+            Text("Comment Library", bundle: .teacher).font(.semibold17).foregroundColor(.textDarkest)
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }, label: {
                 dismissView
             })
                 .frame(maxWidth: .infinity, alignment: .trailing)
-                .accessibility(label: Text("Close", bundle: .core))
+                .accessibility(label: Text("Close", bundle: .teacher))
         }
         .padding()
         Divider()

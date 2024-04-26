@@ -45,7 +45,7 @@ public final class DiscussionEntry: NSManagedObject {
 
     public var likeCountText: String {
         String.localizedStringWithFormat(
-            NSLocalizedString("d_likes", bundle: .core, comment: ""),
+            String(localized: "d_likes", bundle: .core),
             likeCount
         )
     }

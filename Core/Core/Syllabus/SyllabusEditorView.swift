@@ -72,8 +72,8 @@ public struct SyllabusEditorView: View {
         EditorForm(isSpinning: isLoading || isSaving) {
             EditorSection(label: Text("Content", bundle: .core)) {
                 RichContentEditor(
-                    placeholder: NSLocalizedString("Add content", bundle: .core, comment: ""),
-                    a11yLabel: NSLocalizedString("Syllabus content", bundle: .core, comment: ""),
+                    placeholder: String(localized: "Add content", bundle: .core),
+                    a11yLabel: String(localized: "Syllabus content", bundle: .core),
                     html: $html,
                     context: context,
                     uploadTo: .context(context),

@@ -34,19 +34,19 @@ public enum CommunicationChannelType: String, Codable {
     var name: String {
         switch self {
         case .chat:
-            return NSLocalizedString("Chat Notifications", bundle: .core, comment: "Description for Chat communication channel")
+            return String(localized: "Chat Notifications", bundle: .core, comment: "Description for Chat communication channel")
         case .email:
-            return NSLocalizedString("Email Notifications", bundle: .core, comment: "Description for email communication channel")
+            return String(localized: "Email Notifications", bundle: .core, comment: "Description for email communication channel")
         case .push:
-            return NSLocalizedString("Push Notifications", bundle: .core, comment: "Description for Push Notification channel")
+            return String(localized: "Push Notifications", bundle: .core, comment: "Description for Push Notification channel")
         case .slack:
-            return NSLocalizedString("Slack Notifications", bundle: .core, comment: "Description for Slack communication channel")
+            return String(localized: "Slack Notifications", bundle: .core, comment: "Description for Slack communication channel")
         case .sms:
-            return NSLocalizedString("SMS Notifications", bundle: .core, comment: "Description for SMS communication channel")
+            return String(localized: "SMS Notifications", bundle: .core, comment: "Description for SMS communication channel")
         case .twitter:
-            return NSLocalizedString("Twitter Notifications", bundle: .core, comment: "Description for Twitter communication channel")
+            return String(localized: "Twitter Notifications", bundle: .core, comment: "Description for Twitter communication channel")
         case .yo:
-            return NSLocalizedString("Yo Notifications", bundle: .core, comment: "Description for Yo communication channel")
+            return String(localized: "Yo Notifications", bundle: .core, comment: "Description for Yo communication channel")
         }
     }
 }

@@ -19,7 +19,7 @@
 import Foundation
 
 public class ToDoDetailsScreenViewModel: ObservableObject {
-    public let navigationTitle = String(localized: "To Do")
+    public let navigationTitle = String(localized: "To Do", bundle: .core)
     public let title: String?
     public let date: String?
     public let description: String?

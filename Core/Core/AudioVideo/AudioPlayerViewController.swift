@@ -79,12 +79,12 @@ public class AudioPlayerViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         backgroundColor = .backgroundDarkest
-        playPauseButton?.accessibilityLabel = NSLocalizedString("Play", bundle: .core, comment: "")
-        currentTimeLabel?.accessibilityLabel = NSLocalizedString("Time elapsed", bundle: .core, comment: "")
+        playPauseButton?.accessibilityLabel = String(localized: "Play", bundle: .core)
+        currentTimeLabel?.accessibilityLabel = String(localized: "Time elapsed", bundle: .core)
         loadingView?.accessibilityIdentifier = "AudioPlayer.loadingView"
         loadingView?.color = color
-        remainingTimeLabel?.accessibilityLabel = NSLocalizedString("Total time", bundle: .core, comment: "")
-        timeSlider?.accessibilityLabel = NSLocalizedString("Current position", bundle: .core, comment: "")
+        remainingTimeLabel?.accessibilityLabel = String(localized: "Total time", bundle: .core)
+        timeSlider?.accessibilityLabel = String(localized: "Current position", bundle: .core)
     }
 
     public override func viewWillDisappear(_ animated: Bool) {
@@ -94,8 +94,8 @@ public class AudioPlayerViewController: UIViewController {
 
     public func load(url: URL?) {
         self.url = url
-        currentTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "Unknown time duration")
-        remainingTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "Unknown time duration")
+        currentTimeLabel?.text = String(localized: "--:--", bundle: .core, comment: "Unknown time duration")
+        remainingTimeLabel?.text = String(localized: "--:--", bundle: .core, comment: "Unknown time duration")
         loadingView?.startAnimating()
         playPauseButton?.alpha = 0
         playPauseButton?.isEnabled = false
@@ -135,7 +135,7 @@ public class AudioPlayerViewController: UIViewController {
             try session.setActive(true)
             if player.play() {
                 playPauseButton?.setImage(.pauseSolid, for: .normal)
-                playPauseButton?.accessibilityLabel = NSLocalizedString("Pause", bundle: .core, comment: "")
+                playPauseButton?.accessibilityLabel = String(localized: "Pause", bundle: .core)
                 timer = CADisplayLink(target: self, selector: #selector(tick))
                 timer?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
             }
@@ -166,7 +166,7 @@ public class AudioPlayerViewController: UIViewController {
         timer = nil
         player.stop()
         playPauseButton?.setImage(.playSolid, for: .normal)
-        playPauseButton?.accessibilityLabel = NSLocalizedString("Play", bundle: .core, comment: "")
+        playPauseButton?.accessibilityLabel = String(localized: "Play", bundle: .core)
         try? AVAudioSession.sharedInstance().setActive(false)
     }
 

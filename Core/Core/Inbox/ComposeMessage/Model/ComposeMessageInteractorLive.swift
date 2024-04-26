@@ -44,7 +44,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
             .fetchWithFuture()
         } else {
             return Future<URLResponse?, Error> { promise in
-                promise(.failure(NSError.instructureError(String(localized: "Invalid conversation ID"))))
+                promise(.failure(NSError.instructureError(String(localized: "Invalid conversation ID", bundle: .core))))
             }
         }
     }

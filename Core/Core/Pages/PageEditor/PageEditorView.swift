@@ -88,8 +88,8 @@ public struct PageEditorView: View {
 
             EditorSection(label: Text("Content", bundle: .core)) {
                 RichContentEditor(
-                    placeholder: NSLocalizedString("Add content", bundle: .core, comment: ""),
-                    a11yLabel: NSLocalizedString("Page content", bundle: .core, comment: ""),
+                    placeholder: String(localized: "Add content", bundle: .core),
+                    a11yLabel: String(localized: "Page content", bundle: .core),
                     html: $html,
                     context: context,
                     uploadTo: .context(context),
@@ -123,7 +123,7 @@ public struct PageEditorView: View {
                             ? [ .members, .public ]
                             : [ .teachers, .teachersAndStudents, .public ]
                         self.env.router.show(ItemPickerViewController.create(
-                            title: NSLocalizedString("Can Edit", bundle: .core, comment: ""),
+                            title: String(localized: "Can Edit", bundle: .core),
                             sections: [ ItemPickerSection(items: options.map {
                                 ItemPickerItem(title: $0.string)
                             }), ],
@@ -199,13 +199,13 @@ public struct PageEditorView: View {
         var string: String {
             switch self {
             case .public:
-                return NSLocalizedString("Anyone", bundle: .core, comment: "")
+                return String(localized: "Anyone", bundle: .core)
             case .members:
-                return NSLocalizedString("Only members", bundle: .core, comment: "")
+                return String(localized: "Only members", bundle: .core)
             case .teachers:
-                return NSLocalizedString("Only teachers", bundle: .core, comment: "")
+                return String(localized: "Only teachers", bundle: .core)
             case .teachersAndStudents:
-                return NSLocalizedString("Teachers and students", bundle: .core, comment: "")
+                return String(localized: "Teachers and students", bundle: .core)
             }
         }
     }

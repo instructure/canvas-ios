@@ -41,7 +41,7 @@ struct ContextCardHeaderView: View {
                     .identifier("ContextCard.userEmailLabel")
             }
             if showLastActivity, let activityTime = enrollment.lastActivityAt?.dateTimeString {
-                Text("Last activity on \(activityTime)")
+                Text("Last activity on \(activityTime)", bundle: .core)
                     .font(.regular12)
                     .foregroundColor(.textDark)
                     .identifier("ContextCard.lastActivityLabel")

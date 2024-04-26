@@ -27,9 +27,9 @@ extension UIAlertController {
     }
 
     public static func showItemNotAvailableInOfflineAlert(_ completion: (() -> Void)? = nil) {
-        let title = NSLocalizedString("Offline mode", comment: "")
-        let message = NSLocalizedString("This item is not available offline.", comment: "")
-        let actionTitle = NSLocalizedString("OK", comment: "")
+        let title = String(localized: "Offline mode", bundle: .core)
+        let message = String(localized: "This item is not available offline.", bundle: .core)
+        let actionTitle = String(localized: "OK", bundle: .core)
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: actionTitle, style: .default) { _ in
             completion?()

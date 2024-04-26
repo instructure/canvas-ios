@@ -30,7 +30,7 @@ public class ExperimentalFeaturesViewController: UITableViewController {
             navigationItem.rightBarButtonItem = barButtonItem
         }
 
-        title = NSLocalizedString("Experimental Features", bundle: .core, comment: "")
+        title = String(localized: "Experimental Features", bundle: .core)
         tableView?.registerCell(SwitchTableViewCell.self)
     }
 

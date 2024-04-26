@@ -31,11 +31,11 @@ enum SubmissionButtonAlertView {
             alert.addAction(action)
         }
         if arc {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Studio", bundle: .student, comment: ""), style: .default) { [weak presenter] _ in
+            alert.addAction(UIAlertAction(title: String(localized: "Studio", bundle: .student), style: .default) { [weak presenter] _ in
                 presenter?.submitArc(assignment: assignment)
             })
         }
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
+        alert.addAction(UIAlertAction(title: String(localized: "Cancel", bundle: .student), style: .cancel))
         // set ipad properties to display modal
         alert.popoverPresentationController?.sourceView = button
         alert.popoverPresentationController?.sourceRect =  CGRect(origin: button.center, size: .zero)
@@ -44,8 +44,8 @@ enum SubmissionButtonAlertView {
     }
 
     static func uploadingAlert(_ mediaUploader: UploadMedia) -> UIAlertController {
-        let uploading = UIAlertController(title: NSLocalizedString("Uploading", bundle: .student, comment: ""), message: nil, preferredStyle: .alert)
-        uploading.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .destructive) { _ in
+        let uploading = UIAlertController(title: String(localized: "Uploading", bundle: .student), message: nil, preferredStyle: .alert)
+        uploading.addAction(UIAlertAction(title: String(localized: "Cancel", bundle: .student), style: .destructive) { _ in
             mediaUploader.cancel()
         })
         return uploading

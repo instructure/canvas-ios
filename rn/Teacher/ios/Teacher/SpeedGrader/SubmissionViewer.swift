@@ -61,7 +61,7 @@ struct SubmissionViewer: View {
                 VStack {
                     Spacer()
                     HStack { Spacer() }
-                    Text("This student's responses are hidden because this assignment is anonymous.", bundle: .core)
+                    Text("This student's responses are hidden because this assignment is anonymous.", bundle: .teacher)
                     Spacer()
                 }
                 .font(.regular16).foregroundColor(.textDarkest)
@@ -95,13 +95,13 @@ struct SubmissionViewer: View {
             case .failure(let error):
                 VStack(alignment: .center, spacing: 0) {
                     Spacer()
-                    Text("Failed to load submission data!")
+                    Text("Failed to load submission data!", bundle: .teacher)
                         .font(.regular16).foregroundColor(.textDarkest)
                     Text(error.localizedDescription)
                         .font(.regular16).foregroundColor(.textDarkest)
                         .padding(.bottom, 10)
                     Button(action: studentAnnotationViewModel.retry, label: {
-                        Text("Retry", bundle: .core)
+                        Text("Retry", bundle: .teacher)
                             .foregroundColor(Color(Brand.shared.primary))
                     })
                     Spacer()
@@ -121,13 +121,13 @@ struct SubmissionViewer: View {
                 Spacer()
                 HStack { Spacer() }
                 if assignment.submissionTypes.contains(.on_paper) {
-                    Text("This assignment only allows on-paper submissions.", bundle: .core)
+                    Text("This assignment only allows on-paper submissions.", bundle: .teacher)
                 } else if assignment.submissionTypes.contains(.none) {
-                    Text("This assignment does not allow submissions.", bundle: .core)
+                    Text("This assignment does not allow submissions.", bundle: .teacher)
                 } else if submission.groupID != nil {
-                    Text("This group does not have a submission for this assignment.", bundle: .core)
+                    Text("This group does not have a submission for this assignment.", bundle: .teacher)
                 } else {
-                    Text("This student does not have a submission for this assignment.", bundle: .core)
+                    Text("This student does not have a submission for this assignment.", bundle: .teacher)
                 }
                 Spacer()
             }

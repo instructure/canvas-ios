@@ -64,7 +64,7 @@ struct CustomizeCourseView: View {
             ZStack {
                 Color(color).frame(width: width, height: height)
                 if let url = imageDownloadURL {
-                    RemoteImage(url, width: width, height: height)
+                    RemoteImage(url, width: width, height: height, shouldHandleAnimatedGif: true)
                         .opacity(hideColorOverlay ? 1 : 0.4)
                 }
             }
@@ -72,7 +72,7 @@ struct CustomizeCourseView: View {
                 .clipped()
             TextFieldRow(
                 label: Text("Nickname", bundle: .core),
-                placeholder: NSLocalizedString("Add Course Nickname", comment: ""),
+                placeholder: String(localized: "Add Course Nickname", bundle: .core),
                 text: $name
             )
             Divider()
@@ -106,7 +106,7 @@ struct CustomizeCourseView: View {
             } }
             Divider()
         }
-            .navigationTitle(NSLocalizedString("Customize Course", comment: ""), subtitle: name)
+            .navigationTitle(String(localized: "Customize Course", bundle: .core), subtitle: name)
             .navigationBarItems(
                 leading: Button(action: cancel, label: {
                     Text("Cancel", bundle: .core).fontWeight(.regular)

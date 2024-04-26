@@ -50,7 +50,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         label: "com.instructure.icanvas.core.course-sync-utility",
         attributes: .concurrent
     )
-    private let fileErrorMessage = NSLocalizedString("File download failed.", comment: "")
+    private let fileErrorMessage = String(localized: "File download failed.", bundle: .core)
     private let notificationInteractor: CourseSyncNotificationInteractor
     internal private(set) var downloadSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
@@ -623,7 +623,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         downloadSubscription = nil
         progressWriterInteractor.markInProgressDownloadsAsFailed()
         progressWriterInteractor.saveDownloadResult(isFinished: true,
-                                                    error: NSLocalizedString("Offline sync was interrupted by the operating system", comment: ""))
+                                                    error: String(localized: "Offline sync was interrupted by the operating system", bundle: .core))
         notificationInteractor.sendFailedNotification()
     }
 }

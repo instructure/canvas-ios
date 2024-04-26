@@ -32,7 +32,7 @@ public enum APIError: LocalizedError {
             let message = extractMessage(from: json)
 
             if response?.isUnauthorized == true {
-                let defaultMessage = NSLocalizedString("You are not authorized to perform this action", bundle: .core, comment: "User is missing a necessary permission")
+                let defaultMessage = String(localized: "You are not authorized to perform this action", bundle: .core, comment: "User is missing a necessary permission")
                 return unauthorized(localizedMessage: message ?? defaultMessage)
             }
 

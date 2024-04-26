@@ -100,7 +100,7 @@ class ActAsUserOverlay: UIView {
         let button = UIButton(type: .custom)
         button.addTarget(self, action: #selector(stopActing), for: .primaryActionTriggered)
         button.accessibilityIdentifier = "ActAsUser.endActAsUserButton"
-        button.accessibilityLabel = NSLocalizedString("End Act as User", bundle: .core, comment: "")
+        button.accessibilityLabel = String(localized: "End Act as User", bundle: .core)
         return button
     }()
 
@@ -153,23 +153,23 @@ class ActAsUserOverlay: UIView {
     @objc func stopActing() {
         guard let viewController = window?.rootViewController?.topMostViewController() else { return }
         let session = AppEnvironment.shared.currentSession
-        var message: String? = NSLocalizedString("You will stop acting as this user and return to your account.", bundle: .core, comment: "")
+        var message: String? = String(localized: "You will stop acting as this user and return to your account.", bundle: .core)
         if let name = session?.userName, session?.isFakeStudent != true {
-            let template = NSLocalizedString("You will stop acting as %@ and return to your account.", bundle: .core, comment: "")
+            let template = String(localized: "You will stop acting as %@ and return to your account.", bundle: .core)
             message = String.localizedStringWithFormat(template, name)
         }
-        var title = NSLocalizedString("Stop acting as...", bundle: .core, comment: "")
+        var title = String(localized: "Stop acting as...", bundle: .core)
         if session?.isFakeStudent == true {
-            title = NSLocalizedString("Leave Student View", bundle: .core, comment: "")
-            message = NSLocalizedString("Are you sure you want to exit Student View?", bundle: .core, comment: "")
+            title = String(localized: "Leave Student View", bundle: .core)
+            message = String(localized: "Are you sure you want to exit Student View?", bundle: .core)
         }
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { _ in
+        let ok = UIAlertAction(title: String(localized: "OK", bundle: .core), style: .default) { _ in
             if let loginDelegate = self.loginDelegate, let session = AppEnvironment.shared.currentSession {
                 loginDelegate.stopActing(as: session)
             }
         }
-        let cancelTitle = NSLocalizedString("Cancel", bundle: .core, comment: "")
+        let cancelTitle = String(localized: "Cancel", bundle: .core)
         let cancel = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
         alert.addAction(ok)
         alert.addAction(cancel)

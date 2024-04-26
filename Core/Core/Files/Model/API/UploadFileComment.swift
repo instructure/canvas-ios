@@ -89,7 +89,7 @@ public class UploadFileComment {
             placeholder.authorAvatarURL = session.userAvatarURL
             placeholder.authorID = session.userID
             placeholder.authorName = session.userName
-            placeholder.comment = NSLocalizedString("See attached files.", bundle: .core, comment: "")
+            placeholder.comment = String(localized: "See attached files.", bundle: .core)
             placeholder.createdAt = Date()
             placeholder.id = "placeholder-\(UploadFileComment.placeholderSuffix)"
             placeholder.userID = self.userID

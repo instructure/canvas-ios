@@ -111,8 +111,8 @@ class RoutesTests: XCTestCase {
 
     func testCalendarRoutes() {
         XCTAssert(router.match("/calendar") is PlannerViewController)
-        XCTAssert(router.match("/calendar?event_id=7") is CalendarEventDetailsViewController)
-        XCTAssert(router.match("/calendar_events/7") is CalendarEventDetailsViewController)
+        XCTAssert(router.match("/calendar?event_id=7") is CoreHostingController<CalendarEventDetailsScreen>)
+        XCTAssert(router.match("/calendar_events/7") is CoreHostingController<CalendarEventDetailsScreen>)
     }
 
     func testNativeDiscussionDetailsRoute() {

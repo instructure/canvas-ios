@@ -72,7 +72,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        title = NSLocalizedString("Assignment Details", comment: "")
+        title = String(localized: "Assignment Details", bundle: .parent)
         webViewContainer.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: webViewContainer)
         webView.autoresizesHeight = true
@@ -82,20 +82,20 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         scrollView.refreshControl = refreshControl
 
-        composeButton.accessibilityLabel = NSLocalizedString("Compose message to teachers", comment: "")
+        composeButton.accessibilityLabel = String(localized: "Compose message to teachers", bundle: .parent)
         composeButton.backgroundColor = ColorScheme.observee(studentID).color.darkenToEnsureContrast(against: .white)
         composeButton.isHidden = true
 
-        dateHeadingLabel.text = NSLocalizedString("Due", comment: "")
+        dateHeadingLabel.text = String(localized: "Due", bundle: .parent)
         dateLabel.text = ""
-        descriptionHeadingLabel.text = NSLocalizedString("Description", comment: "")
+        descriptionHeadingLabel.text = String(localized: "Description", bundle: .parent)
         titleLabel.text = ""
 
         pointsLabel.text = ""
 
-        reminderHeadingLabel.text = NSLocalizedString("Remind Me", comment: "")
-        reminderMessageLabel.text = NSLocalizedString("Set a date and time to be notified of this event.", comment: "")
-        reminderSwitch.accessibilityLabel = NSLocalizedString("Remind Me", comment: "")
+        reminderHeadingLabel.text = String(localized: "Remind Me", bundle: .parent)
+        reminderMessageLabel.text = String(localized: "Set a date and time to be notified of this event.", bundle: .parent)
+        reminderSwitch.accessibilityLabel = String(localized: "Remind Me", bundle: .parent)
         reminderSwitch.isEnabled = false
         reminderDateButton.isEnabled = false
         reminderDateButton.isHidden = true
@@ -143,7 +143,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     func update() {
         guard let assignment = assignment.first else { return }
         let status = assignment.submissions?.first(where: { $0.userID == studentID })?.status ?? .notSubmitted
-        title = course.first?.name ?? NSLocalizedString("Assignment Details", comment: "")
+        title = course.first?.name ?? String(localized: "Assignment Details", bundle: .parent)
 
         titleLabel.text = assignment.name
         pointsLabel.text = {
@@ -158,7 +158,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         statusLabel.isHidden = assignment.submissionStatusIsHidden
         statusLabel.textColor = status.color
         statusLabel.text = status.text
-        dateLabel.text = assignment.dueAt?.dateTimeString ?? NSLocalizedString("No Due Date", comment: "")
+        dateLabel.text = assignment.dueAt?.dateTimeString ?? String(localized: "No Due Date", bundle: .parent)
         reminderSwitch.isEnabled = true
         reminderDateButton.isEnabled = true
         if let html = assignment.details, !html.isEmpty {
@@ -221,12 +221,12 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBAction func compose() {
         guard let assignment = assignment.first, let name = student.first?.fullName else { return }
         let subject = String.localizedStringWithFormat(
-            NSLocalizedString("Regarding: %@, Assignment - %@", comment: "Regarding <Name>, Assignment - <Assignment Name>"),
+            String(localized: "Regarding: %@, Assignment - %@", bundle: .parent, comment: "Regarding <Name>, Assignment - <Assignment Name>"),
             name,
             assignment.name
         )
         let hiddenMessage = String.localizedStringWithFormat(
-            NSLocalizedString("Regarding: %@, %@", comment: "Regarding <Name>, <URL>"),
+            String(localized: "Regarding: %@, %@", bundle: .parent, comment: "Regarding <Name>, <URL>"),
             name,
             assignment.htmlURL?.absoluteString ?? ""
         )

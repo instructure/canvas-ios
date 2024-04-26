@@ -40,8 +40,8 @@ struct AssignmentReminderItemView: View {
         .accessibilityAction {
             deleteDidTap()
         }
-        .accessibilityLabel(Text("Reminder") + Text(verbatim: ",\(viewModel.title)"))
-        .accessibilityHint(Text("Activate to delete"))
+        .accessibilityLabel(Text("Reminder", bundle: .student) + Text(verbatim: ",\(viewModel.title)"))
+        .accessibilityHint(Text("Activate to delete", bundle: .student))
     }
 
     private var bellIcon: some View {

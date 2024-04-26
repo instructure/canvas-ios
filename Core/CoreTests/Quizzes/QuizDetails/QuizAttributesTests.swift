@@ -124,7 +124,7 @@ class QuizAttributesTests: CoreTestCase {
         let testee = QuizAttributes(quiz: quiz, assignment: nil)
 
         let quizAttribute = testee.attributes.first(where: {$0.id == "Show Correct Answers:"})
-        let template = NSLocalizedString("After %@", bundle: .core, comment: "e.g. After 01.02.2022")
+        let template = String(localized: "After %@", bundle: .core, comment: "e.g. After 01.02.2022")
         let expected = String.localizedStringWithFormat(template, date.relativeDateTimeString)
         XCTAssertEqual(quizAttribute?.value, expected)
     }
@@ -139,7 +139,7 @@ class QuizAttributesTests: CoreTestCase {
         let testee = QuizAttributes(quiz: quiz, assignment: nil)
 
         let quizAttribute = testee.attributes.first(where: {$0.id == "Show Correct Answers:"})
-        let template = NSLocalizedString("Until %@", bundle: .core, comment: "e.g. Until 01.02.2022")
+        let template = String(localized: "Until %@", bundle: .core, comment: "e.g. Until 01.02.2022")
         let expected = String.localizedStringWithFormat(template, date.relativeDateTimeString)
         XCTAssertEqual(quizAttribute?.value, expected)
     }
@@ -157,7 +157,7 @@ class QuizAttributesTests: CoreTestCase {
         let testee = QuizAttributes(quiz: quiz, assignment: nil)
 
         let quizAttribute = testee.attributes.first(where: {$0.id == "Show Correct Answers:"})
-        let template = NSLocalizedString("%@ to %@", bundle: .core, comment: "e.g 01.02.2022 to 01.03.2022")
+        let template = String(localized: "%@ to %@", bundle: .core, comment: "e.g 01.02.2022 to 01.03.2022")
         let expected = String.localizedStringWithFormat(template, date1.relativeDateTimeString, date2.relativeDateTimeString)
         XCTAssertEqual(quizAttribute?.value, expected)
     }

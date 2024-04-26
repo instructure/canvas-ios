@@ -28,10 +28,10 @@ struct CommentEditor: View {
 
     var body: some View {
         HStack(alignment: .bottom) {
-            DynamicHeightTextEditor(text: $text, placeholder: NSLocalizedString("Comment", bundle: .core, comment: ""))
+            DynamicHeightTextEditor(text: $text, placeholder: String(localized: "Comment", bundle: .teacher))
                 .font(.regular16)
                 .lineLimit(10)
-                .accessibility(label: Text("Comment"))
+                .accessibility(label: Text("Comment", bundle: .teacher))
                 .identifier("SubmissionComments.commentTextView")
             Button(action: {
                 action()
@@ -48,7 +48,7 @@ struct CommentEditor: View {
             })
                 .opacity(text.isEmpty ? 0.5 : 1)
                 .disabled(text.isEmpty)
-                .accessibility(label: Text("Send"))
+                .accessibility(label: Text("Send", bundle: .teacher))
                 .identifier("SubmissionComments.addCommentButton")
         }
             .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 6))

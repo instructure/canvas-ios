@@ -98,9 +98,9 @@ struct Drawer<Content: View>: View {
 
     var buttonA11yText: Text {
         switch state {
-        case .min: return Text("Open Drawer half screen")
-        case .mid: return Text("Open Drawer full screen")
-        case .max: return Text("Close Drawer")
+        case .min: return Text("Open Drawer half screen", bundle: .teacher)
+        case .mid: return Text("Open Drawer full screen", bundle: .teacher)
+        case .max: return Text("Close Drawer", bundle: .teacher)
         }
     }
 

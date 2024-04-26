@@ -161,7 +161,7 @@ struct CourseSyncProgressView: View {
                                                isCollapsed: item.isCollapsed,
                                                collapseDidToggle: item.collapseDidToggle,
                                                removeItemPressed: item.removeItemPressed,
-                                               state: .error(NSLocalizedString("Sync Failed", bundle: .core, comment: ""))))
+                                               state: .error(String(localized: "Sync Failed", bundle: .core))))
             }
             Divider().padding(.leading, item.cellStyle == .listItem ? 16 : 0)
         }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
