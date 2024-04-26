@@ -31,7 +31,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var isMessageDisabled: Bool = false
     @Published public private(set) var isIndividualDisabled: Bool = false
 
-    public let title = String(localized: "New Message")
+    public let title = String(localized: "New Message", bundle: .core)
     public var sendButtonActive: Bool {
         !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !subject.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
@@ -206,7 +206,7 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     private func showResultDialog(title: String, message: String, completion: (() -> Void)? = nil) {
-        let actionTitle = NSLocalizedString("OK", comment: "")
+        let actionTitle = String(localized: "OK", bundle: .core)
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: actionTitle, style: .default) { _ in
             completion?()
@@ -253,8 +253,8 @@ class ComposeMessageViewModel: ObservableObject {
             .sink(receiveCompletion: { completion in
                 if case .failure = completion {
                     Logger.shared.error("ComposeMessageView message failure")
-                    let title = NSLocalizedString("Message could not be sent", comment: "")
-                    let message = NSLocalizedString("Please try again!", comment: "")
+                    let title = String(localized: "Message could not be sent", bundle: .core)
+                    let message = String(localized: "Please try again!", bundle: .core)
                     self.showResultDialog(title: title, message: message)
                     self.isSendingMessage = false
                 }

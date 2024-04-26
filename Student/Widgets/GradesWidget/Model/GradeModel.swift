@@ -21,12 +21,12 @@ import WidgetKit
 class GradeModel: WidgetModel {
     override class var publicPreview: GradeModel {
         GradeModel(assignmentGrades: [
-            GradeItem(name: NSLocalizedString("Essay #1: The Rocky Planets", comment: "Example exam name"), grade: "95 / 100", color: .electric),
-            GradeItem(name: NSLocalizedString("American Literature IV", comment: "Example exam name"), grade: "9.2 / 10", color: .shamrock),
-            GradeItem(name: NSLocalizedString("Biology Exam 2", comment: "Example exam name"), grade: "20 / 25", color: .barney),
+            GradeItem(name: String(localized: "Essay #1: The Rocky Planets", comment: "Example exam name"), grade: "95 / 100", color: .electric),
+            GradeItem(name: String(localized: "American Literature IV", comment: "Example exam name"), grade: "9.2 / 10", color: .shamrock),
+            GradeItem(name: String(localized: "Biology Exam 2", comment: "Example exam name"), grade: "20 / 25", color: .barney),
         ], courseGrades: [
-            GradeItem(name: NSLocalizedString("Introduction to the Solar System", comment: "Example course name"), grade: "A-", color: .electric),
-            GradeItem(name: NSLocalizedString("American Literature IV: All the Books", comment: "Example course name"), grade: "B", color: .shamrock),
+            GradeItem(name: String(localized: "Introduction to the Solar System", comment: "Example course name"), grade: "A-", color: .electric),
+            GradeItem(name: String(localized: "American Literature IV: All the Books", comment: "Example course name"), grade: "B", color: .shamrock),
         ])
     }
 

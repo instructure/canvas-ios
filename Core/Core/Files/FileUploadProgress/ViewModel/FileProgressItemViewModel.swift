@@ -26,15 +26,15 @@ public class FileProgressItemViewModel: ObservableObject {
     public let size: String
     public let icon: Image
     public var accessibilityLabel: String {
-        let fileInfo = NSLocalizedString("File \(fileName) size \(size).", comment: "")
+        let fileInfo = String(localized: "File \(fileName) size \(size).", bundle: .core)
         let status: String = {
             switch file.state {
             case .waiting, .readyForUpload: return ""
             case .uploading(progress: let progress):
                 let percentage = Int(100 * progress)
-                return String(localized: "Upload in progress \(percentage)%")
-            case .uploaded: return NSLocalizedString("Upload completed.", comment: "")
-            case .error: return NSLocalizedString("Upload failed.", comment: "")
+                return String(localized: "Upload in progress \(percentage)%", bundle: .core)
+            case .uploaded: return String(localized: "Upload completed.", bundle: .core)
+            case .error: return String(localized: "Upload failed.", bundle: .core)
             }
         }()
 

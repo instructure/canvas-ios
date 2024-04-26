@@ -75,22 +75,22 @@ struct ContextCardGradesView: View {
     var body: some View {
         if let grade = grade {
             VStack(alignment: .leading, spacing: 10) {
-                Text("Grades")
+                Text("Grades", bundle: .core)
                     .font(.semibold14)
                     .foregroundColor(.textDark)
                 HStack {
-                    let subTitle = unpostedGrade != nil ? Text("Grade before posting") : Text("Current Grade")
+                    let subTitle = unpostedGrade != nil ? Text("Grade before posting", bundle: .core) : Text("Current Grade", bundle: .core)
                     ContextCardBoxView(title: Text(grade), subTitle: subTitle, selectedColor: gradeSelected ? color : nil)
                         .accessibility(label: Text("\(subTitle.key ?? "") \(grade)", bundle: .core))
                         .identifier("ContextCard.currentGradeLabel")
                     if let unpostedGrade = unpostedGrade {
-                        let subTitle = Text("Grade after posting")
+                        let subTitle = Text("Grade after posting", bundle: .core)
                         ContextCardBoxView(title: Text(unpostedGrade), subTitle: subTitle, selectedColor: unpostedSelected ? color : nil)
                             .accessibility(label: Text("\(subTitle.key ?? "") \(unpostedGrade)", bundle: .core))
                             .identifier("ContextCard.unpostedGradeLabel")
                     }
                     if let overrideGrade = overrideGrade {
-                        let subTitle = Text("Grade Override")
+                        let subTitle = Text("Grade Override", bundle: .core)
 
                         ContextCardBoxView(title: Text(overrideGrade), subTitle: subTitle, selectedColor: color)
                             .accessibility(label: Text("\(subTitle.key ?? "") \(overrideGrade)", bundle: .core))

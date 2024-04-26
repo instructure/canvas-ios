@@ -95,7 +95,7 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
             attempt: attempt
         ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
-                self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
+                self?.view?.showError(error ?? NSError.instructureError(String(localized: "Could not save the comment", bundle: .student)))
             }
         }
     }
@@ -111,7 +111,7 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
             attempt: attempt
         ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
-                self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
+                self?.view?.showError(error ?? NSError.instructureError(String(localized: "Could not save the comment", bundle: .student)))
             }
         }
     }
@@ -126,7 +126,7 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
             attempt: attempt
         ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
-                self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
+                self?.view?.showError(error ?? NSError.instructureError(String(localized: "Could not save the comment", bundle: .student)))
             }
         }
     }

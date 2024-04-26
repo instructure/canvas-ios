@@ -75,7 +75,7 @@ class BottomSheetPresentationController: UIPresentationController {
         containerView.addSubview(dimmer)
         dimmer.pin(inside: containerView)
         dimmer.addTarget(self, action: #selector(tapped), for: .primaryActionTriggered)
-        dimmer.accessibilityLabel = NSLocalizedString("Close", bundle: .core, comment: "")
+        dimmer.accessibilityLabel = String(localized: "Close", bundle: .core)
         dimmer.accessibilityFrame = CGRect(x: 0, y: 0, width: containerView.bounds.width, height: containerView.bounds.height - presentedViewController.view.frame.height)
 
         presentingViewController.transitionCoordinator?.animate(alongsideTransition: { _ in

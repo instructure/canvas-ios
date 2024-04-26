@@ -43,7 +43,7 @@ public struct AssignmentReminderDatePickerView: View {
             .animation(.default, value: viewModel.customPickerVisible)
         }
         .background(Color.backgroundLightest)
-        .navigationTitle(Text("Reminder"))
+        .navigationTitle(Text("Reminder", bundle: .student))
         .navBarItems(leading: cancelButton, trailing: doneButton)
     }
 
@@ -106,7 +106,7 @@ public struct AssignmentReminderDatePickerView: View {
         Button {
             viewController.value.dismiss(animated: true)
         } label: {
-            Text("Cancel")
+            Text("Cancel", bundle: .student)
                 .font(.regular16)
                 .foregroundStyle(Color(Brand.shared.primary))
         }
@@ -116,7 +116,7 @@ public struct AssignmentReminderDatePickerView: View {
         Button {
             viewModel.doneButtonDidTap(host: viewController.value)
         } label: {
-            Text("Done")
+            Text("Done", bundle: .student)
                 .font(.regular16)
                 .foregroundStyle(Color(Brand.shared.primary))
                 .opacity(viewModel.doneButtonActive ? 1 : 0.3)

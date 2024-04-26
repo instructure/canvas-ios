@@ -39,7 +39,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     @IBOutlet weak var toolbarShareButton: UIBarButtonItem!
     @IBOutlet weak var viewModulesButton: UIButton!
 
-    lazy var editButton = UIBarButtonItem(title: NSLocalizedString("Edit", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(edit))
+    lazy var editButton = UIBarButtonItem(title: String(localized: "Edit", bundle: .core), style: .plain, target: self, action: #selector(edit))
     lazy var shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share(_:)))
 
     var assignmentID: String?
@@ -62,6 +62,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     private var accessReportInteractor: FileAccessReportInteractor?
     private var subscriptions = Set<AnyCancellable>()
     private var offlineFileInteractor: OfflineFileInteractor?
+    private var imageLoader: ImageLoader?
 
     public static func create(context: Context?, fileID: String, originURL: URLComponents? = nil, assignmentID: String? = nil,
                               offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileDetailsViewController {
@@ -106,11 +107,11 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         view.backgroundColor = .backgroundLightest
         contentView.backgroundColor = .backgroundLightest
 
-        arButton.setTitle(NSLocalizedString("Augment Reality", bundle: .core, comment: ""), for: .normal)
+        arButton.setTitle(String(localized: "Augment Reality", bundle: .core), for: .normal)
         arButton.isHidden = true
         arImageView.isHidden = true
 
-        copiedLabel.text = NSLocalizedString("Copied!", bundle: .core, comment: "")
+        copiedLabel.text = String(localized: "Copied!", bundle: .core)
 
         lockView.isHidden = true
 
@@ -128,10 +129,10 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         toolbar.isHidden = env.app != .teacher
         toolbar.tintColor = Brand.shared.linkColor
         toolbarLinkButton.accessibilityIdentifier = "FileDetails.copyButton"
-        toolbarLinkButton.accessibilityLabel = NSLocalizedString("Copy Link", bundle: .core, comment: "")
+        toolbarLinkButton.accessibilityLabel = String(localized: "Copy Link", bundle: .core)
         toolbarShareButton.accessibilityIdentifier = "FileDetails.shareButton"
 
-        viewModulesButton.setTitle(NSLocalizedString("View Modules", bundle: .core, comment: ""), for: .normal)
+        viewModulesButton.setTitle(String(localized: "View Modules", bundle: .core), for: .normal)
         viewModulesButton.isHidden = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(fileEdited(_:)), name: .init("file-edit"), object: nil)
@@ -225,17 +226,32 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         webView.linkDelegate = self
         webView.accessibilityLabel = "FileDetails.webView"
         progressView.progress = 0
-        loadObservation = webView.observe(\.estimatedProgress, options: .new) { [weak self] webView, _ in
-            self?.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
-            guard webView.estimatedProgress >= 1 else { return }
-            self?.loadObservation = nil
-            self?.doneLoading()
-        }
+        setupLoadObservation(for: webView)
 
         if isLocalURL {
             webView.loadFileURL(url, allowingReadAccessTo: url)
         } else {
             webView.load(URLRequest(url: url))
+        }
+    }
+
+    func embedImageWrappedInWebView(for url: URL) {
+        let webView = ImageWrapperUIKitWebView()
+        contentView.addSubview(webView)
+        webView.pin(inside: contentView)
+        webView.accessibilityLabel = "FileDetails.webView"
+        progressView.progress = 0
+        setupLoadObservation(for: webView)
+
+        webView.loadImageURL(url, baseURL: URL.Directories.temporary, fill: false, restrictZoom: false)
+    }
+
+    private func setupLoadObservation(for webView: WKWebView) {
+        loadObservation = webView.observe(\.estimatedProgress, options: .new) { [weak self] webView, _ in
+            self?.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
+            guard webView.estimatedProgress >= 1 else { return }
+            self?.loadObservation = nil
+            self?.doneLoading()
         }
     }
 
@@ -371,10 +387,10 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
     }
 
     private func showFileNoLongerExistsDialog() {
-        let alert = UIAlertController(title: NSLocalizedString("File No Longer Exists", comment: ""),
-                                      message: NSLocalizedString("The file has been deleted by the author.", comment: ""),
+        let alert = UIAlertController(title: String(localized: "File No Longer Exists", bundle: .core),
+                                      message: String(localized: "The file has been deleted by the author.", bundle: .core),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: ""),
+        alert.addAction(UIAlertAction(title: String(localized: "Close", bundle: .core),
                                       style: .default,
                                       handler: { [env] _ in
             env.router.dismiss(self)
@@ -391,7 +407,7 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
         case (_, let type) where type?.hasPrefix("audio/") == true:
             embedAudioView(for: localURL)
         case ("image", _), (_, "image/heic"):
-            embedImageView(for: localURL)
+            embedImageOrWebView(for: localURL)
         case (_, "model/vnd.usdz+zip"):
             embedQLThumbnail()
         case ("pdf", _):
@@ -405,10 +421,23 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
 }
 
 extension FileDetailsViewController: UIScrollViewDelegate {
-    func embedImageView(for url: URL) {
+    private func embedImageOrWebView(for url: URL) {
+        imageLoader = ImageLoader(url: url, frame: .zero, shouldFailForAnimatedGif: true) { [weak self] result in
+            if result.error as? ImageLoaderError == .animatedGifFound {
+                self?.embedImageWrappedInWebView(for: url)
+                self?.imageLoader = nil
+            } else {
+                self?.embedImageView(for: url)
+                self?.imageLoader = nil
+            }
+        }
+        imageLoader?.load()
+    }
+
+    private func embedImageView(for url: URL) {
         let image = UIImageView(image: UIImage(contentsOfFile: url.path))
         image.accessibilityIdentifier = "FileDetails.imageView"
-        image.accessibilityLabel = files.first?.displayName ?? NSLocalizedString("File", bundle: .core, comment: "")
+        image.accessibilityLabel = files.first?.displayName ?? String(localized: "File", bundle: .core)
         image.isAccessibilityElement = true
         let imageSize = image.frame.size
         let scroll = UIScrollView(frame: contentView.bounds)

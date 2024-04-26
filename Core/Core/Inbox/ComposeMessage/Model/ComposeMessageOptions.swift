@@ -104,7 +104,7 @@ extension ComposeMessageOptions {
         )
         var fieldContents = DefaultMessageFieldContents()
 
-        fieldContents.subjectText = String(localized: "Fw: \(conversation.subject)", comment: "New conversation subject for forwarded message")
+        fieldContents.subjectText = String(localized: "Fw: \(conversation.subject)", bundle: .core, comment: "New conversation subject for forwarded message")
 
         if let context = Context(canvasContextID: conversation.contextCode ?? "") {
             fieldContents.selectedContext = .init(name: conversation.contextName ?? "", context: context)

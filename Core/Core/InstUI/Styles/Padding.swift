@@ -23,6 +23,8 @@ public extension InstUI.Styles {
         case standard = 16
         case paragraphTop = 24
         case paragraphBottom = 28
+        /// When displaying multiple Text components below each other we use this spacing to separate them
+        case textVertical = 4
     }
 }
 

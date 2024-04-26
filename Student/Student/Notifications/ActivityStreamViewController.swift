@@ -67,12 +67,12 @@ class ActivityStreamViewController: ScreenViewTrackableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("Notifications", comment: "Notifications tab title")
+        title = String(localized: "Notifications", bundle: .student, comment: "Notifications tab title")
         navigationItem.titleView = Brand.shared.headerImageView()
         view.backgroundColor = .backgroundLightest
         setupTableView()
-        emptyStateHeader.text = NSLocalizedString("No Notifications", comment: "")
-        emptyStateSubHeader.text = NSLocalizedString("There's nothing to be notified of yet.", comment: "")
+        emptyStateHeader.text = String(localized: "No Notifications", bundle: .student)
+        emptyStateSubHeader.text = String(localized: "There's nothing to be notified of yet.", bundle: .student)
         refreshData()
     }
 
@@ -166,7 +166,7 @@ class ActivityCell: UITableViewCell {
     func update(_ activity: Activity, courseCache: [String: ActivityStreamViewController.Info] ) {
         backgroundColor = .backgroundLightest
         if activity.type == ActivityType.conversation {
-            titleLabel.setText(NSLocalizedString("New Message", comment: ""), style: .textCellTitle)
+            titleLabel.setText(String(localized: "New Message", bundle: .student), style: .textCellTitle)
         } else {
             titleLabel.setText(activity.title, style: .textCellTitle)
         }

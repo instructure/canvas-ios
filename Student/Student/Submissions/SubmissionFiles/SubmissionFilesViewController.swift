@@ -39,7 +39,7 @@ class SubmissionFilesViewController: UIViewController {
         view.backgroundColor = .backgroundLightest
         tableView?.separatorColor = .borderMedium
         tableView?.tintColor = .textInfo
-        emptyLabel?.text = NSLocalizedString("There are no files for this assignment.", bundle: .student, comment: "")
+        emptyLabel?.text = String(localized: "There are no files for this assignment.", bundle: .student)
         emptyContainer?.isHidden = !files.isEmpty
         emptyImageView?.image = UIImage(named: Panda.Papers.name, in: .core, compatibleWith: nil)
     }

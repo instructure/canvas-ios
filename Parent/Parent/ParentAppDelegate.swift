@@ -156,7 +156,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
 extension ParentAppDelegate: LoginDelegate {
     var supportsCanvasNetwork: Bool { false }
-    var findSchoolButtonTitle: String { NSLocalizedString("Find School", bundle: .core, comment: "") }
+    var findSchoolButtonTitle: String { String(localized: "Find School", bundle: .parent) }
 
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
@@ -224,10 +224,10 @@ extension ParentAppDelegate: LoginDelegate {
 
     func handleDeepLink(url: URL) {
         if url.host == "create-account" {
-            let title = NSLocalizedString("Login required", comment: "")
-            let message = NSLocalizedString("It looks like you’re trying to add a student. Try adding this student after you’ve logged in", comment: "")
+            let title = String(localized: "Login required", bundle: .parent)
+            let message = String(localized: "It looks like you’re trying to add a student. Try adding this student after you’ve logged in", bundle: .parent)
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default))
+            alert.addAction(UIAlertAction(title: String(localized: "OK", bundle: .parent), style: .default))
             guard let vc = topMostViewController() else { return }
             AppEnvironment.shared.router.show(alert, from: vc, options: .modal())
         }

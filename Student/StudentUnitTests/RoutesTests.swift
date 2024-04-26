@@ -54,8 +54,8 @@ class RoutesTests: XCTestCase {
         XCTAssertEqual((router.match("/act-as-user/3") as? ActAsUserViewController)?.initialUserID, "3")
 
         XCTAssert(router.match("/calendar") is PlannerViewController)
-        XCTAssert(router.match("/calendar?event_id=7") is CalendarEventDetailsViewController)
-        XCTAssert(router.match("/calendar_events/7") is CalendarEventDetailsViewController)
+        XCTAssert(router.match("/calendar?event_id=7") is CoreHostingController<CalendarEventDetailsScreen>)
+        XCTAssert(router.match("/calendar_events/7") is CoreHostingController<CalendarEventDetailsScreen>)
 
         XCTAssertEqual((router.match("/conversations/1") as? HelmViewController)?.moduleName, "/conversations/:conversationID")
 

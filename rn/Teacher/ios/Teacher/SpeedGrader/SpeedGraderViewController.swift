@@ -132,7 +132,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
     lazy var loadingView: UIViewController = CoreHostingController(
         ProgressView()
             .progressViewStyle(.indeterminateCircle())
-            .accessibility(label: Text("Loading"))
+            .accessibility(label: Text("Loading", bundle: .teacher))
             .identifier("SpeedGrader.spinner")
     )
 
@@ -149,8 +149,8 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
                     .identifier("SpeedGrader.emptyCloseButton")
             }
             EmptyPanda(.Space,
-                title: Text("No Submissions"),
-                message: Text("It seems there aren't any valid submissions to grade.")
+                title: Text("No Submissions", bundle: .teacher),
+                message: Text("It seems there aren't any valid submissions to grade.", bundle: .teacher)
             )
         }
     )

@@ -29,7 +29,7 @@ struct MediumLargeAnnouncementsView: View {
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
             HStack {
-                Text(NSLocalizedString("Announcements", comment: ""))
+                Text(String(localized: "Announcements"))
                     .font(.semibold12).foregroundColor(.textDark)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Image("student-logomark")

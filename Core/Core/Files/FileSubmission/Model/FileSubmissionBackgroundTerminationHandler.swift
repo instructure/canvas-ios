@@ -30,7 +30,7 @@ public struct FileSubmissionBackgroundTerminationHandler {
     func handleTermination(fileUploadItemID: NSManagedObjectID) {
         context.performAndWait {
             guard let fileUploadItem = try? context.existingObject(with: fileUploadItemID) as? FileUploadItem else { return }
-            let errorDescription = NSLocalizedString("The submission process was terminated by the operating system.", comment: "")
+            let errorDescription = String(localized: "The submission process was terminated by the operating system.", bundle: .core)
             let notSubmitted = !fileUploadItem.fileSubmission.isSubmitted
 
             if fileUploadItem.apiID == nil {

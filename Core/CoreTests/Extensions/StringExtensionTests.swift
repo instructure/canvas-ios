@@ -51,4 +51,9 @@ class StringExtensionTests: XCTestCase {
         XCTAssertTrue("123".containsNumber)
         XCTAssertTrue("test123".containsNumber)
     }
+
+    func testEmpty() {
+        XCTAssertFalse("".isNotEmpty)
+        XCTAssertTrue("test".isNotEmpty)
+    }
 }

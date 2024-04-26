@@ -203,7 +203,10 @@ public class CourseDetailsViewModel: ObservableObject {
         guard let course = course.first, tabs.requested, !tabs.pending, !tabs.hasNextPage, permissions.requested, !permissions.pending, attendanceToolRequest == nil else { return }
 
         if tabs.error != nil {
-            state = .empty(title: NSLocalizedString("Something went wrong", comment: ""), message: NSLocalizedString("There was an unexpected error. Please try again.", comment: ""))
+            state = .empty(
+                title: String(localized: "Something went wrong", bundle: .core),
+                message: String(localized: "There was an unexpected error. Please try again.", bundle: .core)
+            )
             return
         }
 

@@ -66,7 +66,7 @@ class ArcSubmissionViewController: UIViewController, ArcSubmissionView {
                         self?.showError(error)
                         return
                     }
-                    let alert = UIAlertController(title: NSLocalizedString("Successfully submitted!", bundle: .student, comment: ""), message: nil, preferredStyle: .alert)
+                    let alert = UIAlertController(title: String(localized: "Successfully submitted!", bundle: .student), message: nil, preferredStyle: .alert)
                     self?.present(alert, animated: true) {
                         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
                             alert.dismiss(animated: true) {

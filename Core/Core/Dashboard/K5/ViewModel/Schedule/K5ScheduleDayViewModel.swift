@@ -33,9 +33,9 @@ public class K5ScheduleDayViewModel: Identifiable, ObservableObject {
 
     public init(range: Range<Date>, calendar: Calendar) {
         if calendar.isDateInToday(range.lowerBound) {
-            self.weekday = NSLocalizedString("Today", comment: "")
+            self.weekday = String(localized: "Today", bundle: .core)
         } else if calendar.isDateInTomorrow(range.lowerBound) {
-            self.weekday = NSLocalizedString("Tomorrow", comment: "")
+            self.weekday = String(localized: "Tomorrow", bundle: .core)
         } else {
             self.weekday = range.lowerBound.weekdayName
         }

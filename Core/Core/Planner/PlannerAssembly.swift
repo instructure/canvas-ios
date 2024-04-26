@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
 
 public enum PlannerAssembly {
 
@@ -25,4 +25,22 @@ public enum PlannerAssembly {
         let view = ToDoDetailsScreen(viewModel: viewModel)
         return CoreHostingController(view)
     }
+
+    public static func makeEventDetailsViewController(eventId: String) -> UIViewController {
+        let interactor = CalendarEventDetailsInteractorLive(calendarEventId: eventId)
+        let viewModel = CalendarEventDetailsViewModel(interactor: interactor)
+        let view = CalendarEventDetailsScreen(viewModel: viewModel)
+        let host = CoreHostingController(view)
+        return host
+    }
+
+#if DEBUG
+
+    public static func makeEventDetailsPreview() -> some View {
+        let interactor = CalendarEventDetailsInteractorPreview()
+        let viewModel = CalendarEventDetailsViewModel(interactor: interactor)
+        return CalendarEventDetailsScreen(viewModel: viewModel)
+    }
+
+#endif
 }

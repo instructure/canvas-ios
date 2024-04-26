@@ -43,7 +43,7 @@ public class CreateTodoViewController: ScreenViewTrackableViewController, ErrorV
         }
     }
     var selectedCourseName: String? {
-        guard let c = selectedCourse else { return NSLocalizedString("None", bundle: .core, comment: "")  }
+        guard let c = selectedCourse else { return String(localized: "None", bundle: .core)  }
         return c.name
     }
     var selectedCourse: Course?
@@ -57,29 +57,29 @@ public class CreateTodoViewController: ScreenViewTrackableViewController, ErrorV
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("New To Do", bundle: .core, comment: "")
-        titleLabel.placeholder = NSLocalizedString("Title...", bundle: .core, comment: "")
+        title = String(localized: "New To Do", bundle: .core)
+        titleLabel.placeholder = String(localized: "Title...", bundle: .core)
         titleLabel.delegate = self
-        titleLabel.accessibilityLabel = NSLocalizedString("Title", bundle: .core, comment: "")
-        dateTitleLabel.text = NSLocalizedString("Date", bundle: .core, comment: "")
+        titleLabel.accessibilityLabel = String(localized: "Title", bundle: .core)
+        dateTitleLabel.text = String(localized: "Date", bundle: .core)
         dateTitleLabel.accessibilityElementsHidden = true
         descTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         descTextView.textColor = UIColor.textDarkest
         descTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        descTextView.placeholder = NSLocalizedString("Description", bundle: .core, comment: "")
-        descTextView.accessibilityLabel = NSLocalizedString("Description", bundle: .core, comment: "")
+        descTextView.placeholder = String(localized: "Description", bundle: .core)
+        descTextView.accessibilityLabel = String(localized: "Description", bundle: .core)
         dateTextField.text = selectedDate?.dateTimeString
         dateTextField.accessibilityElementsHidden = true
         dateTextField.textColor = .textDark
-        selectDateButton.accessibilityLabel = NSLocalizedString("Date", bundle: .core, comment: "")
+        selectDateButton.accessibilityLabel = String(localized: "Date", bundle: .core)
         courseSelectionLabel.text = selectedCourseName
         courseSelectionLabel.textColor = UIColor.textDark
         courseSelectionLabel.accessibilityElementsHidden = true
         courseTitleLabel.accessibilityElementsHidden = true
-        courseTitleLabel.text = NSLocalizedString("Course (optional)", bundle: .core, comment: "")
+        courseTitleLabel.text = String(localized: "Course (optional)", bundle: .core)
         updateCourseAccessibilityLabel()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(actionCancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .done, target: self, action: #selector(actionDone))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: String(localized: "Cancel", bundle: .core), style: .plain, target: self, action: #selector(actionCancel))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Done", bundle: .core), style: .done, target: self, action: #selector(actionDone))
         keyboardListener = KeyboardTransitioning(view: view, space: scrollViewBottomConstraint)
     }
 
@@ -123,8 +123,8 @@ public class CreateTodoViewController: ScreenViewTrackableViewController, ErrorV
     }
 
     func updateCourseAccessibilityLabel() {
-        let courseLabel = NSLocalizedString("Course (optional)", bundle: .core, comment: "")
-        let courseName = selectedCourseName ?? NSLocalizedString("None", bundle: .core, comment: "")
+        let courseLabel = String(localized: "Course (optional)", bundle: .core)
+        let courseName = selectedCourseName ?? String(localized: "None", bundle: .core)
         selectCourseButton.accessibilityLabel = courseLabel + ", " + courseName
     }
 }
@@ -168,13 +168,13 @@ class SelectCourseViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("Select Course", bundle: .core, comment: "")
+        title = String(localized: "Select Course", bundle: .core)
         tableView.registerCell(RightDetailTableViewCell.self)
         tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
         tableView.tableFooterView = UIView()
         courses.exhaust()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Clear Course", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(clearCourse))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Clear Course", bundle: .core), style: .plain, target: self, action: #selector(clearCourse))
     }
 
     func coursesDidUpdate() {

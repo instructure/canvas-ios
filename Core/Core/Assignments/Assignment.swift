@@ -360,7 +360,7 @@ extension Assignment: DueViewable, GradeViewable, SubmissionViewable {
     }
 
     public var descriptionHTML: String {
-        let fallback = "<i>\(NSLocalizedString("No Content", bundle: .core, comment: ""))</i>"
+        let fallback = "<i>\(String(localized: "No Content", bundle: .core))</i>"
         if isDiscussion {
             return discussionTopic.map { DiscussionHTML.string(for: $0) } ?? fallback
         }
@@ -458,17 +458,17 @@ public enum GradingType: String, Codable, CaseIterable {
     var string: String {
         switch self {
         case .percent:
-            return NSLocalizedString("Percentage", comment: "")
+            return String(localized: "Percentage", bundle: .core)
         case .pass_fail:
-            return NSLocalizedString("Complete/Incomplete", comment: "")
+            return String(localized: "Complete/Incomplete", bundle: .core)
         case .points:
-            return NSLocalizedString("Points", comment: "")
+            return String(localized: "Points", bundle: .core)
         case .letter_grade:
-            return NSLocalizedString("Letter Grade", comment: "")
+            return String(localized: "Letter Grade", bundle: .core)
         case .gpa_scale:
-            return NSLocalizedString("GPA Scale", comment: "")
+            return String(localized: "GPA Scale", bundle: .core)
         case .not_graded:
-            return NSLocalizedString("Not Graded", comment: "")
+            return String(localized: "Not Graded", bundle: .core)
         }
     }
 }

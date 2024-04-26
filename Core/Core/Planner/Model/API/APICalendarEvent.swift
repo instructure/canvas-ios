@@ -39,6 +39,8 @@ public struct APICalendarEvent: Codable, Equatable {
     let location_address: String?
     let hidden: Bool?
     let important_dates: Bool
+    /// The event repetition in human readable format
+    let series_natural_language: String?
 }
 
 #if DEBUG
@@ -62,7 +64,8 @@ extension APICalendarEvent {
         location_name: String? = nil,
         location_address: String? = nil,
         hidden: Bool? = false,
-        important_dates: Bool = false
+        important_dates: Bool = false,
+        series_natural_language: String? = "Weekly on Wed, 52 times"
     ) -> APICalendarEvent {
         return APICalendarEvent(
             id: id,
@@ -83,7 +86,8 @@ extension APICalendarEvent {
             location_name: location_name,
             location_address: location_address,
             hidden: hidden,
-            important_dates: important_dates
+            important_dates: important_dates,
+            series_natural_language: series_natural_language
         )
     }
 }
@@ -176,6 +180,12 @@ public struct GetCalendarEventsRequest: APIRequestable {
 // https://canvas.instructure.com/doc/api/calendar_events.html#method.calendar_events_api.show
 public struct GetCalendarEventRequest: APIRequestable {
     public typealias Response = APICalendarEvent
+    public enum Include: String, CaseIterable {
+        case seriesNaturalLanguage = "series_natural_language"
+    }
     public let eventID: String
     public var path: String { "calendar_events/\(eventID)" }
+    public var query: [APIQueryItem] {
+        [.include(Include.allCases.map(\.rawValue))]
+    }
 }

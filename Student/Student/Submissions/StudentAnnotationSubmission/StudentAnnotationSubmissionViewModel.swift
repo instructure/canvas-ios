@@ -32,10 +32,10 @@ public class StudentAnnotationSubmissionViewModel: ObservableObject {
 
     public init(documentURL: URL, courseID: String, assignmentID: String, userID: String, annotatableAttachmentID: String?, assignmentName: String, courseColor: UIColor) {
         self.documentURL = documentURL
-        self.navBar = (title: NSLocalizedString("Student Annotation", comment: ""),
+        self.navBar = (title: String(localized: "Student Annotation", bundle: .student),
                        subtitle: assignmentName,
                        color: courseColor,
-                       closeButtonTitle: NSLocalizedString("Close", bundle: .core, comment: ""))
+                       closeButtonTitle: String(localized: "Close", bundle: .student))
         self.submissionUseCase = CreateSubmission(context: .course(courseID),
                                                   assignmentID: assignmentID,
                                                   userID: userID,
@@ -52,7 +52,7 @@ public class StudentAnnotationSubmissionViewModel: ObservableObject {
             if submission != nil {
                 self.dismissView.send()
             } else {
-                self.error = .init(title: NSLocalizedString("Submission Failed", comment: ""), message: error?.localizedDescription ?? NSLocalizedString("Unknown Error", bundle: .core, comment: ""))
+                self.error = .init(title: String(localized: "Submission Failed", bundle: .student), message: error?.localizedDescription ?? String(localized: "Unknown Error", bundle: .student))
             }
         }}
     }
@@ -62,7 +62,7 @@ public class StudentAnnotationSubmissionViewModel: ObservableObject {
     }
 
     private static func makeDoneButton(isSaving: Bool) -> (title: String, isDisabled: Bool, opacity: Double) {
-        (title: isSaving ? NSLocalizedString("Submitting...", comment: "") : NSLocalizedString("Submit", bundle: .core, comment: ""), isDisabled: isSaving, opacity: isSaving ? 0.5 : 1)
+        (title: isSaving ? String(localized: "Submitting...", bundle: .student) : String(localized: "Submit", bundle: .student), isDisabled: isSaving, opacity: isSaving ? 0.5 : 1)
     }
 }
 

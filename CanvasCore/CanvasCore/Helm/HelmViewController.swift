@@ -396,7 +396,7 @@ public final class HelmViewController: ScreenViewTrackableViewController, HelmSc
         // show the dismiss button when view controller is shown modally
         let navigatorOptions = props[PropKeys.navigatorOptions] as? [String: Any]
         if screenConfig[PropKeys.dismissButtonTitle] != nil || (navigatorOptions?["modal"] as? Bool == true && screenConfig[PropKeys.showDismissButton] as? Bool == true) {
-            let dismissTitle = screenConfig[PropKeys.dismissButtonTitle] as? String ?? NSLocalizedString("Done", bundle: .canvas, comment: "")
+            let dismissTitle = screenConfig[PropKeys.dismissButtonTitle] as? String ?? String(localized: "Done", bundle: .canvas)
             addModalDismissButton(buttonTitle: dismissTitle)
         }
 
@@ -453,7 +453,7 @@ fileprivate struct Associated {
 
 extension UIViewController {
     @objc public func addModalDismissButton(buttonTitle: String?) {
-        var dismissTitle = NSLocalizedString("Done", bundle: .canvas, comment: "")
+        var dismissTitle = String(localized: "Done", bundle: .canvas)
         if let buttonTitle = buttonTitle {
             dismissTitle = buttonTitle
         }

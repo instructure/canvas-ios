@@ -129,7 +129,7 @@ struct ConfirmationAlertPreview: PreviewProvider {
                     Button {
                         viewModel.showDidTap.send()
                     } label: {
-                        Text("Show dialog")
+                        Text("Show dialog", bundle: .core)
                     }
                     .alertConfirmation(isPresented: $viewModel.isShowingConfirmationDialog,
                                        presenting: viewModel.confirmDialog)

@@ -38,27 +38,24 @@ class CourseSyncProgressViewModel: ObservableObject {
 
     public let labels = (
         noCourses: (
-            title: NSLocalizedString("No Courses", comment: ""),
-            message: NSLocalizedString("Your courses will be listed here, and then you can make them available for offline usage.", comment: "")
+            title: String(localized: "No Courses", bundle: .core),
+            message: String(localized: "Your courses will be listed here, and then you can make them available for offline usage.", bundle: .core)
         ),
         noItems: (
-            title: NSLocalizedString("No Course Content", comment: ""),
-            message: NSLocalizedString("The course content will be listed here, and then you can make them available for offline usage.", comment: "")
+            title: String(localized: "No Course Content", bundle: .core),
+            message: String(localized: "The course content will be listed here, and then you can make them available for offline usage.", bundle: .core)
         ),
         error: (
-            title: NSLocalizedString("Something went wrong", comment: ""),
-            message: NSLocalizedString("There was an unexpected error.", comment: "")
+            title: String(localized: "Something went wrong", bundle: .core),
+            message: String(localized: "There was an unexpected error.", bundle: .core)
         )
     )
 
     public let confirmAlert = ConfirmationAlertViewModel(
-        title: NSLocalizedString("Cancel Sync?", comment: ""),
-        message: NSLocalizedString(
-           """
-           It will stop offline content sync. You can do it again later.
-           """, comment: ""),
-        cancelButtonTitle: NSLocalizedString("No", comment: ""),
-        confirmButtonTitle: NSLocalizedString("Yes", comment: ""),
+        title: String(localized: "Cancel Sync?", bundle: .core),
+        message: String(localized: "It will stop offline content sync. You can do it again later.", bundle: .core),
+        cancelButtonTitle: String(localized: "No", bundle: .core),
+        confirmButtonTitle: String(localized: "Yes", bundle: .core),
         isDestructive: false
     )
 
