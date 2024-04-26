@@ -46,10 +46,9 @@ public enum APIError: LocalizedError {
 
         if let response {
             return NSError.instructureError(
-                NSLocalizedString(
-                    "There was an unexpected error. Please try again.",
-                    bundle: .core,
-                    comment: ""
+                String(
+                    localized: "There was an unexpected error. Please try again.",
+                    bundle: .core
                 ),
                 code: NSError.errorCodeForHttpResponse(response)
             )
