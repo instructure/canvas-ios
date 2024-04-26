@@ -23,9 +23,7 @@ class AssignmentReminderTests: E2ETestCase {
     typealias DetailsHelper = Helper.Details
     typealias ReminderHelper = DetailsHelper.Reminder
 
-    override func setUp() {
-        super.setUp()
-
+    func enableNotifications() {
         // MARK: Enabling notifications for Canvas Student app
         SettingsAppHelper.app.launch()
         let canvasStudentButton = SettingsAppHelper.canvasStudentButton.waitUntil(.visible)
@@ -63,6 +61,10 @@ class AssignmentReminderTests: E2ETestCase {
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course)
         XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Enable system notifications
+        enableNotifications()
+        XCTAssertTrue(courseCard.waitUntil(.visible).isVisible)
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
@@ -148,6 +150,10 @@ class AssignmentReminderTests: E2ETestCase {
         let courseCard = DashboardHelper.courseCard(course: course)
         XCTAssertTrue(courseCard.isVisible)
 
+        // MARK: Enable system notifications
+        enableNotifications()
+        XCTAssertTrue(courseCard.waitUntil(.visible).isVisible)
+
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
         let navBar = Helper.navBar(course: course).waitUntil(.visible)
@@ -229,6 +235,10 @@ class AssignmentReminderTests: E2ETestCase {
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course)
         XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Enable system notifications
+        enableNotifications()
+        XCTAssertTrue(courseCard.waitUntil(.visible).isVisible)
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
@@ -316,6 +326,10 @@ class AssignmentReminderTests: E2ETestCase {
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course)
         XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Enable system notifications
+        enableNotifications()
+        XCTAssertTrue(courseCard.waitUntil(.visible).isVisible)
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
