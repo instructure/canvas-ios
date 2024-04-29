@@ -19,8 +19,6 @@
 import Combine
 
 public protocol CalendarFilterInteractor: AnyObject {
-    init(observedUserId: String?, env: AppEnvironment)
-
     func loadFilters(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error>
 
     func observeSelectedContexts() -> AnyPublisher<Set<Context>, Never>

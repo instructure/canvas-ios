@@ -23,9 +23,7 @@ import Combine
 public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
     private let env = PreviewEnvironment()
 
-    public required init(observedUserId: String?, env: AppEnvironment) {
-
-    }
+    public init() {}
 
     public func loadFilters(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error> {
         let makeFilterEntry: (String, Context) -> CDCalendarFilterEntry = { name, context in

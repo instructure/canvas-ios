@@ -51,7 +51,7 @@ public enum PlannerAssembly {
     }
 
     public static func makeFilterScreenPreview() -> some View {
-        let interactor = CalendarFilterInteractorPreview(observedUserId: nil, env: .shared)
+        let interactor = CalendarFilterInteractorPreview()
         let viewModel = CalendarFilterViewModel(interactor: interactor, didDismissPicker: {})
         return CalendarFilterScreen(viewModel: viewModel)
     }
