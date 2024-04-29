@@ -23,10 +23,12 @@ public class DeleteConversation: APIUseCase {
     public var cacheKey: String?
     public typealias Model = Conversation
     public let id: String
+
     public var scope: Scope {
         Scope.where(#keyPath(InboxMessageListItem.messageId), equals: id)
     }
     private let inboxMessageScope: InboxMessageScope
+
 
     public var request: DeleteConversationRequest {
         return DeleteConversationRequest(id: id)

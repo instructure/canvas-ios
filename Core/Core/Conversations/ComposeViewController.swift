@@ -30,7 +30,7 @@ public class ComposeViewController: UIViewController, ErrorViewController {
     let titleSubtitleView = TitleSubtitleView.create()
 
     lazy var attachButton = UIBarButtonItem(image: .paperclipLine, style: .plain, target: self, action: #selector(attach))
-    lazy var sendButton = UIBarButtonItem(title: NSLocalizedString("Send", comment: ""), style: .done, target: self, action: #selector(send))
+    lazy var sendButton = UIBarButtonItem(title: String(localized: "Send", bundle: .core), style: .done, target: self, action: #selector(send))
 
     let batchID = UUID.string
     lazy var attachments = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
@@ -83,10 +83,10 @@ public class ComposeViewController: UIViewController, ErrorViewController {
         titleSubtitleView.titleLabel?.textColor = .textDarkest
         titleSubtitleView.subtitleLabel?.textColor = .textDark
         navigationItem.titleView = titleSubtitleView
-        titleSubtitleView.title = NSLocalizedString("New Message", comment: "")
+        titleSubtitleView.title = String(localized: "New Message", bundle: .core)
 
         addCancelButton(side: .left)
-        attachButton.accessibilityLabel = NSLocalizedString("Add Attachments", comment: "")
+        attachButton.accessibilityLabel = String(localized: "Add Attachments", bundle: .core)
         sendButton.isEnabled = false
         navigationItem.rightBarButtonItems = [ sendButton, attachButton ]
 
@@ -95,18 +95,18 @@ public class ComposeViewController: UIViewController, ErrorViewController {
         attachmentsController.showOptions = { [weak self] in self?.showOptions(for: $0) }
 
         bodyMinHeight.isActive = true
-        bodyView.placeholder = NSLocalizedString("Message", comment: "")
+        bodyView.placeholder = String(localized: "Message", bundle: .core)
         bodyView.placeholderColor = UIColor.textDark
         bodyView.font = .scaledNamedFont(.medium16)
         bodyView.textColor = .textDarkest
         bodyView.textContainerInset = UIEdgeInsets(top: 15.5, left: 11, bottom: 15, right: 11)
-        bodyView.accessibilityLabel = NSLocalizedString("Message", comment: "")
+        bodyView.accessibilityLabel = String(localized: "Message", bundle: .core)
 
         subjectField.attributedPlaceholder = NSAttributedString(
-            string: NSLocalizedString("Subject", comment: ""),
+            string: String(localized: "Subject", bundle: .core),
             attributes: [ .foregroundColor: UIColor.textDark ]
         )
-        subjectField.accessibilityLabel = NSLocalizedString("Subject", comment: "")
+        subjectField.accessibilityLabel = String(localized: "Subject", bundle: .core)
 
         recipientsView.editButton.addTarget(self, action: #selector(editRecipients), for: .primaryActionTriggered)
         course?.refresh()

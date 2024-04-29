@@ -21,21 +21,29 @@ import CanvasCore
 import Core
 import UserNotifications
 
-class TeacherTabBarController: UITabBarController {
+class TeacherTabBarController: UITabBarController, SnackBarProvider {
+    let snackBarViewModel = SnackBarViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         delegate = self
+        let paths: [String]
 
-        viewControllers = [coursesTab(), toDoTab(), inboxTab()]
-        let paths = [ "/", "/to-do", "/conversations" ]
+        if ExperimentalFeature.teacherCalendar.isEnabled {
+            viewControllers = [coursesTab(), calendarTab(), toDoTab(), inboxTab()]
+            paths = [ "/", "/calendar", "/to-do", "/conversations" ]
+        } else {
+            viewControllers = [coursesTab(), toDoTab(), inboxTab()]
+            paths = [ "/", "/to-do", "/conversations" ]
+        }
         selectedIndex = AppEnvironment.shared.userDefaults?.landingPath.flatMap {
             paths.firstIndex(of: $0)
         } ?? 0
         tabBar.useGlobalNavStyle()
         NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
+        addSnackBar()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -52,16 +60,32 @@ class TeacherTabBarController: UITabBarController {
         let cardView = CoreHostingController(DashboardContainerView(shouldShowGroupList: false,
                                                                showOnlyTeacherEnrollment: true))
         let dashboard = DashboardContainerViewController(rootViewController: cardView) { HelmSplitViewController() }
-        dashboard.tabBarItem.title = NSLocalizedString("Courses", comment: "")
+        dashboard.tabBarItem.title = String(localized: "Courses", bundle: .teacher)
         dashboard.tabBarItem.image = .coursesTab
         dashboard.tabBarItem.selectedImage = .coursesTabActive
         dashboard.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
         return dashboard
     }
 
+    func calendarTab() -> UIViewController {
+        let split = HelmSplitViewController()
+        split.viewControllers = [
+            HelmNavigationController(rootViewController: PlannerViewController.create()),
+            HelmNavigationController(rootViewController: EmptyViewController()),
+        ]
+        split.view.tintColor = Brand.shared.primary
+        split.tabBarItem.title = String(localized: "Calendar", bundle: .teacher, comment: "Calendar page title")
+        split.tabBarItem.image = .calendarTab
+        split.tabBarItem.selectedImage = .calendarTabActive
+        split.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
+        split.tabBarItem.makeUnavailableInOfflineMode()
+        split.embedOfflineBanner()
+        return split
+    }
+
     func toDoTab() -> UIViewController {
         let todo = HelmNavigationController(rootViewController: TodoListViewController.create())
-        todo.tabBarItem.title = NSLocalizedString("To Do", comment: "")
+        todo.tabBarItem.title = String(localized: "To Do", bundle: .teacher)
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
         todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
@@ -88,7 +112,7 @@ class TeacherTabBarController: UITabBarController {
         empty.navigationBar.useGlobalNavStyle()
 
         inboxSplit.viewControllers = [inboxController, empty]
-        let title = NSLocalizedString("Inbox", comment: "Inbox tab title")
+        let title = String(localized: "Inbox", bundle: .teacher, comment: "Inbox tab title")
         inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
         inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
         inboxSplit.extendedLayoutIncludesOpaqueBars = true
@@ -98,7 +122,14 @@ class TeacherTabBarController: UITabBarController {
     }
 
     private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {
-        let map = ["dashboard", "todo", "conversations"]
+        let map: [String]
+
+        if ExperimentalFeature.teacherCalendar.isEnabled {
+            map = ["dashboard", "calendar", "todo", "conversations"]
+        } else {
+            map = ["dashboard", "todo", "conversations"]
+        }
+
         let event = map[tabIndex]
         Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
     }

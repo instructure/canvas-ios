@@ -30,6 +30,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
             CourseSyncEntry(
                 name: "course-1",
                 id: "course-1",
+                hasFrontPage: false,
                 tabs: [],
                 files: [
                     .make(id: "file-1", displayName: "file-1", bytesToDownload: 1000),
@@ -112,6 +113,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
         entries.append(CourseSyncEntry(
             name: "course-2",
             id: "course-2",
+            hasFrontPage: false,
             tabs: [],
             files: []
         ))

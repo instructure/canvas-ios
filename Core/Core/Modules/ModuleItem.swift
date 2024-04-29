@@ -32,6 +32,7 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var htmlURL: URL?
     @NSManaged public var url: URL?
     @NSManaged public var publishedRaw: NSNumber?
+    @NSManaged public var canBeUnpublished: Bool
     @NSManaged public var typeRaw: Data?
     @NSManaged public var module: Module?
     @NSManaged public var dueAt: Date?
@@ -44,6 +45,15 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var masteryPathItem: ModuleItem?
     @NSManaged public var masteryPath: MasteryPath?
     @NSManaged public var moduleItem: ModuleItem? // inverse of masteryPathItem
+    @NSManaged public var fileAvailabilityRaw: NSNumber?
+
+    /// In case the module item is a file it can have 4 states of availability. Only used for the teacher modules list.
+    public var fileAvailability: FileAvailability? {
+        get {
+            guard let fileAvailabilityRaw else { return nil }
+            return FileAvailability(rawValue: fileAvailabilityRaw.intValue) }
+        set { fileAvailabilityRaw = NSNumber(value: newValue?.rawValue) }
+    }
 
     public var published: Bool? {
         get { return publishedRaw?.boolValue }
@@ -155,6 +165,7 @@ public class ModuleItem: NSManagedObject {
         model.htmlURL = item.html_url
         model.url = item.url
         model.published = item.published
+        model.canBeUnpublished = item.unpublishable ?? true
         model.type = item.content
         model.pointsPossible = item.content_details?.points_possible
         model.dueAt = item.content_details?.due_at
@@ -162,6 +173,7 @@ public class ModuleItem: NSManagedObject {
         model.lockExplanation = item.content_details?.lock_explanation
         model.completionRequirement = item.completion_requirement
         model.courseID = courseID
+        model.fileAvailability = .init(moduleItem: item)
 
         if updateMasteryPath {
             if let masteryPath = item.mastery_paths, masteryPath.selected_set_id == nil {
@@ -171,8 +183,8 @@ public class ModuleItem: NSManagedObject {
                 path.moduleID = item.module_id.value
                 path.position = Double(item.position) + 0.5
                 path.title = item.mastery_paths?.locked == true
-                    ? String.localizedStringWithFormat(NSLocalizedString("Locked until \"%@\" is graded", comment: ""), item.title)
-                    : NSLocalizedString("Select a Path", comment: "")
+                    ? String.localizedStringWithFormat(String(localized: "Locked until \"%@\" is graded", bundle: .core), item.title)
+                    : String(localized: "Select a Path", bundle: .core)
                 path.indent = item.indent
                 path.type = item.content
                 path.masteryPath = MasteryPath.save(masteryPath, in: context)

@@ -16,11 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 import SafariServices
 
-public class ModuleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
-    let refreshControl = CircleRefreshControl()
+public final class ModuleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
+    private let refreshControl = CircleRefreshControl()
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -29,10 +29,10 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
     @IBOutlet weak var tableView: UITableView!
     public let titleSubtitleView = TitleSubtitleView.create()
 
-    let env = AppEnvironment.shared
+    private let env = AppEnvironment.shared
     public var color: UIColor?
-    var courseID = ""
-    var moduleID: String?
+    private var courseID = ""
+    private var moduleID: String?
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "/courses/\(courses.first?.id ?? "")/modules"
     )
@@ -50,7 +50,7 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         self?.update()
     }
 
-    var isPageDisabled: Bool {
+    private var isPageDisabled: Bool {
         tabs.first { $0.id == "modules" } == nil && courses.first?.defaultView != .modules
     }
     private var collapsedIDs: [String: [String]] = AppEnvironment.shared.userDefaults?.collapsedModules ?? [:] {
@@ -58,6 +58,8 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
             AppEnvironment.shared.userDefaults?.collapsedModules = collapsedIDs
         }
     }
+    private lazy var publishInteractor = ModulesAssembly.publishInteractor(for: courseID)
+    private var subscriptions = Set<AnyCancellable>()
 
     public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let controller = loadFromStoryboard()
@@ -68,15 +70,15 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: NSLocalizedString("Modules", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Modules", bundle: .core))
 
         collapsedIDs[courseID] = collapsedIDs[courseID] ?? []
         if let moduleID = moduleID {
             collapsedIDs[courseID]?.removeAll { $0 == moduleID }
         }
 
-        emptyMessageLabel.text = NSLocalizedString("There are no modules to display yet.", bundle: .core, comment: "")
-        emptyTitleLabel.text = NSLocalizedString("No Modules", bundle: .core, comment: "")
+        emptyMessageLabel.text = String(localized: "There are no modules to display yet.", bundle: .core)
+        emptyTitleLabel.text = String(localized: "No Modules", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         refreshControl.color = nil
@@ -90,7 +92,7 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         tableView.registerHeaderFooterView(ModuleSectionHeaderView.self, fromNib: false)
         if let footer = tableView.tableFooterView as? UILabel {
             footer.isHidden = true
-            footer.text = NSLocalizedString("Loading more modules...", bundle: .core, comment: "")
+            footer.text = String(localized: "Loading more modules...", bundle: .core)
             tableView.contentInset.bottom = -footer.frame.height
         }
 
@@ -111,29 +113,71 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         navigationController?.navigationBar.useContextColor(color)
     }
 
-    func update() {
+    private func update() {
         let pending = modules.pending || tabs.pending || courses.pending
         spinnerView.isHidden = !pending || refreshControl.isRefreshing
         emptyView.isHidden = modules.pending || !modules.isEmpty || modules.error != nil || isPageDisabled
         errorView.isHidden = pending || (modules.error == nil && !isPageDisabled)
         if isPageDisabled {
-            errorView.messageLabel.text = NSLocalizedString("This page has been disabled for this course.", bundle: .core, comment: "")
+            errorView.messageLabel.text = String(localized: "This page has been disabled for this course.", bundle: .core)
             errorView.retryButton.isHidden = true
         } else {
-            errorView.messageLabel.text = NSLocalizedString("There was an error loading modules.", bundle: .core, comment: "")
+            errorView.messageLabel.text = String(localized: "There was an error loading modules.", bundle: .core)
             errorView.retryButton.isHidden = false
         }
         tableView.tableFooterView?.setNeedsLayout()
         tableView.reloadData()
         scrollToModule()
+
+        if spinnerView.isHidden, emptyView.isHidden, errorView.isHidden {
+            setupBulkPublishButtonInNavBar()
+        }
     }
 
-    func reloadCourse() {
+    private func setupBulkPublishButtonInNavBar() {
+        guard navigationItem.rightBarButtonItem == nil,
+              publishInteractor.isPublishActionAvailable
+        else { return }
+
+        let button = UIBarButtonItem(image: .moreLine)
+        button.menu = .makePublishAllModulesMenu(host: self) { [weak self] action in
+            self?.didPerformPublishAction(action: action)
+        }
+        button.accessibilityLabel = String(localized: "Publish options", bundle: .core)
+        navigationItem.setRightBarButton(button, animated: true)
+
+        publishInteractor
+            .modulesUpdating
+            .receive(on: RunLoop.main)
+            .map { [modules] modulesUpdating in
+                let allModules = modules.all.map { $0.id }
+                return Set(modulesUpdating) == Set(allModules)
+            }
+            .sink { isAllModulesUpdating in
+                button.isEnabled = !isAllModulesUpdating
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func didPerformPublishAction(action: ModulePublishAction) {
+        let moduleIds = modules.map { $0.id }
+        let viewModel = ModulePublishProgressViewModel(
+            action: action,
+            allModules: true,
+            moduleIds: moduleIds,
+            interactor: publishInteractor,
+            router: env.router
+        )
+        let viewController = CoreHostingController(ModulePublishProgressView(viewModel: viewModel))
+        env.router.show(viewController, from: self, options: .modal(isDismissable: true, embedInNav: true))
+    }
+
+    private func reloadCourse() {
         updateNavBar(subtitle: courses.first?.name, color: courses.first?.color)
         view.tintColor = color
     }
 
-    @objc func refresh() {
+    @objc private func refresh() {
         modules.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
@@ -141,12 +185,12 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         courses.refresh(force: true)
     }
 
-    func isSectionExpanded(_ section: Int) -> Bool {
+    private func isSectionExpanded(_ section: Int) -> Bool {
         guard let module = modules[section] else { return false }
         return collapsedIDs[courseID]?.contains(module.id) != true
     }
 
-    func scrollToModule() {
+    private func scrollToModule() {
         if let moduleID = moduleID, let section = modules.all.firstIndex(where: { $0.id == moduleID }), section < tableView.numberOfSections {
             let indexPath = IndexPath(row: 0, section: section)
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
@@ -154,7 +198,7 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         }
     }
 
-    @objc func moduleItemViewDidLoad(_ notification: Notification) {
+    @objc private func moduleItemViewDidLoad(_ notification: Notification) {
         guard
             splitViewController?.isCollapsed == false,
             let userInfo = notification.userInfo,
@@ -189,7 +233,7 @@ extension ModuleListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let module = modules[section] else { return nil }
         let header = tableView.dequeueHeaderFooter(ModuleSectionHeaderView.self)
-        header.update(module, section: section, isExpanded: isSectionExpanded(section)) { [weak self] in
+        header.update(module, section: section, isExpanded: isSectionExpanded(section), host: self, publishInteractor: publishInteractor) { [weak self] in
             self?.toggleSection(section)
         }
         header.onLockTap = { [weak self] in
@@ -198,7 +242,7 @@ extension ModuleListViewController: UITableViewDataSource {
         return header
     }
 
-    func toggleSection(_ section: Int) {
+    private func toggleSection(_ section: Int) {
         guard let module = modules[section] else { return }
         if isSectionExpanded(section) {
             collapsedIDs[courseID]?.append(module.id)
@@ -208,15 +252,15 @@ extension ModuleListViewController: UITableViewDataSource {
         tableView.reloadSections([section], with: .automatic)
     }
 
-    func showLockedMessage(module: Module) {
+    private func showLockedMessage(module: Module) {
         guard let message = module.lockedMessage else { return }
         let alert = UIAlertController(
-            title: NSLocalizedString("Locked", bundle: .core, comment: ""),
+            title: String(localized: "Locked", bundle: .core),
             message: message,
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(
-            title: NSLocalizedString("OK", bundle: .core, comment: ""),
+            title: String(localized: "OK", bundle: .core),
             style: .default,
             handler: nil
         ))
@@ -233,21 +277,11 @@ extension ModuleListViewController: UITableViewDataSource {
         if indexPath.row == module?.items.count {
             return tableView.dequeue(for: indexPath) as EmptyCell
         }
-        let item = module?.items[indexPath.row]
-        switch item?.type {
-        case .subHeader:
-            let cell: ModuleItemSubHeaderCell = tableView.dequeue(for: indexPath)
-            if let item = item {
-                cell.update(item)
-            }
-            return cell
-        default:
-            let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
-            if let item = item {
-                cell.update(item, indexPath: indexPath, color: color)
-            }
-            return cell
+        let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
+        if let item = module?.items[indexPath.row] {
+            cell.update(item, indexPath: indexPath, color: color, publishInteractor: publishInteractor, host: self)
         }
+        return cell
     }
 }
 
@@ -282,7 +316,7 @@ extension ModuleListViewController {
             fullDivider = true
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
-            label.text = NSLocalizedString("This module is empty.", bundle: .core, comment: "")
+            label.text = String(localized: "This module is empty.", bundle: .core)
             label.textAlignment = .center
             label.font = .scaledNamedFont(.medium12)
             label.textColor = .textDark

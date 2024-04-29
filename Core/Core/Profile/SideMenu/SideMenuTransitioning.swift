@@ -103,7 +103,7 @@ public class SideMenuPresentationController: UIPresentationController {
             dimmer.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
         ])
         dimmer.addTarget(self, action: #selector(tapped), for: .primaryActionTriggered)
-        dimmer.accessibilityLabel = NSLocalizedString("Close", bundle: .core, comment: "")
+        dimmer.accessibilityLabel = String(localized: "Close", bundle: .core)
         dimmer.accessibilityFrame = CGRect(x: drawerWidth, y: 0, width: containerView.bounds.width - drawerWidth, height: containerView.bounds.height)
 
         presentingViewController.transitionCoordinator?.animate(alongsideTransition: { _ in

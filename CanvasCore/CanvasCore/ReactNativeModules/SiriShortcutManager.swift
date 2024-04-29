@@ -27,7 +27,7 @@ public class SiriShortcutManager: NSObject {
             switch self {
             case ShortcutType.grades:
                 guard let name = userInfo["name"] as? String else { return "" }
-                let title = NSLocalizedString("Get Grades for", bundle: .canvas, comment: "")
+                let title = String(localized: "Get Grades for", bundle: .canvas)
                 return "\(title) \(name)"
             }
         }

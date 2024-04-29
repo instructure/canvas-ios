@@ -18,12 +18,18 @@
 
 import Combine
 import CombineExt
+import CombineSchedulers
 import Foundation
 
 public protocol GradeListInteractor {
     var courseID: String { get }
-    func getGrades(arrangeBy: GradeArrangementOptions, ignoreCache: Bool) -> AnyPublisher<GradeListData, Error>
+    func getGrades(
+        arrangeBy: GradeArrangementOptions,
+        baseOnGradedAssignment: Bool,
+        ignoreCache: Bool
+    ) -> AnyPublisher<GradeListData, Error>
     func updateGradingPeriod(id: String?)
+    func isWhatIfScoreFlagEnabled() -> Bool
 }
 
 public final class GradeListInteractorLive: GradeListInteractor {
@@ -82,7 +88,11 @@ public final class GradeListInteractorLive: GradeListInteractor {
         )
     }
 
-    public func getGrades(arrangeBy: GradeArrangementOptions, ignoreCache: Bool) -> AnyPublisher<GradeListData, Error> {
+    public func getGrades(
+        arrangeBy: GradeArrangementOptions,
+        baseOnGradedAssignment: Bool,
+        ignoreCache: Bool
+    ) -> AnyPublisher<GradeListData, Error> {
         Publishers.Zip3(
             colorListStore.getEntities(
                 ignoreCache: ignoreCache
@@ -105,38 +115,53 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 loadAllPages: true
             )
         )
-        .flatMap { [unowned self] in
-            let course = $0.0.1
-            let gradingPeriods = $0.0.2
-            let enrollments = $0.2
+        .flatMap { [weak self] params -> AnyPublisher<GradeListData, Error> in
+            guard let self = self else {
+                return Empty(completeImmediately: true)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            let course = params.0.1
+            let gradingPeriods = params.0.2
+            let assignments = params.1
+            let enrollments = params.2
             let courseEnrollment = course.enrollmentForGrades(userId: userID)
             let isGradingPeriodHidden = courseEnrollment?.multipleGradingPeriodsEnabled == false
 
             if !isInitialGradingPeriodSet {
                 isInitialGradingPeriodSet = true
                 updateGradingPeriod(id: courseEnrollment?.currentGradingPeriodID)
-                return getGrades(arrangeBy: arrangeBy, ignoreCache: true).eraseToAnyPublisher()
+                return getGrades(
+                    arrangeBy: arrangeBy,
+                    baseOnGradedAssignment: baseOnGradedAssignment,
+                    ignoreCache: true
+                ).eraseToAnyPublisher()
             }
 
             let assignmentSections: [GradeListData.AssignmentSections]
             switch arrangeBy {
             case .dueDate:
                 assignmentSections = arrangeAssignmentsByDueDate(
-                    assignments: $0.1
+                    assignments: assignments
                 )
             case .groupName:
                 assignmentSections = arrangeAssignmentsByGroupNames(
-                    assignments: $0.1
+                    assignments: assignments
                 )
             }
 
             return calculateTotalGrade(
                 course: course,
                 enrollments: enrollments,
-                gradingPeriods: gradingPeriods
+                baseOnGradedAssignments: baseOnGradedAssignment
             )
-            .map { [unowned self] totalGradeText in
-                GradeListData(
+            .flatMap { [weak self] totalGradeText -> AnyPublisher<GradeListData, Error> in
+                guard let self = self else {
+                    return Empty(completeImmediately: true)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return Just(GradeListData(
                     id: UUID.string,
                     userID: userID ?? "",
                     courseName: course.name,
@@ -146,9 +171,10 @@ public final class GradeListInteractorLive: GradeListInteractor {
                     gradingPeriods: gradingPeriods,
                     currentGradingPeriod: getGradingPeriod(id: gradingPeriodID, gradingPeriods: gradingPeriods),
                     totalGradeText: totalGradeText
-                )
+                ))
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
             }
-            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
         }
         .eraseToAnyPublisher()
@@ -173,6 +199,10 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 gradedOnly: true
             )
         )
+    }
+
+    public func isWhatIfScoreFlagEnabled() -> Bool {
+        ExperimentalFeature.whatIfScore.isEnabled && AppEnvironment.shared.app == .student
     }
 
     private func getGradingPeriod(id: String?, gradingPeriods: [GradingPeriod]) -> GradingPeriod? {
@@ -217,17 +247,17 @@ public final class GradeListInteractorLive: GradeListInteractor {
         var assignmentSections: [GradeListData.AssignmentSections] = []
         var overdueAssignments = GradeListData.AssignmentSections(
             id: UUID.string,
-            title: String(localized: "Overdue Assignments"),
+            title: String(localized: "Overdue Assignments", bundle: .core),
             assignments: []
         )
         var upcomingAssignments = GradeListData.AssignmentSections(
             id: UUID.string,
-            title: String(localized: "Upcoming Assignments"),
+            title: String(localized: "Upcoming Assignments", bundle: .core),
             assignments: []
         )
         var pastAssignments = GradeListData.AssignmentSections(
             id: UUID.string,
-            title: String(localized: "Past Assignments"),
+            title: String(localized: "Past Assignments", bundle: .core),
             assignments: []
         )
 
@@ -270,7 +300,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
     private func calculateTotalGrade(
         course: Course,
         enrollments: [Enrollment],
-        gradingPeriods _: [GradingPeriod]
+        baseOnGradedAssignments: Bool
     ) -> AnyPublisher<String?, Never> {
         let courseEnrollment = course.enrollmentForGrades(userId: userID)
         let gradeEnrollment = enrollments.first {
@@ -281,8 +311,11 @@ public final class GradeListInteractorLive: GradeListInteractor {
         }
         let hideQuantitativeData = course.hideQuantitativeData == true
 
-        if course.hideFinalGrades == true {
-            return Just(String(localized: "N/A")).eraseToAnyPublisher()
+        // When these conditions are met we don't show any grade, instead we display a lock icon.
+        if (courseEnrollment?.multipleGradingPeriodsEnabled == true &&
+           courseEnrollment?.totalsForAllGradingPeriodsOption == false &&
+            gradingPeriodID == nil) || course.hideFinalGrades {
+            return Just(nil).eraseToAnyPublisher()
         } else if hideQuantitativeData {
             if let gradingPeriodID = gradingPeriodID {
                 if let letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID) ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID) {
@@ -311,10 +344,19 @@ public final class GradeListInteractorLive: GradeListInteractor {
             var letterGrade: String?
             var localGrade: String?
             if let gradingPeriodID = gradingPeriodID {
-                localGrade = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
-                letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID) ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
+                if baseOnGradedAssignments {
+                    localGrade = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+                    letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID)
+                } else {
+                    localGrade = gradeEnrollment?.formattedFinalScore(gradingPeriodID: gradingPeriodID)
+                    letterGrade = gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
+                }
             } else {
-                localGrade = courseEnrollment?.formattedCurrentScore(gradingPeriodID: nil)
+                if baseOnGradedAssignments {
+                    localGrade = courseEnrollment?.formattedCurrentScore(gradingPeriodID: nil)
+                } else {
+                    localGrade = gradeEnrollment?.formattedFinalScore(gradingPeriodID: nil)
+                }
                 if courseEnrollment?.multipleGradingPeriodsEnabled == true, courseEnrollment?.totalsForAllGradingPeriodsOption == false {
                     letterGrade = nil
                 } else {

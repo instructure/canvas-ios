@@ -50,7 +50,7 @@ public class ConversationCoursesActionSheet: UIViewController, ErrorViewControll
         view.frame.size.height = 294
 
         let titleLabel = UILabel()
-        titleLabel.text = NSLocalizedString("Choose a course to message", bundle: .core, comment: "")
+        titleLabel.text = String(localized: "Choose a course to message", bundle: .core)
         titleLabel.textColor = .textDark
         titleLabel.font = .scaledNamedFont(.semibold14)
         view.addSubview(titleLabel)
@@ -97,7 +97,7 @@ extension ConversationCoursesActionSheet: UITableViewDataSource, UITableViewDele
         let cell: SubtitleTableViewCell = tableView.dequeue(for: indexPath)
         cell.textLabel?.text = enrollment?.course?.name
         let userName = enrollment?.observedUser.flatMap { User.displayName($0.shortName, pronouns: $0.pronouns) } ?? ""
-        cell.detailTextLabel?.text = String.localizedStringWithFormat(NSLocalizedString("for %@", bundle: .core, comment: ""), userName)
+        cell.detailTextLabel?.text = String.localizedStringWithFormat(String(localized: "for %@", bundle: .core), userName)
         return cell
     }
 

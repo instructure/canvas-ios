@@ -33,6 +33,25 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return ActAsUserViewController.create(loginDelegate: loginDelegate, userID: params["userID"])
     },
 
+    "/calendar": { url, _, _ in
+        if let eventID = url.queryItems?.first(where: { $0.name == "event_id" })?.value {
+            return PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
+       }
+       let controller = PlannerViewController.create()
+       controller.view.tintColor = Brand.shared.primary
+       return controller
+    },
+
+    "/calendar_events/:eventID": { _, params, _ in
+        guard let eventID = params["eventID"] else { return nil }
+        return PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
+    },
+
+    "/:context/:contextID/calendar_events/:eventID": { _, params, _ in
+        guard let eventID = params["eventID"] else { return nil }
+        return PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
+    },
+
     "/conversations": nil,
     "/conversations/compose": { url, params, userInfo in
         if ExperimentalFeature.nativeTeacherInbox.isEnabled {

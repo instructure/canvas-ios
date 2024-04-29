@@ -77,7 +77,7 @@ class ModuleItemSequenceViewControllerTests: CoreTestCase {
         XCTAssertTrue(controller.nextButton.isHidden)
         XCTAssertFalse(controller.previousButton.isHidden)
 
-        let leftButton = UIBarButtonItem()
+        let leftButton = UIBarButtonItemWithCompletion(title: "", actionHandler: {})
         let rightButton = UIBarButtonItem()
         details.title = "Title 1"
         details.navigationItem.title = "Title 2"

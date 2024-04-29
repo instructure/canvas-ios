@@ -100,6 +100,19 @@ class APIRequestableTests: XCTestCase {
         let query: [APIQueryItem] = [.name("query")]
     }
 
+    struct GetEmptyQueryItems: APIRequestable {
+        typealias Response = DateHaver
+        let path = "data"
+        let query: [APIQueryItem] = []
+    }
+
+    struct GetPercentEncodedQueryItems: APIRequestable {
+        typealias Response = DateHaver
+        var useExtendedPercentEncoding = true
+        let path = "calendar"
+        let query: [APIQueryItem] = [.value("startDate", "2024-01-01T10:39:00.000+00:00")]
+    }
+
     struct PostBody: APIRequestable {
         typealias Response = DateHaver
         typealias Body = DateHaver
@@ -169,9 +182,19 @@ class APIRequestableTests: XCTestCase {
         XCTAssertEqual(try GetQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil), expected)
     }
 
-    func testActAsUserID() {
+    func testActAsUserIDWithRegularQueryItems() {
         let expected = expectedUrlRequest(path: "api/v1/?query&as_user_id=78")
         XCTAssertEqual(try GetQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: "78"), expected)
+    }
+
+    func testActAsUserIDWithEmptyQueryItems() {
+        let expected = expectedUrlRequest(path: "api/v1/data?as_user_id=78")
+        XCTAssertEqual(try GetEmptyQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: "78"), expected)
+    }
+
+    func testActAsUserIDWithPercentEncodedQueryItems() {
+        let expected = expectedUrlRequest(path: "api/v1/calendar?startDate=2024-01-01T10%3A39%3A00.000%2B00%3A00&as_user_id=78")
+        XCTAssertEqual(try GetPercentEncodedQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: "78"), expected)
     }
 
     func testUrlRequest() {

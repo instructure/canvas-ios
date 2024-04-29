@@ -38,7 +38,7 @@ class MasteryPathViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString("Select a Path", bundle: .core, comment: "")
+        navigationItem.title = String(localized: "Select a Path", bundle: .core)
         let sets = masteryPath.assignmentSets.sorted { $0.position < $1.position }
         for (index, set) in sets.enumerated() {
             if index > 0 {
@@ -145,7 +145,7 @@ class MasteryPathAssignmentCell: UIView {
         nameLabel.text = assignment.name
         if let pointsPossible = assignment.pointsPossible?.doubleValue {
             pointsLabel.isHidden = false
-            pointsLabel.text = String.localizedStringWithFormat(NSLocalizedString("g_points", bundle: .core, comment: ""), pointsPossible)
+            pointsLabel.text = String.localizedStringWithFormat(String(localized: "g_points", bundle: .core), pointsPossible)
         } else {
             pointsLabel.isHidden = true
         }
@@ -210,7 +210,7 @@ class MasteryPathAssignmentSetSelectCell: UIView {
         button.backgroundColor = selected ? .clear : Brand.shared.buttonPrimaryBackground
         button.setTitleColor(selected ? .textDark : Brand.shared.buttonPrimaryText, for: .normal)
         button.setTitleColor(.textDark, for: .highlighted)
-        let title = selected ? NSLocalizedString("Selected!", bundle: .core, comment: "") : NSLocalizedString("Select", bundle: .core, comment: "")
+        let title = selected ? String(localized: "Selected!", bundle: .core) : String(localized: "Select", bundle: .core)
         button.setTitle(title, for: .normal)
     }
 

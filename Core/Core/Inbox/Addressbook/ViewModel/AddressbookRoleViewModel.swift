@@ -40,7 +40,7 @@ class AddressbookRoleViewModel: ObservableObject {
         Recipient(ids: recipients.flatMap { $0.ids }, name: "All in \(recipientContext.name)", avatarURL: nil)
     }
 
-    public let title = NSLocalizedString("Select Recipients", bundle: .core, comment: "")
+    public let title = String(localized: "Select Recipients", bundle: .core)
     public let recipientContext: RecipientContext
 
     // MARK: - Inputs
@@ -60,7 +60,7 @@ class AddressbookRoleViewModel: ObservableObject {
         var isNotStudent = false
         if let userId = env.currentSession?.userID {
             roleRecipients.forEach { (roleName, recipients) in
-                if roleName != NSLocalizedString("Students", comment: "") && recipients.flatMap({ $0.ids }).contains(userId) {
+                if roleName != String(localized: "Students", bundle: .core) && recipients.flatMap({ $0.ids }).contains(userId) {
                     isNotStudent = true
                     return
                 }
@@ -185,17 +185,17 @@ private extension SearchRecipient {
     static func roleName(from enrollmentName: String) -> String {
         switch enrollmentName {
         case "TeacherEnrollment":
-            return NSLocalizedString("Teachers", comment: "")
+            return String(localized: "Teachers", bundle: .core)
         case "StudentEnrollment":
-            return NSLocalizedString("Students", comment: "")
+            return String(localized: "Students", bundle: .core)
         case "ObserverEnrollment":
-            return NSLocalizedString("Observers", comment: "")
+            return String(localized: "Observers", bundle: .core)
         case "TaEnrollment":
-            return NSLocalizedString("Teaching Assistants", comment: "")
+            return String(localized: "Teaching Assistants", bundle: .core)
         case "DesignerEnrollment":
-            return NSLocalizedString("Course Designers", comment: "")
+            return String(localized: "Course Designers", bundle: .core)
         default:
-            return NSLocalizedString("Others", comment: "")
+            return String(localized: "Others", bundle: .core)
         }
     }
 }

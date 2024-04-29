@@ -20,7 +20,8 @@ import UIKit
 import CanvasCore
 import Core
 
-class StudentTabBarController: UITabBarController {
+class StudentTabBarController: UITabBarController, SnackBarProvider {
+    let snackBarViewModel = SnackBarViewModel()
     private var previousSelectedIndex = 0
 
     override func viewDidLoad() {
@@ -46,6 +47,7 @@ class StudentTabBarController: UITabBarController {
         tabBar.useGlobalNavStyle()
         NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
+        addSnackBar()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -70,7 +72,7 @@ class StudentTabBarController: UITabBarController {
             dashboard.interactivePopGestureRecognizer?.isEnabled = false
             result = dashboard
 
-            tabBarTitle = NSLocalizedString("Homeroom", comment: "Homeroom tab title")
+            tabBarTitle = String(localized: "Homeroom", bundle: .student, comment: "Homeroom tab title")
             tabBarImage =  .homeroomTab
             tabBarImageSelected = .homeroomTabActive
         } else {
@@ -78,7 +80,7 @@ class StudentTabBarController: UITabBarController {
                                                                     showOnlyTeacherEnrollment: false))
             result = DashboardContainerViewController(rootViewController: dashboard) { HelmSplitViewController() }
 
-            tabBarTitle = NSLocalizedString("Dashboard", comment: "dashboard page title")
+            tabBarTitle = String(localized: "Dashboard", bundle: .student, comment: "dashboard page title")
             tabBarImage = .dashboardTab
             tabBarImageSelected = .dashboardTabActive
         }
@@ -98,7 +100,7 @@ class StudentTabBarController: UITabBarController {
             HelmNavigationController(rootViewController: EmptyViewController()),
         ]
         split.view.tintColor = Brand.shared.primary
-        split.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
+        split.tabBarItem.title = String(localized: "Calendar", bundle: .student, comment: "Calendar page title")
         split.tabBarItem.image = .calendarTab
         split.tabBarItem.selectedImage = .calendarTabActive
         split.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
@@ -114,7 +116,7 @@ class StudentTabBarController: UITabBarController {
             HelmNavigationController(rootViewController: todoController),
             HelmNavigationController(rootViewController: EmptyViewController()),
         ]
-        todo.tabBarItem.title = NSLocalizedString("To Do", comment: "Title of the Todo screen")
+        todo.tabBarItem.title = String(localized: "To Do", bundle: .student, comment: "Title of the Todo screen")
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
         todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
@@ -131,7 +133,7 @@ class StudentTabBarController: UITabBarController {
             HelmNavigationController(rootViewController: ActivityStreamViewController.create()),
             HelmNavigationController(rootViewController: EmptyViewController()),
         ]
-        split.tabBarItem.title = NSLocalizedString("Notifications", comment: "Notifications tab title")
+        split.tabBarItem.title = String(localized: "Notifications", bundle: .student, comment: "Notifications tab title")
         split.tabBarItem.image = .alertsTab
         split.tabBarItem.selectedImage = .alertsTabActive
         split.tabBarItem.accessibilityIdentifier = "TabBar.notificationsTab"
@@ -158,7 +160,7 @@ class StudentTabBarController: UITabBarController {
         empty.navigationBar.useGlobalNavStyle()
 
         inboxSplit.viewControllers = [inboxController, empty]
-        let title = NSLocalizedString("Inbox", comment: "Inbox tab title")
+        let title = String(localized: "Inbox", bundle: .student, comment: "Inbox tab title")
         inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
         inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
         inboxSplit.tabBarItem.makeUnavailableInOfflineMode()

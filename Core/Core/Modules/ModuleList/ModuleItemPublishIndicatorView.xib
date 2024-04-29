@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ModuleItemPublishIndicatorView" customModule="Core" customModuleProvider="target">
+            <connections>
+                <outlet property="publishInProgressIndicator" destination="PWJ-HK-XQS" id="5KN-HD-8dy"/>
+                <outlet property="publishedButton" destination="k4b-9c-him" id="2Jr-3f-aiT"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4b-9c-him">
+                    <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="m7E-9V-g2j"/>
+                        <constraint firstAttribute="width" constant="24" id="q1Y-Rr-3LM"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PWJ-HK-XQS" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
+                    <rect key="frame" x="2" y="2" width="20" height="20"/>
+                    <viewLayoutGuide key="safeArea" id="AyZ-QF-WLa"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="FeY-v4-0Bp"/>
+                        <constraint firstAttribute="width" constant="20" id="ROW-KE-Hfe"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="thickness">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="PWJ-HK-XQS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8oF-Ae-3nE"/>
+                <constraint firstItem="PWJ-HK-XQS" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="MJc-uX-U3y"/>
+                <constraint firstItem="k4b-9c-him" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="UVI-ly-CFo"/>
+                <constraint firstItem="k4b-9c-him" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lZo-pN-Xsr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="120" y="42"/>
+        </view>
+    </objects>
+</document>

@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+public final class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var optionsButton = UIBarButtonItem(image: .moreLine, style: .plain, target: self, action: #selector(showOptions))
     @IBOutlet weak var webViewContainer: UIView!
     let webView = CoreWebView()
@@ -58,18 +58,26 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         app == .teacher && page?.isFrontPage != true
     }
 
-    public static func create(context: Context, pageURL: String, app: App) -> PageDetailsViewController {
+    private var offlineModeInteractor: OfflineModeInteractor?
+
+    public static func create(
+        context: Context,
+        pageURL: String,
+        app: App,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
+    ) -> PageDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.pageURL = pageURL
         controller.app = app
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: NSLocalizedString("Page Details", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Page Details", bundle: .core))
         webViewContainer.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: webViewContainer)
         webView.linkDelegate = self
@@ -92,29 +100,49 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.useContextColor(color)
+        if AppEnvironment.shared.app != .parent {
+            navigationController?.navigationBar.useContextColor(color)
+        }
     }
 
-    @objc func refresh() {
+    @objc private func refresh() {
         pages.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
     }
 
-    func updateNavBar() {
+    // Parent uses a different coloring logic so we prevent any update here. 
+    private func updateNavBar() {
         guard
             let name = context.contextType == .course ? courses.first?.name : groups.first?.name,
-            let color = context.contextType == .course ? courses.first?.color : groups.first?.color
+            let color = context.contextType == .course ? courses.first?.color : groups.first?.color,
+            AppEnvironment.shared.app != .parent
         else { return }
         updateNavBar(subtitle: name, color: color)
     }
 
-    func update() {
+    private func update() {
         guard let page = page else { return }
         setupTitleViewInNavbar(title: page.title)
         optionsButton.accessibilityIdentifier = "PageDetails.options"
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
-        webView.loadHTMLString(page.body, baseURL: page.htmlURL)
+
+        // Offline with separate html file
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: courses.first?.id ?? "",
+            sectionName: OfflineFolderPrefix.pages.rawValue,
+            resourceId: page.id
+        )
+        let offlinePath = rootURL.appendingPathComponent("body.html")
+
+        webView.loadContent(
+            isOffline: offlineModeInteractor?.isNetworkOffline(),
+            filePath: offlinePath,
+            content: page.body,
+            originalBaseURL: nil,
+            offlineBaseURL: rootURL
+        )
     }
 
     private func updatePages() {
@@ -124,33 +152,33 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         localPages?.refresh()
     }
 
-    @objc func showOptions(_ sender: UIBarButtonItem) {
+    @objc private func showOptions(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(AlertAction(NSLocalizedString("Edit", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+        alert.addAction(AlertAction(String(localized: "Edit", bundle: .core), style: .default) { [weak self] _ in
             guard let self = self, let page = self.page else { return }
             guard let url = page.htmlURL?.appendingPathComponent("edit") else { return }
             self.env.router.route(to: url, from: self, options: .modal(isDismissable: false, embedInNav: true))
         })
         if canDelete {
-            alert.addAction(AlertAction(NSLocalizedString("Delete", bundle: .core, comment: ""), style: .destructive) { [weak self] _ in
+            alert.addAction(AlertAction(String(localized: "Delete", bundle: .core), style: .destructive) { [weak self] _ in
                 self?.showDeleteConfirmation()
             })
         }
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
         alert.popoverPresentationController?.barButtonItem = sender
         env.router.show(alert, from: self, options: .modal())
     }
 
-    func showDeleteConfirmation() {
-        let alert = UIAlertController(title: NSLocalizedString("Are you sure you want to delete this page?", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-        alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .destructive) { [weak self] _ in
+    private func showDeleteConfirmation() {
+        let alert = UIAlertController(title: String(localized: "Are you sure you want to delete this page?", bundle: .core), message: nil, preferredStyle: .alert)
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .destructive) { [weak self] _ in
             self?.deletePage()
         })
         env.router.show(alert, from: self)
     }
 
-    func deletePage() {
+    private func deletePage() {
         guard let page = page else { return }
         env.api.makeRequest(DeletePageRequest(context: context, url: page.url)) { [weak self] (_, _, error) in performUIUpdate {
             guard let self = self else { return }

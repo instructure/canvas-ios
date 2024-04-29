@@ -59,9 +59,6 @@
    <FileRef
       location = "group:rn/Teacher/ios/Teacher.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:TestsFoundation/TestsFoundation.xcodeproj">
-   </FileRef>
    <Group
       location = "container:TestPlans"
       name = "TestPlans">

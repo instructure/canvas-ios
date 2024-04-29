@@ -37,85 +37,85 @@ public struct QuizAttributes {
 
         let quizType = quiz.quizType.name
         attributes.append(QuizAttribute(
-            NSLocalizedString("Quiz Type:", bundle: .core, comment: ""),
+            String(localized: "Quiz Type:", bundle: .core),
             quizType
         ))
 
         if let assignmentGroupName = assignment?.assignmentGroup?.name {
             attributes.append(QuizAttribute(
-                NSLocalizedString("Assignment Group:", bundle: .core, comment: ""),
+                String(localized: "Assignment Group:", bundle: .core),
                 assignmentGroupName
             ))
         }
 
         let shuffleAnswers = quiz.shuffleAnswers ?
-            NSLocalizedString("Yes", bundle: .core, comment: "") :
-            NSLocalizedString("No", bundle: .core, comment: "")
+            String(localized: "Yes", bundle: .core) :
+            String(localized: "No", bundle: .core)
         attributes.append(QuizAttribute(
-            NSLocalizedString("Shuffle Answers:", bundle: .core, comment: ""),
+            String(localized: "Shuffle Answers:", bundle: .core),
             shuffleAnswers
         ))
 
-        var timeLimitText = NSLocalizedString("No time Limit", bundle: .core, comment: "")
+        var timeLimitText = String(localized: "No time Limit", bundle: .core)
         if let timeLimit = quiz.timeLimit {
-            let timeLimitTemplate = NSLocalizedString("%d Minutes", bundle: .core, comment: "")
+            let timeLimitTemplate = String(localized: "%d Minutes", bundle: .core)
             timeLimitText = String.localizedStringWithFormat(timeLimitTemplate, Int(timeLimit))
         }
 
         attributes.append(QuizAttribute(
-            NSLocalizedString("Time Limit:", bundle: .core, comment: ""),
+            String(localized: "Time Limit:", bundle: .core),
             timeLimitText
         ))
 
         attributes.append(QuizAttribute(
-            NSLocalizedString("Allowed Attempts:", bundle: .core, comment: ""),
+            String(localized: "Allowed Attempts:", bundle: .core),
             quiz.allowedAttemptsText
         ))
 
-        var hideResultsText = NSLocalizedString("Always", bundle: .core, comment: "")
+        var hideResultsText = String(localized: "Always", bundle: .core)
         if let hideResults = quiz.hideResults {
             hideResultsText = hideResults.text
         }
         attributes.append(QuizAttribute(
-            NSLocalizedString("View Responses:", bundle: .core, comment: ""),
+            String(localized: "View Responses:", bundle: .core),
             hideResultsText
         ))
 
         if let showCorrectAnswers = showCorrectAnswers(quiz: quiz) {
             attributes.append(QuizAttribute(
-                NSLocalizedString("Show Correct Answers:", bundle: .core, comment: ""),
+                String(localized: "Show Correct Answers:", bundle: .core),
                 showCorrectAnswers
             ))
         }
 
         let oneQuestionAtATime = quiz.oneQuestionAtATime ?
-            NSLocalizedString("Yes", bundle: .core, comment: "") :
-            NSLocalizedString("No", bundle: .core, comment: "")
+            String(localized: "Yes", bundle: .core) :
+            String(localized: "No", bundle: .core)
         attributes.append(QuizAttribute(
-            NSLocalizedString("One Question at a Time:", bundle: .core, comment: ""),
+            String(localized: "One Question at a Time:", bundle: .core),
             oneQuestionAtATime
         ))
 
         if quiz.oneQuestionAtATime == true {
             let lockQuestionsAfterAnswering = quiz.cantGoBack ?
-                NSLocalizedString("Yes", bundle: .core, comment: "") :
-                NSLocalizedString("No", bundle: .core, comment: "")
+                String(localized: "Yes", bundle: .core) :
+                String(localized: "No", bundle: .core)
             attributes.append(QuizAttribute(
-                NSLocalizedString("Lock Questions After Answering:", bundle: .core, comment: ""),
+                String(localized: "Lock Questions After Answering:", bundle: .core),
                 lockQuestionsAfterAnswering
             ))
         }
 
         if let scoringPolicy = quiz.scoringPolicy {
             attributes.append(QuizAttribute(
-                NSLocalizedString("Score to Keep:", bundle: .core, comment: ""),
+                String(localized: "Score to Keep:", bundle: .core),
                 scoringPolicy.text
             ))
         }
 
         if let accessCode = quiz.accessCode {
             attributes.append(QuizAttribute(
-                NSLocalizedString("Access Code:", bundle: .core, comment: ""),
+                String(localized: "Access Code:", bundle: .core),
                 accessCode
             ))
         }
@@ -124,24 +124,24 @@ public struct QuizAttributes {
     private func showCorrectAnswers(quiz: Quiz) -> String? {
         if quiz.showCorrectAnswers {
             if let showCorrectAnswersAt = quiz.showCorrectAnswersAt, quiz.hideCorrectAnswersAt == nil {
-                let template = NSLocalizedString("After %@", bundle: .core, comment: "e.g. After 01.02.2022")
+                let template = String(localized: "After %@", bundle: .core, comment: "e.g. After 01.02.2022")
                 return String.localizedStringWithFormat(template, showCorrectAnswersAt.relativeDateTimeString)
             }
             if let hideCorrectAnswersAt = quiz.hideCorrectAnswersAt, quiz.showCorrectAnswersAt == nil {
-                let template = NSLocalizedString("Until %@", bundle: .core, comment: "e.g. Until 01.02.2022")
+                let template = String(localized: "Until %@", bundle: .core, comment: "e.g. Until 01.02.2022")
                 return String.localizedStringWithFormat(template, hideCorrectAnswersAt.relativeDateTimeString)
             }
             if let showCorrectAnswersAt = quiz.showCorrectAnswersAt, let hideCorrectAnswersAt = quiz.hideCorrectAnswersAt {
-                let template = NSLocalizedString("%@ to %@", bundle: .core, comment: "e.g 01.02.2022 to 01.03.2022")
+                let template = String(localized: "%@ to %@", bundle: .core, comment: "e.g 01.02.2022 to 01.03.2022")
                 return String.localizedStringWithFormat(template, showCorrectAnswersAt.relativeDateTimeString, hideCorrectAnswersAt.relativeDateTimeString)
             }
             if quiz.showCorrectAnswersLastAttempt && quiz.allowedAttempts > 0 {
-                return NSLocalizedString("After Last Attempt", bundle: .core, comment: "")
+                return String(localized: "After Last Attempt", bundle: .core)
             }
 
-            return quiz.hideResults != nil ? nil : NSLocalizedString("Always", bundle: .core, comment: "")
+            return quiz.hideResults != nil ? nil : String(localized: "Always", bundle: .core)
         }
 
-        return quiz.hideResults != nil ? nil : NSLocalizedString("No", bundle: .core, comment: "")
+        return quiz.hideResults != nil ? nil : String(localized: "No", bundle: .core)
     }
 }

@@ -45,15 +45,15 @@ public enum UseJustification: String, Codable, CaseIterable {
     public var label: String {
         switch self {
         case .own_copyright:
-            return NSLocalizedString("I hold the copyright", bundle: .core, comment: "")
+            return String(localized: "I hold the copyright", bundle: .core)
         case .used_by_permission:
-            return NSLocalizedString("I obtained permission", bundle: .core, comment: "")
+            return String(localized: "I obtained permission", bundle: .core)
         case .public_domain:
-            return NSLocalizedString("It is in the public domain", bundle: .core, comment: "")
+            return String(localized: "It is in the public domain", bundle: .core)
         case .fair_use:
-            return NSLocalizedString("It is a fair use or similar exception", bundle: .core, comment: "")
+            return String(localized: "It is a fair use or similar exception", bundle: .core)
         case .creative_commons:
-            return NSLocalizedString("It is licensed under Creative Commons", bundle: .core, comment: "")
+            return String(localized: "It is licensed under Creative Commons", bundle: .core)
         }
     }
 }

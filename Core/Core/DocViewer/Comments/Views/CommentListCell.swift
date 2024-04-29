@@ -43,16 +43,16 @@ class CommentListCell: UITableViewCell {
         let isDeletable = metadata?.permissions == .readwritemanage || comment.isEditable
         deleteButton?.isHidden = !isDeletable || comment.isDeleted
         deleteButton?.accessibilityIdentifier = "CommentListItem.\(comment.name ?? "").deleteButton"
-        deleteButton?.accessibilityLabel = NSLocalizedString("Delete comment", bundle: .core, comment: "")
+        deleteButton?.accessibilityLabel = String(localized: "Delete comment", bundle: .core)
         if comment.isDeleted {
             removedLabel?.isHidden = false
             removedLabelHeightConstraint?.constant = 19.5
             let date = DateFormatter.localizedString(from: comment.deletedAt ?? Date(), dateStyle: .medium, timeStyle: .none)
             if let deletedBy = comment.deletedBy ?? comment.deletedByID {
-                let format = NSLocalizedString("Removed %1$@ by %2$@", bundle: .core, comment: "")
+                let format = String(localized: "Removed %1$@ by %2$@", bundle: .core)
                 removedLabel?.text = String.localizedStringWithFormat(format, date, deletedBy)
             } else {
-                let format = NSLocalizedString("Removed %1$@", bundle: .core, comment: "")
+                let format = String(localized: "Removed %1$@", bundle: .core)
                 removedLabel?.text = String.localizedStringWithFormat(format, date)
             }
         } else {

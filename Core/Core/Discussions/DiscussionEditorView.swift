@@ -144,8 +144,8 @@ public struct DiscussionEditorView: View {
 
             EditorSection(label: Text("Description", bundle: .core)) {
                 RichContentEditor(
-                    placeholder: NSLocalizedString("Add description", comment: ""),
-                    a11yLabel: NSLocalizedString("Description", comment: ""),
+                    placeholder: String(localized: "Add description", bundle: .core),
+                    a11yLabel: String(localized: "Description", bundle: .core),
                     html: $message,
                     context: context,
                     uploadTo: .context(context),
@@ -256,7 +256,7 @@ public struct DiscussionEditorView: View {
                     ButtonRow(action: {
                         let options = GradingType.allCases
                         self.env.router.show(ItemPickerViewController.create(
-                            title: NSLocalizedString("Display Grade as", comment: ""),
+                            title: String(localized: "Display Grade as", bundle: .core),
                             sections: [ ItemPickerSection(items: options.map {
                                 ItemPickerItem(title: $0.string)
                             }), ],

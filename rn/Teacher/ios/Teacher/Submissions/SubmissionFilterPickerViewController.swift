@@ -21,8 +21,8 @@ import Core
 
 class SubmissionFilterPickerViewController: UIViewController {
     let tableView = UITableView(frame: .zero, style: .plain)
-    lazy var resetButton = UIBarButtonItem(title: NSLocalizedString("Reset", comment: ""), style: .plain, target: self, action: #selector(resetFilter))
-    lazy var doneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(done))
+    lazy var resetButton = UIBarButtonItem(title: String(localized: "Reset", bundle: .teacher), style: .plain, target: self, action: #selector(resetFilter))
+    lazy var doneButton = UIBarButtonItem(title: String(localized: "Done", bundle: .teacher), style: .done, target: self, action: #selector(done))
 
     var assignmentID = ""
     var context = Context.currentUser
@@ -63,7 +63,7 @@ class SubmissionFilterPickerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("Filter by", comment: "")
+        title = String(localized: "Filter by", bundle: .teacher)
         navigationItem.leftBarButtonItem = resetButton
         navigationItem.rightBarButtonItem = doneButton
 
@@ -120,21 +120,21 @@ extension SubmissionFilterPickerViewController: UITableViewDataSource, UITableVi
         var isSelected = false
         switch (indexPath.section, indexPath.row) {
         case (0, let row):
-            cell.textLabel?.text = staticFilters[row]?.name ?? NSLocalizedString("All submissions", comment: "")
+            cell.textLabel?.text = staticFilters[row]?.name ?? String(localized: "All submissions", bundle: .teacher)
             isSelected = filter == staticFilters[row]
         case (1, 0):
             if case .scoreBelow = filter {
                 cell.textLabel?.text = filter?.name
                 isSelected = true
             } else {
-                cell.textLabel?.text = NSLocalizedString("Scored below...", comment: "")
+                cell.textLabel?.text = String(localized: "Scored below...", bundle: .teacher)
             }
         case (1, 1):
             if case .scoreAbove = filter {
                 cell.textLabel?.text = filter?.name
                 isSelected = true
             } else {
-                cell.textLabel?.text = NSLocalizedString("Scored above...", comment: "")
+                cell.textLabel?.text = String(localized: "Scored above...", bundle: .teacher)
             }
         case (_, let row):
             cell.textLabel?.text = sections[row]?.name
@@ -161,16 +161,16 @@ extension SubmissionFilterPickerViewController: UITableViewDataSource, UITableVi
             filter = staticFilters[row]
         case (1, let row):
             let prompt = UIAlertController(
-                title: row == 0 ? NSLocalizedString("Scored below...", comment: "") : NSLocalizedString("Scored above...", comment: ""),
+                title: row == 0 ? String(localized: "Scored below...", bundle: .teacher) : String(localized: "Scored above...", bundle: .teacher),
                 message: outOfText,
                 preferredStyle: .alert
             )
             prompt.addTextField { field in
                 field.keyboardType = .decimalPad
-                field.accessibilityLabel = NSLocalizedString("Points", comment: "")
+                field.accessibilityLabel = String(localized: "Points", bundle: .teacher)
             }
-            prompt.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
-            prompt.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
+            prompt.addAction(AlertAction(String(localized: "Cancel", bundle: .teacher), style: .cancel))
+            prompt.addAction(AlertAction(String(localized: "OK", bundle: .teacher), style: .default) { [weak self] _ in
                 let text = prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines)
                 guard let score = text.flatMap({ NumberFormatter().number(from: $0) })?.doubleValue else { return }
                 self?.filter = row == 0 ? .scoreBelow(score) : .scoreAbove(score)

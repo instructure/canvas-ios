@@ -119,24 +119,4 @@ class CourseDetailsViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.settingsRoute, URL(string: "courses/1/settings")!)
         XCTAssertEqual(testee.courseID, "1")
     }
-
-    func testHidesHomeWhenOffline() {
-        api.mock(GetCourse(courseID: "1"), value: .make(default_view: .syllabus))
-        api.mock(GetContextTabs(context: .course("1")), value: [.make()])
-        api.mock(GetContextPermissions(context: .course("1"), permissions: [.useStudentView]), value: .make(use_student_view: true))
-        api.mock(GetCustomColors(), value: APICustomColors(custom_colors: ["course_1": "#FF0000"]))
-        api.mock(GetCourseNavigationToolsRequest(courseContextsCodes: ["course_1"]), value: [])
-
-        AppEnvironment.shared.app = .student
-        let testee = CourseDetailsViewModel(context: .course("1"), offlineModeInteractor: mockOfflineModeInteractor)
-        testee.viewDidAppear()
-
-        XCTAssertTrue(testee.showHome)
-
-        // WHEN
-        mockOfflineModeInteractor.mockIsInOfflineMode.accept(true)
-
-        // THEN
-        XCTAssertFalse(testee.showHome)
-    }
 }

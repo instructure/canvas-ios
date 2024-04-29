@@ -26,6 +26,8 @@ public struct GradesPanda: PandaScene {
     }
     public var height: CGFloat { 230 }
     public var background: AnyView { AnyView(Board(imageName: backgroundFileName)) }
+
+    public init() {}
 }
 
 private struct Board: View {

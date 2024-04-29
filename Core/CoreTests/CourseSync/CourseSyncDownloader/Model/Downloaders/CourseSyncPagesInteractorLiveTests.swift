@@ -23,7 +23,7 @@ import XCTest
 
 class CourseSyncPagesInteractorLiveTests: CoreTestCase {
     func testFrontAndRegularPages() {
-        let testee = CourseSyncPagesInteractorLive()
+        let testee = CourseSyncPagesInteractorLive(htmlParser: getHTMLParser())
         let expectation = expectation(description: "Publisher sends value")
 
         let getFrontPageUseCase = GetFrontPage(context: .course("1"))
@@ -64,7 +64,7 @@ class CourseSyncPagesInteractorLiveTests: CoreTestCase {
     }
 
     func testRegularPagesWithoutFrontPage() {
-        let testee = CourseSyncPagesInteractorLive()
+        let testee = CourseSyncPagesInteractorLive(htmlParser: getHTMLParser())
         let expectation = expectation(description: "Publisher sends value")
 
         let getFrontPageUseCase = GetFrontPage(context: .course("1"))
@@ -95,7 +95,7 @@ class CourseSyncPagesInteractorLiveTests: CoreTestCase {
     }
 
     func testErrorHandling() {
-        let testee = CourseSyncPagesInteractorLive()
+        let testee = CourseSyncPagesInteractorLive(htmlParser: getHTMLParser())
         let expectation = expectation(description: "Publisher sends value")
 
         let getFrontPageUseCase = GetFrontPage(context: .course("1"))
@@ -121,5 +121,10 @@ class CourseSyncPagesInteractorLiveTests: CoreTestCase {
         let pageList: [Page] = databaseClient.fetch(nil, sortDescriptors: nil)
         XCTAssertEqual(pageList.count, 0)
         subscription.cancel()
+    }
+
+    private func getHTMLParser() -> HTMLParser {
+        let interactor = HTMLDownloadInteractorMock()
+        return HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor)
     }
 }

@@ -23,6 +23,7 @@ public enum ComposeMessageAssembly {
     public static func makeComposeMessageViewController(env: AppEnvironment = .shared, options: ComposeMessageOptions = ComposeMessageOptions()) -> UIViewController {
         let interactor = ComposeMessageInteractorLive()
         let viewModel = ComposeMessageViewModel(router: env.router, options: options, interactor: interactor)
+
         let view = ComposeMessageView(model: viewModel)
         return CoreHostingController(view)
     }

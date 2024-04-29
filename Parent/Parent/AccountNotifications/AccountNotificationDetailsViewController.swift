@@ -45,7 +45,7 @@ class AccountNotificationDetailsViewController: UIViewController, CoreWebViewLin
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        title = NSLocalizedString("Announcement", comment: "")
+        title = String(localized: "Announcement", bundle: .parent)
         webViewContainer.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: webViewContainer)
         webView.autoresizesHeight = true

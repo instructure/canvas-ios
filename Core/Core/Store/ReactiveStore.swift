@@ -21,6 +21,10 @@ import CombineExt
 import CoreData
 import Foundation
 
+public enum StoreError: Error {
+    case emptyResponse
+}
+
 public class ReactiveStore<U: UseCase> {
     private let offlineModeInteractor: OfflineModeInteractor?
     internal let useCase: U

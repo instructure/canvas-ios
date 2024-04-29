@@ -39,7 +39,7 @@ class TeacherSyllabusTabViewController: SyllabusTabViewController {
     }
 
     lazy var editButton = UIBarButtonItem(
-        title: NSLocalizedString("Edit", bundle: .core, comment: ""), style: .plain,
+        title: String(localized: "Edit", bundle: .teacher), style: .plain,
         target: self, action: #selector(edit)
     )
 

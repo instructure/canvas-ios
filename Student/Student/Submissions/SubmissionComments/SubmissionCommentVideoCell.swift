@@ -41,7 +41,7 @@ class SubmissionCommentVideoCell: UITableViewCell {
     func update(comment: SubmissionComment, parent: UIViewController) {
         accessibilityIdentifier = "SubmissionComments.videoCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(
-            NSLocalizedString("On %@ %@ left a video comment", bundle: .student, comment: ""),
+            String(localized: "On %@ %@ left a video comment", bundle: .student),
             comment.createdAtLocalizedString,
             comment.authorName
         )

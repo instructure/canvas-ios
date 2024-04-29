@@ -49,12 +49,12 @@ class PostGradesViewController: UIViewController {
         setupSections()
 
         view.backgroundColor = .backgroundLightest
-        postGradesButton.setTitle(NSLocalizedString("Post Grades", comment: ""), for: .normal)
+        postGradesButton.setTitle(String(localized: "Post Grades", bundle: .teacher), for: .normal)
 
         allGradesPostedView.backgroundColor = .backgroundLightest
         allGradesPostedView.isHidden = true
-        allGradesPostedLabel.text = NSLocalizedString("All Posted", comment: "")
-        allGradesPostedSubheader.text = NSLocalizedString("All grades are currently posted.", comment: "")
+        allGradesPostedLabel.text = String(localized: "All Posted", bundle: .teacher)
+        allGradesPostedSubheader.text = String(localized: "All grades are currently posted.", bundle: .teacher)
         presenter.viewIsReady()
     }
 
@@ -92,14 +92,14 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
         if let row = Row(rawValue: indexPath.row) {
             switch row {
             case .postTo:
-                cell.textLabel?.text = NSLocalizedString("Post to...", comment: "")
+                cell.textLabel?.text = String(localized: "Post to...", bundle: .teacher)
                 cell.detailTextLabel?.text = postPolicy.title
                 cell.detailTextLabel?.accessibilityIdentifier = "PostPolicy.postToValue"
                 cell.accessoryType = .disclosureIndicator
                 cell.selectionStyle = .default
                 cell.accessibilityIdentifier = "PostPolicy.postTo"
             case .section:
-                cell.textLabel?.text = NSLocalizedString("Specific Sections", comment: "")
+                cell.textLabel?.text = String(localized: "Specific Sections", bundle: .teacher)
                 cell.selectionStyle = .none
                 if let cell = cell as? SectionCell {
                     cell.toggle.isOn = showSections
@@ -126,7 +126,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            let localizedFormat = NSLocalizedString("grades_currently_hidden", comment: "number of grades hidden")
+            let localizedFormat = String(localized: "grades_currently_hidden", bundle: .teacher, comment: "number of grades hidden")
             return String(format: localizedFormat, viewModel?.submissions.hiddenCount ?? 0)
         }
         return nil
@@ -137,7 +137,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
 
         if let row = Row(rawValue: indexPath.row), row == .postTo {
             show(ItemPickerViewController.create(
-                title: NSLocalizedString("Post to...", comment: ""),
+                title: String(localized: "Post to...", bundle: .teacher),
                 sections: [ ItemPickerSection(items: PostGradePolicy.allCases.map {
                     ItemPickerItem(title: $0.title, subtitle: $0.subtitle, accessibilityIdentifier: "PostToSelection.\($0.rawValue)")
                 }), ],
@@ -224,18 +224,18 @@ extension PostGradePolicy {
     var title: String {
         switch self {
         case .everyone:
-            return NSLocalizedString("Everyone", comment: "")
+            return String(localized: "Everyone", bundle: .teacher)
         case .graded:
-            return NSLocalizedString("Graded", comment: "")
+            return String(localized: "Graded", bundle: .teacher)
         }
     }
 
     var subtitle: String {
         switch self {
         case .everyone:
-            return NSLocalizedString("Grades will be made visible to all students", comment: "")
+            return String(localized: "Grades will be made visible to all students", bundle: .teacher)
         case .graded:
-            return NSLocalizedString("Grades will be made visible to students with graded submissions", comment: "")
+            return String(localized: "Grades will be made visible to students with graded submissions", bundle: .teacher)
         }
     }
 }

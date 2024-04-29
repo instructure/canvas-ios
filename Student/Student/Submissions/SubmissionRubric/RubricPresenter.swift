@@ -40,7 +40,7 @@ struct RubricViewModel: Hashable, Equatable {
 
     func ratingBlurb(_ atIndex: Int) -> (header: String, subHeader: String) {
         let isCustom = isCustomAssessment && atIndex >= rubricRatings.count
-        let header = isCustom ? NSLocalizedString("Custom Grade", comment: "") : rubricRatings[atIndex].desc
+        let header = isCustom ? String(localized: "Custom Grade", bundle: .student) : rubricRatings[atIndex].desc
         let subHeader = isCustom ? "" : rubricRatings[atIndex].longDesc
         return (header, subHeader)
     }
@@ -124,7 +124,7 @@ class RubricPresenter {
                 //  this is a custom assesment
                 allRatings.append(points)
                 selectedIndex = allRatings.count - 1
-                description = NSLocalizedString("Custom Grade", comment: "")
+                description = String(localized: "Custom Grade", bundle: .student)
                 allDescriptions.append(description)
                 isCustomAssessment = true
             }

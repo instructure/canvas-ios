@@ -81,7 +81,7 @@ struct NavBarBackButtonModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         controller.value.navigationItem.backButtonDisplayMode = .generic
-        controller.value.navigationItem.backButtonTitle = NSLocalizedString("Back", bundle: .core, comment: "")
+        controller.value.navigationItem.backButtonTitle = String(localized: "Back", bundle: .core)
         return content.overlay(Color?.none) // needs something modified to actually run
     }
 }

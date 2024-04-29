@@ -73,13 +73,13 @@ class AttendanceViewController: ScreenViewTrackableViewController, ColoredNavVie
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-        setupTitleViewInNavbar(title: NSLocalizedString("Attendance", comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Attendance", bundle: .teacher))
         titleSubtitleView.subtitle = AttendanceViewController.dateFormatter.string(from: date)
 
         let datePickerButton = UIButton(type: .custom)
         datePickerButton.accessibilityIdentifier = "Attendance.selectDateButton"
-        datePickerButton.accessibilityLabel = NSLocalizedString("Date picker", comment: "")
-        datePickerButton.accessibilityHint = NSLocalizedString("Select to change the roll call date", comment: "")
+        datePickerButton.accessibilityLabel = String(localized: "Date picker", bundle: .teacher)
+        datePickerButton.accessibilityHint = String(localized: "Select to change the roll call date", bundle: .teacher)
         datePickerButton.addSubview(calendarDayIconView)
         datePickerButton.addTarget(self, action: #selector(showDatePicker(_:)), for: .primaryActionTriggered)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePickerButton)
@@ -102,7 +102,7 @@ class AttendanceViewController: ScreenViewTrackableViewController, ColoredNavVie
         changeSectionButton.translatesAutoresizingMaskIntoConstraints = false
         changeSectionButton.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
         changeSectionButton.titleLabel?.font = .preferredFont(forTextStyle: .caption1)
-        changeSectionButton.setTitle(NSLocalizedString("Change Section", comment: ""), for: .normal)
+        changeSectionButton.setTitle(String(localized: "Change Section", bundle: .teacher), for: .normal)
         changeSectionButton.sizeToFit()
         changeSectionButton.addTarget(self, action: #selector(changeSection(_:)), for: .primaryActionTriggered)
         changeSectionButton.tintColor = Core.Brand.shared.linkColor
@@ -201,8 +201,8 @@ class AttendanceViewController: ScreenViewTrackableViewController, ColoredNavVie
         let hasMarked = statuses.contains(where: { $0.status.attendance != nil })
 
         let title = hasMarked
-            ? NSLocalizedString("Mark Remaining as Present", comment: "")
-            : NSLocalizedString("Mark All as Present", comment: "")
+            ? String(localized: "Mark Remaining as Present", bundle: .teacher)
+            : String(localized: "Mark All as Present", bundle: .teacher)
         markAllButton.setTitle(title, for: .normal)
 
         if hasUnmarked, markAllButtonBottom.constant != 0 {
@@ -228,11 +228,11 @@ class AttendanceViewController: ScreenViewTrackableViewController, ColoredNavVie
     func alertError(_ error: Error) {
         print(error)
         let alert = UIAlertController(
-            title: NSLocalizedString("Attendance Error", comment: ""),
+            title: String(localized: "Attendance Error", bundle: .teacher),
             message: error.localizedDescription,
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default))
+        alert.addAction(UIAlertAction(title: String(localized: "Dismiss", bundle: .teacher), style: .default))
         env.router.show(alert, from: self, options: .modal())
     }
 
@@ -304,7 +304,7 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
         let sc = statuses[indexPath.row]
         return UISwipeActionsConfiguration(actions: [ Attendance.present, Attendance.absent, Attendance.late, nil ].compactMap { (value: Attendance?) -> UIContextualAction? in
             guard sc.status.attendance != value else { return nil }
-            let action = UIContextualAction(style: .normal, title: value?.label ?? NSLocalizedString("Unmark", comment: "")) { [weak self] _, _, done in
+            let action = UIContextualAction(style: .normal, title: value?.label ?? String(localized: "Unmark", bundle: .teacher)) { [weak self] _, _, done in
                 sc.update(attendance: value)
                 self?.updateMarkAllButton()
                 done(true)
@@ -361,7 +361,7 @@ extension AttendanceViewController: DatePickerDelegate {
 extension AttendanceViewController {
     @objc func changeSection(_ sender: UIButton) {
         let alert = UIAlertController(
-            title: NSLocalizedString("Choose a Section", comment: ""),
+            title: String(localized: "Choose a Section", bundle: .teacher),
             message: nil,
             preferredStyle: .actionSheet
         )
@@ -371,7 +371,7 @@ extension AttendanceViewController {
                 self?.changeToSection(section)
             })
         }
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+        alert.addAction(UIAlertAction(title: String(localized: "Cancel", bundle: .teacher), style: .cancel))
 
         alert.popoverPresentationController?.sourceRect = changeSectionButton.bounds
         alert.popoverPresentationController?.sourceView = changeSectionButton

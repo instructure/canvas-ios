@@ -23,6 +23,8 @@ fastlane/report.xml
 artifacts
 xctestrun/
 **/IDEWorkspaceChecks.plist
+Core/Core.xcodeproj/
+Student/Student.xcodeproj/
 
 # AppCode
 .idea

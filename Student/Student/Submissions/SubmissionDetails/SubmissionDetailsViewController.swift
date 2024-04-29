@@ -60,7 +60,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-        setupTitleViewInNavbar(title: NSLocalizedString("Submission", bundle: .student, comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Submission", bundle: .student))
         drawer?.tabs?.addTarget(self, action: #selector(drawerTabChanged), for: .valueChanged)
         emptyView?.submitCallback = { [weak self] button in
             self?.presenter?.submit(button: button)
@@ -117,7 +117,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
             let title = DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
             updateAttemptPickerButton(isActive: presenter.pickerSubmissions.count > 1, title: title)
             attemptLabel.isEnabled = presenter.pickerSubmissions.count > 1
-            let format = NSLocalizedString("Attempt %d", bundle: .core, comment: "")
+            let format = String(localized: "Attempt %d", bundle: .student)
             attemptLabel?.text = String.localizedStringWithFormat(format, attempt)
         }
         if presenter.pickerSubmissions.count <= 1 || assignment.isExternalToolAssignment {
@@ -257,7 +257,7 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
     private func text(forRow row: Int) -> NSAttributedString {
         let submissionDateText: String = {
             guard let submittedAt = presenter?.pickerSubmissions[row].submittedAt else {
-                return NSLocalizedString("No Submission Date", bundle: .student, comment: "")
+                return String(localized: "No Submission Date", bundle: .student)
             }
 
             return DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
@@ -267,7 +267,7 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
                 return ""
             }
 
-            let format = NSLocalizedString("Attempt %d", bundle: .core, comment: "")
+            let format = String(localized: "Attempt %d", bundle: .student)
             return String.localizedStringWithFormat(format, attempt)
         }()
 

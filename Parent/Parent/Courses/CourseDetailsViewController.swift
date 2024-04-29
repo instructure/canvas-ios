@@ -74,7 +74,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         colorScheme = ColorScheme.observee(studentID)
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.useContextColor(colorScheme?.color)
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: String(localized: "Back", bundle: .parent), style: .plain, target: nil, action: nil)
 
         delegate = self
         courses.refresh(force: true)
@@ -129,7 +129,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
         replyButton = FloatingButton(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
         replyButton?.configuration = UIButton.Configuration.plain()
-        replyButton?.accessibilityLabel = NSLocalizedString("Compose Message", comment: "")
+        replyButton?.accessibilityLabel = String(localized: "Compose Message", bundle: .parent)
         replyButton?.accessibilityIdentifier = "Grades.composeMessageButton"
         replyButton?.accessibilityTraits.insert(.header)
         replyButton?.setImage(UIImage.commentSolid, for: .normal)
@@ -177,11 +177,10 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         if !pending && replyStarted {
             let name = student.first?.fullName ?? ""
             var tabTitle = titleForSelectedTab() ?? ""
-            tabTitle = tabTitle.replacingOccurrences(of: NSLocalizedString("Summary", comment: ""), with: NSLocalizedString("Syllabus", comment: ""))
-            var template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, <Grades | Syllabus>")
+            tabTitle = tabTitle.replacingOccurrences(of: String(localized: "Summary", bundle: .parent), with: String(localized: "Syllabus", bundle: .parent))
+            var template = String(localized: "Regarding: %@, %@", bundle: .parent, comment: "Regarding <John Doe>, <Grades | Syllabus>")
             let subject = String.localizedStringWithFormat(template, name, tabTitle)
-            template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, [link to grades or syllabus]")
-
+            template = String(localized: "Regarding: %@, %@", bundle: .parent, comment: "Regarding <John Doe>, [link to grades or syllabus]")
             let compose = ComposeViewController.create(
                 context: .course(courseID),
                 observeeID: studentID,
@@ -196,7 +195,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     private func associatedTabConversationLink() -> String {
-        let na = NSLocalizedString("n/a", comment: "")
+        let na = String(localized: "n/a", bundle: .parent)
         guard let menuItem = MenuItem(rawValue: selectedIndexPath.row) else { return na }
         guard let baseURL = env.currentSession?.baseURL, var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true) else { return na }
         switch menuItem {
@@ -247,18 +246,18 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
         guard let menuItem = MenuItem(rawValue: at.row) else { return "" }
         switch menuItem {
         case .grades:
-            return NSLocalizedString("Grades", comment: "")
+            return String(localized: "Grades", bundle: .parent)
         case .syllabus:
             switch courses.first?.defaultView {
             case .wiki:
-                return NSLocalizedString("Front Page", comment: "")
+                return String(localized: "Front Page", bundle: .parent)
             case .syllabus:
-                return NSLocalizedString("Syllabus", comment: "")
+                return String(localized: "Syllabus", bundle: .parent)
             default:
-                return NSLocalizedString("Syllabus", comment: "")
+                return String(localized: "Syllabus", bundle: .parent)
             }
         case .summary:
-            return NSLocalizedString("Summary", comment: "")
+            return String(localized: "Summary", bundle: .parent)
         }
     }
 }

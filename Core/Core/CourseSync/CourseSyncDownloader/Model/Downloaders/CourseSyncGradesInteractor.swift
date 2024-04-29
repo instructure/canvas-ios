@@ -49,6 +49,10 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
             .eraseToAnyPublisher()
     }
 
+    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        Just(()).eraseToAnyPublisher()
+    }
+
     // MARK: - Private Methods
 
     private static func fetchCourseColors() -> AnyPublisher<Void, Error> {

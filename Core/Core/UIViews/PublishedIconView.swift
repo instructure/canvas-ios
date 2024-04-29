@@ -40,4 +40,19 @@ public class PublishedIconView: UIImageView {
             }
         }
     }
+
+    public func setupState(with fileAvilability: FileAvailability) {
+        switch fileAvilability {
+        case .published:
+            published = true
+        case .unpublished:
+            published = false
+        case .hidden:
+            image = .offLine
+            tintColor = UIColor.textWarning
+        case .scheduledAvailability:
+            image = .calendarMonthLine
+            tintColor = UIColor.textWarning
+        }
+    }
 }

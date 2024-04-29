@@ -30,7 +30,7 @@ class QuizSubmissionListViewModel: ObservableObject {
     @Published public var courseID: String = ""
     @Published public var quizID: String = ""
 
-    public let title = NSLocalizedString("Submissions", comment: "")
+    public let title = String(localized: "Submissions", bundle: .teacher)
     public let filters = QuizSubmissionListFilter.allCases
 
     // MARK: - Inputs

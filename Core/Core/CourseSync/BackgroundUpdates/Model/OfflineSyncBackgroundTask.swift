@@ -123,6 +123,16 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
         syncingInteractor = syncInteractor
 
         let selectedItemsInteractor = selectedItemsInteractorFactory(sessionDefaults)
+
+        selectedItemsInteractor
+            .getSelectedCourseEntries()
+            .flatMap { _ in selectedItemsInteractor.getDeselectedCourseIds()}
+            .flatMap { entries in
+                syncInteractor.cleanContent(for: entries)
+            }
+            .sink()
+            .store(in: &subscriptions)
+
         selectedItemsInteractor
             .getCourseSyncEntries() // Build up the internal state of the interactor
             .flatMap { _ in selectedItemsInteractor.getSelectedCourseEntries() } // Actually get what is selected to sync

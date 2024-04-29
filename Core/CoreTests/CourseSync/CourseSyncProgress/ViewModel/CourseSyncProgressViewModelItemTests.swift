@@ -56,15 +56,15 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
     }
 
     func testState() {
-        var data = CourseSyncEntry(name: "test", id: "testID", tabs: [], files: [], state: .downloaded)
+        var data = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [], files: [], state: .downloaded)
         var testee = data.makeSyncProgressViewModelItem()
         XCTAssertEqual(testee.state, .downloaded)
 
-        data = CourseSyncEntry(name: "test", id: "testID", tabs: [], files: [], state: .error)
+        data = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [], files: [], state: .error)
         testee = data.makeSyncProgressViewModelItem()
         XCTAssertEqual(testee.state, .error)
 
-        data = CourseSyncEntry(name: "test", id: "testID", tabs: [], files: [], state: .loading(0.123))
+        data = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [], files: [], state: .loading(0.123))
         testee = data.makeSyncProgressViewModelItem()
         XCTAssertEqual(testee.state, .loading(0.123))
     }
@@ -72,7 +72,7 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
     // MARK: - Course
 
     func testCourseMapping() {
-        var data = CourseSyncEntry(name: "test", id: "testID", tabs: [], files: [])
+        var data = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [], files: [])
         var testee = data.makeViewModelItem()
 
         XCTAssertEqual(testee.id, "testID")
@@ -90,7 +90,7 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
     }
 
     func testCourseCollapsion() {
-        var course = CourseSyncEntry(name: "test", id: "testID", tabs: [.init(id: "0", name: "Assignments", type: .assignments)], files: [])
+        var course = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [.init(id: "0", name: "Assignments", type: .assignments)], files: [])
 
         course.isCollapsed = true
         XCTAssertEqual([course].makeSyncProgressViewModelItems(interactor: mockInteractor).count, 1)
@@ -100,15 +100,15 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
     }
 
     func testExpandedEmptyCourse() {
-        var course = CourseSyncEntry(name: "test", id: "testID", tabs: [], files: [])
+        var course = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [], files: [])
         course.isCollapsed = false
 
         let testee = [course].makeSyncProgressViewModelItems(interactor: mockInteractor)
 
         XCTAssertEqual(testee.count, 2)
 
-        guard case .item(let item) = testee[0],
-              case .empty(let emptyViewId) = testee[1]
+        guard case let .item(item) = testee[0],
+              case let .empty(emptyViewId) = testee[1]
         else {
             return XCTFail()
         }
@@ -153,11 +153,11 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
         var filesTab = CourseSyncEntry.Tab(id: "0", name: "Files", type: .files)
 
         filesTab.isCollapsed = true
-        var course = CourseSyncEntry(name: "test", id: "testID", tabs: [filesTab], files: [file], isCollapsed: false)
+        var course = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [filesTab], files: [file], isCollapsed: false)
         XCTAssertEqual([course].makeSyncProgressViewModelItems(interactor: mockInteractor).count, 2)
 
         filesTab.isCollapsed = false
-        course = CourseSyncEntry(name: "test", id: "testID", tabs: [filesTab], files: [file], isCollapsed: false)
+        course = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [filesTab], files: [file], isCollapsed: false)
         course.isCollapsed = false
         XCTAssertEqual([course].makeSyncProgressViewModelItems(interactor: mockInteractor).count, 3)
     }
@@ -185,16 +185,17 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
 
     func testCourseCollapseEventForwardedToInteractor() {
         let data = CourseSyncEntry(name: "test",
-                                           id: "testID",
-                                           tabs: [
-                                            .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, selectionState: .deselected),
-                                           ],
-                                           files: [],
-                                           isCollapsed: false,
-                                           selectionState: .deselected)
+                                   id: "testID",
+                                   hasFrontPage: false,
+                                   tabs: [
+                                       .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, selectionState: .deselected),
+                                   ],
+                                   files: [],
+                                   isCollapsed: false,
+                                   selectionState: .deselected)
         let testee = [data].makeSyncProgressViewModelItems(interactor: mockInteractor)
 
-        guard case .item(let item) = testee[0] else {
+        guard case let .item(item) = testee[0] else {
             return XCTFail()
         }
 
@@ -205,18 +206,19 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
 
     func testTabCollapseEventForwardedToInteractor() {
         let data = CourseSyncEntry(name: "test",
-                                           id: "testID",
-                                           tabs: [
-                                            .init(id: "0", name: "Files", type: .files, isCollapsed: false, selectionState: .deselected),
-                                           ],
-                                           files: [
-                                            .make(id: "0", displayName: "test.txt", selectionState: .deselected),
-                                           ],
-                                           isCollapsed: false,
-                                           selectionState: .deselected)
+                                   id: "testID",
+                                   hasFrontPage: false,
+                                   tabs: [
+                                       .init(id: "0", name: "Files", type: .files, isCollapsed: false, selectionState: .deselected),
+                                   ],
+                                   files: [
+                                       .make(id: "0", displayName: "test.txt", selectionState: .deselected),
+                                   ],
+                                   isCollapsed: false,
+                                   selectionState: .deselected)
         let testee = [data].makeSyncProgressViewModelItems(interactor: mockInteractor)
 
-        guard case .item(let item) = testee[1] else {
+        guard case let .item(item) = testee[1] else {
             return XCTFail()
         }
 
@@ -234,23 +236,18 @@ class MockCourseSyncProgressInteractor: CourseSyncProgressInteractor {
         courseSyncFileProgressSubject.eraseToAnyPublisher()
     }
 
-    func setProgress(selection: Core.CourseEntrySelection, progress: Float?) {
-    }
+    func setProgress(selection _: Core.CourseEntrySelection, progress _: Float?) {}
 
-    func cancelSync() {
-    }
+    func cancelSync() {}
 
-    func retrySync() {
-    }
+    func retrySync() {}
 
-    func remove(selection: Core.CourseEntrySelection) {
-    }
+    func remove(selection _: Core.CourseEntrySelection) {}
 
     private(set) var lastSelected: (selection: Core.CourseEntrySelection, isSelected: Bool)?
     private(set) var lastCollapsed: (selection: Core.CourseEntrySelection, isCollapsed: Bool)?
 
-    required init(courseID: String? = nil) {
-    }
+    required init(courseID _: String? = nil) {}
 
     func observeEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
         courseSyncEntriesSubject.eraseToAnyPublisher()

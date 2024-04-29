@@ -61,7 +61,7 @@ extension UIViewController {
         let isExpanded = splitView.displayMode == .oneOverSecondary || splitView.displayMode == .secondaryOnly
         let icon: UIImage = isExpanded ? .exitFullScreenLine : .fullScreenLine
         let buttonItem = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
-        buttonItem.accessibilityLabel = splitView.isCollapsed ? NSLocalizedString("Collapse", bundle: .core, comment: "") : NSLocalizedString("Expand", bundle: .core, comment: "")
+        buttonItem.accessibilityLabel = splitView.isCollapsed ? String(localized: "Collapse", bundle: .core) : String(localized: "Expand", bundle: .core)
         return buttonItem
     }
 
@@ -132,7 +132,7 @@ extension UIViewController {
         child.didMove(toParent: self)
     }
 
-    public func syncNavigationBar(with viewController: UIViewController) -> [NSKeyValueObservation] {
+    func syncNavigationBar(with viewController: UIViewController) -> [NSKeyValueObservation] {
         title = viewController.title
         navigationItem.title = viewController.title
         navigationItem.titleView = viewController.navigationItem.titleView
@@ -154,10 +154,10 @@ extension UIViewController {
                 self?.navigationItem.titleView = item.titleView
             },
             viewController.navigationItem.observe(\.rightBarButtonItems) { [weak self] item, _ in
-                self?.navigationItem.rightBarButtonItems = (item.rightBarButtonItems ?? []) + right
+                self?.navigationItem.rightBarButtonItems = ((item.rightBarButtonItems ?? []) + right).removeDuplicates()
             },
             viewController.navigationItem.observe(\.leftBarButtonItems) { [weak self] item, _ in
-                self?.navigationItem.leftBarButtonItems = (item.leftBarButtonItems ?? []) + left
+                self?.navigationItem.leftBarButtonItems = ((item.leftBarButtonItems ?? []) + left).removeDuplicates()
             },
             viewController.navigationItem.observe(\.leftItemsSupplementBackButton) { [weak self] item, _ in
                 self?.navigationItem.leftItemsSupplementBackButton = item.leftItemsSupplementBackButton || leftItemsSupplementBackButton
@@ -177,12 +177,12 @@ extension UIViewController {
     }
 
     public func showPermissionError(_ error: PermissionError) {
-        let alert = UIAlertController(title: NSLocalizedString("Permission Needed", comment: ""), message: error.message, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Settings", comment: ""), style: .default) { _ in
+        let alert = UIAlertController(title: String(localized: "Permission Needed", bundle: .core), message: error.message, preferredStyle: .alert)
+        alert.addAction(AlertAction(String(localized: "Settings", bundle: .core), style: .default) { _ in
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
             AppEnvironment.shared.loginDelegate?.openExternalURL(url)
         })
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
         AppEnvironment.shared.router.show(alert, from: self, options: .modal())
     }
 
@@ -191,14 +191,14 @@ extension UIViewController {
         // Don't show the theme selector popup for UI Tests
         guard !ProcessInfo.isUITest else { return }
 
-        let alert = UIAlertController(title: NSLocalizedString("Canvas is now available in dark theme", bundle: .core, comment: ""),
-                                      message: NSLocalizedString("Choose your app appearance!\nYou can change it later in the settings menu.", bundle: .core, comment: ""),
+        let alert = UIAlertController(title: String(localized: "Canvas is now available in dark theme", bundle: .core),
+                                      message: String(localized: "Choose your app appearance!\nYou can change it later in the settings menu.", bundle: .core),
                                       preferredStyle: .alert)
 
-        alert.addAction(AlertAction(NSLocalizedString("System settings", bundle: .core, comment: ""), style: .default) {_ in self.setStyle(style: .unspecified)})
-        alert.addAction(AlertAction(NSLocalizedString("Light theme", bundle: .core, comment: ""), style: .default) {_ in self.setStyle(style: .light)})
-        alert.addAction(AlertAction(NSLocalizedString("Dark theme", bundle: .core, comment: ""), style: .default) {_ in self.setStyle(style: .dark)})
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel) {_ in self.setStyle(style: .light)})
+        alert.addAction(AlertAction(String(localized: "System settings", bundle: .core), style: .default) {_ in self.setStyle(style: .unspecified)})
+        alert.addAction(AlertAction(String(localized: "Light theme", bundle: .core), style: .default) {_ in self.setStyle(style: .light)})
+        alert.addAction(AlertAction(String(localized: "Dark theme", bundle: .core), style: .default) {_ in self.setStyle(style: .dark)})
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel) {_ in self.setStyle(style: .light)})
         AppEnvironment.shared.router.show(alert, from: self, options: .modal())
     }
 
@@ -216,11 +216,11 @@ extension UIViewController {
         var message: String {
             switch self {
             case .camera:
-                return NSLocalizedString("You must enable Camera permissions in Settings.", comment: "")
+                return String(localized: "You must enable Camera permissions in Settings.", bundle: .core)
             case .microphone:
-                return NSLocalizedString("You must enable Microphone permissions in Settings.", comment: "")
+                return String(localized: "You must enable Microphone permissions in Settings.", bundle: .core)
             case .notifications:
-                return NSLocalizedString("You must allow notifications in Settings to set reminders.", comment: "")
+                return String(localized: "You must allow notifications in Settings to set reminders.", bundle: .core)
             }
         }
     }

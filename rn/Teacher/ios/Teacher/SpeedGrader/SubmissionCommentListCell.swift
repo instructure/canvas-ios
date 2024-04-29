@@ -156,7 +156,7 @@ struct SubmissionCommentFile: View {
                 .frame(width: 300)
                 .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderMedium))
         })
-            .accessibility(label: Text("View file \(file.displayName ?? file.filename) \(file.size.humanReadableFileSize)"))
+            .accessibility(label: Text("View file \(file.displayName ?? file.filename) \(file.size.humanReadableFileSize)", bundle: .teacher))
             .identifier("SubmissionComments.fileView.\(file.id ?? "")")
     }
 }
@@ -205,7 +205,7 @@ struct SubmissionAttempt: View {
                 .frame(width: 300)
                 .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderMedium))
         })
-            .accessibility(label: Text("View submission attempt \(submission.attempt). \(submission.type?.localizedString ?? "")"))
+            .accessibility(label: Text("View submission attempt \(submission.attempt). \(submission.type?.localizedString ?? "")", bundle: .teacher))
     }
 }
 

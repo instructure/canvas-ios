@@ -34,6 +34,7 @@ public struct CourseSyncEntry: Equatable {
      The unique identifier of the sync entry in a form of "courses/:courseId". Doesn't correspond to the course ID on API. Use the `courseId` property if you need the API id.
      */
     let id: String
+    let hasFrontPage: Bool
     var courseId: String { String(id.split(separator: "/").last ?? "") }
 
     var tabs: [CourseSyncEntry.Tab]
@@ -190,15 +191,15 @@ public struct CourseSyncEntry: Equatable {
 
         // Selecting modules or grades will select every other tab because they are needed to compose modules/grades.
         if selectionState == .selected {
-            if tabs[id: id]?.type == .modules || tabs[id: id]?.type == .grades {
-                for tab in tabs where tab.type != .modules && tab.type != .grades {
+            if tabs[id: id]?.type == .modules || tabs[id: id]?.type == .grades || tabs[id: id]?.type == .pages {
+                for tab in tabs where tab.type != .modules && tab.type != .grades && tab.type != .pages {
                     selectTab(id: tab.id, selectionState: .selected)
                 }
             }
             // Deselecting a tab other than modules or grades will deselect modules and grades.
         } else if selectionState == .deselected {
-            if tabs[id: id]?.type != .modules, tabs[id: id]?.type != .grades {
-                for tab in tabs where tab.type == .modules || tab.type == .grades {
+            if tabs[id: id]?.type != .modules, tabs[id: id]?.type != .grades, tabs[id: id]?.type != .pages {
+                for tab in tabs where tab.type == .modules || tab.type == .grades || tab.type == .pages {
                     selectTab(id: tab.id, selectionState: .deselected)
                 }
             }
@@ -251,6 +252,7 @@ extension CourseSyncEntry {
         CourseSyncEntry(
             name: name,
             id: id,
+            hasFrontPage: false,
             tabs: tabs,
             files: files
         )

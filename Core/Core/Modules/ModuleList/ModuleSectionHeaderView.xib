@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ModuleSectionHeaderView" customModule="Core" customModuleProvider="target">
             <connections>
                 <outlet property="collapsableIndicator" destination="Cc0-w5-zrP" id="WP6-7I-9g1"/>
+                <outlet property="contentStackViewTrailingConstraint" destination="nFM-eU-9Nx" id="M3P-lE-nqn"/>
                 <outlet property="lockedButton" destination="x61-b5-ndv" id="RUM-F9-hDo"/>
-                <outlet property="publishedIconView" destination="gfV-EK-A87" id="IIa-rP-55K"/>
+                <outlet property="publishControl" destination="cZ1-fe-hKS" id="y7w-I9-d0u"/>
+                <outlet property="publishControlGuide" destination="gas-xK-oxU" id="iqn-60-N5u"/>
                 <outlet property="titleLabel" destination="4NE-AM-KWx" id="rib-Ss-7wW"/>
             </connections>
         </placeholder>
@@ -23,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xwa-uh-Uxh" customClass="DividerView" customModule="Core" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="nGR-mE-hYi"/>
                     </constraints>
@@ -32,10 +35,10 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="587-C5-WKa">
-                    <rect key="frame" x="16" y="33" width="343" height="45"/>
+                    <rect key="frame" x="16" y="53" width="343" height="25"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="miniArrowUpSolid" translatesAutoresizingMaskIntoConstraints="NO" id="Cc0-w5-zrP" customClass="IconView" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="10.5" width="24" height="24"/>
+                            <rect key="frame" x="0.0" y="0.5" width="24" height="24"/>
                             <color key="tintColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="J63-QL-9Lw"/>
@@ -47,7 +50,7 @@
                             </userDefinedRuntimeAttributes>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Module Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NE-AM-KWx" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="28" y="10.5" width="259" height="24"/>
+                            <rect key="frame" x="28" y="0.5" width="195" height="24"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -56,8 +59,8 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x61-b5-ndv" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="291" y="10.5" width="24" height="24"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x61-b5-ndv" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                            <rect key="frame" x="227" y="0.5" width="24" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="BdE-LF-Z1J"/>
                                 <constraint firstAttribute="height" constant="24" id="yh7-8k-Y2A"/>
@@ -69,15 +72,17 @@
                                 <action selector="lockTapped" destination="-1" eventType="primaryActionTriggered" id="krv-OU-TIo"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="publishSolid" translatesAutoresizingMaskIntoConstraints="NO" id="gfV-EK-A87" customClass="PublishedIconView" customModule="Core">
-                            <rect key="frame" x="319" y="10.5" width="24" height="24"/>
-                            <color key="tintColor" red="0.0" green="0.67450980392156867" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gas-xK-oxU" userLabel="Publish Control Guide">
+                            <rect key="frame" x="255" y="0.5" width="88" height="24"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="24" id="7Gg-D8-aK5"/>
-                                <constraint firstAttribute="height" constant="24" id="zty-p2-3gn"/>
+                                <constraint firstAttribute="width" constant="88" id="Rjk-ol-baj"/>
+                                <constraint firstAttribute="height" constant="24" id="kDI-hE-cNw"/>
                             </constraints>
-                        </imageView>
+                        </view>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="gas-xK-oxU" secondAttribute="trailing" id="Q8t-4g-vph"/>
+                    </constraints>
                 </stackView>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JmO-Tg-r8P" customClass="DividerView" customModule="Core" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="86" width="375" height="1"/>
@@ -88,23 +93,31 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZ1-fe-hKS" userLabel="Publish Control" customClass="ModulePublishControl" customModule="Core" customModuleProvider="target">
+                    <rect key="frame" x="271" y="20" width="88" height="67"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="backgroundLight"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Xwa-uh-Uxh" secondAttribute="trailing" id="1k3-Wb-XTv"/>
+                <constraint firstItem="cZ1-fe-hKS" firstAttribute="trailing" secondItem="gas-xK-oxU" secondAttribute="trailing" id="1vo-dg-gvc"/>
                 <constraint firstItem="JmO-Tg-r8P" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="B1I-Ez-3Yy"/>
                 <constraint firstItem="Xwa-uh-Uxh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Eez-pp-hJa"/>
+                <constraint firstItem="cZ1-fe-hKS" firstAttribute="top" secondItem="Xwa-uh-Uxh" secondAttribute="top" id="FCz-df-UM2"/>
                 <constraint firstItem="587-C5-WKa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="HZe-Na-ctb"/>
                 <constraint firstItem="Xwa-uh-Uxh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="L4y-Rd-H59"/>
                 <constraint firstItem="JmO-Tg-r8P" firstAttribute="top" secondItem="587-C5-WKa" secondAttribute="bottom" constant="8" id="UOG-kQ-6Xa"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="JmO-Tg-r8P" secondAttribute="trailing" id="VVy-cY-GLL"/>
+                <constraint firstItem="JmO-Tg-r8P" firstAttribute="bottom" secondItem="cZ1-fe-hKS" secondAttribute="bottom" id="fto-Yq-H3n"/>
                 <constraint firstItem="587-C5-WKa" firstAttribute="top" secondItem="Xwa-uh-Uxh" secondAttribute="bottom" constant="32" id="gxG-cl-yzl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="587-C5-WKa" secondAttribute="trailing" constant="16" id="nFM-eU-9Nx"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="JmO-Tg-r8P" secondAttribute="bottom" id="typ-sy-jo8"/>
+                <constraint firstItem="cZ1-fe-hKS" firstAttribute="leading" secondItem="gas-xK-oxU" secondAttribute="leading" id="zxO-IB-6uN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="pvd-le-X6Z" appends="YES" id="RKh-6f-fg4"/>
             </connections>
@@ -116,11 +129,24 @@
             </connections>
         </tapGestureRecognizer>
     </objects>
+    <designables>
+        <designable name="4NE-AM-KWx">
+            <size key="intrinsicContentSize" width="129.5" height="24"/>
+        </designable>
+        <designable name="Cc0-w5-zrP">
+            <size key="intrinsicContentSize" width="24" height="24"/>
+        </designable>
+        <designable name="x61-b5-ndv">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <image name="miniArrowUpSolid" width="24" height="24"/>
-        <image name="publishSolid" width="24" height="24"/>
         <namedColor name="backgroundLight">
             <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

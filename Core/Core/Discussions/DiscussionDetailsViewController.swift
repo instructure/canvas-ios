@@ -122,12 +122,12 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupTitleViewInNavbar(title: isAnnouncement
-            ? NSLocalizedString("Announcement Details", bundle: .core, comment: "")
-            : NSLocalizedString("Discussion Details", bundle: .core, comment: "")
+            ? String(localized: "Announcement Details", bundle: .core)
+            : String(localized: "Discussion Details", bundle: .core)
         )
         courseSectionsView.isHidden = true
 
-        optionsButton.accessibilityLabel = NSLocalizedString("Options", bundle: .core, comment: "")
+        optionsButton.accessibilityLabel = String(localized: "Options", bundle: .core)
         optionsButton.accessibilityIdentifier = "DiscussionDetails.options"
 
         pointsView.isHidden = true
@@ -164,8 +164,8 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
         if showRepliesToEntryID != nil {
             titleSubtitleView.title = isAnnouncement
-                ? NSLocalizedString("Announcement Replies", bundle: .core, comment: "")
-                : NSLocalizedString("Discussion Replies", bundle: .core, comment: "")
+                ? String(localized: "Announcement Replies", bundle: .core)
+                : String(localized: "Discussion Replies", bundle: .core)
             navigationItem.rightBarButtonItem = nil
         }
 
@@ -212,12 +212,12 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         refreshControl.color = color
         titleSubtitleView.title = showRepliesToEntryID != nil ? (
             isAnnouncement
-                ? NSLocalizedString("Announcement Replies", bundle: .core, comment: "")
-                : NSLocalizedString("Discussion Replies", bundle: .core, comment: "")
+                ? String(localized: "Announcement Replies", bundle: .core)
+                : String(localized: "Discussion Replies", bundle: .core)
         ) : (
             isAnnouncement
-                ? NSLocalizedString("Announcement Details", bundle: .core, comment: "")
-                : NSLocalizedString("Discussion Details", bundle: .core, comment: "")
+                ? String(localized: "Announcement Details", bundle: .core)
+                : String(localized: "Discussion Details", bundle: .core)
         )
         updateNavBar(subtitle: name, color: color)
     }
@@ -237,7 +237,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
         if let sections = topic.first?.sections, topic.first?.isSectionSpecific == true {
             courseSectionsLabel.text = String.localizedStringWithFormat(
-                NSLocalizedString("Sections: %@", bundle: .core, comment: ""),
+                String(localized: "Sections: %@", bundle: .core),
                 ListFormatter.localizedString(from: sections.map { $0.name })
             )
             courseSectionsView.isHidden = false
@@ -258,8 +258,8 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         publishedIcon.image = isPublished ? .publishSolid : .noSolid
         publishedIcon.tintColor = isPublished ? .textSuccess : .textDark
         publishedLabel.text = isPublished
-            ? NSLocalizedString("Published", bundle: .core, comment: "")
-            : NSLocalizedString("Unpublished", bundle: .core, comment: "")
+            ? String(localized: "Published", bundle: .core)
+            : String(localized: "Unpublished", bundle: .core)
         publishedLabel.textColor = isPublished ? .textSuccess : .textDark
         publishedView.isHidden = env.app != .teacher || isAnnouncement || showRepliesToEntryID != nil
 
@@ -361,7 +361,12 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
             )
         } else {
             let isFutureDiscussion: Bool = {
-                guard let unlockDate = topic.assignment?.unlockAt else {
+                // Discussions in the future might not have an assignment,
+                // but their posted at date can still be in the future.
+                guard let assignment = topic.assignment else {
+                    return topic.postedAt ?? Date.distantPast > Date()
+                }
+                guard let unlockDate = assignment.unlockAt else {
                     return false
                 }
                 return unlockDate > Date()
@@ -576,7 +581,7 @@ extension DiscussionDetailsViewController {
         if entries.contains(where: { $0.isRead == false }) {
             sheet.addAction(
                 image: .checkSolid,
-                title: NSLocalizedString("Mark All as Read", bundle: .core, comment: ""),
+                title: String(localized: "Mark All as Read", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.markAllRead"
             ) { [weak self] in
                 self?.markAllRead(isRead: true)
@@ -585,7 +590,7 @@ extension DiscussionDetailsViewController {
         if entries.contains(where: { $0.isRead == true }) {
             sheet.addAction(
                 image: .noSolid,
-                title: NSLocalizedString("Mark All as Unread", bundle: .core, comment: ""),
+                title: String(localized: "Mark All as Unread", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.markAllUnread"
             ) { [weak self] in
                 self?.markAllRead(isRead: false)
@@ -594,7 +599,7 @@ extension DiscussionDetailsViewController {
         if topic.subscribed {
             sheet.addAction(
                 image: .noSolid,
-                title: NSLocalizedString("Unsubscribe", comment: ""),
+                title: String(localized: "Unsubscribe", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.unsubscribe"
             ) { [weak self] in
                 self?.subscribe(false)
@@ -602,7 +607,7 @@ extension DiscussionDetailsViewController {
         } else {
             sheet.addAction(
                 image: .checkSolid,
-                title: NSLocalizedString("Subscribe", comment: ""),
+                title: String(localized: "Subscribe", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.subscribe"
             ) { [weak self] in
                 self?.subscribe(true)
@@ -611,7 +616,7 @@ extension DiscussionDetailsViewController {
         if topic.canUpdate {
             sheet.addAction(
                 image: .editLine,
-                title: NSLocalizedString("Edit", bundle: .core, comment: ""),
+                title: String(localized: "Edit", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.edit"
             ) { [weak self] in
                 self?.editTopic()
@@ -620,7 +625,7 @@ extension DiscussionDetailsViewController {
         if topic.canDelete {
             sheet.addAction(
                 image: .trashLine,
-                title: NSLocalizedString("Delete", bundle: .core, comment: ""),
+                title: String(localized: "Delete", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.delete"
             ) { [weak self] in
                 self?.deleteTopic()
@@ -729,7 +734,7 @@ extension DiscussionDetailsViewController {
         if entry.isRead == false {
             sheet.addAction(
                 image: .checkSolid,
-                title: NSLocalizedString("Mark as Read", bundle: .core, comment: ""),
+                title: String(localized: "Mark as Read", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.markAsRead"
             ) { [weak self] in
                 self?.markRead(entryID, isRead: true)
@@ -737,7 +742,7 @@ extension DiscussionDetailsViewController {
         } else {
             sheet.addAction(
                 image: .noSolid,
-                title: NSLocalizedString("Mark as Unread", bundle: .core, comment: ""),
+                title: String(localized: "Mark as Unread", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.markAsUnread"
             ) { [weak self] in
                 self?.markRead(entryID, isRead: false)
@@ -746,7 +751,7 @@ extension DiscussionDetailsViewController {
         if canEdit {
             sheet.addAction(
                 image: .editLine,
-                title: NSLocalizedString("Edit", bundle: .core, comment: ""),
+                title: String(localized: "Edit", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.edit"
             ) { [weak self] in
                 self?.editEntry(entryID)
@@ -755,7 +760,7 @@ extension DiscussionDetailsViewController {
         if canDelete {
             sheet.addAction(
                 image: .trashLine,
-                title: NSLocalizedString("Delete", bundle: .core, comment: ""),
+                title: String(localized: "Delete", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.delete"
             ) { [weak self] in
                 self?.deleteEntry(entryID)
