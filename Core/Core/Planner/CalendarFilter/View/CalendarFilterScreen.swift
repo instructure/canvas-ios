@@ -45,6 +45,7 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
             doneButton
             selectAllButton
         }
+        .snackBar(viewModel: viewModel.snackbarViewModel)
     }
 
     private var selectAllButton: some ToolbarContent {

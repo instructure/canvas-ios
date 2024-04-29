@@ -19,6 +19,13 @@
 public enum CalendarFilterCountLimit {
     case limited(Int)
     case unlimited
+
+    var count: Int {
+        if case .limited(let count) = self {
+            return count
+        }
+        return .max
+    }
 }
 
 public extension Optional where Wrapped == AppEnvironment.App {

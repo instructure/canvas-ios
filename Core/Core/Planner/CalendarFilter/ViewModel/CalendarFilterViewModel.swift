@@ -29,6 +29,7 @@ public class CalendarFilterViewModel: ObservableObject {
     @Published public private(set) var filterLimitMessage: String?
     public let pageTitle = String(localized: "Calendars", bundle: .core)
     public let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/filter")
+    public let snackbarViewModel = SnackBarViewModel()
 
     // MARK: - Inputs
     public let didToggleSelection = PassthroughSubject<(context: Context, isSelected: Bool), Never>()
@@ -101,20 +102,15 @@ public class CalendarFilterViewModel: ObservableObject {
 
     private func forwardSelectionChangesToInteractor() {
         didToggleSelection
-            .filter { [interactor] (_, isSelected) in
-                if isSelected {
-                    switch interactor.filterCountLimit.value {
-                    case .limited(let limit):
-                        return interactor.selectedContexts.value.count < limit
-                    case .unlimited:
-                        return true
+            .flatMap { [interactor, snackbarViewModel] (context, isSelected) in
+                interactor
+                    .updateFilteredContexts([context], isSelected: isSelected)
+                    .catch { _ in
+                        let limit = interactor.filterCountLimit.value.count
+                        return snackbarViewModel.showFilterLimitReachedMessage(limit: limit)
                     }
-                }
-                return true
             }
-            .sink { [weak interactor] (context, isSelected) in
-                interactor?.updateFilteredContexts([context], isSelected: isSelected)
-            }
+            .sink()
             .store(in: &subscriptions)
     }
 
@@ -128,9 +124,10 @@ public class CalendarFilterViewModel: ObservableObject {
                 allContexts.appendUnwrapped(userFilter?.context)
                 return (allContexts, selectedContexts.isEmpty)
             }
-            .sink { [interactor] (contexts, isSelect) in
+            .flatMap { [interactor] (contexts, isSelect) in
                 interactor.updateFilteredContexts(contexts, isSelected: isSelect)
             }
+            .sink()
             .store(in: &subscriptions)
     }
 
@@ -169,5 +166,16 @@ public class CalendarFilterViewModel: ObservableObject {
             }
             .assign(to: \.filterLimitMessage, on: self, ownership: .weak)
             .store(in: &subscriptions)
+    }
+}
+
+private extension SnackBarViewModel {
+
+    func showFilterLimitReachedMessage(limit: Int) -> Future<Void, Never> {
+        Future { [weak self] promise in
+            let message = String(localized: "You can only select up to \(limit) calendars.", bundle: .core)
+            self?.showSnack(message)
+            promise(.success(()))
+        }
     }
 }

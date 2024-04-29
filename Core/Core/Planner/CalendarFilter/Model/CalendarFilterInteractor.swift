@@ -23,7 +23,7 @@ public protocol CalendarFilterInteractor: AnyObject {
     var selectedContexts: CurrentValueSubject<Set<Context>, Never> { get }
 
     func loadFilters(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error>
-    func updateFilteredContexts(_ context: [Context], isSelected: Bool)
+    func updateFilteredContexts(_ contexts: [Context], isSelected: Bool) -> AnyPublisher<Void, Error>
 
     func contextsForAPIFiltering() -> [Context]
     func numberOfUserSelectedContexts() -> Int
@@ -127,19 +127,31 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         }
     }
 
-    public func updateFilteredContexts(_ contexts: [Context], isSelected: Bool) {
-        guard var defaults = env.userDefaults else { return }
-
-        var selectedContexts = defaults.calendarSelectedContexts(for: observedUserId)
-
-        if isSelected {
-            selectedContexts.formUnion(contexts)
-        } else {
-            selectedContexts.subtract(contexts)
+    public func updateFilteredContexts(_ contexts: [Context], isSelected: Bool) -> AnyPublisher<Void, Error> {
+        guard var defaults = env.userDefaults else {
+            return Fail(error: NSError.internalError()).eraseToAnyPublisher()
         }
 
-        defaults.setCalendarSelectedContexts(selectedContexts, observedStudentId: observedUserId)
-        self.selectedContexts.send(selectedContexts)
+        if isSelected,
+           case .limited(let limit) = filterCountLimit.value,
+           selectedContexts.value.count >= limit {
+            return Fail(error: NSError.internalError()).eraseToAnyPublisher()
+        }
+
+        return Future { [observedUserId, selectedContexts] promise in
+            var newSelectedContexts = defaults.calendarSelectedContexts(for: observedUserId)
+
+            if isSelected {
+                newSelectedContexts.formUnion(contexts)
+            } else {
+                newSelectedContexts.subtract(contexts)
+            }
+
+            defaults.setCalendarSelectedContexts(newSelectedContexts, observedStudentId: observedUserId)
+            selectedContexts.send(newSelectedContexts)
+            promise(.success(()))
+        }
+        .eraseToAnyPublisher()
     }
 
     public func contextsForAPIFiltering() -> [Context] {
@@ -157,15 +169,14 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
 
     // MARK: - Private
 
-    private func clearNotAvailableSelectedContexts(filters: [CDCalendarFilterEntry]) -> Future<Void, Never> {
-        Future { [weak self] promise in
-            defer { promise(.success(())) }
-            guard let self else { return }
-            let availableContexts = filters.map { $0.context }
-            let selectedContexts = selectedContexts.value
-            let noLongerAvailableSelectedContexts = selectedContexts.subtracting(availableContexts)
-            updateFilteredContexts(Array(noLongerAvailableSelectedContexts), isSelected: false)
-        }
+    private func clearNotAvailableSelectedContexts(filters: [CDCalendarFilterEntry]) -> AnyPublisher<Void, Never> {
+        let availableContexts = filters.map { $0.context }
+        let selectedContexts = selectedContexts.value
+        let noLongerAvailableSelectedContexts = selectedContexts.subtracting(availableContexts)
+
+        return updateFilteredContexts(Array(noLongerAvailableSelectedContexts), isSelected: false)
+            .replaceError(with: ())
+            .eraseToAnyPublisher()
     }
 
     private func loadSelectedContexts() {
