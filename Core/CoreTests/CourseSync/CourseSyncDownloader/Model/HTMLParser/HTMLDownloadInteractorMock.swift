@@ -21,18 +21,6 @@ import Foundation
 import Combine
 
 class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
-    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
-        return downloadFile(url, courseId: courseId, resourceId: resourceId, publisherProvider: URLSessionDataTaskPublisherProviderLive())
-    }
-
-    func downloadFile(_ url: URL, courseId: String, resourceId: String, publisherProvider: Core.URLSessionDataTaskPublisherProvider) -> AnyPublisher<String, Error> {
-        fileNames.append(url.lastPathComponent)
-
-        return Just(url.path)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-
     var sectionName: String = "MockSectionName"
     var fileNames: [String] = []
     private var counter: Int = 0
@@ -59,6 +47,18 @@ class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
         let saveURL = URL.Directories.documents.appendingPathComponent(fileName)
 
         return Just(saveURL)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
+    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
+        return downloadFile(url, courseId: courseId, resourceId: resourceId, publisherProvider: URLSessionDataTaskPublisherProviderLive())
+    }
+
+    func downloadFile(_ url: URL, courseId: String, resourceId: String, publisherProvider: Core.URLSessionDataTaskPublisherProvider) -> AnyPublisher<String, Error> {
+        fileNames.append(url.lastPathComponent)
+
+        return Just(url.path)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }

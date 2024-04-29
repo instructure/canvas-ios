@@ -312,7 +312,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         }
         if offlineFileInteractor?.isOffline == true, let contextId = context?.id {
             if offlineFileSource == nil {
-                offlineFileSource = .Public(sessionID: sessionID, courseID: contextId, fileID: fileID, fileName: name)
+                offlineFileSource = .publicFile(sessionID: sessionID, courseID: contextId, fileID: fileID, fileName: name)
             }
             return offlineFileInteractor?.filePath(
                 source: offlineFileSource

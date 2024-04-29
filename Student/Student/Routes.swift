@@ -490,7 +490,7 @@ private func offlineFileDetails(url: URLComponents, params: [String: String], us
     }
     let context = Context(.course, id: courseID)
 
-    let fileSource = OfflineFileSource.Private(sessionID: sessionID, courseID: courseID, sectionName: section, resourceID: resourceID, fileID: fileID)
+    let fileSource = OfflineFileSource.privateFile(sessionID: sessionID, courseID: courseID, sectionName: section, resourceID: resourceID, fileID: fileID)
     return FileDetailsViewController.create(context: context, fileID: fileID, offlineFileSource: fileSource)
 }
 

@@ -19,6 +19,6 @@
 import Foundation
 
 public enum OfflineFileSource {
-    case Public(sessionID: String, courseID: String, fileID: String, fileName: String)
-    case Private(sessionID: String, courseID: String, sectionName: String, resourceID: String, fileID: String)
+    case publicFile(sessionID: String, courseID: String, fileID: String, fileName: String)
+    case privateFile(sessionID: String, courseID: String, sectionName: String, resourceID: String, fileID: String)
 }

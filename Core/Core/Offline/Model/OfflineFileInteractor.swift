@@ -21,65 +21,40 @@ import Combine
 public protocol OfflineFileInteractor {
     func filePath(sessionID: String, courseId: String, fileID: String, fileName: String) -> String
     func isItemAvailableOffline(courseID: String?, fileID: String?) -> Bool
-    func filePath(source: OfflineFileSource?) -> String
+    func filePath(source: OfflineFileSource?) -> String?
     func isItemAvailableOffline(source: OfflineFileSource?) -> Bool
     var isOffline: Bool { get }
 }
 
 public final class OfflineFileInteractorLive: OfflineFileInteractor {
-
-    // MARK: Public functions
-    public func filePath(source: OfflineFileSource?) -> String {
-        switch source {
-        case .Private(let sessionID, let courseID, let sectionName, let resourceID, let fileID):
-            return filePath(sessionID: sessionID, courseId: courseID, section: sectionName, resourceId: resourceID, fileID: fileID)
-        case .Public(let sessionID, let courseID, let fileID, let fileName):
-            return filePath(sessionID: sessionID, courseId: courseID, fileID: fileID, fileName: fileName)
-        case .none:
-            return ""
-        }
-    }
-
-    public func isItemAvailableOffline(source: OfflineFileSource?) -> Bool {
-        switch source {
-        case .Private(let sessionID, let courseID, let sectionName, let resourceID, let fileID):
-            return isItemAvailableOffline(sessionID: sessionID, courseId: courseID, section: sectionName, resourceId: resourceID, fileID: fileID)
-        case .Public(let sessionID, let courseID, let fileID, let fileName):
-            return isItemAvailableOffline(courseID: courseID, fileID: fileID)
-        case .none:
-            return false
-        }
-    }
-
-    // MARK: - Dependencies
-
     private let offlineModeInteractor: OfflineModeInteractor
 
     public init(offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) {
         self.offlineModeInteractor = offlineModeInteractor
     }
 
-    private  func filePath(sessionID: String?, courseId: String?, section: String?, resourceId: String?, fileID: String?) -> String {
-        guard let sessionID, let courseId, let section, let resourceId, let fileID else { return "" }
-        let folderURL = URL.Paths.Offline.courseSectionResourceFolderURL(sessionId: sessionID, courseId: courseId, sectionName: section, resourceId: resourceId)
-            .appendingPathComponent("file-\(fileID)")
+    // MARK: Public functions
 
-        let fileName = (try? FileManager.default.contentsOfDirectory(atPath: folderURL.path))?.first
-        if let fileName {
-            let absoluteURL = "\(folderURL.path)/\(fileName)"
-            let relativeURL = absoluteURL.replacingOccurrences(of: URL.Directories.documents.path, with: "")
-            return relativeURL
-        } else {
-            return ""
+    public func filePath(source: OfflineFileSource?) -> String? {
+        switch source {
+        case .privateFile(let sessionID, let courseID, let sectionName, let resourceID, let fileID):
+            return filePath(sessionID: sessionID, courseId: courseID, section: sectionName, resourceId: resourceID, fileID: fileID)
+        case .publicFile(let sessionID, let courseID, let fileID, let fileName):
+            return filePath(sessionID: sessionID, courseId: courseID, fileID: fileID, fileName: fileName)
+        case .none:
+            return nil
         }
     }
 
-    private func isItemAvailableOffline(sessionID: String?, courseId: String?, section: String?, resourceId: String?, fileID: String?) -> Bool {
-        guard let sessionID, let courseId, let section, let resourceId, let fileID else { return false }
-        let folderURL = URL.Paths.Offline.courseSectionResourceFolderURL(sessionId: sessionID, courseId: courseId, sectionName: section, resourceId: resourceId)
-            .appendingPathComponent("file-\(fileID)")
-
-        return ((try? FileManager.default.contentsOfDirectory(atPath: folderURL.path))?.first != nil)
+    public func isItemAvailableOffline(source: OfflineFileSource?) -> Bool {
+        switch source {
+        case .privateFile(let sessionID, let courseID, let sectionName, let resourceID, let fileID):
+            return isItemAvailableOffline(sessionID: sessionID, courseId: courseID, section: sectionName, resourceId: resourceID, fileID: fileID)
+        case .publicFile(let sessionID, let courseID, let fileID, let fileName):
+            return isItemAvailableOffline(courseID: courseID, fileID: fileID)
+        case .none:
+            return false
+        }
     }
 
     public func filePath(sessionID: String, courseId: String, fileID: String, fileName: String) -> String {
@@ -102,5 +77,26 @@ public final class OfflineFileInteractorLive: OfflineFileInteractor {
 
     public var isOffline: Bool {
         offlineModeInteractor.isOfflineModeEnabled()
+    }
+
+    // MARK: - Private helpers
+
+    private func filePath(sessionID: String?, courseId: String?, section: String?, resourceId: String?, fileID: String?) -> String? {
+        guard let sessionID, let courseId, let section, let resourceId, let fileID else { return nil }
+        let folderURL = URL.Paths.Offline.courseSectionResourceFolderURL(sessionId: sessionID, courseId: courseId, sectionName: section, resourceId: resourceId)
+            .appendingPathComponent("file-\(fileID)")
+
+        guard let fileName = (try? FileManager.default.contentsOfDirectory(atPath: folderURL.path))?.first else { return nil }
+        let absoluteURL = "\(folderURL.path)/\(fileName)"
+        let relativeURL = absoluteURL.replacingOccurrences(of: URL.Directories.documents.path, with: "")
+        return relativeURL
+    }
+
+    private func isItemAvailableOffline(sessionID: String?, courseId: String?, section: String?, resourceId: String?, fileID: String?) -> Bool {
+        guard let sessionID, let courseId, let section, let resourceId, let fileID else { return false }
+        let folderURL = URL.Paths.Offline.courseSectionResourceFolderURL(sessionId: sessionID, courseId: courseId, sectionName: section, resourceId: resourceId)
+            .appendingPathComponent("file-\(fileID)")
+
+        return ((try? FileManager.default.contentsOfDirectory(atPath: folderURL.path))?.first != nil)
     }
 }

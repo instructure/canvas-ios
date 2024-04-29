@@ -31,7 +31,7 @@ class OfflineFileInteractorTests: CoreTestCase {
         let resourceId = "resourceId"
         let fileId = "fileId"
         let fileName = "test.txt"
-        let source = OfflineFileSource.Private(sessionID: sessionId, courseID: courseId, sectionName: sectionName, resourceID: resourceId, fileID: fileId)
+        let source = OfflineFileSource.privateFile(sessionID: sessionId, courseID: courseId, sectionName: sectionName, resourceID: resourceId, fileID: fileId)
         let expected = "\(sessionId)/Offline/course-\(courseId)/\(sectionName)/\(sectionName)-\(resourceId)/file-\(fileId)"
 
         try? FileManager.default.createDirectory(atPath: URL.Directories.documents.appendingPathComponent(expected).path, withIntermediateDirectories: true)
@@ -44,19 +44,12 @@ class OfflineFileInteractorTests: CoreTestCase {
 
         try? FileManager.default.removeItem(atPath: URL.Directories.documents.appendingPathComponent(expected).path)
         filePath = testee.filePath(source: source)
-        XCTAssertEqual(filePath, "")
+        XCTAssertEqual(filePath, nil)
     }
 
     func testGetFilePathSwitchWithPublicSource() {
-        let sessionId = "sessionId"
-        let courseId = "courseId"
-        let fileId = "fileId"
         let fileName = "test.txt"
-        let source = OfflineFileSource.Public(sessionID: sessionId, courseID: courseId, fileID: fileId, fileName: fileName)
-        let expected = URL.Paths.Offline.courseFolder(
-            sessionID: sessionId,
-            courseId: courseId
-        ) + "/file-\(fileId)"
+        let (source, expected) = getPrivatePath()
 
         try? FileManager.default.createDirectory(atPath: URL.Directories.documents.appendingPathComponent(expected).path, withIntermediateDirectories: true)
         FileManager.default.createFile(
@@ -64,22 +57,16 @@ class OfflineFileInteractorTests: CoreTestCase {
             contents: "test".data(using: .utf8)
         )
         var filePath = testee.filePath(source: source)
-        XCTAssertEqual(filePath, "\(expected)/\(fileName)")
+        XCTAssertEqual(filePath, "/\(expected)/\(fileName)")
 
         try? FileManager.default.removeItem(atPath: expected)
         filePath = testee.filePath(source: source)
-        XCTAssertEqual(filePath, "\(expected)/\(fileName)")
+        XCTAssertEqual(filePath, "/\(expected)/\(fileName)")
     }
 
     func testFileAvailablePathSwitchWithPrivateSource() {
-        let sessionId = "sessionId"
-        let courseId = "courseId"
-        let sectionName = "sectionName"
-        let resourceId = "resourceId"
-        let fileId = "fileId"
         let fileName = "test.txt"
-        let source = OfflineFileSource.Private(sessionID: sessionId, courseID: courseId, sectionName: sectionName, resourceID: resourceId, fileID: fileId)
-        let expected = "\(sessionId)/Offline/course-\(courseId)/\(sectionName)/\(sectionName)-\(resourceId)/file-\(fileId)"
+        let (source, expected) = getPrivatePath()
 
         try? FileManager.default.createDirectory(atPath: URL.Directories.documents.appendingPathComponent(expected).path, withIntermediateDirectories: true)
         FileManager.default.createFile(
@@ -90,5 +77,16 @@ class OfflineFileInteractorTests: CoreTestCase {
 
         try? FileManager.default.removeItem(atPath: URL.Directories.documents.appendingPathComponent(expected).path)
         XCTAssertFalse(testee.isItemAvailableOffline(source: source))
+    }
+
+    private func getPrivatePath() -> (OfflineFileSource, String) {
+        let sessionId = "sessionId"
+        let courseId = "courseId"
+        let sectionName = "sectionName"
+        let resourceId = "resourceId"
+        let fileId = "fileId"
+        let source = OfflineFileSource.privateFile(sessionID: sessionId, courseID: courseId, sectionName: sectionName, resourceID: resourceId, fileID: fileId)
+        let expected = "\(sessionId)/Offline/course-\(courseId)/\(sectionName)/\(sectionName)-\(resourceId)/file-\(fileId)"
+        return (source, expected)
     }
 }
