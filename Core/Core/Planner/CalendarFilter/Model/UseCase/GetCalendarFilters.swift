@@ -20,7 +20,7 @@ import CoreData
 import Combine
 import SwiftUI
 
-class GetStudentCalendarFilters: UseCase {
+class GetCalendarFilters: UseCase {
     struct APIResponse: Codable {
         let courses: [APICourse]
         let groups: [APIGroup]
@@ -33,10 +33,19 @@ class GetStudentCalendarFilters: UseCase {
     private var subscriptions = Set<AnyCancellable>()
     private let userName: String
     private let userId: String
+    private let states: [GetCoursesRequest.State]
+    private let filterUnpublishedCourses: Bool
 
-    init(currentUserName: String, currentUserId: String) {
+    init(
+        currentUserName: String,
+        currentUserId: String,
+        states: [GetCoursesRequest.State],
+        filterUnpublishedCourses: Bool
+    ) {
         userName = currentUserName
         userId = currentUserId
+        self.states = states
+        self.filterUnpublishedCourses = filterUnpublishedCourses
     }
 
     func makeRequest(
@@ -45,14 +54,19 @@ class GetStudentCalendarFilters: UseCase {
     ) {
         let coursesRequest = GetCurrentUserCoursesRequest(
             enrollmentState: .active,
-            state: [.current_and_concluded],
+            state: states,
             includes: []
         )
         let coursesFetch = environment.api
             .makeRequest(coursesRequest)
-            .map {
+            .map { [filterUnpublishedCourses] in
                 let courses = $0.body
-                return courses.filter { $0.workflow_state != .unpublished }
+
+                if filterUnpublishedCourses {
+                    return courses.filter { $0.workflow_state != .unpublished }
+                } else {
+                    return courses
+                }
             }
 
         let groupsRequest = GetGroupsRequest(context: .currentUser)

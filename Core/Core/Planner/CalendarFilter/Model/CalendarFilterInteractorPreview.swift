@@ -21,6 +21,8 @@
 import Combine
 
 public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
+    public var filterCountLimit = CurrentValueSubject<CalendarFilterCountLimit, Never>(.limited(20))
+
     private let env = PreviewEnvironment()
 
     public init() {}

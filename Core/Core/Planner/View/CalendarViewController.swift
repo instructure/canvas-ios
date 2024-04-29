@@ -142,11 +142,6 @@ class CalendarViewController: ScreenViewTrackableViewController {
     }
 
     func updateFilterButton() {
-        if ExperimentalFeature.teacherCalendar.isEnabled {
-            filterButton.isHidden = true
-            return
-        }
-
         if let count = delegate?.numberOfCalendars() {
             let template = String(localized: "Calendars (%d)", bundle: .core)
             filterButton.setTitle(String.localizedStringWithFormat(template, count), for: .normal)

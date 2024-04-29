@@ -34,54 +34,35 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
             refreshAction: viewModel.refresh
         ) { _ in
             VStack(spacing: 0) {
-                if let filter = viewModel.userFilter {
-                    InstUI.CheckboxCell(
-                        name: filter.name,
-                        isSelected: selectionBinding(context: filter.context),
-                        color: filter.color
-                    )
-                }
-
-                if !viewModel.courseFilters.isEmpty {
-                    InstUI.ListSectionHeader(name: String(localized: "Courses"))
-
-                    ForEach(viewModel.courseFilters) { filter in
-                        InstUI.CheckboxCell(
-                            name: filter.name,
-                            isSelected: selectionBinding(context: filter.context),
-                            color: filter.color
-                        )
-                    }
-                }
-
-                if !viewModel.groupFilters.isEmpty {
-                    InstUI.ListSectionHeader(name: String(localized: "Groups"))
-
-                    ForEach(viewModel.groupFilters) { filter in
-                        InstUI.CheckboxCell(
-                            name: filter.name,
-                            isSelected: selectionBinding(context: filter.context),
-                            color: filter.color
-                        )
-                    }
-                }
+                filterCountInfo
+                userFilter
+                courseFilters
+                groupFilters
             }
         }
         .navigationTitle(viewModel.pageTitle)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    viewModel.didTapRightNavButton.send()
-                } label: {
-                    Text(viewModel.rightNavButtonTitle)
-                }
+            doneButton
+            selectAllButton
+        }
+    }
+
+    private var selectAllButton: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Button {
+                viewModel.didTapRightNavButton.send()
+            } label: {
+                Text(viewModel.rightNavButtonTitle)
             }
-            ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    viewModel.didTapDoneButton.send(viewController.value)
-                } label: {
-                    Text("Done", bundle: .core)
-                }
+        }
+    }
+
+    private var doneButton: some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            Button {
+                viewModel.didTapDoneButton.send(viewController.value)
+            } label: {
+                Text("Done", bundle: .core)
             }
         }
     }
@@ -91,6 +72,60 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
             viewModel.selectedContexts.contains(context)
         } set: { newValue in
             viewModel.didToggleSelection.send((context, isSelected: newValue))
+        }
+    }
+
+    @ViewBuilder
+    private var filterCountInfo: some View {
+        if let message = viewModel.filterLimitMessage {
+            Text(message)
+                .foregroundStyle(Color.textDarkest)
+                .font(.regular16, lineHeight: .fit)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .paddingStyle(.horizontal, .standard)
+                .padding(.top, 24)
+                .padding(.bottom, 8)
+        }
+    }
+
+    @ViewBuilder
+    private var userFilter: some View {
+        if let filter = viewModel.userFilter {
+            InstUI.CheckboxCell(
+                name: filter.name,
+                isSelected: selectionBinding(context: filter.context),
+                color: filter.color
+            )
+        }
+    }
+
+    @ViewBuilder
+    private var courseFilters: some View {
+        if !viewModel.courseFilters.isEmpty {
+            InstUI.ListSectionHeader(name: String(localized: "Courses", bundle: .core))
+
+            ForEach(viewModel.courseFilters) { filter in
+                InstUI.CheckboxCell(
+                    name: filter.name,
+                    isSelected: selectionBinding(context: filter.context),
+                    color: filter.color
+                )
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var groupFilters: some View {
+        if !viewModel.groupFilters.isEmpty {
+            InstUI.ListSectionHeader(name: String(localized: "Groups", bundle: .core))
+
+            ForEach(viewModel.groupFilters) { filter in
+                InstUI.CheckboxCell(
+                    name: filter.name,
+                    isSelected: selectionBinding(context: filter.context),
+                    color: filter.color
+                )
+            }
         }
     }
 }

@@ -19,6 +19,8 @@
 import Combine
 
 public protocol CalendarFilterInteractor: AnyObject {
+    var filterCountLimit: CurrentValueSubject<CalendarFilterCountLimit, Never> { get }
+
     func loadFilters(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error>
 
     func observeSelectedContexts() -> AnyPublisher<Set<Context>, Never>
@@ -29,72 +31,100 @@ public protocol CalendarFilterInteractor: AnyObject {
 }
 
 public class CalendarFilterInteractorLive: CalendarFilterInteractor {
+    public let filterCountLimit = CurrentValueSubject<CalendarFilterCountLimit, Never>(.unlimited)
+
     private let observedUserId: String?
     private let selectedFilters = CurrentValueSubject<Set<Context>, Never>(Set())
     private let env: AppEnvironment
+    private let isCalendarFilterLimitEnabled: Bool
     private var subscriptions = Set<AnyCancellable>()
 
     required public init(
         observedUserId: String?,
-        env: AppEnvironment = .shared
+        env: AppEnvironment = .shared,
+        isCalendarFilterLimitEnabled: Bool = AppEnvironment.shared.app.isCalendarFilterLimitEnabled
     ) {
         self.observedUserId = observedUserId
         self.env = env
+        self.isCalendarFilterLimitEnabled = isCalendarFilterLimitEnabled
         loadSelectedContexts()
         observeUserDefaultChanges()
+
+        if isCalendarFilterLimitEnabled {
+            observeFilterCount()
+        }
     }
 
     public func loadFilters(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error> {
-        let errorPublisher = Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
-            .eraseToAnyPublisher()
-
-        guard let userName = env.currentSession?.userName,
-              let userId = env.currentSession?.userID
-        else {
-            return errorPublisher
+        let errorPublisher = {
+            Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
+                .eraseToAnyPublisher()
         }
 
-        switch env.app {
+        guard let filterPublisher = makeFiltersPublisher(ignoreCache: ignoreCache) else {
+            return errorPublisher()
+        }
+
+        let fetchFilterLimitIfNecessary: ([CDCalendarFilterEntry]) -> AnyPublisher<[CDCalendarFilterEntry], Error> = { [isCalendarFilterLimitEnabled] filters in
+            if isCalendarFilterLimitEnabled {
+                let useCase = GetEnvironmentSettings()
+                return ReactiveStore(useCase: useCase)
+                    .getEntities(ignoreCache: ignoreCache)
+                    .map { _ in filters }
+                    .eraseToAnyPublisher()
+            } else {
+                return Just(filters)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+        }
+        let clearUnavailableSelectedFilters: ([CDCalendarFilterEntry]) -> AnyPublisher<[CDCalendarFilterEntry], Error> = { [weak self] filters in
+           guard let self else {
+               return errorPublisher()
+           }
+           return clearNotAvailableSelectedContexts(filters: filters)
+               .map { filters }
+               .setFailureType(to: Error.self)
+               .eraseToAnyPublisher()
+        }
+
+        return filterPublisher
+            .flatMap { fetchFilterLimitIfNecessary($0) }
+            .flatMap { clearUnavailableSelectedFilters($0) }
+            .eraseToAnyPublisher()
+    }
+
+    private func makeFiltersPublisher(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error>? {
+        guard let userName = env.currentSession?.userName,
+              let userId = env.currentSession?.userID,
+              let app = env.app
+        else {
+            return nil
+        }
+
+        switch app {
         case .parent:
             guard let observedUserId else {
-                return errorPublisher
+                return nil
             }
             let useCase = GetParentCalendarFilters(
                 currentUserName: userName,
                 currentUserId: userId,
                 observedStudentId: observedUserId
             )
-            return ReactiveStore(useCase: useCase)
-                .getEntities(ignoreCache: ignoreCache)
-                .flatMap { [weak self] filters in
-                    guard let self else {
-                        return errorPublisher
-                    }
-                    return clearNotAvailableSelectedContexts(filters: filters)
-                        .map { filters }
-                        .setFailureType(to: Error.self)
-                        .eraseToAnyPublisher()
-                }
-                .eraseToAnyPublisher()
+            return ReactiveStore(useCase: useCase).getEntities(ignoreCache: ignoreCache)
         case .student:
-            let useCase = GetStudentCalendarFilters(currentUserName: userName,
-                                                    currentUserId: userId)
-            return ReactiveStore(useCase: useCase)
-                .getEntities(ignoreCache: ignoreCache)
-                .flatMap { [weak self] filters in
-                    guard let self else {
-                        return errorPublisher
-                    }
-                    return clearNotAvailableSelectedContexts(filters: filters)
-                        .map { filters }
-                        .setFailureType(to: Error.self)
-                        .eraseToAnyPublisher()
-                }
-                .eraseToAnyPublisher()
+            let useCase = GetCalendarFilters(currentUserName: userName,
+                                             currentUserId: userId,
+                                             states: [.current_and_concluded],
+                                             filterUnpublishedCourses: true)
+            return ReactiveStore(useCase: useCase).getEntities(ignoreCache: ignoreCache)
         case .teacher:
-            return errorPublisher
-        case .none:
-            return errorPublisher
+            let useCase = GetCalendarFilters(currentUserName: userName,
+                                             currentUserId: userId,
+                                             states: [],
+                                             filterUnpublishedCourses: false)
+            return ReactiveStore(useCase: useCase).getEntities(ignoreCache: ignoreCache)
         }
     }
 
@@ -162,6 +192,19 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
             }
             .sink { [selectedFilters] selectedContexts in
                 selectedFilters.send(selectedContexts)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func observeFilterCount() {
+        let app = env.app
+        let useCase = LocalUseCase<CDEnvironmentSetting>(scope: .all)
+        ReactiveStore(useCase: useCase)
+            .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .map { $0.calendarFilterCountLimit(app: app) }
+            .sink { [weak filterCountLimit] filterLimit in
+                filterCountLimit?.send(filterLimit)
             }
             .store(in: &subscriptions)
     }

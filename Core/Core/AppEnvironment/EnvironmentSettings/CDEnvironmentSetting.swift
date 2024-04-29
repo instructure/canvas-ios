@@ -27,7 +27,7 @@ public final class CDEnvironmentSetting: NSManagedObject, WriteableModel {
     public typealias JSON = (name: String, isEnabled: Bool)
 
     @NSManaged public var name: String
-    @NSManaged public var enabled: Bool
+    @NSManaged public var isEnabled: Bool
 
     @discardableResult
     public static func save(
@@ -39,7 +39,14 @@ public final class CDEnvironmentSetting: NSManagedObject, WriteableModel {
         ])
         let flag: CDEnvironmentSetting = context.fetch(predicate).first ?? context.insert()
         flag.name = item.name
-        flag.enabled = item.isEnabled
+        flag.isEnabled = item.isEnabled
         return flag
+    }
+}
+
+public extension Array where Element == CDEnvironmentSetting {
+
+    func isEnabled(_ name: CDEnvironmentSetting.EnvironmentSettingName) -> Bool {
+        contains { $0.name == name.rawValue }
     }
 }
