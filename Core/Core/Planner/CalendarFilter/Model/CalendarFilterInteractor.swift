@@ -19,17 +19,18 @@
 import Combine
 
 public protocol CalendarFilterInteractor: AnyObject {
+    var filters: CurrentValueSubject<[CDCalendarFilterEntry], Never> { get }
     var filterCountLimit: CurrentValueSubject<CalendarFilterCountLimit, Never> { get }
     var selectedContexts: CurrentValueSubject<Set<Context>, Never> { get }
 
-    func loadFilters(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error>
+    func load(ignoreCache: Bool) -> AnyPublisher<Void, Error>
     func updateFilteredContexts(_ contexts: [Context], isSelected: Bool) -> AnyPublisher<Void, Error>
 
     func contextsForAPIFiltering() -> [Context]
-    func numberOfUserSelectedContexts() -> Int
 }
 
 public class CalendarFilterInteractorLive: CalendarFilterInteractor {
+    public let filters = CurrentValueSubject<[CDCalendarFilterEntry], Never>([])
     public let filterCountLimit = CurrentValueSubject<CalendarFilterCountLimit, Never>(.unlimited)
     public let selectedContexts = CurrentValueSubject<Set<Context>, Never>(Set())
 
@@ -54,14 +55,10 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         }
     }
 
-    public func loadFilters(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error> {
-        let errorPublisher = {
-            Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
-                .eraseToAnyPublisher()
-        }
-
+    public func load(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
         guard let filterPublisher = makeFiltersPublisher(ignoreCache: ignoreCache) else {
-            return errorPublisher()
+            return Fail<Void, Error>(error: NSError.internalError())
+                .eraseToAnyPublisher()
         }
 
         let fetchFilterLimitIfNecessary: ([CDCalendarFilterEntry]) -> AnyPublisher<[CDCalendarFilterEntry], Error> = { [isCalendarFilterLimitEnabled] filters in
@@ -79,7 +76,8 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         }
         let clearUnavailableSelectedFilters: ([CDCalendarFilterEntry]) -> AnyPublisher<[CDCalendarFilterEntry], Error> = { [weak self] filters in
            guard let self else {
-               return errorPublisher()
+               return Fail<[CDCalendarFilterEntry], Error>(error: NSError.internalError())
+                   .eraseToAnyPublisher()
            }
            return clearNotAvailableSelectedContexts(filters: filters)
                .map { filters }
@@ -90,6 +88,10 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         return filterPublisher
             .flatMap { fetchFilterLimitIfNecessary($0) }
             .flatMap { clearUnavailableSelectedFilters($0) }
+            .map { [weak filters] in
+                filters?.send($0)
+                return ()
+            }
             .eraseToAnyPublisher()
     }
 
@@ -155,16 +157,15 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
     }
 
     public func contextsForAPIFiltering() -> [Context] {
-        switch env.app {
-        case .parent, .student, .none:
+        switch filterCountLimit.value {
+        case .limited(let limit):
+            if selectedContexts.value.isEmpty {
+                return [] // TODO: Select default values
+            }
             return Array(selectedContexts.value)
-        case .teacher:
-            return []
+        case .unlimited:
+            return Array(selectedContexts.value)
         }
-    }
-
-    public func numberOfUserSelectedContexts() -> Int {
-        selectedContexts.value.count
     }
 
     // MARK: - Private

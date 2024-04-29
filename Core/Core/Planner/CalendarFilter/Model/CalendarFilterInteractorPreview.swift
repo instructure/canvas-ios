@@ -21,6 +21,7 @@
 import Combine
 
 public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
+    public var filters = CurrentValueSubject<[CDCalendarFilterEntry], Never>([])
     public var selectedContexts = CurrentValueSubject<Set<Context>, Never>(Set())
     public var filterCountLimit = CurrentValueSubject<CalendarFilterCountLimit, Never>(.limited(20))
 
@@ -28,7 +29,7 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
 
     public init() {}
 
-    public func loadFilters(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error> {
+    public func load(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
         let makeFilterEntry: (String, Context) -> CDCalendarFilterEntry = { name, context in
             let entry: CDCalendarFilterEntry = self.env.database.viewContext.insert()
             entry.name = name
@@ -59,7 +60,8 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
             color.color = .random
         }
 
-        return Just(filters).setFailureType(to: Error.self).eraseToAnyPublisher()
+        self.filters.send(filters)
+        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
     public func updateFilteredContexts(_ contexts: [Context], isSelected: Bool) -> AnyPublisher<Void, Error> {
@@ -70,10 +72,6 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
 
     public func contextsForAPIFiltering() -> [Context] {
         []
-    }
-
-    public func numberOfUserSelectedContexts() -> Int {
-        0
     }
 }
 

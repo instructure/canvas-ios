@@ -36,9 +36,6 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
     }
 
     func calendarWillFilter() {}
-    func numberOfCalendars() -> Int? {
-        return nil
-    }
 
     lazy var controller = CalendarDaysViewController.create(selectedDate: Clock.now, delegate: self)
 

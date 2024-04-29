@@ -43,9 +43,6 @@ class CalendarViewControllerTests: CoreTestCase, CalendarViewControllerDelegate 
         willFilter = true
     }
     var calendarCount: Int?
-    func numberOfCalendars() -> Int? {
-        calendarCount
-    }
 
     lazy var controller = CalendarViewController.create(delegate: self)
 

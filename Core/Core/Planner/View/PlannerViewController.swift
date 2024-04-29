@@ -101,8 +101,8 @@ public class PlannerViewController: UIViewController {
         view.setNeedsLayout()
 
         calendarFilterInteractor
-            .loadFilters(ignoreCache: false)
-            .replaceError(with: [])
+            .load(ignoreCache: false)
+            .replaceError(with: ())
             .sink { [weak self] _ in
                 self?.plannerListWillRefresh()
             }
@@ -173,11 +173,6 @@ extension PlannerViewController: CalendarViewControllerDelegate {
     func getPlannables(from: Date, to: Date) -> GetPlannables {
         let contextCodes = calendarFilterInteractor.contextsForAPIFiltering().map(\.canvasContextID)
         return GetPlannables(userID: studentID, startDate: from, endDate: to, contextCodes: contextCodes)
-    }
-
-    func numberOfCalendars() -> Int? {
-        let selectedContexts = calendarFilterInteractor.numberOfUserSelectedContexts()
-        return selectedContexts == 0 ? nil : selectedContexts
     }
 }
 

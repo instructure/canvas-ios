@@ -67,7 +67,7 @@ public class CalendarFilterViewModel: ObservableObject {
         completionCallback: (() -> Void)? = nil
     ) {
         interactor
-            .loadFilters(ignoreCache: ignoreCache)
+            .load(ignoreCache: ignoreCache)
             .sink { [weak self] completion in
                 guard let self else { return }
                 switch completion {
@@ -80,23 +80,7 @@ public class CalendarFilterViewModel: ObservableObject {
                     self.state = .error
                 }
                 completionCallback?()
-            } receiveValue: { [weak self] filters in
-                guard let self else { return }
-                let containsUserFilter = filters.contains { $0.context.contextType == .user }
-
-                if filters.isEmpty || (filters.count == 1 && containsUserFilter) {
-                    state = .empty
-                } else {
-                    state = .data
-                    userFilter = filters.first { $0.context.contextType == .user }
-                    courseFilters = filters
-                        .filter { $0.context.contextType == .course }
-                        .sorted()
-                    groupFilters = filters
-                        .filter { $0.context.contextType == .group }
-                        .sorted()
-                }
-            }
+            } receiveValue: {}
             .store(in: &subscriptions)
     }
 
@@ -171,6 +155,28 @@ public class CalendarFilterViewModel: ObservableObject {
                 }
             }
             .assign(to: \.filterLimitMessage, on: self, ownership: .weak)
+            .store(in: &subscriptions)
+
+        interactor
+            .filters
+            .sink { [weak self] filters in
+                guard let self else { return }
+                let containsUserFilter = filters.contains { $0.context.contextType == .user }
+
+                if filters.isEmpty || (filters.count == 1 && containsUserFilter) {
+                    state = .empty
+                    return
+                }
+
+                userFilter = filters.first { $0.context.contextType == .user }
+                courseFilters = filters
+                    .filter { $0.context.contextType == .course }
+                    .sorted()
+                groupFilters = filters
+                    .filter { $0.context.contextType == .group }
+                    .sorted()
+                state = .data
+            }
             .store(in: &subscriptions)
     }
 }
