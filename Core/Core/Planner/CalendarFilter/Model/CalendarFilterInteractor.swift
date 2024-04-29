@@ -20,10 +20,9 @@ import Combine
 
 public protocol CalendarFilterInteractor: AnyObject {
     var filterCountLimit: CurrentValueSubject<CalendarFilterCountLimit, Never> { get }
+    var selectedContexts: CurrentValueSubject<Set<Context>, Never> { get }
 
     func loadFilters(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error>
-
-    func observeSelectedContexts() -> AnyPublisher<Set<Context>, Never>
     func updateFilteredContexts(_ context: [Context], isSelected: Bool)
 
     func contextsForAPIFiltering() -> [Context]
@@ -32,9 +31,9 @@ public protocol CalendarFilterInteractor: AnyObject {
 
 public class CalendarFilterInteractorLive: CalendarFilterInteractor {
     public let filterCountLimit = CurrentValueSubject<CalendarFilterCountLimit, Never>(.unlimited)
+    public let selectedContexts = CurrentValueSubject<Set<Context>, Never>(Set())
 
     private let observedUserId: String?
-    private let selectedFilters = CurrentValueSubject<Set<Context>, Never>(Set())
     private let env: AppEnvironment
     private let isCalendarFilterLimitEnabled: Bool
     private var subscriptions = Set<AnyCancellable>()
@@ -128,12 +127,6 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         }
     }
 
-    public func observeSelectedContexts() -> AnyPublisher<Set<Context>, Never> {
-        selectedFilters
-            .removeDuplicates()
-            .eraseToAnyPublisher()
-    }
-
     public func updateFilteredContexts(_ contexts: [Context], isSelected: Bool) {
         guard var defaults = env.userDefaults else { return }
 
@@ -146,20 +139,20 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         }
 
         defaults.setCalendarSelectedContexts(selectedContexts, observedStudentId: observedUserId)
-        selectedFilters.send(selectedContexts)
+        self.selectedContexts.send(selectedContexts)
     }
 
     public func contextsForAPIFiltering() -> [Context] {
         switch env.app {
         case .parent, .student, .none:
-            return Array(selectedFilters.value)
+            return Array(selectedContexts.value)
         case .teacher:
             return []
         }
     }
 
     public func numberOfUserSelectedContexts() -> Int {
-        selectedFilters.value.count
+        selectedContexts.value.count
     }
 
     // MARK: - Private
@@ -169,7 +162,7 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
             defer { promise(.success(())) }
             guard let self else { return }
             let availableContexts = filters.map { $0.context }
-            let selectedContexts = selectedFilters.value
+            let selectedContexts = selectedContexts.value
             let noLongerAvailableSelectedContexts = selectedContexts.subtracting(availableContexts)
             updateFilteredContexts(Array(noLongerAvailableSelectedContexts), isSelected: false)
         }
@@ -177,7 +170,7 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
 
     private func loadSelectedContexts() {
         guard let defaults = env.userDefaults else { return }
-        selectedFilters.send(defaults.calendarSelectedContexts(for: observedUserId))
+        selectedContexts.send(defaults.calendarSelectedContexts(for: observedUserId))
     }
 
     private func observeUserDefaultChanges() {
@@ -190,8 +183,8 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
             .compactMap { [env, observedUserId] _ in
                 env.userDefaults?.calendarSelectedContexts(for: observedUserId)
             }
-            .sink { [selectedFilters] selectedContexts in
-                selectedFilters.send(selectedContexts)
+            .sink { [weak selectedContexts] newSelectedContexts in
+                selectedContexts?.send(newSelectedContexts)
             }
             .store(in: &subscriptions)
     }

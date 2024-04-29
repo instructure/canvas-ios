@@ -21,6 +21,7 @@
 import Combine
 
 public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
+    public var selectedContexts = CurrentValueSubject<Set<Context>, Never>(Set())
     public var filterCountLimit = CurrentValueSubject<CalendarFilterCountLimit, Never>(.limited(20))
 
     private let env = PreviewEnvironment()
@@ -59,10 +60,6 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
         }
 
         return Just(filters).setFailureType(to: Error.self).eraseToAnyPublisher()
-    }
-
-    public func observeSelectedContexts() -> AnyPublisher<Set<Context>, Never> {
-        Just(Set()).eraseToAnyPublisher()
     }
 
     public func updateFilteredContexts(_ context: [Context], isSelected: Bool) {

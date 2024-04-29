@@ -101,6 +101,17 @@ public class CalendarFilterViewModel: ObservableObject {
 
     private func forwardSelectionChangesToInteractor() {
         didToggleSelection
+            .filter { [interactor] (_, isSelected) in
+                if isSelected {
+                    switch interactor.filterCountLimit.value {
+                    case .limited(let limit):
+                        return interactor.selectedContexts.value.count < limit
+                    case .unlimited:
+                        return true
+                    }
+                }
+                return true
+            }
             .sink { [weak interactor] (context, isSelected) in
                 interactor?.updateFilteredContexts([context], isSelected: isSelected)
             }
@@ -133,12 +144,12 @@ public class CalendarFilterViewModel: ObservableObject {
 
     private func observeDataChanges() {
         interactor
-            .observeSelectedContexts()
+            .selectedContexts
             .assign(to: \.selectedContexts, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
         interactor
-            .observeSelectedContexts()
+            .selectedContexts
             .map {
                 $0.isEmpty ? String(localized: "Select all", bundle: .core)
                            : String(localized: "Deselect all", bundle: .core)
