@@ -172,6 +172,10 @@
         <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="tabID" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="CDEnvironmentSetting" representedClassName="Core.CDEnvironmentSetting" syncable="YES">
+        <attribute name="isEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+    </entity>
     <entity name="CDWidgetAnnouncement" representedClassName="Core.CDWidgetAnnouncement" syncable="YES">
         <attribute name="authorName" attributeType="String"/>
         <attribute name="avatarRaw" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
