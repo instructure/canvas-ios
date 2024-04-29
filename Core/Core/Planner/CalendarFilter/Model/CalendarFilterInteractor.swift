@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 
 public protocol CalendarFilterInteractor: AnyObject {
     var filters: CurrentValueSubject<[CDCalendarFilterEntry], Never> { get }
@@ -37,16 +38,19 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
     private let observedUserId: String?
     private let env: AppEnvironment
     private let isCalendarFilterLimitEnabled: Bool
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
 
     required public init(
         observedUserId: String?,
         env: AppEnvironment = .shared,
-        isCalendarFilterLimitEnabled: Bool = AppEnvironment.shared.app.isCalendarFilterLimitEnabled
+        isCalendarFilterLimitEnabled: Bool = AppEnvironment.shared.app.isCalendarFilterLimitEnabled,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.observedUserId = observedUserId
         self.env = env
         self.isCalendarFilterLimitEnabled = isCalendarFilterLimitEnabled
+        self.scheduler = scheduler
         loadSelectedContexts()
         observeUserDefaultChanges()
 
@@ -191,7 +195,7 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
             .publisher(for: UserDefaults.didChangeNotification)
             // We delay one cycle to avoid a crash occuring when the observed student changes
             // which also modifies userdefaults violating "Exclusive Access to Memory".
-            .receive(on: RunLoop.main)
+            .receive(on: scheduler)
             .compactMap { [env, observedUserId] _ in
                 env.userDefaults?.calendarSelectedContexts(for: observedUserId)
             }

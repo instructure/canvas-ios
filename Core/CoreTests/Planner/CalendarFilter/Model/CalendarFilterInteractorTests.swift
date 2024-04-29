@@ -52,7 +52,7 @@ class CalendarFilterInteractorTests: CoreTestCase {
         let testee = CalendarFilterInteractorLive(observedUserId: nil, env: environment)
 
         // WHEN
-        XCTAssertFinish(testee.loadFilters(ignoreCache: false))
+        XCTAssertFinish(testee.load(ignoreCache: false))
 
         // THEN
         XCTAssertEqual(environment.userDefaults!.calendarSelectedContexts(for: nil),
@@ -80,18 +80,18 @@ class CalendarFilterInteractorTests: CoreTestCase {
         let testee = CalendarFilterInteractorLive(observedUserId: nil, env: environment)
 
         // WHEN
-        XCTAssertFinish(testee.loadFilters(ignoreCache: false))
+        XCTAssertFinish(testee.load(ignoreCache: false))
 
         // THEN
         XCTAssertEqual(environment.userDefaults!.calendarSelectedContexts(for: nil), Set([.course("c1")]))
-        XCTAssertSingleOutputEquals(testee.observeSelectedContexts().first(), Set([.course("c1")]))
+        XCTAssertEqual(testee.selectedContexts.value, Set([.course("c1")]))
 
         // WHEN
-        testee.updateFilteredContexts([.course("c1")], isSelected: false)
+        XCTAssertFinish(testee.updateFilteredContexts([.course("c1")], isSelected: false))
 
         // THEN
         XCTAssertEqual(environment.userDefaults!.calendarSelectedContexts(for: nil), Set())
-        XCTAssertSingleOutputEquals(testee.observeSelectedContexts().first(), Set())
+        XCTAssertEqual(testee.selectedContexts.value, Set())
     }
 
     func testSynchronizesSelectedContextsBetweenDifferentInteractors() {
@@ -102,16 +102,16 @@ class CalendarFilterInteractorTests: CoreTestCase {
         )
         api.mock(coursesRequest, value: [.make(id: "c1")])
 
-        let testee1 = CalendarFilterInteractorLive(observedUserId: nil, env: environment)
-        let testee2 = CalendarFilterInteractorLive(observedUserId: nil, env: environment)
-        XCTAssertSingleOutputEquals(testee1.observeSelectedContexts().first(), Set())
-        XCTAssertSingleOutputEquals(testee2.observeSelectedContexts().first(), Set())
+        let testee1 = CalendarFilterInteractorLive(observedUserId: nil, env: environment, scheduler: .immediate)
+        let testee2 = CalendarFilterInteractorLive(observedUserId: nil, env: environment, scheduler: .immediate)
+        XCTAssertEqual(testee1.selectedContexts.value, Set())
+        XCTAssertEqual(testee2.selectedContexts.value, Set())
 
         // WHEN
-        testee1.updateFilteredContexts([.course("c1")], isSelected: true)
+        XCTAssertFinish(testee1.updateFilteredContexts([.course("c1")], isSelected: true))
 
         // THEN
-        XCTAssertSingleOutputEquals(testee1.observeSelectedContexts().first(), Set([.course("c1")]))
-        XCTAssertSingleOutputEquals(testee2.observeSelectedContexts().first(), Set([.course("c1")]))
+        XCTAssertEqual(testee1.selectedContexts.value, Set([.course("c1")]))
+        XCTAssertEqual(testee2.selectedContexts.value, Set([.course("c1")]))
     }
 }
