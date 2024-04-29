@@ -53,7 +53,11 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
             Button {
                 viewModel.didTapRightNavButton.send()
             } label: {
-                Text(viewModel.rightNavButtonTitle)
+                if let title = viewModel.rightNavButtonTitle {
+                    Text(title)
+                } else {
+                    SwiftUI.EmptyView()
+                }
             }
         }
     }

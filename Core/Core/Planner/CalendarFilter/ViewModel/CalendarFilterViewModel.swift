@@ -25,7 +25,7 @@ public class CalendarFilterViewModel: ObservableObject {
     @Published public private(set) var courseFilters: [CDCalendarFilterEntry] = []
     @Published public private(set) var groupFilters: [CDCalendarFilterEntry] = []
     @Published public private(set) var selectedContexts = Set<Context>()
-    @Published public private(set) var rightNavButtonTitle = ""
+    @Published public private(set) var rightNavButtonTitle: String?
     @Published public private(set) var filterLimitMessage: String?
     public let pageTitle = String(localized: "Calendars", bundle: .core)
     public let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/filter")
@@ -145,11 +145,17 @@ public class CalendarFilterViewModel: ObservableObject {
             .assign(to: \.selectedContexts, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
-        interactor
-            .selectedContexts
-            .map {
-                $0.isEmpty ? String(localized: "Select all", bundle: .core)
-                           : String(localized: "Deselect all", bundle: .core)
+        Publishers.CombineLatest(
+            interactor.selectedContexts,
+            interactor.filterCountLimit
+        )
+            .map { (selectedContexts, filterCountLimit) in
+                if case .limited = filterCountLimit, selectedContexts.isEmpty {
+                    return nil
+                }
+
+                return selectedContexts.isEmpty ? String(localized: "Select all", bundle: .core)
+                                                : String(localized: "Deselect all", bundle: .core)
             }
             .assign(to: \.rightNavButtonTitle, on: self, ownership: .weak)
             .store(in: &subscriptions)
