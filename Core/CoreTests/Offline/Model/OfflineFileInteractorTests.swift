@@ -64,9 +64,28 @@ class OfflineFileInteractorTests: CoreTestCase {
         XCTAssertEqual(filePath, "/\(expected)/\(fileName)")
     }
 
-    func testFileAvailablePathSwitchWithPrivateSource() {
+    func testFileAvailablePathSwitchWithPrivateSourceOnline() {
         let fileName = "test.txt"
         let (source, expected) = getPrivatePath()
+        let offlineInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
+        let testee = OfflineFileInteractorLive(offlineModeInteractor: offlineInteractor)
+
+        try? FileManager.default.createDirectory(atPath: URL.Directories.documents.appendingPathComponent(expected).path, withIntermediateDirectories: true)
+        FileManager.default.createFile(
+            atPath: URL.Directories.documents.appendingPathComponent(expected).appendingPathComponent(fileName).path,
+            contents: "test".data(using: .utf8)
+        )
+        XCTAssertFalse(testee.isItemAvailableOffline(source: source))
+
+        try? FileManager.default.removeItem(atPath: URL.Directories.documents.appendingPathComponent(expected).path)
+        XCTAssertFalse(testee.isItemAvailableOffline(source: source))
+    }
+
+    func testFileAvailablePathSwitchWithPrivateSourceOffline() {
+        let fileName = "test.txt"
+        let (source, expected) = getPrivatePath()
+        let offlineInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: true)
+        let testee = OfflineFileInteractorLive(offlineModeInteractor: offlineInteractor)
 
         try? FileManager.default.createDirectory(atPath: URL.Directories.documents.appendingPathComponent(expected).path, withIntermediateDirectories: true)
         FileManager.default.createFile(

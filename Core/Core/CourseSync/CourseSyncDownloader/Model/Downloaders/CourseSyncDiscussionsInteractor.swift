@@ -26,10 +26,10 @@ public extension CourseSyncDiscussionsInteractor {
 public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteractor {
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
-        Self.fetchTopics(courseId: courseId, htmlParser: htmlParser)
+        Self.fetchTopics(courseId: courseId)
             .flatMap { $0.publisher }
             .filter { $0.discussionSubEntryCount > 0 && $0.anonymousState == nil }
-            .flatMap { in Self.getDiscussionView(courseId: courseId, topicId: $0.id) }
+            .flatMap { Self.getDiscussionView(courseId: courseId, topicId: $0.id) }
             .collect()
             .mapToVoid()
             .eraseToAnyPublisher()
@@ -42,8 +42,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
     // MARK: - Private Methods
 
     private static func fetchTopics(
-        courseId: String,
-        htmlParser: HTMLParser
+        courseId: String
     ) -> AnyPublisher<[DiscussionTopic], Error> {
 
         return ReactiveStore(useCase: GetDiscussionTopics(context: .course(courseId)))
