@@ -50,7 +50,7 @@ public final class OfflineFileInteractorLive: OfflineFileInteractor {
         switch source {
         case .privateFile(let sessionID, let courseID, let sectionName, let resourceID, let fileID):
             return isItemAvailableOffline(sessionID: sessionID, courseId: courseID, section: sectionName, resourceId: resourceID, fileID: fileID)
-        case .publicFile(let sessionID, let courseID, let fileID, let fileName):
+        case .publicFile(_, let courseID, let fileID, _):
             return isItemAvailableOffline(courseID: courseID, fileID: fileID)
         case .none:
             return false
@@ -66,10 +66,10 @@ public final class OfflineFileInteractorLive: OfflineFileInteractor {
     }
 
     public func isItemAvailableOffline(courseID: String?, fileID: String?) -> Bool {
-        guard offlineModeInteractor.isOfflineModeEnabled() else { return true }
+        guard offlineModeInteractor.isOfflineModeEnabled() else { return false }
         guard let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections,
               let courseID = courseID,
-              let fileID = fileID?.replacingOccurrences(of: "file-", with: "") else { return true }
+              let fileID = fileID?.replacingOccurrences(of: "file-", with: "") else { return false }
         if fileID.contains("folder") { return true }
         let syncSelections = ["courses/\(courseID)", "courses/\(courseID)/tabs/files", "courses/\(courseID)/files/\(fileID)"]
         return selections.contains(where: syncSelections.contains)
@@ -93,6 +93,7 @@ public final class OfflineFileInteractorLive: OfflineFileInteractor {
     }
 
     private func isItemAvailableOffline(sessionID: String?, courseId: String?, section: String?, resourceId: String?, fileID: String?) -> Bool {
+        guard offlineModeInteractor.isOfflineModeEnabled() else { return false }
         guard let sessionID, let courseId, let section, let resourceId, let fileID else { return false }
         let folderURL = URL.Paths.Offline.courseSectionResourceFolderURL(sessionId: sessionID, courseId: courseId, sectionName: section, resourceId: resourceId)
             .appendingPathComponent("file-\(fileID)")

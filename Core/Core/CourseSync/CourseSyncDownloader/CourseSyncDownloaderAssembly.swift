@@ -32,7 +32,6 @@ public enum CourseSyncDownloaderAssembly {
         let assignmentHtmlParser = makeHTMLParser(for: .assignments, loginSession: loginSession, scheduler: scheduler)
         let quizHtmlParser = makeHTMLParser(for: .quizzes, loginSession: loginSession, scheduler: scheduler)
         let announcementHtmlParser = makeHTMLParser(for: .announcements, loginSession: loginSession, scheduler: scheduler)
-        let discussionHtmlParser = makeHTMLParser(for: .discussions, loginSession: loginSession, scheduler: scheduler)
         let calendarEventHtmlParser = makeHTMLParser(for: .calendarEvents, loginSession: loginSession, scheduler: scheduler)
 
         let contentInteractors: [CourseSyncContentInteractor] = [
@@ -44,7 +43,7 @@ public enum CourseSyncDownloaderAssembly {
             CourseSyncConferencesInteractorLive(),
             CourseSyncAnnouncementsInteractorLive(htmlParser: announcementHtmlParser),
             CourseSyncQuizzesInteractorLive(htmlParser: quizHtmlParser),
-            CourseSyncDiscussionsInteractorLive(htmlParser: discussionHtmlParser),
+            CourseSyncDiscussionsInteractorLive(),
         ]
         let progressInteractor = CourseSyncProgressObserverInteractorLive()
         let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, activityName: "Offline Sync")

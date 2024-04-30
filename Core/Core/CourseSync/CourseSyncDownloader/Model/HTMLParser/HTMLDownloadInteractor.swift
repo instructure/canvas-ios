@@ -52,9 +52,6 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         let downloadURL = url.appendingPathComponent("download")
         if let loginSession, let request = try? downloadURL.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID) {
             return publisherProvider.getPublisher(for: request)
-                .mapError { urlError -> Error in
-                    return urlError
-                }
                 .receive(on: scheduler)
                 .flatMap { [weak self] (tempURL: URL, fileName: String) in
                     if let self {
@@ -85,9 +82,6 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     ) -> AnyPublisher<String, Error> {
         if let loginSession, let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID) {
             return publisherProvider.getPublisher(for: request)
-                .mapError { urlError -> Error in
-                    return urlError
-                }
                 .receive(on: scheduler)
                 .flatMap { [weak self] (tempURL: URL, fileName: String) in
                     return self?.copy(tempURL, fileName: fileName, courseId: courseId, resourceId: resourceId) ??
