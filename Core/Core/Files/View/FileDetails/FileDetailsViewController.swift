@@ -180,7 +180,9 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
                 } else {
                     showError(error)
                 }
-            } else if files.requested, !files.pending {
+            } else if offlineFileInteractor?.isItemAvailableOffline(source: offlineFileSource) == true, localURL == nil {
+                    downloadFile(at: nil)
+            } else if files.requested, !files.pending, localURL == nil {
                 // File was deleted, go back.
                 env.router.dismiss(self)
             }
@@ -305,27 +307,59 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
 
     var filePathComponent: String? {
         guard
-            let sessionID = env.currentSession?.uniqueID,
-            let name = files.first?.filename
+            let sessionID = env.currentSession?.uniqueID
         else {
             return nil
         }
-        if offlineFileInteractor?.isOffline == true, let contextId = context?.id {
-            if offlineFileSource == nil {
-                offlineFileSource = .publicFile(sessionID: sessionID, courseID: contextId, fileID: fileID, fileName: name)
-            }
+        switch offlineFileSource {
+        case .privateFile(let sessionID, let courseID, let sectionName, let resourceID, let fileID):
             return offlineFileInteractor?.filePath(
                 source: offlineFileSource
             )
+        default:
+            guard let name = files.first?.filename else { return nil }
+            if offlineFileInteractor?.isOffline == true {
+                guard let contextId = context?.id, let fileName = files.first?.filename else { return nil }
+                return offlineFileInteractor?.filePath(sessionID: sessionID, courseId: contextId, fileID: fileID, fileName: fileName)
+            } else {
+                return "\(sessionID)/\(fileID)/\(name)"
+            }
         }
-        return "\(sessionID)/\(fileID)/\(name)"
     }
 }
 
 // MARK: - URLSessionDownloadDelegate
 
 extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCreator {
-    func downloadFile(at url: URL) {
+    func downloadFile(at url: URL?) {
+        switch offlineFileSource {
+        case .privateFile:
+            loadOfflineFile()
+        default:
+            guard let url else { return }
+            loadCoreDataFile(url: url)
+        }
+    }
+
+    private func loadOfflineFile() {
+        guard let filePathComponent = filePathComponent else { return }
+        let fileURL = URL.Directories.documents.appendingPathComponent(filePathComponent)
+        var mimeClass = fileURL.mimeType()
+        if let suffix = mimeClass.split(separator: "/").last {
+            mimeClass = String(suffix)
+        }
+
+        localURL = prepareLocalURL(
+            fileName: filePathComponent,
+            mimeClass: mimeClass,
+            location: URL.Directories.documents
+        )
+        title = localURL?.lastPathComponent
+
+        if let path = localURL?.path, FileManager.default.fileExists(atPath: path) { return downloadComplete(mimeClass: mimeClass, contentType: nil) }
+    }
+
+    private func loadCoreDataFile(url: URL) {
         guard
             let filePathComponent = filePathComponent,
             let mimeClass = files.first?.mimeClass
@@ -334,8 +368,7 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
         }
 
         let location = offlineFileInteractor?.isOffline == true ? URL.Directories.documents : URL.Directories.temporary
-        /// This must be called to set `localURL` before initiating download, otherwise there
-        /// will be a threading issue with trying to access core data from a different thread.
+
         localURL = prepareLocalURL(
             fileName: filePathComponent,
             mimeClass: mimeClass,
@@ -399,9 +432,14 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
     }
 
     func downloadComplete() {
-        guard let file = files.first, let localURL = localURL, FileManager.default.fileExists(atPath: localURL.path) else { return }
+        guard let file = files.first else { return }
+        return downloadComplete(mimeClass: file.mimeClass, contentType: file.contentType)
+    }
+
+    func downloadComplete(mimeClass: String?, contentType: String?) {
+        guard let localURL = localURL, FileManager.default.fileExists(atPath: localURL.path) else { return }
         shareButton.isEnabled = true
-        switch (file.mimeClass, file.contentType) {
+        switch (mimeClass, contentType) {
         case ("audio", _):
             embedAudioView(for: localURL)
         case (_, let type) where type?.hasPrefix("audio/") == true:
