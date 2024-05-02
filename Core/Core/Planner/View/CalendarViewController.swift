@@ -88,14 +88,16 @@ class CalendarViewController: ScreenViewTrackableViewController {
         monthButton.configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
             var outgoing = incoming
             outgoing.foregroundColor = .textDarkest
-            outgoing.font = UIFont.scaledNamedFont(.bold24)
+            outgoing.font = UIFont.scaledNamedFont(.semibold22)
             return outgoing
         }
         monthButton.configuration?.background.backgroundColor = .clear
-        monthButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 28)
+        // trailing = 8 (text-image spacing) + 20 (image width) + 4 (image right padding)
+        monthButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 32)
         monthButton.accessibilityLabel = String(localized: "Show a month at a time", bundle: .core)
 
         filterButton.setTitle(String(localized: "Calendars", bundle: .core), for: .normal)
+        filterButton.titleLabel?.font = .scaledNamedFont(.regular16)
         filterButton.accessibilityLabel = String(localized: "Filter events", bundle: .core)
 
         dropdownView.transform = CGAffineTransform(rotationAngle: 4 * .pi)

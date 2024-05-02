@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="146"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCw-Ow-pYj" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="12" width="343" height="14.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCw-Ow-pYj" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="16" y="32" width="343" height="14.5"/>
                                 <accessibility key="accessibilityConfiguration" identifier="PlannerCalendar.yearLabel"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                 <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -28,38 +28,37 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold12"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="61z-Nv-lJN" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="115" y="38" width="12" height="12"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="61z-Nv-lJN" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="84" y="48.5" width="20" height="11"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="12" id="jSa-VO-kEi"/>
-                                    <constraint firstAttribute="height" constant="12" id="z57-kW-g7G"/>
+                                    <constraint firstAttribute="width" constant="20" id="xRu-xy-ceg"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDarkest"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="dropdown"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="chevronDown"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwV-L8-SHU" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="28.5" width="119" height="31"/>
+                                <rect key="frame" x="16" y="48.5" width="92" height="11"/>
                                 <accessibility key="accessibilityConfiguration" identifier="PlannerCalendar.monthButton"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="28" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="January"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold24"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold22"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="toggleExpanded" destination="bHm-jA-JJr" eventType="primaryActionTriggered" id="kNg-lw-419"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZt-0r-9y6" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="290" y="33" width="69" height="29"/>
+                                <rect key="frame" x="290" y="39.5" width="69" height="29"/>
                                 <accessibility key="accessibilityConfiguration" identifier="PlannerCalendar.filterButton"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <state key="normal" title="Calendars"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="filter:" destination="bHm-jA-JJr" eventType="primaryActionTriggered" id="3O0-Wv-TkJ"/>
@@ -126,18 +125,20 @@
                             <constraint firstItem="T8Q-j1-Rzz" firstAttribute="top" secondItem="jwV-L8-SHU" secondAttribute="bottom" constant="12" id="04O-W3-XDQ">
                                 <variation key="heightClass=compact" constant="0.0"/>
                             </constraint>
+                            <constraint firstItem="61z-Nv-lJN" firstAttribute="top" secondItem="jwV-L8-SHU" secondAttribute="top" id="26e-1W-VjU"/>
+                            <constraint firstItem="61z-Nv-lJN" firstAttribute="bottom" secondItem="jwV-L8-SHU" secondAttribute="bottom" id="2Ny-ba-Ttb"/>
                             <constraint firstItem="QZt-0r-9y6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jwV-L8-SHU" secondAttribute="trailing" constant="16" id="2df-Mh-2Zb"/>
-                            <constraint firstItem="61z-Nv-lJN" firstAttribute="leading" secondItem="jwV-L8-SHU" secondAttribute="trailing" constant="-20" id="4u5-hW-rsF"/>
                             <constraint firstItem="www-IQ-bTx" firstAttribute="bottom" secondItem="qAQ-ai-Jn4" secondAttribute="bottom" id="96e-Ve-nsU"/>
                             <constraint firstItem="www-IQ-bTx" firstAttribute="trailing" secondItem="qAQ-ai-Jn4" secondAttribute="trailing" id="AZK-sn-lwZ"/>
                             <constraint firstItem="qAQ-ai-Jn4" firstAttribute="top" secondItem="T8Q-j1-Rzz" secondAttribute="bottom" constant="12" id="C0v-dw-Ajn">
                                 <variation key="heightClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="QZt-0r-9y6" firstAttribute="firstBaseline" secondItem="jwV-L8-SHU" secondAttribute="firstBaseline" id="Mm9-BT-mJm"/>
+                            <constraint firstItem="61z-Nv-lJN" firstAttribute="trailing" secondItem="jwV-L8-SHU" secondAttribute="trailing" constant="-4" id="NQn-jT-0rf"/>
                             <constraint firstItem="jwV-L8-SHU" firstAttribute="top" secondItem="cCw-Ow-pYj" secondAttribute="bottom" constant="2" id="T3c-3j-58T"/>
                             <constraint firstItem="T8Q-j1-Rzz" firstAttribute="leading" secondItem="www-IQ-bTx" secondAttribute="leading" id="bjJ-vB-GVC"/>
                             <constraint firstItem="www-IQ-bTx" firstAttribute="trailing" secondItem="T8Q-j1-Rzz" secondAttribute="trailing" id="bm9-MP-HZV"/>
                             <constraint firstItem="www-IQ-bTx" firstAttribute="trailing" secondItem="cCw-Ow-pYj" secondAttribute="trailing" constant="16" id="bz3-3T-cve"/>
+                            <constraint firstItem="QZt-0r-9y6" firstAttribute="centerY" secondItem="jwV-L8-SHU" secondAttribute="centerY" id="eqK-GX-WK3"/>
                             <constraint firstItem="61z-Nv-lJN" firstAttribute="centerY" secondItem="jwV-L8-SHU" secondAttribute="centerY" id="fEJ-Er-wR5"/>
                             <constraint firstItem="qAQ-ai-Jn4" firstAttribute="leading" secondItem="www-IQ-bTx" secondAttribute="leading" id="g16-7u-YdT"/>
                             <constraint firstItem="cCw-Ow-pYj" firstAttribute="leading" secondItem="www-IQ-bTx" secondAttribute="leading" constant="16" id="gnV-5p-rb8"/>
@@ -163,9 +164,6 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="61z-Nv-lJN">
-            <size key="intrinsicContentSize" width="12" height="12"/>
-        </designable>
         <designable name="QZt-0r-9y6">
             <size key="intrinsicContentSize" width="69" height="29"/>
         </designable>
@@ -173,7 +171,7 @@
             <size key="intrinsicContentSize" width="31.5" height="14.5"/>
         </designable>
         <designable name="jwV-L8-SHU">
-            <size key="intrinsicContentSize" width="119" height="29"/>
+            <size key="intrinsicContentSize" width="92" height="22"/>
         </designable>
     </designables>
     <resources>
