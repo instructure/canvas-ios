@@ -154,14 +154,14 @@ class CalendarViewController: ScreenViewTrackableViewController {
     }
 
     func updateExpanded() {
-        daysHeight.constant = isExpanded ? days.maxHeight : days.minHeight
+        daysHeight.constant = isExpanded ? days.expandedHeight : days.collapsedHeight
         dropdownView.transform = CGAffineTransform(rotationAngle: isExpanded ? .pi : 4 * .pi)
         delegate?.calendarDidResize(height: height, animated: true)
     }
 
     var height: CGFloat { daysContainer.frame.minY + daysHeight.constant }
-    var minHeight: CGFloat { daysContainer.frame.minY + days.minHeight }
-    var maxHeight: CGFloat { daysContainer.frame.minY + days.maxHeight }
+    var minHeight: CGFloat { daysContainer.frame.minY + days.collapsedHeight }
+    var maxHeight: CGFloat { daysContainer.frame.minY + days.expandedHeight }
     func setHeight(_ height: CGFloat) {
         let ratio = (height - minHeight) / (maxHeight - minHeight)
         isExpanded = ratio > 0.5
@@ -256,8 +256,8 @@ extension CalendarViewController: PagesViewControllerDataSource, PagesViewContro
 
     func pagesViewController(_ pages: PagesViewController, isShowing list: [UIViewController]) {
         guard isExpanded, let list = list as? [CalendarDaysViewController] else { return }
-        daysHeight.constant = list.reduce(days.maxHeight) { height, page in
-            max(height, page.maxHeight)
+        daysHeight.constant = list.reduce(days.expandedHeight) { height, page in
+            max(height, page.expandedHeight)
         }
         delegate?.calendarDidResize(height: height, animated: false)
     }

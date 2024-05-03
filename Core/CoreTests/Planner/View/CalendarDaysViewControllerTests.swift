@@ -88,9 +88,52 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
         XCTAssertEqual((controller.weeksStackView.arrangedSubviews.first?.subviews.first as? UIButton)?.isSelected, true)
     }
 
-    func testToday() {
-        let button = CalendarDayButton(date: Date(), selectedDate: Date(), calendar: .current)
-        XCTAssertEqual(button.circleView.backgroundColor?.hexString, button.tintColor.hexString)
+    func testTodayNotSelected() {
+        let date = Date()
+        let selectedDate = date.addDays(2)
+
+        let button = CalendarDayButton(date: date, selectedDate: selectedDate, calendar: .current)
+        button.activityDotCount = 2
+
+        XCTAssertEqual(button.circleView.backgroundColor, nil)
+        XCTAssertEqual(button.label.textColor, button.tintColor)
+        XCTAssertEqual(button.dotContainer.isHidden, false)
+    }
+
+    func testNotTodayNotSelected() {
+        let date = Date().addDays(1)
+        let selectedDate = date.addDays(1)
+
+        let button = CalendarDayButton(date: date, selectedDate: selectedDate, calendar: .current)
+        button.activityDotCount = 2
+
+        XCTAssertEqual(button.circleView.backgroundColor, nil)
+        let isLabelTextDarkOrDarkest = button.label.textColor == .textDark || button.label.textColor == .textDarkest
+        XCTAssertEqual(isLabelTextDarkOrDarkest, true)
+        XCTAssertEqual(button.dotContainer.isHidden, false)
+    }
+
+    func testTodaySelected() {
+        let date = Date()
+        let selectedDate = date
+
+        let button = CalendarDayButton(date: date, selectedDate: selectedDate, calendar: .current)
+        button.activityDotCount = 2
+
+        XCTAssertEqual(button.circleView.backgroundColor, button.tintColor)
         XCTAssertEqual(button.label.textColor, .white)
+        XCTAssertEqual(button.dotContainer.isHidden, true)
+    }
+
+    func testNotTodaySelected() {
+        let date = Date().addDays(1)
+        let selectedDate = date
+
+        let button = CalendarDayButton(date: date, selectedDate: selectedDate, calendar: .current)
+        button.activityDotCount = 2
+
+        XCTAssertEqual(button.circleView.backgroundColor, button.tintColor)
+        XCTAssertEqual(button.label.textColor, .white)
+        XCTAssertEqual(button.dotContainer.isHidden, true)
     }
 }
