@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,22 +15,22 @@
             <objects>
                 <viewController storyboardIdentifier="CalendarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bHm-jA-JJr" customClass="CalendarViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ab1-ql-Y0p">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="146"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCw-Ow-pYj" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="32" width="343" height="14.5"/>
+                                <rect key="frame" x="16" y="28" width="343" height="14.5"/>
                                 <accessibility key="accessibilityConfiguration" identifier="PlannerCalendar.yearLabel"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold12"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular12"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="61z-Nv-lJN" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="84" y="48.5" width="20" height="11"/>
+                                <rect key="frame" x="101" y="44.5" width="20" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="xRu-xy-ceg"/>
                                 </constraints>
@@ -39,23 +40,26 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwV-L8-SHU" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="48.5" width="92" height="11"/>
+                                <rect key="frame" x="16" y="44.5" width="109" height="29"/>
                                 <accessibility key="accessibilityConfiguration" identifier="PlannerCalendar.monthButton"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="28" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="January"/>
+                                <state key="normal" title="January">
+                                    <color key="titleColor" name="textDarkest"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold22"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold22"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="toggleExpanded" destination="bHm-jA-JJr" eventType="primaryActionTriggered" id="kNg-lw-419"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZt-0r-9y6" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="290" y="39.5" width="69" height="29"/>
+                                <rect key="frame" x="286" y="43" width="73" height="32"/>
                                 <accessibility key="accessibilityConfiguration" identifier="PlannerCalendar.filterButton"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Calendars"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
@@ -65,7 +69,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="T8Q-j1-Rzz">
-                                <rect key="frame" x="0.0" y="71.5" width="375" height="14.5"/>
+                                <rect key="frame" x="0.0" y="85.5" width="375" height="14.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbP-wb-YV5">
                                         <rect key="frame" x="0.0" y="0.0" width="53.5" height="14.5"/>
@@ -112,7 +116,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAQ-ai-Jn4">
-                                <rect key="frame" x="0.0" y="98" width="375" height="48"/>
+                                <rect key="frame" x="0.0" y="112" width="375" height="48"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="WWZ-0h-Oyd"/>
@@ -143,11 +147,11 @@
                             <constraint firstItem="qAQ-ai-Jn4" firstAttribute="leading" secondItem="www-IQ-bTx" secondAttribute="leading" id="g16-7u-YdT"/>
                             <constraint firstItem="cCw-Ow-pYj" firstAttribute="leading" secondItem="www-IQ-bTx" secondAttribute="leading" constant="16" id="gnV-5p-rb8"/>
                             <constraint firstItem="www-IQ-bTx" firstAttribute="trailing" secondItem="QZt-0r-9y6" secondAttribute="trailing" constant="16" id="mw8-oE-qm9"/>
-                            <constraint firstItem="cCw-Ow-pYj" firstAttribute="top" secondItem="www-IQ-bTx" secondAttribute="top" constant="12" id="vhT-To-2l6"/>
+                            <constraint firstItem="cCw-Ow-pYj" firstAttribute="top" secondItem="www-IQ-bTx" secondAttribute="top" constant="8" id="vhT-To-2l6"/>
                             <constraint firstItem="jwV-L8-SHU" firstAttribute="leading" secondItem="www-IQ-bTx" secondAttribute="leading" constant="16" id="woW-vD-63D"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="375" height="146"/>
+                    <size key="freeformSize" width="375" height="160"/>
                     <connections>
                         <outlet property="daysContainer" destination="qAQ-ai-Jn4" id="SbT-zo-uHq"/>
                         <outlet property="daysHeight" destination="WWZ-0h-Oyd" id="Kys-01-eaU"/>
@@ -165,16 +169,19 @@
     </scenes>
     <designables>
         <designable name="QZt-0r-9y6">
-            <size key="intrinsicContentSize" width="69" height="29"/>
+            <size key="intrinsicContentSize" width="73" height="32"/>
         </designable>
         <designable name="cCw-Ow-pYj">
-            <size key="intrinsicContentSize" width="31.5" height="14.5"/>
+            <size key="intrinsicContentSize" width="30" height="14.5"/>
         </designable>
         <designable name="jwV-L8-SHU">
-            <size key="intrinsicContentSize" width="92" height="22"/>
+            <size key="intrinsicContentSize" width="109" height="27"/>
         </designable>
     </designables>
     <resources>
+        <namedColor name="textDarkest">
+            <color red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
