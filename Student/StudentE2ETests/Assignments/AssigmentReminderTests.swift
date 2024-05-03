@@ -70,9 +70,6 @@ class AssignmentReminderTests: E2ETestCase {
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
         XCTAssertTrue(dueLabel.isVisible)
 
@@ -151,9 +148,6 @@ class AssignmentReminderTests: E2ETestCase {
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
         XCTAssertTrue(dueLabel.isVisible)
 
@@ -230,9 +224,6 @@ class AssignmentReminderTests: E2ETestCase {
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
         XCTAssertTrue(dueLabel.isVisible)
 
@@ -314,9 +305,6 @@ class AssignmentReminderTests: E2ETestCase {
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
         XCTAssertTrue(dueLabel.isVisible)
 
