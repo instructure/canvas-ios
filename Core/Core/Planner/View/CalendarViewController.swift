@@ -107,7 +107,8 @@ class CalendarViewController: ScreenViewTrackableViewController {
             let day = calendar.firstWeekday + i - calendar.component(.weekday, from: selectedDate)
             let date = calendar.date(byAdding: .day, value: day, to: selectedDate)!
             let label = UILabel()
-            label.font = .scaledNamedFont(.semibold12)
+            label.font = .scaledNamedFont(.regular12)
+            label.adjustsFontForContentSizeCategory = true
             label.text = weekdayFormatter.string(from: date)
             label.textColor = calendar.isDateInWeekend(date) ? .textDark : .textDarkest
             label.textAlignment = .center
