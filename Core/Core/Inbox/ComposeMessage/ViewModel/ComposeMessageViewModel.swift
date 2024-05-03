@@ -31,7 +31,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var isMessageDisabled: Bool = false
     @Published public private(set) var isIndividualDisabled: Bool = false
 
-    public let title = String(localized: "New Message", bundle: .core)
+    public let title = String(localized: "No Subject", bundle: .core)
     public var sendButtonActive: Bool {
         !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !subject.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&

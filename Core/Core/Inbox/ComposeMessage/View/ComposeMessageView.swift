@@ -22,8 +22,13 @@ public struct ComposeMessageView: View {
     @ObservedObject private var model: ComposeMessageViewModel
     @Environment(\.viewController) private var controller
 
+    @ScaledMetric private var uiScale: CGFloat = 1
+
     @FocusState private var subjectTextFieldFocus: Bool
     @FocusState private var messageTextFieldFocus: Bool
+    @State private var showExtraSendButton = false
+    @State private var headerHeight = CGFloat.zero
+    private var proxyScrollViewKey = "scrollview"
 
     init(model: ComposeMessageViewModel) {
         self.model = model
@@ -33,9 +38,20 @@ public struct ComposeMessageView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: 0) {
+                    scrollViewProxyView
                     headerView
+                        .background(
+                            GeometryReader { proxy in
+                                Color.clear
+                                    .onAppear {
+                                        headerHeight = proxy.size.height
+                                    }
+                            }
+                        )
                     Divider()
-                    propertiesView
+                    VStack(spacing: 0) {
+                        propertiesView
+                    }
                     Divider()
                     VStack(spacing: 0) {
                         bodyView
@@ -50,10 +66,39 @@ public struct ComposeMessageView: View {
 
                 }
                 .background(Color.backgroundLightest)
-                .navigationBarItems(leading: cancelButton)
+                .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
                 .navigationBarStyle(.modal)
             }
+            .coordinateSpace(name: proxyScrollViewKey)
+            .onPreferenceChange(ViewSizeKey.self) { offset in
+                if (offset < -headerHeight) {
+                    showExtraSendButton = true
+                } else {
+                    showExtraSendButton = false
+                }
+            }
         }
+    }
+
+    @ViewBuilder
+    private var extraSendButton: some View {
+        if showExtraSendButton {
+            withAnimation {
+                sendButton
+            }
+        } else {
+            withAnimation {
+                Color.clear
+            }
+        }
+    }
+
+    private var scrollViewProxyView: some View {
+        GeometryReader { geometry in
+            Color.clear
+                .preference(key: ViewSizeKey.self, value: geometry.frame(in: .named(proxyScrollViewKey)).minY)
+        }
+        .frame(width: 0, height: 0)
     }
 
     private var separator: some View {
@@ -86,7 +131,7 @@ public struct ComposeMessageView: View {
     private var sendButtonImage: some View {
         Image.circleArrowUpSolid
             .resizable()
-            .frame(width: 35, height: 35)
+            .frame(width: 40 * uiScale.iconScale, height: 40 * uiScale.iconScale)
             .foregroundStyle(model.sendButtonActive ? .accentColor : Color.backgroundMedium)
     }
 
