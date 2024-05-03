@@ -312,7 +312,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
             return nil
         }
         switch offlineFileSource {
-        case .privateFile(let sessionID, let courseID, let sectionName, let resourceID, let fileID):
+        case .privateFile:
             return offlineFileInteractor?.filePath(
                 source: offlineFileSource
             )
@@ -345,8 +345,16 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
         guard let filePathComponent = filePathComponent else { return }
         let fileURL = URL.Directories.documents.appendingPathComponent(filePathComponent)
         var mimeClass = fileURL.mimeType()
-        if let suffix = mimeClass.split(separator: "/").last {
-            mimeClass = String(suffix)
+        // application/pdf --> pdf
+        // image/png, image/jpeg, ... --> image
+        if mimeClass.contains("application") {
+            if let suffix = mimeClass.split(separator: "/").last {
+                mimeClass = String(suffix)
+            }
+        } else {
+            if let prefix = mimeClass.split(separator: "/").first {
+                mimeClass = String(prefix)
+            }
         }
 
         localURL = prepareLocalURL(

@@ -49,7 +49,10 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         publisherProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
     ) -> AnyPublisher<String, Error> {
         let fileID = url.lastPathComponent
-        let downloadURL = url.appendingPathComponent("download")
+        var downloadURL = url
+        if downloadURL.lastPathComponent != "download" {
+            downloadURL = url.appendingPathComponent("download")
+        }
         if let loginSession, let request = try? downloadURL.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID) {
             return publisherProvider.getPublisher(for: request)
                 .receive(on: scheduler)
