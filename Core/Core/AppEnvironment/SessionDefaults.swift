@@ -146,14 +146,17 @@ public struct SessionDefaults {
         self[calendarSelectedContextsContainerKey] = container
     }
 
-    public func calendarSelectedContexts(for observedStudentId: String?) -> Set<Context> {
+    /**
+     - returns: Nil if the user has never selected calendars.
+     */
+    public func calendarSelectedContexts(for observedStudentId: String?) -> Set<Context>? {
         let observedStudentId = observedStudentId ?? ""
 
         guard
             let container = self[calendarSelectedContextsContainerKey] as? [ObservedStudentID: [CanvasContextId]],
             let selectedContextCodes = container[observedStudentId]
         else {
-            return Set()
+            return nil
         }
 
         let selectedContexts = selectedContextCodes.compactMap { Context(canvasContextID: $0) }

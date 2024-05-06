@@ -47,6 +47,6 @@ public final class CDEnvironmentSetting: NSManagedObject, WriteableModel {
 public extension Array where Element == CDEnvironmentSetting {
 
     func isEnabled(_ name: CDEnvironmentSetting.EnvironmentSettingName) -> Bool {
-        contains { $0.name == name.rawValue }
+        contains { $0.name == name.rawValue && $0.isEnabled }
     }
 }

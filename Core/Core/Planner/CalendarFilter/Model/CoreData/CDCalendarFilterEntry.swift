@@ -57,7 +57,15 @@ public class CDCalendarFilterEntry: NSManagedObject {
 extension CDCalendarFilterEntry: Comparable {
 
     public static func < (lhs: CDCalendarFilterEntry, rhs: CDCalendarFilterEntry) -> Bool {
-        lhs.name < rhs.name
+        let order: [ContextType] = [.user, .course, .group]
+
+        switch (lhs.context.contextType, rhs.context.contextType) {
+        case (.user, .user), (.course, .course), (.group, .group): return lhs.name < rhs.name
+        case (_, _):
+            let lhsPriority = order.firstIndex(of: lhs.context.contextType) ?? .max
+            let rhsPriority = order.firstIndex(of: rhs.context.contextType) ?? .max
+            return lhsPriority < rhsPriority
+        }
     }
 }
 

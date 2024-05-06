@@ -34,12 +34,36 @@ public enum PlannerAssembly {
         return host
     }
 
-    public static func makeFilterViewController(observedUserId: String?, didDismissPicker: @escaping () -> Void) -> UIViewController {
-        let interactor = CalendarFilterInteractorLive(observedUserId: observedUserId)
+    public static func makeFilterViewController(
+        observedUserId: String?,
+        didDismissPicker: @escaping () -> Void
+    ) -> UIViewController {
+        let interactor = makeInteractor(observedUserId: observedUserId)
         let viewModel = CalendarFilterViewModel(interactor: interactor, didDismissPicker: didDismissPicker)
         let view = CalendarFilterScreen(viewModel: viewModel)
         let host = CoreHostingController(view)
         return host
+    }
+
+    public static func makeInteractor(observedUserId: String?) -> CalendarFilterInteractor {
+        CalendarFilterInteractorLive(
+            observedUserId: observedUserId,
+            filterProvider: makeFilterProvider(observedUserId: observedUserId)
+        )
+    }
+
+    public static func makeFilterProvider(
+        observedUserId: String?,
+        app: AppEnvironment.App? = AppEnvironment.shared.app
+    ) -> CalendarFilterEntryProvider {
+        switch app {
+        case .parent:
+            return CalendarFilterEntryProviderParent(observedUserId: observedUserId)
+        case .student, .none:
+            return CalendarFilterEntryProviderStudent()
+        case .teacher:
+            return CalendarFilterEntryProviderTeacher()
+        }
     }
 
 #if DEBUG
