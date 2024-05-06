@@ -150,24 +150,35 @@ class PlannerListCell: UITableViewCell {
 
     func update(_ p: Plannable?) {
         accessibilityIdentifier = "PlannerList.event.\(p?.id ?? "")"
-        courseCode.setText(p?.contextName, style: .textCellTopLabel)
-        title.setText(p?.title, style: .textCellTitle)
         backgroundColor = .backgroundLightest
+
+        let customColor = AppEnvironment.shared.app == .parent
+            ? nil
+            : p?.color.ensureContrast(against: .backgroundLightest)
+
+        icon.image = p?.icon()
+        if let customColor {
+            icon.tintColor = customColor
+        }
+
+        courseCode.setText(p?.contextName, style: .textCellTopLabel)
+        if let customColor {
+            courseCode.textColor = customColor
+        }
+
+        title.setText(p?.title, style: .textCellTitle)
+
         let dueDateText = (p?.date).flatMap {
             DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .short)
         }
         dueDate.setText(dueDateText, style: .textCellSupportingText)
-        icon.image = p?.icon()
         let pointsText: String? = p?.pointsPossible.flatMap {
             let format = String(localized: "g_points", bundle: .core)
             return String.localizedStringWithFormat(format, $0)
         }
         points.setText(pointsText, style: .textCellSupportingText)
         pointsDivider.isHidden = dueDate.text == nil || pointsText == nil
-        if !Bundle.main.isParentApp, let color = p?.color {
-            courseCode.textColor = color.ensureContrast(against: .backgroundLightest)
-            icon.tintColor = color.ensureContrast(against: .backgroundLightest)
-        }
+
         accessoryType = .disclosureIndicator
     }
 }
