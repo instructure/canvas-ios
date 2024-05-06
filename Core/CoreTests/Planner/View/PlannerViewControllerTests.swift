@@ -68,7 +68,7 @@ class PlannerViewControllerTests: CoreTestCase {
         XCTAssertFinish(controller.calendarFilterInteractor.updateFilteredContexts([.course("2"), .user("1")], isSelected: true))
         controller.plannerListWillRefresh()
 
-        XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars (2)")
+        XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars")
         XCTAssert(controller.calendar.days.plannables?.useCase.contextCodes!.contains("course_2") == true)
         XCTAssert(controller.list.plannables?.useCase.contextCodes!.contains("course_2") == true)
         XCTAssert(controller.calendar.days.plannables?.useCase.contextCodes!.contains("user_1") == true)

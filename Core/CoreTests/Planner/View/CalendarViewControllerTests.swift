@@ -68,12 +68,12 @@ class CalendarViewControllerTests: CoreTestCase, CalendarViewControllerDelegate 
         XCTAssertTrue(willFilter)
         calendarCount = 1
         controller.refresh()
-        XCTAssertEqual(controller.filterButton.accessibilityLabel, "Filter events, 1 calendar selected")
-        XCTAssertEqual(controller.filterButton.title(for: .normal), "Calendars (1)")
+        XCTAssertEqual(controller.filterButton.accessibilityLabel, "Filter events")
+        XCTAssertEqual(controller.filterButton.title(for: .normal), "Calendars")
         calendarCount = 7
         controller.refresh()
-        XCTAssertEqual(controller.filterButton.accessibilityLabel, "Filter events, 7 calendars selected")
-        XCTAssertEqual(controller.filterButton.title(for: .normal), "Calendars (7)")
+        XCTAssertEqual(controller.filterButton.accessibilityLabel, "Filter events")
+        XCTAssertEqual(controller.filterButton.title(for: .normal), "Calendars")
 
         controller.calendarDidSelectDate(DateComponents(calendar: .current, year: 2020, month: 1, day: 16).date!)
         controller.updateSelectedDate(selectedDate)
