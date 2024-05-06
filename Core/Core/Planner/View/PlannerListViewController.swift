@@ -62,7 +62,7 @@ public class PlannerListViewController: UIViewController {
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
         self.view.backgroundColor = .backgroundLightest
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+        tableView.tableFooterView = UIView(frame: .zero)
         tableViewBackgroundView.add(to: tableView)
         refresh()
     }
