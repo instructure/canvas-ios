@@ -31,6 +31,8 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var isMessageDisabled: Bool = false
     @Published public private(set) var isIndividualDisabled: Bool = false
 
+    @Published public private(set) var expandedIncludedMessageIds = [String]()
+
     public let title = String(localized: "No Subject", bundle: .core)
     public var sendButtonActive: Bool {
         !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
@@ -73,6 +75,8 @@ class ComposeMessageViewModel: ObservableObject {
     private var autoTeacherSelect: Bool = false
     private var teacherOnly: Bool = false
 
+    // MARK: Public interface
+
     public init(router: Router, options: ComposeMessageOptions, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
         self.router = router
@@ -84,6 +88,79 @@ class ComposeMessageViewModel: ObservableObject {
 
         setupOutputBindings()
         setupInputBindings(router: router)
+    }
+
+    public func courseSelectButtonDidTap(viewController: WeakViewController) {
+        router.show(InboxCoursePickerAssembly.makeInboxCoursePickerViewController(selected: selectedContext) { [weak self] course in
+            self?.courseDidSelect(selectedContext: course, viewController: viewController)
+        }, from: viewController)
+    }
+
+    public func courseDidSelect(selectedContext: RecipientContext?, viewController: WeakViewController) {
+        self.selectedContext = selectedContext
+        selectedRecipients.value.removeAll()
+
+        if let context = selectedContext?.context, autoTeacherSelect {
+            selectedRecipients.send([.init(id: "\(context.canvasContextID)_teachers", name: String(localized: "Teachers"), avatarURL: nil)])
+        }
+
+        closeCourseSelectorDelayed(viewController)
+    }
+
+    public func addRecipientButtonDidTap(viewController: WeakViewController) {
+        guard let context = selectedContext else { return }
+        let addressbook = AddressBookAssembly.makeAddressbookRoleViewController(
+            recipientContext: context,
+            teacherOnly: teacherOnly,
+            recipientDidSelect: recipientDidSelect,
+            selectedRecipients: selectedRecipients)
+        router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
+    }
+
+    public func attachmentbuttonDidTap(viewController: WeakViewController) {
+        files.refresh()
+        let attachmentList = AttachmentPickerAssembly.makeAttachmentPickerViewController(batchId: batchId, uploadManager: uploadManager)
+        router.show(attachmentList, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
+    }
+
+    public func removeAttachment(file: File) {
+        uploadManager.viewContext.delete(file)
+        files.refresh()
+    }
+
+    public func isMessageExpanded(message: ConversationMessage) -> Bool {
+        expandedIncludedMessageIds.contains(where: { $0 == message.id })
+    }
+
+    public func toggleMessageExpand(message: ConversationMessage) {
+        if isMessageExpanded(message: message) {
+            expandedIncludedMessageIds.removeAll(where: { $0 == message.id })
+        } else {
+            expandedIncludedMessageIds.append(message.id)
+        }
+    }
+
+    // MARK: Private helpers
+
+    private func setupOutputBindings() {
+        recipientDidSelect
+            .sink { [weak self] recipient in
+                if self?.selectedRecipients.value.contains(recipient) == true {
+                    self?.recipientDidRemove.accept(recipient)
+                } else {
+                    self?.selectedRecipients.value.append(recipient)
+                }
+            }
+            .store(in: &subscriptions)
+
+        recipientDidRemove
+            .sink { [weak self] recipient in
+                self?.selectedRecipients.value.removeAll { $0 == recipient }
+            }
+            .store(in: &subscriptions)
+
+        selectedRecipients
+            .assign(to: &$recipients)
     }
 
     private func setOptionItems(options: ComposeMessageOptions) {
@@ -145,22 +222,6 @@ class ComposeMessageViewModel: ObservableObject {
         attachments = files.all
     }
 
-    public func courseSelectButtonDidTap(viewController: WeakViewController) {
-        router.show(InboxCoursePickerAssembly.makeInboxCoursePickerViewController(selected: selectedContext) { [weak self] course in
-            self?.courseDidSelect(selectedContext: course, viewController: viewController)
-        }, from: viewController)
-    }
-
-    public func courseDidSelect(selectedContext: RecipientContext?, viewController: WeakViewController) {
-        self.selectedContext = selectedContext
-        selectedRecipients.value.removeAll()
-
-        if let context = selectedContext?.context, autoTeacherSelect {
-            selectedRecipients.send([.init(id: "\(context.canvasContextID)_teachers", name: String(localized: "Teachers"), avatarURL: nil)])
-        }
-
-        closeCourseSelectorDelayed(viewController)
-    }
 
     private func closeCourseSelectorDelayed(_ viewController: WeakViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -168,48 +229,6 @@ class ComposeMessageViewModel: ObservableObject {
                 navController.popViewController(animated: true)
             }
         }
-    }
-
-    public func addRecipientButtonDidTap(viewController: WeakViewController) {
-        guard let context = selectedContext else { return }
-        let addressbook = AddressBookAssembly.makeAddressbookRoleViewController(
-            recipientContext: context,
-            teacherOnly: teacherOnly,
-            recipientDidSelect: recipientDidSelect,
-            selectedRecipients: selectedRecipients)
-        router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
-    }
-
-    public func attachmentbuttonDidTap(viewController: WeakViewController) {
-        files.refresh()
-        let attachmentList = AttachmentPickerAssembly.makeAttachmentPickerViewController(batchId: batchId, uploadManager: uploadManager)
-        router.show(attachmentList, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
-    }
-
-    public func removeAttachment(file: File) {
-        uploadManager.viewContext.delete(file)
-        files.refresh()
-    }
-
-    private func setupOutputBindings() {
-        recipientDidSelect
-            .sink { [weak self] recipient in
-                if self?.selectedRecipients.value.contains(recipient) == true {
-                    self?.recipientDidRemove.accept(recipient)
-                } else {
-                    self?.selectedRecipients.value.append(recipient)
-                }
-            }
-            .store(in: &subscriptions)
-
-        recipientDidRemove
-            .sink { [weak self] recipient in
-                self?.selectedRecipients.value.removeAll { $0 == recipient }
-            }
-            .store(in: &subscriptions)
-
-        selectedRecipients
-            .assign(to: &$recipients)
     }
 
     private func messageParameters() -> MessageParameters? {

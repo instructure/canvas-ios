@@ -323,7 +323,42 @@ public struct ComposeMessageView: View {
         .padding(.horizontal, 12)
     }
 
+    @ViewBuilder
     private func messageView(for message: ConversationMessage) -> some View {
+        Button {
+            model.toggleMessageExpand(message: message)
+        } label: {
+            if model.isMessageExpanded(message: message) {
+                expandedMessageView(for: message)
+            } else {
+                collapsedMessageView(for: message)
+            }
+        }
+    }
+
+    private func expandedMessageView(for message: ConversationMessage) -> some View {
+        return VStack(alignment: .leading) {
+            HStack {
+                Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
+                    .foregroundStyle(Color.textDarkest)
+                Spacer()
+                Text(message.createdAt?.dateTimeString ?? "")
+                    .foregroundStyle(Color.textDark)
+            }
+
+            Text(message.body)
+                .foregroundStyle(Color.textDark)
+
+            if !message.attachments.isEmpty {
+                AttachmentCardsView(attachments: message.attachments, mediaComment: message.mediaComment)
+                    .frame(height: 104)
+            }
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 12)
+    }
+
+    private func collapsedMessageView(for message: ConversationMessage) -> some View {
         return VStack(alignment: .leading) {
             HStack {
                 Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
