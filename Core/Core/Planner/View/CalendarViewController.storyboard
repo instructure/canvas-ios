@@ -30,7 +30,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="61z-Nv-lJN" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="101" y="44.5" width="20" height="29"/>
+                                <rect key="frame" x="101" y="44.5" width="20" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="xRu-xy-ceg"/>
                                 </constraints>
@@ -40,7 +40,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwV-L8-SHU" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="44.5" width="109" height="29"/>
+                                <rect key="frame" x="16" y="44.5" width="109" height="31"/>
                                 <accessibility key="accessibilityConfiguration" identifier="PlannerCalendar.monthButton"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="28" maxY="0.0"/>
@@ -57,7 +57,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZt-0r-9y6" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="286" y="43" width="73" height="32"/>
+                                <rect key="frame" x="286" y="44" width="73" height="32"/>
                                 <accessibility key="accessibilityConfiguration" identifier="PlannerCalendar.filterButton"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Calendars"/>
@@ -69,7 +69,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="T8Q-j1-Rzz">
-                                <rect key="frame" x="0.0" y="85.5" width="375" height="14.5"/>
+                                <rect key="frame" x="0.0" y="87.5" width="375" height="14.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbP-wb-YV5">
                                         <rect key="frame" x="0.0" y="0.0" width="53.5" height="14.5"/>
@@ -134,7 +134,7 @@
                             <constraint firstItem="QZt-0r-9y6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jwV-L8-SHU" secondAttribute="trailing" constant="16" id="2df-Mh-2Zb"/>
                             <constraint firstItem="www-IQ-bTx" firstAttribute="bottom" secondItem="qAQ-ai-Jn4" secondAttribute="bottom" id="96e-Ve-nsU"/>
                             <constraint firstItem="www-IQ-bTx" firstAttribute="trailing" secondItem="qAQ-ai-Jn4" secondAttribute="trailing" id="AZK-sn-lwZ"/>
-                            <constraint firstItem="qAQ-ai-Jn4" firstAttribute="top" secondItem="T8Q-j1-Rzz" secondAttribute="bottom" constant="12" id="C0v-dw-Ajn">
+                            <constraint firstItem="qAQ-ai-Jn4" firstAttribute="top" secondItem="T8Q-j1-Rzz" secondAttribute="bottom" constant="10" id="C0v-dw-Ajn">
                                 <variation key="heightClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="61z-Nv-lJN" firstAttribute="trailing" secondItem="jwV-L8-SHU" secondAttribute="trailing" constant="-4" id="NQn-jT-0rf"/>

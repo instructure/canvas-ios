@@ -24,6 +24,7 @@ class CalendarDaysViewController: UIViewController {
     static let numberOfDaysInWeek = calendar.maximumRange(of: .weekday)!.count
 
     private struct Spacings {
+        // topPadding: set in storypoard
         let collapsedBottomPadding: CGFloat
         let expandedBottomPadding: CGFloat
         let weekGap: CGFloat
@@ -38,9 +39,9 @@ class CalendarDaysViewController: UIViewController {
             )
         } else {
             Spacings(
-                collapsedBottomPadding: 16,
-                expandedBottomPadding: 24,
-                weekGap: 20
+                collapsedBottomPadding: 20,
+                expandedBottomPadding: 20,
+                weekGap: 16
             )
         }
     }
