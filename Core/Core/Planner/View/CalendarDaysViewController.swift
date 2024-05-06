@@ -22,12 +22,41 @@ import UIKit
 class CalendarDaysViewController: UIViewController {
     static let calendar = Calendar.autoupdatingCurrent
     static let numberOfDaysInWeek = calendar.maximumRange(of: .weekday)!.count
-    static let collapsedBottomPadding: CGFloat = 16
-    static let expandedBottomPadding: CGFloat = 4 // 20 (weekGap) + 4 = 24 (intended padding)
-    var collapsedHeight: CGFloat { weekHeight + Self.collapsedBottomPadding } // fully collapsed height (for week)
-    var expandedHeight: CGFloat { CGFloat(weeksStackView.arrangedSubviews.count) * (weekHeight + weekGap) + Self.expandedBottomPadding } // fully extended height (for month)
-    var weekHeight: CGFloat { CalendarDayButton.height(isVerticallyShrinked: traitCollection.verticalSizeClass == .compact) }
-    var weekGap: CGFloat { traitCollection.verticalSizeClass == .compact ? 1 : 20 }
+
+    private struct Spacings {
+        let collapsedBottomPadding: CGFloat
+        let expandedBottomPadding: CGFloat
+        let weekGap: CGFloat
+    }
+
+    private var spacings: Spacings {
+        if traitCollection.verticalSizeClass == .compact {
+            Spacings(
+                collapsedBottomPadding: 13,
+                expandedBottomPadding: 10,
+                weekGap: 6
+            )
+        } else {
+            Spacings(
+                collapsedBottomPadding: 16,
+                expandedBottomPadding: 24,
+                weekGap: 20
+            )
+        }
+    }
+
+    private var weekHeight: CGFloat { CalendarDayButton.height }
+    private var weekGap: CGFloat { spacings.weekGap }
+
+    var collapsedHeight: CGFloat { weekHeight + spacings.collapsedBottomPadding }
+    var expandedHeight: CGFloat {
+        let weekCount = CGFloat(weeksStackView.arrangedSubviews.count)
+        guard weekCount > 0 else { return spacings.expandedBottomPadding }
+
+        return weekCount * weekHeight
+            + (weekCount - 1) * weekGap
+            + spacings.expandedBottomPadding
+    }
 
     var calendar: Calendar { CalendarDaysViewController.calendar }
     weak var delegate: CalendarViewControllerDelegate?
@@ -177,9 +206,7 @@ class CalendarDayButton: UIButton {
 
     private static let circleHeight: CGFloat = 32
     private static let dotHeight: CGFloat = 4
-    static func height(isVerticallyShrinked: Bool) -> CGFloat {
-        circleHeight
-    }
+    static var height: CGFloat { circleHeight }
 
     private var dotSpacing: CGFloat {
         let isVerticallyShrinked = traitCollection.verticalSizeClass == .compact
