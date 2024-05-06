@@ -49,7 +49,12 @@ class CalendarFilterInteractorTests: CoreTestCase {
             observedStudentId: nil
         )
         mockFilterProvider.mock(contexts: [.course("2"), .group("2")])
-        let testee = CalendarFilterInteractorLive(observedUserId: nil, env: environment, filterProvider: mockFilterProvider, scheduler: scheduler.eraseToAnyScheduler())
+        let testee = CalendarFilterInteractorLive(
+            observedUserId: nil,
+            userDefaults: environment.userDefaults,
+            filterProvider: mockFilterProvider,
+            scheduler: scheduler.eraseToAnyScheduler()
+        )
 
         // WHEN
         XCTAssertFinish(testee.load(ignoreCache: false))
@@ -71,7 +76,12 @@ class CalendarFilterInteractorTests: CoreTestCase {
             observedStudentId: nil
         )
         mockFilterProvider.mock(contexts: [.course("c1"), .group("g1")])
-        let testee = CalendarFilterInteractorLive(observedUserId: nil, env: environment, filterProvider: mockFilterProvider, scheduler: scheduler.eraseToAnyScheduler())
+        let testee = CalendarFilterInteractorLive(
+            observedUserId: nil,
+            userDefaults: environment.userDefaults,
+            filterProvider: mockFilterProvider,
+            scheduler: scheduler.eraseToAnyScheduler()
+        )
 
         // WHEN
         XCTAssertFinish(testee.load(ignoreCache: false))
@@ -91,8 +101,18 @@ class CalendarFilterInteractorTests: CoreTestCase {
 
     func testSynchronizesSelectedContextsBetweenDifferentInteractors() {
         mockFilterProvider.mock(contexts: [.course("c1")])
-        let testee1 = CalendarFilterInteractorLive(observedUserId: nil, env: environment, filterProvider: mockFilterProvider, scheduler: .immediate)
-        let testee2 = CalendarFilterInteractorLive(observedUserId: nil, env: environment, filterProvider: mockFilterProvider, scheduler: .immediate)
+        let testee1 = CalendarFilterInteractorLive(
+            observedUserId: nil,
+            userDefaults: environment.userDefaults,
+            filterProvider: mockFilterProvider,
+            scheduler: .immediate
+        )
+        let testee2 = CalendarFilterInteractorLive(
+            observedUserId: nil,
+            userDefaults: environment.userDefaults,
+            filterProvider: mockFilterProvider,
+            scheduler: .immediate
+        )
         XCTAssertEqual(testee1.selectedContexts.value, Set())
         XCTAssertEqual(testee2.selectedContexts.value, Set())
 
@@ -117,7 +137,7 @@ class CalendarFilterInteractorTests: CoreTestCase {
 
         let testee = CalendarFilterInteractorLive(
             observedUserId: nil,
-            env: environment,
+            userDefaults: environment.userDefaults,
             filterProvider: mockFilterProvider,
             isCalendarFilterLimitEnabled: true,
             scheduler: scheduler.eraseToAnyScheduler()

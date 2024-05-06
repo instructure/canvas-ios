@@ -36,7 +36,7 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
     public let selectedContexts = CurrentValueSubject<Set<Context>, Never>(Set())
 
     private let observedUserId: String?
-    private let env: AppEnvironment
+    private var userDefaults: SessionDefaults?
     private let isCalendarFilterLimitEnabled: Bool
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let filterProvider: CalendarFilterEntryProvider
@@ -44,13 +44,13 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
 
     required public init(
         observedUserId: String?,
-        env: AppEnvironment = .shared,
+        userDefaults: SessionDefaults? = AppEnvironment.shared.userDefaults,
         filterProvider: CalendarFilterEntryProvider,
         isCalendarFilterLimitEnabled: Bool = AppEnvironment.shared.app.isCalendarFilterLimitEnabled,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.observedUserId = observedUserId
-        self.env = env
+        self.userDefaults = userDefaults
         self.filterProvider = filterProvider
         self.isCalendarFilterLimitEnabled = isCalendarFilterLimitEnabled
         self.scheduler = scheduler
@@ -74,9 +74,9 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
                     (filters, limit)
                 }
             }
-            .map { [sessionDefaults = env.userDefaults, observedUserId, isCalendarFilterLimitEnabled] (filters, limit) in
+            .map { [userDefaults, observedUserId, isCalendarFilterLimitEnabled] (filters, limit) in
                 let selectedContexts: Set<Context>? = {
-                    if let loadedContexts = sessionDefaults?.calendarSelectedContexts(for: observedUserId) {
+                    if let loadedContexts = userDefaults?.calendarSelectedContexts(for: observedUserId) {
                         return loadedContexts.removeUnavailableFilters(filters: filters)
                     } else if isCalendarFilterLimitEnabled {
                         return filters.defaultFilters(limit: limit)
@@ -94,7 +94,7 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
 
                 if let selectedContexts {
                     self.selectedContexts.send(selectedContexts)
-                    env.userDefaults?.setCalendarSelectedContexts(selectedContexts, observedStudentId: observedUserId)
+                    userDefaults?.setCalendarSelectedContexts(selectedContexts, observedStudentId: observedUserId)
                 }
 
                 return
@@ -103,7 +103,7 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
     }
 
     public func updateFilteredContexts(_ contexts: [Context], isSelected: Bool) -> AnyPublisher<Void, Error> {
-        guard var defaults = env.userDefaults else {
+        guard var defaults = userDefaults else {
             return Fail(error: NSError.internalError()).eraseToAnyPublisher()
         }
 
@@ -153,8 +153,8 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
             // We delay one cycle to avoid a crash occuring when the observed student changes
             // which also modifies userdefaults violating "Exclusive Access to Memory".
             .receive(on: scheduler)
-            .compactMap { [env, observedUserId] _ in
-                env.userDefaults?.calendarSelectedContexts(for: observedUserId)
+            .compactMap { [weak self, observedUserId] _ in
+                self?.userDefaults?.calendarSelectedContexts(for: observedUserId)
             }
             .sink { [weak selectedContexts] newSelectedContexts in
                 selectedContexts?.send(newSelectedContexts)

@@ -161,9 +161,8 @@ public class CalendarFilterViewModel: ObservableObject {
             .filters
             .sink { [weak self] filters in
                 guard let self else { return }
-                let containsUserFilter = filters.contains { $0.context.contextType == .user }
 
-                if filters.isEmpty || (filters.count == 1 && containsUserFilter) {
+                if filters.isEmpty {
                     state = .empty
                     return
                 }
