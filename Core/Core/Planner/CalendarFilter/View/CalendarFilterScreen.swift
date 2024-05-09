@@ -33,7 +33,7 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
             state: viewModel.state,
             refreshAction: viewModel.refresh
         ) { _ in
-            VStack(spacing: 0) {
+            LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 filterCountInfo
                 userFilter
                 courseFilters
@@ -107,14 +107,16 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
     @ViewBuilder
     private var courseFilters: some View {
         if !viewModel.courseFilters.isEmpty {
-            InstUI.ListSectionHeader(name: String(localized: "Courses", bundle: .core))
-
-            ForEach(viewModel.courseFilters) { filter in
-                InstUI.CheckboxCell(
-                    name: filter.name,
-                    isSelected: selectionBinding(context: filter.context),
-                    color: filter.color
-                )
+            Section {
+                ForEach(viewModel.courseFilters) { filter in
+                    InstUI.CheckboxCell(
+                        name: filter.name,
+                        isSelected: selectionBinding(context: filter.context),
+                        color: filter.color
+                    )
+                }
+            } header: {
+                InstUI.ListSectionHeader(name: String(localized: "Courses", bundle: .core))
             }
         }
     }
@@ -122,14 +124,16 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
     @ViewBuilder
     private var groupFilters: some View {
         if !viewModel.groupFilters.isEmpty {
-            InstUI.ListSectionHeader(name: String(localized: "Groups", bundle: .core))
-
-            ForEach(viewModel.groupFilters) { filter in
-                InstUI.CheckboxCell(
-                    name: filter.name,
-                    isSelected: selectionBinding(context: filter.context),
-                    color: filter.color
-                )
+            Section {
+                ForEach(viewModel.groupFilters) { filter in
+                    InstUI.CheckboxCell(
+                        name: filter.name,
+                        isSelected: selectionBinding(context: filter.context),
+                        color: filter.color
+                    )
+                }
+            } header: {
+                InstUI.ListSectionHeader(name: String(localized: "Groups", bundle: .core))
             }
         }
     }

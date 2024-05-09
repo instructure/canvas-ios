@@ -165,7 +165,7 @@ extension PlannerViewController: CalendarViewControllerDelegate {
         env.router.show(
             filter,
             from: self,
-            options: .modal(embedInNav: true),
+            options: .modal(isDismissable: false, embedInNav: true),
             analyticsRoute: "/calendar/filter"
         )
     }
