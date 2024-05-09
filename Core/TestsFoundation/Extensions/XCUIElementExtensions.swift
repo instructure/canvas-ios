@@ -78,8 +78,10 @@ public extension XCUIElement {
         return strict ? elementValue == expectedValue : elementValue.contains(expectedValue)
     }
 
-    func hasLabel(label expectedLabel: String, strict: Bool = true) -> Bool {
-        return strict ? label == expectedLabel : label.contains(expectedLabel)
+    func hasLabel(label expectedLabel: String, strict: Bool = true, caseSensitive: Bool = true) -> Bool {
+        let act = caseSensitive ? label.lowercased() : label
+        let exp = caseSensitive ? expectedLabel.lowercased() : expectedLabel
+        return strict ? act == exp : act.contains(exp)
     }
 
     func labelHasSuffix(_ suffix: String) -> Bool {
