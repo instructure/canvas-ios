@@ -49,7 +49,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
         mappedTabs.append(
             CourseSyncEntry.Tab(
                 id: "courses/\(course.courseId)/tabs/additional-content",
-                name: "Additional Content",
+                name: String(localized: "Additional Content", bundle: .core),
                 type: .additionalContent,
                 selectionState: .deselected
             )
