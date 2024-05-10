@@ -86,7 +86,8 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
             context: Context?,
             fileID: String,
             offlineFileSource: OfflineFileSource,
-            offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileDetailsViewController {
+            offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
+    ) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.fileID = fileID
@@ -181,7 +182,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
                     showError(error)
                 }
             } else if offlineFileInteractor?.isItemAvailableOffline(source: offlineFileSource) == true, localURL == nil {
-                    downloadFile(at: nil)
+                downloadFile(at: nil)
             } else if files.requested, !files.pending, localURL == nil {
                 // File was deleted, go back.
                 env.router.dismiss(self)
