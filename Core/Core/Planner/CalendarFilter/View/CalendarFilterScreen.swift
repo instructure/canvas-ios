@@ -46,6 +46,11 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
             selectAllButton
         }
         .snackBar(viewModel: viewModel.snackbarViewModel)
+        // Without this the refreshable scroll view won't trigger the refresh
+        // because the pull gesture is swallowed by the modal dialog dimiss gesture.
+        // Even if the dismiss itself is disabled the bounce effect will swallow the event.
+        // As a side effect we will see double loading indicators.
+        .refreshable {}
     }
 
     private var selectAllButton: some ToolbarContent {

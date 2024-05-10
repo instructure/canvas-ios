@@ -37,6 +37,7 @@ extension InstUI {
                 InstUI.Divider()
             }
             .background(Color.backgroundLight)
+            .accessibilityAddTraits([.isHeader])
         }
     }
 }

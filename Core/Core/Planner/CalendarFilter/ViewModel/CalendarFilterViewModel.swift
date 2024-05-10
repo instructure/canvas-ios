@@ -72,12 +72,9 @@ public class CalendarFilterViewModel: ObservableObject {
                 guard let self else { return }
                 switch completion {
                 case .finished:
-                    // In this case the stream completed without publishing
-                    if self.state == .loading {
-                        self.state = .empty
-                    }
+                    state = interactor.filters.value.isEmpty ? .empty : .data
                 case .failure:
-                    self.state = .error
+                    state = .error
                 }
                 completionCallback?()
             } receiveValue: {}
@@ -162,11 +159,6 @@ public class CalendarFilterViewModel: ObservableObject {
             .sink { [weak self] filters in
                 guard let self else { return }
 
-                if filters.isEmpty {
-                    state = .empty
-                    return
-                }
-
                 userFilter = filters.first { $0.context.contextType == .user }
                 courseFilters = filters
                     .filter { $0.context.contextType == .course }
@@ -174,7 +166,6 @@ public class CalendarFilterViewModel: ObservableObject {
                 groupFilters = filters
                     .filter { $0.context.contextType == .group }
                     .sorted()
-                state = .data
             }
             .store(in: &subscriptions)
     }

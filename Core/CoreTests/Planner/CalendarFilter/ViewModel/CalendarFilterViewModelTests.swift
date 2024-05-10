@@ -141,6 +141,55 @@ class CalendarFilterViewModelTests: CoreTestCase {
         // THEN
         XCTAssertEqual(mockInteractor.receivedIgnoreCacheForLoad, true)
     }
+
+    func testStateTransitionOnData() {
+        let courseFilter: CDCalendarFilterEntry = databaseClient.insert()
+        courseFilter.context = .course("c1")
+
+        let testee = CalendarFilterViewModel(interactor: mockInteractor, didDismissPicker: {})
+        let statesExpectation = expectation(description: "states received")
+        let subscription = testee
+            .$state
+            .collect(2)
+            .sink { states in
+                XCTAssertEqual(states, [.loading, .data])
+                statesExpectation.fulfill()
+            }
+
+        // WHEN
+        mockInteractor.filters.send([courseFilter])
+        mockInteractor.mockLoadPublisher.send(completion: .finished)
+
+        // THEN
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+    }
+
+    func testStateTransitionOnErrorAndForceRefresh() {
+        let courseFilter: CDCalendarFilterEntry = databaseClient.insert()
+        courseFilter.context = .course("c1")
+
+        let testee = CalendarFilterViewModel(interactor: mockInteractor, didDismissPicker: {})
+        let statesExpectation = expectation(description: "states received")
+        let subscription = testee
+            .$state
+            .collect(3)
+            .sink { states in
+                XCTAssertEqual(states, [.loading, .error, .data])
+                statesExpectation.fulfill()
+            }
+
+        // WHEN
+        mockInteractor.mockLoadPublisher.send(completion: .failure(NSError.internalError()))
+        mockInteractor.mockLoadPublisher = PassthroughSubject<Void, Error>() // Since we finished the previous publisher we need to create a new one
+        testee.refresh {}
+        mockInteractor.filters.send([courseFilter])
+        mockInteractor.mockLoadPublisher.send(completion: .finished)
+
+        // THEN
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+    }
 }
 
 class MockCalendarFilterInteractor: CalendarFilterInteractor {
@@ -148,7 +197,7 @@ class MockCalendarFilterInteractor: CalendarFilterInteractor {
     let filterCountLimit = CurrentValueSubject<CalendarFilterCountLimit, Never>(.unlimited)
     let selectedContexts = CurrentValueSubject<Set<Context>, Never>(Set())
 
-    let mockLoadPublisher = PassthroughSubject<Void, Error>()
+    var mockLoadPublisher = PassthroughSubject<Void, Error>()
     var receivedIgnoreCacheForLoad: Bool?
     func load(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
         receivedIgnoreCacheForLoad = ignoreCache
