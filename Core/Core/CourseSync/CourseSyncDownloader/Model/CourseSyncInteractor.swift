@@ -540,10 +540,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         let err = error as NSError
         if (error is APIError ||
             (err.domain == NSError.Constants.domain &&
-            err.code == NSError.Constants.unauthorized ||
-            err.code == NSError.Constants.forbidden ||
-            err.code == NSError.Constants.notFound ||
-            err.code == NSError.Constants.unexpected ||
+            err.code == HttpError.unauthorized ||
+            err.code == HttpError.forbidden ||
+            err.code == HttpError.notFound ||
+            err.code == HttpError.unexpected ||
             err == NSError.instructureError("Failed to save base content") ||
             err == NSError.instructureError("The resource could not be loaded because the App Transport Security policy requires the use of a secure connection."))) {
             setState(

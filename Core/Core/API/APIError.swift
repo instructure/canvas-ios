@@ -18,6 +18,13 @@
 
 import Foundation
 
+public enum HttpError {
+    static let unauthorized = 1000
+    static let forbidden = 1001
+    static let notFound = 1002
+    static let unexpected = 2000
+}
+
 public enum APIError: LocalizedError {
     case unauthorized(localizedMessage: String) // Permission issue even after a successful token refresh
 

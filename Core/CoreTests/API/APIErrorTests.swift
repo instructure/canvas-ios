@@ -93,7 +93,7 @@ class APIErrorTests: XCTestCase {
         let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
 
         let nsError = error as NSError
-        XCTAssertEqual(nsError.code, NSError.Constants.unauthorized)
+        XCTAssertEqual(nsError.code, HttpError.unauthorized)
     }
 
     func testForbidden() {
@@ -101,7 +101,7 @@ class APIErrorTests: XCTestCase {
         let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
 
         let nsError = error as NSError
-        XCTAssertEqual(nsError.code, NSError.Constants.forbidden)
+        XCTAssertEqual(nsError.code, HttpError.forbidden)
     }
 
     func testNotFound() {
@@ -109,7 +109,7 @@ class APIErrorTests: XCTestCase {
         let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
 
         let nsError = error as NSError
-        XCTAssertEqual(nsError.code, NSError.Constants.notFound)
+        XCTAssertEqual(nsError.code, HttpError.notFound)
     }
 
     func testUnexpected() {
@@ -117,7 +117,7 @@ class APIErrorTests: XCTestCase {
         let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
 
         let nsError = error as NSError
-        XCTAssertEqual(nsError.code, NSError.Constants.unexpected)
+        XCTAssertEqual(nsError.code, HttpError.unexpected)
     }
 
 }

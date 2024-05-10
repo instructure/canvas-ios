@@ -42,7 +42,7 @@ public struct CourseSyncEntry: Equatable {
 
     /// The number of tabs that are selectable by the user. When "Additional Content" is  added manually to the list, we need to substract 1 from the list count.
     var selectableTabsCount: Int {
-        if tabs.filter({ $0.type == .additionalContent }).first != nil {
+        if tabs.contains(where: { $0.type == .additionalContent }) {
             return tabs.count - 1
         } else {
             return tabs.count
