@@ -32,12 +32,3 @@ schemes:
       testPlans:
         - path: ../../TestPlans/StudentE2E.xctestplan
           defaultPlan: true
-  E2ETests-AssignmentReminder-Student:
-    build:
-      targets:
-        Student: all
-    test:
-      targets: StudentE2ETests
-      testPlans:
-        - path: ../../TestPlans/AssignmentReminderStudentE2E.xctestplan
-          defaultPlan: true
