@@ -74,14 +74,12 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
                     (filters, limit)
                 }
             }
-            .map { [userDefaults, observedUserId, isCalendarFilterLimitEnabled] (filters, limit) in
-                let selectedContexts: Set<Context>? = {
+            .map { [userDefaults, observedUserId] (filters, limit) in
+                let selectedContexts: Set<Context> = {
                     if let loadedContexts = userDefaults?.calendarSelectedContexts(for: observedUserId) {
                         return loadedContexts.removeUnavailableFilters(filters: filters)
-                    } else if isCalendarFilterLimitEnabled {
-                        return filters.defaultFilters(limit: limit)
                     } else {
-                        return nil
+                        return filters.defaultFilters(limit: limit)
                     }
                 }()
 
@@ -91,11 +89,8 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
                 guard let self else { return }
                 self.filters.send(filters)
                 filterCountLimit.send(limit)
-
-                if let selectedContexts {
-                    self.selectedContexts.send(selectedContexts)
-                    userDefaults?.setCalendarSelectedContexts(selectedContexts, observedStudentId: observedUserId)
-                }
+                self.selectedContexts.send(selectedContexts)
+                userDefaults?.setCalendarSelectedContexts(selectedContexts, observedStudentId: observedUserId)
 
                 return
             }
