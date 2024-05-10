@@ -24,30 +24,38 @@ public extension CourseSyncDiscussionsInteractor {
 }
 
 public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteractor {
-    let htmlParser: HTMLParser
+    let discussionHtmlParser: HTMLParser
 
-    public init(htmlParser: HTMLParser) {
-        self.htmlParser = htmlParser
+    public init(discussionHtmlParser: HTMLParser) {
+        self.discussionHtmlParser = discussionHtmlParser
     }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
-        Self.fetchTopics(courseId: courseId, htmlParser: htmlParser)
+        Self.fetchTopics(courseId: courseId, htmlParser: discussionHtmlParser)
             .flatMap { $0.publisher }
             .filter { $0.discussionSubEntryCount > 0 && $0.anonymousState == nil }
-            .flatMap { [htmlParser] in Self.getDiscussionView(courseId: courseId, topicId: $0.id, htmlParser: htmlParser) }
+            .flatMap { [discussionHtmlParser] in Self.getDiscussionView(courseId: courseId, topicId: $0.id, htmlParser: discussionHtmlParser) }
             .collect()
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
     public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
-        let rootURL = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: htmlParser.sessionId,
+        let rootURLTopic = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: discussionHtmlParser.sessionId,
             courseId: courseId,
-            sectionName: htmlParser.sectionName
+            sectionName: discussionHtmlParser.sectionName
+        )
+        let rootURLView = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: discussionHtmlParser.sessionId,
+            courseId: courseId,
+            sectionName: discussionHtmlParser.sectionName
         )
 
-        return FileManager.default.removeItemPublisher(at: rootURL)
+        return Publishers.Zip(
+            FileManager.default.removeItemPublisher(at: rootURLTopic),
+            FileManager.default.removeItemPublisher(at: rootURLView)
+        ).mapToVoid().eraseToAnyPublisher()
     }
 
     // MARK: - Private Methods
@@ -59,6 +67,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
         return ReactiveStore(useCase: GetDiscussionTopics(context: .course(courseId)))
             .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
             .eraseToAnyPublisher()
     }
 
@@ -70,7 +79,38 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
         return ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
             .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
+            .parseRepliesHtmlContent(courseId: courseId, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
+    }
+}
+
+extension Publisher where Output: Collection, Output.Element: DiscussionEntry, Failure == Error {
+    func parseRepliesHtmlContent(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<[DiscussionEntry], Error> {
+        return self.flatMap { entries in
+            Publishers.Sequence(sequence: entries)
+                .setFailureType(to: Error.self)
+                .flatMap { entry in
+                    Publishers.Sequence(sequence: entry.replies)
+                        .setFailureType(to: Error.self)
+                }
+                .flatMap { entry in
+                    return htmlParser.parse(entry.message ?? "", resourceId: entry.id, courseId: courseId, baseURL: nil).map { return (entry, $0) }
+                }
+                .flatMap { (entry: DiscussionEntry, newContent: String) in
+                    entry.message = newContent
+                    return Just([entry])
+                        .setFailureType(to: Error.self)
+                        .parseRepliesHtmlContent(courseId: courseId, htmlParser: htmlParser)
+                        .map { return (entry, $0) }
+                }
+                .map { (entry: DiscussionEntry, newReplies: [DiscussionEntry]) -> DiscussionEntry in
+                    entry.replies = newReplies
+                    return entry
+                }
+                .collect()
+        }
+        .eraseToAnyPublisher()
     }
 }

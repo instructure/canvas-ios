@@ -77,7 +77,7 @@ public class HTMLParserLive: HTMLParser {
             .map { (content, urls) in // Replace all original links with the local ones, return the replaced string content
                 var newContent = content
                 urls.forEach { (originalURL, localURL) in
-                    let newURL = "\(localURL.lastPathComponent)"
+                    let newURL = "\(localURL.path)"
                     newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: newURL)
                 }
                 return newContent

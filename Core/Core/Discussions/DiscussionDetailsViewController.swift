@@ -55,6 +55,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     private var newReplyIDFromCurrentUser: String?
     private var isContentLargerThanView: Bool { webView.scrollView.contentSize.height > view.frame.size.height }
     private var offlineModeInteractor: OfflineModeInteractor?
+    private var offlineLoaded = false
 
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)"
@@ -157,9 +158,18 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.handle("like") { [weak self] message in self?.handleLike(message) }
         webView.handle("moreOptions") { [weak self] message in self?.handleMoreOptions(message) }
         webView.handle("ready") { [weak self] _ in self?.ready() }
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: course.first?.id ?? "",
+            sectionName: OfflineFolderPrefix.discussions.rawValue,
+            resourceId: topicID
+        )
+        webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
         webView.loadHTMLString(
             "<style>\(DiscussionHTML.css)</style>",
-            baseURL: env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
+            baseURL: offlineModeInteractor?.isNetworkOffline() == true ?
+                rootURL :
+                env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
         )
 
         if showRepliesToEntryID != nil {
@@ -321,9 +331,18 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         topicID = childID
         isReady = false
         isRendered = false
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: course.first?.id ?? "",
+            sectionName: OfflineFolderPrefix.discussions.rawValue,
+            resourceId: topic.id
+        )
+        webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
         webView.loadHTMLString(
             "<style>\(DiscussionHTML.css)</style>",
-            baseURL: env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
+            baseURL: offlineModeInteractor?.isNetworkOffline() == true ?
+                rootURL :
+                env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
         )
         entries = env.subscribe(GetDiscussionView(context: context, topicID: topicID)) { [weak self] in
             self?.update()
@@ -351,10 +370,12 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
     func render() {
         guard isReady, let topic = topic.first, !entries.pending || !entries.isEmpty else { return }
+        guard !offlineLoaded else { return }
         var script: String
         if let root = showRepliesToEntryID.flatMap({ entry($0) }) {
+            let newRoot = checkForOfflineEntry(for: root)
             script = DiscussionHTML.render(
-                entry: root,
+                entry: newRoot,
                 in: topic,
                 maxDepth: maxDepth,
                 canLike: canLike
@@ -381,9 +402,17 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
                 }
                 return entries
             }()
+
+            let newtopic = checkForOfflineTopic(for: topic)
+            let newEntries = entries.map { entry in
+                print(checkForOfflineEntry(for: entry).message)
+                print()
+                return checkForOfflineEntry(for: entry)
+            }
+
             script = DiscussionHTML.render(
-                topic: topic,
-                entries: entries,
+                topic: newtopic,
+                entries: newEntries,
                 maxDepth: maxDepth,
                 canLike: canLike,
                 groups: groups.all,
@@ -404,6 +433,49 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
             self.rendered()
             self.focusOnNewReplyIfNecessary()
         }
+    }
+
+    private func checkForOfflineTopic(for originalTopic: DiscussionTopic) -> DiscussionTopic {
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: course.first?.id ?? "",
+            sectionName: OfflineFolderPrefix.discussions.rawValue,
+            resourceId: originalTopic.id
+        )
+        let offlinePath = rootURL.appendingPathComponent("body.html")
+
+        let newTopic = originalTopic
+
+        if offlineModeInteractor?.isNetworkOffline() == true {
+            let rawHtmlValue = try? String(contentsOf: offlinePath, encoding: .utf8)
+            offlineLoaded = true
+            newTopic.message = rawHtmlValue
+        }
+        return newTopic
+    }
+
+    private func checkForOfflineEntry(for originalEntry: DiscussionEntry) -> DiscussionEntry {
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: course.first?.id ?? "",
+            sectionName: OfflineFolderPrefix.discussions.rawValue,
+            resourceId: originalEntry.id
+        )
+        let offlinePath = rootURL.appendingPathComponent("body.html")
+
+        let newEntry = originalEntry
+
+        if offlineModeInteractor?.isNetworkOffline() == true {
+            let rawHtmlValue = try? String(contentsOf: offlinePath, encoding: .utf8)
+            offlineLoaded = true
+            newEntry.message = rawHtmlValue
+        }
+
+        newEntry.replies = newEntry.replies.map { reply in
+            return checkForOfflineEntry(for: reply)
+        }
+
+        return newEntry
     }
 
     private func showFallbackWebView() {
