@@ -161,7 +161,7 @@ class PlannerListCell: UITableViewCell {
             icon.tintColor = customColor
         }
 
-        courseCode.setText(p?.contextName, style: .textCellTopLabel)
+        courseCode.setText(contextName(for: p), style: .textCellTopLabel)
         if let customColor {
             courseCode.textColor = customColor
         }
@@ -180,5 +180,19 @@ class PlannerListCell: UITableViewCell {
         pointsDivider.isHidden = dueDate.text == nil || pointsText == nil
 
         accessoryType = .disclosureIndicator
+    }
+
+    private func contextName(for plannable: Plannable?) -> String? {
+        guard let plannable else { return nil }
+
+        if plannable.plannableType != .planner_note {
+            return plannable.contextName
+        }
+
+        if let contextName = plannable.contextName {
+            return String(localized: "\(contextName) To Do", bundle: .core, comment: "<CourseName> To Do")
+        } else {
+            return String(localized: "To Do", bundle: .core)
+        }
     }
 }
