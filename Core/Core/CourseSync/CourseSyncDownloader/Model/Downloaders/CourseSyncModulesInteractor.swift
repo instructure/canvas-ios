@@ -57,11 +57,21 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
     ) -> AnyPublisher<[ModuleItem], Error> {
         moduleItems.publisher
             .flatMap {
-                ReactiveStore(
+                let assetType: GetModuleItemSequenceRequest.AssetType
+                let assetID: String
+
+                if $0.indent == 1 {
+                    assetType = $0.type?.assetType ?? .moduleItem
+                    assetID = $0.pageId ?? $0.id
+                } else {
+                    assetType = .moduleItem
+                    assetID = $0.id
+                }
+                return ReactiveStore(
                     useCase: GetModuleItemSequence(
                         courseID: courseID,
-                        assetType: .moduleItem,
-                        assetID: $0.id
+                        assetType: assetType,
+                        assetID: assetID
                     )
                 )
                 .getEntities(ignoreCache: true)
