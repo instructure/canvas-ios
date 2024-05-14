@@ -71,11 +71,28 @@ class GetPlannablesTests: CoreTestCase {
             userID: nil,
             startDate: start,
             endDate: end,
+            contextCodes: ["course_1"]
+        ), value: [.make(plannable_id: "1")])
+        let expectation = XCTestExpectation(description: "callback")
+        let useCase = GetPlannables(userID: userID, startDate: start, endDate: end, contextCodes: ["course_1"])
+        useCase.makeRequest(environment: environment) { response, _, _ in
+            XCTAssertEqual(response?.plannables?.first?.plannable_id, "1")
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testMakeRequestWithoutContextCodes() {
+        api.mock(GetPlannablesRequest(
+            userID: nil,
+            startDate: start,
+            endDate: end,
             contextCodes: []
         ), value: [.make(plannable_id: "1")])
         let expectation = XCTestExpectation(description: "callback")
         useCase.makeRequest(environment: environment) { response, _, _ in
-            XCTAssertEqual(response?.plannables?.first?.plannable_id, "1")
+            XCTAssertEqual(response!.plannables, [])
+            XCTAssertEqual(response!.calendarEvents, [])
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1)

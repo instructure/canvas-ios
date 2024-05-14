@@ -76,7 +76,7 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
             }
             .map { [userDefaults, observedUserId] (filters, limit) in
                 let selectedContexts: Set<Context> = {
-                    if let loadedContexts = userDefaults?.calendarSelectedContexts(for: observedUserId) {
+                    if let loadedContexts = userDefaults?.calendarSelectedContexts(observedStudentId: observedUserId) {
                         return loadedContexts.removeUnavailableFilters(filters: filters)
                     } else {
                         return filters.defaultFilters(limit: limit)
@@ -109,7 +109,7 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         }
 
         return Future { [observedUserId, selectedContexts] promise in
-            var newSelectedContexts = defaults.calendarSelectedContexts(for: observedUserId) ?? Set()
+            var newSelectedContexts = defaults.calendarSelectedContexts(observedStudentId: observedUserId) ?? Set()
 
             if isSelected {
                 newSelectedContexts.formUnion(contexts)
@@ -149,7 +149,7 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
             // which also modifies userdefaults violating "Exclusive Access to Memory".
             .receive(on: scheduler)
             .compactMap { [weak self, observedUserId] _ in
-                self?.userDefaults?.calendarSelectedContexts(for: observedUserId)
+                self?.userDefaults?.calendarSelectedContexts(observedStudentId: observedUserId)
             }
             .sink { [weak selectedContexts] newSelectedContexts in
                 selectedContexts?.send(newSelectedContexts)

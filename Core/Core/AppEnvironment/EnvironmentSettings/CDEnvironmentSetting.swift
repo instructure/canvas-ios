@@ -34,9 +34,7 @@ public final class CDEnvironmentSetting: NSManagedObject, WriteableModel {
         _ item: (name: String, isEnabled: Bool),
         in context: NSManagedObjectContext
     ) -> CDEnvironmentSetting {
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(format: "%K == %@", #keyPath(CDEnvironmentSetting.name), item.name),
-        ])
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(CDEnvironmentSetting.name), item.name)
         let flag: CDEnvironmentSetting = context.fetch(predicate).first ?? context.insert()
         flag.name = item.name
         flag.isEnabled = item.isEnabled

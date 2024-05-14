@@ -149,7 +149,7 @@ public struct SessionDefaults {
     /**
      - returns: Nil if the user has never selected calendars.
      */
-    public func calendarSelectedContexts(for observedStudentId: String?) -> Set<Context>? {
+    public func calendarSelectedContexts(observedStudentId: String?) -> Set<Context>? {
         let observedStudentId = observedStudentId ?? ""
 
         guard
