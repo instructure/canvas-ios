@@ -82,8 +82,8 @@ class PagesTests: E2ETestCase {
         XCTAssertTrue(assignmentDeepLink.isVisible)
 
         assignmentDeepLink.hit()
-        let assignmentDetailsNavBar = AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(assignmentDetailsNavBar.isVisible)
+        let assignmentDetailsNameLabel = AssignmentsHelper.Details.name.waitUntil(.visible)
+        XCTAssertTrue(assignmentDetailsNameLabel.isVisible)
 
         // MARK: Check deep link to discussion
         AssignmentsHelper.Details.backButton.hit()
