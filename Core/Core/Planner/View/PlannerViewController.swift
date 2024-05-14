@@ -35,7 +35,7 @@ public class PlannerViewController: UIViewController {
     public var selectedDate: Date = Clock.now
     var studentID: String?
 
-    lazy var calendarFilterInteractor: CalendarFilterInteractor = PlannerAssembly.makeInteractor(observedUserId: studentID)
+    lazy var calendarFilterInteractor: CalendarFilterInteractor = PlannerAssembly.makeFilterInteractor(observedUserId: studentID)
     private var subscriptions = Set<AnyCancellable>()
 
     private var currentlyDisplayedToday: Date?

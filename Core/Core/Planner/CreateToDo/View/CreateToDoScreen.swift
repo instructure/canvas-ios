@@ -18,40 +18,27 @@
 
 import SwiftUI
 
-public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
+public struct CreateToDoScreen: View, ScreenViewTrackable {
     public var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
 
-    @ObservedObject private var viewModel: CalendarEventDetailsViewModel
+    @ObservedObject private var viewModel: CreateToDoViewModel
 
-    public init(viewModel: CalendarEventDetailsViewModel) {
+    public init(viewModel: CreateToDoViewModel) {
         self.viewModel = viewModel
     }
 
     public var body: some View {
-        InstUI.BaseScreen(
-            state: viewModel.state,
-            refreshAction: viewModel.reload
-        ) { _ in
-            eventContent
+        InstUI.BaseScreen(state: viewModel.state) { _ in
+            Text(verbatim: "template")
         }
-        .navigationTitle(viewModel.pageTitle, subtitle: viewModel.pageSubtitle)
-        .navigationBarStyle(.color(viewModel.contextColor))
-    }
-
-    private var eventContent: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            InstUI.Header(title: viewModel.title, subtitle: viewModel.date)
-            InstUI.TextSectionView(viewModel.locationInfo)
-            InstUI.TextSectionView(viewModel.details)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .navigationTitle(viewModel.pageTitle)
     }
 }
 
 #if DEBUG
 
 #Preview {
-    PlannerAssembly.makeEventDetailsScreenPreview()
+    PlannerAssembly.makeCreateToDoScreenPreview()
 }
 
 #endif
