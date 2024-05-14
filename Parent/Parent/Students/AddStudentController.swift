@@ -35,14 +35,14 @@ class AddStudentController {
         let picker = BottomSheetPickerViewController.create()
         picker.addAction(
             image: nil,
-            title: NSLocalizedString("QR Code", comment: ""),
+            title: String(localized: "QR Code", bundle: .parent),
             accessibilityIdentifier: "DashboardViewController.addStudent.qrCode"
         ) { [weak self] in
             self?.scanQRCode()
         }
         picker.addAction(
             image: nil,
-            title: NSLocalizedString("Pairing Code", comment: ""),
+            title: String(localized: "Pairing Code", bundle: .parent),
             accessibilityIdentifier: "DashboardViewController.addStudent.pairingCode"
         ) { [weak self] in
             self?.useInput()
@@ -51,14 +51,14 @@ class AddStudentController {
     }
 
     func useInput() {
-        let title = NSLocalizedString("Add Student", comment: "")
-        let message = NSLocalizedString("Input the student pairing code provided to you.", comment: "")
+        let title = String(localized: "Add Student", bundle: .parent)
+        let message = String(localized: "Input the student pairing code provided to you.", bundle: .parent)
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addTextField { tf in
-            tf.placeholder = NSLocalizedString("Pairing Code", comment: "")
+            tf.placeholder = String(localized: "Pairing Code", bundle: .parent)
         }
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
-        alert.addAction(AlertAction(NSLocalizedString("Add", comment: ""), style: .default, handler: { [weak self] _ in
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .parent), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "Add", bundle: .parent), style: .default, handler: { [weak self] _ in
             guard let textField = alert.textFields?.first, let code = textField.text else { return }
             self?.pair(with: code)
         }))
@@ -73,7 +73,7 @@ class AddStudentController {
             performUIUpdate {
                 if let error = error {
                     let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { _ in }))
+                    alert.addAction(UIAlertAction(title: String(localized: "OK", bundle: .parent), style: .default, handler: { _ in }))
                     self.env.router.show(alert, from: vc, options: .modal())
                 }
                 self.handler(error)
@@ -97,19 +97,18 @@ extension AddStudentController: ScannerDelegate {
                 let host = components.host,
                 let pairingCode = components.queryItems?.first(where: { $0.name == "code" })?.value
             else {
-                let error = NSError.instructureError(NSLocalizedString("Could not parse QR code, QR code invalid", comment: ""))
+                let error = NSError.instructureError(String(localized: "Could not parse QR code, QR code invalid", bundle: .parent))
                 (self.presentingViewController as? ErrorViewController)?.showError(error)
                 return
             }
 
             guard host == self.env.currentSession?.baseURL.host else {
-                let title = NSLocalizedString("Domain mismatch", comment: "")
-                let msg = NSLocalizedString(
+                let title = String(localized: "Domain mismatch", bundle: .parent)
+                let msg = String(localized:
                     """
                     The student you are trying to add is at a different Canvas institution.
                     Sign in or create an account with that institution to add this student.
-                    """,
-                    comment: "")
+                    """, bundle: .parent)
                 (self.presentingViewController as? ErrorViewController)?.showAlert(title: title, message: msg)
                 return
             }

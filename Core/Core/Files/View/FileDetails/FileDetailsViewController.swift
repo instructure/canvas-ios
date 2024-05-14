@@ -39,7 +39,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     @IBOutlet weak var toolbarShareButton: UIBarButtonItem!
     @IBOutlet weak var viewModulesButton: UIButton!
 
-    lazy var editButton = UIBarButtonItem(title: NSLocalizedString("Edit", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(edit))
+    lazy var editButton = UIBarButtonItem(title: String(localized: "Edit", bundle: .core), style: .plain, target: self, action: #selector(edit))
     lazy var shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share(_:)))
 
     var assignmentID: String?
@@ -58,9 +58,11 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
         self?.update()
     }
+    public var offlineFileSource: OfflineFileSource?
     private var accessReportInteractor: FileAccessReportInteractor?
     private var subscriptions = Set<AnyCancellable>()
     private var offlineFileInteractor: OfflineFileInteractor?
+    private var imageLoader: ImageLoader?
 
     public static func create(context: Context?, fileID: String, originURL: URLComponents? = nil, assignmentID: String? = nil,
                               offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileDetailsViewController {
@@ -80,16 +82,37 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         return controller
     }
 
+    public static func create(
+            context: Context?,
+            fileID: String,
+            offlineFileSource: OfflineFileSource,
+            offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
+    ) -> FileDetailsViewController {
+        let controller = loadFromStoryboard()
+        controller.context = context
+        controller.fileID = fileID
+        controller.offlineFileSource = offlineFileSource
+        controller.offlineFileInteractor = offlineFileInteractor
+
+        if let context {
+            controller.accessReportInteractor = FileAccessReportInteractor(context: context,
+                                                                           fileID: fileID,
+                                                                           api: controller.env.api)
+        }
+
+        return controller
+    }
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         contentView.backgroundColor = .backgroundLightest
 
-        arButton.setTitle(NSLocalizedString("Augment Reality", bundle: .core, comment: ""), for: .normal)
+        arButton.setTitle(String(localized: "Augment Reality", bundle: .core), for: .normal)
         arButton.isHidden = true
         arImageView.isHidden = true
 
-        copiedLabel.text = NSLocalizedString("Copied!", bundle: .core, comment: "")
+        copiedLabel.text = String(localized: "Copied!", bundle: .core)
 
         lockView.isHidden = true
 
@@ -107,10 +130,10 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         toolbar.isHidden = env.app != .teacher
         toolbar.tintColor = Brand.shared.linkColor
         toolbarLinkButton.accessibilityIdentifier = "FileDetails.copyButton"
-        toolbarLinkButton.accessibilityLabel = NSLocalizedString("Copy Link", bundle: .core, comment: "")
+        toolbarLinkButton.accessibilityLabel = String(localized: "Copy Link", bundle: .core)
         toolbarShareButton.accessibilityIdentifier = "FileDetails.shareButton"
 
-        viewModulesButton.setTitle(NSLocalizedString("View Modules", bundle: .core, comment: ""), for: .normal)
+        viewModulesButton.setTitle(String(localized: "View Modules", bundle: .core), for: .normal)
         viewModulesButton.isHidden = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(fileEdited(_:)), name: .init("file-edit"), object: nil)
@@ -158,7 +181,9 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
                 } else {
                     showError(error)
                 }
-            } else if files.requested, !files.pending {
+            } else if offlineFileInteractor?.isItemAvailableOffline(source: offlineFileSource) == true, localURL == nil {
+                downloadFile(at: nil)
+            } else if files.requested, !files.pending, localURL == nil {
                 // File was deleted, go back.
                 env.router.dismiss(self)
             }
@@ -204,17 +229,32 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         webView.linkDelegate = self
         webView.accessibilityLabel = "FileDetails.webView"
         progressView.progress = 0
-        loadObservation = webView.observe(\.estimatedProgress, options: .new) { [weak self] webView, _ in
-            self?.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
-            guard webView.estimatedProgress >= 1 else { return }
-            self?.loadObservation = nil
-            self?.doneLoading()
-        }
+        setupLoadObservation(for: webView)
 
         if isLocalURL {
             webView.loadFileURL(url, allowingReadAccessTo: url)
         } else {
             webView.load(URLRequest(url: url))
+        }
+    }
+
+    func embedImageWrappedInWebView(for url: URL) {
+        let webView = ImageWrapperUIKitWebView()
+        contentView.addSubview(webView)
+        webView.pin(inside: contentView)
+        webView.accessibilityLabel = "FileDetails.webView"
+        progressView.progress = 0
+        setupLoadObservation(for: webView)
+
+        webView.loadImageURL(url, baseURL: URL.Directories.temporary, fill: false, restrictZoom: false)
+    }
+
+    private func setupLoadObservation(for webView: WKWebView) {
+        loadObservation = webView.observe(\.estimatedProgress, options: .new) { [weak self] webView, _ in
+            self?.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
+            guard webView.estimatedProgress >= 1 else { return }
+            self?.loadObservation = nil
+            self?.doneLoading()
         }
     }
 
@@ -268,27 +308,67 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
 
     var filePathComponent: String? {
         guard
-            let sessionID = env.currentSession?.uniqueID,
-            let name = files.first?.filename
+            let sessionID = env.currentSession?.uniqueID
         else {
             return nil
         }
-        if offlineFileInteractor?.isOffline == true, let contextId = context?.id {
+        switch offlineFileSource {
+        case .privateFile:
             return offlineFileInteractor?.filePath(
-                sessionID: sessionID,
-                courseId: contextId,
-                fileID: fileID,
-                fileName: name
+                source: offlineFileSource
             )
+        default:
+            guard let name = files.first?.filename else { return nil }
+            if offlineFileInteractor?.isOffline == true {
+                guard let contextId = context?.id, let fileName = files.first?.filename else { return nil }
+                return offlineFileInteractor?.filePath(sessionID: sessionID, courseId: contextId, fileID: fileID, fileName: fileName)
+            } else {
+                return "\(sessionID)/\(fileID)/\(name)"
+            }
         }
-        return "\(sessionID)/\(fileID)/\(name)"
     }
 }
 
 // MARK: - URLSessionDownloadDelegate
 
 extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCreator {
-    func downloadFile(at url: URL) {
+    func downloadFile(at url: URL?) {
+        switch offlineFileSource {
+        case .privateFile:
+            loadOfflineFile()
+        default:
+            guard let url else { return }
+            loadCoreDataFile(url: url)
+        }
+    }
+
+    private func loadOfflineFile() {
+        guard let filePathComponent = filePathComponent else { return }
+        let fileURL = URL.Directories.documents.appendingPathComponent(filePathComponent)
+        var mimeClass = fileURL.mimeType()
+        // application/pdf --> pdf
+        // image/png, image/jpeg, ... --> image
+        if mimeClass.contains("application") {
+            if let suffix = mimeClass.split(separator: "/").last {
+                mimeClass = String(suffix)
+            }
+        } else {
+            if let prefix = mimeClass.split(separator: "/").first {
+                mimeClass = String(prefix)
+            }
+        }
+
+        localURL = prepareLocalURL(
+            fileName: filePathComponent,
+            mimeClass: mimeClass,
+            location: URL.Directories.documents
+        )
+        title = localURL?.lastPathComponent
+
+        if let path = localURL?.path, FileManager.default.fileExists(atPath: path) { return downloadComplete(mimeClass: mimeClass, contentType: nil) }
+    }
+
+    private func loadCoreDataFile(url: URL) {
         guard
             let filePathComponent = filePathComponent,
             let mimeClass = files.first?.mimeClass
@@ -297,8 +377,7 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
         }
 
         let location = offlineFileInteractor?.isOffline == true ? URL.Directories.documents : URL.Directories.temporary
-        /// This must be called to set `localURL` before initiating download, otherwise there
-        /// will be a threading issue with trying to access core data from a different thread.
+
         localURL = prepareLocalURL(
             fileName: filePathComponent,
             mimeClass: mimeClass,
@@ -350,10 +429,10 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
     }
 
     private func showFileNoLongerExistsDialog() {
-        let alert = UIAlertController(title: NSLocalizedString("File No Longer Exists", comment: ""),
-                                      message: NSLocalizedString("The file has been deleted by the author.", comment: ""),
+        let alert = UIAlertController(title: String(localized: "File No Longer Exists", bundle: .core),
+                                      message: String(localized: "The file has been deleted by the author.", bundle: .core),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: ""),
+        alert.addAction(UIAlertAction(title: String(localized: "Close", bundle: .core),
                                       style: .default,
                                       handler: { [env] _ in
             env.router.dismiss(self)
@@ -362,15 +441,20 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
     }
 
     func downloadComplete() {
-        guard let file = files.first, let localURL = localURL, FileManager.default.fileExists(atPath: localURL.path) else { return }
+        guard let file = files.first else { return }
+        return downloadComplete(mimeClass: file.mimeClass, contentType: file.contentType)
+    }
+
+    func downloadComplete(mimeClass: String?, contentType: String?) {
+        guard let localURL = localURL, FileManager.default.fileExists(atPath: localURL.path) else { return }
         shareButton.isEnabled = true
-        switch (file.mimeClass, file.contentType) {
+        switch (mimeClass, contentType) {
         case ("audio", _):
             embedAudioView(for: localURL)
         case (_, let type) where type?.hasPrefix("audio/") == true:
             embedAudioView(for: localURL)
         case ("image", _), (_, "image/heic"):
-            embedImageView(for: localURL)
+            embedImageOrWebView(for: localURL)
         case (_, "model/vnd.usdz+zip"):
             embedQLThumbnail()
         case ("pdf", _):
@@ -384,10 +468,23 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
 }
 
 extension FileDetailsViewController: UIScrollViewDelegate {
-    func embedImageView(for url: URL) {
+    private func embedImageOrWebView(for url: URL) {
+        imageLoader = ImageLoader(url: url, frame: .zero, shouldFailForAnimatedGif: true) { [weak self] result in
+            if result.error as? ImageLoaderError == .animatedGifFound {
+                self?.embedImageWrappedInWebView(for: url)
+                self?.imageLoader = nil
+            } else {
+                self?.embedImageView(for: url)
+                self?.imageLoader = nil
+            }
+        }
+        imageLoader?.load()
+    }
+
+    private func embedImageView(for url: URL) {
         let image = UIImageView(image: UIImage(contentsOfFile: url.path))
         image.accessibilityIdentifier = "FileDetails.imageView"
-        image.accessibilityLabel = files.first?.displayName ?? NSLocalizedString("File", bundle: .core, comment: "")
+        image.accessibilityLabel = files.first?.displayName ?? String(localized: "File", bundle: .core)
         image.isAccessibilityElement = true
         let imageSize = image.frame.size
         let scroll = UIScrollView(frame: contentView.bounds)

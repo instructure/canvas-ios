@@ -28,9 +28,9 @@ class RoutesTests: ParentTestCase {
         XCTAssert(Parent.router.match("/conversations") is ParentConversationListViewController)
         XCTAssert(Parent.router.match("/conversations/1") is ConversationDetailViewController)
         XCTAssert(Parent.router.match("/calendar") is PlannerViewController)
-        XCTAssert(Parent.router.match("/calendar?event_id=1") is CalendarEventDetailsViewController)
-        XCTAssert(Parent.router.match("/calendar_events/1") is CalendarEventDetailsViewController)
-        XCTAssert(Parent.router.match("/users/1/calendar_events/1") is CalendarEventDetailsViewController)
+        XCTAssert(Parent.router.match("/calendar?event_id=1") is Parent.CalendarEventDetailsViewController)
+        XCTAssert(Parent.router.match("/calendar_events/1") is Parent.CalendarEventDetailsViewController)
+        XCTAssert(Parent.router.match("/users/1/calendar_events/1") is Parent.CalendarEventDetailsViewController)
         XCTAssert(Parent.router.match("/courses/1/assignments/1") is AssignmentDetailsViewController)
         XCTAssert(Parent.router.match("/courses/1/assignments/1/submissions/1") is AssignmentDetailsViewController)
 
@@ -39,5 +39,8 @@ class RoutesTests: ParentTestCase {
         XCTAssert(Parent.router.match("/courses/1/files/3") is FileDetailsViewController)
         XCTAssert(Parent.router.match("/courses/1/files/4/download") is FileDetailsViewController)
         XCTAssert(Parent.router.match("/courses/1/files/4/preview") is FileDetailsViewController)
+
+        XCTAssert(Parent.router.match("/courses/1/pages/test-page") is PageDetailsViewController)
+        XCTAssert(Parent.router.match("/courses/1/wiki/test-wiki") is PageDetailsViewController)
     }
 }

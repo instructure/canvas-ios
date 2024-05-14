@@ -20,19 +20,19 @@
 import XCTest
 
 class CourseSyncItemSelectionTests: XCTestCase {
-
     func testMappingToCourseEntrySelection() {
         let syncEntries = [
             CourseSyncEntry(name: "",
                             id: "1",
+                            hasFrontPage: false,
                             tabs: [],
                             files: [],
                             isCollapsed: false,
                             selectionState: .deselected,
-                            isEverythingSelected: false,
                             state: .loading(nil)),
             CourseSyncEntry(name: "",
                             id: "2",
+                            hasFrontPage: false,
                             tabs: [
                                 .init(id: "3", name: "", type: .files),
                                 .init(id: "4", name: "", type: .files),
@@ -43,7 +43,6 @@ class CourseSyncItemSelectionTests: XCTestCase {
                             ],
                             isCollapsed: false,
                             selectionState: .deselected,
-                            isEverythingSelected: false,
                             state: .loading(nil)),
         ]
 
@@ -62,12 +61,13 @@ class CourseSyncItemSelectionTests: XCTestCase {
     func testMapsSelectedCourseButNotTabsOrFiles() {
         let course = CourseSyncEntry(name: "",
                                      id: "course-1",
+                                     hasFrontPage: false,
                                      tabs: [
-                                        .init(id: "tab-pages", name: "", type: .pages, selectionState: .selected)
+                                         .init(id: "tab-pages", name: "", type: .pages, selectionState: .selected)
                                      ],
                                      files: [
-                                        .init(id: "file-1", displayName: "", fileName: "",
-                                              url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0),
+                                         .init(id: "file-1", displayName: "", fileName: "",
+                                               url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0),
                                      ],
                                      selectionState: .selected)
         XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["course-1"])
@@ -76,12 +76,13 @@ class CourseSyncItemSelectionTests: XCTestCase {
     func testMapsSelectedFilesTabButNotFiles() {
         let course = CourseSyncEntry(name: "",
                                      id: "course-1",
+                                     hasFrontPage: false,
                                      tabs: [
-                                        .init(id: "tab-files", name: "", type: .files, selectionState: .selected),
+                                         .init(id: "tab-files", name: "", type: .files, selectionState: .selected),
                                      ],
                                      files: [
-                                        .init(id: "file-1", displayName: "", fileName: "",
-                                              url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0),
+                                         .init(id: "file-1", displayName: "", fileName: "",
+                                               url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0),
                                      ],
                                      selectionState: .partiallySelected)
         XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["tab-files"])
@@ -90,9 +91,10 @@ class CourseSyncItemSelectionTests: XCTestCase {
     func testMapsSelectedTabs() {
         let course = CourseSyncEntry(name: "",
                                      id: "course-1",
+                                     hasFrontPage: false,
                                      tabs: [
-                                        .init(id: "tab-files-1", name: "", type: .files, selectionState: .selected),
-                                        .init(id: "tab-files-2", name: "", type: .files, selectionState: .deselected),
+                                         .init(id: "tab-files-1", name: "", type: .files, selectionState: .selected),
+                                         .init(id: "tab-files-2", name: "", type: .files, selectionState: .deselected),
                                      ],
                                      files: [],
                                      selectionState: .partiallySelected)
@@ -102,14 +104,15 @@ class CourseSyncItemSelectionTests: XCTestCase {
     func testMapsSelectedFiles() {
         let course = CourseSyncEntry(name: "",
                                      id: "course-1",
+                                     hasFrontPage: false,
                                      tabs: [
-                                        .init(id: "tab-files", name: "", type: .files, selectionState: .partiallySelected),
+                                         .init(id: "tab-files", name: "", type: .files, selectionState: .partiallySelected),
                                      ],
                                      files: [
-                                        .init(id: "file-1", displayName: "", fileName: "",
-                                              url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .deselected, bytesToDownload: 0),
-                                        .init(id: "file-2", displayName: "", fileName: "",
-                                              url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0),
+                                         .init(id: "file-1", displayName: "", fileName: "",
+                                               url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .deselected, bytesToDownload: 0),
+                                         .init(id: "file-2", displayName: "", fileName: "",
+                                               url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0),
                                      ],
                                      selectionState: .partiallySelected)
         XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["file-2"])

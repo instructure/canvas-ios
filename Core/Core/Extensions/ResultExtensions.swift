@@ -20,10 +20,31 @@ import Foundation
 
 public extension Result {
 
+    var value: Success? {
+        if case .success(let value) = self {
+            return value
+        }
+        return nil
+    }
+
     var error: Failure? {
         if case .failure(let error) = self {
             return error
         }
         return nil
+    }
+
+    var isSuccess: Bool {
+        if case .success = self {
+            return true
+        }
+        return false
+    }
+
+    var isFailure: Bool {
+        if case .failure = self {
+            return true
+        }
+        return false
     }
 }

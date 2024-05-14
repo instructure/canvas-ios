@@ -48,6 +48,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             CourseSyncEntry(
                 name: "entry-1",
                 id: "entry-1",
+                hasFrontPage: false,
                 tabs: [
                     .init(id: "tab-assignments", name: "Assignments", type: .assignments),
                     .init(id: "tab-pages", name: "Pages", type: .pages),
@@ -87,7 +88,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
@@ -140,7 +142,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[2].selectionState = .selected
         entries[0].files[0].selectionState = .selected
@@ -181,7 +184,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].selectionState = .partiallySelected
         entries[0].tabs[2].selectionState = .selected
@@ -223,7 +227,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[2].selectionState = .partiallySelected
         entries[0].files[0].selectionState = .selected
@@ -265,7 +270,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
 
@@ -298,7 +304,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[1].selectionState = .selected
 
@@ -331,7 +338,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[2].selectionState = .selected
         entries[0].files[0].selectionState = .selected
@@ -368,7 +376,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[3].selectionState = .selected
 
@@ -390,7 +399,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[4].selectionState = .selected
 
@@ -416,7 +426,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[5].selectionState = .selected
 
@@ -442,7 +453,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[6].selectionState = .selected
 
@@ -453,9 +465,45 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
     }
 
     func testStartsModulesDownload() {
+        let expectation = expectation(description: "Modules download started")
+        let mockModulesInteractor = CourseSyncModulesInteractorMock(expectation: expectation)
         let testee = CourseSyncInteractorLive(
             contentInteractors: [
                 pagesInteractor,
+                assignmentsInteractor,
+            ],
+            filesInteractor: filesInteractor,
+            modulesInteractor: mockModulesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
+            scheduler: .immediate,
+            env: environment
+        )
+        entries[0].tabs[7].selectionState = .selected
+
+        let subscription = testee.downloadContent(for: entries).sink()
+        wait(for: [expectation], timeout: 0.1)
+        subscription.cancel()
+    }
+
+    func testStartsFrontPageDownload() {
+        let expectation = expectation(description: "Front page download started")
+        let mockPagesInteractor = CourseSyncPagesInteractorMock(expectation: expectation)
+        entries = [
+            CourseSyncEntry(
+                name: "entry-1",
+                id: "entry-1",
+                hasFrontPage: true,
+                tabs: [.init(id: "tab-assignments", name: "Assignments", type: .assignments)],
+                files: []
+            ),
+        ]
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [
+                mockPagesInteractor,
                 assignmentsInteractor,
             ],
             filesInteractor: filesInteractor,
@@ -465,12 +513,44 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
-        entries[0].tabs[7].selectionState = .selected
+        entries[0].tabs[0].selectionState = .selected
+
+        let subscription = testee.downloadContent(for: entries).sink()
+        wait(for: [expectation], timeout: 0.1)
+        subscription.cancel()
+    }
+
+    func testAdditionalContentDownloadWithDisabledTabs() {
+        let assignmentsExpectation = expectation(description: "Assignments download started")
+        let mockAssignmentsInteractor = CourseSyncAssignmentsInteractorMock(expectation: assignmentsExpectation)
+        let discussionExpectation = expectation(description: "Discussions download started")
+        let mockDiscussionsInteractor = CourseSyncDiscussionsInteractorMock(expectation: discussionExpectation)
+
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [
+                mockAssignmentsInteractor,
+                pagesInteractor,
+                mockDiscussionsInteractor,
+            ],
+            filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
+            scheduler: .immediate,
+            env: environment
+        )
+        entries[0].tabs[0].selectionState = .selected
+        entries[0].tabs[6].selectionState = .selected
 
         let subscription = testee.downloadContent(for: entries).sink()
 
+        wait(for: [assignmentsExpectation, discussionExpectation], timeout: 1)
         subscription.cancel()
     }
 
@@ -485,11 +565,14 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(
+                notificationManager: notificationManager,
+                progressInteractor: CourseSyncProgressObserverInteractorMock()
+            ),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
 
         entries[0].tabs.removeAll()
@@ -531,7 +614,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
@@ -583,7 +667,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
@@ -618,7 +703,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                      progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
@@ -654,7 +740,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             notificationInteractor: courseSyncNotificationMock,
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
 
@@ -681,7 +768,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: listInteractorMock,
             backgroundActivity: BackgroundActivityMock(),
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
 
         // WHEN
@@ -707,7 +795,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: backgroundActivityMock,
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
 
@@ -738,10 +827,11 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             modulesInteractor: CourseSyncModulesInteractorMock(),
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
             notificationInteractor: CourseSyncNotificationMock(notificationManager: notificationManager,
-                                                                   progressInteractor: CourseSyncProgressObserverInteractorMock()),
+                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: backgroundActivityMock,
-            scheduler: .immediate
+            scheduler: .immediate,
+            env: environment
         )
         entries[0].tabs[0].selectionState = .selected
 
@@ -793,6 +883,11 @@ private class CourseSyncSyllabusInteractorMock: CourseSyncSyllabusInteractor {
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
+            .eraseToAnyPublisher()
+    }
 }
 
 private class CourseSyncConferencesInteractorMock: CourseSyncConferencesInteractor {
@@ -806,6 +901,11 @@ private class CourseSyncConferencesInteractorMock: CourseSyncConferencesInteract
         expectation.fulfill()
         return Just(())
             .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
             .eraseToAnyPublisher()
     }
 }
@@ -823,6 +923,11 @@ private class CourseSyncQuizzesInteractorMock: CourseSyncQuizzesInteractor {
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
+            .eraseToAnyPublisher()
+    }
 }
 
 private class CourseSyncDiscussionsInteractorMock: CourseSyncDiscussionsInteractor {
@@ -838,27 +943,59 @@ private class CourseSyncDiscussionsInteractorMock: CourseSyncDiscussionsInteract
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
+            .eraseToAnyPublisher()
+    }
 }
 
 private class CourseSyncDiscussionsInteractorPublisherMock: CourseSyncDiscussionsInteractor {
     func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
         Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
+            .eraseToAnyPublisher()
+    }
 }
 
 private class CourseSyncPagesInteractorMock: CourseSyncPagesInteractor {
     let publisher = PassthroughSubject<Void, Error>()
+    let expectation: XCTestExpectation?
+
+    init(expectation: XCTestExpectation? = nil) {
+        self.expectation = expectation
+    }
 
     func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
-        publisher.eraseToAnyPublisher()
+        expectation?.fulfill()
+        return publisher.eraseToAnyPublisher()
+    }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
+            .eraseToAnyPublisher()
     }
 }
 
 private class CourseSyncAssignmentsInteractorMock: CourseSyncAssignmentsInteractor {
+    let expectation: XCTestExpectation?
     let publisher = PassthroughSubject<Void, Error>()
 
+    init(expectation: XCTestExpectation? = nil) {
+        self.expectation = expectation
+    }
+
     func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
-        publisher.eraseToAnyPublisher()
+        expectation?.fulfill()
+        return publisher.eraseToAnyPublisher()
+    }
+
+    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+        return Just(())
+            .eraseToAnyPublisher()
     }
 }
 
@@ -880,8 +1017,15 @@ private class CourseSyncFilesInteractorMock: CourseSyncFilesInteractor {
 }
 
 private class CourseSyncModulesInteractorMock: CourseSyncModulesInteractor {
+    let expectation: XCTestExpectation?
+
+    init(expectation: XCTestExpectation? = nil) {
+        self.expectation = expectation
+    }
+
     func getModuleItems(courseId _: String) -> AnyPublisher<[Core.ModuleItem], Error> {
-        Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
+        expectation?.fulfill()
+        return Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
     func getAssociatedModuleItems(courseId _: String, moduleItemTypes _: Set<Core.TabName>, moduleItems _: [Core.ModuleItem]) -> AnyPublisher<Void, Error> {

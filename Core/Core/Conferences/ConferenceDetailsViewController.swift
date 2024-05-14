@@ -72,15 +72,15 @@ public class ConferenceDetailsViewController: ScreenViewTrackableViewController,
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
 
-        setupTitleViewInNavbar(title: NSLocalizedString("Conference Details", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Conference Details", bundle: .core))
 
-        detailsHeadingLabel.text = NSLocalizedString("Description", bundle: .core, comment: "")
+        detailsHeadingLabel.text = String(localized: "Description", bundle: .core)
 
-        joinButton.setTitle(NSLocalizedString("Join", bundle: .core, comment: ""), for: .normal)
+        joinButton.setTitle(String(localized: "Join", bundle: .core), for: .normal)
         joinButton.isHidden = true
         joinButton.makeUnavailableInOfflineMode()
 
-        recordingsHeadingLabel.text = NSLocalizedString("Recordings", bundle: .core, comment: "")
+        recordingsHeadingLabel.text = String(localized: "Recordings", bundle: .core)
         recordingsView.isHidden = true
 
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .primaryActionTriggered)
@@ -120,7 +120,7 @@ public class ConferenceDetailsViewController: ScreenViewTrackableViewController,
         if let description = conference?.details, !description.isEmpty {
             detailsLabel.text = description
         } else {
-            detailsLabel.text = NSLocalizedString("No description", bundle: .core, comment: "")
+            detailsLabel.text = String(localized: "No description", bundle: .core)
         }
         joinButton.isHidden = !(conference?.startedAt != nil && conference?.endedAt == nil)
         recordingsView.isHidden = conference?.recordings?.isEmpty != false

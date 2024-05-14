@@ -28,7 +28,7 @@ public struct AboutInfoEntry: Identifiable, Equatable {
 
     public init(title: String, label: String) {
         self.id = title
-        self.a11yLabel = "\(title),\(label == Self.UnknownLabel ? NSLocalizedString("Unknown", comment: "") : label)"
+        self.a11yLabel = "\(title),\(label == Self.UnknownLabel ? String(localized: "Unknown", bundle: .core) : label)"
         self.title = title
         self.label = label
     }
@@ -42,28 +42,28 @@ public extension AboutInfoEntry {
             appName = "Canvas \(app.rawValue.capitalized)"
         }
 
-        return Self(title: NSLocalizedString("App", comment: ""),
+        return Self(title: String(localized: "App", bundle: .core),
                     label: appName)
     }
 }
 
 public extension AboutInfoEntry {
     static func domain(_ session: LoginSession? = AppEnvironment.shared.currentSession) -> Self {
-        Self(title: NSLocalizedString("Domain", comment: ""),
+        Self(title: String(localized: "Domain", bundle: .core),
                     label: session?.baseURL.absoluteString ?? UnknownLabel)
     }
 }
 
 public extension AboutInfoEntry {
     static func loginID(_ session: LoginSession? = AppEnvironment.shared.currentSession) -> Self {
-        Self(title: NSLocalizedString("Login ID", comment: ""),
+        Self(title: String(localized: "Login ID", bundle: .core),
                     label: session?.userID ?? UnknownLabel)
     }
 }
 
 public extension AboutInfoEntry {
     static func email(_ session: LoginSession? = AppEnvironment.shared.currentSession) -> Self {
-        Self(title: NSLocalizedString("Email", comment: ""),
+        Self(title: String(localized: "Email", bundle: .core),
              label: session?.userEmail ?? UnknownLabel)
     }
 }
@@ -71,7 +71,7 @@ public extension AboutInfoEntry {
 public extension AboutInfoEntry {
     static func version(_ bundle: Bundle = Bundle.main) -> Self {
         let version = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? UnknownLabel
-        return Self(title: NSLocalizedString("Version", comment: ""),
+        return Self(title: String(localized: "Version", bundle: .core),
                     label: version)
     }
 }

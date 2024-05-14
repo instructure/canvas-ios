@@ -99,7 +99,7 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
         switch viewModel.state {
         case .waiting:
             VStack(spacing: 15) {
-                Text("Preparing Files For Upload")
+                Text("Preparing Files For Upload", bundle: .core)
                     .font(.regular14)
                     .foregroundColor(.textDarkest)
                 progressView()
@@ -157,8 +157,8 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
     }
 
     private func showAlertDialog(message: String) {
-        let dismissAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel)
-        let alert = UIAlertController(title: NSLocalizedString("Error Details", comment: ""), message: message, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: String(localized: "OK", bundle: .core), style: .cancel)
+        let alert = UIAlertController(title: String(localized: "Error Details", bundle: .core), message: message, preferredStyle: .alert)
         alert.addAction(dismissAction)
         controller.value.present(alert, animated: true)
     }

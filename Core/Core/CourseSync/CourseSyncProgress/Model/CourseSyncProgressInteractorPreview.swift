@@ -37,6 +37,7 @@ class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
         mockData = CurrentValueRelay<[CourseSyncEntry]>([
             .init(name: "Black Hole",
                   id: "0",
+                  hasFrontPage: false,
                   tabs: [
                     .init(id: "0", name: "Assignments", type: .assignments, state: .loading(1)),
                     .init(id: "1", name: "Discussion", type: .assignments, state: .loading(0)),

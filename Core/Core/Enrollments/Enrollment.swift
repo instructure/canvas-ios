@@ -121,7 +121,7 @@ extension Enrollment {
 
     // Used when "Base on graded assignment" is ON
     public func formattedCurrentScore(gradingPeriodID: String?) -> String {
-        let notAvailable = NSLocalizedString("N/A", bundle: .core, comment: "")
+        let notAvailable = String(localized: "N/A", bundle: .core)
         if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
             return notAvailable
         }
@@ -133,7 +133,7 @@ extension Enrollment {
 
     // Used when "Base on graded assignment" is OFF
     public func formattedFinalScore(gradingPeriodID: String?) -> String {
-        let notAvailable = NSLocalizedString("N/A", bundle: .core, comment: "")
+        let notAvailable = String(localized: "N/A", bundle: .core)
         if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
             return notAvailable
         }
@@ -145,7 +145,7 @@ extension Enrollment {
 
     // Used when "Base on graded assignment" is ON
     public func convertedLetterGrade(gradingPeriodID: String?, gradingScheme: [GradingSchemeEntry]) -> String {
-        let notAvailable = NSLocalizedString("N/A", bundle: .core, comment: "")
+        let notAvailable = String(localized: "N/A", bundle: .core)
         if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
             return notAvailable
         }
@@ -158,7 +158,7 @@ extension Enrollment {
 
     // Used when "Base on graded assignment" is OFF
     public func convertedFinalLetterGrade(gradingPeriodID: String?, gradingScheme: [GradingSchemeEntry]) -> String {
-        let notAvailable = NSLocalizedString("N/A", bundle: .core, comment: "")
+        let notAvailable = String(localized: "N/A", bundle: .core)
         if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
             return notAvailable
         }
@@ -170,7 +170,7 @@ extension Enrollment {
     }
 
     public func convertedLetterGrade(scorePercentage: Double, gradingScheme: [GradingSchemeEntry]) -> String {
-        let notAvailable = NSLocalizedString("N/A", bundle: .core, comment: "")
+        let notAvailable = String(localized: "N/A", bundle: .core)
         let normalizedScore = scorePercentage / 100.0
         return gradingScheme.convertScoreToLetterGrade(score: normalizedScore) ?? notAvailable
     }

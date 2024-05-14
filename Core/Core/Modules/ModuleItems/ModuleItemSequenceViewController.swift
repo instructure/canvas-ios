@@ -74,13 +74,6 @@ public final class ModuleItemSequenceViewController: UIViewController {
         store.refresh(force: true)
     }
 
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if let viewController = pages.currentPage {
-            observations = syncNavigationBar(with: viewController)
-        }
-    }
-
     private func update(embed: Bool) {
         if store.requested, store.pending {
             return
@@ -99,7 +92,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
             return match
         } else {
             let external = ExternalURLViewController.create(
-                name: NSLocalizedString("Unsupported Item", bundle: .core, comment: ""),
+                name: String(localized: "Unsupported Item", bundle: .core),
                 url: url,
                 courseID: courseID
             )

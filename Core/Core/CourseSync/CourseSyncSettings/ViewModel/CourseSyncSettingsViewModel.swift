@@ -29,27 +29,30 @@ class CourseSyncSettingsViewModel: ObservableObject {
     @Published public var isShowingConfirmationDialog = false
     @Published public var syncFrequencyLabel = ""
     public let confirmAlert = ConfirmationAlertViewModel(
-        title: NSLocalizedString("Turn Off Wi-Fi Only Sync?", comment: ""),
-        message: NSLocalizedString(
+        title: String(localized: "Turn Off Wi-Fi Only Sync?", bundle: .core),
+        message: String(localized:
            """
            Content sync might use cellular data which may result in extra fees from your data provider.
-           """, comment: ""),
-        cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
-        confirmButtonTitle: NSLocalizedString("Turn Off", comment: ""),
+           """, bundle: .core),
+        cancelButtonTitle: String(localized: "Cancel", bundle: .core),
+        confirmButtonTitle: String(localized: "Turn Off", bundle: .core),
         isDestructive: false)
     public let labels = (
-        autoContentSync: NSLocalizedString(
+        autoContentSync: String(localized:
             """
             Enabling the Auto Content Sync will take care of downloading the selected content based on the below \
             settings. The content synchronization will happen even if the application is not running. If the setting is \
             switched off then no synchronization will happen. The already downloaded content will not be deleted.
-            """, comment: ""),
-        syncFrequency: NSLocalizedString("Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here.", comment: ""),
-        wifiOnlySync: NSLocalizedString(
+            """, bundle: .core),
+        syncFrequency: String(localized:
+            """
+            Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here.
+            """, bundle: .core),
+        wifiOnlySync: String(localized:
             """
             If this setting is enabled the content synchronization will only happen if the device connects \
             to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available.
-            """, comment: "")
+            """, bundle: .core)
     )
 
     // MARK: - Input
@@ -174,7 +177,7 @@ class CourseSyncSettingsViewModel: ObservableObject {
                 promise(.success(newFrequency))
             }
             let picker = ItemPickerViewController
-                .create(title: NSLocalizedString("Sync Frequency", comment: ""),
+                .create(title: String(localized: "Sync Frequency", bundle: .core),
                         sections: CourseSyncFrequency.itemPickerData,
                         selected: selection,
                         didSelect: handleNewSelection)

@@ -53,8 +53,8 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         spinnerView.isHidden = true
-        nameLabel.text = name ?? NSLocalizedString("LTI Tool", bundle: .core, comment: "")
-        setupTitleViewInNavbar(title: NSLocalizedString("External Tool", bundle: .core, comment: ""))
+        nameLabel.text = name ?? String(localized: "LTI Tool", bundle: .core)
+        setupTitleViewInNavbar(title: String(localized: "External Tool", bundle: .core))
         if name == nil {
             // try to get a more descriptive name of the tool
             tools.getSessionlessLaunch { [weak self] response in
@@ -80,7 +80,7 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
                 self?.spinnerView.isHidden = true
                 sender?.isEnabled = true
                 if !success {
-                    self?.showError(message: NSLocalizedString("Could not launch tool. Please try again.", bundle: .core, comment: ""))
+                    self?.showError(message: String(localized: "Could not launch tool. Please try again.", bundle: .core))
                 }
             }
         }

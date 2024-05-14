@@ -40,7 +40,7 @@ class LoginStartSessionCell: UITableViewCell {
         avatarView?.url = entry.userAvatarURL
         backgroundColor = .backgroundLightest
         domainLabel?.text = entry.baseURL.host
-        forgetButton?.accessibilityLabel = String.localizedStringWithFormat(NSLocalizedString("Forget %@", bundle: .core, comment: ""), entry.userName)
+        forgetButton?.accessibilityLabel = String.localizedStringWithFormat(String(localized: "Forget %@", bundle: .core), entry.userName)
         forgetButton?.accessibilityIdentifier = "\(identifier).removeButton"
         nameLabel?.text = entry.userName
     }

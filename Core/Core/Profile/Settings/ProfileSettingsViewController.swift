@@ -66,7 +66,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("Settings", bundle: .core, comment: "")
+        title = String(localized: "Settings", bundle: .core)
 
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundGrouped
@@ -133,16 +133,16 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         }
 
         sections.append(
-            Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
-                Row(NSLocalizedString("Privacy Policy", bundle: .core, comment: ""), isSupportedOffline: false) { [weak self] in
+            Section(String(localized: "Legal", bundle: .core), rows: [
+                Row(String(localized: "Privacy Policy", bundle: .core), isSupportedOffline: false) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "https://www.instructure.com/canvas/privacy/", from: self)
                 },
-                Row(NSLocalizedString("Terms of Use", bundle: .core, comment: ""), isSupportedOffline: false) { [weak self] in
+                Row(String(localized: "Terms of Use", bundle: .core), isSupportedOffline: false) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
                 },
-                Row(NSLocalizedString("Canvas on GitHub", bundle: .core, comment: ""), isSupportedOffline: false) { [weak self] in
+                Row(String(localized: "Canvas on GitHub", bundle: .core), isSupportedOffline: false) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self)
                 },
@@ -164,8 +164,8 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
             return CourseSyncSettingsInteractorLive(storage: defaults).getOfflineSyncSettingsLabel()
         }()
-        return Section(NSLocalizedString("Offline Content", comment: ""), rows: [
-                Row(NSLocalizedString("Synchronization", comment: ""),
+        return Section(String(localized: "Offline Content", bundle: .core), rows: [
+                Row(String(localized: "Synchronization", bundle: .core),
                     detail: detailLabel,
                     isSupportedOffline: true) { [weak self] in
                         guard let self = self else { return }
@@ -175,7 +175,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     }
 
     private var preferencesSection: Section {
-        Section(NSLocalizedString("Preferences", bundle: .core, comment: ""), rows: preferencesRows)
+        Section(String(localized: "Preferences", bundle: .core), rows: preferencesRows)
     }
 
     private var preferencesRows: [Any] {
@@ -187,9 +187,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         rows.append(contentsOf: pairWithObserverButton)
 
         if AppEnvironment.shared.app == .student {
-            let row = Row(NSLocalizedString("Subscribe to Calendar Feed",
-                                            bundle: .core,
-                                            comment: ""),
+            let row = Row(String(localized: "Subscribe to Calendar Feed", bundle: .core),
                           hasDisclosure: false,
                           isSupportedOffline: false) { [weak self] in
                 guard let url = self?.profile.first?.calendarURL else { return }
@@ -205,17 +203,17 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     private var interfaceStyleSettings: [Row] {
         let options = [
-            ItemPickerItem(title: NSLocalizedString("System Settings", bundle: .core, comment: "")),
-            ItemPickerItem(title: NSLocalizedString("Light Theme", bundle: .core, comment: "")),
-            ItemPickerItem(title: NSLocalizedString("Dark Theme", bundle: .core, comment: "")),
+            ItemPickerItem(title: String(localized: "System Settings", bundle: .core)),
+            ItemPickerItem(title: String(localized: "Light Theme", bundle: .core)),
+            ItemPickerItem(title: String(localized: "Dark Theme", bundle: .core)),
         ]
         let selectedStyleIndex = env.userDefaults?.interfaceStyle?.rawValue ?? 0
 
         return [
-            Row(NSLocalizedString("Appearance", bundle: .core, comment: ""), detail: options[selectedStyleIndex].title, isSupportedOffline: true) { [weak self] in
+            Row(String(localized: "Appearance", bundle: .core), detail: options[selectedStyleIndex].title, isSupportedOffline: true) { [weak self] in
                 guard let self = self else { return }
 
-                let pickerVC = ItemPickerViewController.create(title: NSLocalizedString("Appearance", bundle: .core, comment: ""),
+                let pickerVC = ItemPickerViewController.create(title: String(localized: "Appearance", bundle: .core),
                                                                sections: [ ItemPickerSection(items: options) ],
                                                                selected: IndexPath(row: selectedStyleIndex, section: 0)) { indexPath in
                     if let window = self.env.window, let style = UIUserInterfaceStyle(rawValue: indexPath.row) {
@@ -230,10 +228,10 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     private var landingPageRow: [Row] {
         return [
-            Row(NSLocalizedString("Landing Page", bundle: .core, comment: ""), detail: landingPage.name, isSupportedOffline: true) { [weak self] in
+            Row(String(localized: "Landing Page", bundle: .core), detail: landingPage.name, isSupportedOffline: true) { [weak self] in
                 guard let self = self else { return }
                 self.show(ItemPickerViewController.create(
-                    title: NSLocalizedString("Landing Page", bundle: .core, comment: ""),
+                    title: String(localized: "Landing Page", bundle: .core),
                     sections: [ ItemPickerSection(items: LandingPage.appCases.map { page in
                         ItemPickerItem(title: page.name)
                     }), ],
@@ -250,7 +248,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         guard isPairingWithObserverAllowed else { return [] }
 
         return [
-            Row(NSLocalizedString("Pair with Observer", bundle: .core, comment: ""), isSupportedOffline: false) { [weak self] in
+            Row(String(localized: "Pair with Observer", bundle: .core), isSupportedOffline: false) { [weak self] in
                 guard let self = self else { return }
                 let vc = PairWithObserverViewController.create()
                 self.env.router.show(vc, from: self, options: .modal(.formSheet, isDismissable: true, embedInNav: true, addDoneButton: true))
@@ -260,7 +258,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     private var aboutRow: [Row] {
         return [
-            Row(NSLocalizedString("About", comment: ""), isSupportedOffline: true) { [weak self] in
+            Row(String(localized: "About", bundle: .core), isSupportedOffline: true) { [weak self] in
                 guard let self else { return }
                 self.env.router.route(to: "/about", from: self)
             },
@@ -270,7 +268,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     private var k5DashboardSwitch: [Any] {
         guard AppEnvironment.shared.k5.isK5Account, AppEnvironment.shared.k5.isRemoteFeatureFlagEnabled else { return [] }
 
-        let row = Switch(NSLocalizedString("Homeroom View", bundle: .core, comment: ""),
+        let row = Switch(String(localized: "Homeroom View", bundle: .core),
                          initialValue: AppEnvironment.shared.userDefaults?.isElementaryViewEnabled ?? false,
                          isSupportedOffline: true) { [weak self] isOn in
             AppEnvironment.shared.userDefaults?.isElementaryViewEnabled = isOn
@@ -436,17 +434,17 @@ private enum LandingPage: String {
         switch self {
         case .dashboard:
             if Bundle.main.isTeacherApp {
-                return NSLocalizedString("Courses", bundle: .core, comment: "")
+                return String(localized: "Courses", bundle: .core)
             }
-            return NSLocalizedString("Dashboard", bundle: .core, comment: "")
+            return String(localized: "Dashboard", bundle: .core)
         case .calendar:
-            return NSLocalizedString("Calendar", bundle: .core, comment: "")
+            return String(localized: "Calendar", bundle: .core)
         case .todo:
-            return NSLocalizedString("To Do", bundle: .core, comment: "")
+            return String(localized: "To Do", bundle: .core)
         case .notifications:
-            return NSLocalizedString("Notifications", bundle: .core, comment: "")
+            return String(localized: "Notifications", bundle: .core)
         case .inbox:
-            return NSLocalizedString("Inbox", bundle: .core, comment: "")
+            return String(localized: "Inbox", bundle: .core)
         }
     }
 

@@ -42,8 +42,18 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
             CourseSyncEntry(
                 name: "course-name-1",
                 id: "courses/course-id-1",
+                hasFrontPage: false,
                 tabs: [
-                    .init(id: "courses/course-id-1/tabs/files", name: "tab-files", type: .files)
+                    .init(
+                        id: "courses/course-id-1/tabs/files",
+                        name: "tab-files",
+                        type: .files
+                    ),
+                    .init(
+                        id: "courses/course-id-1/tabs/additional-content",
+                        name: "Additional Content",
+                        type: .additionalContent
+                    ),
                 ],
                 files: [
                     .init(
@@ -60,7 +70,7 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
         )
     }
 
-    func testFilesNotMappedWithoutFilesTab() {
+    func testFilesMappedEvenWithoutFilesTab() {
         let mock = CourseSyncFilesInteractorMock()
         let testee = CourseSyncEntryComposerInteractorLive(filesInteractor: mock)
         let course = CourseSyncSelectorCourse.save(
@@ -77,8 +87,25 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
             CourseSyncEntry(
                 name: "course-name-1",
                 id: "courses/course-id-1",
-                tabs: [],
-                files: []
+                hasFrontPage: false,
+                tabs: [
+                    .init(
+                        id: "courses/course-id-1/tabs/additional-content",
+                        name: "Additional Content",
+                        type: .additionalContent
+                    ),
+                ],
+                files: [
+                    .init(
+                        id: "courses/course-id-1/files/file-1",
+                        displayName: "file-displayname-1",
+                        fileName: "file-name-1",
+                        url: URL(string: "https://canvas.instructure.com/files/1/download")!,
+                        mimeClass: "image",
+                        updatedAt: Date(timeIntervalSince1970: 1000),
+                        bytesToDownload: 1000
+                    ),
+                ]
             )
         )
     }

@@ -255,6 +255,7 @@ open class CoreWebView: WKWebView {
         let fontCSS: String
         let style = Typography.Style.body
         let uiFont = style.uiFont
+        let marginsDisabled = features.contains { $0 is DisableDefaultBodyMargin }
 
         if AppEnvironment.shared.k5.isK5Enabled {
             font = "BalsamiqSans-Regular"
@@ -272,7 +273,7 @@ open class CoreWebView: WKWebView {
                 -webkit-tap-highlight-color: transparent;
             }
             body {
-                margin: 16px;
+                margin: \(marginsDisabled ? 0 : 16)px;
             }
             p {
                 font-size: \(uiFont.pointSize)px;
@@ -382,7 +383,7 @@ extension CoreWebView: WKNavigationDelegate {
 
         // Forward decision to delegate
         if action.navigationType == .linkActivated, let url = action.request.url,
-            linkDelegate?.handleLink(url) == true {
+           linkDelegate?.handleLink(url) == true {
             return decisionHandler(.cancel)
         }
 
@@ -415,7 +416,7 @@ extension CoreWebView: WKUIDelegate {
     ) {
         guard let from = linkDelegate?.routeLinksFrom else { return completionHandler(false) }
         let alert = UIAlertController(title: frame.request.url?.host, message: message, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default) { _ in
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
             completionHandler(true)
         })
         AppEnvironment.shared.router.show(alert, from: from, options: .modal())
@@ -429,10 +430,10 @@ extension CoreWebView: WKUIDelegate {
     ) {
         guard let from = linkDelegate?.routeLinksFrom else { return completionHandler(false) }
         let alert = UIAlertController(title: frame.request.url?.host, message: message, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel) { _ in
             completionHandler(false)
         })
-        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default) { _ in
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
             completionHandler(true)
         })
         AppEnvironment.shared.router.show(alert, from: from, options: .modal())
@@ -448,10 +449,10 @@ extension CoreWebView: WKUIDelegate {
         guard let from = linkDelegate?.routeLinksFrom else { return completionHandler(defaultText) }
         let alert = UIAlertController(title: frame.request.url?.host, message: prompt, preferredStyle: .alert)
         alert.addTextField()
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel) { _ in
             completionHandler(nil)
         })
-        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default) { _ in
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
             completionHandler(alert.textFields?[0].text)
         })
         AppEnvironment.shared.router.show(alert, from: from, options: .modal())
@@ -589,13 +590,7 @@ extension CoreWebView {
         guard let parent else { return }
 
         themeSwitcher = CoreWebViewThemeSwitcherLive(host: self)
-        themeSwitcher?.pinHostAndButton(
-            inside: parent,
-            leading: leading,
-            trailing: trailing,
-            top: top,
-            bottom: bottom
-        )
+        themeSwitcher?.pinHostAndButton(inside: parent, leading: leading, trailing: trailing, top: top, bottom: bottom)
         themeSwitcher?.updateUserInterfaceStyle(with: .current)
         activateFullScreenSupport()
     }
@@ -606,5 +601,18 @@ extension CoreWebView {
         guard previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle else { return }
 
         themeSwitcher?.updateUserInterfaceStyle(with: traitCollection.userInterfaceStyle)
+    }
+}
+
+// MARK: Offline parsing
+extension CoreWebView {
+    public func loadContent(isOffline: Bool?, filePath: URL?, content: String?, originalBaseURL: URL?, offlineBaseURL: URL?) {
+        if let filePath, isOffline == true && FileManager.default.fileExists(atPath: filePath.path) {
+            loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
+            let rawHtmlValue = try? String(contentsOf: filePath, encoding: .utf8)
+            loadHTMLString(rawHtmlValue ?? "", baseURL: offlineBaseURL)
+        } else {
+            loadHTMLString(content ?? "", baseURL: originalBaseURL)
+        }
     }
 }

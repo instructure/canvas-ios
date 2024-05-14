@@ -23,6 +23,8 @@ public final class CourseSyncSelectorCourse: NSManagedObject {
     @NSManaged public var courseCode: String
     @NSManaged public var name: String
     @NSManaged public var tabs: Set<Tab>
+    @NSManaged public var hasFrontPage: Bool
+    @NSManaged public var isUnpublished: Bool
 
     @discardableResult
     public static func save(_ apiEntity: APICourse,
@@ -36,6 +38,8 @@ public final class CourseSyncSelectorCourse: NSManagedObject {
         dbEntity.courseId = apiEntity.id.value
         dbEntity.courseCode = apiEntity.course_code ?? ""
         dbEntity.name = apiEntity.name ?? apiEntity.course_code ?? ""
+        dbEntity.hasFrontPage = apiEntity.default_view == .wiki
+        dbEntity.isUnpublished = apiEntity.workflow_state == .unpublished
 
         if let apiTabs = apiEntity.tabs {
             let tabs: [Tab] = apiTabs.map { apiTab in

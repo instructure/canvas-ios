@@ -49098,6 +49098,7 @@
       }
     },
     "Event Details" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -49192,7 +49193,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Détails de l’événement"
+            "value" : "Détails de l'événement"
           }
         },
         "fr-CA" : {
@@ -64592,6 +64593,7 @@
       }
     },
     "Location" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -64686,7 +64688,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lieu"
+            "value" : "Emplacement"
           }
         },
         "fr-CA" : {
@@ -64806,7 +64808,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vị trí"
+            "value" : "Địa Điểm"
           }
         },
         "zh" : {

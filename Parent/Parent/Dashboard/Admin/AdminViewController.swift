@@ -31,7 +31,7 @@ class AdminViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-        directionsLabel.text = NSLocalizedString("Add students at the top or visit the global menu to masquerade as a student.", comment: "")
-        welcomeLabel.text = NSLocalizedString("Welcome, Admin!", comment: "")
+        directionsLabel.text = String(localized: "Add students at the top or visit the global menu to masquerade as a student.", bundle: .parent)
+        welcomeLabel.text = String(localized: "Welcome, Admin!", bundle: .parent)
     }
 }

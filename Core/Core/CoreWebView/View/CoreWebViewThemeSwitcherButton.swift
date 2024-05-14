@@ -20,8 +20,8 @@ import UIKit
 
 final class CoreWebViewThemeSwitcherButton: UIButton {
     private struct Titles {
-        static let currentlyLight = String(localized: "Switch To Dark Mode")
-        static let currentlyDark = String(localized: "Switch To Light Mode")
+        static let currentlyLight = String(localized: "Switch To Dark Mode", bundle: .core)
+        static let currentlyDark = String(localized: "Switch To Light Mode", bundle: .core)
     }
 
     /// Helper to simplify logic by removing `.unspecified`.

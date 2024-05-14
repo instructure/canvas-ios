@@ -50,7 +50,7 @@ struct ContextCardSubmissionRow: View {
             }
         }
         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-        .accessibility(label: Text("Submission \(assignment.name), \(submission.status.text), \(a11ySubmissionStatus)"))
+        .accessibility(label: Text("Submission \(assignment.name), \(submission.status.text), \(a11ySubmissionStatus)", bundle: .core))
         .identifier("ContextCard.submissionCell(\(assignment.id))")
     }
 
@@ -77,9 +77,9 @@ struct ContextCardSubmissionRow: View {
         }()
         self.a11ySubmissionStatus = {
             if submission.needsGrading {
-                return NSLocalizedString("NEEDS GRADING", comment: "")
+                return String(localized: "NEEDS GRADING", bundle: .core)
             } else if submission.workflowState == .graded, submission.score != nil, let grade = GradeFormatter.string(from: assignment, submission: submission) {
-                return NSLocalizedString("grade", comment: "") + " " + grade
+                return String(localized: "grade", bundle: .core) + " " + grade
             } else {
                 return ""
             }

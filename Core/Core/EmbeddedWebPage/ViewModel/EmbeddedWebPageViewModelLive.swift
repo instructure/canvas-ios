@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import WebKit
 
 public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
     public enum EmbeddedWebPageType {
@@ -59,6 +60,15 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
     public let navTitle: String
     public let url: URL
 
+    /** The webview configuration to be used. In case of masquerading we can't use the default configuration because it will contain cookies with the original user's permissions. */
+    public var webViewConfig: WKWebViewConfiguration {
+        guard isMasqueradingUser else { return .defaultConfiguration }
+        let result = WKWebViewConfiguration()
+        result.websiteDataStore = WKWebsiteDataStore.nonPersistent()
+        return result
+    }
+    private let isMasqueradingUser: Bool
+
     private let context: Context
     private let env = AppEnvironment.shared
     private lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -71,8 +81,13 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
         self?.update()
     }
 
-    public init(context: Context, webPageType: EmbeddedWebPageType) {
+    public init(
+        context: Context,
+        webPageType: EmbeddedWebPageType,
+        environment: AppEnvironment = .shared
+    ) {
         self.context = context
+        self.isMasqueradingUser = environment.currentSession?.actAsUserID != nil
 
         var urlPathComponent: String
         switch webPageType {
@@ -80,10 +95,10 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
             // announcements/\(id) shows a navigation bar at the top
             // so we need to use discussion topics
             urlPathComponent = "discussion_topics/\(id)"
-            navTitle = NSLocalizedString("Announcement Details", comment: "")
+            navTitle = String(localized: "Announcement Details", bundle: .core)
         case .discussion(let id):
             urlPathComponent = "discussion_topics/\(id)"
-            navTitle = NSLocalizedString("Discussion Details", comment: "")
+            navTitle = String(localized: "Discussion Details", bundle: .core)
         }
 
         self.url = {

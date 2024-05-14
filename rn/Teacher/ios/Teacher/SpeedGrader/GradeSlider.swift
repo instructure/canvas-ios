@@ -36,7 +36,7 @@ struct GradeSlider: View {
                 }.onEnded { _ in
                     onEditingChanged(false)
                 })
-                .accessibility(label: Text("Grade Slider"))
+                .accessibility(label: Text("Grade Slider", bundle: .teacher))
                 .accessibility(value: tooltipText)
                 .overlay(!showTooltip ? nil : GeometryReader { geometry in
                     let x = CGFloat(score / max(possible, 0.01))

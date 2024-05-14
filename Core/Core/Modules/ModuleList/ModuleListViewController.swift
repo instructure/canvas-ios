@@ -58,8 +58,8 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
             AppEnvironment.shared.userDefaults?.collapsedModules = collapsedIDs
         }
     }
-    private lazy var publishInteractor = ModulePublishInteractor(app: AppEnvironment.shared.app, courseId: courseID)
-    private var snackBarUpdatesSubscription: AnyCancellable?
+    private lazy var publishInteractor = ModulesAssembly.publishInteractor(for: courseID)
+    private var subscriptions = Set<AnyCancellable>()
 
     public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let controller = loadFromStoryboard()
@@ -70,15 +70,15 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: NSLocalizedString("Modules", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Modules", bundle: .core))
 
         collapsedIDs[courseID] = collapsedIDs[courseID] ?? []
         if let moduleID = moduleID {
             collapsedIDs[courseID]?.removeAll { $0 == moduleID }
         }
 
-        emptyMessageLabel.text = NSLocalizedString("There are no modules to display yet.", bundle: .core, comment: "")
-        emptyTitleLabel.text = NSLocalizedString("No Modules", bundle: .core, comment: "")
+        emptyMessageLabel.text = String(localized: "There are no modules to display yet.", bundle: .core)
+        emptyTitleLabel.text = String(localized: "No Modules", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         refreshControl.color = nil
@@ -92,7 +92,7 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         tableView.registerHeaderFooterView(ModuleSectionHeaderView.self, fromNib: false)
         if let footer = tableView.tableFooterView as? UILabel {
             footer.isHidden = true
-            footer.text = NSLocalizedString("Loading more modules...", bundle: .core, comment: "")
+            footer.text = String(localized: "Loading more modules...", bundle: .core)
             tableView.contentInset.bottom = -footer.frame.height
         }
 
@@ -119,10 +119,10 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         emptyView.isHidden = modules.pending || !modules.isEmpty || modules.error != nil || isPageDisabled
         errorView.isHidden = pending || (modules.error == nil && !isPageDisabled)
         if isPageDisabled {
-            errorView.messageLabel.text = NSLocalizedString("This page has been disabled for this course.", bundle: .core, comment: "")
+            errorView.messageLabel.text = String(localized: "This page has been disabled for this course.", bundle: .core)
             errorView.retryButton.isHidden = true
         } else {
-            errorView.messageLabel.text = NSLocalizedString("There was an error loading modules.", bundle: .core, comment: "")
+            errorView.messageLabel.text = String(localized: "There was an error loading modules.", bundle: .core)
             errorView.retryButton.isHidden = false
         }
         tableView.tableFooterView?.setNeedsLayout()
@@ -131,7 +131,6 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
 
         if spinnerView.isHidden, emptyView.isHidden, errorView.isHidden {
             setupBulkPublishButtonInNavBar()
-            setupPublishActionSnackBarUpdates()
         }
     }
 
@@ -141,20 +140,36 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         else { return }
 
         let button = UIBarButtonItem(image: .moreLine)
-        button.menu = .makePublishModulesMenu(host: self)
-        button.accessibilityLabel = String(localized: "Publish options")
+        button.menu = .makePublishAllModulesMenu(host: self) { [weak self] action in
+            self?.didPerformPublishAction(action: action)
+        }
+        button.accessibilityLabel = String(localized: "Publish options", bundle: .core)
         navigationItem.setRightBarButton(button, animated: true)
+
+        publishInteractor
+            .modulesUpdating
+            .receive(on: RunLoop.main)
+            .map { [modules] modulesUpdating in
+                let allModules = modules.all.map { $0.id }
+                return Set(modulesUpdating) == Set(allModules)
+            }
+            .sink { isAllModulesUpdating in
+                button.isEnabled = !isAllModulesUpdating
+            }
+            .store(in: &subscriptions)
     }
 
-    private func setupPublishActionSnackBarUpdates() {
-        guard snackBarUpdatesSubscription == nil else {
-            return
-        }
-        snackBarUpdatesSubscription = publishInteractor
-            .statusUpdates
-            .sink(receiveValue: { [weak self] update in
-                self?.findSnackBarViewModel()?.showSnack(update)
-            })
+    private func didPerformPublishAction(action: ModulePublishAction) {
+        let moduleIds = modules.map { $0.id }
+        let viewModel = ModulePublishProgressViewModel(
+            action: action,
+            allModules: true,
+            moduleIds: moduleIds,
+            interactor: publishInteractor,
+            router: env.router
+        )
+        let viewController = CoreHostingController(ModulePublishProgressView(viewModel: viewModel))
+        env.router.show(viewController, from: self, options: .modal(isDismissable: true, embedInNav: true))
     }
 
     private func reloadCourse() {
@@ -240,12 +255,12 @@ extension ModuleListViewController: UITableViewDataSource {
     private func showLockedMessage(module: Module) {
         guard let message = module.lockedMessage else { return }
         let alert = UIAlertController(
-            title: NSLocalizedString("Locked", bundle: .core, comment: ""),
+            title: String(localized: "Locked", bundle: .core),
             message: message,
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(
-            title: NSLocalizedString("OK", bundle: .core, comment: ""),
+            title: String(localized: "OK", bundle: .core),
             style: .default,
             handler: nil
         ))
@@ -301,7 +316,7 @@ extension ModuleListViewController {
             fullDivider = true
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
-            label.text = NSLocalizedString("This module is empty.", bundle: .core, comment: "")
+            label.text = String(localized: "This module is empty.", bundle: .core)
             label.textAlignment = .center
             label.font = .scaledNamedFont(.medium12)
             label.textColor = .textDark

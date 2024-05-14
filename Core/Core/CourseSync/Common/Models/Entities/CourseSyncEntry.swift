@@ -34,19 +34,39 @@ public struct CourseSyncEntry: Equatable {
      The unique identifier of the sync entry in a form of "courses/:courseId". Doesn't correspond to the course ID on API. Use the `courseId` property if you need the API id.
      */
     let id: String
+    let hasFrontPage: Bool
     var courseId: String { String(id.split(separator: "/").last ?? "") }
 
+    /// List of available tabs coming from the API + a manually added tab named "Additional Content" that is responsible for tracking the download of hidden tabs and such.
     var tabs: [CourseSyncEntry.Tab]
+
+    /// The number of tabs that are selectable by the user. When "Additional Content" is  added manually to the list, we need to substract 1 from the list count.
+    var selectableTabsCount: Int {
+        if tabs.contains(where: { $0.type == .additionalContent }) {
+            return tabs.count - 1
+        } else {
+            return tabs.count
+        }
+    }
+
+    /// Returns partially or fully selected tabs. "Additional Content" doesn't count.
     var selectedTabs: [TabName] {
         tabs
+            .filter { $0.type != .additionalContent }
             .filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected }
             .map { $0.type }
     }
 
+    /// Returns the number of partially or fully selected tabs. "Additional Content" doesn't count.
     var selectedTabsCount: Int {
-        tabs.reduce(0) { partialResult, tab in
-            partialResult + (tab.selectionState == .selected || tab.selectionState == .partiallySelected ? 1 : 0)
-        }
+        selectedTabs.count
+    }
+
+    /// "Additional Content" and "Files" tabs don't count towards the final download size.
+    var byteCountableSelectedTabs: [CourseSyncEntry.Tab] {
+        tabs
+            .filter { $0.type != TabName.files && $0.type != TabName.additionalContent }
+            .filter { $0.selectionState == .selected }
     }
 
     var files: [CourseSyncEntry.File]
@@ -61,8 +81,16 @@ public struct CourseSyncEntry: Equatable {
     }
 
     var isCollapsed: Bool = true
-    var selectionState: ListCellView.SelectionState = .deselected
-    var isEverythingSelected: Bool = false
+    var selectionState: ListCellView.SelectionState = .deselected {
+        didSet {
+            if isFullContentSync, let index = tabs.firstIndex(where: { $0.type == .additionalContent}) {
+                tabs[index].selectionState = .selected
+            }
+        }
+    }
+    var isFullContentSync: Bool {
+        selectionState == .selected
+    }
 
     var state: State = .loading(nil)
 
@@ -74,7 +102,7 @@ public struct CourseSyncEntry: Equatable {
             }
 
         let tabsSize = tabs
-            .filter { $0.type != TabName.files }
+            .filter { $0.type != TabName.files && $0.type != TabName.additionalContent }
             .reduce(0) { partialResult, tab in
                 partialResult + tab.bytesToDownload
             }
@@ -103,9 +131,7 @@ public struct CourseSyncEntry: Equatable {
                 partialResult + file.bytesToDownload
             }
 
-        let tabsSize = tabs
-            .filter { $0.type != TabName.files }
-            .filter { $0.selectionState == .selected }
+        let tabsSize = byteCountableSelectedTabs
             .reduce(0) { partialResult, tab in
                 partialResult + tab.bytesToDownload
             }
@@ -121,9 +147,7 @@ public struct CourseSyncEntry: Equatable {
                 partialResult + file.bytesDownloaded
             }
 
-        let tabsSize = tabs
-            .filter { $0.type != TabName.files }
-            .filter { $0.selectionState == .selected }
+        let tabsSize = byteCountableSelectedTabs
             .reduce(0) { partialResult, tab in
                 partialResult + tab.bytesDownloaded
             }
@@ -143,9 +167,7 @@ public struct CourseSyncEntry: Equatable {
                 }
             }
 
-        let totalTabsProgress = tabs
-            .filter { $0.type != TabName.files }
-            .filter { $0.selectionState == .selected }
+        let totalTabsProgress = byteCountableSelectedTabs
             .reduce(0 as Float) { partialResult, tab in
                 switch tab.state {
                 case .downloaded: return partialResult + 1
@@ -154,31 +176,34 @@ public struct CourseSyncEntry: Equatable {
                 }
             }
 
-        let selectedTabs = tabs
-            .filter { $0.type != TabName.files }
-            .filter { $0.selectionState == .selected }
-
-        let selectedCount = (Float(selectedFilesCount) + Float(selectedTabs.count))
+        let selectedCount = (Float(selectedFilesCount) + Float(byteCountableSelectedTabs.count))
         guard selectedCount > 0 else { return 0 }
         return (totalFilesProgress + totalTabsProgress) / selectedCount
     }
 
+    /// Returns **true** if any of the visible or hidden tabs or files failed to download.
     var hasError: Bool {
         let tabsError = tabs.contains { $0.state == .error }
         let filesError = files.contains { $0.state == .error }
 
-        return state == .error || tabsError || filesError
+        return state == .error || tabsError || filesError || hasAdditionalContentError
     }
 
     var hasFileError: Bool {
         files.contains { $0.state == .error }
     }
 
+    var hasAdditionalContentError: Bool {
+        additionalContentDownloadResults.contains { !$0 }
+    }
+
+    typealias IsDownloadSuccessful = Bool
+    private(set) var additionalContentDownloadResults: [IsDownloadSuccessful] = []
+
     mutating func selectCourse(selectionState: ListCellView.SelectionState) {
         tabs.indices.forEach { tabs[$0].selectionState = selectionState }
         files.indices.forEach { files[$0].selectionState = selectionState }
         self.selectionState = selectionState
-        isEverythingSelected = selectionState == .selected ? true : false
     }
 
     mutating func selectTab(id: String, selectionState: ListCellView.SelectionState) {
@@ -188,38 +213,37 @@ public struct CourseSyncEntry: Equatable {
             files.indices.forEach { files[$0].selectionState = selectionState }
         }
 
-        // Selecting modules or grades will select every other tab because they are needed to compose modules/grades.
-        if selectionState == .selected {
-            if tabs[id: id]?.type == .modules || tabs[id: id]?.type == .grades {
-                for tab in tabs where tab.type != .modules && tab.type != .grades {
-                    selectTab(id: tab.id, selectionState: .selected)
-                }
-            }
-            // Deselecting a tab other than modules or grades will deselect modules and grades.
-        } else if selectionState == .deselected {
-            if tabs[id: id]?.type != .modules, tabs[id: id]?.type != .grades {
-                for tab in tabs where tab.type == .modules || tab.type == .grades {
-                    selectTab(id: tab.id, selectionState: .deselected)
-                }
-            }
+        if selectedTabsCount == selectableTabsCount, selectedFilesCount == files.count {
+            self.selectionState = .selected
+        } else if selectedTabsCount > 0 {
+            self.selectionState = .partiallySelected
+        } else {
+            self.selectionState = .deselected
         }
-
-        isEverythingSelected = (selectedTabsCount == tabs.count) && (selectedFilesCount == files.count)
-        self.selectionState = selectedTabsCount > 0 ? .partiallySelected : .deselected
     }
 
     mutating func selectFile(id: String, selectionState: ListCellView.SelectionState) {
         files[id: id]?.selectionState = selectionState == .selected ? .selected : .deselected
 
-        isEverythingSelected = (selectedTabsCount == tabs.count) && (selectedFilesCount == files.count)
-
-        guard var fileTab = tabs.first(where: { $0.type == TabName.files }) else {
+        guard let fileTabId = tabs.first(where: { $0.type == TabName.files })?.id else {
             return
         }
-        fileTab.selectionState = selectedFilesCount > 0 ? .partiallySelected : .deselected
-        tabs[id: fileTab.id] = fileTab
 
-        self.selectionState = selectedTabsCount > 0 ? .partiallySelected : .deselected
+        if selectedFilesCount == files.count {
+            tabs[id: fileTabId]?.selectionState = .selected
+        } else if selectedFilesCount > 0 {
+            tabs[id: fileTabId]?.selectionState = .partiallySelected
+        } else {
+            tabs[id: fileTabId]?.selectionState = .deselected
+        }
+
+        if selectedTabsCount == selectableTabsCount, selectedFilesCount == files.count {
+            self.selectionState = .selected
+        } else if selectedTabsCount > 0 {
+            self.selectionState = .partiallySelected
+        } else {
+            self.selectionState = .deselected
+        }
     }
 
     mutating func updateCourseState(state: State) {
@@ -237,6 +261,14 @@ public struct CourseSyncEntry: Equatable {
             files[index].state = state
         }
     }
+
+    mutating func updateAdditionalContentResults(isSuccessful: Bool) {
+        additionalContentDownloadResults.append(isSuccessful)
+    }
+
+    mutating func clearAdditionalContentResults() {
+        additionalContentDownloadResults.removeAll()
+    }
 }
 
 #if DEBUG
@@ -251,6 +283,7 @@ extension CourseSyncEntry {
         CourseSyncEntry(
             name: name,
             id: id,
+            hasFrontPage: false,
             tabs: tabs,
             files: files
         )

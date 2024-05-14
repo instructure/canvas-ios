@@ -25,8 +25,6 @@ public extension CourseSyncDiscussionsInteractor {
 
 public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteractor {
 
-    public init() {}
-
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         Self.fetchTopics(courseId: courseId)
             .flatMap { $0.publisher }
@@ -37,10 +35,17 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
             .eraseToAnyPublisher()
     }
 
+    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        return Just(()).eraseToAnyPublisher()
+    }
+
     // MARK: - Private Methods
 
-    private static func fetchTopics(courseId: String) -> AnyPublisher<[DiscussionTopic], Error> {
-        ReactiveStore(useCase: GetDiscussionTopics(context: .course(courseId)))
+    private static func fetchTopics(
+        courseId: String
+    ) -> AnyPublisher<[DiscussionTopic], Error> {
+
+        return ReactiveStore(useCase: GetDiscussionTopics(context: .course(courseId)))
             .getEntities(ignoreCache: true)
             .eraseToAnyPublisher()
     }
@@ -49,7 +54,8 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
         courseId: String,
         topicId: String
     ) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
+
+        return ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()

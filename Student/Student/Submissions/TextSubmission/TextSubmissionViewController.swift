@@ -42,17 +42,17 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        title = NSLocalizedString("Text Entry", bundle: .student, comment: "")
+        title = String(localized: "Text Entry", bundle: .student)
 
         navigationController?.navigationBar.useModalStyle()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Submit", bundle: .student, comment: ""), style: .plain, target: self, action: #selector(submit))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Submit", bundle: .student), style: .plain, target: self, action: #selector(submit))
         navigationItem.rightBarButtonItem?.accessibilityIdentifier = "TextSubmission.submitButton"
         navigationItem.rightBarButtonItem?.isEnabled = false
         addCancelButton(side: .left)
 
         editor.delegate = self
-        editor.placeholder = NSLocalizedString("Write...", bundle: .student, comment: "Text submission editor placeholder")
-        editor.a11yLabel = NSLocalizedString("Submission text", bundle: .student, comment: "Text submission editor accessibility label")
+        editor.placeholder = String(localized: "Write...", bundle: .student, comment: "Text submission editor placeholder")
+        editor.a11yLabel = String(localized: "Submission text", bundle: .student, comment: "Text submission editor accessibility label")
         editor.webView.scrollView.layer.masksToBounds = false
         embed(editor, in: contentView)
     }

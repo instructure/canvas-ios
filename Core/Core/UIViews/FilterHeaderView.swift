@@ -40,7 +40,7 @@ public class FilterHeaderView: UITableViewHeaderFooterView {
         titleLabel.numberOfLines = 2
         contentView.addSubview(titleLabel)
         titleLabel.pin(inside: contentView, leading: 16, trailing: nil, top: 16, bottom: 8)
-        filterButton.setTitle(NSLocalizedString("Filter", bundle: .core, comment: ""), for: .normal)
+        filterButton.setTitle(String(localized: "Filter", bundle: .core), for: .normal)
         filterButton.setTitleColor(Brand.shared.linkColor, for: .normal)
         filterButton.titleLabel?.font = .scaledNamedFont(.medium16)
         filterButton.translatesAutoresizingMaskIntoConstraints = false

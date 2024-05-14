@@ -41,17 +41,17 @@ struct ContextCardSubmissionsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Submissions")
+            Text("Submissions", bundle: .core)
                 .font(.semibold14)
                 .foregroundColor(.textDark)
             HStack {
-                ContextCardBoxView(title: Text("\(submitted)"), subTitle: Text("Submitted"))
+                ContextCardBoxView(title: Text("\(submitted)"), subTitle: Text("Submitted", bundle: .core))
                     .accessibility(label: Text("\(submitted) submitted", bundle: .core))
                     .identifier("ContextCard.submissionsTotalLabel")
-                ContextCardBoxView(title: Text("\(late)"), subTitle: Text("Late"))
+                ContextCardBoxView(title: Text("\(late)"), subTitle: Text("Late", bundle: .core))
                     .accessibility(label: Text("\(late) late", bundle: .core))
                     .identifier("ContextCard.submissionsLateLabel")
-                ContextCardBoxView(title: Text("\(missing)"), subTitle: Text("Missing"))
+                ContextCardBoxView(title: Text("\(missing)"), subTitle: Text("Missing", bundle: .core))
                     .accessibility(label: Text("\(missing) missing", bundle: .core))
                     .identifier("ContextCard.submissionsMissingLabel")
             }

@@ -108,6 +108,11 @@ public struct DeveloperMenuView: View {
             DeveloperMenuItem("SnackBar Test") {
                 router.route(to: "/dev-menu/snackbar", from: controller, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
             },
+            DeveloperMenuItem("Screen Template Test") {
+                let screen = BaseScreenTesterScreen()
+                let host = CoreHostingController(screen)
+                controller.value.navigationController?.pushViewController(host, animated: true)
+            },
             DeveloperMenuItem("View Push Notifications") {
                 router.route(to: "/push-notifications", from: controller)
             },

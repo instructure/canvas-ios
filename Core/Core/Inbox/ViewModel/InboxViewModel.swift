@@ -24,19 +24,19 @@ public class InboxViewModel: ObservableObject {
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var messages: [InboxMessageListItemViewModel] = []
     @Published public private(set) var scope: InboxMessageScope = DefaultScope
-    @Published public private(set) var course: String = NSLocalizedString("All Courses", comment: "")
+    @Published public private(set) var course: String = String(localized: "All Courses", bundle: .core)
     @Published public private(set) var courses: [InboxCourse] = []
     @Published public private(set) var hasNextPage = false
     @Published public var isShowingScopeSelector = false
     @Published public var isShowingCourseSelector = false
     public let scopes = InboxMessageScope.allCases
     public let emptyState = (scene: SpacePanda() as PandaScene,
-                             title: NSLocalizedString("No Messages", comment: ""),
-                             text: NSLocalizedString("Tap the \"+\" to create a new conversation", comment: ""))
+                             title: String(localized: "No Messages", bundle: .core),
+                             text: String(localized: "Tap the \"+\" to create a new conversation", bundle: .core))
 
     public let errorState = (scene: NoResultsPanda() as PandaScene,
-                             title: NSLocalizedString("Something Went Wrong", comment: ""),
-                             text: NSLocalizedString("Pull to refresh to try again", comment: ""))
+                             title: String(localized: "Something Went Wrong", bundle: .core),
+                             text: String(localized: "Pull to refresh to try again", bundle: .core))
 
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
@@ -67,7 +67,7 @@ public class InboxViewModel: ObservableObject {
             .assign(to: &$scope)
         courseDidChange
             .map { $0?.name }
-            .replaceNil(with: NSLocalizedString("All Courses", comment: ""))
+            .replaceNil(with: String(localized: "All Courses", bundle: .core))
             .assign(to: &$course)
 
         let interactor = self.interactor

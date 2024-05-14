@@ -24,10 +24,11 @@ public extension XCTestCase {
      This method expects the given publisher to emit an expected single output then finish.
      If the output doesn't match the expectation or there are multiple outputs or the publisher fails the assertion will fail.
      */
-    func XCTAssertCompletableSingleOutputEquals<Output, Failure>(_ publisher: any Publisher<Output, Failure>,
-                                                                 _ expectedOutput: Output,
-                                                                 timeout: TimeInterval = 0.1)
-        where Output: Equatable, Failure: Error {
+    func XCTAssertCompletableSingleOutputEquals<Output, Failure>(
+        _ publisher: any Publisher<Output, Failure>,
+        _ expectedOutput: Output,
+        timeout: TimeInterval = 0.1
+    ) where Output: Equatable, Failure: Error {
         let outputExpectation = expectation(description: "Output received from publisher")
         outputExpectation.expectedFulfillmentCount = 1
         let finishExpectation = expectation(description: "Publisher finished")
@@ -47,10 +48,39 @@ public extension XCTestCase {
         subscription.cancel()
     }
 
-    func XCTAssertSingleOutputEquals<Output, Failure>(_ publisher: any Publisher<Output, Failure>,
-                                                      _ expectedOutput: Output,
-                                                      timeout: TimeInterval = 0.1)
-        where Output: Equatable, Failure: Error {
+    /**
+     This method asserts if the stream successfully completes and invokes a block with the stream's
+     first output so custom assertions can be made on the received value.
+     */
+    func XCTAssertFirstValueAndCompletion<Output, Failure>(
+        _ publisher: any Publisher<Output, Failure>,
+        timeout: TimeInterval = 0.1,
+        assertions: @escaping (Output) -> Void
+    ) where Failure: Error {
+        let outputExpectation = expectation(description: "Output received from publisher")
+        outputExpectation.expectedFulfillmentCount = 1
+        let finishExpectation = expectation(description: "Publisher finished")
+        finishExpectation.expectedFulfillmentCount = 1
+
+        let subscription = publisher
+            .sink(receiveCompletion: { completion in
+                if case .finished = completion {
+                    finishExpectation.fulfill()
+                }
+            }, receiveValue: { output in
+                assertions(output)
+                outputExpectation.fulfill()
+            })
+
+        wait(for: [outputExpectation, finishExpectation], timeout: timeout)
+        subscription.cancel()
+    }
+
+    func XCTAssertSingleOutputEquals<Output, Failure>(
+        _ publisher: any Publisher<Output, Failure>,
+        _ expectedOutput: Output,
+        timeout: TimeInterval = 0.1
+    ) where Output: Equatable, Failure: Error {
         let outputExpectation = expectation(description: "Output received from publisher")
         outputExpectation.expectedFulfillmentCount = 1
 
@@ -68,13 +98,39 @@ public extension XCTestCase {
     }
 
     /**
+     - parameters:
+        - valueCheck: Return true if the assertation should pass.
+     */
+    func XCTAssertFirstValue<Output, Failure>(
+        _ publisher: any Publisher<Output, Failure>,
+        timeout: TimeInterval = 0.1,
+        assertions: @escaping (Output) -> Void
+    ) where Failure: Error {
+        let outputExpectation = expectation(description: "Output received from publisher")
+        outputExpectation.expectedFulfillmentCount = 1
+
+        let subscription = publisher
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { output in
+                    assertions(output)
+                    outputExpectation.fulfill()
+                }
+            )
+
+        waitForExpectations(timeout: timeout)
+        subscription.cancel()
+    }
+
+    /**
      This method expects the publisher to finish within the given timeout.
      Useful if you are not directly interested in the result of the publisher.
      If the publisher fails or the timeout is reached the assertion will fail.
      */
-    func XCTAssertFinish<Output, Failure>(_ publisher: any Publisher<Output, Failure>,
-                                          timeout: TimeInterval = 0.1)
-        where Failure: Error {
+    func XCTAssertFinish<Output, Failure>(
+        _ publisher: any Publisher<Output, Failure>,
+        timeout: TimeInterval = 0.1
+    ) where Failure: Error {
         let finishExpectation = expectation(description: "Publisher finished")
         finishExpectation.expectedFulfillmentCount = 1
 
@@ -92,10 +148,11 @@ public extension XCTestCase {
         subscription.cancel()
     }
 
-    func XCTAssertFailure<Output, Failure>(_ publisher: any Publisher<Output, Failure>,
-                                           assertOnOutput: Bool = true,
-                                           timeout: TimeInterval = 0.1)
-    where Failure: Error {
+    func XCTAssertFailure<Output, Failure>(
+        _ publisher: any Publisher<Output, Failure>,
+        assertOnOutput: Bool = true,
+        timeout: TimeInterval = 0.1
+    ) where Failure: Error {
         let finishExpectation = expectation(description: "Publisher failed")
         finishExpectation.expectedFulfillmentCount = 1
 
@@ -116,9 +173,10 @@ public extension XCTestCase {
         subscription.cancel()
     }
 
-    func XCTAssertNoOutput<Output, Failure>(_ publisher: any Publisher<Output, Failure>,
-                                            timeout: TimeInterval = 0.1)
-    where Failure: Error {
+    func XCTAssertNoOutput<Output, Failure>(
+        _ publisher: any Publisher<Output, Failure>,
+        timeout: TimeInterval = 0.1
+    ) where Failure: Error {
         let noValueExpectation = expectation(description: "Publisher sent no value.")
         noValueExpectation.isInverted = true
 

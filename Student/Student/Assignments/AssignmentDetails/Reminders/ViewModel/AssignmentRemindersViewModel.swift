@@ -26,13 +26,13 @@ public class AssignmentRemindersViewModel: ObservableObject {
     @Published public private(set) var isReminderSectionVisible = false
     @Published public var showingDeleteConfirmDialog = false
     public let confirmAlert = ConfirmationAlertViewModel(
-        title: NSLocalizedString("Delete Reminder", comment: ""),
-        message: NSLocalizedString(
+        title: String(localized: "Delete Reminder", bundle: .student),
+        message: String(localized:
            """
            Are you sure you would like to delete this reminder?
-           """, comment: ""),
-        cancelButtonTitle: NSLocalizedString("No", comment: ""),
-        confirmButtonTitle: NSLocalizedString("Yes", comment: ""),
+           """, bundle: .student),
+        cancelButtonTitle: String(localized: "No", bundle: .student),
+        confirmButtonTitle: String(localized: "Yes", bundle: .student),
         isDestructive: true
     )
 
@@ -71,7 +71,7 @@ public class AssignmentRemindersViewModel: ObservableObject {
             .sink { [weak interactor] in
                 // We can't use subscribe because userConfirmation() finishes and
                 // the stream would finish the publisher in the interactor as well
-                UIAccessibility.announce(String(localized: "Reminder Deleted"))
+                UIAccessibility.announce(String(localized: "Reminder Deleted", bundle: .student))
                 interactor?.reminderDidDelete.send(reminder)
             }
             .store(in: &subscriptions)
@@ -116,17 +116,17 @@ public class AssignmentRemindersViewModel: ObservableObject {
 
                     switch $0 {
                     case .reminderInPast:
-                        message = String(localized: "Please choose a future time for your reminder!")
+                        message = String(localized: "Please choose a future time for your reminder!", bundle: .student)
                     case .duplicate:
-                        message = String(localized: "You have already set a reminder for this time.")
+                        message = String(localized: "You have already set a reminder for this time.", bundle: .student)
                     case .application, .scheduleFailed, .noPermission:
-                        message = String(localized: "An unknown error occurred.")
+                        message = String(localized: "An unknown error occurred.", bundle: .student)
                     }
 
-                    let alert = UIAlertController(title: String(localized: "Reminder Creation Failed"),
+                    let alert = UIAlertController(title: String(localized: "Reminder Creation Failed", bundle: .student),
                                                   message: message,
                                                   preferredStyle: .alert)
-                    alert.addAction(.init(title: String(localized: "OK"), style: .default))
+                    alert.addAction(.init(title: String(localized: "OK", bundle: .student), style: .default))
 
                     if let self, let reminderView = self.newReminderView {
                         self.router.show(alert, from: reminderView)

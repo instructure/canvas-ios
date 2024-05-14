@@ -28,6 +28,8 @@ public struct SuccessPanda: PandaScene {
     public var foreground: AnyView { AnyView(JumpingPanda(imageName: foregroundFileName))}
     public var background: AnyView { AnyView(ImageBackground(scene: self).foregroundColor(Color.backgroundLight)) }
     public var isParallaxDisabled: Bool { true }
+
+    public init() {}
 }
 
 private struct JumpingPanda: View {

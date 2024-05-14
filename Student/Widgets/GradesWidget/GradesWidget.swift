@@ -26,7 +26,7 @@ struct GradesWidget: Widget {
         StaticConfiguration(kind: kind, provider: GradesWidgetProvider()) { model in
             GradesWidgetView(model: model)
         }
-        .configurationDisplayName(NSLocalizedString("Grades", comment: "Name of the grades widget"))
-        .description(NSLocalizedString("View the latest grades from assignments and your favorite courses.", comment: "Description of the grades widget"))
+        .configurationDisplayName(String(localized: "Grades", comment: "Name of the grades widget"))
+        .description(String(localized: "View the latest grades from assignments and your favorite courses.", comment: "Description of the grades widget"))
     }
 }

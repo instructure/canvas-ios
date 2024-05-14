@@ -65,7 +65,7 @@ class APIErrorTests: XCTestCase {
             "a\nb\nc\nd"
         )
         XCTAssertEqual(from(dict: [:]), "default")
-        XCTAssertEqual(from(response: HTTPURLResponse(url: URL(string: "/")!, statusCode: 200, httpVersion: nil, headerFields: nil)), "default")
+        XCTAssertEqual(from(response: HTTPURLResponse(url: URL(string: "/")!, statusCode: 200, httpVersion: nil, headerFields: nil)), "There was an unexpected error. Please try again.")
         XCTAssertEqual(from(response: HTTPURLResponse(url: URL(string: "/")!, statusCode: 400, httpVersion: nil, headerFields: nil)), "There was an unexpected error. Please try again.")
     }
 
@@ -87,4 +87,37 @@ class APIErrorTests: XCTestCase {
         guard case .unauthorized = apiError else { XCTFail("Error is not an APIError.unauthorized"); return }
         XCTAssertEqual(apiError.localizedDescription, "Benutzer ist zu dieser Aktion nicht berechtigt.")
     }
+
+    func testUnauthorized() {
+        let response = HTTPURLResponse(url: URL(string: "/")!, statusCode: 401, httpVersion: nil, headerFields: nil)
+        let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
+
+        let nsError = error as NSError
+        XCTAssertEqual(nsError.code, HttpError.unauthorized)
+    }
+
+    func testForbidden() {
+        let response = HTTPURLResponse(url: URL(string: "/")!, statusCode: 403, httpVersion: nil, headerFields: nil)
+        let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
+
+        let nsError = error as NSError
+        XCTAssertEqual(nsError.code, HttpError.forbidden)
+    }
+
+    func testNotFound() {
+        let response = HTTPURLResponse(url: URL(string: "/")!, statusCode: 404, httpVersion: nil, headerFields: nil)
+        let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
+
+        let nsError = error as NSError
+        XCTAssertEqual(nsError.code, HttpError.notFound)
+    }
+
+    func testUnexpected() {
+        let response = HTTPURLResponse(url: URL(string: "/")!, statusCode: 500, httpVersion: nil, headerFields: nil)
+        let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
+
+        let nsError = error as NSError
+        XCTAssertEqual(nsError.code, HttpError.unexpected)
+    }
+
 }
