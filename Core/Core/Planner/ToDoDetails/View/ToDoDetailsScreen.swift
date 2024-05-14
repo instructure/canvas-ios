@@ -55,7 +55,7 @@ public struct ToDoDetailsScreen: View {
 
 #Preview {
     let plannable = Plannable.save(
-        .make(plannable: .init(
+        APIPlannable.make(plannable: .init(
                 details: """
                         The Assignment Details page displays the assignment title, points possible, submission\
                         status, and due date [1]. You can also view the assignment's submission types [2],\
@@ -64,8 +64,8 @@ public struct ToDoDetailsScreen: View {
                 title: "Submit Creative Machines and Innovative Instrumentation - ASTR 21400"
             )
         ),
-        in: PreviewEnvironment().database.viewContext,
-        userID: ""
+        userID: "",
+        in: PreviewEnvironment().database.viewContext
     )
     return ToDoDetailsScreen(viewModel: ToDoDetailsScreenViewModel(plannable: plannable))
 }
