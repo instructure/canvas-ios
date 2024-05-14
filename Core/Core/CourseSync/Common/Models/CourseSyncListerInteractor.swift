@@ -44,28 +44,36 @@ public class CourseSyncListInteractorLive: CourseSyncListInteractor {
 
         let shouldLimitResultsToCacheOnly = filter.shouldUseCache
         let publisher: AnyPublisher<[CourseSyncSelectorCourse], Error>
+        let isPublishedPredicate = NSPredicate(format: "%K != true", #keyPath(CourseSyncSelectorCourse.isUnpublished))
+        let orderDescriptor = NSSortDescriptor(key: #keyPath(CourseSyncSelectorCourse.name), ascending: true)
 
         switch filter {
         case let .courseId(courseId):
+            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(format: "%K == %@", #keyPath(CourseSyncSelectorCourse.courseId), courseId),
+                isPublishedPredicate,
+            ])
             courseListStore = ReactiveStore(
                 useCase: GetCourseSyncSelectorCourses(
-                    scope: .where(#keyPath(CourseSyncSelectorCourse.courseId), equals: courseId)
+                    scope: Scope(predicate: predicate, order: [orderDescriptor])
                 )
             )
             publisher = courseListStore.getEntities(ignoreCache: true)
         case .all:
             courseListStore = ReactiveStore(
-                useCase: GetCourseSyncSelectorCourses()
+                useCase: GetCourseSyncSelectorCourses(
+                    scope: Scope(predicate: isPublishedPredicate, order: [orderDescriptor])
+                )
             )
             publisher = courseListStore.getEntities(ignoreCache: true)
         case let .courseIds(courseIds):
-            let predicate = NSPredicate(format: "courseId IN %@", courseIds)
+            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(format: "courseId IN %@", courseIds),
+                isPublishedPredicate,
+            ])
             courseListStore = ReactiveStore(
                 useCase: GetCourseSyncSelectorCourses(
-                    scope: Scope(
-                        predicate: predicate,
-                        order: [NSSortDescriptor(key: #keyPath(CourseSyncSelectorCourse.name), ascending: true)]
-                    )
+                    scope: Scope(predicate: predicate, order: [orderDescriptor])
                 )
             )
             publisher = courseListStore.getEntitiesFromDatabase()

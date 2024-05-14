@@ -18,6 +18,13 @@
 
 import Foundation
 
+public enum HttpError {
+    static let unauthorized = 1000
+    static let forbidden = 1001
+    static let notFound = 1002
+    static let unexpected = 2000
+}
+
 public enum APIError: LocalizedError {
     case unauthorized(localizedMessage: String) // Permission issue even after a successful token refresh
 
@@ -37,13 +44,24 @@ public enum APIError: LocalizedError {
             }
 
             if let message = message {
-                return NSError.instructureError(message)
+                return NSError.instructureError(
+                    message,
+                    code: NSError.errorCodeForHttpResponse(response)
+                )
             }
         }
-        if let status = (response as? HTTPURLResponse)?.statusCode, status >= 400 {
-            return NSError.instructureError(String(localized: "There was an unexpected error. Please try again.", bundle: .core))
+
+        if let response {
+            return NSError.instructureError(
+                String(
+                    localized: "There was an unexpected error. Please try again.",
+                    bundle: .core
+                ),
+                code: NSError.errorCodeForHttpResponse(response)
+            )
+        } else {
+            return error
         }
-        return error
     }
 
     private static func extractMessage(from json: [String: Any]) -> String? {

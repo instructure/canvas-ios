@@ -32,6 +32,19 @@ extension NSError {
         return NSError(domain: Constants.domain, code: code, userInfo: [NSLocalizedDescriptionKey: errorMsg])
     }
 
+    public static func errorCodeForHttpResponse(_ response: URLResponse?) -> Int {
+        guard let response = response as? HTTPURLResponse else {
+            return 0
+        }
+        let status = response.statusCode
+        switch status {
+        case 401: return HttpError.unauthorized
+        case 403: return HttpError.forbidden
+        case 404: return HttpError.notFound
+        default: return HttpError.unexpected
+        }
+    }
+
     public var shouldRecordInCrashlytics: Bool {
         switch (domain, code) {
         case

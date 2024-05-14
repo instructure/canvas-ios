@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 
 extension Sequence where Element == URL {
     public var pathExtensions: Set<String> {
@@ -179,5 +180,17 @@ public extension URL {
         components.host = host
         components.scheme = scheme
         return components.url
+    }
+}
+
+public extension URL {
+    func mimeType() -> String {
+        let pathExtension = self.pathExtension
+        if let type = UTType(filenameExtension: pathExtension) {
+            if let mimetype = type.preferredMIMEType {
+                return mimetype as String
+            }
+        }
+        return "application/octet-stream"
     }
 }

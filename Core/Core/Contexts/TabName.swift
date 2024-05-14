@@ -34,6 +34,7 @@ public enum TabName: String, Codable {
     case outcomes
     case custom
     case grades
+    case additionalContent
 
     public static let OfflineSyncableTabs: [TabName] = [
         .assignments,
