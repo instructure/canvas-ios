@@ -50,7 +50,6 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
         let nameLabel = DetailsHelper.name.waitUntil(.visible)
         let pointsLabel = DetailsHelper.points.waitUntil(.visible)
         let publishedLabel = DetailsHelper.published.waitUntil(.visible)
@@ -59,7 +58,6 @@ class AssignmentsTests: E2ETestCase {
         let viewAllSubmissionsButton = DetailsHelper.viewAllSubmissionsButton.waitUntil(.visible)
         let oneNeedsGrading = DetailsHelper.oneNeedsGradingButton.waitUntil(.visible)
         let descriptionLabel = DetailsHelper.description(assignment: assignment).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
         XCTAssertTrue(nameLabel.isVisible)
         XCTAssertTrue(nameLabel.hasLabel(label: assignment.name))
         XCTAssertTrue(pointsLabel.isVisible)

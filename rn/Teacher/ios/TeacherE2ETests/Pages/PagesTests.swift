@@ -76,14 +76,16 @@ class PagesTests: E2ETestCase {
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
 
-        // MARK: Navigate to front page of course, Check deep link to assignment
+        // MARK: Navigate to front page of course
         Helper.navigateToFrontPage(course: course)
+
+        // MARK: Check deep link to assignment
         let assignmentDeepLink = app.find(labelContaining: assignment.name).waitUntil(.visible)
         XCTAssertTrue(assignmentDeepLink.isVisible)
 
         assignmentDeepLink.hit()
-        let assignmentDetailsNavBar = AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(assignmentDetailsNavBar.isVisible)
+        let assignmentDetailsNameLabel = AssignmentsHelper.Details.name.waitUntil(.visible)
+        XCTAssertTrue(assignmentDetailsNameLabel.isVisible)
 
         // MARK: Check deep link to discussion
         AssignmentsHelper.Details.backButton.hit()
