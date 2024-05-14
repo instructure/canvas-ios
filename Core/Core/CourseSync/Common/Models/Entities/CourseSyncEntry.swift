@@ -194,7 +194,7 @@ public struct CourseSyncEntry: Equatable {
     }
 
     var hasAdditionalContentError: Bool {
-        additionalContentDownloadResults.contains { !$0}
+        additionalContentDownloadResults.contains { !$0 }
     }
 
     typealias IsDownloadSuccessful = Bool
