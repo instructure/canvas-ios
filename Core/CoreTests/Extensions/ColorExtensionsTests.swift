@@ -16,29 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
+import XCTest
 
-public extension InstUI.Styles {
-    enum Padding: CGFloat {
-        case standard = 16
-        case cellTop = 12
-        case cellBottom = 14
-        /// The horizontal padding between a cell's leading icon and its text
-        case cellIconText = 18
-        case cellLeading = 22
-        case paragraphTop = 24
-        case paragraphBottom = 28
-        /// When displaying multiple Text components below each other we use this spacing to separate them
-        case textVertical = 4
-    }
-}
+class ColorExtensionsTests: XCTestCase {
 
-public extension View {
-
-    @inlinable func paddingStyle(
-        _ edges: Edge.Set = .all,
-        _ padding: InstUI.Styles.Padding? = nil
-    ) -> some View {
-        self.padding(edges, padding?.rawValue)
+    func testRandomColor() {
+        XCTAssertNotEqual(Color.random, Color.random)
     }
 }

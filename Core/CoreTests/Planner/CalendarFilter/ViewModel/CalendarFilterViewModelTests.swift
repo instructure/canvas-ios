@@ -50,28 +50,28 @@ class CalendarFilterViewModelTests: CoreTestCase {
     func testUpdatesRightNavButtonTitle() {
         let testee = CalendarFilterViewModel(interactor: mockInteractor, didDismissPicker: {})
 
-        mockInteractor.filterCountLimit.send(.limited(10))
+        mockInteractor.filterCountLimit.send(.base)
         mockInteractor.selectedContexts.send(Set())
-        XCTAssertEqual(testee.rightNavButtonTitle, nil)
+        XCTAssertEqual(testee.selectAllButtonTitle, nil)
 
-        mockInteractor.filterCountLimit.send(.limited(10))
+        mockInteractor.filterCountLimit.send(.base)
         mockInteractor.selectedContexts.send(Set([.course("1")]))
-        XCTAssertEqual(testee.rightNavButtonTitle, "Deselect all")
+        XCTAssertEqual(testee.selectAllButtonTitle, "Deselect all")
 
         mockInteractor.filterCountLimit.send(.unlimited)
         mockInteractor.selectedContexts.send(Set())
-        XCTAssertEqual(testee.rightNavButtonTitle, "Select all")
+        XCTAssertEqual(testee.selectAllButtonTitle, "Select all")
 
         mockInteractor.filterCountLimit.send(.unlimited)
         mockInteractor.selectedContexts.send(Set([.course("1")]))
-        XCTAssertEqual(testee.rightNavButtonTitle, "Deselect all")
+        XCTAssertEqual(testee.selectAllButtonTitle, "Deselect all")
     }
 
     func testShowsFilterLimitMessage() {
         let testee = CalendarFilterViewModel(interactor: mockInteractor, didDismissPicker: {})
 
-        mockInteractor.filterCountLimit.send(.limited(11))
-        XCTAssertEqual(testee.filterLimitMessage, "Select the calendars you want to see, up to 11.")
+        mockInteractor.filterCountLimit.send(.base)
+        XCTAssertEqual(testee.filterLimitMessage, "Select the calendars you want to see, up to 10.")
 
         mockInteractor.filterCountLimit.send(.unlimited)
         XCTAssertEqual(testee.filterLimitMessage, nil)
@@ -90,7 +90,7 @@ class CalendarFilterViewModelTests: CoreTestCase {
         mockInteractor.selectedContexts.send(Set([.group("g1")]))
 
         // WHEN
-        testee.didTapRightNavButton.send(())
+        testee.didTapSelectAllButton.send(())
 
         // THEN
         XCTAssertEqual(mockInteractor.receivedIsSelected, false)
@@ -100,7 +100,7 @@ class CalendarFilterViewModelTests: CoreTestCase {
         mockInteractor.selectedContexts.send(Set([]))
 
         // WHEN
-        testee.didTapRightNavButton.send(())
+        testee.didTapSelectAllButton.send(())
 
         // THEN
         XCTAssertEqual(mockInteractor.receivedIsSelected, true)
@@ -118,7 +118,7 @@ class CalendarFilterViewModelTests: CoreTestCase {
 
     func testShowsSnackBarIfFilterLimitReached() {
         let testee = CalendarFilterViewModel(interactor: mockInteractor, didDismissPicker: {})
-        mockInteractor.filterCountLimit.send(.limited(0))
+        mockInteractor.filterCountLimit.send(.base)
         let mockUpdatePublisher = PassthroughSubject<Void, Error>()
         mockInteractor.mockUpdateFilteredContextsResult = mockUpdatePublisher.eraseToAnyPublisher()
 
@@ -129,7 +129,7 @@ class CalendarFilterViewModelTests: CoreTestCase {
         mockUpdatePublisher.send(completion: .failure(NSError.internalError()))
 
         // THEN
-        XCTAssertEqual(testee.snackbarViewModel.visibleSnack, "You can only select up to 0 calendars.")
+        XCTAssertEqual(testee.snackbarViewModel.visibleSnack, "You can only select up to 10 calendars.")
     }
 
     func testForceRefresh() {

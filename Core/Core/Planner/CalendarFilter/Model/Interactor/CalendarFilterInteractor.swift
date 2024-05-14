@@ -103,8 +103,7 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         }
 
         if isSelected,
-           case .limited(let limit) = filterCountLimit.value,
-           selectedContexts.value.count >= limit {
+           selectedContexts.value.count >= filterCountLimit.value.rawValue {
             return Fail(error: NSError.internalError()).eraseToAnyPublisher()
         }
 
@@ -170,6 +169,6 @@ private extension Array where Element == CDCalendarFilterEntry {
 
     func defaultFilters(limit: CalendarFilterCountLimit) -> Set<Context> {
         let contexts = sorted().map { $0.context }
-        return Set(contexts.prefix(limit.count))
+        return Set(contexts.prefix(limit.rawValue))
     }
 }

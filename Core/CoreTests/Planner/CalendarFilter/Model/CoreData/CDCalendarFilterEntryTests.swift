@@ -31,4 +31,41 @@ class CDCalendarFilterEntryTests: CoreTestCase {
         XCTAssertEqual(testee.rawContextID, testContext.canvasContextID)
         XCTAssertEqual(testee.context, testContext)
     }
+
+    func testSort() {
+        let courseA: CDCalendarFilterEntry = databaseClient.insert()
+        courseA.context = .course("1")
+        courseA.name = "A"
+        let courseB: CDCalendarFilterEntry = databaseClient.insert()
+        courseB.context = .course("1")
+        courseB.name = "B"
+        let groupA: CDCalendarFilterEntry = databaseClient.insert()
+        groupA.context = .group("1")
+        groupA.name = "A"
+        let groupB: CDCalendarFilterEntry = databaseClient.insert()
+        groupB.context = .group("1")
+        groupB.name = "B"
+        let user: CDCalendarFilterEntry = databaseClient.insert()
+        user.context = .user("1")
+        user.name = "U"
+
+        var testee = [courseA, courseB, user, groupA, groupB].shuffled()
+
+        // WHEN
+        testee.sort()
+
+        // THEN
+        XCTAssertEqual(testee, [user, courseA, courseB, groupA, groupB])
+    }
+
+    func testColorFetch() {
+        let testee: CDCalendarFilterEntry = databaseClient.insert()
+        testee.context = .course("42")
+
+        let color: ContextColor = databaseClient.insert()
+        color.canvasContextID = "course_42"
+        color.colorRaw = UIColor.red.intValue
+
+        XCTAssertEqual(UIColor(testee.color).hexString, UIColor.red.hexString)
+    }
 }

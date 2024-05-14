@@ -56,9 +56,9 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
     private var selectAllButton: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
             Button {
-                viewModel.didTapRightNavButton.send()
+                viewModel.didTapSelectAllButton.send()
             } label: {
-                if let title = viewModel.rightNavButtonTitle {
+                if let title = viewModel.selectAllButtonTitle {
                     Text(title)
                 } else {
                     SwiftUI.EmptyView()

@@ -36,7 +36,7 @@ extension InstUI {
                 Button {
                     isSelected.toggle()
                 } label: {
-                    HStack(spacing: 18) {
+                    HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
                         InstUI.Checkbox(
                             isSelected: isSelected,
                             color: color
@@ -49,7 +49,7 @@ extension InstUI {
                             .frame(maxWidth: .infinity,
                                    alignment: .leading)
                     }
-                    .padding(.leading, 22)
+                    .paddingStyle(.leading, .cellLeading)
                     .paddingStyle(.trailing, .standard)
                     .paddingStyle(.top, .cellTop)
                     .paddingStyle(.bottom, .cellBottom)

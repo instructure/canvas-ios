@@ -25,7 +25,7 @@ public class CalendarFilterViewModel: ObservableObject {
     @Published public private(set) var courseFilters: [CDCalendarFilterEntry] = []
     @Published public private(set) var groupFilters: [CDCalendarFilterEntry] = []
     @Published public private(set) var selectedContexts = Set<Context>()
-    @Published public private(set) var rightNavButtonTitle: String?
+    @Published public private(set) var selectAllButtonTitle: String?
     @Published public private(set) var filterLimitMessage: String?
     public let pageTitle = String(localized: "Calendars", bundle: .core)
     public let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/filter")
@@ -33,7 +33,7 @@ public class CalendarFilterViewModel: ObservableObject {
 
     // MARK: - Inputs
     public let didToggleSelection = PassthroughSubject<(context: Context, isSelected: Bool), Never>()
-    public let didTapRightNavButton = PassthroughSubject<Void, Never>()
+    public let didTapSelectAllButton = PassthroughSubject<Void, Never>()
     public let didTapDoneButton = PassthroughSubject<UIViewController, Never>()
 
     private let interactor: CalendarFilterInteractor
@@ -87,7 +87,7 @@ public class CalendarFilterViewModel: ObservableObject {
                 interactor
                     .updateFilteredContexts([context], isSelected: isSelected)
                     .catch { _ in
-                        let limit = interactor.filterCountLimit.value.count
+                        let limit = interactor.filterCountLimit.value.rawValue
                         return snackbarViewModel.showFilterLimitReachedMessage(limit: limit)
                     }
             }
@@ -96,7 +96,7 @@ public class CalendarFilterViewModel: ObservableObject {
     }
 
     private func handleSelectAllActions() {
-        didTapRightNavButton
+        didTapSelectAllButton
             .compactMap { [weak self] _ -> ([Context], Bool)? in
                 guard let self else { return nil }
 
@@ -131,22 +131,22 @@ public class CalendarFilterViewModel: ObservableObject {
             interactor.filterCountLimit
         )
             .map { (selectedContexts, filterCountLimit) in
-                if case .limited = filterCountLimit, selectedContexts.isEmpty {
+                if filterCountLimit != .unlimited, selectedContexts.isEmpty {
                     return nil
                 }
 
                 return selectedContexts.isEmpty ? String(localized: "Select all", bundle: .core)
                                                 : String(localized: "Deselect all", bundle: .core)
             }
-            .assign(to: \.rightNavButtonTitle, on: self, ownership: .weak)
+            .assign(to: \.selectAllButtonTitle, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
         interactor
             .filterCountLimit
             .map { limit -> String? in
                 switch limit {
-                case .limited(let limit):
-                    return String(localized: "Select the calendars you want to see, up to \(limit).", bundle: .core)
+                case .base, .extended:
+                    return String(localized: "Select the calendars you want to see, up to \(limit.rawValue).", bundle: .core)
                 case .unlimited:
                     return nil
                 }

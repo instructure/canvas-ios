@@ -28,6 +28,8 @@ public extension Color {
         }
     }
 
+#if DEBUG
+
     static var random: Color {
         Color(
             red: .random(in: 0...1),
@@ -35,4 +37,6 @@ public extension Color {
             blue: .random(in: 0...1)
         )
     }
+
+#endif
 }

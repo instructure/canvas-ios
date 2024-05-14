@@ -87,6 +87,8 @@ extension UIColor {
         return (toInt(alpha) << 24) + (toInt(red) << 16) + (toInt(green) << 8) + toInt(blue)
     }
 
+#if DEBUG
+
     static var random: UIColor {
         UIColor(
             red: .random(in: 0...1),
@@ -95,6 +97,8 @@ extension UIColor {
             alpha: 1
         )
     }
+
+#endif
 
     // MARK: App Logo Colors
     public static var parentLogoColor = UIColor(hexString: "#008EE2")!
