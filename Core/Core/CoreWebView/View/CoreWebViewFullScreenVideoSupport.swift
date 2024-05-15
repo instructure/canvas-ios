@@ -33,7 +33,7 @@ extension CoreWebView {
         public init(webView: WKWebView) {
             originalConstraints = webView.superview?.constraintsAffecting(view: webView) ?? []
 
-            guard #available(iOSApplicationExtension 16.0, *) else {
+            guard #available(iOS 16.0, *) else {
                 return
             }
 
@@ -41,17 +41,11 @@ extension CoreWebView {
                 webView.translatesAutoresizingMaskIntoConstraints = true
                 webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                 webView.frame = webView.superview?.frame ?? .zero
-                webView.superview?.alpha = 0
-                UIView.animate(withDuration: 0.3) {
-                    webView.superview?.alpha = 1
-                }
             }
             let restoreOriginalConstraints: (WKWebView, [NSLayoutConstraint]) -> Void = { webView, constraints in
-                UIView.animate(withDuration: 0.3) {
-                    webView.translatesAutoresizingMaskIntoConstraints = false
-                    constraints.forEach { $0.isActive = true }
-                    webView.superview?.layoutIfNeeded()
-                }
+                webView.translatesAutoresizingMaskIntoConstraints = false
+                constraints.forEach { $0.isActive = true }
+                webView.superview?.layoutIfNeeded()
             }
             fullScreenObservation = webView.observe(\.fullscreenState, options: []) { [originalConstraints] webView, _  in
                 switch webView.fullscreenState {

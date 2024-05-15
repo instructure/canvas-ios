@@ -156,8 +156,8 @@ public class LTITools: NSObject {
     }
 
     public func presentTool(from view: UIViewController, animated: Bool = true, completionHandler: ((Bool) -> Void)? = nil) {
-        getSessionlessLaunch { [weak view] response in
-            guard let view = view else { return }
+        getSessionlessLaunch { [weak view, originalUrl = url, env] response in
+            guard let view else { return }
             guard let response = response else {
                 completionHandler?(false)
                 return
@@ -173,18 +173,11 @@ public class LTITools: NSObject {
                 self.env.router.show(controller, from: view, options: .modal(.overFullScreen, embedInNav: true, addDoneButton: true)) {
                     completionHandler(true)
                 }
-            } else if response.name?.contains("Studio") == true {
-                let controller = CoreWebViewController()
-                controller.webView.load(URLRequest(url: url))
-
-                self.env.router.show(
-                    controller,
+            } else if originalUrl?.absoluteString.contains("custom_arc_launch_type=global_nav") == true {
+                env.router.show(
+                    StudioViewController(url: url),
                     from: view,
-                    options: .modal(
-                        .overFullScreen,
-                        embedInNav: true,
-                        addDoneButton: true
-                    )
+                    options: .modal(.overFullScreen)
                 ) {
                     completionHandler(true)
                 }

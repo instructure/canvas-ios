@@ -27,7 +27,9 @@ public extension WKWebViewConfiguration {
     }
 
     func applyDefaultSettings() {
-        if #available(iOSApplicationExtension 16, *) {
+        if #available(iOS 17, *) {
+            // iOS 16 has issues with the webview's content size
+            // after exiting fullscreen mode so we allow only iOS 17
             preferences.isElementFullscreenEnabled = true
         }
         allowsInlineMediaPlayback = true
