@@ -64,7 +64,10 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
                 .eraseToAnyPublisher()
         }
 
-        return filterPublisher
+        return ReactiveStore(useCase: GetCustomColors())
+            .getEntities(ignoreCache: ignoreCache)
+            .mapToVoid()
+            .flatMap { filterPublisher }
             .flatMap { [isCalendarFilterLimitEnabled] filters in
                 Self.fetchFilterLimit(
                     isCalendarFilterLimitEnabled: isCalendarFilterLimitEnabled,
