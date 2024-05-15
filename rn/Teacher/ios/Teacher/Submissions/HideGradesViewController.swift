@@ -46,10 +46,10 @@ class HideGradesViewController: UIViewController {
         view.backgroundColor = .backgroundLightest
         allGradesHiddenView.backgroundColor = .backgroundLightest
         allGradesHiddenView.isHidden = true
-        allHiddenLabel.text = NSLocalizedString("All Hidden", comment: "")
-        allHiddenSubHeader.text = NSLocalizedString("All grades are currently hidden.", comment: "")
+        allHiddenLabel.text = String(localized: "All Hidden", bundle: .teacher)
+        allHiddenSubHeader.text = String(localized: "All grades are currently hidden.", bundle: .teacher)
 
-        hideGradesButton.setTitle(NSLocalizedString("Hide Grades", comment: ""), for: .normal)
+        hideGradesButton.setTitle(String(localized: "Hide Grades", bundle: .teacher), for: .normal)
 
         presenter.viewIsReady()
     }
@@ -80,7 +80,7 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
 
         if indexPath.row == 0 {
-            cell.textLabel?.text = NSLocalizedString("Specific Sections", comment: "")
+            cell.textLabel?.text = String(localized: "Specific Sections", bundle: .teacher)
             cell.selectionStyle = .none
             cell.toggle.isOn = showSections
             cell.toggle.accessibilityIdentifier = "PostPolicy.toggleHideGradeSections"
@@ -100,7 +100,7 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            let localizedFormat = NSLocalizedString("grades_currently_posted", comment: "number of grades hidden")
+            let localizedFormat = String(localized: "grades_currently_posted", bundle: .teacher, comment: "number of grades hidden")
             return String(format: localizedFormat, viewModel?.submissions.postedCount ?? 0)
         }
         return nil

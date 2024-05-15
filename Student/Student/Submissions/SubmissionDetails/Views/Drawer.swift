@@ -50,7 +50,7 @@ class Drawer: UIView {
 
     var fileCount: Int = 0 {
         didSet {
-            let title = String.localizedStringWithFormat(NSLocalizedString("Files (%d)", bundle: .student, comment: ""), fileCount)
+            let title = String.localizedStringWithFormat(String(localized: "Files (%d)", bundle: .student), fileCount)
             tabs?.setTitle(title, forSegmentAt: Tab.files.rawValue)
         }
     }
@@ -71,9 +71,9 @@ class Drawer: UIView {
 
         gripper?.layer.cornerRadius = 2
         updateGripperLabel(height: height)
-        tabs?.setTitle(NSLocalizedString("Comments", bundle: .student, comment: ""), forSegmentAt: Tab.comments.rawValue)
-        tabs?.setTitle(NSLocalizedString("Files", bundle: .student, comment: ""), forSegmentAt: Tab.files.rawValue)
-        tabs?.setTitle(NSLocalizedString("Rubric", bundle: .student, comment: ""), forSegmentAt: Tab.rubric.rawValue)
+        tabs?.setTitle(String(localized: "Comments", bundle: .student), forSegmentAt: Tab.comments.rawValue)
+        tabs?.setTitle(String(localized: "Files", bundle: .student), forSegmentAt: Tab.files.rawValue)
+        tabs?.setTitle(String(localized: "Rubric", bundle: .student), forSegmentAt: Tab.rubric.rawValue)
         tabs?.layer.cornerRadius = 0
         tabs?.layer.masksToBounds = false
     }
@@ -98,11 +98,11 @@ class Drawer: UIView {
 
     func updateGripperLabel(height: CGFloat) {
         if height == 2 {
-            gripper?.accessibilityLabel = NSLocalizedString("Drawer closed", bundle: .student, comment: "")
+            gripper?.accessibilityLabel = String(localized: "Drawer closed", bundle: .student)
         } else if height == midDrawerHeight {
-            gripper?.accessibilityLabel = NSLocalizedString("Drawer partially opened", bundle: .student, comment: "")
+            gripper?.accessibilityLabel = String(localized: "Drawer partially opened", bundle: .student)
         } else if height == maxDrawerHeight {
-            gripper?.accessibilityLabel = NSLocalizedString("Drawer fully open", bundle: .student, comment: "")
+            gripper?.accessibilityLabel = String(localized: "Drawer fully open", bundle: .student)
         }
     }
 

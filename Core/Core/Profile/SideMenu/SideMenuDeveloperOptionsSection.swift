@@ -32,13 +32,13 @@ struct SideMenuDeveloperOptionsSection: View {
                 SideMenuItem(
                     id: "networkAvailabilityStatus",
                     image: .attendance,
-                    title: Text("Connected via \(connectionType.rawValue.capitalized)")
+                    title: Text("Connected via \(connectionType.rawValue.capitalized)", bundle: .core)
                 )
             case .disconnected:
                 SideMenuItem(
                     id: "networkAvailabilityStatus",
                     image: .attendance,
-                    title: Text("Disconnected")
+                    title: Text("Disconnected", bundle: .core)
                 )
                 .foregroundColor(.red)
             }

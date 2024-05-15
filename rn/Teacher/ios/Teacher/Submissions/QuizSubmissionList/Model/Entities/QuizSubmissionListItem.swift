@@ -21,29 +21,48 @@ import Core
 public struct QuizSubmissionListItem: Equatable {
     public let id: String
     public let displayName: String
-    public let name: String
+    public let name: String?
     public let status: QuizSubmissionWorkflowState
     public let score: String?
     public let avatarURL: URL?
 
-    public static func make(users: [QuizSubmissionUser], submissions: [QuizSubmission]) -> [QuizSubmissionListItem] {
-        users.map { user in
+    public static func make(
+        users: [QuizSubmissionUser],
+        submissions: [QuizSubmission],
+        isAnonymous: Bool
+    ) -> [QuizSubmissionListItem] {
+        users.enumerated().map { index, user in
             var status: QuizSubmissionWorkflowState = .untaken
             var score: String?
-            if let submission = submissions.first(where: {$0.userID == user.id}) {
+            if let submission = submissions.first(where: { $0.userID == user.id }) {
                 status = submission.workflowState
                 if let submissionScore = submission.score {
                     let truncated = GradeFormatter.truncate(submissionScore)
                     score = String(truncated.stringValue)
                 }
             }
+
+            let displayName: String
+            let avatarURL: URL?
+            let name: String?
+
+            if isAnonymous {
+                displayName = String(localized: "Student \(index + 1)", bundle: .teacher)
+                avatarURL = nil
+                name = nil
+            } else {
+                displayName = User.displayName(user.name, pronouns: user.pronouns)
+                avatarURL = user.avatarURL
+                name = user.name
+            }
+
             return QuizSubmissionListItem(
                 id: user.id,
-                displayName: User.displayName(user.name, pronouns: user.pronouns),
-                name: user.name,
+                displayName: displayName,
+                name: name,
                 status: status,
                 score: score,
-                avatarURL: user.avatarURL
+                avatarURL: avatarURL
             )
         }
     }
@@ -52,20 +71,19 @@ public struct QuizSubmissionListItem: Equatable {
 #if DEBUG
 
 public extension QuizSubmissionListItem {
-    static func make(id: String = "0")
-    -> QuizSubmissionListItem {
+    static func make(id _: String = "0")
+        -> QuizSubmissionListItem {
         let mockObject = QuizSubmissionListItem(id: "1", displayName: "Student", name: "Student", status: .complete, score: "5", avatarURL: nil)
         return mockObject
     }
 }
 
 public extension Array where Element == QuizSubmissionListItem {
-
     static func make(count: Int)
-    -> [QuizSubmissionListItem] {
-        (0..<count).reduce(into: [], { partialResult, index in
+        -> [QuizSubmissionListItem] {
+        (0 ..< count).reduce(into: []) { partialResult, index in
             partialResult.append(.make(id: "\(index)"))
-        })
+        }
     }
 }
 

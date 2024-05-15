@@ -33,7 +33,7 @@ class SubmissionCommentAudioCell: UITableViewCell {
     func update(comment: SubmissionComment, parent: UIViewController) {
         accessibilityIdentifier = "SubmissionComments.audioCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(
-            NSLocalizedString("On %@ %@ left an audio comment", bundle: .student, comment: ""),
+            String(localized: "On %@ %@ left an audio comment", bundle: .student),
             comment.createdAtLocalizedString,
             comment.authorName
         )

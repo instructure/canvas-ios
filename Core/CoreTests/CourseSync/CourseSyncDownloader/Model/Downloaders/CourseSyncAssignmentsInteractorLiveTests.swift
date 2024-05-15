@@ -23,7 +23,7 @@ import XCTest
 
 class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
     func testAssignments() {
-        let testee = CourseSyncAssignmentsInteractorLive()
+        let testee = CourseSyncAssignmentsInteractorLive(htmlParser: getHTMLParser())
         let expectation = expectation(description: "Publisher sends value")
 
         api.mock(
@@ -79,7 +79,7 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
     }
 
     func testAssignmentErrorHandling() {
-        let testee = CourseSyncAssignmentsInteractorLive()
+        let testee = CourseSyncAssignmentsInteractorLive(htmlParser: getHTMLParser())
         let expectation = expectation(description: "Publisher sends value")
 
         api.mock(GetAssignmentGroups(courseID: "1"), error: NSError.instructureError("Assignments not found"))
@@ -104,7 +104,7 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
     }
 
     func testSubmissionCommentErrorHandling() {
-        let testee = CourseSyncAssignmentsInteractorLive()
+        let testee = CourseSyncAssignmentsInteractorLive(htmlParser: getHTMLParser())
         let expectation = expectation(description: "Publisher sends value")
 
         api.mock(
@@ -147,5 +147,10 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
         )
         XCTAssertEqual(submissionCommentList.count, 0)
         subscription.cancel()
+    }
+
+    private func getHTMLParser() -> HTMLParser {
+        let interactor = HTMLDownloadInteractorMock()
+        return HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor)
     }
 }

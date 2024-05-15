@@ -125,54 +125,54 @@ private enum ModulePublishMenuModel {
 
     enum AllModules {
         static let publishWithItems = ModulePublishItem(
-            title: String(localized: "Publish All Modules And Items"),
-            confirmMessage: String(localized: "This will make all modules and items visible to students."),
+            title: String(localized: "Publish All Modules And Items", bundle: .core),
+            confirmMessage: String(localized: "This will make all modules and items visible to students.", bundle: .core),
             action: .publish(.modulesAndItems)
         )
 
         static let publishWithoutItems = ModulePublishItem(
-            title: String(localized: "Publish Modules Only"),
-            confirmMessage: String(localized: "This will make only the modules visible to students."),
+            title: String(localized: "Publish Modules Only", bundle: .core),
+            confirmMessage: String(localized: "This will make only the modules visible to students.", bundle: .core),
             action: .publish(.onlyModules)
         )
 
         static let unpublishWithItems = ModulePublishItem(
-            title: String(localized: "Unpublish All Modules And Items"),
-            confirmMessage: String(localized: "This will make all modules and items invisible to students."),
+            title: String(localized: "Unpublish All Modules And Items", bundle: .core),
+            confirmMessage: String(localized: "This will make all modules and items invisible to students.", bundle: .core),
             action: .unpublish(.modulesAndItems)
         )
     }
 
     enum Module {
         static let publishWithItems = ModulePublishItem(
-            title: String(localized: "Publish Module And All Items"),
-            confirmMessage: String(localized: "This will make the module and all items visible to students."),
+            title: String(localized: "Publish Module And All Items", bundle: .core),
+            confirmMessage: String(localized: "This will make the module and all items visible to students.", bundle: .core),
             action: .publish(.modulesAndItems)
         )
 
         static let publishWithoutItems = ModulePublishItem(
-            title: String(localized: "Publish Module Only"),
-            confirmMessage: String(localized: "This will make only the module visible to students."),
+            title: String(localized: "Publish Module Only", bundle: .core),
+            confirmMessage: String(localized: "This will make only the module visible to students.", bundle: .core),
             action: .publish(.onlyModules)
         )
 
         static let unpublishWithItems = ModulePublishItem(
-            title: String(localized: "Unpublish Module And All Items"),
-            confirmMessage: String(localized: "This will make the module and all items invisible to students."),
+            title: String(localized: "Unpublish Module And All Items", bundle: .core),
+            confirmMessage: String(localized: "This will make the module and all items invisible to students.", bundle: .core),
             action: .unpublish(.modulesAndItems)
         )
     }
 
     enum Item {
         static let publish = ModulePublishItem(
-            title: String(localized: "Publish"),
-            confirmMessage: String(localized: "This will make only this item visible to students."),
+            title: String(localized: "Publish", bundle: .core),
+            confirmMessage: String(localized: "This will make only this item visible to students.", bundle: .core),
             action: .publish
         )
 
         static let unpublish = ModulePublishItem(
-            title: String(localized: "Unpublish"),
-            confirmMessage: String(localized: "This will make only this item invisible to students."),
+            title: String(localized: "Unpublish", bundle: .core),
+            confirmMessage: String(localized: "This will make only this item invisible to students.", bundle: .core),
             action: .unpublish
         )
     }
@@ -275,7 +275,7 @@ private extension UIAlertController {
         addAction(AlertAction(modulePublishItem.action.alertConfirmation, style: .default) { _ in
             actionDidPerform()
         })
-        addAction(AlertAction(String(localized: "Cancel"), style: .cancel))
+        addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
     }
 }
 
@@ -283,15 +283,15 @@ private extension ModulePublishAction {
 
     var alertTitle: String {
         switch self {
-        case .publish: return String(localized: "Publish?")
-        case .unpublish: return String(localized: "Unpublish?")
+        case .publish: return String(localized: "Publish?", bundle: .core)
+        case .unpublish: return String(localized: "Unpublish?", bundle: .core)
         }
     }
 
     var alertConfirmation: String {
         switch self {
-        case .publish: return String(localized: "Publish")
-        case .unpublish: return String(localized: "Unpublish")
+        case .publish: return String(localized: "Publish", bundle: .core)
+        case .unpublish: return String(localized: "Unpublish", bundle: .core)
         }
     }
 }

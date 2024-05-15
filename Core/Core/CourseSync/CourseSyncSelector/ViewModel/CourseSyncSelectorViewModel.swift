@@ -38,25 +38,25 @@ class CourseSyncSelectorViewModel: ObservableObject {
     @Published public var isShowingConfirmationDialog = false
 
     public let confirmAlert = ConfirmationAlertViewModel(
-        title: NSLocalizedString("Sync Offline Content?", comment: ""),
+        title: String(localized: "Sync Offline Content?", bundle: .core),
         message: "", // Updated when selected item count changes
-        cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
-        confirmButtonTitle: NSLocalizedString("Sync", comment: ""),
+        cancelButtonTitle: String(localized: "Cancel", bundle: .core),
+        confirmButtonTitle: String(localized: "Sync", bundle: .core),
         isDestructive: false
     )
 
     public let labels = (
         noCourses: (
-            title: NSLocalizedString("No Courses", comment: ""),
-            message: NSLocalizedString("Your courses will be listed here, and then you can make them available for offline usage.", comment: "")
+            title: String(localized: "No Courses", bundle: .core),
+            message: String(localized: "Your courses will be listed here, and then you can make them available for offline usage.", bundle: .core)
         ),
         noItems: (
-            title: NSLocalizedString("No Course Content", comment: ""),
-            message: NSLocalizedString("The course content will be listed here, and then you can make them available for offline usage.", comment: "")
+            title: String(localized: "No Course Content", bundle: .core),
+            message: String(localized: "The course content will be listed here, and then you can make them available for offline usage.", bundle: .core)
         ),
         error: (
-            title: NSLocalizedString("Something went wrong", comment: ""),
-            message: NSLocalizedString("There was an unexpected error.", comment: "")
+            title: String(localized: "Something went wrong", bundle: .core),
+            message: String(localized: "There was an unexpected error.", bundle: .core)
         )
     )
 
@@ -121,8 +121,8 @@ class CourseSyncSelectorViewModel: ObservableObject {
         interactor
             .observeIsEverythingSelected()
             .map { $0
-                ? NSLocalizedString("Deselect All", comment: "")
-                : NSLocalizedString("Select All", comment: "")
+                ? String(localized: "Deselect All", bundle: .core)
+                : String(localized: "Select All", bundle: .core)
             }
             .assign(to: &$leftNavBarTitle)
     }
@@ -131,9 +131,8 @@ class CourseSyncSelectorViewModel: ObservableObject {
         interactor
             .observeSelectedSize()
             .map {
-                let template = NSLocalizedString(
-                    "This will sync ~%@ content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network.",
-                    comment: ""
+                let template = String(localized:
+                    "This will sync ~%@ content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network.", bundle: .core
                 )
                 return String.localizedStringWithFormat(template, $0.humanReadableFileSize)
             }
@@ -162,13 +161,23 @@ class CourseSyncSelectorViewModel: ObservableObject {
             }
             .flatMap { [weak self] view in
                 self?.state = .loading
-                return selectorInteractor.getSelectedCourseEntries()
-                    .delay(for: .milliseconds(500), scheduler: RunLoop.main)
-                    .receive(on: DispatchQueue.main)
-                    .handleEvents(receiveOutput: { entries in
-                        NotificationCenter.default.post(name: .OfflineSyncTriggered, object: entries)
-                        AppEnvironment.shared.router.dismiss(view)
-                    })
+
+                return Publishers.Zip(
+                    selectorInteractor.getDeselectedCourseIds()
+                        .delay(for: .milliseconds(500), scheduler: RunLoop.main)
+                        .receive(on: DispatchQueue.main)
+                        .handleEvents(receiveOutput: { entries in
+                            NotificationCenter.default.post(name: .OfflineSyncCleanTriggered, object: entries)
+                            AppEnvironment.shared.router.dismiss(view)
+                        }),
+                    selectorInteractor.getSelectedCourseEntries()
+                        .delay(for: .milliseconds(500), scheduler: RunLoop.main)
+                        .receive(on: DispatchQueue.main)
+                        .handleEvents(receiveOutput: { entries in
+                            NotificationCenter.default.post(name: .OfflineSyncTriggered, object: entries)
+                            AppEnvironment.shared.router.dismiss(view)
+                        })
+                ).eraseToAnyPublisher()
             }
             .sink()
             .store(in: &subscriptions)
@@ -194,6 +203,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
 
 extension Notification.Name {
     static let OfflineSyncTriggered = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncTriggered")
+    static let OfflineSyncCleanTriggered = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCleanTriggered")
     static let OfflineSyncCancelled = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCancelled")
     static let OfflineSyncCompleted = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCompleted")
 }

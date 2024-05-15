@@ -40,17 +40,17 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
             .map { progress in
                 if progress.isFinished {
                     if progress.error != nil {
-                        return .finishedWithError(title: NSLocalizedString("Offline Content Sync Failed", comment: ""),
-                                                  subtitle: NSLocalizedString("One or more files failed to sync. Check your internet connection and retry to submit.", comment: ""))
+                        return .finishedWithError(title: String(localized: "Offline Content Sync Failed", bundle: .core),
+                                                  subtitle: String(localized: "One or more files failed to sync. Check your internet connection and retry to submit.", bundle: .core))
                     } else {
-                        let format = NSLocalizedString("Success! Downloaded %@ of %@", comment: "")
+                        let format = String(localized: "Success! Downloaded %@ of %@", bundle: .core)
                         let message = String.localizedStringWithFormat(format,
                                                                        progress.bytesDownloaded.humanReadableFileSize,
                                                                        progress.bytesToDownload.humanReadableFileSize)
                         return .finishedSuccessfully(message: message, progress: 1)
                     }
                 } else {
-                    let format = NSLocalizedString("Downloading %@ of %@", bundle: .core, comment: "Downloading 42 GB of 64 GB")
+                    let format = String(localized: "Downloading %@ of %@", bundle: .core, comment: "Downloading 42 GB of 64 GB")
                     let message = String.localizedStringWithFormat(format,
                                                                    progress.bytesDownloaded.humanReadableFileSize,
                                                                    progress.bytesToDownload.humanReadableFileSize)

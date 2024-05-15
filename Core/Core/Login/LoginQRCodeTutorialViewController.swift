@@ -33,9 +33,9 @@ class LoginQRCodeTutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = NSLocalizedString("Locate QR Code", bundle: .core, comment: "")
+        navigationItem.title = String(localized: "Locate QR Code", bundle: .core)
         let next = UIBarButtonItem(
-            title: NSLocalizedString("Next", bundle: .core, comment: ""),
+            title: String(localized: "Next", bundle: .core),
             style: .plain,
             target: self,
             action: #selector(done(_:))

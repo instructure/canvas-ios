@@ -30,6 +30,7 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
         mockData = CurrentValueRelay<[CourseSyncEntry]>([
             .init(name: "Black Hole",
                   id: "0",
+                  hasFrontPage: false,
                   tabs: [
                       .init(id: "0", name: "Assignments", type: .assignments),
                       .init(id: "1", name: "Discussion", type: .assignments),
@@ -43,7 +44,7 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
                       .make(id: "1", displayName: "Intro Energy, Space and Time.mov"),
                   ],
                   isCollapsed: false),
-            .init(name: "Empty Course", id: "1", tabs: [], files: []),
+            .init(name: "Empty Course", id: "1", hasFrontPage: false, tabs: [], files: []),
         ])
     }
 
@@ -108,6 +109,15 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
 
     func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncEntry], Never> {
         mockData
+            .replaceEmpty(with: [])
+            .eraseToAnyPublisher()
+    }
+
+    func getDeselectedCourseIds() -> AnyPublisher<[String], Never> {
+        mockData
+            .map { entries in
+                entries.map { $0.courseId }
+            }
             .replaceEmpty(with: [])
             .eraseToAnyPublisher()
     }

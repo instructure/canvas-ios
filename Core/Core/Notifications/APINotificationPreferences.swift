@@ -31,26 +31,26 @@ public enum NotificationFrequency: String, CaseIterable, Codable {
     var name: String {
         switch self {
         case .immediately:
-            return NSLocalizedString("Immediately", bundle: .core, comment: "")
+            return String(localized: "Immediately", bundle: .core)
         case .daily:
-            return NSLocalizedString("Daily", bundle: .core, comment: "")
+            return String(localized: "Daily", bundle: .core)
         case .weekly:
-            return NSLocalizedString("Weekly", bundle: .core, comment: "")
+            return String(localized: "Weekly", bundle: .core)
         case .never:
-            return NSLocalizedString("Never", bundle: .core, comment: "")
+            return String(localized: "Never", bundle: .core)
         }
     }
 
     var label: String {
         switch self {
         case .immediately:
-            return NSLocalizedString("Notify me right away", bundle: .core, comment: "")
+            return String(localized: "Notify me right away", bundle: .core)
         case .daily:
-            return NSLocalizedString("Send daily summary", bundle: .core, comment: "")
+            return String(localized: "Send daily summary", bundle: .core)
         case .weekly:
-            return NSLocalizedString("Send weekly summary", bundle: .core, comment: "")
+            return String(localized: "Send weekly summary", bundle: .core)
         case .never:
-            return NSLocalizedString("Do not send me anything", bundle: .core, comment: "")
+            return String(localized: "Do not send me anything", bundle: .core)
         }
     }
 }

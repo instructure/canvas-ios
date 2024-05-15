@@ -26,9 +26,9 @@ final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifia
 
         var text: String {
             switch self {
-            case .uploading: return NSLocalizedString("Uploading Submission", comment: "")
-            case .success: return NSLocalizedString("Submission Uploaded", comment: "")
-            case .failure: return NSLocalizedString("Submission Failed", comment: "")
+            case .uploading: return String(localized: "Uploading Submission", bundle: .core)
+            case .success: return String(localized: "Submission Uploaded", bundle: .core)
+            case .failure: return String(localized: "Submission Failed", bundle: .core)
             }
         }
 

@@ -23,6 +23,14 @@ public struct InteractivePanda: View {
     private let title: Text?
     private let subtitle: Text?
 
+    public init(config: Config) {
+        self.init(
+            scene: config.scene,
+            title: config.title,
+            subtitle: config.subtitle
+        )
+    }
+
     public init(scene: PandaScene) {
         self.scene = scene
         self.title = nil

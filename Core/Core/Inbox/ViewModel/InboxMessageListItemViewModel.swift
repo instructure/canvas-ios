@@ -49,9 +49,9 @@ public struct InboxMessageListItemViewModel: Identifiable, Equatable {
                     message.message,
                     message.participantName,
                     message.date,
-                    message.isStarred ? NSLocalizedString("Starred", comment: "") : "",
-                    message.state == .unread ? NSLocalizedString("Unread", comment: "") : "",
-                    message.hasAttachment ? NSLocalizedString("Attachments available", comment: "") : "",
+                    message.isStarred ? String(localized: "Starred", bundle: .core) : "",
+                    message.state == .unread ? String(localized: "Unread", bundle: .core) : "",
+                    message.hasAttachment ? String(localized: "Attachments available", bundle: .core) : "",
                    ].joined(separator: ","))
         }()
     }

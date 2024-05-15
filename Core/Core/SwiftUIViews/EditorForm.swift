@@ -284,7 +284,7 @@ public struct DatePickerRow<Label: View>: View {
                         Button {
                             date = defaultDate
                         } label: {
-                            Text("Date")
+                            Text("Date", bundle: .core)
                                 .font(.regular17)
                                 .padding(.horizontal, 20)
                         }
@@ -292,7 +292,7 @@ public struct DatePickerRow<Label: View>: View {
                         Button {
                             date = defaultDate
                         } label: {
-                            Text("Time")
+                            Text("Time", bundle: .core)
                                 .font(.regular17)
                                 .padding(.horizontal, 20)
                         }

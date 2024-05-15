@@ -319,7 +319,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
                 .padding(.bottom, 50 - verticalSpacing) // group header already has a top padding
         case .error:
             ZStack {
-                Text("Something went wrong")
+                Text("Something went wrong", bundle: .core)
                     .font(.regular16).foregroundColor(.textDanger)
                     .multilineTextAlignment(.center)
                     .hidden()

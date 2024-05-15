@@ -70,6 +70,7 @@ class CourseSyncProgressViewModelTests: CoreTestCase {
     func testUpdateStateSucceeds() {
         let mockItem = CourseSyncEntry(name: "",
                                        id: "test",
+                                       hasFrontPage: false,
                                        tabs: [],
                                        files: [])
         mockProgressInteractor.courseSyncEntriesSubject.send([mockItem])
@@ -89,6 +90,7 @@ class CourseSyncProgressViewModelTests: CoreTestCase {
     func testUpdateStateDataWithErrorIsShownWhenFinished() {
         let mockItem = CourseSyncEntry(name: "",
                                        id: "test",
+                                       hasFrontPage: false,
                                        tabs: [],
                                        files: [])
         mockProgressInteractor.courseSyncEntriesSubject.send([mockItem])
@@ -116,6 +118,7 @@ class CourseSyncProgressViewModelTests: CoreTestCase {
     func testUpdateStateDataWithErrorIsNotShownUntilFinished() {
         let mockItem = CourseSyncEntry(name: "",
                                        id: "test",
+                                       hasFrontPage: false,
                                        tabs: [],
                                        files: [])
         mockProgressInteractor.courseSyncEntriesSubject.send([mockItem])

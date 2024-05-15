@@ -68,14 +68,14 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: NSLocalizedString("People", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "People", bundle: .core))
 
-        emptyMessageLabel.text = NSLocalizedString("We couldn’t find somebody like that.", bundle: .core, comment: "")
-        emptyTitleLabel.text = NSLocalizedString("No Results", bundle: .core, comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading people. Pull to refresh to try again.", bundle: .core, comment: "")
+        emptyMessageLabel.text = String(localized: "We couldn’t find somebody like that.", bundle: .core)
+        emptyTitleLabel.text = String(localized: "No Results", bundle: .core)
+        errorView.messageLabel.text = String(localized: "There was an error loading people. Pull to refresh to try again.", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
-        searchBar.placeholder = NSLocalizedString("Search", bundle: .core, comment: "")
+        searchBar.placeholder = String(localized: "Search", bundle: .core)
         searchBar.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
@@ -154,14 +154,14 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
             accessibilityFocusAfterReload = nil
             return updateUsers()
         }
-        let alert = UIAlertController(title: NSLocalizedString("Filter by:", bundle: .core, comment: ""), message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: String(localized: "Filter by:", bundle: .core), message: nil, preferredStyle: .actionSheet)
         for type in enrollmentTypes {
             alert.addAction(AlertAction(type.name, style: .default) { _ in
                 self.enrollmentType = type
                 self.updateUsers()
             })
         }
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = sender.bounds
         env.router.show(alert, from: self, options: .modal())
@@ -213,12 +213,12 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard context.contextType == .course else { return nil }
         let header: FilterHeaderView = tableView.dequeueHeaderFooter()
-        header.titleLabel.text = enrollmentType?.name ?? NSLocalizedString("All People", bundle: .core, comment: "")
+        header.titleLabel.text = enrollmentType?.name ?? String(localized: "All People", bundle: .core)
         header.filterButton.removeTarget(self, action: nil, for: .primaryActionTriggered)
         header.filterButton.addTarget(self, action: #selector(filter(_:)), for: .primaryActionTriggered)
         header.filterButton.setTitle(enrollmentType == nil
-            ? NSLocalizedString("Filter", bundle: .core, comment: "")
-            : NSLocalizedString("Clear filter", bundle: .core, comment: ""), for: .normal)
+            ? String(localized: "Filter", bundle: .core)
+            : String(localized: "Clear filter", bundle: .core), for: .normal)
         header.filterButton.setTitleColor(Brand.shared.linkColor, for: .normal)
         header.filterButton.makeUnavailableInOfflineMode()
         accessibilityFocusAfterReload = (enrollmentType != nil ? header.filterButton : nil)

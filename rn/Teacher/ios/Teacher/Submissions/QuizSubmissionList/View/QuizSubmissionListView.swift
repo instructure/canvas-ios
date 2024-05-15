@@ -47,7 +47,7 @@ public struct QuizSubmissionListView: View, ScreenViewTrackable {
                         case .empty:
                             emptyView(height: 0.9 * geometry.size.height)
                         case .error:
-                            Text("There was an error loading submissions. Pull to refresh to try again.")
+                            Text("There was an error loading submissions. Pull to refresh to try again.", bundle: .teacher)
                         case .loading:
                             SwiftUI.EmptyView()
                         }
@@ -68,15 +68,15 @@ public struct QuizSubmissionListView: View, ScreenViewTrackable {
         .navigationTitle(model.title, subtitle: model.subTitle)
         .navigationBarItems(trailing: messageUsersButton)
         .alert(isPresented: $model.showError) {
-            Alert(title: Text("Practice quizzes & surveys do not have detail views."))
+            Alert(title: Text("Practice quizzes & surveys do not have detail views.", bundle: .teacher))
         }
     }
 
     private func emptyView(height: CGFloat) -> some View {
         InteractivePanda(
             scene: ConferencesPanda(),
-            title: Text("No Submissions"),
-            subtitle: Text("It seems there aren't any valid submissions to grade."))
+            title: Text("No Submissions", bundle: .teacher),
+            subtitle: Text("It seems there aren't any valid submissions to grade.", bundle: .teacher))
         .frame(maxWidth: .infinity, minHeight: height, alignment: .center)
         .listRowBackground(SwiftUI.EmptyView())
         .listRowSeparator(.hidden)
@@ -100,13 +100,13 @@ public struct QuizSubmissionListView: View, ScreenViewTrackable {
             .foregroundColor(.textDarkest)
         }
         .actionSheet(isPresented: $model.isShowingFilterSelector) {
-            ActionSheet(title: Text("Filter by"), buttons: filterButtons)
+            ActionSheet(title: Text("Filter by", bundle: .teacher), buttons: filterButtons)
         }
         .frame(height: 81)
         .padding(.leading, 16)
         .padding(.trailing, 19)
         .background(Color.backgroundLightest)
-        .accessibilityLabel(Text("Filter submissions"))
+        .accessibilityLabel(Text("Filter submissions", bundle: .teacher))
         .accessibilityHint(Text(model.filter.localizedName))
     }
 
@@ -116,7 +116,7 @@ public struct QuizSubmissionListView: View, ScreenViewTrackable {
                 model.filterDidChange.send(filter)
             }
         }
-        let cancelButton = ActionSheet.Button.cancel(Text("Cancel"))
+        let cancelButton = ActionSheet.Button.cancel(Text("Cancel", bundle: .teacher))
         return filterButtons + [cancelButton]
     }
 
@@ -151,7 +151,7 @@ public struct QuizSubmissionListView: View, ScreenViewTrackable {
                 .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
         }
         .frame(width: 44, height: 44).padding(.leading, -6)
-        .accessibility(label: Text("Send message to users"))
+        .accessibility(label: Text("Send message to users", bundle: .teacher))
     }
 }
 

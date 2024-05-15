@@ -61,7 +61,7 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
             Analytics.shared.logEvent("assignments_loaded", parameters: ["count": assignments.count])
             result = .success(assignments)
         } else {
-            let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: "")
+            let errorMessage = error?.localizedDescription ?? String(localized: "Something went wrong", bundle: .core)
             Analytics.shared.logEvent("error_loading_assignments", parameters: ["error": errorMessage])
             Analytics.shared.logError(name: "Assignment list load failed", reason: error?.localizedDescription)
             result = .failure(errorMessage)

@@ -21,7 +21,7 @@ import SwiftUI
 public struct QuizSubmissionListItemViewModel: Identifiable, Equatable {
     public let id: String
     public let displayName: String
-    public let name: String
+    public let name: String?
     public let status: String
     public let statusColor: Color
     public let score: String?
@@ -33,10 +33,10 @@ public struct QuizSubmissionListItemViewModel: Identifiable, Equatable {
         self.displayName = item.displayName
         self.name = item.name
         if item.status == .untaken {
-            self.status = NSLocalizedString("Not Submitted", comment: "")
+            self.status = String(localized: "Not Submitted", bundle: .teacher)
             self.statusColor = .textDarkest
         } else {
-            self.status = NSLocalizedString("Submitted", comment: "")
+            self.status = String(localized: "Submitted", bundle: .teacher)
             self.statusColor = .textSuccess
 
         }

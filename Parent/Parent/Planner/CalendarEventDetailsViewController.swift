@@ -64,7 +64,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: NSLocalizedString("Event Details", comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Event Details", bundle: .parent))
         updateNavBar(subtitle: nil, color: ColorScheme.observee(studentID).color)
         webViewContainer.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: webViewContainer)
@@ -75,16 +75,16 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         scrollView.refreshControl = refreshControl
 
-        dateHeadingLabel.text = NSLocalizedString("Date", comment: "")
+        dateHeadingLabel.text = String(localized: "Date", bundle: .parent)
         dateLabel.text = ""
-        descriptionHeadingLabel.text = NSLocalizedString("Description", comment: "")
-        locationHeadingLabel.text = NSLocalizedString("Location", comment: "")
+        descriptionHeadingLabel.text = String(localized: "Description", bundle: .parent)
+        locationHeadingLabel.text = String(localized: "Location", bundle: .parent)
         locationView.isHidden = true
         titleLabel.text = ""
 
-        reminderHeadingLabel.text = NSLocalizedString("Remind Me", comment: "")
-        reminderMessageLabel.text = NSLocalizedString("Set a date and time to be notified of this event.", comment: "")
-        reminderSwitch.accessibilityLabel = NSLocalizedString("Remind Me", comment: "")
+        reminderHeadingLabel.text = String(localized: "Remind Me", bundle: .parent)
+        reminderMessageLabel.text = String(localized: "Set a date and time to be notified of this event.", bundle: .parent)
+        reminderSwitch.accessibilityLabel = String(localized: "Remind Me", bundle: .parent)
         reminderSwitch.isEnabled = false
         reminderDateButton.isEnabled = false
         reminderDateButton.isHidden = true

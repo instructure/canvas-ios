@@ -53,13 +53,13 @@ struct ModulePublishProgressView: View {
     private var titleText: Text {
         switch viewModel.title {
         case .allModulesAndItems:
-            Text("All Modules and Items")
+            Text("All Modules and Items", bundle: .core)
         case .allModules:
             Text("All Modules")
         case .selectedModuleAndItems:
-            Text("Selected Module and Items")
+            Text("Selected Module and Items", bundle: .core)
         case .selectedModule:
-            Text("Selected Module")
+            Text("Selected Module", bundle: .core)
         }
     }
 
@@ -69,17 +69,17 @@ struct ModulePublishProgressView: View {
             viewModel.didTapDismiss.send(viewController)
         } label: {
             Image.xLine.navigationBarButtonStyle()
-                .accessibilityLabel(Text("Dismiss"))
+                .accessibilityLabel(Text("Dismiss", bundle: .core))
         }
     }
 
     @ViewBuilder
     private var cancelButton: some View {
-        let snackBarTitle = String(localized: "Update cancelled")
+        let snackBarTitle = String(localized: "Update cancelled", bundle: .core)
         Button {
             viewModel.didTapCancel.send((viewController, snackBarTitle))
         } label: {
-            Text("Cancel").navigationBarButtonStyle()
+            Text("Cancel", bundle: .core).navigationBarButtonStyle()
         }
     }
 
@@ -88,7 +88,7 @@ struct ModulePublishProgressView: View {
         Button {
             viewModel.didTapDone.send(viewController)
         } label: {
-            Text("Done").navigationBarButtonStyle()
+            Text("Done", bundle: .core).navigationBarButtonStyle()
         }
     }
 
@@ -123,21 +123,21 @@ struct ModulePublishProgressView: View {
         switch viewModel.state {
         case .inProgress:
             if viewModel.isPublish {
-                return String(localized: "Publishing \(percentage)%")
+                return String(localized: "Publishing \(percentage)%", bundle: .core)
             } else {
-                return String(localized: "Unpublishing \(percentage)%")
+                return String(localized: "Unpublishing \(percentage)%", bundle: .core)
             }
         case .completed:
             if viewModel.isPublish {
-                return String(localized: "Published 100%")
+                return String(localized: "Published 100%", bundle: .core)
             } else {
-                return String(localized: "Unpublished 100%")
+                return String(localized: "Unpublished 100%", bundle: .core)
             }
         case .error:
             if forAccessibility {
-                return String(localized: "Update failed at \(percentage)%")
+                return String(localized: "Update failed at \(percentage)%", bundle: .core)
             } else {
-                return String(localized: "Update failed")
+                return String(localized: "Update failed", bundle: .core)
             }
         }
     }
@@ -147,15 +147,15 @@ struct ModulePublishProgressView: View {
     @ViewBuilder
     private var textArea: some View {
         VStack(spacing: 0) {
-            Text("This process could take a few minutes. You may close the modal or navigate away from the page during this process.")
+            Text("This process could take a few minutes. You may close the modal or navigate away from the page during this process.", bundle: .core)
                 .font(.regular16).foregroundStyle(Color.textDarkest)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 24)
-            Text("Note")
+            Text("Note", bundle: .core)
                 .font(.regular14).foregroundStyle(Color.textDark)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 4)
-            Text("Modules and items that have already been processed will not be reverted to their previous state when the process is discontinued.")
+            Text("Modules and items that have already been processed will not be reverted to their previous state when the process is discontinued.", bundle: .core)
                 .font(.regular16).foregroundStyle(Color.textDarkest)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }

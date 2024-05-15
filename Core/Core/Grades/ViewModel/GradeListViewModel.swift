@@ -54,10 +54,10 @@ public final class GradeListViewModel: ObservableObject {
     let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
     let didSelectAssignment = PassthroughRelay<(WeakViewController, Assignment)>()
     let confirmRevertAlertViewModel = ConfirmationAlertViewModel(
-        title: String(localized: "Revert to Official Score?"),
-        message: String(localized: "This will revert all your what-if scores in this course to the official score."),
-        cancelButtonTitle: String(localized: "Cancel"),
-        confirmButtonTitle: String(localized: "Revert"),
+        title: String(localized: "Revert to Official Score?", bundle: .core),
+        message: String(localized: "This will revert all your what-if scores in this course to the official score.", bundle: .core),
+        cancelButtonTitle: String(localized: "Cancel", bundle: .core),
+        confirmButtonTitle: String(localized: "Revert", bundle: .core),
         isDestructive: false
     )
 
@@ -113,7 +113,10 @@ public final class GradeListViewModel: ObservableObject {
 
         triggerRefresh.prepend((false, nil))
             .receive(on: scheduler)
-            .flatMapLatest { [unowned self] params in
+            .flatMapLatest { [weak self] params -> AnyPublisher<ViewState, Never> in
+                guard let self else {
+                    return Empty(completeImmediately: true).eraseToAnyPublisher()
+                }
                 let ignoreCache = params.0
                 let refreshCompletion = params.1
 
@@ -130,13 +133,16 @@ public final class GradeListViewModel: ObservableObject {
                 )
                 .first()
                 .receive(on: scheduler)
-                .map { [unowned self] listData -> ViewState in
+                .flatMap { [weak self] listData -> AnyPublisher<ViewState, Never> in
+                    guard let self else {
+                        return Empty(completeImmediately: true).eraseToAnyPublisher()
+                    }
                     lastKnownDataState = listData
 
                     if listData.assignmentSections.count == 0 {
-                        return ViewState.empty(listData)
+                        return Just(ViewState.empty(listData)).eraseToAnyPublisher()
                     } else {
-                        return ViewState.data(listData)
+                        return Just(ViewState.data(listData)).eraseToAnyPublisher()
                     }
                 }
                 .replaceError(with: .error)
@@ -145,6 +151,7 @@ public final class GradeListViewModel: ObservableObject {
                     return $0
                 }
                 .first()
+                .eraseToAnyPublisher()
             }
             .receive(on: scheduler)
             .assign(to: &$state)

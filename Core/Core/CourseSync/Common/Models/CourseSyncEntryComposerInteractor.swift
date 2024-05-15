@@ -52,7 +52,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
                     files.map {
                         CourseSyncEntry.File(
                             id: "courses/\(course.courseId)/files/\($0.id ?? Foundation.UUID().uuidString)",
-                            displayName: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
+                            displayName: $0.displayName ?? String(localized: "Unknown file", bundle: .core),
                             fileName: $0.filename,
                             url: $0.url!,
                             mimeClass: $0.mimeClass!,
@@ -65,6 +65,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
                     CourseSyncEntry(
                         name: course.name,
                         id: "courses/\(course.courseId)",
+                        hasFrontPage: course.hasFrontPage,
                         tabs: mappedTabs,
                         files: files
                     )
@@ -75,6 +76,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
                 CourseSyncEntry(
                     name: course.name,
                     id: "courses/\(course.courseId)",
+                    hasFrontPage: course.hasFrontPage,
                     tabs: mappedTabs,
                     files: []
                 )

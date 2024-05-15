@@ -16,8 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import Combine
 import CombineExt
+import CoreData
 
 public extension Publisher {
     func sink() -> AnyCancellable {

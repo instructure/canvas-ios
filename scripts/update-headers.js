@@ -42,6 +42,7 @@ const ignoreExps = [
   /node_modules/i,
   /jquery/i,
   /preact/i,
+  /templates/i,
 ]
 
 //                   optional header                                space    star block        hash or slash block       space

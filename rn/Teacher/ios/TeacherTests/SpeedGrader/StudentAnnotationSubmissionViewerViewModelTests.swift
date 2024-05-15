@@ -42,7 +42,7 @@ class StudentAnnotationSubmissionViewerViewModelTests: TeacherTestCase {
             testee.viewDidAppear()
         }, withExpectedUpdates: [
             nil,
-            .failure(NSError.instructureError(NSLocalizedString("Unknown Error", bundle: .core, comment: ""))),
+            .failure(NSError.instructureError(String(localized: "Unknown Error", bundle: .teacher))),
         ])
     }
 

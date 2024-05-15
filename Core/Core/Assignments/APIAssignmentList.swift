@@ -180,19 +180,19 @@ public struct APIAssignmentListAssignment: Codable, Equatable, Hashable {
 extension APIAssignmentListAssignment {
     public var formattedDueDate: String? {
         if let lockAt = lockAt, Clock.now > lockAt {
-            return NSLocalizedString("Availability: Closed", bundle: .core, comment: "")
+            return String(localized: "Availability: Closed", bundle: .core)
         }
 
         if let lockAt = lockAt, Clock.now > lockAt {
-            return NSLocalizedString("Closed", bundle: .core, comment: "")
+            return String(localized: "Closed", bundle: .core)
         }
 
         if let dueAt = dueAt {
-            let format = NSLocalizedString("Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>")
+            let format = String(localized: "Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>")
             return String.localizedStringWithFormat(format, dueAt.relativeDateTimeString)
         }
 
-        return NSLocalizedString("No Due Date", bundle: .core, comment: "")
+        return String(localized: "No Due Date", bundle: .core)
     }
 
     public var icon: UIImage? {

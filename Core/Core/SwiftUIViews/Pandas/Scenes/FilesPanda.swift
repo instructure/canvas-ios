@@ -26,6 +26,8 @@ public struct FilesPanda: PandaScene {
     }
     public var height: CGFloat { 130 }
     public var background: AnyView { AnyView(Drawer(self)) }
+
+    public init() {}
 }
 
 private struct Drawer: View {
