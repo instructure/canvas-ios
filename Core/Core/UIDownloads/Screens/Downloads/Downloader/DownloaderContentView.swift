@@ -39,7 +39,7 @@ struct DownloaderContentView: View {
     var body: some View {
         List {
             HStack {
-                Header(title: "Downloading")
+                HeaderView(title: "Downloading")
                 Button(
                     action: {
                         viewModel.pauseResumeAll()

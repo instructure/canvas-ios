@@ -137,7 +137,7 @@ public struct DownloadsView: View, Navigatable, DownloadsProgressBarHidden {
                 .background(Color.backgroundLightest)
             } else {
                 HStack {
-                    Header(title: "Downloading")
+                    HeaderView(title: "Downloading")
                     Button(
                         action: {
                             viewModel.pauseResumeAll()
@@ -160,7 +160,7 @@ public struct DownloadsView: View, Navigatable, DownloadsProgressBarHidden {
 
     private var courses: some View {
         SwiftUI.Group {
-            Header(title: "Courses")
+            HeaderView(title: "Courses")
             DownloadCoursesSectionView(viewModel: viewModel)
         }
         .listRowBackground(Color.backgroundLightest)
