@@ -1,4 +1,5 @@
 {
+  "originHash" : "86b76870a226968e740f43749faf5ff3dfe72ee9eebe6c2d22cc49b749b3c809",
   "pins" : [
     {
       "identity" : "aws-sdk-ios-spm",
@@ -52,15 +53,6 @@
       "state" : {
         "revision" : "ebb29dcd3181f11715b07b54dff909e3bdedba3b",
         "version" : "9.1.0"
-      }
-    },
-    {
-      "identity" : "intercom-ios-sp",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/intercom/intercom-ios-sp",
-      "state" : {
-        "revision" : "0c09d7086bf99dbf06288d61255298404f94c45b",
-        "version" : "16.5.6"
       }
     },
     {
@@ -154,5 +146,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
