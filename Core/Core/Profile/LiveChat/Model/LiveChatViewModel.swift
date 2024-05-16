@@ -201,7 +201,7 @@ class LiveChatViewModel: ObservableObject {
                 <script>
                     const formData = ###FORMDATA###;
                     window.XpertChatbotFrontend = {
-                        xpertKey: 'exec-ed-ss-olc-moodle',
+                        xpertKey: 'degrees-canvas-support',
                         configurations: {
                             chatApi: {
                                 payloadParams: {
