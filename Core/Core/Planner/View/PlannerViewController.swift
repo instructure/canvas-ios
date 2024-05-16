@@ -143,7 +143,8 @@ public class PlannerViewController: UIViewController {
 
     private func makeTodayIcon(text: String) -> UIImage {
         let size = CGSize(width: 24, height: 24) // matches original image size
-        let fontName: UIFont.Name = .regular12
+        // fixed as the rest of the navBar buttons
+        let font: UIFont = .applicationFont(ofSize: 10, weight: .regular) // somehow this matches `scaledNamedFont(.regular12)`
         let textY: CGFloat = 8 // centers text vertically for the size & font above
 
         let renderer = UIGraphicsImageRenderer(size: size)
@@ -152,7 +153,7 @@ public class PlannerViewController: UIViewController {
             paragraphStyle.alignment = .center
 
             let attributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.scaledNamedFont(fontName),
+                .font: font,
                 .paragraphStyle: paragraphStyle,
             ]
 
