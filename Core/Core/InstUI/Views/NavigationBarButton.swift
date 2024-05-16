@@ -19,14 +19,21 @@
 import SwiftUI
 
 extension InstUI {
+
     public struct NavigationBarButton: View {
-        @Environment(\.isEnabled) private var isEnabled: Bool
+        @Environment(\.isEnabled) private var isEnabledViaEnvironment: Bool
 
         private let label: String
+        private let isEnabledOverride: Bool?
         private let action: () -> Void
 
-        public init(label: String, action: @escaping () -> Void) {
+        private var isEnabled: Bool {
+            isEnabledOverride ?? isEnabledViaEnvironment
+        }
+
+        public init(label: String, isEnabled isEnabledOverride: Bool? = nil, action: @escaping () -> Void) {
             self.label = label
+            self.isEnabledOverride = isEnabledOverride
             self.action = action
         }
 
@@ -36,28 +43,30 @@ extension InstUI {
                 label: {
                     Text(label)
                         .font(.regular16, lineHeight: .fit)
-                        .foregroundStyle(isEnabled ? Color.textDarkest : Color.textDarkest.opacity(0.5))
+                        .foregroundStyle(isEnabled ? Color.textDarkest : Color.disabledGray)
                 }
             )
+            .environment(\.isEnabled, isEnabled)
         }
     }
 }
 
 extension InstUI.NavigationBarButton {
-    public static func cancel(action: @escaping () -> Void) -> Self {
-        .init(label: String(localized: "Cancel", bundle: .core), action: action)
+
+    public static func cancel(isEnabled isEnabledOverride: Bool? = nil, action: @escaping () -> Void) -> Self {
+        .init(label: String(localized: "Cancel", bundle: .core), isEnabled: isEnabledOverride, action: action)
     }
 
-    public static func done(action: @escaping () -> Void) -> Self {
-        .init(label: String(localized: "Done", bundle: .core), action: action)
+    public static func done(isEnabled isEnabledOverride: Bool? = nil, action: @escaping () -> Void) -> Self {
+        .init(label: String(localized: "Done", bundle: .core), isEnabled: isEnabledOverride, action: action)
     }
 
-    public static func add(action: @escaping () -> Void) -> Self {
-        .init(label: String(localized: "Add", bundle: .core), action: action)
+    public static func add(isEnabled isEnabledOverride: Bool? = nil, action: @escaping () -> Void) -> Self {
+        .init(label: String(localized: "Add", bundle: .core), isEnabled: isEnabledOverride, action: action)
     }
 
-    public static func save(action: @escaping () -> Void) -> Self {
-        .init(label: String(localized: "Save", bundle: .core), action: action)
+    public static func save(isEnabled isEnabledOverride: Bool? = nil, action: @escaping () -> Void) -> Self {
+        .init(label: String(localized: "Save", bundle: .core), isEnabled: isEnabledOverride, action: action)
     }
 }
 
@@ -66,8 +75,17 @@ extension InstUI.NavigationBarButton {
 #Preview {
     VStack {
         InstUI.NavigationBarButton.cancel(action: {})
+
         InstUI.NavigationBarButton.done(action: {})
             .disabled(true)
+
+        InstUI.NavigationBarButton.add(isEnabled: false, action: {})
+
+        InstUI.NavigationBarButton(label: "Enabled button", isEnabled: true, action: {})
+            .disabled(true)
+
+        InstUI.NavigationBarButton(label: "Disabled button", isEnabled: false, action: {})
+            .disabled(false)
     }
 }
 

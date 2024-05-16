@@ -32,10 +32,14 @@ final class CreateToDoViewModel: ObservableObject {
     @Published var calendar: String? // ???
     @Published var details: String?
 
+    var isAddButtonEnabled: Bool {
+        title.isNotEmpty
+    }
+
     // MARK: - Input
 
     let didTapCancel = PassthroughSubject<WeakViewController, Never>()
-    let didTapDone = PassthroughSubject<WeakViewController, Never>()
+    let didTapAdd = PassthroughSubject<WeakViewController, Never>()
 
     // MARK: - Private
 
@@ -54,7 +58,7 @@ final class CreateToDoViewModel: ObservableObject {
             .sink { router.dismiss($0) }
             .store(in: &subscriptions)
 
-        didTapDone
+        didTapAdd
             .sink { router.dismiss($0) }
             .store(in: &subscriptions)
     }

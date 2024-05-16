@@ -47,6 +47,7 @@ public extension UIColor {
     static let borderSuccess = UIColor(named: "borderSuccess", in: .core, compatibleWith: nil)!
     static let borderWarning = UIColor(named: "borderWarning", in: .core, compatibleWith: nil)!
     static let crimson = UIColor(named: "crimson", in: .core, compatibleWith: nil)!
+    static let disabledGray = UIColor(named: "disabledGray", in: .core, compatibleWith: nil)!
     static let electric = UIColor(named: "electric", in: .core, compatibleWith: nil)!
     static let electricHighContrast = UIColor(named: "electricHighContrast", in: .core, compatibleWith: nil)!
     static let fire = UIColor(named: "fire", in: .core, compatibleWith: nil)!
@@ -93,6 +94,7 @@ public extension Color {
     static let borderSuccess = Color("borderSuccess", bundle: .core)
     static let borderWarning = Color("borderWarning", bundle: .core)
     static let crimson = Color("crimson", bundle: .core)
+    static let disabledGray = Color("disabledGray", bundle: .core)
     static let electric = Color("electric", bundle: .core)
     static let electricHighContrast = Color("electricHighContrast", bundle: .core)
     static let fire = Color("fire", bundle: .core)

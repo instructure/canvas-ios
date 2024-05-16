@@ -34,8 +34,12 @@ struct CreateToDoScreen: View, ScreenViewTrackable {
         }
         .navigationTitle(viewModel.pageTitle)
         .navBarItems(
-            leading: .cancel { viewModel.didTapCancel.send(viewController) },
-            trailing: .add { viewModel.didTapDone.send(viewController) }
+            leading: .cancel {
+                viewModel.didTapCancel.send(viewController)
+            },
+            trailing: .add(isEnabled: viewModel.isAddButtonEnabled) {
+                viewModel.didTapAdd.send(viewController)
+            }
         )
     }
 }
