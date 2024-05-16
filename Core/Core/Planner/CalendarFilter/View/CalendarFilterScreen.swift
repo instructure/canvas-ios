@@ -55,14 +55,14 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
 
     private var selectAllButton: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
-            Button {
-                viewModel.didTapSelectAllButton.send()
-            } label: {
-                if let title = viewModel.selectAllButtonTitle {
+            if let title = viewModel.selectAllButtonTitle {
+                Button {
+                    viewModel.didTapSelectAllButton.send()
+                } label: {
                     Text(title)
-                } else {
-                    SwiftUI.EmptyView()
                 }
+            } else {
+                SwiftUI.EmptyView()
             }
         }
     }
