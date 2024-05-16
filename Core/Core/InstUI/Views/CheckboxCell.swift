@@ -57,23 +57,11 @@ extension InstUI {
                 }
                 InstUI.Divider()
             }
-            .accessibilityAddTraits(traits)
-        }
-
-        private var traits: AccessibilityTraits {
-            var traits = AccessibilityTraits()
-
-            if #available(iOS 17.0, *) {
-                _ = traits.insert([.isToggle])
-            } else {
-                _ = traits.insert(.isButton)
+            .accessibilityRepresentation {
+                Toggle(isOn: $isSelected) {
+                    Text(name)
+                }
             }
-
-            if isSelected {
-                _ = traits.insert(.isSelected)
-            }
-
-            return traits
         }
     }
 }

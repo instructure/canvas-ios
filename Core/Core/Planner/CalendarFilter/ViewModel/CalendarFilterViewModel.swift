@@ -106,9 +106,18 @@ public class CalendarFilterViewModel: ObservableObject {
                 return (allContexts, selectedContexts.isEmpty)
             }
             .flatMap { [interactor] (contexts, isSelect) in
-                interactor.updateFilteredContexts(contexts, isSelected: isSelect)
+                interactor
+                    .updateFilteredContexts(contexts, isSelected: isSelect)
+                    .mapToValue(isSelect)
             }
-            .sink()
+            .sink(receiveCompletion: { _ in
+                // There's no select all button when filter limit is available
+                // so the stream shouldn't fail bacause we reached the limit
+            }, receiveValue: { isSelected in
+                let announcement = isSelected ? String(localized: "All calendars selected", bundle: .core)
+                                              : String(localized: "All calendars deselected", bundle: .core)
+                UIAccessibility.announce(announcement)
+            })
             .store(in: &subscriptions)
     }
 
@@ -176,7 +185,7 @@ private extension SnackBarViewModel {
     func showFilterLimitReachedMessage(limit: Int) -> Future<Void, Never> {
         Future { [weak self] promise in
             let message = String(localized: "You can only select up to \(limit) calendars.", bundle: .core)
-            self?.showSnack(message)
+            self?.showSnack(message, swallowDuplicatedSnacks: true)
             promise(.success(()))
         }
     }
