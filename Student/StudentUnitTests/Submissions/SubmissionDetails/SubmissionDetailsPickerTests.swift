@@ -52,7 +52,7 @@ class SubmissionDetailsPickerTests: StudentTestCase {
         testee.loadViewIfNeeded()
 
         XCTAssertEqual(testee.picker!.dataSource?.pickerView(testee.picker!, numberOfRowsInComponent: 0), 2)
-        let noSubmissionDateTitle = NSLocalizedString("No Submission Date", bundle: .student, comment: "")
+        let noSubmissionDateTitle = String(localized: "No Submission Date", bundle: .student)
         XCTAssertNotEqual(testee.picker!.delegate?.pickerView?(testee.picker!, titleForRow: 0, forComponent: 0), noSubmissionDateTitle)
         XCTAssertNotEqual(testee.picker!.delegate?.pickerView?(testee.picker!, titleForRow: 1, forComponent: 0), noSubmissionDateTitle)
     }

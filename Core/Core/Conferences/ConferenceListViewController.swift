@@ -57,11 +57,11 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: NSLocalizedString("Conferences", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Conferences", bundle: .core))
 
-        emptyMessageLabel.text = NSLocalizedString("There are no conferences to display yet.", bundle: .core, comment: "")
-        emptyTitleLabel.text = NSLocalizedString("No Conferences", bundle: .core, comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading conferences. Pull to refresh to try again.", bundle: .core, comment: "")
+        emptyMessageLabel.text = String(localized: "There are no conferences to display yet.", bundle: .core)
+        emptyTitleLabel.text = String(localized: "No Conferences", bundle: .core)
+        errorView.messageLabel.text = String(localized: "There was an error loading conferences. Pull to refresh to try again.", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         tableView.backgroundColor = .backgroundLightest
@@ -130,8 +130,8 @@ extension ConferenceListViewController: UITableViewDataSource, UITableViewDelega
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
         view.titleLabel?.text = conferences[IndexPath(row: 0, section: section)]?.isConcluded == true
-            ? NSLocalizedString("Concluded Conferences", bundle: .core, comment: "")
-            : NSLocalizedString("New Conferences", bundle: .core, comment: "")
+            ? String(localized: "Concluded Conferences", bundle: .core)
+            : String(localized: "New Conferences", bundle: .core)
         view.titleLabel?.accessibilityIdentifier = "ConferencesList.header-\(section)"
         return view
     }

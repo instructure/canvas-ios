@@ -27,11 +27,11 @@ class CoreWebViewContentErrorViewModel: ObservableObject {
         let url = urlToOpenInBrowser.flatMap { URLComponents.parse($0) }
         let displayBrowserButton = (url != nil)
         let subtitle = {
-            var result = NSLocalizedString("Something went wrong beyond our control.", comment: "")
+            var result = String(localized: "Something went wrong beyond our control.", bundle: .core)
 
             if displayBrowserButton {
                 result.append("\n")
-                result.append(NSLocalizedString("You can try to open the page in a browser.", comment: ""))
+                result.append(String(localized: "You can try to open the page in a browser.", bundle: .core))
             }
 
             return result

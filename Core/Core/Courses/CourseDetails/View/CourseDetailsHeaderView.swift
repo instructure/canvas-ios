@@ -31,7 +31,7 @@ struct CourseDetailsHeaderView: View {
         ZStack {
             Color(viewModel.courseColor.resolvedColor(with: .light).darkenToEnsureContrast(against: .textLightest)).frame(width: width, height: viewModel.height)
             if let url = viewModel.imageURL {
-                RemoteImage(url, width: width, height: viewModel.height)
+                RemoteImage(url, width: width, height: viewModel.height, shouldHandleAnimatedGif: true)
                     .opacity(viewModel.imageOpacity)
                     .accessibility(hidden: true)
             }

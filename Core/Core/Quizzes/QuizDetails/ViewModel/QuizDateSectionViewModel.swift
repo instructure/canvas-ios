@@ -47,7 +47,7 @@ public class QuizDateSectionViewModel: DateSectionViewModelProtocol {
 
     public var forText: String {
         if allDatesDate?.base == true {
-            return NSLocalizedString("Everyone", bundle: .core, comment: "")
+            return String(localized: "Everyone", bundle: .core)
         } else {
             return allDatesDate?.title ?? "-"
         }

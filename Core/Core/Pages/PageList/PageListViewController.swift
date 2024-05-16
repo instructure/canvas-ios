@@ -76,16 +76,16 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: NSLocalizedString("Pages", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Pages", bundle: .core))
         if canCreatePage {
             let item = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(createPage))
             item.accessibilityIdentifier = "PageList.add"
             navigationItem.rightBarButtonItem = item
         }
 
-        emptyMessageLabel.text = NSLocalizedString("There are no pages to display yet.", bundle: .core, comment: "")
-        emptyTitleLabel.text = NSLocalizedString("No Pages", bundle: .core, comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading pages. Pull to refresh to try again.", bundle: .core, comment: "")
+        emptyMessageLabel.text = String(localized: "There are no pages to display yet.", bundle: .core)
+        emptyTitleLabel.text = String(localized: "No Pages", bundle: .core)
+        errorView.messageLabel.text = String(localized: "There was an error loading pages. Pull to refresh to try again.", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
@@ -275,7 +275,7 @@ class PageListFrontPageCell: UITableViewCell {
     func update(_ page: Page?) {
         backgroundColor = .backgroundLightest
         accessibilityIdentifier = "PageList.frontPage"
-        headingLabel.text = NSLocalizedString("Front Page", bundle: .core, comment: "")
+        headingLabel.text = String(localized: "Front Page", bundle: .core)
         headingLabel.accessibilityIdentifier = "PageList.frontPageHeading"
         titleLabel.text = page?.title
         titleLabel.accessibilityIdentifier = "PageList.frontPageTitle"

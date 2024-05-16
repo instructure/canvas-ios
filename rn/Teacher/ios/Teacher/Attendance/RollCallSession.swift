@@ -83,7 +83,7 @@ class RollCallSession: NSObject, WKNavigationDelegate {
             if let url = url {
                 self.launch(url: url)
             } else {
-                self.state = .error(attendanceError(message: NSLocalizedString("Failed to launch rollcall LTI tool.", comment: ""), code: 1))
+                self.state = .error(attendanceError(message: String(localized: "Failed to launch rollcall LTI tool.", bundle: .teacher), code: 1))
             }
         }
     }
@@ -126,7 +126,7 @@ class RollCallSession: NSObject, WKNavigationDelegate {
             } else if let message = dict?["error"], !message.isEmpty {
                 self.state = .error(attendanceError(message: message, code: 2))
             } else {
-                self.state = .error(attendanceError(message: NSLocalizedString("Error: No data returned from the rollcall api.", comment: ""), code: 1))
+                self.state = .error(attendanceError(message: String(localized: "Error: No data returned from the rollcall api.", bundle: .teacher), code: 1))
             }
         }
     }
@@ -139,7 +139,7 @@ class RollCallSession: NSObject, WKNavigationDelegate {
         api.makeRequest(url) { [self] (data, _, error) in
             do {
                 guard let data = data else {
-                    return completed([], attendanceError(message: NSLocalizedString("Error: No data returned from the rollcall api.", comment: ""), code: 1))
+                    return completed([], attendanceError(message: String(localized: "Error: No data returned from the rollcall api.", bundle: .teacher), code: 1))
                 }
                 let statuses: [Status] = try decoder.decode([Status].self, from: data)
                 completed(statuses, nil)
@@ -172,7 +172,7 @@ class RollCallSession: NSObject, WKNavigationDelegate {
         api.makeRequest(request) { [self] (data, _, error) in
             guard let data = data else {
                 let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [
-                    NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error"),
+                    NSLocalizedDescriptionKey: String(localized: "Error: No data returned from the rollcall api.", bundle: .teacher, comment: "rollcall status error"),
                 ])
                 return completed(nil, error)
             }

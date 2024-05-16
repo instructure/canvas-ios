@@ -25,7 +25,11 @@ public extension CourseSyncAssignmentsInteractor {
 }
 
 public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInteractor, CourseSyncContentInteractor {
-    public init() {}
+    let htmlParser: HTMLParser
+
+    public init(htmlParser: HTMLParser) {
+        self.htmlParser = htmlParser
+    }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         ReactiveStore(
@@ -34,16 +38,27 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
         .getEntities(ignoreCache: true)
         .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
         .filter { $0.submission != nil }
-        .flatMap { Self.getSubmissionComments(courseID: courseId, assignmentID: $0.id, userID: $0.submission!.userID) }
+        .flatMap {[htmlParser] in Self.getSubmissionComments(courseID: courseId, assignmentID: $0.id, userID: $0.submission!.userID, htmlParser: htmlParser) }
         .collect()
         .map { _ in () }
         .eraseToAnyPublisher()
     }
 
+    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        let rootURL = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: htmlParser.sessionId,
+            courseId: courseId,
+            sectionName: htmlParser.sectionName
+        )
+
+        return FileManager.default.removeItemPublisher(at: rootURL)
+    }
+
     private static func getSubmissionComments(
         courseID: String,
         assignmentID: String,
-        userID: String
+        userID: String,
+        htmlParser: HTMLParser
     ) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetSubmissionComments(
@@ -53,6 +68,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
             )
         )
         .getEntities(ignoreCache: true)
+        .parseHtmlContent(attribute: \.comment, id: \.id, courseId: courseID, htmlParser: htmlParser)
         .map { _ in () }
         .eraseToAnyPublisher()
     }

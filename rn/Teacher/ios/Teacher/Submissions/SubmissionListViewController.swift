@@ -72,16 +72,16 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: NSLocalizedString("Submissions", comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Submissions", bundle: .teacher))
 
-        emptyMessageLabel.text = NSLocalizedString("It seems there aren't any valid submissions to grade.", comment: "")
-        emptyTitleLabel.text = NSLocalizedString("No Submissions", comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading submissions. Pull to refresh to try again.", comment: "")
+        emptyMessageLabel.text = String(localized: "It seems there aren't any valid submissions to grade.", bundle: .teacher)
+        emptyTitleLabel.text = String(localized: "No Submissions", bundle: .teacher)
+        errorView.messageLabel.text = String(localized: "There was an error loading submissions. Pull to refresh to try again.", bundle: .teacher)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         postPolicyButton.accessibilityIdentifier = "SubmissionsList.postPolicyButton"
-        postPolicyButton.accessibilityLabel = NSLocalizedString("Grade post policy", comment: "")
-        messageUsersButton.accessibilityLabel = NSLocalizedString("Send message to users", comment: "")
+        postPolicyButton.accessibilityLabel = String(localized: "Grade post policy", bundle: .teacher)
+        messageUsersButton.accessibilityLabel = String(localized: "Send message to users", bundle: .teacher)
 
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
@@ -180,13 +180,13 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
 extension SubmissionListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header: FilterHeaderView = tableView.dequeueHeaderFooter()
-        header.titleLabel.text = filter.isEmpty ? NSLocalizedString("All submissions", comment: "") :
+        header.titleLabel.text = filter.isEmpty ? String(localized: "All submissions", bundle: .teacher) :
             filter.compactMap { $0.name } .joined(separator: " - ")
         header.filterButton.removeTarget(self, action: nil, for: .primaryActionTriggered)
         header.filterButton.addTarget(self, action: #selector(showFilters), for: .primaryActionTriggered)
         header.filterButton.setTitle(
-            filter.isEmpty ? NSLocalizedString("Filter", comment: "") :
-                String.localizedStringWithFormat(NSLocalizedString("Filter (%d)", comment: ""), filter.count),
+            filter.isEmpty ? String(localized: "Filter", bundle: .teacher) :
+                String.localizedStringWithFormat(String(localized: "Filter (%d)", bundle: .teacher), filter.count),
             for: .normal
         )
         header.filterButton.setTitleColor(Brand.shared.linkColor, for: .normal)
@@ -199,7 +199,7 @@ extension SubmissionListViewController: UITableViewDataSource, UITableViewDelega
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SubmissionListCell = tableView.dequeue(for: indexPath)
-        cell.update(assignment.first, submission: submissions[indexPath])
+        cell.update(assignment.first, submission: submissions[indexPath], row: indexPath.row + 1)
         return cell
     }
 
@@ -226,22 +226,22 @@ class SubmissionListCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        needsGradingLabel.text = NSLocalizedString("Needs Grading", comment: "").localizedUppercase
+        needsGradingLabel.text = String(localized: "Needs Grading", bundle: .teacher).localizedUppercase
         needsGradingView.layer.borderColor = UIColor.borderInfo.cgColor
         needsGradingView.layer.borderWidth = 1
         needsGradingView.layer.cornerRadius = needsGradingView.frame.height / 2
     }
 
-    func update(_ assignment: Assignment?, submission: Submission?) {
+    func update(_ assignment: Assignment?, submission: Submission?, row: Int) {
         accessibilityIdentifier = "SubmissionListCell.\(submission?.userID ?? "")"
         backgroundColor = .backgroundLightest
         if assignment?.anonymizeStudents != false {
             if submission?.groupID != nil {
                 avatarView.icon = .groupLine
-                nameLabel.text = NSLocalizedString("Group", comment: "")
+                nameLabel.text = String(localized: "Group \(row)", bundle: .teacher)
             } else {
                 avatarView.icon = .userLine
-                nameLabel.text = NSLocalizedString("Student", comment: "")
+                nameLabel.text = String(localized: "Student \(row)", bundle: .teacher)
             }
         } else if let name = submission?.groupName {
             avatarView.name = name

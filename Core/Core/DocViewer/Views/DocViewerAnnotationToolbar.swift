@@ -34,7 +34,7 @@ public class DocViewerAnnotationToolbar: AnnotationToolbar {
         let dragButton = ToolbarSelectableButton()
         dragButton.image = .grab
         dragButton.isCollapsible = false
-        dragButton.accessibilityLabel = NSLocalizedString("Move Annotation", comment: "")
+        dragButton.accessibilityLabel = String(localized: "Move Annotation", bundle: .core)
         dragButton.selectionPadding = 4
         dragButtonStateUpdater = DragButtonStateViewModel(dragButton: dragButton, annotationStateManager: annotationStateManager)
 

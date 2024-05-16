@@ -20,9 +20,9 @@ import SwiftUI
 
 public class QuizPreviewViewModel: ObservableObject {
     @Published public var state: QuizPreviewInteractorState = .loading
-    public let navigationTitle = NSLocalizedString("Quiz Preview", comment: "")
-    public let errorTitle = NSLocalizedString("Something Went Wrong", comment: "")
-    public let errorDescription = NSLocalizedString("We couldn't load the quiz preview.\nPlease try again later.", comment: "")
+    public let navigationTitle = String(localized: "Quiz Preview", bundle: .core)
+    public let errorTitle = String(localized: "Something Went Wrong", bundle: .core)
+    public let errorDescription = String(localized: "We couldn't load the quiz preview.\nPlease try again later.", bundle: .core)
     /** After the submission the top of the page is the quiz properties so we scroll down to the results. */
     public let scrollToResultsJS =
     """

@@ -43,7 +43,7 @@ public class FilePicker: NSObject {
     public func pick(from: UIViewController) {
         let sheet = BottomSheetPickerViewController.create()
 
-        sheet.addAction(image: .audioLine, title: NSLocalizedString("Record Audio", bundle: .core, comment: "")) { [weak self] in
+        sheet.addAction(image: .audioLine, title: String(localized: "Record Audio", bundle: .core)) { [weak self] in
             let controller = AudioRecorderViewController.create()
             controller.delegate = self
             controller.view.backgroundColor = UIColor.backgroundLightest
@@ -52,7 +52,7 @@ public class FilePicker: NSObject {
         }
 
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            sheet.addAction(image: .cameraLine, title: NSLocalizedString("Use Camera", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(image: .cameraLine, title: String(localized: "Use Camera", bundle: .core)) { [weak self] in
                 let controller = UIImagePickerController()
                 controller.delegate = self
                 controller.sourceType = .camera
@@ -61,7 +61,7 @@ public class FilePicker: NSObject {
             }
         }
 
-        sheet.addAction(image: .paperclipLine, title: NSLocalizedString("Upload File", bundle: .core, comment: "")) { [weak self] in
+        sheet.addAction(image: .paperclipLine, title: String(localized: "Upload File", bundle: .core)) { [weak self] in
             // The asCopy: true ensures that file operations leave the original file untouched
             // and we can safely work (annotate for example) on a copy of the original file
             let controller = UIDocumentPickerViewController(forOpeningContentTypes: [.item], asCopy: true)
@@ -70,7 +70,7 @@ public class FilePicker: NSObject {
         }
 
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            sheet.addAction(image: .imageLine, title: NSLocalizedString("Photo Library", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(image: .imageLine, title: String(localized: "Photo Library", bundle: .core)) { [weak self] in
                 let controller = UIImagePickerController()
                 controller.delegate = self
                 controller.sourceType = .photoLibrary
@@ -86,12 +86,12 @@ public class FilePicker: NSObject {
         let sheet = BottomSheetPickerViewController.create()
 
         if file.uploadError != nil {
-            sheet.addAction(image: .refreshLine, title: NSLocalizedString("Retry", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(image: .refreshLine, title: String(localized: "Retry", bundle: .core)) { [weak self] in
                 self?.delegate?.filePicker(didRetry: file)
             }
         }
 
-        sheet.addAction(image: .trashLine, title: NSLocalizedString("Delete", bundle: .core, comment: "")) { [weak self] in
+        sheet.addAction(image: .trashLine, title: String(localized: "Delete", bundle: .core)) { [weak self] in
             if let id = file.id {
                 self?.env.api.makeRequest(DeleteFileRequest(fileID: id)) { _, _, error in performUIUpdate {
                     if let error = error {
@@ -176,10 +176,10 @@ extension FilePicker: FilePickerControllerDelegate {
         batchAction = action
         let uiViewController = FilePickerViewController.create()
         uiViewController.delegate = self
-        uiViewController.title = NSLocalizedString("Attachments", comment: "")
-        uiViewController.submitButtonTitle = NSLocalizedString("Send", comment: "")
+        uiViewController.title = String(localized: "Attachments", bundle: .core)
+        uiViewController.submitButtonTitle = String(localized: "Send", bundle: .core)
         uiViewController.loadViewIfNeeded()
-        uiViewController.emptyView.bodyText = NSLocalizedString("Attach files by tapping an option below.", comment: "")
+        uiViewController.emptyView.bodyText = String(localized: "Attach files by tapping an option below.", bundle: .core)
         env.router.show(uiViewController, from: from, options: .modal(embedInNav: true))
     }
 

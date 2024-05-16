@@ -26,6 +26,8 @@ public struct DiscussionsPanda: PandaScene {
     }
     public var height: CGFloat { 246 }
     public var background: AnyView { AnyView(Phone(imageName: backgroundFileName)) }
+
+    public init() {}
 }
 
 private struct Phone: View {

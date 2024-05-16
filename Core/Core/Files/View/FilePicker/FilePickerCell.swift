@@ -35,11 +35,11 @@ class FilePickerCell: UITableViewCell {
             backgroundColor = .backgroundLightest
             nameLabel.text = file?.localFileURL?.lastPathComponent
             if let filename = file?.filename {
-                removeButton.accessibilityLabel = String.localizedStringWithFormat(NSLocalizedString("Remove %@", bundle: .core, comment: ""), filename)
+                removeButton.accessibilityLabel = String.localizedStringWithFormat(String(localized: "Remove %@", bundle: .core), filename)
             }
             if file?.uploadError != nil {
                 errorIcon.isHidden = false
-                subtitleLabel.text = NSLocalizedString("Failed upload", bundle: .core, comment: "")
+                subtitleLabel.text = String(localized: "Failed upload", bundle: .core)
                 subtitleLabel.textColor = .textDanger
             } else {
                 errorIcon.isHidden = true

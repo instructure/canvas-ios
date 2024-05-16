@@ -37,8 +37,8 @@ struct ModuleFilePermissionEditorView: View {
             case .error:
                 InteractivePanda(
                     scene: FilesPanda(),
-                    title: Text("Something went wrong"),
-                    subtitle: Text("There was an unexpected error. Please try again.")
+                    title: Text("Something went wrong", bundle: .core),
+                    subtitle: Text("There was an unexpected error. Please try again.", bundle: .core)
                 )
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             case .data:
@@ -46,13 +46,13 @@ struct ModuleFilePermissionEditorView: View {
             }
         }
         .background(Color.backgroundLightest)
-        .navigationTitle(Text("Edit Permissions"))
+        .navigationTitle(Text("Edit Permissions", bundle: .core))
         .navigationBarItems(leading: cancelNavButton)
     }
 
     private var form: some View {
         EditorForm(isSpinning: viewModel.isUploading) {
-            EditorSection(label: Text("Availability")) {
+            EditorSection(label: Text("Availability", bundle: .core)) {
                 ForEach(FileAvailability.allCases) { availability in
                     let binding = Binding {
                         viewModel.availability == availability
@@ -69,7 +69,7 @@ struct ModuleFilePermissionEditorView: View {
                 }
             }
 
-            EditorSection(label: Text("Visibility")) {
+            EditorSection(label: Text("Visibility", bundle: .core)) {
                 ForEach(FileVisibility.allCases) { visibility in
                     let binding = Binding {
                         viewModel.visibility == visibility
@@ -86,8 +86,8 @@ struct ModuleFilePermissionEditorView: View {
         .navigationBarItems(trailing: doneNavButton)
         .alert(isPresented: $viewModel.showError) {
             Alert(
-                title: Text("Something went wrong"),
-                message: Text("There was an unexpected error. Please try again.")
+                title: Text("Something went wrong", bundle: .core),
+                message: Text("There was an unexpected error. Please try again.", bundle: .core)
             )
         }
     }
@@ -103,13 +103,13 @@ struct ModuleFilePermissionEditorView: View {
             DatePickerRow(date: fromBinding,
                           defaultDate: viewModel.defaultFromDate,
                           validUntil: viewModel.availableUntil?.addMinutes(-1) ?? .distantFuture,
-                          label: Text("From"))
+                          label: Text("From", bundle: .core))
             .animation(.default, value: viewModel.availableFrom)
             separator.padding(.leading, 16)
             DatePickerRow(date: untilBinding,
                           defaultDate: viewModel.defaultUntilDate,
                           validFrom: viewModel.availableFrom?.addMinutes(1) ?? .distantPast,
-                          label: Text("Until"))
+                          label: Text("Until", bundle: .core))
             .animation(.default, value: viewModel.availableUntil)
         }
         .transition(.move(edge: .top))
@@ -120,7 +120,7 @@ struct ModuleFilePermissionEditorView: View {
         Button {
             viewModel.cancelDidPress.send(viewController.value)
         } label: {
-            Text("Cancel")
+            Text("Cancel", bundle: .core)
         }
     }
 
@@ -128,7 +128,7 @@ struct ModuleFilePermissionEditorView: View {
         Button {
             viewModel.doneDidPress.send(viewController.value)
         } label: {
-            Text("Done")
+            Text("Done", bundle: .core)
         }
         .disabled(!viewModel.isDoneButtonActive)
     }
@@ -142,10 +142,10 @@ struct ModuleFilePermissionEditorView: View {
 private extension FileAvailability {
     var label: String {
         switch self {
-        case .published: return String(localized: "Publish")
-        case .unpublished: return String(localized: "Unpublish")
-        case .hidden: return String(localized: "Only Available With Link")
-        case .scheduledAvailability: return String(localized: "Schedule Availability")
+        case .published: return String(localized: "Publish", bundle: .core)
+        case .unpublished: return String(localized: "Unpublish", bundle: .core)
+        case .hidden: return String(localized: "Only Available With Link", bundle: .core)
+        case .scheduledAvailability: return String(localized: "Schedule Availability", bundle: .core)
         }
     }
 }

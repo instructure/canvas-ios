@@ -27,7 +27,7 @@ public class K5GradesViewModel: ObservableObject {
     private lazy var courses = env.subscribe(GetUserCourses(userID: studentID)) { [weak self] in
         self?.coursesUpdated()
     }
-    private let defaultCurrentGradingPeriod = K5GradingPeriod(periodID: nil, title: NSLocalizedString("Current Grading Period", bundle: .core, comment: ""))
+    private let defaultCurrentGradingPeriod = K5GradingPeriod(periodID: nil, title: String(localized: "Current Grading Period", bundle: .core))
 
     // MARK: Refresh
     private var refreshCompletion: (() -> Void)?

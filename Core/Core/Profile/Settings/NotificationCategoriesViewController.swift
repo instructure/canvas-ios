@@ -100,27 +100,27 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
     }
 
     lazy var categoryMap: [String: (Int, String, String)] = {
-        let courseActivities = NSLocalizedString("Course Activities", bundle: .core, comment: "")
-        let discussions = NSLocalizedString("Discussions", bundle: .core, comment: "")
-        let conversations = NSLocalizedString("Conversations", bundle: .core, comment: "")
-        let scheduling = NSLocalizedString("Scheduling", bundle: .core, comment: "")
-        let groups = NSLocalizedString("Groups", bundle: .core, comment: "")
-        let conferences = NSLocalizedString("Conferences", bundle: .core, comment: "")
-        let alerts = NSLocalizedString("Alerts", bundle: .core, comment: "")
+        let courseActivities = String(localized: "Course Activities", bundle: .core)
+        let discussions = String(localized: "Discussions", bundle: .core)
+        let conversations = String(localized: "Conversations", bundle: .core)
+        let scheduling = String(localized: "Scheduling", bundle: .core)
+        let groups = String(localized: "Groups", bundle: .core)
+        let conferences = String(localized: "Conferences", bundle: .core)
+        let alerts = String(localized: "Alerts", bundle: .core)
 
         var map = [
-            "announcement": (0, NSLocalizedString("Announcement", bundle: .core, comment: ""), courseActivities),
-            "appointment_availability": (3, NSLocalizedString("Appointment Availability", bundle: .core, comment: ""), scheduling),
-            "appointment_cancelations": (3, NSLocalizedString("Appointment Cancellations", bundle: .core, comment: ""), scheduling),
-            "calendar": (3, NSLocalizedString("Calendar", bundle: .core, comment: ""), scheduling),
-            "conversation_message": (2, NSLocalizedString("Conversation Message", bundle: .core, comment: ""), conversations),
-            "course_content": (0, NSLocalizedString("Course Content", bundle: .core, comment: ""), courseActivities),
-            "due_date": (0, NSLocalizedString("Due Date", bundle: .core, comment: ""), courseActivities),
-            "grading": (0, NSLocalizedString("Grading", bundle: .core, comment: ""), courseActivities),
-            "invitation": (0, NSLocalizedString("Invitation", bundle: .core, comment: ""), courseActivities),
-            "student_appointment_signups": (3, NSLocalizedString("Student Appointment Signups", bundle: .core, comment: ""), scheduling),
-            "submission_comment": (0, NSLocalizedString("Submission Comment", bundle: .core, comment: ""), courseActivities),
-            "discussion_mention": (1, NSLocalizedString("New Mention", bundle: .core, comment: ""), discussions),
+            "announcement": (0, String(localized: "Announcement", bundle: .core), courseActivities),
+            "appointment_availability": (3, String(localized: "Appointment Availability", bundle: .core), scheduling),
+            "appointment_cancelations": (3, String(localized: "Appointment Cancellations", bundle: .core), scheduling),
+            "calendar": (3, String(localized: "Calendar", bundle: .core), scheduling),
+            "conversation_message": (2, String(localized: "Conversation Message", bundle: .core), conversations),
+            "course_content": (0, String(localized: "Course Content", bundle: .core), courseActivities),
+            "due_date": (0, String(localized: "Due Date", bundle: .core), courseActivities),
+            "grading": (0, String(localized: "Grading", bundle: .core), courseActivities),
+            "invitation": (0, String(localized: "Invitation", bundle: .core), courseActivities),
+            "student_appointment_signups": (3, String(localized: "Student Appointment Signups", bundle: .core), scheduling),
+            "submission_comment": (0, String(localized: "Submission Comment", bundle: .core), courseActivities),
+            "discussion_mention": (1, String(localized: "New Mention", bundle: .core), discussions),
         ]
 
         if channelType == .push {
@@ -130,17 +130,17 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
         map.merge( [
             "all_submissions": (0, NSLocalizedString("All Submissions", bundle: .core, comment: ""), courseActivities),
             "announcement_created_by_you": (0, NSLocalizedString("Announcement Created By You", bundle: .core, comment: ""), courseActivities),
-            "added_to_conversation": (2, NSLocalizedString("Added To Conversation", bundle: .core, comment: ""), conversations),
-            "appointment_signups": (3, NSLocalizedString("Appointment Signups", bundle: .core, comment: ""), scheduling),
-            "conversation_created": (2, NSLocalizedString("Conversation Created By Me", bundle: .core, comment: ""), conversations),
-            "content_link_error": (5, NSLocalizedString("Content Link Error", bundle: .core, comment: ""), alerts),
-            "discussion": (1, NSLocalizedString("Discussion", bundle: .core, comment: ""), discussions),
-            "discussion_entry": (1, NSLocalizedString("Discussion Post", bundle: .core, comment: ""), discussions),
-            "files": (0, NSLocalizedString("Files", bundle: .core, comment: ""), courseActivities),
-            "grading_policies": (0, NSLocalizedString("Grading Policies", bundle: .core, comment: ""), courseActivities),
-            "late_grading": (0, NSLocalizedString("Late Grading", bundle: .core, comment: ""), courseActivities),
-            "membership_update": (4, NSLocalizedString("Membership Update", bundle: .core, comment: ""), groups),
-            "other": (5, NSLocalizedString("Administrative Notifications", bundle: .core, comment: ""), alerts),
+            "added_to_conversation": (2, String(localized: "Added To Conversation", bundle: .core), conversations),
+            "appointment_signups": (3, String(localized: "Appointment Signups", bundle: .core), scheduling),
+            "conversation_created": (2, String(localized: "Conversation Created By Me", bundle: .core), conversations),
+            "content_link_error": (5, String(localized: "Content Link Error", bundle: .core), alerts),
+            "discussion": (1, String(localized: "Discussion", bundle: .core), discussions),
+            "discussion_entry": (1, String(localized: "Discussion Post", bundle: .core), discussions),
+            "files": (0, String(localized: "Files", bundle: .core), courseActivities),
+            "grading_policies": (0, String(localized: "Grading Policies", bundle: .core), courseActivities),
+            "late_grading": (0, String(localized: "Late Grading", bundle: .core), courseActivities),
+            "membership_update": (4, String(localized: "Membership Update", bundle: .core), groups),
+            "other": (5, String(localized: "Administrative Notifications", bundle: .core), alerts),
         ]) { (_, new) in new }
         return map
     }()
@@ -162,7 +162,7 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard !isNotificationsEnabled else { return nil }
         let footer: GroupedSectionFooterView = tableView.dequeueHeaderFooter()
-        footer.titleLabel.text = NSLocalizedString("Notifications are currently disabled in Settings. Tap to enable them again.", bundle: .core, comment: "")
+        footer.titleLabel.text = String(localized: "Notifications are currently disabled in Settings. Tap to enable them again.", bundle: .core)
         return footer
     }
 
@@ -179,7 +179,7 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard isNotificationsEnabled else {
             let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
-            cell.textLabel?.text = NSLocalizedString("Enable Push Notifications", bundle: .core, comment: "")
+            cell.textLabel?.text = String(localized: "Enable Push Notifications", bundle: .core)
             cell.accessibilityIdentifier = "NotificationCategories.enableNotificationsCell"
             return cell
         }
@@ -242,7 +242,7 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
                 self?.showError(error)
             } else if response == nil {
                 self?.showError(NSError.instructureError(
-                    NSLocalizedString("Could not save notification preference", bundle: .core, comment: "")
+                    String(localized: "Could not save notification preference", bundle: .core)
                 ))
             }
         }

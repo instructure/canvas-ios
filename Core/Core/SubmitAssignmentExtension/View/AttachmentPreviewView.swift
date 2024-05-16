@@ -68,7 +68,7 @@ public struct AttachmentPreviewView: View {
                 .foregroundColor(.textDark)
                 .opacity(0.1)
                 .padding()
-            Text("No preview available", comment: "")
+            Text("No preview available", bundle: .core)
                 .font(.regular17)
                 .foregroundColor(.textDarkest)
         }

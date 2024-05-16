@@ -40,7 +40,7 @@ class PostSettingsViewController: HorizontalMenuViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        title = NSLocalizedString("Post Settings", comment: "")
+        title = String(localized: "Post Settings", bundle: .teacher)
 
         delegate = self
         configurePost()
@@ -48,7 +48,7 @@ class PostSettingsViewController: HorizontalMenuViewController {
 
         navigationController?.navigationBar.useModalStyle()
 
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: String(localized: "Back", bundle: .teacher), style: .plain, target: nil, action: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -90,9 +90,9 @@ extension PostSettingsViewController: HorizontalPagedMenuDelegate {
         guard let menuItem = MenuItem(rawValue: at.row) else { return "" }
         switch menuItem {
         case .post:
-            return NSLocalizedString("Post Grades", comment: "")
+            return String(localized: "Post Grades", bundle: .teacher)
         case .hide:
-            return NSLocalizedString("Hide Grades", comment: "")
+            return String(localized: "Hide Grades", bundle: .teacher)
         }
     }
 }

@@ -34,7 +34,7 @@ struct SubmissionFileList: View {
         GeometryReader { geometry in
             ScrollView {
                 if submission.type != .online_upload || files.isEmpty {
-                    EmptyPanda(.Papers, message: Text("This submission has no files."))
+                    EmptyPanda(.Papers, message: Text("This submission has no files.", bundle: .teacher))
                         .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
                 } else if #available(iOS 14, *) {
                     LazyVStack(alignment: .leading, spacing: 0) { list }

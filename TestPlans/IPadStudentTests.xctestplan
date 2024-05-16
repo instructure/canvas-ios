@@ -26,6 +26,7 @@
         "CalendarTests\/testRecurringEvent()",
         "CollaborationsTests",
         "ConferencesTests",
+        "CourseDetailsTests\/testCourseHomeDefaultView()",
         "DashboardTests\/testAnnouncementBelowInvite()",
         "DashboardTests\/testDashboardEditButtonDisplaysCorrectCourses()",
         "DashboardTests\/testNavigateToDashboard()",
@@ -57,7 +58,7 @@
       ],
       "target" : {
         "containerPath" : "container:Student.xcodeproj",
-        "identifier" : "E8C6F4CF23D626220086B865",
+        "identifier" : "A5253DAAB36ECE6D2EB5B620",
         "name" : "StudentE2ETests"
       }
     }

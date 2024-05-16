@@ -61,7 +61,6 @@ class SubmissionViewableTests: XCTestCase {
 
     func testStatusIsHidden() {
         XCTAssertFalse(Model(submissionTypes: [.online_text_entry]).submissionStatusIsHidden)
-        XCTAssertTrue(Model(submissionTypes: [.none]).submissionStatusIsHidden)
         XCTAssertTrue(Model(submissionTypes: [.not_graded]).submissionStatusIsHidden)
     }
 

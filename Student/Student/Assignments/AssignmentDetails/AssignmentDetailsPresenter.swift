@@ -106,10 +106,10 @@ class AssignmentDetailsPresenter {
         switch assignment.lockStatus {
         case .before:
             guard let unlockAt = assignment.unlockAt else { return "" }
-            return String.localizedStringWithFormat(NSLocalizedString("This assignment is locked until %@", comment: ""), unlockAt.dateTimeString)
+            return String.localizedStringWithFormat(String(localized: "This assignment is locked until %@", bundle: .student), unlockAt.dateTimeString)
         case .after:
             guard let lockAt = assignment.lockAt else { return "" }
-            return String.localizedStringWithFormat(NSLocalizedString("This assignment was locked %@", comment: ""), lockAt.dateTimeString)
+            return String.localizedStringWithFormat(String(localized: "This assignment was locked %@", bundle: .student), lockAt.dateTimeString)
         default:
             return assignment.lockExplanation ?? ""
         }
@@ -219,7 +219,7 @@ class AssignmentDetailsPresenter {
             guard isActive else { return [] }
             return validSubmissions.map { submission in
                 let attemptNumber = String.localizedStringWithFormat(
-                    NSLocalizedString("Attempt %d", bundle: .core, comment: ""),
+                    String(localized: "Attempt %d", bundle: .student),
                     submission.attempt
                 )
                 let date = submission.submittedAt?.dateTimeString ?? ""
@@ -236,7 +236,7 @@ class AssignmentDetailsPresenter {
 
     private func updateAttemptInfo(submission: Submission) {
         let attemptNumber = String.localizedStringWithFormat(
-            NSLocalizedString("Attempt %d", bundle: .core, comment: ""),
+            String(localized: "Attempt %d", bundle: .student),
             submission.attempt
         )
         view?.updateAttemptInfo(attemptNumber: attemptNumber)
@@ -405,6 +405,6 @@ class AssignmentDetailsPresenter {
 
     func assignmentDescription() -> String {
         if let desc = assignments.first?.descriptionHTML, !desc.isEmpty { return desc }
-        return NSLocalizedString("No Content", comment: "")
+        return String(localized: "No Content", bundle: .student)
     }
 }

@@ -27,7 +27,7 @@ public extension Array where Element == APIConversationParticipant {
             let sample = prefix(maxNamesCount - 1).map { $0.displayName.trimmingCharacters(in: .whitespacesAndNewlines) }
             let sampledNames = sample.joined(separator: ", ")
             let remainingNamesCount = count - sample.count
-            return NSLocalizedString("\(sampledNames) + \(remainingNamesCount) more", bundle: .core, comment: "(Alice, Bob) + (2) more")
+            return String(localized: "\(sampledNames) + \(remainingNamesCount) more", bundle: .core, comment: "(Alice, Bob) + (2) more")
         } else {
             return map(\.displayName).joined(separator: ", ")
         }

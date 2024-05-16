@@ -73,7 +73,14 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
     }
 
     func update() {
-        guard assignment.requested && !assignment.pending && submissions.requested && !submissions.pending && !submissions.hasNextPage else { return }
+        guard assignment.requested && !assignment.pending
+                && submissions.requested && !submissions.pending
+                && !submissions.hasNextPage
+                && enrollments.requested && !enrollments.pending
+                && !enrollments.hasNextPage
+        else {
+            return
+        }
 
         if !submissions.useCase.shuffled, assignment.first?.anonymizeStudents == true {
             submissions.useCase.shuffled = true
@@ -125,7 +132,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
     lazy var loadingView: UIViewController = CoreHostingController(
         ProgressView()
             .progressViewStyle(.indeterminateCircle())
-            .accessibility(label: Text("Loading"))
+            .accessibility(label: Text("Loading", bundle: .teacher))
             .identifier("SpeedGrader.spinner")
     )
 
@@ -142,8 +149,8 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
                     .identifier("SpeedGrader.emptyCloseButton")
             }
             EmptyPanda(.Space,
-                title: Text("No Submissions"),
-                message: Text("It seems there aren't any valid submissions to grade.")
+                title: Text("No Submissions", bundle: .teacher),
+                message: Text("It seems there aren't any valid submissions to grade.", bundle: .teacher)
             )
         }
     )

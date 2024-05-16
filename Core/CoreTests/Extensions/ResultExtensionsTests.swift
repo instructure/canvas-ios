@@ -21,13 +21,25 @@ import XCTest
 
 class ResultExtensionsTests: XCTestCase {
 
-    func testError() {
-        let testee: Result<Void, NSError> = .failure(NSError.instructureError("TestError"))
-        XCTAssertEqual(testee.error, NSError.instructureError("TestError"))
+    private enum TestConstants {
+        static let error = NSError.instructureError("TestError")
     }
 
-    func testErrorOnSuccess() {
-        let testee: Result<Void, NSError> = .success(())
-        XCTAssertNil(testee.error)
+    func testSuccess() {
+        let testee: Result<Int, NSError> = .success(42)
+
+        XCTAssertEqual(testee.value, 42)
+        XCTAssertEqual(testee.error, nil)
+        XCTAssertEqual(testee.isSuccess, true)
+        XCTAssertEqual(testee.isFailure, false)
+    }
+
+    func testFailure() {
+        let testee: Result<Int, NSError> = .failure(TestConstants.error)
+
+        XCTAssertEqual(testee.value, nil)
+        XCTAssertEqual(testee.error, TestConstants.error)
+        XCTAssertEqual(testee.isSuccess, false)
+        XCTAssertEqual(testee.isFailure, true)
     }
 }

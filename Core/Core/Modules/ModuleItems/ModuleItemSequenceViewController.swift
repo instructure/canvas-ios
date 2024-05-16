@@ -109,7 +109,7 @@ public final class ModuleItemSequenceViewController: UIViewController, Downloada
             return match
         } else {
             let external = ExternalURLViewController.create(
-                name: NSLocalizedString("Unsupported Item", bundle: .core, comment: ""),
+                name: String(localized: "Unsupported Item", bundle: .core),
                 url: url,
                 courseID: courseID
             )

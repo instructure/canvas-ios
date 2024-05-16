@@ -30,6 +30,7 @@ public struct WebView: UIViewRepresentable {
     private var configuration: WKWebViewConfiguration
     private let features: [CoreWebViewFeature]
     private var wkEvents: [String: (() -> Void)] = [:]
+    private let baseURL: URL?
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
@@ -42,18 +43,21 @@ public struct WebView: UIViewRepresentable {
                 configuration: WKWebViewConfiguration = .defaultConfiguration
     ) {
         source = url.map { .request(URLRequest(url: $0)) }
+        self.baseURL = nil
         self.features = features
         self.canToggleTheme = canToggleTheme
         self.configuration = configuration
     }
 
     public init(html: String?,
+                baseURL: URL? = nil,
                 features: [CoreWebViewFeature] = [],
                 canToggleTheme: Bool = false,
                 configuration: WKWebViewConfiguration = .defaultConfiguration,
                 wkEvents: [String: (() -> Void)] = [:]
     ) {
         source = html.map { .html($0) }
+        self.baseURL = baseURL
         self.features = features
         self.canToggleTheme = canToggleTheme
         self.configuration = configuration
@@ -66,6 +70,7 @@ public struct WebView: UIViewRepresentable {
                 configuration: WKWebViewConfiguration = .defaultConfiguration
     ) {
         source = .request(request)
+        self.baseURL = nil
         self.features = features
         self.canToggleTheme = canToggleTheme
         self.configuration = configuration
@@ -143,7 +148,8 @@ public struct WebView: UIViewRepresentable {
             context.coordinator.loaded = source
             switch source {
             case .html(let html):
-                webView.loadHTMLString(html)
+                webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
+                webView.loadHTMLString(html, baseURL: baseURL)
             case .request(let request):
                 webView.load(request)
             case nil:

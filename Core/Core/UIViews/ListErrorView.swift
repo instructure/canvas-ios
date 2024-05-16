@@ -34,7 +34,7 @@ public class ListErrorView: UIView {
 
     func commonInit() {
         loadFromXib()
-        retryButton.setTitle(NSLocalizedString("Retry", bundle: .core, comment: ""), for: .normal)
+        retryButton.setTitle(String(localized: "Retry", bundle: .core), for: .normal)
         retryButton.layer.borderColor = UIColor.borderDark.cgColor
     }
 }

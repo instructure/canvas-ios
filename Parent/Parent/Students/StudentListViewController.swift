@@ -52,12 +52,12 @@ class StudentListViewController: ScreenViewTrackableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("Manage Students", comment: "")
+        title = String(localized: "Manage Students", bundle: .parent)
         navigationItem.rightBarButtonItem = addStudentButton
 
-        emptyMessageLabel.text = NSLocalizedString("Add students at the top.", comment: "")
-        emptyTitleLabel.text = NSLocalizedString("No Students", comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading students. Pull to refresh to try again.", comment: "")
+        emptyMessageLabel.text = String(localized: "Add students at the top.", bundle: .parent)
+        emptyTitleLabel.text = String(localized: "No Students", bundle: .parent)
+        errorView.messageLabel.text = String(localized: "There was an error loading students. Pull to refresh to try again.", bundle: .parent)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)

@@ -25,7 +25,11 @@ public extension CourseSyncPagesInteractor {
 }
 
 public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, CourseSyncContentInteractor {
-    public init() {}
+    let htmlParser: HTMLParser
+
+    public init(htmlParser: HTMLParser) {
+        self.htmlParser = htmlParser
+    }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         Publishers.Zip(
@@ -34,15 +38,28 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
                     context: .course(courseId)
                 )
             )
-            .getEntities(ignoreCache: true),
+            .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser),
+
             ReactiveStore(
                 useCase: GetPages(
                     context: .course(courseId)
                 )
             )
             .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
         )
         .map { _ in () }
         .eraseToAnyPublisher()
+    }
+
+    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        let rootURL = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: htmlParser.sessionId,
+            courseId: courseId,
+            sectionName: htmlParser.sectionName
+        )
+
+        return FileManager.default.removeItemPublisher(at: rootURL)
     }
 }

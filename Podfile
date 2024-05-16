@@ -7,13 +7,13 @@ require_relative './rn/Teacher/node_modules/react-native/scripts/react_native_po
 
 def firebase_pods
   pod 'GoogleUtilities', '~> 7.13'
-  pod 'Firebase/Crashlytics', '~> 10.21.0'
-  pod 'Firebase/RemoteConfig', '~> 10.21.0'
+  pod 'Firebase/Crashlytics', '~> 10.23.1'
+  pod 'Firebase/RemoteConfig', '~> 10.23.1'
 end
 
 def canvas_crashlytics_rn_firebase_pods
   pod 'GoogleUtilities', '~> 7.13'
-  pod 'Firebase/Crashlytics', '~> 10.21.0'
+  pod 'Firebase/Crashlytics', '~> 10.23.1'
 end
 
 def react_native_pods
@@ -53,6 +53,11 @@ abstract_target 'defaults' do
   end
 
   target 'Student' do
+    project 'Student/Student.xcodeproj'
+    firebase_pods
+  end
+
+  target 'SubmitAssignment' do
     project 'Student/Student.xcodeproj'
     firebase_pods
   end

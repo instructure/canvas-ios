@@ -69,7 +69,7 @@ class UrlSubmissionPresenter {
                 }
             }
         } else {
-            let error = NSError.instructureError(NSLocalizedString("Invalid url", comment: ""))
+            let error = NSError.instructureError(String(localized: "Invalid url", bundle: .student))
             view?.showError(error)
         }
     }

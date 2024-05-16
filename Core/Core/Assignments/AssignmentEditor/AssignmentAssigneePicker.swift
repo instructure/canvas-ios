@@ -76,7 +76,7 @@ struct AssignmentAssigneePicker: View {
             EditorSection { ButtonRow(action: add, content: {
                 Image.addSolid.size(18)
                     .padding(.trailing, 12)
-                Text("Add Assignee")
+                Text("Add Assignee", bundle: .core)
                 Spacer()
                 DisclosureIndicator()
             }) }
