@@ -18,20 +18,25 @@
 
 import SwiftUI
 
-public struct CreateToDoScreen: View, ScreenViewTrackable {
-    public var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
-
+struct CreateToDoScreen: View, ScreenViewTrackable {
+    @Environment(\.viewController) private var viewController
     @ObservedObject private var viewModel: CreateToDoViewModel
 
-    public init(viewModel: CreateToDoViewModel) {
+    var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
+
+    init(viewModel: CreateToDoViewModel) {
         self.viewModel = viewModel
     }
 
-    public var body: some View {
-        InstUI.BaseScreen(state: viewModel.state) { _ in
-            Text(verbatim: "template")
+    var body: some View {
+        InstUI.BaseScreen(state: .data, config: viewModel.screenConfig) { _ in
+            InstUI.TextFieldCell(placeholder: String(localized: "Add title", bundle: .core), text: $viewModel.title)
         }
         .navigationTitle(viewModel.pageTitle)
+        .navBarItems(
+            leading: .cancel { viewModel.didTapCancel.send(viewController) },
+            trailing: .add { viewModel.didTapDone.send(viewController) }
+        )
     }
 }
 

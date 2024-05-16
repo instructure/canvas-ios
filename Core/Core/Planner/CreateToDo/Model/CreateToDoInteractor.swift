@@ -22,5 +22,5 @@ public protocol CreateToDoInteractor: AnyObject {
 
 }
 
-public class CreateToDoInteractorLive: CreateToDoInteractor {
+final class CreateToDoInteractorLive: CreateToDoInteractor {
 }
