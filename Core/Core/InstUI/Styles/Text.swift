@@ -25,6 +25,7 @@ public extension InstUI.Styles {
         case headingInfo
         case infoTitle
         case infoDescription
+        case cellLabel
     }
 }
 
@@ -49,6 +50,10 @@ public extension View {
         case .infoDescription:
             self
                 .font(.regular16, lineHeight: .fit)
+                .foregroundStyle(Color.textDarkest)
+        case .cellLabel:
+            self
+                .font(.semibold16, lineHeight: .fit)
                 .foregroundStyle(Color.textDarkest)
         }
     }

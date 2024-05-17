@@ -54,6 +54,9 @@ final class CreateToDoViewModel: ObservableObject {
     ) {
         self.interactor = interactor
 
+        // end of today, to match web behaviour
+        date = .now.endOfDay()
+
         didTapCancel
             .sink { router.dismiss($0) }
             .store(in: &subscriptions)

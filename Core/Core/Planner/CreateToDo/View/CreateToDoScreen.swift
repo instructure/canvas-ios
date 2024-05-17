@@ -30,7 +30,17 @@ struct CreateToDoScreen: View, ScreenViewTrackable {
 
     var body: some View {
         InstUI.BaseScreen(state: .data, config: viewModel.screenConfig) { _ in
-            InstUI.TextFieldCell(placeholder: String(localized: "Add title", bundle: .core), text: $viewModel.title)
+            VStack(spacing: 0) {
+                InstUI.TextFieldCell(
+                    placeholder: String(localized: "Add title", bundle: .core),
+                    text: $viewModel.title
+                )
+                InstUI.DatePickerCell(
+                    label: Text("Date", bundle: .core),
+                    date: $viewModel.date,
+                    isClearable: false
+                )
+            }
         }
         .navigationTitle(viewModel.pageTitle)
         .navBarItems(
