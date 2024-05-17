@@ -20,22 +20,22 @@ import SwiftUI
 
 extension InstUI {
 
-    public struct TextFieldCell: View {
-        private let label: Text?
+    public struct TextFieldCell<Label: View>: View {
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+        private let label: Label?
         private let placeholder: String
 
         @Binding private var text: String
 
-        public init(label: Text, placeholder: String, text: Binding<String>) {
+        public init(label: Label?, placeholder: String, text: Binding<String>) {
             self.label = label
             self.placeholder = placeholder
             self._text = text
         }
 
-        public init(label: String? = nil, placeholder: String, text: Binding<String>) {
-            self.label = label.map { Text($0) }
-            self.placeholder = placeholder
-            self._text = text
+        public init(placeholder: String, text: Binding<String>) where Label == Text? {
+            self.init(label: nil, placeholder: placeholder, text: text)
         }
 
         public var body: some View {
@@ -44,6 +44,7 @@ extension InstUI {
                     if let label {
                         HStack(spacing: 0) {
                             label
+                                .textStyle(.cellLabel)
                                 .accessibility(hidden: true)
                             Spacer()
                             textField
@@ -62,11 +63,12 @@ extension InstUI {
         }
 
         private var textField: some View {
-            TextField(placeholder, text: $text)
+            TextField("", text: $text, prompt: Text(placeholder).foregroundColor(Color.placeholderGray))
                 .multilineTextAlignment(label == nil ? .leading : .trailing)
                 .font(label == nil ? .semibold16 : .regular16, lineHeight: .fit)
                 .foregroundStyle(Color.textDarkest)
-                .accessibility(label: label ?? Text(placeholder)) // TODO
+                .submitLabel(.done)
+                .accessibility(label: label as? Text ?? Text(placeholder)) // TODO
         }
     }
 }
@@ -74,7 +76,12 @@ extension InstUI {
 #if DEBUG
 
 #Preview {
-    InstUI.TextFieldCell(placeholder: "Add text here", text: .constant(""))
+    VStack {
+        InstUI.Divider()
+        InstUI.TextFieldCell(placeholder: "Add text here", text: .constant(""))
+        InstUI.TextFieldCell(label: Text(verbatim: "Label"), placeholder: "Add text here", text: .constant(""))
+        InstUI.TextFieldCell(label: Text(verbatim: "Styled Label").foregroundStyle(Color.green), placeholder: "Add text here", text: .constant("Some text entered"))
+    }
 }
 
 #endif
