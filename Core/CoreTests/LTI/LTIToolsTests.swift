@@ -216,6 +216,30 @@ class LTIToolsTests: CoreTestCase {
         XCTAssertTrue(router.lastRoutedTo(viewController: controller, from: mockView, withOptions: .modal(.overFullScreen, embedInNav: true, addDoneButton: true)))
     }
 
+    func testPresentStudio() throws {
+        let url = URL(string: "https://canvas.instructure.com?custom_arc_launch_type=global_nav")!
+        let tools = LTITools(url: url)
+        let request = GetSessionlessLaunchURLRequest(context: tools.context,
+                                                     id: nil,
+                                                     url: url,
+                                                     assignmentID: nil,
+                                                     moduleItemID: nil,
+                                                     launchType: nil,
+                                                     resourceLinkLookupUUID: nil)
+
+        api.mock(request, value: .make(name: "", url: URL(string: "/")!))
+        tools.presentTool(from: mockView, animated: true)
+
+        let controller = try XCTUnwrap(router.presented as? StudioViewController)
+        XCTAssertTrue(router.lastRoutedTo(viewController: controller,
+                                          from: mockView,
+                                          withOptions: .modal(
+                                            .overFullScreen,
+                                            embedInNav: false,
+                                            addDoneButton: false
+                                          )))
+    }
+
     func testMarksModuleItemAsRead() {
         api.mock(PostMarkModuleItemRead(courseID: "1", moduleID: "2", moduleItemID: "3"))
         let tools = LTITools(context: .course("1"), launchType: .module_item, moduleID: "2", moduleItemID: "3")
