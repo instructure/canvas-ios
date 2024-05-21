@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import UIKit
 
 public class PlannerViewController: UIViewController {
@@ -34,10 +35,8 @@ public class PlannerViewController: UIViewController {
     public var selectedDate: Date = Clock.now
     var studentID: String?
 
-    lazy var planners: Store<LocalUseCase<Planner>> = env.subscribe(scope: .where(#keyPath(Planner.studentID), equals: studentID)) { [weak self] in
-        self?.plannerListWillRefresh()
-    }
-    var planner: Planner? { planners.first }
+    lazy var calendarFilterInteractor: CalendarFilterInteractor = PlannerAssembly.makeInteractor(observedUserId: studentID)
+    private var subscriptions = Set<AnyCancellable>()
 
     public static func create(studentID: String? = nil, selectedDate: Date = Clock.now) -> PlannerViewController {
         let controller = PlannerViewController()
@@ -101,7 +100,13 @@ public class PlannerViewController: UIViewController {
 
         view.setNeedsLayout()
 
-        planners.refresh()
+        calendarFilterInteractor
+            .load(ignoreCache: false)
+            .replaceError(with: ())
+            .sink { [weak self] _ in
+                self?.plannerListWillRefresh()
+            }
+            .store(in: &subscriptions)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -114,26 +119,15 @@ public class PlannerViewController: UIViewController {
     }
 
     @objc func addNote() {
-        env.router.show(CreateTodoViewController.create(), from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/calendar/new")
+        env.router.show(CreateTodoViewController.create(completion: { [weak self] in self?.plannerListWillRefresh() }),
+                        from: self,
+                        options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/calendar/new")
     }
 
     @objc func selectToday() {
         let date = Clock.now.startOfDay()
         calendar.showDate(date)
         updateList(date)
-    }
-
-    func getPlannables(from: Date, to: Date) -> GetPlannables {
-        var contextCodes: [String]?
-        if let planner = planner, !planner.allSelected {
-            contextCodes = planner.selectedCourses.map {
-                Context(.course, id: $0).canvasContextID
-            }
-            if let studentID = studentID ?? env.currentSession?.userID {
-                contextCodes?.append(Context(.user, id: studentID).canvasContextID)
-            }
-        }
-        return GetPlannables(userID: studentID, startDate: from, endDate: to, contextCodes: contextCodes)
     }
 
     func updateList(_ date: Date) {
@@ -167,15 +161,20 @@ extension PlannerViewController: CalendarViewControllerDelegate {
     }
 
     func calendarWillFilter() {
-        let filter = PlannerFilterViewController.create(studentID: studentID)
-        env.router.show(filter, from: self, options: .modal(embedInNav: true, addDoneButton: true), analyticsRoute: "/calendar/filter")
+        let filter = PlannerAssembly.makeFilterViewController(observedUserId: studentID) { [weak self] in
+            self?.plannerListWillRefresh()
+        }
+        env.router.show(
+            filter,
+            from: self,
+            options: .modal(.formSheet, isDismissable: false, embedInNav: true),
+            analyticsRoute: "/calendar/filter"
+        )
     }
 
-    func numberOfCalendars() -> Int? {
-        if planner?.allSelected == true {
-            return nil
-        }
-        return planner?.selectedCourses.count
+    func getPlannables(from: Date, to: Date) -> GetPlannables {
+        let contextCodes = calendarFilterInteractor.contextsForAPIFiltering().map(\.canvasContextID)
+        return GetPlannables(userID: studentID, startDate: from, endDate: to, contextCodes: contextCodes)
     }
 }
 

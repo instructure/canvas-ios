@@ -130,6 +130,12 @@ public class GetPlannables: UseCase {
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+        // If we would send out the request without any context codes the API would return all events so we do an early exit
+        if (contextCodes ?? []).isEmpty {
+            completionHandler(.init(plannables: [], calendarEvents: []), nil, nil)
+            return
+        }
+
         if environment.app == .parent {
             getObserverCalendarEvents(env: environment) { response, urlResponse, error in
                 completionHandler(Response(plannables: nil, calendarEvents: response), urlResponse, error)

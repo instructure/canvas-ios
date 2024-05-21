@@ -25,7 +25,6 @@ protocol CalendarViewControllerDelegate: AnyObject {
     func calendarDidResize(height: CGFloat, animated: Bool)
     func calendarWillFilter()
     func getPlannables(from: Date, to: Date) -> GetPlannables
-    func numberOfCalendars() -> Int? // nil = all
 }
 
 class CalendarViewController: ScreenViewTrackableViewController {
@@ -96,7 +95,8 @@ class CalendarViewController: ScreenViewTrackableViewController {
         monthButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 28)
         monthButton.accessibilityLabel = String(localized: "Show a month at a time", bundle: .core)
 
-        updateFilterButton()
+        filterButton.setTitle(String(localized: "Calendars", bundle: .core), for: .normal)
+        filterButton.accessibilityLabel = String(localized: "Filter events", bundle: .core)
 
         dropdownView.transform = CGAffineTransform(rotationAngle: 4 * .pi)
 
@@ -137,25 +137,7 @@ class CalendarViewController: ScreenViewTrackableViewController {
     }
 
     func refresh(force: Bool = false) {
-        updateFilterButton()
         days.refresh(force: force)
-    }
-
-    func updateFilterButton() {
-        if ExperimentalFeature.teacherCalendar.isEnabled {
-            filterButton.isHidden = true
-            return
-        }
-
-        if let count = delegate?.numberOfCalendars() {
-            let template = String(localized: "Calendars (%d)", bundle: .core)
-            filterButton.setTitle(String.localizedStringWithFormat(template, count), for: .normal)
-            let a11y = String(localized: "filter_events_d_calendars_selected", bundle: .core)
-            filterButton.accessibilityLabel = String.localizedStringWithFormat(a11y, count)
-        } else {
-            filterButton.setTitle(String(localized: "Calendars", bundle: .core), for: .normal)
-            filterButton.accessibilityLabel = String(localized: "Filter events", bundle: .core)
-        }
     }
 
     @IBAction func toggleExpanded() {

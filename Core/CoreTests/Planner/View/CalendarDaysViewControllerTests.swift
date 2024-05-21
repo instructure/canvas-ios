@@ -32,18 +32,15 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
     func calendarDidResize(height: CGFloat, animated: Bool) {}
 
     func getPlannables(from: Date, to: Date) -> GetPlannables {
-        return GetPlannables(startDate: from, endDate: to)
+        return GetPlannables(startDate: from, endDate: to, contextCodes: ["course_1"])
     }
 
     func calendarWillFilter() {}
-    func numberOfCalendars() -> Int? {
-        return nil
-    }
 
     lazy var controller = CalendarDaysViewController.create(selectedDate: Clock.now, delegate: self)
 
     func getPlannablesRequest(from: Date, to: Date) -> GetPlannablesRequest {
-        GetPlannablesRequest(startDate: from, endDate: to)
+        GetPlannablesRequest(startDate: from, endDate: to, contextCodes: ["course_1"])
     }
 
     func testDates() {
