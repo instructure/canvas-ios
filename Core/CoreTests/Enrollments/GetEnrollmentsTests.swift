@@ -21,17 +21,50 @@ import XCTest
 
 class GetEnrollmentsTests: CoreTestCase {
 
-    func testParentAppRequestOmitsUserId() {
-        environment.app = .student
-        var testee = GetEnrollments(context: .course("test"), userID: "testUser")
-        XCTAssertEqual(testee.request.userID, "testUser")
+    func testCacheKey() {
+        let testee = GetEnrollments(
+            context: .course("someCourseID"),
+            userID: "someUserID",
+            gradingPeriodID: "somePeriodID",
+            types: ["type1", "type2"],
+            includes: [.avatar_url],
+            states: [.invited, .deleted],
+            roles: [.teacher, .custom("someCustomRole")]
+        )
 
-        environment.app = .teacher
-        testee = GetEnrollments(context: .course("test"), userID: "testUser")
-        XCTAssertEqual(testee.request.userID, "testUser")
+        XCTAssertEqual(testee.cacheKey, """
+        courses/someCourseID/enrollments?\
+        per_page=100\
+        &include[]=avatar_url\
+        &state[]=invited&state[]=deleted\
+        &role[]=TeacherEnrollment&role[]=someCustomRole\
+        &user_id=someUserID\
+        &grading_period_id=somePeriodID\
+        &type[]=type1&type[]=type2
+        """)
+    }
 
-        environment.app = .parent
-        testee = GetEnrollments(context: .course("test"), userID: "testUser")
-        XCTAssertNil(testee.request.userID)
+    func testScopeWithoutUserID() {
+        let testee = GetEnrollments(
+            context: .course("someCourseID")
+        )
+
+        XCTAssertEqual(testee.scope.predicate.predicateFormat, """
+        canvasContextID == "course_someCourseID" \
+        AND id != nil
+        """)
+    }
+
+    func testScopeWithUserID() {
+        let testee = GetEnrollments(
+            context: .course("someCourseID"),
+            userID: "someUserID"
+        )
+
+        XCTAssertEqual(testee.scope.predicate.predicateFormat, """
+        canvasContextID == "course_someCourseID" \
+        AND id != nil \
+        AND userID == "someUserID"
+        """)
     }
 }

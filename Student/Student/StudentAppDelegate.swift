@@ -119,6 +119,13 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             CoreWebView.keepCookieAlive(for: self.environment)
             NotificationManager.shared.subscribeToPushChannel()
 
+            // NotificationManager.registerForRemoteNotifications is not called in UITests,
+            // so we need to requestAuthorization in order to be able to test notification related logic like
+            // AssignmentReminders
+            if ProcessInfo.isUITest {
+                NotificationManager.shared.requestAuthorization(options: [.alert], completionHandler: { _, _ in })
+            }
+
             let isK5StudentView = self.environment.userDefaults?.isK5StudentView ?? false
             if isK5StudentView {
                 ExperimentalFeature.K5Dashboard.isEnabled = true

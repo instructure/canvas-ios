@@ -125,7 +125,8 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         drainMainQueue()
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(entries.count, 1)
-        XCTAssertEqual(entries[0].tabs.count, 4)
+        XCTAssertEqual(entries[0].selectableTabsCount, 4)
+        XCTAssertEqual(entries[0].tabs.count, 5)
         subscription.cancel()
     }
 
@@ -190,8 +191,9 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         drainMainQueue()
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(entries.count, 1)
-        XCTAssertEqual(entries[0].tabs.count, 0)
-        XCTAssertEqual(entries[0].files.count, 0)
+        XCTAssertEqual(entries[0].selectableTabsCount, 0)
+        XCTAssertEqual(entries[0].tabs.count, 1)
+        XCTAssertEqual(entries[0].files.count, 1)
         subscription.cancel()
     }
 
@@ -229,7 +231,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         waitForExpectations(timeout: 0.1)
         XCTAssertFalse(entries[0].selectionState == .selected)
         XCTAssertTrue(entries[0].isCollapsed)
-        XCTAssertEqual(entries[0].tabs.count, 1)
+        XCTAssertEqual(entries[0].selectableTabsCount, 1)
         XCTAssertEqual(entries[0].files.count, 2)
         XCTAssertEqual(entries[0].selectedTabsCount, 0)
         XCTAssertEqual(entries[0].selectedFilesCount, 0)

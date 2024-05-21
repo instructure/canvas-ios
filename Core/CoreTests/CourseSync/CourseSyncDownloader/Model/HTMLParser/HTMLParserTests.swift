@@ -42,9 +42,7 @@ class HTMLParserTests: CoreTestCase {
 
         testee.parse(testHTMLContent, resourceId: testResourceId, courseId: testCourseId, baseURL: baseURL)
             .sink(receiveCompletion: { _ in }, receiveValue: { result in
-                let isURLDownloaded = interactor.fileNames[urlToDownload.lastPathComponent]
-                XCTAssertNotNil(isURLDownloaded)
-                XCTAssertTrue(isURLDownloaded!)
+                XCTAssertTrue(interactor.fileNames.contains(urlToDownload.lastPathComponent))
 
                 XCTAssertFalse(result.contains("https://instructure.com/logo.png"))
                 XCTAssertTrue(result.contains(URL.Directories.documents.appendingPathComponent(urlToDownload.lastPathComponent).lastPathComponent))

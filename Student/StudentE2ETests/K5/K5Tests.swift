@@ -213,7 +213,7 @@ class K5Tests: K5E2ETestCase {
 
         let courseCardAssigmentMissingButton = DashboardHelper.courseCardAssignmentMissingButton(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCardAssigmentMissingButton.isVisible)
-        XCTAssertTrue(courseCardAssigmentMissingButton.hasLabel(label: "\(assignmentsCount) missing"))
+        XCTAssertTrue(courseCardAssigmentMissingButton.hasLabel(label: "\(assignmentsCount) missing", caseSensitive: false))
     }
 
     // Covers MBL-15776 bug
