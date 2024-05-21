@@ -129,7 +129,7 @@ extension UIView {
 
     public func constraintsAffecting(view: UIView) -> [NSLayoutConstraint] {
         constraints.filter { constraint in
-            constraint.firstItem as? NSObject == view || constraint.secondItem  as? NSObject == view
+            constraint.firstItem as? NSObject == view || constraint.secondItem as? NSObject == view
         }
     }
 }

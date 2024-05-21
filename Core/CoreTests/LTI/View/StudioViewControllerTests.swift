@@ -21,7 +21,7 @@ import XCTest
 
 class StudioViewControllerTests: XCTestCase {
 
-    func testUsesForcedDarkMode() {
+    func testUsesForcedLightMode() {
         let testee = StudioViewController(url: URL(string: "/")!)
 
         XCTAssertEqual(testee.preferredStatusBarStyle, .darkContent)
