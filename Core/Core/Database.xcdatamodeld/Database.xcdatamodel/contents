@@ -705,6 +705,7 @@
         <attribute name="lockExplanation" optional="YES" attributeType="String"/>
         <attribute name="minScoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="moduleID" attributeType="String"/>
+        <attribute name="pageId" optional="YES" attributeType="String"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="position" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="publishedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

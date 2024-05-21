@@ -37,6 +37,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
     private var assetType: AssetType!
     private var assetID: String!
     private var url: URLComponents!
+    private var offlineModeInteractor: OfflineModeInteractor!
 
     let pages = PagesViewController()
     private var observations: [NSKeyValueObservation]?
@@ -46,12 +47,19 @@ public final class ModuleItemSequenceViewController: UIViewController {
     }
     private var sequence: ModuleItemSequence? { store.first }
 
-    public static func create(courseID: String, assetType: AssetType, assetID: String, url: URLComponents) -> Self {
+    public static func create(
+        courseID: String,
+        assetType: AssetType,
+        assetID: String,
+        url: URLComponents,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
+    ) -> Self {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
         controller.assetType = assetType
         controller.assetID = assetID
         controller.url = url
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
@@ -69,6 +77,17 @@ public final class ModuleItemSequenceViewController: UIViewController {
         nextButton.transform = transform
         nextButton.titleLabel?.transform = transform
         nextButton.imageView?.transform = transform
+
+        // Sometimes module links within Pages are referenced by their pageId ("/pages/my-module") instead of their id.
+        // When downloading module item sequences for offline usage, we always download with the id field so we need to
+        // find the matching `ModuleItem` and replace the assetID for the `GetModuleItemSequence` request. 
+        if offlineModeInteractor.isOfflineModeEnabled() {
+            if Int(assetID) == nil, let model: ModuleItem = env.database.viewContext.fetch(scope: .where(#keyPath(ModuleItem.pageId), equals: assetID)).first {
+                store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: .moduleItem, assetID: model.id)) { [weak self] in
+                    self?.update(embed: true)
+                }
+            }
+        }
 
         // force refresh because we don't provide a refresh control
         store.refresh(force: true)
