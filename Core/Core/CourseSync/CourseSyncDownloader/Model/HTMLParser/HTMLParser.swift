@@ -53,44 +53,52 @@ public class HTMLParserLive: HTMLParser {
         let rootURL = getRootURL(courseId: courseId, resourceId: resourceId)
 
         let fileParser: AnyPublisher<[(URL, String)], Error> = fileURLs.publisher // Download the files to local Documents folder, return the (original link - local link) tuple
-            .flatMap { [interactor] url in
-                return interactor.downloadFile(url, courseId: courseId, resourceId: resourceId)
+            .flatMap(maxPublishers: .max(5)) { url in // Replace File Links with valid access urls
+                if url.pathComponents.contains("files") {
+                    let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
+                    let context = Context(url: url)
+                    return ReactiveStore(useCase: GetFile(context: context, fileID: fileId))
+                        .getEntities(ignoreCache: false)
+                        .map { files in
+                            (files.first?.url ?? url, url)
+                        }
+                        .eraseToAnyPublisher()
+                } else {
+                    return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
+                }
+            }
+            .flatMap { [interactor] (fileURL, originalURL) in
+                return interactor.downloadFile(fileURL, courseId: courseId, resourceId: resourceId)
                     .map {
-                        return (url, $0)
+                        return (originalURL, $0)
                     }
             }
             .collect()
             .eraseToAnyPublisher()
 
         let imageParser: AnyPublisher<[(URL, String)], Error> =  imageURLs.publisher
-            .flatMap(maxPublishers: .max(5)) { [interactor] url in // Download images to local Documents folder, return the (original link - local link) tuple
-                return interactor.download(url, courseId: courseId, resourceId: resourceId)
+            .flatMap(maxPublishers: .max(5)) { url in // Replace File Links with valid access urls
+                if url.pathComponents.contains("files") {
+                    let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
+                    let context = Context(url: url)
+                    return ReactiveStore(useCase: GetFile(context: context, fileID: fileId))
+                        .getEntities(ignoreCache: false)
+                        .map { files in
+                            (files.first?.url ?? url, url)
+                        }
+                        .eraseToAnyPublisher()
+                } else {
+                    return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
+                }
+            }
+            .flatMap { [interactor] (fileURL, originalURL) in // Download images to local Documents folder, return the (original link - local link) tuple
+                return interactor.download(fileURL, courseId: courseId, resourceId: resourceId)
                     .map {
-                        return (url, $0)
+                        return (originalURL, $0)
                     }
+
             }
             .collect() // Wait for all image download to finish and handle as an array
-            .map { [content] urls in // Replace relative links with baseURL based absolute links. The baseURL in the webviews will be different from the original one to load the local images
-                var newContent = content
-                relativeURLs.forEach { relativeURL in
-                    if let baseURL {
-                        let newURL = baseURL.appendingPathComponent(relativeURL.path)
-                        newContent = newContent.replacingOccurrences(of: relativeURL.absoluteString, with: newURL.absoluteString)
-                    }
-                }
-                return (newContent, urls)
-            }
-            .map { (content, urls) in // Replace all original links with the local ones, return the replaced string content
-                var newContent = content
-                urls.forEach { (originalURL, localURL) in
-                    let newURL = "\(localURL.path)"
-                    newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: newURL)
-                }
-                return newContent
-            }
-            .flatMap { [interactor, rootURL] content in // Save html parsed html string content to file. It will be loaded in offline mode)
-                return interactor.saveBaseContent(content: content, folderURL: rootURL)
-            }
             .eraseToAnyPublisher()
 
         return Publishers.Zip(

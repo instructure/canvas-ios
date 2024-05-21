@@ -126,7 +126,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             try fileManager.createDirectory(at: rootURL, withIntermediateDirectories: true, attributes: nil)
             try? FileManager.default.removeItem(at: saveURL)
             try fileManager.moveItem(at: tempURL, to: saveURL)
-            return Result.Publisher(saveURL.lastPathComponent).eraseToAnyPublisher()
+            return Result.Publisher(saveURL.path).eraseToAnyPublisher()
         } catch {
             return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image", bundle: .core)))).eraseToAnyPublisher()
         }
