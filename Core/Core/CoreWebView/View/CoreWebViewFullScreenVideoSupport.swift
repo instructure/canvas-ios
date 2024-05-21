@@ -37,7 +37,7 @@ extension CoreWebView {
                 return
             }
 
-            let matchFullScreenContainerSizeAndFadeIn: (WKWebView) -> Void = { webView in
+            let matchFullScreenContainerSize: (WKWebView) -> Void = { webView in
                 webView.translatesAutoresizingMaskIntoConstraints = true
                 webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                 webView.frame = webView.superview?.frame ?? .zero
@@ -50,7 +50,9 @@ extension CoreWebView {
             fullScreenObservation = webView.observe(\.fullscreenState, options: []) { [originalConstraints] webView, _  in
                 switch webView.fullscreenState {
                 case .enteringFullscreen:
-                    matchFullScreenContainerSizeAndFadeIn(webView)
+                    matchFullScreenContainerSize(webView)
+                    // This is to make a11y elements below the fullscreen window hidden.
+                    webView.superview?.accessibilityViewIsModal = true
                 case .notInFullscreen:
                     restoreOriginalConstraints(webView, originalConstraints)
                 default: break
