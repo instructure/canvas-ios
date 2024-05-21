@@ -100,7 +100,7 @@ extension Publisher where Output: Collection, Output.Element: DiscussionEntry, F
                 }
                 .flatMap { (entry: DiscussionEntry, newContent: String) in
                     entry.message = newContent
-                    return Just([entry])
+                    return Just(entry.replies)
                         .setFailureType(to: Error.self)
                         .parseRepliesHtmlContent(courseId: courseId, htmlParser: htmlParser)
                         .map { return (entry, $0) }
