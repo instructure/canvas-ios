@@ -40,6 +40,12 @@ struct CreateToDoScreen: View, ScreenViewTrackable {
                     date: $viewModel.date,
                     isClearable: false
                 )
+                InstUI.LabelValueCell(
+                    label: Text("Calendar", bundle: .core),
+                    value: viewModel.calendar
+                ) {
+                    Text(verbatim: "some new screen")
+                }
             }
         }
         .navigationTitle(viewModel.pageTitle)
