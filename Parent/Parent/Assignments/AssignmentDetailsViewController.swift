@@ -47,6 +47,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     var studentID = ""
     private var minDate = Clock.now
     private var maxDate = Clock.now
+    private var userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
 
     lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.observed_users, .submission])) {  [weak self] in
         self?.update()
@@ -61,11 +62,17 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         self?.update()
     }
 
-    static func create(studentID: String, courseID: String, assignmentID: String) -> AssignmentDetailsViewController {
+    static func create(
+        studentID: String,
+        courseID: String,
+        assignmentID: String,
+        userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
+    ) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.courseID = courseID
         controller.studentID = studentID
+        controller.userNotificationCenter = userNotificationCenter
         return controller
     }
 
@@ -192,7 +199,8 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             let defaultDate = max(minDate, min(maxDate,
                 assignment.dueAt?.addDays(-1) ?? Clock.now.addDays(1)
             ))
-            NotificationManager.shared.requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
+            userNotificationCenter
+                .requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
                 guard error == nil && success else {
                     self.reminderSwitch.setOn(false, animated: true)
                     return self.showPermissionError(.notifications)

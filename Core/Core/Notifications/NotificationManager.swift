@@ -33,13 +33,12 @@ public class NotificationManager {
         logger: AppEnvironment.shared.logger
     )
 
-    init(notificationCenter: UserNotificationCenterProtocol, logger: LoggerProtocol) {
+    init(
+        notificationCenter: UserNotificationCenterProtocol,
+        logger: LoggerProtocol
+    ) {
         self.notificationCenter = notificationCenter
         self.logger = logger
-    }
-
-    public func requestAuthorization(options: UNAuthorizationOptions = [], completionHandler: @escaping (Bool, Error?) -> Void) {
-        notificationCenter.requestAuthorization(options: options, completionHandler: completionHandler)
     }
 }
 
@@ -47,7 +46,8 @@ public class NotificationManager {
 extension NotificationManager {
     public func registerForRemoteNotifications(application: UIApplication) {
         guard !ProcessInfo.isUITest else { return }
-        requestAuthorization(options: [.badge, .sound, .alert]) { granted, error in performUIUpdate {
+
+        notificationCenter.requestAuthorization(options: [.badge, .sound, .alert]) { granted, error in performUIUpdate {
             guard granted, error == nil else { return }
             #if !targetEnvironment(simulator) // Can't register on simulator
                 application.registerForRemoteNotifications()

@@ -123,7 +123,8 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             // so we need to requestAuthorization in order to be able to test notification related logic like
             // AssignmentReminders
             if ProcessInfo.isUITest {
-                NotificationManager.shared.requestAuthorization(options: [.alert], completionHandler: { _, _ in })
+                UNUserNotificationCenter.current()
+                    .requestAuthorization(options: [.alert], completionHandler: { _, _ in })
             }
 
             let isK5StudentView = self.environment.userDefaults?.isK5StudentView ?? false
