@@ -48,6 +48,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     private var minDate = Clock.now
     private var maxDate = Clock.now
     private var userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
+    private lazy var localNotifications = LocalNotifications(notificationCenter: userNotificationCenter)
 
     lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.observed_users, .submission])) {  [weak self] in
         self?.update()
@@ -117,7 +118,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         course.refresh()
         student.refresh()
         teachers.refresh()
-        NotificationManager.shared.getReminder(assignmentID) { [weak self] request in performUIUpdate {
+        localNotifications.getReminder(assignmentID) { [weak self] request in performUIUpdate {
             guard let self = self else { return }
             let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
                 Calendar.current.date(from: $0.dateComponents)
@@ -179,7 +180,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
 
     func reminderDateChanged(selectedDate: Date?) {
         guard let selectedDate = selectedDate, let assignment = assignment.first else { return }
-        NotificationManager.shared.setReminder(for: assignment, at: selectedDate, studentID: studentID) { error in performUIUpdate { [self] in
+        localNotifications.setReminder(for: assignment, at: selectedDate, studentID: studentID) { error in performUIUpdate { [self] in
             if error == nil {
                 reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
                 self.selectedDate = selectedDate
@@ -213,7 +214,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                 }
             } }
         } else {
-            NotificationManager.shared.removeReminder(assignmentID)
+            localNotifications.removeReminder(assignmentID)
             UIView.animate(withDuration: 0.2) {
                 self.reminderDateButton.isHidden = true
             }

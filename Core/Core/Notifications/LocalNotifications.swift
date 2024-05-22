@@ -19,7 +19,7 @@
 import Combine
 
 public class LocalNotifications {
-    private let notificationCenter: UserNotificationCenterProtocol
+    public let notificationCenter: UserNotificationCenterProtocol
 
     public init(
         notificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
