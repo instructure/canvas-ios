@@ -53,10 +53,7 @@ extension InstUI {
                         textField
                     }
                 }
-                .paddingStyle(.leading, .standard)
-                .paddingStyle(.trailing, .standard)
-                .paddingStyle(.top, .cellTop)
-                .paddingStyle(.bottom, .cellBottom)
+                .paddingStyle(set: .standardCell)
 
                 InstUI.Divider()
             }

@@ -49,10 +49,7 @@ extension InstUI {
                             .frame(maxWidth: .infinity,
                                    alignment: .leading)
                     }
-                    .paddingStyle(.leading, .cellLeading)
-                    .paddingStyle(.trailing, .standard)
-                    .paddingStyle(.top, .cellTop)
-                    .paddingStyle(.bottom, .cellBottom)
+                    .paddingStyle(set: .iconCell)
 
                 }
                 InstUI.Divider()
