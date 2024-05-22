@@ -75,18 +75,4 @@ class NotificationManagerTests: CoreTestCase {
         notificationManager.subscribeToPushChannel(deviceToken: token, session: .make(userID: "2"))
         XCTAssertEqual(logger.errors.last, "delete")
     }
-
-    func testRouteURL() {
-        XCTAssertEqual(NotificationManager.routeURL(from: [:]), nil)
-        XCTAssertEqual(NotificationManager.routeURL(from: [
-            NotificationManager.RouteURLKey: "/courses",
-        ]), URL(string: "/courses"))
-        XCTAssertEqual(NotificationManager.routeURL(from: [
-            "html_url": "https://canvas.instructure.com/courses",
-        ]), URL(string: "https://canvas.instructure.com/courses"))
-        environment.currentSession = .make(baseURL: URL(string: "https://canvas.beta.instructure.com/courses")!)
-        XCTAssertEqual(NotificationManager.routeURL(from: [
-            "html_url": "https://canvas.instructure.com/courses",
-        ]), URL(string: "https://canvas.beta.instructure.com/courses"))
-    }
 }

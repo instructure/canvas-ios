@@ -40,7 +40,7 @@ class LocalNotificationsTests: CoreTestCase {
         XCTAssert(request.trigger is UNTimeIntervalNotificationTrigger)
         XCTAssertEqual((request.trigger as? UNTimeIntervalNotificationTrigger)?.timeInterval, 1)
         XCTAssertEqual((request.trigger as? UNTimeIntervalNotificationTrigger)?.repeats, false)
-        XCTAssertEqual(request.content.userInfo[NotificationManager.RouteURLKey] as? String, "/courses")
+        XCTAssertEqual(request.content.userInfo[UNNotificationContent.RouteURLKey] as? String, "/courses")
     }
 
     func testOfflineSyncCompletedSuccessfullyNotificationSingular() {

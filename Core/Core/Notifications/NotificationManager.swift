@@ -21,8 +21,6 @@ import Foundation
 import UserNotifications
 
 public class NotificationManager {
-    public static let RouteURLKey = "com.instructure.core.router.notification-url"
-
     public let notificationCenter: UserNotificationCenterProtocol
     public let logger: LoggerProtocol
     public var remoteToken: Data?
@@ -40,10 +38,7 @@ public class NotificationManager {
         self.notificationCenter = notificationCenter
         self.logger = logger
     }
-}
 
-// MARK: Push Notifications
-extension NotificationManager {
     public func registerForRemoteNotifications(application: UIApplication) {
         guard !ProcessInfo.isUITest else { return }
 
@@ -125,34 +120,5 @@ extension NotificationManager {
             guard let error = error else { return }
             self.logger.error(error.localizedDescription)
         }
-    }
-
-    public static func routeURL(from userInfo: [AnyHashable: Any]) -> URL? {
-        // Handle local notifications we know about first
-        if let route = userInfo[NotificationManager.RouteURLKey] as? String {
-            return URL(string: route)
-        }
-        if let url = userInfo["html_url"] as? String {
-            return fixBetaURL(URL(string: url))
-        }
-        return nil
-    }
-
-    // In beta, a push notification's url may point to prod. Fix it to point to beta.
-    private static func fixBetaURL(_ original: URL?) -> URL? {
-        guard
-            let baseURL = AppEnvironment.shared.currentSession?.baseURL,
-            baseURL.host?.contains(".beta") == true,
-            baseURL.host?.replacingOccurrences(of: ".beta", with: "") == original?.host,
-            var components = original.map({ URLComponents.parse($0) })
-        else { return original }
-        components.host = baseURL.host
-        return components.url ?? original
-    }
-}
-
-extension UNNotificationRequest {
-    public var route: String? {
-        content.userInfo[NotificationManager.RouteURLKey] as? String
     }
 }

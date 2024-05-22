@@ -154,7 +154,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
         PushNotifications.record(response.notification)
-        if let url = NotificationManager.routeURL(from: response.notification.request.content.userInfo) {
+        if let url = response.notification.request.routeURL {
             openURL(url, userInfo: [
                 "forceRefresh": true,
                 "pushNotification": response.notification.request.content.userInfo["aps"] ?? [:],
@@ -165,10 +165,10 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
     func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         if
-            let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
+            let notification = launchOptions?[.remoteNotification] as? [AnyHashable: AnyObject],
             let aps = notification["aps"] as? [String: AnyObject] {
             PushNotifications.recordUserInfo(notification)
-            if let url = NotificationManager.routeURL(from: notification) {
+            if let url = notification.routeURL {
                 openURL(url, userInfo: [
                     "forceRefresh": true,
                     "pushNotification": aps,

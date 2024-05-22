@@ -135,7 +135,7 @@ public extension UNNotificationRequest {
         content.title = title
         content.body = body
         if let route {
-            content.userInfo[NotificationManager.RouteURLKey] = route
+            content.userInfo[UNNotificationContent.RouteURLKey] = route
         }
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)

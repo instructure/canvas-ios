@@ -256,7 +256,7 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
         PushNotifications.record(response.notification)
-        if let url = NotificationManager.routeURL(from: response.notification.request.content.userInfo) {
+        if let url = response.notification.request.routeURL {
             openURL(url, userInfo: [
                 "forceRefresh": true,
                 "pushNotification": response.notification.request.content.userInfo["aps"] ?? [:],

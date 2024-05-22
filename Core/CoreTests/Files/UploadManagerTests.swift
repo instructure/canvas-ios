@@ -189,7 +189,7 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertNotNil(notification)
         XCTAssertEqual(notification?.content.title, "Assignment submitted!")
         XCTAssertEqual(notification?.content.body, "Your files were uploaded and the assignment was submitted successfully.")
-        XCTAssertEqual(notification?.route, "/courses/1/assignments/2")
+        XCTAssertEqual(notification?.routeURL?.absoluteString, "/courses/1/assignments/2")
         XCTAssertTrue(fileManager.fileExists(atPath: oneURL.path))
         XCTAssertTrue(fileManager.fileExists(atPath: twoURL.path))
     }
@@ -208,7 +208,7 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertNotNil(notification)
         XCTAssertEqual(notification?.content.title, "Assignment submission failed!")
         XCTAssertEqual(notification?.content.body, "Something went wrong with an assignment submission.")
-        XCTAssertEqual(notification?.route, "/courses/1/assignments/2")
+        XCTAssertEqual(notification?.routeURL?.absoluteString, "/courses/1/assignments/2")
     }
 
     func testFailedNotification() throws {
