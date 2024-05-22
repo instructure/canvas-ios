@@ -20,9 +20,31 @@
 import XCTest
 
 class LocalNotificationsTests: CoreTestCase {
+    var testee: LocalNotifications!
+
+    override func setUp() {
+        super.setUp()
+        testee = LocalNotifications(notificationCenter: notificationCenter)
+    }
+
+    func testNotificationRequest() {
+        let request = UNNotificationRequest(
+            identifier: "one",
+            title: "Title",
+            body: "Body",
+            route: "/courses"
+        )
+        XCTAssertEqual(request.content.title, "Title")
+        XCTAssertEqual(request.content.body, "Body")
+        XCTAssertEqual(request.identifier, "one")
+        XCTAssert(request.trigger is UNTimeIntervalNotificationTrigger)
+        XCTAssertEqual((request.trigger as? UNTimeIntervalNotificationTrigger)?.timeInterval, 1)
+        XCTAssertEqual((request.trigger as? UNTimeIntervalNotificationTrigger)?.repeats, false)
+        XCTAssertEqual(request.content.userInfo[NotificationManager.RouteURLKey] as? String, "/courses")
+    }
 
     func testOfflineSyncCompletedSuccessfullyNotificationSingular() {
-        XCTAssertFinish(notificationManager.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: 1))
+        XCTAssertFinish(testee.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: 1))
 
         guard let firstNotification = notificationCenter.requests.first else {
             return XCTFail()
@@ -33,7 +55,7 @@ class LocalNotificationsTests: CoreTestCase {
     }
 
     func testOfflineSyncCompletedSuccessfullyNotificationPlural() {
-        XCTAssertFinish(notificationManager.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: 2))
+        XCTAssertFinish(testee.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: 2))
 
         guard let firstNotification = notificationCenter.requests.first else {
             return XCTFail()
@@ -44,7 +66,7 @@ class LocalNotificationsTests: CoreTestCase {
     }
 
     func testOfflineSyncFailed() {
-        XCTAssertFinish(notificationManager.sendOfflineSyncFailedNotification())
+        XCTAssertFinish(testee.sendOfflineSyncFailedNotification())
 
         guard let firstNotification = notificationCenter.requests.first else {
             return XCTFail()

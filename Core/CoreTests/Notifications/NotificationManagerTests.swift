@@ -23,45 +23,6 @@ import UserNotifications
 
 class NotificationManagerTests: CoreTestCase {
 
-    func testNotify() {
-        notificationManager.notify(identifier: "one", title: "Title", body: "Body", route: "/courses") as Void
-        let request = notificationCenter.requests.last
-        XCTAssertNotNil(request)
-        XCTAssertEqual(request?.content.title, "Title")
-        XCTAssertEqual(request?.content.body, "Body")
-        XCTAssertEqual(request?.identifier, "one")
-        XCTAssert(request?.trigger is UNTimeIntervalNotificationTrigger)
-        XCTAssertEqual((request?.trigger as? UNTimeIntervalNotificationTrigger)?.timeInterval, 1)
-        XCTAssertEqual((request?.trigger as? UNTimeIntervalNotificationTrigger)?.repeats, false)
-        XCTAssertEqual(request?.content.userInfo[NotificationManager.RouteURLKey] as? String, "/courses")
-    }
-
-    func testNotifyWithFuture() {
-        let publisher: Future<Void, Error> = notificationManager.notify(identifier: "one",
-                                                                        title: "Title",
-                                                                        body: "Body",
-                                                                        route: "/courses")
-        XCTAssertFinish(publisher)
-
-        let request = notificationCenter.requests.last
-        XCTAssertNotNil(request)
-        XCTAssertEqual(request?.content.title, "Title")
-        XCTAssertEqual(request?.content.body, "Body")
-        XCTAssertEqual(request?.identifier, "one")
-        XCTAssert(request?.trigger is UNTimeIntervalNotificationTrigger)
-        XCTAssertEqual((request?.trigger as? UNTimeIntervalNotificationTrigger)?.timeInterval, 1)
-        XCTAssertEqual((request?.trigger as? UNTimeIntervalNotificationTrigger)?.repeats, false)
-        XCTAssertEqual(request?.content.userInfo[NotificationManager.RouteURLKey] as? String, "/courses")
-    }
-
-    func testNotifyLogsError() {
-        notificationCenter.error = NSError.instructureError("error")
-        notificationManager.notify(identifier: "one", title: "Title", body: "Body", route: nil) as Void
-        let log = logger.errors.last
-        XCTAssertNotNil(log)
-        XCTAssertEqual(log, "error")
-    }
-
     func testRemoteNotifications() {
         notificationManager.registerForRemoteNotifications(application: .shared)
 
@@ -73,45 +34,45 @@ class NotificationManagerTests: CoreTestCase {
             .make(notification: "new", category: "assignment", frequency: .daily),
         ]))
         api.mock(PutNotificationDefaultsFlagRequest(), value: .init(data: "true"))
-        notificationManager.subscribeToPushChannel(token: token, session: .make())
+        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
         XCTAssertEqual(logger.errors.last, nil)
 
-        notificationManager.subscribeToPushChannel(token: token, session: .make())
+        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
         XCTAssertEqual(logger.errors.last, nil)
 
         notificationManager.remoteToken = nil // reset
         api.mock(PutNotificationDefaultsFlagRequest(), error: NSError.instructureError("flag"))
-        notificationManager.subscribeToPushChannel(token: token, session: .make())
+        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
         XCTAssertEqual(logger.errors.last, "flag")
 
         notificationManager.remoteToken = nil // reset
         api.mock(PutNotificationPreferencesRequest(channelID: "1", notifications: ["new"], frequency: .immediately), error: NSError.instructureError("prefs"))
-        notificationManager.subscribeToPushChannel(token: token, session: .make())
+        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
         XCTAssertEqual(logger.errors.last, "prefs")
 
         notificationManager.remoteToken = nil // reset
         api.mock(GetNotificationPreferencesRequest(channelID: "1"), error: NSError.instructureError("getprefs"))
-        notificationManager.subscribeToPushChannel(token: token, session: .make())
+        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
         XCTAssertEqual(logger.errors.last, "getprefs")
 
         notificationManager.remoteToken = nil // reset
         logger.errors = []
         api.mock(GetNotificationDefaultsFlagRequest(), value: .init(data: "true"))
-        notificationManager.subscribeToPushChannel(token: token, session: .make())
+        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
         XCTAssertEqual(logger.errors.last, nil)
 
         notificationManager.remoteToken = nil // reset
         let lost = NSError(domain: NSURLErrorDomain, code: NSURLErrorNetworkConnectionLost)
         api.mock(PostCommunicationChannelRequest(pushToken: token), error: lost)
         environment.errorHandler = { e, _ in XCTAssertEqual(e as NSError, lost) }
-        notificationManager.subscribeToPushChannel(token: token, session: .make())
+        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
 
         api.mock(DeletePushChannelRequest(pushToken: token), value: .init())
-        notificationManager.subscribeToPushChannel(token: token, session: .make(userID: "2"))
+        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make(userID: "2"))
 
         notificationManager.remoteSession = .make()
         api.mock(DeletePushChannelRequest(pushToken: token), error: NSError.instructureError("delete"))
-        notificationManager.subscribeToPushChannel(token: token, session: .make(userID: "2"))
+        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make(userID: "2"))
         XCTAssertEqual(logger.errors.last, "delete")
     }
 

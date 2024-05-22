@@ -41,52 +41,6 @@ public class NotificationManager {
     public func requestAuthorization(options: UNAuthorizationOptions = [], completionHandler: @escaping (Bool, Error?) -> Void) {
         notificationCenter.requestAuthorization(options: options, completionHandler: completionHandler)
     }
-
-    public func notify(
-        identifier: String,
-        title: String,
-        body: String,
-        route: String?,
-        completion: ((Error?) -> Void)? = nil
-    ) {
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.body = body
-        if let route = route {
-            content.userInfo[NotificationManager.RouteURLKey] = route
-        }
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(
-            identifier: identifier,
-            content: content,
-            trigger: trigger
-        )
-        notificationCenter.add(request) { [weak self] error in
-            if let error = error {
-                self?.logger.error(error.localizedDescription)
-                Analytics.shared.logError(name: "Failed to schedule local notification",
-                                          reason: error.localizedDescription)
-            }
-            completion?(error)
-        }
-    }
-
-    public func notify(
-        identifier: String,
-        title: String,
-        body: String,
-        route: String?
-    ) -> Future<Void, Error> {
-        Future<Void, Error> { [self] promise in
-            notify(identifier: identifier, title: title, body: body, route: route) { error in
-                if let error {
-                    promise(.failure(error))
-                } else {
-                    promise(.success(()))
-                }
-            }
-        }
-    }
 }
 
 // MARK: Push Notifications
@@ -101,25 +55,32 @@ extension NotificationManager {
         } }
     }
 
-    public func subscribeToPushChannel(token: Data? = nil, session: LoginSession? = AppEnvironment.shared.currentSession) {
+    /**
+     - parameters:
+        - deviceToken: The token received from Apple after we registered the device for push notifications at APNS.
+     */
+    public func subscribeToPushChannel(
+        deviceToken: Data? = nil,
+        session: LoginSession? = AppEnvironment.shared.currentSession
+    ) {
         guard AppEnvironment.shared.currentSession?.isFakeStudent == false else {
             return
         }
-        let newToken = token ?? remoteToken
+        let newToken = deviceToken ?? remoteToken
         guard newToken != remoteToken || session != remoteSession else { return }
         unsubscribeFromPushChannel()
         remoteToken = newToken
         remoteSession = session
         guard let token = newToken, let session = session else { return }
-        createPushChannel(token: token, session: session)
+        createPushChannel(deviceToken: token, session: session)
     }
 
-    func createPushChannel(token: Data, session: LoginSession, retriesLeft: Int = 4) {
+    private func createPushChannel(deviceToken: Data, session: LoginSession, retriesLeft: Int = 4) {
         let api = API(session)
-        api.makeRequest(PostCommunicationChannelRequest(pushToken: token)) { channel, _, error in
+        api.makeRequest(PostCommunicationChannelRequest(pushToken: deviceToken)) { channel, _, error in
             let retryCodes = [ Int(ECONNABORTED), NSURLErrorNetworkConnectionLost ]
             if let code = (error as NSError?)?.code, retryCodes.contains(code), retriesLeft > 0 {
-                return self.createPushChannel(token: token, session: session, retriesLeft: retriesLeft - 1)
+                return self.createPushChannel(deviceToken: deviceToken, session: session, retriesLeft: retriesLeft - 1)
             }
             guard let channelID = channel?.id.value, error == nil else {
                 // Hide error alert when "Users can edit their communication channels" setting is turned off
@@ -138,7 +99,7 @@ extension NotificationManager {
         }
     }
 
-    func setPushChannelDefaults(_ api: API, channelID: String) {
+    private func setPushChannelDefaults(_ api: API, channelID: String) {
         api.makeRequest(GetNotificationPreferencesRequest(channelID: channelID)) { response, _, error in
             if let error = error {
                 return self.logger.error(error.localizedDescription)

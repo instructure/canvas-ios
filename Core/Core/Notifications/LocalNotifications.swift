@@ -18,7 +18,14 @@
 
 import Combine
 
-public extension NotificationManager {
+public class LocalNotifications {
+    private let notificationCenter: UserNotificationCenterProtocol
+
+    public init(
+        notificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
+    ) {
+        self.notificationCenter = notificationCenter
+    }
 
     func sendFailedNotification(courseID: String, assignmentID: String) {
         let identifier = "failed-submission-\(courseID)-\(assignmentID)"
@@ -72,5 +79,71 @@ public extension NotificationManager {
             let isScheduled = sendOfflineSyncFailedNotificationAndWait()
             promise(isScheduled ? .success(()) : .failure(""))
         }
+    }
+
+    // MARK: - Private Helpers
+
+    private func notify(
+        identifier: String,
+        title: String,
+        body: String,
+        route: String?,
+        completion: ((Error?) -> Void)? = nil
+    ) {
+        let request = UNNotificationRequest(
+            identifier: identifier,
+            title: title,
+            body: body,
+            route: route
+        )
+        notificationCenter.add(request) { error in
+            if let error = error {
+                Analytics.shared.logError(name: "Failed to schedule local notification",
+                                          reason: error.localizedDescription)
+            }
+            completion?(error)
+        }
+    }
+
+    private func notify(
+        identifier: String,
+        title: String,
+        body: String,
+        route: String?
+    ) -> Future<Void, Error> {
+        Future<Void, Error> { [self] promise in
+            notify(identifier: identifier, title: title, body: body, route: route) { error in
+                if let error {
+                    promise(.failure(error))
+                } else {
+                    promise(.success(()))
+                }
+            }
+        }
+    }
+}
+
+public extension UNNotificationRequest {
+
+    convenience init(
+        identifier: String,
+        title: String,
+        body: String,
+        route: String?
+    ) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        if let route {
+            content.userInfo[NotificationManager.RouteURLKey] = route
+        }
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+
+        self.init(
+            identifier: identifier,
+            content: content,
+            trigger: trigger
+        )
     }
 }

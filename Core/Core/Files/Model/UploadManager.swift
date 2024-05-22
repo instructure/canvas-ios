@@ -32,7 +32,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
     public let identifier: String
     public let sharedContainerIdentifier: String?
-    var notificationManager: NotificationManager = .shared
+    var localNotifications: LocalNotifications = LocalNotifications()
     var process: ProcessManager = ProcessInfo.processInfo
     var environment: AppEnvironment { .shared }
     private var validSession: URLSession?
@@ -188,7 +188,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             self.context.performAndWait {
                 defer { callback?() }
                 guard let file = try? self.context.existingObject(with: fileObjectID) as? File else {
-                    return self.notificationManager.sendFailedNotification()
+                    return self.localNotifications.sendFailedNotification()
                 }
                 guard let target = response, error == nil else {
                     return self.complete(file: file, error: error)
@@ -371,7 +371,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                         self.delete(userID: userID, batchID: batchID, in: self.context)
                     }
                     Analytics.shared.logEvent("submit_fileupload_succeeded")
-                    self.notificationManager.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
+                    self.localNotifications.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
                 }
             }
             semaphore.wait()
@@ -413,9 +413,9 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             try? context.save()
             if error != nil {
                 if case let .submission(courseID, assignmentID, _)? = file.context {
-                    notificationManager.sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
+                    localNotifications.sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
                 } else {
-                    notificationManager.sendFailedNotification()
+                    localNotifications.sendFailedNotification()
                 }
             }
         }

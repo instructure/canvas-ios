@@ -47,7 +47,7 @@ class UploadManagerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        manager.notificationManager = notificationManager
+        manager.localNotifications = LocalNotifications(notificationCenter: notificationCenter)
         LoginSession.clearAll()
         manager.process = TestProcess()
         UUID.mock("abcdefg")
@@ -212,7 +212,7 @@ class UploadManagerTests: CoreTestCase {
     }
 
     func testFailedNotification() throws {
-        manager.notificationManager.sendFailedNotification()
+        manager.localNotifications.sendFailedNotification()
         let notification = notificationCenter.requests.last
         XCTAssertNotNil(notification)
         XCTAssertEqual(notification?.content.title, "Failed to send files!")

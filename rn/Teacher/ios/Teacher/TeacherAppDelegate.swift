@@ -137,7 +137,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        NotificationManager.shared.subscribeToPushChannel(token: deviceToken)
+        NotificationManager.shared.subscribeToPushChannel(deviceToken: deviceToken)
     }
 
     func userNotificationCenter(

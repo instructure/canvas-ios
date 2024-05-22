@@ -21,8 +21,12 @@ import TestsFoundation
 import XCTest
 
 class FileSubmissionBackgroundTerminationHandlerTests: CoreTestCase {
-    private lazy var notificationsSender = SubmissionCompletedNotificationsSender(context: databaseClient,
-                                                                                  notificationManager: notificationManager)
+    private lazy var notificationsSender = SubmissionCompletedNotificationsSender(
+        context: databaseClient,
+        localNotifications: LocalNotifications(
+            notificationCenter: notificationCenter
+        )
+    )
     private lazy var testee = FileSubmissionBackgroundTerminationHandler(context: databaseClient,
                                                                          notificationsSender: notificationsSender)
 
