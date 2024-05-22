@@ -22,7 +22,12 @@ import XCTest
 import TestsFoundation
 
 class AssignmentDetailsViewControllerTests: ParentTestCase {
-    lazy var controller = AssignmentDetailsViewController.create(studentID: "1", courseID: "1", assignmentID: "1")
+    lazy var controller = AssignmentDetailsViewController.create(
+        studentID: "1",
+        courseID: "1",
+        assignmentID: "1",
+        userNotificationCenter: notificationCenter
+    )
     let url = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
     let dueAt = Clock.now.addDays(2).startOfDay()
 

@@ -22,7 +22,11 @@ import XCTest
 import TestsFoundation
 
 class CalendarEventDetailsViewControllerTests: ParentTestCase {
-    lazy var controller = CalendarEventDetailsViewController.create(studentID: "1", eventID: "1")
+    lazy var controller = CalendarEventDetailsViewController.create(
+        studentID: "1",
+        eventID: "1",
+        userNotificationCenter: notificationCenter
+    )
 
     override func setUp() {
         super.setUp()
