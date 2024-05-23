@@ -48,7 +48,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         resourceId: String,
         publisherProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
     ) -> AnyPublisher<String, Error> {
-        let fileID = url.lastPathComponent
+        let fileID = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
         var downloadURL = url
         if downloadURL.lastPathComponent != "download" {
             downloadURL = url.appendingPathComponent("download")

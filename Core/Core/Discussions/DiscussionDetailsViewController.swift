@@ -161,7 +161,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: env.currentSession?.uniqueID ?? "",
             courseId: course.first?.id ?? "",
-            sectionName: OfflineFolderPrefix.discussions.rawValue,
+            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
             resourceId: topicID
         )
         webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
@@ -334,7 +334,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: env.currentSession?.uniqueID ?? "",
             courseId: course.first?.id ?? "",
-            sectionName: OfflineFolderPrefix.discussions.rawValue,
+            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
             resourceId: topic.id
         )
         webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
@@ -405,8 +405,6 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
             let newtopic = checkForOfflineTopic(for: topic)
             let newEntries = entries.map { entry in
-                print(checkForOfflineEntry(for: entry).message)
-                print()
                 return checkForOfflineEntry(for: entry)
             }
 
@@ -439,7 +437,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: env.currentSession?.uniqueID ?? "",
             courseId: course.first?.id ?? "",
-            sectionName: OfflineFolderPrefix.discussions.rawValue,
+            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
             resourceId: originalTopic.id
         )
         let offlinePath = rootURL.appendingPathComponent("body.html")
@@ -458,7 +456,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: env.currentSession?.uniqueID ?? "",
             courseId: course.first?.id ?? "",
-            sectionName: OfflineFolderPrefix.discussions.rawValue,
+            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
             resourceId: originalEntry.id
         )
         let offlinePath = rootURL.appendingPathComponent("body.html")
@@ -588,13 +586,15 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             url.host == env.currentSession?.baseURL.host,
             url.path.hasPrefix("/\(context.pathComponent)/discussion_topics/\(topicID)/")
         else {
-            if offlineModeInteractor?.isOfflineModeEnabled() == true {
-                UIAlertController.showItemNotAvailableInOfflineAlert()
-                return true
-            }
-
-            if url.pathComponents.contains("files") {
-                env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+            if url.pathComponents.contains("files") && url.host == env.currentSession?.baseURL.host {
+                if offlineModeInteractor?.isOfflineModeEnabled() == true {
+                    let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
+                    let offlineURL = "/courses/\(context.id)/files/\(isAnnouncement ? OfflineFolderPrefix.announcements : OfflineFolderPrefix.discussions)/\(topicID)/\(fileId)/offline"
+                    print(offlineURL)
+                    env.router.route(to: offlineURL, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                } else {
+                    env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                }
             } else {
                 env.router.route(to: url, from: self)
             }

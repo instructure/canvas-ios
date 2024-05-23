@@ -68,6 +68,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
         return ReactiveStore(useCase: GetDiscussionTopics(context: .course(courseId)))
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
+            .parseAttachment(attribute: \.attachments, id: \.id, courseId: courseId, htmlParser: htmlParser)
             .eraseToAnyPublisher()
     }
 
@@ -80,37 +81,9 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
         return ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
+            .parseAttachment(attribute: \.attachment, id: \.id, courseId: courseId, htmlParser: htmlParser)
             .parseRepliesHtmlContent(courseId: courseId, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
-    }
-}
-
-extension Publisher where Output: Collection, Output.Element: DiscussionEntry, Failure == Error {
-    func parseRepliesHtmlContent(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<[DiscussionEntry], Error> {
-        return self.flatMap { entries in
-            Publishers.Sequence(sequence: entries)
-                .setFailureType(to: Error.self)
-                .flatMap { entry in
-                    Publishers.Sequence(sequence: entry.replies)
-                        .setFailureType(to: Error.self)
-                }
-                .flatMap { entry in
-                    return htmlParser.parse(entry.message ?? "", resourceId: entry.id, courseId: courseId, baseURL: nil).map { return (entry, $0) }
-                }
-                .flatMap { (entry: DiscussionEntry, newContent: String) in
-                    entry.message = newContent
-                    return Just(entry.replies)
-                        .setFailureType(to: Error.self)
-                        .parseRepliesHtmlContent(courseId: courseId, htmlParser: htmlParser)
-                        .map { return (entry, $0) }
-                }
-                .map { (entry: DiscussionEntry, newReplies: [DiscussionEntry]) -> DiscussionEntry in
-                    entry.replies = newReplies
-                    return entry
-                }
-                .collect()
-        }
-        .eraseToAnyPublisher()
     }
 }

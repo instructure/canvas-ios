@@ -165,7 +165,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     }
 
     func update() {
-        guard let file = files.first else {
+        guard let file = files.first, offlineFileInteractor?.isOffline == false else {
             if let error = files.error {
                 // If file download failed because of unauthorization error and we have a verifier token, then we modify the url and try to open the file in a webview.
                 if var url = originURL, url.containsVerifier, case .unauthorized = (error as? APIError) {

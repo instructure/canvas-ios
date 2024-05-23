@@ -23,6 +23,7 @@ public protocol HTMLParser {
     var sessionId: String { get }
     var sectionName: String { get }
     func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL?) -> AnyPublisher<String, Error>
+    func downloadAttachment(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error>
 }
 
 public class HTMLParserLive: HTMLParser {
@@ -44,6 +45,15 @@ public class HTMLParserLive: HTMLParser {
         self.imageRegex = (try? NSRegularExpression(pattern: "<img[^>]*src=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
         self.fileRegex = (try? NSRegularExpression(pattern: "<a[^>]*class=\"instructure_file_link[^>]*href=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
         self.relativeURLRegex = (try? NSRegularExpression(pattern: "<.+(src|href)=\"(.+((\\.|\\/)\\.+)*)\".*>")) ?? NSRegularExpression()
+    }
+
+    public func downloadAttachment(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
+        return Just(url)
+            .setFailureType(to: Error.self)
+            .flatMap { [interactor] url in
+                interactor.downloadFile(url, courseId: courseId, resourceId: resourceId)
+            }
+            .eraseToAnyPublisher()
     }
 
     public func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
@@ -192,5 +202,98 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                     .collect()
             }
             .eraseToAnyPublisher()
+    }
+
+    func parseAttachment(
+        attribute url: ReferenceWritableKeyPath<Output.Element, File?>,
+        id: ReferenceWritableKeyPath<Output.Element, String>,
+        courseId: String,
+        htmlParser: HTMLParser
+    ) -> AnyPublisher<[Output.Element], Error> {
+        return self
+            .flatMap { dataArray in
+                return Publishers.Sequence(sequence: dataArray)
+                    .setFailureType(to: Error.self)
+                    .flatMap { element -> AnyPublisher<Self.Output.Element, Error> in
+                        if let value = element[keyPath: url], let downloadURL = value.url { // Parse only non null attributes
+                            let resourceId = element[keyPath: id]
+                            return htmlParser.downloadAttachment(downloadURL, courseId: courseId, resourceId: resourceId)
+                                .map { _ in element }
+                                .eraseToAnyPublisher()
+                        } else {
+                            return Just(element)
+                                .setFailureType(to: Error.self)
+                                .eraseToAnyPublisher()
+                        }
+                    }
+                    .collect()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    func parseAttachment(
+        attribute url: ReferenceWritableKeyPath<Output.Element, Set<File>?>,
+        id: ReferenceWritableKeyPath<Output.Element, String>,
+        courseId: String,
+        htmlParser: HTMLParser
+    ) -> AnyPublisher<[Output.Element], Error> {
+        return self
+            .flatMap { dataArray in
+                Publishers.Sequence(sequence: dataArray)
+                    .setFailureType(to: Error.self)
+                    .flatMap { element -> AnyPublisher<Self.Output.Element, Error> in
+                        let resourceId = element[keyPath: id]
+                        if let values = element[keyPath: url] { // Parse only non null attributes
+                            return values.publisher.flatMap { file in
+                                if let downloadURL = file.url {
+                                    return htmlParser.downloadAttachment(downloadURL, courseId: courseId, resourceId: resourceId)
+                                        .eraseToAnyPublisher()
+                                } else {
+                                    return Just("").setFailureType(to: Error.self).eraseToAnyPublisher()
+                                }
+                            }
+                            .collect()
+                            .map { _ in element }
+                            .eraseToAnyPublisher()
+
+                        } else {
+                            return Just(element)
+                                .setFailureType(to: Error.self)
+                                .eraseToAnyPublisher()
+                        }
+                    }
+                    .collect()
+            }
+            .eraseToAnyPublisher()
+    }
+}
+
+extension Publisher where Output: Collection, Output.Element: DiscussionEntry, Failure == Error {
+    func parseRepliesHtmlContent(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<[DiscussionEntry], Error> {
+        return self.flatMap { entries in
+            Publishers.Sequence(sequence: entries)
+                .setFailureType(to: Error.self)
+                .flatMap { entry in
+                    Publishers.Sequence(sequence: entry.replies)
+                        .setFailureType(to: Error.self)
+                }
+                .flatMap { entry in
+                    return htmlParser.parse(entry.message ?? "", resourceId: entry.id, courseId: courseId, baseURL: nil).map { return (entry, $0) }
+                }
+                .flatMap { (entry: DiscussionEntry, newContent: String) in
+                    entry.message = newContent
+                    return Just(entry.replies)
+                        .setFailureType(to: Error.self)
+                        .parseRepliesHtmlContent(courseId: courseId, htmlParser: htmlParser)
+                        .parseAttachment(attribute: \.attachment, id: \.id, courseId: courseId, htmlParser: htmlParser)
+                        .map { return (entry, $0) }
+                }
+                .map { (entry: DiscussionEntry, newReplies: [DiscussionEntry]) -> DiscussionEntry in
+                    entry.replies = newReplies
+                    return entry
+                }
+                .collect()
+        }
+        .eraseToAnyPublisher()
     }
 }
