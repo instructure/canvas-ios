@@ -22,57 +22,122 @@ import XCTest
 import UserNotifications
 
 class NotificationManagerTests: CoreTestCase {
+    private let deviceToken = Data([123])
+    private let loginSession = LoginSession.make()
+    private let pushChannelId = "pushChannelId"
 
-    func testRemoteNotifications() {
-        notificationManager.registerForRemoteNotifications(application: .shared)
+    func testSubscribesToPush() {
+        // GIVEN
+        let postsPushNotificationRequest = expectation(description: "postsPushNotificationRequest")
+        api.mock(PostCommunicationChannelRequest(pushToken: deviceToken)) { _ in
+            postsPushNotificationRequest.fulfill()
+            return (.make(id: ID(rawValue: self.pushChannelId)), nil, nil)
+        }
 
-        let token = Data([1])
-        api.mock(PostCommunicationChannelRequest(pushToken: token), value: .make())
-        api.mock(GetNotificationDefaultsFlagRequest(), value: nil)
-        api.mock(GetNotificationPreferencesRequest(channelID: "1"), value: .init(notification_preferences: [
-            .make(notification: "ignored", category: "alert", frequency: .daily),
-            .make(notification: "new", category: "assignment", frequency: .daily),
-        ]))
-        api.mock(PutNotificationDefaultsFlagRequest(), value: .init(data: "true"))
-        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
-        XCTAssertEqual(logger.errors.last, nil)
+        let getsIfPushChannelDefaultsAreSet = expectation(description: "getsIfPushChannelDefaultsAreSet")
+        api.mock(GetNotificationDefaultsFlagRequest()) { _ in
+            getsIfPushChannelDefaultsAreSet.fulfill()
+            return (nil, nil, nil)
+        }
 
-        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
-        XCTAssertEqual(logger.errors.last, nil)
+        let getsPushChannelSettings = expectation(description: "getsPushChannelSettings")
+        api.mock(GetNotificationPreferencesRequest(channelID: pushChannelId)) { _ in
+            getsPushChannelSettings.fulfill()
+            return (.init(notification_preferences: []), nil, nil)
+        }
 
-        notificationManager.remoteToken = nil // reset
-        api.mock(PutNotificationDefaultsFlagRequest(), error: NSError.instructureError("flag"))
-        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
-        XCTAssertEqual(logger.errors.last, "flag")
+        let putsNewPushChannelSettings = expectation(description: "putsNewPushChannelSettings")
+        let putPushChannelSettingsRequest = PutNotificationPreferencesRequest(
+            channelID: pushChannelId,
+            notifications: [],
+            frequency: .immediately
+        )
+        api.mock(putPushChannelSettingsRequest) { _ in
+            putsNewPushChannelSettings.fulfill()
+            return (.init(notification_preferences: []), nil, nil)
+        }
 
-        notificationManager.remoteToken = nil // reset
-        api.mock(PutNotificationPreferencesRequest(channelID: "1", notifications: ["new"], frequency: .immediately), error: NSError.instructureError("prefs"))
-        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
-        XCTAssertEqual(logger.errors.last, "prefs")
+        let putsThatPushChannelDefaultsAreSet = expectation(description: "putsThatPushChannelDefaultsAreSet")
+        api.mock(PutNotificationDefaultsFlagRequest()) { _ in
+            putsThatPushChannelDefaultsAreSet.fulfill()
+            return (nil, nil, nil)
+        }
 
-        notificationManager.remoteToken = nil // reset
-        api.mock(GetNotificationPreferencesRequest(channelID: "1"), error: NSError.instructureError("getprefs"))
-        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
-        XCTAssertEqual(logger.errors.last, "getprefs")
+        // WHEN
+        notificationManager.userDidLogin(loginSession: loginSession)
+        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
 
-        notificationManager.remoteToken = nil // reset
-        logger.errors = []
-        api.mock(GetNotificationDefaultsFlagRequest(), value: .init(data: "true"))
-        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
-        XCTAssertEqual(logger.errors.last, nil)
+        // THEN
+        wait(
+            for: [
+                postsPushNotificationRequest,
+                getsIfPushChannelDefaultsAreSet,
+                getsPushChannelSettings,
+                putsNewPushChannelSettings,
+                putsThatPushChannelDefaultsAreSet,
+            ],
+            timeout: 1
+        )
+    }
 
-        notificationManager.remoteToken = nil // reset
-        let lost = NSError(domain: NSURLErrorDomain, code: NSURLErrorNetworkConnectionLost)
-        api.mock(PostCommunicationChannelRequest(pushToken: token), error: lost)
-        environment.errorHandler = { e, _ in XCTAssertEqual(e as NSError, lost) }
-        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make())
+    func testNotSubscribesAgainIfDeviceTokenAndLoginSessionNotChanged() {
+        // GIVEN
+        let postsPushNotificationRequest = expectation(description: "postsPushNotificationRequest")
+        api.mock(PostCommunicationChannelRequest(pushToken: deviceToken)) { _ in
+            postsPushNotificationRequest.fulfill()
+            return (.make(id: ID(rawValue: self.pushChannelId)), nil, nil)
+        }
 
-        api.mock(DeletePushChannelRequest(pushToken: token), value: .init())
-        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make(userID: "2"))
+        // WHEN
+        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
+        notificationManager.userDidLogin(loginSession: loginSession)
+        notificationManager.userDidLogin(loginSession: loginSession)
+        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
 
-        notificationManager.remoteSession = .make()
-        api.mock(DeletePushChannelRequest(pushToken: token), error: NSError.instructureError("delete"))
-        notificationManager.subscribeToPushChannel(deviceToken: token, session: .make(userID: "2"))
-        XCTAssertEqual(logger.errors.last, "delete")
+        // THEN
+        wait(for: [postsPushNotificationRequest])
+    }
+
+    func testUnsubscription() {
+        // GIVEN
+        api.mock(PostCommunicationChannelRequest(pushToken: deviceToken),
+                 value: .make(id: ID(rawValue: pushChannelId)))
+        let deletesPushNotificationRequest = expectation(description: "deletesPushNotificationRequest")
+        api.mock(DeletePushChannelRequest(pushToken: deviceToken)) { _ in
+            deletesPushNotificationRequest.fulfill()
+            return (nil, nil, nil)
+        }
+        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
+        notificationManager.userDidLogin(loginSession: loginSession)
+
+        // WHEN
+        notificationManager.unsubscribeFromCanvasPushNotifications()
+
+        // THEN
+        wait(for: [deletesPushNotificationRequest])
+    }
+
+    func testSubscribesAfterUnsubscription() {
+        // GIVEN
+        let postsPushNotificationRequest = expectation(description: "postsPushNotificationRequest")
+        postsPushNotificationRequest.expectedFulfillmentCount = 2
+        api.mock(PostCommunicationChannelRequest(pushToken: deviceToken)) { _ in
+            postsPushNotificationRequest.fulfill()
+            return (.make(id: ID(rawValue: self.pushChannelId)), nil, nil)
+        }
+        let deletesPushNotificationRequest = expectation(description: "deletesPushNotificationRequest")
+        api.mock(DeletePushChannelRequest(pushToken: deviceToken)) { _ in
+            deletesPushNotificationRequest.fulfill()
+            return (nil, nil, nil)
+        }
+        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
+        notificationManager.userDidLogin(loginSession: loginSession)
+        notificationManager.unsubscribeFromCanvasPushNotifications()
+
+        // WHEN
+        notificationManager.userDidLogin(loginSession: loginSession)
+
+        // THEN
+        wait(for: [postsPushNotificationRequest, deletesPushNotificationRequest])
     }
 }

@@ -99,7 +99,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
-            NotificationManager.shared.subscribeToPushChannel()
+            NotificationManager.shared.userDidLogin(loginSession: session)
 
             self.isK5User = apiProfile.k5_user == true
             Analytics.shared.logSession(session)
@@ -123,7 +123,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 window.rootViewController = controller
             }, completion: { _ in
                 self.environment.startupDidComplete()
-                NotificationManager.shared.registerForRemoteNotifications(application: .shared)
+                UIApplication.shared.registerForPushNotifications()
             })
         }
         HelmManager.shared.onReactReload = {
@@ -136,8 +136,11 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         }
     }
 
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        NotificationManager.shared.subscribeToPushChannel(deviceToken: deviceToken)
+    func application(
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+        NotificationManager.shared.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
     }
 
     func userNotificationCenter(
@@ -334,7 +337,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
-        NotificationManager.shared.unsubscribeFromPushChannel()
+        NotificationManager.shared.unsubscribeFromCanvasPushNotifications()
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()

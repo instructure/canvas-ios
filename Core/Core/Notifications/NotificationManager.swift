@@ -21,15 +21,24 @@ import Foundation
 import UserNotifications
 
 public class NotificationManager {
-    public let notificationCenter: UserNotificationCenterProtocol
-    public let logger: LoggerProtocol
-    public var remoteToken: Data?
-    public var remoteSession: LoginSession?
-
     public static var shared = NotificationManager(
         notificationCenter: UNUserNotificationCenter.current(),
         logger: AppEnvironment.shared.logger
     )
+
+    public let notificationCenter: UserNotificationCenterProtocol
+
+    private let logger: LoggerProtocol
+    private var deviceToken: Data? {
+        didSet {
+            subscribeToCanvasPushNotificationsIfNecessary()
+        }
+    }
+    private var loginSession: LoginSession? {
+        didSet {
+            subscribeToCanvasPushNotificationsIfNecessary()
+        }
+    }
 
     init(
         notificationCenter: UserNotificationCenterProtocol,
@@ -39,38 +48,65 @@ public class NotificationManager {
         self.logger = logger
     }
 
-    public func registerForRemoteNotifications(application: UIApplication) {
-        guard !ProcessInfo.isUITest else { return }
-
-        notificationCenter.requestAuthorization(options: [.badge, .sound, .alert]) { granted, error in performUIUpdate {
-            guard granted, error == nil else { return }
-            #if !targetEnvironment(simulator) // Can't register on simulator
-                application.registerForRemoteNotifications()
-            #endif
-        } }
-    }
-
     /**
      - parameters:
         - deviceToken: The token received from Apple after we registered the device for push notifications at APNS.
      */
-    public func subscribeToPushChannel(
-        deviceToken: Data? = nil,
-        session: LoginSession? = AppEnvironment.shared.currentSession
+    public func applicationDidRegisterForPushNotifications(
+        deviceToken: Data
     ) {
-        guard AppEnvironment.shared.currentSession?.isFakeStudent == false else {
+        if self.deviceToken == deviceToken {
+            // The device token is already registered so we either
+            // already subscribed for pushes or wait for the session token
             return
         }
-        let newToken = deviceToken ?? remoteToken
-        guard newToken != remoteToken || session != remoteSession else { return }
-        unsubscribeFromPushChannel()
-        remoteToken = newToken
-        remoteSession = session
-        guard let token = newToken, let session = session else { return }
-        createPushChannel(deviceToken: token, session: session)
+
+        self.deviceToken = deviceToken
     }
 
-    private func createPushChannel(deviceToken: Data, session: LoginSession, retriesLeft: Int = 4) {
+    public func userDidLogin(
+        loginSession: LoginSession
+    ) {
+        if loginSession.isFakeStudent {
+            return
+        }
+
+        if self.loginSession == loginSession {
+            // This could happen if switch user was triggered
+            // but after that the very same user logged in again.
+            // Since we still have the login session saved we know
+            // for sure that we haven't unsubscribed from pushes.
+            return
+        }
+
+        self.loginSession = loginSession
+    }
+
+    public func unsubscribeFromCanvasPushNotifications() {
+        guard let deviceToken, let loginSession else {
+            return
+        }
+        let api = API(loginSession)
+        self.loginSession = nil
+        api.makeRequest(DeletePushChannelRequest(pushToken: deviceToken)) { _, _, error in
+            guard let error else { return }
+            self.logger.error(error.localizedDescription)
+        }
+    }
+
+    private func subscribeToCanvasPushNotificationsIfNecessary() {
+        guard let deviceToken, let loginSession else {
+            return
+        }
+
+        createPushChannel(deviceToken: deviceToken, session: loginSession)
+    }
+
+    private func createPushChannel(
+        deviceToken: Data,
+        session: LoginSession,
+        retriesLeft: Int = 4
+    ) {
         let api = API(session)
         api.makeRequest(PostCommunicationChannelRequest(pushToken: deviceToken)) { channel, _, error in
             let retryCodes = [ Int(ECONNABORTED), NSURLErrorNetworkConnectionLost ]
@@ -94,7 +130,10 @@ public class NotificationManager {
         }
     }
 
-    private func setPushChannelDefaults(_ api: API, channelID: String) {
+    private func setPushChannelDefaults(
+        _ api: API,
+        channelID: String
+    ) {
         api.makeRequest(GetNotificationPreferencesRequest(channelID: channelID)) { response, _, error in
             if let error = error {
                 return self.logger.error(error.localizedDescription)
@@ -111,14 +150,6 @@ public class NotificationManager {
                     if let error = error { self.logger.error(error.localizedDescription) }
                 }
             }
-        }
-    }
-
-    public func unsubscribeFromPushChannel() {
-        guard let token = remoteToken, let session = remoteSession else { return }
-        API(session).makeRequest(DeletePushChannelRequest(pushToken: token)) { _, _, error in
-            guard let error = error else { return }
-            self.logger.error(error.localizedDescription)
         }
     }
 }

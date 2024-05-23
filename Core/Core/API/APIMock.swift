@@ -179,7 +179,7 @@ class MockAPITask: APITask {
 }
 
 extension URLRequest {
-    var key: String { url?.withCanonicalQueryParams?.absoluteString ?? "" }
+    var key: String { "\(httpMethod ?? ""):\(url?.withCanonicalQueryParams?.absoluteString ?? "")" }
 }
 
 class APIMock {
