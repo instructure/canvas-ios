@@ -64,7 +64,7 @@ class CourseSyncNotificationInteractorTests: CoreTestCase {
         }
 
         XCTAssertEqual(notification.content.title, "Offline Content Sync Failed")
-        XCTAssertEqual(notification.content.body, "One or more items failed to sync.")
+        XCTAssertEqual(notification.content.body, "One or more items failed to sync. Please check your internet connection and retry syncing.")
     }
 
     func testNotSendsFailedNotificationWhenSyncProgressIsOnScreen() {
