@@ -150,11 +150,13 @@ class PlannerListCell: UITableViewCell {
 
     func update(_ p: Plannable?) {
         accessibilityIdentifier = "PlannerList.event.\(p?.id ?? "")"
-        backgroundColor = .backgroundLightest
 
         let customColor = AppEnvironment.shared.app == .parent
             ? nil
             : p?.color.ensureContrast(against: .backgroundLightest)
+
+        backgroundColor = .backgroundLightest
+        selectedBackgroundView = ContextCellBackgroundView.create(color: customColor)
 
         icon.image = p?.icon()
         if let customColor {
