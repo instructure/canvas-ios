@@ -370,7 +370,9 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
     func render() {
         guard isReady, let topic = topic.first, !entries.pending || !entries.isEmpty else { return }
-        guard !offlineLoaded else { return }
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            guard !offlineLoaded else { return }
+        }
         var script: String
         if let root = showRepliesToEntryID.flatMap({ entry($0) }) {
             let newRoot = checkForOfflineEntry(for: root)
@@ -434,46 +436,52 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     }
 
     private func checkForOfflineTopic(for originalTopic: DiscussionTopic) -> DiscussionTopic {
-        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
-            sessionId: env.currentSession?.uniqueID ?? "",
-            courseId: course.first?.id ?? "",
-            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
-            resourceId: originalTopic.id
-        )
-        let offlinePath = rootURL.appendingPathComponent("body.html")
-
-        let newTopic = originalTopic
 
         if offlineModeInteractor?.isNetworkOffline() == true {
+            let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+                sessionId: env.currentSession?.uniqueID ?? "",
+                courseId: course.first?.id ?? "",
+                sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
+                resourceId: originalTopic.id
+            )
+            let offlinePath = rootURL.appendingPathComponent("body.html")
+
+            let newTopic = originalTopic
+
             let rawHtmlValue = try? String(contentsOf: offlinePath, encoding: .utf8)
             offlineLoaded = true
             newTopic.message = rawHtmlValue
+
+            return newTopic
+        } else {
+            return originalTopic
         }
-        return newTopic
     }
 
     private func checkForOfflineEntry(for originalEntry: DiscussionEntry) -> DiscussionEntry {
-        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
-            sessionId: env.currentSession?.uniqueID ?? "",
-            courseId: course.first?.id ?? "",
-            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
-            resourceId: originalEntry.id
-        )
-        let offlinePath = rootURL.appendingPathComponent("body.html")
-
-        let newEntry = originalEntry
-
         if offlineModeInteractor?.isNetworkOffline() == true {
+            let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+                sessionId: env.currentSession?.uniqueID ?? "",
+                courseId: course.first?.id ?? "",
+                sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
+                resourceId: originalEntry.id
+            )
+            let offlinePath = rootURL.appendingPathComponent("body.html")
+
+            let newEntry = originalEntry
+
             let rawHtmlValue = try? String(contentsOf: offlinePath, encoding: .utf8)
             offlineLoaded = true
             newEntry.message = rawHtmlValue
+
+            newEntry.replies = newEntry.replies.map { reply in
+                return checkForOfflineEntry(for: reply)
+            }
+
+            return newEntry
         }
 
-        newEntry.replies = newEntry.replies.map { reply in
-            return checkForOfflineEntry(for: reply)
-        }
-
-        return newEntry
+        return originalEntry
     }
 
     private func showFallbackWebView() {

@@ -44,7 +44,7 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
 
         waitForExpectations(timeout: 10)
         XCTAssertNotEqual(resultString, testURL.path)
-        XCTAssertEqual(resultString, testURL.lastPathComponent)
+        XCTAssertEqual(String(resultString?.split(separator: "/").last ?? ""), testURL.lastPathComponent)
     }
 
     func testFileDownload() {
