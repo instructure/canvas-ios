@@ -598,7 +598,6 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
                 if offlineModeInteractor?.isOfflineModeEnabled() == true {
                     let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
                     let offlineURL = "/courses/\(context.id)/files/\(isAnnouncement ? OfflineFolderPrefix.announcements : OfflineFolderPrefix.discussions)/\(topicID)/\(fileId)/offline"
-                    print(offlineURL)
                     env.router.route(to: offlineURL, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
                 } else {
                     env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
