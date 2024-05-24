@@ -447,6 +447,11 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
 
     func downloadComplete(mimeClass: String?, contentType: String?) {
         guard let localURL = localURL, FileManager.default.fileExists(atPath: localURL.path) else { return }
+        if localURL.lastPathComponent == "download" && localURL.pathExtension == "" {
+            return performUIUpdate {
+                self.showFileNoLongerExistsDialog()
+            }
+        }
         shareButton.isEnabled = true
         switch (mimeClass, contentType) {
         case ("audio", _):
