@@ -116,7 +116,7 @@ public final class PageDetailsViewController: DownloadableViewController, Colore
         setupTitleViewInNavbar(title: page.title)
         optionsButton.accessibilityIdentifier = "PageDetails.options"
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
-        webView.loadHTMLString(page.body, baseURL: page.htmlURL)
+        webView.loadHTMLString(HTMLWistiaHandler().updateWistia(in: page.body) ?? page.body, baseURL: page.htmlURL)
         if let course = courses.first {
             updated?(page, course)
         }
