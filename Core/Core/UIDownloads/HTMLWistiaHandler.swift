@@ -30,18 +30,18 @@ struct HTMLWistiaHandler {
 
                     if let id = getWistiaId(from: src) {
                         var stringToReplace: String = ""
-                        let v1Link = "//fast.wistia.com/assets/external/E-v1.js"
+                        let v1Link = "https://fast.wistia.com/assets/external/E-v1.js"
                         if !result.contains(v1Link) {
                             stringToReplace += "<script src=\"\(v1Link)\" async></script>"
                         }
 
-                        let transcriptLink: String = "//fast.wistia.net/assets/external/transcript.js"
+                        let transcriptLink: String = "https://fast.wistia.net/assets/external/transcript.js"
                         if !result.contains(transcriptLink) {
                             stringToReplace += "<script src=\"\(transcriptLink)\" async></script>"
                         }
 
                         stringToReplace += """
-                        <script src="//fast.wistia.com/embed/medias/\(id).jsonp" async></script>
+                        <script src="https://fast.wistia.com/embed/medias/\(id).jsonp" async></script>
                         <div class="wistia_embed wistia_async_\(id)"
                         style = \"width:100%; height:100%; \(styleValue ?? "")\">&nbsp;</div>
                         <wistia-transcript media-id="\(id)" style="margin-top: 20px;height:200px;"></wistia-transcript>
