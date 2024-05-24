@@ -206,7 +206,7 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
 
     func parseAttachment(
         attribute url: ReferenceWritableKeyPath<Output.Element, File?>,
-        id: ReferenceWritableKeyPath<Output.Element, String>,
+        topicId: String,
         courseId: String,
         htmlParser: HTMLParser
     ) -> AnyPublisher<[Output.Element], Error> {
@@ -216,8 +216,7 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                     .setFailureType(to: Error.self)
                     .flatMap { element -> AnyPublisher<Self.Output.Element, Error> in
                         if let value = element[keyPath: url], let downloadURL = value.url { // Parse only non null attributes
-                            let resourceId = element[keyPath: id]
-                            return htmlParser.downloadAttachment(downloadURL, courseId: courseId, resourceId: resourceId)
+                            return htmlParser.downloadAttachment(downloadURL, courseId: courseId, resourceId: topicId)
                                 .map { _ in element }
                                 .eraseToAnyPublisher()
                         } else {
@@ -242,8 +241,8 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                 Publishers.Sequence(sequence: dataArray)
                     .setFailureType(to: Error.self)
                     .flatMap { element -> AnyPublisher<Self.Output.Element, Error> in
-                        let resourceId = element[keyPath: id]
                         if let values = element[keyPath: url] { // Parse only non null attributes
+                            let resourceId = element[keyPath: id]
                             return values.publisher.flatMap { file in
                                 if let downloadURL = file.url {
                                     return htmlParser.downloadAttachment(downloadURL, courseId: courseId, resourceId: resourceId)
@@ -269,7 +268,7 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
 }
 
 extension Publisher where Output: Collection, Output.Element: DiscussionEntry, Failure == Error {
-    func parseRepliesHtmlContent(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<[DiscussionEntry], Error> {
+    func parseRepliesHtmlContent(courseId: String, topicId: String, htmlParser: HTMLParser) -> AnyPublisher<[DiscussionEntry], Error> {
         return self.flatMap { entries in
             Publishers.Sequence(sequence: entries)
                 .setFailureType(to: Error.self)
@@ -284,8 +283,8 @@ extension Publisher where Output: Collection, Output.Element: DiscussionEntry, F
                     entry.message = newContent
                     return Just(entry.replies)
                         .setFailureType(to: Error.self)
-                        .parseRepliesHtmlContent(courseId: courseId, htmlParser: htmlParser)
-                        .parseAttachment(attribute: \.attachment, id: \.id, courseId: courseId, htmlParser: htmlParser)
+                        .parseRepliesHtmlContent(courseId: courseId, topicId: topicId, htmlParser: htmlParser)
+                        .parseAttachment(attribute: \.attachment, topicId: topicId, courseId: courseId, htmlParser: htmlParser)
                         .map { return (entry, $0) }
                 }
                 .map { (entry: DiscussionEntry, newReplies: [DiscussionEntry]) -> DiscussionEntry in

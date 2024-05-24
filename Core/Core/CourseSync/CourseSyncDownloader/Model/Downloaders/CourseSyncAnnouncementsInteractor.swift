@@ -71,8 +71,8 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
         return ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
-            .parseAttachment(attribute: \.attachment, id: \.id, courseId: courseId, htmlParser: htmlParser)
-            .parseRepliesHtmlContent(courseId: courseId, htmlParser: htmlParser)
+            .parseAttachment(attribute: \.attachment, topicId: topicId, courseId: courseId, htmlParser: htmlParser)
+            .parseRepliesHtmlContent(courseId: courseId, topicId: topicId, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
