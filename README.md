@@ -214,3 +214,7 @@ You can test this locally with command line arguments.
 ```
 
 Change the `username`, `password`, and `host` to your test credentials. You can also add `host` and `authenticationProvider` strings to the top level dict to skip the "Find my school" screen during login.
+
+## Xcode Templates
+
+Xcode templates can be found under the `templates` directory. Copy the contents of that directory to `~/Library/Developer/Xcode/Templates/`. Run `make sync` to update your project after you have created your files from these templates.

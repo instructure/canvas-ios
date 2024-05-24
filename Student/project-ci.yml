@@ -30,10 +30,7 @@ projectReferences:
 packages:
   Heap:
     url: https://github.com/heap/heap-ios-sdk.git
-    exactVersion: 9.0.1
-  Firebase:
-    url: https://github.com/firebase/firebase-ios-sdk.git
-    exactVersion: 10.21.0
+    exactVersion: 9.1.0
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 13.0.1

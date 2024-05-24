@@ -29,6 +29,7 @@ public protocol GradeListInteractor {
         ignoreCache: Bool
     ) -> AnyPublisher<GradeListData, Error>
     func updateGradingPeriod(id: String?)
+    func isWhatIfScoreFlagEnabled() -> Bool
 }
 
 public final class GradeListInteractorLive: GradeListInteractor {
@@ -200,6 +201,10 @@ public final class GradeListInteractorLive: GradeListInteractor {
         )
     }
 
+    public func isWhatIfScoreFlagEnabled() -> Bool {
+        ExperimentalFeature.whatIfScore.isEnabled && AppEnvironment.shared.app == .student
+    }
+
     private func getGradingPeriod(id: String?, gradingPeriods: [GradingPeriod]) -> GradingPeriod? {
         guard let id else {
             return nil
@@ -242,17 +247,17 @@ public final class GradeListInteractorLive: GradeListInteractor {
         var assignmentSections: [GradeListData.AssignmentSections] = []
         var overdueAssignments = GradeListData.AssignmentSections(
             id: UUID.string,
-            title: String(localized: "Overdue Assignments"),
+            title: String(localized: "Overdue Assignments", bundle: .core),
             assignments: []
         )
         var upcomingAssignments = GradeListData.AssignmentSections(
             id: UUID.string,
-            title: String(localized: "Upcoming Assignments"),
+            title: String(localized: "Upcoming Assignments", bundle: .core),
             assignments: []
         )
         var pastAssignments = GradeListData.AssignmentSections(
             id: UUID.string,
-            title: String(localized: "Past Assignments"),
+            title: String(localized: "Past Assignments", bundle: .core),
             assignments: []
         )
 

@@ -43,13 +43,11 @@ struct CourseSyncProgressInfoView: View {
                 SwiftUI.EmptyView()
             case .downloadStarting:
                 ProgressView(value: progress)
-                    .progressViewStyle(.indeterminateBar(foregroundColor: progressColor,
-                                                         backgroundColor: progressColor.opacity(0.24)))
+                    .progressViewStyle(.indeterminateBar(color: progressColor))
             case let .finishedSuccessfully(_, progress),
                  let .downloadInProgress(_, progress):
                 ProgressView(value: progress)
-                    .progressViewStyle(.determinateBar(foregroundColor: progressColor,
-                                                       backgroundColor: progressColor.opacity(0.24)))
+                    .progressViewStyle(.determinateBar(color: progressColor))
 
             }
         }

@@ -19,13 +19,17 @@
 import SwiftUI
 
 public struct Avatar: View {
-    public let initials: String
+    public let initials: String?
     public let url: URL?
     public let size: CGFloat
     private let isAccessible: Bool
 
     public init(name: String?, url: URL?, size: CGFloat = 40, isAccessible: Bool = false) {
-        initials = Avatar.initials(for: name ?? "")
+        if let name {
+            initials = Avatar.initials(for: name)
+        } else {
+            initials = nil
+        }
         self.url = Avatar.scrubbedURL(url)
         self.size = size
         self.isAccessible = isAccessible
@@ -39,7 +43,7 @@ public struct Avatar: View {
                 .background(Color.backgroundLight)
                 .cornerRadius(size / 2)
                 .testID("Avatar.imageView")
-        } else {
+        } else if let initials {
             Text(initials)
                 .accessibility(hidden: !isAccessible)
                 .allowsTightening(true)
@@ -52,6 +56,18 @@ public struct Avatar: View {
                     .stroke(Color.borderMedium, lineWidth: 1)
                 )
                 .testID("Avatar.initialsLabel")
+        } else {
+            Image.userLine
+                .aspectRatio(contentMode: .fill)
+                .frame(width: size, height: size)
+                .accessibility(hidden: !isAccessible)
+                .foregroundColor(.textDark)
+                .background(Color.backgroundLightest)
+                .cornerRadius(size / 2)
+                .overlay(Circle()
+                    .stroke(Color.borderMedium, lineWidth: 1)
+                )
+                .testID("Avatar.anonymousUser")
         }
     }
 

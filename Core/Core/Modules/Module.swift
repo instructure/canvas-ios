@@ -69,12 +69,12 @@ public class Module: NSManagedObject {
         guard state == .locked else { return nil }
         if let unlockAt = unlockAt, unlockAt > Clock.now {
             return String.localizedStringWithFormat(
-                NSLocalizedString("Will unlock %@", bundle: .core, comment: ""),
+                String(localized: "Will unlock %@", bundle: .core),
                 DateFormatter.localizedString(from: unlockAt, dateStyle: .medium, timeStyle: .short)
             )
         } else if prerequisiteModuleIDs.count > 0 {
             return String.localizedStringWithFormat(
-                NSLocalizedString("Prerequisite: %@", bundle: .core, comment: ""),
+                String(localized: "Prerequisite: %@", bundle: .core),
                 prerequisiteModules.map(\.name).joined(separator: ", ")
             )
         }

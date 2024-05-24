@@ -73,7 +73,7 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
         super.viewDidLoad()
         view.backgroundColor = .backgroundGrouped
 
-        alertHeaderLabel.text = NSLocalizedString("Alert me when:", comment: "")
+        alertHeaderLabel.text = String(localized: "Alert me when:", bundle: .parent)
         for label in alertLabels {
             label.text = AlertThresholdType.allCases[label.tag].name
         }
@@ -158,8 +158,8 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
         guard let value = formatter.number(from: text)?.uintValue, value >= 1, value <= 100 else {
             updateThresholds()
             return showAlert(
-                title: NSLocalizedString("Invalid Threshold", comment: ""),
-                message: NSLocalizedString("The value must a number between 0 and 100", comment: "")
+                title: String(localized: "Invalid Threshold", bundle: .parent),
+                message: String(localized: "The value must a number between 0 and 100", bundle: .parent)
             )
         }
 
@@ -180,15 +180,15 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
         if let low = low, low >= value {
             updateThresholds()
             return showAlert(
-                title: NSLocalizedString("Invalid Threshold", comment: ""),
-                message: NSLocalizedString("You cannot set a high threshold that is lower or equal to a previously set low threshold.", comment: "")
+                title: String(localized: "Invalid Threshold", bundle: .parent),
+                message: String(localized: "You cannot set a high threshold that is lower or equal to a previously set low threshold.", bundle: .parent)
             )
         }
         if let high = high, high <= value {
             updateThresholds()
             return showAlert(
-                title: NSLocalizedString("Invalid Threshold", comment: ""),
-                message: NSLocalizedString("You cannot set a low threshold that is higher or equal to a previously set high threshold.", comment: "")
+                title: String(localized: "Invalid Threshold", bundle: .parent),
+                message: String(localized: "You cannot set a low threshold that is higher or equal to a previously set high threshold.", bundle: .parent)
             )
         }
 

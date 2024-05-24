@@ -86,7 +86,18 @@ public class AssignmentsHelper: BaseHelper {
         public static var editButton: XCUIElement { app.find(label: "Edit", type: .button) }
         public static var isLockedLabel: XCUIElement { app.find(label: "This assignment is locked", type: .staticText) }
         public static var pandaLockedImage: XCUIElement { app.find(id: "PandaLocked", type: .image) }
+        public static var submissionAndRubricButton: XCUIElement { app.find(label: "Submission & Rubric", type: .button) }
 
+        // Reminder
+        public static var reminder: XCUIElement { app.find(id: "AssignmentDetails.reminder") }
+        public static var addReminder: XCUIElement { app.find(id: "AssignmentDetails.addReminder") }
+        public static var removeReminder: XCUIElement { app.find(label: "xLine", type: .button) }
+        public static var removalLabel: XCUIElement { app.find(label: "Delete Reminder", type: .staticText)}
+        public static var removalAreYouSureLabel: XCUIElement { app.find(labelContaining: "Are you sure", type: .staticText)}
+        public static var noButton: XCUIElement { app.find(label: "No", type: .button) }
+        public static var yesButton: XCUIElement { app.find(label: "Yes", type: .button) }
+
+        // Other
         public static var backButton: XCUIElement {
             app.find(idStartingWith: "Assignment Details", type: .navigationBar).find(label: "Back", type: .button)
         }
@@ -154,6 +165,50 @@ public class AssignmentsHelper: BaseHelper {
             }
         }
 
+        public struct Reminder {
+            public static var fiveMinButton: XCUIElement { app.find(label: "5 Minutes Before", type: .button) }
+            public static var fifteenMinButton: XCUIElement { app.find(label: "15 Minutes Before", type: .button) }
+            public static var thirtyMinButton: XCUIElement { app.find(label: "30 Minutes Before", type: .button) }
+            public static var oneHourButton: XCUIElement { app.find(label: "1 Hour Before", type: .button) }
+            public static var oneDayButton: XCUIElement { app.find(label: "1 Day Before", type: .button) }
+            public static var oneWeekButton: XCUIElement { app.find(label: "1 Week Before", type: .button) }
+            public static var customButton: XCUIElement { app.find(label: "Custom", type: .button) }
+            public static var doneButton: XCUIElement { app.find(label: "Done", type: .button) }
+
+            // Alert message
+            public static var okButton: XCUIElement { app.find(label: "OK", type: .button) }
+
+            public static var reminderCreationFailed: XCUIElement {
+                app.find(label: "Reminder Creation Failed", type: .staticText)
+            }
+
+            public static var chooseFutureTime: XCUIElement {
+                app.find(label: "Please choose a future time for your reminder!", type: .staticText)
+            }
+
+            public static var youHaveAlreadySet: XCUIElement {
+                app.find(label: "You have already set a reminder for this time.", type: .staticText)
+            }
+
+            // Custom date
+            public static var numberPickerWheel: XCUIElement {
+                app.find(id: "AssignmentReminder.numberPicker", type: .picker).waitUntil(.visible).find(type: .pickerWheel)
+            }
+
+            public static var timeUnitPickerWheel: XCUIElement {
+                app.find(id: "AssignmentReminder.timeUnitPicker", type: .picker).waitUntil(.visible).find(type: .pickerWheel)
+            }
+
+            // Notification Banner
+            public static var notificationBanner: XCUIElement {
+                XCUIApplication(bundleIdentifier: "com.apple.springboard")
+                  .otherElements["Notification"]
+                  .descendants(matching: .any)
+                  .matching(NSPredicate(format: "label CONTAINS[c] ', now,'"))
+                  .firstMatch
+            }
+        }
+
         // Teacher
         public struct Submissions {
             public static var needsGradingLabel: XCUIElement { app.find(id: "Needs Grading") }
@@ -195,18 +250,25 @@ public class AssignmentsHelper: BaseHelper {
         gradingType: GradingType? = nil,
         dueDate: Date? = nil,
         lockAt: Date? = nil,
-        unlockAt: Date? = nil) -> DSAssignment {
+        unlockAt: Date? = nil,
+        assignmentGroup: DSAssignmentGroup? = nil,
+        sleepAfter: Bool = true
+    ) -> DSAssignment {
         let assignmentBody = CreateDSAssignmentRequest.RequestedDSAssignment(
-                name: name,
-                description: description + name,
-                published: published,
-                submission_types: submissionTypes,
-                points_possible: pointsPossible,
-                grading_type: gradingType,
-                due_at: dueDate,
-                lock_at: lockAt,
-                unlock_at: unlockAt)
-        return seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody)
+            name: name,
+            description: description + name,
+            published: published,
+            submission_types: submissionTypes,
+            points_possible: pointsPossible,
+            grading_type: gradingType,
+            due_at: dueDate,
+            lock_at: lockAt,
+            unlock_at: unlockAt,
+            assignment_group_id: assignmentGroup?.id ?? nil
+        )
+        let result = seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody)
+        if sleepAfter { sleep(1) }
+        return result
     }
 
     @discardableResult
@@ -220,7 +282,10 @@ public class AssignmentsHelper: BaseHelper {
         return assignment
     }
 
-    public static func sharePhotoUsingCanvasSE(course: DSCourse, assignment: DSAssignment) -> Bool {
+    public static func sharePhotoUsingCanvasSE(
+        course: DSCourse,
+        assignment: DSAssignment
+    ) -> Bool {
         XCUIDevice.shared.press(.home)
         PhotosAppHelper.launch()
         PhotosAppHelper.tapFirstPicture()
@@ -239,7 +304,10 @@ public class AssignmentsHelper: BaseHelper {
         return result
     }
 
-    public static func navigateToAssignments(course: DSCourse, shouldPullToRefresh: Bool = false) {
+    public static func navigateToAssignments(
+        course: DSCourse,
+        shouldPullToRefresh: Bool = false
+    ) {
         DashboardHelper.courseCard(course: course).hit()
         if shouldPullToRefresh {
             pullToRefresh()
@@ -248,7 +316,11 @@ public class AssignmentsHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func createAssignments(in course: DSCourse, count: Int, dueDate: Date? = nil) -> [DSAssignment] {
+    public static func createAssignments(
+        in course: DSCourse,
+        count: Int,
+        dueDate: Date? = nil
+    ) -> [DSAssignment] {
         var assignments = [DSAssignment]()
         for i in 1...count {
             let name = "Sample Assignment \(i)"
@@ -265,10 +337,12 @@ public class AssignmentsHelper: BaseHelper {
         return assignments
     }
 
-    public static func createRubric(in course: DSCourse,
-                                    rubricAssociationId: String,
-                                    rubricAssociationType: DSRubricAssociationType,
-                                    pointsPossible: Float = 1.0) -> DSRubric {
+    public static func createRubric(
+        in course: DSCourse,
+        rubricAssociationId: String,
+        rubricAssociationType: DSRubricAssociationType,
+        pointsPossible: Float = 1.0
+    ) -> DSRubric {
         let rubricCriteriaRating1 = CreateDSRubricRequest.RubricCriteriaRating(points: 0, description: "Rating 0")
         let rubricCriteriaRating2 = CreateDSRubricRequest.RubricCriteriaRating(points: 1, description: "Rating 1")
         let longDescription = "Not so long description of test criteria of test rubric"
@@ -290,5 +364,13 @@ public class AssignmentsHelper: BaseHelper {
             rubricAssociationId: rubricAssociationId,
             rubricBody: rubricRequestBody,
             rubricAssociationBody: rubricAssociationRequestBody)
+    }
+
+    public static func createAssignmentGroup(
+        in course: DSCourse,
+        name: String = "Sample Assignment Group"
+    ) -> DSAssignmentGroup {
+        let body = CreateDSAssignmentGroupRequest.Body(name: name)
+        return seeder.createAssignmentGroup(course: course, assignmentGroupBody: body)
     }
 }

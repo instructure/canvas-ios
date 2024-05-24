@@ -70,13 +70,14 @@ public struct AssignmentRemindersView: View {
 
     @ViewBuilder
     private var header: some View {
-        let title = String(localized: "Reminder")
-        let description = String(localized: "Add due date reminder notifications about this assignment on this device.")
+        let title = String(localized: "Reminder", bundle: .student)
+        let description = String(localized: "Add due date reminder notifications about this assignment on this device.", bundle: .student)
         HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 0) {
                 Text(title)
                     .foregroundStyle(Color.textDark)
                     .font(.regular14)
+                    .accessibilityIdentifier("AssignmentDetails.reminder")
                 Text(description)
                     .padding(.top, 4)
                     .foregroundStyle(Color.textDarkest)
@@ -96,6 +97,7 @@ public struct AssignmentRemindersView: View {
                     .padding(.vertical, 16)
                     .padding(.leading, 16)
             }
+            .accessibilityIdentifier("AssignmentDetails.addReminder")
         }
         .padding(.bottom, 28)
         .padding(.top, 24)

@@ -43,13 +43,13 @@ public class ActAsUserViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         addCancelButton(side: .left)
-        title = NSLocalizedString("Act as User", bundle: .core, comment: "")
+        title = String(localized: "Act as User", bundle: .core)
         navigationItem.rightBarButtonItem = nil // remove Done added by Helm
         // swiftlint:disable:next line_length
-        actAsUserDescription.text = NSLocalizedString("\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user.", bundle: .core, comment: "")
-        domainTextField.placeholder = NSLocalizedString("Domain", bundle: .core, comment: "")
-        userIDTextField.placeholder = NSLocalizedString("User ID", bundle: .core, comment: "")
-        actAsUserButton.titleLabel?.text = NSLocalizedString("Act as User", bundle: .core, comment: "")
+        actAsUserDescription.text = String(localized: "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user.", bundle: .core)
+        domainTextField.placeholder = String(localized: "Domain", bundle: .core)
+        userIDTextField.placeholder = String(localized: "User ID", bundle: .core)
+        actAsUserButton.titleLabel?.text = String(localized: "Act as User", bundle: .core)
         domainTextField.text = env.currentSession?.baseURL.absoluteString
         userIDTextField.text = initialUserID
         updateActAsUserButtonDisabledStatus()
@@ -149,11 +149,11 @@ public class ActAsUserViewController: UIViewController {
 
     func showMasqueradingError() {
         let alert = UIAlertController(
-            title: NSLocalizedString("Error", bundle: .core, comment: ""),
-            message: NSLocalizedString("There was an error with Act as User. Please try again later.", bundle: .core, comment: ""),
+            title: String(localized: "Error", bundle: .core),
+            message: String(localized: "There was an error with Act as User. Please try again later.", bundle: .core),
             preferredStyle: .alert
         )
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
         env.router.show(alert, from: self, options: .modal())
     }
 }

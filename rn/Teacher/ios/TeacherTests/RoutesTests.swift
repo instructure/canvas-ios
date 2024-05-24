@@ -104,9 +104,15 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/dev-menu/experimental-features") is ExperimentalFeaturesViewController)
         XCTAssert(router.match("/support/problem") is ErrorReportViewController)
         XCTAssert(router.match("/support/feature") is ErrorReportViewController)
-        XCTAssert(router.match( "/courses/1/assignments/syllabus") is SyllabusTabViewController)
-        XCTAssert(router.match( "/courses/1/syllabus") is SyllabusTabViewController)
-        XCTAssert(router.match( "/courses/1/syllabus/edit") is CoreHostingController<SyllabusEditorView>)
+        XCTAssert(router.match("/courses/1/assignments/syllabus") is SyllabusTabViewController)
+        XCTAssert(router.match("/courses/1/syllabus") is SyllabusTabViewController)
+        XCTAssert(router.match("/courses/1/syllabus/edit") is CoreHostingController<SyllabusEditorView>)
+    }
+
+    func testCalendarRoutes() {
+        XCTAssert(router.match("/calendar") is PlannerViewController)
+        XCTAssert(router.match("/calendar?event_id=7") is CoreHostingController<CalendarEventDetailsScreen>)
+        XCTAssert(router.match("/calendar_events/7") is CoreHostingController<CalendarEventDetailsScreen>)
     }
 
     func testNativeDiscussionDetailsRoute() {

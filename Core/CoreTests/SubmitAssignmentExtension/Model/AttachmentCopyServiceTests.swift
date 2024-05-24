@@ -41,7 +41,7 @@ class AttachmentCopyServiceTests: CoreTestCase {
             return
         }
 
-        XCTAssertEqual(error.localizedDescription, NSLocalizedString("No supported files to submit", comment: ""))
+        XCTAssertEqual(error.localizedDescription, String(localized: "No supported files to submit", bundle: .core))
     }
 
     // Upload fails in this test because AttachmentCopyService can't create the destination url for the CoreTester bundle
@@ -67,7 +67,7 @@ class AttachmentCopyServiceTests: CoreTestCase {
             return
         }
 
-        XCTAssertEqual(error.localizedDescription, NSLocalizedString("Internal Error", comment: ""))
+        XCTAssertEqual(error.localizedDescription, String(localized: "Internal Error", bundle: .core))
     }
 }
 

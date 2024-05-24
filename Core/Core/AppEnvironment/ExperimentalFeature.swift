@@ -29,7 +29,8 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case nativeStudentInbox = "native_student_inbox"
     case nativeTeacherInbox = "native_teacher_inbox"
     case K5Dashboard = "enable_K5_dashboard"
-    case teacherBulkPublish
+    case whatIfScore = "what_if_score"
+    case teacherCalendar = "teacher_calendar"
 
     public var isEnabled: Bool {
         get {

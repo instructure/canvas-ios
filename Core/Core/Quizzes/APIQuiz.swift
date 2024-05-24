@@ -60,7 +60,7 @@ public struct APIQuiz: Codable, Equatable {
     let title: String
     let unlock_at: Date?
     let unpublishable: Bool?
-    // let anonymous_submissions: Bool?
+    let anonymous_submissions: Bool?
     // let assignment_group_id: String?
     // let lock_info: LockInfoModel?
     // let one_time_results: Bool
@@ -203,7 +203,8 @@ extension APIQuiz {
         time_limit: Double? = nil,
         title: String = "What kind of pokemon are you?",
         unlock_at: Date? = nil,
-        unpublishable: Bool = false
+        unpublishable: Bool = false,
+        anonymous_submissions: Bool? = false
     ) -> APIQuiz {
         APIQuiz(
             access_code: access_code,
@@ -239,7 +240,8 @@ extension APIQuiz {
             time_limit: time_limit,
             title: title,
             unlock_at: unlock_at,
-            unpublishable: unpublishable
+            unpublishable: unpublishable,
+            anonymous_submissions: anonymous_submissions
         )
     }
 }

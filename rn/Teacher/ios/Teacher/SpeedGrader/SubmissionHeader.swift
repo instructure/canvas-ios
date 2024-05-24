@@ -63,10 +63,10 @@ struct SubmissionHeader: View {
                     .padding(16)
             })
                 .identifier("SpeedGrader.postPolicyButton")
-                .accessibility(label: Text("Post settings"))
+                .accessibility(label: Text("Post settings", bundle: .teacher))
 
             Button(action: dismiss, label: {
-                Text("Done")
+                Text("Done", bundle: .teacher)
                     .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
                     .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 16))
             })
@@ -86,7 +86,7 @@ struct SubmissionHeader: View {
 
     var nameText: Text {
         if assignment.anonymizeStudents {
-            return isGroupSubmission ? Text("Group") : Text("Student")
+            return isGroupSubmission ? Text("Group", bundle: .teacher) : Text("Student", bundle: .teacher)
         }
         return Text(groupName ?? submission.user.flatMap {
             User.displayName($0.name, pronouns: $0.pronouns)

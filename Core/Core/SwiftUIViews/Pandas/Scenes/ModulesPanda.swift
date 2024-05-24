@@ -26,6 +26,8 @@ public struct ModulesPanda: PandaScene {
     }
     public var height: CGFloat { 180 }
     public var background: AnyView { AnyView(BouncyImage(imageFileName: self.backgroundFileName)) }
+
+    public init() {}
 }
 
 struct ModulesPanda_Previews: PreviewProvider {

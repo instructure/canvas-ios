@@ -25,7 +25,7 @@ public struct APIExternalTool: Codable, Equatable {
     public let url: URL?
 
     public var arc: Bool {
-        return domain?.contains("arc.instructure.com") == true
+        return domain?.contains(LTIDomains.studio.rawValue) == true
     }
 }
 

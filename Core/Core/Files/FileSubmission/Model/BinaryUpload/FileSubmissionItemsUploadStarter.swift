@@ -51,7 +51,7 @@ public class FileSubmissionItemsUploadStarter {
 
             for file in submission.files {
                 guard let uploadTarget = file.uploadTarget else {
-                    file.uploadError = NSLocalizedString("Failed to start upload.", comment: "")
+                    file.uploadError = String(localized: "Failed to start upload.", bundle: .core)
                     continue
                 }
 
@@ -67,7 +67,7 @@ public class FileSubmissionItemsUploadStarter {
                     task.taskID = file.objectID.uriRepresentation().absoluteString
                     task.resume()
                 } catch {
-                    file.uploadError = NSLocalizedString("Failed to start upload.", comment: "")
+                    file.uploadError = String(localized: "Failed to start upload.", bundle: .core)
                 }
             }
 

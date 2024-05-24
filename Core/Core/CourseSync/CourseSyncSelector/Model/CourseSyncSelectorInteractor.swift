@@ -34,6 +34,7 @@ public protocol CourseSyncSelectorInteractor: AnyObject {
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func toggleAllCoursesSelection(isSelected: Bool)
     func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncEntry], Never>
+    func getDeselectedCourseIds() -> AnyPublisher<[String], Never>
     func getCourseName() -> AnyPublisher<String, Never>
 }
 
@@ -171,9 +172,21 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .eraseToAnyPublisher()
     }
 
+    func getDeselectedCourseIds() -> AnyPublisher<[String], Never> {
+        courseSyncEntries
+            .map { $0.filter { $0.selectionState == .deselected } }
+            .map { courses in
+                return courses.map { $0.courseId }
+            }
+            .map { Array(Set($0)) }
+            .replaceError(with: [])
+            .first()
+            .eraseToAnyPublisher()
+    }
+
     func getCourseName() -> AnyPublisher<String, Never> {
         guard let courseID else {
-            return Just(NSLocalizedString("All Courses", comment: "")).eraseToAnyPublisher()
+            return Just(String(localized: "All Courses", bundle: .core)).eraseToAnyPublisher()
         }
 
         return courseSyncEntries

@@ -123,19 +123,35 @@ public enum ModuleItemType: Equatable, Codable {
         case .subHeader:
             return nil
         case .file:
-            return NSLocalizedString("file", bundle: .core, comment: "")
+            return String(localized: "file", bundle: .core)
         case .page:
-            return NSLocalizedString("page", bundle: .core, comment: "")
+            return String(localized: "page", bundle: .core)
         case .discussion:
-            return NSLocalizedString("discussion", bundle: .core, comment: "")
+            return String(localized: "discussion", bundle: .core)
         case .assignment:
-            return NSLocalizedString("assignment", bundle: .core, comment: "")
+            return String(localized: "assignment", bundle: .core)
         case .quiz:
-            return NSLocalizedString("quiz", bundle: .core, comment: "")
+            return String(localized: "quiz", bundle: .core)
         case .externalURL:
-            return NSLocalizedString("external URL", bundle: .core, comment: "")
+            return String(localized: "external URL", bundle: .core)
         case .externalTool:
-            return NSLocalizedString("external tool", bundle: .core, comment: "")
+            return String(localized: "external tool", bundle: .core)
         }
+    }
+}
+
+public extension Optional where Wrapped == ModuleItemType {
+
+    var isFile: Bool {
+        if case .file = self {
+            return true
+        }
+        return false
+    }
+    var fileId: String? {
+        if case .file(let fileId) = self {
+            return fileId
+        }
+        return nil
     }
 }

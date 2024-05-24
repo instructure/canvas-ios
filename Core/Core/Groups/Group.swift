@@ -51,11 +51,11 @@ public final class Group: NSManagedObject, WriteableModel {
 
     public var isActive: Bool {
         if courseID == nil { return true }
-        guard let course = course, let enrollments = course.enrollments else {
+        guard let course, let enrollments = course.enrollments else {
             return false
         }
 
-        return enrollments.contains(where: {$0.state == .active}) && !course.isPastEnrollment
+        return enrollments.contains(where: {$0.state == .active}) && !course.isPastEnrollment && course.isPublished
     }
 
     @discardableResult

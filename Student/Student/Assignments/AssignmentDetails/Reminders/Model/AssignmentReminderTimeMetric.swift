@@ -24,10 +24,10 @@ public enum AssignmentReminderTimeMetric: CaseIterable, Identifiable, Hashable {
     public var id: String { pickerTitle }
     public var pickerTitle: String {
         switch self {
-        case .minutes: return String(localized: "Minutes Before")
-        case .hours: return String(localized: "Hours Before")
-        case .days: return String(localized: "Days Before")
-        case .weeks: return String(localized: "Weeks Before")
+        case .minutes: return String(localized: "Minutes Before", bundle: .student)
+        case .hours: return String(localized: "Hours Before", bundle: .student)
+        case .days: return String(localized: "Days Before", bundle: .student)
+        case .weeks: return String(localized: "Weeks Before", bundle: .student)
         }
     }
 }

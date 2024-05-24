@@ -64,7 +64,7 @@ public final class ModuleItemDetailsViewController: DownloadableViewController, 
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: NSLocalizedString("Module Item", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Module Item", bundle: .core))
         Analytics.shared.logEvent("module_item", parameters: ["moduleID": moduleID!, "itemID": itemID!])
         errorView.isHidden = true
         errorView.retryButton.addTarget(self, action: #selector(retryButtonPressed), for: .primaryActionTriggered)
@@ -112,21 +112,21 @@ public final class ModuleItemDetailsViewController: DownloadableViewController, 
         let title: String
         switch item?.type {
         case .assignment:
-            title = NSLocalizedString("Assignment Details", bundle: .core, comment: "")
+            title = String(localized: "Assignment Details", bundle: .core)
         case .discussion:
-            title = NSLocalizedString("Discussion Details", bundle: .core, comment: "")
+            title = String(localized: "Discussion Details", bundle: .core)
         case .externalTool:
-            title = NSLocalizedString("External Tool", bundle: .core, comment: "")
+            title = String(localized: "External Tool", bundle: .core)
         case .externalURL:
-            title = NSLocalizedString("External URL", bundle: .core, comment: "")
+            title = String(localized: "External URL", bundle: .core)
         case .file:
-            title = NSLocalizedString("File Details", bundle: .core, comment: "")
+            title = String(localized: "File Details", bundle: .core)
         case .quiz:
-            title = NSLocalizedString("Quiz Details", bundle: .core, comment: "")
+            title = String(localized: "Quiz Details", bundle: .core)
         case .page:
-            title = NSLocalizedString("Page Details", bundle: .core, comment: "")
+            title = String(localized: "Page Details", bundle: .core)
         case nil, .subHeader:
-            title = NSLocalizedString("Module Item", bundle: .core, comment: "")
+            title = String(localized: "Module Item", bundle: .core)
         }
         setupTitleViewInNavbar(title: title)
         addDownloadBarButtonItem()
@@ -186,13 +186,13 @@ public final class ModuleItemDetailsViewController: DownloadableViewController, 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(AlertAction(
             item?.completed == true
-                ? NSLocalizedString("Mark as Undone", bundle: .core, comment: "")
-                : NSLocalizedString("Mark as Done", bundle: .core, comment: ""),
+                ? String(localized: "Mark as Undone", bundle: .core)
+                : String(localized: "Mark as Done", bundle: .core),
             style: .default
         ) { [weak self] _ in
             self?.markAsDone()
         })
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
         alert.popoverPresentationController?.barButtonItem = sender
         env.router.show(alert, from: self, options: .modal())
     }

@@ -47,24 +47,24 @@ public class ErrorReportViewController: ScreenViewTrackableViewController {
     var selectedImpact: IndexPath?
     let impacts = [ ItemPickerSection(items: [
         ItemPickerItem(
-            title: NSLocalizedString("Comment", bundle: .core, comment: ""),
-            subtitle: NSLocalizedString("Casual question or suggestion", bundle: .core, comment: "")
+            title: String(localized: "Comment", bundle: .core),
+            subtitle: String(localized: "Casual question or suggestion", bundle: .core)
         ),
         ItemPickerItem(
-            title: NSLocalizedString("Not Urgent", bundle: .core, comment: ""),
-            subtitle: NSLocalizedString("I need help but it's not urgent", bundle: .core, comment: "")
+            title: String(localized: "Not Urgent", bundle: .core),
+            subtitle: String(localized: "I need help but it's not urgent", bundle: .core)
         ),
         ItemPickerItem(
-            title: NSLocalizedString("Workaround", bundle: .core, comment: ""),
-            subtitle: NSLocalizedString("Something is broken but I can work around it", bundle: .core, comment: "")
+            title: String(localized: "Workaround", bundle: .core),
+            subtitle: String(localized: "Something is broken but I can work around it", bundle: .core)
         ),
         ItemPickerItem(
-            title: NSLocalizedString("Blocking", bundle: .core, comment: ""),
-            subtitle: NSLocalizedString("I can't get things done until I hear back from you", bundle: .core, comment: "")
+            title: String(localized: "Blocking", bundle: .core),
+            subtitle: String(localized: "I can't get things done until I hear back from you", bundle: .core)
         ),
         ItemPickerItem(
-            title: NSLocalizedString("Emergency", bundle: .core, comment: ""),
-            subtitle: NSLocalizedString("Extremely critical emergency", bundle: .core, comment: "")
+            title: String(localized: "Emergency", bundle: .core),
+            subtitle: String(localized: "Extremely critical emergency", bundle: .core)
         ),
     ]), ]
 
@@ -82,45 +82,45 @@ public class ErrorReportViewController: ScreenViewTrackableViewController {
 
         switch type {
         case .problem:
-            title = NSLocalizedString("Report a Problem", bundle: .core, comment: "")
-            subjectField?.placeholder = NSLocalizedString("Something is Wrong", bundle: .core, comment: "")
-            commentsPlaceholder?.text = NSLocalizedString("Describe the problem", bundle: .core, comment: "")
+            title = String(localized: "Report a Problem", bundle: .core)
+            subjectField?.placeholder = String(localized: "Something is Wrong", bundle: .core)
+            commentsPlaceholder?.text = String(localized: "Describe the problem", bundle: .core)
         case .feature:
-            title = NSLocalizedString("Request a Feature", bundle: .core, comment: "")
-            subjectField?.placeholder = NSLocalizedString("Something is Missing", bundle: .core, comment: "")
-            commentsPlaceholder?.text = NSLocalizedString("Describe the feature", bundle: .core, comment: "")
+            title = String(localized: "Request a Feature", bundle: .core)
+            subjectField?.placeholder = String(localized: "Something is Missing", bundle: .core)
+            commentsPlaceholder?.text = String(localized: "Describe the feature", bundle: .core)
         }
 
         addCancelButton(side: .left)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Send", bundle: .core, comment: ""), style: .done, target: self, action: #selector(send))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Send", bundle: .core), style: .done, target: self, action: #selector(send))
         navigationItem.rightBarButtonItem?.isEnabled = false
 
         backgroundColorView?.backgroundColor = .backgroundLightest
 
         emailField?.textAlignment = view.effectiveUserInterfaceLayoutDirection == .rightToLeft ? .left : .right
-        emailLabel?.text = NSLocalizedString("Your Email", bundle: .core, comment: "")
+        emailLabel?.text = String(localized: "Your Email", bundle: .core)
         emailLabel?.accessibilityElementsHidden = true
         if let email = AppEnvironment.shared.currentSession?.userEmail, !email.isEmpty {
             emailField?.text = email
             emailView?.isHidden = true
         }
-        emailField?.accessibilityLabel = NSLocalizedString("Email address", bundle: .core, comment: "")
+        emailField?.accessibilityLabel = String(localized: "Email address", bundle: .core)
 
         subjectField?.textAlignment = view.effectiveUserInterfaceLayoutDirection == .rightToLeft ? .left : .right
         subjectField?.text = initialSubject
-        let subjectLabelText = NSLocalizedString("Subject", bundle: .core, comment: "")
+        let subjectLabelText = String(localized: "Subject", bundle: .core)
         subjectLabel?.text = subjectLabelText
         subjectLabel?.accessibilityElementsHidden = true
         subjectField?.accessibilityLabel = subjectLabelText
 
-        impactButton?.setTitle(NSLocalizedString("Select One", bundle: .core, comment: ""), for: .normal)
-        impactButton?.accessibilityLabel = NSLocalizedString("Select Impact", bundle: .core, comment: "")
-        impactLabel?.text = NSLocalizedString("Impact", bundle: .core, comment: "")
+        impactButton?.setTitle(String(localized: "Select One", bundle: .core), for: .normal)
+        impactButton?.accessibilityLabel = String(localized: "Select Impact", bundle: .core)
+        impactLabel?.text = String(localized: "Impact", bundle: .core)
         impactLabel?.accessibilityElementsHidden = true
 
         commentsField?.textColor = .textDarkest
         commentsField?.textContainerInset = UIEdgeInsets(top: 11.5, left: 11, bottom: 11, right: 11)
-        commentsField?.accessibilityLabel = NSLocalizedString("Description", bundle: .core, comment: "")
+        commentsField?.accessibilityLabel = String(localized: "Description", bundle: .core)
 
         commentsMinHeight = commentsField?.heightAnchor.constraint(greaterThanOrEqualTo: scrollView!.heightAnchor)
         commentsMinHeight?.isActive = true
@@ -148,14 +148,14 @@ public class ErrorReportViewController: ScreenViewTrackableViewController {
         let request = PostErrorReportRequest(error: error, email: email, subject: subject, impact: impact, comments: comments)
         env.api.makeRequest(request) { (_, response, error) in DispatchQueue.main.async {
             let isError = error != nil || ((response as? HTTPURLResponse)?.statusCode ?? 0) >= 300
-            var title = NSLocalizedString("Success!", bundle: .core, comment: "")
-            var message = NSLocalizedString("Thanks, your request was received!", bundle: .core, comment: "")
+            var title = String(localized: "Success!", bundle: .core)
+            var message = String(localized: "Thanks, your request was received!", bundle: .core)
             if isError {
-                title = NSLocalizedString("Request Failed!", bundle: .core, comment: "")
-                message = NSLocalizedString("Check network and try again!", bundle: .core, comment: "")
+                title = String(localized: "Request Failed!", bundle: .core)
+                message = String(localized: "Check network and try again!", bundle: .core)
             }
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", bundle: .core, comment: ""), style: .default) { _ in
+            alert.addAction(UIAlertAction(title: String(localized: "Dismiss", bundle: .core), style: .default) { _ in
                 if !isError { self.dismiss(animated: true) }
             })
             self.present(alert, animated: true)
@@ -175,7 +175,7 @@ public class ErrorReportViewController: ScreenViewTrackableViewController {
 extension ErrorReportViewController: ItemPickerDelegate {
     @IBAction public func pickImpact() {
         show(ItemPickerViewController.create(
-            title: NSLocalizedString("Impact Level", bundle: .core, comment: ""),
+            title: String(localized: "Impact Level", bundle: .core),
             sections: impacts,
             selected: selectedImpact,
             delegate: self

@@ -221,3 +221,133 @@ public struct ToggleRow: View {
         return formatter
     }()
 }
+
+public struct CheckmarkRow<Label: View>: View {
+    @Binding public var isChecked: Bool
+    private let label: Label
+
+    public init(isChecked: Binding<Bool>, label: Label) {
+        self._isChecked = isChecked.animation()
+        self.label = label
+    }
+
+    public var body: some View {
+        ButtonRow {
+            isChecked.toggle()
+        } content: {
+            HStack(spacing: 16) {
+                label.frame(maxWidth: .infinity, alignment: .leading)
+                if isChecked {
+                    Image.checkLine
+                }
+            }
+        }
+        .accessibilityAddTraits(isChecked ? [.isSelected] : [])
+    }
+}
+
+public struct DatePickerRow<Label: View>: View {
+    @Binding public var date: Date?
+    private let label: Label
+    private let defaultDate: Date
+    private let validFrom: Date
+    private let validUntil: Date
+
+    public init(
+        date: Binding<Date?>,
+        defaultDate: Date = .now,
+        validFrom: Date = .distantPast,
+        validUntil: Date = .distantFuture,
+        label: Label
+    ) {
+        self._date = date.animation()
+        self.defaultDate = defaultDate
+        self.validFrom = validFrom
+        self.validUntil = validUntil
+        self.label = label
+    }
+
+    public var body: some View {
+        EditorRow {
+            HStack(spacing: 16) {
+                label
+
+                if date != nil {
+                    let binding = Binding(get: { date ?? defaultDate },
+                                          set: { newDate in date = newDate })
+                    DatePicker(selection: binding,
+                               in: validFrom...validUntil,
+                               displayedComponents: [.date, .hourAndMinute],
+                               label: {})
+                } else {
+                    HStack(spacing: 4) {
+                        Button {
+                            date = defaultDate
+                        } label: {
+                            Text("Date", bundle: .core)
+                                .font(.regular17)
+                                .padding(.horizontal, 20)
+                        }
+                        .buttonStyle(.bordered)
+                        Button {
+                            date = defaultDate
+                        } label: {
+                            Text("Time", bundle: .core)
+                                .font(.regular17)
+                                .padding(.horizontal, 20)
+                        }
+                        .buttonStyle(.bordered)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+
+                Button {
+                    date = nil
+                } label: {
+                    Image.xLine
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                }
+                .opacity(date == nil ? 0.3 : 1)
+                .disabled(date == nil)
+                .accessibilityLabel("Clear date")
+            }
+            .frame(minHeight: 36) // To always have the same height despite datepicker visibility
+        }
+
+    }
+}
+
+#if DEBUG
+
+struct EditorForm_Previews: PreviewProvider {
+
+    static var previews: some View {
+        InnerView()
+    }
+
+    struct InnerView: View {
+        @State var isChecked = true
+        @State var isSpinning = false
+        @State var date: Date?
+
+        var body: some View {
+            EditorForm(isSpinning: isSpinning) {
+                EditorSection(label: Text(verbatim: "Section 1")) {
+                    CheckmarkRow(isChecked: $isChecked, label: Text(verbatim: "CheckmarkRow"))
+                    DatePickerRow(date: $date, label: Text(verbatim: "From"))
+                    ButtonRow {
+                        isSpinning = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            isSpinning = false
+                        }
+                    } content: {
+                        Text(verbatim: "Loading Toggle Button")
+                    }
+                }
+            }
+        }
+    }
+}
+
+#endif

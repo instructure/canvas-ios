@@ -26,7 +26,13 @@ extension CourseSyncSyllabusInteractor {
 }
 
 public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteractor, CourseSyncContentInteractor {
-    public init() {}
+    let assignmentEventHtmlParser: HTMLParser
+    let calendarEventHtmlParser: HTMLParser
+
+    public init(assignmentEventHtmlParser: HTMLParser, calendarEventHtmlParser: HTMLParser) {
+        self.assignmentEventHtmlParser = assignmentEventHtmlParser
+        self.calendarEventHtmlParser = calendarEventHtmlParser
+    }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         Publishers
@@ -36,16 +42,36 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
             .eraseToAnyPublisher()
     }
 
+    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        let rootURLAssignmentEvent = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: assignmentEventHtmlParser.sessionId,
+            courseId: courseId,
+            sectionName: assignmentEventHtmlParser.sectionName
+        )
+        let rootURLCalendarEvent = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: calendarEventHtmlParser.sessionId,
+            courseId: courseId,
+            sectionName: calendarEventHtmlParser.sectionName
+        )
+
+        return Publishers.Zip(
+            FileManager.default.removeItemPublisher(at: rootURLAssignmentEvent),
+            FileManager.default.removeItemPublisher(at: rootURLCalendarEvent)
+        )
+        .mapToVoid()
+        .eraseToAnyPublisher()
+    }
+
     // MARK: - Syllabus Summary
 
     private func fetchSyllabusSummary(courseId: String) -> AnyPublisher<Void, Error> {
         fetchCourseSettingsAndGetSyllabusSummaryState(courseId: courseId)
             .filter { $0 }
             .mapToVoid()
-            .flatMap {
+            .flatMap { [assignmentEventHtmlParser, calendarEventHtmlParser] in
                 Publishers
-                    .Zip(Self.fetchAssignments(courseId: courseId),
-                         Self.fetchEvents(courseId: courseId))
+                    .Zip(Self.fetchAssignments(courseId: courseId, htmlParser: assignmentEventHtmlParser),
+                         Self.fetchEvents(courseId: courseId, htmlParser: calendarEventHtmlParser))
             }
             .mapToVoid()
             .eraseToAnyPublisher()
@@ -59,16 +85,28 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
             .eraseToAnyPublisher()
     }
 
-    private static func fetchAssignments(courseId: String) -> AnyPublisher<Void, Error> {
+    private static func fetchAssignments(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCalendarEvents(context: .course(courseId), type: .assignment))
             .getEntities(ignoreCache: true)
+            .map { (assignments: [CalendarEvent]) -> [CalendarEvent] in
+                // AssignmentEvent objects' ids are synthetic ids, which means they contain the type as prefix: assignment_987.
+                // We store the prefix separately so it doesn't neccessary
+                assignments.forEach { a in
+                    if let index = a.id.firstIndex(of: "_") {
+                        a.id = String(a.id.suffix(from: a.id.index(index, offsetBy: 1)))
+                    }
+                }
+                return assignments
+            }
+            .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
-    private static func fetchEvents(courseId: String) -> AnyPublisher<Void, Error> {
+    private static func fetchEvents(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCalendarEvents(context: .course(courseId), type: .event))
             .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

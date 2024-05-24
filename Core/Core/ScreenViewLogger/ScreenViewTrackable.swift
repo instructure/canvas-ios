@@ -22,7 +22,7 @@ public protocol ScreenViewTrackable {
     var screenViewTrackingParameters: ScreenViewTrackingParameters { get }
 }
 
-public struct ScreenViewTrackingParameters {
+public struct ScreenViewTrackingParameters: Equatable {
     let eventName: String
     let attributes: [String: String]
 

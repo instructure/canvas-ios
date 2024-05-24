@@ -31,7 +31,7 @@ class AddressbookRecipientViewModel: ObservableObject {
         searchText.value.isEmpty && canSelectAllRecipient
     }
 
-    public let title = NSLocalizedString("Select Recipients", bundle: .core, comment: "")
+    public let title = String(localized: "Select Recipients", bundle: .core)
     public let roleName: String
 
     // MARK: - Inputs

@@ -44,9 +44,9 @@ class QuizWebViewController: UIViewController {
         webView.linkDelegate = self
         webView.uiDelegate = self
 
-        title = NSLocalizedString("Take Quiz", comment: "")
+        title = String(localized: "Take Quiz", bundle: .student)
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: NSLocalizedString("Exit", comment: "Exit button to leave the quiz"),
+            title: String(localized: "Exit", bundle: .student, comment: "Exit button to leave the quiz"),
             style: .plain, target: self, action: #selector(exitQuiz)
         )
 
@@ -64,9 +64,9 @@ class QuizWebViewController: UIViewController {
 
     @objc func exitQuiz() {
         if webView.url?.path.contains("/take") == true {
-            let areYouSure = NSLocalizedString("Are you sure you want to leave this quiz?", comment: "")
-            let stay = NSLocalizedString("Stay", comment: "Stay on the quiz view")
-            let leave = NSLocalizedString("Leave", comment: "Leave the quiz")
+            let areYouSure = String(localized: "Are you sure you want to leave this quiz?", bundle: .student)
+            let stay = String(localized: "Stay", bundle: .student, comment: "Stay on the quiz view")
+            let leave = String(localized: "Leave", bundle: .student, comment: "Leave the quiz")
 
             let alert = UIAlertController(title: nil, message: areYouSure, preferredStyle: .alert)
             alert.addAction(AlertAction(stay, style: .cancel))
@@ -91,10 +91,10 @@ class QuizWebViewController: UIViewController {
 extension QuizWebViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .student), style: .cancel) { _ in
             completionHandler(false)
         })
-        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default) { _ in
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .student), style: .default) { _ in
             completionHandler(true)
         })
         env.router.show(alert, from: self, options: .modal())

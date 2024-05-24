@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Combine
 
 extension FileManager {
     func fileModificationDate(url: URL) -> Date? {
@@ -26,5 +27,13 @@ extension FileManager {
         } catch {
             return nil
         }
+    }
+
+    func removeItemPublisher(at path: URL) -> AnyPublisher<Void, Never> {
+        return Future { promise in
+            try? FileManager.default.removeItem(at: path)
+            promise(.success(()))
+        }
+        .eraseToAnyPublisher()
     }
 }

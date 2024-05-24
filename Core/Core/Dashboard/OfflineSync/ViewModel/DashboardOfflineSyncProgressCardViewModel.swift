@@ -113,7 +113,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
             if downloadProgress.isFinished, downloadProgress.error != nil {
                 return Just(.error).eraseToAnyPublisher()
             } else {
-                let format = NSLocalizedString("d_courses_syncing", comment: "")
+                let format = String(localized: "d_courses_syncing", bundle: .core)
                 let formattedText = String.localizedStringWithFormat(format, stateProgress.count)
                 return Just(.progress(downloadProgress.progress, formattedText)).eraseToAnyPublisher()
             }

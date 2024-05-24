@@ -25,6 +25,7 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
     private let mockSyncAccountsCalculator = MockOfflineSyncAccountsInteractor()
     let mockSyncEntry = CourseSyncEntry(name: "",
                                         id: "",
+                                        hasFrontPage: false,
                                         tabs: [.init(id: "", name: "", type: .assignments)],
                                         files: [])
 
@@ -277,11 +278,19 @@ private class MockCourseSyncInteractor: CourseSyncInteractor {
     private(set) var isCancelCalled = false
     private(set) var receivedEntries: [CourseSyncEntry]?
     private(set) var downloadContentInvocationCount = 0
+    private(set) var receivedCoursesToClean: [String]?
+    private(set) var cleanContentInvocationCount = 0
 
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[Core.CourseSyncEntry], Never> {
         receivedEntries = entries
         downloadContentInvocationCount += 1
         return Just([]).eraseToAnyPublisher()
+    }
+
+    func cleanContent(for courseIds: [String]) -> AnyPublisher<Void, Never> {
+        receivedCoursesToClean = courseIds
+        cleanContentInvocationCount += 1
+        return Just(()).eraseToAnyPublisher()
     }
 
     func cancel() {

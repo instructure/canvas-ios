@@ -116,8 +116,8 @@ public struct AssignmentEditorView: View, ScreenViewTrackable {
     private var descriptionEditorSection: some View {
         EditorSection(label: Text("Description", bundle: .core)) {
             RichContentEditor(
-                placeholder: NSLocalizedString("Add description", comment: ""),
-                a11yLabel: NSLocalizedString("Description", comment: ""),
+                placeholder: String(localized: "Add description", bundle: .core),
+                a11yLabel: String(localized: "Description", bundle: .core),
                 html: $description,
                 context: .course(courseID),
                 uploadTo: .context(.course(courseID)),
@@ -146,7 +146,7 @@ public struct AssignmentEditorView: View, ScreenViewTrackable {
             ButtonRow(action: {
                 let options: [GradingType] = GradingType.allCases
                 self.env.router.show(ItemPickerViewController.create(
-                    title: NSLocalizedString("Display Grade as", comment: ""),
+                    title: String(localized: "Display Grade as", bundle: .core),
                     sections: [
                         ItemPickerSection(
                             items: options.map {

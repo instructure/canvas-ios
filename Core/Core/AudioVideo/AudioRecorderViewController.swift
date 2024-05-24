@@ -55,13 +55,13 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
     public override func viewDidLoad() {
         super.viewDidLoad()
         borderView?.layer.borderColor = UIColor.borderMedium.cgColor
-        cancelButton?.accessibilityLabel = NSLocalizedString("Cancel", bundle: .core, comment: "")
-        clearButton?.accessibilityLabel = NSLocalizedString("Clear recording", bundle: .core, comment: "")
+        cancelButton?.accessibilityLabel = String(localized: "Cancel", bundle: .core)
+        clearButton?.accessibilityLabel = String(localized: "Clear recording", bundle: .core)
         player.accessibilityPrefix = "AudioRecorder."
         if let view = playerView { embed(player, in: view) }
-        recordButton?.accessibilityLabel = NSLocalizedString("Start recording", bundle: .core, comment: "")
-        sendButton?.setTitle(NSLocalizedString("Send", bundle: .core, comment: ""), for: .normal)
-        stopButton?.accessibilityLabel = NSLocalizedString("Stop recording", bundle: .core, comment: "")
+        recordButton?.accessibilityLabel = String(localized: "Start recording", bundle: .core)
+        sendButton?.setTitle(String(localized: "Send", bundle: .core), for: .normal)
+        stopButton?.accessibilityLabel = String(localized: "Stop recording", bundle: .core)
     }
 
     @IBAction func record(_ sender: UIButton) {
