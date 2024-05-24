@@ -17,8 +17,9 @@
 //
 
 import SwiftSoup
-struct HTMLWistiaHandler {
-    func updateWistia(in html: String) -> String? {
+public struct HTMLWistiaHandler {
+    public static func updateWistia(in html: String?) -> String? {
+        guard let html = html else { return nil }
         do {
             let document = try SwiftSoup.parse(html)
             let iframes = try document.getElementsByTag("iframe")
@@ -71,13 +72,13 @@ struct HTMLWistiaHandler {
         return nil
     }
 
-    func isWistiaLink(_ link: String) -> Bool {
+    static func isWistiaLink(_ link: String) -> Bool {
         link.contains("wistia") &&
         link.contains("iframe") &&
         link.contains("embed")
     }
 
-    func getWistiaId(from link: String) -> String? {
+    static func getWistiaId(from link: String) -> String? {
         if isWistiaLink(link),
             let url = URL(string: link) {
 

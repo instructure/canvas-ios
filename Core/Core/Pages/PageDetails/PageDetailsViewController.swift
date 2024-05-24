@@ -141,7 +141,7 @@ public final class PageDetailsViewController: DownloadableViewController, Colore
         webView.loadContent(
             isOffline: offlineModeInteractor?.isNetworkOffline(),
             filePath: offlinePath,
-            content: HTMLWistiaHandler().updateWistia(in: page.body) ?? page.body,
+            content: page.body,
             originalBaseURL: nil,
             offlineBaseURL: rootURL
         )

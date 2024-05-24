@@ -605,7 +605,7 @@ extension CoreWebView {
             let rawHtmlValue = try? String(contentsOf: filePath, encoding: .utf8)
             loadHTMLString(rawHtmlValue ?? "", baseURL: offlineBaseURL)
         } else {
-            loadHTMLString(content ?? "", baseURL: originalBaseURL)
+            loadHTMLString(HTMLWistiaHandler.updateWistia(in: content) ?? content ?? "", baseURL: originalBaseURL)
         }
     }
 }
