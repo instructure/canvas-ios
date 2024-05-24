@@ -29,12 +29,21 @@ struct HTMLWistiaHandler {
                     let styleValue = try? iframe.attr("style")
 
                     if let id = getWistiaId(from: src) {
-                        let stringToReplace = """
-                        <script src="//fast.wistia.com/assets/external/E-v1.js" async></script>
+                        var stringToReplace: String = ""
+                        let v1Link = "//fast.wistia.com/assets/external/E-v1.js"
+                        if !result.contains(v1Link) {
+                            stringToReplace += "<script src=\"\(v1Link)\" async></script>"
+                        }
+
+                        let transcriptLink: String = "//fast.wistia.net/assets/external/transcript.js"
+                        if !result.contains(transcriptLink) {
+                            stringToReplace += "<script src=\"\(transcriptLink)\" async></script>"
+                        }
+
+                        stringToReplace += """
                         <script src="//fast.wistia.com/embed/medias/\(id).jsonp" async></script>
                         <div class="wistia_embed wistia_async_\(id)"
                         style = \"width:100%; height:100%; \(styleValue ?? "")\">&nbsp;</div>
-                        <script src="https://fast.wistia.net/assets/external/transcript.js" async=""></script>
                         <wistia-transcript media-id="\(id)" style="margin-top: 20px;height:200px;"></wistia-transcript>
                         """
                         result = result.replacingOccurrences(of: try iframe.outerHtml(), with: stringToReplace)
