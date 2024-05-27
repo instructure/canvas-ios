@@ -20,15 +20,6 @@ import Foundation
 @testable import Core
 import UserNotifications
 
-public class MockNotificationManager: PushNotificationsInteractor {
-    public var mock: MockUserNotificationCenter
-
-    public init() {
-        mock = MockUserNotificationCenter()
-        super.init(notificationCenter: mock, logger: TestLogger())
-    }
-}
-
 public class MockUserNotificationCenter: UserNotificationCenterProtocol {
     public var requests: [UNNotificationRequest] = []
     public var error: Error?
