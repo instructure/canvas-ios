@@ -167,7 +167,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
         webView.loadHTMLString(
             "<style>\(DiscussionHTML.css)</style>",
-            baseURL: offlineModeInteractor?.isNetworkOffline() == true ?
+            baseURL: offlineModeInteractor?.isOfflineModeEnabled() == true ?
                 rootURL :
                 env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
         )
@@ -340,7 +340,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
         webView.loadHTMLString(
             "<style>\(DiscussionHTML.css)</style>",
-            baseURL: offlineModeInteractor?.isNetworkOffline() == true ?
+            baseURL: offlineModeInteractor?.isOfflineModeEnabled() == true ?
                 rootURL :
                 env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
         )
@@ -375,7 +375,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         }
         var script: String
         if let root = showRepliesToEntryID.flatMap({ entry($0) }) {
-            let newRoot = checkForOfflineEntry(for: root)
+            let newRoot = replaceContentForOfflineMode(for: root)
             script = DiscussionHTML.render(
                 entry: newRoot,
                 in: topic,
@@ -405,9 +405,9 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
                 return entries
             }()
 
-            let newtopic = checkForOfflineTopic(for: topic)
+            let newtopic = replaceContentForOfflineMode(for: topic)
             let newEntries = entries.map { entry in
-                return checkForOfflineEntry(for: entry)
+                return replaceContentForOfflineMode(for: entry)
             }
 
             script = DiscussionHTML.render(
@@ -435,9 +435,9 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         }
     }
 
-    private func checkForOfflineTopic(for originalTopic: DiscussionTopic) -> DiscussionTopic {
+    private func replaceContentForOfflineMode(for originalTopic: DiscussionTopic) -> DiscussionTopic {
 
-        if offlineModeInteractor?.isNetworkOffline() == true {
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
             let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
                 sessionId: env.currentSession?.uniqueID ?? "",
                 courseId: course.first?.id ?? "",
@@ -458,8 +458,8 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         }
     }
 
-    private func checkForOfflineEntry(for originalEntry: DiscussionEntry) -> DiscussionEntry {
-        if offlineModeInteractor?.isNetworkOffline() == true {
+    private func replaceContentForOfflineMode(for originalEntry: DiscussionEntry) -> DiscussionEntry {
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
             let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
                 sessionId: env.currentSession?.uniqueID ?? "",
                 courseId: course.first?.id ?? "",
@@ -475,7 +475,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
             newEntry.message = rawHtmlValue
 
             newEntry.replies = newEntry.replies.map { reply in
-                return checkForOfflineEntry(for: reply)
+                return replaceContentForOfflineMode(for: reply)
             }
 
             return newEntry
