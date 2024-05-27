@@ -48,11 +48,11 @@ public struct ComposeMessageView: View {
                                     }
                             }
                         )
-                    Divider()
+                    separator
                     VStack(spacing: 0) {
                         propertiesView
                     }
-                    Divider()
+                    separator
                     VStack(spacing: 0) {
                         bodyView
                             .frame(minHeight: geometry.size.height / 2)
@@ -62,7 +62,7 @@ public struct ComposeMessageView: View {
                         }
                     }
                     .frame(minHeight: geometry.size.height)
-                    Spacer()
+                    separator
 
                 }
                 .background(Color.backgroundLightest)
@@ -104,6 +104,7 @@ public struct ComposeMessageView: View {
     private var separator: some View {
         Color.borderMedium
             .frame(height: 0.5)
+            .padding(.horizontal, 8)
     }
 
     private var cancelButton: some View {
@@ -161,14 +162,14 @@ public struct ComposeMessageView: View {
     private var propertiesView: some View {
         VStack(spacing: 0) {
             courseView
-            Divider()
+            separator
             if model.selectedContext != nil || model.alwaysShowRecipients {
                 toView
-                Divider()
+                separator
             }
             subjectView
             if !model.isIndividualDisabled {
-                Divider()
+                separator
                 individualView
             }
         }
