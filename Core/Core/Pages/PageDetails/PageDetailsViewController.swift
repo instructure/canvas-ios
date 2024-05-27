@@ -145,6 +145,9 @@ public final class PageDetailsViewController: DownloadableViewController, Colore
             originalBaseURL: nil,
             offlineBaseURL: rootURL
         )
+        if let course = courses.first {
+            updated?(page, course)
+        }
     }
 
     private func updatePages() {
