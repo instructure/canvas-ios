@@ -325,26 +325,33 @@ public struct ComposeMessageView: View {
 
     @ViewBuilder
     private func messageView(for message: ConversationMessage) -> some View {
-        Button {
-            model.toggleMessageExpand(message: message)
-        } label: {
-            if model.isMessageExpanded(message: message) {
-                expandedMessageView(for: message)
-            } else {
-                collapsedMessageView(for: message)
-            }
+        if model.isMessageExpanded(message: message) {
+            expandedMessageView(for: message)
+        } else {
+            collapsedMessageView(for: message)
         }
     }
 
     private func expandedMessageView(for message: ConversationMessage) -> some View {
+        let author = model.conversation?.participants.first { $0.id == message.authorID }
         return VStack(alignment: .leading) {
-            HStack {
-                Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
-                    .foregroundStyle(Color.textDarkest)
-                Spacer()
-                Text(message.createdAt?.dateTimeString ?? "")
-                    .foregroundStyle(Color.textDark)
+            Button {
+                withAnimation {
+                    model.toggleMessageExpand(message: message)
+                }
+            } label: {
+                HStack {
+                    Avatar(name: author?.name, url: author?.avatarURL, size: 36, isAccessible: false)
+                    VStack(alignment: .leading) {
+                        Text(author?.name ?? "")
+                            .foregroundStyle(Color.textDarkest)
+                        Text(message.createdAt?.dateTimeString ?? "")
+                            .foregroundStyle(Color.textDark)
+                    }
+                    Spacer()
+                }
             }
+            .padding(.bottom, 12)
 
             Text(message.body)
                 .foregroundStyle(Color.textDark)
@@ -359,22 +366,28 @@ public struct ComposeMessageView: View {
     }
 
     private func collapsedMessageView(for message: ConversationMessage) -> some View {
-        return VStack(alignment: .leading) {
-            HStack {
-                Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
-                    .foregroundStyle(Color.textDarkest)
-                    .lineLimit(1)
-                Spacer()
-                Text(message.createdAt?.dateTimeString ?? "")
-                    .foregroundStyle(Color.textDark)
-                    .lineLimit(1)
-            }
-            Text(message.body)
-                .foregroundStyle(Color.textDark)
-                .lineLimit(1)
+        return Button {
+                withAnimation {
+                    model.toggleMessageExpand(message: message)
+                }
+            } label: {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
+                            .foregroundStyle(Color.textDarkest)
+                            .lineLimit(1)
+                        Spacer()
+                        Text(message.createdAt?.dateTimeString ?? "")
+                            .foregroundStyle(Color.textDark)
+                            .lineLimit(1)
+                    }
+                    Text(message.body)
+                        .foregroundStyle(Color.textDark)
+                        .lineLimit(1)
+                }
+                .padding(.vertical, 12)
+                .padding(.horizontal, 12)
         }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 12)
     }
 
     private var attachmentsView: some View {
