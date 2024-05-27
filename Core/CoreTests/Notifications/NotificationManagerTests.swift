@@ -140,4 +140,29 @@ class NotificationManagerTests: CoreTestCase {
         // THEN
         wait(for: [postsPushNotificationRequest, deletesPushNotificationRequest])
     }
+
+    func testResubscribesWhenDeviceTokenChanges() {
+        // GIVEN
+        let postsPushNotificationRequest = expectation(description: "postsPushNotificationRequest")
+        api.mock(PostCommunicationChannelRequest(pushToken: deviceToken)) { _ in
+            postsPushNotificationRequest.fulfill()
+            return (.make(id: ID(rawValue: self.pushChannelId)), nil, nil)
+        }
+
+        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
+        notificationManager.userDidLogin(loginSession: loginSession)
+
+        let newDeviceToken = Data([32])
+        let postsNewPushNotificationRequest = expectation(description: "postsNewPushNotificationRequest")
+        api.mock(PostCommunicationChannelRequest(pushToken: newDeviceToken)) { _ in
+            postsNewPushNotificationRequest.fulfill()
+            return (.make(id: ID(rawValue: self.pushChannelId)), nil, nil)
+        }
+
+        // WHEN
+        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: newDeviceToken)
+
+        // THEN
+        wait(for: [postsPushNotificationRequest, postsNewPushNotificationRequest])
+    }
 }
