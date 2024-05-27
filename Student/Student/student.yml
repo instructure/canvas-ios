@@ -45,7 +45,7 @@ targets:
         name: Check Required Secret Keys
         basedOnDependencyAnalysis: false
       - path: ../../scripts/build-crashlytics.sh
-        name: Crashlitycs Upload DSYM
+        name: --> SHOULD BE THE LAST ONE ! - Crashlitycs Upload DSYM
         basedOnDependencyAnalysis: true
 schemes:
   Student:
