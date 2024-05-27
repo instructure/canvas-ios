@@ -37,6 +37,10 @@ extension InstUI.Styles {
 
         /// When displaying multiple Text components below each other we use this spacing to separate them
         case textVertical = 4
+
+        /// Corrections to negate baked in TextEditor insets, estimated values
+        case textEditorVerticalCorrection = -7
+        case textEditorHorizontalCorrection = -5
     }
 
     public enum PaddingSet {
@@ -44,6 +48,8 @@ extension InstUI.Styles {
         case standardCell
         /// Paddings for cells with leading icon
         case iconCell
+        /// Paddings to negate TextEditor insets
+        case textEditorCorrection
 
         var config: Config {
             switch self {
@@ -60,6 +66,13 @@ extension InstUI.Styles {
                     bottom: .cellBottom,
                     leading: .cellIconLeading,
                     trailing: .standard
+                )
+            case .textEditorCorrection:
+                Config(
+                    top: .textEditorVerticalCorrection,
+                    bottom: .textEditorVerticalCorrection,
+                    leading: .textEditorHorizontalCorrection,
+                    trailing: .textEditorHorizontalCorrection
                 )
             }
         }

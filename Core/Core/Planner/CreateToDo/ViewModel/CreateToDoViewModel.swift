@@ -30,7 +30,7 @@ final class CreateToDoViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var date: Date?
     @Published var calendar: String? = "General Astrophysics" // ???
-    @Published var details: String?
+    @Published var details: String = ""
 
     var isAddButtonEnabled: Bool {
         title.isNotEmpty

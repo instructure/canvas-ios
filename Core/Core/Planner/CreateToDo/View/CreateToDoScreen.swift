@@ -46,6 +46,10 @@ struct CreateToDoScreen: View, ScreenViewTrackable {
                 ) {
                     Text(verbatim: "some new screen")
                 }
+                InstUI.TextEditorCell(
+                    label: Text("Details", bundle: .core),
+                    text: $viewModel.details
+                )
             }
         }
         .navigationTitle(viewModel.pageTitle)
