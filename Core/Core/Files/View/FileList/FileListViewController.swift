@@ -469,10 +469,12 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     private func routeIfAvailable(fileID: String, indexPath: IndexPath) {
-        guard offlineFileInteractor?.isItemAvailableOffline(courseID: course?.first?.id, fileID: fileID) == true else {
-            UIAlertController.showItemNotAvailableInOfflineAlert()
-            tableView.deselectRow(at: indexPath, animated: true)
-            return
+        if offlineFileInteractor?.isOffline == true {
+            guard offlineFileInteractor?.isItemAvailableOffline(courseID: course?.first?.id, fileID: fileID) == true else {
+                UIAlertController.showItemNotAvailableInOfflineAlert()
+                tableView.deselectRow(at: indexPath, animated: true)
+                return
+            }
         }
         env.router.route(to: "/\(context.pathComponent)/files/\(fileID)", from: self, options: .detail)
     }
@@ -510,7 +512,9 @@ class FileListCell: UITableViewCell {
 
     func update(item: FolderItem?, color: UIColor?, isOffline: Bool, isAvailable: Bool) {
         fileID = item?.id
-        setCellState(isAvailable: isAvailable, isUserInteractionEnabled: true)
+        if isOffline {
+            setCellState(isAvailable: isAvailable, isUserInteractionEnabled: true)
+        }
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         nameLabel.setText(item?.name, style: .textCellTitle)
@@ -538,7 +542,9 @@ class FileListCell: UITableViewCell {
 
     func update(result: APIFile?, isOffline: Bool, isAvailable: Bool) {
         fileID = result?.id.value
-        setCellState(isAvailable: isAvailable, isUserInteractionEnabled: true)
+        if isOffline {
+            setCellState(isAvailable: isAvailable, isUserInteractionEnabled: true)
+        }
         nameLabel.setText(result?.display_name, style: .textCellTitle)
         if !isOffline, let url = result?.thumbnail_url?.rawValue, let c = result?.created_at, Clock.now.timeIntervalSince(c) > 3600 {
             iconView.load(url: url)

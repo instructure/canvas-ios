@@ -41,9 +41,7 @@ public class GetEnrollments: CollectionUseCase {
         self.gradingPeriodID = gradingPeriodID
         request = GetEnrollmentsRequest(
             context: context,
-            // In case of observers the existence of the userID parameter results in an API error so we fetch all enrollments and filter them with CoreData predicate.
-            // TODO: Can be removed if the API gets a fix.
-            userID: (AppEnvironment.shared.app == .parent ? nil : userID),
+            userID: userID,
             gradingPeriodID: gradingPeriodID,
             types: types,
             includes: includes,
@@ -54,8 +52,8 @@ public class GetEnrollments: CollectionUseCase {
             NSPredicate(key: #keyPath(Enrollment.canvasContextID), equals: context.canvasContextID),
             NSPredicate(format: "%K != nil", #keyPath(Enrollment.id)),
         ]
-        if let id = userID {
-            predicates.append(NSPredicate(key: #keyPath(Enrollment.userID), equals: id))
+        if let userID {
+            predicates.append(NSPredicate(key: #keyPath(Enrollment.userID), equals: userID))
         }
         scope = Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: predicates), order: [])
 

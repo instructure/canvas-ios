@@ -247,6 +247,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/:context/:contextID/files/:fileID/download": fileDetails,
     "/:context/:contextID/files/:fileID/preview": fileDetails,
     "/:context/:contextID/files/:fileID/edit": fileEditor,
+    "/courses/:courseID/files/:section/:resourceID/:fileID/offline": offlineFileDetails,
 
     "/courses/:courseID/grades": { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
@@ -480,6 +481,21 @@ private func fileDetails(url: URLComponents, params: [String: String], userInfo:
         )
     }
     return FileDetailsViewController.create(context: context, fileID: fileID, originURL: url, assignmentID: assignmentID)
+}
+
+private func offlineFileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard let courseID = params["courseID"],
+          let section = params["section"],
+          let resourceID = params["resourceID"],
+          let fileID = params["fileID"],
+          let sessionID = AppEnvironment.shared.currentSession?.uniqueID
+    else {
+        return nil
+    }
+    let context = Context(.course, id: courseID)
+
+    let fileSource = OfflineFileSource.privateFile(sessionID: sessionID, courseID: courseID, sectionName: section, resourceID: resourceID, fileID: fileID)
+    return FileDetailsViewController.create(context: context, fileID: fileID, offlineFileSource: fileSource)
 }
 
 private func fileEditor(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

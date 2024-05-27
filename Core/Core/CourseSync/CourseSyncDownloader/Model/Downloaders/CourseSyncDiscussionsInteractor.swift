@@ -24,37 +24,25 @@ public extension CourseSyncDiscussionsInteractor {
 }
 
 public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteractor {
-    let htmlParser: HTMLParser
-
-    public init(htmlParser: HTMLParser) {
-        self.htmlParser = htmlParser
-    }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
-        Self.fetchTopics(courseId: courseId, htmlParser: htmlParser)
+        Self.fetchTopics(courseId: courseId)
             .flatMap { $0.publisher }
             .filter { $0.discussionSubEntryCount > 0 && $0.anonymousState == nil }
-            .flatMap { [htmlParser] in Self.getDiscussionView(courseId: courseId, topicId: $0.id, htmlParser: htmlParser) }
+            .flatMap { Self.getDiscussionView(courseId: courseId, topicId: $0.id) }
             .collect()
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
     public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
-        let rootURL = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: htmlParser.sessionId,
-            courseId: courseId,
-            sectionName: htmlParser.sectionName
-        )
-
-        return FileManager.default.removeItemPublisher(at: rootURL)
+        return Just(()).eraseToAnyPublisher()
     }
 
     // MARK: - Private Methods
 
     private static func fetchTopics(
-        courseId: String,
-        htmlParser: HTMLParser
+        courseId: String
     ) -> AnyPublisher<[DiscussionTopic], Error> {
 
         return ReactiveStore(useCase: GetDiscussionTopics(context: .course(courseId)))
@@ -64,8 +52,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
     private static func getDiscussionView(
         courseId: String,
-        topicId: String,
-        htmlParser: HTMLParser
+        topicId: String
     ) -> AnyPublisher<Void, Error> {
 
         return ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))

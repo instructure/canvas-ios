@@ -103,7 +103,7 @@ public class AssignmentsHelper: BaseHelper {
         }
 
         public static func navBar(course: DSCourse) -> XCUIElement {
-            return app.find(id: "Assignment Details, \(course.name)")
+            return app.find(id: "Assignment details, \(course.name)")
         }
 
         public static func description(assignment: DSAssignment) -> XCUIElement {

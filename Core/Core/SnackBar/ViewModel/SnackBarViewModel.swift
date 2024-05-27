@@ -17,11 +17,13 @@
 //
 
 import Combine
+import CombineSchedulers
 import SwiftUI
 
 public class SnackBarViewModel: ObservableObject {
 
     // MARK: - Outputs
+    public let onScreenTime: CGFloat = 2
     public let animationTime: CGFloat = 0.25
     @Published public private(set) var visibleSnack: String?
 
@@ -29,18 +31,36 @@ public class SnackBarViewModel: ObservableObject {
     /** Even when `visibleSnack` is nil the UI still needs some time to finish the disappear animation. This variable tracks if the animation has finished or not. */
     private var isSnackOnScreen = false
     private var stack: [String] = []
-    private let onScreenTime: CGFloat = 2
+    private let scheduler: AnySchedulerOf<DispatchQueue>
+    private var scheduledDisappearance: Cancellable?
 
-    public init() {
+    public init(scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+        self.scheduler = scheduler
     }
 
     // MARK: - Inputs
 
-    public func showSnack(_ snack: String) {
+    /**
+     - parameters:
+        - swallowDuplicatedSnacks: If this parameter is `true` and the currently visible snack equals to the one received by this function then this fcuntion will do nothing. Default value is `false`.
+     */
+    public func showSnack(
+        _ snack: String,
+        swallowDuplicatedSnacks: Bool = false
+    ) {
+        if swallowDuplicatedSnacks, visibleSnack == snack {
+            scheduledDisappearance = nil
+            scheduleDisappearance()
+            return
+        }
         stack.append(snack)
         showNextSnack()
     }
 
+    /**
+     This method is called by the UI when the snack has disappeared from the screen
+     after we set `visibleSnack` to `nil` because the on screen time has been reached.
+     */
     public func snackDidDisappear() {
         isSnackOnScreen = false
         visibleSnack = nil
@@ -59,9 +79,17 @@ public class SnackBarViewModel: ObservableObject {
         isSnackOnScreen = true
 
         UIAccessibility.announce(snack)
+        scheduleDisappearance()
+    }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + onScreenTime + animationTime) {
-            self.visibleSnack = nil
+    private func scheduleDisappearance() {
+        scheduledDisappearance = scheduler.schedule(
+            after: scheduler.now.advanced(by: .init(floatLiteral: onScreenTime + animationTime)),
+            interval: .zero
+        ) { [weak self] in
+            self?.visibleSnack = nil
+            self?.scheduledDisappearance?.cancel()
+            self?.scheduledDisappearance = nil
         }
     }
 }

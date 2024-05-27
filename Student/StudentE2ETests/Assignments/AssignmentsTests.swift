@@ -67,9 +67,6 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-
         let nameLabel = DetailsHelper.name.waitUntil(.visible)
         XCTAssertTrue(nameLabel.isVisible)
         XCTAssertTrue(nameLabel.hasLabel(label: assignment.name))

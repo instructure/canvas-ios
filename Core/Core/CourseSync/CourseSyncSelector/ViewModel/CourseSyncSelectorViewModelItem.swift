@@ -92,6 +92,9 @@ extension Array where Element == CourseSyncEntry {
             }
 
             for tab in course.tabs {
+                guard tab.type != .additionalContent else {
+                    continue
+                }
                 var tabItem = tab.makeViewModelItem()
                 tabItem.selectionDidToggle = {
                     let selectionState: ListCellView.SelectionState = tab.selectionState == .selected || tab.selectionState == .partiallySelected ? .deselected : .selected

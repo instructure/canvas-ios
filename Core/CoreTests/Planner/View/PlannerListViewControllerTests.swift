@@ -42,13 +42,13 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
     }
 
     func getPlannablesRequest(from: Date, to: Date) -> GetPlannablesRequest {
-        GetPlannablesRequest(startDate: from, endDate: to)
+        GetPlannablesRequest(startDate: from, endDate: to, contextCodes: contextCodes)
     }
 
     var start = Clock.now.startOfDay()
     var end = Clock.now.startOfDay().addDays(1)
     var userID: String?
-    var contextCodes: [String]?
+    var contextCodes = ["course_1"]
     lazy var controller = PlannerListViewController.create(start: start, end: end, delegate: self)
 
     func testLayout() {

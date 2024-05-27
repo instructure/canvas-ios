@@ -130,6 +130,40 @@ public struct SessionDefaults {
         set { self["collapsedModules"] = newValue }
     }
 
+    // MARK: - Calendar Settings
+
+    private typealias ObservedStudentID = String
+    private typealias CanvasContextId = String
+    private let calendarSelectedContextsContainerKey = "calendarSelectedContexts"
+
+    public mutating func setCalendarSelectedContexts(
+        _ selectedContexts: Set<Context>,
+        observedStudentId: String?
+    ) {
+        let observedStudentId = observedStudentId ?? ""
+        var container = self[calendarSelectedContextsContainerKey] as? [ObservedStudentID: [CanvasContextId]] ?? [:]
+        container[observedStudentId] = Array(selectedContexts.map { $0.canvasContextID })
+        self[calendarSelectedContextsContainerKey] = container
+    }
+
+    /**
+     - returns: Nil if the user has never selected calendars.
+     */
+    public func calendarSelectedContexts(observedStudentId: String?) -> Set<Context>? {
+        let observedStudentId = observedStudentId ?? ""
+
+        guard
+            let container = self[calendarSelectedContextsContainerKey] as? [ObservedStudentID: [CanvasContextId]],
+            let selectedContextCodes = container[observedStudentId]
+        else {
+            return nil
+        }
+
+        let selectedContexts = selectedContextCodes.compactMap { Context(canvasContextID: $0) }
+
+        return Set(selectedContexts)
+    }
+
     // MARK: - Offline Settings
 
     public var isOfflineAutoSyncEnabled: Bool? {

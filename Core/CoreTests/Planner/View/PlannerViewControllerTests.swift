@@ -22,6 +22,11 @@ import XCTest
 class PlannerViewControllerTests: CoreTestCase {
     lazy var controller = PlannerViewController.create(studentID: "1")
 
+    override func setUp() {
+        super.setUp()
+        environment.userDefaults?.reset()
+    }
+
     func testLayout() {
         Clock.mockNow(DateComponents(calendar: .current, year: 2020, month: 2, day: 14).date!)
         let nav = UINavigationController(rootViewController: controller)
@@ -56,26 +61,25 @@ class PlannerViewControllerTests: CoreTestCase {
             .make(id: "1", name: "BIO 101", enrollments: [.make(associated_user_id: "1")]),
             .make(id: "2", name: "BIO 102", enrollments: [.make(associated_user_id: "1")]),
         ])
-        XCTAssertNil(controller.list.plannables?.useCase.contextCodes) // planner nil
+        XCTAssertEqual(controller.list.plannables?.useCase.contextCodes, [])
         XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars")
-        controller.calendar.delegate?.calendarWillFilter()
-        var filter = router.presented as! PlannerFilterViewController
-        filter.view.layoutIfNeeded()
-        filter.tableView.delegate?.tableView?(filter.tableView!, didSelectRowAt: IndexPath(row: 0, section: 0))
-        router.dismiss()
-        XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars (1)")
+
+        // Simulate filter change
+        XCTAssertFinish(controller.calendarFilterInteractor.updateFilteredContexts([.course("2"), .user("1")], isSelected: true))
+        controller.plannerListWillRefresh()
+
+        XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars")
         XCTAssert(controller.calendar.days.plannables?.useCase.contextCodes!.contains("course_2") == true)
         XCTAssert(controller.list.plannables?.useCase.contextCodes!.contains("course_2") == true)
         XCTAssert(controller.calendar.days.plannables?.useCase.contextCodes!.contains("user_1") == true)
         XCTAssert(controller.list.plannables?.useCase.contextCodes!.contains("user_1") == true)
 
-        // select all calendars
-        controller.calendar.filterButton.sendActions(for: .primaryActionTriggered)
-        filter = router.presented as! PlannerFilterViewController
-        filter.view.layoutIfNeeded()
-        filter.tableView.delegate?.tableView?(filter.tableView!, didSelectRowAt: IndexPath(row: 0, section: 0))
-        router.dismiss()
-        XCTAssertNil(controller.list.plannables?.useCase.contextCodes) // all selected
+        // select no (all) calendars
+        // Simulate filter change
+        XCTAssertFinish(controller.calendarFilterInteractor.updateFilteredContexts([.course("2"), .user("1")], isSelected: false))
+        controller.plannerListWillRefresh()
+
+        XCTAssertEqual(controller.list.plannables?.useCase.contextCodes, []) // all selected
 
         let height: CGFloat = controller.calendar.maxHeight
         controller.calendar.delegate?.calendarDidResize(height: height, animated: false)
