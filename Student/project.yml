@@ -45,4 +45,4 @@ packages:
     exactVersion: 2.33.10
   Intercom:
     url: https://github.com/intercom/intercom-ios-sp
-    exactVersion: 16.5.6
+    exactVersion: 17.1.0
