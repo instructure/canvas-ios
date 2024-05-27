@@ -81,7 +81,7 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
     }
 
     func testReminder() {
-        let localNotifications = LocalNotifications(notificationCenter: notificationCenter)
+        let localNotifications = LocalNotificationsInteractor(notificationCenter: notificationCenter)
         let prev = Clock.now.startOfDay().addDays(1)
         localNotifications.setReminder(id: "1", content: UNMutableNotificationContent(), at: prev) { _ in }
         controller.view.layoutIfNeeded()

@@ -27,7 +27,7 @@ class SubmissionCompletedNotificationSenderTests: CoreTestCase {
 
         let testee = SubmissionCompletedNotificationsSender(
             context: databaseClient,
-            localNotifications: LocalNotifications(notificationCenter: notificationCenter)
+            localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter)
         )
 
         let courseID = "1"
@@ -82,7 +82,7 @@ class SubmissionCompletedNotificationSenderTests: CoreTestCase {
 
         let testee = SubmissionCompletedNotificationsSender(
             context: databaseClient,
-            localNotifications: LocalNotifications(notificationCenter: notificationCenter)
+            localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter)
         )
 
         let courseID = "1"

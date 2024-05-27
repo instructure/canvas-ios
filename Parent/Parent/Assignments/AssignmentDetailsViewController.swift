@@ -48,7 +48,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     private var minDate = Clock.now
     private var maxDate = Clock.now
     private var userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
-    private lazy var localNotifications = LocalNotifications(notificationCenter: userNotificationCenter)
+    private lazy var localNotifications = LocalNotificationsInteractor(notificationCenter: userNotificationCenter)
 
     lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.observed_users, .submission])) {  [weak self] in
         self?.update()

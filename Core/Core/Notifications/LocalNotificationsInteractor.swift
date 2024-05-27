@@ -18,7 +18,7 @@
 
 import Combine
 
-public class LocalNotifications {
+public class LocalNotificationsInteractor {
     public let notificationCenter: UserNotificationCenterProtocol
 
     public init(

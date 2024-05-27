@@ -49,7 +49,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             UITestHelpers.setup(self)
         #endif
         setupDefaultErrorHandling()
-        NotificationManager.shared.notificationCenter.delegate = self
+        PushNotificationsInteractor.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
         FontAppearance.update()

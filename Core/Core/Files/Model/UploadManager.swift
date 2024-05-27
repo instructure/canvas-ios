@@ -32,7 +32,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
     public let identifier: String
     public let sharedContainerIdentifier: String?
-    var localNotifications: LocalNotifications = LocalNotifications()
+    var localNotifications: LocalNotificationsInteractor = LocalNotificationsInteractor()
     var process: ProcessManager = ProcessInfo.processInfo
     var environment: AppEnvironment { .shared }
     private var validSession: URLSession?

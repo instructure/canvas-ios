@@ -19,12 +19,12 @@
 @testable import Core
 import XCTest
 
-class LocalNotificationsTests: CoreTestCase {
-    var testee: LocalNotifications!
+class LocalNotificationsInteractorTests: CoreTestCase {
+    var testee: LocalNotificationsInteractor!
 
     override func setUp() {
         super.setUp()
-        testee = LocalNotifications(notificationCenter: notificationCenter)
+        testee = LocalNotificationsInteractor(notificationCenter: notificationCenter)
     }
 
     func testNotificationRequest() {

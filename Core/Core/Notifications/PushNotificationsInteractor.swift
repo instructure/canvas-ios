@@ -20,8 +20,8 @@ import Combine
 import Foundation
 import UserNotifications
 
-public class NotificationManager {
-    public static var shared = NotificationManager(
+public class PushNotificationsInteractor {
+    public static var shared = PushNotificationsInteractor(
         notificationCenter: UNUserNotificationCenter.current(),
         logger: AppEnvironment.shared.logger
     )

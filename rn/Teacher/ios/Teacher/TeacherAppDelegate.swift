@@ -54,7 +54,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         DocViewerViewController.setup(.teacherPSPDFKitLicense)
         prepareReactNative()
         setupPageViewLogging()
-        NotificationManager.shared.notificationCenter.delegate = self
+        PushNotificationsInteractor.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
         FontAppearance.update()
@@ -99,7 +99,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
-            NotificationManager.shared.userDidLogin(loginSession: session)
+            PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
 
             self.isK5User = apiProfile.k5_user == true
             Analytics.shared.logSession(session)
@@ -140,7 +140,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-        NotificationManager.shared.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
+        PushNotificationsInteractor.shared.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
     }
 
     func userNotificationCenter(
@@ -337,7 +337,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
-        NotificationManager.shared.unsubscribeFromCanvasPushNotifications()
+        PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()

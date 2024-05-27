@@ -24,7 +24,7 @@ import XCTest
 class CourseSyncNotificationInteractorTests: CoreTestCase {
 
     func testSendsSuccessNotificationWithItemCount() {
-        let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotifications(notificationCenter: notificationCenter),
+        let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter),
                                                       progressInteractor: CourseSyncProgressObserverInteractorMock())
 
         // WHEN
@@ -40,7 +40,7 @@ class CourseSyncNotificationInteractorTests: CoreTestCase {
 
     func testNotSendsSuccessNotificationWhenSyncProgressIsOnScreen() {
         window.rootViewController = CourseSyncProgressAssembly.makeViewController(env: environment)
-        let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotifications(notificationCenter: notificationCenter),
+        let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter),
                                                       progressInteractor: CourseSyncProgressObserverInteractorMock())
 
         // WHEN
@@ -53,7 +53,7 @@ class CourseSyncNotificationInteractorTests: CoreTestCase {
     func testSendsFailedNotification() {
         let progressObserverMock = CourseSyncProgressObserverInteractorMock()
         progressObserverMock.isSyncFailed = true
-        let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotifications(notificationCenter: notificationCenter),
+        let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter),
                                                       progressInteractor: progressObserverMock)
 
         // WHEN
@@ -72,7 +72,7 @@ class CourseSyncNotificationInteractorTests: CoreTestCase {
         window.rootViewController = CourseSyncProgressAssembly.makeViewController(env: environment)
         let progressObserverMock = CourseSyncProgressObserverInteractorMock()
         progressObserverMock.isSyncFailed = true
-        let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotifications(notificationCenter: notificationCenter),
+        let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter),
                                                       progressInteractor: progressObserverMock)
 
         // WHEN

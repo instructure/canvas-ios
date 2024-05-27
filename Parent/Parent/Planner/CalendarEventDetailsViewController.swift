@@ -45,7 +45,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     private var minDate = Clock.now
     private var maxDate = Clock.now
     private var userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
-    private lazy var localNotifications = LocalNotifications(notificationCenter: userNotificationCenter)
+    private lazy var localNotifications = LocalNotificationsInteractor(notificationCenter: userNotificationCenter)
 
     var color: UIColor?
     let env = AppEnvironment.shared

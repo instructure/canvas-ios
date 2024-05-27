@@ -21,11 +21,11 @@ import CoreData
 
 public class SubmissionCompletedNotificationsSender {
     private let context: NSManagedObjectContext
-    private let localNotifications: LocalNotifications
+    private let localNotifications: LocalNotificationsInteractor
 
     public init(
         context: NSManagedObjectContext,
-        localNotifications: LocalNotifications = LocalNotifications()
+        localNotifications: LocalNotificationsInteractor = LocalNotificationsInteractor()
     ) {
         self.context = context
         self.localNotifications = localNotifications

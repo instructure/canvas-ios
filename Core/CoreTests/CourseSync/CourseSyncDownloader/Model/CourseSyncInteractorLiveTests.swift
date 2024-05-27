@@ -710,7 +710,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
     }
 
     func testSendsSuccessNotificationOnFinish() {
-        let courseSyncNotificationMock = CourseSyncNotificationMock(localNotifications: LocalNotifications(notificationCenter: notificationCenter),
+        let courseSyncNotificationMock = CourseSyncNotificationMock(localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter),
                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock())
         let testee = CourseSyncInteractorLive(
             contentInteractors: [

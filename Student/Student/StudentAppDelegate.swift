@@ -61,7 +61,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         setupDefaultErrorHandling()
         setupPageViewLogging()
         TabBarBadgeCounts.application = UIApplication.shared
-        NotificationManager.shared.notificationCenter.delegate = self
+        PushNotificationsInteractor.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
         FontAppearance.update()
@@ -117,7 +117,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
-            NotificationManager.shared.userDidLogin(loginSession: session)
+            PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
 
             // NotificationManager.registerForRemoteNotifications is not called in UITests,
             // so we need to requestAuthorization in order to be able to test notification related logic like
@@ -238,7 +238,7 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-        NotificationManager.shared.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
+        PushNotificationsInteractor.shared.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -470,7 +470,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
-        NotificationManager.shared.unsubscribeFromCanvasPushNotifications()
+        PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()

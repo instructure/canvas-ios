@@ -19,10 +19,10 @@
 import Combine
 
 public class CourseSyncNotificationInteractor {
-    private let localNotifications: LocalNotifications
+    private let localNotifications: LocalNotificationsInteractor
     private let progressInteractor: CourseSyncProgressObserverInteractor
 
-    init(localNotifications: LocalNotifications = LocalNotifications(),
+    init(localNotifications: LocalNotificationsInteractor = LocalNotificationsInteractor(),
          progressInteractor: CourseSyncProgressObserverInteractor) {
         self.localNotifications = localNotifications
         self.progressInteractor = progressInteractor

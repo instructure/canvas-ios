@@ -47,7 +47,7 @@ class UploadManagerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        manager.localNotifications = LocalNotifications(notificationCenter: notificationCenter)
+        manager.localNotifications = LocalNotificationsInteractor(notificationCenter: notificationCenter)
         LoginSession.clearAll()
         manager.process = TestProcess()
         UUID.mock("abcdefg")

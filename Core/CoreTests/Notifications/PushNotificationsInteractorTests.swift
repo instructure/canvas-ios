@@ -21,7 +21,7 @@ import XCTest
 @testable import Core
 import UserNotifications
 
-class NotificationManagerTests: CoreTestCase {
+class PushNotificationsInteractorTests: CoreTestCase {
     private let deviceToken = Data([123])
     private let loginSession = LoginSession.make()
     private let pushChannelId = "pushChannelId"
@@ -64,8 +64,8 @@ class NotificationManagerTests: CoreTestCase {
         }
 
         // WHEN
-        notificationManager.userDidLogin(loginSession: loginSession)
-        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
+        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
+        pushNotificationsInteractor.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
 
         // THEN
         wait(
@@ -89,10 +89,10 @@ class NotificationManagerTests: CoreTestCase {
         }
 
         // WHEN
-        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
-        notificationManager.userDidLogin(loginSession: loginSession)
-        notificationManager.userDidLogin(loginSession: loginSession)
-        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
+        pushNotificationsInteractor.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
+        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
+        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
+        pushNotificationsInteractor.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
 
         // THEN
         wait(for: [postsPushNotificationRequest])
@@ -107,11 +107,11 @@ class NotificationManagerTests: CoreTestCase {
             deletesPushNotificationRequest.fulfill()
             return (nil, nil, nil)
         }
-        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
-        notificationManager.userDidLogin(loginSession: loginSession)
+        pushNotificationsInteractor.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
+        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
 
         // WHEN
-        notificationManager.unsubscribeFromCanvasPushNotifications()
+        pushNotificationsInteractor.unsubscribeFromCanvasPushNotifications()
 
         // THEN
         wait(for: [deletesPushNotificationRequest])
@@ -130,12 +130,12 @@ class NotificationManagerTests: CoreTestCase {
             deletesPushNotificationRequest.fulfill()
             return (nil, nil, nil)
         }
-        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
-        notificationManager.userDidLogin(loginSession: loginSession)
-        notificationManager.unsubscribeFromCanvasPushNotifications()
+        pushNotificationsInteractor.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
+        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
+        pushNotificationsInteractor.unsubscribeFromCanvasPushNotifications()
 
         // WHEN
-        notificationManager.userDidLogin(loginSession: loginSession)
+        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
 
         // THEN
         wait(for: [postsPushNotificationRequest, deletesPushNotificationRequest])
@@ -149,8 +149,8 @@ class NotificationManagerTests: CoreTestCase {
             return (.make(id: ID(rawValue: self.pushChannelId)), nil, nil)
         }
 
-        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
-        notificationManager.userDidLogin(loginSession: loginSession)
+        pushNotificationsInteractor.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
+        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
 
         let newDeviceToken = Data([32])
         let postsNewPushNotificationRequest = expectation(description: "postsNewPushNotificationRequest")
@@ -160,7 +160,7 @@ class NotificationManagerTests: CoreTestCase {
         }
 
         // WHEN
-        notificationManager.applicationDidRegisterForPushNotifications(deviceToken: newDeviceToken)
+        pushNotificationsInteractor.applicationDidRegisterForPushNotifications(deviceToken: newDeviceToken)
 
         // THEN
         wait(for: [postsPushNotificationRequest, postsNewPushNotificationRequest])

@@ -20,7 +20,7 @@ import Foundation
 @testable import Core
 import UserNotifications
 
-public class MockNotificationManager: NotificationManager {
+public class MockNotificationManager: PushNotificationsInteractor {
     public var mock: MockUserNotificationCenter
 
     public init() {
