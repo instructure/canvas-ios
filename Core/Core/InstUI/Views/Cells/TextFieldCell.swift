@@ -27,14 +27,22 @@ extension InstUI {
         private let placeholder: String
 
         @Binding private var text: String
+        @FocusState private var isFocused: Bool
 
-        public init(label: Label?, placeholder: String, text: Binding<String>) {
+        public init(
+            label: Label?,
+            placeholder: String,
+            text: Binding<String>
+        ) {
             self.label = label
             self.placeholder = placeholder
             self._text = text
         }
 
-        public init(placeholder: String, text: Binding<String>) where Label == Text? {
+        public init(
+            placeholder: String,
+            text: Binding<String>
+        ) where Label == Text? {
             self.init(label: nil, placeholder: placeholder, text: text)
         }
 
@@ -57,10 +65,15 @@ extension InstUI {
 
                 InstUI.Divider()
             }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                isFocused = true
+            }
         }
 
         private var textField: some View {
             TextField("", text: $text, prompt: Text(placeholder).foregroundColor(Color.placeholderGray))
+                .focused($isFocused)
                 .multilineTextAlignment(label == nil ? .leading : .trailing)
                 .font(label == nil ? .semibold16 : .regular16, lineHeight: .fit)
                 .foregroundStyle(Color.textDarkest)

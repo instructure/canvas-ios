@@ -27,36 +27,46 @@ extension InstUI {
         private let placeholder: String?
 
         @Binding private var text: String
+        @FocusState private var isFocused: Bool
         @State private var textHeight: CGFloat = 1
 
-        public init(label: Label?, placeholder: String? = nil, text: Binding<String>) {
+        public init(
+            label: Label?,
+            placeholder: String? = nil,
+            text: Binding<String>
+        ) {
             self.label = label
             self.placeholder = placeholder
             self._text = text
         }
 
-        public init(placeholder: String? = nil, text: Binding<String>) where Label == Text? {
+        public init(
+            placeholder: String? = nil,
+            text: Binding<String>
+        ) where Label == Text? {
             self.init(label: nil, placeholder: placeholder, text: text)
         }
 
         public var body: some View {
-            VStack(spacing: 0) {
-                SwiftUI.Group {
-                    if let label {
-                        VStack(spacing: 0) {
-                            label
-                                .textStyle(.cellLabel)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .paddingStyle(.bottom, .cellBottom)
-                                .accessibility(hidden: true)
+            SwiftUI.Group {
+                if let label {
+                    VStack(spacing: 0) {
+                        label
+                            .textStyle(.cellLabel)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .paddingStyle(.bottom, .cellBottom)
+                            .accessibility(hidden: true)
 
-                            textEditor
-                        }
-                    } else {
                         textEditor
                     }
+                } else {
+                    textEditor
                 }
-                .paddingStyle(set: .standardCell)
+            }
+            .paddingStyle(set: .standardCell)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                isFocused = true
             }
         }
 
@@ -74,6 +84,7 @@ extension InstUI {
                     .paddingStyle(set: .textEditorCorrection)
                     .iOS16ScrollDisabled()
                     .iOS16HideListScrollContentBackground()
+                    .focused($isFocused)
                     .overlay(placeholderView, alignment: .leading)
                     .foregroundStyle(Color.textDarkest)
                     .frame(height: textHeight)

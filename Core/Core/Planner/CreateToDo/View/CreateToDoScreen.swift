@@ -24,33 +24,60 @@ struct CreateToDoScreen: View, ScreenViewTrackable {
 
     var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
 
+    private enum FocusedInput {
+        case title
+        case details
+    }
+    @FocusState private var focusedInput: FocusedInput?
+
     init(viewModel: CreateToDoViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
-        InstUI.BaseScreen(state: .data, config: viewModel.screenConfig) { _ in
-            VStack(spacing: 0) {
-                InstUI.TextFieldCell(
-                    placeholder: String(localized: "Add title", bundle: .core),
-                    text: $viewModel.title
-                )
-                InstUI.DatePickerCell(
-                    label: Text("Date", bundle: .core),
-                    date: $viewModel.date,
-                    isClearable: false
-                )
-                InstUI.LabelValueCell(
-                    label: Text("Calendar", bundle: .core),
-                    value: viewModel.calendar
-                ) {
-                    Text(verbatim: "some new screen")
+        InstUI.BaseScreen(state: .data, config: viewModel.screenConfig) { geometry in
+            VStack(alignment: .leading, spacing: 0) {
+                VStack(spacing: 0) {
+                    InstUI.TextFieldCell(
+                        placeholder: String(localized: "Add title", bundle: .core),
+                        text: $viewModel.title
+                    )
+                    .focused($focusedInput, equals: .title)
+
+                    InstUI.DatePickerCell(
+                        label: Text("Date", bundle: .core),
+                        date: $viewModel.date,
+                        isClearable: false
+                    )
+
+                    InstUI.LabelValueCell(
+                        label: Text("Calendar", bundle: .core),
+                        value: viewModel.calendar
+                    ) {
+                        Text(verbatim: "some new screen")
+                    }
+
+                    InstUI.TextEditorCell(
+                        label: Text("Details", bundle: .core),
+                        text: $viewModel.details
+                    )
+                    .focused($focusedInput, equals: .details)
                 }
-                InstUI.TextEditorCell(
-                    label: Text("Details", bundle: .core),
-                    text: $viewModel.details
+                // defocus inputs when otherwise non-tappable area is tapped
+                .background(
+                    InstUI.TapArea()
+                        .onTapGesture {
+                            focusedInput = nil
+                        }
                 )
+                // focus 'Details' input when tapped below last cell
+                InstUI.TapArea()
+                    .layoutPriority(-1)
+                    .onTapGesture {
+                        focusedInput = .details
+                    }
             }
+            .frame(minHeight: geometry.size.height)
         }
         .navigationTitle(viewModel.pageTitle)
         .navBarItems(

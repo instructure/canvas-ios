@@ -52,11 +52,12 @@ extension InstUI {
                         InstUI.DisclosureIndicator()
                             .padding(.leading, InstUI.DisclosureIndicator.leadingPadding)
                     }
+                    .paddingStyle(set: .standardCell)
+                    .contentShape(Rectangle())
                 }
-            }
-            .paddingStyle(set: .standardCell)
 
-            InstUI.Divider()
+                InstUI.Divider()
+            }
         }
     }
 }
