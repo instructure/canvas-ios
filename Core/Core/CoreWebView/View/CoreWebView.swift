@@ -52,6 +52,7 @@ open class CoreWebView: WKWebView {
     private var isThemeInverted: Bool {
         themeSwitcher?.isThemeInverted ?? false
     }
+    private var fullScreenVideoSupport: FullScreenVideoSupport?
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -317,6 +318,11 @@ open class CoreWebView: WKWebView {
                 text-align: center;
             }
         """
+    }
+
+    // Call this method if you didn't add the webview into the view hierarchy with the `pinWithThemeSwitchButton` method.
+    public func activateFullScreenSupport() {
+        fullScreenVideoSupport = .init(webView: self)
     }
 }
 
@@ -586,6 +592,7 @@ extension CoreWebView {
         themeSwitcher = CoreWebViewThemeSwitcherLive(host: self)
         themeSwitcher?.pinHostAndButton(inside: parent, leading: leading, trailing: trailing, top: top, bottom: bottom)
         themeSwitcher?.updateUserInterfaceStyle(with: .current)
+        activateFullScreenSupport()
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
