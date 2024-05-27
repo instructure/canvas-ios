@@ -310,7 +310,7 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
         let env = self.env
         let mediaUploader = UploadMedia(type: type, url: url)
         let uploading = SubmissionButtonAlertView.uploadingAlert(mediaUploader)
-        let reportError = { [weak self] (error: Error) -> Void in
+        let reportError = { [weak self] (error: Error) in
             let failure = UIAlertController(title: String(localized: "Submission Failed", bundle: .student), message: error.localizedDescription, preferredStyle: .alert)
             failure.addAction(UIAlertAction(title: String(localized: "Retry", bundle: .student), style: .default) { _ in
                 self?.submitMediaType(type, url: url, callback: callback)
@@ -326,13 +326,13 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
                 }
             }
         }
-        let doneUploading = { [weak self] (error: Error?) -> Void in
+        let doneUploading = { [weak self] (error: Error?) in
             performUIUpdate { self?.env.router.dismiss(uploading) {
                 if let error = error { return reportError(error) }
                 reportSuccess()
             } }
         }
-        let createSubmission = { (mediaID: String?, error: Error?) -> Void in
+        let createSubmission = { (mediaID: String?, error: Error?) in
             guard error == nil else { return doneUploading(error) }
             CreateSubmission(
                 context: .course(assignment.courseID),

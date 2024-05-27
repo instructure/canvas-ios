@@ -46,8 +46,8 @@ public class GetWidgetAnnouncements: CollectionUseCase {
         urlResponse: URLResponse?,
         to client: NSManagedObjectContext
     ) {
-        response?.enumerated().forEach {
-            CDWidgetAnnouncement.save($0.element, in: client)
+        response?.forEach {
+            CDWidgetAnnouncement.save($0, in: client)
         }
     }
 }

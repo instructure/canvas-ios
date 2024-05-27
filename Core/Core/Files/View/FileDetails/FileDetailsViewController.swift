@@ -559,7 +559,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
 
         let document = Document(url: url)
         document.annotationSaveMode = .embedded
-        let controller = PDFViewController(document: document, configuration: PDFConfiguration { (builder) -> Void in
+        let controller = PDFViewController(document: document, configuration: PDFConfiguration { builder in
             docViewerConfigurationBuilder(builder)
             builder.editableAnnotationTypes = [ .link, .highlight, .underline, .strikeOut, .squiggly, .freeText, .ink, .square, .circle, .line, .polygon, .eraser ]
             builder.propertiesForAnnotations[.square] = [["color"], ["lineWidth"]]

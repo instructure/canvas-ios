@@ -500,7 +500,7 @@ extension StudentAppDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url, app: .student) {
             window?.rootViewController = LoadingViewController.create()
-            login.fetch(environment: environment) { [weak self] (session, error) -> Void in
+            login.fetch(environment: environment) { [weak self] session, error in
                 guard let session = session, error == nil else {
                     self?.changeUser()
                     return
