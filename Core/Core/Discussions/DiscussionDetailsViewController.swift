@@ -541,9 +541,9 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     }
 
     private func focusOnNewReplyIfNecessary() {
-        if let newReplyIDFromCurrentUser = newReplyIDFromCurrentUser,
-           isContentLargerThanView // if the webview content is smaller than the screen then scrolling will trigger the pull to refresh icon
-        {
+        if let newReplyIDFromCurrentUser,
+           // if the webview content is smaller than the screen then scrolling will trigger the pull to refresh icon
+           isContentLargerThanView {
             webView.scrollIntoView(fragment: "entry-\(newReplyIDFromCurrentUser)")
         }
 

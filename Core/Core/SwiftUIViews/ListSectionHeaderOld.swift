@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct ListSectionHeader<Content: View>: View {
+public struct ListSectionHeaderOld<Content: View>: View {
     public let content: Content
     private let isLarge: Bool
 
@@ -45,7 +45,7 @@ public struct ListSectionHeader<Content: View>: View {
 
 struct MyPreviewProvider_Previews: PreviewProvider {
     static var previews: some View {
-        ListSectionHeader { Text(verbatim: "Hello, world!") }
+        ListSectionHeaderOld { Text(verbatim: "Hello, world!") }
             .padding()
             .previewLayout(.sizeThatFits)
     }

@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Foundation
 import UIKit
 import SwiftUI
@@ -48,10 +49,12 @@ public class CreateTodoViewController: ScreenViewTrackableViewController, ErrorV
     }
     var selectedCourse: Course?
     var plannables: Store<GetPlannables>?
+    var completion: (() -> Void)?
     private var keyboardListener: KeyboardTransitioning!
 
-    public static func create() -> CreateTodoViewController {
+    public static func create(completion: @escaping () -> Void) -> CreateTodoViewController {
         let vc = loadFromStoryboard()
+        vc.completion = completion
         return vc
     }
 
@@ -85,13 +88,14 @@ public class CreateTodoViewController: ScreenViewTrackableViewController, ErrorV
 
     @objc func actionDone() {
         let u = CreatePlannerNote(title: titleLabel.text, details: descTextView.text, todoDate: selectedDate ?? Clock.now, courseID: selectedCourse?.id)
-        u.fetch(environment: env) { [weak self]  _, _, error in
+        u.fetch(environment: env) { [weak self]  _, _, error in performUIUpdate {
             if let error = error {
-                 self?.showError(error)
+                self?.showError(error)
             } else {
-                self?.refreshPlannables()
+                self?.completion?()
+                self?.dismiss(animated: true, completion: nil)
             }
-        }
+        }}
     }
 
     @objc func actionCancel() {
@@ -102,18 +106,6 @@ public class CreateTodoViewController: ScreenViewTrackableViewController, ErrorV
         let dateBinding = Binding(get: { self.selectedDate },
                                   set: { self.selectedDate = $0 })
         CoreDatePicker.showDatePicker(for: dateBinding, from: self)
-    }
-
-    func refreshPlannables() {
-        let u = GetPlannables(startDate: Clock.now.startOfDay(), endDate: Clock.now.startOfDay().addDays(1))
-        plannables = env.subscribe(u, { [weak self] in self?.plannablesDidUpdate() })
-        plannables?.refresh(force: true)
-    }
-
-    func plannablesDidUpdate() {
-        if plannables?.pending == false {
-            dismiss(animated: true, completion: nil)
-        }
     }
 
     @IBAction func actionSelectCourse() {

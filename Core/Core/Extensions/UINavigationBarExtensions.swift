@@ -44,7 +44,7 @@ extension UINavigationBar {
         barStyle = .black
         self.isTranslucent = isTranslucent
 
-        applyAppearanceChanges(backgroundColor: background, foreGroundColor: foreground)
+        applyAppearanceChanges(backgroundColor: background, foregroundColor: foreground)
     }
 
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
@@ -56,21 +56,41 @@ extension UINavigationBar {
         barStyle = background.luminance < 0.5 ? .black : .default
         isTranslucent = false
 
-        applyAppearanceChanges(backgroundColor: background, foreGroundColor: foreground)
+        applyAppearanceChanges(backgroundColor: background, foregroundColor: foreground)
     }
 
-    public func useModalStyle(brand: Brand = Brand.shared, isLightFont: Bool = false) {
+    /**
+     - parameters:
+        - forcedTheme: Pass `.light` or `.dark` to lock the style to the specific theme. Use `nil` to keep it dynamic.
+     */
+    public func useModalStyle(
+        brand: Brand = Brand.shared,
+        isLightFont: Bool = false,
+        forcedTheme: UITraitCollection? = nil
+    ) {
+        var backgroundColor = UIColor.backgroundLightest
+        var foregroundColor = UIColor.textDarkest
+
+        if let forcedTheme {
+            backgroundColor = backgroundColor.resolvedColor(with: forcedTheme)
+            foregroundColor = foregroundColor.resolvedColor(with: forcedTheme)
+        }
+
         let foreground = brand.linkColor
-        titleTextAttributes = [.foregroundColor: UIColor.textDarkest]
+        titleTextAttributes = [.foregroundColor: foregroundColor]
         tintColor = foreground
-        barTintColor = .backgroundLightest
+        barTintColor = backgroundColor
         barStyle = .default
         isTranslucent = false
 
-        applyAppearanceChanges(backgroundColor: .backgroundLightest, foreGroundColor: UIColor.textDarkest, isLightFont: isLightFont)
+        applyAppearanceChanges(
+            backgroundColor: backgroundColor,
+            foregroundColor: foregroundColor,
+            isLightFont: isLightFont
+        )
     }
 
-    private func applyAppearanceChanges(backgroundColor: UIColor?, foreGroundColor: UIColor?, isLightFont: Bool = false) {
+    private func applyAppearanceChanges(backgroundColor: UIColor?, foregroundColor: UIColor?, isLightFont: Bool = false) {
         let appearance = UINavigationBarAppearance()
 
         if isTranslucent {
@@ -83,7 +103,7 @@ extension UINavigationBar {
             }
         }
 
-        if let foreGroundColor = foreGroundColor {
+        if let foreGroundColor = foregroundColor {
             appearance.titleTextAttributes = [.foregroundColor: foreGroundColor]
         }
 

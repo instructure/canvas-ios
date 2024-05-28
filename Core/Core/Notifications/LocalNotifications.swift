@@ -56,7 +56,7 @@ public extension NotificationManager {
     @discardableResult
     func sendOfflineSyncFailedNotificationAndWait() -> Bool {
         let title = String(localized: "Offline Content Sync Failed", bundle: .core)
-        let body = String(localized: "One or more items failed to sync.", bundle: .core)
+        let body = String(localized: "One or more items failed to sync. Please check your internet connection and retry syncing.", bundle: .core)
         let semaphore = DispatchSemaphore(value: 0)
         var isScheduled = false
         notify(identifier: "OfflineSyncFailed", title: title, body: body, route: nil) { error in

@@ -41,7 +41,7 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
                 if progress.isFinished {
                     if progress.error != nil {
                         return .finishedWithError(title: String(localized: "Offline Content Sync Failed", bundle: .core),
-                                                  subtitle: String(localized: "One or more files failed to sync. Check your internet connection and retry to submit.", bundle: .core))
+                                                  subtitle: String(localized: "One or more items failed to sync. Please check your internet connection and retry syncing.", bundle: .core))
                     } else {
                         let format = String(localized: "Success! Downloaded %@ of %@", bundle: .core)
                         let message = String.localizedStringWithFormat(format,

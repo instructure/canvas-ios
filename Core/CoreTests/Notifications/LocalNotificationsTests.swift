@@ -51,6 +51,6 @@ class LocalNotificationsTests: CoreTestCase {
         }
 
         XCTAssertEqual(firstNotification.content.title, "Offline Content Sync Failed")
-        XCTAssertEqual(firstNotification.content.body, "One or more items failed to sync.")
+        XCTAssertEqual(firstNotification.content.body, "One or more items failed to sync. Please check your internet connection and retry syncing.")
     }
 }

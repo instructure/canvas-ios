@@ -32,6 +32,8 @@ public extension Date {
         self = date
     }
 
+    // MARK: - add methods
+
     func addYears(_ years: Int) -> Date {
         return Calendar.current.date(byAdding: .year, value: years, to: self) ?? self
     }
@@ -54,6 +56,8 @@ public extension Date {
         let endDate = Calendar.current.date(byAdding: .month, value: numberOfMonths, to: self)
         return endDate ?? Date()
     }
+
+    // MARK: - start/end methods
 
     func startOfWeek() -> Date {
         return Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) ?? Date()
@@ -80,18 +84,17 @@ public extension Date {
         return Cal.currentCalendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth()) ?? Date()
     }
 
-    func removeTime() -> Date {
-        Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.year, .month, .day], from: self)) ?? Date()
-    }
+    // MARK: - Formatters
 
-    static var relativeDateOnlyFormatter: DateFormatter = {
+    private static var relativeDateOnlyFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.doesRelativeDateFormatting = true
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         return formatter
     }()
-    static var relativeShortDateOnlyFormatter: DateFormatter = {
+
+    private static var relativeShortDateOnlyFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.doesRelativeDateFormatting = true
         formatter.dateStyle = .short
@@ -99,103 +102,132 @@ public extension Date {
 
         return formatter
     }()
-    static var relativeDateTimeFormatter: DateFormatter = {
+
+    private static var relativeDateTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.doesRelativeDateFormatting = true
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter
     }()
-    static var relativeDateTimeFormatterWithDayOfWeek: DateFormatter = {
+
+    private static var relativeDateTimeFormatterWithDayOfWeek: DateFormatter = {
         let formatter = DateFormatter()
         formatter.doesRelativeDateFormatting = true
         formatter.dateStyle = .full
         formatter.timeStyle = .short
         return formatter
     }()
-    static var intervalDateTimeFormatter: DateIntervalFormatter = {
+
+    private static var intervalDateTimeFormatter: DateIntervalFormatter = {
         let formatter = DateIntervalFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter
     }()
+
     /**
      Date formatter to create a from-to string between two times within a day because no date component is displayed only hours and minutes.
      */
-    static var timeIntervalFormatter: DateIntervalFormatter = {
+    private static var timeIntervalFormatter: DateIntervalFormatter = {
         let formatter = DateIntervalFormatter()
         formatter.dateStyle = .none
         formatter.timeStyle = .short
         return formatter
     }()
+
     /**
      This date formatter displays only the name of the weekday. E.g.: Monday, Saturday.
      */
-    static var weekdayFormatter: DateFormatter = {
+    private static var weekdayFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("EEEE")
         return formatter
     }()
+
     /**
      This date formatter displays the full month name and the day of the month. E.g.: September 6.
      */
-    static var dayInMonthFormatter: DateFormatter = {
+    private static var dayInMonthFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMMd", options: 0, locale: NSLocale.current)
         return dateFormatter
     }()
-    static var timeOnlyFormatter: DateFormatter = {
+
+    private static var dayFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("d")
+        return formatter
+    }()
+
+    private static var timeOnlyFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .none
         formatter.timeStyle = .short
         return formatter
     }()
 
+    // MARK: - Formatted strings
+
     var dateOnlyString: String {
         DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .none)
     }
+
     var dateTimeString: String {
         DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .short)
     }
+
     /**
      E.g.: Jul 14, 2021
      */
     var relativeDateOnlyString: String {
         Date.relativeDateOnlyFormatter.string(from: self)
     }
+
     /**
      E.g.: 8/16/21
      */
     var relativeShortDateOnlyString: String {
         Date.relativeShortDateOnlyFormatter.string(from: self)
     }
+
     var relativeDateTimeString: String {
         Date.relativeDateTimeFormatter.string(from: self)
     }
+
     var relativeDateTimeStringWithDayOfWeek: String {
         Date.relativeDateTimeFormatterWithDayOfWeek.string(from: self)
     }
+
     func intervalStringTo(_ to: Date) -> String {
         return Date.intervalDateTimeFormatter.string(from: self, to: to)
     }
+
     /**
      E.g.: 8:30-10:30 PM
      */
     func timeIntervalString(to date: Date) -> String {
         Date.timeIntervalFormatter.string(from: self, to: date)
     }
+
     /**
      E.g.: Monday
      */
     var weekdayName: String {
         Date.weekdayFormatter.string(from: self)
     }
+
     /**
      E.g.: September 6.
      */
     var dayInMonth: String {
         Date.dayInMonthFormatter.string(from: self)
     }
+
+    var dayString: String {
+        Date.dayFormatter.string(from: self)
+    }
+
     var timeString: String {
         Date.timeOnlyFormatter.string(from: self)
     }

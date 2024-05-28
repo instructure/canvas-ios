@@ -126,4 +126,39 @@ class ModuleItemSequenceViewControllerTests: CoreTestCase {
         XCTAssertEqual(details.courseID, "1")
         XCTAssertTrue(details.authenticate)
     }
+
+    func testOfflineMode() {
+        _ = ModuleItem.save(.make(id: "item-id", pageId: "my-page"), forCourse: "1", in: databaseClient)
+        let prev = APIModuleItem.make(id: "item-id", module_id: "1", html_url: URL(string: "/prev"), pageId: "my-page")
+        let current = APIModuleItem.make(id: "2", module_id: "1", html_url: URL(string: "/current"))
+        let next = APIModuleItem.make(id: "3", module_id: "2", html_url: URL(string: "/next"))
+        api.mock(
+            GetModuleItemSequenceRequest(courseID: "1", assetType: .moduleItem, assetID: prev.id.value),
+            value: .make(items: [.make(prev: nil, current: prev, next: current)])
+        )
+        api.mock(
+            GetModuleItemSequenceRequest(courseID: "1", assetType: .moduleItem, assetID: current.id.value),
+            value: .make(items: [.make(prev: prev, current: current, next: next)])
+        )
+        api.mock(
+            GetModuleItemSequenceRequest(courseID: "1", assetType: .moduleItem, assetID: next.id.value),
+            value: .make(items: [.make(prev: current, current: next, next: nil)])
+        )
+
+        let offlineModeInteractorMock = OfflineModeInteractorMock(mockIsInOfflineMode: true)
+        let controller = ModuleItemSequenceViewController.create(
+            courseID: "1",
+            assetType: .page,
+            assetID: "my-page",
+            url: URLComponents(string: "")!,
+            offlineModeInteractor: offlineModeInteractorMock
+        )
+        controller.view.layoutIfNeeded()
+        let details = controller.pages.currentPage as! ModuleItemDetailsViewController
+        XCTAssertEqual(details.courseID, "1")
+        XCTAssertEqual(details.moduleID, "1")
+        XCTAssertEqual(details.itemID, "item-id")
+        XCTAssertTrue(controller.previousButton.isHidden)
+        XCTAssertFalse(controller.nextButton.isHidden)
+    }
 }

@@ -189,7 +189,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
     @ViewBuilder
     func courseSection(header: Text, courses: [AllCoursesCourseItem]) -> some View {
         if !courses.isEmpty {
-            Section(header: ListSectionHeader(isLarge: true) { header }) {
+            Section(header: ListSectionHeaderOld(isLarge: true) { header }) {
                 ForEach(courses, id: \.courseId) { course in
                     if course.courseId != courses.first?.courseId { Divider() }
                     AllCoursesCellView(

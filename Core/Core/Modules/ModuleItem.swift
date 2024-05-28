@@ -31,6 +31,7 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var indent: Int
     @NSManaged public var htmlURL: URL?
     @NSManaged public var url: URL?
+    @NSManaged public var pageId: String?
     @NSManaged public var publishedRaw: NSNumber?
     @NSManaged public var canBeUnpublished: Bool
     @NSManaged public var typeRaw: Data?
@@ -164,6 +165,7 @@ public class ModuleItem: NSManagedObject {
         model.indent = item.indent
         model.htmlURL = item.html_url
         model.url = item.url
+        model.pageId = item.pageId
         model.published = item.published
         model.canBeUnpublished = item.unpublishable ?? true
         model.type = item.content
