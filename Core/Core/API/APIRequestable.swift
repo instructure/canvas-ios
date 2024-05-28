@@ -295,10 +295,9 @@ extension URLRequest: APIRequestable {
     public var path: String { "" }
     public func decode(_ data: Data) throws -> Data { data }
 
-    public func urlRequest(relativeTo baseURL: URL, method: APIMethod = .get, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
+    public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
         guard let url = url else { throw NSError.internalError() }
         var request = self
-        request.httpMethod = method.rawValue
         if let token = accessToken, url.host == baseURL.host {
             request.setValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
         }
@@ -313,7 +312,7 @@ extension URL: APIRequestable {
     public typealias Response = Data
 
     public func decode(_ data: Data) throws -> Data { data }
-    public func urlRequest(relativeTo baseURL: URL, method: APIMethod = .get, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
-        try URLRequest(url: self).urlRequest(relativeTo: baseURL, method: method, accessToken: accessToken, actAsUserID: actAsUserID)
+    public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
+        try URLRequest(url: self).urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: actAsUserID)
     }
 }

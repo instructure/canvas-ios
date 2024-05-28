@@ -115,7 +115,8 @@ extension API {
     @discardableResult
     func mock(url: URL, method: APIMethod = .get, data: Data? = nil, response: URLResponse? = nil, error: Error? = nil) -> APIMock {
         // swiftlint:disable:next force_try
-        let request = try! url.urlRequest(relativeTo: baseURL, method: method, accessToken: loginSession?.accessToken, actAsUserID: nil)
+        var request = try! url.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: nil)
+        request.httpMethod = method.rawValue
         let mock = APIMock { _ in (data, response, error) }
         API.mocks[request.key] = mock
         return mock
