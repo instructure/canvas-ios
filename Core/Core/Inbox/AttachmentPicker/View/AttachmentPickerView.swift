@@ -31,7 +31,7 @@ public struct AttachmentPickerView: View {
     public var body: some View {
         VStack(alignment: .center, spacing: 0) {
             headerView
-            if (viewModel.fileList.isEmpty) { emptyView } else { ScrollView { contentView } }
+            if (viewModel.fileList.isEmpty) { emptyView } else { List { contentView }.listStyle(.plain) }
         }
         .background(Color.backgroundLightest)
         .navigationTitle(viewModel.title)
@@ -66,11 +66,10 @@ public struct AttachmentPickerView: View {
     }
 
     private var contentView: some View {
-        VStack(spacing: 0) {
-            ForEach(viewModel.fileList, id: \.self) { file in
-                rowView(for: file)
-            }
-            Spacer()
+        ForEach(viewModel.fileList, id: \.self) { file in
+            rowView(for: file)
+                .listRowSpacing(0)
+                .iOS16RemoveListRowSeparatorLeadingInset()
         }
     }
 
@@ -117,10 +116,17 @@ public struct AttachmentPickerView: View {
                     }
                 }
             }
-            .padding(.all, 12)
-            separator
         }
         .foregroundStyle(Color.textDarkest)
+        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+            Button {
+                viewModel.removeButtonDidTap.accept(file)
+            } label: {
+                VStack(spacing: 0) {
+                    Text("Remove", bundle: .core)
+                }
+            }
+        }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(verbatim: "\(file.displayName ?? file.localFileURL?.lastPathComponent ?? "") (\(fileSizeWithUnit)"))
         .accessibilityAction(named: Text("Remove attachment", bundle: .core)) {
