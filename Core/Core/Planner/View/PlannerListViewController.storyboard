@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,15 +18,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="z9c-iF-0LB">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="dTW-wT-oRZ" customClass="TableViewBackgroundView" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="145" width="414" height="230"/>
+                                    <rect key="frame" x="0.0" y="172" width="414" height="226"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8wG-8h-aIj" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
-                                            <rect key="frame" x="187" y="95" width="40" height="40"/>
+                                            <rect key="frame" x="187" y="93" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="1Ea-9b-Dfc"/>
                                                 <constraint firstAttribute="height" constant="40" id="KTo-Ki-oOP"/>
@@ -84,7 +84,7 @@
                                             </constraints>
                                         </view>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kr5-GN-tEi" customClass="ListErrorView" customModule="Core" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="17.5" width="414" height="195"/>
+                                            <rect key="frame" x="0.0" y="15.5" width="414" height="195"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="195" placeholder="YES" id="L6g-ah-EMm"/>
                                             </constraints>
@@ -105,24 +105,24 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlannerListCell" id="nc6-qC-n7j" customClass="PlannerListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="78"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nc6-qC-n7j" id="gQz-yJ-vt1">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="78"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wqm-ri-CUc">
-                                                    <rect key="frame" x="18" y="10" width="24" height="24"/>
+                                                    <rect key="frame" x="24" y="14" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="pFj-OX-xjp"/>
                                                         <constraint firstAttribute="height" constant="24" id="tDp-wP-8a2"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nvF-o5-JX4">
-                                                    <rect key="frame" x="60" y="8" width="338" height="61.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nvF-o5-JX4">
+                                                    <rect key="frame" x="68" y="12" width="330" height="65.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="AST 101" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyU-M2-T4c" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="338" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="330" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -131,7 +131,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Essay :the rocky planets" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3t-LK-Jry" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="20.5" width="338" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="22.5" width="330" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -140,7 +140,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tLO-4R-VWa">
-                                                            <rect key="frame" x="0.0" y="41" width="338" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="45" width="330" height="20.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Apr 6 at 11:59pm" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdg-qH-tTU" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="165" height="20.5"/>
@@ -174,7 +174,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="UBn-Qq-9b0">
-                                                                    <rect key="frame" x="262" y="0.0" width="76" height="20.5"/>
+                                                                    <rect key="frame" x="262" y="0.0" width="68" height="20.5"/>
                                                                 </view>
                                                             </subviews>
                                                         </stackView>
@@ -182,11 +182,11 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="nvF-o5-JX4" firstAttribute="leading" secondItem="wqm-ri-CUc" secondAttribute="trailing" constant="18" id="2Pq-eG-ayc"/>
-                                                <constraint firstItem="nvF-o5-JX4" firstAttribute="top" secondItem="gQz-yJ-vt1" secondAttribute="top" constant="8" id="85U-AM-3fz"/>
-                                                <constraint firstItem="wqm-ri-CUc" firstAttribute="top" secondItem="gQz-yJ-vt1" secondAttribute="top" constant="10" id="HoR-a4-NUc"/>
-                                                <constraint firstItem="wqm-ri-CUc" firstAttribute="leading" secondItem="gQz-yJ-vt1" secondAttribute="leading" constant="18" id="Z1d-WE-QcF"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nvF-o5-JX4" secondAttribute="bottom" constant="8" id="dxQ-Lf-Ypt"/>
+                                                <constraint firstItem="nvF-o5-JX4" firstAttribute="leading" secondItem="wqm-ri-CUc" secondAttribute="trailing" constant="20" id="2Pq-eG-ayc"/>
+                                                <constraint firstItem="nvF-o5-JX4" firstAttribute="top" secondItem="gQz-yJ-vt1" secondAttribute="top" constant="12" id="85U-AM-3fz"/>
+                                                <constraint firstItem="wqm-ri-CUc" firstAttribute="top" secondItem="gQz-yJ-vt1" secondAttribute="top" constant="14" id="HoR-a4-NUc"/>
+                                                <constraint firstItem="wqm-ri-CUc" firstAttribute="leading" secondItem="gQz-yJ-vt1" secondAttribute="leading" constant="24" id="Z1d-WE-QcF"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nvF-o5-JX4" secondAttribute="bottom" constant="16" id="dxQ-Lf-Ypt"/>
                                                 <constraint firstAttribute="trailing" secondItem="nvF-o5-JX4" secondAttribute="trailing" constant="16" id="jl1-56-ga0"/>
                                             </constraints>
                                         </tableViewCellContentView>
