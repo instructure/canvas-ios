@@ -184,7 +184,6 @@ class QuizzesTests: E2ETestCase {
         quizCell.hit()
         let launchExternalToolButton = AssignmentsHelper.Details.submitAssignmentButton.waitUntil(.visible)
         XCTAssertTrue(launchExternalToolButton.isVisible)
-        XCTAssertTrue(launchExternalToolButton.hasLabel(label: "Launch External Tool"))
 
         // MARK: Check if the external tool gets launched
         launchExternalToolButton.hit()

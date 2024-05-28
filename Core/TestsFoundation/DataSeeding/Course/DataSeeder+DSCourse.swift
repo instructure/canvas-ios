@@ -18,7 +18,7 @@
 
 extension DataSeeder {
     public func createCourse(
-        name: String = "DataSeed iOS \(Int(Date().timeIntervalSince1970))",
+        name: String = "DS iOS Course \(Int(Date().timeIntervalSince1970))",
         syllabus_body: String? = nil,
         start_at: Date? = nil,
         end_at: Date? = nil,

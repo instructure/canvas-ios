@@ -176,8 +176,9 @@ class CalendarTests: E2ETestCase {
     func testCourseFilter() {
         // MARK: Seed the usual stuff with 2 course and 2 separate calendar events
         let student = seeder.createUser()
-        let course1 = seeder.createCourse()
-        let course2 = seeder.createCourse()
+        let courses = seeder.createCourses(count: 2)
+        let course1 = courses[0]
+        let course2 = courses[1]
         seeder.enrollStudent(student, in: course1)
         seeder.enrollStudent(student, in: course2)
 
@@ -207,21 +208,25 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(filterNavBar.isVisible)
 
         let doneButton = FilterHelper.doneButton.waitUntil(.visible)
+        let calendarsLabel = FilterHelper.calendarsLabel.waitUntil(.visible)
+        let deselectAllButton = FilterHelper.deselectAllButton.waitUntil(.visible)
         XCTAssertTrue(doneButton.isVisible)
+        XCTAssertTrue(calendarsLabel.isVisible)
+        XCTAssertTrue(deselectAllButton.isVisible)
 
         let courseCell1 = FilterHelper.courseCell(course: course1).waitUntil(.visible)
         XCTAssertTrue(courseCell1.isVisible)
-        XCTAssertTrue(courseCell1.waitUntil(.selected).isSelected)
+        XCTAssertTrue(courseCell1.waitUntil(.value(expected: "1")).hasValue(value: "1"))
 
         let courseCell2 = FilterHelper.courseCell(course: course2).waitUntil(.visible)
         XCTAssertTrue(courseCell2.isVisible)
-        XCTAssertTrue(courseCell2.waitUntil(.selected).isSelected)
+        XCTAssertTrue(courseCell2.waitUntil(.value(expected: "1")).hasValue(value: "1"))
 
         // MARK: Change filter to first course
-        courseCell1.actionUntilElementCondition(action: .tap, condition: .selected, gracePeriod: 3)
-        courseCell2.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 3)
-        XCTAssertTrue(courseCell1.isSelected)
-        XCTAssertTrue(courseCell2.isUnselected)
+        courseCell1.actionUntilElementCondition(action: .tap, condition: .value(expected: "1"), gracePeriod: 3)
+        courseCell2.actionUntilElementCondition(action: .tap, condition: .value(expected: "0"), gracePeriod: 3)
+        XCTAssertTrue(courseCell1.hasValue(value: "1"))
+        XCTAssertTrue(courseCell2.hasValue(value: "0"))
 
         doneButton.hit()
         eventItem1 = Helper.eventCell(event: event1).waitUntil(.visible)
@@ -231,10 +236,10 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Change filter to second course
         filterButton.hit()
-        courseCell1.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 3)
-        courseCell2.actionUntilElementCondition(action: .tap, condition: .selected, gracePeriod: 3)
-        XCTAssertTrue(courseCell1.isUnselected)
-        XCTAssertTrue(courseCell2.isSelected)
+        courseCell1.actionUntilElementCondition(action: .tap, condition: .value(expected: "0"), gracePeriod: 3)
+        courseCell2.actionUntilElementCondition(action: .tap, condition: .value(expected: "1"), gracePeriod: 3)
+        XCTAssertTrue(courseCell1.hasValue(value: "0"))
+        XCTAssertTrue(courseCell2.hasValue(value: "1"))
 
         doneButton.hit()
         eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish, gracePeriod: 3)
@@ -244,10 +249,10 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Change filter to no course selected
         filterButton.hit()
-        courseCell1.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 3)
-        courseCell2.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 3)
-        XCTAssertTrue(courseCell1.isUnselected)
-        XCTAssertTrue(courseCell2.isUnselected)
+        courseCell1.actionUntilElementCondition(action: .tap, condition: .value(expected: "0"), gracePeriod: 3)
+        courseCell2.actionUntilElementCondition(action: .tap, condition: .value(expected: "0"), gracePeriod: 3)
+        XCTAssertTrue(courseCell1.hasValue(value: "0"))
+        XCTAssertTrue(courseCell2.hasValue(value: "0"))
 
         doneButton.hit()
         eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish, gracePeriod: 3)
