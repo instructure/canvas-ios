@@ -40,7 +40,7 @@ class CoreTestCase: XCTestCase {
     var login = TestLoginDelegate()
 
     let notificationCenter = MockUserNotificationCenter()
-    var notificationManager: NotificationManager!
+    var pushNotificationsInteractor: PushNotificationsInteractor!
 
     var uploadManager = MockUploadManager()
 
@@ -62,7 +62,7 @@ class CoreTestCase: XCTestCase {
         environment.loginDelegate = login
         AppEnvironment.shared = environment
         LoginSession.add(environment.currentSession!)
-        notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)
+        pushNotificationsInteractor = PushNotificationsInteractor(notificationCenter: notificationCenter, logger: logger)
         UploadManager.shared = uploadManager
         MockUploadManager.reset()
         UUID.reset()

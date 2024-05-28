@@ -50,16 +50,3 @@ extension CommunicationChannel: WriteableModel {
         return model
     }
 }
-
-public struct GetCommunicationChannels: CollectionUseCase {
-    public typealias Model = CommunicationChannel
-
-    public let cacheKey: String? = "get-user-self-communication-channels"
-
-    public let request = GetCommunicationChannelsRequest()
-
-    public let scope = Scope(predicate: .all, order: [
-        NSSortDescriptor(key: #keyPath(CommunicationChannel.typeRaw), ascending: true),
-        NSSortDescriptor(key: #keyPath(CommunicationChannel.position), ascending: true),
-    ])
-}

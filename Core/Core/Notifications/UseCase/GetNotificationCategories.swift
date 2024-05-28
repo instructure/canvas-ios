@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,25 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
-
-class NotificationCategory: NSManagedObject {
-    @NSManaged var channelID: String
-    @NSManaged var category: String
-    @NSManaged var frequencyRaw: String
-    @NSManaged var notificationsRaw: String
-
-    var frequency: NotificationFrequency {
-        get { return NotificationFrequency(rawValue: frequencyRaw) ?? .never }
-        set { frequencyRaw = newValue.rawValue }
-    }
-
-    var notifications: [String] {
-        get { return notificationsRaw.components(separatedBy: ",") }
-        set { notificationsRaw = newValue.joined(separator: ",") }
-    }
-}
 
 struct GetNotificationCategories: CollectionUseCase {
     typealias Model = NotificationCategory
@@ -76,33 +58,5 @@ struct GetNotificationCategories: CollectionUseCase {
             model.frequency = frequency
             model.notifications = notifications
         }
-    }
-}
-
-struct PutNotificationCategory: APIUseCase {
-    typealias Model = NotificationCategory
-
-    let channelID: String
-    let category: String
-    let notifications: [String]
-    let frequency: NotificationFrequency
-
-    let cacheKey: String? = nil
-
-    var request: PutNotificationPreferencesRequest {
-        return PutNotificationPreferencesRequest(channelID: channelID, notifications: notifications, frequency: frequency)
-    }
-
-    func write(response: Request.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard response != nil else { return }
-        let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
-            #keyPath(NotificationCategory.channelID), channelID,
-            #keyPath(NotificationCategory.category), category
-        )
-        let model: NotificationCategory = client.fetch(predicate).first ?? client.insert()
-        model.channelID = channelID
-        model.category = category
-        model.frequency = frequency
-        model.notifications = notifications
     }
 }

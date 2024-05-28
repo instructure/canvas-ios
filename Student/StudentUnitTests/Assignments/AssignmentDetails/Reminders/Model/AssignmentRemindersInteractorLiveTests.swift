@@ -118,7 +118,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         XCTAssertEqual(notification.content.userInfo[Key.assignmentId.rawValue] as? String, "2")
         XCTAssertEqual(notification.content.userInfo[Key.userId.rawValue] as? String, "3")
         XCTAssertEqual(notification.content.userInfo[Key.triggerTimeText.rawValue] as? String, "5 minutes before")
-        XCTAssertEqual(notification.content.userInfo[NotificationManager.RouteURLKey] as? String, "courses/1/assignments/2")
+        XCTAssertEqual(notification.content.userInfo[UNNotificationContent.RouteURLKey] as? String, "courses/1/assignments/2")
 
         guard let timeTrigger = notification.trigger as? UNCalendarNotificationTrigger else {
             return XCTFail()
