@@ -28,6 +28,7 @@ class AttachmentPickerInteractorPreview: AttachmentPickerInteractor {
     public private(set) var retryCalled: Bool = false
     public private(set) var cancelCalled: Bool = false
     public private(set) var removeFileCalled: Bool = false
+    public private(set) var deleteFileCalled: Bool = false
 
     func uploadFiles() {
         uploadFilesCalled = true
@@ -47,6 +48,11 @@ class AttachmentPickerInteractorPreview: AttachmentPickerInteractor {
 
     func removeFile(file: File) {
         removeFileCalled = true
+    }
+
+    func deleteFile(file: File) -> AnyPublisher<Void, Never> {
+        removeFileCalled = true
+        return Just(()).eraseToAnyPublisher()
     }
 
     func throwError() {

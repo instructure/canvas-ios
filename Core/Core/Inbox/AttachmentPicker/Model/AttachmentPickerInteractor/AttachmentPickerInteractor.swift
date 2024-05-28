@@ -31,4 +31,6 @@ protocol AttachmentPickerInteractor {
     func cancel()
 
     func removeFile(file: File)
+
+    func deleteFile(file: File) -> AnyPublisher<Void, Never>
 }

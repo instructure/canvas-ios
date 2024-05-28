@@ -31,7 +31,7 @@ public struct AttachmentPickerView: View {
     public var body: some View {
         VStack(alignment: .center, spacing: 0) {
             headerView
-            if (viewModel.fileList.isEmpty) { emptyView } else { List { contentView }.listStyle(.plain) }
+            if (viewModel.fileList.isEmpty) { emptyView } else { List { contentView }.listStyle(.plain).accessibilityElement(children: .contain) }
         }
         .background(Color.backgroundLightest)
         .navigationTitle(viewModel.title)
@@ -118,19 +118,24 @@ public struct AttachmentPickerView: View {
             }
         }
         .foregroundStyle(Color.textDarkest)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: "\(file.displayName ?? file.localFileURL?.lastPathComponent ?? "") (\(fileSizeWithUnit)"))
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
             Button {
                 viewModel.removeButtonDidTap.accept(file)
             } label: {
                 VStack(spacing: 0) {
-                    Text("Remove", bundle: .core)
+                    Text("Remove attachment", bundle: .core)
                 }
             }
-        }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text(verbatim: "\(file.displayName ?? file.localFileURL?.lastPathComponent ?? "") (\(fileSizeWithUnit)"))
-        .accessibilityAction(named: Text("Remove attachment", bundle: .core)) {
-            viewModel.removeButtonDidTap.accept(file)
+
+            if file.isUploaded {
+                Button {
+                    viewModel.deleteFileButtonDidTap.accept(file)
+                } label: {
+                    Text("Delete from Files", bundle: .core)
+                }
+            }
         }
     }
 

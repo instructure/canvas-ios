@@ -20,15 +20,16 @@ import Foundation
 import Combine
 
 class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
+    let files = PassthroughSubject<[File], Error>()
 
     private var uploadManager: UploadManager
     private let batchId: String
 
+    private var subscriptions = Set<AnyCancellable>()
+
     private lazy var fileStore = uploadManager.subscribe(batchID: batchId) { [weak self] in
         self?.update()
     }
-
-    let files = PassthroughSubject<[File], Error>()
 
     init(batchId: String, uploadManager: UploadManager) {
         self.uploadManager = uploadManager
@@ -73,5 +74,20 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
     func removeFile(file: File) {
         uploadManager.viewContext.delete(file)
         fileStore.refresh()
+    }
+
+    func deleteFile(file: File) -> AnyPublisher<Void, Never> {
+        uploadManager.viewContext.delete(file)
+        fileStore.refresh()
+
+        if let fileId = file.id {
+            return ReactiveStore(useCase: DeleteFile(fileID: fileId))
+                .getEntities()
+                .mapToVoid()
+                .replaceError(with: ())
+                .eraseToAnyPublisher()
+        } else {
+            return Just(()).eraseToAnyPublisher()
+        }
     }
 }

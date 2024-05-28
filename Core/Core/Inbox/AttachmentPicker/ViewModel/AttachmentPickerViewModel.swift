@@ -41,6 +41,7 @@ class AttachmentPickerViewModel: ObservableObject {
     public let retryButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addAttachmentButtonDidTap = PassthroughRelay<WeakViewController>()
     public let removeButtonDidTap = PassthroughRelay<File>()
+    public let deleteFileButtonDidTap = PassthroughRelay<File>()
     public let router: Router
 
     // MARK: Private
@@ -164,6 +165,18 @@ class AttachmentPickerViewModel: ObservableObject {
             .sink { [weak self] file in
                 self?.interactor.removeFile(file: file)
             }
+            .store(in: &subscriptions)
+
+        deleteFileButtonDidTap
+            .flatMap { [weak self] file in
+                if let self {
+                    return self.interactor.deleteFile(file: file)
+                }
+                else {
+                    return Just(()).eraseToAnyPublisher()
+                }
+            }
+            .sink()
             .store(in: &subscriptions)
     }
 }
