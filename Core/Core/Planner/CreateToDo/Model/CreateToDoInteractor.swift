@@ -19,8 +19,26 @@
 import Combine
 
 public protocol CreateToDoInteractor: AnyObject {
+    var calendars: CurrentValueSubject<[CalendarSelectorItem], Never> { get }
+    var selectedCalendar: CurrentValueSubject<CalendarSelectorItem?, Never> { get }
 
+    func selectCalendar(with id: String)
 }
 
 final class CreateToDoInteractorLive: CreateToDoInteractor {
+    let calendars = CurrentValueSubject<[CalendarSelectorItem], Never>([])
+    let selectedCalendar = CurrentValueSubject<CalendarSelectorItem?, Never>(nil)
+
+    init() {
+        // TODO: request
+        calendars.send(CreateToDoInteractorPreview().calendars.value)
+    }
+
+    func selectCalendar(with id: String) {
+        guard selectedCalendar.value?.id != id,
+              let index = calendars.value.firstIndex(where: { $0.id == id })
+        else { return }
+
+        selectedCalendar.send(calendars.value[index])
+    }
 }

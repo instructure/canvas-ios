@@ -35,7 +35,7 @@ struct CreateToDoScreen: View, ScreenViewTrackable {
     }
 
     var body: some View {
-        InstUI.BaseScreen(state: .data, config: viewModel.screenConfig) { geometry in
+        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { geometry in
             VStack(alignment: .leading, spacing: 0) {
                 VStack(spacing: 0) {
                     InstUI.TextFieldCell(
@@ -54,7 +54,7 @@ struct CreateToDoScreen: View, ScreenViewTrackable {
                         label: Text("Calendar", bundle: .core),
                         value: viewModel.calendar
                     ) {
-                        Text(verbatim: "some new screen")
+                        SelectCalendarScreen(viewModel: viewModel.selectCalendarViewModel)
                     }
 
                     InstUI.TextEditorCell(

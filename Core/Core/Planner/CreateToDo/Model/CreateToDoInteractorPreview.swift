@@ -21,6 +21,23 @@
 import Combine
 
 final class CreateToDoInteractorPreview: CreateToDoInteractor {
+
+    let calendars = CurrentValueSubject<[CalendarSelectorItem], Never>([])
+    let selectedCalendar = CurrentValueSubject<CalendarSelectorItem?, Never>(nil)
+
+    init() {
+        calendars.send([
+            .init(id: "101", name: "Personal Calendar", color: .red),
+            .init(id: "102", name: "Course 102", color: .green),
+            .init(id: "103", name: "Course 103", color: .blue),
+            .init(id: "104", name: "Group 104", color: .pink),
+            .init(id: "105", name: "Group 105", color: .brown),
+        ])
+
+        selectedCalendar.send(calendars.value.first)
+    }
+
+    func selectCalendar(with id: String) { }
 }
 
 #endif

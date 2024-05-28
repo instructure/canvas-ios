@@ -26,15 +26,19 @@ final class CreateToDoViewModel: ObservableObject {
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new")
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
-    @Published var state: InstUI.ScreenState = .data
+    let state: InstUI.ScreenState = .data
     @Published var title: String = ""
     @Published var date: Date?
-    @Published var calendar: String? = "General Astrophysics" // ???
+    @Published var calendar: String?
     @Published var details: String = ""
 
     var isAddButtonEnabled: Bool {
         title.isNotEmpty
     }
+
+    lazy var selectCalendarViewModel: SelectCalendarViewModel = {
+        .init(interactor: interactor)
+    }()
 
     // MARK: - Input
 
@@ -56,6 +60,13 @@ final class CreateToDoViewModel: ObservableObject {
 
         // end of today, to match web behaviour
         date = .now.endOfDay()
+
+        interactor.selectedCalendar
+            .map { $0?.name }
+            .assign(to: \.calendar, on: self, ownership: .weak)
+            .store(in: &subscriptions)
+
+        interactor.selectedCalendar.send(interactor.calendars.value.first)
 
         didTapCancel
             .sink { router.dismiss($0) }

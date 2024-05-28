@@ -63,6 +63,12 @@ public enum PlannerAssembly {
         let viewModel = CreateToDoViewModel(interactor: interactor)
         return CreateToDoScreen(viewModel: viewModel)
     }
+    
+    public static func makeSelectCalendarScreenPreview() -> some View {
+        let interactor = CreateToDoInteractorPreview()
+        let viewModel = SelectCalendarViewModel(interactor: interactor)
+        return SelectCalendarScreen(viewModel: viewModel)
+    }
 
 #endif
 
