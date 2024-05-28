@@ -88,14 +88,16 @@ class CalendarViewController: ScreenViewTrackableViewController {
         monthButton.configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
             var outgoing = incoming
             outgoing.foregroundColor = .textDarkest
-            outgoing.font = UIFont.scaledNamedFont(.bold24)
+            outgoing.font = UIFont.scaledNamedFont(.semibold22)
             return outgoing
         }
         monthButton.configuration?.background.backgroundColor = .clear
-        monthButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 28)
+        // trailing = 8 (text-image spacing) + 20 (image width) + 4 (image right padding)
+        monthButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 32)
         monthButton.accessibilityLabel = String(localized: "Show a month at a time", bundle: .core)
 
         filterButton.setTitle(String(localized: "Calendars", bundle: .core), for: .normal)
+        filterButton.titleLabel?.font = .scaledNamedFont(.regular16)
         filterButton.accessibilityLabel = String(localized: "Filter events", bundle: .core)
 
         dropdownView.transform = CGAffineTransform(rotationAngle: 4 * .pi)
@@ -105,7 +107,8 @@ class CalendarViewController: ScreenViewTrackableViewController {
             let day = calendar.firstWeekday + i - calendar.component(.weekday, from: selectedDate)
             let date = calendar.date(byAdding: .day, value: day, to: selectedDate)!
             let label = UILabel()
-            label.font = .scaledNamedFont(.semibold12)
+            label.font = .scaledNamedFont(.regular12)
+            label.adjustsFontForContentSizeCategory = true
             label.text = weekdayFormatter.string(from: date)
             label.textColor = calendar.isDateInWeekend(date) ? .textDark : .textDarkest
             label.textAlignment = .center
@@ -117,6 +120,7 @@ class CalendarViewController: ScreenViewTrackableViewController {
         daysPageController.dataSource = self
         daysPageController.delegate = self
         daysPageController.setCurrentPage(CalendarDaysViewController.create(selectedDate: selectedDate, delegate: delegate))
+        updateExpanded()
 
         updateSelectedDate(selectedDate)
     }
@@ -151,14 +155,14 @@ class CalendarViewController: ScreenViewTrackableViewController {
     }
 
     func updateExpanded() {
-        daysHeight.constant = isExpanded ? days.maxHeight : days.minHeight
+        daysHeight.constant = isExpanded ? days.expandedHeight : days.collapsedHeight
         dropdownView.transform = CGAffineTransform(rotationAngle: isExpanded ? .pi : 4 * .pi)
         delegate?.calendarDidResize(height: height, animated: true)
     }
 
     var height: CGFloat { daysContainer.frame.minY + daysHeight.constant }
-    var minHeight: CGFloat { daysContainer.frame.minY + days.minHeight }
-    var maxHeight: CGFloat { daysContainer.frame.minY + days.maxHeight }
+    var minHeight: CGFloat { daysContainer.frame.minY + days.collapsedHeight }
+    var maxHeight: CGFloat { daysContainer.frame.minY + days.expandedHeight }
     func setHeight(_ height: CGFloat) {
         let ratio = (height - minHeight) / (maxHeight - minHeight)
         isExpanded = ratio > 0.5
@@ -217,6 +221,12 @@ class CalendarViewController: ScreenViewTrackableViewController {
 
         // Manually trigger a calendar height update upon rotation
         if traitCollection.verticalSizeClass != previousTraitCollection?.verticalSizeClass {
+            if #available(iOS 17.0, *) {
+                // On iOS 17 embedded VC traits need to be updated first, otherwise the size values from
+                // the embedded VC will be outdated in `updateExpanded()`.
+                // This would be also needed if we used `registerForTraitChanges()`, unfortunately.
+                updateTraitsIfNeeded()
+            }
             updateExpanded()
         }
     }
@@ -253,8 +263,8 @@ extension CalendarViewController: PagesViewControllerDataSource, PagesViewContro
 
     func pagesViewController(_ pages: PagesViewController, isShowing list: [UIViewController]) {
         guard isExpanded, let list = list as? [CalendarDaysViewController] else { return }
-        daysHeight.constant = list.reduce(days.maxHeight) { height, page in
-            max(height, page.maxHeight)
+        daysHeight.constant = list.reduce(days.expandedHeight) { height, page in
+            max(height, page.expandedHeight)
         }
         delegate?.calendarDidResize(height: height, animated: false)
     }

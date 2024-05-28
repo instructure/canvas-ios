@@ -57,6 +57,59 @@ class APIPlannableTests: XCTestCase {
         let override = APIPlannerOverride.make()
         XCTAssertNotNil(override)
 	}
+
+    func testAPIPlannableContextWhenContextTypeAndIDIsSet() {
+        let p = APIPlannable.make(course_id: "42", context_type: "Course", plannable_type: "assignment")
+        XCTAssertEqual(p.context?.contextType, .course)
+        XCTAssertEqual(p.context?.id, "42")
+    }
+
+    func testAPIPlannableContextWhenContextTypeAndOtherIDIsSet() {
+        let p = APIPlannable.make(course_id: nil, user_id: "42", context_type: "Course", plannable_type: "assignment")
+        XCTAssertEqual(p.context, nil)
+    }
+
+    func testAPIPlannableContextWhenContextTypeIsNil() {
+        let p = APIPlannable.make(course_id: nil, context_type: nil, plannable_type: "assignment")
+        XCTAssertEqual(p.context, nil)
+    }
+
+    func testAPIPlannableContextWhenPlannableTypeIsNote() {
+        var p = APIPlannable.make(
+            context_type: nil,
+            plannable_type: "planner_note",
+            plannable: .init(course_id: "42")
+        )
+        XCTAssertEqual(p.context?.contextType, .course)
+        XCTAssertEqual(p.context?.id, "42")
+
+        p = APIPlannable.make(
+            context_type: nil,
+            plannable_type: "planner_note",
+            plannable: .init(user_id: "42")
+        )
+        XCTAssertEqual(p.context?.contextType, .user)
+        XCTAssertEqual(p.context?.id, "42")
+
+        // course id should take precedence
+        p = APIPlannable.make(
+            context_type: nil,
+            plannable_type: "planner_note",
+            plannable: .init(course_id: "7", user_id: "42")
+        )
+        XCTAssertEqual(p.context?.contextType, .course)
+        XCTAssertEqual(p.context?.id, "7")
+
+        // context from type should take precedence
+        p = APIPlannable.make(
+            group_id: "7",
+            context_type: "Group",
+            plannable_type: "planner_note",
+            plannable: .init(course_id: "42")
+        )
+        XCTAssertEqual(p.context?.contextType, .group)
+        XCTAssertEqual(p.context?.id, "7")
+    }
 }
 
 class PostPlannerNoteRequestTests: XCTestCase {
