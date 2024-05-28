@@ -24,39 +24,65 @@ public extension CourseSyncDiscussionsInteractor {
 }
 
 public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteractor {
+    let discussionHtmlParser: HTMLParser
+
+    public init(discussionHtmlParser: HTMLParser) {
+        self.discussionHtmlParser = discussionHtmlParser
+    }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
-        Self.fetchTopics(courseId: courseId)
+        Self.fetchTopics(courseId: courseId, htmlParser: discussionHtmlParser)
             .flatMap { $0.publisher }
             .filter { $0.discussionSubEntryCount > 0 && $0.anonymousState == nil }
-            .flatMap { Self.getDiscussionView(courseId: courseId, topicId: $0.id) }
+            .flatMap { [discussionHtmlParser] in Self.getDiscussionView(courseId: courseId, topicId: $0.id, htmlParser: discussionHtmlParser) }
             .collect()
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
     public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
-        return Just(()).eraseToAnyPublisher()
+        let rootURLTopic = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: discussionHtmlParser.sessionId,
+            courseId: courseId,
+            sectionName: discussionHtmlParser.sectionName
+        )
+        let rootURLView = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: discussionHtmlParser.sessionId,
+            courseId: courseId,
+            sectionName: discussionHtmlParser.sectionName
+        )
+
+        return Publishers.Zip(
+            FileManager.default.removeItemPublisher(at: rootURLTopic),
+            FileManager.default.removeItemPublisher(at: rootURLView)
+        ).mapToVoid().eraseToAnyPublisher()
     }
 
     // MARK: - Private Methods
 
     private static func fetchTopics(
-        courseId: String
+        courseId: String,
+        htmlParser: HTMLParser
     ) -> AnyPublisher<[DiscussionTopic], Error> {
 
         return ReactiveStore(useCase: GetDiscussionTopics(context: .course(courseId)))
             .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
+            .parseAttachment(attribute: \.attachments, id: \.id, courseId: courseId, htmlParser: htmlParser)
             .eraseToAnyPublisher()
     }
 
     private static func getDiscussionView(
         courseId: String,
-        topicId: String
+        topicId: String,
+        htmlParser: HTMLParser
     ) -> AnyPublisher<Void, Error> {
 
         return ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
             .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
+            .parseAttachment(attribute: \.attachment, topicId: topicId, courseId: courseId, htmlParser: htmlParser)
+            .parseRepliesHtmlContent(courseId: courseId, topicId: topicId, htmlParser: htmlParser)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

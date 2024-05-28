@@ -23,6 +23,7 @@ public protocol HTMLParser {
     var sessionId: String { get }
     var sectionName: String { get }
     func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL?) -> AnyPublisher<String, Error>
+    func downloadAttachment(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error>
 }
 
 public class HTMLParserLive: HTMLParser {
@@ -46,6 +47,15 @@ public class HTMLParserLive: HTMLParser {
         self.relativeURLRegex = (try? NSRegularExpression(pattern: "<.+(src|href)=\"(.+((\\.|\\/)\\.+)*)\".*>")) ?? NSRegularExpression()
     }
 
+    public func downloadAttachment(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
+        return Just(url)
+            .setFailureType(to: Error.self)
+            .flatMap { [interactor] url in
+                interactor.downloadFile(url, courseId: courseId, resourceId: resourceId)
+            }
+            .eraseToAnyPublisher()
+    }
+
     public func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
         let imageURLs = findRegexMatches(content, pattern: imageRegex)
         let fileURLs = Array(Set(findRegexMatches(content, pattern: fileRegex)))
@@ -53,21 +63,56 @@ public class HTMLParserLive: HTMLParser {
         let rootURL = getRootURL(courseId: courseId, resourceId: resourceId)
 
         let fileParser: AnyPublisher<[(URL, String)], Error> = fileURLs.publisher // Download the files to local Documents folder, return the (original link - local link) tuple
-            .flatMap { [interactor] url in
-                return interactor.downloadFile(url, courseId: courseId, resourceId: resourceId)
+            .flatMap(maxPublishers: .max(5)) { url in // Replace File Links with valid access urls
+                if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
+                    let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
+                    let context = Context(url: url)
+                    return ReactiveStore(useCase: GetFile(context: context, fileID: fileId))
+                        .getEntities(ignoreCache: false)
+                        .map { files in
+                            (files.first?.url ?? url, url)
+                        }
+                        .eraseToAnyPublisher()
+                } else if url.pathComponents.contains("files") {
+                    if !url.pathComponents.contains("download") {
+                        return Just((url.appendingPathComponent("download"), url)).setFailureType(to: Error.self).eraseToAnyPublisher()
+                    } else {
+                        return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
+                    }
+                } else {
+                    return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
+                }
+            }
+            .flatMap { [interactor] (fileURL, originalURL) in
+                return interactor.downloadFile(fileURL, courseId: courseId, resourceId: resourceId)
                     .map {
-                        return (url, $0)
+                        return (originalURL, $0)
                     }
             }
             .collect()
             .eraseToAnyPublisher()
 
         let imageParser: AnyPublisher<[(URL, String)], Error> =  imageURLs.publisher
-            .flatMap(maxPublishers: .max(5)) { [interactor] url in // Download images to local Documents folder, return the (original link - local link) tuple
-                return interactor.download(url, courseId: courseId, resourceId: resourceId)
+            .flatMap(maxPublishers: .max(5)) { url in // Replace File Links with valid access urls
+                if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
+                    let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
+                    let context = Context(url: url)
+                    return ReactiveStore(useCase: GetFile(context: context, fileID: fileId))
+                        .getEntities(ignoreCache: false)
+                        .map { files in
+                            (files.first?.url ?? url, url)
+                        }
+                        .eraseToAnyPublisher()
+                } else {
+                    return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
+                }
+            }
+            .flatMap { [interactor] (fileURL, originalURL) in // Download images to local Documents folder, return the (original link - local link) tuple
+                return interactor.download(fileURL, courseId: courseId, resourceId: resourceId)
                     .map {
-                        return (url, $0)
+                        return (originalURL, $0)
                     }
+
             }
             .collect() // Wait for all image download to finish and handle as an array
             .eraseToAnyPublisher()
@@ -163,5 +208,97 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
                     .collect()
             }
             .eraseToAnyPublisher()
+    }
+
+    func parseAttachment(
+        attribute url: ReferenceWritableKeyPath<Output.Element, File?>,
+        topicId: String,
+        courseId: String,
+        htmlParser: HTMLParser
+    ) -> AnyPublisher<[Output.Element], Error> {
+        return self
+            .flatMap { dataArray in
+                return Publishers.Sequence(sequence: dataArray)
+                    .setFailureType(to: Error.self)
+                    .flatMap { element -> AnyPublisher<Self.Output.Element, Error> in
+                        if let value = element[keyPath: url], let downloadURL = value.url { // Parse only non null attributes
+                            return htmlParser.downloadAttachment(downloadURL, courseId: courseId, resourceId: topicId)
+                                .map { _ in element }
+                                .eraseToAnyPublisher()
+                        } else {
+                            return Just(element)
+                                .setFailureType(to: Error.self)
+                                .eraseToAnyPublisher()
+                        }
+                    }
+                    .collect()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    func parseAttachment(
+        attribute url: ReferenceWritableKeyPath<Output.Element, Set<File>?>,
+        id: ReferenceWritableKeyPath<Output.Element, String>,
+        courseId: String,
+        htmlParser: HTMLParser
+    ) -> AnyPublisher<[Output.Element], Error> {
+        return self
+            .flatMap { dataArray in
+                Publishers.Sequence(sequence: dataArray)
+                    .setFailureType(to: Error.self)
+                    .flatMap { element -> AnyPublisher<Self.Output.Element, Error> in
+                        if let values = element[keyPath: url] { // Parse only non null attributes
+                            let resourceId = element[keyPath: id]
+                            return values.publisher.flatMap { file in
+                                if let downloadURL = file.url {
+                                    return htmlParser.downloadAttachment(downloadURL, courseId: courseId, resourceId: resourceId)
+                                        .eraseToAnyPublisher()
+                                } else {
+                                    return Just("").setFailureType(to: Error.self).eraseToAnyPublisher()
+                                }
+                            }
+                            .collect()
+                            .map { _ in element }
+                            .eraseToAnyPublisher()
+
+                        } else {
+                            return Just(element)
+                                .setFailureType(to: Error.self)
+                                .eraseToAnyPublisher()
+                        }
+                    }
+                    .collect()
+            }
+            .eraseToAnyPublisher()
+    }
+}
+
+extension Publisher where Output: Collection, Output.Element: DiscussionEntry, Failure == Error {
+    func parseRepliesHtmlContent(courseId: String, topicId: String, htmlParser: HTMLParser) -> AnyPublisher<[DiscussionEntry], Error> {
+        return self.flatMap { entries in
+            Publishers.Sequence(sequence: entries)
+                .setFailureType(to: Error.self)
+                .flatMap { entry in
+                    Publishers.Sequence(sequence: entry.replies)
+                        .setFailureType(to: Error.self)
+                }
+                .flatMap { entry in
+                    return htmlParser.parse(entry.message ?? "", resourceId: entry.id, courseId: courseId, baseURL: nil).map { return (entry, $0) }
+                }
+                .flatMap { (entry: DiscussionEntry, newContent: String) in
+                    entry.message = newContent
+                    return Just(entry.replies)
+                        .setFailureType(to: Error.self)
+                        .parseRepliesHtmlContent(courseId: courseId, topicId: topicId, htmlParser: htmlParser)
+                        .parseAttachment(attribute: \.attachment, topicId: topicId, courseId: courseId, htmlParser: htmlParser)
+                        .map { return (entry, $0) }
+                }
+                .map { (entry: DiscussionEntry, newReplies: [DiscussionEntry]) -> DiscussionEntry in
+                    entry.replies = newReplies
+                    return entry
+                }
+                .collect()
+        }
+        .eraseToAnyPublisher()
     }
 }

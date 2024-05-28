@@ -55,6 +55,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     private var newReplyIDFromCurrentUser: String?
     private var isContentLargerThanView: Bool { webView.scrollView.contentSize.height > view.frame.size.height }
     private var offlineModeInteractor: OfflineModeInteractor?
+    private var offlineLoaded = false
 
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)"
@@ -157,9 +158,18 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.handle("like") { [weak self] message in self?.handleLike(message) }
         webView.handle("moreOptions") { [weak self] message in self?.handleMoreOptions(message) }
         webView.handle("ready") { [weak self] _ in self?.ready() }
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: course.first?.id ?? "",
+            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
+            resourceId: topicID
+        )
+        webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
         webView.loadHTMLString(
             "<style>\(DiscussionHTML.css)</style>",
-            baseURL: env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
+            baseURL: offlineModeInteractor?.isOfflineModeEnabled() == true ?
+                rootURL :
+                env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
         )
 
         if showRepliesToEntryID != nil {
@@ -321,9 +331,18 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         topicID = childID
         isReady = false
         isRendered = false
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: course.first?.id ?? "",
+            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
+            resourceId: topic.id
+        )
+        webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
         webView.loadHTMLString(
             "<style>\(DiscussionHTML.css)</style>",
-            baseURL: env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
+            baseURL: offlineModeInteractor?.isOfflineModeEnabled() == true ?
+                rootURL :
+                env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
         )
         entries = env.subscribe(GetDiscussionView(context: context, topicID: topicID)) { [weak self] in
             self?.update()
@@ -351,10 +370,14 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
     func render() {
         guard isReady, let topic = topic.first, !entries.pending || !entries.isEmpty else { return }
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            guard !offlineLoaded else { return }
+        }
         var script: String
         if let root = showRepliesToEntryID.flatMap({ entry($0) }) {
+            let newRoot = replaceContentForOfflineMode(for: root)
             script = DiscussionHTML.render(
-                entry: root,
+                entry: newRoot,
                 in: topic,
                 maxDepth: maxDepth,
                 canLike: canLike
@@ -381,9 +404,15 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
                 }
                 return entries
             }()
+
+            let newtopic = replaceContentForOfflineMode(for: topic)
+            let newEntries = entries.map { entry in
+                return replaceContentForOfflineMode(for: entry)
+            }
+
             script = DiscussionHTML.render(
-                topic: topic,
-                entries: entries,
+                topic: newtopic,
+                entries: newEntries,
                 maxDepth: maxDepth,
                 canLike: canLike,
                 groups: groups.all,
@@ -404,6 +433,55 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
             self.rendered()
             self.focusOnNewReplyIfNecessary()
         }
+    }
+
+    private func replaceContentForOfflineMode(for originalTopic: DiscussionTopic) -> DiscussionTopic {
+
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+                sessionId: env.currentSession?.uniqueID ?? "",
+                courseId: course.first?.id ?? "",
+                sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
+                resourceId: originalTopic.id
+            )
+            let offlinePath = rootURL.appendingPathComponent("body.html")
+
+            let newTopic = originalTopic
+
+            let rawHtmlValue = try? String(contentsOf: offlinePath, encoding: .utf8)
+            offlineLoaded = true
+            newTopic.message = rawHtmlValue
+
+            return newTopic
+        } else {
+            return originalTopic
+        }
+    }
+
+    private func replaceContentForOfflineMode(for originalEntry: DiscussionEntry) -> DiscussionEntry {
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+                sessionId: env.currentSession?.uniqueID ?? "",
+                courseId: course.first?.id ?? "",
+                sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
+                resourceId: originalEntry.id
+            )
+            let offlinePath = rootURL.appendingPathComponent("body.html")
+
+            let newEntry = originalEntry
+
+            let rawHtmlValue = try? String(contentsOf: offlinePath, encoding: .utf8)
+            offlineLoaded = true
+            newEntry.message = rawHtmlValue
+
+            newEntry.replies = newEntry.replies.map { reply in
+                return replaceContentForOfflineMode(for: reply)
+            }
+
+            return newEntry
+        }
+
+        return originalEntry
     }
 
     private func showFallbackWebView() {
@@ -516,13 +594,14 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             url.host == env.currentSession?.baseURL.host,
             url.path.hasPrefix("/\(context.pathComponent)/discussion_topics/\(topicID)/")
         else {
-            if offlineModeInteractor?.isOfflineModeEnabled() == true {
-                UIAlertController.showItemNotAvailableInOfflineAlert()
-                return true
-            }
-
-            if url.pathComponents.contains("files") {
-                env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+            if url.pathComponents.contains("files") && url.host == env.currentSession?.baseURL.host {
+                if offlineModeInteractor?.isOfflineModeEnabled() == true && !url.pathComponents.contains("offline") {
+                    let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
+                    let offlineURL = "/courses/\(context.id)/files/\(isAnnouncement ? OfflineFolderPrefix.announcements : OfflineFolderPrefix.discussions)/\(topicID)/\(fileId)/offline"
+                    env.router.route(to: offlineURL, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                } else {
+                    env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                }
             } else {
                 env.router.route(to: url, from: self)
             }

@@ -533,7 +533,7 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
         )
     }
 
-    if EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) {
+    if EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) && !OfflineModeAssembly.make().isOfflineModeEnabled() {
         let viewModel = EmbeddedWebPageViewModelLive(
             context: context,
             webPageType: webPageType

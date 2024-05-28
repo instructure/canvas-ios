@@ -124,6 +124,7 @@ class PublisherExtensionsTests: XCTestCase {
     }
 
     class HTMLParserMock: HTMLParser {
+
         var sessionId: String = "testSession"
 
         var prefix: String = "testPrefix"
@@ -131,9 +132,15 @@ class PublisherExtensionsTests: XCTestCase {
         var sectionName: String = "testSection"
 
         var parseCalled = false
+        var attachmentParseCalled = false
 
         func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL?) -> AnyPublisher<String, Error> {
             parseCalled = true
+            return Just("").setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
+
+        func downloadAttachment(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, any Error> {
+            attachmentParseCalled = true
             return Just("").setFailureType(to: Error.self).eraseToAnyPublisher()
         }
     }
