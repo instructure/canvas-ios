@@ -29,7 +29,7 @@ public struct AttachmentPickerView: View {
     }
 
     public var body: some View {
-        VStack(alignment: .center) {
+        VStack(alignment: .center, spacing: 0) {
             headerView
             if (viewModel.fileList.isEmpty) { emptyView } else { ScrollView { contentView } }
         }
@@ -66,7 +66,7 @@ public struct AttachmentPickerView: View {
     }
 
     private var contentView: some View {
-        VStack {
+        VStack(spacing: 0) {
             ForEach(viewModel.fileList, id: \.self) { file in
                 rowView(for: file)
             }
@@ -89,9 +89,19 @@ public struct AttachmentPickerView: View {
                     ProgressView()
                 } else if (file.isUploaded) {
                     Image.checkLine
+                        .resizable()
+                        .frame(
+                            width: 25 * uiScale.iconScale,
+                            height: 25 * uiScale.iconScale
+                        )
                 } else if (file.uploadError != nil) {
-                    VStack {
+                    VStack(spacing: 0) {
                         Image.warningLine
+                            .resizable()
+                            .frame(
+                                width: 25 * uiScale.iconScale,
+                                height: 25 * uiScale.iconScale
+                            )
                         Text(file.uploadError!).multilineTextAlignment(.center)
                     }
                 } else {
@@ -99,11 +109,15 @@ public struct AttachmentPickerView: View {
                         viewModel.removeButtonDidTap.accept(file)
                     } label: {
                         Image.xLine
+                            .resizable()
+                            .frame(
+                                width: 25 * uiScale.iconScale,
+                                height: 25 * uiScale.iconScale
+                            )
                     }
                 }
             }
-            .padding(.horizontal, 12)
-
+            .padding(.all, 12)
             separator
         }
         .foregroundStyle(Color.textDarkest)
@@ -137,8 +151,8 @@ public struct AttachmentPickerView: View {
                     Image.addLine
                         .resizable()
                         .frame(
-                            width: 20 * uiScale.iconScale,
-                            height: 20 * uiScale.iconScale
+                            width: 25 * uiScale.iconScale,
+                            height: 25 * uiScale.iconScale
                         )
                 }
                 .foregroundStyle(Color.textDarkest)
