@@ -27,9 +27,12 @@ public class MockUserNotificationCenter: UserNotificationCenterProtocol {
     public var authError: Error?
     public weak var delegate: UNUserNotificationCenterDelegate?
 
+    public private(set) var authorizationRequestOptions: UNAuthorizationOptions?
+
     public init() {}
 
     public func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void) {
+        authorizationRequestOptions = options
         completionHandler(authorized, authError)
     }
 
