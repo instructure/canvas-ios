@@ -313,7 +313,7 @@ public struct ComposeMessageView: View {
 
     private var includedMessages: some View {
         VStack(alignment: .leading) {
-            Text("Included messages", bundle: .core)
+            Text("Previous messages", bundle: .core)
                 .font(.bold16)
             separator
             ForEach(model.includedMessages, id: \.id) { conversationMessage in
