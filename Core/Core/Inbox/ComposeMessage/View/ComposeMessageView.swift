@@ -78,6 +78,10 @@ public struct ComposeMessageView: View {
                 }
             }
         }
+        .confirmationAlert(
+            isPresented: $model.isShowingCancelDialog,
+            presenting: model.confirmAlert
+        )
     }
 
     @ViewBuilder
@@ -350,6 +354,22 @@ public struct ComposeMessageView: View {
                             .foregroundStyle(Color.textDark)
                     }
                     Spacer()
+                    VStack(spacing: 0) {
+                        Image.arrowOpenDownLine
+                            .resizable()
+                            .frame(
+                                width: 15 * uiScale.iconScale,
+                                height: 15 * uiScale.iconScale
+                            )
+                        Image.arrowOpenUpLine
+                            .resizable()
+                            .frame(
+                                width: 15 * uiScale.iconScale,
+                                height: 15 * uiScale.iconScale
+                            )
+                    }
+                    .foregroundColor(.textDarkest)
+                    .padding(.all, 8)
                 }
             }
             .padding(.bottom, 12)
@@ -372,19 +392,38 @@ public struct ComposeMessageView: View {
                     model.toggleMessageExpand(message: message)
                 }
             } label: {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
-                            .foregroundStyle(Color.textDarkest)
-                            .lineLimit(1)
-                        Spacer()
-                        Text(message.createdAt?.dateTimeString ?? "")
+                HStack(spacing: 0) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack {
+                            Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
+                                .foregroundStyle(Color.textDarkest)
+                                .lineLimit(1)
+                            Spacer()
+                            Text(message.createdAt?.dateTimeString ?? "")
+                                .foregroundStyle(Color.textDark)
+                                .lineLimit(1)
+                        }
+                        Text(message.body)
                             .foregroundStyle(Color.textDark)
                             .lineLimit(1)
                     }
-                    Text(message.body)
-                        .foregroundStyle(Color.textDark)
-                        .lineLimit(1)
+
+                    VStack(spacing: 0) {
+                        Image.arrowOpenUpLine
+                            .resizable()
+                            .frame(
+                                width: 15 * uiScale.iconScale,
+                                height: 15 * uiScale.iconScale
+                            )
+                        Image.arrowOpenDownLine
+                            .resizable()
+                            .frame(
+                                width: 15 * uiScale.iconScale,
+                                height: 15 * uiScale.iconScale
+                            )
+                    }
+                    .foregroundColor(.textDarkest)
+                    .padding(.all, 8)
                 }
                 .padding(.vertical, 12)
                 .padding(.horizontal, 12)
@@ -393,9 +432,14 @@ public struct ComposeMessageView: View {
 
     private var attachmentsView: some View {
         ForEach(model.attachments, id: \.self) { file in
-            ConversationAttachmentCardView(file: file) {
-                model.removeAttachment(file: file)
+            Button {
+                model.fileSelected.accept((controller, file))
+            } label: {
+                ConversationAttachmentCardView(file: file) {
+                    model.removeAttachment(file: file)
+                }
             }
+            .foregroundColor(.textDarkest)
         }
     }
 }

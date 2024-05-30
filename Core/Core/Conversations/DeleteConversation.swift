@@ -29,7 +29,6 @@ public class DeleteConversation: APIUseCase {
     }
     private let inboxMessageScope: InboxMessageScope
 
-
     public var request: DeleteConversationRequest {
         return DeleteConversationRequest(id: id)
     }

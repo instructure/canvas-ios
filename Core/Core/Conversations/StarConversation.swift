@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import CoreData
 
 public class StarConversation: APIUseCase {
     public var cacheKey: String?

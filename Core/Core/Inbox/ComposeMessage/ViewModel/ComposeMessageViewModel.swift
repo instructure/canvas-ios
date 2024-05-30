@@ -33,10 +33,9 @@ class ComposeMessageViewModel: ObservableObject {
 
     @Published public private(set) var expandedIncludedMessageIds = [String]()
 
-    public let title = String(localized: "No Subject", bundle: .core)
+    public let title = String(localized: "[No Subject]", bundle: .core)
     public var sendButtonActive: Bool {
         !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
-        !subject.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !recipients.isEmpty
         && (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
 
@@ -50,6 +49,7 @@ class ComposeMessageViewModel: ObservableObject {
     public let recipientDidSelect = PassthroughRelay<Recipient>()
     public let recipientDidRemove = PassthroughRelay<Recipient>()
     public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
+    public var fileSelected = PassthroughRelay<(WeakViewController, File)>()
 
     // MARK: - Inputs / Outputs
     @Published public var sendIndividual: Bool = false
@@ -59,6 +59,14 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var conversation: Conversation?
     @Published public var includedMessages: [ConversationMessage] = []
     @Published public var attachments: [File] = []
+    @Published public var isShowingCancelDialog = false
+    public let confirmAlert = ConfirmationAlertViewModel(
+        title: String(localized: "Are your sure?", bundle: .core),
+        message: String(localized: "Your unsent message will be thrown away!", bundle: .core),
+        cancelButtonTitle: String(localized: "No", bundle: .core),
+        confirmButtonTitle: String(localized: "Yes", bundle: .core),
+        isDestructive: false
+    )
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -119,7 +127,7 @@ class ComposeMessageViewModel: ObservableObject {
 
     public func attachmentbuttonDidTap(viewController: WeakViewController) {
         files.refresh()
-        let attachmentList = AttachmentPickerAssembly.makeAttachmentPickerViewController(batchId: batchId, uploadManager: uploadManager)
+        let attachmentList = AttachmentPickerAssembly.makeAttachmentPickerViewController(subTitle: subject, batchId: batchId, uploadManager: uploadManager)
         router.show(attachmentList, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
@@ -222,7 +230,6 @@ class ComposeMessageViewModel: ObservableObject {
         attachments = files.all
     }
 
-
     private func closeCourseSelectorDelayed(_ viewController: WeakViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             if let navController = viewController.value.navigationController {
@@ -238,6 +245,11 @@ class ComposeMessageViewModel: ObservableObject {
         var body = bodyText
         if !hiddenMessage.isEmpty {
             body = "\(bodyText)\n\(hiddenMessage)"
+        }
+
+        var subject = subject
+        if subject.isEmpty {
+            subject = title
         }
 
         return MessageParameters(
@@ -267,10 +279,17 @@ class ComposeMessageViewModel: ObservableObject {
 
     private func setupInputBindings(router: Router) {
         cancelButtonDidTap
+            .handleEvents(receiveOutput: { [weak self] _ in
+                self?.isShowingCancelDialog = true
+            })
+            .flatMap { [confirmAlert] value in
+                confirmAlert.userConfirmation().map { value }
+            }
             .sink { [router] viewController in
                 router.dismiss(viewController)
             }
             .store(in: &subscriptions)
+
         sendButtonDidTap
             .compactMap { [weak self] viewController -> (WeakViewController, MessageParameters, ComposeMessageOptions.MessageType)? in
                 guard let self = self, let params = self.messageParameters() else { return nil }
@@ -309,5 +328,12 @@ class ComposeMessageViewModel: ObservableObject {
                 self?.isSendingMessage = false
             })
             .store(in: &subscriptions)
+
+        fileSelected.sink(receiveCompletion: { _ in }, receiveValue: { (controller, file) in
+            if let url = file.url, let fileController = router.match(url) {
+                router.show(fileController, from: controller, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
+            }
+        })
+        .store(in: &subscriptions)
     }
 }

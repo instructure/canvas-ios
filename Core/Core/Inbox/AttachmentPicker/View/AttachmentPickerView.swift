@@ -33,8 +33,14 @@ public struct AttachmentPickerView: View {
             headerView
             if (viewModel.fileList.isEmpty) { emptyView } else { List { contentView }.listStyle(.plain).accessibilityElement(children: .contain) }
         }
-        .background(Color.backgroundLightest)
-        .navigationTitle(viewModel.title)
+        .navigationTitleStyled(
+            VStack(spacing: 0) {
+                Text(viewModel.title).font(.headline)
+                if let subtitle = viewModel.subTitle, subtitle.isNotEmpty {
+                    Text(subtitle).font(.subheadline)
+                }
+            }
+        )
         .navigationBarItems(leading: cancelButton, trailing: actionButton)
         .fileImporter(
             isPresented: $viewModel.isFilePickerVisible,
@@ -49,7 +55,7 @@ public struct AttachmentPickerView: View {
                     }
                 }
             case .failure:
-                viewModel.showFileErrorDialog()
+                viewModel.showDialog(title: viewModel.fileErrorTitle, message: viewModel.fileErrorMessage)
             }
         }
         .sheet(isPresented: $viewModel.isImagePickerVisible, content: {
@@ -63,6 +69,10 @@ public struct AttachmentPickerView: View {
             AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: viewModel.router, onSelect: viewModel.fileSelected)
                 .interactiveDismissDisabled()
         })
+        .confirmationAlert(
+            isPresented: $viewModel.isShowingCancelDialog,
+            presenting: viewModel.confirmAlert
+        )
     }
 
     private var contentView: some View {
@@ -76,43 +86,47 @@ public struct AttachmentPickerView: View {
     @ViewBuilder
     private func rowView(for file: File) -> some View {
         let fileSizeWithUnit = ByteCountFormatter.string(fromByteCount: Int64(file.size), countStyle: .file)
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                VStack(alignment: .leading) {
-                    Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? "").font(.headline)
-                    Text(fileSizeWithUnit).foregroundStyle(Color.textDark)
-                }
-
-                Spacer()
-                if (file.isUploading) {
-                    ProgressView()
-                } else if (file.isUploaded) {
-                    Image.checkLine
-                        .resizable()
-                        .frame(
-                            width: 25 * uiScale.iconScale,
-                            height: 25 * uiScale.iconScale
-                        )
-                } else if (file.uploadError != nil) {
-                    VStack(spacing: 0) {
-                        Image.warningLine
-                            .resizable()
-                            .frame(
-                                width: 25 * uiScale.iconScale,
-                                height: 25 * uiScale.iconScale
-                            )
-                        Text(file.uploadError!).multilineTextAlignment(.center)
+        Button {
+            viewModel.fileSelected.accept((controller, file))
+        } label: {
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    VStack(alignment: .leading) {
+                        Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? "").font(.headline)
+                        Text(fileSizeWithUnit).foregroundStyle(Color.textDark)
                     }
-                } else {
-                    Button {
-                        viewModel.removeButtonDidTap.accept(file)
-                    } label: {
-                        Image.xLine
+
+                    Spacer()
+                    if (file.isUploading) {
+                        ProgressView()
+                    } else if (file.isUploaded) {
+                        Image.checkLine
                             .resizable()
                             .frame(
                                 width: 25 * uiScale.iconScale,
                                 height: 25 * uiScale.iconScale
                             )
+                    } else if (file.uploadError != nil) {
+                        VStack(spacing: 0) {
+                            Image.warningLine
+                                .resizable()
+                                .frame(
+                                    width: 25 * uiScale.iconScale,
+                                    height: 25 * uiScale.iconScale
+                                )
+                            Text(file.uploadError!).multilineTextAlignment(.center)
+                        }
+                    } else {
+                        Button {
+                            viewModel.removeButtonDidTap.accept(file)
+                        } label: {
+                            Image.xLine
+                                .resizable()
+                                .frame(
+                                    width: 25 * uiScale.iconScale,
+                                    height: 25 * uiScale.iconScale
+                                )
+                        }
                     }
                 }
             }
@@ -124,17 +138,12 @@ public struct AttachmentPickerView: View {
             Button {
                 viewModel.removeButtonDidTap.accept(file)
             } label: {
-                VStack(spacing: 0) {
-                    Text("Remove attachment", bundle: .core)
-                }
-            }
-
-            if file.isUploaded {
-                Button {
-                    viewModel.deleteFileButtonDidTap.accept(file)
-                } label: {
-                    Text("Delete from Files", bundle: .core)
-                }
+                Image.trashLine
+                    .resizable()
+                    .frame(
+                        width: 25 * uiScale.iconScale,
+                        height: 25 * uiScale.iconScale
+                    )
             }
         }
     }

@@ -32,8 +32,17 @@ class AttachmentPickerViewModel: ObservableObject {
     @Published public private(set) var fileList: [File] = []
     @Published public var isFileErrorOccured: Bool = false
     public let title = String(localized: "Attachments", bundle: .core)
+    public let subTitle: String?
     public let fileErrorTitle = String(localized: "Error", bundle: .core)
     public let fileErrorMessage = String(localized: "Failed to add attachment. Please try again!", bundle: .core)
+    @Published public var isShowingCancelDialog = false
+    public let confirmAlert = ConfirmationAlertViewModel(
+        title: String(localized: "Are your sure?", bundle: .core),
+        message: String(localized: "You have some not uploaded attachments that are not uploaded so cannot be added as attachment!", bundle: .core),
+        cancelButtonTitle: String(localized: "No", bundle: .core),
+        confirmButtonTitle: String(localized: "Yes", bundle: .core),
+        isDestructive: false
+    )
 
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let doneButtonDidTap = PassthroughRelay<WeakViewController>()
@@ -42,6 +51,7 @@ class AttachmentPickerViewModel: ObservableObject {
     public let addAttachmentButtonDidTap = PassthroughRelay<WeakViewController>()
     public let removeButtonDidTap = PassthroughRelay<File>()
     public let deleteFileButtonDidTap = PassthroughRelay<File>()
+    public var fileSelected = PassthroughRelay<(WeakViewController, File)>()
     public let router: Router
 
     // MARK: Private
@@ -49,7 +59,8 @@ class AttachmentPickerViewModel: ObservableObject {
     private let interactor: AttachmentPickerInteractor
     private var subscriptions = Set<AnyCancellable>()
 
-    public init (router: Router, interactor: AttachmentPickerInteractor) {
+    public init (subTitle: String? = nil, router: Router, interactor: AttachmentPickerInteractor) {
+        self.subTitle = subTitle
         self.router = router
         self.interactor = interactor
 
@@ -91,9 +102,9 @@ class AttachmentPickerViewModel: ObservableObject {
         router.show(sheet, from: viewController, options: .modal())
     }
 
-    func showFileErrorDialog() {
+    func showDialog(title: String?, message: String?) {
         let actionTitle = String(localized: "OK", bundle: .core)
-        let alert = UIAlertController(title: fileErrorTitle, message: fileErrorMessage, preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: actionTitle, style: .default) { [weak self] _ in
             self?.isImagePickerVisible = false
             self?.isTakePhotoVisible = false
@@ -120,7 +131,7 @@ class AttachmentPickerViewModel: ObservableObject {
         interactor.files.sink(receiveCompletion: { [weak self] result in
             switch result {
             case.failure:
-                self?.showFileErrorDialog()
+                self?.showDialog(title: self?.fileErrorTitle, message: self?.fileErrorMessage)
             case .finished: break
             }
         }, receiveValue: { [weak self] files in
@@ -131,6 +142,18 @@ class AttachmentPickerViewModel: ObservableObject {
 
     private func setupInputBindings(router: Router) {
         cancelButtonDidTap
+            .handleEvents(receiveOutput: { [weak self] _ in
+                if self?.fileList.isAllUploaded == false {
+                    self?.isShowingCancelDialog = true
+                }
+            })
+            .flatMap { [weak self, confirmAlert] value in
+                if self?.fileList.isAllUploaded == false {
+                    return confirmAlert.userConfirmation().map { value }.eraseToAnyPublisher()
+                } else {
+                    return Just(value).eraseToAnyPublisher()
+                }
+            }
             .sink { [weak self, router] viewController in
                 self?.interactor.cancel()
                 router.dismiss(viewController)
@@ -171,12 +194,22 @@ class AttachmentPickerViewModel: ObservableObject {
             .flatMap { [weak self] file in
                 if let self {
                     return self.interactor.deleteFile(file: file)
-                }
-                else {
+                } else {
                     return Just(()).eraseToAnyPublisher()
                 }
             }
             .sink()
             .store(in: &subscriptions)
+
+        fileSelected.sink(receiveCompletion: { _ in }, receiveValue: { [weak self] (controller, file) in
+            if let url = file.url, let fileController = router.match(url) {
+                router.show(fileController, from: controller, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
+            } else {
+                let shouldUploadTitle = String(localized: "Upload Files", bundle: .core)
+                let shouldUploadMessage = String(localized: "You have to upload the attachments to get access to previews!", bundle: .core)
+                self?.showDialog(title: shouldUploadTitle, message: shouldUploadMessage)
+            }
+        })
+        .store(in: &subscriptions)
     }
 }

@@ -20,12 +20,13 @@ import Foundation
 
 public enum AttachmentPickerAssembly {
     public static func makeAttachmentPickerViewController(
+        subTitle: String? = nil,
         env: AppEnvironment = .shared,
         batchId: String,
         uploadManager: UploadManager
     ) -> UIViewController {
         let interactor = AttachmentPickerInteractorLive(batchId: batchId, uploadManager: uploadManager)
-        let viewModel = AttachmentPickerViewModel(router: env.router, interactor: interactor)
+        let viewModel = AttachmentPickerViewModel(subTitle: subTitle, router: env.router, interactor: interactor)
         let view = AttachmentPickerView(model: viewModel)
         return CoreHostingController(view)
     }
