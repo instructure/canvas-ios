@@ -50,6 +50,8 @@ class ComposeMessageViewModel: ObservableObject {
     public let recipientDidRemove = PassthroughRelay<Recipient>()
     public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
     public var fileSelected = PassthroughRelay<(WeakViewController, File)>()
+    public let removeButtonDidTap = PassthroughRelay<File>()
+    public let deleteFileButtonDidTap = PassthroughRelay<File>()
 
     // MARK: - Inputs / Outputs
     @Published public var sendIndividual: Bool = false
@@ -131,11 +133,6 @@ class ComposeMessageViewModel: ObservableObject {
         router.show(attachmentList, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
-    public func removeAttachment(file: File) {
-        uploadManager.viewContext.delete(file)
-        files.refresh()
-    }
-
     public func isMessageExpanded(message: ConversationMessage) -> Bool {
         expandedIncludedMessageIds.contains(where: { $0 == message.id })
     }
@@ -149,6 +146,11 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     // MARK: Private helpers
+
+    private func removeAttachment(file: File) {
+        uploadManager.viewContext.delete(file)
+        files.refresh()
+    }
 
     private func setupOutputBindings() {
         recipientDidSelect
@@ -285,6 +287,15 @@ class ComposeMessageViewModel: ObservableObject {
             .flatMap { [confirmAlert] value in
                 confirmAlert.userConfirmation().map { value }
             }
+            .flatMap { [weak self] value in
+                if let self {
+                    return self.attachments.publisher.flatMap { file in
+                        self.interactor.deleteFile(file: file)
+                    }.collect().map {_ in value }.eraseToAnyPublisher()
+                } else {
+                    return Just(value).eraseToAnyPublisher()
+                }
+            }
             .sink { [router] viewController in
                 router.dismiss(viewController)
             }
@@ -335,5 +346,24 @@ class ComposeMessageViewModel: ObservableObject {
             }
         })
         .store(in: &subscriptions)
+
+        removeButtonDidTap
+            .sink { [weak self] file in
+                self?.removeAttachment(file: file)
+            }
+            .store(in: &subscriptions)
+
+        deleteFileButtonDidTap
+            .flatMap { [weak self] file in
+                if let self {
+                    return self.interactor.deleteFile(file: file).map { _ in file }.eraseToAnyPublisher()
+                } else {
+                    return Just(file).eraseToAnyPublisher()
+                }
+            }
+            .sink { [weak self] file in
+                self?.removeAttachment(file: file)
+            }
+            .store(in: &subscriptions)
     }
 }

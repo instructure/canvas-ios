@@ -48,4 +48,16 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
             }
         }
     }
+
+    public func deleteFile(file: File) -> AnyPublisher<Void, Never> {
+        if let fileId = file.id {
+            return ReactiveStore(useCase: DeleteFile(fileID: fileId))
+                .getEntities()
+                .mapToVoid()
+                .replaceError(with: ())
+                .eraseToAnyPublisher()
+        } else {
+            return Just(()).eraseToAnyPublisher()
+        }
+    }
 }

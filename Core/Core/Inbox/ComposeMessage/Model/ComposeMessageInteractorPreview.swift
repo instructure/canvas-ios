@@ -34,6 +34,10 @@ public class ComposeMessageInteractorPreview: ComposeMessageInteractor {
             promise(.success(nil))
         }
     }
+
+    public func deleteFile(file: File) -> AnyPublisher<Void, Never> {
+        return Just(()).eraseToAnyPublisher()
+    }
 }
 
 #endif

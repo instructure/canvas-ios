@@ -118,7 +118,7 @@ public struct AttachmentPickerView: View {
                         }
                     } else {
                         Button {
-                            viewModel.removeButtonDidTap.accept(file)
+                            viewModel.deleteFileButtonDidTap.accept(file)
                         } label: {
                             Image.xLine
                                 .resizable()
@@ -136,7 +136,7 @@ public struct AttachmentPickerView: View {
         .accessibilityLabel(Text(verbatim: "\(file.displayName ?? file.localFileURL?.lastPathComponent ?? "") (\(fileSizeWithUnit)"))
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
             Button {
-                viewModel.removeButtonDidTap.accept(file)
+                viewModel.deleteFileButtonDidTap.accept(file)
             } label: {
                 Image.trashLine
                     .resizable()

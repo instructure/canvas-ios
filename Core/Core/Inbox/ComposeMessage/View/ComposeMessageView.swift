@@ -434,7 +434,7 @@ public struct ComposeMessageView: View {
                 model.fileSelected.accept((controller, file))
             } label: {
                 ConversationAttachmentCardView(file: file) {
-                    model.removeAttachment(file: file)
+                    model.deleteFileButtonDidTap.accept(file)
                 }
             }
             .foregroundColor(.textDarkest)

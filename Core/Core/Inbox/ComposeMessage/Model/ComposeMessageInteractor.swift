@@ -23,4 +23,6 @@ public protocol ComposeMessageInteractor {
     func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error>
 
     func addConversationMessage(parameters: MessageParameters) -> Future<URLResponse?, Error>
+
+    func deleteFile(file: File) -> AnyPublisher<Void, Never>
 }
