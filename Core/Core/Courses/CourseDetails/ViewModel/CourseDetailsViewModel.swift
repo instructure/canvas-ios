@@ -139,14 +139,14 @@ public class CourseDetailsViewModel: ObservableObject {
     }
 
     private func updateCellOfflineSupport(on cells: [CourseDetailsCellViewModel]) {
-        guard var offlineSelectionsForCourse = env.userDefaults?.offlineSyncSelections else {
+        guard let offlineSelectionsForCourse = env.userDefaults?.offlineSyncSelections else {
             return
         }
 
         let wholeCourseSelected = offlineSelectionsForCourse.contains("courses/\(courseID)")
 
         if wholeCourseSelected {
-            var offlineTabs = TabName.OfflineSyncableTabs.map { $0.rawValue }
+            let offlineTabs = TabName.OfflineSyncableTabs.map { $0.rawValue }
 
             cells.forEach {
                 $0.isSupportedOffline = offlineTabs.contains($0.tabID)

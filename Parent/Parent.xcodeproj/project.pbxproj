@@ -90,6 +90,8 @@
 		B49725D3290C06050067B91E /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = B49725D2290C06050067B91E /* Heap */; };
 		CF04D3182BC572C4009D8C86 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CF04D3172BC572C4009D8C86 /* PrivacyInfo.xcprivacy */; };
 		CF20B5C42B1F9D5700C00B39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF20B5C32B1F9D5700C00B39 /* LaunchScreen.storyboard */; };
+		CF34EC472C08C6700085EA33 /* ObserverAlertsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34EC462C08C6700085EA33 /* ObserverAlertsInteractor.swift */; };
+		CF34EC4A2C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34EC492C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift */; };
 		CFAA401D2AE26302002C7AAE /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFAA401C2AE26302002C7AAE /* PSPDFKit */; };
 		CFEE68D82B1A24ED00A04E43 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68D72B1A24ED00A04E43 /* InfoPlist.xcstrings */; };
 		CFEE68DB2B1A251C00A04E43 /* LaunchScreen.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */; };
@@ -244,6 +246,8 @@
 		B59561D7E9F8B8ACA930A4E9 /* Pods-needs-pspdfkit-ParentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-ParentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-ParentUITests/Pods-needs-pspdfkit-ParentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF04D3172BC572C4009D8C86 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		CF20B5C32B1F9D5700C00B39 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CF34EC462C08C6700085EA33 /* ObserverAlertsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertsInteractor.swift; sourceTree = "<group>"; };
+		CF34EC492C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertsInteractorTests.swift; sourceTree = "<group>"; };
 		CFEE68D72B1A24ED00A04E43 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = LaunchScreen.xcstrings; sourceTree = "<group>"; };
 		CFEE68DA2B1A251C00A04E43 /* Localizable.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -543,6 +547,7 @@
 		7DC7045B24AA8EA400CD1C46 /* ObserverAlerts */ = {
 			isa = PBXGroup;
 			children = (
+				CF34EC452C08C6660085EA33 /* Model */,
 				7DC7046624AA9F0F00CD1C46 /* ObserverAlertListViewController.storyboard */,
 				7DC7046424AA96C500CD1C46 /* ObserverAlertListViewController.swift */,
 			);
@@ -552,6 +557,7 @@
 		7DC7046B24ABBAD700CD1C46 /* ObserverAlerts */ = {
 			isa = PBXGroup;
 			children = (
+				CF34EC482C08C9C90085EA33 /* Model */,
 				7DC7046C24ABBB0400CD1C46 /* APIObserverAlertTests.swift */,
 				7DC7046E24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift */,
 				7DC7047024ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift */,
@@ -726,6 +732,22 @@
 				B1AA55CF235785A200DFD184 /* StudentListViewControllerTests.swift */,
 			);
 			path = Students;
+			sourceTree = "<group>";
+		};
+		CF34EC452C08C6660085EA33 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF34EC462C08C6700085EA33 /* ObserverAlertsInteractor.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF34EC482C08C9C90085EA33 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF34EC492C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E2CB0046CD9881A39071A512 /* Pods */ = {
@@ -1153,6 +1175,7 @@
 				7DB92CB824C64D35004A6C16 /* CourseListViewControllerTests.swift in Sources */,
 				7DB92CAF24C61575004A6C16 /* AccountNotificationDetailsViewControllerTests.swift in Sources */,
 				7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */,
+				CF34EC4A2C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift in Sources */,
 				CFFE286A27B3B8A90029A408 /* CourseListCellGradesTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
@@ -1183,6 +1206,7 @@
 				5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */,
 				7D1801B924C207B500A7F023 /* AssignmentDetailsViewController.swift in Sources */,
 				3BA9FF6D2332999900196A06 /* CourseDetailsViewController.swift in Sources */,
+				CF34EC472C08C6700085EA33 /* ObserverAlertsInteractor.swift in Sources */,
 				4948BE691F915D330035BAFD /* BundleExtensions.swift in Sources */,
 				7DB92CAA24C608E9004A6C16 /* DiscussionDetailsViewController.swift in Sources */,
 				7D33976C24534CD30074ED71 /* StudentListViewController.swift in Sources */,

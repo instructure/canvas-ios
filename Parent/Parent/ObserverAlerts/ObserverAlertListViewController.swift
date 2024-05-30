@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 import UIKit
 import Core
 
@@ -32,12 +32,15 @@ class ObserverAlertListViewController: UIViewController {
     let env = AppEnvironment.shared
     var studentID = ""
 
-    lazy var alerts = env.subscribe(GetObserverAlerts(studentID: studentID)) { [weak self] in
-        self?.update()
+    private var state: InstUI.ScreenState = .loading {
+        didSet {
+            update()
+        }
     }
-    lazy var thresholds = env.subscribe(GetAlertThresholds(studentID: studentID)) { [weak self] in
-        self?.update()
-    }
+    private var alerts: [ObserverAlert] = []
+    private var thresholds: [AlertThreshold] = []
+    private lazy var observerAlertsInteractor = ObserverAlertsInteractor(studentID: studentID)
+    private var subscriptions = Set<AnyCancellable>()
 
     static func create(studentID: String) -> ObserverAlertListViewController {
         let controller = loadFromStoryboard()
@@ -59,8 +62,7 @@ class ObserverAlertListViewController: UIViewController {
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
 
-        alerts.exhaust() // so the badge number can be accurate
-        thresholds.exhaust()
+        internalRefresh(ignoreCache: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -72,24 +74,44 @@ class ObserverAlertListViewController: UIViewController {
         }
     }
 
-    func update() {
-        loadingView.isHidden = !alerts.pending || !alerts.isEmpty || alerts.error != nil || refreshControl.isRefreshing
-        emptyView.isHidden = alerts.pending || !alerts.isEmpty || alerts.error != nil
-        errorView.isHidden = alerts.error == nil
+    @objc func refresh() {
+        internalRefresh(ignoreCache: true)
+    }
+
+    // MARK: Private Methods
+
+    private func update() {
+        loadingView.isHidden = (state != .loading)
+        emptyView.isHidden = (state != .empty)
+        errorView.isHidden = (state != .error)
         tableView.reloadData()
+        updateTabBarBadgeCount()
+    }
+
+    private func updateTabBarBadgeCount() {
         let unreadCount = alerts.filter { $0.workflowState == .unread } .count
         tabBarItem.badgeValue = unreadCount <= 0 ? nil :
             NumberFormatter.localizedString(from: NSNumber(value: unreadCount), number: .none)
     }
 
-    @objc func refresh() {
-        alerts.exhaust(force: true) { [weak self] _ in
-            if self?.alerts.hasNextPage == false {
-                self?.refreshControl.endRefreshing()
+    private func internalRefresh(ignoreCache: Bool) {
+        observerAlertsInteractor
+            .refresh(ignoreCache: ignoreCache)
+            .sink { [weak self] completion in
+                guard let self else { return }
+
+                switch completion {
+                case .finished:
+                    state = alerts.isEmpty ? .empty : .data
+                case .failure:
+                    state = .error
+                }
+                refreshControl.endRefreshing()
+            } receiveValue: { [weak self] (alerts, thresholds) in
+                self?.alerts = alerts
+                self?.thresholds = thresholds
             }
-            return true
-        }
-        thresholds.exhaust()
+            .store(in: &subscriptions)
     }
 
     private func showItemLockedMessage() {
@@ -111,14 +133,14 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(ObserverAlertListCell.self, for: indexPath)
         let alert = alerts[indexPath.row]
-        let threshold = thresholds.first { $0.id == alert?.thresholdID }
-            ?? thresholds.first { $0.type == alert?.alertType }
+        let threshold = thresholds.first { $0.id == alert.thresholdID }
+            ?? thresholds.first { $0.type == alert.alertType }
         cell.update(alert: alert, threshold: threshold?.value)
         return cell
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let alert = alerts[indexPath.row] else { return }
+        let alert = alerts[indexPath.row]
 
         MarkObserverAlertRead(alertID: alert.id).fetch()
 
@@ -138,7 +160,7 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let id = alerts[indexPath.row]?.id else { return nil }
+        let id = alerts[indexPath.row].id
         return UISwipeActionsConfiguration(actions: [
             UIContextualAction(style: .destructive, title: String(localized: "Dismiss", bundle: .parent)) { (_, _, completed) in
                 DismissObserverAlert(alertID: id).fetch { (_, _, error) in

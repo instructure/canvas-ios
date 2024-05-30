@@ -27,7 +27,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
 
     override func setUp() {
         super.setUp()
-        api.mock(controller.alerts, value: [
+        api.mock(GetObserverAlerts(studentID: "1"), value: [
             .make(
                 action_date: DateComponents(calendar: .current, year: 2020, month: 6, day: 30).date,
                 alert_type: .courseGradeHigh,
@@ -49,7 +49,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
             .make(
                 action_date: DateComponents(calendar: .current, year: 2020, month: 6, day: 15).date,
                 alert_type: .assignmentGradeLow,
-                course_id: "1", html_url: URL(string: "/courses/1/assignments/1"),
+                html_url: URL(string: "/courses/1/assignments/1"),
                 id: "7", observer_alert_threshold_id: "7",
                 title: "Assignment graded: 46% on Practice Worksheet 3 in C1",
                 user_id: "1",
@@ -67,7 +67,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
                 locked_for_user: true
             ),
         ])
-        api.mock(controller.thresholds, value: [
+        api.mock(GetAlertThresholds(studentID: "1"), value: [
             .make(id: "1", user_id: "1", alert_type: .courseGradeHigh, threshold: 90),
             .make(id: "2", user_id: "1", alert_type: .courseGradeLow, threshold: 60),
             .make(id: "3", user_id: "1", alert_type: .institutionAnnouncement, threshold: nil),
@@ -78,6 +78,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
+        drainMainQueue()
         XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.darkenToEnsureContrast(against: .white).hexString)
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 4)
@@ -138,13 +139,14 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
             XCTAssertEqual(isSuccess, true)
         }
 
-        api.mock(controller.alerts, error: NSError.internalError())
+        api.mock(GetObserverAlerts(studentID: "1"), error: NSError.internalError())
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.errorView.isHidden, false)
         XCTAssertEqual(controller.errorView.messageLabel.text, "There was an error loading alerts. Pull to refresh to try again.")
 
-        api.mock(controller.alerts, value: [])
+        api.mock(GetObserverAlerts(studentID: "1"), value: [])
         controller.errorView.retryButton.sendActions(for: .primaryActionTriggered)
+        drainMainQueue()
         XCTAssertEqual(controller.emptyView.isHidden, false)
         XCTAssertEqual(controller.emptyTitleLabel.text, "No Alerts")
         XCTAssertEqual(controller.emptyMessageLabel.text, "There's nothing to be notified of yet.")
