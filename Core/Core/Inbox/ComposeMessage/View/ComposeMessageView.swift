@@ -55,13 +55,11 @@ public struct ComposeMessageView: View {
                     separator
                     VStack(spacing: 0) {
                         bodyView
-                            .frame(minHeight: geometry.size.height / 2)
                         attachmentsView
                         if !model.includedMessages.isEmpty {
                             includedMessages
                         }
                     }
-                    .frame(minHeight: geometry.size.height)
                     separator
 
                 }
