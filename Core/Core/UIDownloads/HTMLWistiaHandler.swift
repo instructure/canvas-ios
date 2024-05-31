@@ -51,7 +51,7 @@ public struct HTMLWistiaHandler {
                         style = \"width:100%; height:100%; \(styleValue ?? "")\">&nbsp;</div>
                         """
 
-                        let wistiaTranscriptionTag = "<wistia-transcript media-id=\"\(id)\" style=\"margin-top: 20px;height:200px;\"></wistia-transcript>"
+                        let wistiaTranscriptionTag = "<wistia-transcript media-id=\"\(id)\" style=\"margin-top: 20px;height:290px;\"></wistia-transcript>"
                         if let parent = iframe.parent(),
                             try parent.attr("class") == "wistia_responsive_wrapper",
                             let parentOfParent = parent.parent(),
