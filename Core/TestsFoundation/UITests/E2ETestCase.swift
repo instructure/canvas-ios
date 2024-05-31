@@ -31,6 +31,7 @@ open class E2ETestCase: CoreUITestCase {
     open override func setUp() {
         super.setUp()
 
+        setNetworkStateOnline()
         for canvasFeatureFlag in canvasFeatureFlags {
             let featureFlagResponse = seeder.setFeatureFlag(featureFlag: canvasFeatureFlag.featureFlag, state: canvasFeatureFlag.state)
             XCTAssertEqual(featureFlagResponse.state, canvasFeatureFlag.state.rawValue)
