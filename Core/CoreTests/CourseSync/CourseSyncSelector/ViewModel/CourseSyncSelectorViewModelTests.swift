@@ -49,14 +49,14 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         XCTAssertEqual(testee.cells, [])
         XCTAssertTrue(testee.syncButtonDisabled)
         XCTAssertFalse(testee.leftNavBarButtonVisible)
-        XCTAssertFalse(testee.isShowingConfirmationDialog)
+        XCTAssertFalse(testee.isShowingSyncConfirmationDialog)
     }
 
     func testConfirmAlertProps() {
-        XCTAssertEqual(testee.confirmAlert.title, "Sync Offline Content?")
-        XCTAssertEqual(testee.confirmAlert.cancelButtonTitle, "Cancel")
-        XCTAssertEqual(testee.confirmAlert.confirmButtonTitle, "Sync")
-        XCTAssertNil(testee.confirmAlert.confirmButtonRole)
+        XCTAssertEqual(testee.syncConfirmAlert.title, "Sync Offline Content?")
+        XCTAssertEqual(testee.syncConfirmAlert.cancelButtonTitle, "Cancel")
+        XCTAssertEqual(testee.syncConfirmAlert.confirmButtonTitle, "Sync")
+        XCTAssertNil(testee.syncConfirmAlert.confirmButtonRole)
     }
 
     func testUpdateSyncButtonState() {
@@ -77,7 +77,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 
     func testUpdateConfirmationDialogMessage() {
         mockSelectorInteractor.selectedSizeSubject.send(1024)
-        XCTAssertEqual(testee.confirmAlert.message, "This will sync ~1 KB content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network.")
+        XCTAssertEqual(testee.syncConfirmAlert.message, "This will sync ~1 KB content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network.")
     }
 
     func testLeftNavBarTap() {
@@ -92,7 +92,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 
     func testSyncButtonTap() {
         testee.syncButtonDidTap.accept(WeakViewController(UIViewController()))
-        XCTAssertTrue(testee.isShowingConfirmationDialog)
+        XCTAssertTrue(testee.isShowingSyncConfirmationDialog)
     }
 
     func testUpdateStateFails() {

@@ -34,14 +34,23 @@ class CourseSyncSelectorViewModel: ObservableObject {
     @Published public private(set) var navBarSubtitle = ""
     @Published public private(set) var leftNavBarTitle = ""
     @Published public private(set) var leftNavBarButtonVisible = false
-    @Published public var isShowingConfirmationDialog = false
+    @Published public var isShowingSyncConfirmationDialog = false
+    @Published public var isShowingCancelConfirmationDialog = false
 
-    public let confirmAlert = ConfirmationAlertViewModel(
+    public let syncConfirmAlert = ConfirmationAlertViewModel(
         title: String(localized: "Sync Offline Content?", bundle: .core),
         message: "", // Updated when selected item count changes
         cancelButtonTitle: String(localized: "Cancel", bundle: .core),
         confirmButtonTitle: String(localized: "Sync", bundle: .core),
         isDestructive: false
+    )
+
+    public let cancelConfirmAlert = ConfirmationAlertViewModel(
+        title: String(localized: "Cancel Offline Content Sync?", bundle: .core),
+        message: "Selection changes that you may had made won't be saved. Are you sure you want to cancel?",
+        cancelButtonTitle: String(localized: "No", bundle: .core),
+        confirmButtonTitle: String(localized: "Yes", bundle: .core),
+        isDestructive: true
     )
 
     public let labels = (
@@ -86,16 +95,22 @@ class CourseSyncSelectorViewModel: ObservableObject {
         updateSelectAllButtonTitle(selectorInteractor)
         updateNavBarSubtitle(selectorInteractor)
 
-        handleCancelButtonTap()
+        handleCancelButtonTap(cancelConfirmAlert: cancelConfirmAlert)
         handleLeftNavBarTap(selectorInteractor)
         handleSyncButtonTap(
             selectorInteractor: selectorInteractor,
-            confirmAlert: confirmAlert
+            syncConfirmAlert: syncConfirmAlert
         )
     }
 
-    private func handleCancelButtonTap() {
+    private func handleCancelButtonTap(cancelConfirmAlert: ConfirmationAlertViewModel) {
         cancelButtonDidTap
+            .handleEvents(receiveOutput: { [unowned self] _ in
+                isShowingCancelConfirmationDialog = true
+            })
+            .flatMap { view in
+                cancelConfirmAlert.userConfirmation().map { view }
+            }
             .sink { [unowned router] viewController in
                 router.dismiss(viewController)
             }
@@ -127,7 +142,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
                 )
                 return String.localizedStringWithFormat(template, $0.humanReadableFileSize)
             }
-            .assign(to: \.message, on: confirmAlert, ownership: .weak)
+            .assign(to: \.message, on: syncConfirmAlert, ownership: .weak)
             .store(in: &subscriptions)
     }
 
@@ -141,14 +156,18 @@ class CourseSyncSelectorViewModel: ObservableObject {
 
     private func handleSyncButtonTap(
         selectorInteractor: CourseSyncSelectorInteractor,
-        confirmAlert: ConfirmationAlertViewModel
+        syncConfirmAlert: ConfirmationAlertViewModel
     ) {
         syncButtonDidTap
             .handleEvents(receiveOutput: { [unowned self] _ in
-                isShowingConfirmationDialog = true
+                isShowingSyncConfirmationDialog = true
             })
             .flatMap { view in
-                confirmAlert.userConfirmation().map { view }
+                syncConfirmAlert.userConfirmation().map { view }
+            }
+            .map {
+                selectorInteractor.saveSelection()
+                return $0
             }
             .flatMap { [weak self] view in
                 self?.state = .loading
