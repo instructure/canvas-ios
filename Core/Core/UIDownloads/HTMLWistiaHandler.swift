@@ -36,6 +36,10 @@ public struct HTMLWistiaHandler {
                             stringToReplace += "<script src=\"\(v1Link)\" async></script>"
                         }
 
+                        if !currentHTML.contains(highlightDarkCSS) {
+                            stringToReplace += highlightDarkCSS
+                        }
+
                         let transcriptLink: String = "https://fast.wistia.net/assets/external/transcript.js"
                         if !currentHTML.contains(transcriptLink) {
                             stringToReplace += "<script src=\"\(transcriptLink)\" async></script>"
@@ -96,5 +100,17 @@ public struct HTMLWistiaHandler {
             }
         }
         return nil
+    }
+
+    static var highlightDarkCSS: String {
+        """
+        <style>
+            @media (prefers-color-scheme: dark) {
+                wistia-transcript::part(current-cue) {
+                    background-color: rgba(94, 98, 113, 1) !important;
+                }
+            }
+        </style>
+        """
     }
 }
