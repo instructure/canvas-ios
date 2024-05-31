@@ -30,6 +30,7 @@ public protocol CourseSyncSelectorInteractor: AnyObject {
     func observeSelectedSize() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
     func setSelected(selection: CourseEntrySelection, selectionState: ListCellView.SelectionState)
+    func saveSelection()
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func toggleAllCoursesSelection(isSelected: Bool)
     func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncEntry], Never>
@@ -109,6 +110,12 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             entries[id: entryID]?.selectFile(id: fileID, selectionState: selectionState)
         }
 
+        courseSyncEntries.send(entries)
+    }
+
+    func saveSelection() {
+        let entries = courseSyncEntries.value
+
         if let courseID {
             // If we only show one course then we should keep other course selections intact
             var oldSelections = sessionDefaults.offlineSyncSelections
@@ -119,8 +126,6 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             // If all courses are visible then it's safe to overwrite all course selections
             sessionDefaults.offlineSyncSelections = CourseSyncItemSelection.make(from: entries)
         }
-
-        courseSyncEntries.send(entries)
     }
 
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool) {
