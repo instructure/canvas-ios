@@ -29,6 +29,7 @@ class AttachmentPickerViewModel: ObservableObject {
     @Published public var isImagePickerVisible: Bool = false
     @Published public var isTakePhotoVisible: Bool = false
     @Published public var isAudioRecordVisible: Bool = false
+    @Published public var isFileSelectVisible: Bool = false
     @Published public private(set) var fileList: [File] = []
     @Published public var isFileErrorOccured: Bool = false
     public let title = String(localized: "Attachments", bundle: .core)
@@ -58,6 +59,7 @@ class AttachmentPickerViewModel: ObservableObject {
 
     private let interactor: AttachmentPickerInteractor
     private var subscriptions = Set<AnyCancellable>()
+    private var linkedFiles: [File] = []
 
     public init (subTitle: String? = nil, router: Router, interactor: AttachmentPickerInteractor) {
         self.subTitle = subTitle
@@ -99,6 +101,17 @@ class AttachmentPickerViewModel: ObservableObject {
         ) { [weak self] in
             self?.isAudioRecordVisible = true
         }
+        sheet.addAction(
+            image: .folderLine,
+            title: String(localized: "Select uploaded file", bundle: .core),
+            accessibilityIdentifier: nil
+        ) { [weak self] in
+            if let self, let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() {
+                let viewController = AttachmentPickerAssembly.makeFilePickerViewController(env: .shared, onSelect: self.fileSelected)
+                self.router.show(viewController, from: top, options: .modal(isDismissable: true, embedInNav: true))
+            }
+
+        }
         router.show(sheet, from: viewController, options: .modal())
     }
 
@@ -125,6 +138,11 @@ class AttachmentPickerViewModel: ObservableObject {
         isAudioRecordVisible = false
 
         interactor.addFile(url: url)
+    }
+
+    func fileSelected(file: File) {
+        print(file.filename)
+        linkedFiles.append(file)
     }
 
     private func setupOutputBindings() {

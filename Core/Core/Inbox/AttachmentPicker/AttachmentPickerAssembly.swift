@@ -39,6 +39,17 @@ public enum AttachmentPickerAssembly {
         return AudioPickerView(viewModel: viewModel)
     }
 
+    public static func makeFilePickerViewController(
+        env: AppEnvironment = .shared,
+        folderId: String? = nil,
+        onSelect: @escaping (File) -> Void = { _ in }
+    ) -> UIViewController {
+        let interactor = FilePickerInteractorLive(env: env, folderId: folderId)
+        let viewModel = FilePickerViewModel(router: env.router, interactor: interactor, onSelect: onSelect)
+        let view = FilePickerView(viewModel: viewModel)
+        return CoreHostingController(view)
+    }
+
 #if DEBUG
 
     public static func makePreview(env: AppEnvironment)
@@ -53,6 +64,11 @@ public enum AttachmentPickerAssembly {
     ) -> AudioPickerView {
         let viewModel = AudioPickerViewModel(router: env.router, interactor: AudioPickerInteractorPreview(), onSelect: {_ in })
         return AudioPickerView(viewModel: viewModel)
+    }
+
+    public static func makeFilePickerPreview(env: AppEnvironment) -> FilePickerView {
+        let viewModel = FilePickerViewModel(router: env.router, interactor: FilePickerInteractorPreview(), onSelect: { _ in })
+        return FilePickerView(viewModel: viewModel)
     }
 
 #endif
