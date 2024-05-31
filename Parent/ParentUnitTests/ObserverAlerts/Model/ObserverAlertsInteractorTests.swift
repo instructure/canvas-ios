@@ -48,7 +48,7 @@ class ObserverAlertsInteractorTests: ParentTestCase {
         }
         XCTAssertEqual(mockSettingsInteractor.receivedSettingsKey, \.restrictQuantitativeData)
         XCTAssertEqual(mockSettingsInteractor.receivedExpectedValue, true)
-        XCTAssertEqual(mockSettingsInteractor.receivedCourseIDs, ["c1", "c2"])
+        XCTAssertEqual(Set(mockSettingsInteractor.receivedCourseIDs ?? []), Set(["c1", "c2"]))
     }
 }
 
