@@ -180,9 +180,7 @@ struct CourseSyncSelectorView: View {
                 .font(.regular16, lineHeight: .fit)
                 .foregroundColor(.textLightest)
                 .background(Color(Brand.shared.primary))
-                .opacity(viewModel.syncButtonDisabled ? 0.42 : 1)
         }
-        .disabled(viewModel.syncButtonDisabled)
         .animation(.default, value: offlineModeViewModel.isOffline)
     }
 
