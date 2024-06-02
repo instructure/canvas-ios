@@ -54,10 +54,10 @@ struct SelectCalendarScreen: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private func itemCell(with item: CalendarSelectorItem) -> some View {
+    private func itemCell(with item: CDCalendarFilterEntry) -> some View {
         InstUI.RadioButtonCell(
             name: item.name,
-            isSelected: viewModel.isSelected(id: item.id),
+            isSelected: viewModel.isSelected(context: item.context),
             color: item.color
         )
     }

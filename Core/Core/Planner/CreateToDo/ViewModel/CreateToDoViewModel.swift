@@ -17,6 +17,7 @@
 //
 
 import Combine
+import SwiftUI
 
 final class CreateToDoViewModel: ObservableObject {
 
@@ -29,15 +30,26 @@ final class CreateToDoViewModel: ObservableObject {
     let state: InstUI.ScreenState = .data
     @Published var title: String = ""
     @Published var date: Date?
-    @Published var calendar: String?
+    @Published private var calendar: CDCalendarFilterEntry?
     @Published var details: String = ""
 
     var isAddButtonEnabled: Bool {
         title.isNotEmpty
     }
 
+    var calendarName: String? {
+        calendar?.name
+    }
+
     lazy var selectCalendarViewModel: SelectCalendarViewModel = {
-        .init(interactor: interactor)
+        return .init(
+            calendarListProviderInteractor: calendarListProviderInteractor,
+            selectedContext: Binding { [weak self] in
+                self?.calendar?.context
+            } set: { [weak self] in
+                self?.selectCalendar(with: $0)
+            }
+        )
     }()
 
     // MARK: - Input
@@ -47,26 +59,30 @@ final class CreateToDoViewModel: ObservableObject {
 
     // MARK: - Private
 
-    private let interactor: CreateToDoInteractor
+    private let createToDoInteractor: CreateToDoInteractor
+    private let calendarListProviderInteractor: CalendarFilterInteractor
     private var subscriptions = Set<AnyCancellable>()
+
+    private var calendars: [CDCalendarFilterEntry] = []
 
     // MARK: - Init
 
     init(
-        interactor: CreateToDoInteractor,
+        createToDoInteractor: CreateToDoInteractor,
+        calendarListProviderInteractor: CalendarFilterInteractor,
         router: Router = AppEnvironment.shared.router
     ) {
-        self.interactor = interactor
+        self.createToDoInteractor = createToDoInteractor
+        self.calendarListProviderInteractor = calendarListProviderInteractor
 
         // end of today, to match web behaviour
         date = .now.endOfDay()
 
-        interactor.selectedCalendar
-            .map { $0?.name }
-            .assign(to: \.calendar, on: self, ownership: .weak)
+        calendarListProviderInteractor.filters
+            .assign(to: \.calendars, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
-        interactor.selectedCalendar.send(interactor.calendars.value.first)
+        calendar = calendars.first { $0.context.contextType == .user }
 
         didTapCancel
             .sink { router.dismiss($0) }
@@ -77,4 +93,9 @@ final class CreateToDoViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
+    private func selectCalendar(with context: Context?) {
+        guard let context, calendar?.context != context else { return }
+
+        calendar = calendars.first { $0.context == context }
+    }
 }

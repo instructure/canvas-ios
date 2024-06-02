@@ -42,9 +42,11 @@ public enum PlannerAssembly {
 
     // MARK: - ToDo
 
-    public static func makeCreateToDoViewController() -> UIViewController {
-        let interactor = CreateToDoInteractorLive()
-        let viewModel = CreateToDoViewModel(interactor: interactor)
+    public static func makeCreateToDoViewController(calendarListProviderInteractor: CalendarFilterInteractor?) -> UIViewController {
+        let viewModel = CreateToDoViewModel(
+            createToDoInteractor: CreateToDoInteractorLive(),
+            calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil)
+        )
         let view = CreateToDoScreen(viewModel: viewModel)
         let host = CoreHostingController(view)
         return host
@@ -59,14 +61,18 @@ public enum PlannerAssembly {
 #if DEBUG
 
     public static func makeCreateToDoScreenPreview() -> some View {
-        let interactor = CreateToDoInteractorPreview()
-        let viewModel = CreateToDoViewModel(interactor: interactor)
+        let viewModel = CreateToDoViewModel(
+            createToDoInteractor: CreateToDoInteractorPreview(),
+            calendarListProviderInteractor: CalendarFilterInteractorPreview()
+        )
         return CreateToDoScreen(viewModel: viewModel)
     }
-    
+
     public static func makeSelectCalendarScreenPreview() -> some View {
-        let interactor = CreateToDoInteractorPreview()
-        let viewModel = SelectCalendarViewModel(interactor: interactor)
+        let viewModel = SelectCalendarViewModel(
+            calendarListProviderInteractor: CalendarFilterInteractorPreview(),
+            selectedContext: .constant(nil)
+        )
         return SelectCalendarScreen(viewModel: viewModel)
     }
 

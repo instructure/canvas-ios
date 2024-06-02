@@ -125,7 +125,12 @@ public class PlannerViewController: UIViewController {
         // env.router.show(CreateTodoViewController.create(completion: { [weak self] in self?.plannerListWillRefresh() }),
         //                 from: self,
         //                 options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/calendar/new")
-        env.router.show(PlannerAssembly.makeCreateToDoViewController(), from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/calendar/new")
+        env.router.show(
+            PlannerAssembly.makeCreateToDoViewController(calendarListProviderInteractor: calendarFilterInteractor),
+            from: self,
+            options: .modal(isDismissable: false, embedInNav: true),
+            analyticsRoute: "/calendar/new"
+        )
     }
 
     @objc func selectToday() {

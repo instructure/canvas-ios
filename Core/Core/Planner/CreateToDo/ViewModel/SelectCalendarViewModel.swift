@@ -26,7 +26,7 @@ final class SelectCalendarViewModel: ObservableObject {
     struct Section: Identifiable {
         var id: Int
         var title: String?
-        var items: [CalendarSelectorItem]
+        var items: [CDCalendarFilterEntry]
     }
 
     // MARK: - Output
@@ -37,13 +37,16 @@ final class SelectCalendarViewModel: ObservableObject {
 
     let state: InstUI.ScreenState = .data
     @Published private(set) var sections: [Section] = []
-    @Published private(set) var selectedId: String?
+    @Published private(set) var selectedContext: Context?
 
-    func isSelected(id: String) -> Binding<Bool> {
+    @Binding private var selectedContextBinding: Context?
+
+    func isSelected(context: Context) -> Binding<Bool> {
         Binding { [weak self] in
-            self?.selectedId == id
+            self?.selectedContext == context
         } set: { [weak self] _ in
-            self?.interactor.selectCalendar(with: id)
+            self?.selectedContext = context
+            self?.selectedContextBinding = context
         }
     }
 
@@ -51,48 +54,30 @@ final class SelectCalendarViewModel: ObservableObject {
 
     // MARK: - Private
 
-    private let interactor: CreateToDoInteractor
+    private let calendarListProviderInteractor: CalendarFilterInteractor
     private var subscriptions = Set<AnyCancellable>()
-
-    private var calendars: [CalendarSelectorItem] = []
-
-    private var userCalendar: CalendarSelectorItem? {
-        // TODO
-        calendars.first
-    }
-
-    private var courseCalendars: [CalendarSelectorItem] {
-        // TODO
-        guard calendars.count >= 3 else { return [] }
-
-        return Array(calendars[1...2])
-    }
-
-    private var groupCalendars: [CalendarSelectorItem] {
-        // TODO
-        guard calendars.count >= 5 else { return [] }
-
-        return Array(calendars[3...4])
-    }
 
     // MARK: - Init
 
-    init(interactor: CreateToDoInteractor) {
-        self.interactor = interactor
+    init(calendarListProviderInteractor: CalendarFilterInteractor, selectedContext: Binding<Context?>) {
+        self.calendarListProviderInteractor = calendarListProviderInteractor
+        self._selectedContextBinding = selectedContext
+        self.selectedContext = selectedContext.wrappedValue
 
-        interactor.calendars
-            .assign(to: \.calendars, on: self, ownership: .weak)
+        calendarListProviderInteractor.filters
+            .sink { [weak self] calendars in
+                let userCalendar = calendars.first { $0.context.contextType == .user }
+                let courseCalendars = calendars.filter { $0.context.contextType == .course }
+                    .sorted()
+                let groupCalendars = calendars.filter { $0.context.contextType == .group }
+                    .sorted()
+
+                self?.sections = [
+                    Section(id: 0, title: nil, items: [userCalendar].compactMap { $0 }),
+                    Section(id: 1, title: String(localized: "Courses", bundle: .core), items: courseCalendars),
+                    Section(id: 2, title: String(localized: "Groups", bundle: .core), items: groupCalendars),
+                ]
+            }
             .store(in: &subscriptions)
-
-        interactor.selectedCalendar
-            .map { $0?.id }
-            .assign(to: \.selectedId, on: self, ownership: .weak)
-            .store(in: &subscriptions)
-
-        sections = [
-            Section(id: 0, title: nil, items: [userCalendar].compactMap { $0 }),
-            Section(id: 1, title: String(localized: "Courses", bundle: .core), items: courseCalendars),
-            Section(id: 2, title: String(localized: "Groups", bundle: .core), items: groupCalendars),
-        ]
     }
 }

@@ -52,7 +52,7 @@ struct CreateToDoScreen: View, ScreenViewTrackable {
 
                     InstUI.LabelValueCell(
                         label: Text("Calendar", bundle: .core),
-                        value: viewModel.calendar
+                        value: viewModel.calendarName
                     ) {
                         SelectCalendarScreen(viewModel: viewModel.selectCalendarViewModel)
                     }
