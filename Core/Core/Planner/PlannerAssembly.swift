@@ -20,6 +20,11 @@ import SwiftUI
 
 public enum PlannerAssembly {
 
+    public enum Completion {
+        case didCancel
+        case didUpdate
+    }
+
     // MARK: - Event
 
     public static func makeEventDetailsViewController(eventId: String) -> UIViewController {
@@ -42,10 +47,14 @@ public enum PlannerAssembly {
 
     // MARK: - ToDo
 
-    public static func makeCreateToDoViewController(calendarListProviderInteractor: CalendarFilterInteractor?) -> UIViewController {
+    public static func makeCreateToDoViewController(
+        calendarListProviderInteractor: CalendarFilterInteractor?,
+        completion: @escaping (Completion) -> Void
+    ) -> UIViewController {
         let viewModel = CreateToDoViewModel(
             createToDoInteractor: CreateToDoInteractorLive(),
-            calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil)
+            calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            completion: completion
         )
         let view = CreateToDoScreen(viewModel: viewModel)
         let host = CoreHostingController(view)
@@ -63,7 +72,8 @@ public enum PlannerAssembly {
     public static func makeCreateToDoScreenPreview() -> some View {
         let viewModel = CreateToDoViewModel(
             createToDoInteractor: CreateToDoInteractorPreview(),
-            calendarListProviderInteractor: CalendarFilterInteractorPreview()
+            calendarListProviderInteractor: CalendarFilterInteractorPreview(),
+            completion: { _ in }
         )
         return CreateToDoScreen(viewModel: viewModel)
     }

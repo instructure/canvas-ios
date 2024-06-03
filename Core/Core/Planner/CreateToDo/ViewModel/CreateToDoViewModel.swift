@@ -55,13 +55,14 @@ final class CreateToDoViewModel: ObservableObject {
 
     // MARK: - Input
 
-    let didTapCancel = PassthroughSubject<WeakViewController, Never>()
-    let didTapAdd = PassthroughSubject<WeakViewController, Never>()
+    let didTapCancel = PassthroughSubject<Void, Never>()
+    let didTapAdd = PassthroughSubject<Void, Never>()
 
     // MARK: - Private
 
     private let createToDoInteractor: CreateToDoInteractor
     private let calendarListProviderInteractor: CalendarFilterInteractor
+    private let completion: (PlannerAssembly.Completion) -> Void
     private var subscriptions = Set<AnyCancellable>()
 
     private var calendars: [CDCalendarFilterEntry] = []
@@ -71,10 +72,12 @@ final class CreateToDoViewModel: ObservableObject {
     init(
         createToDoInteractor: CreateToDoInteractor,
         calendarListProviderInteractor: CalendarFilterInteractor,
+        completion: @escaping (PlannerAssembly.Completion) -> Void,
         router: Router = AppEnvironment.shared.router
     ) {
         self.createToDoInteractor = createToDoInteractor
         self.calendarListProviderInteractor = calendarListProviderInteractor
+        self.completion = completion
 
         // end of today, to match default web behaviour
         date = .now.endOfDay()
@@ -86,29 +89,31 @@ final class CreateToDoViewModel: ObservableObject {
         calendar = calendars.first { $0.context.contextType == .user }
 
         didTapCancel
-            .sink { router.dismiss($0) }
+            .sink { completion(.didCancel) }
             .store(in: &subscriptions)
 
         didTapAdd
             .map { [weak self] in
                 self?.state = .data(loadingOverlay: true)
-                return $0
             }
             .setFailureType(to: Error.self)
-            .flatMap { [self] weakVC in
-                createToDoInteractor.createToDo(
+            .flatMap { [weak self] in
+                guard let self else {
+                    return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+                }
+
+                return createToDoInteractor.createToDo(
                     title: title,
                     date: date ?? .now,
                     calendar: calendar,
                     details: details
                 )
-                .map { weakVC }
             }
             .mapToResult()
             .sink { [weak self] result in
                 switch result {
-                case .success(let weakVC):
-                    router.dismiss(weakVC)
+                case .success:
+                    completion(.didUpdate)
                 case .failure:
                     self?.state = .data
                     self?.shouldShowAlert = true

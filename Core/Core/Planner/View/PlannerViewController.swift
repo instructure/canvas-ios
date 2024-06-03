@@ -122,11 +122,20 @@ public class PlannerViewController: UIViewController {
     }
 
     @objc func addNote() {
-        // env.router.show(CreateTodoViewController.create(completion: { [weak self] in self?.plannerListWillRefresh() }),
-        //                 from: self,
-        //                 options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/calendar/new")
+        let weakVC = WeakViewController()
+        let vc = PlannerAssembly.makeCreateToDoViewController(
+            calendarListProviderInteractor: calendarFilterInteractor,
+            completion: { [weak self] in
+                if $0 == .didUpdate {
+                    self?.plannerListWillRefresh()
+                }
+                self?.env.router.dismiss(weakVC)
+            }
+        )
+        weakVC.setValue(vc)
+
         env.router.show(
-            PlannerAssembly.makeCreateToDoViewController(calendarListProviderInteractor: calendarFilterInteractor),
+            vc,
             from: self,
             options: .modal(isDismissable: false, embedInNav: true),
             analyticsRoute: "/calendar/new"

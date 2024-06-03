@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct CreateToDoScreen: View, ScreenViewTrackable {
-    @Environment(\.viewController) private var viewController
     @ObservedObject private var viewModel: CreateToDoViewModel
 
     var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
@@ -82,10 +81,10 @@ struct CreateToDoScreen: View, ScreenViewTrackable {
         .navigationTitle(viewModel.pageTitle)
         .navBarItems(
             leading: .cancel {
-                viewModel.didTapCancel.send(viewController)
+                viewModel.didTapCancel.send()
             },
             trailing: .add(isEnabled: viewModel.isAddButtonEnabled) {
-                viewModel.didTapAdd.send(viewController)
+                viewModel.didTapAdd.send()
             }
         )
         .alert(
