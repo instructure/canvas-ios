@@ -124,7 +124,12 @@ final class CreateToDoViewModel: ObservableObject {
     }
 
     private func selectCalendar(with context: Context?) {
-        guard let context, calendar?.context != context else { return }
+        guard let context else {
+            calendar = nil
+            return
+        }
+
+        guard calendar?.context != context else { return }
 
         calendar = calendars.first { $0.context == context }
     }
