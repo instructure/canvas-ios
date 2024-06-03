@@ -20,13 +20,10 @@ import CoreData
 import Foundation
 
 public class GetBrandVariables: APIUseCase {
+    public typealias Model = CDBrandVariables
+
     public let request = GetBrandVariablesRequest()
-    public let cacheKey: String? = nil
+    public let cacheKey: String? = "brand-variables"
 
     public init() {}
-
-    public func write(response: APIBrandVariables?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response, let url = urlResponse?.url else { return }
-        Brand.shared = Brand(response: response, baseURL: url)
-    }
 }

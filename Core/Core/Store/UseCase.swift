@@ -37,7 +37,7 @@ public protocol UseCase {
 
 public extension UseCase {
     var scope: Scope {
-        return Scope.all(orderBy: "id")
+        return Scope.all(orderBy: "objectID")
     }
 
     var ttl: TimeInterval {
