@@ -47,24 +47,23 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
     func testInitialState() {
         XCTAssertEqual(testee.state, .loading)
         XCTAssertEqual(testee.cells, [])
-        XCTAssertTrue(testee.syncButtonDisabled)
         XCTAssertFalse(testee.leftNavBarButtonVisible)
         XCTAssertFalse(testee.isShowingSyncConfirmationDialog)
     }
 
-    func testConfirmAlertProps() {
+    func testSyncConfirmAlertProps() {
         XCTAssertEqual(testee.syncConfirmAlert.title, "Sync Offline Content?")
         XCTAssertEqual(testee.syncConfirmAlert.cancelButtonTitle, "Cancel")
         XCTAssertEqual(testee.syncConfirmAlert.confirmButtonTitle, "Sync")
         XCTAssertNil(testee.syncConfirmAlert.confirmButtonRole)
     }
 
-    func testUpdateSyncButtonState() {
-        mockSelectorInteractor.selectedCountSubject.send(0)
-        XCTAssertTrue(testee.syncButtonDisabled)
-
-        mockSelectorInteractor.selectedCountSubject.send(5)
-        XCTAssertFalse(testee.syncButtonDisabled)
+    func testCancelConfirmAlertProps() {
+        XCTAssertEqual(testee.cancelConfirmAlert.title, "Cancel Offline Content Sync?")
+        XCTAssertEqual(testee.cancelConfirmAlert.message, "Selection changes that you may had made won't be saved. Are you sure you want to cancel?")
+        XCTAssertEqual(testee.cancelConfirmAlert.cancelButtonTitle, "No")
+        XCTAssertEqual(testee.cancelConfirmAlert.confirmButtonTitle, "Yes")
+        XCTAssertNil(testee.cancelConfirmAlert.confirmButtonRole)
     }
 
     func testUpdateSelectAllButtonTitle() {
@@ -93,6 +92,16 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
     func testSyncButtonTap() {
         testee.syncButtonDidTap.accept(WeakViewController(UIViewController()))
         XCTAssertTrue(testee.isShowingSyncConfirmationDialog)
+
+        let expectation = expectation(description: "Publisher sends value.")
+        let subsription = mockSelectorInteractor
+            .saveSelectionSubject
+            .sink(receiveValue: {
+                expectation.fulfill()
+            })
+        testee.syncConfirmAlert.notifyCompletion(isConfirmed: true)
+        waitForExpectations(timeout: 0.1)
+        subsription.cancel()
     }
 
     func testUpdateStateFails() {
@@ -172,6 +181,11 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
     }
 
     func setSelected(selection _: Core.CourseEntrySelection, selectionState _: ListCellView.SelectionState) {}
+
+    let saveSelectionSubject = PassthroughSubject<Void, Never>()
+    func saveSelection() {
+        saveSelectionSubject.send(())
+    }
     func setCollapsed(selection _: Core.CourseEntrySelection, isCollapsed _: Bool) {}
 
     var toggleAllCoursesSelectionParam: Bool?
