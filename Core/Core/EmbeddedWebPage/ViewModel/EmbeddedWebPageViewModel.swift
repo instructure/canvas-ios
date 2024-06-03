@@ -17,10 +17,12 @@
 //
 
 import SwiftUI
+import WebKit
 
 public protocol EmbeddedWebPageViewModel: ObservableObject {
     var url: URL { get }
     var navTitle: String { get }
     var subTitle: String? { get }
     var contextColor: UIColor? { get }
+    var webViewConfig: WKWebViewConfiguration { get }
 }

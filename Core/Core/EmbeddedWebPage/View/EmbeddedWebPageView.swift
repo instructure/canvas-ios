@@ -40,7 +40,12 @@ public struct EmbeddedWebPageView<ViewModel: EmbeddedWebPageViewModel>: View {
 
     public var body: some View {
         WebSession(url: viewModel.url) { sessionURL in
-            WebView(url: sessionURL, features: features, canToggleTheme: true)
+            WebView(
+                url: sessionURL,
+                features: features,
+                canToggleTheme: true,
+                configuration: viewModel.webViewConfig
+            )
         }
         .navigationTitle(viewModel.navTitle, subtitle: viewModel.subTitle)
         .navigationBarStyle(.color(viewModel.contextColor))

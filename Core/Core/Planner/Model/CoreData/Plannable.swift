@@ -68,35 +68,6 @@ public final class Plannable: NSManagedObject {
         model.userID = userID
         return model
     }
-
-    @discardableResult
-    public static func save(_ item: APIPlannable, in client: NSManagedObjectContext, userID: String?) -> Plannable {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Plannable.id), item.plannable_id.value)
-        let model: Plannable = client.fetch(predicate).first ?? client.insert()
-        model.id = item.plannable_id.value
-        model.typeRaw = item.plannable_type
-        model.htmlURL = item.html_url?.rawValue
-        model.contextName = item.context_name
-        model.title = item.plannable?.title
-        model.date = item.plannable_date
-        model.pointsPossible = item.plannable?.points_possible
-        model.details = item.plannable?.details
-        model.userID = userID
-
-        if let type = item.context_type.flatMap({ ContextType(rawValue: $0.lowercased()) }) {
-            if type == .course, let id = item.course_id?.value {
-                model.context = Context(type, id: id)
-            }
-            if type == .group, let id = item.group_id?.value {
-                model.context = Context(type, id: id)
-            }
-            if type == .user, let id = item.user_id?.value {
-                model.context = Context(type, id: id)
-            }
-        }
-        return model
-    }
-
 }
 
 extension Plannable {

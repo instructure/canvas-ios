@@ -22,7 +22,7 @@ import XCTest
 
 class ModuleItemTests: CoreTestCase {
     func testSave() {
-        let item = APIModuleItem.make()
+        let item = APIModuleItem.make(pageId: "pageId")
         let model = ModuleItem.save(item, forCourse: "1", in: databaseClient)
         XCTAssertEqual(model.id, item.id.value)
         XCTAssertEqual(model.title, item.title)
@@ -34,6 +34,7 @@ class ModuleItemTests: CoreTestCase {
         XCTAssertEqual(model.type, item.content)
         XCTAssertEqual(model.courseID, "1")
         XCTAssertEqual(model.dueAt, item.content_details?.due_at)
+        XCTAssertEqual(model.pageId, item.pageId)
     }
 
     func testSaveDueAt() {

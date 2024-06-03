@@ -35,24 +35,32 @@ public struct APIPlannable: Codable, Equatable {
     //  swiftlint:disable:next type_name
     public struct plannable: Codable, Equatable {
         let all_day: Bool?
+        let course_id: String?
         let details: String?
         let end_at: Date?
         let points_possible: Double?
         let start_at: Date?
         let title: String?
+        let user_id: String?
 
-        public init(all_day: Bool? = nil,
-                    details: String? = nil,
-                    end_at: Date? = nil,
-                    points_possible: Double? = nil,
-                    start_at: Date? = nil,
-                    title: String? = nil) {
+        public init(
+            all_day: Bool? = nil,
+            course_id: String? = nil,
+            details: String? = nil,
+            end_at: Date? = nil,
+            points_possible: Double? = nil,
+            start_at: Date? = nil,
+            title: String? = nil,
+            user_id: String? = nil
+        ) {
             self.all_day = all_day
+            self.course_id = course_id
             self.details = details
             self.end_at = end_at
             self.points_possible = points_possible
             self.start_at = start_at
             self.title = title
+            self.user_id = user_id
         }
     }
 

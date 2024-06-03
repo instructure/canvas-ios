@@ -101,7 +101,7 @@ extension Array where Element == CourseSyncEntry {
                 }
 
                 guard tab.type == .files else {
-                    tabItem.subtitle = tab.bytesToDownload.humanReadableFileSize
+                    tabItem.subtitle = tab.type == .additionalContent ? nil : tab.bytesToDownload.humanReadableFileSize
                     cells.append(.item(tabItem))
                     continue
                 }

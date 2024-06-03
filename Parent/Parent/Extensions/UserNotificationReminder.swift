@@ -22,7 +22,8 @@ import Core
 let RemindableStudentIDKey = "RemindableStudentID"
 let RemindableActionURLKey = "RemindableActionURL"
 
-extension NotificationManager {
+extension LocalNotificationsInteractor {
+
     func setReminder(for event: CalendarEvent, at date: Date, studentID: String, callback: @escaping (Error?) -> Void) {
         let content = UNMutableNotificationContent()
         content.title = String(localized: "Event reminder", bundle: .parent)

@@ -42,6 +42,17 @@ extension APIPlannable: PlannableItem {
     public var contextName: String? { context_name }
     public var isHidden: Bool { false }
     public var context: Context? {
+        if let context = contextFromContextType() {
+            return context
+        }
+        if plannableType == .planner_note {
+            // Notes have no 'context_type', but have IDs in the inner 'plannable' object
+            return contextFromInnerPlannableObject()
+        }
+        return nil
+    }
+
+    private func contextFromContextType() -> Context? {
         guard let raw = context_type, let type = ContextType(rawValue: raw.lowercased()) else {
             return nil
         }
@@ -59,6 +70,17 @@ extension APIPlannable: PlannableItem {
                 return Context(.user, id: id)
             }
         default: return nil
+        }
+        return nil
+    }
+
+    private func contextFromInnerPlannableObject() -> Context? {
+        // order matters: 'course_id' has precedence over 'user_id'
+        if let id = self.plannable?.course_id {
+            return Context(.course, id: id)
+        }
+        if let id = self.plannable?.user_id {
+            return Context(.user, id: id)
         }
         return nil
     }
@@ -130,6 +152,12 @@ public class GetPlannables: UseCase {
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+        // If we would send out the request without any context codes the API would return all events so we do an early exit
+        if (contextCodes ?? []).isEmpty {
+            completionHandler(.init(plannables: [], calendarEvents: []), nil, nil)
+            return
+        }
+
         if environment.app == .parent {
             getObserverCalendarEvents(env: environment) { response, urlResponse, error in
                 completionHandler(Response(plannables: nil, calendarEvents: response), urlResponse, error)

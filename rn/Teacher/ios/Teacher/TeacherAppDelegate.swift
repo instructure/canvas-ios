@@ -54,7 +54,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         DocViewerViewController.setup(.teacherPSPDFKitLicense)
         prepareReactNative()
         setupPageViewLogging()
-        NotificationManager.shared.notificationCenter.delegate = self
+        PushNotificationsInteractor.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
         FontAppearance.update()
@@ -99,7 +99,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
-            NotificationManager.shared.subscribeToPushChannel()
+            PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
 
             self.isK5User = apiProfile.k5_user == true
             Analytics.shared.logSession(session)
@@ -123,7 +123,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 window.rootViewController = controller
             }, completion: { _ in
                 self.environment.startupDidComplete()
-                NotificationManager.shared.registerForRemoteNotifications(application: .shared)
+                UIApplication.shared.registerForPushNotifications()
             })
         }
         HelmManager.shared.onReactReload = {
@@ -136,8 +136,11 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         }
     }
 
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        NotificationManager.shared.subscribeToPushChannel(token: deviceToken)
+    func application(
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+        PushNotificationsInteractor.shared.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
     }
 
     func userNotificationCenter(
@@ -154,7 +157,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
         PushNotifications.record(response.notification)
-        if let url = NotificationManager.routeURL(from: response.notification.request.content.userInfo) {
+        if let url = response.notification.request.routeURL {
             openURL(url, userInfo: [
                 "forceRefresh": true,
                 "pushNotification": response.notification.request.content.userInfo["aps"] ?? [:],
@@ -165,10 +168,10 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
     func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         if
-            let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
+            let notification = launchOptions?[.remoteNotification] as? [AnyHashable: AnyObject],
             let aps = notification["aps"] as? [String: AnyObject] {
             PushNotifications.recordUserInfo(notification)
-            if let url = NotificationManager.routeURL(from: notification) {
+            if let url = notification.routeURL {
                 openURL(url, userInfo: [
                     "forceRefresh": true,
                     "pushNotification": aps,
@@ -334,8 +337,8 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
-//        NotificationManager.shared.unsubscribeFromPushChannel()
         NotificationManager.shared.deleteDevicePlatformEndpoint(session: session)
+//        PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
@@ -469,7 +472,7 @@ extension TeacherAppDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url, app: .teacher) {
             window?.rootViewController = LoadingViewController.create()
-            login.fetch(environment: environment) { [weak self] (session, error) -> Void in
+            login.fetch(environment: environment) { [weak self] session, error in
                 guard let session = session, error == nil else {
                     self?.changeUser()
                     return

@@ -44,6 +44,8 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     var selectedDate: Date?
     private var minDate = Clock.now
     private var maxDate = Clock.now
+    private var userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
+    private lazy var localNotifications = LocalNotificationsInteractor(notificationCenter: userNotificationCenter)
 
     var color: UIColor?
     let env = AppEnvironment.shared
@@ -54,10 +56,15 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         self?.update()
     }
 
-    static func create(studentID: String, eventID: String) -> CalendarEventDetailsViewController {
+    static func create(
+        studentID: String,
+        eventID: String,
+        userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
+    ) -> CalendarEventDetailsViewController {
         let controller = loadFromStoryboard()
         controller.eventID = eventID
         controller.studentID = studentID
+        controller.userNotificationCenter = userNotificationCenter
         return controller
     }
 
@@ -93,7 +100,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         maxDate = Clock.now.addYears(1)
 
         events.refresh()
-        NotificationManager.shared.getReminder(eventID) { [weak self] request in performUIUpdate {
+        localNotifications.getReminder(eventID) { [weak self] request in performUIUpdate {
             guard let self = self else { return }
             let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
                 Calendar.current.date(from: $0.dateComponents)
@@ -155,7 +162,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
             let defaultDate = max(minDate, min(maxDate,
                 event.startAt?.addMinutes(-60) ?? Clock.now.addDays(7)
             ))
-            NotificationManager.shared.requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
+            userNotificationCenter.requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
                 guard error == nil && success else {
                     self.reminderSwitch.setOn(false, animated: true)
                     return self.showPermissionError(.notifications)
@@ -168,7 +175,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
                 self.reminderDateChanged(selectedDate: self.selectedDate)
             } }
         } else {
-            NotificationManager.shared.removeReminder(eventID)
+            localNotifications.removeReminder(eventID)
             UIView.animate(withDuration: 0.2) {
                 self.reminderDateButton.isHidden = true
                 if self.presentedViewController is CoreHostingController<CoreDatePickerActionSheetCard> {
@@ -186,7 +193,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
 
     @IBAction func reminderDateChanged(selectedDate: Date?) {
         guard let selectedDate = selectedDate, let event = events.first else { return }
-        NotificationManager.shared.setReminder(for: event, at: selectedDate, studentID: studentID) { error in performUIUpdate {
+        localNotifications.setReminder(for: event, at: selectedDate, studentID: studentID) { error in performUIUpdate {
             if error == nil {
                 self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
             } else {
