@@ -45,6 +45,7 @@ final class CreateToDoViewModel: ObservableObject {
     lazy var selectCalendarViewModel: SelectCalendarViewModel = {
         return .init(
             calendarListProviderInteractor: calendarListProviderInteractor,
+            calendarTypes: [.user, .course],
             selectedContext: Binding { [weak self] in
                 self?.calendar?.context
             } set: { [weak self] in

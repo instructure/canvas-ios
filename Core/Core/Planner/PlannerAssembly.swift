@@ -81,6 +81,7 @@ public enum PlannerAssembly {
     public static func makeSelectCalendarScreenPreview() -> some View {
         let viewModel = SelectCalendarViewModel(
             calendarListProviderInteractor: CalendarFilterInteractorPreview(),
+            calendarTypes: [],
             selectedContext: .constant(nil)
         )
         return SelectCalendarScreen(viewModel: viewModel)

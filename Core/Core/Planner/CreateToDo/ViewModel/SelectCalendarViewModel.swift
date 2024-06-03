@@ -21,6 +21,10 @@ import Foundation
 import Combine
 import SwiftUI
 
+enum CalendarType {
+    case user, course, group
+}
+
 final class SelectCalendarViewModel: ObservableObject {
 
     struct Section: Identifiable {
@@ -59,18 +63,26 @@ final class SelectCalendarViewModel: ObservableObject {
 
     // MARK: - Init
 
-    init(calendarListProviderInteractor: CalendarFilterInteractor, selectedContext: Binding<Context?>) {
+    init(
+        calendarListProviderInteractor: CalendarFilterInteractor,
+        calendarTypes: Set<CalendarType>,
+        selectedContext: Binding<Context?>
+    ) {
         self.calendarListProviderInteractor = calendarListProviderInteractor
         self._selectedContextBinding = selectedContext
         self.selectedContext = selectedContext.wrappedValue
 
         calendarListProviderInteractor.filters
             .sink { [weak self] calendars in
-                let userCalendar = calendars.first { $0.context.contextType == .user }
-                let courseCalendars = calendars.filter { $0.context.contextType == .course }
-                    .sorted()
-                let groupCalendars = calendars.filter { $0.context.contextType == .group }
-                    .sorted()
+                let userCalendar = calendarTypes.contains(.user)
+                    ? calendars.first { $0.context.contextType == .user }
+                    : nil
+                let courseCalendars = calendarTypes.contains(.course)
+                    ? calendars.filter { $0.context.contextType == .course }.sorted()
+                    : []
+                let groupCalendars = calendarTypes.contains(.group)
+                    ? calendars.filter { $0.context.contextType == .group }.sorted()
+                    : []
 
                 self?.sections = [
                     Section(id: 0, title: nil, items: [userCalendar].compactMap { $0 }),
