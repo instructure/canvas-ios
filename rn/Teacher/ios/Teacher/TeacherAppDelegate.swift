@@ -337,7 +337,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
-        NotificationManager.shared.deleteDevicePlatformEndpoint(session: session)
+        PushNotificationsInteractor.shared.deleteDevicePlatformEndpoint(session: session)
 //        PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -21,7 +21,7 @@ import AWSSNS
 import Foundation
 
 // MARK: Push Notifications
-extension NotificationManager {
+extension PushNotificationsInteractor {
     func checkIfShouldCreateEmailChannelForPush(session: LoginSession) {
         let api = API(session)
         api.makeRequest(GetCommunicationChannelsRequest()) { [weak self] response, _, error in
@@ -154,7 +154,6 @@ extension NotificationManager {
                 AWSLambda(forKey: "myLambda").invoke(request) { _, _ in }
             }
         }
-        remoteToken = nil
-        remoteSession = nil
+        loginSession = nil
     }
 }

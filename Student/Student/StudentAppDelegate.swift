@@ -172,7 +172,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
-            NotificationManager.shared.subscribeToPushChannel()
             self.setIntercomUser(session: session, userEmail: apiProfile?.primary_email)
             PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
 
@@ -528,7 +527,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
-        NotificationManager.shared.deleteDevicePlatformEndpoint(session: session)
+        PushNotificationsInteractor.shared.deleteDevicePlatformEndpoint(session: session)
 //        PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)

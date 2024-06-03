@@ -34,11 +34,22 @@ public class PushNotificationsInteractor {
             subscribeToCanvasPushNotificationsIfNecessary()
         }
     }
-    private var loginSession: LoginSession? {
+    public var loginSession: LoginSession? {
         didSet {
             subscribeToCanvasPushNotificationsIfNecessary()
         }
     }
+
+    private let deviceTokenKey: String = "icanvas.mobile.2u.deviceTokenKey"
+    public var deviceTokenString: String? {
+        get {
+            UserDefaults.standard.string(forKey: deviceTokenKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: deviceTokenKey)
+        }
+    }
+    public var emailAsPushChannelID: String?
 
     init(
         notificationCenter: UserNotificationCenterProtocol,
@@ -99,7 +110,10 @@ public class PushNotificationsInteractor {
             return
         }
 
-        createPushChannel(deviceToken: deviceToken, session: loginSession)
+//        createPushChannel(deviceToken: deviceToken, session: loginSession)
+
+        checkIfShouldCreateEmailChannelForPush(session: loginSession)
+        createDevicePlatformEndpoint(deviceToken: deviceToken, session: loginSession)
     }
 
     private func createPushChannel(
