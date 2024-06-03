@@ -21,9 +21,32 @@ import Foundation
 
 public class GetBrandVariables: APIUseCase {
     public typealias Model = CDBrandVariables
+    public struct Response: Codable {
+        var brandVars: APIBrandVariables
+        var headerImage: Data?
+    }
 
     public let request = GetBrandVariablesRequest()
     public let cacheKey: String? = "brand-variables"
 
     public init() {}
+
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+        environment.api.makeRequest(request) { brandVars, urlResponse, error in
+            guard let brandVars else {
+                return completionHandler(nil, urlResponse, error)
+            }
+
+            let remoteImageData = brandVars.header_image.flatMap { try? Data(contentsOf: $0) }
+            let response = Response(brandVars: brandVars, headerImage: remoteImageData)
+            completionHandler(response, urlResponse, nil)
+        }
+    }
+
+    public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let brandVars = response?.brandVars else {
+            return
+        }
+        CDBrandVariables.save(brandVars, headerImageData: response?.headerImage, in: client)
+    }
 }

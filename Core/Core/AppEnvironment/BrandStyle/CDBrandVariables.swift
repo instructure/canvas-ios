@@ -18,21 +18,28 @@
 
 import CoreData
 
-public final class CDBrandVariables: NSManagedObject, WriteableModel {
+public final class CDBrandVariables: NSManagedObject {
     /// An `APIBrandVariables` object encoded as JSON.
-    @NSManaged public var apiBrandVariables: String
+    @NSManaged public var apiBrandVariablesRaw: String
+    @NSManaged public var headerImageRaw: Data?
 
     public private(set) lazy var brandVariables: APIBrandVariables? = {
         let decoder = JSONDecoder()
-        guard let jsonData = apiBrandVariables.data(using: .utf8) else {
+        guard let jsonData = apiBrandVariablesRaw.data(using: .utf8) else {
             return nil
         }
         return try? decoder.decode(APIBrandVariables.self, from: jsonData)
     }()
 
+    public private(set) lazy var headerImage: UIImage? = {
+        guard let headerImageRaw else { return nil }
+        return UIImage(data: headerImageRaw)
+    }()
+
     @discardableResult
     public static func save(
         _ item: APIBrandVariables,
+        headerImageData: Data?,
         in context: NSManagedObjectContext
     ) -> CDBrandVariables {
         let json: String = {
@@ -45,13 +52,14 @@ public final class CDBrandVariables: NSManagedObject, WriteableModel {
         }()
 
         let dbEntity: CDBrandVariables = context.first(scope: .all) ?? context.insert()
-        dbEntity.apiBrandVariables = json
+        dbEntity.apiBrandVariablesRaw = json
+        dbEntity.headerImageRaw = headerImageData
         return dbEntity
     }
 
     public func applyBrandTheme() {
         guard let brandVariables else { return }
 
-        Brand.shared = Brand(response: brandVariables, baseURL: URL(string: "/")!)
+        Brand.shared = Brand(response: brandVariables, headerImage: headerImage)
     }
 }
