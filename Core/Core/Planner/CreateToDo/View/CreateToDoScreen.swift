@@ -88,6 +88,18 @@ struct CreateToDoScreen: View, ScreenViewTrackable {
                 viewModel.didTapAdd.send(viewController)
             }
         )
+        .alert(
+            Text("Unsuccessful Creation!", bundle: .core),
+            isPresented: $viewModel.shouldShowAlert,
+            actions: {
+                Button(String(localized: "OK", bundle: .core)) {
+                    viewModel.shouldShowAlert = false
+                }
+            },
+            message: {
+                Text("Your To Do was not added, you can try it again.", bundle: .core)
+            }
+        )
     }
 }
 

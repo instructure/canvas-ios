@@ -23,6 +23,15 @@ import Combine
 final class CreateToDoInteractorPreview: CreateToDoInteractor {
 
     init() { }
+
+    func createToDo(
+        title: String,
+        date: Date,
+        calendar: CDCalendarFilterEntry?,
+        details: String?
+    ) -> AnyPublisher<Void, Error> {
+        Empty<Void, Error>().eraseToAnyPublisher()
+    }
 }
 
 #endif

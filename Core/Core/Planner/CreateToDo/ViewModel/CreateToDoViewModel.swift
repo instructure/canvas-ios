@@ -27,14 +27,15 @@ final class CreateToDoViewModel: ObservableObject {
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new")
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
-    let state: InstUI.ScreenState = .data
+    @Published private(set) var state: InstUI.ScreenState = .data
     @Published var title: String = ""
     @Published var date: Date?
     @Published private var calendar: CDCalendarFilterEntry?
     @Published var details: String = ""
+    @Published var shouldShowAlert: Bool = false
 
     var isAddButtonEnabled: Bool {
-        title.isNotEmpty
+        state == .data && title.isNotEmpty
     }
 
     var calendarName: String? {
@@ -75,7 +76,7 @@ final class CreateToDoViewModel: ObservableObject {
         self.createToDoInteractor = createToDoInteractor
         self.calendarListProviderInteractor = calendarListProviderInteractor
 
-        // end of today, to match web behaviour
+        // end of today, to match default web behaviour
         date = .now.endOfDay()
 
         calendarListProviderInteractor.filters
@@ -89,7 +90,30 @@ final class CreateToDoViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         didTapAdd
-            .sink { router.dismiss($0) }
+            .map { [weak self] in
+                self?.state = .data(loadingOverlay: true)
+                return $0
+            }
+            .setFailureType(to: Error.self)
+            .flatMap { [self] weakVC in
+                createToDoInteractor.createToDo(
+                    title: title,
+                    date: date ?? .now,
+                    calendar: calendar,
+                    details: details
+                )
+                .map { weakVC }
+            }
+            .mapToResult()
+            .sink { [weak self] result in
+                switch result {
+                case .success(let weakVC):
+                    router.dismiss(weakVC)
+                case .failure:
+                    self?.state = .data
+                    self?.shouldShowAlert = true
+                }
+            }
             .store(in: &subscriptions)
     }
 

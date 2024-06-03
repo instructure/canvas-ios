@@ -19,10 +19,27 @@
 import Combine
 
 public protocol CreateToDoInteractor: AnyObject {
-
+    func createToDo(
+        title: String,
+        date: Date,
+        calendar: CDCalendarFilterEntry?,
+        details: String?
+    ) -> AnyPublisher<Void, Error>
 }
 
 final class CreateToDoInteractorLive: CreateToDoInteractor {
 
-    init() { }
+    func createToDo(
+        title: String,
+        date: Date,
+        calendar: CDCalendarFilterEntry?,
+        details: String?
+    ) -> AnyPublisher<Void, Error> {
+        let courseId = calendar?.context.contextType == .course ? calendar?.context.id : nil
+        let useCase = CreatePlannerNote(title: title, details: details, todoDate: date, courseID: courseId)
+        return ReactiveStore(useCase: useCase)
+            .getEntities()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
 }
