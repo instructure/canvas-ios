@@ -17,15 +17,17 @@
 //
 
 import Foundation
+import Combine
 
 public enum AttachmentPickerAssembly {
     public static func makeAttachmentPickerViewController(
         subTitle: String? = nil,
         env: AppEnvironment = .shared,
         batchId: String,
-        uploadManager: UploadManager
+        uploadManager: UploadManager,
+        alreadyUploadedFiles: CurrentValueSubject<[File], Never>
     ) -> UIViewController {
-        let interactor = AttachmentPickerInteractorLive(batchId: batchId, uploadManager: uploadManager)
+        let interactor = AttachmentPickerInteractorLive(batchId: batchId, uploadManager: uploadManager, alreadyUploadedFiles: alreadyUploadedFiles)
         let viewModel = AttachmentPickerViewModel(subTitle: subTitle, router: env.router, interactor: interactor)
         let view = AttachmentPickerView(model: viewModel)
         return CoreHostingController(view)
@@ -45,7 +47,7 @@ public enum AttachmentPickerAssembly {
         onSelect: @escaping (File) -> Void = { _ in }
     ) -> UIViewController {
         let interactor = FilePickerInteractorLive(env: env, folderId: folderId)
-        let viewModel = FilePickerViewModel(router: env.router, interactor: interactor, onSelect: onSelect)
+        let viewModel = FilePickerViewModel(env: env, interactor: interactor, onSelect: onSelect)
         let view = FilePickerView(viewModel: viewModel)
         return CoreHostingController(view)
     }
@@ -67,7 +69,7 @@ public enum AttachmentPickerAssembly {
     }
 
     public static func makeFilePickerPreview(env: AppEnvironment) -> FilePickerView {
-        let viewModel = FilePickerViewModel(router: env.router, interactor: FilePickerInteractorPreview(), onSelect: { _ in })
+        let viewModel = FilePickerViewModel(env: env, interactor: FilePickerInteractorPreview(), onSelect: { _ in })
         return FilePickerView(viewModel: viewModel)
     }
 

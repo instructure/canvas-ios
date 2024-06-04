@@ -31,12 +31,12 @@ public class FilePickerViewModel: ObservableObject {
 
     private let interactor: FilePickerInteractor
     private var subscriptions = Set<AnyCancellable>()
-    private let router: Router
+    private let env: AppEnvironment
     private let onSelect: (File) -> Void
 
-    public init(router: Router, interactor: FilePickerInteractor, onSelect: @escaping (File) -> Void = { _ in }) {
+    public init(env: AppEnvironment, interactor: FilePickerInteractor, onSelect: @escaping (File) -> Void = { _ in }) {
         self.interactor = interactor
-        self.router = router
+        self.env = env
         self.onSelect = onSelect
 
         setupOutputbindings()
@@ -60,21 +60,23 @@ public class FilePickerViewModel: ObservableObject {
     private func setupInputbindings() {
         cancelButtonDidTap
             .sink { [weak self] controller in
-                self?.router.dismiss(controller)
+                self?.env.router.dismiss(controller)
             }
             .store(in: &subscriptions)
 
         fileDidTap
             .sink { [weak self] (controller, file) in
                 self?.onSelect(file)
-                self?.router.dismiss(controller)
+                self?.env.router.dismiss(controller)
             }
             .store(in: &subscriptions)
 
         folderDidTap
             .sink { [weak self] (controller, folder) in
-                let view = AttachmentPickerAssembly.makeFilePickerViewController(folderId: folder.id)
-                self?.router.show(view, from: controller, options: .push)
+                if let self {
+                    let view = AttachmentPickerAssembly.makeFilePickerViewController(env: env, folderId: folder.id, onSelect: self.onSelect)
+                    self.env.router.show(view, from: controller, options: .push)
+                }
             }
             .store(in: &subscriptions)
     }

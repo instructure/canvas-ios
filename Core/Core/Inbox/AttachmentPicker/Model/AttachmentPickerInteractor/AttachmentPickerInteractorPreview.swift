@@ -21,6 +21,7 @@ import Combine
 
 #if DEBUG
 class AttachmentPickerInteractorPreview: AttachmentPickerInteractor {
+    var alreadySelectedFiles: CurrentValueSubject<[File], Never> = CurrentValueSubject<[File], Never>([])
     var files: PassthroughSubject<[File], Error> = PassthroughSubject<[File], Error>()
 
     public private(set) var uploadFilesCalled: Bool = false
@@ -35,6 +36,10 @@ class AttachmentPickerInteractorPreview: AttachmentPickerInteractor {
     }
 
     func addFile(url: URL) {
+        addFileCalled = true
+    }
+
+    func addFile(file: File) {
         addFileCalled = true
     }
 

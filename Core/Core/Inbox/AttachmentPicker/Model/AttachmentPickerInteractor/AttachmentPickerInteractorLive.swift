@@ -20,7 +20,8 @@ import Foundation
 import Combine
 
 class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
-    let files = PassthroughSubject<[File], Error>()
+    public let files = PassthroughSubject<[File], Error>()
+    public let alreadySelectedFiles: CurrentValueSubject<[File], Never>
 
     private var uploadManager: UploadManager
     private let batchId: String
@@ -31,9 +32,11 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
         self?.update()
     }
 
-    init(batchId: String, uploadManager: UploadManager) {
+    init(batchId: String, uploadManager: UploadManager, alreadyUploadedFiles: CurrentValueSubject<[File], Never>) {
         self.uploadManager = uploadManager
         self.batchId = batchId
+        self.alreadySelectedFiles = alreadyUploadedFiles
+
         fileStore.refresh()
     }
 
@@ -58,6 +61,12 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
         }
     }
 
+    func addFile(file: File) {
+        var newValues = alreadySelectedFiles.value
+        newValues.append(file)
+        alreadySelectedFiles.send(newValues)
+    }
+
     func retry() {
         uploadFiles()
     }
@@ -72,8 +81,13 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
     }
 
     func removeFile(file: File) {
-        uploadManager.viewContext.delete(file)
-        fileStore.refresh()
+        if alreadySelectedFiles.value.contains(file) {
+            let newValues = alreadySelectedFiles.value.filter { $0 != file }
+            alreadySelectedFiles.send(newValues)
+        } else {
+            uploadManager.viewContext.delete(file)
+            fileStore.refresh()
+        }
     }
 
     func deleteFile(file: File) -> AnyPublisher<Void, Never> {

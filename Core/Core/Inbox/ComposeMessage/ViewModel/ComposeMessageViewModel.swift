@@ -51,7 +51,6 @@ class ComposeMessageViewModel: ObservableObject {
     public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
     public var fileSelected = PassthroughRelay<(WeakViewController, File)>()
     public let removeButtonDidTap = PassthroughRelay<File>()
-    public let deleteFileButtonDidTap = PassthroughRelay<File>()
 
     // MARK: - Inputs / Outputs
     @Published public var sendIndividual: Bool = false
@@ -81,6 +80,8 @@ class ComposeMessageViewModel: ObservableObject {
     private lazy var files = uploadManager.subscribe(batchID: batchId) { [weak self] in
         self?.update()
     }
+    private let alreadyUploadedFiles = CurrentValueSubject<[File], Never>([])
+    private var alreadyUploadedFileList = [File()]
     private var hiddenMessage: String = ""
     private var autoTeacherSelect: Bool = false
     private var teacherOnly: Bool = false
@@ -129,7 +130,7 @@ class ComposeMessageViewModel: ObservableObject {
 
     public func attachmentbuttonDidTap(viewController: WeakViewController) {
         files.refresh()
-        let attachmentList = AttachmentPickerAssembly.makeAttachmentPickerViewController(subTitle: subject, batchId: batchId, uploadManager: uploadManager)
+        let attachmentList = AttachmentPickerAssembly.makeAttachmentPickerViewController(subTitle: subject, batchId: batchId, uploadManager: uploadManager, alreadyUploadedFiles: alreadyUploadedFiles)
         router.show(attachmentList, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
@@ -148,8 +149,13 @@ class ComposeMessageViewModel: ObservableObject {
     // MARK: Private helpers
 
     private func removeAttachment(file: File) {
-        uploadManager.viewContext.delete(file)
-        files.refresh()
+        if alreadyUploadedFileList.contains(file) {
+            let newValues = alreadyUploadedFileList.filter { $0 != file }
+            alreadyUploadedFiles.send(newValues)
+        } else {
+            uploadManager.viewContext.delete(file)
+            files.refresh()
+        }
     }
 
     private func setupOutputBindings() {
@@ -171,6 +177,13 @@ class ComposeMessageViewModel: ObservableObject {
 
         selectedRecipients
             .assign(to: &$recipients)
+
+        alreadyUploadedFiles
+            .sink { [weak self] files in
+                self?.alreadyUploadedFileList = files
+                self?.update()
+            }
+        .store(in: &subscriptions)
     }
 
     private func setOptionItems(options: ComposeMessageOptions) {
@@ -229,7 +242,7 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     private func update() {
-        attachments = files.all
+        attachments = files.all + alreadyUploadedFileList
     }
 
     private func closeCourseSelectorDelayed(_ viewController: WeakViewController) {
@@ -289,7 +302,7 @@ class ComposeMessageViewModel: ObservableObject {
             }
             .flatMap { [weak self] value in
                 if let self {
-                    return self.attachments.publisher.flatMap { file in
+                    return self.files.all.publisher.flatMap { file in
                         self.interactor.deleteFile(file: file)
                     }.collect().map {_ in value }.eraseToAnyPublisher()
                 } else {
@@ -348,14 +361,8 @@ class ComposeMessageViewModel: ObservableObject {
         .store(in: &subscriptions)
 
         removeButtonDidTap
-            .sink { [weak self] file in
-                self?.removeAttachment(file: file)
-            }
-            .store(in: &subscriptions)
-
-        deleteFileButtonDidTap
             .flatMap { [weak self] file in
-                if let self {
+                if let self, self.files.all.contains(file) {
                     return self.interactor.deleteFile(file: file).map { _ in file }.eraseToAnyPublisher()
                 } else {
                     return Just(file).eraseToAnyPublisher()

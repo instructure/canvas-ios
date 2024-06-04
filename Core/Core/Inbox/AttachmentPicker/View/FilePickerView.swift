@@ -91,10 +91,14 @@ public struct FilePickerView: View {
                         width: 30 * uiScale,
                         height: 30 * uiScale
                     )
+                    .padding(.all, 12)
                 VStack(alignment: .leading, spacing: 0) {
                     Text(folder.name)
+                        .truncationMode(.middle)
+                        .lineLimit(1)
                     Text("\(folder.filesCount + folder.foldersCount) \(folder.filesCount + folder.foldersCount == 1 ? "item" : "items")")
                 }
+                .padding(.horizontal, 8)
                 Spacer()
                 Image.arrowOpenRightLine
                     .resizable()
@@ -102,6 +106,7 @@ public struct FilePickerView: View {
                         width: 15 * uiScale,
                         height: 15 * uiScale
                     )
+                    .padding(.all, 12)
             }
             .foregroundColor(.textDarkest)
         }
@@ -112,15 +117,23 @@ public struct FilePickerView: View {
             viewModel.fileDidTap.accept((controller, file))
         } label: {
             HStack {
-                AsyncImage(url: file.previewURL)
+                AsyncImage(url: file.thumbnailURL) { result in
+                    result.image?
+                        .resizable()
+                        .scaledToFill()
+                    }
                     .frame(
                         width: 30 * uiScale,
                         height: 30 * uiScale
                     )
-                VStack {
+                    .padding(.all, 12)
+                VStack(alignment: .leading, spacing: 0) {
                     Text(file.filename)
+                        .truncationMode(.middle)
+                        .lineLimit(1)
                     Text(file.formattedSize)
                 }
+                .padding(.horizontal, 8)
                 Spacer()
                 Image.arrowOpenRightLine
                     .resizable()
@@ -128,6 +141,7 @@ public struct FilePickerView: View {
                         width: 15 * uiScale,
                         height: 15 * uiScale
                     )
+                    .padding(.all, 12)
             }
             .foregroundColor(.textDarkest)
         }

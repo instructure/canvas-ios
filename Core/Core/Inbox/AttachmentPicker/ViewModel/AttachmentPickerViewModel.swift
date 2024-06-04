@@ -31,6 +31,7 @@ class AttachmentPickerViewModel: ObservableObject {
     @Published public var isAudioRecordVisible: Bool = false
     @Published public var isFileSelectVisible: Bool = false
     @Published public private(set) var fileList: [File] = []
+    @Published public private(set) var alreadyUploadedFileList: [File] = []
     @Published public var isFileErrorOccured: Bool = false
     public let title = String(localized: "Attachments", bundle: .core)
     public let subTitle: String?
@@ -141,8 +142,7 @@ class AttachmentPickerViewModel: ObservableObject {
     }
 
     func fileSelected(file: File) {
-        print(file.filename)
-        linkedFiles.append(file)
+        interactor.addFile(file: file)
     }
 
     private func setupOutputBindings() {
@@ -155,6 +155,11 @@ class AttachmentPickerViewModel: ObservableObject {
         }, receiveValue: { [weak self] files in
             self?.fileList = files
         })
+        .store(in: &subscriptions)
+
+        interactor.alreadySelectedFiles.sink { [weak self] files in
+            self?.alreadyUploadedFileList = files
+        }
         .store(in: &subscriptions)
     }
 

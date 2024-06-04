@@ -31,7 +31,11 @@ public struct AttachmentPickerView: View {
     public var body: some View {
         VStack(alignment: .center, spacing: 0) {
             headerView
-            if (viewModel.fileList.isEmpty) { emptyView } else { List { contentView }.listStyle(.plain).accessibilityElement(children: .contain) }
+            if viewModel.fileList.isEmpty && viewModel.alreadyUploadedFileList.isEmpty {
+                emptyView
+            } else {
+                contentView
+            }
         }
         .navigationTitleStyled(
             VStack(spacing: 0) {
@@ -72,15 +76,25 @@ public struct AttachmentPickerView: View {
     }
 
     private var contentView: some View {
-        ForEach(viewModel.fileList, id: \.self) { file in
-            rowView(for: file)
-                .listRowSpacing(0)
-                .iOS16RemoveListRowSeparatorLeadingInset()
+        List {
+            ForEach(viewModel.fileList, id: \.self) { file in
+                rowView(for: file)
+                    .listRowSpacing(0)
+                    .iOS16RemoveListRowSeparatorLeadingInset()
+            }
+
+            ForEach(viewModel.alreadyUploadedFileList, id: \.self) { file in
+                rowView(for: file, shouldDeleteOnRemove: false)
+                    .listRowSpacing(0)
+                    .iOS16RemoveListRowSeparatorLeadingInset()
+            }
         }
+        .listStyle(.plain)
+        .accessibilityElement(children: .contain)
     }
 
     @ViewBuilder
-    private func rowView(for file: File) -> some View {
+    private func rowView(for file: File, shouldDeleteOnRemove: Bool = true) -> some View {
         let fileSizeWithUnit = ByteCountFormatter.string(fromByteCount: Int64(file.size), countStyle: .file)
         Button {
             viewModel.fileSelected.accept((controller, file))
@@ -132,7 +146,11 @@ public struct AttachmentPickerView: View {
         .accessibilityLabel(Text(verbatim: "\(file.displayName ?? file.localFileURL?.lastPathComponent ?? "") (\(fileSizeWithUnit)"))
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
             Button {
-                viewModel.deleteFileButtonDidTap.accept(file)
+                if shouldDeleteOnRemove {
+                    viewModel.deleteFileButtonDidTap.accept(file)
+                } else {
+                    viewModel.removeButtonDidTap.accept(file)
+                }
             } label: {
                 Image.trashLine
                     .resizable()
@@ -159,7 +177,7 @@ public struct AttachmentPickerView: View {
     private var selectionHeader: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                Text("\(viewModel.fileList.count) Items", bundle: .core)
+                Text("\(viewModel.fileList.count + viewModel.alreadyUploadedFileList.count) Items", bundle: .core)
                 Spacer()
                 Button {
                     viewModel.addAttachmentButtonDidTap.accept(controller)
