@@ -29,12 +29,11 @@ public struct FilePickerView: View {
 
     public var body: some View {
         VStack(spacing: 0) {
-            ScrollView {
-                contentView
-            }
+            contentView
         }
         .navigationTitle(viewModel.title)
         .navigationBarItems(trailing: cancelButton)
+        .navigationBarGenericBackButton()
     }
 
     var contentView: some View {
@@ -43,21 +42,50 @@ public struct FilePickerView: View {
             case .data:
                 dataContainer
             case .empty:
-                Text("This folder is empty", bundle: .core)
+                emptyView
             case .error:
-                Text("Some error occured", bundle: .core)
+                errorView
             case .loading:
                 ProgressView()
             }
         }
     }
 
+    var emptyView: some View {
+        VStack(alignment: .center, spacing: 0) {
+            Image(Panda.FilePicker.name, bundle: .core)
+                .padding(.all, 12)
+
+            Text("No files", bundle: .core)
+                .font(.bold24)
+                .padding(.vertical, 8)
+
+            Text("This folder is empty", bundle: .core)
+                .font(.regular16)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    var errorView: some View {
+        VStack(alignment: .center, spacing: 0) {
+            Image(Panda.FilePicker.name, bundle: .core)
+                .padding(.all, 12)
+
+            Text("Some error occured", bundle: .core)
+                .font(.bold24)
+                .padding(.vertical, 8)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
     var dataContainer: some View {
-        ForEach(viewModel.folderItems, id: \.id) { item in
-            if let file = item.file {
-                fileRow(file: file)
-            } else if let folder = item.folder {
-                folderRow(folder: folder)
+        ScrollView {
+            ForEach(viewModel.folderItems, id: \.id) { item in
+                if let file = item.file {
+                    fileRow(file: file)
+                } else if let folder = item.folder {
+                    folderRow(folder: folder)
+                }
             }
         }
     }
