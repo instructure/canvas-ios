@@ -20,15 +20,14 @@ import Foundation
 import Combine
 
 public class FilePickerInteractorLive: FilePickerInteractor {
-    private let env: AppEnvironment
-    private let context: Context = .currentUser
-
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.data)
     public var folder = CurrentValueSubject<[Folder], Never>([])
     public var folderItems = CurrentValueSubject<[FolderItem], Never>([])
 
     // MARK: - Private
+    private let env: AppEnvironment
+    private let context: Context = .currentUser
     private var subscriptions = Set<AnyCancellable>()
     private var folderItemsStore: Store<GetFolderItems>?
 

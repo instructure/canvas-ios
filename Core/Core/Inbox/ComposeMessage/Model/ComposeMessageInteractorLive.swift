@@ -20,6 +20,21 @@ import Combine
 import CombineExt
 
 public class ComposeMessageInteractorLive: ComposeMessageInteractor {
+
+    // MARK: - Outputs
+    public var conversationAttachmentsFolder = CurrentValueSubject<[Folder], Never>([]) // The only folder that files can be attached from
+
+    // MARK: - Private
+    private let env: AppEnvironment
+    private let context: Context = .currentUser
+    private var subscriptions = Set<AnyCancellable>()
+    private var conversationAttachmentsFolderStore: Store<GetFolderByPath>?
+
+    public init(env: AppEnvironment = .shared) {
+        self.env = env
+        self.getConversationFolderId()
+    }
+
     public func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error> {
         CreateConversation(
             subject: parameters.subject,
@@ -59,5 +74,42 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
         } else {
             return Just(()).eraseToAnyPublisher()
         }
+    }
+
+    public func getOnlineFileURL(fileId: String) -> AnyPublisher<URL?, Error> {
+        ReactiveStore(useCase: GetFile(context: context, fileID: fileId))
+            .getEntities()
+            .map { files in
+                return files.first?.url
+            }
+            .flatMap { [weak self] url in
+                if let url,
+                   let self,
+                   let session = self.env.currentSession,
+                   let request = try? url.urlRequest(relativeTo: session.baseURL, accessToken: session.accessToken, actAsUserID: session.actAsUserID) {
+                    return URLSessionDataTaskPublisherProviderLive().getPublisher(for: request)
+                } else {
+                    return Fail(error: NSError.instructureError(String(localized: "Failed to duplicate file", bundle: .core))).eraseToAnyPublisher()
+                }
+            }
+            .map { (localURL: URL, fileName: String) in
+                var modifiedURL = localURL
+                modifiedURL.deleteLastPathComponent()
+                modifiedURL = modifiedURL.appendingPathComponent(fileName)
+                try? FileManager.default.moveItem(atPath: localURL.path, toPath: modifiedURL.path)
+                return modifiedURL
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func getConversationFolderId() {
+        conversationAttachmentsFolderStore = env.subscribe(GetFolderByPath(context: context, path: "conversation attachments"))
+
+        conversationAttachmentsFolderStore?
+            .allObjects
+            .subscribe(conversationAttachmentsFolder)
+            .store(in: &subscriptions)
+
+        conversationAttachmentsFolderStore?.exhaust()
     }
 }
