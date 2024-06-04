@@ -28,6 +28,7 @@ public class GetBrandVariables: APIUseCase {
 
     public let request = GetBrandVariablesRequest()
     public let cacheKey: String? = "brand-variables"
+    public let ttl: TimeInterval = 24 * 60 * 60 // 1 day
 
     public init() {}
 
