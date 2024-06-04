@@ -63,7 +63,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         XCTAssertEqual(testee.cancelConfirmAlert.message, "Selection changes that you may had made won't be saved. Are you sure you want to cancel?")
         XCTAssertEqual(testee.cancelConfirmAlert.cancelButtonTitle, "No")
         XCTAssertEqual(testee.cancelConfirmAlert.confirmButtonTitle, "Yes")
-        XCTAssertNil(testee.cancelConfirmAlert.confirmButtonRole)
+        XCTAssertEqual(testee.cancelConfirmAlert.confirmButtonRole, .destructive)
     }
 
     func testUpdateSelectAllButtonTitle() {
@@ -139,6 +139,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         let controller = UIViewController()
         let weakController = WeakViewController(controller)
         testee.cancelButtonDidTap.accept(weakController)
+        testee.cancelConfirmAlert.notifyCompletion(isConfirmed: true)
         XCTAssertEqual(router.dismissed, controller)
     }
 }
