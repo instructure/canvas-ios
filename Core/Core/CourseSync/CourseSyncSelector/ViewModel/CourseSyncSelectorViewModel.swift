@@ -46,8 +46,14 @@ class CourseSyncSelectorViewModel: ObservableObject {
     )
 
     public let cancelConfirmAlert = ConfirmationAlertViewModel(
-        title: String(localized: "Cancel Offline Content Sync?", bundle: .core),
-        message: "Selection changes that you may had made won't be saved. Are you sure you want to cancel?",
+        title: String(
+            localized: "Cancel Offline Content Sync?",
+            bundle: .core
+        ),
+        message: String(
+            localized: "Selection changes that you may had made won't be saved. Are you sure you want to cancel?",
+            bundle: .core
+        ),
         cancelButtonTitle: String(localized: "No", bundle: .core),
         confirmButtonTitle: String(localized: "Yes", bundle: .core),
         isDestructive: true
