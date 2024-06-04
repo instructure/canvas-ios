@@ -19,6 +19,7 @@
 import SwiftUI
 
 struct CreateToDoScreen: View, ScreenViewTrackable {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ObservedObject private var viewModel: CreateToDoViewModel
 
     var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }

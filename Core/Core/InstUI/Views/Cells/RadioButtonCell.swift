@@ -21,6 +21,8 @@ import SwiftUI
 extension InstUI {
 
     public struct RadioButtonCell: View {
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
         private let name: String
         @Binding private var isSelected: Bool
         private let color: Color

@@ -19,6 +19,7 @@
 import SwiftUI
 
 struct SelectCalendarScreen: View, ScreenViewTrackable {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
     @ObservedObject private var viewModel: SelectCalendarViewModel
 

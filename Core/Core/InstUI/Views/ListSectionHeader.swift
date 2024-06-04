@@ -21,6 +21,8 @@ import SwiftUI
 extension InstUI {
 
     public struct ListSectionHeader: View {
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
         private let name: String
 
         public init(name: String) {

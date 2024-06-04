@@ -67,7 +67,7 @@ public extension InstUI {
             { $0() }
         }
 
-        @Environment(\.sizeCategory) private var sizeCategory
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
         private let state: ScreenState
         private let config: BaseScreenConfig
         private let refreshAction: (@escaping RefreshCompletion) -> Void
