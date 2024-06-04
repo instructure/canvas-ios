@@ -38,6 +38,22 @@ class CourseSyncNotificationInteractorTests: CoreTestCase {
         XCTAssertTrue(notification.content.body.hasPrefix("13"))
     }
 
+    func testDoesntSendsSuccessNotificationWithZeroItemCount() {
+        let interactorMock = CourseSyncProgressObserverInteractorMock()
+        interactorMock.stateProgresses = []
+
+        let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter),
+                                                      progressInteractor: interactorMock)
+
+        // WHEN
+        XCTAssertFinish(testee.send())
+
+        // THEN
+        guard notificationCenter.requests.last == nil else {
+            return XCTFail()
+        }
+    }
+
     func testNotSendsSuccessNotificationWhenSyncProgressIsOnScreen() {
         window.rootViewController = CourseSyncProgressAssembly.makeViewController(env: environment)
         let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter),
@@ -85,6 +101,7 @@ class CourseSyncNotificationInteractorTests: CoreTestCase {
 
 private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserverInteractor {
     var isSyncFailed = false
+    var stateProgresses: [CourseSyncStateProgress]?
 
     func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
         let progress = CourseSyncDownloadProgress(bytesToDownload: 0,
@@ -96,8 +113,14 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
     }
 
     func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
-        let progresses = (0 ..< 13).map { _ in
-            CourseSyncStateProgress(id: "", selection: .course("1"), state: .downloaded, entryID: "", tabID: "", fileID: "", progress: nil)
+        let progresses: [CourseSyncStateProgress]
+
+        if let stateProgresses {
+            progresses = stateProgresses
+        } else {
+            progresses = (0 ..< 13).map { _ in
+                CourseSyncStateProgress(id: "", selection: .course("1"), state: .downloaded, entryID: "", tabID: "", fileID: "", progress: nil)
+            }
         }
         return Just(progresses).eraseToAnyPublisher()
     }

@@ -42,6 +42,7 @@ public class CourseSyncNotificationInteractor {
             .CombineLatest(itemCountPublisher, isSuccessfulSyncPublisher)
             .receive(on: RunLoop.main)
             .filter { _ in window.isSyncProgressNotOnScreen() }
+            .filter { itemCount, _ in itemCount > 0 } // We want to avoid sending notifications about courses that have already ended.
             .flatMap { [localNotifications] (itemCount, isSuccessful) in
                 if isSuccessful {
                     return localNotifications.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: itemCount)
