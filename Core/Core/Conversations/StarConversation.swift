@@ -25,6 +25,10 @@ public class StarConversation: APIUseCase {
     public let id: String
     public let starred: Bool
 
+    public var scope: Scope {
+        Scope.where(#keyPath(InboxMessageListItem.messageId), equals: id)
+    }
+
     public var request: StarConversationRequest {
         return StarConversationRequest(id: id, starred: starred)
     }
@@ -32,5 +36,28 @@ public class StarConversation: APIUseCase {
     public init(id: String, starred: Bool) {
         self.id = id
         self.starred = starred
+    }
+
+    public func write(response: APIConversation?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response = response else {
+            return
+        }
+
+        Conversation.save(response, in: client)
+
+        let entities: [InboxMessageListItem] = client.fetch(scope: scope)
+
+        entities.map { $0.scopeFilter }.forEach { scope in
+            if let scopeFilter = InboxMessageScope.init(rawValue: scope) {
+                InboxMessageListItem.save(
+                    response,
+                    currentUserID: AppEnvironment.shared.currentSession?.userID ?? "",
+                    isSent: true,
+                    contextFilter: .none,
+                    scopeFilter: scopeFilter,
+                    in: client
+                )
+            }
+        }
     }
 }
