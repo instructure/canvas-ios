@@ -97,7 +97,7 @@ struct ConfirmationAlertPreview: PreviewProvider {
 
     class ConfirmDemoViewModel: ObservableObject {
         @Published var statusText = ""
-        @Published var isShowingSyncConfirmationDialog = false
+        @Published var isShowingConfirmationDialog = false
         let confirmDialog = ConfirmationAlertViewModel(title: "Confirm Selection",
                                                        message: "This action needs to be confirmed",
                                                        cancelButtonTitle: "Not Now",
@@ -110,7 +110,7 @@ struct ConfirmationAlertPreview: PreviewProvider {
             showDidTap
                 .handleEvents(receiveOutput: {
                     unownedSelf.statusText = ""
-                    unownedSelf.isShowingSyncConfirmationDialog = true
+                    unownedSelf.isShowingConfirmationDialog = true
                 })
                 .flatMap { unownedSelf.confirmDialog.userConfirmation() }
                 .map { "Confirmed!" }
@@ -131,7 +131,7 @@ struct ConfirmationAlertPreview: PreviewProvider {
                     } label: {
                         Text("Show dialog", bundle: .core)
                     }
-                    .alertConfirmation(isPresented: $viewModel.isShowingSyncConfirmationDialog,
+                    .alertConfirmation(isPresented: $viewModel.isShowingConfirmationDialog,
                                        presenting: viewModel.confirmDialog)
                     Spacer()
                 }
