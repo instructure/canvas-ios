@@ -89,9 +89,9 @@ public class CourseSyncListInteractorLive: CourseSyncListInteractor {
             }
             .collect()
             .replaceEmpty(with: [])
-            .map { [sessionDefaults] in
+            .map { [unowned self] in
                 $0.applySelectionsFromPreviousSession(filter: filter,
-                                                      sessionDefaults: sessionDefaults)
+                                                      sessionDefaults: &sessionDefaults)
             }
             .map { shouldLimitResultsToCacheOnly ? $0.selectedEntries() : $0 }
             .receive(on: scheduler)
@@ -134,7 +134,7 @@ private extension Array where Element == CourseSyncEntry {
 
     func applySelectionsFromPreviousSession(
         filter: CourseSyncListFilter,
-        sessionDefaults: SessionDefaults
+        sessionDefaults: inout SessionDefaults
     ) -> [CourseSyncEntry] {
         var entriesCpy = self
         let selections = sessionDefaults.offlineSyncSelections
@@ -145,6 +145,16 @@ private extension Array where Element == CourseSyncEntry {
                                                               filter: filter,
                                                               sessionDefaults: sessionDefaults)
             entriesCpy = entriesWithSelection
+        }
+
+        let selectedIds = entriesCpy
+            .filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected }
+            .map { $0.id }
+
+        sessionDefaults.offlineSyncSelections.removeAll { selection in
+            !selectedIds.contains { id in
+                selection.starts(with: id)
+            }
         }
 
         return entriesCpy
