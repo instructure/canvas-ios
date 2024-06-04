@@ -143,11 +143,8 @@ class CourseSyncListInteractorLiveTests: CoreTestCase {
         )
         api.mock(mockAPIRequest, value: [.make(id: "1", name: "1")])
 
-        let subscription = testee.getCourseSyncEntries(filter: .all).sink(receiveCompletion: { _ in }) { _ in }
-
-        drainMainQueue()
+        XCTAssertFinish(testee.getCourseSyncEntries(filter: .all))
         XCTAssertEqual(environment.userDefaults?.offlineSyncSelections, ["courses/1"])
-        subscription.cancel()
     }
 }
 
