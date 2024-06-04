@@ -31,7 +31,7 @@ extension DataSeeder {
         return users
     }
 
-    public func createUser(name: String = "DataSeed iOS \(Int(Date().timeIntervalSince1970))",
+    public func createUser(name: String = "DS iOS User \(Int(Date().timeIntervalSince1970))",
                            password: String = "password",
                            isK5: Bool = false,
                            shortName: String? = nil) -> DSUser {

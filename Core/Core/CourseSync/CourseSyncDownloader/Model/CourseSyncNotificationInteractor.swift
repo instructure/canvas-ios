@@ -19,12 +19,12 @@
 import Combine
 
 public class CourseSyncNotificationInteractor {
-    private let notificationManager: NotificationManager
+    private let localNotifications: LocalNotificationsInteractor
     private let progressInteractor: CourseSyncProgressObserverInteractor
 
-    init(notificationManager: NotificationManager,
+    init(localNotifications: LocalNotificationsInteractor = LocalNotificationsInteractor(),
          progressInteractor: CourseSyncProgressObserverInteractor) {
-        self.notificationManager = notificationManager
+        self.localNotifications = localNotifications
         self.progressInteractor = progressInteractor
     }
 
@@ -42,11 +42,11 @@ public class CourseSyncNotificationInteractor {
             .CombineLatest(itemCountPublisher, isSuccessfulSyncPublisher)
             .receive(on: RunLoop.main)
             .filter { _ in window.isSyncProgressNotOnScreen() }
-            .flatMap { [notificationManager] (itemCount, isSuccessful) in
+            .flatMap { [localNotifications] (itemCount, isSuccessful) in
                 if isSuccessful {
-                    return notificationManager.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: itemCount)
+                    return localNotifications.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: itemCount)
                 } else {
-                    return notificationManager.sendOfflineSyncFailedNotification()
+                    return localNotifications.sendOfflineSyncFailedNotification()
                 }
             }
             .ignoreFailure()
@@ -54,7 +54,7 @@ public class CourseSyncNotificationInteractor {
     }
 
     func sendFailedNotification() {
-        notificationManager.sendOfflineSyncFailedNotificationAndWait()
+        localNotifications.sendOfflineSyncFailedNotificationAndWait()
     }
 }
 

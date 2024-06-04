@@ -96,10 +96,10 @@ class DateExtensionsTests: XCTestCase {
         XCTAssertEqual(a.endOfWeek(), b)
     }
 
-    func testRemoveTime() {
+    func testStartOfDay() {
         let a = Date(fromISOString: "2020-02-21T06:59:59Z")!
         let b = Date(fromISOString: "2020-02-20T07:00:00Z")!
-        XCTAssertEqual(a.removeTime(), b)
+        XCTAssertEqual(a.startOfDay(), b)
     }
 
     func testAddSeconds() {
@@ -128,5 +128,10 @@ class DateExtensionsTests: XCTestCase {
     func testDayInMonthFormatting() {
         let date = Date(fromISOString: "2021-08-07T12:00:00Z")!
         XCTAssertEqual(date.dayInMonth, "August 7")
+    }
+
+    func testDayFormatting() {
+        let date = Date(fromISOString: "2021-08-07T12:00:00Z")!
+        XCTAssertEqual(date.dayString, "7")
     }
 }

@@ -19,6 +19,9 @@
 import Combine
 import UserNotifications
 
+/**
+ This is a wrapper protocol for `UNUserNotificationCenter` to make classes using it testable.
+ */
 public protocol UserNotificationCenterProtocol: AnyObject {
     func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)
     func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?)

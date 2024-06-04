@@ -32,7 +32,9 @@ class AttendanceStatusControllerTests: TeacherTestCase {
         XCTAssertNoThrow(controller.statusUpdateDidFail(NSError.internalError()))
 
         let url = URL(string: "/statuses/1", relativeTo: session.baseURL)!
-        api.mock(URLRequest(url: url), error: NSError.internalError())
+        var request = URLRequest(url: url)
+        request.httpMethod = APIMethod.put.rawValue
+        api.mock(request, error: NSError.internalError())
         controller.update(attendance: .absent)
         XCTAssertEqual(controller.status.attendance, .absent)
 
@@ -42,7 +44,7 @@ class AttendanceStatusControllerTests: TeacherTestCase {
         wait(for: [errored], timeout: 1)
         XCTAssertEqual(controller.status.attendance, .present)
 
-        api.mock(URLRequest(url: url), data: try? session.encoder.encode(Status.make(id: "2")))
+        api.mock(request, data: try? session.encoder.encode(Status.make(id: "2")))
         controller.update(attendance: .absent)
         XCTAssertEqual(controller.status.attendance, .absent)
 

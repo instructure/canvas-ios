@@ -84,8 +84,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -138,8 +137,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -180,8 +178,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -223,8 +220,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -266,8 +262,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             modulesInteractor: modulesInteractor,
 
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -300,8 +295,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             modulesInteractor: modulesInteractor,
 
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -334,8 +328,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             modulesInteractor: modulesInteractor,
 
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -372,8 +365,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             modulesInteractor: modulesInteractor,
 
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -395,8 +387,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -422,8 +413,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -449,8 +439,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -475,8 +464,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: mockModulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -497,7 +485,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                 name: "entry-1",
                 id: "entry-1",
                 hasFrontPage: true,
-                tabs: [ .init(id: "tab-assignments", name: "Assignments", type: .assignments)],
+                tabs: [.init(id: "tab-assignments", name: "Assignments", type: .assignments)],
                 files: []
             ),
         ]
@@ -509,8 +497,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -520,6 +507,36 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
         let subscription = testee.downloadContent(for: entries).sink()
         wait(for: [expectation], timeout: 0.1)
+        subscription.cancel()
+    }
+
+    func testAdditionalContentDownloadWithDisabledTabs() {
+        let assignmentsExpectation = expectation(description: "Assignments download started")
+        let mockAssignmentsInteractor = CourseSyncAssignmentsInteractorMock(expectation: assignmentsExpectation)
+        let discussionExpectation = expectation(description: "Discussions download started")
+        let mockDiscussionsInteractor = CourseSyncDiscussionsInteractorMock(expectation: discussionExpectation)
+
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [
+                mockAssignmentsInteractor,
+                pagesInteractor,
+                mockDiscussionsInteractor,
+            ],
+            filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
+            scheduler: .immediate,
+            env: environment
+        )
+        entries[0].tabs[0].selectionState = .selected
+        entries[0].tabs[6].selectionState = .selected
+
+        let subscription = testee.downloadContent(for: entries).sink()
+
+        wait(for: [assignmentsExpectation, discussionExpectation], timeout: 1)
         subscription.cancel()
     }
 
@@ -534,8 +551,9 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(
+                progressInteractor: CourseSyncProgressObserverInteractorMock()
+            ),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -577,8 +595,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -630,8 +647,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -666,8 +682,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
-            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
-                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -695,7 +710,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
     }
 
     func testSendsSuccessNotificationOnFinish() {
-        let courseSyncNotificationMock = CourseSyncNotificationMock(notificationManager: notificationManager,
+        let courseSyncNotificationMock = CourseSyncNotificationMock(localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter),
                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock())
         let testee = CourseSyncInteractorLive(
             contentInteractors: [
@@ -731,8 +746,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
-            notificationInteractor: CourseSyncNotificationMock(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationMock(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: listInteractorMock,
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
@@ -758,8 +772,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
-            notificationInteractor: CourseSyncNotificationMock(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationMock(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: backgroundActivityMock,
             scheduler: .immediate,
@@ -793,8 +806,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             filesInteractor: filesInteractor,
             modulesInteractor: CourseSyncModulesInteractorMock(),
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
-            notificationInteractor: CourseSyncNotificationMock(notificationManager: notificationManager,
-                                                                   progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationMock(progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
             backgroundActivity: backgroundActivityMock,
             scheduler: .immediate,
@@ -948,10 +960,16 @@ private class CourseSyncPagesInteractorMock: CourseSyncPagesInteractor {
 }
 
 private class CourseSyncAssignmentsInteractorMock: CourseSyncAssignmentsInteractor {
+    let expectation: XCTestExpectation?
     let publisher = PassthroughSubject<Void, Error>()
 
+    init(expectation: XCTestExpectation? = nil) {
+        self.expectation = expectation
+    }
+
     func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
-        publisher.eraseToAnyPublisher()
+        expectation?.fulfill()
+        return publisher.eraseToAnyPublisher()
     }
 
     func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {

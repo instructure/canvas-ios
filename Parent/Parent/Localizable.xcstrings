@@ -6443,7 +6443,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Détails de l’événement"
+            "value" : "Détails de l'événement"
           }
         },
         "fr-CA" : {
@@ -8883,7 +8883,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lieu"
+            "value" : "Emplacement"
           }
         },
         "fr-CA" : {
@@ -9003,7 +9003,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vị trí"
+            "value" : "Địa Điểm"
           }
         },
         "zh" : {
@@ -12449,7 +12449,7 @@
       }
     },
     "Regarding: %@, %@" : {
-      "comment" : "Regarding <Name>, <URL>\nRegarding <John Doe>, <Grades | Syllabus>",
+      "comment" : "Regarding <John Doe>, <Grades | Syllabus>\nRegarding <Name>, <URL>",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

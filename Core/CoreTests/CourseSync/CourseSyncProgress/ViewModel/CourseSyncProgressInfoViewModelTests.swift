@@ -77,7 +77,7 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
         XCTAssertSingleOutputEquals(
             testee.$state,
             .finishedWithError(title: "Offline Content Sync Failed",
-                               subtitle: "One or more files failed to sync. Check your internet connection and retry to submit.")
+                               subtitle: "One or more items failed to sync. Please check your internet connection and retry syncing.")
         )
     }
 

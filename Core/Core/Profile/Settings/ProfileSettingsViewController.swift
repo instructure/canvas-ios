@@ -105,7 +105,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     func reloadData() {
         var channelTypes: [CommunicationChannelType: [GeneratedCommunicationChannel]] = [:]
         for channel in channels where channel.type != .push {
-            let isOverrided: Bool = channel.id == NotificationManager.shared.emailAsPushChannelID
+            let isOverrided: Bool = channel.id == PushNotificationsInteractor.shared.emailAsPushChannelID
             let generatedChannel = GeneratedCommunicationChannel(type: isOverrided ? .push : channel.type, id: channel.id)
             channelTypes[generatedChannel.type] = channelTypes[generatedChannel.type] ?? []
             channelTypes[generatedChannel.type]?.append(generatedChannel)
