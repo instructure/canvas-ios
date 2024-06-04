@@ -89,7 +89,7 @@ public class CourseSyncListInteractorLive: CourseSyncListInteractor {
             }
             .collect()
             .replaceEmpty(with: [])
-            .map { [unowned self] in
+            .map { [self] in
                 $0.applySelectionsFromPreviousSession(filter: filter,
                                                       sessionDefaults: &sessionDefaults)
             }
