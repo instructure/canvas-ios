@@ -31,7 +31,10 @@ public class GetBrandVariables: APIUseCase {
 
     public init() {}
 
-    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+    public func makeRequest(
+        environment: AppEnvironment,
+        completionHandler: @escaping RequestCallback
+    ) {
         environment.api.makeRequest(request) { brandVars, urlResponse, error in
             guard let brandVars else {
                 return completionHandler(nil, urlResponse, error)
@@ -43,7 +46,11 @@ public class GetBrandVariables: APIUseCase {
         }
     }
 
-    public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public func write(
+        response: Response?,
+        urlResponse: URLResponse?,
+        to client: NSManagedObjectContext
+    ) {
         guard let brandVars = response?.brandVars else {
             return
         }

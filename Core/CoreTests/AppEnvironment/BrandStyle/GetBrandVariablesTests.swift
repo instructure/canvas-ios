@@ -16,16 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 import XCTest
 import TestsFoundation
 @testable import Core
 
 class GetBrandVariablesTest: CoreTestCase {
+    let testBundle = Bundle(for: UIImageExtensionsTests.self)
+    lazy var testImageURL = testBundle.url(forResource: "TestImage", withExtension: "png")!
 
     func testFetchesBrandVariables() {
-        let testBundle = Bundle(for: UIImageExtensionsTests.self)
-        let testImageURL = testBundle.url(forResource: "TestImage", withExtension: "png")!
         let testAPIBrandVars: APIBrandVariables = .make(header_image: testImageURL)
         api.mock(GetBrandVariablesRequest(), value: testAPIBrandVars)
 
@@ -66,8 +66,32 @@ class GetBrandVariablesTest: CoreTestCase {
         )
 
         // THEN
-        let result = databaseClient.first(scope: .all) as CDBrandVariables?
+        let entities = databaseClient.fetch(scope: testee.scope) as [CDBrandVariables]
+        XCTAssertEqual(entities.count, 1)
+        let result = entities.first
         XCTAssertEqual(result?.brandVariables?.primary, "test")
         XCTAssertEqual(result?.headerImage, UIImage(data: testHeaderImageData))
+    }
+
+    func testCache() {
+        let didCallAPI = expectation(description: "didCallAPI")
+        api.mock(GetBrandVariablesRequest()) { _ in
+            didCallAPI.fulfill()
+            return (APIBrandVariables.make(header_image: self.testImageURL, primary: "test"), nil, nil)
+        }
+
+        let didReceiveResultFromAPI = expectation(description: "didReceiveResultFromAPI")
+        XCTAssertFirstValueAndCompletion(ReactiveStore(useCase: GetBrandVariables()).getEntities()) { results in
+            XCTAssertEqual(results.count, 1)
+            didReceiveResultFromAPI.fulfill()
+        }
+
+        let didReceiveResultFromCache = expectation(description: "didReceiveResultFromCache")
+        XCTAssertFirstValueAndCompletion(ReactiveStore(useCase: GetBrandVariables()).getEntities()) { results in
+            XCTAssertEqual(results.count, 1)
+            didReceiveResultFromCache.fulfill()
+        }
+
+        wait(for: [didCallAPI, didReceiveResultFromAPI, didReceiveResultFromCache], timeout: 1)
     }
 }
