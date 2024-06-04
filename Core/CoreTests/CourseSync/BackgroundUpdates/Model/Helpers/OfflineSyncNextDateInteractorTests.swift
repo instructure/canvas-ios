@@ -47,7 +47,7 @@ class OfflineSyncNextDateInteractorTests: XCTestCase {
         XCTAssertEqual(result, date2)
     }
 
-    func testSyncSkippingWhithoutCourses() {
+    func testSyncSkippingWithoutCourses() {
         let date1 = Date()
         var defaults = SessionDefaults(sessionID: "test1")
         defaults = SessionDefaults(sessionID: "test")
