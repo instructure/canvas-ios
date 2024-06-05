@@ -20,6 +20,11 @@ import SwiftSoup
 public struct HTMLWistiaHandler {
     public static func updateWistia(in html: String?) -> String? {
         guard let html = html else { return nil }
+        let isLandscape = UIDevice.current.orientation.isLandscape
+        let isPad = UIDevice.current.userInterfaceIdiom == .pad
+        let usualTranscriptHeight: Int = 285
+        let shortenTranscriptHeight: Int = 175
+        let transcriptsHeight: Int = (isLandscape && isPad) ? shortenTranscriptHeight : usualTranscriptHeight
         do {
             let document = try SwiftSoup.parse(html)
             let iframes = try document.getElementsByTag("iframe")
@@ -51,7 +56,7 @@ public struct HTMLWistiaHandler {
                         style = \"width:100%; height:100%; \(styleValue ?? "")\">&nbsp;</div>
                         """
 
-                        let wistiaTranscriptionTag = "<wistia-transcript media-id=\"\(id)\" style=\"margin-top: 20px;height:290px;\"></wistia-transcript>"
+                        let wistiaTranscriptionTag = "<wistia-transcript media-id=\"\(id)\" style=\"margin-top: 20px;height:\(transcriptsHeight)px;\"></wistia-transcript>"
                         if let parent = iframe.parent(),
                             try parent.attr("class") == "wistia_responsive_wrapper",
                             let parentOfParent = parent.parent(),
@@ -68,7 +73,24 @@ public struct HTMLWistiaHandler {
                     }
                 }
             }
-            let html = try document.html()
+            var html = try document.html()
+            if isPad {
+                html += """
+                <script>
+                    window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
+                        const portrait = e.matches;
+                        document.querySelectorAll('wistia-transcript')
+                            .forEach((transcriptTag) => {
+                                if (portrait) {
+                                    transcriptTag.style.height = "\(usualTranscriptHeight)px";
+                                } else {
+                                    transcriptTag.style.height = "\(shortenTranscriptHeight)px";
+                                }
+                            });
+                    });
+                </script>
+                """
+            }
             return html
         } catch {
 
