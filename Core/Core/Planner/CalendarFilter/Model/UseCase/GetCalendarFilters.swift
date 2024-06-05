@@ -74,10 +74,15 @@ class GetCalendarFilters: UseCase {
 
         Publishers
             .CombineLatest(coursesFetch, groupsFetch)
-            .map {
-                APIResponse(
-                    courses: $0.0,
-                    groups: $0.1.body
+            .map { (courses, groups) in
+                let validCourseIDs = courses.map { $0.id }
+                /// If a course's end date has passed and "Restrict students from viewing course after course end date" is checked
+                /// then fetching events for a group in this course will give 403 unauthorized.
+                /// To be on the safe side we drop all courses without a valid course.
+                let filteredGroups = groups.body.filterOutCourseGroupsWithoutValidCourses(validCourseIDs: validCourseIDs)
+                return APIResponse(
+                    courses: courses,
+                    groups: filteredGroups
                 )
             }
             .first()
@@ -121,5 +126,19 @@ class GetCalendarFilters: UseCase {
 
     func reset(context: NSManagedObjectContext) {
         context.delete(context.fetch(scope: scope) as [CDCalendarFilterEntry])
+    }
+}
+
+extension Array where Element == APIGroup {
+
+    func filterOutCourseGroupsWithoutValidCourses(validCourseIDs: [ID]) -> [Element] {
+        filter { group in
+            switch group.groupType {
+            case .account:
+                return true
+            case .course(let courseId):
+                return validCourseIDs.contains(courseId)
+            }
+        }
     }
 }
