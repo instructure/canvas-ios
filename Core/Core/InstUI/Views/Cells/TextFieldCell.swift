@@ -23,27 +23,51 @@ extension InstUI {
     public struct TextFieldCell<Label: View>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-        private let label: Label?
+        private let label: Text?
+        private let labelTransform: (Text) -> Label
+        private let customAccessibilityLabel: Text?
         private let placeholder: String
 
         @Binding private var text: String
         @FocusState private var isFocused: Bool
 
+        private var accessibilityLabel: Text {
+            customAccessibilityLabel ?? label ?? Text("")
+        }
+
+        private var accessibilityValue: String {
+            // adding pause before `value`, not after `label`, otherwise it will be read out
+            let pause = accessibilityLabel != Text("") ? "," : ""
+            let value = text.nilIfEmpty ?? placeholder
+            return pause + value
+        }
+
         public init(
-            label: Label?,
+            label: Text?,
+            labelTransform: @escaping (Text) -> Label = { $0 },
+            customAccessibilityLabel: Text? = nil,
             placeholder: String,
             text: Binding<String>
         ) {
             self.label = label
+            self.labelTransform = labelTransform
+            self.customAccessibilityLabel = customAccessibilityLabel
             self.placeholder = placeholder
             self._text = text
         }
 
         public init(
+            customAccessibilityLabel: Text? = nil,
             placeholder: String,
             text: Binding<String>
         ) where Label == Text? {
-            self.init(label: nil, placeholder: placeholder, text: text)
+            self.init(
+                label: nil,
+                labelTransform: { $0 },
+                customAccessibilityLabel: customAccessibilityLabel,
+                placeholder: placeholder,
+                text: text
+            )
         }
 
         public var body: some View {
@@ -51,11 +75,14 @@ extension InstUI {
                 SwiftUI.Group {
                     if let label {
                         HStack(spacing: 0) {
-                            label
+                            labelTransform(label)
                                 .textStyle(.cellLabel)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .paddingStyle(.trailing, .standard)
                                 .accessibility(hidden: true)
-                            Spacer()
+
                             textField
+                                .frame(maxWidth: .infinity, alignment: .trailing)
                         }
                     } else {
                         textField
@@ -78,7 +105,8 @@ extension InstUI {
                 .font(label == nil ? .semibold16 : .regular16, lineHeight: .fit)
                 .foregroundStyle(Color.textDarkest)
                 .submitLabel(.done)
-                .accessibility(label: label as? Text ?? Text(placeholder)) // TODO
+                .accessibilityLabel(accessibilityLabel)
+                .accessibilityValue(accessibilityValue)
         }
     }
 }
@@ -90,7 +118,16 @@ extension InstUI {
         InstUI.Divider()
         InstUI.TextFieldCell(placeholder: "Add text here", text: .constant(""))
         InstUI.TextFieldCell(label: Text(verbatim: "Label"), placeholder: "Add text here", text: .constant(""))
-        InstUI.TextFieldCell(label: Text(verbatim: "Styled Label").foregroundStyle(Color.green), placeholder: "Add text here", text: .constant("Some text entered"))
+        InstUI.TextFieldCell(
+            label: Text(verbatim: "Styled Label"),
+            labelTransform: {
+                $0
+                    .foregroundStyle(Color.red)
+                    .textStyle(.heading)
+            },
+            placeholder: "Add text here",
+            text: .constant("Some text entered")
+        )
     }
 }
 

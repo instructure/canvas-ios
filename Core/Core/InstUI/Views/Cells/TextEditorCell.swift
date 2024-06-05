@@ -23,35 +23,55 @@ extension InstUI {
     public struct TextEditorCell<Label: View>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-        private let label: Label?
+        private let label: Text?
+        private let labelTransform: (Text) -> Label
+        private let customAccessibilityLabel: Text?
         private let placeholder: String?
 
         @Binding private var text: String
         @FocusState private var isFocused: Bool
         @State private var textHeight: CGFloat = 1
 
+        private var accessibilityLabel: Text {
+            let label = customAccessibilityLabel ?? label ?? Text("")
+            // `pause` is not needed here
+            let placeholder = Text(text.isEmpty ? placeholder ?? "" : "")
+            return label + placeholder
+        }
+
         public init(
-            label: Label?,
+            label: Text?,
+            labelTransform: @escaping (Text) -> Label = { $0 },
+            customAccessibilityLabel: Text? = nil,
             placeholder: String? = nil,
             text: Binding<String>
         ) {
             self.label = label
+            self.labelTransform = labelTransform
+            self.customAccessibilityLabel = customAccessibilityLabel
             self.placeholder = placeholder
             self._text = text
         }
 
         public init(
+            customAccessibilityLabel: Text? = nil,
             placeholder: String? = nil,
             text: Binding<String>
         ) where Label == Text? {
-            self.init(label: nil, placeholder: placeholder, text: text)
+            self.init(
+                label: nil,
+                labelTransform: { $0 },
+                customAccessibilityLabel: customAccessibilityLabel,
+                placeholder: placeholder,
+                text: text
+            )
         }
 
         public var body: some View {
             SwiftUI.Group {
                 if let label {
                     VStack(spacing: 0) {
-                        label
+                        labelTransform(label)
                             .textStyle(.cellLabel)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .paddingStyle(.bottom, .cellBottom)
@@ -88,6 +108,7 @@ extension InstUI {
                     .overlay(placeholderView, alignment: .leading)
                     .foregroundStyle(Color.textDarkest)
                     .frame(height: textHeight)
+                    .accessibilityLabel(accessibilityLabel)
             }
             .font(.regular16, lineHeight: .fit)
             .onPreferenceChange(ViewSizeKey.self) { value in
@@ -127,6 +148,16 @@ extension InstUI {
             InstUI.TextEditorCell(
                 label: Text(verbatim: "Label"),
                 placeholder: "Add text here",
+                text: .constant(InstUI.PreviewData.loremIpsumLong(2))
+            )
+            InstUI.Divider()
+            InstUI.TextEditorCell(
+                label: Text(verbatim: "Styled Label"),
+                labelTransform: {
+                    $0
+                        .foregroundStyle(Color.red)
+                        .textStyle(.heading)
+                },
                 text: .constant(InstUI.PreviewData.loremIpsumLong(2))
             )
             InstUI.Divider()
