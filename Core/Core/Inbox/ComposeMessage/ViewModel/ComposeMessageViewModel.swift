@@ -128,7 +128,7 @@ class ComposeMessageViewModel: ObservableObject {
         router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
-    public func attachmentbuttonDidTap(viewController: WeakViewController) {
+    public func attachmentButtonDidTap(viewController: WeakViewController) {
         files.refresh()
         let attachmentList = AttachmentPickerAssembly.makeAttachmentPickerViewController(subTitle: subject, batchId: batchId, uploadManager: uploadManager, alreadyUploadedFiles: alreadyUploadedFiles)
         router.show(attachmentList, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))

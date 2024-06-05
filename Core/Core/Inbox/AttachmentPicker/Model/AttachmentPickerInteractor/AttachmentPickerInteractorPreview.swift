@@ -56,7 +56,7 @@ class AttachmentPickerInteractorPreview: AttachmentPickerInteractor {
     }
 
     func deleteFile(file: File) -> AnyPublisher<Void, Never> {
-        removeFileCalled = true
+        deleteFileCalled = true
         return Just(()).eraseToAnyPublisher()
     }
 

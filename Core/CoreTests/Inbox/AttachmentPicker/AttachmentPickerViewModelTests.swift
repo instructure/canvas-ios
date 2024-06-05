@@ -81,4 +81,35 @@ class AttachmentPickerViewModelTests: CoreTestCase {
         XCTAssertEqual(dialog?.message, "Failed to add attachment. Please try again!")
         XCTAssertEqual(dialog?.actions.count, 1)
     }
+
+    func testFileDelete() {
+        testee.deleteFileButtonDidTap.accept(File.make())
+
+        XCTAssertTrue(interactor.deleteFileCalled)
+    }
+
+    func testFileRemove() {
+        testee.removeButtonDidTap.accept(File.make())
+
+        XCTAssertTrue(interactor.removeFileCalled)
+    }
+
+    func testFileOpen() {
+        router.mock("https://canvas.instructure.com/files/1", factory: {FileDetailsViewController()})
+        let file = File.make(from: APIFile.make(url: URL(string: "https://canvas.instructure.com/files/1")!))
+        testee.fileSelected.accept((WeakViewController(), file))
+
+        wait(for: [router.showExpectation], timeout: 1)
+        let viewController = router.presented as? FileDetailsViewController
+        XCTAssertNotNil(viewController)
+    }
+
+    func testFileOpenError() {
+        let file = File.make(from: APIFile.make(url: URL(string: "https://canvas.instructure.com/files/2")!))
+        testee.fileSelected.accept((WeakViewController(), file))
+
+        wait(for: [router.showExpectation], timeout: 1)
+        let viewController = router.presented as? UIAlertController
+        XCTAssertNotNil(router.presented)
+    }
 }

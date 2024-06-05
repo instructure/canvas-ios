@@ -326,7 +326,7 @@ extension ComposeMessageOptions {
         queryItems.append(.init(name: QueryParameterKey.autoTeacherSelectKey.rawValue, value: String(extras.autoTeacherSelect)))
         queryItems.append(.init(name: QueryParameterKey.alwaysShowRecipientsKey.rawValue, value: String(extras.alwaysShowRecipients)))
         queryItems.append(.init(name: QueryParameterKey.teacherOnlyKey.rawValue, value: String(extras.teacherOnly)))
-        
+
         return queryItems
 
     }

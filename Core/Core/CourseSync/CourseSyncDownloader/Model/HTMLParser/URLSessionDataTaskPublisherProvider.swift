@@ -19,12 +19,14 @@
 import Foundation
 import Combine
 
-protocol URLSessionDataTaskPublisherProvider {
+public protocol URLSessionDataTaskPublisherProvider {
     func getPublisher(for: URLRequest) -> AnyPublisher<(tempURL: URL, fileName: String), Error>
 }
 
-class URLSessionDataTaskPublisherProviderLive: URLSessionDataTaskPublisherProvider {
-    func getPublisher(for request: URLRequest) -> AnyPublisher<(tempURL: URL, fileName: String), Error> {
+public class URLSessionDataTaskPublisherProviderLive: URLSessionDataTaskPublisherProvider {
+
+    public init() { }
+    public func getPublisher(for request: URLRequest) -> AnyPublisher<(tempURL: URL, fileName: String), Error> {
         return Future { promise in
             Task {
                 do {

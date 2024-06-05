@@ -35,45 +35,43 @@ public struct ComposeMessageView: View {
     }
 
     public var body: some View {
-        GeometryReader { geometry in
-            ScrollView {
-                VStack(spacing: 0) {
-                    scrollViewProxyView
-                    headerView
-                        .background(
-                            GeometryReader { proxy in
-                                Color.clear
-                                    .onAppear {
-                                        headerHeight = proxy.size.height
-                                    }
-                            }
-                        )
-                    separator
-                    VStack(spacing: 0) {
-                        propertiesView
-                    }
-                    separator
-                    VStack(spacing: 0) {
-                        bodyView
-                        attachmentsView
-                        if !model.includedMessages.isEmpty {
-                            includedMessages
+        ScrollView {
+            VStack(spacing: 0) {
+                scrollViewProxyView
+                headerView
+                    .background(
+                        GeometryReader { proxy in
+                            Color.clear
+                                .onAppear {
+                                    headerHeight = proxy.size.height
+                                }
                         }
+                    )
+                separator
+                VStack(spacing: 0) {
+                    propertiesView
+                }
+                separator
+                VStack(spacing: 0) {
+                    bodyView
+                    attachmentsView
+                    if !model.includedMessages.isEmpty {
+                        includedMessages
                     }
-                    separator
+                }
+                separator
 
-                }
-                .background(Color.backgroundLightest)
-                .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
-                .navigationBarStyle(.modal)
             }
-            .coordinateSpace(name: proxyScrollViewKey)
-            .onPreferenceChange(ViewSizeKey.self) { offset in
-                if (offset < -headerHeight) {
-                    showExtraSendButton = true
-                } else {
-                    showExtraSendButton = false
-                }
+            .background(Color.backgroundLightest)
+            .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
+            .navigationBarStyle(.modal)
+        }
+        .coordinateSpace(name: proxyScrollViewKey)
+        .onPreferenceChange(ViewSizeKey.self) { offset in
+            if (offset < -headerHeight) {
+                showExtraSendButton = true
+            } else {
+                showExtraSendButton = false
             }
         }
         .confirmationAlert(
@@ -286,7 +284,7 @@ public struct ComposeMessageView: View {
                     .accessibilityHidden(true)
                 Spacer()
                 Button {
-                    model.attachmentbuttonDidTap(viewController: controller)
+                    model.attachmentButtonDidTap(viewController: controller)
                 } label: {
                     Image.paperclipLine
                         .resizable()

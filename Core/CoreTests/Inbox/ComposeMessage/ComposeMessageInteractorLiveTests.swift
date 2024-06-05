@@ -27,7 +27,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         super.setUp()
         mockData()
 
-        testee = ComposeMessageInteractorLive()
+        testee = ComposeMessageInteractorLive(env: environment, publisherProvider: URLSessionDataTaskPublisherProviderMock())
 
         waitForState(.data)
     }
@@ -133,6 +133,37 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         waitForState(.data)
     }
 
+    func testDeleteFile() {
+        let fileId = "1"
+        let deleteRequest = DeleteFileRequest(fileID: fileId)
+        let response = APIFile.make()
+        api.mock(deleteRequest, value: response)
+
+        XCTAssertFinish(testee.deleteFile(file: File.make(from: response)))
+
+        waitForState(.data)
+    }
+
+    func testOnlineFileURLGetter() {
+        var subscriptions: [AnyCancellable] = []
+        let expectation = self.expectation(description: "getURL")
+        var resultURL: URL?
+        let fileId = "1"
+        let getRequest = GetFileRequest(context: .currentUser, fileID: fileId, include: [])
+        let response = APIFile.make(url: URL(string: "https://instructure.com/test.txt")!)
+        api.mock(getRequest, value: response)
+
+        testee.getOnlineFileURL(fileId: fileId)
+            .sink(receiveCompletion: { _ in }, receiveValue: { url in
+                resultURL = url
+                expectation.fulfill()
+            })
+            .store(in: &subscriptions)
+
+        wait(for: [expectation], timeout: 2)
+        XCTAssertEqual(resultURL, URL.Directories.documents.appendingPathComponent("testOverwritten.txt"))
+    }
+
     private func mockData() {
         let course1 = APICourse.make(
             id: "1",
@@ -152,5 +183,15 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         stateUpdate.assertForOverFulfill = false
         stateUpdate.fulfill()
         wait(for: [stateUpdate], timeout: 1)
+    }
+
+    class URLSessionDataTaskPublisherProviderMock: URLSessionDataTaskPublisherProvider {
+        let savedURL = URL.Directories.documents.appendingPathComponent("test.txt")
+
+        func getPublisher(for request: URLRequest) -> AnyPublisher<(tempURL: URL, fileName: String), Error> {
+            return Just((tempURL: savedURL, fileName: "testOverwritten.txt"))
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
     }
 }

@@ -245,6 +245,33 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.recipients.count, 0)
         XCTAssertEqual(testee.includedMessages, [message1, message2, message3])
     }
+
+    func testAttachmnetButton() {
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+        testee.attachmentButtonDidTap(viewController: viewController)
+        wait(for: [router.showExpectation], timeout: 1)
+
+        XCTAssertNotNil(router.presented)
+    }
+
+    func testIncludedMessagesExpansion() {
+        let message1: ConversationMessage = .make(from: .make(id: "1", created_at: Date.now))
+        let message2: ConversationMessage = .make(from: .make(id: "2", created_at: Date.now + 2))
+        let message3: ConversationMessage = .make(from: .make(id: "3", created_at: Date.now + 3))
+        let conversation: Conversation = .make()
+        conversation.messages = [message1, message2, message3]
+        conversation.subject = "Test subject"
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .forward(conversation: conversation, message: nil)), interactor: mockInteractor)
+        XCTAssertTrue(testee.expandedIncludedMessageIds.isEmpty)
+
+        testee.toggleMessageExpand(message: message2)
+        XCTAssertEqual(testee.expandedIncludedMessageIds.count, 1)
+        XCTAssertEqual(testee.expandedIncludedMessageIds.first, message2.id)
+
+        testee.toggleMessageExpand(message: message2)
+        XCTAssertEqual(testee.expandedIncludedMessageIds.count, 0)
+    }
 }
 
 private class ComposeMessageInteractorMock: ComposeMessageInteractor {

@@ -29,9 +29,11 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     private let context: Context = .currentUser
     private var subscriptions = Set<AnyCancellable>()
     private var conversationAttachmentsFolderStore: Store<GetFolderByPath>?
+    private let publisherProvider: URLSessionDataTaskPublisherProvider
 
-    public init(env: AppEnvironment = .shared) {
+    public init(env: AppEnvironment = .shared, publisherProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()) {
         self.env = env
+        self.publisherProvider = publisherProvider
         self.getConversationFolderId()
     }
 
@@ -87,7 +89,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
                    let self,
                    let session = self.env.currentSession,
                    let request = try? url.urlRequest(relativeTo: session.baseURL, accessToken: session.accessToken, actAsUserID: session.actAsUserID) {
-                    return URLSessionDataTaskPublisherProviderLive().getPublisher(for: request)
+                    return self.publisherProvider.getPublisher(for: request)
                 } else {
                     return Fail(error: NSError.instructureError(String(localized: "Failed to duplicate file", bundle: .core))).eraseToAnyPublisher()
                 }
