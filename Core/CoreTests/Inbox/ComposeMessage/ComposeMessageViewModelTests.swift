@@ -55,7 +55,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.bodyText = "Test body"
         XCTAssertEqual(testee.sendButtonActive, true)
         testee.subject = ""
-        XCTAssertEqual(testee.sendButtonActive, false)
+        XCTAssertEqual(testee.sendButtonActive, true)
     }
 
     func testValidationForBody() {
@@ -248,12 +248,16 @@ class ComposeMessageViewModelTests: CoreTestCase {
 }
 
 private class ComposeMessageInteractorMock: ComposeMessageInteractor {
+    var conversationAttachmentsFolder = CurrentValueSubject<[Core.Folder], Never>([])
+
     var state: CurrentValueSubject<Core.StoreState, Never>
     var courses: CurrentValueSubject<[Core.InboxCourse], Never>
 
     var isSuccessfulMockFuture = true
     var isMessageAddSent = false
     var isConversationAddSent = false
+    var isFileURLCalled = false
+    var isFileDeleted = false
 
     init(context: NSManagedObjectContext) {
         self.state = .init(.data)
@@ -268,6 +272,16 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
     func addConversationMessage(parameters: MessageParameters) -> Future<URLResponse?, Error> {
         isMessageAddSent = true
         return mockFuture
+    }
+
+    func deleteFile(file: Core.File) -> AnyPublisher<Void, Never> {
+        isFileDeleted = true
+        return Just(()).eraseToAnyPublisher()
+    }
+
+    func getOnlineFileURL(fileId: String) -> AnyPublisher<URL?, any Error> {
+        isFileURLCalled = true
+        return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
     private var mockFuture: Future<URLResponse?, Error> {

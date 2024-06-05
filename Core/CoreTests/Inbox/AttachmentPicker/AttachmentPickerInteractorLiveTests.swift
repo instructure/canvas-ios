@@ -41,10 +41,11 @@ class AttachmentPickerInteractorLiveTests: CoreTestCase {
         url: URL(string: "/files/d?download=2")!,
         mime_class: "pdf"
     ))
+    private let alreadyUploadedFiles = CurrentValueSubject<[File], Never>([])
 
     override func setUp() {
         super.setUp()
-        testee = AttachmentPickerInteractorLive(batchId: batchId, uploadManager: uploadManager)
+        testee = AttachmentPickerInteractorLive(batchId: batchId, uploadManager: uploadManager, alreadyUploadedFiles: alreadyUploadedFiles)
     }
 
     func testAddFile() {
