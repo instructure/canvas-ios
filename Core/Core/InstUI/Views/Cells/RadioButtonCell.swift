@@ -36,7 +36,7 @@ extension InstUI {
         public var body: some View {
             VStack(spacing: 0) {
                 Button {
-                    isSelected = true
+                    isSelected.toggle()
                 } label: {
                     HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
                         InstUI.RadioButton(

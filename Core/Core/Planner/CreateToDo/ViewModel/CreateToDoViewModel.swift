@@ -73,8 +73,7 @@ final class CreateToDoViewModel: ObservableObject {
     init(
         createToDoInteractor: CreateToDoInteractor,
         calendarListProviderInteractor: CalendarFilterInteractor,
-        completion: @escaping (PlannerAssembly.Completion) -> Void,
-        router: Router = AppEnvironment.shared.router
+        completion: @escaping (PlannerAssembly.Completion) -> Void
     ) {
         self.createToDoInteractor = createToDoInteractor
         self.calendarListProviderInteractor = calendarListProviderInteractor
@@ -87,6 +86,7 @@ final class CreateToDoViewModel: ObservableObject {
             .assign(to: \.calendars, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
+        // assumes calendarListProviderInteractor is already populated
         calendar = calendars.first { $0.context.contextType == .user }
 
         didTapCancel

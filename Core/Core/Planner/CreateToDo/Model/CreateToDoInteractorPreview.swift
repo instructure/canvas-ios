@@ -24,13 +24,24 @@ final class CreateToDoInteractorPreview: CreateToDoInteractor {
 
     init() { }
 
+    var createToDoCallsCount: Int = 0
+    var createToDoInput: (title: String, date: Date, calendar: CDCalendarFilterEntry?, details: String?)?
+    var createToDoResult: Result<Void, Error>? = .success
+
     func createToDo(
         title: String,
         date: Date,
         calendar: CDCalendarFilterEntry?,
         details: String?
     ) -> AnyPublisher<Void, Error> {
-        Empty<Void, Error>().eraseToAnyPublisher()
+        createToDoCallsCount += 1
+        createToDoInput = (title: title, date: date, calendar: calendar, details: details)
+
+        if let createToDoResult {
+            return createToDoResult.publisher.eraseToAnyPublisher()
+        } else {
+            return Empty<Void, Error>().eraseToAnyPublisher()
+        }
     }
 }
 

@@ -47,7 +47,8 @@ final class SelectCalendarViewModel: ObservableObject {
     func isSelected(context: Context) -> Binding<Bool> {
         Binding { [weak self] in
             self?.selectedContext == context
-        } set: { [weak self] _ in
+        } set: { [weak self] selected in
+            guard selected else { return }
             self?.selectedContext = context
             self?.selectedContextBinding = context
         }

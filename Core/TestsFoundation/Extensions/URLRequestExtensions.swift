@@ -17,38 +17,23 @@
 //
 
 import Foundation
+@testable import Core
 
-public extension Result {
-
-    var value: Success? {
-        if case .success(let value) = self {
-            return value
+extension URLRequest {
+    public func decodeBody<T: Decodable>() -> T? {
+        guard let httpBody else {
+            XCTFail("No request http body")
+            return nil
         }
-        return nil
-    }
 
-    var error: Failure? {
-        if case .failure(let error) = self {
-            return error
+        let decoder = APIJSONDecoder()
+
+        guard let body = try? decoder.decode(T.self, from: httpBody)
+        else {
+            XCTFail("Invalid request body")
+            return nil
         }
-        return nil
-    }
 
-    var isSuccess: Bool {
-        if case .success = self {
-            return true
-        }
-        return false
+        return body
     }
-
-    var isFailure: Bool {
-        if case .failure = self {
-            return true
-        }
-        return false
-    }
-}
-
-extension Result where Success == Void {
-    public static var success: Result { .success(()) }
 }
