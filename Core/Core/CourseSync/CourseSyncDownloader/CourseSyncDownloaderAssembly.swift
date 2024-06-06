@@ -33,6 +33,7 @@ public enum CourseSyncDownloaderAssembly {
         let quizHtmlParser = makeHTMLParser(for: .quizzes, loginSession: loginSession, scheduler: scheduler)
         let announcementHtmlParser = makeHTMLParser(for: .announcements, loginSession: loginSession, scheduler: scheduler)
         let calendarEventHtmlParser = makeHTMLParser(for: .calendarEvents, loginSession: loginSession, scheduler: scheduler)
+        let discussionHtmlParser = makeHTMLParser(for: .discussions, loginSession: loginSession, scheduler: scheduler)
 
         let contentInteractors: [CourseSyncContentInteractor] = [
             CourseSyncPagesInteractorLive(htmlParser: pageHtmlParser),
@@ -43,7 +44,7 @@ public enum CourseSyncDownloaderAssembly {
             CourseSyncConferencesInteractorLive(),
             CourseSyncAnnouncementsInteractorLive(htmlParser: announcementHtmlParser),
             CourseSyncQuizzesInteractorLive(htmlParser: quizHtmlParser),
-            CourseSyncDiscussionsInteractorLive(),
+            CourseSyncDiscussionsInteractorLive(discussionHtmlParser: discussionHtmlParser),
         ]
         let progressInteractor = CourseSyncProgressObserverInteractorLive()
         let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, activityName: "Offline Sync")
@@ -52,8 +53,7 @@ public enum CourseSyncDownloaderAssembly {
                                         filesInteractor: CourseSyncFilesInteractorLive(),
                                         modulesInteractor: CourseSyncModulesInteractorLive(pageHtmlParser: pageHtmlParser, quizHtmlParser: quizHtmlParser),
                                         progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-                                        notificationInteractor: CourseSyncNotificationInteractor(notificationManager: .shared,
-                                                                                                     progressInteractor: progressInteractor),
+                                        notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: progressInteractor),
                                         courseListInteractor: AllCoursesAssembly.makeCourseListInteractor(),
                                         backgroundActivity: backgroundActivity,
                                         scheduler: scheduler,

@@ -62,7 +62,7 @@ public class PlannerListViewController: UIViewController {
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
         self.view.backgroundColor = .backgroundLightest
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+        tableView.tableFooterView = UIView(frame: .zero)
         tableViewBackgroundView.add(to: tableView)
         refresh()
     }
@@ -150,24 +150,51 @@ class PlannerListCell: UITableViewCell {
 
     func update(_ p: Plannable?) {
         accessibilityIdentifier = "PlannerList.event.\(p?.id ?? "")"
-        courseCode.setText(p?.contextName, style: .textCellTopLabel)
-        title.setText(p?.title, style: .textCellTitle)
+
+        let customColor = AppEnvironment.shared.app == .parent
+            ? nil
+            : p?.color.ensureContrast(against: .backgroundLightest)
+
         backgroundColor = .backgroundLightest
+        selectedBackgroundView = ContextCellBackgroundView.create(color: customColor)
+
+        icon.image = p?.icon()
+        if let customColor {
+            icon.tintColor = customColor
+        }
+
+        courseCode.setText(contextName(for: p), style: .textCellTopLabel)
+        if let customColor {
+            courseCode.textColor = customColor
+        }
+
+        title.setText(p?.title, style: .textCellTitle)
+
         let dueDateText = (p?.date).flatMap {
             DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .short)
         }
         dueDate.setText(dueDateText, style: .textCellSupportingText)
-        icon.image = p?.icon()
         let pointsText: String? = p?.pointsPossible.flatMap {
             let format = String(localized: "g_points", bundle: .core)
             return String.localizedStringWithFormat(format, $0)
         }
         points.setText(pointsText, style: .textCellSupportingText)
         pointsDivider.isHidden = dueDate.text == nil || pointsText == nil
-        if !Bundle.main.isParentApp, let color = p?.color {
-            courseCode.textColor = color.ensureContrast(against: .backgroundLightest)
-            icon.tintColor = color.ensureContrast(against: .backgroundLightest)
-        }
+
         accessoryType = .disclosureIndicator
+    }
+
+    private func contextName(for plannable: Plannable?) -> String? {
+        guard let plannable else { return nil }
+
+        if plannable.plannableType != .planner_note {
+            return plannable.contextName
+        }
+
+        if let contextName = plannable.contextName {
+            return String(localized: "\(contextName) To Do", bundle: .core, comment: "<CourseName> To Do")
+        } else {
+            return String(localized: "To Do", bundle: .core)
+        }
     }
 }

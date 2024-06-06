@@ -230,6 +230,7 @@ public extension UIImage {
     static var chatBubble: UIImage { UIImage(named: "chatBubble", in: .core, compatibleWith: nil)! }
     static var checkbox: UIImage { UIImage(named: "checkbox", in: .core, compatibleWith: nil)! }
     static var checkboxSelected: UIImage { UIImage(named: "checkboxSelected", in: .core, compatibleWith: nil)! }
+    static var chevronDown: UIImage { UIImage(named: "chevronDown", in: .core, compatibleWith: nil)! }
     static var collaborations: UIImage { UIImage(named: "collaborations", in: .core, compatibleWith: nil)! }
     static var conferences: UIImage { UIImage(named: "conferences", in: .core, compatibleWith: nil)! }
     static var coursesTab: UIImage { UIImage(named: "coursesTab", in: .core, compatibleWith: nil)! }

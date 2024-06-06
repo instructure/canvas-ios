@@ -38,6 +38,8 @@ public class PlannerViewController: UIViewController {
     lazy var calendarFilterInteractor: CalendarFilterInteractor = PlannerAssembly.makeInteractor(observedUserId: studentID)
     private var subscriptions = Set<AnyCancellable>()
 
+    private var currentlyDisplayedToday: Date?
+
     public static func create(studentID: String? = nil, selectedDate: Date = Clock.now) -> PlannerViewController {
         let controller = PlannerViewController()
         controller.studentID = studentID
@@ -58,6 +60,7 @@ public class PlannerViewController: UIViewController {
         addNoteButton.accessibilityLabel = String(localized: "Add Planner Note", bundle: .core)
         todayButton.accessibilityIdentifier = "PlannerCalendar.todayButton"
         todayButton.accessibilityLabel = String(localized: "Go to today", bundle: .core)
+        updateTodayButton()
 
         addChild(calendar)
         view.addSubview(calendar.view)
@@ -130,6 +133,42 @@ public class PlannerViewController: UIViewController {
         updateList(date)
     }
 
+    private func updateTodayButton() {
+        let date = Clock.now.startOfDay()
+        guard currentlyDisplayedToday != date else { return }
+
+        currentlyDisplayedToday = date
+        todayButton.image = makeTodayIcon(text: date.dayString)
+    }
+
+    private func makeTodayIcon(text: String) -> UIImage {
+        let size = CGSize(width: 24, height: 24) // matches original image size
+        // fixed as the rest of the navBar buttons
+        let font: UIFont = .applicationFont(ofSize: 10, weight: .regular) // somehow this matches `scaledNamedFont(.regular12)`
+        let textY: CGFloat = 8 // centers text vertically for the size & font above
+
+        let renderer = UIGraphicsImageRenderer(size: size)
+        return renderer.image { _ in
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
+
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: font,
+                .paragraphStyle: paragraphStyle,
+            ]
+
+            let attributedString = NSAttributedString(string: text, attributes: attributes)
+            attributedString.draw(
+                with: CGRect(x: 0, y: textY, width: size.width, height: size.height),
+                options: .usesLineFragmentOrigin,
+                context: nil
+            )
+
+            let bgImage = UIImage.calendarEmptyLine
+            bgImage.draw(at: .zero)
+        }
+    }
+
     func updateList(_ date: Date) {
         guard !calendar.calendar.isDate(date, inSameDayAs: list.start) else { return }
         let newList = PlannerListViewController.create(
@@ -140,6 +179,9 @@ public class PlannerViewController: UIViewController {
         newList.loadViewIfNeeded()
         newList.tableView.contentInset = list.tableView.contentInset
         listPageController.setCurrentPage(newList, direction: date < list.start ? .reverse : .forward)
+
+        // update Today button if needed alongside list update
+        updateTodayButton()
     }
 }
 

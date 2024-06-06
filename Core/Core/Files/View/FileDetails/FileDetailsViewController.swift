@@ -165,7 +165,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     }
 
     func update() {
-        guard let file = files.first else {
+        guard let file = files.first, offlineFileInteractor?.isOffline == false else {
             if let error = files.error {
                 // If file download failed because of unauthorization error and we have a verifier token, then we modify the url and try to open the file in a webview.
                 if var url = originURL, url.containsVerifier, case .unauthorized = (error as? APIError) {
@@ -447,6 +447,11 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
 
     func downloadComplete(mimeClass: String?, contentType: String?) {
         guard let localURL = localURL, FileManager.default.fileExists(atPath: localURL.path) else { return }
+        if localURL.lastPathComponent == "download" && localURL.pathExtension == "" {
+            return performUIUpdate {
+                self.showFileNoLongerExistsDialog()
+            }
+        }
         shareButton.isEnabled = true
         switch (mimeClass, contentType) {
         case ("audio", _):
@@ -559,7 +564,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
 
         let document = Document(url: url)
         document.annotationSaveMode = .embedded
-        let controller = PDFViewController(document: document, configuration: PDFConfiguration { (builder) -> Void in
+        let controller = PDFViewController(document: document, configuration: PDFConfiguration { builder in
             docViewerConfigurationBuilder(builder)
             builder.editableAnnotationTypes = [ .link, .highlight, .underline, .strikeOut, .squiggly, .freeText, .ink, .square, .circle, .line, .polygon, .eraser ]
             builder.propertiesForAnnotations[.square] = [["color"], ["lineWidth"]]

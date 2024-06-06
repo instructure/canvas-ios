@@ -32,7 +32,7 @@ extension StudentAppDelegate: RCTBridgeDelegate {
                 window.rootViewController = controller
             }, completion: { _ in
                 self.environment.startupDidComplete()
-                NotificationManager.shared.registerForRemoteNotifications(application: .shared)
+                UIApplication.shared.registerForPushNotifications()
             })
         }
 

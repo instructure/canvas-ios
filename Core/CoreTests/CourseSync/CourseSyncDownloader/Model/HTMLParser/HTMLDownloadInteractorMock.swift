@@ -51,15 +51,14 @@ class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
             .eraseToAnyPublisher()
     }
 
-    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
+    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Never> {
         return downloadFile(url, courseId: courseId, resourceId: resourceId, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
-    func downloadFile(_ url: URL, courseId: String, resourceId: String, publisherProvider: Core.URLSessionDataTaskPublisherProvider) -> AnyPublisher<String, Error> {
+    func downloadFile(_ url: URL, courseId: String, resourceId: String, publisherProvider: Core.URLSessionDataTaskPublisherProvider) -> AnyPublisher<String, Never> {
         fileNames.append(url.lastPathComponent)
 
         return Just(url.path)
-            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 

@@ -23,11 +23,5 @@ type_name:
   min_length: 3
   max_length: 50
 
-identifier_name:
-  allowed_symbols: "_"
-  min_length: 1 # only min_length
-  max_length: 50
-  excluded: # excluded via string array
-    - access_token
 trailing_comma:
   mandatory_comma: true

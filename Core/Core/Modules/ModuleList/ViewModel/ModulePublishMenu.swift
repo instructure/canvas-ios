@@ -127,18 +127,21 @@ private enum ModulePublishMenuModel {
         static let publishWithItems = ModulePublishItem(
             title: String(localized: "Publish All Modules And Items", bundle: .core),
             confirmMessage: String(localized: "This will make all modules and items visible to students.", bundle: .core),
+            accessibilityIdentifier: "PublishAllModulesAndItems",
             action: .publish(.modulesAndItems)
         )
 
         static let publishWithoutItems = ModulePublishItem(
             title: String(localized: "Publish Modules Only", bundle: .core),
             confirmMessage: String(localized: "This will make only the modules visible to students.", bundle: .core),
+            accessibilityIdentifier: "PublishModulesOnly",
             action: .publish(.onlyModules)
         )
 
         static let unpublishWithItems = ModulePublishItem(
             title: String(localized: "Unpublish All Modules And Items", bundle: .core),
             confirmMessage: String(localized: "This will make all modules and items invisible to students.", bundle: .core),
+            accessibilityIdentifier: "UnpublishAllModulesAndItems",
             action: .unpublish(.modulesAndItems)
         )
     }
@@ -147,18 +150,21 @@ private enum ModulePublishMenuModel {
         static let publishWithItems = ModulePublishItem(
             title: String(localized: "Publish Module And All Items", bundle: .core),
             confirmMessage: String(localized: "This will make the module and all items visible to students.", bundle: .core),
+            accessibilityIdentifier: "PublishModulesAndAllItems",
             action: .publish(.modulesAndItems)
         )
 
         static let publishWithoutItems = ModulePublishItem(
             title: String(localized: "Publish Module Only", bundle: .core),
             confirmMessage: String(localized: "This will make only the module visible to students.", bundle: .core),
+            accessibilityIdentifier: "PublishModuleOnly",
             action: .publish(.onlyModules)
         )
 
         static let unpublishWithItems = ModulePublishItem(
             title: String(localized: "Unpublish Module And All Items", bundle: .core),
             confirmMessage: String(localized: "This will make the module and all items invisible to students.", bundle: .core),
+            accessibilityIdentifier: "UnpublishModuleAndAllItems",
             action: .unpublish(.modulesAndItems)
         )
     }
@@ -167,12 +173,14 @@ private enum ModulePublishMenuModel {
         static let publish = ModulePublishItem(
             title: String(localized: "Publish", bundle: .core),
             confirmMessage: String(localized: "This will make only this item visible to students.", bundle: .core),
+            accessibilityIdentifier: "Publish",
             action: .publish
         )
 
         static let unpublish = ModulePublishItem(
             title: String(localized: "Unpublish", bundle: .core),
             confirmMessage: String(localized: "This will make only this item invisible to students.", bundle: .core),
+            accessibilityIdentifier: "Unpublish",
             action: .unpublish
         )
     }
@@ -222,7 +230,8 @@ private extension UIAction {
                 let alert = UIAlertController(modulePublishItem: modulePublishItem, actionDidPerform: actionDidPerform)
                 router.show(alert, from: host, options: .modal())
             }
-       )
+        )
+        self.accessibilityIdentifier = modulePublishItem.accessibilityIdentifier
     }
 }
 

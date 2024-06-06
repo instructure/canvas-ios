@@ -23,7 +23,7 @@ import TestsFoundation
 
 class DiscussionDetailsViewControllerTests: CoreTestCase {
     let course = Context(.course, id: "1")
-    lazy var controller = DiscussionDetailsViewController.create(context: course, topicID: "1")
+    lazy var controller = DiscussionDetailsViewController.create(context: course, topicID: "1", offlineModeInteractor: OfflineModeInteractorMock(mockIsInOfflineMode: false))
 
     let emptyResponse = HTTPURLResponse(url: URL(string: "/")!, statusCode: 204, httpVersion: nil, headerFields: nil)
     let unread = "class=\"\(DiscussionHTML.Styles.unread)\""
@@ -176,6 +176,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         api.mock(MarkDiscussionEntriesReadRequest(context: course, topicID: "1", isRead: true, isForcedRead: true), response: emptyResponse)
         sheet?.actions[0].action()
         XCTAssert(!getBodyHTML().contains(unread))
+        api.mock(MarkDiscussionEntriesReadRequest(context: course, topicID: "1", isRead: false, isForcedRead: true), response: emptyResponse)
         XCTAssertEqual(sheet?.actions[1].title, "Mark All as Unread")
         sheet?.actions[1].action()
         XCTAssert(getBodyHTML().contains(unread))

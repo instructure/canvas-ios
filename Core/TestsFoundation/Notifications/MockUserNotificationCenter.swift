@@ -20,15 +20,6 @@ import Foundation
 @testable import Core
 import UserNotifications
 
-public class MockNotificationManager: NotificationManager {
-    public var mock: MockUserNotificationCenter
-
-    public init() {
-        mock = MockUserNotificationCenter()
-        super.init(notificationCenter: mock, logger: TestLogger())
-    }
-}
-
 public class MockUserNotificationCenter: UserNotificationCenterProtocol {
     public var requests: [UNNotificationRequest] = []
     public var error: Error?
@@ -36,9 +27,12 @@ public class MockUserNotificationCenter: UserNotificationCenterProtocol {
     public var authError: Error?
     public weak var delegate: UNUserNotificationCenterDelegate?
 
+    public private(set) var authorizationRequestOptions: UNAuthorizationOptions?
+
     public init() {}
 
     public func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void) {
+        authorizationRequestOptions = options
         completionHandler(authorized, authError)
     }
 
