@@ -142,9 +142,12 @@ public final class PageDetailsViewController: DownloadableViewController, Colore
             isOffline: offlineModeInteractor?.isNetworkOffline(),
             filePath: offlinePath,
             content: page.body,
-            originalBaseURL: nil,
+            originalBaseURL: page.htmlURL,
             offlineBaseURL: rootURL
         )
+        if let course = courses.first {
+            updated?(page, course)
+        }
     }
 
     private func updatePages() {

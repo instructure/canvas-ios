@@ -22,14 +22,12 @@ import SafariServices
  This helper opens LTI launch urls that are not Canvas LTI launch urls in Safari.
  */
 enum EmbeddedExternalTools {
-    // swiftlint:disable opening_brace
     private static let externalToolChecks: [(URL) -> Bool] = [
         {
             $0.host?.contains("sharepoint.com") == true &&
             $0.path.contains("embed")
         },
     ]
-    // swiftlint:enable opening_brace
 
     /**
      - returns: `True` if the LTI launch was handled by this method.

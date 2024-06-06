@@ -26,7 +26,7 @@ class CourseSyncDiscussionsInteractorLiveTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        testee = CourseSyncDiscussionsInteractorLive(htmlParser: getHTMLParser())
+        testee = CourseSyncDiscussionsInteractorLive(discussionHtmlParser: getHTMLParser())
     }
 
     override func tearDown() {

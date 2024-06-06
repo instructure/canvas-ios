@@ -106,7 +106,9 @@ public struct APIUser: Codable, Equatable {
 }
 
 public struct APICustomColors: Codable, Equatable {
-    let custom_colors: [String: String]
+    typealias CanvasContextID = String
+    typealias HexColor = String
+    let custom_colors: [CanvasContextID: HexColor]
 }
 
 public struct APICourseNickname: Codable {

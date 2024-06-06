@@ -143,21 +143,10 @@ public class CourseDetailsViewModel: ObservableObject {
             return
         }
 
-        if isDiscussionRedesignEnabled() {
-            offlineSelectionsForCourse.removeAll { selection in
-                selection.contains("courses/\(courseID)/tabs/\(TabName.discussions.rawValue)") ||
-                    selection.contains("courses/\(courseID)/tabs/\(TabName.announcements.rawValue)")
-            }
-        }
-
         let wholeCourseSelected = offlineSelectionsForCourse.contains("courses/\(courseID)")
 
         if wholeCourseSelected {
             var offlineTabs = TabName.OfflineSyncableTabs.map { $0.rawValue }
-
-            if isDiscussionRedesignEnabled() {
-                offlineTabs = offlineTabs.filter { $0 != TabName.discussions.rawValue && $0 != TabName.announcements.rawValue }
-            }
 
             cells.forEach {
                 $0.isSupportedOffline = offlineTabs.contains($0.tabID)

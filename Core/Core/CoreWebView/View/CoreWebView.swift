@@ -52,6 +52,7 @@ open class CoreWebView: WKWebView {
     private var isThemeInverted: Bool {
         themeSwitcher?.isThemeInverted ?? false
     }
+    private var fullScreenVideoSupport: FullScreenVideoSupport?
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -318,6 +319,11 @@ open class CoreWebView: WKWebView {
             }
         """
     }
+
+    // Call this method if you didn't add the webview into the view hierarchy with the `pinWithThemeSwitchButton` method.
+    public func activateFullScreenSupport() {
+        fullScreenVideoSupport = .init(webView: self)
+    }
 }
 
 extension CoreWebView: WKNavigationDelegate {
@@ -377,7 +383,7 @@ extension CoreWebView: WKNavigationDelegate {
 
         // Forward decision to delegate
         if action.navigationType == .linkActivated, let url = action.request.url,
-            linkDelegate?.handleLink(url) == true {
+           linkDelegate?.handleLink(url) == true {
             return decisionHandler(.cancel)
         }
 
@@ -586,6 +592,7 @@ extension CoreWebView {
         themeSwitcher = CoreWebViewThemeSwitcherLive(host: self)
         themeSwitcher?.pinHostAndButton(inside: parent, leading: leading, trailing: trailing, top: top, bottom: bottom)
         themeSwitcher?.updateUserInterfaceStyle(with: .current)
+        activateFullScreenSupport()
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -605,7 +612,7 @@ extension CoreWebView {
             let rawHtmlValue = try? String(contentsOf: filePath, encoding: .utf8)
             loadHTMLString(rawHtmlValue ?? "", baseURL: offlineBaseURL)
         } else {
-            loadHTMLString(content ?? "", baseURL: originalBaseURL)
+            loadHTMLString(HTMLWistiaHandler.updateWistia(in: content) ?? content ?? "", baseURL: originalBaseURL)
         }
     }
 }

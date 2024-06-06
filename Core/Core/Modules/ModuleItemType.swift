@@ -138,6 +138,19 @@ public enum ModuleItemType: Equatable, Codable {
             return String(localized: "external tool", bundle: .core)
         }
     }
+
+    var assetType: GetModuleItemSequenceRequest.AssetType {
+        switch self {
+        case .file: return .file
+        case .discussion: return .discussion
+        case .assignment: return .assignment
+        case .quiz: return .quiz
+        case .externalURL: return .moduleItem
+        case .externalTool: return .externalTool
+        case .page: return .page
+        case .subHeader: return .moduleItem
+        }
+    }
 }
 
 public extension Optional where Wrapped == ModuleItemType {

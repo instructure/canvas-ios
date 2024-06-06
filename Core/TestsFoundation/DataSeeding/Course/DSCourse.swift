@@ -19,11 +19,33 @@
 public struct DSCourse: Codable {
     public let id: String
     public let name: String
-    public let time_zone: String
+    public let time_zone: String?
     public var syllabus_body: String?
-    public let account_id: String
+    public let account_id: String?
     public var homeroom_course: Bool = false
     public let start_at: Date?
     public let end_at: Date?
     public let default_view: String?
+
+    public init(
+        id: String,
+        name: String,
+        time_zone: String? = nil,
+        syllabus_body: String? = nil,
+        account_id: String? = nil,
+        homeroom_course: Bool = false,
+        start_at: Date? = nil,
+        end_at: Date? = nil,
+        default_view: String? = nil
+    ) {
+        self.id = id
+        self.name = name
+        self.time_zone = time_zone
+        self.syllabus_body = syllabus_body
+        self.account_id = account_id
+        self.homeroom_course = homeroom_course
+        self.start_at = start_at
+        self.end_at = end_at
+        self.default_view = default_view
+    }
 }

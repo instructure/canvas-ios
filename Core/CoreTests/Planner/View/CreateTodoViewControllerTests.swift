@@ -20,13 +20,10 @@ import XCTest
 @testable import Core
 
 class CreateTodoViewControllerTests: CoreTestCase {
-
-    var vc = CreateTodoViewController.create()
     let date = Clock.now
 
     override func setUp() {
         super.setUp()
-        vc = CreateTodoViewController.create()
         Clock.mockNow(date)
     }
 
@@ -36,14 +33,22 @@ class CreateTodoViewControllerTests: CoreTestCase {
     }
 
     func testLayout() {
-
         let title = "title"
         let details = "details"
         let course = APICourse.make()
 
+        let coursesRequest = GetCurrentUserCoursesRequest(
+            enrollmentState: .active,
+            state: [.current_and_concluded],
+            includes: []
+        )
+        api.mock(coursesRequest, value: [course])
+        let groupsRequest = GetGroupsRequest(context: .currentUser)
+        api.mock(groupsRequest, value: [])
+
         api.mock(GetCourses(), value: [course])
         let createExpectation = XCTestExpectation(description: "make sure create post request is made when done button is pressed")
-        let refreshExpectation = XCTestExpectation(description: "make sure create post request is made when done button is pressed")
+        let refreshExpectation = XCTestExpectation(description: "make sure refresh request is made after todo is created")
 
         let createNoteRequest = PostPlannerNoteRequest(body:
             PostPlannerNoteRequest.Body(
@@ -53,16 +58,14 @@ class CreateTodoViewControllerTests: CoreTestCase {
                 course_id: course.id.value,
                 linked_object_type: .planner_note,
                 linked_object_id: nil))
-        let refreshPlannablesRequest = GetPlannablesRequest(startDate: date.startOfDay(), endDate: date.startOfDay().addDays(1))
 
         api.mock(createNoteRequest) { _ in
             createExpectation.fulfill()
             return (nil, nil, nil)
         }
 
-        api.mock(refreshPlannablesRequest) { _ in
+        let vc = CreateTodoViewController.create {
             refreshExpectation.fulfill()
-            return (nil, nil, nil)
         }
 
         vc.loadView()

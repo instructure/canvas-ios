@@ -33,7 +33,8 @@ class FileAccessReportInteractorTests: CoreTestCase {
 
         // Mock File Access Response
         let expectedReporterURL = URL(string: "https://instructure.com/session?preview=1")!
-        api.mock(expectedReporterURL,
+        api.mock(url: expectedReporterURL,
+                 method: .head,
                  response: HTTPURLResponse(url: expectedReporterURL,
                                            statusCode: 200,
                                            httpVersion: "1.1",

@@ -22,8 +22,9 @@ import TestsFoundation
 import XCTest
 
 class CourseSyncNotificationInteractorTests: CoreTestCase {
+
     func testSendsSuccessNotificationWithItemCount() {
-        let testee = CourseSyncNotificationInteractor(notificationManager: notificationManager,
+        let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter),
                                                       progressInteractor: CourseSyncProgressObserverInteractorMock())
 
         // WHEN
@@ -39,7 +40,7 @@ class CourseSyncNotificationInteractorTests: CoreTestCase {
 
     func testNotSendsSuccessNotificationWhenSyncProgressIsOnScreen() {
         window.rootViewController = CourseSyncProgressAssembly.makeViewController(env: environment)
-        let testee = CourseSyncNotificationInteractor(notificationManager: notificationManager,
+        let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter),
                                                       progressInteractor: CourseSyncProgressObserverInteractorMock())
 
         // WHEN
@@ -52,7 +53,7 @@ class CourseSyncNotificationInteractorTests: CoreTestCase {
     func testSendsFailedNotification() {
         let progressObserverMock = CourseSyncProgressObserverInteractorMock()
         progressObserverMock.isSyncFailed = true
-        let testee = CourseSyncNotificationInteractor(notificationManager: notificationManager,
+        let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter),
                                                       progressInteractor: progressObserverMock)
 
         // WHEN
@@ -64,14 +65,14 @@ class CourseSyncNotificationInteractorTests: CoreTestCase {
         }
 
         XCTAssertEqual(notification.content.title, "Offline Content Sync Failed")
-        XCTAssertEqual(notification.content.body, "One or more items failed to sync.")
+        XCTAssertEqual(notification.content.body, "One or more items failed to sync. Please check your internet connection and retry syncing.")
     }
 
     func testNotSendsFailedNotificationWhenSyncProgressIsOnScreen() {
         window.rootViewController = CourseSyncProgressAssembly.makeViewController(env: environment)
         let progressObserverMock = CourseSyncProgressObserverInteractorMock()
         progressObserverMock.isSyncFailed = true
-        let testee = CourseSyncNotificationInteractor(notificationManager: notificationManager,
+        let testee = CourseSyncNotificationInteractor(localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter),
                                                       progressInteractor: progressObserverMock)
 
         // WHEN

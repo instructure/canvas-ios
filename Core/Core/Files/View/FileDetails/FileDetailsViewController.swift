@@ -61,7 +61,7 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
         self?.update()
     }
-
+    public var offlineFileSource: OfflineFileSource?
     private var accessReportInteractor: FileAccessReportInteractor?
     private var subscriptions = Set<AnyCancellable>()
     private var offlineFileInteractor: OfflineFileInteractor?
@@ -74,6 +74,27 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
         controller.context = context
         controller.fileID = fileID
         controller.originURL = originURL
+        controller.offlineFileInteractor = offlineFileInteractor
+
+        if let context {
+            controller.accessReportInteractor = FileAccessReportInteractor(context: context,
+                                                                           fileID: fileID,
+                                                                           api: controller.env.api)
+        }
+
+        return controller
+    }
+
+    public static func create(
+            context: Context?,
+            fileID: String,
+            offlineFileSource: OfflineFileSource,
+            offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
+    ) -> FileDetailsViewController {
+        let controller = loadFromStoryboard()
+        controller.context = context
+        controller.fileID = fileID
+        controller.offlineFileSource = offlineFileSource
         controller.offlineFileInteractor = offlineFileInteractor
 
         if let context {
@@ -152,7 +173,7 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
     }
 
     func update() {
-        guard let file = files.first else {
+        guard let file = files.first, offlineFileInteractor?.isOffline == false else {
             if let error = files.error {
                 // If file download failed because of unauthorization error and we have a verifier token, then we modify the url and try to open the file in a webview.
                 if var url = originURL, url.containsVerifier, case .unauthorized = (error as? APIError) {
@@ -168,7 +189,9 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
                 } else {
                     showError(error)
                 }
-            } else if files.requested, !files.pending {
+            } else if offlineFileInteractor?.isItemAvailableOffline(source: offlineFileSource) == true, localURL == nil {
+                downloadFile(at: nil)
+            } else if files.requested, !files.pending, localURL == nil {
                 // File was deleted, go back.
                 env.router.dismiss(self)
             }
@@ -297,27 +320,67 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
 
     var filePathComponent: String? {
         guard
-            let sessionID = env.currentSession?.uniqueID,
-            let name = files.first?.filename
+            let sessionID = env.currentSession?.uniqueID
         else {
             return nil
         }
-        if offlineFileInteractor?.isOffline == true, let contextId = context?.id {
+        switch offlineFileSource {
+        case .privateFile:
             return offlineFileInteractor?.filePath(
-                sessionID: sessionID,
-                courseId: contextId,
-                fileID: fileID,
-                fileName: name
+                source: offlineFileSource
             )
+        default:
+            guard let name = files.first?.filename else { return nil }
+            if offlineFileInteractor?.isOffline == true {
+                guard let contextId = context?.id, let fileName = files.first?.filename else { return nil }
+                return offlineFileInteractor?.filePath(sessionID: sessionID, courseId: contextId, fileID: fileID, fileName: fileName)
+            } else {
+                return "\(sessionID)/\(fileID)/\(name)"
+            }
         }
-        return "\(sessionID)/\(fileID)/\(name)"
     }
 }
 
 // MARK: - URLSessionDownloadDelegate
 
 extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCreator {
-    func downloadFile(at url: URL) {
+    func downloadFile(at url: URL?) {
+        switch offlineFileSource {
+        case .privateFile:
+            loadOfflineFile()
+        default:
+            guard let url else { return }
+            loadCoreDataFile(url: url)
+        }
+    }
+
+    private func loadOfflineFile() {
+        guard let filePathComponent = filePathComponent else { return }
+        let fileURL = URL.Directories.documents.appendingPathComponent(filePathComponent)
+        var mimeClass = fileURL.mimeType()
+        // application/pdf --> pdf
+        // image/png, image/jpeg, ... --> image
+        if mimeClass.contains("application") {
+            if let suffix = mimeClass.split(separator: "/").last {
+                mimeClass = String(suffix)
+            }
+        } else {
+            if let prefix = mimeClass.split(separator: "/").first {
+                mimeClass = String(prefix)
+            }
+        }
+
+        localURL = prepareLocalURL(
+            fileName: filePathComponent,
+            mimeClass: mimeClass,
+            location: URL.Directories.documents
+        )
+        title = localURL?.lastPathComponent
+
+        if let path = localURL?.path, FileManager.default.fileExists(atPath: path) { return downloadComplete(mimeClass: mimeClass, contentType: nil) }
+    }
+
+    private func loadCoreDataFile(url: URL) {
         guard
             let filePathComponent = filePathComponent,
             let mimeClass = files.first?.mimeClass
@@ -326,8 +389,7 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
         }
 
         let location = offlineFileInteractor?.isOffline == true ? URL.Directories.documents : URL.Directories.temporary
-        /// This must be called to set `localURL` before initiating download, otherwise there
-        /// will be a threading issue with trying to access core data from a different thread.
+
         localURL = prepareLocalURL(
             fileName: filePathComponent,
             mimeClass: mimeClass,
@@ -391,9 +453,19 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
     }
 
     func downloadComplete() {
-        guard let file = files.first, let localURL = localURL, FileManager.default.fileExists(atPath: localURL.path) else { return }
+        guard let file = files.first else { return }
+        return downloadComplete(mimeClass: file.mimeClass, contentType: file.contentType)
+    }
+
+    func downloadComplete(mimeClass: String?, contentType: String?) {
+        guard let localURL = localURL, FileManager.default.fileExists(atPath: localURL.path) else { return }
+        if localURL.lastPathComponent == "download" && localURL.pathExtension == "" {
+            return performUIUpdate {
+                self.showFileNoLongerExistsDialog()
+            }
+        }
         shareButton.isEnabled = true
-        switch (file.mimeClass, file.contentType) {
+        switch (mimeClass, contentType) {
         case ("audio", _):
             embedAudioView(for: localURL)
         case (_, let type) where type?.hasPrefix("audio/") == true:
@@ -504,7 +576,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
 
         let document = Document(url: url)
         document.annotationSaveMode = .embedded
-        let controller = PDFViewController(document: document, configuration: PDFConfiguration { (builder) -> Void in
+        let controller = PDFViewController(document: document, configuration: PDFConfiguration { builder in
             docViewerConfigurationBuilder(builder)
             builder.editableAnnotationTypes = [ .link, .highlight, .underline, .strikeOut, .squiggly, .freeText, .ink, .square, .circle, .line, .polygon, .eraser ]
             builder.propertiesForAnnotations[.square] = [["color"], ["lineWidth"]]

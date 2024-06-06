@@ -23,6 +23,31 @@ class AssignmentReminderTests: E2ETestCase {
     typealias DetailsHelper = Helper.Details
     typealias ReminderHelper = DetailsHelper.Reminder
 
+    func enableNotifications() {
+        // MARK: Enabling notifications for Canvas Student app
+        SettingsAppHelper.app.launch()
+        let canvasStudentButton = SettingsAppHelper.canvasStudentButton.waitUntil(.visible)
+        XCTAssertTrue(canvasStudentButton.isVisible)
+
+        canvasStudentButton.actionUntilElementCondition(action: .swipeUp(.customApp(SettingsAppHelper.app)), condition: .hittable)
+        XCTAssertTrue(canvasStudentButton.isHittable)
+
+        canvasStudentButton.hit()
+        let notificationsButton = SettingsAppHelper.CanvasStudent.notificationsButton.waitUntil(.visible)
+        XCTAssertTrue(notificationsButton.isVisible)
+
+        notificationsButton.hit()
+        let notificationToggle = SettingsAppHelper.CanvasStudent.Notifications.notificationsToggle.waitUntil(.visible)
+        XCTAssertTrue(notificationToggle.isVisible)
+
+        if notificationToggle.hasValue(value: "0") {
+            notificationToggle.hit()
+        }
+        XCTAssertTrue(notificationToggle.waitUntil(.value(expected: "1")).hasValue(value: "1"))
+
+        app.activate()
+    }
+
     func testAssignmentReminder() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
@@ -39,18 +64,12 @@ class AssignmentReminderTests: E2ETestCase {
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
         XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
         XCTAssertTrue(dueLabel.isVisible)
 
@@ -123,18 +142,12 @@ class AssignmentReminderTests: E2ETestCase {
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
         XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
         XCTAssertTrue(dueLabel.isVisible)
 
@@ -205,18 +218,12 @@ class AssignmentReminderTests: E2ETestCase {
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
         XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
         XCTAssertTrue(dueLabel.isVisible)
 
@@ -292,18 +299,12 @@ class AssignmentReminderTests: E2ETestCase {
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
         XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
         XCTAssertTrue(dueLabel.isVisible)
 

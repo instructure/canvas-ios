@@ -420,7 +420,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             isOffline: offlineModeInteractor?.isNetworkOffline(),
             filePath: offlinePath,
             content: presenter?.assignmentDescription(),
-            originalBaseURL: nil,
+            originalBaseURL: baseURL,
             offlineBaseURL: rootURL
         )
 

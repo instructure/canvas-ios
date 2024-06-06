@@ -34,12 +34,50 @@ public enum PlannerAssembly {
         return host
     }
 
+    public static func makeFilterViewController(
+        observedUserId: String?,
+        didDismissPicker: @escaping () -> Void
+    ) -> UIViewController {
+        let interactor = makeInteractor(observedUserId: observedUserId)
+        let viewModel = CalendarFilterViewModel(interactor: interactor, didDismissPicker: didDismissPicker)
+        let view = CalendarFilterScreen(viewModel: viewModel)
+        let host = CoreHostingController(view)
+        return host
+    }
+
+    public static func makeInteractor(observedUserId: String?) -> CalendarFilterInteractor {
+        CalendarFilterInteractorLive(
+            observedUserId: observedUserId,
+            filterProvider: makeFilterProvider(observedUserId: observedUserId)
+        )
+    }
+
+    public static func makeFilterProvider(
+        observedUserId: String?,
+        app: AppEnvironment.App? = AppEnvironment.shared.app
+    ) -> CalendarFilterEntryProvider {
+        switch app {
+        case .parent:
+            return CalendarFilterEntryProviderParent(observedUserId: observedUserId)
+        case .student, .none:
+            return CalendarFilterEntryProviderStudent()
+        case .teacher:
+            return CalendarFilterEntryProviderTeacher()
+        }
+    }
+
 #if DEBUG
 
     public static func makeEventDetailsPreview() -> some View {
         let interactor = CalendarEventDetailsInteractorPreview()
         let viewModel = CalendarEventDetailsViewModel(interactor: interactor)
         return CalendarEventDetailsScreen(viewModel: viewModel)
+    }
+
+    public static func makeFilterScreenPreview() -> some View {
+        let interactor = CalendarFilterInteractorPreview()
+        let viewModel = CalendarFilterViewModel(interactor: interactor, didDismissPicker: {})
+        return CalendarFilterScreen(viewModel: viewModel)
     }
 
 #endif

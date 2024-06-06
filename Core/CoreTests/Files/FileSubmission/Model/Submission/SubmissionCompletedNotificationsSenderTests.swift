@@ -25,10 +25,9 @@ class SubmissionCompletedNotificationSenderTests: CoreTestCase {
     func testSuccessNotificationBeingSent() {
         // MARK: - GIVEN
 
-        let notificationManager = MockNotificationManager()
         let testee = SubmissionCompletedNotificationsSender(
             context: databaseClient,
-            notificationManager: notificationManager
+            localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter)
         )
 
         let courseID = "1"
@@ -67,7 +66,7 @@ class SubmissionCompletedNotificationSenderTests: CoreTestCase {
 
         waitForExpectations(timeout: 0.4)
 
-        guard let firedRequest = notificationManager.mock.requests.first else {
+        guard let firedRequest = notificationCenter.requests.first else {
             return XCTFail("Couldn't find UNNotificationRequest with id: \(notificationRequestIdentifier)")
         }
 
@@ -81,10 +80,9 @@ class SubmissionCompletedNotificationSenderTests: CoreTestCase {
     func testFailedNotificationBeingSent() {
         // MARK: - GIVEN
 
-        let notificationManager = MockNotificationManager()
         let testee = SubmissionCompletedNotificationsSender(
             context: databaseClient,
-            notificationManager: notificationManager
+            localNotifications: LocalNotificationsInteractor(notificationCenter: notificationCenter)
         )
 
         let courseID = "1"
@@ -115,7 +113,7 @@ class SubmissionCompletedNotificationSenderTests: CoreTestCase {
         let notificationRequestIdentifier = "failed-submission-\(courseID)-\(assignmentID)"
 
         drainMainQueue()
-        guard let firedRequest = notificationManager.mock.requests.first else {
+        guard let firedRequest = notificationCenter.requests.first else {
             return XCTFail("Couldn't find UNNotificationRequest with id: \(notificationRequestIdentifier)")
         }
 

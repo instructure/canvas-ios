@@ -21,18 +21,18 @@ import CoreData
 
 public class SubmissionCompletedNotificationsSender {
     private let context: NSManagedObjectContext
-    private let notificationManager: NotificationManager
+    private let localNotifications: LocalNotificationsInteractor
 
     public init(
         context: NSManagedObjectContext,
-        notificationManager: NotificationManager
+        localNotifications: LocalNotificationsInteractor = LocalNotificationsInteractor()
     ) {
         self.context = context
-        self.notificationManager = notificationManager
+        self.localNotifications = localNotifications
     }
 
     func sendSuccessNofitications(fileSubmissionID: NSManagedObjectID, apiSubmission: CreateSubmissionRequest.Response) -> Future<Void, Never> {
-        Future<Void, Never> { [context, notificationManager] promise in
+        Future<Void, Never> { [context, localNotifications] promise in
             context.perform {
                 defer { promise(.success(())) }
                 guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else {
@@ -48,18 +48,24 @@ public class SubmissionCompletedNotificationsSender {
                     userInfo: ["assignmentID": assignmentID, "submission": apiSubmission]
                 )
                 NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
-                notificationManager.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
+                localNotifications.sendCompletedNotification(
+                    courseID: courseID,
+                    assignmentID: assignmentID
+                )
             }
         }
     }
 
     func sendFailedNotification(fileSubmissionID: NSManagedObjectID) {
-        context.perform { [context, notificationManager] in
+        context.perform { [context, localNotifications] in
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else {
                 return
             }
 
-            notificationManager.sendFailedNotification(courseID: submission.courseID, assignmentID: submission.assignmentID)
+            localNotifications.sendFailedNotification(
+                courseID: submission.courseID,
+                assignmentID: submission.assignmentID
+            )
         }
     }
 }

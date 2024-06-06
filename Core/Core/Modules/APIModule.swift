@@ -42,6 +42,7 @@ public struct APIModuleItem: Codable, Equatable {
         public let hidden: Bool?
         public let unlock_at: Date?
         public let lock_at: Date?
+        public let page_url: String?
     }
 
     public let id: ID
@@ -58,6 +59,8 @@ public struct APIModuleItem: Codable, Equatable {
     /// (Optional) link to the Canvas API object, if applicable
     /// eg: "https://canvas.example.edu/api/v1/courses/222/assignments/987"
     public let url: URL?
+    /// (Only for 'Page' type) unique locator for the linked wiki page
+    public let pageId: String?
     /// Only present if the caller has permission to view unpublished items
     public let published: Bool?
     /// Indicates whether the item is allowed to be unpublished. This could be false e.g. when related assignment already has submissions.
@@ -75,6 +78,7 @@ public struct APIModuleItem: Codable, Equatable {
         content: ModuleItemType?,
         html_url: URL?,
         url: URL?,
+        pageId: String?,
         published: Bool?,
         unpublishable: Bool?,
         content_details: ContentDetails?,
@@ -89,6 +93,7 @@ public struct APIModuleItem: Codable, Equatable {
         self.content = content
         self.html_url = html_url
         self.url = url
+        self.pageId = pageId
         self.published = published
         self.unpublishable = unpublishable
         self.content_details = content_details
@@ -104,6 +109,7 @@ public struct APIModuleItem: Codable, Equatable {
         case indent
         case html_url
         case url
+        case page_url
         case published
         case unpublishable
         case content
@@ -121,6 +127,7 @@ public struct APIModuleItem: Codable, Equatable {
         indent = try container.decodeIfPresent(Int.self, forKey: .indent) ?? 0
         html_url = try container.decodeIfPresent(URL.self, forKey: .html_url)
         url = try container.decodeIfPresent(URL.self, forKey: .url)
+        pageId = try container.decodeIfPresent(String.self, forKey: .page_url)
         published = try container.decodeIfPresent(Bool.self, forKey: .published)
         unpublishable = try container.decodeIfPresent(Bool.self, forKey: .unpublishable)
         content = try ModuleItemType?(from: decoder)
@@ -138,6 +145,7 @@ public struct APIModuleItem: Codable, Equatable {
         try container.encode(indent, forKey: .indent)
         try container.encode(html_url, forKey: .html_url)
         try container.encode(url, forKey: .url)
+        try container.encode(pageId, forKey: .page_url)
         try container.encode(published, forKey: .published)
         try container.encodeIfPresent(content_details, forKey: .content_details)
         try container.encode(completion_requirement, forKey: .completion_requirement)
@@ -223,6 +231,7 @@ extension APIModuleItem {
         content: ModuleItemType = .assignment("1"),
         html_url: URL? = URL(string: "https://canvas.example.edu/courses/222/modules/items/768"),
         url: URL? = URL(string: "https://canvas.example.edu/api/v1/courses/222/assignments/987"),
+        pageId: String? = nil,
         published: Bool? = nil,
         unpublishable: Bool? = nil,
         content_details: ContentDetails? = nil,
@@ -238,6 +247,7 @@ extension APIModuleItem {
             content: content,
             html_url: html_url,
             url: url,
+            pageId: pageId,
             published: published,
             unpublishable: unpublishable,
             content_details: content_details,
@@ -255,7 +265,8 @@ extension APIModuleItem.ContentDetails {
         lock_explanation: String? = nil,
         hidden: Bool? = nil,
         unlock_at: Date? = nil,
-        lock_at: Date? = nil
+        lock_at: Date? = nil,
+        page_url: String? = nil
     ) -> APIModuleItem.ContentDetails {
         return APIModuleItem.ContentDetails(
             due_at: due_at,
@@ -264,7 +275,8 @@ extension APIModuleItem.ContentDetails {
             lock_explanation: lock_explanation,
             hidden: hidden,
             unlock_at: unlock_at,
-            lock_at: lock_at
+            lock_at: lock_at,
+            page_url: page_url
         )
     }
 }

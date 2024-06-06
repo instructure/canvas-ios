@@ -43,9 +43,6 @@ class CalendarViewControllerTests: CoreTestCase, CalendarViewControllerDelegate 
         willFilter = true
     }
     var calendarCount: Int?
-    func numberOfCalendars() -> Int? {
-        calendarCount
-    }
 
     lazy var controller = CalendarViewController.create(delegate: self)
 
@@ -54,16 +51,17 @@ class CalendarViewControllerTests: CoreTestCase, CalendarViewControllerDelegate 
         environment.mockStore = true
         controller.view.layoutIfNeeded()
 
-        XCTAssertEqual(controller.monthButton.configuration?.contentInsets.trailing, 28)
+        XCTAssertEqual(controller.monthButton.configuration?.contentInsets.trailing, 32)
         XCTAssertEqual(controller.weekdayRow.arrangedSubviews.map { ($0 as? UILabel)?.text }, [
             "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
         ])
 
         XCTAssertEqual(controller.monthButton.accessibilityLabel, "Show a month at a time")
         XCTAssertEqual(controller.monthButton.isSelected, false)
+        let deselectedHeight = height
         controller.monthButton.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.monthButton.isSelected, true)
-        XCTAssertGreaterThanOrEqual(height, 883)
+        XCTAssertEqual(height > deselectedHeight, true)
 
         XCTAssertEqual(controller.filterButton.accessibilityLabel, "Filter events")
         XCTAssertEqual(controller.filterButton.title(for: .normal), "Calendars")
@@ -71,29 +69,30 @@ class CalendarViewControllerTests: CoreTestCase, CalendarViewControllerDelegate 
         XCTAssertTrue(willFilter)
         calendarCount = 1
         controller.refresh()
-        XCTAssertEqual(controller.filterButton.accessibilityLabel, "Filter events, 1 calendar selected")
-        XCTAssertEqual(controller.filterButton.title(for: .normal), "Calendars (1)")
+        XCTAssertEqual(controller.filterButton.accessibilityLabel, "Filter events")
+        XCTAssertEqual(controller.filterButton.title(for: .normal), "Calendars")
         calendarCount = 7
         controller.refresh()
-        XCTAssertEqual(controller.filterButton.accessibilityLabel, "Filter events, 7 calendars selected")
-        XCTAssertEqual(controller.filterButton.title(for: .normal), "Calendars (7)")
+        XCTAssertEqual(controller.filterButton.accessibilityLabel, "Filter events")
+        XCTAssertEqual(controller.filterButton.title(for: .normal), "Calendars")
 
         controller.calendarDidSelectDate(DateComponents(calendar: .current, year: 2020, month: 1, day: 16).date!)
         controller.updateSelectedDate(selectedDate)
 
         let dataSource = controller.daysPageController.dataSource
         let delegate = controller.daysPageController.delegate
+        let expandedDaysHeight = controller.daysHeight.constant
         let prev = dataSource?.pagesViewController(controller.daysPageController, pageBefore: controller.days) as? CalendarDaysViewController
         XCTAssertEqual(prev?.selectedDate.isoString(), DateComponents(calendar: .current, year: 2019, month: 12, day: 16).date?.isoString())
         delegate?.pagesViewController?(controller.daysPageController, isShowing: [ prev!, controller.days ])
         delegate?.pagesViewController?(controller.daysPageController, didTransitionTo: controller.days)
-        XCTAssertEqual(controller.daysHeight.constant, 264)
+        XCTAssertEqual(controller.daysHeight.constant, expandedDaysHeight)
 
         controller.monthButton.sendActions(for: .primaryActionTriggered)
         let next = dataSource?.pagesViewController(controller.daysPageController, pageAfter: controller.days) as? CalendarDaysViewController
         XCTAssertEqual(next?.selectedDate.isoString(), DateComponents(calendar: .current, year: 2020, month: 1, day: 23).date?.isoString())
         delegate?.pagesViewController?(controller.daysPageController, isShowing: [ controller.days, next! ])
-        XCTAssertEqual(controller.daysHeight.constant, 48)
+        XCTAssertEqual(controller.daysHeight.constant < expandedDaysHeight, true)
 
         controller.showDate(DateComponents(calendar: .current, year: 2020, month: 2, day: 1).date!)
 

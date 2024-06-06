@@ -35,6 +35,13 @@ public enum CourseEntrySelection: Codable, Equatable, Comparable, Hashable {
         }
     }
 
+    var isAdditionalContentTab: Bool {
+        switch self {
+        case .tab(_, let tabId): return tabId.contains("additional-content")
+        default: return false
+        }
+    }
+
     public static func < (lhs: CourseEntrySelection, rhs: CourseEntrySelection) -> Bool {
         switch (lhs, rhs) {
         case let (.course(lhsEntryID), .course(rhsEntryID)):

@@ -143,6 +143,9 @@ public final class ModuleItemDetailsViewController: DownloadableViewController, 
         switch item?.type {
         case .externalTool, .page, .file:
             navigationItem.rightBarButtonItems = []
+            if item?.completionRequirementType == .must_mark_done {
+                navigationItem.rightBarButtonItems?.append(optionsButton)
+            }
             navigationItem.rightBarButtonItems?.append(downloadBarButtonItem)
             downloadButton.isHidden = false
         default:
