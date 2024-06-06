@@ -425,7 +425,8 @@ private func fileList(url: URLComponents, params: [String: String], userInfo: [S
 
 private func fileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
-    return FileDetailsViewController.create(context: Context(path: url.path), fileID: fileID, originURL: url)
+    let canEdit = (url.queryItems?.first(where: { $0.name == "canEdit" })?.value as? NSString)?.boolValue ?? true
+    return FileDetailsViewController.create(context: Context(path: url.path), fileID: fileID, originURL: url, canEdit: canEdit)
 }
 
 private func fileEditor(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

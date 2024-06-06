@@ -225,7 +225,7 @@ class AttachmentPickerViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         fileSelected.sink(receiveCompletion: { _ in }, receiveValue: { [weak self] (controller, file) in
-            if let url = file.url, let fileController = router.match(url) {
+            if let url = file.url, let fileController = router.match(url.appendingQueryItems(.init(name: "canEdit", value: "false"))) {
                 router.show(fileController, from: controller, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
             } else {
                 let shouldUploadTitle = String(localized: "Upload Files", bundle: .core)
