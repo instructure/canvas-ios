@@ -20,6 +20,9 @@ import SwiftUI
 
 struct CreateToDoScreen: View, ScreenViewTrackable {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var viewController
+
     @ObservedObject private var viewModel: CreateToDoViewModel
 
     var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
@@ -55,7 +58,10 @@ struct CreateToDoScreen: View, ScreenViewTrackable {
                         label: Text("Calendar", bundle: .core),
                         value: viewModel.calendarName
                     ) {
-                        SelectCalendarScreen(viewModel: viewModel.selectCalendarViewModel)
+                        let vc = CoreHostingController(
+                            SelectCalendarScreen(viewModel: viewModel.selectCalendarViewModel)
+                        )
+                        env.router.show(vc, from: viewController, options: .push)
                     }
 
                     InstUI.TextEditorCell(

@@ -18,12 +18,10 @@
 
 import SwiftUI
 
-struct SelectCalendarScreen: View, ScreenViewTrackable {
+struct SelectCalendarScreen: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
     @ObservedObject private var viewModel: SelectCalendarViewModel
-
-    var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
 
     init(viewModel: SelectCalendarViewModel) {
         self.viewModel = viewModel

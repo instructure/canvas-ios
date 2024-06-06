@@ -36,7 +36,6 @@ final class SelectCalendarViewModel: ObservableObject {
     // MARK: - Output
 
     let pageTitle = String(localized: "Select Calendar", bundle: .core)
-    let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new/select") // TODO: verify value + present via `CoreHostingController`
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
     let state: InstUI.ScreenState = .data

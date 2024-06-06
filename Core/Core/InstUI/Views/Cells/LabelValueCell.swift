@@ -20,24 +20,22 @@ import SwiftUI
 
 extension InstUI {
 
-    public struct LabelValueCell<Label: View, Destination: View>: View {
+    public struct LabelValueCell<Label: View>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let label: Label
         private let value: String?
-        private let destination: Destination
+        private let action: () -> Void
 
-        public init(label: Label, value: String?, @ViewBuilder destination: () -> Destination) {
+        public init(label: Label, value: String?, action: @escaping () -> Void) {
             self.label = label
             self.value = value
-            self.destination = destination()
+            self.action = action
         }
 
         public var body: some View {
             VStack(spacing: 0) {
-                NavigationLink {
-                    destination
-                } label: {
+                Button(action: action) {
                     HStack(spacing: 0) {
                         label
                             .textStyle(.cellLabel)
@@ -68,16 +66,16 @@ extension InstUI {
     VStack(spacing: 0) {
         InstUI.Divider()
         InstUI.LabelValueCell(label: Text(verbatim: "Label"), value: nil) {
-            Text(verbatim: "some new screen")
+            print("Did tap cell 1")
         }
         InstUI.LabelValueCell(label: Text(verbatim: "Label"), value: "Some value") {
-            Text(verbatim: "some new screen")
+            print("Did tap cell 2")
         }
         InstUI.LabelValueCell(
             label: Text(verbatim: "Important label").foregroundStyle(Color.red).textStyle(.heading),
             value: "Some value"
         ) {
-            Text(verbatim: "some new screen")
+            print("Did tap cell 3")
         }
     }
 }
