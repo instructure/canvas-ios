@@ -17,15 +17,56 @@
 //
 
 import Foundation
+import XCTest
 @testable import Core
 
 class FilePickerViewModelTests: CoreTestCase {
     var testee: FilePickerViewModel!
-    
+
     private let interactor = FilePickerInteractorPreview()
-    
+    private var onSelectCalled = false
+
     override func setUp() {
         super.setUp()
-        testee = FilePickerViewModel(env: environment, interactor: interactor)
+        testee = FilePickerViewModel(env: environment, interactor: interactor, onSelect: onSelect)
+    }
+
+    func testOutputBindings() {
+        XCTAssertEqual(testee.folderItems, [])
+        XCTAssertEqual(testee.state, .loading)
+
+        let values = [FolderItem()]
+        interactor.folderItems.send(values)
+        interactor.state.send(.data)
+
+        XCTAssertEqual(testee.folderItems, values)
+        XCTAssertEqual(testee.state, .data)
+    }
+
+    func testCancelButton() {
+        testee.cancelButtonDidTap.accept(WeakViewController())
+
+        XCTAssertNotNil(router.dismissed)
+    }
+
+    func testFileSelection() {
+        XCTAssertFalse(onSelectCalled)
+        testee.fileDidTap.accept((WeakViewController(), File.make()))
+        XCTAssertTrue(onSelectCalled)
+
+        XCTAssertNotNil(router.dismissed)
+    }
+
+    func testFolderSelection() {
+        let from = WeakViewController()
+        testee.folderDidTap.accept((from, Folder.save(APIFolder.make(), in: databaseClient)))
+
+        wait(for: [router.showExpectation], timeout: 1)
+
+        XCTAssertNotNil(router.lastViewController)
+    }
+
+    private func onSelect(file: File) {
+        onSelectCalled = true
     }
 }
