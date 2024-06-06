@@ -65,7 +65,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         setupDefaultErrorHandling()
         setupPageViewLogging()
         TabBarBadgeCounts.application = UIApplication.shared
-        NotificationManager.shared.notificationCenter.delegate = self
+        PushNotificationsInteractor.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
         FontAppearance.update()
@@ -172,8 +172,16 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
-            NotificationManager.shared.subscribeToPushChannel()
             self.setIntercomUser(session: session, userEmail: apiProfile?.primary_email)
+            PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
+
+            // NotificationManager.registerForRemoteNotifications is not called in UITests,
+            // so we need to requestAuthorization in order to be able to test notification related logic like
+            // AssignmentReminders
+            if ProcessInfo.isUITest {
+                UNUserNotificationCenter.current()
+                    .requestAuthorization(options: [.alert], completionHandler: { _, _ in })
+            }
 
             let isK5StudentView = self.environment.userDefaults?.isK5StudentView ?? false
             if isK5StudentView {
@@ -282,8 +290,11 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 // MARK: - Push notifications
 
 extension StudentAppDelegate: UNUserNotificationCenterDelegate {
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        NotificationManager.shared.subscribeToPushChannel(token: deviceToken)
+    func application(
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+        PushNotificationsInteractor.shared.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -304,7 +315,7 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
         PushNotifications.record(response.notification)
-        if let url = NotificationManager.routeURL(from: response.notification.request.content.userInfo) {
+        if let url = response.notification.request.routeURL {
             openURL(url, userInfo: [
                 "forceRefresh": true,
                 "pushNotification": response.notification.request.content.userInfo["aps"] ?? [:],
@@ -516,8 +527,8 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
-//        NotificationManager.shared.unsubscribeFromPushChannel()
-        NotificationManager.shared.deleteDevicePlatformEndpoint(session: session)
+        PushNotificationsInteractor.shared.deleteDevicePlatformEndpoint(session: session)
+//        PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
@@ -551,7 +562,7 @@ extension StudentAppDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url, app: .student) {
             window?.rootViewController = LoadingViewController.create()
-            login.fetch(environment: environment) { [weak self] (session, error) -> Void in
+            login.fetch(environment: environment) { [weak self] session, error in
                 guard let session = session, error == nil else {
                     self?.changeUser()
                     return

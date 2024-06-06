@@ -30,27 +30,27 @@ public protocol GradeViewable {
 extension GradeViewable {
     public var pointsPossibleText: String {
         guard let points = pointsPossible else {
-            return NSLocalizedString("Not Graded", bundle: .core, comment: "")
+            return String(localized: "Not Graded", bundle: .core)
         }
-        let format = NSLocalizedString("g_pts", bundle: .core, comment: "")
+        let format = String(localized: "g_pts", bundle: .core)
         return String.localizedStringWithFormat(format, points)
     }
 
     public var pointsText: String? {
         guard let score = viewableScore else { return nil }
-        let format = NSLocalizedString("plural_points", bundle: .core, comment: "")
+        let format = String(localized: "plural_points", bundle: .core)
         return String.localizedStringWithFormat(format, score)
     }
 
     public var outOfText: String? {
         guard let points = pointsPossible else { return nil }
-        let format = NSLocalizedString("out_of_g_pts", bundle: .core, comment: "")
+        let format = String(localized: "out_of_g_pts", bundle: .core)
         return String.localizedStringWithFormat(format, points)
     }
 
     public var scoreOutOfPointsPossibleText: String? {
         guard let score = viewableScore, let points = pointsPossible else { return nil }
-        let format = NSLocalizedString("g_out_of_g_points_possible", bundle: .core, comment: "")
+        let format = String(localized: "g_out_of_g_points_possible", bundle: .core)
         return String.localizedStringWithFormat(format, score, points)
     }
 
@@ -65,10 +65,10 @@ extension GradeViewable {
 
     public var finalGradeText: String? {
         if gradingType == .points, let score = viewableScore {
-            let format = NSLocalizedString("final_grade_g_pts", bundle: .core, comment: "")
+            let format = String(localized: "final_grade_g_pts", bundle: .core)
             return String.localizedStringWithFormat(format, score)
         } else if let grade = viewableGrade {
-            let format = NSLocalizedString("Final Grade: %@", bundle: .core, comment: "")
+            let format = String(localized: "Final Grade: %@", bundle: .core)
             return String.localizedStringWithFormat(format, grade)
         }
         return nil

@@ -41,19 +41,19 @@ public extension APIPlannable {
 
     static func k5SchedulePoints(from points: Double?) -> String? {
         guard let points = points else { return nil }
-        let pointsTemplate = NSLocalizedString("g_pts", bundle: .core, comment: "")
+        let pointsTemplate = String(localized: "g_pts", bundle: .core)
         return String.localizedStringWithFormat(pointsTemplate, points)
     }
 
     var k5ScheduleDueText: String {
         if self.plannable?.all_day == true {
-            return NSLocalizedString("All Day", comment: "")
+            return String(localized: "All Day", bundle: .core)
         } else if let start = self.plannable?.start_at, let end = self.plannable?.end_at {
             return start.timeIntervalString(to: end)
         } else if plannableType == .announcement {
             return plannable_date.timeString
         } else {
-            let dueTemplate = NSLocalizedString("Due: %@", bundle: .core, comment: "")
+            let dueTemplate = String(localized: "Due: %@", bundle: .core)
             return String.localizedStringWithFormat(dueTemplate, plannable_date.timeString)
         }
     }
@@ -63,22 +63,22 @@ public extension APIPlannable {
         var labels: [(text: String, color: Color)] = []
 
         if submissionStates.graded == true {
-            labels.append((text: NSLocalizedString("Graded", comment: ""), color: .ash))
+            labels.append((text: String(localized: "Graded", bundle: .core), color: .ash))
         }
         if submissionStates.late == true {
-            labels.append((text: NSLocalizedString("Late", comment: ""), color: .crimson))
+            labels.append((text: String(localized: "Late", bundle: .core), color: .crimson))
         }
         if submissionStates.has_feedback == true {
-            labels.append((text: NSLocalizedString("Feedback", comment: ""), color: .ash))
+            labels.append((text: String(localized: "Feedback", bundle: .core), color: .ash))
         }
         if submissionStates.redo_request == true {
-            labels.append((text: NSLocalizedString("Redo", comment: ""), color: .crimson))
+            labels.append((text: String(localized: "Redo", bundle: .core), color: .crimson))
         }
         if submissionStates.missing == true {
-            labels.append((text: NSLocalizedString("Missing", comment: ""), color: .crimson))
+            labels.append((text: String(localized: "Missing", bundle: .core), color: .crimson))
         }
         if submissionStates.submitted == true && submissionStates.late == false {
-            labels.append((text: NSLocalizedString("Submitted", comment: ""), color: .ash))
+            labels.append((text: String(localized: "Submitted", bundle: .core), color: .ash))
         }
 
         return labels
@@ -87,9 +87,9 @@ public extension APIPlannable {
     func k5ScheduleSubject(courseInfoByCourseIDs: [String: (color: Color, image: URL?, isHomeroom: Bool, shouldHideQuantitativeData: Bool)]) -> K5ScheduleSubject {
         let name: String = {
             if plannableType == .calendar_event {
-                return NSLocalizedString("To Do", comment: "")
+                return String(localized: "To Do", bundle: .core)
             } else {
-                return context_name ?? NSLocalizedString("To Do", comment: "")
+                return context_name ?? String(localized: "To Do", bundle: .core)
             }
         }()
         let color: Color = {

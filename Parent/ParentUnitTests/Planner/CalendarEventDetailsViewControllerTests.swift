@@ -22,7 +22,11 @@ import XCTest
 import TestsFoundation
 
 class CalendarEventDetailsViewControllerTests: ParentTestCase {
-    lazy var controller = CalendarEventDetailsViewController.create(studentID: "1", eventID: "1")
+    lazy var controller = CalendarEventDetailsViewController.create(
+        studentID: "1",
+        eventID: "1",
+        userNotificationCenter: notificationCenter
+    )
 
     override func setUp() {
         super.setUp()
@@ -76,8 +80,9 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
     }
 
     func testReminder() {
+        let localNotifications = LocalNotificationsInteractor(notificationCenter: notificationCenter)
         let prev = Clock.now.startOfDay().addDays(1)
-        notificationManager.setReminder(id: "1", content: UNMutableNotificationContent(), at: prev) { _ in }
+        localNotifications.setReminder(id: "1", content: UNMutableNotificationContent(), at: prev) { _ in }
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.reminderHeadingLabel.text, "Remind Me")
         XCTAssertEqual(controller.reminderMessageLabel.text, "Set a date and time to be notified of this event.")
@@ -91,7 +96,7 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.selectedDate, prev)
 
         controller.reminderDateChanged(selectedDate: prev.addDays(1))
-        notificationManager.getReminder("1") { request in
+        localNotifications.getReminder("1") { request in
             let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
                 Calendar.current.date(from: $0.dateComponents)
             }

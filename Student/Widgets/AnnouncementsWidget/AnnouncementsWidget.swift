@@ -26,8 +26,7 @@ struct AnnouncementsWidget: Widget {
         StaticConfiguration(kind: kind, provider: AnnouncementsProvider()) { entry in
             AnnouncementsWidgetView(entry: entry)
         }
-        .configurationDisplayName(NSLocalizedString("Announcements", comment: "Name of the announcements widget"))
-        .description(NSLocalizedString("View the latest announcements from your courses.", comment: "Description of the announcements widget"))
-        .contentMarginsDisabled()
+        .configurationDisplayName(String(localized: "Announcements", comment: "Name of the announcements widget"))
+        .description(String(localized: "View the latest announcements from your courses.", comment: "Description of the announcements widget"))
     }
 }

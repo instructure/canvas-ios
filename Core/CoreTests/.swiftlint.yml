@@ -17,10 +17,5 @@ included: # paths to include during linting. `--path` is ignored if present.
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
 
-identifier_name:
-  min_length: 1 # only min_length
-  max_length: 50
-  excluded: # excluded via string array
-    - access_token
 trailing_comma:
   mandatory_comma: true

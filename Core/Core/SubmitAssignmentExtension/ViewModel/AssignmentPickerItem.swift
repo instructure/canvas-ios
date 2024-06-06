@@ -27,10 +27,10 @@ public struct AssignmentPickerItem: Equatable, Identifiable {
 
         if !apiItem.allowedExtensions.isEmpty, !incompatibleExtensions.isEmpty {
             let availableExtensions = apiItem.allowedExtensions.sorted()
-            let notCompatibleStringFormat = NSLocalizedString("incompatible_files_for_assignment", comment: "")
+            let notCompatibleStringFormat = String(localized: "incompatible_files_for_assignment", bundle: .core)
             let notCompatibleText = String.localizedStringWithFormat(notCompatibleStringFormat, incompatibleExtensions.count, incompatibleExtensions.joined(separator: ", "))
 
-            let useExtensionsStringFormat = NSLocalizedString("use_file_extension", comment: "")
+            let useExtensionsStringFormat = String(localized: "use_file_extension", bundle: .core)
             let compatibleText = String.localizedStringWithFormat(useExtensionsStringFormat, availableExtensions.count, availableExtensions.joined(separator: ", "))
             notAvailableReason = "\(notCompatibleText)\n\(compatibleText)"
         }

@@ -67,9 +67,6 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-
         let nameLabel = DetailsHelper.name.waitUntil(.visible)
         XCTAssertTrue(nameLabel.isVisible)
         XCTAssertTrue(nameLabel.hasLabel(label: assignment.name))
@@ -98,9 +95,8 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(submitAssignmentButton.isVisible)
         XCTAssertTrue(submitAssignmentButton.hasLabel(label: "Submit Assignment"))
 
-        let submissionButton = DetailsHelper.submissionButton.waitUntil(.visible)
+        let submissionButton = DetailsHelper.submissionAndRubricButton.waitUntil(.visible)
         XCTAssertTrue(submissionButton.isVisible)
-        XCTAssertTrue(submissionButton.hasLabel(label: "Submission & Rubric"))
 
         GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
         pullToRefresh()

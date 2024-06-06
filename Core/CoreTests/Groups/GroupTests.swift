@@ -47,11 +47,15 @@ class GroupTests: CoreTestCase {
         group = Group.make(from: .make(course_id: nil))
         XCTAssertTrue(group.isActive)
 
-        Course.make()
+        Course.make(from: .make(workflow_state: .available))
         group = Group.save(.make(course_id: "1"), in: databaseClient)
         XCTAssertTrue(group.isActive)
 
         Course.make(from: .make(end_at: Date.distantPast), in: databaseClient)
+        group = Group.save(.make(course_id: "1"), in: databaseClient)
+        XCTAssertFalse(group.isActive)
+
+        Course.make(from: .make(workflow_state: .unpublished))
         group = Group.save(.make(course_id: "1"), in: databaseClient)
         XCTAssertFalse(group.isActive)
     }

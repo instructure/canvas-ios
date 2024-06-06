@@ -28,6 +28,7 @@ class APISubmissionTests: CoreTestCase {
             "submission_history",
             "user",
             "rubric_assessment",
+            "group",
         ]), ])
     }
 

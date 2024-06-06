@@ -42,7 +42,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
 
     lazy var addButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(addItem))
     lazy var editButton = UIBarButtonItem(
-        title: NSLocalizedString("Edit", bundle: .core, comment: ""), style: .plain,
+        title: String(localized: "Edit", bundle: .core), style: .plain,
         target: self, action: #selector(edit)
     )
 
@@ -95,17 +95,17 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: NSLocalizedString("Files", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: String(localized: "Files", bundle: .core))
 
         addButton.accessibilityIdentifier = "FileList.addButton"
-        addButton.accessibilityLabel = NSLocalizedString("Add Item", bundle: .core, comment: "")
+        addButton.accessibilityLabel = String(localized: "Add Item", bundle: .core)
 
         editButton.accessibilityIdentifier = "FileList.editButton"
 
         emptyImageView.image = UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil)
-        emptyMessageLabel.text = NSLocalizedString("This folder is empty.", bundle: .core, comment: "")
-        emptyTitleLabel.text = NSLocalizedString("No Files", bundle: .core, comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading files. Pull to refresh to try again.", bundle: .core, comment: "")
+        emptyMessageLabel.text = String(localized: "This folder is empty.", bundle: .core)
+        emptyTitleLabel.text = String(localized: "No Files", bundle: .core)
+        errorView.messageLabel.text = String(localized: "There was an error loading files. Pull to refresh to try again.", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         loadingView.color = nil
@@ -113,7 +113,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         refreshControl.color = nil
 
-        searchBar.placeholder = NSLocalizedString("Search", bundle: .core, comment: "")
+        searchBar.placeholder = String(localized: "Search", bundle: .core)
         searchBar.backgroundColor = .backgroundLightest
 
         tableView.backgroundColor = .backgroundLightest
@@ -177,7 +177,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
 
         loadingView.isHidden = !folder.pending || !folder.isEmpty || folder.error != nil || refreshControl.isRefreshing
         errorView.isHidden = folder.error == nil
-        let title = (path.isEmpty ? nil : folder.first?.name) ?? NSLocalizedString("Files", bundle: .core, comment: "")
+        let title = (path.isEmpty ? nil : folder.first?.name) ?? String(localized: "Files", bundle: .core)
         setupTitleViewInNavbar(title: title)
         updateNavButtons()
 
@@ -231,10 +231,10 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     }
 
     func showDeleteAlert(name: String, handler: @escaping ((UIAlertAction) -> Void)) {
-        let title = String.localizedStringWithFormat(NSLocalizedString("Are you sure you want to delete %@?", comment: ""), name)
+        let title = String.localizedStringWithFormat(String(localized: "Are you sure you want to delete %@?", bundle: .core), name)
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-        alert.addAction(AlertAction(NSLocalizedString("Delete", bundle: .core, comment: ""), style: .default, handler: handler))
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "Delete", bundle: .core), style: .default, handler: handler))
         env.router.show(alert, from: self, options: .modal())
     }
 }
@@ -271,12 +271,12 @@ extension FileListViewController: UISearchBarDelegate {
         searchTerm = newSearch
         if searchTerm != nil {
             emptyImageView.image = UIImage(named: Panda.NoResults.name, in: .core, compatibleWith: nil)
-            emptyMessageLabel.text = NSLocalizedString("We couldn’t find any files like that.", bundle: .core, comment: "")
-            emptyTitleLabel.text = NSLocalizedString("No Results", bundle: .core, comment: "")
+            emptyMessageLabel.text = String(localized: "We couldn’t find any files like that.", bundle: .core)
+            emptyTitleLabel.text = String(localized: "No Results", bundle: .core)
         } else {
             emptyImageView.image = UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil)
-            emptyMessageLabel.text = NSLocalizedString("This folder is empty.", bundle: .core, comment: "")
-            emptyTitleLabel.text = NSLocalizedString("No Files", bundle: .core, comment: "")
+            emptyMessageLabel.text = String(localized: "This folder is empty.", bundle: .core)
+            emptyTitleLabel.text = String(localized: "No Files", bundle: .core)
         }
         search()
     }
@@ -338,14 +338,14 @@ extension FileListViewController: FilePickerDelegate {
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(
             image: .folderLine,
-            title: NSLocalizedString("Add Folder", bundle: .core, comment: ""),
+            title: String(localized: "Add Folder", bundle: .core),
             accessibilityIdentifier: "FileList.addFolderButton"
         ) { [weak self] in
             self?.addFolder()
         }
         sheet.addAction(
             image: .addDocumentLine,
-            title: NSLocalizedString("Add File", bundle: .core, comment: ""),
+            title: String(localized: "Add File", bundle: .core),
             accessibilityIdentifier: "FileList.addFileButton"
         ) { [weak self] in
             guard let self = self else { return }
@@ -355,13 +355,13 @@ extension FileListViewController: FilePickerDelegate {
     }
 
     func addFolder() {
-        let prompt = UIAlertController(title: NSLocalizedString("Add Folder", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
+        let prompt = UIAlertController(title: String(localized: "Add Folder", bundle: .core), message: nil, preferredStyle: .alert)
         prompt.addTextField { field in
-            field.placeholder = NSLocalizedString("Name", bundle: .core, comment: "")
-            field.accessibilityLabel = NSLocalizedString("Folder Name", bundle: .core, comment: "")
+            field.placeholder = String(localized: "Name", bundle: .core)
+            field.accessibilityLabel = String(localized: "Folder Name", bundle: .core)
         }
-        prompt.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-        prompt.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+        prompt.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
+        prompt.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { [weak self] _ in
             let name = prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             guard !name.isEmpty else { return }
             self?.addFolder(name: name)
@@ -475,7 +475,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
             return nil
         }
 
-        let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", bundle: .core, comment: "")) { [weak self] _, _, completion in
+        let deleteAction = UIContextualAction(style: .destructive, title: String(localized: "Delete", bundle: .core)) { [weak self] _, _, completion in
             guard let self = self else { return }
             if indexPath.section == 1 {
                 let file = self.results[indexPath.row]
@@ -496,10 +496,12 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     private func routeIfAvailable(fileID: String, indexPath: IndexPath) {
-        guard offlineFileInteractor?.isItemAvailableOffline(courseID: course?.first?.id, fileID: fileID) == true else {
-            UIAlertController.showItemNotAvailableInOfflineAlert()
-            tableView.deselectRow(at: indexPath, animated: true)
-            return
+        if offlineFileInteractor?.isOffline == true {
+            guard offlineFileInteractor?.isItemAvailableOffline(courseID: course?.first?.id, fileID: fileID) == true else {
+                UIAlertController.showItemNotAvailableInOfflineAlert()
+                tableView.deselectRow(at: indexPath, animated: true)
+                return
+            }
         }
         env.router.route(to: "/\(context.pathComponent)/files/\(fileID)", from: self, options: .detail)
     }
@@ -532,7 +534,7 @@ class FileListUploadCell: UITableViewCell {
         progressView.progress = file.map { CGFloat($0.bytesSent) / CGFloat($0.size) }
         progressView.isHidden = file?.uploadError != nil
         let sizeText = file?.uploadError ?? file.map { String.localizedStringWithFormat(
-            NSLocalizedString("Uploading %@ of %@", bundle: .core, comment: "Uploading X KB of Y MB"),
+            String(localized: "Uploading %@ of %@", bundle: .core, comment: "Uploading X KB of Y MB"),
             $0.bytesSent.humanReadableFileSize,
             $0.size.humanReadableFileSize
         ) }
@@ -567,7 +569,9 @@ class FileListCell: UITableViewCell {
 
     func update(item: FolderItem?, course: Course?, color: UIColor?, isOffline: Bool, isAvailable: Bool) {
         fileID = item?.id
-        setCellState(isAvailable: isAvailable, isUserInteractionEnabled: true)
+        if isOffline {
+            setCellState(isAvailable: isAvailable, isUserInteractionEnabled: true)
+        }
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         nameLabel.setText(item?.name, style: .textCellTitle)
@@ -575,7 +579,7 @@ class FileListCell: UITableViewCell {
             iconView.icon = .folderSolid
             iconView.setState(locked: folder.locked, hidden: folder.hidden, unlockAt: folder.unlockAt, lockAt: folder.lockAt)
             let sizeText = String.localizedStringWithFormat(
-                NSLocalizedString("d_items", bundle: .core, comment: ""),
+                String(localized: "d_items", bundle: .core),
                 folder.filesCount + folder.foldersCount
             )
             sizeLabel.setText(sizeText, style: .textCellSupportingText)
@@ -598,7 +602,9 @@ class FileListCell: UITableViewCell {
 
     func update(result: APIFile?, isOffline: Bool, isAvailable: Bool) {
         fileID = result?.id.value
-        setCellState(isAvailable: isAvailable, isUserInteractionEnabled: true)
+        if isOffline {
+            setCellState(isAvailable: isAvailable, isUserInteractionEnabled: true)
+        }
         nameLabel.setText(result?.display_name, style: .textCellTitle)
         if !isOffline, let url = result?.thumbnail_url?.rawValue, let c = result?.created_at, Clock.now.timeIntervalSince(c) > 3600 {
             iconView.load(url: url)

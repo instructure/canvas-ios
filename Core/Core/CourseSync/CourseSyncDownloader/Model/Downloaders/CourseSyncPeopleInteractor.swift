@@ -40,6 +40,10 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             .eraseToAnyPublisher()
     }
 
+    func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        Just(()).eraseToAnyPublisher()
+    }
+
     private static func fetchCourseColors() -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCustomColors())
             .getEntities(ignoreCache: true)

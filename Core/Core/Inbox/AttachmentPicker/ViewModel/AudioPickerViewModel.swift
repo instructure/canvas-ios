@@ -36,8 +36,8 @@ class AudioPickerViewModel: NSObject, ObservableObject {
     @Published public private(set) var audioPlayerDurationString: String = ""
     var audioChartDataSet: [AudioPlotData] = []
     public let defaultDurationString: String
-    public let audioRecorderErrorTitle = NSLocalizedString("Error", bundle: .core, comment: "")
-    public let audioRecorderErrorMessage = NSLocalizedString("Some error occured with audio recorder. Please try again!", bundle: .core, comment: "")
+    public let audioRecorderErrorTitle = String(localized: "Error", bundle: .core)
+    public let audioRecorderErrorMessage = String(localized: "Some error occured with audio recorder. Please try again!", bundle: .core)
 
     // MARK: Inputs / Outputs
 
@@ -79,7 +79,7 @@ class AudioPickerViewModel: NSObject, ObservableObject {
     }
 
     private func showAudioErrorDialog() {
-        let actionTitle = NSLocalizedString("OK", bundle: .core, comment: "")
+        let actionTitle = String(localized: "OK", bundle: .core)
         let alert = UIAlertController(title: audioRecorderErrorTitle, message: audioRecorderErrorMessage, preferredStyle: .alert)
 
         if let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() {

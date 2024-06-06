@@ -331,7 +331,7 @@ public struct GetSubmissionRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        return [ .array("include", [ "submission_comments", "submission_history", "user", "rubric_assessment"]) ]
+        return [ .array("include", [ "submission_comments", "submission_history", "user", "rubric_assessment", "group"]) ]
     }
 }
 
@@ -485,7 +485,7 @@ public struct PutSubmissionGradeRequest: APIRequestable {
                 group_comment = forGroup
                 media_comment_id = mediaID
                 media_comment_type = type
-                text_comment = forGroup ? NSLocalizedString("This is a media comment", bundle: .core, comment: "") : ""
+                text_comment = forGroup ? String(localized: "This is a media comment", bundle: .core) : ""
                 file_ids = nil
                 self.attempt = attempt
             }

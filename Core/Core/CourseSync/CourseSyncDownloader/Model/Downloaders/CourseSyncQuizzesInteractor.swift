@@ -26,7 +26,11 @@ public extension CourseSyncQuizzesInteractor {
 }
 
 public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor, CourseSyncContentInteractor {
-    public init() {}
+    let htmlParser: HTMLParser
+
+    public init(htmlParser: HTMLParser) {
+        self.htmlParser = htmlParser
+    }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         Publishers.Zip(
@@ -35,6 +39,16 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
         )
         .map { _ in () }
         .eraseToAnyPublisher()
+    }
+
+    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        let rootURL = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: htmlParser.sessionId,
+            courseId: courseId,
+            sectionName: htmlParser.sectionName
+        )
+
+        return FileManager.default.removeItemPublisher(at: rootURL)
     }
 
     private func getCustomColors(courseId _: String) -> AnyPublisher<Void, Error> {
@@ -51,21 +65,23 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
             useCase: GetQuizzes(courseID: courseId)
         )
         .getEntities(ignoreCache: true)
-        .flatMap {
+        .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
+        .flatMap { [htmlParser] in
             $0.publisher
                 .filter { $0.quizType != .quizzes_next }
-                .flatMap { Self.getQuiz(courseId: courseId, quizId: $0.id) }
+                .flatMap { Self.getQuiz(courseId: courseId, quizId: $0.id, htmlParser: htmlParser) }
                 .collect()
         }
         .mapToVoid()
         .eraseToAnyPublisher()
     }
 
-    private static func getQuiz(courseId: String, quizId: String) -> AnyPublisher<Void, Error> {
+    private static func getQuiz(courseId: String, quizId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetQuiz(courseID: courseId, quizID: quizId)
         )
         .getEntities(ignoreCache: true)
+        .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
         .mapToVoid()
         .eraseToAnyPublisher()
     }

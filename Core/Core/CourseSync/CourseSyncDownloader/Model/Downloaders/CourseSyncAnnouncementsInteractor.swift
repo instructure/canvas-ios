@@ -26,7 +26,11 @@ extension CourseSyncAnnouncementsInteractor {
 }
 
 public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncementsInteractor {
-    public init() {}
+    let htmlParser: HTMLParser
+
+    public init(htmlParser: HTMLParser) {
+        self.htmlParser = htmlParser
+    }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         Publishers
@@ -47,7 +51,30 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     }
 
     private func fetchAnnouncements(courseId: String) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetAnnouncements(context: .course(courseId)))
+        return ReactiveStore(useCase: GetAnnouncements(context: .course(courseId)))
+            .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
+            .parseAttachment(attribute: \.attachments, id: \.id, courseId: courseId, htmlParser: htmlParser)
+            .flatMap { $0.publisher }
+            .filter { $0.discussionSubEntryCount > 0 && $0.anonymousState == nil }
+            .flatMap { [htmlParser] in Self.getDiscussionView(courseId: courseId, topicId: $0.id, htmlParser: htmlParser) }
+            .collect()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
+    private static func getDiscussionView(
+        courseId: String,
+        topicId: String,
+        htmlParser: HTMLParser
+    ) -> AnyPublisher<Void, Error> {
+        return ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
+            .getEntities(ignoreCache: true)
+            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
+            .parseAttachment(attribute: \.attachment, topicId: topicId, courseId: courseId, htmlParser: htmlParser)
+            .parseRepliesHtmlContent(courseId: courseId, topicId: topicId, htmlParser: htmlParser)
+            .mapToVoid()
+            .eraseToAnyPublisher()
     }
 
     private func fetchFeatureFlags(courseId: String) -> AnyPublisher<Void, Error> {
@@ -59,5 +86,15 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
+    }
+
+    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+        let rootURL = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: htmlParser.sessionId,
+            courseId: courseId,
+            sectionName: htmlParser.sectionName
+        )
+
+        return FileManager.default.removeItemPublisher(at: rootURL)
     }
 }

@@ -47,6 +47,8 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     var studentID = ""
     private var minDate = Clock.now
     private var maxDate = Clock.now
+    private var userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
+    private lazy var localNotifications = LocalNotificationsInteractor(notificationCenter: userNotificationCenter)
 
     lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.observed_users, .submission])) {  [weak self] in
         self?.update()
@@ -61,18 +63,24 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         self?.update()
     }
 
-    static func create(studentID: String, courseID: String, assignmentID: String) -> AssignmentDetailsViewController {
+    static func create(
+        studentID: String,
+        courseID: String,
+        assignmentID: String,
+        userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
+    ) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.courseID = courseID
         controller.studentID = studentID
+        controller.userNotificationCenter = userNotificationCenter
         return controller
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        title = NSLocalizedString("Assignment Details", comment: "")
+        title = String(localized: "Assignment Details", bundle: .parent)
         webViewContainer.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: webViewContainer)
         webView.autoresizesHeight = true
@@ -82,20 +90,20 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         scrollView.refreshControl = refreshControl
 
-        composeButton.accessibilityLabel = NSLocalizedString("Compose message to teachers", comment: "")
+        composeButton.accessibilityLabel = String(localized: "Compose message to teachers", bundle: .parent)
         composeButton.backgroundColor = ColorScheme.observee(studentID).color.darkenToEnsureContrast(against: .white)
         composeButton.isHidden = true
 
-        dateHeadingLabel.text = NSLocalizedString("Due", comment: "")
+        dateHeadingLabel.text = String(localized: "Due", bundle: .parent)
         dateLabel.text = ""
-        descriptionHeadingLabel.text = NSLocalizedString("Description", comment: "")
+        descriptionHeadingLabel.text = String(localized: "Description", bundle: .parent)
         titleLabel.text = ""
 
         pointsLabel.text = ""
 
-        reminderHeadingLabel.text = NSLocalizedString("Remind Me", comment: "")
-        reminderMessageLabel.text = NSLocalizedString("Set a date and time to be notified of this event.", comment: "")
-        reminderSwitch.accessibilityLabel = NSLocalizedString("Remind Me", comment: "")
+        reminderHeadingLabel.text = String(localized: "Remind Me", bundle: .parent)
+        reminderMessageLabel.text = String(localized: "Set a date and time to be notified of this event.", bundle: .parent)
+        reminderSwitch.accessibilityLabel = String(localized: "Remind Me", bundle: .parent)
         reminderSwitch.isEnabled = false
         reminderDateButton.isEnabled = false
         reminderDateButton.isHidden = true
@@ -110,7 +118,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         course.refresh()
         student.refresh()
         teachers.refresh()
-        NotificationManager.shared.getReminder(assignmentID) { [weak self] request in performUIUpdate {
+        localNotifications.getReminder(assignmentID) { [weak self] request in performUIUpdate {
             guard let self = self else { return }
             let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
                 Calendar.current.date(from: $0.dateComponents)
@@ -143,7 +151,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     func update() {
         guard let assignment = assignment.first else { return }
         let status = assignment.submissions?.first(where: { $0.userID == studentID })?.status ?? .notSubmitted
-        title = course.first?.name ?? NSLocalizedString("Assignment Details", comment: "")
+        title = course.first?.name ?? String(localized: "Assignment Details", bundle: .parent)
 
         titleLabel.text = assignment.name
         pointsLabel.text = {
@@ -158,7 +166,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         statusLabel.isHidden = assignment.submissionStatusIsHidden
         statusLabel.textColor = status.color
         statusLabel.text = status.text
-        dateLabel.text = assignment.dueAt?.dateTimeString ?? NSLocalizedString("No Due Date", comment: "")
+        dateLabel.text = assignment.dueAt?.dateTimeString ?? String(localized: "No Due Date", bundle: .parent)
         reminderSwitch.isEnabled = true
         reminderDateButton.isEnabled = true
         if let html = assignment.details, !html.isEmpty {
@@ -172,7 +180,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
 
     func reminderDateChanged(selectedDate: Date?) {
         guard let selectedDate = selectedDate, let assignment = assignment.first else { return }
-        NotificationManager.shared.setReminder(for: assignment, at: selectedDate, studentID: studentID) { error in performUIUpdate { [self] in
+        localNotifications.setReminder(for: assignment, at: selectedDate, studentID: studentID) { error in performUIUpdate { [self] in
             if error == nil {
                 reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
                 self.selectedDate = selectedDate
@@ -192,7 +200,8 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             let defaultDate = max(minDate, min(maxDate,
                 assignment.dueAt?.addDays(-1) ?? Clock.now.addDays(1)
             ))
-            NotificationManager.shared.requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
+            userNotificationCenter
+                .requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
                 guard error == nil && success else {
                     self.reminderSwitch.setOn(false, animated: true)
                     return self.showPermissionError(.notifications)
@@ -205,7 +214,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                 }
             } }
         } else {
-            NotificationManager.shared.removeReminder(assignmentID)
+            localNotifications.removeReminder(assignmentID)
             UIView.animate(withDuration: 0.2) {
                 self.reminderDateButton.isHidden = true
             }
@@ -221,12 +230,12 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBAction func compose() {
         guard let assignment = assignment.first, let name = student.first?.fullName else { return }
         let subject = String.localizedStringWithFormat(
-            NSLocalizedString("Regarding: %@, Assignment - %@", comment: "Regarding <Name>, Assignment - <Assignment Name>"),
+            String(localized: "Regarding: %@, Assignment - %@", bundle: .parent, comment: "Regarding <Name>, Assignment - <Assignment Name>"),
             name,
             assignment.name
         )
         let hiddenMessage = String.localizedStringWithFormat(
-            NSLocalizedString("Regarding: %@, %@", comment: "Regarding <Name>, <URL>"),
+            String(localized: "Regarding: %@, %@", bundle: .parent, comment: "Regarding <Name>, <URL>"),
             name,
             assignment.htmlURL?.absoluteString ?? ""
         )

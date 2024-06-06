@@ -67,6 +67,10 @@ public class CalendarHelper: BaseHelper {
         return app.find(id: "PlannerList.event.\(event.id)")
     }
 
+    public static func eventCellByIndex(index: Int) -> XCUIElement {
+        return app.findAll(idStartingWith: "PlannerList.event.")[index]
+    }
+
     public static func titleLabelOfEvent(eventCell: XCUIElement) -> XCUIElement {
         return eventCell.findAll(type: .staticText, minimumCount: 1)[0]
     }
@@ -167,11 +171,36 @@ public class CalendarHelper: BaseHelper {
 
     public struct Filter {
         public static var navBar: XCUIElement { app.find(id: "Calendars") }
-        public static var doneButton: XCUIElement { app.find(id: "screen.dismiss") }
+        public static var doneButton: XCUIElement { app.find(label: "Done", type: .button) }
+        public static var calendarsLabel: XCUIElement { app.find(label: "Calendars", type: .staticText) }
+        public static var deselectAllButton: XCUIElement { app.find(labelContaining: "Deselect", type: .button) }
         public static func courseCell(course: DSCourse) -> XCUIElement {
-            return app.find(label: course.name, type: .cell)
+            return app.find(label: course.name, type: .switch)
         }
 
+    }
+
+    public struct Todo {
+        public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
+        public static var doneButton: XCUIElement { app.find(label: "Done", type: .button) }
+        public static var titleInput: XCUIElement { app.find(label: "Title", type: .textField) }
+        public static var courseSelector: XCUIElement { app.find(labelContaining: "Course", type: .button) }
+        public static var dateButton: XCUIElement { app.find(label: "Date", type: .button) }
+        public static var descriptionInput: XCUIElement { app.find(label: "Description", type: .textView) }
+
+        public struct CourseSelector {
+            public static func courseItem(course: DSCourse) -> XCUIElement {
+                return app.find(type: .table).waitUntil(.visible).find(label: course.name, type: .staticText)
+            }
+        }
+
+        public struct DateSelector {
+            public static var datePicker: XCUIElement { app.find(type: .datePicker)}
+            public static var dateWheel: XCUIElement { datePicker.waitUntil(.visible).findAll(type: .pickerWheel)[0] }
+            public static var hourWheel: XCUIElement { datePicker.waitUntil(.visible).findAll(type: .pickerWheel)[1] }
+            public static var minutesWheel: XCUIElement { datePicker.waitUntil(.visible).findAll(type: .pickerWheel)[2] }
+            public static var meridiemWheel: XCUIElement { datePicker.waitUntil(.visible).findAll(type: .pickerWheel)[3] }
+        }
     }
 
     // MARK: DataSeeding

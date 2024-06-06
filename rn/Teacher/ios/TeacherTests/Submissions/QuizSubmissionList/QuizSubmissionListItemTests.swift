@@ -26,7 +26,7 @@ class QuizSubmissionListItemTests: TeacherTestCase {
         let user = QuizSubmissionUser.save(APIUser.make(id: 1, name: "John", avatar_url: URL(string: "https://example.com/avatar1"), pronouns: "he/him"), in: databaseClient)
         let users = [user, QuizSubmissionUser.make(in: databaseClient)]
         let submissions: [QuizSubmission] = [.make()]
-        let testee = QuizSubmissionListItem.make(users: users, submissions: submissions)
+        let testee = QuizSubmissionListItem.make(users: users, submissions: submissions, isAnonymous: false)
 
         XCTAssertEqual(testee.count, 2)
         XCTAssertEqual(testee[0].id, "1")
@@ -35,13 +35,27 @@ class QuizSubmissionListItemTests: TeacherTestCase {
         XCTAssertEqual(testee[0].status, .untaken)
         XCTAssertNil(testee[0].score)
         XCTAssertEqual(testee[0].avatarURL, user.avatarURL)
+    }
 
+    func testAnonymizedStudent() {
+        let user = QuizSubmissionUser.save(APIUser.make(id: 1, name: "John", avatar_url: URL(string: "https://example.com/avatar1"), pronouns: "he/him"), in: databaseClient)
+        let users = [user, QuizSubmissionUser.make(in: databaseClient)]
+        let submissions: [QuizSubmission] = [.make()]
+        let testee = QuizSubmissionListItem.make(users: users, submissions: submissions, isAnonymous: true)
+
+        XCTAssertEqual(testee.count, 2)
+        XCTAssertEqual(testee[0].id, "1")
+        XCTAssertEqual(testee[0].displayName, "Student 1")
+        XCTAssertEqual(testee[0].name, nil)
+        XCTAssertEqual(testee[0].status, .untaken)
+        XCTAssertNil(testee[0].score)
+        XCTAssertEqual(testee[0].avatarURL, nil)
     }
 
     func testConnectSubmissions() {
         let users = [QuizSubmissionUser.make(id: "1", in: databaseClient), QuizSubmissionUser.make(id: "2", in: databaseClient)]
         let submissions = [QuizSubmission.make(from: .make(score: 99, user_id: "1", workflow_state: .complete))]
-        let testee = QuizSubmissionListItem.make(users: users, submissions: submissions)
+        let testee = QuizSubmissionListItem.make(users: users, submissions: submissions, isAnonymous: false)
 
         XCTAssertEqual(testee[0].status, .complete)
         XCTAssertEqual(testee[0].score, "99")
@@ -67,7 +81,7 @@ class QuizSubmissionListItemTests: TeacherTestCase {
             QuizSubmission.make(from: .make(id: "1", score: 2.66667, user_id: "1", workflow_state: .complete)),
             QuizSubmission.make(from: .make(id: "2", score: 1.00001, user_id: "2", workflow_state: .complete)),
         ]
-        let testee = QuizSubmissionListItem.make(users: users, submissions: submissions)
+        let testee = QuizSubmissionListItem.make(users: users, submissions: submissions, isAnonymous: false)
 
         XCTAssertEqual(testee[0].score, "2.67")
         XCTAssertEqual(testee[1].score, "1")

@@ -19,26 +19,27 @@
 import CoreData
 import Foundation
 
-public class GetGlobalNavExternalPlacements: CollectionUseCase {
+public class GetGlobalNavExternalToolsPlacements: CollectionUseCase {
     public typealias Model = ExternalToolLaunchPlacement
 
     public let cacheKey: String? = "accounts/self/lti_apps/launch_definitions?placements[]=global_navigation"
-
     public let request = GetGlobalNavExternalToolsRequest()
+    public let scope: Scope
 
-    public let scope = Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
-        NSPredicate(
-            format: "%K == %@",
-            #keyPath(ExternalToolLaunchPlacement.locationRaw),
-            ExternalToolLaunchPlacementLocation.global_navigation.rawValue
-        ),
-        NSCompoundPredicate(orPredicateWithSubpredicates: [
-            NSPredicate(format: "%K == %@", #keyPath(ExternalToolLaunchPlacement.domain), "arc.instructure.com"),
-            NSPredicate(format: "%K == %@", #keyPath(ExternalToolLaunchPlacement.domain), "gauge.instructure.com"),
-        ]),
-    ]), orderBy: #keyPath(ExternalToolLaunchPlacement.title), naturally: true)
-
-    public init() {}
+    public init(enrollment: HelpLinkEnrollment) {
+        scope = Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(
+                format: "%K == %@",
+                #keyPath(ExternalToolLaunchPlacement.locationRaw),
+                ExternalToolLaunchPlacementLocation.global_navigation.rawValue
+            ),
+            NSCompoundPredicate(orPredicateWithSubpredicates:
+                enrollment.allowedGlobalLTIDomains.map {
+                    NSPredicate(format: "%K == %@", #keyPath(ExternalToolLaunchPlacement.domain), $0)
+                }
+            ),
+        ]), orderBy: #keyPath(ExternalToolLaunchPlacement.title), naturally: true)
+    }
 
     public func write(response: [APIExternalToolLaunch]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let tools = response else { return }
@@ -55,5 +56,23 @@ public class GetGlobalNavExternalPlacements: CollectionUseCase {
             model.title = placement.title
             model.url = placement.url
         } }
+    }
+}
+
+public extension HelpLinkEnrollment {
+
+    var allowedGlobalLTIDomains: [String] {
+        var domains: [LTIDomains] = []
+
+        switch self {
+        case .observer:
+            domains = [.masteryConnect]
+        case .teacher, .student, .admin:
+            domains = [.studio, .gauge, .masteryConnect]
+        default:
+            domains = [.studio, .gauge]
+        }
+
+        return domains.map(\.rawValue)
     }
 }

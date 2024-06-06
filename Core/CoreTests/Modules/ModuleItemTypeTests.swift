@@ -81,4 +81,27 @@ class ModuleItemTypeTests: XCTestCase {
         let type = try! decoder.decode(ModuleItemType.self, from: data)
         XCTAssertEqual(type, .externalTool("1", URL(string: url)!))
     }
+
+    func testMapping() {
+        let discussion = ModuleItemType.discussion("")
+        XCTAssertEqual(discussion.assetType, .discussion)
+
+        let assignement = ModuleItemType.assignment("")
+        XCTAssertEqual(assignement.assetType, .assignment)
+
+        let quiz = ModuleItemType.quiz("")
+        XCTAssertEqual(quiz.assetType, .quiz)
+
+        let externalURL = ModuleItemType.externalURL(URL(string: "/foo")!)
+        XCTAssertEqual(externalURL.assetType, .moduleItem)
+
+        let externalTool = ModuleItemType.externalTool("", URL(string: "/foo")!)
+        XCTAssertEqual(externalTool.assetType, .externalTool)
+
+        let page = ModuleItemType.page("")
+        XCTAssertEqual(page.assetType, .page)
+
+        let subHeader = ModuleItemType.subHeader
+        XCTAssertEqual(subHeader.assetType, .moduleItem)
+    }
 }

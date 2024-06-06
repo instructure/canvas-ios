@@ -93,7 +93,7 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         ])
 
         let prompt = UILabel()
-        prompt.text = NSLocalizedString("Find a code to scan", bundle: .core, comment: "")
+        prompt.text = String(localized: "Find a code to scan", bundle: .core)
         prompt.font = .scaledNamedFont(.semibold16)
         prompt.textColor = .textLightest
         promptContainer.addSubview(prompt)
@@ -127,11 +127,11 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
 
     func failed() {
         let alert = UIAlertController(
-            title: NSLocalizedString("Scanning not supported", bundle: .core, comment: ""),
-            message: NSLocalizedString("Make sure you enable camera permissions in Settings", bundle: .core, comment: ""),
+            title: String(localized: "Scanning not supported", bundle: .core),
+            message: String(localized: "Make sure you enable camera permissions in Settings", bundle: .core),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: String(localized: "OK", bundle: .core), style: .default) { [weak self] _ in
             self?.dismiss(animated: true, completion: nil)
         })
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

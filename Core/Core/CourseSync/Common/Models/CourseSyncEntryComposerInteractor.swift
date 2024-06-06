@@ -39,48 +39,45 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
         useCache: Bool
     ) -> AnyPublisher<CourseSyncEntry, Error> {
         let tabs = Array(course.tabs).offlineSupportedTabs()
-        let mappedTabs = tabs.map {
+        var mappedTabs = tabs.map {
             CourseSyncEntry.Tab(
                 id: "courses/\(course.courseId)/tabs/\($0.id)",
                 name: $0.label,
                 type: $0.name
             )
         }
-        if tabs.isFilesTabEnabled() {
-            return filesInteractor.getFiles(courseId: course.courseId, useCache: useCache)
-                .map { files in
-                    files.map {
-                        CourseSyncEntry.File(
-                            id: "courses/\(course.courseId)/files/\($0.id ?? Foundation.UUID().uuidString)",
-                            displayName: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
-                            fileName: $0.filename,
-                            url: $0.url!,
-                            mimeClass: $0.mimeClass!,
-                            updatedAt: $0.updatedAt,
-                            bytesToDownload: $0.size
-                        )
-                    }
-                }
-                .map { files in
-                    CourseSyncEntry(
-                        name: course.name,
-                        id: "courses/\(course.courseId)",
-                        tabs: mappedTabs,
-                        files: files
+        mappedTabs.append(
+            CourseSyncEntry.Tab(
+                id: "courses/\(course.courseId)/tabs/additional-content",
+                name: String(localized: "Additional Content", bundle: .core),
+                type: .additionalContent,
+                selectionState: .deselected
+            )
+        )
+
+        return filesInteractor.getFiles(courseId: course.courseId, useCache: useCache)
+            .map { files in
+                files.map {
+                    CourseSyncEntry.File(
+                        id: "courses/\(course.courseId)/files/\($0.id ?? Foundation.UUID().uuidString)",
+                        displayName: $0.displayName ?? String(localized: "Unknown file", bundle: .core),
+                        fileName: $0.filename,
+                        url: $0.url!,
+                        mimeClass: $0.mimeClass!,
+                        updatedAt: $0.updatedAt,
+                        bytesToDownload: $0.size
                     )
                 }
-                .eraseToAnyPublisher()
-        } else {
-            return Just(
+            }
+            .map { files in
                 CourseSyncEntry(
                     name: course.name,
                     id: "courses/\(course.courseId)",
+                    hasFrontPage: course.hasFrontPage,
                     tabs: mappedTabs,
-                    files: []
+                    files: files
                 )
-            )
-            .setFailureType(to: Error.self)
+            }
             .eraseToAnyPublisher()
-        }
     }
 }

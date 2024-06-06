@@ -142,25 +142,25 @@ class RollCallSessionTests: TeacherTestCase, RollCallSessionDelegate {
         }
 
         session.state = .active(API())
-        api.mock(URLRequest(url: url))
+        api.mock(url: url, method: .post)
         session.updateStatus(.make(id: nil)) { (id, error) in
             XCTAssertNil(id)
             XCTAssertEqual(error?.localizedDescription, "Error: No data returned from the rollcall api.")
         }
 
-        api.mock(URLRequest(url: url.appendingPathComponent("1")), data: Data())
+        api.mock(url: url.appendingPathComponent("1"), method: .put, data: Data())
         session.updateStatus(.make(attendance: .present)) { (id, error) in
             XCTAssertNil(id)
             XCTAssertNotNil(error)
         }
 
-        api.mock(URLRequest(url: url.appendingPathComponent("1")), data: Data())
+        api.mock(url: url.appendingPathComponent("1"), method: .delete, data: Data())
         session.updateStatus(.make(attendance: nil)) { (id, error) in
             XCTAssertNil(id)
             XCTAssertNil(error)
         }
 
-        api.mock(URLRequest(url: url.appendingPathComponent("1")), data: try? session.encoder.encode(Status.make()))
+        api.mock(url: url.appendingPathComponent("1"), method: .put, data: try? session.encoder.encode(Status.make()))
         session.updateStatus(.make(attendance: .present)) { (id, error) in
             XCTAssertEqual(id?.value, "1")
             XCTAssertNil(error)

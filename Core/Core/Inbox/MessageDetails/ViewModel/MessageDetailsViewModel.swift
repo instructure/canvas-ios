@@ -26,17 +26,14 @@ class MessageDetailsViewModel: ObservableObject {
     @Published public private(set) var conversations: [Conversation] = []
     @Published public private(set) var starred: Bool = false
 
-    public let title = String(localized: "Message Details")
+    public let title = String(localized: "Message Details", bundle: .core)
 
     @Published public var isShowingCancelDialog = false
     public let confirmAlert = ConfirmationAlertViewModel(
-        title: String(localized: "Are your sure?"),
-        message: String(localized:
-           """
-           It will permanently delete this message from your profile.
-           """),
-        cancelButtonTitle: String(localized: "No"),
-        confirmButtonTitle: String(localized: "Yes"),
+        title: String(localized: "Are your sure?", bundle: .core),
+        message: String(localized: "It will permanently delete this message from your profile.", bundle: .core),
+        cancelButtonTitle: String(localized: "No", bundle: .core),
+        confirmButtonTitle: String(localized: "Yes", bundle: .core),
         isDestructive: false
     )
 
@@ -73,7 +70,7 @@ class MessageDetailsViewModel: ObservableObject {
         }
         sheet.addAction(
             image: .replyAllLine,
-            title: String(localized: "Reply All"),
+            title: String(localized: "Reply All", bundle: .core),
             accessibilityIdentifier: "MessageDetails.replyAll"
         ) {
             self.replyAllTapped(message: nil, viewController: viewController)
@@ -81,7 +78,7 @@ class MessageDetailsViewModel: ObservableObject {
 
         sheet.addAction(
             image: .forwardLine,
-            title: String(localized: "Forward"),
+            title: String(localized: "Forward", bundle: .core),
             accessibilityIdentifier: "MessageDetails.forward"
         ) {
             self.forwardTapped(message: nil, viewController: viewController)
@@ -90,7 +87,7 @@ class MessageDetailsViewModel: ObservableObject {
         if (conversations.first?.workflowState == .read) {
             sheet.addAction(
                 image: .nextUnreadLine,
-                title: String(localized: "Mark as Unread"),
+                title: String(localized: "Mark as Unread", bundle: .core),
                 accessibilityIdentifier: "MessageDetails.markAsUnread"
             ) {
                 self.updateState.send(.unread)
@@ -98,7 +95,7 @@ class MessageDetailsViewModel: ObservableObject {
         } else {
             sheet.addAction(
                 image: .emailLine,
-                title: String(localized: "Mark as Read"),
+                title: String(localized: "Mark as Read", bundle: .core),
                 accessibilityIdentifier: "MessageDetails.markAsRead"
             ) {
                 self.updateState.send(.read)
@@ -108,7 +105,7 @@ class MessageDetailsViewModel: ObservableObject {
         if conversations.first?.workflowState != .archived {
             sheet.addAction(
                 image: .archiveLine,
-                title: String(localized: "Archive"),
+                title: String(localized: "Archive", bundle: .core),
                 accessibilityIdentifier: "MessageDetails.archive"
             ) {
                 self.updateState.send(.archived)
@@ -117,7 +114,7 @@ class MessageDetailsViewModel: ObservableObject {
 
         sheet.addAction(
             image: .trashLine,
-            title: String(localized: "Delete Conversation"),
+            title: String(localized: "Delete Conversation", bundle: .core),
             accessibilityIdentifier: "MessageDetails.delete"
         ) {
             if let conversationId = self.conversations.first?.id {
@@ -131,7 +128,7 @@ class MessageDetailsViewModel: ObservableObject {
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(
             image: .replyLine,
-            title: String(localized: "Reply"),
+            title: String(localized: "Reply", bundle: .core),
             accessibilityIdentifier: "MessageDetails.reply"
         ) {
             if let message {
@@ -140,7 +137,7 @@ class MessageDetailsViewModel: ObservableObject {
         }
         sheet.addAction(
             image: .replyAllLine,
-            title: String(localized: "Reply All"),
+            title: String(localized: "Reply All", bundle: .core),
             accessibilityIdentifier: "MessageDetails.replyAll"
         ) {
             if let message {
@@ -150,7 +147,7 @@ class MessageDetailsViewModel: ObservableObject {
 
         sheet.addAction(
             image: .forwardLine,
-            title: String(localized: "Forward"),
+            title: String(localized: "Forward", bundle: .core),
             accessibilityIdentifier: "MessageDetails.forward"
         ) {
             self.forwardTapped(message: message, viewController: viewController)
@@ -158,7 +155,7 @@ class MessageDetailsViewModel: ObservableObject {
 
         sheet.addAction(
             image: .trashLine,
-            title: String(localized: "Delete Message"),
+            title: String(localized: "Delete Message", bundle: .core),
             accessibilityIdentifier: "MessageDetails.delete"
         ) {
             if let conversationId = self.conversations.first?.id, let messageId = message?.id {

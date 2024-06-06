@@ -22,13 +22,13 @@ import PSPDFKitUI
 extension UIAction {
 
     static func style(annotation: Annotation, pageView: PDFPageView) -> UIAction {
-        UIAction(title: NSLocalizedString("Style", bundle: .core, comment: "")) { _ in
+        UIAction(title: String(localized: "Style", bundle: .core)) { _ in
             pageView.presentInspector(for: [annotation])
         }
     }
 
     static func deleteAnnotation(document: Document, annotation: Annotation) -> UIAction {
-        UIAction(title: NSLocalizedString("Remove", bundle: .core, comment: ""),
+        UIAction(title: String(localized: "Remove", bundle: .core),
                  image: .trashLine) { _ in
             document.remove(annotations: [annotation], options: nil)
         }
@@ -40,7 +40,7 @@ extension UIAction {
                              document: Document,
                              container: UIViewController,
                              router: Router) -> UIAction {
-        UIAction(title: NSLocalizedString("Comments", bundle: .core, comment: "")) { _ in
+        UIAction(title: String(localized: "Comments", bundle: .core)) { _ in
             let comments = annotationProvider.getReplies(to: annotation)
             let view = CommentListViewController.create(comments: comments,
                                                         inReplyTo: annotation,

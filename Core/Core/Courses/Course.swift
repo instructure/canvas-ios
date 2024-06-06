@@ -189,15 +189,15 @@ extension Course {
             grade = enrollment.computedCurrentGrade
             score = enrollment.computedCurrentScore
         } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
-            return NSLocalizedString("N/A", bundle: .core, comment: "")
+            return String(localized: "N/A", bundle: .core)
         }
 
         if hideQuantitativeData == true {
-            return grade ?? enrollment.computedCurrentLetterGrade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
+            return grade ?? enrollment.computedCurrentLetterGrade ?? String(localized: "N/A", bundle: .core)
         }
 
         guard let scoreNotNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNotNil)) else {
-            return grade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
+            return grade ?? String(localized: "N/A", bundle: .core)
         }
 
         if let grade = grade {

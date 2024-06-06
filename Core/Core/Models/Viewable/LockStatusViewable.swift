@@ -26,6 +26,6 @@ public protocol LockStatusViewable {
 extension LockStatusViewable {
     public var lockStatusText: String? {
         guard dueAt != nil, let lockAt = lockAt, lockAt < Date() else { return nil }
-        return NSLocalizedString("Closed", bundle: .core, comment: "")
+        return String(localized: "Closed", bundle: .core)
     }
 }

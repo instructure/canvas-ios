@@ -17,8 +17,6 @@ targets:
         excludes:
           - ".swiftlint.yml"
     dependencies:      
-      - package: Firebase
-        product: FirebaseCrashlytics
       - target: Core/Core
 schemes:
   SubmitAssignment:

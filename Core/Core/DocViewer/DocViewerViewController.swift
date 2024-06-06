@@ -220,7 +220,7 @@ public class DocViewerViewController: UIViewController {
     public func showError(_ error: Error) {
         loadingView.isHidden = true
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Dismiss", bundle: .core, comment: ""), style: .default))
+        alert.addAction(AlertAction(String(localized: "Dismiss", bundle: .core), style: .default))
         env.router.show(alert, from: self, options: .modal())
     }
 }
@@ -298,15 +298,15 @@ extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
     func annotationDidFailToSave(error: Error) { performUIUpdate {
         self.syncAnnotationsButton.isEnabled = true
         self.syncAnnotationsButton.backgroundColor = .backgroundDanger
-        self.syncAnnotationsButton.setTitle(NSLocalizedString("Error Saving. Tap to retry.", bundle: .core, comment: ""), for: .normal)
+        self.syncAnnotationsButton.setTitle(String(localized: "Error Saving. Tap to retry.", bundle: .core), for: .normal)
     } }
 
     func annotationSaveStateChanges(saving: Bool) { performUIUpdate {
         self.syncAnnotationsButton.isEnabled = false
         self.syncAnnotationsButton.backgroundColor = .backgroundLight
         self.syncAnnotationsButton.setTitle(saving
-            ? NSLocalizedString("Saving...", bundle: .core, comment: "")
-            : NSLocalizedString("All annotations saved.", bundle: .core, comment: ""),
+            ? String(localized: "Saving...", bundle: .core)
+            : String(localized: "All annotations saved.", bundle: .core),
         for: .normal)
     } }
 }

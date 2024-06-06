@@ -34,10 +34,10 @@ public protocol PandaScene {
     var isParallaxDisabled: Bool { get }
 }
 
-extension PandaScene {
-    public var backgroundFileName: String { "panda-\(name)-background" }
-    public var foregroundFileName: String { "panda-\(name)-foreground" }
-    public var foreground: AnyView { AnyView(BouncyImage(imageFileName: foregroundFileName)) }
-    public var background: AnyView { AnyView(ImageBackground(scene: self)) }
-    public var isParallaxDisabled: Bool { false }
+public extension PandaScene {
+    var backgroundFileName: String { "panda-\(name)-background" }
+    var foregroundFileName: String { "panda-\(name)-foreground" }
+    var foreground: AnyView { AnyView(BouncyImage(imageFileName: foregroundFileName)) }
+    var background: AnyView { AnyView(ImageBackground(scene: self)) }
+    var isParallaxDisabled: Bool { false }
 }

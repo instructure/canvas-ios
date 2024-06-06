@@ -21,6 +21,10 @@ import CombineExt
 import CoreData
 import Foundation
 
+public enum StoreError: Error {
+    case emptyResponse
+}
+
 public class ReactiveStore<U: UseCase> {
     private let offlineModeInteractor: OfflineModeInteractor?
     internal let useCase: U
@@ -90,15 +94,24 @@ public class ReactiveStore<U: UseCase> {
         return entitiesPublisher
     }
 
-    public func getEntitiesFromDatabase() -> AnyPublisher<[U.Model], Error> {
+    public func getEntitiesFromDatabase(
+        keepObservingDatabaseChanges: Bool = false
+    ) -> AnyPublisher<[U.Model], Error> {
         let scope = useCase.scope
         let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
 
-        return Self.fetchEntitiesFromDatabase(fetchRequest: request, context: context)
-            .first()
-            .eraseToAnyPublisher()
+        let fetch = Self.fetchEntitiesFromDatabase(fetchRequest: request, context: context)
+
+        if keepObservingDatabaseChanges {
+            return fetch
+                .eraseToAnyPublisher()
+        } else {
+            return fetch
+                .first()
+                .eraseToAnyPublisher()
+        }
     }
 
     /// Refreshes the entities by requesting the latest data from the API. The returned publisher will emit once the refresh has finished, then it completes.

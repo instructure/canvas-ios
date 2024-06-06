@@ -98,7 +98,7 @@ struct DashboardOfflineSyncProgressCardView: View {
                 .font(.semibold16, lineHeight: .fit)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 2)
-            Text("One or more files failed to sync. Check your internet connection and retry to submit.")
+            Text("One or more items failed to sync. Please check your internet connection and retry syncing.", bundle: .core)
                 .font(.regular14, lineHeight: .fit)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
@@ -108,8 +108,7 @@ struct DashboardOfflineSyncProgressCardView: View {
     private func progressBar(progress: Float) -> some View {
         ProgressView(value: progress)
             .progressViewStyle(
-                .determinateBar(foregroundColor: .textLightest,
-                                backgroundColor: .textLightest.opacity(0.2))
+                .determinateBar(color: .textLightest)
             )
             .animation(.default, value: progress)
     }

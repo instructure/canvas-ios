@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 
 extension Sequence where Element == URL {
     public var pathExtensions: Set<String> {
@@ -88,6 +89,38 @@ public extension URL {
             public static func courseFolder(sessionID: String, courseId: String) -> String {
                 "\(sessionID)/Offline/Files/course-\(courseId)"
             }
+
+            public static func courseSectionFolder(sessionId: String, courseId: String, sectionName: String) -> String {
+                "\(sessionId)/Offline/course-\(courseId)/\(sectionName)"
+            }
+
+            public static func courseSectionFolderURL(sessionId: String, courseId: String, sectionName: String) -> URL {
+                URL.Directories.documents.appendingPathComponent(
+                    URL.Paths.Offline.courseSectionFolder(
+                        sessionId: sessionId,
+                        courseId: courseId,
+                        sectionName: sectionName
+                    )
+                )
+            }
+
+            public static func courseSectionResourceFolder(sectionName: String, resourceId: String) -> String {
+                "\(sectionName)-\(resourceId)"
+            }
+
+            public static func courseSectionResourceFolderURL(
+                sessionId: String,
+                courseId: String,
+                sectionName: String,
+                resourceId: String
+            ) -> URL {
+                return Paths.Offline.courseSectionFolderURL(
+                    sessionId: sessionId,
+                    courseId: courseId,
+                    sectionName: sectionName
+                )
+                .appendingPathComponent("\(sectionName)-\(resourceId)")
+            }
         }
     }
 
@@ -147,5 +180,17 @@ public extension URL {
         components.host = host
         components.scheme = scheme
         return components.url
+    }
+}
+
+public extension URL {
+    func mimeType() -> String {
+        let pathExtension = self.pathExtension
+        if let type = UTType(filenameExtension: pathExtension) {
+            if let mimetype = type.preferredMIMEType {
+                return mimetype as String
+            }
+        }
+        return "application/octet-stream"
     }
 }

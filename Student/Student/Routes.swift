@@ -35,7 +35,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/calendar": { url, _, _ in
         if let eventID = url.queryItems?.first(where: { $0.name == "event_id" })?.value {
-           return CalendarEventDetailsViewController.create(eventID: eventID)
+           return PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
        }
        let controller = PlannerViewController.create()
        controller.view.tintColor = Brand.shared.primary
@@ -44,12 +44,12 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/calendar_events/:eventID": { _, params, _ in
         guard let eventID = params["eventID"] else { return nil }
-        return CalendarEventDetailsViewController.create(eventID: eventID)
+        return PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
     },
 
     "/:context/:contextID/calendar_events/:eventID": { _, params, _ in
         guard let eventID = params["eventID"] else { return nil }
-        return CalendarEventDetailsViewController.create(eventID: eventID)
+        return PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
     },
 
     "/conversations": nil,
@@ -243,6 +243,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/:context/:contextID/files/:fileID/download": fileDetails,
     "/:context/:contextID/files/:fileID/preview": fileDetails,
     "/:context/:contextID/files/:fileID/edit": fileEditor,
+    "/courses/:courseID/files/:section/:resourceID/:fileID/offline": offlineFileDetails,
 
     "/courses/:courseID/grades": { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
@@ -478,6 +479,21 @@ private func fileDetails(url: URLComponents, params: [String: String], userInfo:
     return FileDetailsViewController.create(context: context, fileID: fileID, originURL: url, assignmentID: assignmentID)
 }
 
+private func offlineFileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard let courseID = params["courseID"],
+          let section = params["section"],
+          let resourceID = params["resourceID"],
+          let fileID = params["fileID"],
+          let sessionID = AppEnvironment.shared.currentSession?.uniqueID
+    else {
+        return nil
+    }
+    let context = Context(.course, id: courseID)
+
+    let fileSource = OfflineFileSource.privateFile(sessionID: sessionID, courseID: courseID, sectionName: section, resourceID: resourceID, fileID: fileID)
+    return FileDetailsViewController.create(context: context, fileID: fileID, offlineFileSource: fileSource)
+}
+
 private func fileEditor(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let fileID = params["fileID"] else { return nil }
     return CoreHostingController(FileEditorView(context: Context(path: url.path), fileID: fileID))
@@ -517,7 +533,7 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
         )
     }
 
-    if EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) {
+    if EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) && !OfflineModeAssembly.make().isOfflineModeEnabled() {
         let viewModel = EmbeddedWebPageViewModelLive(
             context: context,
             webPageType: webPageType

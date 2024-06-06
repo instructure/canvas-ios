@@ -48,6 +48,7 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
         super.viewDidLoad()
         view.addSubview(webView)
         webView.pin(inside: view)
+        webView.activateFullScreenSupport()
 
         if isInteractionLimited {
             setupLimitedInteractionNotification()
@@ -56,7 +57,7 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
 
     func setupLimitedInteractionNotification() {
         let n = NotificationView()
-        n.messageLabel.text = NSLocalizedString("Interactions on this page are limited by your institution.", bundle: .core, comment: "")
+        n.messageLabel.text = String(localized: "Interactions on this page are limited by your institution.", bundle: .core)
         n.showDismiss = true
         n.dismissHandler = { [weak self] in
             self?.limitedInteractionView?.removeFromSuperview()

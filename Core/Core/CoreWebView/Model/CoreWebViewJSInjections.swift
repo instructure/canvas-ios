@@ -83,7 +83,7 @@ extension CoreWebView {
      Replaces all LTI tool iframes with a button that opens the tool in a popup.
      */
     public static var LTIToolButtonJS: String {
-        let buttonText = NSLocalizedString("Launch External Tool", bundle: .core, comment: "")
+        let buttonText = String(localized: "Launch External Tool", bundle: .core)
         return """
         function fixLTITools() {
             // Replace all iframes with a button to launch in SFSafariViewController

@@ -25,7 +25,7 @@ class LoginFindSchoolViewController: UIViewController {
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchField: UITextField!
 
-    private lazy var nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(nextPressed))
+    private lazy var nextButton = UIBarButtonItem(title: String(localized: "Next", bundle: .core), style: .done, target: self, action: #selector(nextPressed))
 
     var accounts = [APIAccountResult]()
     var api: API = API()
@@ -37,8 +37,8 @@ class LoginFindSchoolViewController: UIViewController {
     var searchTask: APITask?
 
     var notFoundAttributedText: NSAttributedString = {
-        let text = NSLocalizedString("Can’t find your school? Try typing the full school URL.", bundle: .core, comment: "")
-        let link = NSLocalizedString("Login help.", bundle: .core, comment: "")
+        let text = String(localized: "Can’t find your school? Try typing the full school URL.", bundle: .core)
+        let link = String(localized: "Login help.", bundle: .core)
         let combined = "\(text) \(link)"
         let attributedText = NSMutableAttributedString(string: combined, attributes: [
             .foregroundColor: UIColor.textDark,
@@ -49,7 +49,7 @@ class LoginFindSchoolViewController: UIViewController {
     }()
 
     var helpAttributedText = NSAttributedString(
-        string: NSLocalizedString("How do I find my school?", bundle: .core, comment: ""),
+        string: String(localized: "How do I find my school?", bundle: .core),
         attributes: [.foregroundColor: UIColor.electric]
     )
 
@@ -69,14 +69,14 @@ class LoginFindSchoolViewController: UIViewController {
         logoView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         logoView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         navigationItem.titleView = logoView
-        navigationItem.title = NSLocalizedString("Find School", bundle: .core, comment: "")
+        navigationItem.title = String(localized: "Find School", bundle: .core)
 
-        promptLabel.text = NSLocalizedString("What’s your school’s name?", bundle: .core, comment: "")
+        promptLabel.text = String(localized: "What’s your school’s name?", bundle: .core)
         searchField.attributedPlaceholder = NSAttributedString(
-            string: NSLocalizedString("Find your school or district", bundle: .core, comment: ""),
+            string: String(localized: "Find your school or district", bundle: .core),
             attributes: [.foregroundColor: UIColor.textDark]
         )
-        searchField.accessibilityLabel = NSLocalizedString("School’s name", bundle: .core, comment: "")
+        searchField.accessibilityLabel = String(localized: "School’s name", bundle: .core)
     }
 
     override func viewWillAppear(_ animated: Bool) {

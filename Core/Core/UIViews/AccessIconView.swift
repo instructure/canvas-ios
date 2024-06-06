@@ -59,15 +59,15 @@ open class AccessIconView: UIView {
             case .published:
                 statusIconView.image = .publishSolid
                 statusIconView.tintColor = UIColor.textSuccess
-                accessibilityLabel = NSLocalizedString("Published", bundle: .core, comment: "")
+                accessibilityLabel = String(localized: "Published", bundle: .core)
             case .restricted:
                 statusIconView.image = .cloudLockLine
                 statusIconView.tintColor = UIColor.textDark
-                accessibilityLabel = NSLocalizedString("Restricted", bundle: .core, comment: "")
+                accessibilityLabel = String(localized: "Restricted", bundle: .core)
             case .unpublished:
                 statusIconView.image = .noSolid
                 statusIconView.tintColor = UIColor.textDark
-                accessibilityLabel = NSLocalizedString("Not Published", bundle: .core, comment: "")
+                accessibilityLabel = String(localized: "Not Published", bundle: .core)
             case .none:
                 statusIconView.isHidden = true
                 accessibilityLabel = nil

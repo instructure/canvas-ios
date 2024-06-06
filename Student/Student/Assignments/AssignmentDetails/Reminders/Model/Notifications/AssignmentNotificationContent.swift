@@ -29,15 +29,15 @@ extension UNNotificationContent {
         let dueText = formatter.string(from: beforeTime) ?? ""
 
         let result = UNMutableNotificationContent()
-        result.title = String(localized: "Due Date Reminder")
-        result.body = String(localized: "This assignment is due in \(dueText)", comment: "Due in 5 minutes") + ": \(context.assignmentName)"
+        result.title = String(localized: "Due Date Reminder", bundle: .student)
+        result.body = String(localized: "This assignment is due in \(dueText)", bundle: .student, comment: "Due in 5 minutes") + ": \(context.assignmentName)"
         result.sound = .default
         result.userInfo = [
             AssignmentReminderKeys.courseId.rawValue: context.courseId,
             AssignmentReminderKeys.assignmentId.rawValue: context.assignmentId,
             AssignmentReminderKeys.userId.rawValue: context.userId,
             AssignmentReminderKeys.triggerTimeText.rawValue: AssignmentReminderTimeFormatter().string(from: beforeTime) ?? "",
-            NotificationManager.RouteURLKey: "courses/\(context.courseId)/assignments/\(context.assignmentId)",
+            UNNotificationContent.RouteURLKey: "courses/\(context.courseId)/assignments/\(context.assignmentId)",
         ]
         return result
     }

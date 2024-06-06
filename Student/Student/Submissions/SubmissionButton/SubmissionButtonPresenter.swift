@@ -59,11 +59,11 @@ class SubmissionButtonPresenter: NSObject {
 
     func buttonText(course: Course, assignment: Assignment, quiz: Quiz?, onlineUpload: OnlineUploadState?) -> String? {
         if assignment.isDiscussion {
-            return NSLocalizedString("View Discussion", bundle: .student, comment: "")
+            return String(localized: "View Discussion", bundle: .student)
         }
 
         if assignment.isLTIAssignment {
-            return NSLocalizedString("Launch External Tool", bundle: .student, comment: "")
+            return String(localized: "Launch External Tool", bundle: .student)
         }
 
         if arcID == .pending {
@@ -86,18 +86,18 @@ class SubmissionButtonPresenter: NSObject {
         guard canSubmit else { return nil }
 
         if quiz?.submission?.canResume == true {
-            return NSLocalizedString("Resume Quiz", bundle: .student, comment: "")
+            return String(localized: "Resume Quiz", bundle: .student)
         }
         if quiz?.submission?.attemptsLeft == 0 { return nil }
         if assignment.quizID != nil {
             return assignment.submission?.submittedAt == nil
-                ? NSLocalizedString("Take Quiz", bundle: .student, comment: "")
-                : NSLocalizedString("Retake Quiz", bundle: .student, comment: "")
+                ? String(localized: "Take Quiz", bundle: .student)
+                : String(localized: "Retake Quiz", bundle: .student)
         }
 
         return assignment.submission?.workflowState == .unsubmitted || assignment.submission?.submittedAt == nil
-            ? NSLocalizedString("Submit Assignment", bundle: .student, comment: "")
-            : NSLocalizedString("Resubmit Assignment", bundle: .student, comment: "")
+            ? String(localized: "Submit Assignment", bundle: .student)
+            : String(localized: "Resubmit Assignment", bundle: .student)
     }
 
     func submitAssignment(_ assignment: Assignment, button: UIView) {
@@ -173,10 +173,14 @@ class SubmissionButtonPresenter: NSObject {
             let submissionId = assignment.submission?.id,
             let userID = assignment.submission?.userID,
             let course: Course = env.database.viewContext.fetch(scope: courseScope).first
-        else { return }
+        else {
+            return
+        }
 
-        env.api.makeRequest(CanvaDocsSessionRequest(submissionId: submissionId)) { [weak self] response, _, _ in
-            guard let self = self, let docViewerSessionURL = response?.canvadocs_session_url else { return }
+        env.api.makeRequest(CanvaDocsSessionRequest(submissionId: submissionId), refreshToken: false) { [weak self] response, _, _ in
+            guard let self = self, let docViewerSessionURL = response?.canvadocs_session_url else {
+                return
+            }
 
             let viewModel = StudentAnnotationSubmissionViewModel(documentURL: docViewerSessionURL.rawValue,
                                                                  courseID: assignment.courseID,
@@ -214,8 +218,8 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         self.assignment = assignment
         self.selectedSubmissionTypes = selectedSubmissionTypes
         let filePicker = FilePickerViewController.create(batchID: isMediaRecording ? UUID.string : batchID)
-        filePicker.title = NSLocalizedString("Submission", bundle: .student, comment: "")
-        filePicker.cancelButtonTitle = NSLocalizedString("Cancel Submission", bundle: .student, comment: "")
+        filePicker.title = String(localized: "Submission", bundle: .student)
+        filePicker.cancelButtonTitle = String(localized: "Cancel Submission", bundle: .student)
         let allowedUTIs = selectedSubmissionTypes.allowedUTIs( allowedExtensions: assignment.allowedExtensions )
         let mediaTypes = selectedSubmissionTypes.allowedMediaTypes
         filePicker.sources = [.files]
@@ -306,29 +310,29 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
         let env = self.env
         let mediaUploader = UploadMedia(type: type, url: url)
         let uploading = SubmissionButtonAlertView.uploadingAlert(mediaUploader)
-        let reportError = { [weak self] (error: Error) -> Void in
-            let failure = UIAlertController(title: NSLocalizedString("Submission Failed", bundle: .student, comment: ""), message: error.localizedDescription, preferredStyle: .alert)
-            failure.addAction(UIAlertAction(title: NSLocalizedString("Retry", bundle: .student, comment: ""), style: .default) { _ in
+        let reportError = { [weak self] (error: Error) in
+            let failure = UIAlertController(title: String(localized: "Submission Failed", bundle: .student), message: error.localizedDescription, preferredStyle: .alert)
+            failure.addAction(UIAlertAction(title: String(localized: "Retry", bundle: .student), style: .default) { _ in
                 self?.submitMediaType(type, url: url, callback: callback)
             })
-            failure.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
+            failure.addAction(UIAlertAction(title: String(localized: "Cancel", bundle: .student), style: .cancel))
             self?.show(failure)
         }
         let reportSuccess = { [weak self] in
-            let success = UIAlertController(title: NSLocalizedString("Successfully submitted!", bundle: .student, comment: ""), message: nil, preferredStyle: .alert)
+            let success = UIAlertController(title: String(localized: "Successfully submitted!", bundle: .student), message: nil, preferredStyle: .alert)
             self?.show(success) {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
                     env.router.dismiss(success)
                 }
             }
         }
-        let doneUploading = { [weak self] (error: Error?) -> Void in
+        let doneUploading = { [weak self] (error: Error?) in
             performUIUpdate { self?.env.router.dismiss(uploading) {
                 if let error = error { return reportError(error) }
                 reportSuccess()
             } }
         }
-        let createSubmission = { (mediaID: String?, error: Error?) -> Void in
+        let createSubmission = { (mediaID: String?, error: Error?) in
             guard error == nil else { return doneUploading(error) }
             CreateSubmission(
                 context: .course(assignment.courseID),

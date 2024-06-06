@@ -228,6 +228,9 @@ public extension UIImage {
     static var cameraLine: UIImage { UIImage(named: "cameraLine", in: .core, compatibleWith: nil)! }
     static var cameraSolid: UIImage { UIImage(named: "cameraSolid", in: .core, compatibleWith: nil)! }
     static var chatBubble: UIImage { UIImage(named: "chatBubble", in: .core, compatibleWith: nil)! }
+    static var checkbox: UIImage { UIImage(named: "checkbox", in: .core, compatibleWith: nil)! }
+    static var checkboxSelected: UIImage { UIImage(named: "checkboxSelected", in: .core, compatibleWith: nil)! }
+    static var chevronDown: UIImage { UIImage(named: "chevronDown", in: .core, compatibleWith: nil)! }
     static var collaborations: UIImage { UIImage(named: "collaborations", in: .core, compatibleWith: nil)! }
     static var conferences: UIImage { UIImage(named: "conferences", in: .core, compatibleWith: nil)! }
     static var coursesTab: UIImage { UIImage(named: "coursesTab", in: .core, compatibleWith: nil)! }
@@ -251,6 +254,7 @@ public extension UIImage {
     static var k5schedule: UIImage { UIImage(named: "k5schedule", in: .core, compatibleWith: nil)! }
     static var logout: UIImage { UIImage(named: "logout", in: .core, compatibleWith: nil)! }
     static var markReadLine: UIImage { UIImage(named: "markReadLine", in: .core, compatibleWith: nil)! }
+    static var masteryLTI: UIImage { UIImage(named: "masteryLTI", in: .core, compatibleWith: nil)! }
     static var offlineLine: UIImage { UIImage(named: "offlineLine", in: .core, compatibleWith: nil)! }
     static var partialSolid: UIImage { UIImage(named: "partialSolid", in: .core, compatibleWith: nil)! }
     static var qrCode: UIImage { UIImage(named: "qrCode", in: .core, compatibleWith: nil)! }
@@ -466,6 +470,8 @@ public extension Image {
     static var cameraLine: Image { Image("cameraLine", bundle: .core) }
     static var cameraSolid: Image { Image("cameraSolid", bundle: .core) }
     static var chatBubble: Image { Image("chatBubble", bundle: .core) }
+    static var checkbox: Image { Image("checkbox", bundle: .core) }
+    static var checkboxSelected: Image { Image("checkboxSelected", bundle: .core) }
     static var collaborations: Image { Image("collaborations", bundle: .core) }
     static var conferences: Image { Image("conferences", bundle: .core) }
     static var coursesTab: Image { Image("coursesTab", bundle: .core) }
@@ -489,6 +495,7 @@ public extension Image {
     static var k5schedule: Image { Image("k5schedule", bundle: .core) }
     static var logout: Image { Image("logout", bundle: .core) }
     static var markReadLine: Image { Image("markReadLine", bundle: .core) }
+    static var masteryLTI: Image { Image("masteryLTI", bundle: .core) }
     static var offlineLine: Image { Image("offlineLine", bundle: .core) }
     static var partialSolid: Image { Image("partialSolid", bundle: .core) }
     static var qrCode: Image { Image("qrCode", bundle: .core) }

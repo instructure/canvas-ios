@@ -55,6 +55,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     private var newReplyIDFromCurrentUser: String?
     private var isContentLargerThanView: Bool { webView.scrollView.contentSize.height > view.frame.size.height }
     private var offlineModeInteractor: OfflineModeInteractor?
+    private var offlineLoaded = false
 
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)"
@@ -122,12 +123,12 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupTitleViewInNavbar(title: isAnnouncement
-            ? NSLocalizedString("Announcement Details", bundle: .core, comment: "")
-            : NSLocalizedString("Discussion Details", bundle: .core, comment: "")
+            ? String(localized: "Announcement Details", bundle: .core)
+            : String(localized: "Discussion Details", bundle: .core)
         )
         courseSectionsView.isHidden = true
 
-        optionsButton.accessibilityLabel = NSLocalizedString("Options", bundle: .core, comment: "")
+        optionsButton.accessibilityLabel = String(localized: "Options", bundle: .core)
         optionsButton.accessibilityIdentifier = "DiscussionDetails.options"
 
         pointsView.isHidden = true
@@ -157,15 +158,24 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.handle("like") { [weak self] message in self?.handleLike(message) }
         webView.handle("moreOptions") { [weak self] message in self?.handleMoreOptions(message) }
         webView.handle("ready") { [weak self] _ in self?.ready() }
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: course.first?.id ?? "",
+            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
+            resourceId: topicID
+        )
+        webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
         webView.loadHTMLString(
             "<style>\(DiscussionHTML.css)</style>",
-            baseURL: env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
+            baseURL: offlineModeInteractor?.isOfflineModeEnabled() == true ?
+                rootURL :
+                env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
         )
 
         if showRepliesToEntryID != nil {
             titleSubtitleView.title = isAnnouncement
-                ? NSLocalizedString("Announcement Replies", bundle: .core, comment: "")
-                : NSLocalizedString("Discussion Replies", bundle: .core, comment: "")
+                ? String(localized: "Announcement Replies", bundle: .core)
+                : String(localized: "Discussion Replies", bundle: .core)
             navigationItem.rightBarButtonItem = nil
         }
 
@@ -212,12 +222,12 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         refreshControl.color = color
         titleSubtitleView.title = showRepliesToEntryID != nil ? (
             isAnnouncement
-                ? NSLocalizedString("Announcement Replies", bundle: .core, comment: "")
-                : NSLocalizedString("Discussion Replies", bundle: .core, comment: "")
+                ? String(localized: "Announcement Replies", bundle: .core)
+                : String(localized: "Discussion Replies", bundle: .core)
         ) : (
             isAnnouncement
-                ? NSLocalizedString("Announcement Details", bundle: .core, comment: "")
-                : NSLocalizedString("Discussion Details", bundle: .core, comment: "")
+                ? String(localized: "Announcement Details", bundle: .core)
+                : String(localized: "Discussion Details", bundle: .core)
         )
         updateNavBar(subtitle: name, color: color)
     }
@@ -237,7 +247,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
         if let sections = topic.first?.sections, topic.first?.isSectionSpecific == true {
             courseSectionsLabel.text = String.localizedStringWithFormat(
-                NSLocalizedString("Sections: %@", bundle: .core, comment: ""),
+                String(localized: "Sections: %@", bundle: .core),
                 ListFormatter.localizedString(from: sections.map { $0.name })
             )
             courseSectionsView.isHidden = false
@@ -258,8 +268,8 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         publishedIcon.image = isPublished ? .publishSolid : .noSolid
         publishedIcon.tintColor = isPublished ? .textSuccess : .textDark
         publishedLabel.text = isPublished
-            ? NSLocalizedString("Published", bundle: .core, comment: "")
-            : NSLocalizedString("Unpublished", bundle: .core, comment: "")
+            ? String(localized: "Published", bundle: .core)
+            : String(localized: "Unpublished", bundle: .core)
         publishedLabel.textColor = isPublished ? .textSuccess : .textDark
         publishedView.isHidden = env.app != .teacher || isAnnouncement || showRepliesToEntryID != nil
 
@@ -321,9 +331,18 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         topicID = childID
         isReady = false
         isRendered = false
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: course.first?.id ?? "",
+            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
+            resourceId: topic.id
+        )
+        webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
         webView.loadHTMLString(
             "<style>\(DiscussionHTML.css)</style>",
-            baseURL: env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
+            baseURL: offlineModeInteractor?.isOfflineModeEnabled() == true ?
+                rootURL :
+                env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
         )
         entries = env.subscribe(GetDiscussionView(context: context, topicID: topicID)) { [weak self] in
             self?.update()
@@ -351,10 +370,14 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
     func render() {
         guard isReady, let topic = topic.first, !entries.pending || !entries.isEmpty else { return }
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            guard !offlineLoaded else { return }
+        }
         var script: String
         if let root = showRepliesToEntryID.flatMap({ entry($0) }) {
+            let newRoot = replaceContentForOfflineMode(for: root)
             script = DiscussionHTML.render(
-                entry: root,
+                entry: newRoot,
                 in: topic,
                 maxDepth: maxDepth,
                 canLike: canLike
@@ -381,9 +404,15 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
                 }
                 return entries
             }()
+
+            let newtopic = replaceContentForOfflineMode(for: topic)
+            let newEntries = entries.map { entry in
+                return replaceContentForOfflineMode(for: entry)
+            }
+
             script = DiscussionHTML.render(
-                topic: topic,
-                entries: entries,
+                topic: newtopic,
+                entries: newEntries,
                 maxDepth: maxDepth,
                 canLike: canLike,
                 groups: groups.all,
@@ -404,6 +433,55 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
             self.rendered()
             self.focusOnNewReplyIfNecessary()
         }
+    }
+
+    private func replaceContentForOfflineMode(for originalTopic: DiscussionTopic) -> DiscussionTopic {
+
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+                sessionId: env.currentSession?.uniqueID ?? "",
+                courseId: course.first?.id ?? "",
+                sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
+                resourceId: originalTopic.id
+            )
+            let offlinePath = rootURL.appendingPathComponent("body.html")
+
+            let newTopic = originalTopic
+
+            let rawHtmlValue = try? String(contentsOf: offlinePath, encoding: .utf8)
+            offlineLoaded = true
+            newTopic.message = rawHtmlValue
+
+            return newTopic
+        } else {
+            return originalTopic
+        }
+    }
+
+    private func replaceContentForOfflineMode(for originalEntry: DiscussionEntry) -> DiscussionEntry {
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+                sessionId: env.currentSession?.uniqueID ?? "",
+                courseId: course.first?.id ?? "",
+                sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
+                resourceId: originalEntry.id
+            )
+            let offlinePath = rootURL.appendingPathComponent("body.html")
+
+            let newEntry = originalEntry
+
+            let rawHtmlValue = try? String(contentsOf: offlinePath, encoding: .utf8)
+            offlineLoaded = true
+            newEntry.message = rawHtmlValue
+
+            newEntry.replies = newEntry.replies.map { reply in
+                return replaceContentForOfflineMode(for: reply)
+            }
+
+            return newEntry
+        }
+
+        return originalEntry
     }
 
     private func showFallbackWebView() {
@@ -463,9 +541,9 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     }
 
     private func focusOnNewReplyIfNecessary() {
-        if let newReplyIDFromCurrentUser = newReplyIDFromCurrentUser,
-           isContentLargerThanView // if the webview content is smaller than the screen then scrolling will trigger the pull to refresh icon
-        {
+        if let newReplyIDFromCurrentUser,
+           // if the webview content is smaller than the screen then scrolling will trigger the pull to refresh icon
+           isContentLargerThanView {
             webView.scrollIntoView(fragment: "entry-\(newReplyIDFromCurrentUser)")
         }
 
@@ -516,13 +594,14 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             url.host == env.currentSession?.baseURL.host,
             url.path.hasPrefix("/\(context.pathComponent)/discussion_topics/\(topicID)/")
         else {
-            if offlineModeInteractor?.isOfflineModeEnabled() == true {
-                UIAlertController.showItemNotAvailableInOfflineAlert()
-                return true
-            }
-
-            if url.pathComponents.contains("files") {
-                env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+            if url.pathComponents.contains("files") && url.host == env.currentSession?.baseURL.host {
+                if offlineModeInteractor?.isOfflineModeEnabled() == true && !url.pathComponents.contains("offline") {
+                    let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
+                    let offlineURL = "/courses/\(context.id)/files/\(isAnnouncement ? OfflineFolderPrefix.announcements : OfflineFolderPrefix.discussions)/\(topicID)/\(fileId)/offline"
+                    env.router.route(to: offlineURL, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                } else {
+                    env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                }
             } else {
                 env.router.route(to: url, from: self)
             }
@@ -581,7 +660,7 @@ extension DiscussionDetailsViewController {
         if entries.contains(where: { $0.isRead == false }) {
             sheet.addAction(
                 image: .checkSolid,
-                title: NSLocalizedString("Mark All as Read", bundle: .core, comment: ""),
+                title: String(localized: "Mark All as Read", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.markAllRead"
             ) { [weak self] in
                 self?.markAllRead(isRead: true)
@@ -590,7 +669,7 @@ extension DiscussionDetailsViewController {
         if entries.contains(where: { $0.isRead == true }) {
             sheet.addAction(
                 image: .noSolid,
-                title: NSLocalizedString("Mark All as Unread", bundle: .core, comment: ""),
+                title: String(localized: "Mark All as Unread", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.markAllUnread"
             ) { [weak self] in
                 self?.markAllRead(isRead: false)
@@ -599,7 +678,7 @@ extension DiscussionDetailsViewController {
         if topic.subscribed {
             sheet.addAction(
                 image: .noSolid,
-                title: NSLocalizedString("Unsubscribe", comment: ""),
+                title: String(localized: "Unsubscribe", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.unsubscribe"
             ) { [weak self] in
                 self?.subscribe(false)
@@ -607,7 +686,7 @@ extension DiscussionDetailsViewController {
         } else {
             sheet.addAction(
                 image: .checkSolid,
-                title: NSLocalizedString("Subscribe", comment: ""),
+                title: String(localized: "Subscribe", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.subscribe"
             ) { [weak self] in
                 self?.subscribe(true)
@@ -616,7 +695,7 @@ extension DiscussionDetailsViewController {
         if topic.canUpdate {
             sheet.addAction(
                 image: .editLine,
-                title: NSLocalizedString("Edit", bundle: .core, comment: ""),
+                title: String(localized: "Edit", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.edit"
             ) { [weak self] in
                 self?.editTopic()
@@ -625,7 +704,7 @@ extension DiscussionDetailsViewController {
         if topic.canDelete {
             sheet.addAction(
                 image: .trashLine,
-                title: NSLocalizedString("Delete", bundle: .core, comment: ""),
+                title: String(localized: "Delete", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.delete"
             ) { [weak self] in
                 self?.deleteTopic()
@@ -734,7 +813,7 @@ extension DiscussionDetailsViewController {
         if entry.isRead == false {
             sheet.addAction(
                 image: .checkSolid,
-                title: NSLocalizedString("Mark as Read", bundle: .core, comment: ""),
+                title: String(localized: "Mark as Read", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.markAsRead"
             ) { [weak self] in
                 self?.markRead(entryID, isRead: true)
@@ -742,7 +821,7 @@ extension DiscussionDetailsViewController {
         } else {
             sheet.addAction(
                 image: .noSolid,
-                title: NSLocalizedString("Mark as Unread", bundle: .core, comment: ""),
+                title: String(localized: "Mark as Unread", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.markAsUnread"
             ) { [weak self] in
                 self?.markRead(entryID, isRead: false)
@@ -751,7 +830,7 @@ extension DiscussionDetailsViewController {
         if canEdit {
             sheet.addAction(
                 image: .editLine,
-                title: NSLocalizedString("Edit", bundle: .core, comment: ""),
+                title: String(localized: "Edit", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.edit"
             ) { [weak self] in
                 self?.editEntry(entryID)
@@ -760,7 +839,7 @@ extension DiscussionDetailsViewController {
         if canDelete {
             sheet.addAction(
                 image: .trashLine,
-                title: NSLocalizedString("Delete", bundle: .core, comment: ""),
+                title: String(localized: "Delete", bundle: .core),
                 accessibilityIdentifier: "DiscussionDetails.delete"
             ) { [weak self] in
                 self?.deleteEntry(entryID)

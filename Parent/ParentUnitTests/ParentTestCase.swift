@@ -36,8 +36,7 @@ class ParentTestCase: XCTestCase {
     }()
     let logger = TestLogger()
     var currentSession: LoginSession? { env.currentSession }
-    let notificationManager = MockNotificationManager()
-    var notificationCenter: MockUserNotificationCenter { notificationManager.mock }
+    var notificationCenter = MockUserNotificationCenter()
 
     override func setUp() {
         super.setUp()
@@ -45,7 +44,6 @@ class ParentTestCase: XCTestCase {
         AppEnvironment.shared = env
         API.resetMocks()
         MockUploadManager.reset()
-        NotificationManager.shared = notificationManager
         UploadManager.shared = MockUploadManager()
         ExperimentalFeature.allEnabled = false
         Parent.currentStudentID = "1"

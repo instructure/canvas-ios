@@ -38,7 +38,7 @@ public extension LoginDelegate {
     var supportsCanvasNetwork: Bool { true }
     var helpURL: URL? { URL(string: "https://community.canvaslms.com/docs/DOC-1543") }
     var whatsNewURL: URL? { nil }
-    var findSchoolButtonTitle: String { NSLocalizedString("Find my school", bundle: .core, comment: "") }
+    var findSchoolButtonTitle: String { String(localized: "Find my school", bundle: .core) }
 
     func changeUser() {}
     func openExternalURLinSafari(_ url: URL) {}

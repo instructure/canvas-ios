@@ -156,8 +156,8 @@ public class LTITools: NSObject {
     }
 
     public func presentTool(from view: UIViewController, animated: Bool = true, completionHandler: ((Bool) -> Void)? = nil) {
-        getSessionlessLaunch { [weak view] response in
-            guard let view = view else { return }
+        getSessionlessLaunch { [weak view, originalUrl = url, env] response in
+            guard let view else { return }
             guard let response = response else {
                 completionHandler?(false)
                 return
@@ -173,11 +173,20 @@ public class LTITools: NSObject {
                 self.env.router.show(controller, from: view, options: .modal(.overFullScreen, embedInNav: true, addDoneButton: true)) {
                     completionHandler(true)
                 }
+            } else if originalUrl?.absoluteString.contains("custom_arc_launch_type=global_nav") == true {
+                env.router.show(
+                    StudioViewController(url: url),
+                    from: view,
+                    options: .modal(.overFullScreen)
+                ) {
+                    completionHandler(true)
+                }
             } else if self.openInSafari {
                 self.env.loginDelegate?.openExternalURLinSafari(url)
                 completionHandler(true)
             } else {
                 let safari = SFSafariViewController(url: url)
+                safari.modalPresentationCapturesStatusBarAppearance = true
                 self.env.router.show(safari, from: view, options: .modal(.overFullScreen)) {
                     completionHandler(true)
                 }

@@ -47,7 +47,7 @@ class UploadManagerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        manager.notificationManager = notificationManager
+        manager.localNotifications = LocalNotificationsInteractor(notificationCenter: notificationCenter)
         LoginSession.clearAll()
         manager.process = TestProcess()
         UUID.mock("abcdefg")
@@ -189,7 +189,7 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertNotNil(notification)
         XCTAssertEqual(notification?.content.title, "Assignment submitted!")
         XCTAssertEqual(notification?.content.body, "Your files were uploaded and the assignment was submitted successfully.")
-        XCTAssertEqual(notification?.route, "/courses/1/assignments/2")
+        XCTAssertEqual(notification?.routeURL?.absoluteString, "/courses/1/assignments/2")
         XCTAssertTrue(fileManager.fileExists(atPath: oneURL.path))
         XCTAssertTrue(fileManager.fileExists(atPath: twoURL.path))
     }
@@ -208,11 +208,11 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertNotNil(notification)
         XCTAssertEqual(notification?.content.title, "Assignment submission failed!")
         XCTAssertEqual(notification?.content.body, "Something went wrong with an assignment submission.")
-        XCTAssertEqual(notification?.route, "/courses/1/assignments/2")
+        XCTAssertEqual(notification?.routeURL?.absoluteString, "/courses/1/assignments/2")
     }
 
     func testFailedNotification() throws {
-        manager.notificationManager.sendFailedNotification()
+        manager.localNotifications.sendFailedNotification()
         let notification = notificationCenter.requests.last
         XCTAssertNotNil(notification)
         XCTAssertEqual(notification?.content.title, "Failed to send files!")

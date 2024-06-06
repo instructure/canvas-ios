@@ -37,9 +37,9 @@ struct RubricAssessor: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 0) {
-                Text("Rubric")
+                Text("Rubric", bundle: .teacher)
                     .font(.heavy24).foregroundColor(.textDarkest)
-                Text("\(currentScore, specifier: "%g") out of \(assignment.rubricPointsPossible ?? 0, specifier: "%g")")
+                Text("\(currentScore, specifier: "%g") out of \(assignment.rubricPointsPossible ?? 0, specifier: "%g")", bundle: .teacher)
                     .font(.medium14).foregroundColor(.textDark)
             }
             Spacer()
@@ -72,7 +72,7 @@ struct RubricAssessor: View {
         Text(criteria.desc)
             .font(.semibold16).foregroundColor(.textDarkest)
         if criteria.ignoreForScoring {
-            Text("This criterion will not impact the score.")
+            Text("This criterion will not impact the score.", bundle: .teacher)
                 .font(.regular12).foregroundColor(.textDark)
                 .padding(.top, 2)
         }
@@ -152,7 +152,7 @@ struct RubricAssessor: View {
                 Image.addSolid
             }
         }
-        .accessibility(label: Text("Customize Grade"))
+        .accessibility(label: Text("Customize Grade", bundle: .teacher))
         .alignmentGuide(.leading, computeValue: leading)
         .alignmentGuide(.top, computeValue: top)
     }
@@ -173,7 +173,7 @@ struct RubricAssessor: View {
                         }
                     },
                     label: {
-                        Text("Add Comment")
+                        Text("Add Comment", bundle: .teacher)
                             .font(.medium14)
                             .foregroundColor(.accentColor)
                     }
@@ -195,7 +195,7 @@ struct RubricAssessor: View {
                         env.router.show(web, from: controller, options: .modal(embedInNav: true))
                     },
                     label: {
-                        Text("View Long Description")
+                        Text("View Long Description", bundle: .teacher)
                             .font(.medium14)
                             .foregroundColor(.accentColor)
                     }
@@ -220,7 +220,7 @@ struct RubricAssessor: View {
                 self.comment = comment
                 commentID = criteriaID
             } }, label: {
-                Text("Edit")
+                Text("Edit", bundle: .teacher)
                     .font(.medium14).foregroundColor(.accentColor)
             })
         }
@@ -306,23 +306,23 @@ struct RubricAssessor: View {
     }
 
     private func promptCustomGrade(_ criteria: Rubric, assessment: APIRubricAssessment?) {
-        let format = NSLocalizedString("out_of_g_pts", bundle: .core, comment: "")
+        let format = String(localized: "out_of_g_pts", bundle: .core)
         let message = String.localizedStringWithFormat(format, criteria.points)
-        let prompt = UIAlertController(title: NSLocalizedString("Customize Grade", comment: ""), message: message, preferredStyle: .alert)
+        let prompt = UIAlertController(title: String(localized: "Customize Grade", bundle: .teacher), message: message, preferredStyle: .alert)
         prompt.addTextField { field in
             field.placeholder = ""
             field.returnKeyType = .done
             field.addTarget(prompt, action: #selector(UIAlertController.performOKAlertAction), for: .editingDidEndOnExit)
-            field.accessibilityLabel = NSLocalizedString("Grade", comment: "")
+            field.accessibilityLabel = String(localized: "Grade", bundle: .teacher)
         }
-        prompt.addAction(AlertAction(NSLocalizedString("OK", comment: "")) { _ in
+        prompt.addAction(AlertAction(String(localized: "OK", bundle: .teacher)) { _ in
             let text = prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             assessments[criteria.id] = APIRubricAssessment(
                 comments: assessment?.comments,
                 points: DoubleFieldRow.formatter.number(from: text)?.doubleValue
             )
         })
-        prompt.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
+        prompt.addAction(AlertAction(String(localized: "Cancel", bundle: .teacher), style: .cancel))
         env.router.show(prompt, from: controller, options: .modal())
     }
 
@@ -376,7 +376,7 @@ struct RubricAssessor: View {
 
     private func showError(_ error: Error) {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default))
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .teacher), style: .default))
         env.router.show(alert, from: controller, options: .modal())
     }
 }

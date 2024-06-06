@@ -17,35 +17,65 @@
 //
 
 import Foundation
+import CombineSchedulers
 
 public enum CourseSyncDownloaderAssembly {
 
-    public static func makeInteractor() -> CourseSyncInteractor {
-        let contentInteractors: [CourseSyncContentInteractor] = [
-            CourseSyncPagesInteractorLive(),
-            CourseSyncPeopleInteractorLive(),
-            CourseSyncAssignmentsInteractorLive(),
-            CourseSyncGradesInteractorLive(userId: AppEnvironment.shared.currentSession?.userID ?? "self"),
-            CourseSyncSyllabusInteractorLive(),
-            CourseSyncConferencesInteractorLive(),
-            CourseSyncAnnouncementsInteractorLive(),
-            CourseSyncQuizzesInteractorLive(),
-            CourseSyncDiscussionsInteractorLive(),
-        ]
+    public static func makeInteractor(env: AppEnvironment = .shared) -> CourseSyncInteractor {
         let scheduler = DispatchQueue(
             label: "com.instructure.icanvas.core.course-sync-download"
         ).eraseToAnyScheduler()
+
+        let loginSession = env.currentSession
+
+        let pageHtmlParser = makeHTMLParser(for: .pages, loginSession: loginSession, scheduler: scheduler)
+        let assignmentHtmlParser = makeHTMLParser(for: .assignments, loginSession: loginSession, scheduler: scheduler)
+        let quizHtmlParser = makeHTMLParser(for: .quizzes, loginSession: loginSession, scheduler: scheduler)
+        let announcementHtmlParser = makeHTMLParser(for: .announcements, loginSession: loginSession, scheduler: scheduler)
+        let calendarEventHtmlParser = makeHTMLParser(for: .calendarEvents, loginSession: loginSession, scheduler: scheduler)
+        let discussionHtmlParser = makeHTMLParser(for: .discussions, loginSession: loginSession, scheduler: scheduler)
+
+        let contentInteractors: [CourseSyncContentInteractor] = [
+            CourseSyncPagesInteractorLive(htmlParser: pageHtmlParser),
+            CourseSyncPeopleInteractorLive(),
+            CourseSyncAssignmentsInteractorLive(htmlParser: assignmentHtmlParser),
+            CourseSyncGradesInteractorLive(userId: AppEnvironment.shared.currentSession?.userID ?? "self"),
+            CourseSyncSyllabusInteractorLive(assignmentEventHtmlParser: assignmentHtmlParser, calendarEventHtmlParser: calendarEventHtmlParser),
+            CourseSyncConferencesInteractorLive(),
+            CourseSyncAnnouncementsInteractorLive(htmlParser: announcementHtmlParser),
+            CourseSyncQuizzesInteractorLive(htmlParser: quizHtmlParser),
+            CourseSyncDiscussionsInteractorLive(discussionHtmlParser: discussionHtmlParser),
+        ]
         let progressInteractor = CourseSyncProgressObserverInteractorLive()
         let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, activityName: "Offline Sync")
 
         return CourseSyncInteractorLive(contentInteractors: contentInteractors,
                                         filesInteractor: CourseSyncFilesInteractorLive(),
-                                        modulesInteractor: CourseSyncModulesInteractorLive(),
+                                        modulesInteractor: CourseSyncModulesInteractorLive(pageHtmlParser: pageHtmlParser, quizHtmlParser: quizHtmlParser),
                                         progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-                                        notificationInteractor: CourseSyncNotificationInteractor(notificationManager: .shared,
-                                                                                                     progressInteractor: progressInteractor),
+                                        notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: progressInteractor),
                                         courseListInteractor: AllCoursesAssembly.makeCourseListInteractor(),
                                         backgroundActivity: backgroundActivity,
-                                        scheduler: scheduler)
+                                        scheduler: scheduler,
+                                        env: env)
+    }
+
+    private static func makeHTMLParser(
+        for section: OfflineFolderPrefix,
+        loginSession: LoginSession?,
+        scheduler: AnySchedulerOf<DispatchQueue>
+    ) -> HTMLParser {
+        let sessionId = loginSession?.uniqueID ?? ""
+
+        let interactor = HTMLDownloadInteractorLive(
+            loginSession: loginSession,
+            sectionName: section.rawValue,
+            scheduler: scheduler
+        )
+
+        return HTMLParserLive(
+            sessionId: sessionId,
+            downloadInteractor: interactor
+        )
     }
 }

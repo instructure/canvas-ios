@@ -334,6 +334,6 @@ class SubmissionDetailsPresenter {
     }
 
     func lockedEmptyViewHeader() -> String {
-        return assignment.first?.quizID != nil ? NSLocalizedString("Quiz Locked", comment: "") : NSLocalizedString("Assignment Locked", comment: "")
+        return assignment.first?.quizID != nil ? String(localized: "Quiz Locked", bundle: .student) : String(localized: "Assignment Locked", bundle: .student)
     }
 }
