@@ -83,4 +83,61 @@ class AttachmentPickerInteractorLiveTests: CoreTestCase {
         XCTAssertTrue(file2.isUploaded)
     }
 
+    func testAddFileFromOnlineStore() {
+        let file = File.make()
+        var addesFiles: [File] = []
+        let expectation = self.expectation(description: "addFile")
+        var subscriptions: [AnyCancellable] = []
+
+        testee.addFile(file: file)
+        alreadyUploadedFiles
+            .sink { files in
+                addesFiles = files
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+        wait(for: [expectation], timeout: 2)
+
+        XCTAssertEqual(addesFiles, [file])
+    }
+
+    func testRemoveFile() {
+        let file = File.make()
+        var addesFiles: [File] = []
+        let expectation = self.expectation(description: "addFile")
+        var subscriptions: [AnyCancellable] = []
+        testee.addFile(file: file)
+        testee.addFile(url: file1.url!)
+
+        testee.removeFile(file: file)
+
+        alreadyUploadedFiles
+            .sink { files in
+                addesFiles = files
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+        wait(for: [expectation], timeout: 2)
+
+        XCTAssertEqual(addesFiles, [])
+    }
+
+    func testDeleteFile() {
+        let apiFile = APIFile.make()
+        let file = File.make(from: apiFile)
+        testee.addFile(file: file)
+        testee.addFile(url: file1.url!)
+        let deleteRequest = DeleteFileRequest(fileID: file.id!)
+        api.mock(deleteRequest, value: apiFile)
+
+        XCTAssertFinish(testee.deleteFile(file: file))
+        waitForState(.data)
+    }
+
+    private func waitForState(_ state: StoreState) {
+        let stateUpdate = expectation(description: "Expected state reached")
+        stateUpdate.assertForOverFulfill = false
+        stateUpdate.fulfill()
+        wait(for: [stateUpdate], timeout: 1)
+    }
 }

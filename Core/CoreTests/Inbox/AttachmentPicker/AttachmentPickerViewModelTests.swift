@@ -110,6 +110,6 @@ class AttachmentPickerViewModelTests: CoreTestCase {
 
         wait(for: [router.showExpectation], timeout: 1)
         let viewController = router.presented as? UIAlertController
-        XCTAssertNotNil(router.presented)
+        XCTAssertNotNil(viewController)
     }
 }

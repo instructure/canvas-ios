@@ -69,6 +69,10 @@ public struct AttachmentPickerView: View {
             ImagePickerViewController(sourceType: .camera, imageHandler: viewModel.fileSelected)
                 .interactiveDismissDisabled()
         })
+        .sheet(isPresented: $viewModel.isAudioRecordVisible, content: {
+                    AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: viewModel.router, onSelect: viewModel.fileSelected)
+                        .interactiveDismissDisabled()
+                })
         .confirmationAlert(
             isPresented: $viewModel.isShowingCancelDialog,
             presenting: viewModel.confirmAlert
