@@ -120,14 +120,18 @@ public struct FilePickerView: View {
                         height: 30 * uiScale
                     )
                     .padding(.all, 12)
+
                 VStack(alignment: .leading, spacing: 0) {
                     Text(folder.name)
                         .truncationMode(.middle)
                         .lineLimit(1)
+
                     Text("\(folder.filesCount + folder.foldersCount) \(folder.filesCount + folder.foldersCount == 1 ? "item" : "items")")
                 }
                 .padding(.horizontal, 8)
+
                 Spacer()
+
                 Image.arrowOpenRightLine
                     .resizable()
                     .frame(
@@ -155,14 +159,18 @@ public struct FilePickerView: View {
                         height: 30 * uiScale
                     )
                     .padding(.all, 12)
+
                 VStack(alignment: .leading, spacing: 0) {
                     Text(file.filename)
                         .truncationMode(.middle)
                         .lineLimit(1)
+
                     Text(file.formattedSize)
                 }
                 .padding(.horizontal, 8)
+
                 Spacer()
+                
                 Image.arrowOpenRightLine
                     .resizable()
                     .frame(
