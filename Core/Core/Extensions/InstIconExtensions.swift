@@ -455,6 +455,7 @@ public extension Image {
     static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
+
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
     static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }
@@ -474,6 +475,7 @@ public extension Image {
     static var chatBubble: Image { Image("chatBubble", bundle: .core) }
     static var checkbox: Image { Image("checkbox", bundle: .core) }
     static var checkboxSelected: Image { Image("checkboxSelected", bundle: .core) }
+    static var chevronDown: Image { Image("chevronDown", bundle: .core) }
     static var collaborations: Image { Image("collaborations", bundle: .core) }
     static var conferences: Image { Image("conferences", bundle: .core) }
     static var coursesTab: Image { Image("coursesTab", bundle: .core) }
