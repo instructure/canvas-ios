@@ -38,8 +38,9 @@ extension InstUI.Styles {
         /// When displaying multiple Text components below each other we use this spacing to separate them
         case textVertical = 4
 
-        /// Corrections to negate baked in TextEditor insets, estimated values
+        /// Correction to negate baked in TextEditor inset. Estimated value.
         case textEditorVerticalCorrection = -7
+        /// Correction to negate baked in TextEditor inset. Estimated value.
         case textEditorHorizontalCorrection = -5
     }
 

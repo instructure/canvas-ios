@@ -67,8 +67,9 @@ extension InstUI {
             }
             .paddingStyle(.leading, .standard)
             .paddingStyle(.trailing, .standard)
-            .paddingStyle(.top, .cellTop)
-            .paddingStyle(.bottom, .cellBottom)
+            // best effort estimations to match the height of other cells, correcting for DatePicker
+            .padding(.top, 5)
+            .padding(.bottom, 7)
 
             InstUI.Divider()
         }
