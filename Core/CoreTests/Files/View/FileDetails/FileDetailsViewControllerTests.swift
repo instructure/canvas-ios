@@ -301,6 +301,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
     func testTeacher() {
         environment.app = .teacher
+        controller.canEdit = true
         controller.view.layoutIfNeeded()
 
         XCTAssert(controller.navigationItem.rightBarButtonItem == controller.editButton)

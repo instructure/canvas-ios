@@ -170,7 +170,7 @@ public struct FilePickerView: View {
                 .padding(.horizontal, 8)
 
                 Spacer()
-                
+
                 Image.arrowOpenRightLine
                     .resizable()
                     .frame(

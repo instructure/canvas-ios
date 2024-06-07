@@ -52,7 +52,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     var localURL: URL?
     var pdfAnnotationsMutatedMoveToDocsDirectory = false
     var originURL: URLComponents?
-    var canEdit: Bool = false
+    var canEdit: Bool = true
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "\(context?.pathComponent ?? "")/files/\(fileID)"
     )

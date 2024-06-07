@@ -157,7 +157,7 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
             )
         )
 
-        router.route(
+        env.router.route(
             to: URLComponents.parse("/conversations/compose", queryItems: composeMessageOptions.queryItems),
             from: self,
             options: .modal(embedInNav: true)

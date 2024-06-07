@@ -95,7 +95,7 @@ class AttachmentPickerViewModelTests: CoreTestCase {
     }
 
     func testFileOpen() {
-        router.mock("https://canvas.instructure.com/files/1", factory: {FileDetailsViewController()})
+        router.mock("https://canvas.instructure.com/files/1?canEdit=false", factory: { FileDetailsViewController() })
         let file = File.make(from: APIFile.make(url: URL(string: "https://canvas.instructure.com/files/1")!))
         testee.fileSelected.accept((WeakViewController(), file))
 
