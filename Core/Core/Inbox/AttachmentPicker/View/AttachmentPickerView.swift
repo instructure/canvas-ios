@@ -269,6 +269,8 @@ public struct AttachmentPickerView: View {
                 retryButton
             } else if viewModel.fileList.containsUploading {
                 uploadButton.disabled(true)
+            } else if viewModel.alreadyUploadedFileList.contains(where: { $0.isUploading }) {
+                doneButton.disabled(true)
             } else if viewModel.fileList.isAllUploaded {
                 doneButton
             } else {

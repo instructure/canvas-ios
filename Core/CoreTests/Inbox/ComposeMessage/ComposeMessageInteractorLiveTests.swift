@@ -27,7 +27,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         super.setUp()
         mockData()
 
-        testee = ComposeMessageInteractorLive(env: environment, publisherProvider: URLSessionDataTaskPublisherProviderMock())
+        testee = ComposeMessageInteractorLive()
 
         waitForState(.data)
     }
@@ -142,26 +142,6 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.deleteFile(file: File.make(from: response)))
 
         waitForState(.data)
-    }
-
-    func testOnlineFileURLGetter() {
-        var subscriptions: [AnyCancellable] = []
-        let expectation = self.expectation(description: "getURL")
-        var resultURL: URL?
-        let fileId = "1"
-        let getRequest = GetFileRequest(context: .currentUser, fileID: fileId, include: [])
-        let response = APIFile.make(url: URL(string: "https://instructure.com/test.txt")!)
-        api.mock(getRequest, value: response)
-
-        testee.getOnlineFileURL(fileId: fileId)
-            .sink(receiveCompletion: { _ in }, receiveValue: { url in
-                resultURL = url
-                expectation.fulfill()
-            })
-            .store(in: &subscriptions)
-
-        wait(for: [expectation], timeout: 2)
-        XCTAssertEqual(resultURL, URL.Directories.documents.appendingPathComponent("testOverwritten.txt"))
     }
 
     private func mockData() {

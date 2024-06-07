@@ -27,7 +27,13 @@ public enum AttachmentPickerAssembly {
         uploadManager: UploadManager,
         alreadyUploadedFiles: CurrentValueSubject<[File], Never>
     ) -> UIViewController {
-        let interactor = AttachmentPickerInteractorLive(batchId: batchId, uploadManager: uploadManager, alreadyUploadedFiles: alreadyUploadedFiles)
+        let interactor = AttachmentPickerInteractorLive(
+            batchId: batchId,
+            folderPath: "conversation attachments",
+            restrictForFolderPath: true,
+            uploadManager: uploadManager,
+            alreadyUploadedFiles: alreadyUploadedFiles
+        )
         let viewModel = AttachmentPickerViewModel(subTitle: subTitle, router: env.router, interactor: interactor)
         let view = AttachmentPickerView(model: viewModel)
         return CoreHostingController(view)

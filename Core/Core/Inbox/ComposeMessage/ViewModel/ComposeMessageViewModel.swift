@@ -180,35 +180,10 @@ class ComposeMessageViewModel: ObservableObject {
 
         alreadyUploadedFiles
             .sink { [weak self] files in
-                let filteredFiles = self?.duplicateIncorretlyPlacedFiles(files: files)
-
-                if let filteredFiles, files != filteredFiles {
-                    self?.alreadyUploadedFiles.send(filteredFiles)
-                }
-
-                self?.alreadyUploadedFileList = filteredFiles ?? files
+                self?.alreadyUploadedFileList = files
                 self?.update()
             }
         .store(in: &subscriptions)
-    }
-
-    private func duplicateIncorretlyPlacedFiles(files: [File]) -> [File] {
-        var filteredFiles: [File] = []
-        files.forEach { file in
-            if let fileId = file.id, file.folderID != nil && file.folderID != interactor.conversationAttachmentsFolder.value.first?.id {
-                interactor.getOnlineFileURL(fileId: fileId)
-                    .map { [weak self] url in
-                        if let self, let url {
-                            _ = try? self.uploadManager.add(url: url, batchID: self.batchId)
-                        }
-                    }
-                    .sink()
-                    .store(in: &subscriptions)
-            } else {
-                filteredFiles.append(file)
-            }
-        }
-        return filteredFiles
     }
 
     private func setOptionItems(options: ComposeMessageOptions) {
