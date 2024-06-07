@@ -45,4 +45,4 @@ schemes:
         - name: Core/CoreTester
           skipped: true
       gatherCoverageData: true
-      coverageTargets: [Core/CoreTests, Student]
+      coverageTargets: [Core/Core, Student]
