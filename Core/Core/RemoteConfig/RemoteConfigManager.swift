@@ -22,12 +22,15 @@ public class RemoteConfigManager {
     public static var shared = RemoteConfigManager()
     public var five9ConfigID: String = ""
     public var segmentKey: String = ""
+    public var formadataLabel: String = ""
 
     public func saveRemoteConfig(key: String, value: String?) {
         if key == "five9_config_id" {
             five9ConfigID = value ?? "unknown"
         } else if key == "chat_segment_key" {
             segmentKey = value ?? "unknown"
+        } else if key == "five9_formdata_label" {
+            formadataLabel = value ?? "unknown"
         }
     }
 }

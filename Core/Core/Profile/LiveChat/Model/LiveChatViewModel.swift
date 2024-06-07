@@ -60,6 +60,10 @@ class LiveChatViewModel: ObservableObject {
     private var configID: String {
         RemoteConfigManager.shared.five9ConfigID
     }
+    
+    private var formadataLabel: String {
+        RemoteConfigManager.shared.formadataLabel
+    }
 
     private var chatSegmentKey: String {
         RemoteConfigManager.shared.segmentKey
@@ -117,14 +121,13 @@ class LiveChatViewModel: ObservableObject {
                 "type": "static text",
                 "formType": "both",
                 "required": false,
-                "label": 'Please note that 2U will process your personal information in accordance \
-        with its <a href=\"https://essential.2u.com/privacy-policy\" target=\"_blank\">privacy policy</a> \
-        <br><br/> You may receive transactional emails containing your chat conversation with 2U. <br> <br/>'
+                "label": '###LABEL###'
             }
         ]
         """
             .replacingOccurrences(of: "###NAME###", with: userName)
             .replacingOccurrences(of: "###EMAIL###", with: userEmail)
+            .replacingOccurrences(of: "###LABEL###", with: formadataLabel)
     }
 
     var five9HTML: String {
