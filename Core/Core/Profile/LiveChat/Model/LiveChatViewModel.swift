@@ -36,6 +36,11 @@ class LiveChatViewModel: ObservableObject {
 
     var userName: String = ""
     var userEmail: String = ""
+    
+    var appID: String {
+        return "2U DEV" // TODO: change when go to PROD
+//        return "2U Inc"
+    }
 
     private let env = AppEnvironment.shared
     lazy var profile = env.subscribe(GetUserProfile(userID: "self")) { [weak self] in
@@ -112,9 +117,9 @@ class LiveChatViewModel: ObservableObject {
                 "type": "static text",
                 "formType": "both",
                 "required": false,
-                "label": 'Please note that GetSmarter will process your personal information in accordance \
-        with its <a href=\"https://www.getsmarter.com/privacy-policy\" target=\"_blank\">privacy policy</a> \
-        <br><br/> You may receive transactional emails containing your chat conversation with GetSmarter. <br> <br/>'
+                "label": 'Please note that 2U will process your personal information in accordance \
+        with its <a href=\"https://essential.2u.com/privacy-policy\" target=\"_blank\">privacy policy</a> \
+        <br><br/> You may receive transactional emails containing your chat conversation with 2U. <br> <br/>'
             }
         ]
         """
@@ -153,7 +158,7 @@ class LiveChatViewModel: ObservableObject {
                         } catch (exception) {}
                     }
                     let options = {
-                        "appId": "2U Inc",
+                        "appId": "###APPID###",
                         "configId": "###CONFIGID###",
                         "headless": true,
                         "startOpen": true,
@@ -180,6 +185,7 @@ class LiveChatViewModel: ObservableObject {
             .replacingOccurrences(of: "###EMAIL###", with: userEmail)
             .replacingOccurrences(of: "###CONFIGID###", with: configID)
             .replacingOccurrences(of: "###FORMDATA###", with: formDataString)
+            .replacingOccurrences(of: "###APPID###", with: appID)
             .replacingOccurrences(of: "###openChat###", with: WKScriptEvent.openChat.rawValue)
             .replacingOccurrences(of: "###closeChat###", with: WKScriptEvent.closeChat.rawValue)
     }
@@ -205,11 +211,12 @@ class LiveChatViewModel: ObservableObject {
                         configurations: {
                             chatApi: {
                                 payloadParams: {
-                                    use_case: 'LOG_IN',
+                                    use_case: 'Canvas_Student',
                                 },
                             },
                             liveChat: {
                                 options: {
+                                    appId: '###APPID###',
                                     configId: '###CONFIGID###',
                                     formData: formData,
                                 },
@@ -269,6 +276,7 @@ class LiveChatViewModel: ObservableObject {
             .replacingOccurrences(of: "###FORMDATA###", with: formDataString)
             .replacingOccurrences(of: "###CONFIGID###", with: configID)
             .replacingOccurrences(of: "###SEGMENTKEY###", with: chatSegmentKey)
+            .replacingOccurrences(of: "###APPID###", with: appID)
             .replacingOccurrences(of: "###shouldOpenFive9###", with: WKScriptEvent.shouldOpenFive9.rawValue)
             .replacingOccurrences(of: "###openChat###", with: WKScriptEvent.openChat.rawValue)
             .replacingOccurrences(of: "###closeChat###", with: WKScriptEvent.closeChat.rawValue)
