@@ -12,7 +12,7 @@ format_version: 4
 project_type: other
 workflows:
 
-  danger:
+  danger_4:
     steps:
     - &set-time-zone
       script:
@@ -45,7 +45,7 @@ workflows:
         title: Start sub-build
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
-        - workflows: danger-yarn
+        - workflows: danger-yarn_4
 
     - cache-pull: {}
     - &set-mtime
@@ -204,7 +204,7 @@ workflows:
               ./scripts/run-swift delete-cx $BITRISE_PULL_REQUEST
     - deploy-to-bitrise-io: {}
 
-  danger-yarn:
+  danger-yarn_4:
     steps:
     - cache-pull: {}
     - *set-mtime
