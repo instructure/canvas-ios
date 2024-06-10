@@ -190,9 +190,12 @@ class GradeListInteractorLiveTests: CoreTestCase {
 
     func testGroupArrangement() {
         let assignmentGroups: [APIAssignmentGroup] = [
-            .make(id: "1", name: "Group A", assignments: [.make(id: "1")]),
-            .make(id: "2", name: "Group B", assignments: [.make(id: "2")]),
-            .make(id: "3", name: "Group C", assignments: [.make(id: "3"), .make(id: "4")]),
+            .make(id: "1", name: "Group A", assignments: [.make(assignment_group_id: "1", id: "1")]),
+            .make(id: "2", name: "Group B", assignments: [.make(assignment_group_id: "2", id: "2")]),
+            .make(id: "3", name: "Group C", assignments: [
+                .make(assignment_group_id: "3", id: "3"),
+                .make(assignment_group_id: "3", id: "4"),
+            ]),
         ]
         api.mock(GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "1"), value: assignmentGroups)
         let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
