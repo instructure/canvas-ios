@@ -22,6 +22,9 @@ import Combine
 class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
     public let files = PassthroughSubject<[File], Error>()
     public let alreadySelectedFiles: CurrentValueSubject<[File], Never>
+    public var isCancelConfirmationNeeded: Bool {
+        return !fileStore.all.isAllUploaded || alreadySelectedFiles.value.contains(where: { $0.isUploading == true })
+    }
 
     private let env: AppEnvironment
     private var uploadManager: UploadManager
@@ -103,6 +106,8 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
                 uploadManager.cancel(file: file)
             }
         }
+        var filteredFiles: [File] = alreadySelectedFiles.value.filter { $0.isUploading == false}
+        alreadySelectedFiles.send(filteredFiles)
     }
 
     func removeFile(file: File) {

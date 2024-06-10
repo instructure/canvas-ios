@@ -23,6 +23,7 @@ import Combine
 class AttachmentPickerInteractorPreview: AttachmentPickerInteractor {
     var alreadySelectedFiles: CurrentValueSubject<[File], Never> = CurrentValueSubject<[File], Never>([])
     var files: PassthroughSubject<[File], Error> = PassthroughSubject<[File], Error>()
+    var isCancelConfirmationNeeded = false
 
     public private(set) var uploadFilesCalled: Bool = false
     public private(set) var addFileCalled: Bool = false

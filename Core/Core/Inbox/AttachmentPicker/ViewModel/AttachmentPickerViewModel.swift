@@ -166,16 +166,16 @@ class AttachmentPickerViewModel: ObservableObject {
     private func setupInputBindings(router: Router) {
         cancelButtonDidTap
             .handleEvents(receiveOutput: { [weak self] _ in
-                if self?.fileList.isAllUploaded == false {
+                if self?.interactor.isCancelConfirmationNeeded == true {
                     self?.isShowingCancelDialog = true
                 }
             })
             .flatMap { [weak self, confirmAlert] value in
-                if self?.fileList.isAllUploaded == false {
+                if self?.interactor.isCancelConfirmationNeeded == true {
                     return confirmAlert.userConfirmation().map { value }.eraseToAnyPublisher()
-                } else {
-                    return Just(value).eraseToAnyPublisher()
                 }
+                
+                return Just(value).eraseToAnyPublisher()
             }
             .sink { [weak self, router] viewController in
                 self?.interactor.cancel()
