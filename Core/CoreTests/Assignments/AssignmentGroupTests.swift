@@ -33,7 +33,7 @@ class GetAssignmentGroupRequestTests: XCTestCase {
     }
 
     func testQuery() {
-        XCTAssertEqual(req.queryItems, [])
+        XCTAssertEqual(req.queryItems, GetAssignmentGroupsRequest.Include.allCases)
     }
 
     func testQueryWithInclude() {

@@ -122,7 +122,6 @@ class CourseSyncGradesInteractorLiveTests: CoreTestCase {
     private let assignmentsRequest = GetAssignmentGroupsRequest(
         courseID: "testCourse",
         gradingPeriodID: "testGradingPeriod",
-        include: GetAssignmentGroupsRequest.Include.allCases,
         perPage: 100
     )
 

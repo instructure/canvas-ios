@@ -38,7 +38,6 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         let groupsRequest = GetAssignmentGroupsRequest(
             courseID: "tc",
             gradingPeriodID: nil,
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
         api.mock(groupsRequest, value: groups)
@@ -69,7 +68,6 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         let groupsRequest1 = GetAssignmentGroupsRequest(
             courseID: "tc",
             gradingPeriodID: "g1",
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
         let group1Called = expectation(description: "group1Called")
@@ -87,7 +85,6 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         let groupsRequest2 = GetAssignmentGroupsRequest(
             courseID: "tc",
             gradingPeriodID: "g2",
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
         let group2Called = expectation(description: "group2Called")

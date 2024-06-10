@@ -72,7 +72,6 @@ public class GetAssignmentsByGroup: UseCase {
             let request = GetAssignmentGroupsRequest(
                 courseID: courseID,
                 gradingPeriodID: gradingPeriodID?.value,
-                include: GetAssignmentGroupsRequest.Include.allCases,
                 perPage: 100
             )
             return environment.api.makeRequest(request)

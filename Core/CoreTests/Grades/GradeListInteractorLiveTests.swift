@@ -129,28 +129,24 @@ class GradeListInteractorLiveTests: CoreTestCase {
         var assignmentsRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: nil,
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
         api.mock(assignmentsRequest, value: groups)
         assignmentsRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: "1",
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
         api.mock(assignmentsRequest, value: [groups[0]])
         assignmentsRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: "2",
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
         api.mock(assignmentsRequest, value: [groups[1]])
         assignmentsRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: "3",
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
         api.mock(assignmentsRequest, value: [groups[2]])
@@ -195,7 +191,6 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let assignmentsRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: "1",
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
         api.mock(assignmentsRequest, value: assignmentGroups)
@@ -228,7 +223,6 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let assignmentsRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: "1",
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
         api.mock(assignmentsRequest, value: assignmentGroups)

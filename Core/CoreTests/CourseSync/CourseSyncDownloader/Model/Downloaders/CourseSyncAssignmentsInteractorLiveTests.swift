@@ -30,7 +30,6 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
         let assignmentGroupRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: nil,
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
 
@@ -118,7 +117,6 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
         let assignmentGroupRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: nil,
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
 

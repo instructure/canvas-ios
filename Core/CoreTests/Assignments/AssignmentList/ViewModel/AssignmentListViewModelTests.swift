@@ -49,7 +49,6 @@ class AssignmentListViewModelTests: CoreTestCase {
         var assignmentGroupRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: "1",
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
         api.mock(assignmentGroupRequest, value: [])
@@ -57,7 +56,6 @@ class AssignmentListViewModelTests: CoreTestCase {
         assignmentGroupRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: "2",
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
         api.mock(assignmentGroupRequest, value: [])
@@ -79,7 +77,6 @@ class AssignmentListViewModelTests: CoreTestCase {
         let assignmentGroupRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: nil,
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
 
@@ -109,7 +106,6 @@ class AssignmentListViewModelTests: CoreTestCase {
         let assignmentGroupRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: nil,
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
         api.mock(assignmentGroupRequest, value: assignmentGroups)
@@ -130,7 +126,6 @@ class AssignmentListViewModelTests: CoreTestCase {
         var assignmentGroupRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: "1",
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
         api.mock(assignmentGroupRequest, value: [])
@@ -138,7 +133,6 @@ class AssignmentListViewModelTests: CoreTestCase {
         assignmentGroupRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: "2",
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
 

@@ -34,7 +34,6 @@ public class GetAssignmentGroups: APIUseCase {
 
     public var request: GetAssignmentGroupsRequest { GetAssignmentGroupsRequest(
         courseID: courseID,
-        include: GetAssignmentGroupsRequest.Include.allCases,
         perPage: 100
     ) }
 

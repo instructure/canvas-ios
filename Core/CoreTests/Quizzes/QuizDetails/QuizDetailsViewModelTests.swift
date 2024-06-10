@@ -95,7 +95,6 @@ class QuizDetailsViewModelTests: CoreTestCase {
         let request = GetAssignmentGroupsRequest(
             courseID: courseID,
             gradingPeriodID: nil,
-            include: GetAssignmentGroupsRequest.Include.allCases,
             perPage: 100
         )
 
@@ -166,7 +165,6 @@ class QuizDetailsViewModelTests: CoreTestCase {
             GetAssignmentGroupsRequest(
                 courseID: "1",
                 gradingPeriodID: nil,
-                include: GetAssignmentGroupsRequest.Include.allCases,
                 perPage: 100
             ),
             value: []
