@@ -36,6 +36,7 @@ class OfflineSyncNextDateInteractorTests: XCTestCase {
         defaults.offlineSyncNextDate = date1
         defaults.isOfflineAutoSyncEnabled = true
         defaults = SessionDefaults(sessionID: "test2")
+        defaults.offlineSyncSelections = ["a1"]
         defaults.offlineSyncNextDate = date2
         defaults.isOfflineAutoSyncEnabled = true
 
@@ -44,6 +45,20 @@ class OfflineSyncNextDateInteractorTests: XCTestCase {
 
         // THEN
         XCTAssertEqual(result, date2)
+    }
+
+    func testSyncSkippingWithoutCourses() {
+        let date1 = Date()
+        var defaults = SessionDefaults(sessionID: "test1")
+        defaults = SessionDefaults(sessionID: "test")
+        defaults.offlineSyncNextDate = date1
+        defaults.isOfflineAutoSyncEnabled = true
+
+        // WHEN
+        let result = OfflineSyncNextDateInteractor().calculate(sessionUniqueIDs: ["test1", "test2"])
+
+        // THEN
+        XCTAssertEqual(result, nil)
     }
 
     func testPicksNoDateIfAutoSyncIsDisabled() {

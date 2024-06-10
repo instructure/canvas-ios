@@ -20,7 +20,7 @@ import UIKit
 
 public struct Brand: Equatable {
 
-    public var headerImageUrl: URL?
+    public var headerImage: UIImage?
 
     public var buttonPrimaryBackground: UIColor {
         UIColor.getColor(dark: buttonPrimaryBackgroundDark, light: buttonPrimaryBackgroundLight)
@@ -110,7 +110,7 @@ public struct Brand: Equatable {
         buttonSecondaryText: UIColor?,
         fontColorDark: UIColor?,
         headerImageBackground: UIColor?,
-        headerImageUrl: URL?,
+        headerImage: UIImage?,
         linkColor: UIColor?,
         navBackground: UIColor?,
         navBadgeBackground: UIColor?,
@@ -121,7 +121,7 @@ public struct Brand: Equatable {
         navTextColorActive: UIColor?,
         primary: UIColor?
     ) {
-        self.headerImageUrl = headerImageUrl ?? Bundle.core.url(forResource: "defaultHeaderImage", withExtension: "png")
+        self.headerImage = headerImage ?? UIImage(named: "defaultHeaderImage", in: .core, compatibleWith: nil)
 
         self.buttonPrimaryBackgroundLight = buttonPrimaryBackground ?? .electric
         self.buttonPrimaryTextLight = buttonPrimaryText != nil ? buttonPrimaryText!.ensureContrast(against: self.buttonPrimaryBackgroundLight) : .white
@@ -156,7 +156,7 @@ public struct Brand: Equatable {
         self.primaryDark = primary != nil ? primary!.ensureContrast(against: .backgroundLightest) : .electric
     }
 
-    public init(response: APIBrandVariables, baseURL: URL) {
+    public init(response: APIBrandVariables, headerImage: UIImage?) {
         self.init(
             buttonPrimaryBackground: UIColor(hexString: response.button_primary_bgd),
             buttonPrimaryText: UIColor(hexString: response.button_primary_text),
@@ -164,7 +164,7 @@ public struct Brand: Equatable {
             buttonSecondaryText: UIColor(hexString: response.button_secondary_text),
             fontColorDark: UIColor(hexString: response.font_color_dark),
             headerImageBackground: UIColor(hexString: response.header_image_bgd),
-            headerImageUrl: response.header_image.flatMap { URL(string: $0.absoluteString, relativeTo: baseURL) },
+            headerImage: headerImage,
             linkColor: UIColor(hexString: response.link_color),
             navBackground: UIColor(hexString: response.nav_bgd),
             navBadgeBackground: UIColor(hexString: response.nav_badge_bgd),
@@ -184,7 +184,7 @@ public struct Brand: Equatable {
         buttonSecondaryText: nil,
         fontColorDark: nil,
         headerImageBackground: nil,
-        headerImageUrl: nil,
+        headerImage: nil,
         linkColor: nil,
         navBackground: nil,
         navBadgeBackground: nil,
@@ -238,8 +238,8 @@ public struct Brand: Equatable {
         logoView.contentMode = .scaleAspectFit
         logoView.heightAnchor.constraint(equalToConstant: 44).isActive = true
         logoView.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        logoView.load(url: Brand.shared.headerImageUrl)
-        logoView.backgroundColor = Brand.shared.headerImageBackground
+        logoView.image = headerImage
+        logoView.backgroundColor = headerImageBackground
         return logoView
     }
 }

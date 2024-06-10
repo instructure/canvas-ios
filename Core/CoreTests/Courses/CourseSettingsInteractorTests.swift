@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
-import Foundation
+@testable import Core
+import XCTest
 
-public class GetBrandVariables: APIUseCase {
-    public let request = GetBrandVariablesRequest()
-    public let cacheKey: String? = nil
+class CourseSettingsInteractorTests: CoreTestCase {
 
-    public init() {}
+    func testFiltersCourseIDsBasedOnSettingsValue() {
+        api.mock(GetCourseSettingsRequest(courseID: "1"), value: .make(restrict_quantitative_data: true))
+        api.mock(GetCourseSettingsRequest(courseID: "2"), value: .make(restrict_quantitative_data: false))
 
-    public func write(response: APIBrandVariables?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response, let url = urlResponse?.url else { return }
-        Brand.shared = Brand(response: response, baseURL: url)
+        let testee = CourseSettingsInteractor().courseIDs(
+            where: \.restrictQuantitativeData,
+            equals: false,
+            fromCourseIDs: ["1", "2", "3"]
+        )
+
+        XCTAssertSingleOutputEquals(testee, ["2"])
     }
 }
