@@ -182,7 +182,6 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let overdue = DateComponents(calendar: .current, year: 2023, month: 12, day: 1).date
         let overdueLockAt = DateComponents(calendar: .current, year: 2024, month: 1, day: 5).date
 
-//        api.mock(GetGradingPeriods(courseID: "1"), value: [])
         let assignmentGroups: [APIAssignmentGroup] = [
             .make(id: "1", name: "Group A", assignments: [.make(due_at: past, id: "1", lock_at: pastLockAt)]),
             .make(id: "2", name: "Group B", assignments: [.make(due_at: upcoming, id: "2", lock_at: upcomingLockAt)]),
