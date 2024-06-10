@@ -98,11 +98,11 @@ class ComposeMessageViewModel: ObservableObject {
         switch messageType {
         case .new:
             messageTypeString = "new"
-        case .reply(_, _):
+        case .reply:
             messageTypeString = "reply"
-        case .replyAll(_, _):
+        case .replyAll:
             messageTypeString = "replyAll"
-        case .forward(_, _):
+        case .forward:
             messageTypeString = "forward"
         }
         setIncludedMessages(messageType: options.messageType)
