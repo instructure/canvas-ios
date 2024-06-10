@@ -19,6 +19,9 @@
 import CoreData
 import Combine
 
+/// This usecase fetches all grading periods in a given course, then fetches all assignment groups
+/// and their assignments in each grading period. API calls are exhausting requests so no paging here.
+/// The following objects are saved and linked together: Assignment, AssignmentGroup, GradingPeriod
 public class GetAssignmentsByGroup: UseCase {
     public typealias Model = Assignment
     public typealias Response = [AssignmentGroupsByGradingPeriod]
@@ -29,58 +32,68 @@ public class GetAssignmentsByGroup: UseCase {
     }
 
     public var cacheKey: String? { "courses/\(courseID)/assignment_groups" }
-    public var scope: Scope { Scope(
-        predicate: predicate,
-        order: [
-            NSSortDescriptor(key: #keyPath(Assignment.assignmentGroup.position), ascending: true),
-            NSSortDescriptor(key: #keyPath(Assignment.assignmentGroup.name), ascending: true, naturally: true),
-            NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true),
-            NSSortDescriptor(key: #keyPath(Assignment.position), ascending: true),
-            NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, naturally: true),
-        ],
-        sectionNameKeyPath: #keyPath(Assignment.assignmentGroup.position)
-    ) }
+    public let scope: Scope
 
-    let gradingPeriodID: String?
-    let courseID: String
-    let gradedOnly: Bool
-
+    private let gradingPeriodID: String?
+    private let courseID: String
+    private let gradedOnly: Bool
     private var subscriptions = Set<AnyCancellable>()
 
-    private var predicate: NSPredicate {
-        var predicate = NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: courseID)
-
-        if gradedOnly {
-            predicate = predicate.and(NSPredicate(format: "%K != %@", #keyPath(Assignment.gradingTypeRaw), "not_graded"))
-        }
-
-        if let gradingPeriodID {
-            predicate = predicate.and(NSPredicate(format: "gradingPeriod.id == %@", gradingPeriodID))
-        }
-
-        return predicate
-    }
-
-    public init(courseID: String, gradingPeriodID: String? = nil, gradedOnly: Bool = false) {
+    /// - parameters:
+    ///     - gradingPeriodID: The grading period used to filter assignments. This parameter only affects the CoreData filtering, in the background all grading periods' assignments are fetched.
+    public init(
+        courseID: String,
+        gradingPeriodID: String? = nil,
+        gradedOnly: Bool = false
+    ) {
         self.courseID = courseID
         self.gradingPeriodID = gradingPeriodID
         self.gradedOnly = gradedOnly
+
+        let predicate: NSPredicate = {
+            var predicate = NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: courseID)
+
+            if gradedOnly {
+                predicate = predicate.and(NSPredicate(format: "%K != %@", #keyPath(Assignment.gradingTypeRaw), "not_graded"))
+            }
+
+            if let gradingPeriodID {
+                predicate = predicate.and(NSPredicate(format: "gradingPeriod.id == %@", gradingPeriodID))
+            }
+
+            return predicate
+        }()
+
+        scope = Scope(
+            predicate: predicate,
+            order: [
+                .init(key: #keyPath(Assignment.assignmentGroup.position), ascending: true),
+                .init(key: #keyPath(Assignment.assignmentGroup.name), ascending: true, naturally: true),
+                .init(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true),
+                .init(key: #keyPath(Assignment.position), ascending: true),
+                .init(key: #keyPath(Assignment.name), ascending: true, naturally: true),
+            ],
+            sectionNameKeyPath: #keyPath(Assignment.assignmentGroup.position)
+        )
     }
 
-    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+    public func makeRequest(
+        environment: AppEnvironment,
+        completionHandler: @escaping RequestCallback
+    ) {
         let getAssignmentGroups: (GradingPeriodID) -> AnyPublisher<[APIAssignmentGroup], Error> = { [courseID] gradingPeriodID in
             let request = GetAssignmentGroupsRequest(
                 courseID: courseID,
                 gradingPeriodID: gradingPeriodID?.value,
                 perPage: 100
             )
-            return environment.api.makeRequest(request)
+            return environment.api.exhaust(request)
                 .map(\.body)
                 .eraseToAnyPublisher()
         }
 
         let gradingPeriodsRequest = GetGradingPeriodsRequest(courseID: courseID)
-        environment.api.makeRequest(gradingPeriodsRequest)
+        environment.api.exhaust(gradingPeriodsRequest)
             .flatMap { (gradingPeriods, _) in
                 if gradingPeriods.isEmpty {
                     return getAssignmentGroups(nil)
@@ -112,7 +125,11 @@ public class GetAssignmentsByGroup: UseCase {
         context.delete(context.fetch(predicate) as [Assignment])
     }
 
-    public func write(response: ([AssignmentGroupsByGradingPeriod])?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public func write(
+        response: [AssignmentGroupsByGradingPeriod]?,
+        urlResponse: URLResponse?,
+        to client: NSManagedObjectContext
+    ) {
         guard let response else { return }
 
         // For teacher roles this API doesn't return any submissions so we don't want to remove them if they already in CoreData

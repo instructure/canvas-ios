@@ -128,7 +128,7 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         XCTAssertEqual(assignment2.gradingPeriod?.title, "GP2")
     }
 
-    func testFetchesAssignmentsForEachGradingPeriodAnd() {
+    func testFetchesAssignmentsForEachGradingPeriodAndReturnsAssignmentsForAGradingPeriod() {
         mockMultipleGradingPeriods()
         let testee = GetAssignmentsByGroup(courseID: "tc", gradingPeriodID: "g1")
         let store = environment.subscribe(testee)
