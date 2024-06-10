@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
-import Foundation
+@testable import Core
+import XCTest
 
-public class GetBrandVariables: APIUseCase {
-    public let request = GetBrandVariablesRequest()
-    public let cacheKey: String? = nil
+class BrandThemeDownloaderInteractorTests: CoreTestCase {
 
-    public init() {}
+    func testGetsBrandVariables() {
+        let didInvokeBrandsAPI = expectation(description: "didInvokeBrandsAPI")
+        api.mock(GetBrandVariablesRequest()) { _ in
+            didInvokeBrandsAPI.fulfill()
+            return (nil, nil, nil)
+        }
 
-    public func write(response: APIBrandVariables?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response, let url = urlResponse?.url else { return }
-        Brand.shared = Brand(response: response, baseURL: url)
+        XCTAssertFinish(BrandThemeDownloaderInteractor().getContent())
+
+        wait(for: [didInvokeBrandsAPI], timeout: 1)
     }
 }
