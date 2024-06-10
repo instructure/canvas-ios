@@ -17,44 +17,18 @@
 //
 
 import CoreData
-import Foundation
+import Combine
 
-public class GetAssignmentsByGroup: APIUseCase {
+public class GetAssignmentsByGroup: UseCase {
     public typealias Model = Assignment
-
-    let courseID: String
-    let gradingPeriodID: String?
-    let gradedOnly: Bool
-
-    private let include: [GetAssignmentGroupsRequest.Include] = [ .assignments, .observed_users, .submission, .score_statistics, .discussion_topic, .all_dates ]
-
-    public init(courseID: String, gradingPeriodID: String? = nil, gradedOnly: Bool = false) {
-        self.courseID = courseID
-        self.gradingPeriodID = gradingPeriodID
-        self.gradedOnly = gradedOnly
+    public typealias Response = ([AssignmentGroupsByGradingPeriod])
+    public typealias GradingPeriodID = ID?
+    public struct AssignmentGroupsByGradingPeriod: Codable {
+        let gradingPeriod: APIGradingPeriod?
+        let assignmentGroups: [APIAssignmentGroup]
     }
 
-    public var cacheKey: String? {
-        "courses/\(courseID)/assignment_groups?grading_period_id=\(gradingPeriodID ?? "")"
-    }
-
-    public var request: GetAssignmentGroupsRequest { GetAssignmentGroupsRequest(
-        courseID: courseID,
-        gradingPeriodID: gradingPeriodID,
-        include: include,
-        perPage: 100
-    ) }
-
-    private var predicate: NSPredicate {
-        var predicate = NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: courseID)
-
-        if gradedOnly {
-            predicate = predicate.and(NSPredicate(format: "%K != %@", #keyPath(Assignment.gradingTypeRaw), "not_graded"))
-        }
-
-        return predicate
-    }
-
+    public var cacheKey: String? { "courses/\(courseID)/assignment_groups)" }
     public var scope: Scope { Scope(
         predicate: predicate,
         order: [
@@ -67,15 +41,117 @@ public class GetAssignmentsByGroup: APIUseCase {
         sectionNameKeyPath: #keyPath(Assignment.assignmentGroup.position)
     ) }
 
-    public func reset(context: NSManagedObjectContext) {
-        context.delete(context.fetch(NSPredicate(key: #keyPath(AssignmentGroup.courseID), equals: courseID)) as [AssignmentGroup])
+    let gradingPeriodID: String?
+    let courseID: String
+    let gradedOnly: Bool
+
+    private var subscriptions = Set<AnyCancellable>()
+    private let include: [GetAssignmentGroupsRequest.Include] = [
+        .assignments,
+        .observed_users,
+        .submission,
+        .score_statistics,
+        .discussion_topic,
+        .all_dates,
+    ]
+
+    private var predicate: NSPredicate {
+        var predicate = NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: courseID)
+
+        if gradedOnly {
+            predicate = predicate.and(NSPredicate(format: "%K != %@", #keyPath(Assignment.gradingTypeRaw), "not_graded"))
+        }
+
+        if let gradingPeriodID {
+            predicate = predicate.and(NSPredicate(format: "gradingPeriod.id == %@", gradingPeriodID))
+        }
+
+        return predicate
     }
 
-    public func write(response: [APIAssignmentGroup]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        // For teacher roles this API doesn't return any submissions
+    public init(courseID: String, gradingPeriodID: String? = nil, gradedOnly: Bool = false) {
+        self.courseID = courseID
+        self.gradingPeriodID = gradingPeriodID
+        self.gradedOnly = gradedOnly
+    }
+
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+        let getAssignmentGroups: (GradingPeriodID) -> AnyPublisher<[APIAssignmentGroup], Error> = { [courseID, include] gradingPeriodID in
+            let request = GetAssignmentGroupsRequest(
+                courseID: courseID,
+                gradingPeriodID: gradingPeriodID?.value,
+                include: include,
+                perPage: 100
+            )
+            return environment.api.makeRequest(request)
+                .map(\.body)
+                .eraseToAnyPublisher()
+        }
+
+        let gradingPeriodsRequest = GetGradingPeriodsRequest(courseID: courseID)
+        environment.api.makeRequest(gradingPeriodsRequest)
+            .flatMap { (gradingPeriods, _) in
+                if gradingPeriods.isEmpty {
+                    return getAssignmentGroups(nil)
+                        .map { [AssignmentGroupsByGradingPeriod(gradingPeriod: nil, assignmentGroups: $0)] }
+                        .eraseToAnyPublisher()
+                } else {
+                    return Publishers
+                        .Sequence(sequence: gradingPeriods)
+                        .flatMap { gradingPeriod in
+                            getAssignmentGroups(gradingPeriod.id)
+                                .map { AssignmentGroupsByGradingPeriod(gradingPeriod: gradingPeriod, assignmentGroups: $0) }
+                        }
+                        .collect()
+                        .eraseToAnyPublisher()
+                }
+            }
+            .sink { completion in
+                if case .failure(let error) = completion {
+                    completionHandler(nil, nil, error)
+                }
+            } receiveValue: { result in
+                completionHandler(result, nil, nil)
+            }
+            .store(in: &subscriptions)
+    }
+
+    public func reset(context: NSManagedObjectContext) {
+        let predicate = NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: courseID)
+        context.delete(context.fetch(predicate) as [Assignment])
+    }
+
+    public func write(response: ([AssignmentGroupsByGradingPeriod])?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response else { return }
+
+        // For teacher roles this API doesn't return any submissions so we don't want to remove them if they already in CoreData
         let updateSubmission = AppEnvironment.shared.app != .teacher && include.contains(.submission)
-        response?.forEach { item in
-            AssignmentGroup.save(item, courseID: courseID, in: client, updateSubmission: updateSubmission, updateScoreStatistics: include.contains(.score_statistics))
+
+        response.forEach { item in
+            var gradingPeriod: GradingPeriod?
+
+            if let apiGradingPeriod = item.gradingPeriod {
+                gradingPeriod = GradingPeriod.save(apiGradingPeriod, courseID: courseID, in: client)
+            }
+
+            item.assignmentGroups.forEach { apiAssignmentGroup in
+                // This will save the assignments inside
+                AssignmentGroup.save(
+                    apiAssignmentGroup,
+                    courseID: courseID,
+                    in: client,
+                    updateSubmission: updateSubmission,
+                    updateScoreStatistics: include.contains(.score_statistics)
+                )
+
+                /// We can't iterate the CoreData assignment group since it already could contain assignments from other grading periods
+                apiAssignmentGroup.assignments?.map(\.id.value).forEach { assignmentId in
+                    let predicate = NSPredicate(format: "id == %@", assignmentId)
+                    if let assignment = (client.fetch(predicate) as [Assignment]).first {
+                        assignment.gradingPeriod = gradingPeriod
+                    }
+                }
+            }
         }
     }
 }

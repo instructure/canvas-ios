@@ -31,13 +31,20 @@ public class AssignmentListViewModel: ObservableObject {
     @Published public private(set) var shouldShowFilterButton = false
     @Published public private(set) var defaultDetailViewRoute = "/empty"
     public var selectedGradingPeriod: GradingPeriod?
-    public lazy private (set) var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
-        self?.gradingPeriodsDidUpdate()
-    }
+    public private(set) lazy var gradingPeriods: Store<LocalUseCase<GradingPeriod>> = {
+        let scope: Scope = .where(
+            #keyPath(GradingPeriod.courseID),
+            equals: courseID,
+            orderBy: #keyPath(GradingPeriod.startDate)
+        )
+        return env.subscribe(LocalUseCase(scope: scope)) { [weak self] in
+            self?.gradingPeriodsDidUpdate()
+        }
+    }()
 
     private let env = AppEnvironment.shared
     let courseID: String
-    private lazy var apiAssignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
+    private lazy var assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
         self?.assignmentGroupsDidUpdate()
     }
     private lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
@@ -71,30 +78,33 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     public func gradingPeriodSelected(_ gradingPeriod: GradingPeriod?) {
-        state = .loading
         selectedGradingPeriod = gradingPeriod
 
-        apiAssignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriod?.id)) { [weak self] in
+        assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriod?.id)) { [weak self] in
             self?.assignmentGroupsDidUpdate()
         }
-        apiAssignments.exhaust(force: true)
+        assignmentGroups.refresh()
     }
 
     public func viewDidAppear() {
+        gradingPeriods.refresh()
         course.refresh()
-        apiAssignments.exhaust()
-        gradingPeriods.exhaust()
+        assignmentGroups.refresh()
     }
 
     private func assignmentGroupsDidUpdate() {
-        if !apiAssignments.requested || apiAssignments.pending || apiAssignments.hasNextPage { return }
+        if !assignmentGroups.requested || assignmentGroups.pending { return }
 
         var assignmentGroups: [AssignmentGroupViewModel] = []
 
-        for section in 0..<(apiAssignments.sections?.count ?? 0) {
-            if let group = apiAssignments[IndexPath(row: 0, section: section)]?.assignmentGroup {
-                let assignments: [Assignment] = apiAssignments.filter {$0.assignmentGroup == group}
-                assignmentGroups.append(AssignmentGroupViewModel(assignmentGroup: group, assignments: assignments, courseColor: courseColor))
+        for section in 0..<(self.assignmentGroups.sections?.count ?? 0) {
+            if let group = self.assignmentGroups[IndexPath(row: 0, section: section)]?.assignmentGroup {
+                let assignments: [Assignment] = self.assignmentGroups.filter { $0.assignmentGroup == group }
+                assignmentGroups.append(AssignmentGroupViewModel(
+                    assignmentGroup: group,
+                    assignments: assignments,
+                    courseColor: courseColor
+                ))
             }
         }
 
@@ -134,11 +144,8 @@ extension AssignmentListViewModel: Refreshable {
 
     public func refresh() async {
         return await withCheckedContinuation { continuation in
-            apiAssignments.exhaust(force: true) { [weak self] _ in
-                if self?.apiAssignments.hasNextPage == false {
-                    continuation.resume()
-                }
-                return true
+            assignmentGroups.refresh(force: true) { _ in
+                continuation.resume()
             }
         }
     }

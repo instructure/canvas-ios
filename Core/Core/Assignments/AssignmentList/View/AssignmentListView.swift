@@ -21,7 +21,6 @@ import SwiftUI
 public struct AssignmentListView: View, ScreenViewTrackable {
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: AssignmentListViewModel
-    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     @State private var isShowingGradingPeriodPicker = false
@@ -76,7 +75,7 @@ public struct AssignmentListView: View, ScreenViewTrackable {
     @ViewBuilder
     private var gradingPeriodButton: some View {
         if viewModel.selectedGradingPeriod == nil {
-            PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
+            Button {
                 isShowingGradingPeriodPicker = true
             } label: {
                 Text("Filter", bundle: .core)
@@ -135,13 +134,13 @@ public struct AssignmentListView: View, ScreenViewTrackable {
     }
 
     private func assignmentList(_ groups: [AssignmentGroupViewModel]) -> some View {
-        List {
-            ForEach(groups, id: \.id) { assignmentGroup in
-                AssignmentGroupView(viewModel: assignmentGroup)
-                    .listRowBackground(SwiftUI.EmptyView())
+        ScrollView {
+            LazyVStack(pinnedViews: .sectionHeaders) {
+                ForEach(groups, id: \.id) { assignmentGroup in
+                    AssignmentGroupView(viewModel: assignmentGroup)
+                }
             }
         }
-        .listStyle(.plain)
         .refreshable {
             await viewModel.refresh()
         }
