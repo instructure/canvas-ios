@@ -21,14 +21,14 @@ import Combine
 
 public class GetAssignmentsByGroup: UseCase {
     public typealias Model = Assignment
-    public typealias Response = ([AssignmentGroupsByGradingPeriod])
+    public typealias Response = [AssignmentGroupsByGradingPeriod]
     public typealias GradingPeriodID = ID?
     public struct AssignmentGroupsByGradingPeriod: Codable {
         let gradingPeriod: APIGradingPeriod?
         let assignmentGroups: [APIAssignmentGroup]
     }
 
-    public var cacheKey: String? { "courses/\(courseID)/assignment_groups)" }
+    public var cacheKey: String? { "courses/\(courseID)/assignment_groups" }
     public var scope: Scope { Scope(
         predicate: predicate,
         order: [
@@ -46,14 +46,6 @@ public class GetAssignmentsByGroup: UseCase {
     let gradedOnly: Bool
 
     private var subscriptions = Set<AnyCancellable>()
-    private let include: [GetAssignmentGroupsRequest.Include] = [
-        .assignments,
-        .observed_users,
-        .submission,
-        .score_statistics,
-        .discussion_topic,
-        .all_dates,
-    ]
 
     private var predicate: NSPredicate {
         var predicate = NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: courseID)
@@ -76,11 +68,11 @@ public class GetAssignmentsByGroup: UseCase {
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
-        let getAssignmentGroups: (GradingPeriodID) -> AnyPublisher<[APIAssignmentGroup], Error> = { [courseID, include] gradingPeriodID in
+        let getAssignmentGroups: (GradingPeriodID) -> AnyPublisher<[APIAssignmentGroup], Error> = { [courseID] gradingPeriodID in
             let request = GetAssignmentGroupsRequest(
                 courseID: courseID,
                 gradingPeriodID: gradingPeriodID?.value,
-                include: include,
+                include: GetAssignmentGroupsRequest.Include.allCases,
                 perPage: 100
             )
             return environment.api.makeRequest(request)
@@ -125,7 +117,7 @@ public class GetAssignmentsByGroup: UseCase {
         guard let response else { return }
 
         // For teacher roles this API doesn't return any submissions so we don't want to remove them if they already in CoreData
-        let updateSubmission = AppEnvironment.shared.app != .teacher && include.contains(.submission)
+        let updateSubmission = AppEnvironment.shared.app != .teacher && GetAssignmentGroupsRequest.Include.allCases.contains(.submission)
 
         response.forEach { item in
             var gradingPeriod: GradingPeriod?
@@ -141,7 +133,7 @@ public class GetAssignmentsByGroup: UseCase {
                     courseID: courseID,
                     in: client,
                     updateSubmission: updateSubmission,
-                    updateScoreStatistics: include.contains(.score_statistics)
+                    updateScoreStatistics: GetAssignmentGroupsRequest.Include.allCases.contains(.score_statistics)
                 )
 
                 /// We can't iterate the CoreData assignment group since it already could contain assignments from other grading periods

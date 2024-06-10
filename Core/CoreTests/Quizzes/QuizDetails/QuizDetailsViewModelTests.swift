@@ -92,9 +92,29 @@ class QuizDetailsViewModelTests: CoreTestCase {
     }
 
     private func mockAssignments() {
-        api.mock(GetAssignmentsByGroup(courseID: courseID), value: [
-            .make(id: "AG1", name: "AGroup1", position: 1, assignments: [.make(assignment_group_id: "AG1", id: "3", name: "test quiz")]),
-        ])
+        let request = GetAssignmentGroupsRequest(
+            courseID: courseID,
+            gradingPeriodID: nil,
+            include: GetAssignmentGroupsRequest.Include.allCases,
+            perPage: 100
+        )
+
+        api.mock(
+            request,
+            value: [
+                .make(
+                    id: "AG1",
+                    name: "AGroup1",
+                    position: 1,
+                    assignments: [
+                        .make(
+                            assignment_group_id: "AG1",
+                            id: "3",
+                            name: "test quiz"),
+                    ]
+                ),
+            ]
+        )
     }
 
     // MARK: - Quantitative Data Display Tests
@@ -142,7 +162,14 @@ class QuizDetailsViewModelTests: CoreTestCase {
                  value: .make())
         api.mock(GetQuizSubmissionRequest(courseID: "1", quizID: "123"),
                  value: .init(quiz_submissions: []))
-        api.mock(GetAssignmentsByGroup(courseID: "1"),
-                 value: [])
+        api.mock(
+            GetAssignmentGroupsRequest(
+                courseID: "1",
+                gradingPeriodID: nil,
+                include: GetAssignmentGroupsRequest.Include.allCases,
+                perPage: 100
+            ),
+            value: []
+        )
     }
 }

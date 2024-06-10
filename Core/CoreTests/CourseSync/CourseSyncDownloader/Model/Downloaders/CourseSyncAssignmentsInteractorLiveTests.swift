@@ -26,8 +26,16 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncAssignmentsInteractorLive(htmlParser: getHTMLParser())
         let expectation = expectation(description: "Publisher sends value")
 
+        api.mock(GetGradingPeriodsRequest(courseID: "1"), value: [])
+        let assignmentGroupRequest = GetAssignmentGroupsRequest(
+            courseID: "1",
+            gradingPeriodID: nil,
+            include: GetAssignmentGroupsRequest.Include.allCases,
+            perPage: 100
+        )
+
         api.mock(
-            GetAssignmentsByGroup(courseID: "1"),
+            assignmentGroupRequest,
             value: [
                 APIAssignmentGroup.make(
                     assignments: [
@@ -106,9 +114,16 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
     func testSubmissionCommentErrorHandling() {
         let testee = CourseSyncAssignmentsInteractorLive(htmlParser: getHTMLParser())
         let expectation = expectation(description: "Publisher sends value")
+        api.mock(GetGradingPeriodsRequest(courseID: "1"), value: [])
+        let assignmentGroupRequest = GetAssignmentGroupsRequest(
+            courseID: "1",
+            gradingPeriodID: nil,
+            include: GetAssignmentGroupsRequest.Include.allCases,
+            perPage: 100
+        )
 
         api.mock(
-            GetAssignmentsByGroup(courseID: "1"),
+            assignmentGroupRequest,
             value: [
                 APIAssignmentGroup.make(
                     assignments: [
