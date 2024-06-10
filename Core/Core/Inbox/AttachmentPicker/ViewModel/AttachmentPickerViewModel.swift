@@ -174,7 +174,6 @@ class AttachmentPickerViewModel: ObservableObject {
                 if self?.interactor.isCancelConfirmationNeeded == true {
                     return confirmAlert.userConfirmation().map { value }.eraseToAnyPublisher()
                 }
-                
                 return Just(value).eraseToAnyPublisher()
             }
             .sink { [weak self, router] viewController in
