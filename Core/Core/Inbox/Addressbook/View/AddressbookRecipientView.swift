@@ -18,12 +18,17 @@
 
 import SwiftUI
 
-public struct AddressbookRecipientView: View {
+public struct AddressbookRecipientView: View, ScreenViewTrackable {
     @ObservedObject private var viewModel: AddressbookRecipientViewModel
     @Environment(\.viewController) private var controller
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     init(model: AddressbookRecipientViewModel) {
         self.viewModel = model
+
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/conversations/compose/addressbook/recipients"
+        )
     }
 
     public var body: some View {

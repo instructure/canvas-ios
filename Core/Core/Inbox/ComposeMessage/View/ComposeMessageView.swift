@@ -18,9 +18,10 @@
 
 import SwiftUI
 
-public struct ComposeMessageView: View {
+public struct ComposeMessageView: View, ScreenViewTrackable {
     @ObservedObject private var model: ComposeMessageViewModel
     @Environment(\.viewController) private var controller
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     @ScaledMetric private var uiScale: CGFloat = 1
 
@@ -32,6 +33,10 @@ public struct ComposeMessageView: View {
 
     init(model: ComposeMessageViewModel) {
         self.model = model
+
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/conversations/compose/\(model.messageTypeString)"
+        )
     }
 
     public var body: some View {

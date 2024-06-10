@@ -18,12 +18,23 @@
 
 import SwiftUI
 
-public struct MessageDetailsView: View {
+public struct MessageDetailsView: View, ScreenViewTrackable {
     @ObservedObject private var model: MessageDetailsViewModel
     @Environment(\.viewController) private var controller
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     init(model: MessageDetailsViewModel) {
         self.model = model
+
+        if let conversationId = model.conversations.first?.id {
+            screenViewTrackingParameters = ScreenViewTrackingParameters(
+                eventName: "/conversations/\(conversationId)/details"
+            )
+        } else {
+            screenViewTrackingParameters = ScreenViewTrackingParameters(
+                eventName: "/conversations/details"
+            )
+        }
     }
 
     public var body: some View {

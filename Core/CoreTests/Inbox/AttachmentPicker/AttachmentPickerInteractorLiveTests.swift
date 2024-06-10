@@ -134,6 +134,17 @@ class AttachmentPickerInteractorLiveTests: CoreTestCase {
         waitForState(.data)
     }
 
+    func testIsCancelDialogNeeded() {
+        XCTAssertFalse(testee.isCancelConfirmationNeeded)
+        let file = File.make()
+        testee.addFile(file: file)
+        file.taskID = "1"
+        XCTAssertTrue(testee.isCancelConfirmationNeeded)
+        testee.uploadFiles()
+        file.taskID = nil
+        XCTAssertFalse(testee.isCancelConfirmationNeeded)
+    }
+
     private func waitForState(_ state: StoreState) {
         let stateUpdate = expectation(description: "Expected state reached")
         stateUpdate.assertForOverFulfill = false

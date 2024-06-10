@@ -68,6 +68,7 @@ class ComposeMessageViewModel: ObservableObject {
         confirmButtonTitle: String(localized: "Yes", bundle: .core),
         isDestructive: false
     )
+    public var messageTypeString: String
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -94,6 +95,16 @@ class ComposeMessageViewModel: ObservableObject {
         self.scheduler = scheduler
 
         self.messageType = options.messageType
+        switch messageType {
+        case .new:
+            messageTypeString = "new"
+        case .reply(let conversation, let message):
+            messageTypeString = "reply"
+        case .replyAll(let conversation, let message):
+            messageTypeString = "replyAll"
+        case .forward(let conversation, let message):
+            messageTypeString = "forward"
+        }
         setIncludedMessages(messageType: options.messageType)
         setOptionItems(options: options)
 

@@ -18,12 +18,17 @@
 
 import SwiftUI
 
-struct AddressbookRoleView: View {
+struct AddressbookRoleView: View, ScreenViewTrackable {
     @ObservedObject private var viewModel: AddressbookRoleViewModel
     @Environment(\.viewController) private var controller
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     init(model: AddressbookRoleViewModel) {
         self.viewModel = model
+
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/conversations/compose/addressbook/roles"
+        )
     }
 
     public var body: some View {
