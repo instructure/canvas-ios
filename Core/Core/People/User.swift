@@ -49,7 +49,7 @@ extension User: WriteableModel {
         user.pronouns = item.pronouns
         if let enrollments = item.enrollments {
             for item in enrollments {
-                let entity: Enrollment = context.first(where: #keyPath(Enrollment.id), equals: item.id?.value) ?? context.insert() as Enrollment
+                let entity: Enrollment = context.first(where: #keyPath(Enrollment.id), equals: item.id?.value) ?? context.insert()
                 var course: Course?
                 if let courseID = item.course_id?.value {
                     course = context.first(where: #keyPath(Course.id), equals: courseID)
