@@ -69,7 +69,7 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
     func uploadFiles() {
         fileStore.all.forEach { file in
             if !file.isUploaded {
-                uploadManager.upload(file: file, to: .myFiles, folderPath: "conversation attachments")
+                uploadManager.upload(file: file, to: .myFiles, folderPath: uploadFolderPath)
             }
         }
     }
@@ -176,7 +176,7 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
     }
 
     private func getFolderByPath() {
-        uploadFolderPathStore = env.subscribe(GetFolderByPath(context: .currentUser, path: "conversation attachments"))
+        uploadFolderPathStore = env.subscribe(GetFolderByPath(context: .currentUser, path: uploadFolderPath ?? ""))
 
         uploadFolderPathStore?
             .allObjects
