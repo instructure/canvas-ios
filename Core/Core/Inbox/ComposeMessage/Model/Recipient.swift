@@ -38,7 +38,7 @@ public struct Recipient: Equatable, Hashable {
 
     public init(searchRecipient: SearchRecipient) {
         self.ids = [searchRecipient.id]
-        self.displayName = searchRecipient.name
+        self.displayName = searchRecipient.displayName ?? searchRecipient.name
         self.avatarURL = searchRecipient.avatarURL
     }
 
@@ -50,7 +50,7 @@ public struct Recipient: Equatable, Hashable {
 
     public init(conversationParticipant: ConversationParticipant) {
         self.ids = [conversationParticipant.id]
-        self.displayName = conversationParticipant.name
+        self.displayName = conversationParticipant.displayName
         self.avatarURL = conversationParticipant.avatarURL
     }
 
