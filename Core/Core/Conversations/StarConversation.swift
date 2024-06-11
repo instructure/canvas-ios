@@ -47,15 +47,17 @@ public class StarConversation: APIUseCase {
 
         let entities: [InboxMessageListItem] = client.fetch(scope: scope)
 
-        entities.compactMap { InboxMessageScope.init(rawValue: $0.scopeFilter) }.forEach { scope in
-            InboxMessageListItem.save(
-                response,
-                currentUserID: AppEnvironment.shared.currentSession?.userID ?? "",
-                isSent: true,
-                contextFilter: .none,
-                scopeFilter: scope,
-                in: client
-            )
+        entities
+            .compactMap { InboxMessageScope(rawValue: $0.scopeFilter) }
+            .forEach { scope in
+                InboxMessageListItem.save(
+                    response,
+                    currentUserID: AppEnvironment.shared.currentSession?.userID ?? "",
+                    isSent: true,
+                    contextFilter: .none,
+                    scopeFilter: scope,
+                    in: client
+                )
         }
     }
 }

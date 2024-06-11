@@ -35,7 +35,7 @@ class AttachmentPickerViewModelTests: CoreTestCase {
     func testCancelButton() {
         let viewController = WeakViewController(UIViewController())
 
-        testee.fileSelected(url: URL(string: "testDomain.com/testResourse1")!)
+        testee.didSelectFile(url: URL(string: "testDomain.com/testResourse1")!)
         testee.cancelButtonDidTap.accept(viewController)
         XCTAssertTrue(testee.fileList.isEmpty)
     }
@@ -44,7 +44,7 @@ class AttachmentPickerViewModelTests: CoreTestCase {
         let viewController = WeakViewController(UIViewController())
 
         let testFile = File.make()
-        testee.fileSelected(url: testFile.localFileURL ?? URL(string: "test")!)
+        testee.didSelectFile(url: testFile.localFileURL ?? URL(string: "test")!)
         XCTAssertTrue(interactor.addFileCalled)
 
         testee.uploadButtonDidTap.accept(viewController)
@@ -55,7 +55,7 @@ class AttachmentPickerViewModelTests: CoreTestCase {
         let viewController = WeakViewController(UIViewController())
 
         let testFile = File.make()
-        testee.fileSelected(url: testFile.localFileURL ?? URL(string: "test")!)
+        testee.didSelectFile(url: testFile.localFileURL ?? URL(string: "test")!)
         XCTAssertTrue(interactor.addFileCalled)
 
         testee.retryButtonDidTap.accept(viewController)

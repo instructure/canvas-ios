@@ -157,7 +157,7 @@ class AttachmentPickerViewModel: ObservableObject {
         })
         .store(in: &subscriptions)
 
-        interactor.alreadySelectedFiles.sink { [weak self] files in
+        interactor.alreadyUploadedFiles.sink { [weak self] files in
             self?.alreadyUploadedFileList = files
         }
         .store(in: &subscriptions)

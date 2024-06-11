@@ -21,9 +21,9 @@ import Combine
 
 class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
     public let files = PassthroughSubject<[File], Error>()
-    public let alreadySelectedFiles: CurrentValueSubject<[File], Never>
+    public let alreadyUploadedFiles: CurrentValueSubject<[File], Never>
     public var isCancelConfirmationNeeded: Bool {
-        return !fileStore.all.isAllUploaded || alreadySelectedFiles.value.contains(where: { $0.isUploading })
+        return !fileStore.all.isAllUploaded || alreadyUploadedFiles.value.contains(where: { $0.isUploading })
     }
 
     private let env: AppEnvironment
@@ -44,7 +44,7 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
     init(
         env: AppEnvironment = .shared,
         batchId: String,
-        folderPath: String? = nil,
+        uploadFolderPath: String? = nil,
         restrictForFolderPath: Bool = false,
         uploadManager: UploadManager,
         alreadyUploadedFiles: CurrentValueSubject<[File], Never>,
@@ -53,9 +53,9 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
         self.env = env
         self.uploadManager = uploadManager
         self.batchId = batchId
-        self.uploadFolderPath = folderPath
+        self.uploadFolderPath = uploadFolderPath
         self.restrictForFolderPath = restrictForFolderPath
-        self.alreadySelectedFiles = alreadyUploadedFiles
+        self.alreadyUploadedFiles = alreadyUploadedFiles
         self.publisherProvider = publisherProvider
 
         getFolderByPath()
@@ -85,9 +85,9 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
 
     func addFile(file: File) {
         file.taskID = "localProcess"
-        var newValues = alreadySelectedFiles.value
+        var newValues = alreadyUploadedFiles.value
         newValues.append(file)
-        alreadySelectedFiles.send(newValues)
+        alreadyUploadedFiles.send(newValues)
         if restrictForFolderPath && file.folderID != uploadFolder?.id {
             duplicateFileToUploadFolder(file: file)
         } else {
@@ -106,14 +106,14 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
                 uploadManager.cancel(file: file)
             }
         }
-        var filteredFiles: [File] = alreadySelectedFiles.value.filter { $0.isUploading == false}
-        alreadySelectedFiles.send(filteredFiles)
+        let filteredFiles: [File] = alreadyUploadedFiles.value.filter { !$0.isUploading }
+        alreadyUploadedFiles.send(filteredFiles)
     }
 
     func removeFile(file: File) {
-        if alreadySelectedFiles.value.contains(file) {
-            let newValues = alreadySelectedFiles.value.filter { $0 != file }
-            alreadySelectedFiles.send(newValues)
+        if alreadyUploadedFiles.value.contains(file) {
+            let newValues = alreadyUploadedFiles.value.filter { $0 != file }
+            alreadyUploadedFiles.send(newValues)
         } else {
             uploadManager.viewContext.delete(file)
             fileStore.refresh()
@@ -142,8 +142,8 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
             .map { [weak self] url in
                 guard let self, let url else { return }
                 _ = try? self.uploadManager.add(url: url, batchID: self.batchId)
-                let newValues = alreadySelectedFiles.value.filter { $0 != file }
-                alreadySelectedFiles.send(newValues)
+                let newValues = alreadyUploadedFiles.value.filter { $0 != file }
+                alreadyUploadedFiles.send(newValues)
             }
             .sink()
             .store(in: &subscriptions)

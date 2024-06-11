@@ -29,7 +29,7 @@ public enum AttachmentPickerAssembly {
     ) -> UIViewController {
         let interactor = AttachmentPickerInteractorLive(
             batchId: batchId,
-            folderPath: "conversation attachments",
+            uploadFolderPath: "conversation attachments",
             restrictForFolderPath: true,
             uploadManager: uploadManager,
             alreadyUploadedFiles: alreadyUploadedFiles

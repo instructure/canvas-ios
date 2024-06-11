@@ -295,17 +295,17 @@ extension ComposeMessageOptions {
         var queryItems: [URLQueryItem] = []
 
         // MARK: Disabled fields
-        queryItems.append(.init(key: QueryParameterKey.contextDisabledKey, value: String(disabledFields.contextDisabled)))
-        queryItems.append(.init(key: QueryParameterKey.contextDisabledKey, value: String(disabledFields.contextDisabled)))
-        queryItems.append(.init(key: QueryParameterKey.recipeientsDisabledKey, value: String(disabledFields.recipientsDisabled)))
-        queryItems.append(.init(key: QueryParameterKey.subjectDisabledKey, value: String(disabledFields.subjectDisabled)))
-        queryItems.append(.init(key: QueryParameterKey.messageDisabledKey, value: String(disabledFields.messageDisabled)))
-        queryItems.append(.init(key: QueryParameterKey.individualDisabledKey, value: String(disabledFields.individualDisabled)))
+        queryItems.append(.init(key: .contextDisabledKey, value: String(disabledFields.contextDisabled)))
+        queryItems.append(.init(key: .contextDisabledKey, value: String(disabledFields.contextDisabled)))
+        queryItems.append(.init(key: .recipeientsDisabledKey, value: String(disabledFields.recipientsDisabled)))
+        queryItems.append(.init(key: .subjectDisabledKey, value: String(disabledFields.subjectDisabled)))
+        queryItems.append(.init(key: .messageDisabledKey, value: String(disabledFields.messageDisabled)))
+        queryItems.append(.init(key: .individualDisabledKey, value: String(disabledFields.individualDisabled)))
 
         // MARK: Field contents
         if let selectedContext = fieldContents.selectedContext {
-            queryItems.append(.init(key: QueryParameterKey.contextCodeContentKey, value: selectedContext.context.canvasContextID))
-            queryItems.append(.init(key: QueryParameterKey.contextNameContentKey, value: selectedContext.name))
+            queryItems.append(.init(key: .contextCodeContentKey, value: selectedContext.context.canvasContextID))
+            queryItems.append(.init(key: .contextNameContentKey, value: selectedContext.name))
         }
         queryItems.append(
             .init(key: QueryParameterKey.recipientIdsContentKey, value: fieldContents.selectedRecipients.flatMap { $0.ids }.joined(separator: ","))
@@ -316,22 +316,22 @@ extension ComposeMessageOptions {
         queryItems.append(
             .init(key: QueryParameterKey.recipientAvatarsContentKey, value: fieldContents.selectedRecipients.map { $0.avatarURL?.absoluteString ?? "" }.joined(separator: ","))
         )
-        queryItems.append(.init(key: QueryParameterKey.subjectContentKey, value: fieldContents.subjectText))
-        queryItems.append(.init(key: QueryParameterKey.messageContentKey, value: fieldContents.bodyText))
-        queryItems.append(.init(key: QueryParameterKey.individualDisabledKey, value: String(fieldContents.individualSend)))
+        queryItems.append(.init(key: .subjectContentKey, value: fieldContents.subjectText))
+        queryItems.append(.init(key: .messageContentKey, value: fieldContents.bodyText))
+        queryItems.append(.init(key: .individualDisabledKey, value: String(fieldContents.individualSend)))
 
         // MARK: Extras
-        queryItems.append(.init(key: QueryParameterKey.hiddenMessageKey, value: extras.hiddenMessage))
-        queryItems.append(.init(key: QueryParameterKey.autoTeacherSelectKey, value: String(extras.autoTeacherSelect)))
-        queryItems.append(.init(key: QueryParameterKey.alwaysShowRecipientsKey, value: String(extras.alwaysShowRecipients)))
-        queryItems.append(.init(key: QueryParameterKey.teacherOnlyKey, value: String(extras.teacherOnly)))
+        queryItems.append(.init(key: .hiddenMessageKey, value: extras.hiddenMessage))
+        queryItems.append(.init(key: .autoTeacherSelectKey, value: String(extras.autoTeacherSelect)))
+        queryItems.append(.init(key: .alwaysShowRecipientsKey, value: String(extras.alwaysShowRecipients)))
+        queryItems.append(.init(key: .teacherOnlyKey, value: String(extras.teacherOnly)))
 
         return queryItems
 
     }
 }
 
-extension URLQueryItem {
+private extension URLQueryItem {
     init(key: ComposeMessageOptions.QueryParameterKey, value: String?) {
         self.init(name: key.rawValue, value: value)
     }
