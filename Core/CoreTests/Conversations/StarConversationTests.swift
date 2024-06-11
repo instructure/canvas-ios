@@ -19,12 +19,11 @@
 import XCTest
 @testable import Core
 
-class UpdateConversationStateTests: CoreTestCase {
+class StarConversationStateTests: CoreTestCase {
 
     func testPostRequest() {
         let conversationId = "testId"
-        let newState = ConversationWorkflowState.read
-        let useCase = UpdateConversationState(id: conversationId, state: newState)
+        let useCase = StarConversation(id: conversationId, starred: true)
         let result = APIConversation.make()
         api.mock(useCase.request, value: result)
 
@@ -38,8 +37,7 @@ class UpdateConversationStateTests: CoreTestCase {
 
     func testPostRequestError() {
         let conversationId = "testId"
-        let newState = ConversationWorkflowState.read
-        let useCase = UpdateConversationState(id: conversationId, state: newState)
+        let useCase = StarConversation(id: conversationId, starred: true)
         api.mock(useCase.request, error: NSError.instructureError("Error"))
 
         let expectation = XCTestExpectation(description: "make request")
@@ -52,34 +50,33 @@ class UpdateConversationStateTests: CoreTestCase {
 
     func testScope() {
         let conversationId = "testId"
-        let newState = ConversationWorkflowState.read
-        let useCase = UpdateConversationState(id: conversationId, state: newState)
+        let starred = true
+        let useCase = StarConversation(id: conversationId, starred: starred)
 
         XCTAssertEqual(useCase.scope.predicate, NSPredicate(key: #keyPath(InboxMessageListItem.messageId), equals: conversationId))
     }
 
     func testWrite() {
         let conversationId = "testId"
-        let newState = ConversationWorkflowState.read
-        let useCase = UpdateConversationState(id: conversationId, state: newState)
-        let apiconversation = APIConversation.make(workflow_state: .unread)
+        let useCase = StarConversation(id: conversationId, starred: true)
+        let apiconversation = APIConversation.make(starred: false)
         Conversation.save(apiconversation, in: databaseClient)
         InboxMessageListItem.save(
             apiconversation,
-            currentUserID: AppEnvironment.shared.currentSession?.userID ?? "",
-            isSent: false,
+            currentUserID: environment.currentSession?.userID ?? "",
+            isSent: true,
             contextFilter: .none,
-            scopeFilter: .sent,
+            scopeFilter: .inbox,
             in: databaseClient
         )
 
         XCTAssertEqual((databaseClient.fetch() as [Conversation]).count, 1)
-        XCTAssertEqual((databaseClient.fetch() as [Conversation]).first?.workflowState, .unread)
+        XCTAssertEqual((databaseClient.fetch() as [Conversation]).first?.starred, false)
 
-        let response = APIConversation.make(workflow_state: .read)
+        let response = APIConversation.make(starred: true)
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
         XCTAssertEqual((databaseClient.fetch() as [Conversation]).count, 1)
-        XCTAssertEqual((databaseClient.fetch() as [Conversation]).first?.workflowState, newState)
+        XCTAssertEqual((databaseClient.fetch() as [Conversation]).first?.starred, true)
     }
 }

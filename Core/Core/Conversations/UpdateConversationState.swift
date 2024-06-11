@@ -39,6 +39,16 @@ public class UpdateConversationState: APIUseCase {
     }
 
     public func write(response: APIConversation?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response = response else {
+            return
+        }
+
+        let conversationEntities: [Conversation] = client.fetch(.id(response.id.value))
+        conversationEntities.forEach { conversation in
+            conversation.workflowState = state
+            try? client.save()
+        }
+
         let entities: [InboxMessageListItem] = client.fetch(scope: scope)
         entities.forEach { message in
             message.state = state
