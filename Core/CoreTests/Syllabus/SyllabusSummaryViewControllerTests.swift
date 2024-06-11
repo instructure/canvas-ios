@@ -68,12 +68,12 @@ class SyllabusSummaryViewControllerTests: CoreTestCase {
         let assignmentCell = cell(at: IndexPath(row: 0, section: 0))
         XCTAssertEqual(assignmentCell.itemNameLabel.text, "assignment")
         XCTAssertEqual(assignmentCell.iconImageView?.image, .assignmentLine)
-        XCTAssertEqual(assignmentCell.dateLabel.text, "Feb 12, 2020 at 12:00 AM")
+        XCTAssertEqual(assignmentCell.dateLabel.text, date.dateTimeString)
 
         let eventCell = cell(at: IndexPath(row: 1, section: 0))
         XCTAssertEqual(eventCell.itemNameLabel.text, "event")
         XCTAssertEqual(eventCell.iconImageView?.image, .calendarMonthLine)
-        XCTAssertEqual(eventCell.dateLabel.text, "Feb 13, 2020 at 12:00 AM")
+        XCTAssertEqual(eventCell.dateLabel.text, date.addDays(1).dateTimeString)
 
         let nilDateCell = cell(at: IndexPath(row: 2, section: 0))
         XCTAssertEqual(nilDateCell.itemNameLabel.text, "nil date")

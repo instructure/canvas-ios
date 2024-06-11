@@ -35,7 +35,7 @@ class QuizDetailsViewControllerTests: StudentTestCase {
     }
 
     func testLayout() {
-        let date = DateComponents(calendar: .current, year: 2020, month: 7, day: 20, hour: 9).date
+        let date = DateComponents(calendar: .current, year: 2020, month: 7, day: 20, hour: 9).date!
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
@@ -73,7 +73,7 @@ class QuizDetailsViewControllerTests: StudentTestCase {
             .make(attempt: 1, attempts_left: 1, finished_at: date, workflow_state: .complete),
         ]))
         controller.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.statusLabel.text, "Submitted Jul 20, 2020 at 9:00 AM")
+        XCTAssertEqual(controller.statusLabel.text, "Submitted " + date.dateTimeString)
         XCTAssertEqual(controller.takeButton.title(for: .normal), "Retake Quiz")
         controller.takeButton.sendActions(for: .primaryActionTriggered)
         XCTAssert(router.presented is QuizWebViewController)
@@ -82,7 +82,7 @@ class QuizDetailsViewControllerTests: StudentTestCase {
             .make(attempt: 2, attempts_left: 0, finished_at: date, workflow_state: .complete),
         ]))
         controller.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.statusLabel.text, "Submitted Jul 20, 2020 at 9:00 AM")
+        XCTAssertEqual(controller.statusLabel.text, "Submitted " + date.dateTimeString)
         XCTAssertEqual(controller.takeButton.title(for: .normal), "View Results")
         controller.takeButton.sendActions(for: .primaryActionTriggered)
         XCTAssert(router.lastRoutedTo(URL(string: "/courses/1/quizzes/1/history")!))

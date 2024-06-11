@@ -21,6 +21,12 @@ import XCTest
 import TestsFoundation
 
 class QuizListViewControllerTests: CoreTestCase {
+
+    private enum TestConstants {
+        static let date0315 = DateComponents(calendar: .current, year: 2020, month: 3, day: 15).date!
+        static let date0720 = DateComponents(calendar: .current, year: 2020, month: 7, day: 20, hour: 14).date!
+    }
+
     lazy var controller = QuizListViewController.create(courseID: "1")
 
     override func setUp() {
@@ -30,7 +36,7 @@ class QuizListViewControllerTests: CoreTestCase {
         api.mock(controller.quizzes, value: [
             .make(
                 assignment_id: "1",
-                due_at: DateComponents(calendar: .current, year: 2020, month: 7, day: 20, hour: 14).date,
+                due_at: TestConstants.date0720,
                 id: "1",
                 points_possible: 111,
                 question_count: 111,
@@ -38,9 +44,9 @@ class QuizListViewControllerTests: CoreTestCase {
                 title: "A"
             ),
             .make(
-                due_at: DateComponents(calendar: .current, year: 2020, month: 3, day: 15).date,
+                due_at: TestConstants.date0315,
                 id: "2",
-                lock_at: DateComponents(calendar: .current, year: 2020, month: 3, day: 15).date,
+                lock_at: TestConstants.date0315,
                 points_possible: nil,
                 quiz_type: .practice_quiz,
                 title: "B"
@@ -74,7 +80,7 @@ class QuizListViewControllerTests: CoreTestCase {
         XCTAssertEqual(header?.titleLabel.text, "Assignments")
         var cell = controller.tableView.cellForRow(at: index) as? QuizListCell
         XCTAssertEqual(cell?.titleLabel.text, "A")
-        XCTAssertEqual(cell?.dateLabel.text, "Due Jul 20, 2020, 2:00 PM")
+        XCTAssertEqual(cell?.dateLabel.text, "Due " + TestConstants.date0720.relativeDateTimeString)
         XCTAssertEqual(cell?.pointsLabel.text, "111 pts")
         XCTAssertEqual(cell?.questionsLabel.text, "111 Questions")
         XCTAssertEqual(cell?.statusLabel.isHidden, true)
@@ -85,7 +91,7 @@ class QuizListViewControllerTests: CoreTestCase {
         XCTAssertEqual(header?.titleLabel.text, "Practice Quizzes")
         cell = controller.tableView.cellForRow(at: index) as? QuizListCell
         XCTAssertEqual(cell?.titleLabel.text, "B")
-        XCTAssertEqual(cell?.dateLabel.text, "Due Mar 15, 2020, 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, "Due " + TestConstants.date0315.relativeDateTimeString)
         XCTAssertEqual(cell?.pointsLabel.text, "Not Graded")
         XCTAssertEqual(cell?.statusLabel.text, "Closed")
         XCTAssertEqual(cell?.statusDot.isHidden, false)

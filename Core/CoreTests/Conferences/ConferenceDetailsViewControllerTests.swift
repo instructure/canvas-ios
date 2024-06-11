@@ -21,13 +21,18 @@ import XCTest
 @testable import TestsFoundation
 
 class ConferenceDetailsViewControllerTests: CoreTestCase {
+
+    private enum TestConstants {
+        static let date = DateComponents(calendar: .current, year: 2020, month: 3, day: 14).date!
+    }
+
     let course1 = Context(.course, id: "1")
     var conferenceID = "1"
     lazy var controller = ConferenceDetailsViewController.create(context: course1, conferenceID: conferenceID)
 
     override func setUp() {
         super.setUp()
-        Clock.mockNow(DateComponents(calendar: .current, year: 2020, month: 3, day: 14).date!)
+        Clock.mockNow(TestConstants.date)
         api.mock(controller.colors, value: APICustomColors(custom_colors: [ "course_1": "#f00" ]))
         api.mock(controller.course, value: .make())
         api.mock(controller.conferences, value: GetConferencesRequest.Response(conferences: [
@@ -39,6 +44,11 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
                 title: "Pandemic playthrough"
             ),
         ]))
+    }
+
+    override func tearDown() {
+        Clock.reset()
+        super.tearDown()
     }
 
     func testLayout() {
@@ -59,7 +69,7 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
 
         api.mock(controller.conferences, value: .init(conferences: [ .make(description: "", started_at: Clock.now) ]))
         controller.refreshControl.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.statusLabel.text, "In Progress | Started Mar 14, 2020 at 12:00 AM")
+        XCTAssertEqual(controller.statusLabel.text, "In Progress | Started " + TestConstants.date.dateTimeString)
         XCTAssertEqual(controller.detailsLabel.text, "No description")
         XCTAssertEqual(controller.joinButton.isHidden, false)
         XCTAssertEqual(controller.recordingsView.isHidden, true)
@@ -77,14 +87,14 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
             ), ]),
         ]))
         controller.refreshControl.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.statusLabel.text, "Concluded Mar 14, 2020 at 12:00 AM")
+        XCTAssertEqual(controller.statusLabel.text, "Concluded " + TestConstants.date.dateTimeString)
         XCTAssertEqual(controller.joinButton.isHidden, true)
         XCTAssertEqual(controller.recordingsView.isHidden, false)
 
         let index0 = IndexPath(row: 0, section: 0)
         let cell0 = controller.tableView.cellForRow(at: index0) as? ConferenceRecordingCell
         XCTAssertEqual(cell0?.titleLabel.text, "Recording 1")
-        XCTAssertEqual(cell0?.dateLabel.text, "Mar 14, 2020 at 12:00 AM")
+        XCTAssertEqual(cell0?.dateLabel.text, TestConstants.date.dateTimeString)
         XCTAssertEqual(cell0?.durationLabel.text, "1 hour, 5 minutes")
 
         controller.tableView.selectRow(at: index0, animated: false, scrollPosition: .none)
