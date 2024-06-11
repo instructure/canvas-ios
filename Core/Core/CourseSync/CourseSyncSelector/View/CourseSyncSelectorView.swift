@@ -33,10 +33,10 @@ struct CourseSyncSelectorView: View {
 
     var body: some View {
         content
-        .background(Color.backgroundLightest)
-        .navigationTitleStyled(navBarTitleView)
-        .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
-        .navigationBarStyle(.modal)
+            .background(Color.backgroundLightest)
+            .navigationTitleStyled(navBarTitleView)
+            .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
+            .navigationBarStyle(.modal)
     }
 
     @ViewBuilder
@@ -46,7 +46,7 @@ struct CourseSyncSelectorView: View {
             InteractivePanda(scene: NoResultsPanda(),
                              title: Text(viewModel.labels.error.title),
                              subtitle: Text(viewModel.labels.error.message))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .loading:
             VStack(spacing: 12) {
                 Image("LoadingPanda", bundle: .core)
@@ -94,8 +94,14 @@ struct CourseSyncSelectorView: View {
                 }
                 syncButton
             }
-            .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
-                               presenting: viewModel.confirmAlert)
+            .confirmationAlert(
+                isPresented: $viewModel.isShowingSyncConfirmationDialog,
+                presenting: viewModel.syncConfirmAlert
+            )
+            .confirmationAlert(
+                isPresented: $viewModel.isShowingCancelConfirmationDialog,
+                presenting: viewModel.cancelConfirmAlert
+            )
         }
     }
 
@@ -103,7 +109,7 @@ struct CourseSyncSelectorView: View {
         LazyVStack(spacing: 0) {
             ForEach(viewModel.cells) { cell in
                 let isListItem: Bool = {
-                    if case .item(let item) = cell, item.cellStyle == .listItem {
+                    if case let .item(item) = cell, item.cellStyle == .listItem {
                         return true
                     } else {
                         return false
@@ -112,7 +118,7 @@ struct CourseSyncSelectorView: View {
 
                 VStack(spacing: 0) {
                     switch cell {
-                    case .item(let item):
+                    case let .item(item):
                         ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
                                                        title: item.title,
                                                        subtitle: item.subtitle,
@@ -136,17 +142,17 @@ struct CourseSyncSelectorView: View {
                          title: Text(viewModel.labels.noCourses.title),
                          subtitle: Text(viewModel.labels.noCourses.message))
 
-        .padding(16)
-        .frame(maxWidth: .infinity, minHeight: geometry.size.height)
+            .padding(16)
+            .frame(maxWidth: .infinity, minHeight: geometry.size.height)
     }
 
     private var emptyCourse: some View {
         InteractivePanda(scene: SpacePanda(),
                          title: Text(viewModel.labels.noItems.title),
                          subtitle: Text(viewModel.labels.noItems.message))
-        .allowsHitTesting(false)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 32)
+            .allowsHitTesting(false)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 32)
     }
 
     private var navBarTitleView: some View {
@@ -180,9 +186,7 @@ struct CourseSyncSelectorView: View {
                 .font(.regular16, lineHeight: .fit)
                 .foregroundColor(.textLightest)
                 .background(Color(Brand.shared.primary))
-                .opacity(viewModel.syncButtonDisabled ? 0.42 : 1)
         }
-        .disabled(viewModel.syncButtonDisabled)
         .animation(.default, value: offlineModeViewModel.isOffline)
     }
 

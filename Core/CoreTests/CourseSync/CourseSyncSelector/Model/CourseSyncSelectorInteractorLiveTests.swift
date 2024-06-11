@@ -438,6 +438,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         // MARK: - WHEN
 
         testee.setSelected(selection: .course("courses/2"), selectionState: .selected)
+        testee.saveSelection()
 
         // MARK: - THEN
 
@@ -461,6 +462,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         // MARK: - WHEN
 
         testee.setSelected(selection: .course("courses/1"), selectionState: .selected)
+        testee.saveSelection()
 
         // MARK: - THEN
 
