@@ -29,11 +29,9 @@ public class AddressbookInteractorLive: AddressbookInteractor {
     private let recipientStore: Store<GetSearchRecipients>
 
     public init(env: AppEnvironment, recipientContext: RecipientContext, teacherOnly: Bool = false) {
-        if teacherOnly {
-            self.recipientStore = env.subscribe(GetSearchRecipients(context: recipientContext.context, qualifier: .teachers))
-        } else {
-            self.recipientStore = env.subscribe(GetSearchRecipients(context: recipientContext.context))
-        }
+        self.recipientStore = env.subscribe(
+            GetSearchRecipients(context: recipientContext.context, qualifier: teacherOnly ? .teachers : nil)
+        )
 
         recipientStore
             .statePublisher

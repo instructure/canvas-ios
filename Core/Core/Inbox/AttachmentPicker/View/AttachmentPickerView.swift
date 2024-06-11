@@ -60,7 +60,7 @@ public struct AttachmentPickerView: View, ScreenViewTrackable {
             case .success(let urls):
                 urls.forEach { url in
                     if url.startAccessingSecurityScopedResource() {
-                        viewModel.fileSelected(url: url)
+                        viewModel.didSelectFile(url: url)
                     }
                 }
             case .failure:
@@ -68,14 +68,14 @@ public struct AttachmentPickerView: View, ScreenViewTrackable {
             }
         }
         .sheet(isPresented: $viewModel.isImagePickerVisible, content: {
-            ImagePickerViewController(sourceType: .photoLibrary, imageHandler: viewModel.fileSelected)
+            ImagePickerViewController(sourceType: .photoLibrary, imageHandler: viewModel.didSelectFile)
         })
         .sheet(isPresented: $viewModel.isTakePhotoVisible, content: {
-            ImagePickerViewController(sourceType: .camera, imageHandler: viewModel.fileSelected)
+            ImagePickerViewController(sourceType: .camera, imageHandler: viewModel.didSelectFile)
                 .interactiveDismissDisabled()
         })
         .sheet(isPresented: $viewModel.isAudioRecordVisible, content: {
-                    AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: viewModel.router, onSelect: viewModel.fileSelected)
+                    AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: viewModel.router, onSelect: viewModel.didSelectFile)
                         .interactiveDismissDisabled()
                 })
         .confirmationAlert(

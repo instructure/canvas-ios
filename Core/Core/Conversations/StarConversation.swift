@@ -39,7 +39,7 @@ public class StarConversation: APIUseCase {
     }
 
     public func write(response: APIConversation?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response else {
+        guard let response else {
             return
         }
 
@@ -47,17 +47,15 @@ public class StarConversation: APIUseCase {
 
         let entities: [InboxMessageListItem] = client.fetch(scope: scope)
 
-        entities.map { $0.scopeFilter }.forEach { scope in
-            if let scopeFilter = InboxMessageScope.init(rawValue: scope) {
-                InboxMessageListItem.save(
-                    response,
-                    currentUserID: AppEnvironment.shared.currentSession?.userID ?? "",
-                    isSent: true,
-                    contextFilter: .none,
-                    scopeFilter: scopeFilter,
-                    in: client
-                )
-            }
+        entities.compactMap { InboxMessageScope.init(rawValue: $0.scopeFilter) }.forEach { scope in
+            InboxMessageListItem.save(
+                response,
+                currentUserID: AppEnvironment.shared.currentSession?.userID ?? "",
+                isSent: true,
+                contextFilter: .none,
+                scopeFilter: scope,
+                in: client
+            )
         }
     }
 }

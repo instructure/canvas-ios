@@ -23,7 +23,7 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
     public let files = PassthroughSubject<[File], Error>()
     public let alreadySelectedFiles: CurrentValueSubject<[File], Never>
     public var isCancelConfirmationNeeded: Bool {
-        return !fileStore.all.isAllUploaded || alreadySelectedFiles.value.contains(where: { $0.isUploading == true })
+        return !fileStore.all.isAllUploaded || alreadySelectedFiles.value.contains(where: { $0.isUploading })
     }
 
     private let env: AppEnvironment
@@ -124,30 +124,29 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
         uploadManager.viewContext.delete(file)
         fileStore.refresh()
 
-        if let fileId = file.id {
-            return ReactiveStore(useCase: DeleteFile(fileID: fileId))
-                .getEntities()
-                .mapToVoid()
-                .replaceError(with: ())
-                .eraseToAnyPublisher()
-        } else {
+        guard let fileId = file.id else {
             return Just(()).eraseToAnyPublisher()
         }
+
+        return ReactiveStore(useCase: DeleteFile(fileID: fileId))
+            .getEntities()
+            .mapToVoid()
+            .replaceError(with: ())
+            .eraseToAnyPublisher()
     }
 
     private func duplicateFileToUploadFolder(file: File) {
-        if let fileId = file.id {
-            getOnlineFileURL(fileId: fileId)
-                .map { [weak self] url in
-                    if let self, let url {
-                        _ = try? self.uploadManager.add(url: url, batchID: self.batchId)
-                        let newValues = alreadySelectedFiles.value.filter { $0 != file }
-                        alreadySelectedFiles.send(newValues)
-                    }
-                }
-                .sink()
-                .store(in: &subscriptions)
-        }
+        guard let fileId = file.id else { return }
+
+        getOnlineFileURL(fileId: fileId)
+            .map { [weak self] url in
+                guard let self, let url else { return }
+                _ = try? self.uploadManager.add(url: url, batchID: self.batchId)
+                let newValues = alreadySelectedFiles.value.filter { $0 != file }
+                alreadySelectedFiles.send(newValues)
+            }
+            .sink()
+            .store(in: &subscriptions)
     }
 
     private func getOnlineFileURL(fileId: String) -> AnyPublisher<URL?, Error> {
@@ -163,7 +162,7 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
                    let request = try? url.urlRequest(relativeTo: session.baseURL, accessToken: session.accessToken, actAsUserID: session.actAsUserID) {
                     return self.publisherProvider.getPublisher(for: request)
                 } else {
-                    return Fail(error: NSError.instructureError(String(localized: "Failed to duplicate file", bundle: .core))).eraseToAnyPublisher()
+                    return Fail(error: NSError.instructureError("Failed to duplicate file")).eraseToAnyPublisher()
                 }
             }
             .map { (localURL: URL, fileName: String) in

@@ -70,6 +70,10 @@ extension String {
     public var isNotEmpty: Bool {
         !isEmpty
     }
+
+    public var boolValue: Bool {
+        return (self as NSString).boolValue
+    }
 }
 
 extension String: Error {

@@ -107,10 +107,10 @@ class AttachmentPickerViewModel: ObservableObject {
             title: String(localized: "Select uploaded file", bundle: .core),
             accessibilityIdentifier: nil
         ) { [weak self] in
-            if let self, let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() {
-                let viewController = AttachmentPickerAssembly.makeFilePickerViewController(env: .shared, onSelect: self.fileSelected)
-                self.router.show(viewController, from: top, options: .modal(isDismissable: true, embedInNav: true))
-            }
+            guard let self, let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return }
+
+            let viewController = AttachmentPickerAssembly.makeFilePickerViewController(env: .shared, onSelect: self.didSelectFile)
+            self.router.show(viewController, from: top, options: .modal(isDismissable: true, embedInNav: true))
 
         }
         router.show(sheet, from: viewController, options: .modal())
@@ -132,7 +132,7 @@ class AttachmentPickerViewModel: ObservableObject {
         }
     }
 
-    func fileSelected(url: URL) {
+    func didSelectFile(url: URL) {
         isImagePickerVisible = false
         isTakePhotoVisible = false
         isFilePickerVisible = false
@@ -141,7 +141,7 @@ class AttachmentPickerViewModel: ObservableObject {
         interactor.addFile(url: url)
     }
 
-    func fileSelected(file: File) {
+    func didSelectFile(file: File) {
         interactor.addFile(file: file)
     }
 
@@ -223,7 +223,7 @@ class AttachmentPickerViewModel: ObservableObject {
             .sink()
             .store(in: &subscriptions)
 
-        fileSelected.sink(receiveCompletion: { _ in }, receiveValue: { [weak self] (controller, file) in
+        fileSelected.sink { [weak self] (controller, file) in
             if let url = file.url, let fileController = router.match(url.appendingQueryItems(.init(name: "canEdit", value: "false"))) {
                 router.show(fileController, from: controller, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
             } else {
@@ -231,7 +231,7 @@ class AttachmentPickerViewModel: ObservableObject {
                 let shouldUploadMessage = String(localized: "You have to upload the attachments to get access to previews!", bundle: .core)
                 self?.showDialog(title: shouldUploadTitle, message: shouldUploadMessage)
             }
-        })
+        }
         .store(in: &subscriptions)
     }
 }
