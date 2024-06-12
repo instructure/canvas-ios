@@ -165,7 +165,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         wait(for: [stateUpdate], timeout: 1)
     }
 
-    class URLSessionDataTaskPublisherProviderMock: URLSessionDataTaskPublisherProvider {
+    private class URLSessionDataTaskPublisherProviderMock: URLSessionDataTaskPublisherProvider {
         let savedURL = URL.Directories.documents.appendingPathComponent("test.txt")
 
         func getPublisher(for request: URLRequest) -> AnyPublisher<(tempURL: URL, fileName: String), Error> {

@@ -18,16 +18,11 @@
 
 import SwiftUI
 
-public struct InboxCoursePickerView: View, ScreenViewTrackable {
+public struct InboxCoursePickerView: View {
     @ObservedObject private var viewModel: InboxCoursePickerViewModel
-    public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     init(viewModel: InboxCoursePickerViewModel) {
         self.viewModel = viewModel
-
-        screenViewTrackingParameters = ScreenViewTrackingParameters(
-            eventName: "/conversations/compose/course_picker"
-        )
     }
 
     public var body: some View {

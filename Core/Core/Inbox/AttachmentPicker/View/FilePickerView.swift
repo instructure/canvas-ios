@@ -18,19 +18,13 @@
 
 import SwiftUI
 
-public struct FilePickerView: View, ScreenViewTrackable {
+public struct FilePickerView: View {
     @ObservedObject private var viewModel: FilePickerViewModel
     @Environment(\.viewController) private var controller
     @ScaledMetric private var uiScale: CGFloat = 1
 
-    public let screenViewTrackingParameters: ScreenViewTrackingParameters
-
     public init(viewModel: FilePickerViewModel) {
         self.viewModel = viewModel
-
-        screenViewTrackingParameters = ScreenViewTrackingParameters(
-            eventName: "/conversations/compose/attachments/select_uploaded_file"
-        )
     }
 
     public var body: some View {

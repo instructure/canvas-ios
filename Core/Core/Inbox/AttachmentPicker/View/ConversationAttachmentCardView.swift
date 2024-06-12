@@ -20,7 +20,7 @@ import SwiftUI
 
 struct ConversationAttachmentCardView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    
+
     private let file: File
     private let removeHandler: () -> Void
     private var fileSize: String {

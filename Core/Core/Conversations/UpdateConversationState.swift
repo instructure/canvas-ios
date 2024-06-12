@@ -39,7 +39,7 @@ public class UpdateConversationState: APIUseCase {
     }
 
     public func write(response: APIConversation?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response else {
+        guard let response else {
             return
         }
 

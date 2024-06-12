@@ -19,19 +19,13 @@
 import SwiftUI
 import PhotosUI
 
-public struct AttachmentPickerView: View, ScreenViewTrackable {
+public struct AttachmentPickerView: View {
     @ObservedObject private var viewModel: AttachmentPickerViewModel
     @Environment(\.viewController) private var controller
     @ScaledMetric private var uiScale: CGFloat = 1
 
-    public let screenViewTrackingParameters: ScreenViewTrackingParameters
-
     init(model: AttachmentPickerViewModel) {
         self.viewModel = model
-
-        screenViewTrackingParameters = ScreenViewTrackingParameters(
-            eventName: "/conversations/compose/attachments"
-        )
     }
 
     public var body: some View {

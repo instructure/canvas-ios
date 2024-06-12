@@ -72,6 +72,10 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .background(Color.backgroundLightest)
             .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
             .navigationBarStyle(.modal)
+            .onTapGesture {
+                subjectTextFieldFocus = false
+                messageTextFieldFocus = false
+            }
         }
         .coordinateSpace(name: proxyScrollViewKey)
         .onPreferenceChange(ViewSizeKey.self) { offset in
@@ -159,6 +163,9 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .multilineTextAlignment(.leading)
                 .font(.semibold22)
                 .foregroundColor(.textDarkest)
+                .onTapGesture {
+                    subjectTextFieldFocus = true
+                }
             Spacer()
             sendButton
         }

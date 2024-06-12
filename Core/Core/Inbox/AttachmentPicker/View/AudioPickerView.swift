@@ -20,23 +20,17 @@ import Foundation
 import SwiftUI
 import Charts
 
-public struct AudioPickerView: View, ScreenViewTrackable {
+public struct AudioPickerView: View {
     @ObservedObject private var viewModel: AudioPickerViewModel
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var playbackScrollTimer: Timer?
-
-    public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     let backgroundColor: Color = .init(hexString: "#111213") ?? Color.black
     let textColor: Color = .init(hexString: "#F5F5F5") ?? Color.white
 
     init(viewModel: AudioPickerViewModel) {
         self.viewModel = viewModel
-
-        screenViewTrackingParameters = ScreenViewTrackingParameters(
-            eventName: "/conversations/compose/attachments/record_audio"
-        )
     }
 
     public var body: some View {
