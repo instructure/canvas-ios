@@ -105,31 +105,26 @@ public struct AttachmentPickerView: View {
         } label: {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
-                    VStack(alignment: .leading, spacing: 6) {
+                    VStack(alignment: .leading, spacing: 4) {
                         Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? "").font(.bold16).foregroundStyle(Color.textDarkest)
-                        Text(fileSizeWithUnit).font(.regular12).foregroundStyle(Color.textDark)
+                        Text(fileSizeWithUnit).font(.regular14).foregroundStyle(Color.textDark)
+                        if (file.uploadError != nil) {
+                            HStack(spacing: 0) {
+                                Image.warningLine
+                                    .resizable()
+                                    .frame(
+                                        width: 15 * uiScale.iconScale,
+                                        height: 15 * uiScale.iconScale
+                                    )
+                                Text(file.uploadError!).multilineTextAlignment(.leading)
+                            }
+                            .font(.regular14).foregroundStyle(Color.textAlert)
+                        }
                     }
 
                     Spacer()
                     if (file.isUploading) {
                         ProgressView()
-                    } else if (file.isUploaded) {
-                        Image.checkLine
-                            .resizable()
-                            .frame(
-                                width: 25 * uiScale.iconScale,
-                                height: 25 * uiScale.iconScale
-                            )
-                    } else if (file.uploadError != nil) {
-                        VStack(spacing: 0) {
-                            Image.warningLine
-                                .resizable()
-                                .frame(
-                                    width: 25 * uiScale.iconScale,
-                                    height: 25 * uiScale.iconScale
-                                )
-                            Text(file.uploadError!).multilineTextAlignment(.center)
-                        }
                     } else {
                         Button {
                             viewModel.deleteFileButtonDidTap.accept(file)

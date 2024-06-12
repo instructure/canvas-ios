@@ -78,6 +78,7 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
         do {
             try uploadManager.add(url: url, batchID: batchId)
             fileStore.refresh()
+            uploadFiles()
         } catch {
             files.send(completion: .failure(NSError.instructureError("Failed to add file")))
         }
@@ -144,6 +145,7 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
                 _ = try? self.uploadManager.add(url: url, batchID: self.batchId)
                 let newValues = alreadyUploadedFiles.value.filter { $0 != file }
                 alreadyUploadedFiles.send(newValues)
+                uploadFiles()
             }
             .sink()
             .store(in: &subscriptions)
