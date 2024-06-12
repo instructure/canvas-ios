@@ -23,6 +23,7 @@ public struct AttachmentPickerView: View, ScreenViewTrackable {
     @ObservedObject private var viewModel: AttachmentPickerViewModel
     @Environment(\.viewController) private var controller
     @ScaledMetric private var uiScale: CGFloat = 1
+
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     init(model: AttachmentPickerViewModel) {
@@ -110,9 +111,9 @@ public struct AttachmentPickerView: View, ScreenViewTrackable {
         } label: {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
-                    VStack(alignment: .leading) {
-                        Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? "").font(.headline)
-                        Text(fileSizeWithUnit).foregroundStyle(Color.textDark)
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? "").font(.bold16).foregroundStyle(Color.textDarkest)
+                        Text(fileSizeWithUnit).font(.regular12).foregroundStyle(Color.textDark)
                     }
 
                     Spacer()
@@ -181,6 +182,8 @@ public struct AttachmentPickerView: View, ScreenViewTrackable {
                 selectionHeader
             }
         }
+        .font(.regular16)
+        .foregroundStyle(Color.textDarkest)
     }
 
     private var selectionHeader: some View {
@@ -198,7 +201,6 @@ public struct AttachmentPickerView: View, ScreenViewTrackable {
                             height: 25 * uiScale.iconScale
                         )
                 }
-                .foregroundStyle(Color.textDarkest)
                 .accessibilityLabel(Text("Add new attachment", bundle: .core))
             }
             .padding(.vertical, 12)
@@ -248,13 +250,14 @@ public struct AttachmentPickerView: View, ScreenViewTrackable {
                 .accessibilityHidden(true)
 
             Text("No attachments", bundle: .core)
-                .font(.headline)
+                .font(.bold20)
                 .foregroundStyle(Color.textDarkest)
                 .padding(.bottom, 6)
                 .accessibilityHidden(true)
 
             Text("Add an attachment by tapping the plus at top right.", bundle: .core)
                 .multilineTextAlignment(.center)
+                .font(.regular14)
                 .foregroundStyle(Color.textDarkest)
                 .accessibilityLabel(Text("No attachments, add an attachment by tapping the plus at top right.", bundle: .core))
 

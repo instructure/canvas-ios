@@ -39,6 +39,8 @@ public struct InboxCoursePickerView: View, ScreenViewTrackable {
         .refreshable {
             await viewModel.refresh()
         }
+        .font(.regular12)
+        .foregroundColor(.textDarkest)
         .frame(maxWidth: .infinity)
         .navigationBarStyle(.modal)
     }

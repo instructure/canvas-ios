@@ -22,6 +22,7 @@ public struct FilePickerView: View, ScreenViewTrackable {
     @ObservedObject private var viewModel: FilePickerViewModel
     @Environment(\.viewController) private var controller
     @ScaledMetric private var uiScale: CGFloat = 1
+
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     public init(viewModel: FilePickerViewModel) {
@@ -36,6 +37,8 @@ public struct FilePickerView: View, ScreenViewTrackable {
         VStack(spacing: 0) {
             contentView
         }
+        .font(.regular12)
+        .foregroundColor(.textDarkest)
         .navigationTitle(viewModel.title)
         .navigationBarItems(trailing: cancelButton)
         .navigationBarGenericBackButton()

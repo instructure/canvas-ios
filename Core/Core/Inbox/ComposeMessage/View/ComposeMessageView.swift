@@ -67,6 +67,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 separator
 
             }
+            .font(.regular12)
+            .foregroundColor(.textDarkest)
             .background(Color.backgroundLightest)
             .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
             .navigationBarStyle(.modal)

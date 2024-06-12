@@ -153,7 +153,7 @@ public class InboxViewModel: ObservableObject {
                 let message = self?.interactor.messages.value.first {
                     $0.messageId == messageID
                 }
-                guard let message, let self else { return Just((messageID, controller)).eraseToAnyPublisher() }
+                guard let message, let self, message.state != .archived else { return Just((messageID, controller)).eraseToAnyPublisher() }
 
                 return self.interactor.updateState(message: message, state: .read).map {
                     (messageID, controller)

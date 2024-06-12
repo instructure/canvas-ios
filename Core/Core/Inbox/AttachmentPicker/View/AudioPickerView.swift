@@ -23,7 +23,9 @@ import Charts
 public struct AudioPickerView: View, ScreenViewTrackable {
     @ObservedObject private var viewModel: AudioPickerViewModel
     @Environment(\.viewController) private var controller
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var playbackScrollTimer: Timer?
+
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     let backgroundColor: Color = .init(hexString: "#111213") ?? Color.black
