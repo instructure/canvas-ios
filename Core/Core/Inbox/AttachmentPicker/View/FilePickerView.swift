@@ -125,10 +125,12 @@ public struct FilePickerView: View {
 
                 VStack(alignment: .leading, spacing: 0) {
                     Text(folder.name)
+                        .font(.bold16).foregroundStyle(Color.textDarkest)
                         .truncationMode(.middle)
                         .lineLimit(1)
 
                     Text("\(folder.filesCount + folder.foldersCount) \(folder.filesCount + folder.foldersCount == 1 ? "item" : "items")")
+                        .font(.regular14).foregroundStyle(Color.textDark)
                 }
                 .padding(.horizontal, 8)
 
@@ -150,7 +152,7 @@ public struct FilePickerView: View {
         return Button {
             viewModel.didTapFile.accept((controller, file))
         } label: {
-            HStack {
+            HStack(spacing: 0) {
                 AsyncImage(url: file.thumbnailURL) { result in
                     result.image?
                         .resizable()
@@ -164,10 +166,12 @@ public struct FilePickerView: View {
 
                 VStack(alignment: .leading, spacing: 0) {
                     Text(file.filename)
+                        .font(.bold16).foregroundStyle(Color.textDarkest)
                         .truncationMode(.middle)
                         .lineLimit(1)
 
                     Text(file.formattedSize)
+                        .font(.regular14).foregroundStyle(Color.textDark)
                 }
                 .padding(.horizontal, 8)
 
