@@ -71,6 +71,10 @@ extension String {
         !isEmpty
     }
 
+    /**
+     Converts a `String` to a `Bool` value.
+     Returns `false` if the `String` value does not contain any valid `Bool` representation.
+     */
     public var boolValue: Bool {
         return (self as NSString).boolValue
     }

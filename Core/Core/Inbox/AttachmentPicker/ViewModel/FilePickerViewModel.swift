@@ -25,9 +25,9 @@ public class FilePickerViewModel: ObservableObject {
     @Published public var state: StoreState = .loading
     public let title = String(localized: "Select file", bundle: .core)
 
-    public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let fileDidTap = PassthroughRelay<(WeakViewController, File)>()
-    public let folderDidTap = PassthroughRelay<(WeakViewController, Folder)>()
+    public let didTapCancel = PassthroughRelay<WeakViewController>()
+    public let didTapFile = PassthroughRelay<(WeakViewController, File)>()
+    public let didTapFolder = PassthroughRelay<(WeakViewController, Folder)>()
 
     private let interactor: FilePickerInteractor
     private var subscriptions = Set<AnyCancellable>()
@@ -39,44 +39,44 @@ public class FilePickerViewModel: ObservableObject {
         self.env = env
         self.onSelect = onSelect
 
-        setupOutputbindings()
-        setupInputbindings()
+        setupOutputBindings()
+        setupInputBindings()
     }
 
-    private func setupOutputbindings() {
+    private func setupOutputBindings() {
         interactor.folderItems
-            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] items in
+            .sink { [weak self] items in
                 self?.folderItems = items
-            })
+            }
             .store(in: &subscriptions)
 
         interactor.state
-            .sink(receiveCompletion: {_ in }, receiveValue: { [weak self] state in
+            .sink { [weak self] state in
                 self?.state = state
-            })
+            }
             .store(in: &subscriptions)
     }
 
-    private func setupInputbindings() {
-        cancelButtonDidTap
+    private func setupInputBindings() {
+        didTapCancel
             .sink { [weak self] controller in
                 self?.env.router.dismiss(controller)
             }
             .store(in: &subscriptions)
 
-        fileDidTap
+        didTapFile
             .sink { [weak self] (controller, file) in
                 self?.onSelect(file)
                 self?.env.router.dismiss(controller)
             }
             .store(in: &subscriptions)
 
-        folderDidTap
+        didTapFolder
             .sink { [weak self] (controller, folder) in
-                if let self {
-                    let view = AttachmentPickerAssembly.makeFilePickerViewController(env: env, folderId: folder.id, onSelect: self.onSelect)
-                    self.env.router.show(view, from: controller, options: .push)
-                }
+                guard let self else { return }
+
+                let view = AttachmentPickerAssembly.makeFilePickerViewController(env: env, folderId: folder.id, onSelect: onSelect)
+                env.router.show(view, from: controller, options: .push)
             }
             .store(in: &subscriptions)
     }

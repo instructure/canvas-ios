@@ -37,7 +37,7 @@ class FilePickerInteractorLiveTests: CoreTestCase {
         let folderListResponse = [APIFolder.make(id: "3", parent_folder_id: "1")]
         api.mock(folderListRequest, value: folderListResponse)
 
-        testee = FilePickerInteractorLive(env: environment, folderId: nil)
+        testee = FilePickerInteractorLive(folderId: nil)
         var folderItems: [FolderItem] = []
 
         testee.folderItems
@@ -64,7 +64,7 @@ class FilePickerInteractorLiveTests: CoreTestCase {
         let folderListResponse = [APIFolder.make(id: "3", parent_folder_id: "1")]
         api.mock(folderListRequest, value: folderListResponse)
 
-        testee = FilePickerInteractorLive(env: environment, folderId: "1")
+        testee = FilePickerInteractorLive(folderId: "1")
         var folderItems: [FolderItem] = []
 
         testee.folderItems

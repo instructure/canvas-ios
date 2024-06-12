@@ -58,7 +58,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
             if let queryItems = url.queryItems {
                 return ComposeMessageAssembly.makeComposeMessageViewController(queryItems: queryItems)
             } else {
-                return ComposeMessageAssembly.makeComposeMessageViewController(env: AppEnvironment.shared)
+                return ComposeMessageAssembly.makeComposeMessageViewController()
             }
         } else {
             return HelmViewController(moduleName: "/conversations/compose", url: url, params: params, userInfo: userInfo)

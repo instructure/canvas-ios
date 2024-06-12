@@ -50,7 +50,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
     func testValidationForSubject() {
         XCTAssertEqual(testee.sendButtonActive, false)
         testee.selectedContext = RecipientContext(course: Course.make())
-        testee.recipientDidSelect.accept(Recipient(searchRecipient: .make()))
+        testee.didSelectRecipient.accept(Recipient(searchRecipient: .make()))
         testee.subject = "Test subject"
         testee.bodyText = "Test body"
         XCTAssertEqual(testee.sendButtonActive, true)
@@ -61,7 +61,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
     func testValidationForBody() {
         XCTAssertEqual(testee.sendButtonActive, false)
         testee.selectedContext = RecipientContext(course: Course.make())
-        testee.recipientDidSelect.accept(Recipient(searchRecipient: .make()))
+        testee.didSelectRecipient.accept(Recipient(searchRecipient: .make()))
         testee.subject = "Test subject"
         testee.bodyText = "Test body"
         XCTAssertEqual(testee.sendButtonActive, true)
@@ -73,11 +73,11 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.sendButtonActive, false)
         testee.selectedContext = RecipientContext(course: Course.make())
         let recipient = Recipient(searchRecipient: SearchRecipient.make())
-        testee.recipientDidSelect.accept(Recipient(searchRecipient: .make()))
+        testee.didSelectRecipient.accept(Recipient(searchRecipient: .make()))
         testee.subject = "Test subject"
         testee.bodyText = "Test body"
         XCTAssertEqual(testee.sendButtonActive, true)
-        testee.recipientDidRemove.accept(recipient)
+        testee.didRemoveRecipient.accept(recipient)
         print(testee.recipients)
         XCTAssertEqual(testee.sendButtonActive, false)
     }
@@ -86,7 +86,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
         XCTAssertEqual(mockInteractor.isConversationAddSent, false)
-        testee.sendButtonDidTap.accept(WeakViewController(sourceView))
+        testee.didTapSend.accept(WeakViewController(sourceView))
         XCTAssertEqual(mockInteractor.isConversationAddSent, true)
     }
 
@@ -95,7 +95,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
         XCTAssertEqual(mockInteractor.isMessageAddSent, false)
-        testee.sendButtonDidTap.accept(WeakViewController(sourceView))
+        testee.didTapSend.accept(WeakViewController(sourceView))
         XCTAssertEqual(mockInteractor.isMessageAddSent, true)
     }
 
@@ -104,7 +104,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
         XCTAssertEqual(mockInteractor.isMessageAddSent, false)
-        testee.sendButtonDidTap.accept(WeakViewController(sourceView))
+        testee.didTapSend.accept(WeakViewController(sourceView))
         XCTAssertEqual(mockInteractor.isMessageAddSent, true)
     }
 
@@ -113,7 +113,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
         XCTAssertEqual(mockInteractor.isMessageAddSent, false)
-        testee.sendButtonDidTap.accept(WeakViewController(sourceView))
+        testee.didTapSend.accept(WeakViewController(sourceView))
         XCTAssertEqual(mockInteractor.isMessageAddSent, true)
     }
 
@@ -121,7 +121,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         mockInteractor.isSuccessfulMockFuture = false
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
-        testee.sendButtonDidTap.accept(WeakViewController(sourceView))
+        testee.didTapSend.accept(WeakViewController(sourceView))
 
         wait(for: [router.showExpectation], timeout: 1)
         let dialog = router.presented as? UIAlertController
@@ -138,7 +138,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.courseSelectButtonDidTap(viewController: viewController)
         wait(for: [router.showExpectation], timeout: 1)
 
-        testee.recipientDidSelect.accept(Recipient(searchRecipient: .make()))
+        testee.didSelectRecipient.accept(Recipient(searchRecipient: .make()))
         XCTAssertEqual(testee.selectedRecipients.value.count, 1)
 
         testee.courseDidSelect(selectedContext: .init(course: .make()), viewController: viewController)

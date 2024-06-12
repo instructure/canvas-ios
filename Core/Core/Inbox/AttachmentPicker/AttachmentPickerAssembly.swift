@@ -52,7 +52,7 @@ public enum AttachmentPickerAssembly {
         folderId: String? = nil,
         onSelect: @escaping (File) -> Void = { _ in }
     ) -> UIViewController {
-        let interactor = FilePickerInteractorLive(env: env, folderId: folderId)
+        let interactor = FilePickerInteractorLive(folderId: folderId)
         let viewModel = FilePickerViewModel(env: env, interactor: interactor, onSelect: onSelect)
         let view = FilePickerView(viewModel: viewModel)
         return CoreHostingController(view)

@@ -19,8 +19,8 @@
 import Foundation
 
 public class RecipientContext {
-    let name: String
-    let context: Context
+    public let name: String
+    public let context: Context
 
     public init(name: String, context: Context) {
         self.name = name

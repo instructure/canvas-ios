@@ -46,7 +46,7 @@ public enum AddressBookAssembly {
         env: AppEnvironment = .shared,
         recipientContext: RecipientContext,
         teacherOnly: Bool,
-        recipientDidSelect: PassthroughRelay<Recipient>,
+        didSelectRecipient: PassthroughRelay<Recipient>,
         selectedRecipients: CurrentValueSubject<[Recipient], Never>
     ) -> UIViewController {
         let interactor = AddressbookInteractorLive(env: env, recipientContext: recipientContext)
@@ -56,7 +56,7 @@ public enum AddressBookAssembly {
             recipientContext: recipientContext,
             teacherOnly: teacherOnly,
             interactor: interactor,
-            recipientDidSelect: recipientDidSelect,
+            didSelectRecipient: didSelectRecipient,
             selectedRecipients: selectedRecipients
         )
         let view = AddressbookRoleView(model: viewModel)

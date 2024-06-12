@@ -97,7 +97,7 @@ public struct FilePickerView: View, ScreenViewTrackable {
 
     var cancelButton: some View {
         Button {
-            viewModel.cancelButtonDidTap.accept(controller)
+            viewModel.didTapCancel.accept(controller)
         } label: {
             Text("Cancel", bundle: .core)
         }
@@ -115,7 +115,7 @@ public struct FilePickerView: View, ScreenViewTrackable {
 
     func folderRow(folder: Folder) -> some View {
         return Button {
-            viewModel.folderDidTap.accept((controller, folder))
+            viewModel.didTapFolder.accept((controller, folder))
         } label: {
             HStack(spacing: 0) {
                 Image.folderSolid
@@ -151,7 +151,7 @@ public struct FilePickerView: View, ScreenViewTrackable {
 
     func fileRow(file: File) -> some View {
         return Button {
-            viewModel.fileDidTap.accept((controller, file))
+            viewModel.didTapFile.accept((controller, file))
         } label: {
             HStack {
                 AsyncImage(url: file.thumbnailURL) { result in

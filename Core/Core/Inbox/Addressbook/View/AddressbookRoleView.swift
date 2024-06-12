@@ -76,7 +76,7 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
 
     private var doneButton: some View {
         Button {
-            viewModel.doneButtonDidTap.accept(controller)
+            viewModel.didTapDone.accept(controller)
         } label: {
             Text("Done", bundle: .core)
                 .font(.regular16)
@@ -95,7 +95,7 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
     private func personRowView(_ recipient: Recipient) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
-                viewModel.recipientDidTap.send(recipient)
+                viewModel.didTapRecipient.send(recipient)
             }, label: {
                 HStack(alignment: .center, spacing: 16) {
                     Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 36, isAccessible: false)
@@ -132,7 +132,7 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
     private func roleRowView(_ role: String) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
-                viewModel.roleDidTap.send((roleName: role, recipients: viewModel.roleRecipients[role] ?? [], controller: controller))
+                viewModel.didTapRole.send((roleName: role, recipients: viewModel.roleRecipients[role] ?? [], controller: controller))
             }, label: {
                 HStack(alignment: .center, spacing: 16) {
                     Avatar(name: role, url: nil, size: 36, isAccessible: false)
@@ -157,7 +157,7 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
     private var allRecipient: some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
-                viewModel.recipientDidTap.send(viewModel.allRecipient)
+                viewModel.didTapRecipient.send(viewModel.allRecipient)
             }, label: {
                 HStack(alignment: .center, spacing: 16) {
                     Avatar(name: String(localized: "All", bundle: .core), url: nil, size: 36, isAccessible: false)

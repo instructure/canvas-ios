@@ -21,61 +21,65 @@ import Combine
 
 public class FilePickerInteractorLive: FilePickerInteractor {
     // MARK: - Outputs
-    public var state = CurrentValueSubject<StoreState, Never>(.data)
-    public var folder = CurrentValueSubject<[Folder], Never>([])
+    public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var folderItems = CurrentValueSubject<[FolderItem], Never>([])
 
     // MARK: - Private
-    private let env: AppEnvironment
     private let context: Context = .currentUser
     private var subscriptions = Set<AnyCancellable>()
-    private var folderItemsStore: Store<GetFolderItems>?
 
-    public init(env: AppEnvironment, folderId: String?) {
-        self.env = env
-
+    public init(folderId: String?) {
         if let folderId {
-            folderItemsStore = env.subscribe(GetFolderItems(folderID: folderId))
-
-            folderItemsStore?
-                .statePublisher
-                .subscribe(state)
-                .store(in: &subscriptions)
-
-            folderItemsStore?
-                .allObjects
-                .subscribe(folderItems)
-                .store(in: &subscriptions)
-
-            folderItemsStore?.exhaust()
-        } else {
-            let folderStore = env.subscribe(GetFolderByPath(context: context))
-
-            folderStore
-                .allObjects
-                .handleEvents(receiveOutput: { [weak self] folders in
-                    self?.folderItemsStore = env.subscribe(GetFolderItems(folderID: folders.first?.id ?? ""))
-                })
-                .map { [weak self] folder in
-
-                    if let self {
-                        self.folderItemsStore?
-                            .statePublisher
-                            .subscribe(state)
-                            .store(in: &subscriptions)
-
-                        self.folderItemsStore?
-                            .allObjects
-                            .subscribe(self.folderItems)
-                            .store(in: &self.subscriptions)
-
-                        self.folderItemsStore?.exhaust()
+            ReactiveStore(useCase: GetFolderItems(folderID: folderId))
+                .getEntities()
+                .sink(receiveCompletion: { [weak self] result in
+                    switch result {
+                    case .failure:
+                        self?.state.send(.error)
+                    case .finished:
+                        break
                     }
-                    return folder
-                }
-                .subscribe(folder)
+
+                }, receiveValue: { [weak self] folderItems in
+                    if folderItems.isEmpty {
+                        self?.state.send(.empty)
+                    } else {
+                        self?.state.send(.data)
+                    }
+                    self?.folderItems.send(folderItems)
+                })
                 .store(in: &subscriptions)
-            folderStore.exhaust()
+
+        } else {
+            ReactiveStore(useCase: GetFolderByPath(context: context))
+                .getEntities()
+                .compactMap { folders in
+                    folders.first?.id
+                }
+                .map { [weak self] folderId in
+                    guard let self else { return }
+
+                    ReactiveStore(useCase: GetFolderItems(folderID: folderId))
+                        .getEntities()
+                        .sink(receiveCompletion: { result in
+                            switch result {
+                            case .failure:
+                                self.state.send(.error)
+                            case .finished:
+                                break
+                            }
+                        }, receiveValue: { folderItems in
+                            if folderItems.isEmpty {
+                                self.state.send(.empty)
+                            } else {
+                                self.state.send(.data)
+                            }
+                            self.folderItems.send(folderItems)
+                        })
+                        .store(in: &subscriptions)
+                }
+                .sink()
+                .store(in: &subscriptions)
         }
     }
 }

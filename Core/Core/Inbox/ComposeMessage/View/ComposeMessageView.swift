@@ -35,7 +35,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         self.model = model
 
         screenViewTrackingParameters = ScreenViewTrackingParameters(
-            eventName: "/conversations/compose/\(model.messageTypeString)"
+            eventName: "/conversations/compose"
         )
     }
 
@@ -114,7 +114,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     private var cancelButton: some View {
         Button {
-            model.cancelButtonDidTap.accept(controller)
+            model.didTapCancel.accept(controller)
         } label: {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
@@ -124,7 +124,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     private var sendButton: some View {
         Button {
-            model.sendButtonDidTap.accept(controller)
+            model.didTapSend.accept(controller)
         } label: {
             sendButtonImage
         }
@@ -239,7 +239,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     private var recipientsView: some View {
         WrappingHStack(models: model.recipients) { recipient in
             RecipientPillView(recipient: recipient, removeDidTap: { recipient in
-                model.recipientDidRemove.accept(recipient)
+                model.didRemoveRecipient.accept(recipient)
             })
         }
     }
@@ -434,10 +434,10 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     private var attachmentsView: some View {
         ForEach(model.attachments, id: \.self) { file in
             Button {
-                model.fileSelected.accept((controller, file))
+                model.didSelectFile.accept((controller, file))
             } label: {
                 ConversationAttachmentCardView(file: file) {
-                    model.removeButtonDidTap.accept(file)
+                    model.didRemoveFile.accept(file)
                 }
             }
             .foregroundColor(.textDarkest)

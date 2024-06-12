@@ -21,8 +21,6 @@ import Combine
 
 #if DEBUG
 class FilePickerInteractorPreview: FilePickerInteractor {
-
-    var path = ""
     var folderItems: CurrentValueSubject<[FolderItem], Never> = CurrentValueSubject<[FolderItem], Never>([])
 
     var state: CurrentValueSubject<StoreState, Never> = CurrentValueSubject<StoreState, Never>(.loading)

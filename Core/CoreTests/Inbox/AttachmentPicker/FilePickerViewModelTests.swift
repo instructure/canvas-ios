@@ -44,14 +44,14 @@ class FilePickerViewModelTests: CoreTestCase {
     }
 
     func testCancelButton() {
-        testee.cancelButtonDidTap.accept(WeakViewController())
+        testee.didTapCancel.accept(WeakViewController())
 
         XCTAssertNotNil(router.dismissed)
     }
 
     func testFileSelection() {
         XCTAssertFalse(onSelectCalled)
-        testee.fileDidTap.accept((WeakViewController(), File.make()))
+        testee.didTapFile.accept((WeakViewController(), File.make()))
         XCTAssertTrue(onSelectCalled)
 
         XCTAssertNotNil(router.dismissed)
@@ -59,7 +59,7 @@ class FilePickerViewModelTests: CoreTestCase {
 
     func testFolderSelection() {
         let from = WeakViewController()
-        testee.folderDidTap.accept((from, Folder.save(APIFolder.make(), in: databaseClient)))
+        testee.didTapFolder.accept((from, Folder.save(APIFolder.make(), in: databaseClient)))
 
         wait(for: [router.showExpectation], timeout: 1)
 

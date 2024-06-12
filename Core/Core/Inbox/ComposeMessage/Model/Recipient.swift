@@ -20,9 +20,9 @@ import Foundation
 
 public struct Recipient: Equatable, Hashable {
 
-    let displayName: String
-    let avatarURL: URL?
-    let ids: [String]
+    public let displayName: String
+    public let avatarURL: URL?
+    public let ids: [String]
 
     public init(id: String, name: String, avatarURL: URL?) {
         self.ids = [id]

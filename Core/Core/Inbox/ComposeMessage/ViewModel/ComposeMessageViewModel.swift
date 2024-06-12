@@ -44,13 +44,13 @@ class ComposeMessageViewModel: ObservableObject {
     private(set) var alwaysShowRecipients: Bool = false
 
     // MARK: - Inputs
-    public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let recipientDidSelect = PassthroughRelay<Recipient>()
-    public let recipientDidRemove = PassthroughRelay<Recipient>()
+    public let didTapSend = PassthroughRelay<WeakViewController>()
+    public let didTapCancel = PassthroughRelay<WeakViewController>()
+    public let didSelectRecipient = PassthroughRelay<Recipient>()
+    public let didRemoveRecipient = PassthroughRelay<Recipient>()
     public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
-    public var fileSelected = PassthroughRelay<(WeakViewController, File)>()
-    public let removeButtonDidTap = PassthroughRelay<File>()
+    public var didSelectFile = PassthroughRelay<(WeakViewController, File)>()
+    public let didRemoveFile = PassthroughRelay<File>()
 
     // MARK: - Inputs / Outputs
     @Published public var sendIndividual: Bool = false
@@ -68,7 +68,6 @@ class ComposeMessageViewModel: ObservableObject {
         confirmButtonTitle: String(localized: "Yes", bundle: .core),
         isDestructive: false
     )
-    public var messageTypeString: String
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -93,18 +92,8 @@ class ComposeMessageViewModel: ObservableObject {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
-
         self.messageType = options.messageType
-        switch messageType {
-        case .new:
-            messageTypeString = "new"
-        case .reply:
-            messageTypeString = "reply"
-        case .replyAll:
-            messageTypeString = "replyAll"
-        case .forward:
-            messageTypeString = "forward"
-        }
+
         setIncludedMessages(messageType: options.messageType)
         setOptionItems(options: options)
 
@@ -112,13 +101,13 @@ class ComposeMessageViewModel: ObservableObject {
         setupInputBindings(router: router)
     }
 
-    public func courseSelectButtonDidTap(viewController: WeakViewController) {
+    func courseSelectButtonDidTap(viewController: WeakViewController) {
         router.show(InboxCoursePickerAssembly.makeInboxCoursePickerViewController(selected: selectedContext) { [weak self] course in
             self?.courseDidSelect(selectedContext: course, viewController: viewController)
         }, from: viewController)
     }
 
-    public func courseDidSelect(selectedContext: RecipientContext?, viewController: WeakViewController) {
+    func courseDidSelect(selectedContext: RecipientContext?, viewController: WeakViewController) {
         self.selectedContext = selectedContext
         selectedRecipients.value.removeAll()
 
@@ -129,27 +118,27 @@ class ComposeMessageViewModel: ObservableObject {
         closeCourseSelectorDelayed(viewController)
     }
 
-    public func addRecipientButtonDidTap(viewController: WeakViewController) {
+    func addRecipientButtonDidTap(viewController: WeakViewController) {
         guard let context = selectedContext else { return }
         let addressbook = AddressBookAssembly.makeAddressbookRoleViewController(
             recipientContext: context,
             teacherOnly: teacherOnly,
-            recipientDidSelect: recipientDidSelect,
+            didSelectRecipient: didSelectRecipient,
             selectedRecipients: selectedRecipients)
         router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
-    public func attachmentButtonDidTap(viewController: WeakViewController) {
+    func attachmentButtonDidTap(viewController: WeakViewController) {
         files.refresh()
         let attachmentList = AttachmentPickerAssembly.makeAttachmentPickerViewController(subTitle: subject, batchId: batchId, uploadManager: uploadManager, alreadyUploadedFiles: alreadyUploadedFiles)
         router.show(attachmentList, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
-    public func isMessageExpanded(message: ConversationMessage) -> Bool {
+    func isMessageExpanded(message: ConversationMessage) -> Bool {
         expandedIncludedMessageIds.contains(where: { $0 == message.id })
     }
 
-    public func toggleMessageExpand(message: ConversationMessage) {
+    func toggleMessageExpand(message: ConversationMessage) {
         if isMessageExpanded(message: message) {
             expandedIncludedMessageIds.removeAll(where: { $0 == message.id })
         } else {
@@ -170,17 +159,17 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     private func setupOutputBindings() {
-        recipientDidSelect
+        didSelectRecipient
             .sink { [weak self] recipient in
                 if self?.selectedRecipients.value.contains(recipient) == true {
-                    self?.recipientDidRemove.accept(recipient)
+                    self?.didRemoveRecipient.accept(recipient)
                 } else {
                     self?.selectedRecipients.value.append(recipient)
                 }
             }
             .store(in: &subscriptions)
 
-        recipientDidRemove
+        didRemoveRecipient
             .sink { [weak self] recipient in
                 self?.selectedRecipients.value.removeAll { $0 == recipient }
             }
@@ -273,7 +262,6 @@ class ComposeMessageViewModel: ObservableObject {
             body = "\(bodyText)\n\(hiddenMessage)"
         }
 
-        var subject = subject
         if subject.isEmpty {
             subject = title
         }
@@ -304,7 +292,7 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     private func setupInputBindings(router: Router) {
-        cancelButtonDidTap
+        didTapCancel
             .handleEvents(receiveOutput: { [weak self] _ in
                 self?.isShowingCancelDialog = true
             })
@@ -312,23 +300,21 @@ class ComposeMessageViewModel: ObservableObject {
                 confirmAlert.userConfirmation().map { value }
             }
             .flatMap { [weak self] value in
-                if let self {
-                    return self.files.all.publisher.flatMap { file in
-                        self.interactor.deleteFile(file: file)
-                    }.collect().map {_ in value }.eraseToAnyPublisher()
-                } else {
-                    return Just(value).eraseToAnyPublisher()
-                }
+                guard let self else { return Just(value).eraseToAnyPublisher() }
+
+                return files.all.publisher.flatMap { file in
+                    self.interactor.deleteFile(file: file)
+                }.collect().map {_ in value }.eraseToAnyPublisher()
             }
             .sink { [router] viewController in
                 router.dismiss(viewController)
             }
             .store(in: &subscriptions)
 
-        sendButtonDidTap
+        didTapSend
             .compactMap { [weak self] viewController -> (WeakViewController, MessageParameters, ComposeMessageOptions.MessageType)? in
-                guard let self = self, let params = self.messageParameters() else { return nil }
-                return (viewController, params, self.messageType)
+                guard let self = self, let params = messageParameters() else { return nil }
+                return (viewController, params, messageType)
             }
             .handleEvents(receiveOutput: { [weak self] (viewController, _, _) in
                 self?.isSendingMessage = true
@@ -364,20 +350,18 @@ class ComposeMessageViewModel: ObservableObject {
             })
             .store(in: &subscriptions)
 
-        fileSelected.sink(receiveCompletion: { _ in }, receiveValue: { (controller, file) in
-            if let url = file.url, let fileController = router.match(url.appendingQueryItems(.init(name: "canEdit", value: "false"))) {
-                router.show(fileController, from: controller, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
-            }
+        didSelectFile.sink(receiveCompletion: { _ in }, receiveValue: { (controller, file) in
+            guard let url = file.url, let fileController = router.match(url.appendingQueryItems(.init(name: "canEdit", value: "false"))) else { return }
+
+            router.show(fileController, from: controller, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
         })
         .store(in: &subscriptions)
 
-        removeButtonDidTap
+        didRemoveFile
             .flatMap { [weak self] file in
-                if let self, self.files.all.contains(file) {
-                    return self.interactor.deleteFile(file: file).map { _ in file }.eraseToAnyPublisher()
-                } else {
-                    return Just(file).eraseToAnyPublisher()
-                }
+                guard let self, self.files.all.contains(file) else { return Just(file).eraseToAnyPublisher() }
+
+                return interactor.deleteFile(file: file).map { _ in file }.eraseToAnyPublisher()
             }
             .sink { [weak self] file in
                 self?.removeAttachment(file: file)
