@@ -97,39 +97,39 @@ public class ComposeMessageOptions {
         queryItems.forEach { queryItem in
             guard let queryParameter = ComposeMessageOptions.QueryParameterKey(rawValue: queryItem.name) else { return }
             switch queryParameter {
-            case .contextDisabledKey:
+            case .contextDisabled:
                 disabledFields.contextDisabled = queryItem.value?.boolValue ?? false
-            case .recipeientsDisabledKey:
+            case .recipientsDisabled:
                 disabledFields.recipientsDisabled = queryItem.value?.boolValue ?? false
-            case .subjectDisabledKey:
+            case .subjectDisabled:
                 disabledFields.subjectDisabled = queryItem.value?.boolValue ?? false
-            case .messageDisabledKey:
+            case .messageDisabled:
                 disabledFields.messageDisabled = queryItem.value?.boolValue ?? false
-            case .individualDisabledKey:
+            case .individualDisabled:
                 disabledFields.individualDisabled = queryItem.value?.boolValue ?? false
-            case .contextCodeContentKey:
+            case .contextCodeContent:
                 contextCode = queryItem.value
-            case .contextNameContentKey:
+            case .contextNameContent:
                 contextName = queryItem.value
-            case .recipientIdsContentKey:
+            case .recipientIdsContent:
                 recipientIds = queryItem.value?.split(separator: ",").map { String($0) } ?? []
-            case .recipientNamesContentKey:
+            case .recipientNamesContent:
                 recipientNames = queryItem.value?.split(separator: ",").map { String($0) } ?? []
-            case .recipientAvatarsContentKey:
+            case .recipientAvatarsContent:
                 recipientAvatars = queryItem.value?.split(separator: ",", omittingEmptySubsequences: false).map { String($0) } ?? []
-            case .subjectContentKey:
+            case .subjectContent:
                 fieldContents.subjectText = queryItem.value ?? ""
-            case .messageContentKey:
+            case .messageContent:
                 fieldContents.bodyText = queryItem.value ?? ""
-            case .individualSendTextKey:
+            case .individualSendText:
                 fieldContents.individualSend = queryItem.value?.boolValue ?? false
-            case .hiddenMessageKey:
+            case .hiddenMessage:
                 extras.hiddenMessage = queryItem.value ?? ""
-            case .autoTeacherSelectKey:
+            case .autoTeacherSelect:
                 extras.autoTeacherSelect = queryItem.value?.boolValue ?? false
-            case .alwaysShowRecipientsKey:
+            case .alwaysShowRecipients:
                 extras.alwaysShowRecipients = queryItem.value?.boolValue ?? false
-            case .teacherOnlyKey:
+            case .teacherOnly:
                 extras.teacherOnly = queryItem.value?.boolValue ?? false
             }
         }
@@ -268,66 +268,65 @@ extension ComposeMessageOptions {
 
     enum QueryParameterKey: String, CaseIterable {
         // MARK: Disabled fields
-        case contextDisabledKey = "contextDisabled"
-        case recipeientsDisabledKey = "recipeientsDisabled"
-        case subjectDisabledKey = "subjectDisabled"
-        case messageDisabledKey = "messageDisabled"
-        case individualDisabledKey = "individualDisabled"
+        case contextDisabled
+        case recipientsDisabled
+        case subjectDisabled
+        case messageDisabled
+        case individualDisabled
 
         // MARK: Field contents
-        case contextCodeContentKey = "contextCodeContent"
-        case contextNameContentKey = "contextNameContent"
-        case recipientIdsContentKey = "recipientIdsContent"
-        case recipientNamesContentKey = "recipientNamesContent"
-        case recipientAvatarsContentKey = "recipientAvatarsContent"
-        case subjectContentKey = "subjectContent"
-        case messageContentKey = "messageContent"
-        case individualSendTextKey = "individualSendText"
+        case contextCodeContent
+        case contextNameContent
+        case recipientIdsContent
+        case recipientNamesContent
+        case recipientAvatarsContent
+        case subjectContent
+        case messageContent
+        case individualSendText
 
         // MARK: Extras
-        case hiddenMessageKey = "hiddenMessage"
-        case autoTeacherSelectKey = "autoTeacherSelect"
-        case alwaysShowRecipientsKey = "alwaysShowRecipients"
-        case teacherOnlyKey = "teacherOnly"
+        case hiddenMessage
+        case autoTeacherSelect
+        case alwaysShowRecipients
+        case teacherOnly
     }
 
     public var queryItems: [URLQueryItem] {
         var queryItems: [URLQueryItem] = []
 
         // MARK: Disabled fields
-        queryItems.append(.init(key: .contextDisabledKey, value: String(disabledFields.contextDisabled)))
-        queryItems.append(.init(key: .contextDisabledKey, value: String(disabledFields.contextDisabled)))
-        queryItems.append(.init(key: .recipeientsDisabledKey, value: String(disabledFields.recipientsDisabled)))
-        queryItems.append(.init(key: .subjectDisabledKey, value: String(disabledFields.subjectDisabled)))
-        queryItems.append(.init(key: .messageDisabledKey, value: String(disabledFields.messageDisabled)))
-        queryItems.append(.init(key: .individualDisabledKey, value: String(disabledFields.individualDisabled)))
+        queryItems.append(.init(key: .contextDisabled, value: String(disabledFields.contextDisabled)))
+        queryItems.append(.init(key: .contextDisabled, value: String(disabledFields.contextDisabled)))
+        queryItems.append(.init(key: .recipientsDisabled, value: String(disabledFields.recipientsDisabled)))
+        queryItems.append(.init(key: .subjectDisabled, value: String(disabledFields.subjectDisabled)))
+        queryItems.append(.init(key: .messageDisabled, value: String(disabledFields.messageDisabled)))
+        queryItems.append(.init(key: .individualDisabled, value: String(disabledFields.individualDisabled)))
 
         // MARK: Field contents
         if let selectedContext = fieldContents.selectedContext {
-            queryItems.append(.init(key: .contextCodeContentKey, value: selectedContext.context.canvasContextID))
-            queryItems.append(.init(key: .contextNameContentKey, value: selectedContext.name))
+            queryItems.append(.init(key: .contextCodeContent, value: selectedContext.context.canvasContextID.urlSafePercentEncoded))
+            queryItems.append(.init(key: .contextNameContent, value: selectedContext.name.urlSafePercentEncoded))
         }
         queryItems.append(
-            .init(key: QueryParameterKey.recipientIdsContentKey, value: fieldContents.selectedRecipients.flatMap { $0.ids }.joined(separator: ","))
+            .init(key: .recipientIdsContent, value: fieldContents.selectedRecipients.flatMap { $0.ids }.joined(separator: ",").urlSafePercentEncoded)
         )
         queryItems.append(
-            .init(key: QueryParameterKey.recipientNamesContentKey, value: fieldContents.selectedRecipients.map { $0.displayName }.joined(separator: ","))
+            .init(key: .recipientNamesContent, value: fieldContents.selectedRecipients.map { $0.displayName }.joined(separator: ",").urlSafePercentEncoded)
         )
         queryItems.append(
-            .init(key: QueryParameterKey.recipientAvatarsContentKey, value: fieldContents.selectedRecipients.map { $0.avatarURL?.absoluteString ?? "" }.joined(separator: ","))
+            .init(key: .recipientAvatarsContent, value: fieldContents.selectedRecipients.map { $0.avatarURL?.absoluteString ?? "" }.joined(separator: ",").urlSafePercentEncoded)
         )
-        queryItems.append(.init(key: .subjectContentKey, value: fieldContents.subjectText))
-        queryItems.append(.init(key: .messageContentKey, value: fieldContents.bodyText))
-        queryItems.append(.init(key: .individualDisabledKey, value: String(fieldContents.individualSend)))
+        queryItems.append(.init(key: .subjectContent, value: fieldContents.subjectText.urlSafePercentEncoded))
+        queryItems.append(.init(key: .messageContent, value: fieldContents.bodyText.urlSafePercentEncoded))
+        queryItems.append(.init(key: .individualDisabled, value: String(fieldContents.individualSend).urlSafePercentEncoded))
 
         // MARK: Extras
-        queryItems.append(.init(key: .hiddenMessageKey, value: extras.hiddenMessage))
-        queryItems.append(.init(key: .autoTeacherSelectKey, value: String(extras.autoTeacherSelect)))
-        queryItems.append(.init(key: .alwaysShowRecipientsKey, value: String(extras.alwaysShowRecipients)))
-        queryItems.append(.init(key: .teacherOnlyKey, value: String(extras.teacherOnly)))
+        queryItems.append(.init(key: .hiddenMessage, value: extras.hiddenMessage.urlSafePercentEncoded))
+        queryItems.append(.init(key: .autoTeacherSelect, value: String(extras.autoTeacherSelect)))
+        queryItems.append(.init(key: .alwaysShowRecipients, value: String(extras.alwaysShowRecipients)))
+        queryItems.append(.init(key: .teacherOnly, value: String(extras.teacherOnly)))
 
         return queryItems
-
     }
 }
 

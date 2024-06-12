@@ -304,7 +304,7 @@ class ComposeMessageViewModel: ObservableObject {
 
                 return files.all.publisher.flatMap { file in
                     self.interactor.deleteFile(file: file)
-                }.collect().map {_ in value }.eraseToAnyPublisher()
+                }.collect().map { _ in value }.eraseToAnyPublisher()
             }
             .sink { [router] viewController in
                 router.dismiss(viewController)

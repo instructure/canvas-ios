@@ -73,7 +73,7 @@ extension String {
 
     /**
      Converts a `String` to a `Bool` value.
-     Returns `false` if the `String` value does not contain any valid `Bool` representation.
+     Returns `false` if the `String` value does not contain any valid `Bool` representation. It uses `NSString`'s `boolValue` property which can convert nums, characters, strings to bool values.
      */
     public var boolValue: Bool {
         return (self as NSString).boolValue
