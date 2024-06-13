@@ -37,6 +37,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
 
         // Check order of markers
         let x1 = view.minPossibleBar.frame.midX, x2 = view.minBarView.frame.midX, x3 = view.meanBarView.frame.midX, x4 = view.maxBarView.frame.midX, x5 = view.maxPossibleBar.frame.midX
+        // FIXME: always fails locally, always works on CI
         XCTAssertTrue(x1 <= x2 && x2 <= x3 && x3 <= x4 && x4 <= x5, "Graph view text labels were not correctly ordered")
 
         let minX = view.minPossibleBar.frame.midX

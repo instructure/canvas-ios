@@ -68,6 +68,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         }
     }
 
+    // FIXME: flaky test (at least on CI)
     func testListsRemindersInChronologicalOrder() {
         mockNotificationCenter.requests = [
             .make(id: "1", timeText: "3 minutes before", trigger: .init(minute: 57)),
