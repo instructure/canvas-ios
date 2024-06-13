@@ -94,7 +94,7 @@ public extension InstUI {
             ZStack {
                 switch state {
                 case .loading:
-                    loadingIndicator(overlay: false)
+                    loadingIndicator(showOverlay: false)
                 case .error:
                     panda(config: config.errorPandaConfig)
                 case .empty:
@@ -102,7 +102,7 @@ public extension InstUI {
                 case .data(let loadingOverlay):
                     if loadingOverlay {
                         data.disabled(true)
-                        loadingIndicator(overlay: true)
+                        loadingIndicator(showOverlay: true)
                     } else {
                         data
                     }
@@ -111,11 +111,11 @@ public extension InstUI {
             .animation(.default, value: state)
         }
 
-        private func loadingIndicator(overlay: Bool) -> some View {
+        private func loadingIndicator(showOverlay: Bool) -> some View {
             ProgressView()
                 .progressViewStyle(.indeterminateCircle(color: Color(Brand.shared.primary)))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(overlay
+                .background(showOverlay
                     ? Color.backgroundGrouped.opacity(0.5)
                     : Color.backgroundLightest
                 )

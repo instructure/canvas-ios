@@ -146,6 +146,16 @@ final class CreateToDoViewModelTests: CoreTestCase {
         XCTAssertEqual(completionCallsCount, 0)
     }
 
+    func testRetryAfterFailure() {
+        createToDoInteractor.createToDoResult = .failure(MockError())
+        testee.didTapAdd.send()
+
+        createToDoInteractor.createToDoResult = .success(())
+        testee.didTapAdd.send()
+
+        XCTAssertEqual(completionCallsCount, 1)
+    }
+
     // MARK: - Select Calendar
 
     func testSelectCalendarViewModelReusesSameInteractor() {

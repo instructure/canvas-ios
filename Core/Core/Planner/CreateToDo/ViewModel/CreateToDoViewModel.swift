@@ -92,10 +92,10 @@ final class CreateToDoViewModel: ObservableObject {
             .map { [weak self] in
                 self?.state = .data(loadingOverlay: true)
             }
-            .setFailureType(to: Error.self)
             .flatMap { [weak self] in
                 guard let self else {
-                    return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+                    return Just(Result<Void, Error>.failure(NSError.internalError()))
+                        .eraseToAnyPublisher()
                 }
 
                 return createToDoInteractor.createToDo(
@@ -104,8 +104,9 @@ final class CreateToDoViewModel: ObservableObject {
                     calendar: selectedCalendar.value,
                     details: details
                 )
+                .mapToResult()
+                .eraseToAnyPublisher()
             }
-            .mapToResult()
             .sink { [weak self] result in
                 switch result {
                 case .success:
