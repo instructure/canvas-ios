@@ -46,7 +46,29 @@ class LocalizationManagerTests: CoreTestCase {
         XCTAssertTrue(LocalizationManager.needsRestart)
     }
 
-    func testSetCurrentLocale() {
+    func testConvertCustomLocale() {
+        var inputLocale: String?
+
+        inputLocale = "pt-BR"
+        XCTAssertEqual(LocalizationManager.convertCustomLocale(inputLocale), "pt-BR")
+
+        inputLocale = "en-AU-x-unimelb"
+        XCTAssertEqual(LocalizationManager.convertCustomLocale(inputLocale), "en-AU-unimelb")
+
+        inputLocale = "da-x-k12"
+        XCTAssertEqual(LocalizationManager.convertCustomLocale(inputLocale), "da-instk12")
+
+        inputLocale = "en-AU-x-123456789012345"
+        XCTAssertEqual(LocalizationManager.convertCustomLocale(inputLocale), "en-AU-12345678")
+
+        inputLocale = nil
+        XCTAssertEqual(LocalizationManager.convertCustomLocale(inputLocale), "")
+    }
+
+    // This test is disabled, because Language & Region are fixed (en & US) for tests, and it would always fail.
+    // Main logic is extracted and tested above.
+    // To enable it: set TestPlane (or Scheme) Language & Region to System, remove method name prefix and run this test class
+    func DISABLED_testSetCurrentLocale() {
         LocalizationManager.setCurrentLocale("pt-BR")
         XCTAssertEqual(LocalizationManager.currentLocale, "pt-BR")
         XCTAssertEqual(UserDefaults.standard.object(forKey: "AppleLanguages") as? [String], [ "pt-BR" ])
