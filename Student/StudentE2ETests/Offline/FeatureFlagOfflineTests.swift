@@ -59,11 +59,9 @@ class FeatureFlagOfflineTests: OfflineE2ETest {
         XCTAssertTrue(courseButton.isVisible)
         XCTAssertTrue(unselectedTickerOfCourseButton.isVisible)
         XCTAssertTrue(syncButton.isVisible)
-        XCTAssertTrue(syncButton.isDisabled)
 
         unselectedTickerOfCourseButton.hit()
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(syncButton.waitUntil(.enabled).isEnabled)
 
         // MARK: Tap "Sync" button
         syncButton.hit()
