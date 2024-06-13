@@ -114,8 +114,8 @@ final class CreateToDoViewModelTests: CoreTestCase {
         testee.date = TestConstants.date
         testee.details = TestConstants.details
 
-        let selectedContext = TestConstants.calendars[1].context
-        testee.selectCalendarViewModel.isSelected(context: selectedContext).wrappedValue = true
+        let selectedCalendar = calendarListProviderInteractor.filters.value[1]
+        testee.selectCalendarViewModel.selectedCalendar = selectedCalendar
 
         testee.didTapAdd.send()
 
@@ -123,7 +123,7 @@ final class CreateToDoViewModelTests: CoreTestCase {
         let input = createToDoInteractor.createToDoInput
         XCTAssertEqual(input?.title, TestConstants.title)
         XCTAssertEqual(input?.date, TestConstants.date)
-        XCTAssertEqual(input?.calendar?.context, selectedContext)
+        XCTAssertEqual(input?.calendar?.context, selectedCalendar.context)
         XCTAssertEqual(input?.details, TestConstants.details)
     }
 
@@ -185,8 +185,8 @@ final class CreateToDoViewModelTests: CoreTestCase {
     func testSelectCalendarViewModelSelectsCalendar() {
         XCTAssertEqual(testee.calendarName, TestConstants.calendars[2].name)
 
-        let selectedContext = TestConstants.calendars[1].context
-        testee.selectCalendarViewModel.isSelected(context: selectedContext).wrappedValue = true
+        let selectedCalendar = calendarListProviderInteractor.filters.value[1]
+        testee.selectCalendarViewModel.selectedCalendar = selectedCalendar
 
         XCTAssertEqual(testee.calendarName, TestConstants.calendars[1].name)
     }

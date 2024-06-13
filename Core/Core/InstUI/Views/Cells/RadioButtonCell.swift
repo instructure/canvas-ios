@@ -20,30 +20,39 @@ import SwiftUI
 
 extension InstUI {
 
-    public struct RadioButtonCell: View {
+    public struct RadioButtonCell<Value: Equatable>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-
+        @Binding private var selectedValue: Value?
         private let name: String
-        @Binding private var isSelected: Bool
+        private let value: Value
         private let color: Color
 
-        public init(name: String, isSelected: Binding<Bool>, color: Color) {
+        /// - parameters:
+        ///   - value: The value represented by this cell that will be passed to the `selectedValue` binding upon tap.
+        ///   - selectedValue: This binding holds the currently selected value belonging to the radio button group. The value is equatable so this cell can decide when to display the selected state.
+        public init(
+            name: String,
+            value: Value,
+            selectedValue: Binding<Value?>,
+            color: Color
+        ) {
             self.name = name
-            self._isSelected = isSelected
+            self.value = value
+            self._selectedValue = selectedValue
             self.color = color
         }
 
         public var body: some View {
             VStack(spacing: 0) {
                 Button {
-                    isSelected.toggle()
+                    selectedValue = value
                 } label: {
                     HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
                         InstUI.RadioButton(
-                            isSelected: isSelected,
+                            isSelected: (value == selectedValue),
                             color: color
                         )
-                        .animation(.default, value: isSelected)
+                        .animation(.default, value: selectedValue)
                         Text(name)
                             .font(.regular16, lineHeight: .fit)
                             .multilineTextAlignment(.leading)
@@ -57,7 +66,13 @@ extension InstUI {
                 InstUI.Divider()
             }
             .accessibilityRepresentation {
-                Toggle(isOn: $isSelected) {
+                let binding = Binding {
+                    value == selectedValue
+                } set: { _ in
+                    selectedValue = value
+                }
+
+                Toggle(isOn: binding) {
                     Text(name)
                 }
             }
@@ -68,14 +83,23 @@ extension InstUI {
 #if DEBUG
 
 private struct Container: View {
-    @State var isSelected = false
+    @State var selectedValue: Int?
 
     var body: some View {
-        InstUI.RadioButtonCell(
-            name: "Radio Button here",
-            isSelected: $isSelected,
-            color: .orange
-        )
+        VStack(spacing: 0) {
+            InstUI.RadioButtonCell(
+                name: "Value 1",
+                value: 1,
+                selectedValue: $selectedValue,
+                color: .orange
+            )
+            InstUI.RadioButtonCell(
+                name: "Value 2",
+                value: 2,
+                selectedValue: $selectedValue,
+                color: .red
+            )
+        }
     }
 }
 

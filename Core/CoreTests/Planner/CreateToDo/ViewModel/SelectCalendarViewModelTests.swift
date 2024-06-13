@@ -17,13 +17,13 @@
 //
 
 @testable import Core
+import Combine
 import SwiftUI
 import XCTest
 
 final class SelectCalendarViewModelTests: CoreTestCase {
 
     private enum TestConstants {
-        static let context: Context = .user("123")
         static let calendars: [(name: String, context: Context)] = [
             ("Course 2", .course("2")),
             ("Course 1", .course("1")),
@@ -38,7 +38,7 @@ final class SelectCalendarViewModelTests: CoreTestCase {
     private var calendarListProviderInteractor: CalendarFilterInteractorPreview!
     private var testee: SelectCalendarViewModel!
 
-    private var inputSelectedContext: Context?
+    private let inputSelectedCalendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
 
     override func setUp() {
         super.setUp()
@@ -56,25 +56,26 @@ final class SelectCalendarViewModelTests: CoreTestCase {
     // MARK: - Selection
 
     func testIsSelectedGetsInitialValue() {
-        inputSelectedContext = TestConstants.context
+        inputSelectedCalendar.send(calendarListProviderInteractor.filters.value[0])
         testee = makeViewModel()
 
-        XCTAssertEqual(testee.selectedContext, TestConstants.context)
+        XCTAssertEqual(testee.selectedCalendar, calendarListProviderInteractor.filters.value[0])
     }
 
-    func testIsSelected() {
+    func testSelection() {
         // initial state when binding has no value set behorehand
-        XCTAssertEqual(inputSelectedContext, nil)
-        XCTAssertEqual(testee.selectedContext, nil)
+        XCTAssertEqual(inputSelectedCalendar.value, nil)
+        XCTAssertEqual(testee.selectedCalendar, nil)
 
-        testee.isSelected(context: TestConstants.context).wrappedValue = true
-        XCTAssertEqual(inputSelectedContext, TestConstants.context)
-        XCTAssertEqual(testee.selectedContext, TestConstants.context)
+        var calendarToSelect = calendarListProviderInteractor.filters.value[0]
+        testee.selectedCalendar = calendarToSelect
+        XCTAssertEqual(inputSelectedCalendar.value, calendarToSelect)
+        XCTAssertEqual(testee.selectedCalendar, calendarToSelect)
 
-        // false should not deselect
-        testee.isSelected(context: TestConstants.calendars[0].context).wrappedValue = false
-        XCTAssertEqual(inputSelectedContext, TestConstants.context)
-        XCTAssertEqual(testee.selectedContext, TestConstants.context)
+        calendarToSelect = calendarListProviderInteractor.filters.value[1]
+        testee.selectedCalendar = calendarToSelect
+        XCTAssertEqual(inputSelectedCalendar.value, calendarToSelect)
+        XCTAssertEqual(testee.selectedCalendar, calendarToSelect)
     }
 
     // MARK: - Sections
@@ -136,10 +137,7 @@ final class SelectCalendarViewModelTests: CoreTestCase {
         .init(
             calendarListProviderInteractor: calendarListProviderInteractor ?? self.calendarListProviderInteractor,
             calendarTypes: calendarTypes,
-            selectedContext: selectedContext ?? Binding(
-                get: { [weak self] in self?.inputSelectedContext },
-                set: { [weak self] in self?.inputSelectedContext = $0 }
-            )
+            selectedCalendar: inputSelectedCalendar
         )
     }
 

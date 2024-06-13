@@ -82,7 +82,7 @@ public enum PlannerAssembly {
         let viewModel = SelectCalendarViewModel(
             calendarListProviderInteractor: CalendarFilterInteractorPreview(),
             calendarTypes: [],
-            selectedContext: .constant(nil)
+            selectedCalendar: .init(nil)
         )
         return SelectCalendarScreen(viewModel: viewModel)
     }

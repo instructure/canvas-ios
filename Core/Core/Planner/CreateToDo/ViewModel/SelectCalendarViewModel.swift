@@ -40,21 +40,7 @@ final class SelectCalendarViewModel: ObservableObject {
 
     let state: InstUI.ScreenState = .data
     @Published private(set) var sections: [Section] = []
-    @Published private(set) var selectedContext: Context?
-
-    @Binding private var selectedContextBinding: Context?
-
-    func isSelected(context: Context) -> Binding<Bool> {
-        Binding { [weak self] in
-            self?.selectedContext == context
-        } set: { [weak self] selected in
-            guard selected else { return }
-            self?.selectedContext = context
-            self?.selectedContextBinding = context
-        }
-    }
-
-    // MARK: - Input
+    @Published var selectedCalendar: CDCalendarFilterEntry?
 
     // MARK: - Private
 
@@ -66,11 +52,16 @@ final class SelectCalendarViewModel: ObservableObject {
     init(
         calendarListProviderInteractor: CalendarFilterInteractor,
         calendarTypes: Set<CalendarType>,
-        selectedContext: Binding<Context?>
+        selectedCalendar: CurrentValueSubject<CDCalendarFilterEntry?, Never>
     ) {
         self.calendarListProviderInteractor = calendarListProviderInteractor
-        self._selectedContextBinding = selectedContext
-        self.selectedContext = selectedContext.wrappedValue
+        self.selectedCalendar = selectedCalendar.value
+
+        $selectedCalendar
+            .sink(receiveValue: { [weak selectedCalendar] filter in
+                selectedCalendar?.send(filter)
+            })
+            .store(in: &subscriptions)
 
         calendarListProviderInteractor.filters
             .sink { [weak self] calendars in

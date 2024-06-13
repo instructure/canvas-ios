@@ -30,7 +30,6 @@ final class CreateToDoViewModel: ObservableObject {
     @Published private(set) var state: InstUI.ScreenState = .data
     @Published var title: String = ""
     @Published var date: Date?
-    @Published private var calendar: CDCalendarFilterEntry?
     @Published var details: String = ""
     @Published var shouldShowAlert: Bool = false
 
@@ -38,19 +37,13 @@ final class CreateToDoViewModel: ObservableObject {
         state == .data && title.isNotEmpty
     }
 
-    var calendarName: String? {
-        calendar?.name
-    }
+    @Published var calendarName: String?
 
     lazy var selectCalendarViewModel: SelectCalendarViewModel = {
         return .init(
             calendarListProviderInteractor: calendarListProviderInteractor,
             calendarTypes: [.user, .course],
-            selectedContext: Binding { [weak self] in
-                self?.calendar?.context
-            } set: { [weak self] in
-                self?.selectCalendar(with: $0)
-            }
+            selectedCalendar: calendar
         )
     }()
 
@@ -65,8 +58,7 @@ final class CreateToDoViewModel: ObservableObject {
     private let calendarListProviderInteractor: CalendarFilterInteractor
     private let completion: (PlannerAssembly.Completion) -> Void
     private var subscriptions = Set<AnyCancellable>()
-
-    private var calendars: [CDCalendarFilterEntry] = []
+    private var calendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
 
     // MARK: - Init
 
@@ -83,11 +75,17 @@ final class CreateToDoViewModel: ObservableObject {
         date = .now.endOfDay()
 
         calendarListProviderInteractor.filters
-            .assign(to: \.calendars, on: self, ownership: .weak)
+            .first()
+            .compactMap { $0.first { $0.context.contextType == .user } }
+            .sink { [weak calendar] in
+                calendar?.send($0)
+            }
             .store(in: &subscriptions)
 
-        // assumes calendarListProviderInteractor is already populated
-        calendar = calendars.first { $0.context.contextType == .user }
+        calendar
+            .map { $0?.name }
+            .assign(to: \.calendarName, on: self, ownership: .weak)
+            .store(in: &subscriptions)
 
         didTapCancel
             .sink { completion(.didCancel) }
@@ -106,7 +104,7 @@ final class CreateToDoViewModel: ObservableObject {
                 return createToDoInteractor.createToDo(
                     title: title,
                     date: date ?? .now,
-                    calendar: calendar,
+                    calendar: calendar.value,
                     details: details
                 )
             }
@@ -121,16 +119,5 @@ final class CreateToDoViewModel: ObservableObject {
                 }
             }
             .store(in: &subscriptions)
-    }
-
-    private func selectCalendar(with context: Context?) {
-        guard let context else {
-            calendar = nil
-            return
-        }
-
-        guard calendar?.context != context else { return }
-
-        calendar = calendars.first { $0.context == context }
     }
 }
