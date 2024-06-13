@@ -69,14 +69,18 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             }
             .font(.regular12)
             .foregroundColor(.textDarkest)
-            .background(Color.backgroundLightest)
+            .background(
+                Color.backgroundLightest
+                    .onTapGesture {
+                        subjectTextFieldFocus = false
+                        messageTextFieldFocus = false
+                    }
+            )
             .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
             .navigationBarStyle(.modal)
-            .onTapGesture {
-                subjectTextFieldFocus = false
-                messageTextFieldFocus = false
-            }
+
         }
+        .background(Color.backgroundLightest)
         .coordinateSpace(name: proxyScrollViewKey)
         .onPreferenceChange(ViewSizeKey.self) { offset in
             if (offset < -headerHeight) {
@@ -328,14 +332,19 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     private var includedMessages: some View {
         VStack(alignment: .leading) {
             Text("Previous messages", bundle: .core)
-                .font(.bold16)
-            separator
+                .font(.regular16, lineHeight: .condensed)
+                .foregroundColor(.textDark)
+                .padding(.horizontal, 16)
+
             ForEach(model.includedMessages, id: \.id) { conversationMessage in
-                messageView(for: conversationMessage)
                 separator
+                    .padding(.horizontal, 4)
+
+                messageView(for: conversationMessage)
+                    .padding(.horizontal, 4)
             }
         }
-        .padding(.horizontal, 12)
+        .padding(.top, 24)
     }
 
     @ViewBuilder
@@ -355,37 +364,34 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     model.toggleMessageExpand(message: message)
                 }
             } label: {
-                HStack {
-                    Avatar(name: author?.name, url: author?.avatarURL, size: 36, isAccessible: false)
-                    VStack(alignment: .leading) {
+                Avatar(name: author?.name, url: author?.avatarURL, size: 36, isAccessible: false)
+                    .padding(.trailing, 8)
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack(spacing: 0) {
                         Text(author?.name ?? "")
+                            .font(.regular16)
                             .foregroundStyle(Color.textDarkest)
-                        Text(message.createdAt?.dateTimeString ?? "")
-                            .foregroundStyle(Color.textDark)
-                    }
-                    Spacer()
-                    VStack(spacing: 0) {
+
+                        Spacer()
+
                         Image.arrowOpenDownLine
                             .resizable()
                             .frame(
                                 width: 15 * uiScale.iconScale,
                                 height: 15 * uiScale.iconScale
                             )
-                        Image.arrowOpenUpLine
-                            .resizable()
-                            .frame(
-                                width: 15 * uiScale.iconScale,
-                                height: 15 * uiScale.iconScale
-                            )
+                        .foregroundColor(.textDarkest)
                     }
-                    .foregroundColor(.textDarkest)
-                    .padding(.all, 8)
+                    Text(message.createdAt?.dateTimeString ?? "")
+                        .font(.regular16)
+                        .foregroundStyle(Color.textDark)
                 }
             }
             .padding(.bottom, 12)
 
             Text(message.body)
-                .foregroundStyle(Color.textDark)
+                .font(.regular16)
+                .foregroundStyle(Color.textDarkest)
 
             if !message.attachments.isEmpty {
                 AttachmentCardsView(attachments: message.attachments, mediaComment: message.mediaComment)
@@ -393,7 +399,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             }
         }
         .padding(.vertical, 12)
-        .padding(.horizontal, 12)
+        .padding(.horizontal, 16)
     }
 
     private func collapsedMessageView(for message: ConversationMessage) -> some View {
@@ -406,37 +412,33 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     VStack(alignment: .leading, spacing: 0) {
                         HStack {
                             Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
+                                .font(.regular16)
                                 .foregroundStyle(Color.textDarkest)
                                 .lineLimit(1)
                             Spacer()
                             Text(message.createdAt?.dateTimeString ?? "")
+                                .font(.regular16)
                                 .foregroundStyle(Color.textDark)
                                 .lineLimit(1)
+
+                            Image.arrowOpenUpLine
+                                .resizable()
+                                .frame(
+                                    width: 15 * uiScale.iconScale,
+                                    height: 15 * uiScale.iconScale
+                                )
+                            .foregroundColor(.textDarkest)
                         }
+                        .padding(.bottom, 6)
+
                         Text(message.body)
+                            .font(.regular16)
                             .foregroundStyle(Color.textDark)
                             .lineLimit(1)
                     }
-
-                    VStack(spacing: 0) {
-                        Image.arrowOpenUpLine
-                            .resizable()
-                            .frame(
-                                width: 15 * uiScale.iconScale,
-                                height: 15 * uiScale.iconScale
-                            )
-                        Image.arrowOpenDownLine
-                            .resizable()
-                            .frame(
-                                width: 15 * uiScale.iconScale,
-                                height: 15 * uiScale.iconScale
-                            )
-                    }
-                    .foregroundColor(.textDarkest)
-                    .padding(.all, 8)
                 }
                 .padding(.vertical, 12)
-                .padding(.horizontal, 12)
+                .padding(.horizontal, 16)
         }
     }
 

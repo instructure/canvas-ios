@@ -167,9 +167,8 @@ public struct AttachmentPickerView: View {
                 progressHeader
             } else if viewModel.fileList.containsError {
                 errorHeader
-            } else {
-                selectionHeader
             }
+            selectionHeader
         }
         .font(.regular16)
         .foregroundStyle(Color.textDarkest)
