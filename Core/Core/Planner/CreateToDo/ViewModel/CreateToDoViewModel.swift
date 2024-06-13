@@ -32,18 +32,17 @@ final class CreateToDoViewModel: ObservableObject {
     @Published var date: Date?
     @Published var details: String = ""
     @Published var shouldShowAlert: Bool = false
+    @Published var calendarName: String?
 
     var isAddButtonEnabled: Bool {
         state == .data && title.isNotEmpty
     }
 
-    @Published var calendarName: String?
-
     lazy var selectCalendarViewModel: SelectCalendarViewModel = {
         return .init(
             calendarListProviderInteractor: calendarListProviderInteractor,
             calendarTypes: [.user, .course],
-            selectedCalendar: calendar
+            selectedCalendar: selectedCalendar
         )
     }()
 
@@ -56,9 +55,8 @@ final class CreateToDoViewModel: ObservableObject {
 
     private let createToDoInteractor: CreateToDoInteractor
     private let calendarListProviderInteractor: CalendarFilterInteractor
-    private let completion: (PlannerAssembly.Completion) -> Void
     private var subscriptions = Set<AnyCancellable>()
-    private var calendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
+    private var selectedCalendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
 
     // MARK: - Init
 
@@ -69,20 +67,19 @@ final class CreateToDoViewModel: ObservableObject {
     ) {
         self.createToDoInteractor = createToDoInteractor
         self.calendarListProviderInteractor = calendarListProviderInteractor
-        self.completion = completion
 
         // end of today, to match default web behaviour
         date = .now.endOfDay()
 
         calendarListProviderInteractor.filters
-            .first()
+            .first { $0.isEmpty == false }
             .compactMap { $0.first { $0.context.contextType == .user } }
-            .sink { [weak calendar] in
-                calendar?.send($0)
+            .sink { [weak selectedCalendar] in
+                selectedCalendar?.send($0)
             }
             .store(in: &subscriptions)
 
-        calendar
+        selectedCalendar
             .map { $0?.name }
             .assign(to: \.calendarName, on: self, ownership: .weak)
             .store(in: &subscriptions)
@@ -104,7 +101,7 @@ final class CreateToDoViewModel: ObservableObject {
                 return createToDoInteractor.createToDo(
                     title: title,
                     date: date ?? .now,
-                    calendar: calendar.value,
+                    calendar: selectedCalendar.value,
                     details: details
                 )
             }
@@ -118,6 +115,11 @@ final class CreateToDoViewModel: ObservableObject {
                     self?.shouldShowAlert = true
                 }
             }
+            .store(in: &subscriptions)
+
+        calendarListProviderInteractor
+            .load(ignoreCache: false)
+            .sink()
             .store(in: &subscriptions)
     }
 }

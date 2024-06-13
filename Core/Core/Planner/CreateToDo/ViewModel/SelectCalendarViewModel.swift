@@ -82,5 +82,10 @@ final class SelectCalendarViewModel: ObservableObject {
                 ]
             }
             .store(in: &subscriptions)
+
+        calendarListProviderInteractor
+            .load(ignoreCache: false)
+            .sink()
+            .store(in: &subscriptions)
     }
 }

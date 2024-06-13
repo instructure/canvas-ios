@@ -24,29 +24,49 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
     public var filters = CurrentValueSubject<[CDCalendarFilterEntry], Never>([])
     public var selectedContexts = CurrentValueSubject<Set<Context>, Never>(Set())
     public var filterCountLimit = CurrentValueSubject<CalendarFilterCountLimit, Never>(.extended)
+    public var mockedFilters: [(String, Context)] = [
+        ("Test User", .user("1")),
+
+        ("Black Holes", .course("1")),
+        ("Cosmology", .course("2")),
+        ("From Planets to the Cosmos", .course("3")),
+        ("General Astrophysics", .course("4")),
+        ("Life in The Universe", .course("5")),
+        ("Planets and the Solar System", .course("6")),
+
+        ("Black Holes Group", .group("1")),
+        ("Cosmology Group", .group("2")),
+        ("From Planets to the Cosmos Group", .group("3")),
+    ] {
+        didSet {
+            isMockedDataChangedSinceTheLastLoad = true
+        }
+    }
 
     private let env = PreviewEnvironment()
+    private var isMockedDataChangedSinceTheLastLoad = false
 
     public init() {}
 
     public func load(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        return loadFilters(with: [
-            ("Test User", .user("1")),
-
-            ("Black Holes", .course("1")),
-            ("Cosmology", .course("2")),
-            ("From Planets to the Cosmos", .course("3")),
-            ("General Astrophysics", .course("4")),
-            ("Life in The Universe", .course("5")),
-            ("Planets and the Solar System", .course("6")),
-
-            ("Black Holes Group", .group("1")),
-            ("Cosmology Group", .group("2")),
-            ("From Planets to the Cosmos Group", .group("3")),
-        ])
+        guard isMockedDataChangedSinceTheLastLoad else {
+            return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
+        isMockedDataChangedSinceTheLastLoad = false
+        return loadFilters(with: mockedFilters)
     }
 
-    public func loadFilters(with parameters: [(String, Context)]) -> AnyPublisher<Void, Error> {
+    public func updateFilteredContexts(_ contexts: [Context], isSelected: Bool) -> AnyPublisher<Void, Error> {
+        Just(())
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
+    public func contextsForAPIFiltering() -> [Context] {
+        []
+    }
+
+    private func loadFilters(with parameters: [(String, Context)]) -> AnyPublisher<Void, Error> {
         let filters: [CDCalendarFilterEntry] = parameters.map { name, context in
             let filter: CDCalendarFilterEntry = env.database.viewContext.insert()
             filter.name = name
@@ -61,16 +81,6 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
 
         self.filters.send(filters)
         return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
-    }
-
-    public func updateFilteredContexts(_ contexts: [Context], isSelected: Bool) -> AnyPublisher<Void, Error> {
-        Just(())
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-
-    public func contextsForAPIFiltering() -> [Context] {
-        []
     }
 }
 

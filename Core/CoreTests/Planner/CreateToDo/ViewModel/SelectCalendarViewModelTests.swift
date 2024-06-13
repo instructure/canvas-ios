@@ -43,7 +43,7 @@ final class SelectCalendarViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         calendarListProviderInteractor = .init()
-        XCTAssertFinish(calendarListProviderInteractor.loadFilters(with: TestConstants.calendars))
+        calendarListProviderInteractor.mockedFilters = TestConstants.calendars
         testee = makeViewModel()
     }
 

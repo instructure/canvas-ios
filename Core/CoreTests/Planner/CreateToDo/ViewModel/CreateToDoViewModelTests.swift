@@ -45,7 +45,7 @@ final class CreateToDoViewModelTests: CoreTestCase {
         super.setUp()
         createToDoInteractor = .init()
         calendarListProviderInteractor = .init()
-        XCTAssertFinish(calendarListProviderInteractor.loadFilters(with: TestConstants.calendars))
+        calendarListProviderInteractor.mockedFilters = TestConstants.calendars
         testee = .init(
             createToDoInteractor: createToDoInteractor,
             calendarListProviderInteractor: calendarListProviderInteractor,
@@ -159,7 +159,8 @@ final class CreateToDoViewModelTests: CoreTestCase {
 
         XCTAssertEqual(hasSpecificCalendar(), true)
 
-        XCTAssertFinish(calendarListProviderInteractor.loadFilters(with: []))
+        calendarListProviderInteractor.mockedFilters = []
+        XCTAssertFinish(calendarListProviderInteractor.load(ignoreCache: false))
 
         XCTAssertEqual(hasSpecificCalendar(), false)
     }

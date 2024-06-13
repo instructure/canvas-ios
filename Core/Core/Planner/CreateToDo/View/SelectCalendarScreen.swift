@@ -32,17 +32,15 @@ struct SelectCalendarScreen: View {
             LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 ForEach(viewModel.sections) { section in
                     if !section.items.isEmpty {
-                        if let sectionTitle = section.title {
-                            Section {
-                                ForEach(section.items) { item in
-                                    itemCell(with: item)
-                                }
-                            } header: {
-                                InstUI.ListSectionHeader(name: sectionTitle)
-                            }
-                        } else {
+                        Section {
                             ForEach(section.items) { item in
                                 itemCell(with: item)
+                            }
+                        } header: {
+                            if let sectionTitle = section.title {
+                                InstUI.ListSectionHeader(name: sectionTitle)
+                            } else {
+                                SwiftUI.EmptyView()
                             }
                         }
                     }
@@ -52,7 +50,6 @@ struct SelectCalendarScreen: View {
         .navigationTitle(viewModel.pageTitle)
     }
 
-    @ViewBuilder
     private func itemCell(with item: CDCalendarFilterEntry) -> some View {
         InstUI.RadioButtonCell(
             name: item.name,
