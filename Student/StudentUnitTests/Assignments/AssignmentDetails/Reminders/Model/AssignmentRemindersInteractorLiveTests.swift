@@ -47,6 +47,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
 
         testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: Clock.now.addSeconds(1)))
         XCTAssertTrue(testee.isRemindersSectionVisible.value)
+        Clock.reset()
     }
 
     // MARK: - Reminder Display

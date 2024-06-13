@@ -86,6 +86,8 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
         XCTAssertEqual(selectedDate, DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 1, day: 26).date)
         controller.updateSelectedDate(selectedDate)
         XCTAssertEqual((controller.weeksStackView.arrangedSubviews.first?.subviews.first as? UIButton)?.isSelected, true)
+
+        Clock.reset()
     }
 
     func testTodayNotSelected() {

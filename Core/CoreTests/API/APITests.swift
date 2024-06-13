@@ -240,6 +240,7 @@ class APITests: XCTestCase {
         XCTAssertEqual(api.loginSession?.expiresAt, Clock.now.addingTimeInterval(3600))
         XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, "new-token")
         XCTAssertTrue(LoginSession.sessions.contains(where: { $0.accessToken == "new-token" }))
+        Clock.reset()
     }
 
     func testRefreshTokenNotCurrentSession() {

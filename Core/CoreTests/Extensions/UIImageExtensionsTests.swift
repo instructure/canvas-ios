@@ -40,6 +40,8 @@ class UIImageExtensionsTests: XCTestCase {
         XCTAssertNoThrow(try image.write())
         let file = URL.Directories.temporary.appendingPathComponent("images/1542303894.0.jpg")
         XCTAssertTrue(FileManager.default.fileExists(atPath: file.path))
+
+        Clock.reset()
     }
 
     func testWriteToURL() {

@@ -118,6 +118,8 @@ class AttachmentCardsViewControllerTests: CoreTestCase {
         XCTAssertNil(controller.getCard(2).progressTimer)
         XCTAssertEqual(controller.getCard(2).progressView?.progress, 0.25)
         XCTAssertEqual(controller.getCard(2).progressLabel?.text, "25%")
+
+        Clock.reset()
     }
 
     func testAudio() {

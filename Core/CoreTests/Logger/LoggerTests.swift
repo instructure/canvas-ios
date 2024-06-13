@@ -47,6 +47,7 @@ class LoggerTests: CoreTestCase {
         XCTAssertEqual(event.message, "log message")
         XCTAssertEqual(event.timestamp, now)
         XCTAssertEqual(event.type, .log)
+        Clock.reset()
     }
 
     func testError() {
@@ -58,6 +59,7 @@ class LoggerTests: CoreTestCase {
         XCTAssertEqual(event.message, "error message")
         XCTAssertEqual(event.timestamp, now)
         XCTAssertEqual(event.type, .error)
+        Clock.reset()
     }
 
     func testClearAll() {
