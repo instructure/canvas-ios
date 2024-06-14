@@ -70,6 +70,10 @@ extension String {
     public var isNotEmpty: Bool {
         !isEmpty
     }
+
+    public var nilIfEmpty: String? {
+        self.isEmpty ? nil : self
+    }
 }
 
 extension String: Error {

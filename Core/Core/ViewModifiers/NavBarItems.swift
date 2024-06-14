@@ -24,6 +24,10 @@ extension View {
         navBarItems(trailing: { trailing })
     }
 
+    public func navBarItems(trailing: InstUI.NavigationBarButton) -> some View {
+        navBarItems(trailing: { trailing })
+    }
+
     public func navBarItems<T>(trailing: () -> T) -> some View where T: View {
         toolbar {
             ToolbarItem(placement: .navigationBarTrailing, content: trailing)
@@ -31,6 +35,10 @@ extension View {
     }
 
     public func navBarItems<L, T>(leading: L, trailing: T) -> some View where L: View, T: View {
+        navBarItems(leading: { leading }, trailing: { trailing })
+    }
+
+    public func navBarItems(leading: InstUI.NavigationBarButton, trailing: InstUI.NavigationBarButton) -> some View {
         navBarItems(leading: { leading }, trailing: { trailing })
     }
 

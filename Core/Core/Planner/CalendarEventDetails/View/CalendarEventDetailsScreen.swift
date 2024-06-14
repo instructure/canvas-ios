@@ -51,7 +51,7 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
 #if DEBUG
 
 #Preview {
-    PlannerAssembly.makeEventDetailsPreview()
+    PlannerAssembly.makeEventDetailsScreenPreview()
 }
 
 #endif
