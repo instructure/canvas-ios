@@ -41,9 +41,9 @@ class AttachmentPickerViewModel: ObservableObject {
     public let confirmAlert = ConfirmationAlertViewModel(
         title: String(localized: "Cancel Uploading", bundle: .core),
         message: String(localized: "Are sure you want to leave your process? Your changes will not be saved.", bundle: .core),
-        cancelButtonTitle: String(localized: "No", bundle: .core),
-        confirmButtonTitle: String(localized: "Yes", bundle: .core),
-        isDestructive: false
+        cancelButtonTitle: String(localized: "Cancel", bundle: .core),
+        confirmButtonTitle: String(localized: "Discard", bundle: .core),
+        isDestructive: true
     )
 
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()

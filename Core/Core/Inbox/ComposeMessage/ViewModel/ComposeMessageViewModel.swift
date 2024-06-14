@@ -64,9 +64,9 @@ class ComposeMessageViewModel: ObservableObject {
     public let confirmAlert = ConfirmationAlertViewModel(
         title: String(localized: "Unsaved Changes", bundle: .core),
         message: String(localized: "You have unsaved changes in your message. If you leave now, your current message will be lost.", bundle: .core),
-        cancelButtonTitle: String(localized: "No", bundle: .core),
-        confirmButtonTitle: String(localized: "Yes", bundle: .core),
-        isDestructive: false
+        cancelButtonTitle: String(localized: "Cancel", bundle: .core),
+        confirmButtonTitle: String(localized: "Discard", bundle: .core),
+        isDestructive: true
     )
 
     // MARK: - Private
