@@ -42,4 +42,10 @@ class ResultExtensionsTests: XCTestCase {
         XCTAssertEqual(testee.isSuccess, false)
         XCTAssertEqual(testee.isFailure, true)
     }
+
+    func testSuccessVoid() {
+        let testee: Result<Void, Error> = .success
+
+        XCTAssertEqual(testee.isSuccess, true)
+    }
 }

@@ -21,23 +21,30 @@ import SwiftUI
 extension InstUI {
 
     public struct ListSectionHeader: View {
-        private let name: String
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-        public init(name: String) {
+        private let name: String?
+
+        public init(name: String?) {
             self.name = name
         }
 
+        @ViewBuilder
         public var body: some View {
-            VStack(alignment: .leading, spacing: 0) {
-                Text(name)
-                    .font(.semibold14)
-                    .foregroundStyle(Color.textDark)
-                    .paddingStyle(.all, .standard)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                InstUI.Divider()
+            if let name {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(name)
+                        .font(.semibold14)
+                        .foregroundStyle(Color.textDark)
+                        .paddingStyle(.all, .standard)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    InstUI.Divider()
+                }
+                .background(Color.backgroundLight)
+                .accessibilityAddTraits([.isHeader])
+            } else {
+                SwiftUI.EmptyView()
             }
-            .background(Color.backgroundLight)
-            .accessibilityAddTraits([.isHeader])
         }
     }
 }

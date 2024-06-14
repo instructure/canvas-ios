@@ -257,6 +257,8 @@ public extension UIImage {
     static var masteryLTI: UIImage { UIImage(named: "masteryLTI", in: .core, compatibleWith: nil)! }
     static var offlineLine: UIImage { UIImage(named: "offlineLine", in: .core, compatibleWith: nil)! }
     static var partialSolid: UIImage { UIImage(named: "partialSolid", in: .core, compatibleWith: nil)! }
+    static var radioButtonSelected: UIImage { UIImage(named: "radioButtonSelected", in: .core, compatibleWith: nil)! }
+    static var radioButtonUnselected: UIImage { UIImage(named: "radioButtonUnselected", in: .core, compatibleWith: nil)! }
     static var qrCode: UIImage { UIImage(named: "qrCode", in: .core, compatibleWith: nil)! }
     static var share: UIImage { UIImage(named: "share", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
@@ -453,6 +455,7 @@ public extension Image {
     static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
+
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
     static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }
@@ -499,6 +502,8 @@ public extension Image {
     static var masteryLTI: Image { Image("masteryLTI", bundle: .core) }
     static var offlineLine: Image { Image("offlineLine", bundle: .core) }
     static var partialSolid: Image { Image("partialSolid", bundle: .core) }
+    static var radioButtonSelected: Image { Image("radioButtonSelected", bundle: .core) }
+    static var radioButtonUnselected: Image { Image("radioButtonUnselected", bundle: .core) }
     static var qrCode: Image { Image("qrCode", bundle: .core) }
     static var share: Image { Image("share", bundle: .core) }
     static var todoTab: Image { Image("todoTab", bundle: .core) }

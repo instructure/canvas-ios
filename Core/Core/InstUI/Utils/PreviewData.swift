@@ -32,6 +32,13 @@ extension InstUI {
                          Etiam hendrerit tincidunt placerat. Suspendisse et lacus a metus tempor gravida.
                          New line!
                          """
+
+        static func loremIpsumLong(_ multiplier: Int) -> String {
+            guard multiplier > 0 else { return loremIpsumLong }
+
+            return Array(repeating: loremIpsumLong, count: multiplier)
+                .joined(separator: "\n")
+        }
     }
 }
 

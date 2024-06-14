@@ -310,7 +310,7 @@ public struct DatePickerRow<Label: View>: View {
                 }
                 .opacity(date == nil ? 0.3 : 1)
                 .disabled(date == nil)
-                .accessibilityLabel("Clear date")
+                .accessibilityLabel(String(localized: "Clear date", bundle: .core))
             }
             .frame(minHeight: 36) // To always have the same height despite datepicker visibility
         }

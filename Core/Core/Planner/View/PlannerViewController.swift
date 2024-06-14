@@ -35,7 +35,7 @@ public class PlannerViewController: UIViewController {
     public var selectedDate: Date = Clock.now
     var studentID: String?
 
-    lazy var calendarFilterInteractor: CalendarFilterInteractor = PlannerAssembly.makeInteractor(observedUserId: studentID)
+    lazy var calendarFilterInteractor: CalendarFilterInteractor = PlannerAssembly.makeFilterInteractor(observedUserId: studentID)
     private var subscriptions = Set<AnyCancellable>()
 
     private var currentlyDisplayedToday: Date?
@@ -122,9 +122,24 @@ public class PlannerViewController: UIViewController {
     }
 
     @objc func addNote() {
-        env.router.show(CreateTodoViewController.create(completion: { [weak self] in self?.plannerListWillRefresh() }),
-                        from: self,
-                        options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/calendar/new")
+        let weakVC = WeakViewController()
+        let vc = PlannerAssembly.makeCreateToDoViewController(
+            calendarListProviderInteractor: calendarFilterInteractor,
+            completion: { [weak self] in
+                if $0 == .didUpdate {
+                    self?.plannerListWillRefresh()
+                }
+                self?.env.router.dismiss(weakVC)
+            }
+        )
+        weakVC.setValue(vc)
+
+        env.router.show(
+            vc,
+            from: self,
+            options: .modal(isDismissable: false, embedInNav: true),
+            analyticsRoute: "/calendar/new"
+        )
     }
 
     @objc func selectToday() {
