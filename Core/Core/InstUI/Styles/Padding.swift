@@ -101,35 +101,9 @@ extension View {
 
     public func paddingStyle(set: InstUI.Styles.PaddingSet) -> some View {
         self
-            .applyPadding(edge: .top, padding: set.config.top)
-            .applyPadding(edge: .bottom, padding: set.config.bottom)
-            .applyPadding(edge: .leading, padding: set.config.leading)
-            .applyPadding(edge: .trailing, padding: set.config.trailing)
-    }
-}
-
-// MARK: - Helpers
-
-extension View {
-    private func applyPadding(edge: Edge.Set, padding: InstUI.Styles.Padding?) -> some View {
-        modifier(PaddingModifier(edge: edge, padding: padding))
-    }
-}
-
-private struct PaddingModifier: ViewModifier {
-    private var edge: Edge.Set
-    private var padding: InstUI.Styles.Padding?
-
-    init(edge: Edge.Set, padding: InstUI.Styles.Padding?) {
-        self.edge = edge
-        self.padding = padding
-    }
-
-    func body(content: Content) -> some View {
-        if let padding {
-            content.paddingStyle(edge, padding)
-        } else {
-            content
-        }
+            .padding(.top, set.config.top?.rawValue ?? 0)
+            .padding(.bottom, set.config.bottom?.rawValue ?? 0)
+            .padding(.leading, set.config.leading?.rawValue ?? 0)
+            .padding(.trailing, set.config.trailing?.rawValue ?? 0)
     }
 }
