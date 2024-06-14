@@ -23,7 +23,7 @@ extension InstUI {
     public struct NavigationBarButton: View {
         @Environment(\.isEnabled) private var isEnabledViaEnvironment: Bool
 
-        private let label: String
+        @ViewBuilder private let content: () -> AnyView
         private let isEnabledOverride: Bool?
         private let action: () -> Void
 
@@ -31,21 +31,22 @@ extension InstUI {
             isEnabledOverride ?? isEnabledViaEnvironment
         }
 
-        public init(label: String, isEnabled isEnabledOverride: Bool? = nil, action: @escaping () -> Void) {
-            self.label = label
+        public init(
+            isEnabled isEnabledOverride: Bool? = nil,
+            action: @escaping () -> Void,
+            content: @escaping () -> AnyView
+        ) {
+            self.content = content
             self.isEnabledOverride = isEnabledOverride
             self.action = action
         }
 
         public var body: some View {
-            Button(
-                action: action,
-                label: {
-                    Text(label)
-                        .font(.regular16, lineHeight: .fit)
-                        .foregroundStyle(isEnabled ? Color.textDarkest : Color.disabledGray)
-                }
-            )
+            Button(action: action) {
+                content()
+                    // TODO: Add option for darker(context) backgrounds
+                    .foregroundStyle(isEnabled ? Color.textDarkest : Color.disabledGray)
+            }
             .environment(\.isEnabled, isEnabled)
         }
     }
@@ -53,20 +54,60 @@ extension InstUI {
 
 extension InstUI.NavigationBarButton {
 
-    public static func cancel(isEnabled isEnabledOverride: Bool? = nil, action: @escaping () -> Void) -> Self {
-        .init(label: String(localized: "Cancel", bundle: .core), isEnabled: isEnabledOverride, action: action)
+    public static func cancel(
+        isEnabled isEnabledOverride: Bool? = nil,
+        action: @escaping () -> Void
+    ) -> Self {
+        .textButton(
+            isEnabled: isEnabledOverride,
+            label: String(localized: "Cancel", bundle: .core),
+            action: action
+        )
     }
 
-    public static func done(isEnabled isEnabledOverride: Bool? = nil, action: @escaping () -> Void) -> Self {
-        .init(label: String(localized: "Done", bundle: .core), isEnabled: isEnabledOverride, action: action)
+    public static func done(
+        isEnabled isEnabledOverride: Bool? = nil,
+        action: @escaping () -> Void
+    ) -> Self {
+        .textButton(
+            isEnabled: isEnabledOverride,
+            label: String(localized: "Done", bundle: .core),
+            action: action
+        )
     }
 
-    public static func add(isEnabled isEnabledOverride: Bool? = nil, action: @escaping () -> Void) -> Self {
-        .init(label: String(localized: "Add", bundle: .core), isEnabled: isEnabledOverride, action: action)
+    public static func add(
+        isEnabled isEnabledOverride: Bool? = nil,
+        action: @escaping () -> Void
+    ) -> Self {
+        .textButton(
+            isEnabled: isEnabledOverride,
+            label: String(localized: "Add", bundle: .core),
+            action: action
+        )
     }
 
-    public static func save(isEnabled isEnabledOverride: Bool? = nil, action: @escaping () -> Void) -> Self {
-        .init(label: String(localized: "Save", bundle: .core), isEnabled: isEnabledOverride, action: action)
+    public static func save(
+        isEnabled isEnabledOverride: Bool? = nil,
+        action: @escaping () -> Void
+    ) -> Self {
+        .textButton(
+            isEnabled: isEnabledOverride,
+            label: String(localized: "Save", bundle: .core),
+            action: action
+        )
+    }
+
+    public static func textButton(
+        isEnabled isEnabledOverride: Bool? = nil,
+        label: String,
+        action: @escaping () -> Void
+    ) -> Self {
+        .init(
+            isEnabled: isEnabledOverride,
+            action: action) {
+                AnyView(Text(label).font(.regular16, lineHeight: .fit))
+            }
     }
 }
 
@@ -74,18 +115,41 @@ extension InstUI.NavigationBarButton {
 
 #Preview {
     VStack {
-        InstUI.NavigationBarButton.cancel(action: {})
+        let previewsFactory = {
+            VStack {
+                InstUI.NavigationBarButton.cancel(action: {})
 
-        InstUI.NavigationBarButton.done(action: {})
-            .disabled(true)
+                InstUI.NavigationBarButton.done(action: {})
+                    .disabled(true)
 
-        InstUI.NavigationBarButton.add(isEnabled: false, action: {})
+                InstUI.NavigationBarButton.add(isEnabled: false, action: {})
 
-        InstUI.NavigationBarButton(label: "Enabled button", isEnabled: true, action: {})
-            .disabled(true)
+                InstUI.NavigationBarButton.textButton(isEnabled: true, label: "Enabled button", action: {})
 
-        InstUI.NavigationBarButton(label: "Disabled button", isEnabled: false, action: {})
-            .disabled(false)
+                InstUI.NavigationBarButton.textButton(isEnabled: false, label: "Disabled button", action: {})
+                    .disabled(false)
+
+                InstUI.NavigationBarButton(isEnabled: true, action: {}) {
+                    AnyView(Image.settingsLine)
+                }
+
+                InstUI.NavigationBarButton(isEnabled: false, action: {}) {
+                    AnyView(Image.settingsLine)
+                }
+            }
+        }
+        VStack {
+            Text(verbatim: "Dialog Nav Bar Background")
+            previewsFactory().background(Color.backgroundLightest)
+        }
+        .padding()
+        .border(Color.backgroundDarkest)
+        VStack {
+            Text(verbatim: "Context Nav Bar Background")
+            previewsFactory().background(Color(UIColor.electric.darkenToEnsureContrast(against: .textLightest)))
+        }
+        .padding()
+        .border(Color.backgroundDarkest)
     }
 }
 
