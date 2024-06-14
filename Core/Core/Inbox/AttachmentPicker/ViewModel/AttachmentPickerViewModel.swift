@@ -39,8 +39,8 @@ class AttachmentPickerViewModel: ObservableObject {
     public let fileErrorMessage = String(localized: "Failed to add attachment. Please try again!", bundle: .core)
     @Published public var isShowingCancelDialog = false
     public let confirmAlert = ConfirmationAlertViewModel(
-        title: String(localized: "Are your sure?", bundle: .core),
-        message: String(localized: "You have some not uploaded attachments that are not uploaded so cannot be added as attachment!", bundle: .core),
+        title: String(localized: "Cancel Uploading", bundle: .core),
+        message: String(localized: "Are sure you want to leave your process? Your changes will not be saved.", bundle: .core),
         cancelButtonTitle: String(localized: "No", bundle: .core),
         confirmButtonTitle: String(localized: "Yes", bundle: .core),
         isDestructive: false

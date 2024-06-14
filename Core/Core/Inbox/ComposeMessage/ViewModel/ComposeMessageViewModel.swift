@@ -62,8 +62,8 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var attachments: [File] = []
     @Published public var isShowingCancelDialog = false
     public let confirmAlert = ConfirmationAlertViewModel(
-        title: String(localized: "Are your sure?", bundle: .core),
-        message: String(localized: "Your unsent message will be thrown away!", bundle: .core),
+        title: String(localized: "Unsaved Changes", bundle: .core),
+        message: String(localized: "You have unsaved changes in your message. If you leave now, your current message will be lost.", bundle: .core),
         cancelButtonTitle: String(localized: "No", bundle: .core),
         confirmButtonTitle: String(localized: "Yes", bundle: .core),
         isDestructive: false
@@ -81,7 +81,7 @@ class ComposeMessageViewModel: ObservableObject {
         self?.update()
     }
     private let alreadyUploadedFiles = CurrentValueSubject<[File], Never>([])
-    private var alreadyUploadedFileList = [File()]
+    private var alreadyUploadedFileList: [File] = []
     private var hiddenMessage: String = ""
     private var autoTeacherSelect: Bool = false
     private var teacherOnly: Bool = false
