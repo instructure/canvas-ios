@@ -45,12 +45,17 @@ class UserTests: CoreTestCase {
     }
 
     func testSaveDoesNotOverwriteEnrollments() {
+        let enrollment = Enrollment.make(from: .make(id: "1", user_id: "1"))
         let user = User.make(from: .make(id: "1", name: "A", enrollments: [.make(user_id: "1")]))
         let api = APIUser.make(id: "1", name: "B", enrollments: nil)
         User.save(api, in: databaseClient)
         databaseClient.refresh(user, mergeChanges: true)
+
+        let fetchedEnrollments: [Enrollment] = databaseClient.fetch()
         XCTAssertEqual(user.name, "B")
         XCTAssertEqual(user.enrollments.count, 1)
+        XCTAssertEqual(fetchedEnrollments.count, 1)
+        XCTAssertEqual(fetchedEnrollments[0].objectID, enrollment.objectID)
     }
 
     func testDisplayName() {

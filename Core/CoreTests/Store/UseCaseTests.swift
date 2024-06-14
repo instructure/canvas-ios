@@ -55,7 +55,7 @@ class UseCaseTests: CoreTestCase {
 
     func testScope() {
         let useCase = TestUseCase()
-        XCTAssertEqual(useCase.scope, Scope.all(orderBy: "id"))
+        XCTAssertEqual(useCase.scope, Scope.all(orderBy: "objectID"))
     }
 
     func testGetNext() {

@@ -151,6 +151,10 @@
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
     </entity>
+    <entity name="CDBrandVariables" representedClassName="Core.CDBrandVariables" syncable="YES">
+        <attribute name="apiBrandVariablesRaw" attributeType="String"/>
+        <attribute name="headerImageRaw" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+    </entity>
     <entity name="CDCalendarFilterEntry" representedClassName="Core.CDCalendarFilterEntry" syncable="YES">
         <attribute name="name" attributeType="String"/>
         <attribute name="observedUserId" optional="YES" attributeType="String"/>
@@ -742,7 +746,7 @@
         <attribute name="actionDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="alertTypeRaw" attributeType="String"/>
         <attribute name="contextID" optional="YES" attributeType="String"/>
-        <attribute name="courseID" optional="YES" attributeType="String"/>
+        <attribute name="contextType" optional="YES" attributeType="String"/>
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

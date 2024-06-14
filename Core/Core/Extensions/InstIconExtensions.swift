@@ -472,6 +472,7 @@ public extension Image {
     static var chatBubble: Image { Image("chatBubble", bundle: .core) }
     static var checkbox: Image { Image("checkbox", bundle: .core) }
     static var checkboxSelected: Image { Image("checkboxSelected", bundle: .core) }
+    static var chevronDown: Image { Image("chevronDown", bundle: .core) }
     static var collaborations: Image { Image("collaborations", bundle: .core) }
     static var conferences: Image { Image("conferences", bundle: .core) }
     static var coursesTab: Image { Image("coursesTab", bundle: .core) }
