@@ -67,8 +67,10 @@ class LocalizationManagerTests: CoreTestCase {
 
     // This test is disabled, because Language & Region are fixed (en & US) for tests, and it would always fail.
     // Main logic is extracted and tested above.
-    // To enable it: set TestPlane (or Scheme) Language & Region to System, remove method name prefix and run this test class
-    func DISABLED_testSetCurrentLocale() {
+    // To enable it: set TestPlan (or Scheme) Language & Region to System, comment out XCTSkip() below.
+    func testSetCurrentLocale() throws {
+        try XCTSkipIf(true, "This test is disabled, because Language & Region are fixed (en & US) for tests, and it would always fail.")
+
         LocalizationManager.setCurrentLocale("pt-BR")
         XCTAssertEqual(LocalizationManager.currentLocale, "pt-BR")
         XCTAssertEqual(UserDefaults.standard.object(forKey: "AppleLanguages") as? [String], [ "pt-BR" ])
