@@ -40,6 +40,7 @@ class ParentTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        Clock.reset()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         AppEnvironment.shared = env
         API.resetMocks()
