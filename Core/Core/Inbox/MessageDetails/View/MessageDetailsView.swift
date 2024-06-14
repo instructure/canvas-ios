@@ -61,6 +61,7 @@ public struct MessageDetailsView: View {
             .accentColor(Color(Brand.shared.primary))
             .listRowInsets(EdgeInsets())
             .listRowSeparator(.hidden)
+            .padding(.all, 12)
     }
 
     private var detailsView: some View {
