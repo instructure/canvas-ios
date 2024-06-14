@@ -37,11 +37,7 @@ struct SelectCalendarScreen: View {
                                 itemCell(with: item)
                             }
                         } header: {
-                            if let sectionTitle = section.title {
-                                InstUI.ListSectionHeader(name: sectionTitle)
-                            } else {
-                                SwiftUI.EmptyView()
-                            }
+                            InstUI.ListSectionHeader(name: section.title)
                         }
                     }
                 }
