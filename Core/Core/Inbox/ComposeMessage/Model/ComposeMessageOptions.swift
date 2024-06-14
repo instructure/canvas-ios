@@ -108,23 +108,23 @@ public class ComposeMessageOptions {
             case .individualDisabled:
                 disabledFields.individualDisabled = queryItem.value?.boolValue ?? false
             case .contextCodeContent:
-                contextCode = queryItem.value
+                contextCode = queryItem.value?.removingPercentEncoding
             case .contextNameContent:
-                contextName = queryItem.value
+                contextName = queryItem.value?.removingPercentEncoding
             case .recipientIdsContent:
-                recipientIds = queryItem.value?.split(separator: ",").map { String($0) } ?? []
+                recipientIds = queryItem.value?.removingPercentEncoding?.split(separator: ",").map { String($0) } ?? []
             case .recipientNamesContent:
-                recipientNames = queryItem.value?.split(separator: ",").map { String($0) } ?? []
+                recipientNames = queryItem.value?.removingPercentEncoding?.split(separator: ",").map { String($0) } ?? []
             case .recipientAvatarsContent:
-                recipientAvatars = queryItem.value?.split(separator: ",", omittingEmptySubsequences: false).map { String($0) } ?? []
+                recipientAvatars = queryItem.value?.removingPercentEncoding?.split(separator: ",", omittingEmptySubsequences: false).map { String($0) } ?? []
             case .subjectContent:
-                fieldContents.subjectText = queryItem.value ?? ""
+                fieldContents.subjectText = queryItem.value?.removingPercentEncoding ?? ""
             case .messageContent:
-                fieldContents.bodyText = queryItem.value ?? ""
+                fieldContents.bodyText = queryItem.value?.removingPercentEncoding ?? ""
             case .individualSendText:
                 fieldContents.individualSend = queryItem.value?.boolValue ?? false
             case .hiddenMessage:
-                extras.hiddenMessage = queryItem.value ?? ""
+                extras.hiddenMessage = queryItem.value?.removingPercentEncoding ?? ""
             case .autoTeacherSelect:
                 extras.autoTeacherSelect = queryItem.value?.boolValue ?? false
             case .alwaysShowRecipients:

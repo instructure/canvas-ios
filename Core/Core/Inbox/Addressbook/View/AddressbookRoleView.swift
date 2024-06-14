@@ -21,6 +21,8 @@ import SwiftUI
 struct AddressbookRoleView: View, ScreenViewTrackable {
     @ObservedObject private var viewModel: AddressbookRoleViewModel
     @Environment(\.viewController) private var controller
+    @ScaledMetric private var uiScale: CGFloat = 1
+
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     init(model: AddressbookRoleViewModel) {
@@ -147,6 +149,17 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
                             .lineLimit(1)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
+
+                    Spacer()
+
+                    Image.arrowOpenRightLine
+                        .resizable()
+                        .frame(
+                            width: 15 * uiScale,
+                            height: 15 * uiScale
+                        )
+                        .foregroundColor(.textDark)
+                        .padding(.all, 12)
                 }
             })
             .padding(16)
