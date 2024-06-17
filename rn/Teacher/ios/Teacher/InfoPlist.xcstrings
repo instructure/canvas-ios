@@ -265,6 +265,18 @@
         }
       }
     },
+    "CFBundleSpokenName" : {
+      "comment" : "Accessibility Bundle Name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Canvas Teacher"
+          }
+        }
+      }
+    },
     "NSCameraUsageDescription" : {
       "comment" : "Privacy - Camera Usage Description",
       "extractionState" : "extracted_with_value",
