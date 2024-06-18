@@ -17,12 +17,17 @@
 //
 
 import Foundation
+import CoreData
 
 public class StarConversation: APIUseCase {
     public var cacheKey: String?
     public typealias Model = Conversation
     public let id: String
     public let starred: Bool
+
+    public var scope: Scope {
+        Scope.where(#keyPath(InboxMessageListItem.messageId), equals: id)
+    }
 
     public var request: StarConversationRequest {
         return StarConversationRequest(id: id, starred: starred)
@@ -31,5 +36,28 @@ public class StarConversation: APIUseCase {
     public init(id: String, starred: Bool) {
         self.id = id
         self.starred = starred
+    }
+
+    public func write(response: APIConversation?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response else {
+            return
+        }
+
+        Conversation.save(response, in: client)
+
+        let entities: [InboxMessageListItem] = client.fetch(scope: scope)
+
+        entities
+            .compactMap { InboxMessageScope(rawValue: $0.scopeFilter) }
+            .forEach { scope in
+                InboxMessageListItem.save(
+                    response,
+                    currentUserID: AppEnvironment.shared.currentSession?.userID ?? "",
+                    isSent: true,
+                    contextFilter: .none,
+                    scopeFilter: scope,
+                    in: client
+                )
+        }
     }
 }

@@ -23,6 +23,7 @@ import Charts
 public struct AudioPickerView: View {
     @ObservedObject private var viewModel: AudioPickerViewModel
     @Environment(\.viewController) private var controller
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var playbackScrollTimer: Timer?
 
     let backgroundColor: Color = .init(hexString: "#111213") ?? Color.black
@@ -33,7 +34,7 @@ public struct AudioPickerView: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             durationView
             contentView
             controlView
@@ -99,7 +100,7 @@ public struct AudioPickerView: View {
 
     private func playbackPlotView(maxSize: CGSize) -> some View {
         return ScrollViewReader { proxy in
-            ScrollView(.horizontal) {
+            ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(alignment: .center, spacing: viewModel.spaceWidth) {
                     Spacer()
                         .frame(width: maxSize.width / 2)

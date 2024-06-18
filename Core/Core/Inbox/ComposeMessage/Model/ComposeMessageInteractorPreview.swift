@@ -22,6 +22,11 @@ import Combine
 import CombineExt
 
 public class ComposeMessageInteractorPreview: ComposeMessageInteractor {
+    public var conversationAttachmentsFolder = CurrentValueSubject<[Folder], Never>([])
+
+    public func getOnlineFileURL(fileId: String) -> AnyPublisher<URL?, any Error> {
+        return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
 
     public func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error> {
         Future<URLResponse?, Error> { promise in
@@ -33,6 +38,10 @@ public class ComposeMessageInteractorPreview: ComposeMessageInteractor {
         Future<URLResponse?, Error> { promise in
             promise(.success(nil))
         }
+    }
+
+    public func deleteFile(file: File) -> AnyPublisher<Void, Never> {
+        return Just(()).eraseToAnyPublisher()
     }
 }
 

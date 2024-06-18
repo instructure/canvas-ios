@@ -56,17 +56,19 @@ public struct K5ResourcesContactViewModel {
     }
 
     public func contactTapped(router: Router, viewController: WeakViewController) {
-        let recipient: [String: Any?] = [
-            "id": userId,
-            "name": name,
-            "avatar_url": image?.absoluteString,
-        ]
-        router.route(to: "/conversations/compose", userInfo: [
-            "recipients": [recipient],
-            "contextName": courseName,
-            "contextCode": courseContextID,
-            "showCourseSelect": false,
-        ], from: viewController, options: .modal(embedInNav: true))
+        guard let context = Context(canvasContextID: courseContextID) else { return }
+        let composeMessageOptions = ComposeMessageOptions(
+            disabledFields: .init(contextDisabled: true, recipientsDisabled: true),
+            fieldsContents: .init(
+                selectedContext: .init(name: courseName, context: context),
+                selectedRecipients: [Recipient(id: userId, name: name, avatarURL: image?.absoluteURL)])
+        )
+
+        router.route(
+            to: URLComponents.parse("/conversations/compose", queryItems: composeMessageOptions.queryItems),
+            from: viewController.value,
+            options: .modal(embedInNav: true)
+        )
     }
 }
 

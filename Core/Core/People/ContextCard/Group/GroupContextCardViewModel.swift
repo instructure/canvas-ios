@@ -53,17 +53,19 @@ public class GroupContextCardViewModel: ObservableObject {
 
     public func openNewMessageComposer(controller: UIViewController) {
         guard shouldShowMessageButton, let group = group.first, let user = user.first else { return }
-        let recipient: [String: Any?] = [
-            "id": user.id,
-            "name": user.name,
-            "avatar_url": user.avatarURL?.absoluteString,
-        ]
-        env.router.route(to: "/conversations/compose", userInfo: [
-            "recipients": [recipient],
-            "contextName": group.name,
-            "contextCode": context.canvasContextID,
-            "canSelectCourse": false,
-        ], from: controller, options: .modal(embedInNav: true))
+
+        let composeMessageOptions = ComposeMessageOptions(
+            disabledFields: .init(contextDisabled: true, recipientsDisabled: true),
+            fieldsContents: .init(
+                selectedContext: .init(name: group.name, context: context),
+                selectedRecipients: [Recipient(id: user.id, name: user.name, avatarURL: user.avatarURL?.absoluteURL)])
+        )
+
+        env.router.route(
+            to: URLComponents.parse("/conversations/compose", queryItems: composeMessageOptions.queryItems),
+            from: controller,
+            options: .modal(embedInNav: true)
+        )
     }
 
     private func updateLoadingState() {

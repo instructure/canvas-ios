@@ -17,18 +17,33 @@
 //
 
 import Foundation
+import CoreData
 
 public class DeleteConversation: APIUseCase {
     public var cacheKey: String?
     public typealias Model = Conversation
     public let id: String
 
+    public var scope: Scope {
+        Scope.where(#keyPath(InboxMessageListItem.messageId), equals: id)
+    }
+    private let inboxMessageScope: InboxMessageScope
+
     public var request: DeleteConversationRequest {
         return DeleteConversationRequest(id: id)
     }
 
-    public init(id: String) {
+    public init(id: String, inboxScopeFilter: InboxMessageScope = .sent) {
         self.id = id
+        self.inboxMessageScope = inboxScopeFilter
+    }
+
+    public func write(response: APIConversation?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        let entities: [InboxMessageListItem] = client.fetch(scope: scope)
+        entities.forEach { message in
+            client.delete(message)
+            try? client.save()
+        }
     }
 }
 

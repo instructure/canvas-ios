@@ -29,7 +29,7 @@ class AddressbookRoleViewModel: ObservableObject {
     @Published public private(set) var roleRecipients: [String: [Recipient]] = [:]
 
     public var isRolesViewVisible: Bool {
-        searchText.value.isEmpty && !roles.isEmpty
+        searchText.value.isEmpty && !roles.isEmpty && !teachersOnly
     }
 
     public var isAllRecipientButtonVisible: Bool {
@@ -44,9 +44,9 @@ class AddressbookRoleViewModel: ObservableObject {
     public let recipientContext: RecipientContext
 
     // MARK: - Inputs
-    public let roleDidTap = PassthroughSubject<(roleName: String, recipients: [Recipient], controller: WeakViewController), Never>()
-    public let recipientDidTap = PassthroughSubject<Recipient, Never>()
-    public let doneButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let didTapRole = PassthroughSubject<(roleName: String, recipients: [Recipient], controller: WeakViewController), Never>()
+    public let didTapRecipient = PassthroughSubject<Recipient, Never>()
+    public let didTapDone = PassthroughRelay<WeakViewController>()
 
     // MARK: - Input / Output
     @Published public var searchText = CurrentValueSubject<String, Never>("")
@@ -68,22 +68,25 @@ class AddressbookRoleViewModel: ObservableObject {
         }
         return isNotStudent
     }
+    private let teachersOnly: Bool
 
     public init(
         env: AppEnvironment,
         router: Router,
         recipientContext: RecipientContext,
+        teacherOnly: Bool = false,
         interactor: AddressbookInteractor,
-        recipientDidSelect: PassthroughRelay<Recipient>,
+        didSelectRecipient: PassthroughRelay<Recipient>,
         selectedRecipients: CurrentValueSubject<[Recipient], Never>
     ) {
         self.interactor = interactor
         self.recipientContext = recipientContext
         self.router = router
         self.env = env
+        self.teachersOnly = teacherOnly
 
         setupOutputBindings(selectedRecipients: selectedRecipients)
-        setupInputBindings(recipientDidSelect: recipientDidSelect, selectedRecipients: selectedRecipients)
+        setupInputBindings(recipientDidSelect: didSelectRecipient, selectedRecipients: selectedRecipients)
     }
 
     public func refresh() async {
@@ -141,13 +144,13 @@ class AddressbookRoleViewModel: ObservableObject {
     }
 
     private func setupInputBindings(recipientDidSelect: PassthroughRelay<Recipient>, selectedRecipients: CurrentValueSubject<[Recipient], Never>) {
-        doneButtonDidTap
+        didTapDone
             .sink { [router] viewController in
                 router.dismiss(viewController)
             }
             .store(in: &subscriptions)
 
-        roleDidTap
+        didTapRole
             .sink { [weak self] (roleName, recipients, viewController) in
                 if let self {
                     self.router.show(
@@ -165,7 +168,7 @@ class AddressbookRoleViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
 
-        recipientDidTap
+        didTapRecipient
             .sink { recipient in
                 recipientDidSelect.accept(recipient)
             }

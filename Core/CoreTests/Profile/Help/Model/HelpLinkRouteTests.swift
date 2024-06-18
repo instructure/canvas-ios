@@ -36,7 +36,7 @@ class HelpLinkRouteTests: CoreTestCase {
         testee.id = "instructor_question"
 
         let result = testee.route
-        XCTAssertEqual(result?.path, "/conversations/compose?instructorQuestion=1&canAddRecipients=")
+        XCTAssertEqual(result?.path, "/conversations/compose?autoTeacherSelect=true&recipientsDisabled=true&alwaysShowRecipients=true")
         XCTAssertEqual(result?.options, .modal(.formSheet, embedInNav: true))
     }
 

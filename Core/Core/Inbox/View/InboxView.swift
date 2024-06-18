@@ -18,12 +18,17 @@
 
 import SwiftUI
 
-public struct InboxView: View {
+public struct InboxView: View, ScreenViewTrackable {
     @ObservedObject private var model: InboxViewModel
     @Environment(\.viewController) private var controller
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     public init(model: InboxViewModel) {
         self.model = model
+
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/conversations"
+        )
     }
 
     public var body: some View {

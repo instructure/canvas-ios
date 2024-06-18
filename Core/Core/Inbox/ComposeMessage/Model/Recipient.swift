@@ -20,41 +20,41 @@ import Foundation
 
 public struct Recipient: Equatable, Hashable {
 
-    let displayName: String
-    let avatarURL: URL?
-    let ids: [String]
+    public let displayName: String
+    public let avatarURL: URL?
+    public let ids: [String]
 
-    init(id: String, name: String, avatarURL: URL?) {
+    public init(id: String, name: String, avatarURL: URL?) {
         self.ids = [id]
         self.displayName = name
         self.avatarURL = avatarURL
     }
 
-    init(ids: [String], name: String, avatarURL: URL?) {
+    public init(ids: [String], name: String, avatarURL: URL?) {
         self.ids = ids
         self.displayName = name
         self.avatarURL = avatarURL
     }
 
-    init(searchRecipient: SearchRecipient) {
+    public init(searchRecipient: SearchRecipient) {
         self.ids = [searchRecipient.id]
-        self.displayName = searchRecipient.name
+        self.displayName = searchRecipient.displayName ?? searchRecipient.name
         self.avatarURL = searchRecipient.avatarURL
     }
 
-    init(searchRecipients: [SearchRecipient], displayName: String, avatarURL: URL? = nil) {
+    public init(searchRecipients: [SearchRecipient], displayName: String, avatarURL: URL? = nil) {
         self.ids = searchRecipients.map { $0.id }
         self.displayName = displayName
         self.avatarURL = avatarURL
     }
 
-    init(conversationParticipant: ConversationParticipant) {
+    public init(conversationParticipant: ConversationParticipant) {
         self.ids = [conversationParticipant.id]
-        self.displayName = conversationParticipant.name
+        self.displayName = conversationParticipant.displayName
         self.avatarURL = conversationParticipant.avatarURL
     }
 
-    init(conversationParticipants: [ConversationParticipant], displayName: String, avatarURL: URL? = nil) {
+    public init(conversationParticipants: [ConversationParticipant], displayName: String, avatarURL: URL? = nil) {
         self.ids = conversationParticipants.map { $0.id }
         self.displayName = displayName
         self.avatarURL = avatarURL

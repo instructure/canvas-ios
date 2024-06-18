@@ -61,6 +61,7 @@ public struct MessageDetailsView: View {
             .accentColor(Color(Brand.shared.primary))
             .listRowInsets(EdgeInsets())
             .listRowSeparator(.hidden)
+            .padding(.all, 12)
     }
 
     private var detailsView: some View {
@@ -120,6 +121,7 @@ public struct MessageDetailsView: View {
             VStack(spacing: 0) {
                 Color.borderMedium
                     .frame(height: 0.5)
+                    .padding(.horizontal, 8)
                 MessageView(model: message,
                             replyDidTap: { model.replyTapped(message: message.conversationMessage, viewController: controller) },
                             moreDidTap: { model.messageMoreTapped(message: message.conversationMessage, viewController: controller) })

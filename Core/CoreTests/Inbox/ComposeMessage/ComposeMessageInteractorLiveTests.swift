@@ -133,6 +133,17 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         waitForState(.data)
     }
 
+    func testDeleteFile() {
+        let fileId = "1"
+        let deleteRequest = DeleteFileRequest(fileID: fileId)
+        let response = APIFile.make()
+        api.mock(deleteRequest, value: response)
+
+        XCTAssertFinish(testee.deleteFile(file: File.make(from: response)))
+
+        waitForState(.data)
+    }
+
     private func mockData() {
         let course1 = APICourse.make(
             id: "1",
@@ -152,5 +163,15 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         stateUpdate.assertForOverFulfill = false
         stateUpdate.fulfill()
         wait(for: [stateUpdate], timeout: 1)
+    }
+
+    private class URLSessionDataTaskPublisherProviderMock: URLSessionDataTaskPublisherProvider {
+        let savedURL = URL.Directories.documents.appendingPathComponent("test.txt")
+
+        func getPublisher(for request: URLRequest) -> AnyPublisher<(tempURL: URL, fileName: String), Error> {
+            return Just((tempURL: savedURL, fileName: "testOverwritten.txt"))
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
     }
 }

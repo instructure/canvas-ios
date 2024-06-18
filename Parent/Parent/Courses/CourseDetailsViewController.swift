@@ -189,6 +189,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
                 hiddenMessage: String.localizedStringWithFormat(template, name, associatedTabConversationLink())
             )
             env.router.show(compose, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
+
             replyButton?.isEnabled = true
         }
     }

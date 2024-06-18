@@ -51,6 +51,13 @@ public extension URLComponents {
         return url
     }
 
+    static func parse(_ url: String, queryItems: [URLQueryItem]) -> URLComponents {
+        var components = parse(url)
+        components.queryItems = queryItems
+
+        return components
+    }
+
     var withCanonicalQueryParams: URLComponents {
         var cleaned = self
         cleaned.query = cleaned.query?.replacingOccurrences(of: "+", with: " ")

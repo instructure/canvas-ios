@@ -17,15 +17,24 @@
 //
 
 import Foundation
+import Combine
 
 public enum AttachmentPickerAssembly {
     public static func makeAttachmentPickerViewController(
+        subTitle: String? = nil,
         env: AppEnvironment = .shared,
         batchId: String,
-        uploadManager: UploadManager
+        uploadManager: UploadManager,
+        alreadyUploadedFiles: CurrentValueSubject<[File], Never>
     ) -> UIViewController {
-        let interactor = AttachmentPickerInteractorLive(batchId: batchId, uploadManager: uploadManager)
-        let viewModel = AttachmentPickerViewModel(router: env.router, interactor: interactor)
+        let interactor = AttachmentPickerInteractorLive(
+            batchId: batchId,
+            uploadFolderPath: "conversation attachments",
+            restrictForFolderPath: true,
+            uploadManager: uploadManager,
+            alreadyUploadedFiles: alreadyUploadedFiles
+        )
+        let viewModel = AttachmentPickerViewModel(subTitle: subTitle, router: env.router, interactor: interactor)
         let view = AttachmentPickerView(model: viewModel)
         return CoreHostingController(view)
     }
@@ -36,6 +45,17 @@ public enum AttachmentPickerAssembly {
     ) -> AudioPickerView {
         let viewModel = AudioPickerViewModel(router: router, interactor: AudioPickerInteractorLive(), onSelect: onSelect)
         return AudioPickerView(viewModel: viewModel)
+    }
+
+    public static func makeFilePickerViewController(
+        env: AppEnvironment = .shared,
+        folderId: String? = nil,
+        onSelect: @escaping (File) -> Void = { _ in }
+    ) -> UIViewController {
+        let interactor = FilePickerInteractorLive(folderId: folderId)
+        let viewModel = FilePickerViewModel(env: env, interactor: interactor, onSelect: onSelect)
+        let view = FilePickerView(viewModel: viewModel)
+        return CoreHostingController(view)
     }
 
 #if DEBUG
@@ -52,6 +72,11 @@ public enum AttachmentPickerAssembly {
     ) -> AudioPickerView {
         let viewModel = AudioPickerViewModel(router: env.router, interactor: AudioPickerInteractorPreview(), onSelect: {_ in })
         return AudioPickerView(viewModel: viewModel)
+    }
+
+    public static func makeFilePickerPreview(env: AppEnvironment) -> FilePickerView {
+        let viewModel = FilePickerViewModel(env: env, interactor: FilePickerInteractorPreview(), onSelect: { _ in })
+        return FilePickerView(viewModel: viewModel)
     }
 
 #endif

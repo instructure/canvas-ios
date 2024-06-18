@@ -46,6 +46,8 @@ public struct RecipientPillView: View {
             RoundedRectangle(cornerRadius: 100)
                 .stroke(Color.textDark, lineWidth: 0.5)
         )
+        .font(.regular12)
+        .foregroundColor(.textDarkest)
         .accessibilityElement(children: .ignore)
         .accessibility(label: Text(recipient.displayName))
         .accessibilityAction(named: Text("Remove recipient", bundle: .core)) {
