@@ -315,14 +315,14 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .accessibility(label: Text("Add attachment", bundle: .core))
             }
             .padding(.leading, 16)
-            TextEditor(text: $model.bodyText)
-                .iOS16HideListScrollContentBackground()
+
+            InstUI.TextEditorCell(text: $model.bodyText)
                 .font(.regular16, lineHeight: .condensed)
                 .textInputAutocapitalization(.sentences)
                 .focused($messageTextFieldFocus)
                 .foregroundColor(.textDarkest)
-                .padding(.horizontal, 12)
                 .frame(minHeight: 60)
+                .padding(.horizontal, 12)
                 .accessibility(label: Text("Message", bundle: .core))
         }
         .disabled(model.isMessageDisabled)
