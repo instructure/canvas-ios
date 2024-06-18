@@ -72,7 +72,7 @@ class PageViewEventRequestManagerTests: CoreTestCase {
         let pandataEvents = p.batchOfEvents(2, userID: userID)?.map { $0.apiEvent(tokenResponse) } ?? []
 
         // mock the send events req
-        api.mock(PostPandataEventsRequest(token: tokenResponse, events: pandataEvents), data: "\"ok\"".data(using: .utf8))
+        api.mock(PostPandataEventsRequest(token: tokenResponse, events: pandataEvents), data: "\"any kind of response body\"".data(using: .utf8))
 
         drainMainQueue()
         XCTAssertEqual(p.queueCount(for: userID), 2)
