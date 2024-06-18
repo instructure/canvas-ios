@@ -47,7 +47,7 @@ public class PhotosAppHelper: BaseHelper {
     public static func tapCanvasButton() {
         let elements = photosApp
             .descendants(matching: .any)
-            .matching(NSPredicate(format: "label == 'Canvas Student'"))
+            .matching(NSPredicate(format: "label CONTAINS 'Canvas'"))
             .allElementsBoundByIndex
 
         if elements[0].waitForExistence(timeout: defaultTimeout) {

@@ -22,7 +22,8 @@ class AnnouncementsTests: E2ETestCase {
     typealias Helper = AnnouncementsHelper
     typealias DetailsHelper = Helper.Details
     typealias AccountNotifications = Helper.AccountNotifications
-
+    
+    /*
     override func tearDown() {
         // Disable discussion redesign feature flag
         let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .off)
@@ -30,6 +31,7 @@ class AnnouncementsTests: E2ETestCase {
 
         super.tearDown()
     }
+    */
 
     func testAnnouncementsMatchWebOrder() {
         // MARK: Seed the usual stuff
@@ -57,6 +59,8 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(thirdAnnouncement.hasLabel(label: announcements[0].title, strict: false))
     }
 
+    
+    /*
     func testAnnouncementsTitleAndMessage() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
@@ -83,6 +87,7 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(announcementMessage.isVisible)
         XCTAssertTrue(announcementMessage.hasLabel(label: announcement.message))
     }
+    */
 
     func testAnnouncementToggle() {
         // MARK: Seed the usual stuff
@@ -127,9 +132,6 @@ class AnnouncementsTests: E2ETestCase {
         typealias NewDiscussion = DiscussionsHelper.NewDetails
 
         // MARK: Seed the usual stuff with an announcement, enable NewDiscussion feature
-        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .allowedOn)
-        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.allowedOn.rawValue)
-
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)

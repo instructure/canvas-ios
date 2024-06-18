@@ -320,7 +320,9 @@ class DashboardTests: E2ETestCase {
         }
 
         // MARK: Set nickname and color for course
-        nicknameTextField.cutText()
+        nicknameTextField.waitUntil(.hittable)
+        nicknameTextField.tap(withNumberOfTaps: 3, numberOfTouches: 1)
+        nicknameTextField.cutText(tapSelectAll: false)
         nicknameTextField.writeText(text: courseNickname)
 
         let randomColorButton = Helper.CourseOptions.CustomizeCourse.colorButton(color: .allCases.randomElement()!).waitUntil(.visible)

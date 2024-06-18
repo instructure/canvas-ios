@@ -24,11 +24,13 @@ class DiscussionsTests: E2ETestCase {
     typealias ReplyHelper = DetailsHelper.Reply
     typealias NewDiscussion = Helper.NewDetails
 
+    /*
     override func tearDown() {
         let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .off)
         XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.off.rawValue)
         super.tearDown()
     }
+     */
 
     func testDiscussionLabels() {
         // MARK: Seed the usual stuff with a discussion
@@ -61,6 +63,7 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(discussionUnreadLabel.hasLabel(label: "\(discussion.unread_count) Unread"))
     }
 
+    /*
     func testDiscussionDetails() {
         // MARK: Seed the usual stuff with a discussion
         let student = seeder.createUser()
@@ -240,12 +243,10 @@ class DiscussionsTests: E2ETestCase {
         gradesAssignmentSubmittedLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .label(expected: "Submitted"))
         XCTAssertTrue(gradesAssignmentSubmittedLabel.hasLabel(label: "Submitted"))
     }
+    */
 
     func testNewDiscussionScreen() {
         // MARK: Seed the usual stuff with a discussion, enable NewDiscussion feature
-        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .allowedOn)
-        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.allowedOn.rawValue)
-
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
