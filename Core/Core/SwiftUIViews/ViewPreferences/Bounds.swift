@@ -58,6 +58,19 @@ public struct ViewBoundsKey: PreferenceKey {
     }
 }
 
+/**
+ This key allows one to save a view's frame by an ID to the preference store.
+ */
+public struct ViewFrameByID: PreferenceKey {
+    public typealias Value = [String: CGRect]
+
+    public static var defaultValue: [String: CGRect] = [:]
+
+    public static func reduce(value: inout [String: CGRect], nextValue: () -> [String: CGRect]) {
+        value.merge(nextValue(), uniquingKeysWith: { _, newValue in newValue })
+    }
+}
+
 // MARK: - Saving a Single View's Size
 
 /**
