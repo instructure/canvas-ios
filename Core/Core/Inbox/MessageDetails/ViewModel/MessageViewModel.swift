@@ -60,6 +60,12 @@ public class MessageViewModel: Identifiable {
         }
         return .handled
     }
+
+    public func handleFileNavigation(file: File) {
+        guard let controller, let fileId = file.id, let fileURL = URL(string: "/files/\(fileId)") else { return }
+
+        router.route(to: fileURL, from: controller, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
+    }
 }
 
 extension String {

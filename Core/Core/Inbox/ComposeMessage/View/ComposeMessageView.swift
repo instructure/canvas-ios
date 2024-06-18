@@ -394,8 +394,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .foregroundStyle(Color.textDarkest)
 
             if !message.attachments.isEmpty {
-                AttachmentCardsView(attachments: message.attachments, mediaComment: message.mediaComment)
-                    .frame(height: 104)
+                AttachmentsView(attachments: message.attachments, didSelectAttachment: { model.didSelectFile.accept((controller, $0))})
             }
         }
         .padding(.vertical, 12)
