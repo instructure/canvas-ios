@@ -93,8 +93,8 @@ class PagesTests: E2ETestCase {
         XCTAssertTrue(discussionDeepLink.isVisible)
 
         discussionDeepLink.hit()
-        let discussionDetailsNavBar = DiscussionsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(discussionDetailsNavBar.isVisible)
+        let discussionDetailsTitle = DiscussionsHelper.NewDetails.discussionTitle(discussion: discussion).waitUntil(.visible)
+        XCTAssertTrue(discussionDetailsTitle.isVisible)
 
         // MARK: Check deep link to announcement
         DiscussionsHelper.Details.backButton.hit()
@@ -102,8 +102,8 @@ class PagesTests: E2ETestCase {
         XCTAssertTrue(announcementDeepLink.isVisible)
 
         announcementDeepLink.hit()
-        let announcementDetailsNavBar = AnnouncementsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(announcementDetailsNavBar.isVisible)
+        let announcementDetailsTitle = DiscussionsHelper.NewDetails.discussionTitle(discussion: announcement).waitUntil(.visible)
+        XCTAssertTrue(announcementDetailsTitle.isVisible)
     }
 
     func testAddPage() {

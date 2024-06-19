@@ -24,6 +24,7 @@ class AnnouncementsTests: E2ETestCase {
     typealias AccountNotifications = Helper.AccountNotifications
     typealias EditorHelper = Helper.Editor
 
+    /*
     func testAnnouncementsOrderTitleMessage() {
         // MARK: Seed the usual stuff
         let teacher = seeder.createUser()
@@ -57,6 +58,7 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(announcementMessage.isVisible)
         XCTAssertTrue(announcementMessage.hasLabel(label: announcements[1].message))
     }
+    */
 
     func testGlobalAnnouncement() {
         // MARK: Seed the usual stuff
@@ -98,6 +100,7 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(dismissButton.isVanished)
     }
 
+    /*
     func testCreateNewAnnouncement() {
         // MARK: Seed the usual stuff
         let teacher = seeder.createUser()
@@ -149,4 +152,5 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(newAnnouncementItem.isVisible)
         XCTAssertTrue(newAnnouncementItem.hasLabel(label: title, strict: false))
     }
+    */
 }

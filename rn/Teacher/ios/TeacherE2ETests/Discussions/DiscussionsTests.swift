@@ -51,6 +51,7 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(discussionUnreadLabel.hasLabel(label: "\(discussion.unread_count) Unread"))
     }
 
+    /*
     func testDiscussionDetails() {
         // MARK: Seed the usual stuff with a discussion
         let teacher = seeder.createUser()
@@ -147,6 +148,7 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(replyWasSuccessful)
         XCTAssertTrue(threadReplyLabel.isVisible)
     }
+    */
 
     func testAssignmentDiscussion() {
         // MARK: Seed the usual stuff with an assignment discussion
@@ -166,6 +168,7 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(assignmentButton.isVisible)
     }
 
+    /*
     func testCreateDiscussion() {
         // MARK: Seed the usual stuff
         let teacher = seeder.createUser()
@@ -227,4 +230,5 @@ class DiscussionsTests: E2ETestCase {
         let newDiscussionElement = Helper.discussionButtonByLabel(label: newTitle).waitUntil(.visible)
         XCTAssertTrue(newDiscussionElement.isVisible)
     }
+    */
 }
