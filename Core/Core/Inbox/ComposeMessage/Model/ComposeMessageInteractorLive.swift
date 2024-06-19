@@ -37,7 +37,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     private var uploadFolderPathStore: Store<GetFolderByPath>?
     private let publisherProvider: URLSessionDataTaskPublisherProvider
 
-    private let files = PassthroughSubject<[File], Error>()
+    private let files = CurrentValueSubject<[File], Error>([])
     private let alreadyUploadedFiles = CurrentValueSubject<[File], Never>([])
 
     private lazy var fileStore = uploadManager.subscribe(batchID: batchId) { [weak self] in
@@ -92,14 +92,12 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     }
 
     public func cancel() {
-        fileStore.all.forEach {file in
+        attachments.value.forEach { file in
+            removeFile(file: file)
             if !file.isUploaded {
-                removeFile(file: file)
                 uploadManager.cancel(file: file)
             }
         }
-        let filteredFiles: [File] = alreadyUploadedFiles.value.filter { !$0.isUploading }
-        alreadyUploadedFiles.send(filteredFiles)
     }
 
     public func removeFile(file: File) {

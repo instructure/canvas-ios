@@ -133,6 +133,56 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         waitForState(.data)
     }
 
+    func testAddFileWithURL() {
+        XCTAssertFalse(uploadManager.addWasCalled)
+        XCTAssertFalse(uploadManager.uploadWasCalled)
+
+        let url = URL(string: "https://instructure.com")!
+        testee.addFile(url: url)
+
+        XCTAssertTrue(uploadManager.addWasCalled)
+    }
+
+    func testAddFileFromUserFilesWithoutDuplicate() {
+        var subscriptions: [AnyCancellable] = []
+        let file = File.make(from: APIFile.make(folder_id: "1"))
+        var attachments: [File] = []
+        let exp = expectation(description: "fileAdded")
+        testee.attachments.sink { files in
+            attachments = files
+            if !attachments.isEmpty { exp.fulfill() }
+        }
+        .store(in: &subscriptions)
+        testee.addFile(file: file)
+        wait(for: [exp], timeout: 5)
+
+        XCTAssertTrue(attachments.contains(file))
+    }
+
+    func testAddFileFromUserFilesWithDuplicate() {
+        var subscriptions: [AnyCancellable] = []
+        let path = "conversation attachments"
+        testee = ComposeMessageInteractorLive(batchId: "testId", uploadFolderPath: path, restrictForFolderPath: true, uploadManager: uploadManager)
+        let rootFolderRequest = GetContextFolderHierarchyRequest(context: .currentUser, fullPath: path)
+        let rootFolderResponse = [APIFolder.make(id: "1")]
+        api.mock(rootFolderRequest, value: rootFolderResponse)
+        let file = File.make(from: APIFile.make(folder_id: "3"))
+        var attachments: [File] = []
+        let exp = expectation(description: "fileAdded")
+        testee.attachments.sink { files in
+            attachments = files
+            if !attachments.isEmpty { exp.fulfill() }
+        }
+        .store(in: &subscriptions)
+        testee.addFile(file: file)
+        wait(for: [exp], timeout: 5)
+
+        XCTAssertTrue(attachments.contains(file))
+    }
+
+    func testRetry() {
+    }
+
     private func mockData() {
         let course1 = APICourse.make(
             id: "1",
