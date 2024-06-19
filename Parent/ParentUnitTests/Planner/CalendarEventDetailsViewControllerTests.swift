@@ -22,6 +22,12 @@ import XCTest
 import TestsFoundation
 
 class CalendarEventDetailsViewControllerTests: ParentTestCase {
+
+    private enum TestConstants {
+        static let date10 = DateComponents(calendar: .current, year: 2020, month: 7, day: 14, hour: 10).date!
+        static let date12 = DateComponents(calendar: .current, year: 2020, month: 7, day: 14, hour: 12).date!
+    }
+
     lazy var controller = CalendarEventDetailsViewController.create(
         studentID: "1",
         eventID: "1",
@@ -33,7 +39,7 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
         api.mock(controller.events, value: .make(
             id: "1",
             title: "It's happening",
-            start_at: DateComponents(calendar: .current, year: 2020, month: 7, day: 14).date,
+            start_at: TestConstants.date10,
             end_at: nil,
             all_day: true,
             description: "This test is written",
@@ -49,7 +55,7 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
         XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.ensureContrast(against: .white).hexString)
         XCTAssertEqual(controller.titleSubtitleView.title, "Course One")
         XCTAssertEqual(controller.titleLabel.text, "It's happening")
-        XCTAssertEqual(controller.dateLabel.text, "Jul 14, 2020")
+        XCTAssertEqual(controller.dateLabel.text, TestConstants.date10.dateOnlyString)
         XCTAssertEqual(controller.locationView.isHidden, false)
         XCTAssertEqual(controller.locationNameLabel.text, "Instructure Inc")
         XCTAssertEqual(controller.locationAddressLabel.text, "6330 S 3000 E Unit 700\nSalt Lake City, UT 84121")
@@ -61,22 +67,22 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
 
         api.mock(controller.events, value: .make(
             id: "1",
-            start_at: DateComponents(calendar: .current, year: 2020, month: 7, day: 14, hour: 10).date,
-            end_at: DateComponents(calendar: .current, year: 2020, month: 7, day: 14, hour: 12).date,
+            start_at: TestConstants.date10,
+            end_at: TestConstants.date12,
             all_day: false
         ))
         controller.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.dateLabel.text, "Jul 14, 2020, 10:00 AM – 12:00 PM")
+        XCTAssertEqual(controller.dateLabel.text, TestConstants.date10.intervalStringTo(TestConstants.date12))
         XCTAssertEqual(controller.locationView.isHidden, true)
 
         api.mock(controller.events, value: .make(
             id: "1",
-            start_at: DateComponents(calendar: .current, year: 2020, month: 7, day: 14, hour: 10).date,
+            start_at: TestConstants.date10,
             end_at: nil,
             all_day: false
         ))
         controller.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.dateLabel.text, "Jul 14, 2020 at 10:00 AM")
+        XCTAssertEqual(controller.dateLabel.text, TestConstants.date10.dateTimeString)
     }
 
     func testReminder() {

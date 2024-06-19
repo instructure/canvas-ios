@@ -211,6 +211,8 @@ class GradeListInteractorLiveTests: CoreTestCase {
         drainMainQueue()
         waitForExpectations(timeout: 0.1)
         subscription.cancel()
+
+        Clock.reset()
     }
 
     func testGroupArrangement() {

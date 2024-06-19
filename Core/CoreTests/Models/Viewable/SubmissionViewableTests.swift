@@ -84,7 +84,7 @@ class SubmissionViewableTests: XCTestCase {
     func testSubmissionDateText() {
         XCTAssertNil(Model(submission: nil).submissionDateText)
         let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 1).date!
-        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: submittedAt))).submissionDateText, "Oct 1, 2018 at 12:00 AM")
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: submittedAt))).submissionDateText, submittedAt.dateTimeString)
     }
 
     func testHasLatePenalty() {

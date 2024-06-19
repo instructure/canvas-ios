@@ -94,6 +94,8 @@ class CourseSyncSettingsInteractorLiveTests: XCTestCase {
         // THEN
         let expectedNextSyncDate = now.addingTimeInterval(24 * 60 * 60) // daily sync is the default
         XCTAssertEqual(defaults.offlineSyncNextDate, expectedNextSyncDate)
+
+        Clock.reset()
     }
 
     func testRemovesNextSyncDateWhenSyncTurnedOff() {
@@ -126,6 +128,8 @@ class CourseSyncSettingsInteractorLiveTests: XCTestCase {
 
         // THEN
         XCTAssertEqual(defaults.offlineSyncNextDate, tomorrow)
+
+        Clock.reset()
     }
 
     func testNotUpdatesNextSyncDateWhenFrequencyChangedIfSyncTurnedOff() {

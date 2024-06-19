@@ -134,6 +134,8 @@ class PlannerViewControllerTests: CoreTestCase {
         _ = controller.todayButton.target?.perform(controller.todayButton.action)
         XCTAssertEqual(controller.calendar.selectedDate, Clock.now.startOfDay())
         XCTAssertEqual(controller.list.start, Clock.now.startOfDay())
+
+        Clock.reset()
     }
 
     class MockTableView: UITableView {

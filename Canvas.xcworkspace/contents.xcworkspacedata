@@ -63,6 +63,12 @@
       location = "container:TestPlans"
       name = "TestPlans">
       <FileRef
+         location = "group:CITests.xctestplan">
+      </FileRef>
+      <FileRef
+         location = "group:CoreTests.xctestplan">
+      </FileRef>
+      <FileRef
          location = "group:IPadParentTests.xctestplan">
       </FileRef>
       <FileRef
@@ -72,37 +78,16 @@
          location = "group:IPadTeacherTests.xctestplan">
       </FileRef>
       <FileRef
-         location = "group:StudentE2E.xctestplan">
-      </FileRef>
-      <FileRef
-         location = "group:AssignmentReminderStudentE2E.xctestplan">
-      </FileRef>
-      <FileRef
-         location = "group:CalendarE2E.xctestplan">
-      </FileRef>
-      <FileRef
-         location = "group:TeacherE2E.xctestplan">
-      </FileRef>
-      <FileRef
-         location = "group:CoreTests.xctestplan">
+         location = "group:IPadTests.xctestplan">
       </FileRef>
       <FileRef
          location = "group:ParentE2E.xctestplan">
       </FileRef>
       <FileRef
-         location = "group:NightlyTests.xctestplan">
+         location = "group:StudentE2E.xctestplan">
       </FileRef>
       <FileRef
-         location = "group:PRTests.xctestplan">
-      </FileRef>
-      <FileRef
-         location = "group:Beta.xctestplan">
-      </FileRef>
-      <FileRef
-         location = "group:CITests.xctestplan">
-      </FileRef>
-      <FileRef
-         location = "group:IPadTests.xctestplan">
+         location = "group:TeacherE2E.xctestplan">
       </FileRef>
    </Group>
    <FileRef

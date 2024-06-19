@@ -39,6 +39,8 @@ schemes:
       targets:
         Student: all
     test:
+      language: en
+      region: US
       targets: 
         - Core/CoreTests
         - StudentUnitTests

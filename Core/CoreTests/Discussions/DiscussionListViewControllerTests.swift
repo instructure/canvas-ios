@@ -21,6 +21,13 @@ import XCTest
 import TestsFoundation
 
 class DiscussionListViewControllerTests: CoreTestCase {
+
+    private enum TestConstants {
+        static let date1031 = DateComponents(calendar: .current, year: 2020, month: 10, day: 31).date!
+        static let date1102 = DateComponents(calendar: .current, year: 2020, month: 11, day: 2).date!
+        static let date1103 = DateComponents(calendar: .current, year: 2020, month: 11, day: 3).date!
+    }
+
     lazy var controller = DiscussionListViewController.create(context: .course("1"))
 
     func testCourseDiscussions() {
@@ -37,7 +44,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
             .make(
                 html_url: URL(string: "/courses/1/discussion_topics/1"),
                 id: "1",
-                last_reply_at: DateComponents(calendar: .current, year: 2020, month: 11, day: 3).date,
+                last_reply_at: TestConstants.date1103,
                 permissions: .make(delete: true),
                 pinned: true,
                 posted_at: Date(),
@@ -48,31 +55,31 @@ class DiscussionListViewControllerTests: CoreTestCase {
                 assignment_id: "1",
                 html_url: URL(string: "/courses/1/discussion_topics/2"),
                 id: "2",
-                posted_at: DateComponents(calendar: .current, year: 2020, month: 11, day: 3).date,
+                posted_at: TestConstants.date1103,
                 title: "Overrides"
             ),
             .make(
                 assignment: .make(
-                    due_at: DateComponents(calendar: .current, year: 2020, month: 10, day: 31).date,
+                    due_at: TestConstants.date1031,
                     id: "4"
                 ),
                 assignment_id: "4",
                 html_url: URL(string: "/courses/1/discussion_topics/4"),
                 id: "4",
-                posted_at: DateComponents(calendar: .current, year: 2020, month: 11, day: 2).date,
+                posted_at: TestConstants.date1102,
                 title: "Dude"
             ),
             .make(
                 assignment: .make(
-                    due_at: DateComponents(calendar: .current, year: 2020, month: 10, day: 31).date,
+                    due_at: TestConstants.date1031,
                     id: "3",
-                    lock_at: DateComponents(calendar: .current, year: 2020, month: 10, day: 31).date
+                    lock_at: TestConstants.date1031
                 ),
                 assignment_id: "3",
                 html_url: URL(string: "/courses/1/discussion_topics/3"),
                 id: "3",
                 locked: true,
-                posted_at: DateComponents(calendar: .current, year: 2020, month: 11, day: 2).date,
+                posted_at: TestConstants.date1102,
                 title: "Locked"
             ),
         ])
@@ -91,7 +98,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .discussionLine)
         XCTAssertEqual(cell?.iconImageView.state, .published)
         XCTAssertEqual(cell?.titleLabel.text, "Alien invasion probabilities")
-        XCTAssertEqual(cell?.dateLabel.text, "Last post Nov 3, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, "Last post " + TestConstants.date1103.dateTimeString)
 
         let actions = controller.tableView.delegate?.tableView?(controller.tableView, trailingSwipeActionsConfigurationForRowAt: IndexPath(row: 0, section: 0))?.actions
         XCTAssertEqual(actions?.count, 3)
@@ -116,7 +123,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .assignmentLine)
         XCTAssertEqual(cell?.iconImageView.state, .published)
         XCTAssertEqual(cell?.titleLabel.text, "Dude")
-        XCTAssertEqual(cell?.dateLabel.text, "Due Oct 31, 2020, 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, "Due " + TestConstants.date1031.relativeDateTimeString)
 
         XCTAssertEqual(controller.tableView.delegate?.tableView?(
             controller.tableView, trailingSwipeActionsConfigurationForRowAt: IndexPath(row: 0, section: 1)
@@ -127,7 +134,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.state, .published)
         XCTAssertEqual(cell?.titleLabel.text, "Locked")
         XCTAssertEqual(cell?.statusLabel.text, "Closed")
-        XCTAssertEqual(cell?.dateLabel.text, "Due Oct 31, 2020, 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, "Due " + TestConstants.date1031.relativeDateTimeString)
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 2))
         XCTAssert(router.lastRoutedTo("/courses/1/discussion_topics/3", withOptions: .detail))
@@ -199,7 +206,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
                 assignment_id: "1",
                 html_url: URL(string: "/courses/1/discussion_topics/2"),
                 id: "2",
-                posted_at: DateComponents(calendar: .current, year: 2020, month: 11, day: 3).date,
+                posted_at: TestConstants.date1103,
                 title: "Overrides"
             ),
         ])
@@ -213,7 +220,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
             .make(
                 html_url: URL(string: "/groups/1/discussion_topics/1"),
                 id: "1",
-                last_reply_at: DateComponents(calendar: .current, year: 2020, month: 11, day: 3).date,
+                last_reply_at: TestConstants.date1103,
                 permissions: .make(delete: true),
                 title: "Study group tomorrow"
             ),
@@ -235,7 +242,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .discussionLine)
         XCTAssertEqual(cell?.iconImageView.state, nil)
         XCTAssertEqual(cell?.titleLabel.text, "Study group tomorrow")
-        XCTAssertEqual(cell?.dateLabel.text, "Last post Nov 3, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, "Last post " + TestConstants.date1103.dateTimeString)
 
         api.mock(controller.topics, error: NSError.internalError())
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)

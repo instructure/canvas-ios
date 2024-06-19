@@ -22,6 +22,11 @@ import WebKit
 import TestsFoundation
 
 class DiscussionDetailsViewControllerTests: CoreTestCase {
+
+    private enum TestConstants {
+        static let date = DateComponents(calendar: .current, year: 2020, month: 5, day: 7, hour: 8, minute: 35).date!
+    }
+
     let course = Context(.course, id: "1")
     lazy var controller = DiscussionDetailsViewController.create(context: course, topicID: "1", offlineModeInteractor: OfflineModeInteractorMock(mockIsInOfflineMode: false))
 
@@ -109,7 +114,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             is_section_specific: true,
             message: "<p>Is the cube rule of food valid? What's your take?</p>",
             permissions: .make(attach: true, update: true, reply: true, delete: true),
-            posted_at: DateComponents(calendar: .current, year: 2020, month: 5, day: 7, hour: 8, minute: 35).date,
+            posted_at: TestConstants.date,
             published: true,
             sections: [ .make() ],
             sort_by_rating: true,
@@ -134,7 +139,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.maxDepth, controller.view.traitCollection.horizontalSizeClass == .compact ? 2 : 4)
         let html = getBodyHTML()
         XCTAssert(html.contains("Instructor (she/her)"))
-        XCTAssert(html.contains("May 7, 2020 at 8:35 AM"))
+        XCTAssert(html.contains(TestConstants.date.dateTimeString))
         XCTAssert(html.contains("Is the cube rule of food valid?"))
         XCTAssert(html.contains("Bob"))
         XCTAssert(html.contains("Oreos are sandwiches."))

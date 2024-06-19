@@ -22,15 +22,26 @@ import XCTest
 import TestsFoundation
 
 class ParentConversationListViewControllerTests: ParentTestCase {
+
+    private enum TestConstants {
+        static let date2018 = DateComponents(calendar: .current, year: 2018, month: 12, day: 25).date!
+        static let date2019 = DateComponents(calendar: .current, year: 2019, month: 12, day: 25).date!
+    }
+
     lazy var controller = ParentConversationListViewController.create()
 
     override func setUp() {
         super.setUp()
-        Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 25).date!)
+        Clock.mockNow(TestConstants.date2019)
         api.mock(controller.conversations, value: [
             .make(),
-            .make(id: "2", subject: "", workflow_state: .read, last_message: "last", last_message_at: Clock.now.add(.year, number: -1), context_name: "CTX"),
+            .make(id: "2", subject: "", workflow_state: .read, last_message: "last", last_message_at: TestConstants.date2018, context_name: "CTX"),
         ])
+    }
+
+    override func tearDown() {
+        Clock.reset()
+        super.tearDown()
     }
 
     func loadView() {
@@ -49,15 +60,15 @@ class ParentConversationListViewControllerTests: ParentTestCase {
         XCTAssertTrue(controller.errorView.isHidden)
 
         let first = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ConversationListCell
-        XCTAssertEqual(first?.dateLabel.text, "Dec 25, 2019, 12:00 AM")
+        XCTAssertEqual(first?.dateLabel.text, TestConstants.date2019.relativeDateTimeString)
         XCTAssertEqual(first?.contextLabel.text, "Canvas 101")
         XCTAssertEqual(first?.subjectLabel.text, "Subject One")
         XCTAssertEqual(first?.unreadView.isHidden, false)
-        XCTAssertEqual(first?.accessibilityLabel, "Subject One, in Canvas 101, the last message was on Dec 25, 2019 at 12:00 AM Last Message One, unread")
+        XCTAssertEqual(first?.accessibilityLabel, "Subject One, in Canvas 101, the last message was on " + TestConstants.date2019.dateTimeString + " Last Message One, unread")
 
         let last = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ConversationListCell
         XCTAssertEqual(last?.unreadView.isHidden, true)
-        XCTAssertEqual(last?.accessibilityLabel, "(No subject), in CTX, the last message was on Dec 25, 2018 at 12:00 AM last")
+        XCTAssertEqual(last?.accessibilityLabel, "(No subject), in CTX, the last message was on " + TestConstants.date2018.dateTimeString + " last")
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssert(router.lastRoutedTo("/conversations/1"))

@@ -89,6 +89,11 @@ class K5SImportantDatesViewModelTests: CoreTestCase {
         api.mock(GetCalendarEvents(contexts: contexts, type: .event, importantDates: true), value: events)
     }
 
+    override func tearDown() {
+        Clock.reset()
+        super.tearDown()
+    }
+
     func testAddImportantDates() {
         let testee = K5ImportantDatesViewModel()
         XCTAssertEqual(testee.importantDates.count, 2)
