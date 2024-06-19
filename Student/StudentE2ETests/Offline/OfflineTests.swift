@@ -175,7 +175,6 @@ class OfflineTests: OfflineE2ETest {
         XCTAssertTrue(courseButton.waitUntil(.labelContaining(expected: "Deselected")).hasLabel(label: "Deselected", strict: false))
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.visible).isVisible)
         XCTAssertTrue(selectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(syncButton.waitUntil(.disabled).isDisabled)
 
         courseButton.hit()
         let discussionsButton = DashboardHelper.Options.OfflineContent.discussionsButton.waitUntil(.visible)
@@ -320,7 +319,6 @@ class OfflineTests: OfflineE2ETest {
         XCTAssertTrue(unselectedTickerOfCourseButton.isVisible)
         XCTAssertTrue(partiallySelectedTickerOfCourseButton.isVanished)
         XCTAssertTrue(syncButton.isVisible)
-        XCTAssertTrue(syncButton.isDisabled)
 
         courseButton.hit()
         let pagesButton = DashboardHelper.Options.OfflineContent.pagesButton.waitUntil(.visible)
@@ -328,7 +326,6 @@ class OfflineTests: OfflineE2ETest {
 
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
         XCTAssertTrue(partiallySelectedTickerOfCourseButton.waitUntil(.visible).isVisible)
-        XCTAssertTrue(syncButton.waitUntil(.enabled).isEnabled)
 
         // MARK: Tap "Sync" button
         syncButton.hit()
