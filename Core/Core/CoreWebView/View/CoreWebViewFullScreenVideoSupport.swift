@@ -31,13 +31,14 @@ extension CoreWebView {
         private var originalConstraints: [NSLayoutConstraint]
 
         public init(webView: WKWebView) {
-            originalConstraints = webView.superview?.constraintsAffecting(view: webView) ?? []
+            originalConstraints = (webView.superview?.constraintsAffecting(view: webView) ?? []) + webView.constraints
 
             guard #available(iOS 16.0, *) else {
                 return
             }
 
-            let matchFullScreenContainerSize: (WKWebView) -> Void = { webView in
+            let matchFullScreenContainerSize: (WKWebView, [NSLayoutConstraint]) -> Void = { webView, constraints in
+                constraints.forEach { $0.isActive = false }
                 webView.translatesAutoresizingMaskIntoConstraints = true
                 webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                 webView.frame = webView.superview?.frame ?? .zero
@@ -50,7 +51,7 @@ extension CoreWebView {
             fullScreenObservation = webView.observe(\.fullscreenState, options: []) { [originalConstraints] webView, _  in
                 switch webView.fullscreenState {
                 case .enteringFullscreen:
-                    matchFullScreenContainerSize(webView)
+                    matchFullScreenContainerSize(webView, originalConstraints)
                     // This is to make a11y elements below the fullscreen window hidden.
                     webView.superview?.accessibilityViewIsModal = true
                 case .notInFullscreen:
