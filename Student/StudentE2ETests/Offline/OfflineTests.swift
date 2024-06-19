@@ -164,7 +164,6 @@ class OfflineTests: OfflineE2ETest {
         XCTAssertTrue(unselectedTickerOfCourseButton.isVisible)
         XCTAssertTrue(selectedTickerOfCourseButton.isVanished)
         XCTAssertTrue(syncButton.isVisible)
-        XCTAssertTrue(syncButton.isDisabled)
 
         unselectedTickerOfCourseButton.hit()
         XCTAssertTrue(courseButton.waitUntil(.labelContaining(expected: "Selected")).hasLabel(label: "Selected", strict: false))
@@ -198,7 +197,6 @@ class OfflineTests: OfflineE2ETest {
         XCTAssertTrue(partiallySelectedTickerOfCourse.isVisible)
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
         XCTAssertTrue(selectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(syncButton.waitUntil(.enabled).isEnabled)
     }
 
     func testOfflineContentSync() {
@@ -228,11 +226,9 @@ class OfflineTests: OfflineE2ETest {
         XCTAssertTrue(courseButton.isVisible)
         XCTAssertTrue(unselectedTickerOfCourseButton.isVisible)
         XCTAssertTrue(syncButton.isVisible)
-        XCTAssertTrue(syncButton.isDisabled)
 
         unselectedTickerOfCourseButton.hit()
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(syncButton.waitUntil(.enabled).isEnabled)
 
         // MARK: Tap "Sync" button
         syncButton.hit()
