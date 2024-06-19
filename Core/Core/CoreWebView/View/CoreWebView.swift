@@ -495,10 +495,12 @@ extension CoreWebView {
             cookieKeepAliveTimer?.invalidate()
             let interval: TimeInterval = 10 * 60 // ten minutes
             cookieKeepAliveTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
-                let request = GetWebSessionRequest(to: env.api.baseURL.appendingPathComponent("users/self"))
-                env.api.makeRequest(request) { data, _, _ in performUIUpdate {
+                let sessionTokenRequest = GetWebSessionRequest(to: env.api.baseURL.appendingPathComponent("users/self"))
+                env.api.makeRequest(sessionTokenRequest) { data, _, _ in performUIUpdate {
                     guard let url = data?.session_url else { return }
-                    cookieKeepAliveWebView.load(URLRequest(url: url))
+                    var keepAliveRequest = URLRequest(url: url)
+                    keepAliveRequest.httpMethod = "HEAD"
+                    cookieKeepAliveWebView.load(keepAliveRequest)
                 } }
             }
             cookieKeepAliveTimer?.fire()
