@@ -34,7 +34,8 @@ struct ConversationAttachmentCardView: View {
 
     var body: some View {
         VStack {
-            if file.thumbnailURL != nil { AsyncImage(url: file.thumbnailURL) }
+            if file.isUploading { ProgressView(value: Float(file.bytesSent), total: Float(file.size)).padding(.all, 12) }
+            else if file.thumbnailURL != nil { AsyncImage(url: file.thumbnailURL) }
             HStack {
                 VStack(alignment: .leading) {
                     Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? file.url?.lastPathComponent ?? "").font(.headline)

@@ -22,6 +22,29 @@ import Combine
 import CombineExt
 
 public class ComposeMessageInteractorPreview: ComposeMessageInteractor {
+    public var attachments = CurrentValueSubject<[File], Never>([])
+
+
+    public func addFile(url: URL) {
+
+    }
+    
+    public func addFile(file: File) {
+
+    }
+    
+    public func retry() {
+
+    }
+    
+    public func cancel() {
+
+    }
+    
+    public func removeFile(file: File) {
+
+    }
+    
     public var conversationAttachmentsFolder = CurrentValueSubject<[Folder], Never>([])
 
     public func getOnlineFileURL(fileId: String) -> AnyPublisher<URL?, any Error> {

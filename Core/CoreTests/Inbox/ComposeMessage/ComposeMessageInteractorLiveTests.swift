@@ -27,7 +27,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         super.setUp()
         mockData()
 
-        testee = ComposeMessageInteractorLive()
+        testee = ComposeMessageInteractorLive(batchId: "testId", uploadManager: uploadManager)
 
         waitForState(.data)
     }
@@ -129,17 +129,6 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         api.mock(addConversationMessageRequest, value: value)
 
         XCTAssertFinish(testee.addConversationMessage(parameters: parameters))
-
-        waitForState(.data)
-    }
-
-    func testDeleteFile() {
-        let fileId = "1"
-        let deleteRequest = DeleteFileRequest(fileID: fileId)
-        let response = APIFile.make()
-        api.mock(deleteRequest, value: response)
-
-        XCTAssertFinish(testee.deleteFile(file: File.make(from: response)))
 
         waitForState(.data)
     }

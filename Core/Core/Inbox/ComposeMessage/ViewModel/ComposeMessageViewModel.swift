@@ -25,6 +25,12 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var recipients: [Recipient] = []
     @Published public private(set) var isSendingMessage: Bool = false
 
+    @Published public var isFilePickerVisible: Bool = false
+    @Published public var isImagePickerVisible: Bool = false
+    @Published public var isTakePhotoVisible: Bool = false
+    @Published public var isAudioRecordVisible: Bool = false
+    @Published public var isFileSelectVisible: Bool = false
+
     @Published public private(set) var isContextDisabled: Bool = false
     @Published public private(set) var isRecipientsDisabled: Bool = false
     @Published public private(set) var isSubjectDisabled: Bool = false
@@ -68,20 +74,14 @@ class ComposeMessageViewModel: ObservableObject {
         confirmButtonTitle: String(localized: "Discard", bundle: .core),
         isDestructive: true
     )
+    let router: Router
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: ComposeMessageInteractor
-    private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var messageType: ComposeMessageOptions.MessageType
-    private let uploadManager = UploadManager(identifier: UUID.string)
-    private let batchId: String = UUID.string
-    private lazy var files = uploadManager.subscribe(batchID: batchId) { [weak self] in
-        self?.update()
-    }
-    private let alreadyUploadedFiles = CurrentValueSubject<[File], Never>([])
-    private var alreadyUploadedFileList: [File] = []
+
     private var hiddenMessage: String = ""
     private var autoTeacherSelect: Bool = false
     private var teacherOnly: Bool = false
@@ -129,9 +129,22 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     func attachmentButtonDidTap(viewController: WeakViewController) {
-        files.refresh()
-        let attachmentList = AttachmentPickerAssembly.makeAttachmentPickerViewController(subTitle: subject, batchId: batchId, uploadManager: uploadManager, alreadyUploadedFiles: alreadyUploadedFiles)
-        router.show(attachmentList, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
+        showDialog(viewController: viewController)
+    }
+
+    func addFile(url: URL) {
+        isImagePickerVisible = false
+        isTakePhotoVisible = false
+        isFilePickerVisible = false
+        isAudioRecordVisible = false
+
+        interactor.addFile(url: url)
+    }
+
+    func addFile(file: File) {
+        isFileSelectVisible = false
+
+        interactor.addFile(file: file)
     }
 
     func isMessageExpanded(message: ConversationMessage) -> Bool {
@@ -146,17 +159,52 @@ class ComposeMessageViewModel: ObservableObject {
         }
     }
 
-    // MARK: Private helpers
+    private func showDialog(viewController: WeakViewController) {
+        let sheet = BottomSheetPickerViewController.create()
 
-    private func removeAttachment(file: File) {
-        if alreadyUploadedFileList.contains(file) {
-            let newValues = alreadyUploadedFileList.filter { $0 != file }
-            alreadyUploadedFiles.send(newValues)
-        } else {
-            uploadManager.viewContext.delete(file)
-            files.refresh()
+        sheet.addAction(
+            image: .documentLine,
+            title: String(localized: "Upload file", bundle: .core),
+            accessibilityIdentifier: nil
+        ) { [weak self] in
+            self?.isFilePickerVisible = true
         }
+        sheet.addAction(
+            image: .imageLine,
+            title: String(localized: "Upload photo", bundle: .core),
+            accessibilityIdentifier: nil
+        ) { [weak self] in
+            self?.isImagePickerVisible = true
+        }
+        sheet.addAction(
+            image: .cameraLine,
+            title: String(localized: "Take photo", bundle: .core),
+            accessibilityIdentifier: nil
+        ) { [weak self] in
+            self?.isTakePhotoVisible = true
+        }
+        sheet.addAction(
+            image: .audioLine,
+            title: String(localized: "Record audio", bundle: .core),
+            accessibilityIdentifier: nil
+        ) { [weak self] in
+            self?.isAudioRecordVisible = true
+        }
+        sheet.addAction(
+            image: .folderLine,
+            title: String(localized: "Select uploaded file", bundle: .core),
+            accessibilityIdentifier: nil
+        ) { [weak self] in
+            guard let self, let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return }
+
+            let viewController = AttachmentPickerAssembly.makeFilePickerViewController(env: .shared, onSelect: self.addFile)
+            self.router.show(viewController, from: top, options: .modal(isDismissable: true, embedInNav: true))
+
+        }
+        router.show(sheet, from: viewController, options: .modal())
     }
+
+    // MARK: Private helpers
 
     private func setupOutputBindings() {
         didSelectRecipient
@@ -178,12 +226,8 @@ class ComposeMessageViewModel: ObservableObject {
         selectedRecipients
             .assign(to: &$recipients)
 
-        alreadyUploadedFiles
-            .sink { [weak self] files in
-                self?.alreadyUploadedFileList = files
-                self?.update()
-            }
-        .store(in: &subscriptions)
+        interactor.attachments
+            .assign(to: &$attachments)
     }
 
     private func setOptionItems(options: ComposeMessageOptions) {
@@ -241,10 +285,6 @@ class ComposeMessageViewModel: ObservableObject {
         }
     }
 
-    private func update() {
-        attachments = files.all + alreadyUploadedFileList
-    }
-
     private func closeCourseSelectorDelayed(_ viewController: WeakViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             if let navController = viewController.value.navigationController {
@@ -299,15 +339,9 @@ class ComposeMessageViewModel: ObservableObject {
             .flatMap { [confirmAlert] value in
                 confirmAlert.userConfirmation().map { value }
             }
-            .flatMap { [weak self] value in
-                guard let self else { return Just(value).eraseToAnyPublisher() }
-
-                return files.all.publisher.flatMap { file in
-                    self.interactor.deleteFile(file: file)
-                }.collect().map { _ in value }.eraseToAnyPublisher()
-            }
-            .sink { [router] viewController in
-                router.dismiss(viewController)
+            .sink { [weak self] viewController in
+                self?.interactor.cancel()
+                self?.router.dismiss(viewController)
             }
             .store(in: &subscriptions)
 
@@ -358,13 +392,8 @@ class ComposeMessageViewModel: ObservableObject {
         .store(in: &subscriptions)
 
         didRemoveFile
-            .flatMap { [weak self] file in
-                guard let self, self.files.all.contains(file) else { return Just(file).eraseToAnyPublisher() }
-
-                return interactor.deleteFile(file: file).map { _ in file }.eraseToAnyPublisher()
-            }
             .sink { [weak self] file in
-                self?.removeAttachment(file: file)
+                self?.interactor.removeFile(file: file)
             }
             .store(in: &subscriptions)
     }

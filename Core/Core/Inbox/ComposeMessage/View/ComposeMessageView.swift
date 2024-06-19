@@ -89,6 +89,33 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 showExtraSendButton = false
             }
         }
+        .fileImporter(
+            isPresented: $model.isFilePickerVisible,
+            allowedContentTypes: [.item],
+            allowsMultipleSelection: false
+        ) { result in
+            switch result {
+            case .success(let urls):
+                urls.forEach { url in
+                    if url.startAccessingSecurityScopedResource() {
+                        model.addFile(url: url)
+                    }
+                }
+            case .failure:
+                break
+            }
+        }
+        .sheet(isPresented: $model.isImagePickerVisible, content: {
+            ImagePickerViewController(sourceType: .photoLibrary, imageHandler: model.addFile)
+        })
+        .sheet(isPresented: $model.isTakePhotoVisible, content: {
+            ImagePickerViewController(sourceType: .camera, imageHandler: model.addFile)
+                .interactiveDismissDisabled()
+        })
+        .sheet(isPresented: $model.isAudioRecordVisible, content: {
+                    AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: model.router, onSelect: model.addFile)
+                        .interactiveDismissDisabled()
+                })
         .confirmationAlert(
             isPresented: $model.isShowingCancelDialog,
             presenting: model.confirmAlert

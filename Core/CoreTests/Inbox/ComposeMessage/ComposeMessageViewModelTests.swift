@@ -28,7 +28,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        mockInteractor = ComposeMessageInteractorMock(context: databaseClient)
+        mockInteractor = ComposeMessageInteractorMock()
         testee = ComposeMessageViewModel(router: router, options: .init(fromType: .new), interactor: mockInteractor)
     }
 
@@ -82,39 +82,39 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.sendButtonActive, false)
     }
 
-    func testSuccesfulNewSend() {
+    func testSuccessfulNewSend() {
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
-        XCTAssertEqual(mockInteractor.isConversationAddSent, false)
+        XCTAssertEqual(mockInteractor.isCreateConversationCalled, false)
         testee.didTapSend.accept(WeakViewController(sourceView))
-        XCTAssertEqual(mockInteractor.isConversationAddSent, true)
+        XCTAssertEqual(mockInteractor.isCreateConversationCalled, true)
     }
 
-    func testSuccesfulReplySend() {
+    func testSuccessfulReplySend() {
         setupForReply()
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
-        XCTAssertEqual(mockInteractor.isMessageAddSent, false)
+        XCTAssertEqual(mockInteractor.isAddConversationMessageCalled, false)
         testee.didTapSend.accept(WeakViewController(sourceView))
-        XCTAssertEqual(mockInteractor.isMessageAddSent, true)
+        XCTAssertEqual(mockInteractor.isAddConversationMessageCalled, true)
     }
 
-    func testSuccesfulReplyAllSend() {
+    func testSuccessfulReplyAllSend() {
         setupForReplyAll()
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
-        XCTAssertEqual(mockInteractor.isMessageAddSent, false)
+        XCTAssertEqual(mockInteractor.isAddConversationMessageCalled, false)
         testee.didTapSend.accept(WeakViewController(sourceView))
-        XCTAssertEqual(mockInteractor.isMessageAddSent, true)
+        XCTAssertEqual(mockInteractor.isAddConversationMessageCalled, true)
     }
 
-    func testSuccesfulForwardSend() {
+    func testSuccessfulForwardSend() {
         setupForForward()
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
-        XCTAssertEqual(mockInteractor.isMessageAddSent, false)
+        XCTAssertEqual(mockInteractor.isAddConversationMessageCalled, false)
         testee.didTapSend.accept(WeakViewController(sourceView))
-        XCTAssertEqual(mockInteractor.isMessageAddSent, true)
+        XCTAssertEqual(mockInteractor.isAddConversationMessageCalled, true)
     }
 
     func testFailedSend() {
@@ -275,41 +275,48 @@ class ComposeMessageViewModelTests: CoreTestCase {
 }
 
 private class ComposeMessageInteractorMock: ComposeMessageInteractor {
-    var conversationAttachmentsFolder = CurrentValueSubject<[Core.Folder], Never>([])
-
-    var state: CurrentValueSubject<Core.StoreState, Never>
-    var courses: CurrentValueSubject<[Core.InboxCourse], Never>
+    
+    var attachments = CurrentValueSubject<[Core.File], Never>([])
 
     var isSuccessfulMockFuture = true
-    var isMessageAddSent = false
-    var isConversationAddSent = false
-    var isFileURLCalled = false
-    var isFileDeleted = false
+    var isCreateConversationCalled = false
+    var isAddConversationMessageCalled = false
+    var isAddFileWithURLCalled = false
+    var isAddFileWithFileCalled = false
+    var isRetryCalled = false
+    var isCancelCalled = false
+    var isRemoveFileCalled = false
 
-    init(context: NSManagedObjectContext) {
-        self.state = .init(.data)
-        self.courses = .init(.make(count: 5, in: context))
-    }
-
-    func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error> {
-        isConversationAddSent = true
+    func createConversation(parameters: Core.MessageParameters) -> Future<URLResponse?, any Error> {
+        isCreateConversationCalled = true
         return mockFuture
     }
 
-    func addConversationMessage(parameters: MessageParameters) -> Future<URLResponse?, Error> {
-        isMessageAddSent = true
+    func addConversationMessage(parameters: Core.MessageParameters) -> Future<URLResponse?, any Error> {
+        isAddConversationMessageCalled = true
         return mockFuture
     }
 
-    func deleteFile(file: Core.File) -> AnyPublisher<Void, Never> {
-        isFileDeleted = true
-        return Just(()).eraseToAnyPublisher()
+    func addFile(url: URL) {
+        isAddFileWithURLCalled = true
     }
 
-    func getOnlineFileURL(fileId: String) -> AnyPublisher<URL?, any Error> {
-        isFileURLCalled = true
-        return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
+    func addFile(file: Core.File) {
+        isAddFileWithFileCalled = true
     }
+
+    func retry() {
+        isRetryCalled = true
+    }
+
+    func cancel() {
+        isCancelCalled = true
+    }
+
+    func removeFile(file: Core.File) {
+        isRemoveFileCalled = true
+    }
+
 
     private var mockFuture: Future<URLResponse?, Error> {
         isSuccessfulMockFuture ? mockSuccessFuture : mockFailedFuture
