@@ -29,7 +29,6 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var isImagePickerVisible: Bool = false
     @Published public var isTakePhotoVisible: Bool = false
     @Published public var isAudioRecordVisible: Bool = false
-    @Published public var isFileSelectVisible: Bool = false
 
     @Published public private(set) var isContextDisabled: Bool = false
     @Published public private(set) var isRecipientsDisabled: Bool = false
@@ -142,8 +141,6 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     func addFile(file: File) {
-        isFileSelectVisible = false
-
         interactor.addFile(file: file)
     }
 

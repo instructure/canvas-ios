@@ -246,13 +246,81 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.includedMessages, [message1, message2, message3])
     }
 
-    func testAttachmnetButton() {
+    func testAttachmentButton() {
         let sourceView = UIViewController()
         let viewController = WeakViewController(sourceView)
         testee.attachmentButtonDidTap(viewController: viewController)
         wait(for: [router.showExpectation], timeout: 1)
 
-        XCTAssertNotNil(router.presented)
+        let presented = router.presented as? BottomSheetPickerViewController
+        XCTAssertNotNil(presented)
+    }
+
+    func testAttachmentOptionsDialog() {
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+        testee.attachmentButtonDidTap(viewController: viewController)
+
+        let presented = router.presented as? BottomSheetPickerViewController
+        XCTAssertNotNil(presented)
+
+        testee.isImagePickerVisible = false
+        testee.isTakePhotoVisible = false
+        testee.isFilePickerVisible = false
+        testee.isAudioRecordVisible = false
+        XCTAssertEqual(presented?.actions.count, 5)
+
+        let uploadFileAction = presented?.actions[0]
+        let uploadPhotoAction = presented?.actions[1]
+        let takePhotoAction = presented?.actions[2]
+        let recordAudioAction = presented?.actions[3]
+        let selectFileAction = presented?.actions[4]
+
+        XCTAssertEqual(uploadFileAction?.title, String(localized: "Upload file", bundle: .core))
+        XCTAssertEqual(uploadFileAction?.image, .documentLine)
+        uploadFileAction?.action()
+        XCTAssertTrue(testee.isFilePickerVisible)
+        XCTAssertFalse(testee.isImagePickerVisible)
+        XCTAssertFalse(testee.isTakePhotoVisible)
+        XCTAssertFalse(testee.isAudioRecordVisible)
+
+        XCTAssertEqual(uploadPhotoAction?.title, String(localized: "Upload photo", bundle: .core))
+        XCTAssertEqual(uploadPhotoAction?.image, .imageLine)
+        uploadPhotoAction?.action()
+        XCTAssertTrue(testee.isFilePickerVisible)
+        XCTAssertTrue(testee.isImagePickerVisible)
+        XCTAssertFalse(testee.isTakePhotoVisible)
+        XCTAssertFalse(testee.isAudioRecordVisible)
+
+        XCTAssertEqual(takePhotoAction?.title, String(localized: "Take photo", bundle: .core))
+        XCTAssertEqual(takePhotoAction?.image, .cameraLine)
+        takePhotoAction?.action()
+        XCTAssertTrue(testee.isFilePickerVisible)
+        XCTAssertTrue(testee.isImagePickerVisible)
+        XCTAssertTrue(testee.isTakePhotoVisible)
+        XCTAssertFalse(testee.isAudioRecordVisible)
+
+        XCTAssertEqual(recordAudioAction?.title, String(localized: "Record audio", bundle: .core))
+        XCTAssertEqual(recordAudioAction?.image, .audioLine)
+        recordAudioAction?.action()
+        XCTAssertTrue(testee.isFilePickerVisible)
+        XCTAssertTrue(testee.isImagePickerVisible)
+        XCTAssertTrue(testee.isTakePhotoVisible)
+        XCTAssertTrue(testee.isAudioRecordVisible)
+
+        XCTAssertEqual(selectFileAction?.title, String(localized: "Select uploaded file", bundle: .core))
+        XCTAssertEqual(selectFileAction?.image, .folderLine)
+        selectFileAction?.action()
+
+        XCTAssertTrue(testee.isFilePickerVisible)
+        XCTAssertTrue(testee.isImagePickerVisible)
+        XCTAssertTrue(testee.isTakePhotoVisible)
+        XCTAssertTrue(testee.isAudioRecordVisible)
+
+        wait(for: [router.showExpectation], timeout: 1)
+
+        let presentedFilePicker = router.presented as? CoreHostingController<FilePickerView>
+        XCTAssertNotNil(presentedFilePicker)
     }
 
     func testIncludedMessagesExpansion() {
@@ -272,10 +340,29 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.toggleMessageExpand(message: message2)
         XCTAssertEqual(testee.expandedIncludedMessageIds.count, 0)
     }
+
+    func testAttachmentWithURLSelected() {
+        testee.isImagePickerVisible = true
+        testee.isTakePhotoVisible = true
+        testee.isFilePickerVisible = true
+        testee.isAudioRecordVisible = true
+        testee.addFile(url: URL(string: "https://instructure.com")!)
+
+        XCTAssertFalse(testee.isImagePickerVisible)
+        XCTAssertFalse(testee.isTakePhotoVisible)
+        XCTAssertFalse(testee.isFilePickerVisible)
+        XCTAssertFalse(testee.isAudioRecordVisible)
+        XCTAssertTrue(mockInteractor.isAddFileWithURLCalled)
+    }
+
+    func testAttachmentWithFileSelected() {
+        testee.addFile(file: File.make())
+
+        XCTAssertTrue(mockInteractor.isAddFileWithFileCalled)
+    }
 }
 
 private class ComposeMessageInteractorMock: ComposeMessageInteractor {
-    
     var attachments = CurrentValueSubject<[Core.File], Never>([])
 
     var isSuccessfulMockFuture = true
@@ -316,7 +403,6 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
     func removeFile(file: Core.File) {
         isRemoveFileCalled = true
     }
-
 
     private var mockFuture: Future<URLResponse?, Error> {
         isSuccessfulMockFuture ? mockSuccessFuture : mockFailedFuture
