@@ -339,6 +339,10 @@ extension Submission {
         if submittedAt != nil { return .submitted}
         return .notSubmitted
     }
+
+    public var isSubmittedAndGraded: Bool {
+        status == .submitted && workflowState == .graded
+    }
 }
 
 public enum SubmissionStatus {
