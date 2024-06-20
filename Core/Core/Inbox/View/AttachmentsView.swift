@@ -44,19 +44,25 @@ public struct AttachmentsView: View {
             if let thumbnailURL = file.thumbnailURL {
                 AsyncImage(url: thumbnailURL) { image in
                     image
-                        .padding(.all, 12)
                 } placeholder: {
                     ProgressView()
-                        .padding(.all, 12)
                 }
             } else {
-                Image(.imageSolid)
-                    .resizable()
-                    .padding(.all, 32)
+                VStack(spacing: 0) {
+                    Image(uiImage: file.icon)
+                        .padding(.bottom, 8)
+                    Text(file.filename)
+                        .font(.regular14)
+                        .truncationMode(.middle)
+                        .lineLimit(2)
+                        .foregroundStyle(Color.textDark)
+                }
+                .padding(.all, 8)
             }
         }
         .frame(width: 104, height: 104)
-        .padding(.all, 12)
         .background(Color.backgroundLight)
+        .border(Color.backgroundLight)
+        .cornerRadius(15)
     }
 }
