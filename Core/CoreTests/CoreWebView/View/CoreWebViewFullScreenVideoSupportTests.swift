@@ -26,6 +26,7 @@ class CoreWebViewFullScreenVideoSupportTests: XCTestCase {
     func testEnterFullScreenMode() {
         let host = UIView(frame: .init(origin: .zero, size: .init(width: 123, height: 321)))
         let webView = MockWebView()
+        webView.backgroundColor = .purple
         host.addSubview(webView)
         webView.pinWithThemeSwitchButton(
             inside: host,
@@ -43,6 +44,7 @@ class CoreWebViewFullScreenVideoSupportTests: XCTestCase {
         XCTAssertTrue(webView.translatesAutoresizingMaskIntoConstraints)
         XCTAssertEqual(webView.autoresizingMask, [.flexibleWidth, .flexibleHeight])
         XCTAssertEqual(webView.frame, host.frame)
+        XCTAssertEqual(webView.backgroundColor, .black)
 
         // WHEN
         constraint.isActive = false
@@ -51,6 +53,7 @@ class CoreWebViewFullScreenVideoSupportTests: XCTestCase {
         // THEN
         XCTAssertFalse(webView.translatesAutoresizingMaskIntoConstraints)
         XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(webView.backgroundColor, .purple)
     }
 }
 
