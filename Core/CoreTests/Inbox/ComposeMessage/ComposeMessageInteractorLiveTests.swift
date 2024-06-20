@@ -137,10 +137,23 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         XCTAssertFalse(uploadManager.addWasCalled)
         XCTAssertFalse(uploadManager.uploadWasCalled)
 
+        let url = URL.Directories.temporary.appendingPathComponent("upload-manager-add-test.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "hello".data(using: .utf8), attributes: nil)
+        testee.addFile(url: url)
+
+        XCTAssertTrue(uploadManager.addWasCalled)
+        XCTAssertTrue(uploadManager.uploadWasCalled)
+    }
+
+    func testFailedToAddFileWithURL() {
+        XCTAssertFalse(uploadManager.addWasCalled)
+        XCTAssertFalse(uploadManager.uploadWasCalled)
+
         let url = URL(string: "https://instructure.com")!
         testee.addFile(url: url)
 
         XCTAssertTrue(uploadManager.addWasCalled)
+        XCTAssertFalse(uploadManager.uploadWasCalled)
     }
 
     func testAddFileFromUserFilesWithoutDuplicate() {
@@ -181,6 +194,103 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
     }
 
     func testRetry() {
+        XCTAssertFalse(uploadManager.addWasCalled)
+        XCTAssertFalse(uploadManager.uploadWasCalled)
+
+        let url = URL.Directories.temporary.appendingPathComponent("upload-manager-add-test.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "hello".data(using: .utf8), attributes: nil)
+        testee.addFile(url: url)
+        uploadManager.uploadWasCalled = false
+
+        testee.retry()
+
+        XCTAssertTrue(uploadManager.uploadWasCalled)
+
+    }
+
+    func testCancel() {
+        var subscriptions: [AnyCancellable] = []
+        var attachments: [File] = []
+        let fileAddedExp = expectation(description: "fileAdded")
+        let fileRemovedExp = expectation(description: "fileRemoved")
+        var fileAddedFlag = false
+
+        let file = File.make()
+        testee.attachments.sink { files in
+            attachments = files
+            if !attachments.isEmpty { fileAddedFlag = true; fileAddedExp.fulfill() }
+            if attachments.isEmpty && fileAddedFlag {  fileRemovedExp.fulfill() }
+        }
+        .store(in: &subscriptions)
+        testee.addFile(file: file)
+
+        wait(for: [fileAddedExp], timeout: 5)
+        XCTAssertTrue(attachments.contains(file))
+
+        testee.cancel()
+
+        wait(for: [fileRemovedExp], timeout: 5)
+        XCTAssertFalse(attachments.contains(file))
+    }
+
+    func testRemoveAlreadyUploadedFile() {
+        var subscriptions: [AnyCancellable] = []
+        var attachments: [File] = []
+        let fileAddedExp = expectation(description: "fileAdded")
+        let fileRemovedExp = expectation(description: "fileRemoved")
+        var fileAddedFlag = false
+
+        let file = File.make()
+        testee.attachments.sink { files in
+            attachments = files
+            if !attachments.isEmpty { fileAddedFlag = true; fileAddedExp.fulfill() }
+            if attachments.isEmpty && fileAddedFlag {  fileRemovedExp.fulfill() }
+        }
+        .store(in: &subscriptions)
+
+        testee.addFile(file: file)
+        wait(for: [fileAddedExp], timeout: 5)
+        XCTAssertTrue(attachments.contains(file))
+
+        testee.removeFile(file: file)
+        wait(for: [fileRemovedExp], timeout: 5)
+        XCTAssertFalse(attachments.contains(file))
+    }
+
+    func testRemoveAndDeleteUploadedFile() {
+        var subscriptions: [AnyCancellable] = []
+        var attachments: [File] = []
+        let fileAddedExp = expectation(description: "fileAdded")
+        let fileRemovedExp = expectation(description: "fileRemoved")
+        var fileAddedFlag = false
+        var fileRemovedFlag = false
+        var file: File?
+        let deleteRequest = DeleteFileRequest(fileID: "1")
+        let deleteResponse = APIFile.make()
+        api.mock(deleteRequest, value: deleteResponse)
+
+        let url = URL.Directories.temporary.appendingPathComponent("upload-manager-add-test.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "hello".data(using: .utf8), attributes: nil)
+        testee.attachments.sink { files in
+            attachments = files
+            if !attachments.isEmpty && !fileAddedFlag {
+                fileAddedFlag = true
+                fileAddedExp.fulfill()
+                file = files.first
+            }
+            if attachments.isEmpty && fileAddedFlag && !fileRemovedFlag {  fileRemovedExp.fulfill(); fileRemovedFlag = true }
+        }
+        .store(in: &subscriptions)
+
+        testee.addFile(url: url)
+        wait(for: [fileAddedExp], timeout: 5)
+        XCTAssertTrue(attachments.contains(file!))
+        file?.id = "1"
+        testee.attachments.send([file!])
+
+        testee.removeFile(file: file!)
+        wait(for: [fileRemovedExp], timeout: 5)
+        XCTAssertFalse(attachments.contains(file!))
     }
 
     private func mockData() {

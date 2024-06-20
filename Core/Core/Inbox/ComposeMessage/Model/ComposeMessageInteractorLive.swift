@@ -104,9 +104,8 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
         if alreadyUploadedFiles.value.contains(file) {
             let newValues = alreadyUploadedFiles.value.filter { $0 != file }
             alreadyUploadedFiles.send(newValues)
-
         } else {
-            file.taskID = "local"
+            file.taskID = "localProcess"
             deleteFile(file: file)
                 .sink { [weak self] in
                     guard let self else { return }
