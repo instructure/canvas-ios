@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Calendar View Controller-->
+        <scene sceneID="MmF-3q-oQS">
+            <objects>
+                <viewController storyboardIdentifier="CalendarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bHm-jA-JJr" customClass="CalendarViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ab1-ql-Y0p">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCw-Ow-pYj" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="16" y="28" width="343" height="14.5"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PlannerCalendar.yearLabel"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular12"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="61z-Nv-lJN" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="101" y="44.5" width="20" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="xRu-xy-ceg"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDarkest"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="chevronDown"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwV-L8-SHU" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="16" y="44.5" width="109" height="31"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PlannerCalendar.monthButton"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="28" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="January">
+                                    <color key="titleColor" name="textDarkest"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold22"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="toggleExpanded" destination="bHm-jA-JJr" eventType="primaryActionTriggered" id="kNg-lw-419"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZt-0r-9y6" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="286" y="44" width="73" height="32"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PlannerCalendar.filterButton"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Calendars"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="filter:" destination="bHm-jA-JJr" eventType="primaryActionTriggered" id="3O0-Wv-TkJ"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="T8Q-j1-Rzz">
+                                <rect key="frame" x="0.0" y="87.5" width="375" height="14.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbP-wb-YV5">
+                                        <rect key="frame" x="0.0" y="0.0" width="53.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                        <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDp-Ul-PnS">
+                                        <rect key="frame" x="53.5" y="0.0" width="53.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                        <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EU9-aY-rB2">
+                                        <rect key="frame" x="107" y="0.0" width="53.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                        <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAb-iD-GAA">
+                                        <rect key="frame" x="160.5" y="0.0" width="54" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                        <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zi-td-N5K">
+                                        <rect key="frame" x="214.5" y="0.0" width="53.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                        <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fu-oY-rAX">
+                                        <rect key="frame" x="268" y="0.0" width="53.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                        <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWE-kl-bRi">
+                                        <rect key="frame" x="321.5" y="0.0" width="53.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                        <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAQ-ai-Jn4">
+                                <rect key="frame" x="0.0" y="112" width="375" height="48"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="WWZ-0h-Oyd"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="www-IQ-bTx"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="T8Q-j1-Rzz" firstAttribute="top" secondItem="jwV-L8-SHU" secondAttribute="bottom" constant="12" id="04O-W3-XDQ">
+                                <variation key="heightClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="61z-Nv-lJN" firstAttribute="top" secondItem="jwV-L8-SHU" secondAttribute="top" id="26e-1W-VjU"/>
+                            <constraint firstItem="61z-Nv-lJN" firstAttribute="bottom" secondItem="jwV-L8-SHU" secondAttribute="bottom" id="2Ny-ba-Ttb"/>
+                            <constraint firstItem="QZt-0r-9y6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jwV-L8-SHU" secondAttribute="trailing" constant="16" id="2df-Mh-2Zb"/>
+                            <constraint firstItem="www-IQ-bTx" firstAttribute="bottom" secondItem="qAQ-ai-Jn4" secondAttribute="bottom" id="96e-Ve-nsU"/>
+                            <constraint firstItem="www-IQ-bTx" firstAttribute="trailing" secondItem="qAQ-ai-Jn4" secondAttribute="trailing" id="AZK-sn-lwZ"/>
+                            <constraint firstItem="qAQ-ai-Jn4" firstAttribute="top" secondItem="T8Q-j1-Rzz" secondAttribute="bottom" constant="10" id="C0v-dw-Ajn">
+                                <variation key="heightClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="61z-Nv-lJN" firstAttribute="trailing" secondItem="jwV-L8-SHU" secondAttribute="trailing" constant="-4" id="NQn-jT-0rf"/>
+                            <constraint firstItem="jwV-L8-SHU" firstAttribute="top" secondItem="cCw-Ow-pYj" secondAttribute="bottom" constant="2" id="T3c-3j-58T"/>
+                            <constraint firstItem="T8Q-j1-Rzz" firstAttribute="leading" secondItem="www-IQ-bTx" secondAttribute="leading" id="bjJ-vB-GVC"/>
+                            <constraint firstItem="www-IQ-bTx" firstAttribute="trailing" secondItem="T8Q-j1-Rzz" secondAttribute="trailing" id="bm9-MP-HZV"/>
+                            <constraint firstItem="www-IQ-bTx" firstAttribute="trailing" secondItem="cCw-Ow-pYj" secondAttribute="trailing" constant="16" id="bz3-3T-cve"/>
+                            <constraint firstItem="QZt-0r-9y6" firstAttribute="centerY" secondItem="jwV-L8-SHU" secondAttribute="centerY" id="eqK-GX-WK3"/>
+                            <constraint firstItem="61z-Nv-lJN" firstAttribute="centerY" secondItem="jwV-L8-SHU" secondAttribute="centerY" id="fEJ-Er-wR5"/>
+                            <constraint firstItem="qAQ-ai-Jn4" firstAttribute="leading" secondItem="www-IQ-bTx" secondAttribute="leading" id="g16-7u-YdT"/>
+                            <constraint firstItem="cCw-Ow-pYj" firstAttribute="leading" secondItem="www-IQ-bTx" secondAttribute="leading" constant="16" id="gnV-5p-rb8"/>
+                            <constraint firstItem="www-IQ-bTx" firstAttribute="trailing" secondItem="QZt-0r-9y6" secondAttribute="trailing" constant="16" id="mw8-oE-qm9"/>
+                            <constraint firstItem="cCw-Ow-pYj" firstAttribute="top" secondItem="www-IQ-bTx" secondAttribute="top" constant="8" id="vhT-To-2l6"/>
+                            <constraint firstItem="jwV-L8-SHU" firstAttribute="leading" secondItem="www-IQ-bTx" secondAttribute="leading" constant="16" id="woW-vD-63D"/>
+                        </constraints>
+                    </view>
+                    <size key="freeformSize" width="375" height="160"/>
+                    <connections>
+                        <outlet property="daysContainer" destination="qAQ-ai-Jn4" id="SbT-zo-uHq"/>
+                        <outlet property="daysHeight" destination="WWZ-0h-Oyd" id="Kys-01-eaU"/>
+                        <outlet property="dropdownView" destination="61z-Nv-lJN" id="sWg-sp-RPf"/>
+                        <outlet property="filterButton" destination="QZt-0r-9y6" id="eKk-gn-1Qm"/>
+                        <outlet property="monthButton" destination="jwV-L8-SHU" id="3hF-cm-lnY"/>
+                        <outlet property="weekdayRow" destination="T8Q-j1-Rzz" id="DBZ-rR-YFe"/>
+                        <outlet property="yearLabel" destination="cCw-Ow-pYj" id="A4d-5c-E4P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KnB-j6-e57" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="119"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="QZt-0r-9y6">
+            <size key="intrinsicContentSize" width="73" height="32"/>
+        </designable>
+        <designable name="cCw-Ow-pYj">
+            <size key="intrinsicContentSize" width="30" height="14.5"/>
+        </designable>
+        <designable name="jwV-L8-SHU">
+            <size key="intrinsicContentSize" width="109" height="27"/>
+        </designable>
+    </designables>
+    <resources>
+        <namedColor name="textDarkest">
+            <color red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -241,27 +241,3 @@ public struct CreatePlannerOverrideRequest: APIRequestable {
         self.body = body
     }
 }
-
-// https://canvas.instructure.com/doc/api/planner.html#method.planner_notes.create
-public struct PostPlannerNoteRequest: APIRequestable {
-    public typealias Response = APINoContent
-
-    public init(body: Body) {
-        self.body = body
-    }
-
-    public var method: APIMethod = .post
-
-    public var path: String = "planner_notes"
-
-    public let body: Body?
-
-    public struct Body: Codable, Equatable {
-        let title: String?
-        let details: String?
-        let todo_date: Date
-        let course_id: String?
-        let linked_object_type: PlannableType?
-        let linked_object_id: String?
-    }
-}
