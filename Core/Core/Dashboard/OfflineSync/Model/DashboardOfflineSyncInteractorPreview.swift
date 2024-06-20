@@ -46,4 +46,18 @@ class DashboardOfflineSyncInteractorPreview: CourseSyncProgressObserverInteracto
     }
 }
 
+class DashboardOfflineSyncProgressWriterInteractorPreview: CourseSyncProgressWriterInteractor {
+    func saveDownloadProgress(entries _: [CourseSyncEntry]) {}
+
+    func saveDownloadResult(isFinished _: Bool, error _: String?) {}
+
+    func cleanUpPreviousDownloadProgress() {}
+
+    func markInProgressDownloadsAsFailed() {}
+
+    func setInitialLoadingState(entries _: [CourseSyncEntry]) {}
+
+    func saveStateProgress(id _: String, selection _: CourseEntrySelection, state _: CourseSyncEntry.State) {}
+}
+
 #endif

@@ -42,7 +42,8 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
     public let dismissDidTap = PassthroughRelay<Void>()
     public let cardDidTap = PassthroughRelay<WeakViewController>()
 
-    private let interactor: CourseSyncProgressObserverInteractor
+    private let progressObserverInteractor: CourseSyncProgressObserverInteractor
+    private let progressWriterInteractor: CourseSyncProgressWriterInteractor
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
@@ -52,17 +53,19 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
         - offlineModeInteractor: This is used to determine if the feature flag is turned on. If it's off then
      we don't subscribe to CoreData updates to save some CPU time.
      */
-    public init(interactor: CourseSyncProgressObserverInteractor,
+    public init(progressObserverInteractor: CourseSyncProgressObserverInteractor,
+                progressWriterInteractor: CourseSyncProgressWriterInteractor,
                 offlineModeInteractor: OfflineModeInteractor,
                 router: Router,
                 scheduler: AnySchedulerOf<DispatchQueue> = .main) {
-        self.interactor = interactor
+        self.progressObserverInteractor = progressObserverInteractor
+        self.progressWriterInteractor = progressWriterInteractor
         self.router = router
         self.scheduler = scheduler
 
         guard offlineModeInteractor.isFeatureFlagEnabled() else { return }
 
-        let downloadProgressPublisher = interactor
+        let downloadProgressPublisher = progressObserverInteractor
             .observeDownloadProgress()
             .share()
             .makeConnectable()
@@ -71,7 +74,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
         setupAutoAppearanceOnSyncStart(downloadProgressPublisher)
         setupAutoHideOnSyncCancel()
         setupAutoDismissUponCompletion(downloadProgressPublisher)
-        handleDismissTap()
+        handleDismissTap(progressWriterInteractor)
         handleCardTap()
 
         downloadProgressPublisher
@@ -101,7 +104,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
         _ downloadProgressPublisher: some DownloadProgressPublisher
     ) -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> {
         Publishers.CombineLatest(
-            interactor.observeStateProgress().map { $0.filterToCourses() },
+            progressObserverInteractor.observeStateProgress().map { $0.filterToCourses() },
             downloadProgressPublisher
         )
         .receive(on: scheduler)
@@ -153,8 +156,9 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
             .assign(to: &$state)
     }
 
-    private func handleDismissTap() {
+    private func handleDismissTap(_ interactor: CourseSyncProgressWriterInteractor) {
         dismissDidTap
+            .map { _ in interactor.cleanUpPreviousDownloadProgress() } 
             .map { .hidden }
             .assign(to: &$state)
     }
