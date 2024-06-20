@@ -34,14 +34,15 @@ struct ConversationAttachmentCardView: View {
 
     var body: some View {
         VStack {
-            if file.isUploading { ProgressView(value: Float(file.bytesSent), total: Float(file.size)).padding(.all, 12) }
-            else if file.thumbnailURL != nil { AsyncImage(url: file.thumbnailURL) }
+            if file.thumbnailURL != nil { AsyncImage(url: file.thumbnailURL) }
             HStack {
                 VStack(alignment: .leading) {
                     Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? file.url?.lastPathComponent ?? "").font(.headline)
                     Text(fileSize)
                 }
                 Spacer()
+
+                progressIndicator(for: file)
                 Button {
                     removeHandler()
                 } label: {
@@ -54,5 +55,20 @@ struct ConversationAttachmentCardView: View {
         }
         .background(RoundedRectangle(cornerRadius: 10).stroke(Color.tiara, lineWidth: 1))
         .padding(12)
+    }
+
+    @ViewBuilder
+    func progressIndicator(for file: File) -> some View {
+        if file.isUploading {
+             ProgressView()
+                .padding(.all, 8)
+        } else if file.isUploaded {
+            Image.completeLine
+                .foregroundStyle(Color.textSuccess)
+                .padding(.all, 8)
+        } else if file.uploadError != nil {
+            Image.unpublishedLine
+                .padding(.all, 8)
+        }
     }
 }

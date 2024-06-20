@@ -200,6 +200,8 @@ public extension UIImage {
     static var unlockSolid: UIImage { UIImage(named: "unlockSolid", in: .core, compatibleWith: nil)! }
     static var unmutedLine: UIImage { UIImage(named: "unmutedLine", in: .core, compatibleWith: nil)! }
     static var unmutedSolid: UIImage { UIImage(named: "unmutedSolid", in: .core, compatibleWith: nil)! }
+    static var unpublishedLine: UIImage { UIImage(named: "unpublishedLine", in: .core, compatibleWith: nil)! }
+    static var unpublishedSolid: UIImage { UIImage(named: "unpublishedSolid", in: .core, compatibleWith: nil)! }
     static var userLine: UIImage { UIImage(named: "userLine", in: .core, compatibleWith: nil)! }
     static var userSolid: UIImage { UIImage(named: "userSolid", in: .core, compatibleWith: nil)! }
     static var videoLine: UIImage { UIImage(named: "videoLine", in: .core, compatibleWith: nil)! }
@@ -257,9 +259,9 @@ public extension UIImage {
     static var masteryLTI: UIImage { UIImage(named: "masteryLTI", in: .core, compatibleWith: nil)! }
     static var offlineLine: UIImage { UIImage(named: "offlineLine", in: .core, compatibleWith: nil)! }
     static var partialSolid: UIImage { UIImage(named: "partialSolid", in: .core, compatibleWith: nil)! }
+    static var qrCode: UIImage { UIImage(named: "qrCode", in: .core, compatibleWith: nil)! }
     static var radioButtonSelected: UIImage { UIImage(named: "radioButtonSelected", in: .core, compatibleWith: nil)! }
     static var radioButtonUnselected: UIImage { UIImage(named: "radioButtonUnselected", in: .core, compatibleWith: nil)! }
-    static var qrCode: UIImage { UIImage(named: "qrCode", in: .core, compatibleWith: nil)! }
     static var share: UIImage { UIImage(named: "share", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
     static var todoTabActive: UIImage { UIImage(named: "todoTabActive", in: .core, compatibleWith: nil)! }
@@ -445,6 +447,8 @@ public extension Image {
     static var unlockSolid: Image { Image("unlockSolid", bundle: .core) }
     static var unmutedLine: Image { Image("unmutedLine", bundle: .core) }
     static var unmutedSolid: Image { Image("unmutedSolid", bundle: .core) }
+    static var unpublishedLine: Image { Image("unpublishedLine", bundle: .core) }
+    static var unpublishedSolid: Image { Image("unpublishedSolid", bundle: .core) }
     static var userLine: Image { Image("userLine", bundle: .core) }
     static var userSolid: Image { Image("userSolid", bundle: .core) }
     static var videoLine: Image { Image("videoLine", bundle: .core) }
@@ -455,7 +459,7 @@ public extension Image {
     static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
-
+    
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
     static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }
@@ -502,9 +506,9 @@ public extension Image {
     static var masteryLTI: Image { Image("masteryLTI", bundle: .core) }
     static var offlineLine: Image { Image("offlineLine", bundle: .core) }
     static var partialSolid: Image { Image("partialSolid", bundle: .core) }
+    static var qrCode: Image { Image("qrCode", bundle: .core) }
     static var radioButtonSelected: Image { Image("radioButtonSelected", bundle: .core) }
     static var radioButtonUnselected: Image { Image("radioButtonUnselected", bundle: .core) }
-    static var qrCode: Image { Image("qrCode", bundle: .core) }
     static var share: Image { Image("share", bundle: .core) }
     static var todoTab: Image { Image("todoTab", bundle: .core) }
     static var todoTabActive: Image { Image("todoTabActive", bundle: .core) }
