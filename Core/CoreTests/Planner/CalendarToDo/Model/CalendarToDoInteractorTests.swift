@@ -20,7 +20,7 @@
 import Combine
 import XCTest
 
-final class CreateToDoInteractorTests: CoreTestCase {
+final class CalendarToDoInteractorTests: CoreTestCase {
 
     private enum TestConstants {
         static let title = "some title"
@@ -30,7 +30,7 @@ final class CreateToDoInteractorTests: CoreTestCase {
     }
 
     private var useCase: CreatePlannerNote!
-    private var testee: CreateToDoInteractorLive!
+    private var testee: CalendarToDoInteractorLive!
 
     override func setUp() {
         super.setUp()

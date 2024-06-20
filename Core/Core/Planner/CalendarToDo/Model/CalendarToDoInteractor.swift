@@ -18,7 +18,7 @@
 
 import Combine
 
-public protocol CreateToDoInteractor: AnyObject {
+public protocol CalendarToDoInteractor: AnyObject {
     func createToDo(
         title: String,
         date: Date,
@@ -27,7 +27,7 @@ public protocol CreateToDoInteractor: AnyObject {
     ) -> AnyPublisher<Void, Error>
 }
 
-final class CreateToDoInteractorLive: CreateToDoInteractor {
+final class CalendarToDoInteractorLive: CalendarToDoInteractor {
 
     func createToDo(
         title: String,

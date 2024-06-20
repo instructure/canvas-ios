@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-final class CreateToDoViewModelTests: CoreTestCase {
+final class EditCalendarToDoViewModelTests: CoreTestCase {
 
     private enum TestConstants {
         static let title = "some title"
@@ -34,20 +34,20 @@ final class CreateToDoViewModelTests: CoreTestCase {
         ]
     }
 
-    private var createToDoInteractor: CreateToDoInteractorPreview!
+    private var toDoInteractor: CalendarToDoInteractorPreview!
     private var calendarListProviderInteractor: CalendarFilterInteractorPreview!
-    private var testee: CreateToDoViewModel!
+    private var testee: EditCalendarToDoViewModel!
 
     private var completionCallsCount: Int = 0
     private var completionValue: PlannerAssembly.Completion?
 
     override func setUp() {
         super.setUp()
-        createToDoInteractor = .init()
+        toDoInteractor = .init()
         calendarListProviderInteractor = .init()
         calendarListProviderInteractor.mockedFilters = TestConstants.calendars
         testee = .init(
-            createToDoInteractor: createToDoInteractor,
+            toDoInteractor: toDoInteractor,
             calendarListProviderInteractor: calendarListProviderInteractor,
             completion: { [weak self] in
                 self?.completionValue = $0
@@ -57,7 +57,7 @@ final class CreateToDoViewModelTests: CoreTestCase {
     }
 
     override func tearDown() {
-        createToDoInteractor = nil
+        toDoInteractor = nil
         calendarListProviderInteractor = nil
         testee = nil
         super.tearDown()
@@ -85,7 +85,7 @@ final class CreateToDoViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.isAddButtonEnabled, false)
 
         testee.title = "some title"
-        createToDoInteractor.createToDoResult = nil
+        toDoInteractor.createToDoResult = nil
         testee.didTapAdd.send()
         XCTAssertEqual(testee.isAddButtonEnabled, false)
     }
@@ -102,7 +102,7 @@ final class CreateToDoViewModelTests: CoreTestCase {
     // MARK: - Did Tap Add
 
     func testDidTapAddShowsLoadingOverlayWhileLoading() {
-        createToDoInteractor.createToDoResult = nil
+        toDoInteractor.createToDoResult = nil
 
         testee.didTapAdd.send()
 
@@ -119,8 +119,8 @@ final class CreateToDoViewModelTests: CoreTestCase {
 
         testee.didTapAdd.send()
 
-        XCTAssertEqual(createToDoInteractor.createToDoCallsCount, 1)
-        let input = createToDoInteractor.createToDoInput
+        XCTAssertEqual(toDoInteractor.createToDoCallsCount, 1)
+        let input = toDoInteractor.createToDoInput
         XCTAssertEqual(input?.title, TestConstants.title)
         XCTAssertEqual(input?.date, TestConstants.date)
         XCTAssertEqual(input?.calendar?.context, selectedCalendar.context)
@@ -128,7 +128,7 @@ final class CreateToDoViewModelTests: CoreTestCase {
     }
 
     func testDidTapAddOnSuccess() {
-        createToDoInteractor.createToDoResult = .success
+        toDoInteractor.createToDoResult = .success
 
         testee.didTapAdd.send()
 
@@ -137,7 +137,7 @@ final class CreateToDoViewModelTests: CoreTestCase {
     }
 
     func testDidTapAddOnFailure() {
-        createToDoInteractor.createToDoResult = .failure(MockError())
+        toDoInteractor.createToDoResult = .failure(MockError())
 
         testee.didTapAdd.send()
 
@@ -147,10 +147,10 @@ final class CreateToDoViewModelTests: CoreTestCase {
     }
 
     func testRetryAfterFailure() {
-        createToDoInteractor.createToDoResult = .failure(MockError())
+        toDoInteractor.createToDoResult = .failure(MockError())
         testee.didTapAdd.send()
 
-        createToDoInteractor.createToDoResult = .success(())
+        toDoInteractor.createToDoResult = .success(())
         testee.didTapAdd.send()
 
         XCTAssertEqual(completionCallsCount, 1)

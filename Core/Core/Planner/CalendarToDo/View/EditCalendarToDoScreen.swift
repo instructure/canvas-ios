@@ -18,12 +18,12 @@
 
 import SwiftUI
 
-struct CreateToDoScreen: View, ScreenViewTrackable {
+struct EditCalendarToDoScreen: View, ScreenViewTrackable {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var viewController
 
-    @ObservedObject private var viewModel: CreateToDoViewModel
+    @ObservedObject private var viewModel: EditCalendarToDoViewModel
 
     var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
 
@@ -33,7 +33,7 @@ struct CreateToDoScreen: View, ScreenViewTrackable {
     }
     @FocusState private var focusedInput: FocusedInput?
 
-    init(viewModel: CreateToDoViewModel) {
+    init(viewModel: EditCalendarToDoViewModel) {
         self.viewModel = viewModel
     }
 

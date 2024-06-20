@@ -20,7 +20,7 @@
 
 import Combine
 
-final class CreateToDoInteractorPreview: CreateToDoInteractor {
+final class CalendarToDoInteractorPreview: CalendarToDoInteractor {
 
     init() { }
 

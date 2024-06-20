@@ -19,7 +19,7 @@
 import Combine
 import SwiftUI
 
-final class CreateToDoViewModel: ObservableObject {
+final class EditCalendarToDoViewModel: ObservableObject {
 
     // MARK: - Output
 
@@ -53,7 +53,7 @@ final class CreateToDoViewModel: ObservableObject {
 
     // MARK: - Private
 
-    private let createToDoInteractor: CreateToDoInteractor
+    private let toDoInteractor: CalendarToDoInteractor
     private let calendarListProviderInteractor: CalendarFilterInteractor
     private var subscriptions = Set<AnyCancellable>()
     private var selectedCalendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
@@ -61,11 +61,11 @@ final class CreateToDoViewModel: ObservableObject {
     // MARK: - Init
 
     init(
-        createToDoInteractor: CreateToDoInteractor,
+        toDoInteractor: CalendarToDoInteractor,
         calendarListProviderInteractor: CalendarFilterInteractor,
         completion: @escaping (PlannerAssembly.Completion) -> Void
     ) {
-        self.createToDoInteractor = createToDoInteractor
+        self.toDoInteractor = toDoInteractor
         self.calendarListProviderInteractor = calendarListProviderInteractor
 
         // end of today, to match default web behaviour
@@ -98,7 +98,7 @@ final class CreateToDoViewModel: ObservableObject {
                         .eraseToAnyPublisher()
                 }
 
-                return createToDoInteractor.createToDo(
+                return toDoInteractor.createToDo(
                     title: title,
                     date: date ?? .now,
                     calendar: selectedCalendar.value,
