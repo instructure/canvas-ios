@@ -19,13 +19,13 @@
 import Foundation
 import CoreData
 
-public class CreatePlannerNote: APIUseCase {
-    public typealias Model = Plannable
-    public let request: PostPlannerNoteRequest
-    public let cacheKey: String? = nil
-    public var scope: Scope = Scope.all(orderBy: #keyPath(Plannable.details))
+final class CreatePlannerNote: APIUseCase {
+    typealias Model = Plannable
+    let request: PostPlannerNoteRequest
+    let cacheKey: String? = nil
+    var scope: Scope = Scope.all(orderBy: #keyPath(Plannable.details))
 
-    public init(
+    init(
         title: String? = nil,
         details: String? = nil,
         todoDate: Date,
@@ -42,6 +42,6 @@ public class CreatePlannerNote: APIUseCase {
             linked_object_id: linkedObjectId))
     }
 
-    public func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
     }
 }
