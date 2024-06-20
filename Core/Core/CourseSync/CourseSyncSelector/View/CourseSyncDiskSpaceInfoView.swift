@@ -20,6 +20,8 @@ import SwiftUI
 
 struct CourseSyncDiskSpaceInfoView: View {
     let viewModel: CourseSyncDiskSpaceInfoViewModel
+    let scrollOffset: CGFloat
+    @State private var originalInfoHeight: CGFloat?
 
     // TODO: Use real backgroundDarkest color when palette is updated.
     private let backgroundDarkest = UIColor {
@@ -36,11 +38,10 @@ struct CourseSyncDiskSpaceInfoView: View {
         VStack(spacing: 0) {
             title
             Spacer().frame(height: 16)
-            chart
-            Spacer().frame(height: 8)
-            legend
+            collapsibleInfo
         }
-        .padding(16)
+        .padding(.horizontal, 16)
+        .padding(.top, 16)
         .background(RoundedRectangle(cornerRadius: 6)
             .fill(Color.backgroundLightest)
             .overlay(RoundedRectangle(cornerRadius: 6)
@@ -60,6 +61,33 @@ struct CourseSyncDiskSpaceInfoView: View {
                 .foregroundColor(.textDark)
                 .font(.regular14, lineHeight: .fit)
         }
+    }
+
+    private var collapsibleInfo: some View {
+        let height: CGFloat? = {
+            guard let originalInfoHeight else {
+                return nil
+            }
+
+            if scrollOffset > 0 {
+                return originalInfoHeight
+            }
+
+            return max(0, originalInfoHeight + scrollOffset)
+        }()
+        return VStack(spacing: 0) {
+            chart
+            Spacer().frame(height: 8)
+            legend
+            Spacer().frame(height: 16)
+        }
+        .onFrameChange(id: "infoFrame", coordinateSpace: .global, { newFrame in
+            if originalInfoHeight == nil {
+                originalInfoHeight = newFrame.height
+            }
+        })
+        .frame(maxHeight: height, alignment: .bottom)
+        .clipped()
     }
 
     private var chart: some View {
@@ -106,9 +134,40 @@ struct CourseSyncDiskSpaceInfoView: View {
 
 #if DEBUG
 
+struct CourseSyncDiskSpaceInfoCollapse_Previews: PreviewProvider {
+    static var previews: some View {
+        PreviewHolder()
+    }
+}
+
 struct CourseSyncDiskSpaceInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseSyncDiskSpaceInfoView(viewModel: .init(interactor: DiskSpaceInteractorPreview(), app: .student))
+        CourseSyncDiskSpaceInfoView(
+            viewModel: .init(
+                interactor: DiskSpaceInteractorPreview(),
+                app: .student
+            ),
+            scrollOffset: 0
+        )
+    }
+}
+
+struct PreviewHolder: View {
+    @State var verticalOffset: CGFloat = 0
+
+    var body: some View {
+        VStack {
+            Slider(value: $verticalOffset, in: -80 ... 80)
+                .padding(.horizontal)
+            CourseSyncDiskSpaceInfoView(
+                viewModel: .init(
+                    interactor: DiskSpaceInteractorPreview(),
+                    app: .student
+                ),
+                scrollOffset: -verticalOffset
+            )
+            Spacer()
+        }
     }
 }
 
