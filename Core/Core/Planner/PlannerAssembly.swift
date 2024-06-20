@@ -62,8 +62,8 @@ public enum PlannerAssembly {
     }
 
     public static func makeToDoDetailsViewController(plannable: Plannable) -> UIViewController {
-        let viewModel = ToDoDetailsScreenViewModel(plannable: plannable)
-        let view = ToDoDetailsScreen(viewModel: viewModel)
+        let viewModel = CalendarToDoDetailsViewModel(plannable: plannable)
+        let view = CalendarToDoDetailsScreen(viewModel: viewModel)
         return CoreHostingController(view)
     }
 

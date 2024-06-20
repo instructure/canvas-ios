@@ -19,7 +19,7 @@
 import Core
 import XCTest
 
-class ToDoDetailsScreenViewModelTests: CoreTestCase {
+class CalendarToDoDetailsViewModelTests: CoreTestCase {
 
     func testProperties() {
         let todoDate = Date().addMonths(3)
@@ -34,7 +34,7 @@ class ToDoDetailsScreenViewModelTests: CoreTestCase {
                                        in: databaseClient)
 
         // WHEN
-        let testee = ToDoDetailsScreenViewModel(plannable: plannable)
+        let testee = CalendarToDoDetailsViewModel(plannable: plannable)
 
         // THEN
         XCTAssertEqual(testee.navigationTitle, "To Do")

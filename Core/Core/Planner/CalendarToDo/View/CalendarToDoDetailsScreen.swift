@@ -18,10 +18,10 @@
 
 import SwiftUI
 
-public struct ToDoDetailsScreen: View {
-    private let viewModel: ToDoDetailsScreenViewModel
+public struct CalendarToDoDetailsScreen: View {
+    private let viewModel: CalendarToDoDetailsViewModel
 
-    public init(viewModel: ToDoDetailsScreenViewModel) {
+    public init(viewModel: CalendarToDoDetailsViewModel) {
         self.viewModel = viewModel
     }
 
@@ -67,7 +67,7 @@ public struct ToDoDetailsScreen: View {
         userID: "",
         in: PreviewEnvironment().database.viewContext
     )
-    return ToDoDetailsScreen(viewModel: ToDoDetailsScreenViewModel(plannable: plannable))
+    return CalendarToDoDetailsScreen(viewModel: CalendarToDoDetailsViewModel(plannable: plannable))
 }
 
 #endif

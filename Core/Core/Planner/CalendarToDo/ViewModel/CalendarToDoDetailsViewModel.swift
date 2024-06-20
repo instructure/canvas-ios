@@ -18,7 +18,7 @@
 
 import Foundation
 
-public class ToDoDetailsScreenViewModel: ObservableObject {
+public class CalendarToDoDetailsViewModel: ObservableObject {
     public let navigationTitle = String(localized: "To Do", bundle: .core)
     public let title: String?
     public let date: String?
