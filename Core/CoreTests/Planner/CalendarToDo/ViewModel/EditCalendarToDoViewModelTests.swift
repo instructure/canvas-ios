@@ -71,23 +71,23 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.calendarName, "User 42") // first user calendar in TestConstants.calendars
     }
 
-    func testIsAddButtonEnabled() {
+    func testIsSaveButtonEnabled() {
         // initial state
-        XCTAssertEqual(testee.isAddButtonEnabled, false)
+        XCTAssertEqual(testee.isSaveButtonEnabled, false)
 
         testee.title = "some title"
-        XCTAssertEqual(testee.isAddButtonEnabled, true)
+        XCTAssertEqual(testee.isSaveButtonEnabled, true)
 
         testee.title = " "
-        XCTAssertEqual(testee.isAddButtonEnabled, true)
+        XCTAssertEqual(testee.isSaveButtonEnabled, true)
 
         testee.title = ""
-        XCTAssertEqual(testee.isAddButtonEnabled, false)
+        XCTAssertEqual(testee.isSaveButtonEnabled, false)
 
         testee.title = "some title"
         toDoInteractor.createToDoResult = nil
-        testee.didTapAdd.send()
-        XCTAssertEqual(testee.isAddButtonEnabled, false)
+        testee.didTapSave.send()
+        XCTAssertEqual(testee.isSaveButtonEnabled, false)
     }
 
     // MARK: - Did Tap Cancel
@@ -104,7 +104,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
     func testDidTapAddShowsLoadingOverlayWhileLoading() {
         toDoInteractor.createToDoResult = nil
 
-        testee.didTapAdd.send()
+        testee.didTapSave.send()
 
         XCTAssertEqual(testee.state, .data(loadingOverlay: true))
     }
@@ -117,7 +117,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         let selectedCalendar = calendarListProviderInteractor.filters.value[1]
         testee.selectCalendarViewModel.selectedCalendar = selectedCalendar
 
-        testee.didTapAdd.send()
+        testee.didTapSave.send()
 
         XCTAssertEqual(toDoInteractor.createToDoCallsCount, 1)
         let input = toDoInteractor.createToDoInput
@@ -130,7 +130,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
     func testDidTapAddOnSuccess() {
         toDoInteractor.createToDoResult = .success
 
-        testee.didTapAdd.send()
+        testee.didTapSave.send()
 
         XCTAssertEqual(completionCallsCount, 1)
         XCTAssertEqual(completionValue, .didUpdate)
@@ -139,7 +139,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
     func testDidTapAddOnFailure() {
         toDoInteractor.createToDoResult = .failure(MockError())
 
-        testee.didTapAdd.send()
+        testee.didTapSave.send()
 
         XCTAssertEqual(testee.state, .data)
         XCTAssertEqual(testee.shouldShowAlert, true)
@@ -148,10 +148,10 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
 
     func testRetryAfterFailure() {
         toDoInteractor.createToDoResult = .failure(MockError())
-        testee.didTapAdd.send()
+        testee.didTapSave.send()
 
         toDoInteractor.createToDoResult = .success(())
-        testee.didTapAdd.send()
+        testee.didTapSave.send()
 
         XCTAssertEqual(completionCallsCount, 1)
     }

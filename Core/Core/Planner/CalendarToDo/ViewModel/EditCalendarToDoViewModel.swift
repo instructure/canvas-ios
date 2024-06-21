@@ -21,22 +21,58 @@ import SwiftUI
 
 final class EditCalendarToDoViewModel: ObservableObject {
 
+    private enum Mode {
+        case add
+        case edit(id: String)
+    }
+
     // MARK: - Output
 
-    let pageTitle = String(localized: "New To Do", bundle: .core)
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new")
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
     @Published private(set) var state: InstUI.ScreenState = .data
     @Published var title: String = ""
     @Published var date: Date?
+    @Published var calendarName: String?
     @Published var details: String = ""
     @Published var shouldShowAlert: Bool = false
-    @Published var calendarName: String?
 
-    var isAddButtonEnabled: Bool {
+    var isSaveButtonEnabled: Bool {
         state == .data && title.isNotEmpty
     }
+
+    lazy var pageTitle: String = {
+        switch mode {
+        case .add: String(localized: "New To Do", bundle: .core)
+        case .edit: String(localized: "Edit To Do", bundle: .core)
+        }
+    }()
+
+    lazy var saveButtonTitle: String = {
+        switch mode {
+        case .add: String(localized: "Add", bundle: .core)
+        case .edit: String(localized: "Save", bundle: .core)
+        }
+    }()
+
+    lazy var alert: ErrorAlertViewModel = {
+        .init(
+            title: {
+                switch mode {
+                case .add: String(localized: "Unsuccessful Creation!", bundle: .core)
+                case .edit: String(localized: "Save Unsuccessful!", bundle: .core)
+                }
+            }(),
+            message: {
+                switch mode {
+                case .add: String(localized: "Your To Do was not added, you can try it again.", bundle: .core)
+                case .edit: String(localized: "Your changes were not saved, you can try it again.", bundle: .core)
+                }
+            }(),
+            buttonTitle: String(localized: "OK", bundle: .core)
+        )
+    }()
 
     lazy var selectCalendarViewModel: SelectCalendarViewModel = {
         return .init(
@@ -49,10 +85,11 @@ final class EditCalendarToDoViewModel: ObservableObject {
     // MARK: - Input
 
     let didTapCancel = PassthroughSubject<Void, Never>()
-    let didTapAdd = PassthroughSubject<Void, Never>()
+    let didTapSave = PassthroughSubject<Void, Never>()
 
     // MARK: - Private
 
+    private let mode: Mode
     private let toDoInteractor: CalendarToDoInteractor
     private let calendarListProviderInteractor: CalendarFilterInteractor
     private var subscriptions = Set<AnyCancellable>()
@@ -61,6 +98,7 @@ final class EditCalendarToDoViewModel: ObservableObject {
     // MARK: - Init
 
     init(
+        plannable: Plannable? = nil,
         toDoInteractor: CalendarToDoInteractor,
         calendarListProviderInteractor: CalendarFilterInteractor,
         completion: @escaping (PlannerAssembly.Completion) -> Void
@@ -68,12 +106,33 @@ final class EditCalendarToDoViewModel: ObservableObject {
         self.toDoInteractor = toDoInteractor
         self.calendarListProviderInteractor = calendarListProviderInteractor
 
-        // end of today, to match default web behaviour
-        date = .now.endOfDay()
+        if let plannable {
+            mode = .edit(id: plannable.id)
+            title = plannable.title ?? ""
+            details = plannable.details ?? ""
+            date = plannable.date
+        } else {
+            mode = .add
+            // end of today, to match default web behaviour
+            date = .now.endOfDay()
+        }
+
+        calendarListProviderInteractor
+            .load(ignoreCache: false)
+            .sink()
+            .store(in: &subscriptions)
 
         calendarListProviderInteractor.filters
             .first { $0.isEmpty == false }
-            .compactMap { $0.first { $0.context.contextType == .user } }
+            .compactMap {
+                $0.first {
+                    if let context = plannable?.context, context.contextType == .course {
+                        $0.context == context
+                    } else {
+                        $0.context.contextType == .user
+                    }
+                }
+            }
             .sink { [weak selectedCalendar] in
                 selectedCalendar?.send($0)
             }
@@ -88,7 +147,7 @@ final class EditCalendarToDoViewModel: ObservableObject {
             .sink { completion(.didCancel) }
             .store(in: &subscriptions)
 
-        didTapAdd
+        didTapSave
             .map { [weak self] in
                 self?.state = .data(loadingOverlay: true)
             }
@@ -98,14 +157,7 @@ final class EditCalendarToDoViewModel: ObservableObject {
                         .eraseToAnyPublisher()
                 }
 
-                return toDoInteractor.createToDo(
-                    title: title,
-                    date: date ?? .now,
-                    calendar: selectedCalendar.value,
-                    details: details
-                )
-                .mapToResult()
-                .eraseToAnyPublisher()
+                return saveAction()
             }
             .sink { [weak self] result in
                 switch result {
@@ -117,10 +169,29 @@ final class EditCalendarToDoViewModel: ObservableObject {
                 }
             }
             .store(in: &subscriptions)
+    }
 
-        calendarListProviderInteractor
-            .load(ignoreCache: false)
-            .sink()
-            .store(in: &subscriptions)
+    private func saveAction() -> AnyPublisher<Result<Void, Error>, Never> {
+        switch mode {
+        case .add:
+            toDoInteractor.createToDo(
+                title: title,
+                date: date ?? .now,
+                calendar: selectedCalendar.value,
+                details: details
+            )
+            .mapToResult()
+            .eraseToAnyPublisher()
+        case .edit(let id):
+            toDoInteractor.updateToDo(
+                id: id,
+                title: title,
+                date: date ?? .now,
+                calendar: selectedCalendar.value,
+                details: details
+            )
+            .mapToResult()
+            .eraseToAnyPublisher()
+        }
     }
 }

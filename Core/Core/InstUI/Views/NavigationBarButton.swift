@@ -103,11 +103,9 @@ extension InstUI.NavigationBarButton {
         label: String,
         action: @escaping () -> Void
     ) -> Self {
-        .init(
-            isEnabled: isEnabledOverride,
-            action: action) {
-                AnyView(Text(label).font(.regular16, lineHeight: .fit))
-            }
+        .init(isEnabled: isEnabledOverride, action: action) {
+            AnyView(Text(label).font(.regular16, lineHeight: .fit))
+        }
     }
 }
 

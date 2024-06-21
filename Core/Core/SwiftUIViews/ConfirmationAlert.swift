@@ -69,12 +69,6 @@ public extension View {
     func confirmationAlert(isPresented: Binding<Bool>,
                            presenting viewModel: ConfirmationAlertViewModel)
     -> some View {
-        alertConfirmation(isPresented: isPresented, presenting: viewModel)
-    }
-
-    func alertConfirmation(isPresented: Binding<Bool>,
-                           presenting viewModel: ConfirmationAlertViewModel)
-    -> some View {
         alert(
             viewModel.title,
             isPresented: isPresented,
@@ -131,7 +125,7 @@ struct ConfirmationAlertPreview: PreviewProvider {
                     } label: {
                         Text("Show dialog", bundle: .core)
                     }
-                    .alertConfirmation(isPresented: $viewModel.isShowingConfirmationDialog,
+                    .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
                                        presenting: viewModel.confirmDialog)
                     Spacer()
                 }
