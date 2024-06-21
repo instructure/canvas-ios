@@ -58,7 +58,7 @@ class GetCalendarFilters: UseCase {
             includes: []
         )
         let coursesFetch = environment.api
-            .makeRequest(coursesRequest)
+            .exhaust(coursesRequest)
             .map { [filterUnpublishedCourses] in
                 let courses = $0.body
 
@@ -70,7 +70,7 @@ class GetCalendarFilters: UseCase {
             }
 
         let groupsRequest = GetGroupsRequest(context: .currentUser)
-        let groupsFetch = environment.api.makeRequest(groupsRequest)
+        let groupsFetch = environment.api.exhaust(groupsRequest)
 
         Publishers
             .CombineLatest(coursesFetch, groupsFetch)
