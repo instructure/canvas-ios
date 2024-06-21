@@ -490,12 +490,15 @@ extension CoreWebView {
     static var cookieKeepAliveWebView = CoreWebView()
 
     public static func keepCookieAlive(for env: AppEnvironment) {
-        guard env.api.loginSession?.accessToken != nil else { return }
+        guard env.api.loginSession?.accessToken != nil,
+              cookieKeepAliveTimer == nil
+        else { return }
+
         performUIUpdate {
             cookieKeepAliveTimer?.invalidate()
             let interval: TimeInterval = 10 * 60 // ten minutes
             cookieKeepAliveTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
-                let sessionTokenRequest = GetWebSessionRequest(to: env.api.baseURL.appendingPathComponent("users/self"))
+                let sessionTokenRequest = GetWebSessionRequest(to: nil)
                 env.api.makeRequest(sessionTokenRequest) { data, _, _ in performUIUpdate {
                     guard let url = data?.session_url else { return }
                     var keepAliveRequest = URLRequest(url: url)
