@@ -21,6 +21,7 @@ import SwiftUI
 public struct AttachmentsView: View {
     private let attachments: [File]
     private let didSelectAttachment: ((File) -> Void)?
+    @State private var isAttachmentDeleted = false
 
     public init(attachments: [File], didSelectAttachment: ((File) -> Void)? = nil) {
         self.attachments = attachments
@@ -41,28 +42,51 @@ public struct AttachmentsView: View {
         Button {
             didSelectAttachment?(file)
         } label: {
-            if let thumbnailURL = file.thumbnailURL {
-                AsyncImage(url: thumbnailURL) { image in
-                    image
-                } placeholder: {
-                    ProgressView()
+            VStack(spacing: 0) {
+                if let thumbnailURL = file.thumbnailURL, !isAttachmentDeleted {
+                    AsyncImage(url: thumbnailURL) { image in
+                        image
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .background(GeometryReader { geometry in
+                        Color.clear
+                            .preference(key: ViewSizeKey.self, value: geometry.frame(in: .global).height)
+                    })
+                    .onPreferenceChange(ViewSizeKey.self) { height in
+                        isAttachmentDeleted = height == 1
+                    }
+                } else {
+                    generalAttachmentView(for: file)
                 }
-            } else {
-                VStack(spacing: 0) {
-                    Image(uiImage: file.icon)
-                        .padding(.bottom, 8)
-                    Text(file.filename)
-                        .font(.regular14)
-                        .truncationMode(.middle)
-                        .lineLimit(2)
-                        .foregroundStyle(Color.textDark)
-                }
-                .padding(.all, 8)
             }
+            .padding(.all, 8)
+            .frame(width: 104, height: 104)
+            .background(Color.backgroundLight)
+            .border(Color.backgroundLight)
         }
-        .frame(width: 104, height: 104)
-        .background(Color.backgroundLight)
-        .border(Color.backgroundLight)
-        .cornerRadius(15)
+        .cornerRadius(5)
+    }
+
+    func generalAttachmentView(for file: File) -> some View {
+        return VStack(spacing: 0) {
+            Image(uiImage: file.icon)
+                .padding(.bottom, 8)
+            Text(file.filename)
+                .font(.regular14)
+                .truncationMode(.middle)
+                .lineLimit(2)
+                .foregroundStyle(Color.textDark)
+        }
     }
 }
+
+#if DEBUG
+
+struct AttachmentsView_Previews: PreviewProvider {
+    static var previews: some View {
+        AttachmentsView(attachments: [])
+    }
+}
+
+#endif
