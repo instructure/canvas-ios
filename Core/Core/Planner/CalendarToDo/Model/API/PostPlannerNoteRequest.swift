@@ -20,7 +20,7 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/planner.html#method.planner_notes.create
 struct PostPlannerNoteRequest: APIRequestable {
-    typealias Response = APINoContent
+    typealias Response = ResponseBody
 
     init(body: Body) {
         self.body = body
@@ -33,11 +33,24 @@ struct PostPlannerNoteRequest: APIRequestable {
     let body: Body?
 
     struct Body: Codable, Equatable {
-        let title: String?
+        let title: String
         let details: String?
         let todo_date: Date
         let course_id: String?
         let linked_object_type: PlannableType?
         let linked_object_id: String?
+    }
+
+    // Currently unused. It's defined only for error detection, because HTTP response codes are ignored at the moment.
+    struct ResponseBody: Codable, Equatable {
+        let id: String
+        let title: String
+        let details: String?
+        let todo_date: Date
+        let user_id: String?
+        let course_id: String?
+        let workflow_state: String?
+        let created_at: Date?
+        let updated_at: Date?
     }
 }
