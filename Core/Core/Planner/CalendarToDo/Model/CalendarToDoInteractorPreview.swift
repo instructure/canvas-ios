@@ -43,6 +43,28 @@ final class CalendarToDoInteractorPreview: CalendarToDoInteractor {
             return Empty<Void, Error>().eraseToAnyPublisher()
         }
     }
+
+    var updateToDoCallsCount: Int = 0
+    // swiftlint:disable:next large_tuple
+    var updateToDoInput: (id: String, title: String, date: Date, calendar: CDCalendarFilterEntry?, details: String?)?
+    var updateToDoResult: Result<Void, Error>? = .success
+
+    func updateToDo(
+        id: String,
+        title: String,
+        date: Date,
+        calendar: CDCalendarFilterEntry?,
+        details: String?
+    ) -> AnyPublisher<Void, Error> {
+        updateToDoCallsCount += 1
+        updateToDoInput = (id: id, title: title, date: date, calendar: calendar, details: details)
+
+        if let updateToDoResult {
+            return updateToDoResult.publisher.eraseToAnyPublisher()
+        } else {
+            return Empty<Void, Error>().eraseToAnyPublisher()
+        }
+    }
 }
 
 #endif

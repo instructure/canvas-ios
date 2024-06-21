@@ -25,6 +25,14 @@ public protocol CalendarToDoInteractor: AnyObject {
         calendar: CDCalendarFilterEntry?,
         details: String?
     ) -> AnyPublisher<Void, Error>
+
+    func updateToDo(
+        id: String,
+        title: String,
+        date: Date,
+        calendar: CDCalendarFilterEntry?,
+        details: String?
+    ) -> AnyPublisher<Void, Error>
 }
 
 final class CalendarToDoInteractorLive: CalendarToDoInteractor {
@@ -35,6 +43,22 @@ final class CalendarToDoInteractorLive: CalendarToDoInteractor {
         calendar: CDCalendarFilterEntry?,
         details: String?
     ) -> AnyPublisher<Void, Error> {
+        let courseId = calendar?.context.contextType == .course ? calendar?.context.id : nil
+        let useCase = CreatePlannerNote(title: title, details: details, todoDate: date, courseID: courseId)
+        return ReactiveStore(useCase: useCase)
+            .getEntities()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
+    func updateToDo(
+        id: String,
+        title: String,
+        date: Date,
+        calendar: CDCalendarFilterEntry?,
+        details: String?
+    ) -> AnyPublisher<Void, Error> {
+        // TODO: update UseCase & Request
         let courseId = calendar?.context.contextType == .course ? calendar?.context.id : nil
         let useCase = CreatePlannerNote(title: title, details: details, todoDate: date, courseID: courseId)
         return ReactiveStore(useCase: useCase)

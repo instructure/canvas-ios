@@ -91,22 +91,13 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
             leading: .cancel {
                 viewModel.didTapCancel.send()
             },
-            trailing: .add(isEnabled: viewModel.isAddButtonEnabled) {
-                viewModel.didTapAdd.send()
+            trailing: .textButton(isEnabled: viewModel.isSaveButtonEnabled, label: viewModel.saveButtonTitle) {
+                viewModel.didTapSave.send()
             }
         )
-        .alert(
-            Text("Unsuccessful Creation!", bundle: .core),
-            isPresented: $viewModel.shouldShowAlert,
-            actions: {
-                Button(String(localized: "OK", bundle: .core)) {
-                    viewModel.shouldShowAlert = false
-                }
-            },
-            message: {
-                Text("Your To Do was not added, you can try it again.", bundle: .core)
-            }
-        )
+        .errorAlert(isPresented: $viewModel.shouldShowAlert, presenting: viewModel.alert) {
+            viewModel.shouldShowAlert = false
+        }
     }
 }
 
