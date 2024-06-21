@@ -29,7 +29,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     @FocusState private var messageTextFieldFocus: Bool
     @State private var showExtraSendButton = false
     @State private var headerHeight = CGFloat.zero
-    private var proxyScrollViewKey = "scrollview"
+    @State private var scrollViewOffset = CGFloat.zero
 
     init(model: ComposeMessageViewModel) {
         self.model = model
@@ -42,7 +42,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     public var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                scrollViewProxyView
                 headerView
                     .background(
                         GeometryReader { proxy in
@@ -70,25 +69,22 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .font(.regular12)
             .foregroundColor(.textDarkest)
             .background(
-                Color.backgroundLightest
-                    .onTapGesture {
-                        subjectTextFieldFocus = false
-                        messageTextFieldFocus = false
+                GeometryReader { reader in
+                    DispatchQueue.main.async {
+                        showExtraSendButton = -reader.frame(in: .named("scroll")).origin.y > headerHeight
                     }
+                    return Color.backgroundLightest
+                        .onTapGesture {
+                            subjectTextFieldFocus = false
+                            messageTextFieldFocus = false
+                        }
+                }
             )
             .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
             .navigationBarStyle(.modal)
-
         }
+        .coordinateSpace(name: "scroll")
         .background(Color.backgroundLightest)
-        .coordinateSpace(name: proxyScrollViewKey)
-        .onPreferenceChange(ViewSizeKey.self) { offset in
-            if (offset < -headerHeight) {
-                showExtraSendButton = true
-            } else {
-                showExtraSendButton = false
-            }
-        }
         .fileImporter(
             isPresented: $model.isFilePickerVisible,
             allowedContentTypes: [.item],
@@ -133,14 +129,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 Color.clear
             }
         }
-    }
-
-    private var scrollViewProxyView: some View {
-        GeometryReader { geometry in
-            Color.clear
-                .preference(key: ViewSizeKey.self, value: geometry.frame(in: .named(proxyScrollViewKey)).minY)
-        }
-        .frame(width: 0, height: 0)
     }
 
     private var separator: some View {
