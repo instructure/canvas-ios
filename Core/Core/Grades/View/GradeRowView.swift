@@ -65,7 +65,9 @@ public struct GradeRowView: View {
             let submission = assignment.submissions?.first { $0.userID == userID }
             let status = submission?.status ?? .notSubmitted
 
-            if submission?.isSubmittedAndGraded == false {
+            let hideStatusLabel = submission?.status == .submitted && submission?.needsGrading == false
+
+            if !hideStatusLabel {
                 Text(status.text)
                     .foregroundStyle(Color(status.color))
                     .font(.regular14)

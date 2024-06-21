@@ -394,7 +394,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         statusIconView?.tintColor = status.color
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
         statusLabel?.textColor = status.color
-        statusLabel?.text = submission?.isSubmittedAndGraded == true
+        statusLabel?.text = submission?.status == .submitted && submission?.needsGrading == false
         ? String(localized: "Graded", bundle: .student)
         : status.text
         dueSection?.subHeader.text = assignment.dueAt.flatMap {

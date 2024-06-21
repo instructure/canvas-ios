@@ -165,7 +165,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         statusIconView.tintColor = status.color
         statusLabel.isHidden = assignment.submissionStatusIsHidden
         statusLabel.textColor = status.color
-        statusLabel?.text = assignment.submission?.isSubmittedAndGraded == true
+        statusLabel?.text = submission?.status == .submitted && assignment.submission?.needsGrading == false
         ? String(localized: "Graded", bundle: .parent)
         : status.text
         dateLabel.text = assignment.dueAt?.dateTimeString ?? String(localized: "No Due Date", bundle: .parent)
