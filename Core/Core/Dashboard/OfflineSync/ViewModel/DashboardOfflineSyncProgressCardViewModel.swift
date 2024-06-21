@@ -158,7 +158,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
 
     private func handleDismissTap(_ interactor: CourseSyncProgressWriterInteractor) {
         dismissDidTap
-            .map { _ in interactor.cleanUpPreviousDownloadProgress() } 
+            .map { _ in interactor.cleanUpPreviousDownloadProgress() }
             .map { .hidden }
             .assign(to: &$state)
     }

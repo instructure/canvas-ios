@@ -46,6 +46,7 @@ class DashboardOfflineSyncInteractorPreview: CourseSyncProgressObserverInteracto
     }
 }
 
+// swiftlint:disable:next type_name
 class DashboardOfflineSyncProgressWriterInteractorPreview: CourseSyncProgressWriterInteractor {
     func saveDownloadProgress(entries _: [CourseSyncEntry]) {}
 
