@@ -341,7 +341,7 @@ extension Submission {
     }
 
     public var isSubmittedAndGraded: Bool {
-        status == .submitted && workflowState == .graded
+        status == .submitted && score != nil
     }
 }
 
