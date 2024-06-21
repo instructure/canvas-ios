@@ -34,7 +34,7 @@ final class CalendarToDoInteractorTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        useCase = .init(todoDate: .now)
+        useCase = .init(title: "", todoDate: .now)
         testee = .init()
     }
 

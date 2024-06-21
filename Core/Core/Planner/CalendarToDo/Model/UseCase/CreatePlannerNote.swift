@@ -26,7 +26,7 @@ final class CreatePlannerNote: APIUseCase {
     var scope: Scope = Scope.all(orderBy: #keyPath(Plannable.details))
 
     init(
-        title: String? = nil,
+        title: String,
         details: String? = nil,
         todoDate: Date,
         courseID: String? = nil,
@@ -42,6 +42,6 @@ final class CreatePlannerNote: APIUseCase {
             linked_object_id: linkedObjectId))
     }
 
-    func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    func write(response: PostPlannerNoteRequest.ResponseBody?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
     }
 }
