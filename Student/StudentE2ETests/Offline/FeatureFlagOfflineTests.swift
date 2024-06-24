@@ -19,24 +19,8 @@
 import TestsFoundation
 
 class FeatureFlagOfflineTests: OfflineE2ETest {
-    /*
-    open override var canvasFeatureFlags: [DSCanvasFeatureFlag] { [DSCanvasFeatureFlag(featureFlag: .newDiscussion, state: .allowedOn)] }
-    */
 
-    override func tearDown() {
-        // In case the tests fail at a point where the internet connection is turned off
-        setNetworkStateOnline()
-
-        /*
-        // Disable discussion redesign feature flag
-        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .off)
-        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.off.rawValue)
-        */
-
-        super.tearDown()
-    }
-
-    func testDiscussionsFallbackToOldIfDiscussionRedesignIsEnabled() {
+    func testDiscussionsFallbackToNativeAppearanceWhenOffline() {
         // MARK: Seed the usual stuff with discussion and announcement
         let student = seeder.createUser()
         let course = seeder.createCourse()

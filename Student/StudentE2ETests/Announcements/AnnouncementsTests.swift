@@ -22,16 +22,6 @@ class AnnouncementsTests: E2ETestCase {
     typealias Helper = AnnouncementsHelper
     typealias DetailsHelper = Helper.Details
     typealias AccountNotifications = Helper.AccountNotifications
-    
-    /*
-    override func tearDown() {
-        // Disable discussion redesign feature flag
-        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .off)
-        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.off.rawValue)
-
-        super.tearDown()
-    }
-    */
 
     func testAnnouncementsMatchWebOrder() {
         // MARK: Seed the usual stuff
@@ -59,37 +49,7 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(thirdAnnouncement.hasLabel(label: announcements[0].title, strict: false))
     }
 
-    
-    /*
-    func testAnnouncementsTitleAndMessage() {
-        // MARK: Seed the usual stuff
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
-
-        // MARK: Create an announcement and get the user logged in
-        let announcement = Helper.createAnnouncements(course: course)[0]
-        logInDSUser(student)
-
-        // MARK: Navigate to Announcement page and check the title and message of the announcement
-        Helper.navigateToAnnouncementsPage(course: course, shouldPullToRefresh: true)
-
-        let firstAnnouncement = AnnouncementsHelper.cell(index: 0).waitUntil(.visible)
-        XCTAssertTrue(firstAnnouncement.isVisible)
-        XCTAssertTrue(firstAnnouncement.label.contains(announcement.title))
-
-        firstAnnouncement.hit()
-        let announcementTitle = DetailsHelper.title.waitUntil(.visible)
-        XCTAssertTrue(announcementTitle.isVisible)
-        XCTAssertTrue(announcementTitle.hasLabel(label: announcement.title))
-
-        let announcementMessage = DetailsHelper.message.waitUntil(.visible)
-        XCTAssertTrue(announcementMessage.isVisible)
-        XCTAssertTrue(announcementMessage.hasLabel(label: announcement.message))
-    }
-    */
-
-    func testAnnouncementToggle() {
+    func testAccountNotification() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -128,7 +88,7 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(dismissButton.isVanished)
     }
 
-    func testAnnouncementWithDiscussionRedesignFeatureFlagEnabled() {
+    func testAnnouncementDetails() {
         typealias NewDiscussion = DiscussionsHelper.NewDetails
 
         // MARK: Seed the usual stuff with an announcement, enable NewDiscussion feature
