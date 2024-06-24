@@ -63,33 +63,39 @@ class CommandLine {
     }
 
     @discardableResult
-    private static func exec(_ command: String, async: Bool = false) throws -> String {
-        let urlString = "\(host):\(port)/terminal?async=\(async)"
+    private static func exec(_ command: String) throws -> String {
+        let urlString = "\(host):\(port)/terminal?async=false"
         guard let url = URL(string: urlString) else { return "" }
+
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONSerialization.data(withJSONObject: ["command": command], options: [])
-        var output = ""
-        if async {
-            // Do not wait for the command to complete
-            URLSession.shared.dataTask(with: request).resume()
-        } else {
-            // Wait for the command to complete
-            let semaphore = DispatchSemaphore(value: 0)
-            let task = URLSession.shared.dataTask(with: request) { data, _, _ in
-                if let data = data, let string = String(data: data, encoding: .utf8) {
-                    output = string
-                    semaphore.signal()
-                }
-            }
-            task.resume()
-            let waitResult = semaphore.wait(timeout: DispatchTime.now() + .seconds(60))
 
-            if case .timedOut = waitResult {
-                throw NSError.instructureError("Timeout while waiting on terminal service connection.")
+        var output: String?
+        var errorResult: Error?
+
+        // Wait for the command to complete
+        let semaphore = DispatchSemaphore(value: 0)
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            defer { semaphore.signal() }
+
+            if let error {
+                errorResult = error
+                return
+            }
+
+            if let data, let string = String(data: data, encoding: .utf8) {
+                output = string
             }
         }
-        return output
+        task.resume()
+        semaphore.wait()
+
+        if let output {
+            return output
+        } else {
+            throw errorResult ?? NSError.instructureError("Error while executing terminal service command.")
+        }
     }
 }
