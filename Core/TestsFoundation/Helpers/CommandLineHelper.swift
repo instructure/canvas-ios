@@ -25,8 +25,8 @@ class CommandLine {
     private static let host = "http://localhost"
     private static let port: UInt16 = 4567
 
-    private static var networkServices: [String.SubSequence] {
-        let rawResult = exec("networksetup -listallnetworkservices")
+    private static func networkServices() throws -> [String.SubSequence] {
+        let rawResult = try exec("networksetup -listallnetworkservices")
         var result = rawResult.split(separator: "\n")
         result.removeFirst()
         var services: [String.SubSequence] = []
@@ -40,52 +40,62 @@ class CommandLine {
         return services
     }
 
-    static var isOffline: Bool {
-        for service in networkServices {
-            let output = exec("networksetup -getnetworkserviceenabled '\(service)'")
+    static func isOffline() throws -> Bool {
+        for service in try networkServices() {
+            let output = try exec("networksetup -getnetworkserviceenabled '\(service)'")
             guard output == "Disabled" else { return false }
         }
         return true
     }
 
-    static var isOnline: Bool {
-        for service in networkServices {
-            let output = exec("networksetup -getnetworkserviceenabled '\(service)'")
+    static func isOnline() throws -> Bool {
+        for service in try networkServices() {
+            let output = try exec("networksetup -getnetworkserviceenabled '\(service)'")
             guard output == "Enabled" else { return false }
         }
         return true
     }
 
-    static func setConnection(state: ConnectionState) {
-        for service in networkServices {
-            exec("networksetup -setnetworkserviceenabled '\(service)' \(state) || true")
+    static func setConnection(state: ConnectionState) throws {
+        for service in try networkServices() {
+            try exec("networksetup -setnetworkserviceenabled '\(service)' \(state) || true")
         }
     }
 
     @discardableResult
-    private static func exec(_ command: String, async: Bool = false) -> String {
-        let urlString = "\(host):\(port)/terminal?async=\(async)"
+    private static func exec(_ command: String) throws -> String {
+        let urlString = "\(host):\(port)/terminal?async=false"
         guard let url = URL(string: urlString) else { return "" }
+
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONSerialization.data(withJSONObject: ["command": command], options: [])
-        var output = ""
-        if async {
-            // Do not wait for the command to complete
-            URLSession.shared.dataTask(with: request).resume()
-        } else {
-            // Wait for the command to complete
-            let semaphore = DispatchSemaphore(value: 0)
-            let task = URLSession.shared.dataTask(with: request) { data, _, _ in
-                if let data = data, let string = String(data: data, encoding: .utf8) {
-                    output = string
-                    semaphore.signal()
-                }
+
+        var output: String?
+        var errorResult: Error?
+
+        // Wait for the command to complete
+        let semaphore = DispatchSemaphore(value: 0)
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            defer { semaphore.signal() }
+
+            if let error {
+                errorResult = error
+                return
             }
-            task.resume()
-            semaphore.wait()
+
+            if let data, let string = String(data: data, encoding: .utf8) {
+                output = string
+            }
         }
-        return output
+        task.resume()
+        semaphore.wait()
+
+        if let output {
+            return output
+        } else {
+            throw errorResult ?? NSError.instructureError("Error while executing terminal service command.")
+        }
     }
 }
