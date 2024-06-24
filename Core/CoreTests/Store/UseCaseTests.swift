@@ -51,6 +51,8 @@ class UseCaseTests: CoreTestCase {
 
         Clock.mockNow(now.addingTimeInterval(useCase.ttl + 1))
         XCTAssertTrue(useCase.hasExpired(in: databaseClient))
+
+        Clock.reset()
     }
 
     func testScope() {

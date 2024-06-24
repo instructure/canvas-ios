@@ -20,7 +20,11 @@ extension HelpLink {
     var route: (path: String, options: RouteOptions)? {
         switch id {
         case "instructor_question":
-            return ("/conversations/compose?instructorQuestion=1&canAddRecipients=", .modal(.formSheet, embedInNav: true))
+            let autoTeacherSelectKey = ComposeMessageOptions.QueryParameterKey.autoTeacherSelect.rawValue
+            let recipientsDisabledKey = ComposeMessageOptions.QueryParameterKey.recipientsDisabled.rawValue
+            let alwaysShowRecipientsKey = ComposeMessageOptions.QueryParameterKey.alwaysShowRecipients.rawValue
+            let trueValue = String(true)
+            return ("/conversations/compose?\(autoTeacherSelectKey)=\(trueValue)&\(recipientsDisabledKey)=\(trueValue)&\(alwaysShowRecipientsKey)=\(trueValue)", .modal(.formSheet, embedInNav: true))
         case "report_a_problem":
             return ("/support/problem", .modal(.formSheet, embedInNav: true))
         default:

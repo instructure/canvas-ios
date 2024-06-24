@@ -76,7 +76,7 @@ class CourseSyncGradesInteractorLiveTests: CoreTestCase {
 
     private func mockGradingPeriods() {
         api.mock(GetGradingPeriods(courseID: "testCourse"),
-                 value: [])
+                 value: [.make(id: "testGradingPeriod")])
     }
 
     private func mockGradingPeriodsFailure() {
@@ -119,16 +119,19 @@ class CourseSyncGradesInteractorLiveTests: CoreTestCase {
 
     // MARK: Assignments
 
-    private let assignmentsUseCase = GetAssignmentsByGroup(courseID: "testCourse",
-                                                           gradingPeriodID: "testGradingPeriod",
-                                                           gradedOnly: true)
+    private let assignmentsRequest = GetAssignmentGroupsRequest(
+        courseID: "testCourse",
+        gradingPeriodID: "testGradingPeriod",
+        perPage: 100
+    )
+
     private func mockAssignments() {
-        api.mock(assignmentsUseCase,
+        api.mock(assignmentsRequest,
                  value: [])
     }
 
     private func mockAssignmentsFailure() {
-        api.mock(assignmentsUseCase,
+        api.mock(assignmentsRequest,
                  error: NSError.instructureError(""))
     }
 }

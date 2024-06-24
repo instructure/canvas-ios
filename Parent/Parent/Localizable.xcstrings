@@ -105,6 +105,12 @@
             "value" : "%@ dû à %@"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ इस तिथि पर नियत: %@"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -347,6 +353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ commencera à %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ इस समय शुरू होगा: %@"
           }
         },
         "ht" : {
@@ -593,6 +605,12 @@
             "value" : "Ajouter"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जोड़ें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -835,6 +853,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter un étudiant"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "छात्र जोड़ें"
           }
         },
         "ht" : {
@@ -1081,6 +1105,12 @@
             "value" : "Ajoutez des étudiants en haut ou visitez le menu universel pour personnifier un étudiant."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शीर्ष पर छात्रों को जोड़ें या छात्र के रूप में छद्मवेष करने के लिए वैश्विक मेनू पर जाएं।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1325,6 +1355,12 @@
             "value" : "Ajoutez des étudiants en haut."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शीर्ष पर छात्र जोड़ें।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1567,6 +1603,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "M'alerter lorsque :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मुझे चेतावनी दें जब:"
           }
         },
         "ht" : {
@@ -1814,6 +1856,12 @@
             "value" : "Alertes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चेतावनियां"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2056,6 +2104,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annonce"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "घोषणा"
           }
         },
         "ht" : {
@@ -2302,6 +2356,12 @@
             "value" : "Détails de la tâche"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "असाइनमेंट विवरण"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2546,6 +2606,12 @@
             "value" : "Rappel de la tâche"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "असाइनमेंट अनुस्मारक"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2788,6 +2854,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retour"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वापस जाएं"
           }
         },
         "ht" : {
@@ -3035,6 +3107,12 @@
             "value" : "Calendrier"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कैलेंडर"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3277,6 +3355,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annuler"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रद्द करें"
           }
         },
         "ht" : {
@@ -3523,6 +3607,12 @@
             "value" : "Composer un message"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संदेश लिखें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3765,6 +3855,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Composer un message pour les enseignants"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शिक्षकों के लिए संदेश लिखें"
           }
         },
         "ht" : {
@@ -4011,6 +4107,12 @@
             "value" : "Composer un nouveau message"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नया संदेश लिखें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4250,6 +4352,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "conversation_unread_messages"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "conversation_unread_messages"
@@ -4499,6 +4607,12 @@
             "value" : "Impossible d’analyser le code QR., code QR invalide"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QR कोड पार्स नहीं किया जा सका, QR कोड अमान्य है"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4742,6 +4856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cours"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ्यक्रम"
           }
         },
         "ht" : {
@@ -4988,6 +5108,12 @@
             "value" : "Étudiant actuel : %@. Tapotez pour changer d’étudiant"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्तमान छात्र: %@. छात्र स्विच करने के लिए टैप करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5230,6 +5356,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Date"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तिथि"
           }
         },
         "ht" : {
@@ -5476,6 +5608,12 @@
             "value" : "Description"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विवरण"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5718,6 +5856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rejeter"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खारिज करें"
           }
         },
         "ht" : {
@@ -5964,6 +6108,12 @@
             "value" : "Incompatibilité du domaine"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डोमेन बेमेल है"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6206,6 +6356,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Échéance"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नियत"
           }
         },
         "ht" : {
@@ -6452,6 +6608,12 @@
             "value" : "Détails de l’événement"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "घटना विवरण"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6694,6 +6856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rappel d'événement"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "घटना अनुस्मारक"
           }
         },
         "ht" : {
@@ -6940,6 +7108,12 @@
             "value" : "Trouver une école"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्कूल ढूंढें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7182,6 +7356,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Page de couverture"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मुख पृष्ठ"
           }
         },
         "ht" : {
@@ -7428,6 +7608,12 @@
             "value" : "Notes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7670,6 +7856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Boîte de réception"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इनबॉक्स"
           }
         },
         "ht" : {
@@ -7916,6 +8108,12 @@
             "value" : "Boîte de réception Zéro"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इनबॉक्स ज़ीरो"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8158,6 +8356,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saisir le code de jumelage de l’étudiant qui vous a été fourni."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपको प्रदान किया गया छात्र पेयरिंग कोड दर्ज करें।"
           }
         },
         "ht" : {
@@ -8404,6 +8608,12 @@
             "value" : "Seuil invalide"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अमान्य सीमा"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8646,6 +8856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il semble que vous essayiez d'ajouter un étudiant. Essayez d'ajouter cet étudiant après vous être connecté"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऐसा लगता है कि आप किसी छात्र को जोड़ने का प्रयास कर रहे हैं। लॉग इन करने के बाद इस छात्र को जोड़ने का प्रयास करें"
           }
         },
         "ht" : {
@@ -8892,6 +9108,12 @@
             "value" : "Emplacement"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लोकेशन"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9134,6 +9356,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verrouillé"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लॉक किया गया"
           }
         },
         "ht" : {
@@ -9380,6 +9608,12 @@
             "value" : "Connexion requise"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लॉगिन आवश्यक है"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9622,6 +9856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gestion des participants"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "छात्र प्रबंधित करें"
           }
         },
         "ht" : {
@@ -9868,6 +10108,12 @@
             "value" : "s.o."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "n/a"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10110,6 +10356,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "S.O."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N/A"
           }
         },
         "ht" : {
@@ -10356,6 +10608,12 @@
             "value" : "Aucune alerte"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई चेतावनी नहीं"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10598,6 +10856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucun cours"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई पाठ्यक्रम नहीं"
           }
         },
         "ht" : {
@@ -10844,6 +11108,12 @@
             "value" : "Aucune date d'échéance"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई नियत तिथि नहीं"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11086,6 +11356,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non noté"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई ग्रेड नहीं"
           }
         },
         "ht" : {
@@ -11332,6 +11608,12 @@
             "value" : "Aucun étudiant"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई छात्र नहीं"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11574,6 +11856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ठीक है"
           }
         },
         "ht" : {
@@ -11820,6 +12108,12 @@
             "value" : "Jumelage du code en cours..."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेयरिंग कोड"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12062,6 +12356,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Code QR"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QR कोड"
           }
         },
         "ht" : {
@@ -12308,6 +12608,12 @@
             "value" : "En ce qui concerne : %@"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इसके संबंध में: %@"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12449,7 +12755,7 @@
       }
     },
     "Regarding: %@, %@" : {
-      "comment" : "Regarding <Name>, <URL>\nRegarding <John Doe>, <Grades | Syllabus>",
+      "comment" : "Regarding <John Doe>, <Grades | Syllabus>\nRegarding <Name>, <URL>",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -12551,6 +12857,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "En ce qui concerne : %@, %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इसके संबंध में: %@, %@"
           }
         },
         "ht" : {
@@ -12798,6 +13110,12 @@
             "value" : "En ce qui concerne : %@, tâche — %@"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इसके संबंध में: %@, असाइनमेंट -  %@"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13040,6 +13358,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Me rappeler"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मुझे याद दिलाएं"
           }
         },
         "ht" : {
@@ -13286,6 +13610,12 @@
             "value" : "Réessayer"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फिर से कोशिश करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13528,6 +13858,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Définissez une date et une heure afin d’être averti de cet événement."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस घटना की सूचना पाने के लिए कोई तिथि और समय निर्धारित करें।"
           }
         },
         "ht" : {
@@ -13774,6 +14110,12 @@
             "value" : "Paramètres"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग्स"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14016,6 +14358,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Résumé"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संक्षिप्त विवरण"
           }
         },
         "ht" : {
@@ -14262,6 +14610,12 @@
             "value" : "Programme"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ्यक्रम"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14504,6 +14858,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "L’élément lié n’est plus disponible."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लिंक किया गया आइटम अब उपलब्ध नहीं है।"
           }
         },
         "ht" : {
@@ -14750,6 +15110,12 @@
             "value" : "L’étudiant que vous tentez d’ajouter se trouve dans une autre institution Canvas.\nConnectez-vous ou créez un compte avec cette institution pour ajouter cet étudiant."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जिस छात्र को आप जोड़ने का प्रयास कर रहे हैं वह किसी भिन्न Canvas संस्थान में है।\nइस छात्र को जोड़ने के लिए उस संस्थान में साइन इन करें या खाता बनाएं।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14992,6 +15358,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La valeur doit être un nombre compris entre 0 et 100"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मान 0 और 100 के बीच में कोई संख्या होनी चाहिए"
           }
         },
         "ht" : {
@@ -15238,6 +15610,12 @@
             "value" : "Une erreur est survenue lors du chargement des alertes. Tirez pour actualiser et réessayer."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चेतावनियां लोड करने में त्रुटि हुई। फिर से कोशिश करने के लिए रीफ़्रेश करने के लिए खींचें।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15480,6 +15858,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Une erreur est survenue lors du chargement des cours. Tirez pour actualiser et réessayer."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ्यक्रमों को लोड करने में त्रुटि हुई। फिर से कोशिश करने के लिए रीफ़्रेश करने के लिए खींचें।"
           }
         },
         "ht" : {
@@ -15726,6 +16110,12 @@
             "value" : "Une erreur est survenue lors du chargement des étudiants. Tirez pour actualiser et réessayer."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "छात्र लोड करने में त्रुटि हुई। फिर से कोशिश करने के लिए रीफ़्रेश करने के लिए खींचें।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15968,6 +16358,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il n'y a encore rien à signaler."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी तक सूचित करने लायक कुछ भी नहीं है।"
           }
         },
         "ht" : {
@@ -16214,6 +16610,12 @@
             "value" : "Non lu"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपठित"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16456,6 +16858,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bienvenue, administrateur!"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपका स्वागत है, व्यवस्थापक!"
           }
         },
         "ht" : {
@@ -16702,6 +17110,12 @@
             "value" : "Vous ne pouvez pas définir un seuil élevé qui est inférieur ou égal à un seuil bas précédemment défini."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आप ऐसी उच्च सीमा निर्धारित नहीं कर सकते जो पहले से निर्धारित निम्न सीमा से कम या उसके बराबर हो।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16944,6 +17358,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous ne pouvez pas définir un seuil bas qui est supérieur ou égal à un seuil élevé précédemment défini."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आप ऐसी निम्न सीमा निर्धारित नहीं कर सकते जो पहले से निर्धारित उच्च सीमा से कम या उसके बराबर हो।"
           }
         },
         "ht" : {
@@ -17190,6 +17610,12 @@
             "value" : "Vous êtes coincé"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपका काम पूरा हुआ"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17432,6 +17858,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vos cours dépendants peuvent ne pas être encore publiés."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हो सकता है कि आपके बच्चे के पाठ्यक्रम अभी तक प्रकाशित न हुए हों।"
           }
         },
         "ht" : {

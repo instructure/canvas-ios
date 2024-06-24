@@ -534,7 +534,8 @@ class ModuleListViewControllerTests: CoreTestCase {
         header2.lockedButton.sendActions(for: .primaryActionTriggered)
         let alert = router.presented as! UIAlertController
         XCTAssertEqual(alert.title, "Locked")
-        XCTAssertEqual(alert.message, "Will unlock Sep 15, 2020 at 12:00 AM")
+        XCTAssertEqual(alert.message, "Will unlock " + now.addDays(1).dateTimeString)
+        Clock.reset()
     }
 
     func testModulesPageDisabled() {

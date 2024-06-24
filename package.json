@@ -17,7 +17,7 @@
     "svg2pdf": "./scripts/svg2pdf.js",
     "test": "./scripts/coverage/coverage.js --test",
     "update-headers": "./scripts/update-headers.js",
-    "terminal-service": "screen -dm node scripts/server.js"
+    "terminal-service": "./scripts/terminal-server/start.sh"
   },
   "devDependencies": {
     "aws-sdk": "^2.178.0",

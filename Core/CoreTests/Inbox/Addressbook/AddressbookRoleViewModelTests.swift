@@ -37,7 +37,7 @@ class AddressbookRoleViewModelTests: CoreTestCase {
             router: environment.router,
             recipientContext: .init(course: Course.make()),
             interactor: mockInteractor,
-            recipientDidSelect: selected,
+            didSelectRecipient: selected,
             selectedRecipients: selectedRecipients
         )
     }
@@ -64,13 +64,13 @@ class AddressbookRoleViewModelTests: CoreTestCase {
 
     func testCancelButton() {
         let sourceView = UIViewController()
-        testee.doneButtonDidTap.accept(WeakViewController(sourceView))
+        testee.didTapDone.accept(WeakViewController(sourceView))
         XCTAssertNotNil(router.dismissed)
     }
 
     func testRoleSelection() {
         let sourceView = UIViewController()
-        testee.roleDidTap.send((roleName: "Students", recipients: testee.recipients, controller: WeakViewController(sourceView)))
+        testee.didTapRole.send((roleName: "Students", recipients: testee.recipients, controller: WeakViewController(sourceView)))
         XCTAssertNotNil(router.showExpectation)
     }
 

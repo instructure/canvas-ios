@@ -18,49 +18,113 @@
 
 import SwiftUI
 
-public struct ComposeMessageView: View {
+public struct ComposeMessageView: View, ScreenViewTrackable {
     @ObservedObject private var model: ComposeMessageViewModel
     @Environment(\.viewController) private var controller
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
+
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     @FocusState private var subjectTextFieldFocus: Bool
     @FocusState private var messageTextFieldFocus: Bool
+    @State private var showExtraSendButton = false
+    @State private var headerHeight = CGFloat.zero
+    private var proxyScrollViewKey = "scrollview"
 
     init(model: ComposeMessageViewModel) {
         self.model = model
+
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/conversations/compose"
+        )
     }
 
     public var body: some View {
-        GeometryReader { geometry in
-            ScrollView {
+        ScrollView {
+            VStack(spacing: 0) {
+                scrollViewProxyView
+                headerView
+                    .background(
+                        GeometryReader { proxy in
+                            Color.clear
+                                .onAppear {
+                                    headerHeight = proxy.size.height
+                                }
+                        }
+                    )
+                separator
                 VStack(spacing: 0) {
-                    headerView
-                    Divider()
                     propertiesView
-                    Divider()
+                }
+                separator
+                VStack(spacing: 0) {
                     bodyView
-                        .frame(height: geometry.size.height)
+                    attachmentsView
                     if !model.includedMessages.isEmpty {
                         includedMessages
                     }
-                    attachmentsView
-                    Spacer()
-
                 }
-                .background(Color.backgroundLightest)
-                .navigationBarItems(leading: cancelButton)
-                .navigationBarStyle(.modal)
+                separator
+
+            }
+            .font(.regular12)
+            .foregroundColor(.textDarkest)
+            .background(
+                Color.backgroundLightest
+                    .onTapGesture {
+                        subjectTextFieldFocus = false
+                        messageTextFieldFocus = false
+                    }
+            )
+            .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
+            .navigationBarStyle(.modal)
+
+        }
+        .background(Color.backgroundLightest)
+        .coordinateSpace(name: proxyScrollViewKey)
+        .onPreferenceChange(ViewSizeKey.self) { offset in
+            if (offset < -headerHeight) {
+                showExtraSendButton = true
+            } else {
+                showExtraSendButton = false
             }
         }
+        .confirmationAlert(
+            isPresented: $model.isShowingCancelDialog,
+            presenting: model.confirmAlert
+        )
+    }
+
+    @ViewBuilder
+    private var extraSendButton: some View {
+        if showExtraSendButton {
+            withAnimation {
+                sendButton
+            }
+        } else {
+            withAnimation {
+                Color.clear
+            }
+        }
+    }
+
+    private var scrollViewProxyView: some View {
+        GeometryReader { geometry in
+            Color.clear
+                .preference(key: ViewSizeKey.self, value: geometry.frame(in: .named(proxyScrollViewKey)).minY)
+        }
+        .frame(width: 0, height: 0)
     }
 
     private var separator: some View {
         Color.borderMedium
             .frame(height: 0.5)
+            .padding(.horizontal, 8)
     }
 
     private var cancelButton: some View {
         Button {
-            model.cancelButtonDidTap.accept(controller)
+            model.didTapCancel.accept(controller)
         } label: {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
@@ -70,7 +134,7 @@ public struct ComposeMessageView: View {
 
     private var sendButton: some View {
         Button {
-            model.sendButtonDidTap.accept(controller)
+            model.didTapSend.accept(controller)
         } label: {
             sendButtonImage
         }
@@ -83,7 +147,7 @@ public struct ComposeMessageView: View {
     private var sendButtonImage: some View {
         Image.circleArrowUpSolid
             .resizable()
-            .frame(width: 35, height: 35)
+            .frame(width: 40 * uiScale.iconScale, height: 40 * uiScale.iconScale)
             .foregroundStyle(model.sendButtonActive ? .accentColor : Color.backgroundMedium)
     }
 
@@ -103,6 +167,9 @@ public struct ComposeMessageView: View {
                 .multilineTextAlignment(.leading)
                 .font(.semibold22)
                 .foregroundColor(.textDarkest)
+                .onTapGesture {
+                    subjectTextFieldFocus = true
+                }
             Spacer()
             sendButton
         }
@@ -113,14 +180,14 @@ public struct ComposeMessageView: View {
     private var propertiesView: some View {
         VStack(spacing: 0) {
             courseView
-            Divider()
-            if model.selectedContext != nil {
+            separator
+            if model.selectedContext != nil || model.alwaysShowRecipients {
                 toView
-                Divider()
+                separator
             }
             subjectView
             if !model.isIndividualDisabled {
-                Divider()
+                separator
                 individualView
             }
         }
@@ -150,28 +217,31 @@ public struct ComposeMessageView: View {
         }
         .disabled(model.isContextDisabled)
         .opacity(model.isContextDisabled ? 0.6 : 1)
-        .padding(.horizontal, 16).padding(.vertical, 12)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
         .accessibilityLabel(courseSelectorAccessibilityLabel)
     }
 
     private var toView: some View {
-        HStack {
-            Text("To", bundle: .core)
-                .font(.regular16, lineHeight: .condensed)
-                .foregroundColor(.textDark)
-                .onTapGesture {
-                    model.addRecipientButtonDidTap(viewController: controller)
+        Button {
+            model.addRecipientButtonDidTap(viewController: controller)
+        } label: {
+            HStack {
+                Text("To", bundle: .core)
+                    .font(.regular16, lineHeight: .condensed)
+                    .foregroundColor(.textDark)
+                    .padding(.vertical, 12)
+                    .accessibilitySortPriority(2)
+                if !model.recipients.isEmpty {
+                    recipientsView
+                        .accessibilitySortPriority(0)
                 }
-                .padding(.vertical, 12)
-                .accessibilitySortPriority(2)
-            if !model.recipients.isEmpty {
-                recipientsView
-                    .accessibilitySortPriority(0)
+                Spacer()
+                addRecipientButton
+                    .padding(.vertical, 12)
+                    .accessibilitySortPriority(1)
             }
-            Spacer()
-            addRecipientButton
-                .padding(.vertical, 12)
-                .accessibilitySortPriority(1)
+            .accessibilityElement(children: .contain)
         }
         .disabled(model.isRecipientsDisabled)
         .opacity(model.isRecipientsDisabled ? 0.6 : 1)
@@ -182,7 +252,7 @@ public struct ComposeMessageView: View {
     private var recipientsView: some View {
         WrappingHStack(models: model.recipients) { recipient in
             RecipientPillView(recipient: recipient, removeDidTap: { recipient in
-                model.recipientDidRemove.accept(recipient)
+                model.didRemoveRecipient.accept(recipient)
             })
         }
     }
@@ -232,7 +302,7 @@ public struct ComposeMessageView: View {
                     .accessibilityHidden(true)
                 Spacer()
                 Button {
-                    model.attachmentbuttonDidTap(viewController: controller)
+                    model.attachmentButtonDidTap(viewController: controller)
                 } label: {
                     Image.paperclipLine
                         .resizable()
@@ -261,41 +331,127 @@ public struct ComposeMessageView: View {
 
     private var includedMessages: some View {
         VStack(alignment: .leading) {
-            Text("Included messages", bundle: .core)
-                .font(.bold16)
-            separator
+            Text("Previous messages", bundle: .core)
+                .font(.regular16, lineHeight: .condensed)
+                .foregroundColor(.textDark)
+                .padding(.horizontal, 16)
+
             ForEach(model.includedMessages, id: \.id) { conversationMessage in
-                messageView(for: conversationMessage)
                 separator
+                    .padding(.horizontal, 4)
+
+                messageView(for: conversationMessage)
+                    .padding(.horizontal, 4)
             }
         }
-        .padding(.horizontal, 12)
+        .padding(.top, 24)
     }
 
+    @ViewBuilder
     private func messageView(for message: ConversationMessage) -> some View {
+        if model.isMessageExpanded(message: message) {
+            expandedMessageView(for: message)
+        } else {
+            collapsedMessageView(for: message)
+        }
+    }
+
+    private func expandedMessageView(for message: ConversationMessage) -> some View {
+        let author = model.conversation?.participants.first { $0.id == message.authorID }
         return VStack(alignment: .leading) {
-            HStack {
-                Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
-                    .foregroundStyle(Color.textDarkest)
-                    .lineLimit(1)
-                Spacer()
-                Text(message.createdAt?.dateTimeString ?? "")
-                    .foregroundStyle(Color.textDark)
-                    .lineLimit(1)
+            Button {
+                withAnimation {
+                    model.toggleMessageExpand(message: message)
+                }
+            } label: {
+                Avatar(name: author?.name, url: author?.avatarURL, size: 36, isAccessible: false)
+                    .padding(.trailing, 8)
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack(spacing: 0) {
+                        Text(author?.name ?? "")
+                            .font(.regular16)
+                            .foregroundStyle(Color.textDarkest)
+
+                        Spacer()
+
+                        Image.arrowOpenDownLine
+                            .resizable()
+                            .frame(
+                                width: 15 * uiScale.iconScale,
+                                height: 15 * uiScale.iconScale
+                            )
+                        .foregroundColor(.textDarkest)
+                    }
+                    Text(message.createdAt?.dateTimeString ?? "")
+                        .font(.regular16)
+                        .foregroundStyle(Color.textDark)
+                }
             }
+            .padding(.bottom, 12)
+
             Text(message.body)
-                .foregroundStyle(Color.textDark)
-                .lineLimit(1)
+                .font(.regular16)
+                .foregroundStyle(Color.textDarkest)
+
+            if !message.attachments.isEmpty {
+                AttachmentCardsView(attachments: message.attachments, mediaComment: message.mediaComment)
+                    .frame(height: 104)
+            }
         }
         .padding(.vertical, 12)
-        .padding(.horizontal, 12)
+        .padding(.horizontal, 16)
+    }
+
+    private func collapsedMessageView(for message: ConversationMessage) -> some View {
+        return Button {
+                withAnimation {
+                    model.toggleMessageExpand(message: message)
+                }
+            } label: {
+                HStack(spacing: 0) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack {
+                            Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
+                                .font(.regular16)
+                                .foregroundStyle(Color.textDarkest)
+                                .lineLimit(1)
+                            Spacer()
+                            Text(message.createdAt?.dateTimeString ?? "")
+                                .font(.regular16)
+                                .foregroundStyle(Color.textDark)
+                                .lineLimit(1)
+
+                            Image.arrowOpenUpLine
+                                .resizable()
+                                .frame(
+                                    width: 15 * uiScale.iconScale,
+                                    height: 15 * uiScale.iconScale
+                                )
+                            .foregroundColor(.textDarkest)
+                        }
+                        .padding(.bottom, 6)
+
+                        Text(message.body)
+                            .font(.regular16)
+                            .foregroundStyle(Color.textDark)
+                            .lineLimit(1)
+                    }
+                }
+                .padding(.vertical, 12)
+                .padding(.horizontal, 16)
+        }
     }
 
     private var attachmentsView: some View {
         ForEach(model.attachments, id: \.self) { file in
-            ConversationAttachmentCardView(file: file) {
-                model.removeAttachment(file: file)
+            Button {
+                model.didSelectFile.accept((controller, file))
+            } label: {
+                ConversationAttachmentCardView(file: file) {
+                    model.didRemoveFile.accept(file)
+                }
             }
+            .foregroundColor(.textDarkest)
         }
     }
 }

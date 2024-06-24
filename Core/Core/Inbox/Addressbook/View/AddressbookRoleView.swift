@@ -18,12 +18,19 @@
 
 import SwiftUI
 
-struct AddressbookRoleView: View {
+struct AddressbookRoleView: View, ScreenViewTrackable {
     @ObservedObject private var viewModel: AddressbookRoleViewModel
     @Environment(\.viewController) private var controller
+    @ScaledMetric private var uiScale: CGFloat = 1
+
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     init(model: AddressbookRoleViewModel) {
         self.viewModel = model
+
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/conversations/compose/addressbook/roles"
+        )
     }
 
     public var body: some View {
@@ -71,7 +78,7 @@ struct AddressbookRoleView: View {
 
     private var doneButton: some View {
         Button {
-            viewModel.doneButtonDidTap.accept(controller)
+            viewModel.didTapDone.accept(controller)
         } label: {
             Text("Done", bundle: .core)
                 .font(.regular16)
@@ -90,7 +97,7 @@ struct AddressbookRoleView: View {
     private func personRowView(_ recipient: Recipient) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
-                viewModel.recipientDidTap.send(recipient)
+                viewModel.didTapRecipient.send(recipient)
             }, label: {
                 HStack(alignment: .center, spacing: 16) {
                     Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 36, isAccessible: false)
@@ -127,7 +134,7 @@ struct AddressbookRoleView: View {
     private func roleRowView(_ role: String) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
-                viewModel.roleDidTap.send((roleName: role, recipients: viewModel.roleRecipients[role] ?? [], controller: controller))
+                viewModel.didTapRole.send((roleName: role, recipients: viewModel.roleRecipients[role] ?? [], controller: controller))
             }, label: {
                 HStack(alignment: .center, spacing: 16) {
                     Avatar(name: role, url: nil, size: 36, isAccessible: false)
@@ -142,6 +149,17 @@ struct AddressbookRoleView: View {
                             .lineLimit(1)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
+
+                    Spacer()
+
+                    Image.arrowOpenRightLine
+                        .resizable()
+                        .frame(
+                            width: 15 * uiScale,
+                            height: 15 * uiScale
+                        )
+                        .foregroundColor(.textDark)
+                        .padding(.all, 12)
                 }
             })
             .padding(16)
@@ -152,7 +170,7 @@ struct AddressbookRoleView: View {
     private var allRecipient: some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
-                viewModel.recipientDidTap.send(viewModel.allRecipient)
+                viewModel.didTapRecipient.send(viewModel.allRecipient)
             }, label: {
                 HStack(alignment: .center, spacing: 16) {
                     Avatar(name: String(localized: "All", bundle: .core), url: nil, size: 36, isAccessible: false)

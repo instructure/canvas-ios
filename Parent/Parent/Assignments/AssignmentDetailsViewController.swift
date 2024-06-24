@@ -239,6 +239,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             name,
             assignment.htmlURL?.absoluteString ?? ""
         )
+
         let compose = ComposeViewController.create(
             context: .course(courseID),
             observeeID: studentID,

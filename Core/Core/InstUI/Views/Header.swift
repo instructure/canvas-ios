@@ -19,7 +19,10 @@
 import SwiftUI
 
 extension InstUI {
+
     public struct Header: View {
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
         private let title: String
         private let subtitle: String?
 

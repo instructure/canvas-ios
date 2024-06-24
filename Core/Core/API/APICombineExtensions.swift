@@ -43,6 +43,28 @@ public extension API {
         }.eraseToAnyPublisher()
     }
 
+    func exhaust<Request: APIRequestable>(
+        _ requestable: Request
+    ) -> AnyPublisher<(body: Request.Response, urlResponse: HTTPURLResponse?), Error>
+    where Request.Response: RangeReplaceableCollection {
+        Future { promise in
+            self.exhaust(requestable, callback: { response, urlResponse, error in
+                if let response {
+                    promise(.success((body: response,
+                                      urlResponse: urlResponse as? HTTPURLResponse)))
+                } else if let error {
+                    promise(.failure(error))
+                } else if Request.Response.self is APINoContent.Type {
+                    // swiftlint:disable:next force_cast
+                    promise(.success((body: APINoContent() as! Request.Response,
+                                      urlResponse: urlResponse as? HTTPURLResponse)))
+                } else {
+                    promise(.failure(NSError.instructureError("No response or error received.")))
+                }
+            })
+        }.eraseToAnyPublisher()
+    }
+
     func makeRequest(_ url: URL,
                      method: APIMethod? = nil)
     -> AnyPublisher<URLResponse?, Error> {

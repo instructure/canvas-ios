@@ -21,12 +21,17 @@ import XCTest
 @testable import TestsFoundation
 
 class ConferenceListViewControllerTests: CoreTestCase {
+
+    private enum TestConstants {
+        static let date = DateComponents(calendar: .current, year: 2020, month: 3, day: 14).date!
+    }
+
     let course1 = Context(.course, id: "1")
     lazy var controller = ConferenceListViewController.create(context: course1)
 
     override func setUp() {
         super.setUp()
-        Clock.mockNow(DateComponents(calendar: .current, year: 2020, month: 3, day: 14).date!)
+        Clock.mockNow(TestConstants.date)
         api.mock(controller.colors, value: APICustomColors(custom_colors: [ "course_1": "#f00" ]))
         api.mock(controller.course, value: .make())
         api.mock(controller.conferences, value: GetConferencesRequest.Response(conferences: [
@@ -35,6 +40,11 @@ class ConferenceListViewControllerTests: CoreTestCase {
             .make(ended_at: Clock.now, id: "3"),
             .make(id: "4", started_at: Clock.now),
         ]))
+    }
+
+    override func tearDown() {
+        Clock.reset()
+        super.tearDown()
     }
 
     func testLayout() {
@@ -61,7 +71,7 @@ class ConferenceListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.statusLabel.textColor, .textDark)
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ConferenceListCell
-        XCTAssertEqual(cell?.statusLabel.text, "Concluded Mar 14, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.statusLabel.text, "Concluded " + TestConstants.date.dateTimeString)
         XCTAssertEqual(cell?.statusLabel.textColor, .textDark)
 
         api.mock(controller.conferences, value: .init(conferences: [ .make(title: "Pandemic playthrough") ]))

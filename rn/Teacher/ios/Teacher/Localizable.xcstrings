@@ -105,6 +105,12 @@
             "value" : "%g sur %g"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%g में से %g"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -347,6 +353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%g pts"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%g पॉइंट्स"
           }
         },
         "ht" : {
@@ -593,6 +605,12 @@
             "value" : "Absent"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुपस्थित"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -835,6 +853,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter une pièce jointe"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संलग्नक जोड़ें"
           }
         },
         "ht" : {
@@ -1081,6 +1105,12 @@
             "value" : "Ajouter un commentaire"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणी जोड़ें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1323,6 +1353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toutes les notes sont actuellement masquées."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्तमान में सभी ग्रेड छिपे हुए हैं।"
           }
         },
         "ht" : {
@@ -1569,6 +1605,12 @@
             "value" : "Toutes les notes sont actuellement publiées."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्तमान में सभी ग्रेड पोस्ट किए गए हैं।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1811,6 +1853,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tous masqués"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी छिपाए हुए"
           }
         },
         "ht" : {
@@ -2057,6 +2105,12 @@
             "value" : "Tous publiés"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी पोस्ट किए गए"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2299,6 +2353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tous les envois"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी सबमिशन"
           }
         },
         "ht" : {
@@ -2545,6 +2605,12 @@
             "value" : "Tous les envois"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी सबमिशन"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2787,6 +2853,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tentative %lld"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रयास %lld"
           }
         },
         "ht" : {
@@ -3033,6 +3105,12 @@
             "value" : "Participation"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपस्थिति"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3277,6 +3355,12 @@
             "value" : "Erreur de présence"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपस्थिति त्रुटि"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3519,6 +3603,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retour"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वापस जाएं"
           }
         },
         "ht" : {
@@ -4010,6 +4100,12 @@
             "value" : "Annuler"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रद्द करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4252,6 +4348,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modifier la section"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुभाग बदलें"
           }
         },
         "ht" : {
@@ -4498,6 +4600,12 @@
             "value" : "Choisir une section"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुभाग चुनें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4740,6 +4848,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choisir la date"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तिथि चुनें"
           }
         },
         "ht" : {
@@ -4986,6 +5100,12 @@
             "value" : "Choisir des fichiers"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइलें चुनें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5228,6 +5348,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fermer"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बंद करें"
           }
         },
         "ht" : {
@@ -5474,6 +5600,12 @@
             "value" : "Fermer le tiroir"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ड्रॉर बंद करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5716,6 +5848,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commentaire"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणी"
           }
         },
         "ht" : {
@@ -5962,6 +6100,12 @@
             "value" : "Bibliothèque de commentaires"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणी लाइब्रेरी"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6204,6 +6348,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La bibliothèque de commentaires n'est pas disponible"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणी लाइब्रेरी उपलब्ध नहीं है"
           }
         },
         "ht" : {
@@ -6450,6 +6600,12 @@
             "value" : "Commentaires"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणियां"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6692,6 +6848,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terminé"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरा हुआ"
           }
         },
         "ht" : {
@@ -6938,6 +7100,12 @@
             "value" : "Impossible d’enregistrer le commentaire."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणी सहेजी नहीं जा सकी।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7180,6 +7348,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cours"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ्यक्रम"
           }
         },
         "ht" : {
@@ -7426,6 +7600,12 @@
             "value" : "Personnaliser la notation"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गग्रेड कस्टमाइज करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7668,6 +7848,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélecteur de date"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डेट पिकर"
           }
         },
         "ht" : {
@@ -7914,6 +8100,12 @@
             "value" : "Rejeter"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खारिज करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8156,6 +8348,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terminé"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हो गया"
           }
         },
         "ht" : {
@@ -8402,6 +8600,12 @@
             "value" : "Modifier"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संपादित करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8644,6 +8848,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erreur"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्रुटि"
           }
         },
         "ht" : {
@@ -8891,6 +9101,12 @@
             "value" : "Erreur : Aucune donnée renvoyée par l’API d’appel nominal."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्रुटि: रोलकॉल API से कोई डेटा वापस नहीं आया।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9133,6 +9349,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tous"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी"
           }
         },
         "ht" : {
@@ -9379,6 +9601,12 @@
             "value" : "Dispenser l’étudiant"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "छात्र को माफ़ करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9621,6 +9849,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exempté"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "माफ़ किया"
           }
         },
         "ht" : {
@@ -9867,6 +10101,12 @@
             "value" : "Impossible de lancer l'outil LTI d’appel nominal."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रोलकॉल LTI उपकरण लॉन्च करने में विफल।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10111,6 +10351,12 @@
             "value" : "Échec lors du chargement des données d’envoi!"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन डेटा लोड करने में विफल!"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10353,6 +10599,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fichiers"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइलें"
           }
         },
         "ht" : {
@@ -10600,6 +10852,12 @@
             "value" : "Fichiers (%@)"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइलें (%@)"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10842,6 +11100,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fichiers (%lld)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइलें (%lld)"
           }
         },
         "ht" : {
@@ -11088,6 +11352,12 @@
             "value" : "Filtrer"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़िल्टर"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11330,6 +11600,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filtrer (%d)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़िल्टर (%d)"
           }
         },
         "ht" : {
@@ -11576,6 +11852,12 @@
             "value" : "Filtrer par"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इसके अनुसार फ़िल्टर करें:"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11818,6 +12100,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filtrer les envois"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन फ़िल्टर करें"
           }
         },
         "ht" : {
@@ -12064,6 +12352,12 @@
             "value" : "Note finale"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अंतिम ग्रेड"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12306,6 +12600,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Moyenne cumulative"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GPA"
           }
         },
         "ht" : {
@@ -12552,6 +12852,12 @@
             "value" : "Note"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12794,6 +13100,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Politique de publication des notes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड पोस्ट नीति"
           }
         },
         "ht" : {
@@ -13040,6 +13352,12 @@
             "value" : "Curseur de notation"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड स्लाइडर"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13282,6 +13600,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noté"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड किए गए"
           }
         },
         "ht" : {
@@ -13528,6 +13852,12 @@
             "value" : "Notes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13772,6 +14102,12 @@
             "value" : "Les notes seront rendues visibles à tous les étudiants"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी छात्रों के लिए ग्रेड को दृश्यमान बना दिया जाएगा"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14014,6 +14350,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les notes seront rendues visibles par les étudiants avec des envois notés"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उन सभी छात्रों के लिए ग्रेड को दृश्यमान बना दिया जाएगा जिनके सबमिशन ग्रेड किए हुए हैं"
           }
         },
         "ht" : {
@@ -14676,6 +15018,30 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%d notes actuellement masquées"
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d वर्तमान में छिपा हुआ ग्रेड"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d वर्तमान में छिपे हुए ग्रेड"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d वर्तमान में छिपे हुए ग्रेड"
                 }
               }
             }
@@ -15814,6 +16180,30 @@
             }
           }
         },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d वर्तमान में  पोस्ट किया गया ग्रेड"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d वर्तमान में पोस्ट किए गए ग्रेड"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d वर्तमान में पोस्ट किए गए ग्रेड"
+                }
+              }
+            }
+          }
+        },
         "ht" : {
           "variations" : {
             "plural" : {
@@ -16526,6 +16916,12 @@
             "value" : "Groupe"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रुप"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17014,6 +17410,12 @@
             "value" : "Masquer les notes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड छिपाएं"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17257,6 +17659,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Boîte de réception"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इनबॉक्स"
           }
         },
         "ht" : {
@@ -17503,6 +17911,12 @@
             "value" : "Incomplet"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अधूरा"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17745,6 +18159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il semble qu’il n’y ait pas de soumissions valides à noter."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऐसा लगता है कि ग्रेड करने के लिए कोई वैध सबमिशन नहीं है।"
           }
         },
         "ht" : {
@@ -17991,6 +18411,12 @@
             "value" : "En retard"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विलंब"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18233,6 +18659,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notation par lettre"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अक्षर ग्रेड"
           }
         },
         "ht" : {
@@ -18479,6 +18911,12 @@
             "value" : "En cours de chargement"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लोड किया जा रहा है"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18721,6 +19159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Marquer « Tous comme présent »"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी को उपस्थित के रूप में चिह्नित करें"
           }
         },
         "ht" : {
@@ -18967,6 +19411,12 @@
             "value" : "Marquer comme « Restant comme présent »"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शेष को उपस्थित के रूप में चिह्नित करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19209,6 +19659,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notation modérée non prise en charge"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मॉडरेट की गई ग्रेडिंग असमर्थित है"
           }
         },
         "ht" : {
@@ -19455,6 +19911,12 @@
             "value" : "Requiert une notation"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेडिंग की आवश्यकता है"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19697,6 +20159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non noté"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई ग्रेड नहीं"
           }
         },
         "ht" : {
@@ -19943,6 +20411,12 @@
             "value" : "Aucun envoi"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई सबमिशन नहीं"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20185,6 +20659,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucune suggestion n’est disponible"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई सुझाव उपलब्ध नहीं"
           }
         },
         "ht" : {
@@ -20431,6 +20911,12 @@
             "value" : "Non noté"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड नहीं किया गया"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20673,6 +21159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non soumis"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिट नहीं किया गया"
           }
         },
         "ht" : {
@@ -20919,6 +21411,12 @@
             "value" : "OK"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ठीक है"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21161,6 +21659,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ouvrir la bibliothèque de commentaires"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणी लाइब्रेरी खोलें"
           }
         },
         "ht" : {
@@ -21407,6 +21911,12 @@
             "value" : "Ouvrir le tiroir en plein écran"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ड्रॉर को पूर्ण स्क्रीन पर खोलें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21651,6 +22161,12 @@
             "value" : "Ouvrir le tiroir en demi-écran"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ड्रॉर को आधी स्क्रीन पर खोलें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21890,6 +22406,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out_of_g_pts"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "out_of_g_pts"
@@ -22139,6 +22661,12 @@
             "value" : "En attente"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लंबित"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22381,6 +22909,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pourcentage (%)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रतिशत (%)"
           }
         },
         "ht" : {
@@ -22627,6 +23161,12 @@
             "value" : "Points"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पॉइंट्स"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22869,6 +23409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Publier les notes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड पोस्ट करें"
           }
         },
         "ht" : {
@@ -23115,6 +23661,12 @@
             "value" : "Paramètres de publication"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग्स पोस्ट करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23357,6 +23909,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Paramètres de l’article"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग्स पोस्ट करें"
           }
         },
         "ht" : {
@@ -23603,6 +24161,12 @@
             "value" : "Publier à..."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यहां पोस्ट करें..."
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23845,6 +24409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les questionnaires pratiques et les sondages n'ont pas de vues détaillées."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभ्यास प्रश्नोत्तरी और सर्वेक्षण में विस्तृत दृश्य नहीं होते हैं।"
           }
         },
         "ht" : {
@@ -24091,6 +24661,12 @@
             "value" : "Présent"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपस्थित"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24333,6 +24909,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aperçu non disponible"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूर्वावलोकन उपलब्ध नहीं है"
           }
         },
         "ht" : {
@@ -24579,6 +25161,12 @@
             "value" : "Invites pour une notation mise à jour"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपडेट किए गए ग्रेड के लिए प्रॉम्प्ट करता है"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24821,6 +25409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrer le son"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऑडियो रिकॉर्ड करें"
           }
         },
         "ht" : {
@@ -25067,6 +25661,12 @@
             "value" : "Enregistrer la vidéo"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वीडियो रिकॉर्ड करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25309,6 +25909,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réinitialiser"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रीसेट करें"
           }
         },
         "ht" : {
@@ -25555,6 +26161,12 @@
             "value" : "Réessayer"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फिर से कोशिश करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25797,6 +26409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rubrique"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रुब्रिक"
           }
         },
         "ht" : {
@@ -26531,6 +27149,12 @@
             "value" : "Sélectionnez pour modifier la date d'appel nominal"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रोल कॉल तिथि बदलने के लिए चयन करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26773,6 +27397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoyer"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भेजें"
           }
         },
         "ht" : {
@@ -27019,6 +27649,12 @@
             "value" : "Envoyer un message aux utilisateurs"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपयोगकर्ताओं को संदेश भेजें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27261,6 +27897,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Score de similarité"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "समानता अंक"
           }
         },
         "ht" : {
@@ -27507,6 +28149,12 @@
             "value" : "Sections spécifiques"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विशिष्ट अनुभाग"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27749,6 +28397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Étudiant"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "छात्र"
           }
         },
         "ht" : {
@@ -28239,6 +28893,12 @@
             "value" : "Envois"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28481,6 +29141,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoyé"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिट किया गया"
           }
         },
         "ht" : {
@@ -28727,6 +29393,12 @@
             "value" : "Étudiant test"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "परीक्षण छात्र"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28969,6 +29641,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il n’y a pas de message pour le moment."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी तक कोई संदेश नहीं हैं।"
           }
         },
         "ht" : {
@@ -29215,6 +29893,12 @@
             "value" : "Une erreur est survenue lors du chargement des envois. Tirez pour actualiser et réessayer."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन लोड करने में त्रुटि हुई। फिर से कोशिश करने के लिए रीफ़्रेश करने के लिए खींचें।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29457,6 +30141,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cette tâche ne permet pas d’envoi."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह असाइनमेंट सबमिशन की अनुमति नहीं देती है।"
           }
         },
         "ht" : {
@@ -29703,6 +30393,12 @@
             "value" : "Cette tâche permet uniquement des envois sur support papier."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह असाइनमेंट केवल कागज़ी सबमिशन की अनुमति देती है।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29945,6 +30641,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ce critère n'aura pas de répercussions sur le score."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस मानदंड का अंक पर कोई असर नहीं पड़ेगा।"
           }
         },
         "ht" : {
@@ -30191,6 +30893,12 @@
             "value" : "Ce groupe n’a pas d’envoi pour cette tâche."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस ग्रुप के पास इस असाइनमेंट के लिए कोई सबमिशन नहीं है।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30433,6 +31141,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cet étudiant n’a pas d’envoi pour cette tâche."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस छात्र के पास इस असाइनमेंट के लिए कोई सबमिशन नहीं है।"
           }
         },
         "ht" : {
@@ -30679,6 +31393,12 @@
             "value" : "Les réponses de cet étudiant sont masquées du fait que cette tâche est anonyme."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस छात्र की प्रतिक्रियाएं छिपी हुई हैं, क्योंकि यह असाइनमेंट अनाम है।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30921,6 +31641,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cet envoi ne contient aucun fichier."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस सबमिशन में कोई फ़ाइल नहीं है।"
           }
         },
         "ht" : {
@@ -31167,6 +31893,12 @@
             "value" : "Cet envoi est une URL vers une page externe. Nous avons inclus une capture d’écran de la page au moment où elle a été envoyée."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह सबमिशन एक बाहरी पेज का URL है। हमने इसमें एक स्नैपशॉट शामिल किया है कि सबमिट किए जाने पर पेज कैसा दिखता था।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31409,6 +32141,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "À faire"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "करने के लिए"
           }
         },
         "ht" : {
@@ -31655,6 +32393,12 @@
             "value" : "Erreur inconnue"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अज्ञात त्रुटि"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31897,6 +32641,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Décocher"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अचिह्नित करें"
           }
         },
         "ht" : {
@@ -32143,6 +32893,12 @@
             "value" : "URL de prévisualisation de l’image"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL पूर्वावलोकन छवि"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32385,6 +33141,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voir le fichier %@ %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल देखें %@ %@"
           }
         },
         "ht" : {
@@ -32631,6 +33393,12 @@
             "value" : "Voir description longue"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लंबा विवरण देखें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32874,6 +33642,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voir la tentative d’envoi %@. %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन प्रयास %@ देखें। %@"
           }
         },
         "ht" : {
@@ -33124,6 +33898,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voir la tentative d’envoi %1$lld. %2$@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन प्रयास %1$lld देखें। %2$@"
           }
         },
         "ht" : {

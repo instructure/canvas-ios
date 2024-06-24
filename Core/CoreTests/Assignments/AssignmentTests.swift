@@ -333,6 +333,8 @@ class AssignmentTests: CoreTestCase {
         a.unlockAt = df.date(from: "2018-10-01T05:00:00Z")
         a.lockAt   = df.date(from: "2018-10-01T06:01:00Z")
         XCTAssertTrue(a.isOpenForSubmissions())
+
+        Clock.reset()
     }
 
     func testAllDates() {

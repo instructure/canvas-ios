@@ -20,6 +20,7 @@ import Combine
 import CombineExt
 
 public class ComposeMessageInteractorLive: ComposeMessageInteractor {
+
     public func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error> {
         CreateConversation(
             subject: parameters.subject,
@@ -47,5 +48,15 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
                 promise(.failure(NSError.instructureError(String(localized: "Invalid conversation ID", bundle: .core))))
             }
         }
+    }
+
+    public func deleteFile(file: File) -> AnyPublisher<Void, Never> {
+        guard let fileId = file.id else { return Just(()).eraseToAnyPublisher() }
+
+        return ReactiveStore(useCase: DeleteFile(fileID: fileId))
+            .getEntities()
+            .mapToVoid()
+            .replaceError(with: ())
+            .eraseToAnyPublisher()
     }
 }

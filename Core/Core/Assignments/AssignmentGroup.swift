@@ -26,6 +26,7 @@ public final class AssignmentGroup: NSManagedObject {
     @NSManaged public var name: String
     @NSManaged public var position: Int
     @NSManaged public var courseID: String
+    @NSManaged public var assignments: Set<Assignment>?
 
     @discardableResult
     public static func save(_ item: APIAssignmentGroup, courseID: String, in context: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) -> AssignmentGroup {

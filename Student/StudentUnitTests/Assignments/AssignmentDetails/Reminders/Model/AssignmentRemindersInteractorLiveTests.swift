@@ -47,6 +47,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
 
         testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: Clock.now.addSeconds(1)))
         XCTAssertTrue(testee.isRemindersSectionVisible.value)
+        Clock.reset()
     }
 
     // MARK: - Reminder Display
@@ -67,6 +68,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         }
     }
 
+    // FIXME: flaky test (at least on CI)
     func testListsRemindersInChronologicalOrder() {
         mockNotificationCenter.requests = [
             .make(id: "1", timeText: "3 minutes before", trigger: .init(minute: 57)),
