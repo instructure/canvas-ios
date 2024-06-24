@@ -25,8 +25,8 @@ class CommandLine {
     private static let host = "http://localhost"
     private static let port: UInt16 = 4567
 
-    private static var networkServices: [String.SubSequence] {
-        let rawResult = exec("networksetup -listallnetworkservices")
+    private static func networkServices() throws -> [String.SubSequence] {
+        let rawResult = try exec("networksetup -listallnetworkservices")
         var result = rawResult.split(separator: "\n")
         result.removeFirst()
         var services: [String.SubSequence] = []
@@ -40,30 +40,30 @@ class CommandLine {
         return services
     }
 
-    static var isOffline: Bool {
-        for service in networkServices {
-            let output = exec("networksetup -getnetworkserviceenabled '\(service)'")
+    static func isOffline() throws -> Bool {
+        for service in try networkServices() {
+            let output = try exec("networksetup -getnetworkserviceenabled '\(service)'")
             guard output == "Disabled" else { return false }
         }
         return true
     }
 
-    static var isOnline: Bool {
-        for service in networkServices {
-            let output = exec("networksetup -getnetworkserviceenabled '\(service)'")
+    static func isOnline() throws -> Bool {
+        for service in try networkServices() {
+            let output = try exec("networksetup -getnetworkserviceenabled '\(service)'")
             guard output == "Enabled" else { return false }
         }
         return true
     }
 
-    static func setConnection(state: ConnectionState) {
-        for service in networkServices {
-            exec("networksetup -setnetworkserviceenabled '\(service)' \(state) || true")
+    static func setConnection(state: ConnectionState) throws {
+        for service in try networkServices() {
+            try exec("networksetup -setnetworkserviceenabled '\(service)' \(state) || true")
         }
     }
 
     @discardableResult
-    private static func exec(_ command: String, async: Bool = false) -> String {
+    private static func exec(_ command: String, async: Bool = false) throws -> String {
         let urlString = "\(host):\(port)/terminal?async=\(async)"
         guard let url = URL(string: urlString) else { return "" }
         var request = URLRequest(url: url)
@@ -84,7 +84,11 @@ class CommandLine {
                 }
             }
             task.resume()
-            semaphore.wait()
+            let waitResult = semaphore.wait(timeout: DispatchTime.now() + .seconds(60))
+
+            if case .timedOut = waitResult {
+                throw NSError.instructureError("Timeout while waiting on terminal service connection.")
+            }
         }
         return output
     }
