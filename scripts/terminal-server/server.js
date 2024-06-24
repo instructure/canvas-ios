@@ -29,7 +29,7 @@ app.use(express.json());
 
 app.listen(port, function(err) {
     if (err) {
-	    console.log("Error starting terminal server.");
+        console.log("Error starting terminal server.");
     }
     console.log("Terminal server started.");
 });
