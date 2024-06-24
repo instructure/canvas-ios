@@ -17,27 +17,34 @@
 //
 
 import Foundation
+import Combine
 
 public class CalendarToDoDetailsViewModel: ObservableObject {
     public let navigationTitle = String(localized: "To Do", bundle: .core)
     public let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
-    public var title: String? { plannable.title }
-    public var date: String? { plannable.date?.dateTimeString }
-    public var description: String? { plannable.details }
+    @Published public private(set) var title: String?
+    @Published public private(set) var date: String?
+    @Published public private(set) var description: String?
 
     private let plannable: Plannable
+    private var subscriptions = Set<AnyCancellable>()
 
-    public init(plannable: Plannable) {
+    public init(plannable: Plannable, interactor: CalendarToDoInteractor) {
         self.plannable = plannable
+
+        interactor.getToDo(id: plannable.id)
+            .sink { [weak self] in
+                self?.title = $0.title
+                self?.date = $0.date?.dateTimeString
+                self?.description = $0.details
+            }
+            .store(in: &subscriptions)
     }
 
     public func showEditScreen(env: AppEnvironment, from source: WeakViewController) {
         let weakVC = WeakViewController()
-        let vc = PlannerAssembly.makeEditToDoViewController(plannable: plannable) {
-            if $0 == .didUpdate {
-                // TODO: refresh
-            }
+        let vc = PlannerAssembly.makeEditToDoViewController(plannable: plannable) { _ in
             env.router.dismiss(weakVC)
         }
         weakVC.setValue(vc)

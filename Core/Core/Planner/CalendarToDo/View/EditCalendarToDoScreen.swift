@@ -104,7 +104,7 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
 #if DEBUG
 
 #Preview {
-    PlannerAssembly.makeCreateToDoScreenPreview()
+    PlannerAssembly.makeEditToDoScreenPreview()
 }
 
 #endif

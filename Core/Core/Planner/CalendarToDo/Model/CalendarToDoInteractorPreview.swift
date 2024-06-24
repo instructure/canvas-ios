@@ -24,6 +24,21 @@ final class CalendarToDoInteractorPreview: CalendarToDoInteractor {
 
     init() { }
 
+    var getToDoCallsCount: Int = 0
+    var getToDoInput: String?
+    var getToDoResult: Result<Plannable, Never>?
+
+    func getToDo(id: String) -> AnyPublisher<Plannable, Never> {
+        getToDoCallsCount += 1
+        getToDoInput = id
+
+        if let getToDoResult {
+            return getToDoResult.publisher.eraseToAnyPublisher()
+        } else {
+            return Empty<Plannable, Never>().eraseToAnyPublisher()
+        }
+    }
+
     var createToDoCallsCount: Int = 0
     var createToDoInput: (title: String, date: Date, calendar: CDCalendarFilterEntry?, details: String?)?
     var createToDoResult: Result<Void, Error>? = .success

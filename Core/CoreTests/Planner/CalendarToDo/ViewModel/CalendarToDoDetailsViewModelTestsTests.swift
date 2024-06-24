@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+@testable import Core
 import XCTest
 
 class CalendarToDoDetailsViewModelTests: CoreTestCase {
@@ -34,7 +34,7 @@ class CalendarToDoDetailsViewModelTests: CoreTestCase {
                                        in: databaseClient)
 
         // WHEN
-        let testee = CalendarToDoDetailsViewModel(plannable: plannable)
+        let testee = CalendarToDoDetailsViewModel(plannable: plannable, interactor: CalendarToDoInteractorPreview())
 
         // THEN
         XCTAssertEqual(testee.navigationTitle, "To Do")

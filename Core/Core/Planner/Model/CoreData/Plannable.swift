@@ -68,6 +68,22 @@ public final class Plannable: NSManagedObject {
         model.userID = userID
         return model
     }
+
+    @discardableResult
+    public static func save(_ item: APIPlannerNote, contextName: String?, in client: NSManagedObjectContext) -> Plannable {
+        let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.id) ?? client.insert()
+        model.id = item.id
+        model.plannableType = .planner_note
+        model.htmlURL = nil
+        model.contextName = contextName
+        model.title = item.title
+        model.date = item.todo_date
+        model.pointsPossible = nil
+        model.details = item.details
+        model.context = Context(.course, id: item.course_id) ?? Context(.user, id: item.user_id)
+        model.userID = item.user_id
+        return model
+    }
 }
 
 extension Plannable {

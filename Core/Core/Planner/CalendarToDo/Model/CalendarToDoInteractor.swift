@@ -19,6 +19,8 @@
 import Combine
 
 public protocol CalendarToDoInteractor: AnyObject {
+    func getToDo(id: String) -> AnyPublisher<Plannable, Never>
+
     func createToDo(
         title: String,
         date: Date,
@@ -37,14 +39,29 @@ public protocol CalendarToDoInteractor: AnyObject {
 
 final class CalendarToDoInteractorLive: CalendarToDoInteractor {
 
+    func getToDo(id: String) -> AnyPublisher<Plannable, Never> {
+        let predicate = NSPredicate(key: #keyPath(Plannable.id), equals: id)
+        let useCase = LocalUseCase<Plannable>(scope: Scope(predicate: predicate, order: []))
+        return ReactiveStore(useCase: useCase)
+            .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
+            .compactMap { $0.first }
+            .catch { _ in Empty() }
+            .eraseToAnyPublisher()
+    }
+
     func createToDo(
         title: String,
         date: Date,
         calendar: CDCalendarFilterEntry?,
         details: String?
     ) -> AnyPublisher<Void, Error> {
-        let courseId = calendar?.context.contextType == .course ? calendar?.context.id : nil
-        let useCase = CreatePlannerNote(title: title, details: details, todoDate: date, courseID: courseId)
+        let useCase = CreatePlannerNote(
+            title: title,
+            details: details,
+            todoDate: date,
+            courseID: calendar?.context.courseId,
+            courseName: calendar?.courseName
+        )
         return ReactiveStore(useCase: useCase)
             .getEntities()
             .mapToVoid()
@@ -58,12 +75,23 @@ final class CalendarToDoInteractorLive: CalendarToDoInteractor {
         calendar: CDCalendarFilterEntry?,
         details: String?
     ) -> AnyPublisher<Void, Error> {
-        // TODO: update UseCase & Request
-        let courseId = calendar?.context.contextType == .course ? calendar?.context.id : nil
-        let useCase = CreatePlannerNote(title: title, details: details, todoDate: date, courseID: courseId)
+        let useCase = UpdatePlannerNote(
+            id: id,
+            title: title,
+            details: details,
+            todoDate: date,
+            courseID: calendar?.context.courseId,
+            courseName: calendar?.courseName
+        )
         return ReactiveStore(useCase: useCase)
             .getEntities()
             .mapToVoid()
             .eraseToAnyPublisher()
+    }
+}
+
+private extension CDCalendarFilterEntry {
+    var courseName: String? {
+        context.contextType == .course ? name : nil
     }
 }

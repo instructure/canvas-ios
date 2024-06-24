@@ -41,6 +41,11 @@ public struct Context: Codable, Equatable, Hashable {
         self.id = ID.expandTildeID(id)
     }
 
+    public init?(_ contextType: ContextType, id: String?) {
+        guard let id else { return nil }
+        self.init(contextType, id: id)
+    }
+
     public init?(url: URL) {
         self.init(path: url.path)
     }
@@ -67,4 +72,9 @@ public extension Context {
     static func group(_ id: String) -> Context { Context(.group, id: id) }
     static func user(_ id: String) -> Context { Context(.user, id: id) }
     static let currentUser = Context.user("self")
+
+    var accountId: String? { contextType == .account ? id : nil }
+    var courseId: String? { contextType == .course ? id : nil }
+    var groupId: String? { contextType == .group ? id : nil }
+    var userId: String? { contextType == .user ? id : nil }
 }

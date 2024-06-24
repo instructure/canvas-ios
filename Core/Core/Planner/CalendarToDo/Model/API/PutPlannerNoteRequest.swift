@@ -18,8 +18,8 @@
 
 import Foundation
 
-// https://canvas.instructure.com/doc/api/planner.html#method.planner_notes.create
-struct PostPlannerNoteRequest: APIRequestable {
+// https://canvas.instructure.com/doc/api/planner.html#method.planner_notes.update
+struct PutPlannerNoteRequest: APIRequestable {
     typealias Response = APIPlannerNote
 
     struct Body: Codable, Equatable {
@@ -27,12 +27,19 @@ struct PostPlannerNoteRequest: APIRequestable {
         let details: String?
         let todo_date: Date
         let course_id: String?
-        let linked_object_type: PlannableType?
-        let linked_object_id: String?
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(title, forKey: .title)
+            try container.encode(details, forKey: .details)
+            try container.encode(todo_date, forKey: .todo_date)
+            try container.encode(course_id, forKey: .course_id)
+        }
     }
 
-    let method: APIMethod = .post
-    let path: String = "planner_notes"
+    let method: APIMethod = .put
+    var path: String { "planner_notes/\(id)" }
 
+    let id: String
     let body: Body?
 }

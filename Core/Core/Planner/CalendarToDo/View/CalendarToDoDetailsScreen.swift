@@ -21,7 +21,7 @@ import SwiftUI
 public struct CalendarToDoDetailsScreen: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
-    private let viewModel: CalendarToDoDetailsViewModel
+    @ObservedObject private var viewModel: CalendarToDoDetailsViewModel
 
     public init(viewModel: CalendarToDoDetailsViewModel) {
         self.viewModel = viewModel
@@ -72,7 +72,7 @@ public struct CalendarToDoDetailsScreen: View {
         userID: "",
         in: PreviewEnvironment().database.viewContext
     )
-    return CalendarToDoDetailsScreen(viewModel: CalendarToDoDetailsViewModel(plannable: plannable))
+    return PlannerAssembly.makeToDoDetailsScreenPreview(plannable: plannable)
 }
 
 #endif
