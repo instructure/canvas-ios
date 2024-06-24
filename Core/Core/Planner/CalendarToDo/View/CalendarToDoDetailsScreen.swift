@@ -19,6 +19,8 @@
 import SwiftUI
 
 public struct CalendarToDoDetailsScreen: View {
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var controller
     private let viewModel: CalendarToDoDetailsViewModel
 
     public init(viewModel: CalendarToDoDetailsViewModel) {
@@ -30,6 +32,9 @@ public struct CalendarToDoDetailsScreen: View {
             eventContent
         }
         .navigationTitle(viewModel.navigationTitle)
+        .navBarItems(trailing: .save {
+            viewModel.showEditScreen(env: env, from: controller)
+        })
     }
 
     @ViewBuilder

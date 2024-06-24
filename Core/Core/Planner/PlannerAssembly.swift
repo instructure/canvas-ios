@@ -48,10 +48,26 @@ public enum PlannerAssembly {
     // MARK: - ToDo
 
     public static func makeCreateToDoViewController(
-        calendarListProviderInteractor: CalendarFilterInteractor?,
+        calendarListProviderInteractor: CalendarFilterInteractor? = nil,
         completion: @escaping (Completion) -> Void
     ) -> UIViewController {
         let viewModel = EditCalendarToDoViewModel(
+            toDoInteractor: CalendarToDoInteractorLive(),
+            calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            completion: completion
+        )
+        let view = EditCalendarToDoScreen(viewModel: viewModel)
+        let host = CoreHostingController(view)
+        return host
+    }
+
+    public static func makeEditToDoViewController(
+        plannable: Plannable,
+        calendarListProviderInteractor: CalendarFilterInteractor? = nil,
+        completion: @escaping (Completion) -> Void
+    ) -> UIViewController {
+        let viewModel = EditCalendarToDoViewModel(
+            plannable: plannable,
             toDoInteractor: CalendarToDoInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
             completion: completion
