@@ -113,6 +113,12 @@
             "value" : "Widgets"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विजेट"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
