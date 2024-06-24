@@ -135,7 +135,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         XCTAssertEqual(cell1?.title.text, "Event")
     }
 
-    func testNavigationToTodo() {
+    func testNavigationToToDo() throws {
         let date = Clock.now
         let note = APIPlannable.make(
             plannable_id: "2",
@@ -148,8 +148,8 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         let index0 = IndexPath(row: 0, section: 0)
         controller.tableView.selectRow(at: index0, animated: false, scrollPosition: .none)
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index0)
-        let todo = try? XCTUnwrap(router.viewControllerCalls.last?.0 as? CoreHostingController<CalendarToDoDetailsScreen>)
-        XCTAssert(router.lastRoutedTo(viewController: todo!, from: controller, withOptions: .detail))
+        let todo = try XCTUnwrap(router.viewControllerCalls.last?.0 as? CoreHostingController<CalendarToDoDetailsScreen>)
+        XCTAssert(router.lastRoutedTo(viewController: todo, from: controller, withOptions: .detail))
     }
 
     func testEmptyState() {
