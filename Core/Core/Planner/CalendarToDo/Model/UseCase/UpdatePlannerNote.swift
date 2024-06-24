@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -19,32 +19,30 @@
 import Foundation
 import CoreData
 
-final class CreatePlannerNote: APIUseCase {
+final class UpdatePlannerNote: APIUseCase {
     typealias Model = Plannable
 
-    let request: PostPlannerNoteRequest
+    let request: PutPlannerNoteRequest
     let cacheKey: String? = nil
     let scope: Scope = .all()
 
     private let courseName: String?
 
     init(
+        id: String,
         title: String,
         details: String?,
         todoDate: Date,
         courseID: String?,
-        courseName: String?,
-        linkedObjectType: PlannableType = .planner_note,
-        linkedObjectId: String? = nil
+        courseName: String?
     ) {
-        self.request = PostPlannerNoteRequest(
+        self.request = PutPlannerNoteRequest(
+            id: id,
             body: .init(
                 title: title,
                 details: details,
                 todo_date: todoDate,
-                course_id: courseID,
-                linked_object_type: linkedObjectType,
-                linked_object_id: linkedObjectId
+                course_id: courseID
             )
         )
         self.courseName = courseName

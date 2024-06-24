@@ -78,20 +78,31 @@ public enum PlannerAssembly {
     }
 
     public static func makeToDoDetailsViewController(plannable: Plannable) -> UIViewController {
-        let viewModel = CalendarToDoDetailsViewModel(plannable: plannable)
+        let viewModel = CalendarToDoDetailsViewModel(
+            plannable: plannable,
+            interactor: CalendarToDoInteractorLive()
+        )
         let view = CalendarToDoDetailsScreen(viewModel: viewModel)
         return CoreHostingController(view)
     }
 
 #if DEBUG
 
-    public static func makeCreateToDoScreenPreview() -> some View {
+    public static func makeEditToDoScreenPreview() -> some View {
         let viewModel = EditCalendarToDoViewModel(
             toDoInteractor: CalendarToDoInteractorPreview(),
             calendarListProviderInteractor: CalendarFilterInteractorPreview(),
             completion: { _ in }
         )
         return EditCalendarToDoScreen(viewModel: viewModel)
+    }
+
+    public static func makeToDoDetailsScreenPreview(plannable: Plannable) -> some View {
+        let viewModel = CalendarToDoDetailsViewModel(
+            plannable: plannable,
+            interactor: CalendarToDoInteractorPreview()
+        )
+        return CalendarToDoDetailsScreen(viewModel: viewModel)
     }
 
     public static func makeSelectCalendarScreenPreview() -> some View {

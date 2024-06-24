@@ -18,21 +18,17 @@
 
 import Foundation
 
-// https://canvas.instructure.com/doc/api/planner.html#method.planner_notes.create
-struct PostPlannerNoteRequest: APIRequestable {
-    typealias Response = APIPlannerNote
-
-    struct Body: Codable, Equatable {
-        let title: String
-        let details: String?
-        let todo_date: Date
-        let course_id: String?
-        let linked_object_type: PlannableType?
-        let linked_object_id: String?
-    }
-
-    let method: APIMethod = .post
-    let path: String = "planner_notes"
-
-    let body: Body?
+// https://canvas.instructure.com/doc/api/planner.html#PlannerNote
+// Used only when creating or updating a PlannerNote (aka. Calendar ToDo),
+// not when fetching ToDos together with other plannables.
+public struct APIPlannerNote: Codable, Equatable {
+    let id: String
+    let title: String
+    let details: String?
+    let todo_date: Date
+    let user_id: String?
+    let course_id: String?
+    let workflow_state: String?
+    let created_at: Date?
+    let updated_at: Date?
 }
