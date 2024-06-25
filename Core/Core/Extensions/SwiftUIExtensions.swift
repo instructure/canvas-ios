@@ -38,7 +38,6 @@ public extension Image {
     }
 }
 
-@available(iOS, deprecated: 16.0, message: "Use accessibilityActions(_:) for managing accessibility actions instead.")
 public extension View {
     @ViewBuilder
     func `if`<Content: View>(_ condition: Bool, content: (Self) -> Content) -> some View {

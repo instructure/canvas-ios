@@ -44,7 +44,7 @@ public class FilePreviewProvider {
             } else {
                 self.resultSubject.send(completion: .failure(FailedToGeneratePreview()))
             }
-        }   
+        }
     }
 
     private func generatePreview() async -> PreviewData? {
@@ -64,7 +64,7 @@ public class FilePreviewProvider {
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         imageGenerator.appliesPreferredTrackTransform = true
 
-        guard 
+        guard
             let cgImage = try? imageGenerator.copyCGImage(at: .zero, actualTime: nil),
             let duration = try? await asset.load(.duration)
         else {

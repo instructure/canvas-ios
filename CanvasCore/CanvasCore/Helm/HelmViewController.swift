@@ -214,10 +214,6 @@ public final class HelmViewController: ScreenViewTrackableViewController, HelmSc
 
     // MARK: - Orientation
 
-    public override var shouldAutorotate: Bool {
-        return super.shouldAutorotate
-    }
-
     public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if let cantRotate = screenConfig[PropKeys.noRotationInVerticallyCompact] as? Bool, cantRotate, (self.traitCollection.verticalSizeClass == .compact || self.traitCollection.horizontalSizeClass == .compact) {
             return .portrait
