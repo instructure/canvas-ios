@@ -333,6 +333,16 @@ extension Submission {
         return excused == true || (score != nil && workflowState == .graded)
     }
 
+    /// Returns the appropriate status text.
+    /// If the submission has been submitted and it's graded already, then it returns "Graded".
+    /// Otherwise it returns the submissions's status.
+    /// Graded submissions that have been resubmitted will return "Submitted".
+    public var statusText: String {
+        status == .submitted && needsGrading == false
+            ? String(localized: "Graded", bundle: .core)
+            : status.text
+    }
+
     public var status: SubmissionStatus {
         if late { return .late }
         if missing { return .missing }
