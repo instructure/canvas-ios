@@ -65,11 +65,7 @@ public struct GradeRowView: View {
             let submission = assignment.submissions?.first { $0.userID == userID }
             let status = submission?.status ?? .notSubmitted
 
-            let statusText = submission?.status == .submitted && submission?.needsGrading == false
-                ? String(localized: "Graded", bundle: .core)
-                : status.text
-
-            Text(statusText)
+            Text(submission?.statusText ?? "")
                 .foregroundStyle(Color(status.color))
                 .font(.regular14)
         }

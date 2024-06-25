@@ -56092,9 +56092,6 @@
         }
       }
     },
-    "Graded" : {
-
-    },
     "Graded Discussion" : {
       "comment" : "Label for a discussion",
       "extractionState" : "manual",
