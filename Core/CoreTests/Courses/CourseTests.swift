@@ -91,12 +91,13 @@ class CourseTests: CoreTestCase {
     }
 
     func testWidgetDisplayGradeScore() {
-        let c = Course.make(from: .make(enrollments: [.make(computed_current_score: 40.05)]))
+        let c = Course.make(from: .make(enrollments: [.make(id: nil, computed_current_score: 40.05)]))
         XCTAssertEqual(c.displayGrade, "40.05%")
     }
 
     func testWidgetDisplayGradeScoreAndGrade() {
         let c = Course.make(from: .make(enrollments: [ .make(
+            id: nil,
             computed_current_score: 40.05,
             computed_current_grade: "F-"
         ), ]))
@@ -105,6 +106,7 @@ class CourseTests: CoreTestCase {
 
     func testWidgetDisplayGradeNoScoreWithGrade() {
         let c = Course.make(from: .make(enrollments: [ .make(
+            id: nil,
             computed_current_score: nil,
             computed_current_grade: "B+"
         ), ]))
@@ -113,6 +115,7 @@ class CourseTests: CoreTestCase {
 
     func testWidgetDisplayGradeNoScoreNoGrade() {
         let c = Course.make(from: .make(enrollments: [ .make(
+            id: nil,
             computed_current_score: nil,
             computed_current_grade: nil
         ), ]))
@@ -121,6 +124,7 @@ class CourseTests: CoreTestCase {
 
     func testWidgetDisplayGradeInCurrentMGP() {
         let c = Course.make(from: .make(enrollments: [ .make(
+            id: nil,
             multiple_grading_periods_enabled: true,
             current_grading_period_id: "1",
             current_period_computed_current_score: 90,
@@ -131,6 +135,7 @@ class CourseTests: CoreTestCase {
 
     func testWidgetDisplayGradeNotInCurrentMGPWithTotals() {
         let c = Course.make(from: .make(enrollments: [ .make(
+            id: nil,
             computed_current_score: 90,
             computed_final_score: 85,
             computed_current_grade: "A",
@@ -144,6 +149,7 @@ class CourseTests: CoreTestCase {
 
     func testWidgetDisplayGradeNotInCurrentMGPWithoutTotals() {
         let c = Course.make(from: .make(enrollments: [ .make(
+            id: nil,
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: false,
             current_grading_period_id: nil
@@ -247,7 +253,8 @@ class CourseTests: CoreTestCase {
                                                   computed_current_grade: String?,
                                                   computed_current_letter_grade: String?) -> Course {
         Course.make(from: .make(enrollments: [
-                                    .make(computed_current_score: 40.05,
+                                    .make(id: nil,
+                                          computed_current_score: 40.05,
                                           computed_current_grade: computed_current_grade,
                                           computed_current_letter_grade: computed_current_letter_grade),
                                 ],
