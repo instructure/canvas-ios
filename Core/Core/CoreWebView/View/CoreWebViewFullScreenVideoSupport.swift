@@ -27,37 +27,61 @@ extension CoreWebView {
      */
     class FullScreenVideoSupport {
         private var fullScreenObservation: NSKeyValueObservation?
+        /// If no one is keeping a strong reference to the webview it will deallocate after moving to full screen.
+        private var webView: WKWebView?
         /// These are the constraints the webview had before entered fullscreen mode
         private var originalConstraints: [NSLayoutConstraint]
+        private var originalWebViewBackgroundColor: UIColor?
 
         public init(webView: WKWebView) {
-            originalConstraints = webView.superview?.constraintsAffecting(view: webView) ?? []
+            originalConstraints = (webView.superview?.constraintsAffecting(view: webView) ?? []) + webView.constraints
 
             guard #available(iOS 16.0, *) else {
                 return
             }
 
-            let matchFullScreenContainerSize: (WKWebView) -> Void = { webView in
-                webView.translatesAutoresizingMaskIntoConstraints = true
-                webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                webView.frame = webView.superview?.frame ?? .zero
-            }
-            let restoreOriginalConstraints: (WKWebView, [NSLayoutConstraint]) -> Void = { webView, constraints in
-                webView.translatesAutoresizingMaskIntoConstraints = false
-                constraints.forEach { $0.isActive = true }
-                webView.superview?.layoutIfNeeded()
-            }
-            fullScreenObservation = webView.observe(\.fullscreenState, options: []) { [originalConstraints] webView, _  in
+            fullScreenObservation = webView.observe(\.fullscreenState, options: []) { [weak self] webView, _  in
+                guard let self else { return }
+
                 switch webView.fullscreenState {
                 case .enteringFullscreen:
                     matchFullScreenContainerSize(webView)
-                    // This is to make a11y elements below the fullscreen window hidden.
-                    webView.superview?.accessibilityViewIsModal = true
+                    hideA11yElementsBelowFullscreenWindow(webView)
+                    setupDarkBackground(webView)
+                    self.webView = webView
                 case .notInFullscreen:
-                    restoreOriginalConstraints(webView, originalConstraints)
+                    restoreOriginalConstraints(webView)
+                    restoreBackground(webView)
+                    self.webView = nil
                 default: break
                 }
             }
+        }
+
+        private func matchFullScreenContainerSize(_ webView: WKWebView) {
+            originalConstraints.forEach { $0.isActive = false }
+            webView.translatesAutoresizingMaskIntoConstraints = true
+            webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            webView.frame = webView.superview?.frame ?? .zero
+        }
+
+        private func hideA11yElementsBelowFullscreenWindow(_ webView: WKWebView) {
+            webView.superview?.accessibilityViewIsModal = true
+        }
+
+        private func setupDarkBackground(_ webView: WKWebView) {
+            originalWebViewBackgroundColor = webView.backgroundColor
+            webView.backgroundColor = .black
+        }
+
+        private func restoreOriginalConstraints(_ webView: WKWebView) {
+            webView.translatesAutoresizingMaskIntoConstraints = false
+            originalConstraints.forEach { $0.isActive = true }
+            webView.superview?.layoutIfNeeded()
+        }
+
+        private func restoreBackground(_ webView: WKWebView) {
+            webView.backgroundColor = originalWebViewBackgroundColor
         }
     }
 }
