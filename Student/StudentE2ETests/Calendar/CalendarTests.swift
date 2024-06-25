@@ -281,35 +281,41 @@ class CalendarTests: E2ETestCase {
         // MARK: Tap on "Add" button, check UI elements
         addButton.hit()
         let cancelButton = Helper.Todo.cancelButton.waitUntil(.visible)
-        let doneButton = Helper.Todo.doneButton.waitUntil(.visible)
+        let addButton2 = Helper.Todo.addButton.waitUntil(.visible)
         let titleInput = Helper.Todo.titleInput.waitUntil(.visible)
-        let courseSelector = Helper.Todo.courseSelector.waitUntil(.visible)
+        let calendarSelector = Helper.Todo.calendarSelector.waitUntil(.visible)
         let dateButton = Helper.Todo.dateButton.waitUntil(.visible)
-        let descriptionInput = Helper.Todo.descriptionInput.waitUntil(.visible)
+        let datePicker = Helper.Todo.datePicker.waitUntil(.visible)
+        var timePicker = Helper.Todo.timePicker.waitUntil(.visible)
+        let detailsInput = Helper.Todo.detailsInput.waitUntil(.visible)
         XCTAssertTrue(cancelButton.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertTrue(addButton2.isVisible)
         XCTAssertTrue(titleInput.isVisible)
-        XCTAssertTrue(courseSelector.isVisible)
+        XCTAssertTrue(calendarSelector.isVisible)
         XCTAssertTrue(dateButton.isVisible)
-        XCTAssertTrue(descriptionInput.isVisible)
+        XCTAssertTrue(datePicker.isVisible)
+        XCTAssertTrue(timePicker.isVisible)
+        XCTAssertTrue(detailsInput.isVisible)
 
         // MARK: Fill the form, tap "Done" button
         titleInput.writeText(text: title)
-        courseSelector.hit()
-        let courseItem = Helper.Todo.CourseSelector.courseItem(course: course).waitUntil(.visible)
+        calendarSelector.hit()
+        let newToDoButton = Helper.Todo.CalendarSelector.newToDoButton.waitUntil(.visible)
+        let courseItem = Helper.Todo.CalendarSelector.courseItem(course: course).waitUntil(.visible)
+        XCTAssertTrue(newToDoButton.isVisible)
         XCTAssertTrue(courseItem.isVisible)
+        XCTAssertTrue(courseItem.hasValue(value: "0"))
 
         courseItem.hit()
-        XCTAssertTrue(dateButton.waitUntil(.visible).isVisible)
+        XCTAssertTrue(courseItem.waitUntil(.value(expected: "1")).hasValue(value: "1"))
 
-        dateButton.hit()
-        let datePicker = Helper.Todo.DateSelector.datePicker.waitUntil(.visible)
-        let dateWheel = Helper.Todo.DateSelector.dateWheel.waitUntil(.visible)
+        newToDoButton.hit()
+        XCTAssertTrue(timePicker.waitUntil(.visible).isVisible)
+
+        timePicker.hit()
         let hourWheel = Helper.Todo.DateSelector.hourWheel.waitUntil(.visible)
         let minutesWheel = Helper.Todo.DateSelector.minutesWheel.waitUntil(.visible)
         let meridiemWheel = Helper.Todo.DateSelector.meridiemWheel.waitUntil(.visible)
-        XCTAssertTrue(datePicker.isVisible)
-        XCTAssertTrue(dateWheel.isVisible)
         XCTAssertTrue(hourWheel.isVisible)
         XCTAssertTrue(minutesWheel.isVisible)
         XCTAssertTrue(meridiemWheel.isVisible)
@@ -323,16 +329,18 @@ class CalendarTests: E2ETestCase {
         let newHourWheelValue = "\(newHourValue) o’clock"
         XCTAssertTrue(hourWheel.waitUntil(.value(expected: newHourWheelValue)).hasValue(value: newHourWheelValue))
         XCTAssertTrue(meridiemWheel.waitUntil(.value(expected: meridiemWheelValue)).hasValue(value: meridiemWheelValue))
-        XCTAssertTrue(doneButton.waitUntil(.visible).isVisible)
+        
+        timePicker = Helper.Todo.timePicker.waitUntil(.visible)
+        XCTAssertTrue(timePicker.isVisible)
 
-        doneButton.hit()
-        XCTAssertTrue(descriptionInput.waitUntil(.visible).isVisible)
+        timePicker.hit()
+        XCTAssertTrue(detailsInput.waitUntil(.visible).isVisible)
 
-        descriptionInput.writeText(text: description)
-        XCTAssertTrue(doneButton.waitUntil(.visible).isVisible)
+        detailsInput.writeText(text: description)
+        XCTAssertTrue(addButton2.waitUntil(.visible).isVisible)
 
         // MARK: Check result
-        doneButton.hit()
+        addButton2.hit()
         let calendarEventItem = Helper.eventCellByIndex(index: 0).waitUntil(.visible)
         let titleLabel = calendarEventItem.find(label: title, type: .staticText).waitUntil(.visible)
         XCTAssertTrue(calendarEventItem.isVisible)
@@ -342,6 +350,8 @@ class CalendarTests: E2ETestCase {
     func testCreateCalendarTodoItemWithoutCourseSelected() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
         let title = "My dear calendar todo item"
         let description = "Description of my dear calendar todo item."
 
@@ -357,28 +367,41 @@ class CalendarTests: E2ETestCase {
         // MARK: Tap on "Add" button, check UI elements
         addButton.hit()
         let cancelButton = Helper.Todo.cancelButton.waitUntil(.visible)
-        let doneButton = Helper.Todo.doneButton.waitUntil(.visible)
+        let addButton2 = Helper.Todo.addButton.waitUntil(.visible)
         let titleInput = Helper.Todo.titleInput.waitUntil(.visible)
-        let courseSelector = Helper.Todo.courseSelector.waitUntil(.visible)
+        let calendarSelector = Helper.Todo.calendarSelector.waitUntil(.visible)
         let dateButton = Helper.Todo.dateButton.waitUntil(.visible)
-        let descriptionInput = Helper.Todo.descriptionInput.waitUntil(.visible)
+        let datePicker = Helper.Todo.datePicker.waitUntil(.visible)
+        var timePicker = Helper.Todo.timePicker.waitUntil(.visible)
+        let detailsInput = Helper.Todo.detailsInput.waitUntil(.visible)
         XCTAssertTrue(cancelButton.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertTrue(addButton2.isVisible)
         XCTAssertTrue(titleInput.isVisible)
-        XCTAssertTrue(courseSelector.isVisible)
+        XCTAssertTrue(calendarSelector.isVisible)
         XCTAssertTrue(dateButton.isVisible)
-        XCTAssertTrue(descriptionInput.isVisible)
+        XCTAssertTrue(datePicker.isVisible)
+        XCTAssertTrue(timePicker.isVisible)
+        XCTAssertTrue(detailsInput.isVisible)
 
         // MARK: Fill the form, tap "Done" button
         titleInput.writeText(text: title)
-        dateButton.hit()
-        let datePicker = Helper.Todo.DateSelector.datePicker.waitUntil(.visible)
-        let dateWheel = Helper.Todo.DateSelector.dateWheel.waitUntil(.visible)
+        calendarSelector.hit()
+        let newToDoButton = Helper.Todo.CalendarSelector.newToDoButton.waitUntil(.visible)
+        let userItem = Helper.Todo.CalendarSelector.userItem(user: student).waitUntil(.visible)
+        XCTAssertTrue(newToDoButton.isVisible)
+        XCTAssertTrue(userItem.isVisible)
+        XCTAssertTrue(userItem.hasValue(value: "0"))
+
+        userItem.hit()
+        XCTAssertTrue(userItem.waitUntil(.value(expected: "1")).hasValue(value: "1"))
+
+        newToDoButton.hit()
+        XCTAssertTrue(timePicker.waitUntil(.visible).isVisible)
+
+        timePicker.hit()
         let hourWheel = Helper.Todo.DateSelector.hourWheel.waitUntil(.visible)
         let minutesWheel = Helper.Todo.DateSelector.minutesWheel.waitUntil(.visible)
         let meridiemWheel = Helper.Todo.DateSelector.meridiemWheel.waitUntil(.visible)
-        XCTAssertTrue(datePicker.isVisible)
-        XCTAssertTrue(dateWheel.isVisible)
         XCTAssertTrue(hourWheel.isVisible)
         XCTAssertTrue(minutesWheel.isVisible)
         XCTAssertTrue(meridiemWheel.isVisible)
@@ -392,16 +415,18 @@ class CalendarTests: E2ETestCase {
         let newHourWheelValue = "\(newHourValue) o’clock"
         XCTAssertTrue(hourWheel.waitUntil(.value(expected: newHourWheelValue)).hasValue(value: newHourWheelValue))
         XCTAssertTrue(meridiemWheel.waitUntil(.value(expected: meridiemWheelValue)).hasValue(value: meridiemWheelValue))
-        XCTAssertTrue(doneButton.waitUntil(.visible).isVisible)
 
-        doneButton.hit()
-        XCTAssertTrue(descriptionInput.waitUntil(.visible).isVisible)
+        timePicker = Helper.Todo.timePicker.waitUntil(.visible)
+        XCTAssertTrue(timePicker.isVisible)
 
-        descriptionInput.writeText(text: description)
-        XCTAssertTrue(doneButton.waitUntil(.visible).isVisible)
+        timePicker.hit()
+        XCTAssertTrue(detailsInput.waitUntil(.visible).isVisible)
+
+        detailsInput.writeText(text: description)
+        XCTAssertTrue(addButton2.waitUntil(.visible).isVisible)
 
         // MARK: Check result
-        doneButton.hit()
+        addButton2.hit()
         let calendarEventItem = Helper.eventCellByIndex(index: 0).waitUntil(.visible)
         let titleLabel = calendarEventItem.find(label: title, type: .staticText).waitUntil(.visible)
         XCTAssertTrue(calendarEventItem.isVisible)
