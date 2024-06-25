@@ -45,7 +45,7 @@ extension NativeLoginManager {
                 "navTextColorActive": brand.navTextColorActive.hexString,
                 "primary": brand.primary.hexString,
             ],
-            "countryCode": Locale.current.regionCode ?? "",
+            "countryCode": Locale.current.region?.identifier ?? "",
             "locale": LocalizationManager.currentLocale ?? "en",
             "user": [
                 "avatar_url": entry.userAvatarURL?.absoluteString,
