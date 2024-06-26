@@ -42,7 +42,7 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
             VStack(alignment: .leading, spacing: 0) {
                 VStack(spacing: 0) {
                     InstUI.TextFieldCell(
-                        customAccessibilityLabel: Text("Title", bundle: .core),
+                        label: Text("Title", bundle: .core),
                         placeholder: String(localized: "Add title", bundle: .core),
                         text: $viewModel.title
                     )
