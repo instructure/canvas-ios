@@ -224,7 +224,7 @@ class DiscussionsTests: E2ETestCase {
         let newDiscussionButton = DiscussionsHelper.newButton.waitUntil(.visible)
         XCTAssertTrue(newDiscussionButton.isVisible)
 
-        // MARK: Create new discussion
+        // MARK: Create new discussion, check elements
         newDiscussionButton.hit()
         let cancelButton = EditorHelper.cancelButton.waitUntil(.visible)
         let attachmentButton = EditorHelper.attachmentButton.waitUntil(.visible)
