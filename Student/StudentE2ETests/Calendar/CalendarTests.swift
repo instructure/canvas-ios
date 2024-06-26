@@ -329,7 +329,7 @@ class CalendarTests: E2ETestCase {
         let newHourWheelValue = "\(newHourValue) o’clock"
         XCTAssertTrue(hourWheel.waitUntil(.value(expected: newHourWheelValue)).hasValue(value: newHourWheelValue))
         XCTAssertTrue(meridiemWheel.waitUntil(.value(expected: meridiemWheelValue)).hasValue(value: meridiemWheelValue))
-        
+
         timePicker = Helper.Todo.timePicker.waitUntil(.visible)
         XCTAssertTrue(timePicker.isVisible)
 
