@@ -87,7 +87,8 @@ class CourseSyncGradesInteractorLiveTests: CoreTestCase {
     // MARK: Course
 
     private func mockCourse() {
-        let mockEnrollment = APIEnrollment.make(enrollment_state: .active,
+        let mockEnrollment = APIEnrollment.make(id: nil,
+                                                enrollment_state: .active,
                                                 type: "StudentEnrollment",
                                                 user_id: "testUser",
                                                 current_grading_period_id: "testGradingPeriod")

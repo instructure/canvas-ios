@@ -56,7 +56,7 @@ class GetParentCalendarFilters: UseCase {
             perPage: 100
         )
         let coursesFetch = environment.api
-            .makeRequest(coursesRequest)
+            .exhaust(coursesRequest)
             .map { [observedUserId] in
                 let courses = $0.body.filter {
                     $0.enrollments?.contains { $0.associated_user_id?.value == observedUserId } == true
@@ -65,7 +65,7 @@ class GetParentCalendarFilters: UseCase {
             }
 
         let groupsRequest = GetGroupsRequest(context: .currentUser)
-        let groupsFetch = environment.api.makeRequest(groupsRequest)
+        let groupsFetch = environment.api.exhaust(groupsRequest)
 
         Publishers
             .CombineLatest(coursesFetch, groupsFetch)

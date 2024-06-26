@@ -81,20 +81,30 @@ open class E2ETestCase: CoreUITestCase {
 
     @discardableResult
     open func setNetworkStateOffline() -> Bool {
-        if CommandLine.isOnline {
-            CommandLine.setConnection(state: .off)
-        }
+        do {
+            if try CommandLine.isOnline() {
+                try CommandLine.setConnection(state: .off)
+            }
 
-        return CommandLine.isOffline
+            return try CommandLine.isOffline()
+        } catch(let error) {
+            XCTFail(error.localizedDescription)
+            return false
+        }
     }
 
     @discardableResult
     open func setNetworkStateOnline() -> Bool {
-        if CommandLine.isOffline {
-            CommandLine.setConnection(state: .on)
-            sleep(10) // Give it some time to fully regain internet connection
-        }
+        do {
+            if try CommandLine.isOffline() {
+                try CommandLine.setConnection(state: .on)
+                sleep(10) // Give it some time to fully regain internet connection
+            }
 
-        return CommandLine.isOnline
+            return try CommandLine.isOnline()
+        } catch(let error) {
+            XCTFail(error.localizedDescription)
+            return false
+        }
     }
 }

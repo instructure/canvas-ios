@@ -27,7 +27,13 @@ const port = 4567;
 
 app.use(express.json());
 
-app.listen(port);
+app.listen(port, function(err) {
+    if (err) {
+        console.log("Error starting terminal server.");
+        return;
+    }
+    console.log("Terminal server started.");
+});
 
 app.post("/terminal", (req, res) => {
     const output = exec(req.body.command, req.query.async).toString("utf8").trim();
