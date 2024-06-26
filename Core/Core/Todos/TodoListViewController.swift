@@ -18,6 +18,7 @@
 
 import Foundation
 import UIKit
+import Combine
 
 public class TodoListViewController: ScreenViewTrackableViewController, ErrorViewController {
     @IBOutlet weak var emptyDescLabel: UILabel!
@@ -107,8 +108,24 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
             }
             return true
         }
+
+        StudioMediaInteractor
+            .makeStudioAPI()
+            .mapError { $0 as Error }
+            .flatMap { api in
+                let request = GetStudioCourseMedia(courseId: "58625")
+                return api.makeRequest(request)
+            }
+            .sink { completion in
+                print(completion)
+            } receiveValue: { (body: APINoContent, urlResponse: HTTPURLResponse?) in
+            }
+            .store(in: &subscriptions)
+
+//        studioAPI.makeRequest(GetCourseMedia())
     }
 
+    private var subscriptions = Set<AnyCancellable>()
     @objc func openProfile() {
         env.router.route(to: "/profile", from: self, options: .modal())
     }
