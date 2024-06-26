@@ -52,7 +52,6 @@ extension InstUI {
                                    alignment: .leading)
                     }
                     .paddingStyle(set: .iconCell)
-
                 }
                 InstUI.Divider()
             }
