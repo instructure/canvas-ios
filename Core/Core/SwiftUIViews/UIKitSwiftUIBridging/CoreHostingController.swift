@@ -83,10 +83,6 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
         super.viewWillDisappear(animated)
         screenViewTracker?.stopTrackingTimeOnViewController()
     }
-//
-//    public override func setNeedsUpdateOfSupportedInterfaceOrientations() {
-//        super.setNeedsUpdateOfSupportedInterfaceOrientations()
-//    }
 }
 
 public struct CoreHostingBaseView<Content: View>: View {
