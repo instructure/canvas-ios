@@ -99,11 +99,11 @@ public class DiscussionsHelper: BaseHelper {
         public static func replyFromLabel(user: DSUser) -> XCUIElement {
             return app.find(label: "Reply from \(user.name)", type: .staticText)
         }
-        
+
         public static func replyBody(replyText: String) -> XCUIElement {
             return app.find(label: replyText, type: .staticText)
         }
-        
+
         public static func replyToPostButton(user: DSUser) -> XCUIElement {
             return app.find(label: "Reply to post from \(user.name)", type: .button)
         }
@@ -139,6 +139,7 @@ public class DiscussionsHelper: BaseHelper {
     }
 
     public struct Editor {
+        public static var cancelButton: XCUIElement { app.find(id: "screen.dismiss") }
         public static var allowRatingToggle: XCUIElement { app.find(id: "DiscussionEditor.allowRatingToggle").find(type: .switch) }
         public static var attachmentButton: XCUIElement { app.find(id: "DiscussionEditor.attachmentButton") }
         public static var delayedPostAtToggle: XCUIElement { app.find(id: "DiscussionEditor.delayedPostAtToggle") }
@@ -157,7 +158,7 @@ public class DiscussionsHelper: BaseHelper {
         public static var titleField: XCUIElement { app.find(id: "DiscussionEditor.titleField") }
         public static var availableFromButton: XCUIElement { app.find(label: "Available from", type: .button) }
         public static var availableUntilButton: XCUIElement { app.find(label: "Available until", type: .button) }
-        public static var descriptionField: XCUIElement { richContentEditorWebView.find(type: .textView) }
+        public static var descriptionField: XCUIElement { richContentEditorWebView.find(type: .textField) }
 
         public static var richContentEditorWebView: XCUIElement { app.find(id: "RichContentEditor.webView") }
     }

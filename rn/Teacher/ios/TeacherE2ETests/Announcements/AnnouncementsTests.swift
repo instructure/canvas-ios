@@ -20,11 +20,10 @@ import TestsFoundation
 
 class AnnouncementsTests: E2ETestCase {
     typealias Helper = AnnouncementsHelper
-    typealias DetailsHelper = Helper.Details
+    typealias DetailsHelper = DiscussionsHelper.NewDetails
     typealias AccountNotifications = Helper.AccountNotifications
     typealias EditorHelper = Helper.Editor
 
-    /*
     func testAnnouncementsOrderTitleMessage() {
         // MARK: Seed the usual stuff
         let teacher = seeder.createUser()
@@ -50,15 +49,13 @@ class AnnouncementsTests: E2ETestCase {
 
         // MARK: Check title and message
         firstAnnouncement.hit()
-        let announcementTitle = DetailsHelper.title.waitUntil(.visible)
+        let announcementTitle = DetailsHelper.discussionTitle(discussion: announcements[1]).waitUntil(.visible)
+        let announcementMessage = DetailsHelper.discussionBody(discussion: announcements[1]).waitUntil(.visible)
         XCTAssertTrue(announcementTitle.isVisible)
-        XCTAssertTrue(announcementTitle.hasLabel(label: announcements[1].title))
-
-        let announcementMessage = DetailsHelper.message.waitUntil(.visible)
+        XCTAssertTrue(announcementTitle.hasLabel(label: announcements[1].title, strict: false))
         XCTAssertTrue(announcementMessage.isVisible)
         XCTAssertTrue(announcementMessage.hasLabel(label: announcements[1].message))
     }
-    */
 
     func testGlobalAnnouncement() {
         // MARK: Seed the usual stuff
@@ -100,7 +97,6 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(dismissButton.isVanished)
     }
 
-    /*
     func testCreateNewAnnouncement() {
         // MARK: Seed the usual stuff
         let teacher = seeder.createUser()
@@ -120,20 +116,27 @@ class AnnouncementsTests: E2ETestCase {
 
         // MARK: Create new announcement
         createButton.hit()
+        let cancelButton = EditorHelper.cancelButton.waitUntil(.visible)
+        let attachmentButton = EditorHelper.attachment.waitUntil(.visible)
+        let doneButton = EditorHelper.done.waitUntil(.visible)
         let titleField = EditorHelper.title.waitUntil(.visible)
         let descriptionField = EditorHelper.description.waitUntil(.visible)
         let sections = EditorHelper.sections.waitUntil(.visible)
+        let delayPosting = EditorHelper.delayed.waitUntil(.visible)
         let allowUsersToComment = EditorHelper.locked.waitUntil(.visible)
         let allowRating = EditorHelper.allowRating.waitUntil(.visible)
-        let doneButton = EditorHelper.done.waitUntil(.visible)
+        XCTAssertTrue(cancelButton.isVisible)
+        XCTAssertTrue(attachmentButton.isVisible)
+        XCTAssertTrue(doneButton.isVisible)
         XCTAssertTrue(titleField.isVisible)
         XCTAssertTrue(descriptionField.isVisible)
         XCTAssertTrue(sections.isVisible)
+        XCTAssertTrue(delayPosting.isVisible)
+        XCTAssertTrue(delayPosting.hasValue(value: "0"))
         XCTAssertTrue(allowUsersToComment.isVisible)
         XCTAssertTrue(allowUsersToComment.hasValue(value: "0"))
         XCTAssertTrue(allowRating.isVisible)
         XCTAssertTrue(allowRating.hasValue(value: "0"))
-        XCTAssertTrue(doneButton.isVisible)
 
         titleField.writeText(text: title)
         descriptionField.writeText(text: description)
@@ -152,5 +155,4 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(newAnnouncementItem.isVisible)
         XCTAssertTrue(newAnnouncementItem.hasLabel(label: title, strict: false))
     }
-    */
 }
