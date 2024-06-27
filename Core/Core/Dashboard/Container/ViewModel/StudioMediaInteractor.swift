@@ -77,13 +77,16 @@ class StudioMediaInteractor {
             }
             .delay(for: 10, scheduler: RunLoop.main)
             .flatMap { webView in
-                Publishers.CombineLatest(
-                    webView.evaluateJavaScript(js: "sessionStorage.getItem('userId')"),
-                    webView.evaluateJavaScript(js: "sessionStorage.getItem('token')")
-                )
+                webView
+                    .evaluateJavaScript(js: "sessionStorage.getItem('userId')")
+                    .flatMap { userId in
+                        webView
+                            .evaluateJavaScript(js: "sessionStorage.getItem('token')")
+                            .map { token in (userId, token) }
+                    }
                 .mapError { _ in StudioError.failedToGetTokenFromWebView }
+                .retry(10)
             }
-            .retry(100)
             .tryMap { (userId, token) in
                 guard let token = token as? String, let userId = userId as? String else {
                     throw StudioError.failedToGetTokenFromWebView
