@@ -134,7 +134,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     private var separator: some View {
         Color.borderMedium
             .frame(height: 0.5)
-            .padding(.horizontal, 8)
     }
 
     private var cancelButton: some View {
@@ -325,11 +324,11 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         .foregroundColor(.textDarkest)
                         .frame(width: 24, height: 24)
                         .padding(.horizontal, 16)
-                        .padding(.vertical, 12)
                 }
                 .accessibility(label: Text("Add attachment", bundle: .core))
             }
             .padding(.leading, 16)
+            .padding(.top, 12)
 
             InstUI.TextEditorCell(text: $model.bodyText)
                 .font(.regular16, lineHeight: .condensed)
@@ -337,7 +336,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .focused($messageTextFieldFocus)
                 .foregroundColor(.textDarkest)
                 .frame(minHeight: 60)
-                .padding(.horizontal, 12)
                 .accessibility(label: Text("Message", bundle: .core))
         }
         .disabled(model.isMessageDisabled)

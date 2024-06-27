@@ -308,7 +308,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertTrue(testee.isTakePhotoVisible)
         XCTAssertTrue(testee.isAudioRecordVisible)
 
-        XCTAssertEqual(selectFileAction?.title, String(localized: "Select uploaded file", bundle: .core))
+        XCTAssertEqual(selectFileAction?.title, String(localized: "Attach from Canvas files", bundle: .core))
         XCTAssertEqual(selectFileAction?.image, .folderLine)
         selectFileAction?.action()
 

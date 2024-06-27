@@ -43,15 +43,19 @@ struct ConversationAttachmentCardView: View {
                 Spacer()
 
                 progressIndicator(for: file)
+
                 Button {
                     removeHandler()
                 } label: {
                     Image.xLine.foregroundStyle(Color.textDark)
                 }
+                .accessibilityHidden(true)
             }
             .font(.regular12)
             .foregroundColor(.textDarkest)
             .padding(12)
+            .accessibilityElement(children: .combine)
+            .accessibilityAction(named: Text("Remove attachment", bundle: .core), removeHandler)
         }
         .background(RoundedRectangle(cornerRadius: 10).stroke(Color.tiara, lineWidth: 1))
         .padding(12)
@@ -62,13 +66,16 @@ struct ConversationAttachmentCardView: View {
         if file.isUploading {
              ProgressView()
                 .padding(.all, 8)
+                .accessibilityLabel(Text("Uploading", bundle: .core))
         } else if file.isUploaded {
             Image.completeLine
                 .foregroundStyle(Color.textSuccess)
                 .padding(.all, 8)
+                .accessibilityLabel(Text("Uploaded", bundle: .core))
         } else if file.uploadError != nil {
             Image.unpublishedLine
                 .padding(.all, 8)
+                .accessibilityLabel(Text("Failed to upload", bundle: .core))
         }
     }
 }

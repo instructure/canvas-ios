@@ -189,7 +189,7 @@ class ComposeMessageViewModel: ObservableObject {
         }
         sheet.addAction(
             image: .folderLine,
-            title: String(localized: "Select uploaded file", bundle: .core),
+            title: String(localized: "Attach from Canvas files", bundle: .core),
             accessibilityIdentifier: nil
         ) { [weak self] in
             guard let self, let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return }
