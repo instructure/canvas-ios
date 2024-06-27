@@ -121,13 +121,9 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     @ViewBuilder
     private var extraSendButton: some View {
         if showExtraSendButton {
-            withAnimation {
-                sendButton
-            }
+            sendButton
         } else {
-            withAnimation {
-                Color.clear
-            }
+            Color.clear
         }
     }
 
