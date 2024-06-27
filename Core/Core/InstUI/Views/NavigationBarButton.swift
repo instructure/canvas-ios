@@ -24,6 +24,7 @@ extension InstUI {
         @Environment(\.isEnabled) private var isEnabledViaEnvironment: Bool
 
         @ViewBuilder private let content: () -> AnyView
+        private let isBackgroundContextColor: Bool
         private let isEnabledOverride: Bool?
         private let action: () -> Void
 
@@ -32,22 +33,53 @@ extension InstUI {
         }
 
         public init(
+            isBackgroundContextColor: Bool = false,
             isEnabled isEnabledOverride: Bool? = nil,
             action: @escaping () -> Void,
             content: @escaping () -> AnyView
         ) {
             self.content = content
+            self.isBackgroundContextColor = isBackgroundContextColor
             self.isEnabledOverride = isEnabledOverride
             self.action = action
+        }
+
+        public init(
+            isBackgroundContextColor: Bool = false,
+            isEnabled isEnabledOverride: Bool? = nil,
+            label: String,
+            action: @escaping () -> Void
+        ) {
+            self.init(isBackgroundContextColor: isBackgroundContextColor, isEnabled: isEnabledOverride, action: action) {
+                AnyView(Text(label).font(.regular16, lineHeight: .fit))
+            }
+        }
+
+        public init(
+            isBackgroundContextColor: Bool = false,
+            isEnabled isEnabledOverride: Bool? = nil,
+            image: Image,
+            action: @escaping () -> Void
+        ) {
+            self.init(isBackgroundContextColor: isBackgroundContextColor, isEnabled: isEnabledOverride, action: action) {
+                AnyView(image)
+            }
         }
 
         public var body: some View {
             Button(action: action) {
                 content()
-                    // TODO: Add option for darker(context) backgrounds
-                    .foregroundStyle(isEnabled ? Color.textDarkest : Color.disabledGray)
+                    .foregroundStyle(color)
             }
             .environment(\.isEnabled, isEnabled)
+        }
+
+        private var color: Color {
+            if isBackgroundContextColor {
+                isEnabled ? .textLightest : .disabledGray
+            } else {
+                isEnabled ? .textDarkest : .disabledGray
+            }
         }
     }
 }
@@ -55,10 +87,12 @@ extension InstUI {
 extension InstUI.NavigationBarButton {
 
     public static func cancel(
+        isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
         action: @escaping () -> Void
     ) -> Self {
-        .textButton(
+        .init(
+            isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
             label: String(localized: "Cancel", bundle: .core),
             action: action
@@ -66,10 +100,12 @@ extension InstUI.NavigationBarButton {
     }
 
     public static func done(
+        isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
         action: @escaping () -> Void
     ) -> Self {
-        .textButton(
+        .init(
+            isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
             label: String(localized: "Done", bundle: .core),
             action: action
@@ -77,10 +113,12 @@ extension InstUI.NavigationBarButton {
     }
 
     public static func add(
+        isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
         action: @escaping () -> Void
     ) -> Self {
-        .textButton(
+        .init(
+            isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
             label: String(localized: "Add", bundle: .core),
             action: action
@@ -88,63 +126,56 @@ extension InstUI.NavigationBarButton {
     }
 
     public static func save(
+        isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
         action: @escaping () -> Void
     ) -> Self {
-        .textButton(
+        .init(
+            isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
             label: String(localized: "Save", bundle: .core),
             action: action
         )
     }
-
-    public static func textButton(
-        isEnabled isEnabledOverride: Bool? = nil,
-        label: String,
-        action: @escaping () -> Void
-    ) -> Self {
-        .init(isEnabled: isEnabledOverride, action: action) {
-            AnyView(Text(label).font(.regular16, lineHeight: .fit))
-        }
-    }
 }
 
 #if DEBUG
 
+private func previewsFactory(isContextBackground: Bool) -> some View {
+    VStack {
+        InstUI.NavigationBarButton.cancel(isBackgroundContextColor: isContextBackground) { }
+
+        InstUI.NavigationBarButton.done(isBackgroundContextColor: isContextBackground) { }
+            .disabled(true)
+
+        InstUI.NavigationBarButton.add(isBackgroundContextColor: isContextBackground, isEnabled: false) { }
+
+        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: true, label: "Enabled button") { }
+
+        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: false, label: "Disabled button") { }
+            .disabled(false)
+
+        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: true, image: .settingsLine) { }
+
+        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: false, action: {}) {
+            AnyView(Image.settingsLine)
+        }
+    }
+}
+
 #Preview {
     VStack {
-        let previewsFactory = {
-            VStack {
-                InstUI.NavigationBarButton.cancel(action: {})
-
-                InstUI.NavigationBarButton.done(action: {})
-                    .disabled(true)
-
-                InstUI.NavigationBarButton.add(isEnabled: false, action: {})
-
-                InstUI.NavigationBarButton.textButton(isEnabled: true, label: "Enabled button", action: {})
-
-                InstUI.NavigationBarButton.textButton(isEnabled: false, label: "Disabled button", action: {})
-                    .disabled(false)
-
-                InstUI.NavigationBarButton(isEnabled: true, action: {}) {
-                    AnyView(Image.settingsLine)
-                }
-
-                InstUI.NavigationBarButton(isEnabled: false, action: {}) {
-                    AnyView(Image.settingsLine)
-                }
-            }
-        }
         VStack {
             Text(verbatim: "Dialog Nav Bar Background")
-            previewsFactory().background(Color.backgroundLightest)
+            previewsFactory(isContextBackground: false)
+                .background(Color.backgroundLightest)
         }
         .padding()
         .border(Color.backgroundDarkest)
         VStack {
             Text(verbatim: "Context Nav Bar Background")
-            previewsFactory().background(Color(UIColor.electric.darkenToEnsureContrast(against: .textLightest)))
+            previewsFactory(isContextBackground: true)
+                .background(Color(UIColor.electric.darkenToEnsureContrast(against: .textLightest)))
         }
         .padding()
         .border(Color.backgroundDarkest)
