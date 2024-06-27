@@ -91,7 +91,7 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
             leading: .cancel {
                 viewModel.didTapCancel.send()
             },
-            trailing: .textButton(isEnabled: viewModel.isSaveButtonEnabled, label: viewModel.saveButtonTitle) {
+            trailing: .init(isEnabled: viewModel.isSaveButtonEnabled, label: viewModel.saveButtonTitle) {
                 viewModel.didTapSave.send()
             }
         )

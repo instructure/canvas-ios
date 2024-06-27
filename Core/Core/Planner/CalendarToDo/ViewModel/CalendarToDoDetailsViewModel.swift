@@ -26,6 +26,7 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
     @Published public private(set) var title: String?
     @Published public private(set) var date: String?
     @Published public private(set) var description: String?
+    @Published public private(set) var navBarColor: UIColor?
 
     private let plannable: Plannable
     private var subscriptions = Set<AnyCancellable>()
@@ -38,6 +39,7 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
                 self?.title = $0.title
                 self?.date = $0.date?.dateTimeString
                 self?.description = $0.details
+                self?.navBarColor = $0.color.ensureContrast(against: .backgroundLightest)
             }
             .store(in: &subscriptions)
     }
