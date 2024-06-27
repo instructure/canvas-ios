@@ -16,20 +16,46 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import WebKit
 
 public typealias MessageHandler = (WKScriptMessage) -> Void
 
-extension WKWebView {
-    public func addScript(_ js: String, injectionTime: WKUserScriptInjectionTime = .atDocumentEnd) {
+public extension WKWebView {
+
+    func addScript(_ js: String, injectionTime: WKUserScriptInjectionTime = .atDocumentEnd) {
         let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         configuration.userContentController.addUserScript(script)
     }
 
-    public func handle(_ name: String, handler: @escaping MessageHandler) {
+    func handle(_ name: String, handler: @escaping MessageHandler) {
         let passer = MessagePasser(handler: handler)
         configuration.userContentController.removeScriptMessageHandler(forName: name)
         configuration.userContentController.add(passer, name: name)
+    }
+
+    func evaluateJavaScript(js: String) -> AnyPublisher<Any, Error> {
+        Future { promise in
+            self.evaluateJavaScript(js) { result, error in
+                if let result {
+                    promise(.success(result))
+                } else {
+                    promise(.failure(error ?? NSError.internalError()))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+
+    /// The returned publisher finishes when the webView's `isLoading` property is false.
+    func waitUntilLoadFinishes(
+        checkInterval: TimeInterval = 0.5
+    ) -> AnyPublisher<Void, Never> {
+        Timer.publish(every: checkInterval, on: .main, in: .common)
+            .autoconnect()
+            .first { _ in self.isLoading == false }
+            .mapToVoid()
+            .eraseToAnyPublisher()
     }
 }
 
