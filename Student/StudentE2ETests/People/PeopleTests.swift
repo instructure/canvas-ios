@@ -244,15 +244,36 @@ class PeopleTests: E2ETestCase {
         // MARK: Tap the "Send Email" icon, Check recipient, Check elements
         sendEmailButton.hit()
         let sendButton = InboxHelper.Composer.sendButton.waitUntil(.visible)
-        let recipientLabel = InboxHelper.Composer.recipientLabel(recipient: teacher).waitUntil(.visible)
+        let courseSelector = InboxHelper.Composer.courseSelectButton.waitUntil(.visible)
         let subjectInput = InboxHelper.Composer.subjectInput.waitUntil(.visible)
         let messageInput = InboxHelper.Composer.messageInput.waitUntil(.visible)
         XCTAssertTrue(sendButton.isVisible)
         XCTAssertTrue(sendButton.isDisabled)
-        XCTAssertTrue(recipientLabel.isVisible)
-        XCTAssertTrue(recipientLabel.hasLabel(label: teacher.name))
+        XCTAssertTrue(courseSelector.isVisible)
         XCTAssertTrue(subjectInput.isVisible)
         XCTAssertTrue(messageInput.isVisible)
+
+        // MARK: Select course
+        courseSelector.hit()
+        let courseItem = InboxHelper.Composer.courseSelectionItem(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseItem.isVisible)
+
+        courseItem.hit()
+        let addRecipientButton = InboxHelper.Composer.addRecipientButton.waitUntil(.visible)
+        XCTAssertTrue(addRecipientButton.isVisible)
+
+        addRecipientButton.hit()
+        let teachers = InboxHelper.Composer.Recipients.teachers(course: course).waitUntil(.visible)
+        XCTAssertTrue(teachers.isVisible)
+
+        teachers.hit()
+        let teacherItem = InboxHelper.Composer.Recipients.userItem(user: teacher).waitUntil(.visible)
+        XCTAssertTrue(teacherItem.isVisible)
+
+        teacherItem.hit()
+        let recipientLabel = InboxHelper.Composer.recipientLabel(recipient: teacher).waitUntil(.visible)
+        XCTAssertTrue(recipientLabel.isVisible)
+        XCTAssertTrue(recipientLabel.hasLabel(label: teacher.name))
 
         // MARK: Add a subject and a message, Tap send, Check result
         subjectInput.writeText(text: messageSubject)
