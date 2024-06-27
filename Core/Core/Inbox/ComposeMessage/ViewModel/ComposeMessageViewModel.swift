@@ -40,7 +40,6 @@ class ComposeMessageViewModel: ObservableObject {
 
     public let title = String(localized: "[No Subject]", bundle: .core)
     public var sendButtonActive: Bool {
-        !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !recipients.isEmpty
         && (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
 
@@ -294,7 +293,7 @@ class ComposeMessageViewModel: ObservableObject {
         guard let context = selectedContext else { return nil }
         let recipientIDs = Array(Set(recipients.flatMap { $0.ids }))
 
-        var body = bodyText
+        var body = bodyText.nilIfEmpty ?? String(localized: "[No message]")
         if !hiddenMessage.isEmpty {
             body = "\(bodyText)\n\(hiddenMessage)"
         }
