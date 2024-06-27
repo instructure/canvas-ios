@@ -19,7 +19,7 @@
 import SwiftUI
 
 @available(iOS, introduced: 16.0, obsoleted: 16.1)
-struct IOS16RemoveListRowSeparatorLeadingInset: ViewModifier {
+struct RemoveListRowSeparatorLeadingInset: ViewModifier {
     func body(content: Content) -> some View {
         content.alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
             return -viewDimensions.width
@@ -29,9 +29,9 @@ struct IOS16RemoveListRowSeparatorLeadingInset: ViewModifier {
 
 public extension View {
     @ViewBuilder
-    func iOS16RemoveListRowSeparatorLeadingInset() -> some View {
+    func removeListRowSeparatorLeadingInset() -> some View {
         if #available(iOS 16, *) {
-            self.modifier(IOS16RemoveListRowSeparatorLeadingInset())
+            self.modifier(RemoveListRowSeparatorLeadingInset())
         } else {
             self
         }

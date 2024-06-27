@@ -57,7 +57,7 @@ public struct DynamicHeightTextEditor: View {
             TextEditor(text: $text)
                 .foregroundColor(.textDarkest)
                 .background(Color.clear)
-                .iOS16HideListScrollContentBackground()
+                .scrollContentBackground(.hidden)
                 .frame(height: textEditorHeight)
                 .overlay(placeholderView, alignment: .leading)
                 .offset(y: -2)

@@ -166,7 +166,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
                 }
             }
             .listStyle(.plain)
-            .iOS16HideListScrollContentBackground()
+            .scrollContentBackground(.hidden)
             .refreshable {
                 await viewModel.refresh()
             }
