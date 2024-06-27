@@ -32,14 +32,14 @@ final class EditCalendarToDoViewModel: ObservableObject {
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
     @Published private(set) var state: InstUI.ScreenState = .data
-    @Published var title: String = ""
+    @Published var title: String
     @Published var date: Date?
     @Published var calendarName: String?
-    @Published var details: String = ""
+    @Published var details: String
     @Published var shouldShowAlert: Bool = false
 
     var isSaveButtonEnabled: Bool {
-        state == .data && title.isNotEmpty
+        state == .data && title.isNotEmpty && isTouched
     }
 
     lazy var pageTitle: String = {
@@ -92,8 +92,10 @@ final class EditCalendarToDoViewModel: ObservableObject {
     private let mode: Mode
     private let toDoInteractor: CalendarToDoInteractor
     private let calendarListProviderInteractor: CalendarFilterInteractor
-    private var subscriptions = Set<AnyCancellable>()
     private var selectedCalendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
+    private var isTouched: Bool = false
+
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
@@ -108,14 +110,17 @@ final class EditCalendarToDoViewModel: ObservableObject {
 
         if let plannable {
             mode = .edit(id: plannable.id)
-            title = plannable.title ?? ""
-            details = plannable.details ?? ""
-            date = plannable.date
         } else {
             mode = .add
-            // end of today, to match default web behaviour
-            date = .now.endOfDay()
         }
+
+        title = plannable?.title ?? ""
+        date = plannable?.date ?? Clock.now.endOfDay() // end of today, to match default web behaviour
+        details = plannable?.details ?? ""
+
+        subscribeIsTouched(to: $title)
+        subscribeIsTouched(to: $date)
+        subscribeIsTouched(to: $details)
 
         calendarListProviderInteractor
             .load(ignoreCache: false)
@@ -139,7 +144,12 @@ final class EditCalendarToDoViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         selectedCalendar
-            .map { $0?.name }
+            .map { [weak self] in
+                if let oldCalendarName = self?.calendarName, oldCalendarName != $0?.name {
+                    self?.isTouched = true
+                }
+                return $0?.name
+            }
             .assign(to: \.calendarName, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
@@ -168,6 +178,14 @@ final class EditCalendarToDoViewModel: ObservableObject {
                     self?.shouldShowAlert = true
                 }
             }
+            .store(in: &subscriptions)
+    }
+
+    private func subscribeIsTouched<T: Equatable>(to publisher: Published<T>.Publisher) {
+        publisher
+            .removeDuplicates()
+            .dropFirst()
+            .sink { [weak self] _ in self?.isTouched = true }
             .store(in: &subscriptions)
     }
 
