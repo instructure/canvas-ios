@@ -63,7 +63,7 @@ public class MessageViewModel: Identifiable {
 
     public func handleFileNavigation(file: File) {
         guard let controller, let url = file.url else { return }
-        
+
         router.route(to: url.appendingQueryItems(.init(name: "canEdit", value: "false")), from: controller, options: .modal(embedInNav: true, addDoneButton: true))
     }
 }

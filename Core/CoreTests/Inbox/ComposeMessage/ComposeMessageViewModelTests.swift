@@ -66,7 +66,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.bodyText = "Test body"
         XCTAssertEqual(testee.sendButtonActive, true)
         testee.bodyText = ""
-        XCTAssertEqual(testee.sendButtonActive, false)
+        testee.didTapSend.accept(WeakViewController())
+        XCTAssertEqual(mockInteractor.isCreateConversationCalled, true)
+        XCTAssertEqual(mockInteractor.parameters?.body, String(localized: "[No message]"))
     }
 
     func testValidationForRecipients() {
@@ -373,13 +375,16 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
     var isRetryCalled = false
     var isCancelCalled = false
     var isRemoveFileCalled = false
+    var parameters: MessageParameters?
 
     func createConversation(parameters: Core.MessageParameters) -> Future<URLResponse?, any Error> {
+        self.parameters = parameters
         isCreateConversationCalled = true
         return mockFuture
     }
 
     func addConversationMessage(parameters: Core.MessageParameters) -> Future<URLResponse?, any Error> {
+        self.parameters = parameters
         isAddConversationMessageCalled = true
         return mockFuture
     }
