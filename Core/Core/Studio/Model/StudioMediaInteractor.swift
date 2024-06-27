@@ -31,11 +31,23 @@ class StudioMediaInteractor {
     }
 
     static func makeStudioAPI() -> AnyPublisher<API, StudioError> {
-        getStudioSession()
-            .map { userId, token, baseURL in
+        getStudioLaunchURL()
+            .flatMap { (webLaunchURL, apiBaseURL) in
+                launchStudioInHeadlessWebView(webLaunchURL: webLaunchURL)
+                    .map { webView in
+                        (webView, apiBaseURL)
+                    }
+            }
+            .flatMap { (webView, apiBaseURL) in
+                getSessionToken(studioWebView: webView)
+                    .map { (userId, token) in
+                        (userId, token, apiBaseURL)
+                    }
+            }
+            .map { userId, token, apiBaseURL in
                 LoginSession(
                     accessToken: "user_id=\"\(userId)\", token=\"\(token)\"",
-                    baseURL: baseURL,
+                    baseURL: apiBaseURL,
                     userID: "",
                     userName: ""
                 )
@@ -44,36 +56,26 @@ class StudioMediaInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func getStudioSession() -> AnyPublisher<(userId: String, token: String, apiBaseURL: URL), StudioError> {
-        getStudioLaunchURL()
-            .flatMap { (webLaunchURL, apiBaseURL) in
-                // Launching studio in the background for two reasons:
-                // - To get the access token to the API
-                // - To trigger a permission sync between canvas courses and Studio
-                let webView = CoreWebView(features: [])
-                webView.load(URLRequest(url: webLaunchURL))
-                return webView
-                    .waitUntilLoadFinishes()
-                    .map { (apiBaseURL, webView) }
-            }
-            .flatMap { (apiBaseURL, webView) in
-                getSessionToken(webView)
-                    .map { (userId, token) in
-                        (userId: userId, token: token, apiBaseURL: apiBaseURL)
-                    }
-            }
+    /// Launching studio in the background for two reasons:
+    /// - To get the access token to the API
+    /// - To trigger a permission sync between canvas courses and Studio
+    private static func launchStudioInHeadlessWebView(webLaunchURL: URL) -> AnyPublisher<WKWebView, Never> {
+        let webView = CoreWebView(features: [])
+        webView.load(URLRequest(url: webLaunchURL))
+        return webView
+            .waitUntilLoadFinishes()
+            .map { webView }
             .eraseToAnyPublisher()
     }
 
-    private static func getSessionToken(_ webView: WKWebView) -> AnyPublisher<(userId: String, token: String), StudioError> {
-        webView
+    private static func getSessionToken(studioWebView: WKWebView) -> AnyPublisher<(userId: String, token: String), StudioError> {
+        studioWebView
             .evaluateJavaScript(js: "sessionStorage.getItem('token')")
             .flatMap { token in
-                webView
+                studioWebView
                     .evaluateJavaScript(js: "sessionStorage.getItem('userId')")
                     .map { userId in (userId, token) }
             }
-            .mapError { _ in StudioError.failedToGetTokenFromWebView }
             .tryMap { (userId, token) in
                 guard let token = token as? String,
                       let userId = userId as? String
