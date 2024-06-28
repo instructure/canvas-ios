@@ -27,7 +27,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     @FocusState private var subjectTextFieldFocus: Bool
     @FocusState private var messageTextFieldFocus: Bool
-    @State private var showExtraSendButton = false
     @State private var headerHeight = CGFloat.zero
     @State private var scrollViewOffset = CGFloat.zero
 
@@ -71,7 +70,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .background(
                 GeometryReader { reader in
                     DispatchQueue.main.async {
-                        showExtraSendButton = -reader.frame(in: .named("scroll")).origin.y > headerHeight
+                        model.showExtraSendButton = -reader.frame(in: .named("scroll")).origin.y > headerHeight
                     }
                     return Color.backgroundLightest
                         .onTapGesture {
@@ -120,7 +119,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private var extraSendButton: some View {
-        if showExtraSendButton {
+        if model.showExtraSendButton {
             sendButton
         } else {
             Color.clear
@@ -326,11 +325,13 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .padding(.leading, 16)
             .padding(.top, 12)
 
-            InstUI.TextEditorCell(text: $model.bodyText)
+            UITextViewWrapper(text: $model.bodyText)
+                .iOS16HideListScrollContentBackground()
                 .font(.regular16, lineHeight: .condensed)
                 .textInputAutocapitalization(.sentences)
                 .focused($messageTextFieldFocus)
                 .foregroundColor(.textDarkest)
+                .padding(.horizontal, 12)
                 .frame(minHeight: 60)
                 .accessibility(label: Text("Message", bundle: .core))
         }
