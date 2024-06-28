@@ -325,7 +325,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .padding(.leading, 16)
             .padding(.top, 12)
 
-            UITextViewWrapper(text: $model.bodyText)
+            UITextViewWrapper(text: $model.bodyText, maxWidth: UIScreen.main.bounds.width - 24)
                 .iOS16HideListScrollContentBackground()
                 .font(.regular16, lineHeight: .condensed)
                 .textInputAutocapitalization(.sentences)

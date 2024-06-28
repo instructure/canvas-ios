@@ -21,12 +21,17 @@ import SwiftUI
 
 struct UITextViewWrapper: UIViewRepresentable {
     @Binding var text: String
+    let maxWidth: CGFloat
 
     func makeUIView(context: UIViewRepresentableContext<UITextViewWrapper>) -> UITextView {
         let tv = UITextView()
         tv.delegate = context.coordinator
         tv.isScrollEnabled = false
+        tv.textContainer.widthTracksTextView = true
+        tv.textContainer.lineBreakMode = .byWordWrapping
         tv.font = UIFont.scaledNamedFont(.regular16)
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.widthAnchor.constraint(equalToConstant: maxWidth).isActive = true
         return tv
     }
 
