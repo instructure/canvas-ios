@@ -21,7 +21,15 @@ import Foundation
 public enum ComposeMessageAssembly {
 
     public static func makeComposeMessageViewController(env: AppEnvironment = .shared, options: ComposeMessageOptions = ComposeMessageOptions()) -> UIViewController {
-        let interactor = ComposeMessageInteractorLive()
+        let batchId = UUID.string
+        let interactor = ComposeMessageInteractorLive(
+            env: env,
+            batchId: batchId,
+            uploadFolderPath: "conversation attachments",
+            restrictForFolderPath: true,
+            uploadManager: UploadManager(identifier: batchId),
+            publisherProvider: URLSessionDataTaskPublisherProviderLive()
+        )
         let viewModel = ComposeMessageViewModel(router: env.router, options: options, interactor: interactor)
 
         let view = ComposeMessageView(model: viewModel)

@@ -91,8 +91,7 @@ public struct MessageView: View {
                 .font(.regular16)
                 .textSelection(.enabled)
             if model.showAttachments {
-                AttachmentCardsView(attachments: model.attachments, mediaComment: model.mediaComment)
-                    .frame(height: 104)
+                AttachmentsView(attachments: model.attachments, didSelectAttachment: model.handleFileNavigation(file:))
             }
         }
         .onAppear {

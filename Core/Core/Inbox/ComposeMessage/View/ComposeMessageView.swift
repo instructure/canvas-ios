@@ -27,9 +27,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     @FocusState private var subjectTextFieldFocus: Bool
     @FocusState private var messageTextFieldFocus: Bool
-    @State private var showExtraSendButton = false
     @State private var headerHeight = CGFloat.zero
-    private var proxyScrollViewKey = "scrollview"
+    @State private var scrollViewOffset = CGFloat.zero
 
     init(model: ComposeMessageViewModel) {
         self.model = model
@@ -42,7 +41,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     public var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                scrollViewProxyView
                 headerView
                     .background(
                         GeometryReader { proxy in
@@ -70,25 +68,49 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .font(.regular12)
             .foregroundColor(.textDarkest)
             .background(
-                Color.backgroundLightest
-                    .onTapGesture {
-                        subjectTextFieldFocus = false
-                        messageTextFieldFocus = false
+                GeometryReader { reader in
+                    DispatchQueue.main.async {
+                        model.showExtraSendButton = -reader.frame(in: .named("scroll")).origin.y > headerHeight
                     }
+                    return Color.backgroundLightest
+                        .onTapGesture {
+                            subjectTextFieldFocus = false
+                            messageTextFieldFocus = false
+                        }
+                }
             )
             .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
             .navigationBarStyle(.modal)
-
         }
+        .coordinateSpace(name: "scroll")
         .background(Color.backgroundLightest)
-        .coordinateSpace(name: proxyScrollViewKey)
-        .onPreferenceChange(ViewSizeKey.self) { offset in
-            if (offset < -headerHeight) {
-                showExtraSendButton = true
-            } else {
-                showExtraSendButton = false
+        .fileImporter(
+            isPresented: $model.isFilePickerVisible,
+            allowedContentTypes: [.item],
+            allowsMultipleSelection: false
+        ) { result in
+            switch result {
+            case .success(let urls):
+                urls.forEach { url in
+                    if url.startAccessingSecurityScopedResource() {
+                        model.addFile(url: url)
+                    }
+                }
+            case .failure:
+                break
             }
         }
+        .sheet(isPresented: $model.isImagePickerVisible, content: {
+            ImagePickerViewController(sourceType: .photoLibrary, imageHandler: model.addFile)
+        })
+        .sheet(isPresented: $model.isTakePhotoVisible, content: {
+            ImagePickerViewController(sourceType: .camera, imageHandler: model.addFile)
+                .interactiveDismissDisabled()
+        })
+        .sheet(isPresented: $model.isAudioRecordVisible, content: {
+                    AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: model.router, onSelect: model.addFile)
+                        .interactiveDismissDisabled()
+                })
         .confirmationAlert(
             isPresented: $model.isShowingCancelDialog,
             presenting: model.confirmAlert
@@ -97,29 +119,16 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private var extraSendButton: some View {
-        if showExtraSendButton {
-            withAnimation {
-                sendButton
-            }
+        if model.showExtraSendButton {
+            sendButton
         } else {
-            withAnimation {
-                Color.clear
-            }
-        }
-    }
-
-    private var scrollViewProxyView: some View {
-        GeometryReader { geometry in
             Color.clear
-                .preference(key: ViewSizeKey.self, value: geometry.frame(in: .named(proxyScrollViewKey)).minY)
         }
-        .frame(width: 0, height: 0)
     }
 
     private var separator: some View {
         Color.borderMedium
             .frame(height: 0.5)
-            .padding(.horizontal, 8)
     }
 
     private var cancelButton: some View {
@@ -310,12 +319,13 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         .foregroundColor(.textDarkest)
                         .frame(width: 24, height: 24)
                         .padding(.horizontal, 16)
-                        .padding(.vertical, 12)
                 }
                 .accessibility(label: Text("Add attachment", bundle: .core))
             }
             .padding(.leading, 16)
-            TextEditor(text: $model.bodyText)
+            .padding(.top, 12)
+
+            UITextViewWrapper(text: $model.bodyText, maxWidth: UIScreen.main.bounds.width - 24)
                 .iOS16HideListScrollContentBackground()
                 .font(.regular16, lineHeight: .condensed)
                 .textInputAutocapitalization(.sentences)
@@ -347,99 +357,55 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         .padding(.top, 24)
     }
 
-    @ViewBuilder
     private func messageView(for message: ConversationMessage) -> some View {
-        if model.isMessageExpanded(message: message) {
-            expandedMessageView(for: message)
-        } else {
-            collapsedMessageView(for: message)
-        }
-    }
+        let isExpanded = model.isMessageExpanded(message: message)
 
-    private func expandedMessageView(for message: ConversationMessage) -> some View {
-        let author = model.conversation?.participants.first { $0.id == message.authorID }
-        return VStack(alignment: .leading) {
+        return VStack(spacing: 0) {
             Button {
                 withAnimation {
                     model.toggleMessageExpand(message: message)
                 }
             } label: {
-                Avatar(name: author?.name, url: author?.avatarURL, size: 36, isAccessible: false)
-                    .padding(.trailing, 8)
                 VStack(alignment: .leading, spacing: 0) {
-                    HStack(spacing: 0) {
-                        Text(author?.name ?? "")
+                    HStack {
+                        Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
                             .font(.regular16)
                             .foregroundStyle(Color.textDarkest)
-
+                            .lineLimit(1)
                         Spacer()
+                        Text(message.createdAt?.dateTimeString ?? "")
+                            .font(.regular14)
+                            .foregroundStyle(Color.textDark)
+                            .lineLimit(1)
 
-                        Image.arrowOpenDownLine
-                            .resizable()
-                            .frame(
-                                width: 15 * uiScale.iconScale,
-                                height: 15 * uiScale.iconScale
-                            )
-                        .foregroundColor(.textDarkest)
-                    }
-                    Text(message.createdAt?.dateTimeString ?? "")
-                        .font(.regular16)
-                        .foregroundStyle(Color.textDark)
-                }
-            }
-            .padding(.bottom, 12)
-
-            Text(message.body)
-                .font(.regular16)
-                .foregroundStyle(Color.textDarkest)
-
-            if !message.attachments.isEmpty {
-                AttachmentCardsView(attachments: message.attachments, mediaComment: message.mediaComment)
-                    .frame(height: 104)
-            }
-        }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 16)
-    }
-
-    private func collapsedMessageView(for message: ConversationMessage) -> some View {
-        return Button {
-                withAnimation {
-                    model.toggleMessageExpand(message: message)
-                }
-            } label: {
-                HStack(spacing: 0) {
-                    VStack(alignment: .leading, spacing: 0) {
-                        HStack {
-                            Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
-                                .font(.regular16)
-                                .foregroundStyle(Color.textDarkest)
-                                .lineLimit(1)
-                            Spacer()
-                            Text(message.createdAt?.dateTimeString ?? "")
-                                .font(.regular16)
-                                .foregroundStyle(Color.textDark)
-                                .lineLimit(1)
-
-                            Image.arrowOpenUpLine
+                        withAnimation {
+                            Image.arrowOpenDownLine
                                 .resizable()
                                 .frame(
                                     width: 15 * uiScale.iconScale,
                                     height: 15 * uiScale.iconScale
                                 )
-                            .foregroundColor(.textDarkest)
+                                .rotationEffect(.degrees(isExpanded ? 180 : 0))
+                                .foregroundColor(.textDark)
                         }
-                        .padding(.bottom, 6)
+                    }
 
+                    withAnimation {
                         Text(message.body)
-                            .font(.regular16)
+                            .font(.regular14)
                             .foregroundStyle(Color.textDark)
-                            .lineLimit(1)
+                            .multilineTextAlignment(.leading)
+                            .if(!isExpanded) { $0.lineLimit(1) }
                     }
                 }
-                .padding(.vertical, 12)
-                .padding(.horizontal, 16)
+            }
+            if isExpanded {
+                AttachmentsView(attachments: message.attachments, didSelectAttachment: { model.didSelectFile.accept((controller, $0))})
+                    .padding(.top, 16)
+            }
         }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 16)
     }
 
     private var attachmentsView: some View {

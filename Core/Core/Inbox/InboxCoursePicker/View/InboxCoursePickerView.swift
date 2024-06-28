@@ -71,7 +71,6 @@ public struct InboxCoursePickerView: View {
             if !courses.isEmpty {
                 Section(header:
                         VStack(spacing: 0) {
-                    separator
                     Text("Courses", bundle: .core)
                         .font(.regular14)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -123,18 +122,6 @@ public struct InboxCoursePickerView: View {
 
     private func isSelected(_ group: Group) -> Bool {
         viewModel.selectedRecipientContext?.context.id == group.id && viewModel.selectedRecipientContext?.context.contextType == .group
-    }
-
-    private func headerView(_ header: String) -> some View {
-        VStack(spacing: 0) {
-            Text(header)
-                .font(.regular14)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundStyle(Color.textDark)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 16)
-                .background(Color.backgroundLight)
-        }
     }
 
     private func courseRow(_ course: Course) -> some View {
