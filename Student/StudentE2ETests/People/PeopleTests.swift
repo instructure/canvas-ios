@@ -214,7 +214,7 @@ class PeopleTests: E2ETestCase {
         let course = seeder.createCourse()
         let student = seeder.createUser()
         let teacher = seeder.createUser()
-        let messageSubject = "Please don't fail me"
+        let messageSubject = "Please dont fail me"
         let messageBody = "I will do infinite assignments"
         seeder.enrollStudent(student, in: course)
         seeder.enrollTeacher(teacher, in: course)
