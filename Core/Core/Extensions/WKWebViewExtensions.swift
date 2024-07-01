@@ -47,13 +47,18 @@ public extension WKWebView {
         .eraseToAnyPublisher()
     }
 
-    /// The returned publisher finishes when the webView's `isLoading` property is false.
+    /// The returned publisher finishes when the webView's `isLoading` property turns to false
+    /// and is still false after `checkInterval`.
     func waitUntilLoadFinishes(
-        checkInterval: TimeInterval = 0.5
+        checkInterval: TimeInterval
     ) -> AnyPublisher<Void, Never> {
         Timer.publish(every: checkInterval, on: .main, in: .common)
             .autoconnect()
-            .first { _ in self.isLoading == false }
+            .map { _ in self.isLoading }
+            .pairwise()
+            .first { (previousLoading, newLoading) in
+                newLoading == false && previousLoading == previousLoading
+            }
             .mapToVoid()
             .eraseToAnyPublisher()
     }

@@ -63,7 +63,7 @@ class StudioMediaInteractor {
         let webView = CoreWebView(features: [])
         webView.load(URLRequest(url: webLaunchURL))
         return webView
-            .waitUntilLoadFinishes()
+            .waitUntilLoadFinishes(checkInterval: 1)
             .map { webView }
             .eraseToAnyPublisher()
     }

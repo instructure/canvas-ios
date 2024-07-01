@@ -24,11 +24,12 @@ public struct APIStudioMediaItem: Codable {
         public let srclang: String
         /// Custom label of the caption
         public let label: String
-        /// Caption text
+        /// Caption text in srt file format
         public let data: String
     }
 
     public let id: ID
+    /// The id used when this media is embedded as an LTI tool.
     public let lti_launch_id: String
     public let title: String
     public let mime_type: String
