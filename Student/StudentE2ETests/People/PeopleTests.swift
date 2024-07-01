@@ -276,7 +276,7 @@ class PeopleTests: E2ETestCase {
         XCTAssertTrue(recipientLabel.hasLabel(label: teacher.name))
 
         // MARK: Add a subject and a message, Tap send, Check result
-        subjectInput.writeText(text: messageSubject)
+        subjectInput.pasteText(text: messageSubject)
         messageInput.writeText(text: messageBody)
         XCTAssertTrue(sendButton.waitUntil(.enabled).isEnabled)
 
