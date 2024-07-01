@@ -113,6 +113,12 @@
             "value" : "Envoyer la tâche"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir Tasc Isteach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",

@@ -106,6 +106,12 @@
             "value" : "Littérature américaine IV"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Litríocht Mheiriceá IV"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -355,6 +361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Littérature américaine IV"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Litríocht Mheiriceá IV"
           }
         },
         "hi" : {
@@ -608,6 +620,12 @@
             "value" : "Littérature américaine IV : Tous les livres"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Litríocht Mheiriceá IV: Na Leabhair go léir"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -859,6 +877,12 @@
             "value" : "Annonces"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fógraí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1107,6 +1131,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notes de la tâche"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcanna an Taisc"
           }
         },
         "hi" : {
@@ -1360,6 +1390,12 @@
             "value" : "Biologie 201"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitheolaíocht 201"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1611,6 +1647,12 @@
             "value" : "Examen de biologie 2"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scrúdú Bitheolaíochta 2"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1859,6 +1901,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notes du cours"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcanna an Chúrsa"
           }
         },
         "hi" : {
@@ -2112,6 +2160,12 @@
             "value" : "Composition No 1 : Les planètes rocheuses"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aiste #1: Na Pláinéid Rocky"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2361,6 +2415,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les finales sont déplacées à la semaine prochaine."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá na scrudaithe deireanacha ag bogadh go dtí an tseachtain seo chugainn."
           }
         },
         "hi" : {
@@ -2614,6 +2674,12 @@
             "value" : "Notes"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcanna"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2865,6 +2931,12 @@
             "value" : "Introduction au système solaire"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réamhrá ar an nGrianchóras"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3111,6 +3183,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Janet Hammond"
+          }
+        },
+        "ga" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Janet Hammond"
@@ -3366,6 +3444,12 @@
             "value" : "Aucune annonce"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gan Fógraí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3616,6 +3700,12 @@
             "value" : "Aucune note à afficher"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gan Marcanna le Taispeáint"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3864,6 +3954,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Veuillez vous connecter par l’application"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logáil isteach tríd an bhfeidhmchlár le do thoil"
           }
         },
         "hi" : {
@@ -4117,6 +4213,12 @@
             "value" : "Lisez Moby Dick avant la fin de la semaine."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Moby dick a léamh roimh dheireadh na seachtaine."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4363,6 +4465,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Susan Jorgenson"
+          }
+        },
+        "ga" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Susan Jorgenson"
@@ -4619,6 +4727,12 @@
             "value" : "Thomas McKempis"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thomas McKempis"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4868,6 +4982,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Consultez les dernières annonces de vos cours."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féach ar na fógraí is déanaí ó do chúrsaí."
           }
         },
         "hi" : {
@@ -5121,6 +5241,12 @@
             "value" : "Voir les dernières notes issues des tâches et vos cours favoris."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féach ar na marcanna is déanaí ó thascanna agus na cúrsaí is fearr leat."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5370,6 +5496,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voyage au zoo!"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turas Allamuigh sa Zú!"
           }
         },
         "hi" : {

@@ -113,6 +113,12 @@
             "value" : "Widgets"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giuirléidí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",

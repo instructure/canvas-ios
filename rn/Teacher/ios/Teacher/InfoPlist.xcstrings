@@ -113,6 +113,12 @@
             "value" : "Canvas Enseignant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Múinteoir Canvas"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -395,6 +401,12 @@
             "value" : "Joindre des photos et des vidéos à l’envoi de commentaires."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail grianghraif agus físeáin le ráitis uaslódála."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -648,6 +660,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "ga" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -911,6 +929,12 @@
             "value" : "Joindre les enregistrements audio à l’envoi de commentaires."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail taifeadtaí fuaime le ráitis uaslódála.."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1169,6 +1193,12 @@
             "value" : "Joindre des photos et des vidéos à l’envoi de commentaires."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail grianghraif agus físeáin le ráitis uaslódála."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1425,6 +1455,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Téléverser du contenu aux cours."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uaslódáil ábhar chuig cúrsaí."
           }
         },
         "hi" : {

@@ -105,6 +105,12 @@
             "value" : "%@ dû à %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ dlite ag %@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -353,6 +359,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ commencera à %@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ tosóidh sé ag %@"
           }
         },
         "hi" : {
@@ -605,6 +617,12 @@
             "value" : "Ajouter"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir le"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -853,6 +871,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter un étudiant"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir Mac Léinn leis"
           }
         },
         "hi" : {
@@ -1105,6 +1129,12 @@
             "value" : "Ajoutez des étudiants en haut ou visitez le menu universel pour personnifier un étudiant."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir mic léinn ag an mbarr nó tabhair cuairt ar an roghchlár domhanda chun glacadh le haitheantas mac léinn."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1355,6 +1385,12 @@
             "value" : "Ajoutez des étudiants en haut."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir mic léinn ag an mbarr."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1603,6 +1639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "M'alerter lorsque :"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabhair foláireamh dom nuair:"
           }
         },
         "hi" : {
@@ -1856,6 +1898,12 @@
             "value" : "Alertes"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foláirimh"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2104,6 +2152,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annonce"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fógra"
           }
         },
         "hi" : {
@@ -2356,6 +2410,12 @@
             "value" : "Détails de la tâche"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonraí Tasc"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2606,6 +2666,12 @@
             "value" : "Rappel de la tâche"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meabhrúchán taisc"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2854,6 +2920,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retour"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ar ais"
           }
         },
         "hi" : {
@@ -3107,6 +3179,12 @@
             "value" : "Calendrier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féilire"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3355,6 +3433,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annuler"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cealaigh"
           }
         },
         "hi" : {
@@ -3607,6 +3691,12 @@
             "value" : "Composer un message"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cum Teachtaireacht"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3855,6 +3945,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Composer un message pour les enseignants"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scríobh teachtaireacht do mhúinteoirí"
           }
         },
         "hi" : {
@@ -4107,6 +4203,12 @@
             "value" : "Composer un nouveau message"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cum teachtaireacht nua"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4352,6 +4454,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "conversation_unread_messages"
+          }
+        },
+        "ga" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "conversation_unread_messages"
@@ -4607,6 +4715,12 @@
             "value" : "Impossible d’analyser le code QR., code QR invalide"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níorbh fhéidir an cód MF a pharsáil, cód MF neamhbhailí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4856,6 +4970,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cours"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cúrsaí"
           }
         },
         "hi" : {
@@ -5108,6 +5228,12 @@
             "value" : "Étudiant actuel : %@. Tapotez pour changer d’étudiant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac léinn reatha: %@. Tapáil chun mic léinn a mhalartú"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5356,6 +5482,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Date"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dáta"
           }
         },
         "hi" : {
@@ -5608,6 +5740,12 @@
             "value" : "Description"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cur síos"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5856,6 +5994,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rejeter"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diúltaigh"
           }
         },
         "hi" : {
@@ -6108,6 +6252,12 @@
             "value" : "Incompatibilité du domaine"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neamhréir fearainn"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6356,6 +6506,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Échéance"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dlite"
           }
         },
         "hi" : {
@@ -6608,6 +6764,12 @@
             "value" : "Détails de l’événement"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonraí Imeachta"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6856,6 +7018,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rappel d'événement"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meabhrúchán imeachta"
           }
         },
         "hi" : {
@@ -7108,6 +7276,12 @@
             "value" : "Trouver une école"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aimsigh Scoil"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7358,6 +7532,12 @@
             "value" : "Page de couverture"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leathanach Tosaigh"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7504,9 +7684,6 @@
         }
       }
     },
-    "Graded" : {
-
-    },
     "Grades" : {
       "localizations" : {
         "ar" : {
@@ -7609,6 +7786,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notes"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcanna"
           }
         },
         "hi" : {
@@ -7861,6 +8044,12 @@
             "value" : "Boîte de réception"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bosca Isteach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8109,6 +8298,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Boîte de réception Zéro"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bosca Isteach Nialais"
           }
         },
         "hi" : {
@@ -8361,6 +8556,12 @@
             "value" : "Saisir le code de jumelage de l’étudiant qui vous a été fourni."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir isteach an cód péireála mac léinn a tugadh duit."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8609,6 +8810,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Seuil invalide"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tairseach Neamhbhailí"
           }
         },
         "hi" : {
@@ -8861,6 +9068,12 @@
             "value" : "Il semble que vous essayiez d'ajouter un étudiant. Essayez d'ajouter cet étudiant après vous être connecté"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá an chuma ar an scéal go bhfuil tú ag iarraidh mac léinn a chur leis. Bain triail as an mac léinn seo a chur leis tar éis duit logáil isteach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9109,6 +9322,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Emplacement"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suíomh"
           }
         },
         "hi" : {
@@ -9361,6 +9580,12 @@
             "value" : "Verrouillé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faoi ghlas"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9609,6 +9834,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Connexion requise"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logáil isteach ag teastáil"
           }
         },
         "hi" : {
@@ -9861,6 +10092,12 @@
             "value" : "Gestion des participants"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bainistigh Mic Léinn"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10109,6 +10346,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "s.o."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "n/a"
           }
         },
         "hi" : {
@@ -10361,6 +10604,12 @@
             "value" : "S.O."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N/A"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10609,6 +10858,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucune alerte"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl Foláirimh Ann"
           }
         },
         "hi" : {
@@ -10861,6 +11116,12 @@
             "value" : "Aucun cours"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl Cúrsaí Ann"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11109,6 +11370,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucune date d'échéance"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon Dáta Dlite"
           }
         },
         "hi" : {
@@ -11361,6 +11628,12 @@
             "value" : "Non noté"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon Marc"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11609,6 +11882,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucun étudiant"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl Mic Léinn Ann"
           }
         },
         "hi" : {
@@ -11861,6 +12140,12 @@
             "value" : "OK"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CGL"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12109,6 +12394,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jumelage du code en cours..."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cód Péireála"
           }
         },
         "hi" : {
@@ -12361,6 +12652,12 @@
             "value" : "Code QR"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cód MF"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12609,6 +12906,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "En ce qui concerne : %@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maidir le: %@"
           }
         },
         "hi" : {
@@ -12862,6 +13165,12 @@
             "value" : "En ce qui concerne : %@, %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maidir le: %@, %@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13111,6 +13420,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "En ce qui concerne : %@, tâche — %@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maidir le: %@, Tasc - %@"
           }
         },
         "hi" : {
@@ -13363,6 +13678,12 @@
             "value" : "Me rappeler"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir i gcuimhne dom"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13611,6 +13932,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réessayer"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bain triail eile as"
           }
         },
         "hi" : {
@@ -13863,6 +14190,12 @@
             "value" : "Définissez une date et une heure afin d’être averti de cet événement."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Socraigh dáta agus am le bheith curtha ar an eolas faoin imeacht seo."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14111,6 +14444,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Paramètres"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Socruithe"
           }
         },
         "hi" : {
@@ -14363,6 +14702,12 @@
             "value" : "Résumé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Achoimre"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14611,6 +14956,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Programme"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siollabas"
           }
         },
         "hi" : {
@@ -14863,6 +15214,12 @@
             "value" : "L’élément lié n’est plus disponible."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl an mhír nasctha ar fáil a thuilleadh."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15111,6 +15468,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "L’étudiant que vous tentez d’ajouter se trouve dans une autre institution Canvas.\nConnectez-vous ou créez un compte avec cette institution pour ajouter cet étudiant."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá an mac léinn a bhfuil tú ag iarraidh a chur leis ar institiúid Canvas eile. Sínigh isteach nó cruthaigh cuntas leis an institiúid sin chun an mac léinn seo a chur leis."
           }
         },
         "hi" : {
@@ -15363,6 +15726,12 @@
             "value" : "La valeur doit être un nombre compris entre 0 et 100"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caithfidh uimhir idir 0 agus 100 a bheith sa luach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15611,6 +15980,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Une erreur est survenue lors du chargement des alertes. Tirez pour actualiser et réessayer."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tharla earráid agus foláirimh á lódáil. Tarraing chun athnuachan a dhéanamh chun triail eile a bhaint as."
           }
         },
         "hi" : {
@@ -15863,6 +16238,12 @@
             "value" : "Une erreur est survenue lors du chargement des cours. Tirez pour actualiser et réessayer."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tharla earráid agus cúrsaí á lódáil. Tarraing chun athnuachan a dhéanamh chun triail eile a bhaint as."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16111,6 +16492,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Une erreur est survenue lors du chargement des étudiants. Tirez pour actualiser et réessayer."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tharla earráid agus mic léinn á lódáil. Tarraing chun athnuachan a dhéanamh chun triail eile a bhaint as."
           }
         },
         "hi" : {
@@ -16363,6 +16750,12 @@
             "value" : "Il n'y a encore rien à signaler."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon rud le cur in iúl go fóill."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16611,6 +17004,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non lu"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unread"
           }
         },
         "hi" : {
@@ -16863,6 +17262,12 @@
             "value" : "Bienvenue, administrateur!"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fáilte romhat, a Riarthóir!"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17111,6 +17516,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous ne pouvez pas définir un seuil élevé qui est inférieur ou égal à un seuil bas précédemment défini."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ní féidir leat tairseach ard a shocrú atá níos ísle nó cothrom le tairseach íseal a socraíodh roimhe seo."
           }
         },
         "hi" : {
@@ -17363,6 +17774,12 @@
             "value" : "Vous ne pouvez pas définir un seuil bas qui est supérieur ou égal à un seuil élevé précédemment défini."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ní féidir leat tairseach íseal a shocrú atá níos airde nó cothrom le tairseach ard a socraíodh roimhe seo."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17613,6 +18030,12 @@
             "value" : "Vous êtes coincé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá tú suas chun dáta ar fad"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17861,6 +18284,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vos cours dépendants peuvent ne pas être encore publiés."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seans nach bhfuil cúrsaí do linbh foilsithe fós."
           }
         },
         "hi" : {

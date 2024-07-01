@@ -105,6 +105,12 @@
             "value" : "Retour"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ar ais"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -353,6 +359,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retour à la vue détaillée"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ar ais ar an t-amharc mionsonraithe"
           }
         },
         "hi" : {
@@ -605,6 +617,12 @@
             "value" : "Réduire la vue détaillée"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leacaigh an t-amharc mionsonraí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -853,6 +871,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terminé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déanta"
           }
         },
         "hi" : {
@@ -1105,6 +1129,12 @@
             "value" : "Développer la vue détaillée"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leathnaigh an t-amharc mionsonraithe"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1353,6 +1383,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossible de trouver l'image au chemin d'accès"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar an íomhá a aimsiú ag an gcosán"
           }
         },
         "hi" : {
@@ -1605,6 +1641,12 @@
             "value" : "Impossible d’écrire l’image"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar an íomhá a scríobh"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1853,6 +1895,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Obtenir les notes pour"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faigh Marcanna le haghaidh"
           }
         },
         "hi" : {
