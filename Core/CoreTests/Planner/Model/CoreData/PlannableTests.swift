@@ -21,25 +21,95 @@ import XCTest
 @testable import Core
 
 class PlannableTests: CoreTestCase {
-    func testPlannable() {
-        let p = Plannable.make(from: .make())
-        XCTAssertEqual(p.id, "1")
+    private enum TestConstants {
+        static let courseId = "some courseId"
+        static let groupId = "some groupId"
+        static let userId = "some userId"
+        static let plannableId = "some plannableId"
+        static let htmlUrl = URL(string: "http://some.address")!
+        static let contextName = "some contextName"
+        static let plannableTitle = "some plannableTitle"
+        static let plannableDetails = "some plannableDetails"
+        static let plannableDate = Clock.now
+        static let pointsPossible: Double = 42.5
     }
 
-    func testAPIPlannable() {
-        let p = APIPlannable.make()
-        XCTAssertEqual(p.plannable_id, "1")
-        XCTAssertEqual(p.context_type, "Course")
-        XCTAssertEqual(p.course_id, "1")
-        XCTAssertEqual(p.plannable_type, "Assignment")
-        XCTAssertNil(p.planner_override)
+    func testSaveAPIPlannable() {
+        let apiPlannable = APIPlannable(
+            course_id: ID(TestConstants.courseId),
+            group_id: ID(TestConstants.groupId),
+            user_id: ID(TestConstants.userId),
+            context_type: "Course",
+            planner_override: nil,
+            plannable_id: ID(TestConstants.plannableId),
+            plannable_type: PlannableType.assignment.rawValue,
+            html_url: APIURL(rawValue: TestConstants.htmlUrl),
+            context_name: TestConstants.contextName,
+            plannable: .init(
+                details: TestConstants.plannableDetails,
+                points_possible: TestConstants.pointsPossible,
+                title: TestConstants.plannableTitle
+            ),
+            plannable_date: TestConstants.plannableDate,
+            submissions: nil
+        )
+
+        let plannable = Plannable.save(apiPlannable, userID: "another userId", in: databaseClient)
+
+        XCTAssertEqual(plannable.id, TestConstants.plannableId)
+        XCTAssertEqual(plannable.plannableType, .assignment)
+        XCTAssertEqual(plannable.htmlURL, TestConstants.htmlUrl)
+        XCTAssertEqual(plannable.contextName, TestConstants.contextName)
+        XCTAssertEqual(plannable.title, TestConstants.plannableTitle)
+        XCTAssertEqual(plannable.date, TestConstants.plannableDate)
+        XCTAssertEqual(plannable.pointsPossible, TestConstants.pointsPossible)
+        XCTAssertEqual(plannable.details, TestConstants.plannableDetails)
+        XCTAssertEqual(plannable.context?.courseId, TestConstants.courseId)
+        XCTAssertEqual(plannable.userID, "another userId")
     }
 
-    func testPlannerOverride() {
-        let override = APIPlannerOverride.make()
-        XCTAssertEqual(override.id, "1")
-        XCTAssertEqual(override.dismissed, false)
-        XCTAssertEqual(override.marked_complete, false)
+    func testSaveAPIPlannerNote() {
+        var apiPlannerNote = APIPlannerNote.make(
+            id: TestConstants.plannableId,
+            title: TestConstants.plannableTitle,
+            details: TestConstants.plannableDetails,
+            todo_date: TestConstants.plannableDate
+        )
+
+        var plannable = Plannable.save(apiPlannerNote, contextName: TestConstants.contextName, in: databaseClient)
+
+        XCTAssertEqual(plannable.id, TestConstants.plannableId)
+        XCTAssertEqual(plannable.plannableType, .planner_note)
+        XCTAssertEqual(plannable.htmlURL, nil)
+        XCTAssertEqual(plannable.contextName, TestConstants.contextName)
+        XCTAssertEqual(plannable.title, TestConstants.plannableTitle)
+        XCTAssertEqual(plannable.date, TestConstants.plannableDate)
+        XCTAssertEqual(plannable.pointsPossible, nil)
+        XCTAssertEqual(plannable.details, TestConstants.plannableDetails)
+
+        // with userId and courseId
+        apiPlannerNote = APIPlannerNote.make(user_id: TestConstants.userId, course_id: TestConstants.courseId)
+        plannable = Plannable.save(apiPlannerNote, contextName: nil, in: databaseClient)
+        XCTAssertEqual(plannable.context?.courseId, TestConstants.courseId)
+        XCTAssertEqual(plannable.userID, TestConstants.userId)
+
+        // with only userId
+        apiPlannerNote = APIPlannerNote.make(user_id: TestConstants.userId, course_id: nil)
+        plannable = Plannable.save(apiPlannerNote, contextName: nil, in: databaseClient)
+        XCTAssertEqual(plannable.context?.userId, TestConstants.userId)
+        XCTAssertEqual(plannable.userID, TestConstants.userId)
+
+        // with only courseId
+        apiPlannerNote = APIPlannerNote.make(user_id: nil, course_id: TestConstants.courseId)
+        plannable = Plannable.save(apiPlannerNote, contextName: nil, in: databaseClient)
+        XCTAssertEqual(plannable.context?.courseId, TestConstants.courseId)
+        XCTAssertEqual(plannable.userID, nil)
+
+        // without userId or courseId
+        apiPlannerNote = APIPlannerNote.make(user_id: nil, course_id: nil)
+        plannable = Plannable.save(apiPlannerNote, contextName: nil, in: databaseClient)
+        XCTAssertEqual(plannable.context, nil)
+        XCTAssertEqual(plannable.userID, nil)
     }
 
     func testIcon() {
@@ -97,6 +167,7 @@ class PlannableTests: CoreTestCase {
         XCTAssertEqual(Plannable.make(from: .make(group_id: "7", context_type: "Group")).color, .red)
         XCTAssertEqual(Plannable.make(from: .make(group_id: "8", context_type: "Group")).color, .ash)
         XCTAssertEqual(Plannable.make(from: .make(user_id: "3", context_type: "User")).color, .brown)
-        XCTAssertEqual(Plannable.make(from: .make(course_id: "0", context_type: "Course")).color, .oxford)
+        XCTAssertEqual(Plannable.make(from: .make(course_id: "0", context_type: "Course")).color, .oxford) // default K5 `Course.color`
+        XCTAssertEqual(Plannable.make(from: .make(course_id: "unsaved id", context_type: "Course")).color, .oxford)
     }
 }

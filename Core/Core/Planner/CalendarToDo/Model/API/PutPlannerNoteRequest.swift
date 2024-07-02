@@ -43,3 +43,21 @@ struct PutPlannerNoteRequest: APIRequestable {
     let id: String
     let body: Body?
 }
+
+#if DEBUG
+extension PutPlannerNoteRequest.Body {
+    static func make(
+        title: String = "",
+        details: String? = nil,
+        todo_date: Date = Clock.now,
+        course_id: String? = nil
+    ) -> PutPlannerNoteRequest.Body {
+        .init(
+            title: title,
+            details: details,
+            todo_date: todo_date,
+            course_id: course_id
+        )
+    }
+}
+#endif

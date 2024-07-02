@@ -21,25 +21,71 @@ import XCTest
 
 class CalendarToDoDetailsViewModelTests: CoreTestCase {
 
-    func testProperties() {
-        let todoDate = Date().addMonths(3)
-        let apiPlannable = APIPlannable.make(
-            plannable: .init(
-                details: "TestDetails",
-                title: "TestTitle"
+    private var inputPlannable: Plannable!
+    private var resultPlannable: Plannable!
+    private var interactor: CalendarToDoInteractorPreview!
+    private var testee: CalendarToDoDetailsViewModel!
+
+    override func setUp() {
+        super.setUp()
+        inputPlannable = Plannable.save(
+            .make(
+                id: "input id",
+                title: "input title",
+                details: "input details",
+                todo_date: DateComponents(calendar: .current, year: 1984).date!
             ),
-            plannable_date: todoDate
+            contextName: nil,
+            in: databaseClient
         )
-        let plannable = Plannable.make(from: apiPlannable,
-                                       in: databaseClient)
+        resultPlannable = Plannable.save(
+            .make(
+                id: "result id",
+                title: "result title",
+                details: "result details",
+                todo_date: DateComponents(calendar: .current, year: 2020).date!
+            ),
+            contextName: nil,
+            in: databaseClient
+        )
 
-        // WHEN
-        let testee = CalendarToDoDetailsViewModel(plannable: plannable, interactor: CalendarToDoInteractorPreview())
+        interactor = .init()
+        interactor.getToDoResult = .success(resultPlannable)
+        testee = .init(plannable: inputPlannable, interactor: interactor)
+    }
 
-        // THEN
-        XCTAssertEqual(testee.navigationTitle, "To Do")
-        XCTAssertEqual(testee.title, "TestTitle")
-        XCTAssertEqual(testee.description, "TestDetails")
-        XCTAssertEqual(testee.date, todoDate.dateTimeString)
+    override func tearDown() {
+        inputPlannable = nil
+        resultPlannable = nil
+        interactor = nil
+        testee = nil
+        super.tearDown()
+    }
+
+    func testProperties() {
+        XCTAssertEqual(testee.navigationTitle, String(localized: "To Do", bundle: .core))
+    }
+
+    func testGetToDo() {
+        XCTAssertEqual(interactor.getToDoCallsCount, 1)
+        XCTAssertEqual(interactor.getToDoInput, inputPlannable.id)
+    }
+
+    func testInitialValues() {
+        XCTAssertEqual(testee.title, resultPlannable.title)
+        XCTAssertEqual(testee.description, resultPlannable.details)
+        XCTAssertEqual(testee.date, resultPlannable.date?.dateTimeString)
+    }
+
+    func testShowEditScreen() {
+        let sourceVC = UIViewController()
+        testee.showEditScreen(env: environment, from: .init(sourceVC))
+
+        guard let lastPresentation = router.viewControllerCalls.last else {
+            return XCTFail()
+        }
+        XCTAssertTrue(lastPresentation.0 is CoreHostingController<EditCalendarToDoScreen>)
+        XCTAssertEqual(lastPresentation.1, sourceVC)
+        XCTAssertEqual(lastPresentation.2, .modal(isDismissable: false, embedInNav: true))
     }
 }

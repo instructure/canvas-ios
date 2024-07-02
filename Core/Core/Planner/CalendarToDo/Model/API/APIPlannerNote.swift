@@ -32,3 +32,31 @@ public struct APIPlannerNote: Codable, Equatable {
     let created_at: Date?
     let updated_at: Date?
 }
+
+#if DEBUG
+extension APIPlannerNote {
+    public static func make(
+        id: String = "",
+        title: String = "",
+        details: String? = nil,
+        todo_date: Date = Clock.now,
+        user_id: String? = nil,
+        course_id: String? = nil,
+        workflow_state: String? = nil,
+        created_at: Date? = nil,
+        updated_at: Date? = nil
+    ) -> APIPlannerNote {
+        .init(
+            id: id,
+            title: title,
+            details: details,
+            todo_date: todo_date,
+            user_id: user_id,
+            course_id: course_id,
+            workflow_state: workflow_state,
+            created_at: created_at,
+            updated_at: updated_at
+        )
+    }
+}
+#endif

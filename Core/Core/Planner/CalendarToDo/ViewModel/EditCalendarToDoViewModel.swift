@@ -39,7 +39,7 @@ final class EditCalendarToDoViewModel: ObservableObject {
     @Published var shouldShowAlert: Bool = false
 
     var isSaveButtonEnabled: Bool {
-        state == .data && title.isNotEmpty && isTouched
+        state == .data && title.isNotEmpty && date != nil && isTouched
     }
 
     lazy var pageTitle: String = {
@@ -194,7 +194,7 @@ final class EditCalendarToDoViewModel: ObservableObject {
         case .add:
             toDoInteractor.createToDo(
                 title: title,
-                date: date ?? .now,
+                date: date ?? Clock.now,
                 calendar: selectedCalendar.value,
                 details: details
             )
@@ -204,7 +204,7 @@ final class EditCalendarToDoViewModel: ObservableObject {
             toDoInteractor.updateToDo(
                 id: id,
                 title: title,
-                date: date ?? .now,
+                date: date ?? Clock.now,
                 calendar: selectedCalendar.value,
                 details: details
             )

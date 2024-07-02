@@ -89,9 +89,3 @@ final class CalendarToDoInteractorLive: CalendarToDoInteractor {
             .eraseToAnyPublisher()
     }
 }
-
-private extension CDCalendarFilterEntry {
-    var courseName: String? {
-        context.contextType == .course ? name : nil
-    }
-}
