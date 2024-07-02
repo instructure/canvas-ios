@@ -30,7 +30,7 @@ public class GradesHelper: BaseHelper {
     public static func cell(assignment: DSAssignment? = nil, assignmentId: String? = nil) -> XCUIElement {
         return app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
     }
-    
+
     public static func gradedLabel(assignmentCell: XCUIElement) -> XCUIElement {
         return assignmentCell.find(label: "Graded", type: .staticText)
     }
