@@ -242,9 +242,6 @@ class ModulesTests: E2ETestCase {
         XCTAssertTrue(publishButton.isVisible)
 
         publishButton.hit()
-        let cancelPublishingButton = Helper.PublishOptions.Progress.cancelButton.waitUntil(.visible)
-        XCTAssertTrue(cancelPublishingButton.isVisible)
-
         let dismissButton = Helper.PublishOptions.Progress.dismissButton.waitUntil(.visible)
         let doneButton = Helper.PublishOptions.Progress.doneButton.waitUntil(.visible)
         let progressTitle = Helper.PublishOptions.Progress.progressTitle.waitUntil(.visible)

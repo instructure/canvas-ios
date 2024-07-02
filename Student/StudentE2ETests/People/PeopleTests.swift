@@ -214,7 +214,7 @@ class PeopleTests: E2ETestCase {
         let course = seeder.createCourse()
         let student = seeder.createUser()
         let teacher = seeder.createUser()
-        let messageSubject = "Please don't fail me"
+        let messageSubject = "Please dont fail me"
         let messageBody = "I will do infinite assignments"
         seeder.enrollStudent(student, in: course)
         seeder.enrollTeacher(teacher, in: course)
@@ -276,7 +276,7 @@ class PeopleTests: E2ETestCase {
         XCTAssertTrue(recipientLabel.hasLabel(label: teacher.name))
 
         // MARK: Add a subject and a message, Tap send, Check result
-        subjectInput.writeText(text: messageSubject)
+        subjectInput.pasteText(text: messageSubject)
         messageInput.writeText(text: messageBody)
         XCTAssertTrue(sendButton.waitUntil(.enabled).isEnabled)
 

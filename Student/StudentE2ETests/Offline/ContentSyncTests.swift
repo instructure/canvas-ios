@@ -272,11 +272,13 @@ class OfflineContentSyncTests: OfflineE2ETest {
         gradesButton.hit()
         let totalGrade = Grade.totalGrade.waitUntil(.visible)
         let gradeAssignmentCell = Grade.gradesAssignmentButton(assignment: assignment).waitUntil(.visible)
-        let gradeItem = Grade.gradeLabel(assignmentCell: gradeAssignmentCell).waitUntil(.visible)
+        let gradedLabel = Grade.gradedLabel(assignmentCell: gradeAssignmentCell).waitUntil(.visible)
+        let gradeLabel = Grade.gradeLabel(assignmentCell: gradeAssignmentCell).waitUntil(.visible)
         XCTAssertTrue(totalGrade.isVisible)
         XCTAssertTrue(totalGrade.waitUntil(.label(expected: "Total grade is 100%")).hasLabel(label: "Total grade is 100%"))
-        XCTAssertTrue(gradeItem.isVisible)
-        XCTAssertTrue(gradeItem.waitUntil(.label(expected: "Grade, 1 out of 1 (A)")).hasLabel(label: "Grade, 1 out of 1 (A)"))
+        XCTAssertTrue(gradedLabel.isVisible)
+        XCTAssertTrue(gradeLabel.isVisible)
+        XCTAssertTrue(gradeLabel.waitUntil(.label(expected: "Grade, 1 out of 1 (A)")).hasLabel(label: "Grade, 1 out of 1 (A)"))
     }
 
     func testPeopleSync() {
