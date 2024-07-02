@@ -103,6 +103,16 @@ extension String {
                 return String(self[stringRange])
             }
     }
+
+    public func dataWithError(
+        using encoding: String.Encoding,
+        allowLossyConversion: Bool = false
+    ) throws -> Data {
+        guard let data = self.data(using: encoding, allowLossyConversion: allowLossyConversion) else {
+            throw "Failed to convert string to data using encoding \(encoding)."
+        }
+        return data
+    }
 }
 
 extension String: Error {
