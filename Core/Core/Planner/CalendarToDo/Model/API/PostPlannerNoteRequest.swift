@@ -36,3 +36,25 @@ struct PostPlannerNoteRequest: APIRequestable {
 
     let body: Body?
 }
+
+#if DEBUG
+extension PostPlannerNoteRequest.Body {
+    static func make(
+        title: String = "",
+        details: String? = nil,
+        todo_date: Date = Clock.now,
+        course_id: String? = nil,
+        linked_object_type: PlannableType? = nil,
+        linked_object_id: String? = nil
+    ) -> PostPlannerNoteRequest.Body {
+        .init(
+            title: title,
+            details: details,
+            todo_date: todo_date,
+            course_id: course_id,
+            linked_object_type: linked_object_type,
+            linked_object_id: linked_object_id
+        )
+    }
+}
+#endif
