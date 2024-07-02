@@ -26,11 +26,9 @@ enum AssignmentRemindersAssembly {
                                                      router: AppEnvironment.shared.router)
         let reminderSection = CoreHostingController(AssignmentRemindersView(viewModel: viewModel))
 
-        if #available(iOS 16.0, *) {
-            // When the SwiftUI view size changes we need to update the hosting view's intrinsic size
-            // so the stack view can resize itself and its children
-            reminderSection.sizingOptions = [.intrinsicContentSize]
-        }
+        // When the SwiftUI view size changes we need to update the hosting view's intrinsic size
+        // so the stack view can resize itself and its children
+        reminderSection.sizingOptions = [.intrinsicContentSize]
 
         return reminderSection
     }

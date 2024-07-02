@@ -53,7 +53,7 @@ struct PostErrorReportRequest: APIRequestable {
         if let session = AppEnvironment.shared.currentSession {
             email = email ?? session.userEmail
             subject = "\(subject) [\(session.baseURL.absoluteString)]"
-            if Locale.current.regionCode != "CA" {
+            if Locale.current.region?.identifier != "CA" {
                 comments += "\nUser: \(session.userID)"
                 comments += "\nEmail: \(email ?? "")"
                 http_env["User"] = session.userID

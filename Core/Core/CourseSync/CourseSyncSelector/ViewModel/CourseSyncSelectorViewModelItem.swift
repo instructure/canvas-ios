@@ -37,9 +37,9 @@ extension CourseSyncSelectorViewModel {
         let id: String
         let title: String
         var subtitle: String?
-        let selectionState: ListCellView.SelectionState
+        let selectionState: OfflineListCellView.SelectionState
         var isCollapsed: Bool?
-        let cellStyle: ListCellView.ListCellStyle
+        let cellStyle: OfflineListCellView.ListCellStyle
 
         fileprivate(set) var selectionDidToggle: (() -> Void)?
         fileprivate(set) var collapseDidToggle: (() -> Void)?
@@ -74,7 +74,7 @@ extension Array where Element == CourseSyncEntry {
         for course in self {
             var courseItem = course.makeViewModelItem()
             courseItem.selectionDidToggle = {
-                let selectionState: ListCellView.SelectionState = course.selectionState == .selected || course.selectionState == .partiallySelected ? .deselected : .selected
+                let selectionState: OfflineListCellView.SelectionState = course.selectionState == .selected || course.selectionState == .partiallySelected ? .deselected : .selected
                 interactor?.setSelected(selection: .course(course.id), selectionState: selectionState)
             }
             courseItem.collapseDidToggle = {
@@ -97,7 +97,7 @@ extension Array where Element == CourseSyncEntry {
                 }
                 var tabItem = tab.makeViewModelItem()
                 tabItem.selectionDidToggle = {
-                    let selectionState: ListCellView.SelectionState = tab.selectionState == .selected || tab.selectionState == .partiallySelected ? .deselected : .selected
+                    let selectionState: OfflineListCellView.SelectionState = tab.selectionState == .selected || tab.selectionState == .partiallySelected ? .deselected : .selected
                     interactor?.setSelected(selection: .tab(course.id, tab.id), selectionState: selectionState)
                 }
                 tabItem.collapseDidToggle = {

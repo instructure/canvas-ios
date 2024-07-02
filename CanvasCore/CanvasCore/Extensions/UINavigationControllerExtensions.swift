@@ -49,8 +49,4 @@ extension UINavigationController {
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         visibleViewController?.supportedInterfaceOrientations ?? .all
     }
-
-    open override var shouldAutorotate: Bool {
-        visibleViewController?.shouldAutorotate ?? true
-    }
 }

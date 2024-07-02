@@ -22,7 +22,6 @@ import XCTest
 
 class MenuItemsTests: XCTestCase {
 
-    @available(iOS 16.0, *)
     func testStyleMenu() {
         let mockPageView = MockPDFPageView()
         let annotation = DocViewerInkAnnotation()
@@ -35,7 +34,6 @@ class MenuItemsTests: XCTestCase {
         XCTAssertEqual(mockPageView.presentedInspectorForAnnotations, [annotation])
     }
 
-    @available(iOS 16.0, *)
     func testDeleteMenu() {
         let mockDocument = MockPDFDocument()
         let annotation = DocViewerInkAnnotation()
@@ -48,7 +46,6 @@ class MenuItemsTests: XCTestCase {
         XCTAssertEqual(mockDocument.removed, [annotation])
     }
 
-    @available(iOS 16.0, *)
     func testShowCommentsMenu() {
         // MARK: - GIVEN
         let mockRouter = TestRouter()

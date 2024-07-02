@@ -316,7 +316,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             }
             .padding(.leading, 16)
             TextEditor(text: $model.bodyText)
-                .iOS16HideListScrollContentBackground()
+                .scrollContentBackground(.hidden)
                 .font(.regular16, lineHeight: .condensed)
                 .textInputAutocapitalization(.sentences)
                 .focused($messageTextFieldFocus)

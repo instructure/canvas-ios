@@ -18,28 +18,28 @@
 
 import SwiftUI
 
-class ListCellViewModel: ObservableObject {
+class OfflineListCellViewModel: ObservableObject {
 
-    let cellStyle: ListCellView.ListCellStyle
+    let cellStyle: OfflineListCellView.ListCellStyle
     let title: String
     let subtitle: String?
-    let selectionState: ListCellView.SelectionState
+    let selectionState: OfflineListCellView.SelectionState
     let isCollapsed: Bool?
     let selectionDidToggle: (() -> Void)?
     let collapseDidToggle: (() -> Void)?
     let removeItemPressed: (() -> Void)?
-    let state: ListCellView.State
+    let state: OfflineListCellView.State
 
-    init(cellStyle: ListCellView.ListCellStyle,
+    init(cellStyle: OfflineListCellView.ListCellStyle,
          title: String,
          subtitle: String? = nil,
-         selectionState: ListCellView.SelectionState = .deselected,
+         selectionState: OfflineListCellView.SelectionState = .deselected,
          isCollapsed: Bool? = nil,
          selectionDidToggle: (() -> Void)? = nil,
          collapseDidToggle: (() -> Void)? = nil,
          removeItemPressed: (() -> Void)? = nil,
          progress: Float? = nil,
-         state: ListCellView.State) {
+         state: OfflineListCellView.State) {
         self.cellStyle = cellStyle
         self.title = title
         self.subtitle = subtitle

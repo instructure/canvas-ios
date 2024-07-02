@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 workspace 'Canvas.xcworkspace'
 inhibit_all_warnings!
-platform :ios, '15.0'
+platform :ios, '16.0'
 require_relative './rn/Teacher/node_modules/react-native/scripts/react_native_pods'
 
 def firebase_pods

@@ -288,7 +288,7 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
         Just(false).eraseToAnyPublisher()
     }
 
-    func setSelected(selection: Core.CourseEntrySelection, selectionState: ListCellView.SelectionState) {
+    func setSelected(selection: Core.CourseEntrySelection, selectionState: OfflineListCellView.SelectionState) {
         lastSelected = (selection: selection, isSelected: selectionState == .selected ? true : false)
     }
 

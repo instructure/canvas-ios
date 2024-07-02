@@ -89,7 +89,7 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
             .eraseToAnyPublisher()
     }
 
-    func setSelected(selection: CourseEntrySelection, selectionState: ListCellView.SelectionState) {
+    func setSelected(selection: CourseEntrySelection, selectionState: OfflineListCellView.SelectionState) {
         var entries = mockData.value
 
         switch selection {

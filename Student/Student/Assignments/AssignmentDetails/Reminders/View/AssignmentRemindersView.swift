@@ -47,7 +47,6 @@ public struct AssignmentRemindersView: View {
             .background(Color.backgroundLightest)
             .confirmationAlert(isPresented: $viewModel.showingDeleteConfirmDialog,
                                presenting: viewModel.confirmAlert)
-            .invalidateIntrinsicContentSize(hostController: viewController)
             .animation(.default, value: viewModel.reminders)
             .compatibleGeometryGroup()
             .onAppear {
@@ -113,34 +112,6 @@ public struct AssignmentRemindersView: View {
 
     private var divider: some View {
         Color.borderMedium.frame(height: 0.5)
-    }
-}
-
-extension View {
-
-    /**
-     When the SwiftUI view size changes we need to update the hosting view's intrinsic size
-     so the stack view can resize itself and its children
-     */
-     @ViewBuilder
-    func invalidateIntrinsicContentSize(hostController: WeakViewController) -> some View {
-        if #available(iOS 16.0, *) {
-            self
-        } else {
-            self
-                .background(
-                    GeometryReader { proxy in
-                        Color.clear.preference(key: ViewSizeKey.self, value: proxy.size.height)
-                    })
-                .onPreferenceChange(ViewSizeKey.self) { _ in
-                    UIView.animate(withDuration: 0.3) {
-                        let hostView = hostController.view
-                        hostView.invalidateIntrinsicContentSize()
-                        hostView.superview?.setNeedsLayout()
-                        hostView.superview?.layoutIfNeeded()
-                    }
-                }
-        }
     }
 }
 
