@@ -217,7 +217,7 @@ public struct ListCellView: View {
                 Text(viewModel.accessibilitySelectionText)
             }
 
-            if viewModel.isCollapsed != nil {         
+            if viewModel.isCollapsed != nil {
                 Button {
                     viewModel.collapseDidToggle?()
                 } label: {
