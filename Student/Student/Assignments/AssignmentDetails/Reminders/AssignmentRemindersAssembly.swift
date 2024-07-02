@@ -29,7 +29,7 @@ enum AssignmentRemindersAssembly {
         // When the SwiftUI view size changes we need to update the hosting view's intrinsic size
         // so the stack view can resize itself and its children
         reminderSection.sizingOptions = [.intrinsicContentSize]
-        
+
         return reminderSection
     }
 

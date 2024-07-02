@@ -210,18 +210,23 @@ public struct ListCellView: View {
             .frame(minHeight: viewModel.cellHeight)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityAction(named: viewModel.accessibilitySelectionText) {
-            viewModel.selectionDidToggle?()
-        }
-        .if(viewModel.isCollapsed != nil) { view in
-            view.accessibilityAction(named: viewModel.accessibilityAccordionHeaderText) {
-                viewModel.collapseDidToggle?()
+        .accessibilityActions {
+            Button {
+                viewModel.selectionDidToggle?()
+            } label: {
+                Text(viewModel.accessibilitySelectionText)
             }
-        }
-        .if(viewModel.state.isError) { view in
-            view.accessibilityAction(named: Text("Remove item", bundle: .core)) {
-                viewModel.removeItemPressed?()
+
+            if viewModel.isCollapsed != nil {         
+                Button {
+                    viewModel.collapseDidToggle?()
+                } label: {
+                    Text(viewModel.accessibilityAccordionHeaderText)
+                }
             }
+
+            // viewModel.state.isError logic has been removed, because
+            // viewModel.removeItemPressed was never implemented.
         }
         .accessibility(label: Text(viewModel.accessibilityText))
     }
