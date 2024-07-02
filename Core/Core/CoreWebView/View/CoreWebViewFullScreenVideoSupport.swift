@@ -35,11 +35,6 @@ extension CoreWebView {
 
         public init(webView: WKWebView) {
             originalConstraints = (webView.superview?.constraintsAffecting(view: webView) ?? []) + webView.constraints
-
-            guard #available(iOS 16.0, *) else {
-                return
-            }
-
             fullScreenObservation = webView.observe(\.fullscreenState, options: []) { [weak self] webView, _  in
                 guard let self else { return }
 
