@@ -97,7 +97,7 @@ public class AllCoursesCellViewModel: ObservableObject {
             item.termName,
             item.roles,
             offlineText,
-            publishedText,
+            publishedText
         ]
         .compactMap { $0 }.joined(separator: ", ")
 

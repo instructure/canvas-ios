@@ -128,7 +128,7 @@ class K5HomeroomViewModelTests: CoreTestCase {
                                             id: "1",
                                             course_id: "1",
                                             user_id: "1"
-                                        ),
+                                        )
                                     ],
                                     homeroom_course: false
         )
@@ -146,7 +146,7 @@ class K5HomeroomViewModelTests: CoreTestCase {
         let mockRequest = GetAllAnnouncementsRequest(contextCodes: ["course_2", "course_1"], activeOnly: true, latestOnly: true)
         let mockResponse = [
             APIDiscussionTopic.make(context_code: "course_1", message: "message 1", posted_at: Date(timeIntervalSince1970: 74874), title: nonHomeroomTitle),
-            APIDiscussionTopic.make(context_code: "course_2", message: "message 2", posted_at: Date(timeIntervalSince1970: 74874), title: homeroomTitle),
+            APIDiscussionTopic.make(context_code: "course_2", message: "message 2", posted_at: Date(timeIntervalSince1970: 74874), title: homeroomTitle)
         ]
         api.mock(mockRequest, value: mockResponse)
     }
@@ -155,7 +155,7 @@ class K5HomeroomViewModelTests: CoreTestCase {
         let mockRequest = GetDashboardCardsRequest()
         let mockResponse = [
             APIDashboardCard.make(color: "#DEAD00", id: "1", image: "https://instructure.com", isHomeroom: false),
-            APIDashboardCard.make(id: "2", isHomeroom: true, shortName: "course2 name"),
+            APIDashboardCard.make(id: "2", isHomeroom: true, shortName: "course2 name")
         ]
         api.mock(mockRequest, value: mockResponse)
     }
@@ -163,7 +163,7 @@ class K5HomeroomViewModelTests: CoreTestCase {
     private func mockDueItems() {
         let mockRequest = GetK5HomeroomDueItemCount(courseIds: ["1"])
         let mockResponse = [
-            APIPlannable.make(course_id: "1", submissions: APIPlannable.Submissions.make(submitted: false)),
+            APIPlannable.make(course_id: "1", submissions: APIPlannable.Submissions.make(submitted: false))
         ]
         api.mock(mockRequest, value: mockResponse)
     }
@@ -173,7 +173,7 @@ class K5HomeroomViewModelTests: CoreTestCase {
         let mockResponse = [
             APIAssignment.make(course_id: "1", id: "1", planner_override: .make(dismissed: false)),
             APIAssignment.make(course_id: "1", id: "2", planner_override: .make(dismissed: true)),
-            APIAssignment.make(course_id: "1", id: "3", planner_override: nil),
+            APIAssignment.make(course_id: "1", id: "3", planner_override: nil)
         ]
         api.mock(mockRequest, value: mockResponse)
     }

@@ -90,7 +90,7 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
                 title: "Address",
                 description: "test address",
                 isRichContent: false
-            ),
+            )
         ])
 
         event.locationName = ""
@@ -101,7 +101,7 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
                 title: "Address",
                 description: "test address",
                 isRichContent: false
-            ),
+            )
         ])
 
         event.locationName = "test location"
@@ -112,7 +112,7 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
                 title: "Location",
                 description: "test location",
                 isRichContent: false
-            ),
+            )
         ])
     }
 

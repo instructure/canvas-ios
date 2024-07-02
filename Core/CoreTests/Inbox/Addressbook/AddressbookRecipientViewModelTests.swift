@@ -30,7 +30,7 @@ class AddressbookRecipientViewModelTests: CoreTestCase {
         let recipients: [SearchRecipient] = [
             .save(.make(id: "1", name: "Recipient 1", common_courses: ["Course 1": ["TeacherEnrollment"]]), filter: "", in: environment.database.viewContext),
             .save(.make(id: "2", name: "Recipient 2", common_courses: ["Course 1": ["StudentEnrollment"]]), filter: "", in: environment.database.viewContext),
-            .save(.make(id: "3", name: "Recipient 3", common_courses: ["Course 1": ["ObserverEnrollment"]]), filter: "", in: environment.database.viewContext),
+            .save(.make(id: "3", name: "Recipient 3", common_courses: ["Course 1": ["ObserverEnrollment"]]), filter: "", in: environment.database.viewContext)
         ]
         testee = AddressbookRecipientViewModel(
             router: environment.router,

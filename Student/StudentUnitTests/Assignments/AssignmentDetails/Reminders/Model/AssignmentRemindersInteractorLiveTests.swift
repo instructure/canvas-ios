@@ -55,7 +55,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
     func testLoadsRemindersForCurrentAssignment() {
         mockNotificationCenter.requests = [
             .make(),
-            UNNotificationRequest.make(id: "11", assignmentId: "22"),
+            UNNotificationRequest.make(id: "11", assignmentId: "22")
         ]
         let testee = AssignmentRemindersInteractorLive(notificationCenter: mockNotificationCenter)
 
@@ -73,7 +73,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         mockNotificationCenter.requests = [
             .make(id: "1", timeText: "3 minutes before", trigger: .init(minute: 57)),
             .make(id: "2", timeText: "1 minute before", trigger: .init(minute: 59)),
-            .make(id: "3", timeText: "2 minutes before", trigger: .init(minute: 58)),
+            .make(id: "3", timeText: "2 minutes before", trigger: .init(minute: 58))
         ]
         let testee = AssignmentRemindersInteractorLive(notificationCenter: mockNotificationCenter)
 
@@ -85,7 +85,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
             testee.reminders.value == [
                 .init(id: "2", title: "1 minute before"),
                 .init(id: "3", title: "2 minutes before"),
-                .init(id: "1", title: "3 minutes before"),
+                .init(id: "1", title: "3 minutes before")
             ]
         }
     }
@@ -197,7 +197,7 @@ extension UNNotificationRequest {
             UNNotificationContent.AssignmentReminderKeys.courseId.rawValue: courseId,
             UNNotificationContent.AssignmentReminderKeys.assignmentId.rawValue: assignmentId,
             UNNotificationContent.AssignmentReminderKeys.userId.rawValue: userId,
-            UNNotificationContent.AssignmentReminderKeys.triggerTimeText.rawValue: timeText,
+            UNNotificationContent.AssignmentReminderKeys.triggerTimeText.rawValue: timeText
         ]
         return UNNotificationRequest(
             identifier: id,

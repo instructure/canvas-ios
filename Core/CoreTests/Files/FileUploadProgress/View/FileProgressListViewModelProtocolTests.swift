@@ -26,7 +26,7 @@ class FileProgressListViewModelProtocolTests: XCTestCase {
             FileProgressListViewState.success.id,
             FileProgressListViewState.failed(message: "error message", error: nil).id,
             FileProgressListViewState.waiting.id,
-            FileProgressListViewState.uploading(progressText: "p", progress: 0.5).id,
+            FileProgressListViewState.uploading(progressText: "p", progress: 0.5).id
         ])
         XCTAssertEqual(IDs.count, 4)
     }

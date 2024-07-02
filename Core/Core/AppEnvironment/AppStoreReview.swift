@@ -106,7 +106,7 @@ public class AppStoreReview: NSObject {
             "viewAssignmentDate": getTime(forKey: viewAssignmentDateKey),
             "viewAssignmentCount": UserDefaults.standard.integer(forKey: viewAssignmentCountKey),
             "launchCount": UserDefaults.standard.integer(forKey: launchCountKey),
-            "fakeRequest": UserDefaults.standard.integer(forKey: fakeRequestKey),
+            "fakeRequest": UserDefaults.standard.integer(forKey: fakeRequestKey)
         ]
     }
 

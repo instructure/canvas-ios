@@ -61,7 +61,7 @@ class FilePickerTests: CoreTestCase, FilePickerDelegate {
             let imagePicker = router.presented as! UIImagePickerController
             XCTAssertEqual(imagePicker.sourceType, .camera)
             imagePicker.delegate?.imagePickerController?(mockPicker, didFinishPickingMediaWithInfo: [
-                .editedImage: UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil) as Any,
+                .editedImage: UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil) as Any
             ])
             XCTAssertEqual(try pickedURL?.checkResourceIsReachable(), true)
             XCTAssertNoThrow(try FileManager.default.removeItem(at: pickedURL!))
@@ -87,18 +87,18 @@ class FilePickerTests: CoreTestCase, FilePickerDelegate {
             let imagePicker = router.presented as! UIImagePickerController
             XCTAssertEqual(imagePicker.sourceType, .photoLibrary)
             imagePicker.delegate?.imagePickerController?(mockPicker, didFinishPickingMediaWithInfo: [
-                .originalImage: UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil) as Any,
+                .originalImage: UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil) as Any
             ])
             XCTAssertEqual(try pickedURL?.checkResourceIsReachable(), true)
             XCTAssertNoThrow(try FileManager.default.removeItem(at: pickedURL!))
             imagePicker.delegate?.imagePickerController?(mockPicker, didFinishPickingMediaWithInfo: [
-                .mediaURL: Bundle(for: FilePickerTests.self).url(forResource: "TestImage", withExtension: "png") as Any,
+                .mediaURL: Bundle(for: FilePickerTests.self).url(forResource: "TestImage", withExtension: "png") as Any
             ])
             XCTAssertEqual(try pickedURL?.checkResourceIsReachable(), true)
             XCTAssertNoThrow(try FileManager.default.removeItem(at: pickedURL!))
 
             imagePicker.delegate?.imagePickerController?(mockPicker, didFinishPickingMediaWithInfo: [
-                .mediaURL: URL(string: "bogus") as Any,
+                .mediaURL: URL(string: "bogus") as Any
             ])
             XCTAssertTrue(mockPicker.dismissed)
             XCTAssertEqual(alertMessage, "The file couldn’t be opened because the specified URL type isn’t supported.")

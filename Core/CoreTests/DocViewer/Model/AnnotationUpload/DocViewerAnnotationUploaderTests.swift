@@ -69,7 +69,7 @@ class DocViewerAnnotationUploaderTests: CoreTestCase {
         XCTAssertEqual(mockDelegate.callStack, [.saveStateChanged(isSaving: true),
                                                 .saveStateChanged(isSaving: true),
                                                 .saveStateChanged(isSaving: true),
-                                                .saveStateChanged(isSaving: false),
+                                                .saveStateChanged(isSaving: false)
         ])
     }
 
@@ -86,7 +86,7 @@ class DocViewerAnnotationUploaderTests: CoreTestCase {
 
         XCTAssertEqual(queue.tasks, [.delete(annotationID: "deleted1"), .delete(annotationID: "deleted2")])
         XCTAssertEqual(mockDelegate.callStack, [.saveStateChanged(isSaving: true),
-                                                .failedToSave,
+                                                .failedToSave
         ])
     }
 
@@ -101,7 +101,7 @@ class DocViewerAnnotationUploaderTests: CoreTestCase {
         XCTAssertEqual(mockDelegate.callStack, [.saveStateChanged(isSaving: true),
                                                 .failedToSave,
                                                 .saveStateChanged(isSaving: true),
-                                                .saveStateChanged(isSaving: false),
+                                                .saveStateChanged(isSaving: false)
         ])
     }
 }

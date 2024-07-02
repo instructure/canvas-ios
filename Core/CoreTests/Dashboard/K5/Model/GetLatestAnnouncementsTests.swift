@@ -25,7 +25,7 @@ class GetLatestAnnouncementsTests: CoreTestCase {
         let mockRequest = GetAllAnnouncementsRequest(contextCodes: ["course_2", "course_3", "course_1"], activeOnly: true, latestOnly: true)
         let mockResponse = [
             APIDiscussionTopic.make(context_code: "course_3", message: "message 3", posted_at: Date(timeIntervalSince1970: 74874), title: "title 3"),
-            APIDiscussionTopic.make(context_code: "course_1", message: "message 1", posted_at: Date(timeIntervalSince1970: 84874), title: "title 1"),
+            APIDiscussionTopic.make(context_code: "course_1", message: "message 1", posted_at: Date(timeIntervalSince1970: 84874), title: "title 1")
         ]
         api.mock(mockRequest, value: mockResponse)
         XCTAssertEqual(databaseClient.registeredObjects.count, 0)

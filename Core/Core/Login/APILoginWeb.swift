@@ -31,7 +31,7 @@ struct LoginWebRequest: APIRequestable {
             .value("client_id", clientID),
             .value("response_type", "code"),
             .value("redirect_uri", "https://canvas/login"),
-            .value("mobile", "1"),
+            .value("mobile", "1")
         ]
 
         if (authMethod == .canvasLogin) {
@@ -47,7 +47,7 @@ struct LoginWebRequest: APIRequestable {
 
     var headers: [String: String?] {
         var headers = [
-            HttpHeader.userAgent: UserAgent.safari.description,
+            HttpHeader.userAgent: UserAgent.safari.description
         ]
         if authMethod == .siteAdminLogin {
             headers[HttpHeader.cookie] = "canvas_sa_delegated=1"

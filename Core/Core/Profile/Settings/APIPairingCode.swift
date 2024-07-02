@@ -70,7 +70,7 @@ public struct PostAccountUserRequest: APIRequestable {
 
     public let headers: [String: String?] = [
         HttpHeader.accept: "application/json",
-        HttpHeader.authorization: nil,
+        HttpHeader.authorization: nil
     ]
 
     public var cachePolicy: URLRequest.CachePolicy {

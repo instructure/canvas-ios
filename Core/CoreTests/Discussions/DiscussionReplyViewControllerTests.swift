@@ -52,7 +52,7 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
                 .make(id: 1, user_id: 2, message: """
                 <p>Cube rule all the way.</p>
                 <p>Oreos are sandwiches.</p>
-                """, replies: []),
+                """, replies: [])
             ],
             new_entries: []
         ))

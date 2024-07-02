@@ -100,7 +100,7 @@ public class SideMenuPresentationController: UIPresentationController {
             dimmer.topAnchor.constraint(equalTo: containerView.topAnchor),
             dimmer.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             dimmer.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            dimmer.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            dimmer.leadingAnchor.constraint(equalTo: containerView.leadingAnchor)
         ])
         dimmer.addTarget(self, action: #selector(tapped), for: .primaryActionTriggered)
         dimmer.accessibilityLabel = String(localized: "Close", bundle: .core)

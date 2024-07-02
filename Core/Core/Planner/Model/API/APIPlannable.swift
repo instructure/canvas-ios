@@ -202,7 +202,7 @@ public struct GetPlannablesRequest: APIRequestable {
             .optionalValue("start_date", startDate?.isoString()),
             .optionalValue("end_date", endDate?.isoString()),
             .array("context_codes", contextCodes),
-            .value("filter", filter),
+            .value("filter", filter)
         ]
     }
 }

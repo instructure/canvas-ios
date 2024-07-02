@@ -33,7 +33,7 @@ class GetObserverAlertsTests: ParentTestCase {
                     format: "%K != %@",
                     #keyPath(ObserverAlert.workflowStateRaw),
                     "dismissed"
-                ),
+                )
             ]),
             orderBy: #keyPath(ObserverAlert.actionDate), ascending: false
         ))

@@ -67,7 +67,7 @@ class QuizSubmissionListItemTests: TeacherTestCase {
         let array: [QuizSubmissionListItem] = [
             QuizSubmissionListItem(id: "1", displayName: "Complete", name: "Complete", status: .complete, score: "5", avatarURL: nil),
             QuizSubmissionListItem(id: "2", displayName: "Untaken", name: "Untaken", status: .untaken, score: "5", avatarURL: nil),
-            QuizSubmissionListItem(id: "3", displayName: "Preview", name: "Preview", status: .preview, score: "5", avatarURL: nil),
+            QuizSubmissionListItem(id: "3", displayName: "Preview", name: "Preview", status: .preview, score: "5", avatarURL: nil)
         ]
         XCTAssertEqual(array.applyFilter(filter: .all).count, 3)
         XCTAssertEqual(array.applyFilter(filter: .submitted).count, 1)
@@ -79,7 +79,7 @@ class QuizSubmissionListItemTests: TeacherTestCase {
         let users = [QuizSubmissionUser.make(id: "1", in: databaseClient), QuizSubmissionUser.make(id: "2", in: databaseClient)]
         let submissions = [
             QuizSubmission.make(from: .make(id: "1", score: 2.66667, user_id: "1", workflow_state: .complete)),
-            QuizSubmission.make(from: .make(id: "2", score: 1.00001, user_id: "2", workflow_state: .complete)),
+            QuizSubmission.make(from: .make(id: "2", score: 1.00001, user_id: "2", workflow_state: .complete))
         ]
         let testee = QuizSubmissionListItem.make(users: users, submissions: submissions, isAnonymous: false)
 

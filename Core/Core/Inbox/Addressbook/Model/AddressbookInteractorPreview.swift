@@ -29,7 +29,7 @@ class AddressbookInteractorPreview: AddressbookInteractor {
     init(env: AppEnvironment) {
         self.recipients = CurrentValueSubject<[SearchRecipient], Never>([
             .make(id: "1", name: "Test user 1", in: env.database.viewContext),
-            .make(id: "2", name: "Test user 2", in: env.database.viewContext),
+            .make(id: "2", name: "Test user 2", in: env.database.viewContext)
         ])
     }
 

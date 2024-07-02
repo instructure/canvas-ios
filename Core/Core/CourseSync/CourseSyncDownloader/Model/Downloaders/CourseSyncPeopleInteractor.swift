@@ -33,7 +33,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             Self.fetchCourseColors(),
             Self.fetchCourse(context: context),
             Self.fetchSections(courseID: courseId),
-            Self.fetchUsers(context: context),
+            Self.fetchUsers(context: context)
         ]
             .zip()
             .mapToVoid()

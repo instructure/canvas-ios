@@ -44,11 +44,11 @@ class GetSubmissionCommentsTests: CoreTestCase {
             attempt: 2,
             submission_comments: [
                 APISubmissionComment.make(id: "1"),
-                APISubmissionComment.make(id: "2"),
+                APISubmissionComment.make(id: "2")
             ],
             submission_history: [
                 APISubmission.make(assignment_id: "2", attempt: 2, submission_type: .online_text_entry, user_id: "3"),
-                APISubmission.make(assignment_id: "2", attempt: 1, submission_type: .online_text_entry, user_id: "3"),
+                APISubmission.make(assignment_id: "2", attempt: 1, submission_type: .online_text_entry, user_id: "3")
             ],
             submission_type: .online_text_entry,
             user_id: "3"

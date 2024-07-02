@@ -312,7 +312,7 @@ class StudentButton: UIButton {
             avatarView.heightAnchor.constraint(equalToConstant: 48),
             avatarView.widthAnchor.constraint(equalToConstant: 48),
             heightAnchor.constraint(equalToConstant: 105),
-            widthAnchor.constraint(equalToConstant: 90),
+            widthAnchor.constraint(equalToConstant: 90)
         ])
     }
 }
@@ -360,7 +360,7 @@ class AddStudentButton: UIButton {
             icon.heightAnchor.constraint(equalToConstant: 20),
             icon.widthAnchor.constraint(equalToConstant: 20),
             heightAnchor.constraint(equalToConstant: 105),
-            widthAnchor.constraint(equalToConstant: 90),
+            widthAnchor.constraint(equalToConstant: 90)
         ])
     }
 }

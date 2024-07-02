@@ -44,7 +44,7 @@ class GetArcTests: CoreTestCase {
     func testWrite() throws {
         let response: [APIExternalTool] = [
             .make(id: "1", domain: "bad.instructure.com"),
-            .make(id: "2", domain: "arc.instructure.com"),
+            .make(id: "2", domain: "arc.instructure.com")
         ]
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
         let results: [ExternalTool] = databaseClient.fetch(useCase.scope.predicate)

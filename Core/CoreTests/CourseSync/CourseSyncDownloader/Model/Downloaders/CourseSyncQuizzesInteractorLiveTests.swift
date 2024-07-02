@@ -39,7 +39,7 @@ class CourseSyncQuizzesInteractorLiveTests: CoreTestCase {
         api.mock(GetQuizzes(courseID: "testCourse"),
                  value: [
                     .make(id: "testQuiz-1"),
-                    .make(id: "testQuiz-2"),
+                    .make(id: "testQuiz-2")
                  ]
         )
 

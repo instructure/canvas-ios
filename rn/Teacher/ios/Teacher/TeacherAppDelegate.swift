@@ -167,7 +167,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         if let url = response.notification.request.routeURL {
             openURL(url, userInfo: [
                 "forceRefresh": true,
-                "pushNotification": response.notification.request.content.userInfo["aps"] ?? [:],
+                "pushNotification": response.notification.request.content.userInfo["aps"] ?? [:]
             ])
         }
         completionHandler()
@@ -181,7 +181,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
             if let url = notification.routeURL {
                 openURL(url, userInfo: [
                     "forceRefresh": true,
-                    "pushNotification": aps,
+                    "pushNotification": aps
                 ])
             }
         }

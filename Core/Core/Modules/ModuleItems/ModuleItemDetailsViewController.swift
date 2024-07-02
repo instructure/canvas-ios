@@ -92,7 +92,7 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
             observations = syncNavigationBar(with: viewController)
             NotificationCenter.default.post(name: .moduleItemViewDidLoad, object: nil, userInfo: [
                 "moduleID": moduleID!,
-                "itemID": itemID!,
+                "itemID": itemID!
             ])
             if item?.completionRequirementType == .must_view, item?.completed == false, item?.lockedForUser == false {
                 markAsViewed()

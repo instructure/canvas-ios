@@ -66,7 +66,7 @@ class ComposeRecipientsView: UIView {
             editButton.heightAnchor.constraint(equalToConstant: 44),
             editButton.widthAnchor.constraint(equalToConstant: 44),
             editButton.topAnchor.constraint(equalTo: topAnchor, constant: 6),
-            trailingAnchor.constraint(equalTo: editButton.trailingAnchor, constant: 6),
+            trailingAnchor.constraint(equalTo: editButton.trailingAnchor, constant: 6)
         ])
     }
 
@@ -80,7 +80,7 @@ class ComposeRecipientsView: UIView {
         NSLayoutConstraint.activate([
             placeholder.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             placeholder.topAnchor.constraint(equalTo: topAnchor, constant: 19),
-            bottomAnchor.constraint(greaterThanOrEqualTo: placeholder.bottomAnchor, constant: 18),
+            bottomAnchor.constraint(greaterThanOrEqualTo: placeholder.bottomAnchor, constant: 18)
         ])
     }
 
@@ -92,7 +92,7 @@ class ComposeRecipientsView: UIView {
         addSubview(additionalRecipients)
         NSLayoutConstraint.activate([
             additionalRecipients.topAnchor.constraint(equalTo: topAnchor, constant: 19),
-            bottomAnchor.constraint(greaterThanOrEqualTo: additionalRecipients.bottomAnchor, constant: 18),
+            bottomAnchor.constraint(greaterThanOrEqualTo: additionalRecipients.bottomAnchor, constant: 18)
         ])
     }
 
@@ -176,7 +176,7 @@ class ComposeRecipientView: UIView {
             avatarView.heightAnchor.constraint(equalToConstant: 32),
             nameLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 8),
             roleLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-            roleLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 8),
+            roleLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 8)
         ])
     }
 

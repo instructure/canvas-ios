@@ -77,7 +77,7 @@ struct K5Preview {
                     subtitle: .init(text: "You've marked it as done", color: .ash, font: .regular12),
                     labels: [
                         .init(text: "REPLIES", color: .ash),
-                        .init(text: "REDO", color: .crimson),
+                        .init(text: "REDO", color: .crimson)
                     ],
                     score: "5 pts",
                     dueText: "Due: 11:59 PM",
@@ -92,7 +92,7 @@ struct K5Preview {
                     score: "5 pts",
                     dueText: "Due Yesterday",
                     route: nil,
-                    apiService: PlannerOverrideUpdater(api: AppEnvironment.shared.api, plannable: .make())),
+                    apiService: PlannerOverrideUpdater(api: AppEnvironment.shared.api, plannable: .make()))
             ]
 
             static let subjects = [
@@ -103,7 +103,7 @@ struct K5Preview {
                 K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "Physics", color: Color(hexString: "#6789AF")!,
                                                                       image: URL(string: "https://inst.prod.acquia-sites.com/sites/default/files/image/2021-01/Instructure%20Office.jpg")!,
                                                                       route: URL(string: "https://i.com"), shouldHideQuantitativeData: true), entries: entries),
-                K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "To Do", color: .electric, image: nil, route: nil, shouldHideQuantitativeData: true), entries: entries),
+                K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "To Do", color: .electric, image: nil, route: nil, shouldHideQuantitativeData: true), entries: entries)
             ]
 
             static let missingItems = [
@@ -124,7 +124,7 @@ struct K5Preview {
                     labels: [],
                     score: "5 pts",
                     dueText: "Due Yesterday",
-                    route: nil),
+                    route: nil)
             ]
 
             static let weeks = [
@@ -135,7 +135,7 @@ struct K5Preview {
                     K5ScheduleDayViewModel(weekday: "Thursday", date: "September 27", subjects: .empty),
                     K5ScheduleDayViewModel(weekday: "Friday", date: "September 28", subjects: .empty),
                     K5ScheduleDayViewModel(weekday: "Saturday", date: "September 29", subjects: .empty),
-                    K5ScheduleDayViewModel(weekday: "Sunday", date: "September 30", subjects: .empty),
+                    K5ScheduleDayViewModel(weekday: "Sunday", date: "September 30", subjects: .empty)
                 ]),
                 K5ScheduleWeekViewModel(weekRange: Date()..<Date(), isTodayButtonAvailable: false, days: [
                     K5ScheduleDayViewModel(weekday: "Monday", date: "October 1", subjects: .loading),
@@ -144,8 +144,8 @@ struct K5Preview {
                     K5ScheduleDayViewModel(weekday: "Thursday", date: "October 4", subjects: .empty),
                     K5ScheduleDayViewModel(weekday: "Friday", date: "October 5", subjects: .empty),
                     K5ScheduleDayViewModel(weekday: "Saturday", date: "October 6", subjects: .empty),
-                    K5ScheduleDayViewModel(weekday: "Sunday", date: "October 7", subjects: .empty),
-                ]),
+                    K5ScheduleDayViewModel(weekday: "Sunday", date: "October 7", subjects: .empty)
+                ])
             ]
 
             static let rootModel = K5ScheduleViewModel(weekModels: weeks)

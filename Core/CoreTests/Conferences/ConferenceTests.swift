@@ -67,7 +67,7 @@ class ConferenceTests: CoreTestCase {
             predicate: NSPredicate(format: "%K == %@", #keyPath(Conference.canvasContextID), "group_7"),
             order: [
                 NSSortDescriptor(key: #keyPath(Conference.isConcluded), ascending: true),
-                NSSortDescriptor(key: #keyPath(Conference.order), ascending: false, naturally: true),
+                NSSortDescriptor(key: #keyPath(Conference.order), ascending: false, naturally: true)
             ],
             sectionNameKeyPath: #keyPath(Conference.isConcluded)
         ))
@@ -81,7 +81,7 @@ class ConferenceTests: CoreTestCase {
             .make(id: "1"),
             .make(id: "2"),
             .make(ended_at: Clock.now, id: "3"),
-            .make(id: "4", started_at: Clock.now),
+            .make(id: "4", started_at: Clock.now)
         ]), urlResponse: nil, to: databaseClient)
         list = databaseClient.fetch(scope: useCase.scope)
         XCTAssertEqual(list.map { $0.id }, [ "4", "2", "1", "3" ])

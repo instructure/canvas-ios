@@ -36,7 +36,7 @@ class GetAlertThresholdRequestTests: XCTestCase {
     func testQuery() {
         let expected = [
             URLQueryItem(name: "per_page", value: "100"),
-            URLQueryItem(name: "student_id", value: studentID),
+            URLQueryItem(name: "student_id", value: studentID)
         ]
         XCTAssertEqual(req.queryItems, expected)
     }

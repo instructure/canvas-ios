@@ -28,7 +28,7 @@ class TodoListViewControllerTests: CoreTestCase {
         environment.app = .teacher
         api.mock(controller.colors, value: APICustomColors(custom_colors: [
             "course_1": "#f00",
-            "group_1": "#0f0",
+            "group_1": "#0f0"
         ]))
         api.mock(controller.courses, value: [.make()])
         api.mock(controller.groups, value: [.make()])
@@ -36,7 +36,7 @@ class TodoListViewControllerTests: CoreTestCase {
             .make(assignment: .make(due_at: Date(), id: "1"), course_id: "1", group_id: nil),
             .make(assignment: .make(due_at: Date().add(.day, number: 1), id: "2"), course_id: nil, group_id: "1"),
             .make(assignment: .make(due_at: Date().add(.day, number: 2), id: "3")),
-            .make(assignment: .make(due_at: nil, id: "4"), needs_grading_count: 2, type: .grading),
+            .make(assignment: .make(due_at: nil, id: "4"), needs_grading_count: 2, type: .grading)
         ])
     }
 

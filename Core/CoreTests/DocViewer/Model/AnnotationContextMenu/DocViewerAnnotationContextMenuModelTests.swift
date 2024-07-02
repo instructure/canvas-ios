@@ -86,7 +86,7 @@ class DocViewerAnnotationContextMenuModelTests: CoreTestCase {
         let testee = makeTestee(isAnnotatingEnabledInApp: true, isAPIEnabledAnnotations: true)
         let menu = testee.menu(for: [
                                         DocViewerInkAnnotation(),
-                                        DocViewerInkAnnotation(),
+                                        DocViewerInkAnnotation()
                                     ],
                                pageView: pageView,
                                basedOn: UIMenu(children: [deleteAction]),

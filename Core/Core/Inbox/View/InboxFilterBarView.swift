@@ -110,7 +110,7 @@ public struct InboxFilterBarView: View {
         var buttons: [ActionSheet.Button] = [
             .default(Text("All Courses", bundle: .core)) {
                 model.courseDidChange.send(nil)
-            },
+            }
         ]
         buttons.append(contentsOf: model.courses.map { course in
             .default(Text(course.name)) {

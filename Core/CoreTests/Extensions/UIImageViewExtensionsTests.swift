@@ -40,7 +40,7 @@ class UIImageViewExtensionsTests: CoreTestCase {
         let url = URL(string: "/")!
         let view = UIImageView()
         let image = UIImage.animatedImage(with: [
-            UIImage(data: Data(base64Encoded: "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")!)!,
+            UIImage(data: Data(base64Encoded: "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")!)!
         ], duration: 3)!
         let imageLoader = ImageLoader(url: url, frame: .zero) { _ in }
 

@@ -65,8 +65,8 @@ public class ErrorReportViewController: ScreenViewTrackableViewController {
         ItemPickerItem(
             title: String(localized: "Emergency", bundle: .core),
             subtitle: String(localized: "Extremely critical emergency", bundle: .core)
-        ),
-    ]), ]
+        )
+    ]) ]
 
     public static func create(env: AppEnvironment = .shared, type: ErrorReportType = .problem, error: NSError? = nil, subject: String? = nil) -> ErrorReportViewController {
         let controller = loadFromStoryboard()

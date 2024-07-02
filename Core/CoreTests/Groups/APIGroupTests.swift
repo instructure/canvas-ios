@@ -25,21 +25,21 @@ class APIGroupTests: XCTestCase {
         XCTAssertEqual(GetGroupsRequest(context: .course("2")).queryItems, [
             URLQueryItem(name: "include[]", value: "favorites"),
             URLQueryItem(name: "include[]", value: "can_access"),
-            URLQueryItem(name: "per_page", value: "100"),
+            URLQueryItem(name: "per_page", value: "100")
         ])
     }
 
     func testFavoriteGroupsRequest() {
         XCTAssertEqual(GetFavoriteGroupsRequest(context: .user("1")).path, "users/1/favorites/groups")
         XCTAssertEqual(GetFavoriteGroupsRequest(context: .user("1")).queryItems, [
-            URLQueryItem(name: "per_page", value: "100"),
+            URLQueryItem(name: "per_page", value: "100")
         ])
     }
 
     func testGetGroupUsersRequest() {
         XCTAssertEqual(GetGroupUsersRequest(groupID: "2").path, "groups/2/users")
         XCTAssertEqual(GetGroupUsersRequest(groupID: "2").queryItems, [
-            URLQueryItem(name: "include[]", value: "avatar_url"),
+            URLQueryItem(name: "include[]", value: "avatar_url")
         ])
     }
 

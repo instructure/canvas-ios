@@ -49,7 +49,7 @@ class OfflineSyncAccountsInteractorTests: XCTestCase {
             syncDisabledAccount,
             syncEnabledDateInFutureAccount,
             syncEnabledDateInPastAccount,
-            syncEnabledDateIsNowAccount,
+            syncEnabledDateIsNowAccount
         ]
 
         // WHEN

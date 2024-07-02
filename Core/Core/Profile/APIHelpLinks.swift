@@ -70,7 +70,7 @@ extension APIHelpLinks {
         default_help_links: [APIHelpLink] = [
             .instructorQuestion,
             .searchGuides,
-            .reportProblem,
+            .reportProblem
         ],
         custom_help_links: [APIHelpLink] = []
     ) -> APIHelpLinks {

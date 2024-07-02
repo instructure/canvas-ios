@@ -53,7 +53,7 @@ class GetEnvironmentFeatureFlagsTests: CoreTestCase {
         let response = [
             "send_usage_metrics": true,
             "new_discussions": false,
-            "react_discussions_post": true,
+            "react_discussions_post": true
         ]
 
         // UseCase
@@ -133,7 +133,7 @@ class GetEnvironmentFeatureFlagsTests: CoreTestCase {
         )
         let response = [
             "send_usage_metrics": false,
-            "new_discussions": true,
+            "new_discussions": true
         ]
         let useCase = GetEnvironmentFeatureFlags(context: context)
         useCase.write(
@@ -157,7 +157,7 @@ class GetEnvironmentFeatureFlagsTests: CoreTestCase {
         )
         let response = [
             "send_usage_metrics": true,
-            "new_discussions": false,
+            "new_discussions": false
         ]
         let useCase = GetEnvironmentFeatureFlags(context: context)
         useCase.write(

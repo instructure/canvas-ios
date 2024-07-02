@@ -103,7 +103,7 @@ struct AssignmentPickerView_Previews: PreviewProvider {
             .init(id: "0", name: "American Literature"),
             .init(id: "1", name: "History"),
             .init(id: "2", name: "Math"),
-            .init(id: "3", name: "Biology", notAvailableReason: "error"),
+            .init(id: "3", name: "Biology", notAvailableReason: "error")
         ]))
         dataModel.assignmentSelected(.init(id: "2", name: "Math"))
         return dataModel

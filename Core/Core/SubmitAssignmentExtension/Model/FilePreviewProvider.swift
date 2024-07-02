@@ -79,7 +79,7 @@ public class FilePreviewProvider {
             kCGImageSourceShouldCacheImmediately: true,
             kCGImageSourceCreateThumbnailWithTransform: true,
             kCGImageSourceCreateThumbnailFromImageIfAbsent: true,
-            kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels,
+            kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels
         ] as CFDictionary
 
         guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, imageSourceOptions),

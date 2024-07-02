@@ -28,8 +28,8 @@ class APISubmissionTests: CoreTestCase {
             "submission_history",
             "user",
             "rubric_assessment",
-            "group",
-        ]), ])
+            "group"
+        ]) ])
     }
 
     func testCreateSubmissionRequest() {
@@ -75,12 +75,12 @@ class APISubmissionTests: CoreTestCase {
         XCTAssertEqual(GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: false, include: []).query, [
             .perPage(100),
             .include([]),
-            .bool("grouped", false),
+            .bool("grouped", false)
         ])
         XCTAssertEqual(GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: true, include: []).query, [
             .perPage(100),
             .include([]),
-            .bool("grouped", true),
+            .bool("grouped", true)
         ])
         XCTAssertEqual(GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: true, include: GetSubmissionsRequest.Include.allCases).query, [
             .perPage(100),
@@ -91,9 +91,9 @@ class APISubmissionTests: CoreTestCase {
                 "total_scores",
                 "user",
                 "group",
-                "assignment",
+                "assignment"
             ]),
-            .bool("grouped", true),
+            .bool("grouped", true)
         ])
     }
 
@@ -103,7 +103,7 @@ class APISubmissionTests: CoreTestCase {
         XCTAssertEqual(request.query, [
             .perPage(3),
             .include(["assignment"]),
-            .bool("only_current_submissions", true),
+            .bool("only_current_submissions", true)
         ])
     }
 
@@ -119,12 +119,12 @@ class APISubmissionTests: CoreTestCase {
                 "status": "scored",
                 "similarity_score": 0,
                 "outcome_response": [
-                    "outcomes_tool_placement_url": "https://canvas.instructure.com/tool/1",
-                ],
+                    "outcomes_tool_placement_url": "https://canvas.instructure.com/tool/1"
+                ]
             ],
             "submission_1": [
-                "status": "scored",
-            ],
+                "status": "scored"
+            ]
         ]
         let data = try! JSONSerialization.data(withJSONObject: json, options: [])
         let turnItInData = try! JSONDecoder().decode(APITurnItInData.self, from: data)

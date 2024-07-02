@@ -57,12 +57,12 @@ public class MiniAssignment {
                             "edges": [
                                 [
                                     "section": ["id": "1", "name": "Section 1", "__typename": "Section"],
-                                    "__typename": "SectionEdge",
-                                ],
+                                    "__typename": "SectionEdge"
+                                ]
                             ],
-                            "__typename": "SectionConnection",
+                            "__typename": "SectionConnection"
                         ],
-                        "__typename": "Course",
+                        "__typename": "Course"
                     ] as [String: Any?],
                     "submissions": [
                         "edges": submissions.map { (submission: MiniSubmission) -> [String: Any?] in
@@ -84,19 +84,19 @@ public class MiniAssignment {
                                         "avatarUrl": user?.avatar_url?.rawValue.absoluteString,
                                         "name": user?.name,
                                         "pronouns": user?.pronouns,
-                                        "__typename": "User",
+                                        "__typename": "User"
                                     ] as [String: Any?],
-                                    "__typename": "Submission",
+                                    "__typename": "Submission"
                                 ],
-                                "__typename": "SubmissionEdge",
+                                "__typename": "SubmissionEdge"
                             ]
                         },
-                        "__typename": "SubmissionConnection",
+                        "__typename": "SubmissionConnection"
                     ],
                     "groupedSubmissions": nil,
-                    "__typename": "Assignment",
-                ],
-            ],
+                    "__typename": "Assignment"
+                ]
+            ]
         ]
     }
 }

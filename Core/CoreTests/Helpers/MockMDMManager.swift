@@ -26,15 +26,15 @@ extension MDMManager {
             "users": [[
                 "username": "apple",
                 "password": "titaniumium",
-                "host": "canvas.instructure.com",
-            ], ],
+                "host": "canvas.instructure.com"
+            ] ]
         ]
         UserDefaults.standard.set(defaults, forKey: MDMManager.MDMUserDefaultsKey)
     }
 
     static func mockNoUsers() {
         let defaults: [String: Any] = [
-            "enableLogin": true,
+            "enableLogin": true
         ]
         UserDefaults.standard.set(defaults, forKey: MDMManager.MDMUserDefaultsKey)
     }
@@ -45,17 +45,17 @@ extension MDMManager {
             "users": [
                 [
                     "username": "apple",
-                    "password": "titaniumium",
+                    "password": "titaniumium"
                 ],
                 [
                     "username": "apple",
-                    "host": "canvas.instructure.com",
+                    "host": "canvas.instructure.com"
                 ],
                 [
                     "password": "titaniumium",
-                    "host": "canvas.instructure.com",
-                ],
-            ],
+                    "host": "canvas.instructure.com"
+                ]
+            ]
         ]
         UserDefaults.standard.set(defaults, forKey: MDMManager.MDMUserDefaultsKey)
     }
@@ -64,7 +64,7 @@ extension MDMManager {
         let defaults: [String: Any] = [
             "enableLogin": true,
             "host": "canvas.instructure.com",
-            "authenticationProvider": "canvas",
+            "authenticationProvider": "canvas"
         ]
         UserDefaults.standard.set(defaults, forKey: MDMManager.MDMUserDefaultsKey)
     }

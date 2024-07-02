@@ -48,7 +48,7 @@ public class GetFolderByPath: CollectionUseCase {
     public var scope: Scope { Scope(
         predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Folder.canvasContextID), equals: scopeContextID),
-            NSPredicate(key: #keyPath(Folder.path), equals: path),
+            NSPredicate(key: #keyPath(Folder.path), equals: path)
         ]),
         orderBy: #keyPath(Folder.id)
     ) }

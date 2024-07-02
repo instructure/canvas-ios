@@ -40,7 +40,7 @@ class FileSubmissionComposerTests: CoreTestCase {
                                                     comment: "testComment",
                                                     files: [
                                                         tempFileURL,
-                                                        tempFileURL,
+                                                        tempFileURL
                                                     ])
         guard let submission = try? databaseClient.existingObject(with: submissionID) as? FileSubmission else {
             XCTFail("Submission not found")
@@ -72,7 +72,7 @@ class FileSubmissionComposerTests: CoreTestCase {
                                                     assignmentName: "testName",
                                                     comment: "testComment",
                                                     files: [
-                                                        URL(string: "/test")!,
+                                                        URL(string: "/test")!
                                                     ])
 
         guard let submission = try? databaseClient.existingObject(with: submissionID) as? FileSubmission else {
@@ -95,7 +95,7 @@ class FileSubmissionComposerTests: CoreTestCase {
                                                     assignmentName: "testName",
                                                     comment: "testComment",
                                                     files: [
-                                                        URL(string: "/test")!,
+                                                        URL(string: "/test")!
                                                     ])
         testee.deleteSubmission(submissionID: submissionID)
         drainMainQueue()

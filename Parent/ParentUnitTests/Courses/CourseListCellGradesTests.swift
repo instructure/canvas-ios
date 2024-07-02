@@ -57,7 +57,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: false,
-            current_grading_period_id: nil),
+            current_grading_period_id: nil)
         ], hide_final_grades: false))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "N/A")
     }
@@ -66,7 +66,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: false,
-            current_grading_period_id: nil),
+            current_grading_period_id: nil)
         ], hide_final_grades: false, settings: .make(restrict_quantitative_data: true)))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "N/A")
     }
@@ -77,7 +77,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             computed_current_score: nil,
             computed_current_grade: nil,
-            multiple_grading_periods_enabled: false),
+            multiple_grading_periods_enabled: false)
         ]))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "No Grade")
     }
@@ -86,7 +86,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             computed_current_score: nil,
             computed_current_grade: nil,
-            multiple_grading_periods_enabled: false),
+            multiple_grading_periods_enabled: false)
         ], settings: .make(restrict_quantitative_data: true)))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "No Grade")
     }
@@ -95,7 +95,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             computed_current_score: nil,
             computed_current_grade: "F",
-            multiple_grading_periods_enabled: false),
+            multiple_grading_periods_enabled: false)
         ]))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "F")
     }
@@ -104,7 +104,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             computed_current_score: nil,
             computed_current_grade: "F",
-            multiple_grading_periods_enabled: false),
+            multiple_grading_periods_enabled: false)
         ], settings: .make(restrict_quantitative_data: true)))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "F")
     }
@@ -113,7 +113,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             computed_current_score: 40,
             computed_current_grade: nil,
-            multiple_grading_periods_enabled: false),
+            multiple_grading_periods_enabled: false)
         ]))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "40%")
     }
@@ -122,7 +122,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             computed_current_score: 40,
             computed_current_grade: nil,
-            multiple_grading_periods_enabled: false),
+            multiple_grading_periods_enabled: false)
         ], settings: .make(restrict_quantitative_data: true)))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "N/A")
     }
@@ -131,7 +131,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             computed_current_score: 40,
             computed_current_grade: "C",
-            multiple_grading_periods_enabled: false),
+            multiple_grading_periods_enabled: false)
         ]))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "C   40%")
     }
@@ -140,7 +140,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             computed_current_score: 40,
             computed_current_grade: "C",
-            multiple_grading_periods_enabled: false),
+            multiple_grading_periods_enabled: false)
         ], settings: .make(restrict_quantitative_data: true)))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "C")
     }
@@ -151,7 +151,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             multiple_grading_periods_enabled: true,
             current_period_computed_current_score: 40,
-            current_period_computed_current_grade: "C"),
+            current_period_computed_current_grade: "C")
         ]))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "C   40%")
     }
@@ -160,7 +160,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             multiple_grading_periods_enabled: true,
             current_period_computed_current_score: 40,
-            current_period_computed_current_grade: "C"),
+            current_period_computed_current_grade: "C")
         ], settings: .make(restrict_quantitative_data: true)))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "C")
     }
@@ -171,7 +171,7 @@ class CourseListCellGradesTests: ParentTestCase {
             computed_current_grade: "C",
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: true,
-            current_grading_period_id: nil),
+            current_grading_period_id: nil)
         ]))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "C   40%")
     }
@@ -182,7 +182,7 @@ class CourseListCellGradesTests: ParentTestCase {
             computed_current_grade: "C",
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: true,
-            current_grading_period_id: nil),
+            current_grading_period_id: nil)
         ], settings: .make(restrict_quantitative_data: true)))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "C")
     }
@@ -191,7 +191,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: false,
-            current_grading_period_id: nil),
+            current_grading_period_id: nil)
         ]))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "N/A")
     }
@@ -200,7 +200,7 @@ class CourseListCellGradesTests: ParentTestCase {
         let course = Course.make(from: .make(enrollments: [.make(
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: false,
-            current_grading_period_id: nil),
+            current_grading_period_id: nil)
         ], settings: .make(restrict_quantitative_data: true)))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "N/A")
     }

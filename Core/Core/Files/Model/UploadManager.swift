@@ -350,7 +350,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                     guard let file = try? self.context.existingObject(with: objectID) as? File else { return }
                     guard let submission = response, error == nil else {
                         Analytics.shared.logEvent("submit_fileupload_failed", parameters: [
-                            "error": error?.localizedDescription ?? "unknown",
+                            "error": error?.localizedDescription ?? "unknown"
                         ])
                         Analytics.shared.logError(name: "File upload failed during submission", reason: error?.localizedDescription)
                         self.complete(file: file, error: error)
@@ -364,7 +364,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                     NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
                     if submission.late != true {
                         NotificationCenter.default.post(name: .celebrateSubmission, object: nil, userInfo: [
-                            "assignmentID": assignmentID,
+                            "assignmentID": assignmentID
                         ])
                     }
                     if let userID = file.userID, let batchID = file.batchID {
@@ -400,7 +400,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         if let error = error {
             Logger.shared.error(error)
             Analytics.shared.logEvent("fileupload_failed", parameters: [
-                "error": error.localizedDescription,
+                "error": error.localizedDescription
             ])
             Analytics.shared.logError(name: "File upload failed", reason: error.localizedDescription)
         }

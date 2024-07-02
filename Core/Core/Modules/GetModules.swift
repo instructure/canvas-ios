@@ -40,7 +40,7 @@ public class GetModules: UseCase {
             predicate: NSPredicate(format: "%K == %@", #keyPath(Module.courseID), courseID),
             order: [
                 NSSortDescriptor(key: #keyPath(Module.position), ascending: true),
-                NSSortDescriptor(key: #keyPath(Module.id), ascending: true),
+                NSSortDescriptor(key: #keyPath(Module.id), ascending: true)
             ])
     }
 

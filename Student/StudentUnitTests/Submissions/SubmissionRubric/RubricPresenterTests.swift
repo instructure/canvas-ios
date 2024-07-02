@@ -54,14 +54,14 @@ class RubricPresenterTests: StudentTestCase {
         let assignment = Assignment.make(from: .make(rubric: [
             .make(id: "1", ratings: [
                 .make(id: "1", points: 10),
-                .make(id: "2", points: 25),
-            ]),
+                .make(id: "2", points: 25)
+            ])
         ]))
         Course.make()
         ContextColor.make()
         Submission.make(from: .make(rubric_assessment: [
             "1": .make(points: 10.0, rating_id: "1"),
-            "2": .make(points: 25.0, rating_id: "2"),
+            "2": .make(points: 25.0, rating_id: "2")
         ]))
         return [
             RubricViewModel(
@@ -77,7 +77,7 @@ class RubricPresenterTests: StudentTestCase {
                 isCustomAssessment: false,
                 hideRubricPoints: false,
                 freeFormCriterionComments: false
-            ),
+            )
         ]
     }
 
@@ -128,7 +128,7 @@ class RubricPresenterTests: StudentTestCase {
             assignmentsStore.refreshExpectation,
             submissionsStore.refreshExpectation,
             colorsStore.refreshExpectation,
-            coursesStore.refreshExpectation,
+            coursesStore.refreshExpectation
         ], timeout: 0.1)
     }
 
@@ -139,14 +139,14 @@ class RubricPresenterTests: StudentTestCase {
 
     func testCustomGradeIsHandled() {
         Submission.make(from: .make(rubric_assessment: [
-            "1": .make(comments: "this is custom", points: 1.0, rating_id: "3"),
+            "1": .make(comments: "this is custom", points: 1.0, rating_id: "3")
         ]))
         Course.make()
         let assignment = Assignment.make(from: .make(rubric: [
             .make(id: "1", ratings: [
                 .make(id: "1", points: 10),
-                .make(id: "2", points: 25),
-            ]),
+                .make(id: "2", points: 25)
+            ])
         ]))
         ContextColor.make()
         let expected: [RubricViewModel] = [
@@ -163,7 +163,7 @@ class RubricPresenterTests: StudentTestCase {
                 isCustomAssessment: true,
                 hideRubricPoints: false,
                 freeFormCriterionComments: false
-            ),
+            )
         ]
 
         presenter.update()
@@ -175,14 +175,14 @@ class RubricPresenterTests: StudentTestCase {
 
     func testCustomGradeAndFreeFormCriterionCommentsTrue() {
         Submission.make(from: .make(rubric_assessment: [
-            "1": .make(comments: "this is custom", points: 1.0, rating_id: "2"),
+            "1": .make(comments: "this is custom", points: 1.0, rating_id: "2")
         ]))
         Course.make()
         let assignment = Assignment.make(from: .make(rubric: [
             .make(id: "1", ratings: [
                 .make(id: "1", points: 10),
-                .make(id: "2", points: 25),
-            ]),
+                .make(id: "2", points: 25)
+            ])
         ], rubric_settings: .make(free_form_criterion_comments: true)))
         ContextColor.make()
         let expected: [RubricViewModel] = [
@@ -199,7 +199,7 @@ class RubricPresenterTests: StudentTestCase {
                 isCustomAssessment: true,
                 hideRubricPoints: false,
                 freeFormCriterionComments: true
-            ),
+            )
         ]
 
         presenter.update()
@@ -211,14 +211,14 @@ class RubricPresenterTests: StudentTestCase {
 
     func testOnlyFreeFormCriterionComments() {
         Submission.make(from: .make(rubric_assessment: [
-            "1": .make(comments: "this is custom", points: nil, rating_id: "2"),
+            "1": .make(comments: "this is custom", points: nil, rating_id: "2")
         ]))
         Course.make()
         Assignment.make(from: .make(rubric: [
             .make(id: "1", ratings: [
                 .make(id: "1", points: 10),
-                .make(id: "2", points: 25),
-            ]),
+                .make(id: "2", points: 25)
+            ])
         ], rubric_settings: .make(free_form_criterion_comments: true)))
         ContextColor.make()
         presenter.update()

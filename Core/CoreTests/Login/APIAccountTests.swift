@@ -26,7 +26,7 @@ class APIAccountResultTests: XCTestCase {
         var json: [String: Any?] = [
             "domain": "scoe.instructure.com",
             "name": "SCOE",
-            "authentication_provider": "saml",
+            "authentication_provider": "saml"
         ]
         var data = try JSONSerialization.data(withJSONObject: json, options: [])
         var result = try decoder.decode(APIAccountResult.self, from: data)
@@ -59,10 +59,10 @@ class APIAccountResultTests: XCTestCase {
         XCTAssertEqual(GetAccountsSearchRequest(searchTerm: "").path, "https://canvas.instructure.com/api/v1/accounts/search")
         XCTAssertEqual(GetAccountsSearchRequest(searchTerm: "abcd").queryItems, [
             URLQueryItem(name: "per_page", value: "50"),
-            URLQueryItem(name: "search_term", value: "abcd"),
+            URLQueryItem(name: "search_term", value: "abcd")
         ])
         XCTAssertEqual(GetAccountsSearchRequest(searchTerm: "").headers, [
-            HttpHeader.authorization: nil,
+            HttpHeader.authorization: nil
         ])
     }
 }

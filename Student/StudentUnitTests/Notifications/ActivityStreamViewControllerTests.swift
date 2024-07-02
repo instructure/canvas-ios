@@ -29,14 +29,14 @@ class ActivityStreamViewControllerTests: StudentTestCase {
         super.setUp()
         api.mock(controller.colors, value: APICustomColors(custom_colors: [
             "course_1": "#f00",
-            "course_2": "#0f0",
+            "course_2": "#0f0"
         ]))
         api.mock(controller.courses, value: [.make(course_code: "Code"), .make(id: "2", course_code: "Code2")])
 
         api.mock(controller.activities, value: [
             APIActivity.make(id: "1", updated_at: mockNow.addDays(-2)),
             APIActivity.make(id: "2", title: "grouptitle", message: "groupMessage", updated_at: mockNow.addDays(-3), context_type: ContextType.group.rawValue, course_id: nil, group_id: "2"),
-            APIActivity.make(id: "3", title: "title2", updated_at: mockNow.addDays(-4), course_id: "2"),
+            APIActivity.make(id: "3", title: "title2", updated_at: mockNow.addDays(-4), course_id: "2")
         ])
         Clock.mockNow( mockNow )
     }

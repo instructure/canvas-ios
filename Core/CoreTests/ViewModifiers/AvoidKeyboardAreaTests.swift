@@ -35,13 +35,13 @@ class AvoidKeyboardAreaTests: CoreTestCase {
 
     func testPublisher() {
         NotificationCenter.default.post(name: UIApplication.keyboardWillShowNotification, object: nil, userInfo: [
-            UIResponder.keyboardFrameEndUserInfoKey: CGRect(x: 0, y: 0, width: 0, height: 100),
+            UIResponder.keyboardFrameEndUserInfoKey: CGRect(x: 0, y: 0, width: 0, height: 100)
         ])
         XCTAssertEqual(received, [100])
         NotificationCenter.default.post(name: UIApplication.keyboardWillHideNotification, object: nil, userInfo: [:])
         XCTAssertEqual(received, [100, 0])
         NotificationCenter.default.post(name: UIApplication.keyboardWillChangeFrameNotification, object: nil, userInfo: [
-            UIResponder.keyboardFrameEndUserInfoKey: CGRect(x: 0, y: 0, width: 0, height: 150),
+            UIResponder.keyboardFrameEndUserInfoKey: CGRect(x: 0, y: 0, width: 0, height: 150)
         ])
         XCTAssertEqual(received, [100, 0, 150])
         NotificationCenter.default.post(name: UIApplication.willResignActiveNotification, object: nil, userInfo: [:])
@@ -56,7 +56,7 @@ class AvoidKeyboardAreaTests: CoreTestCase {
         // Mostly just for coverage, until we figure out a good UI testing strategy
         XCTAssertNoThrow(hostSwiftUI(SwiftUI.Text(verbatim: "SwiftUI!").avoidKeyboardArea()))
         NotificationCenter.default.post(name: UIApplication.keyboardWillShowNotification, object: nil, userInfo: [
-            UIResponder.keyboardFrameEndUserInfoKey: CGRect(x: 0, y: 0, width: 0, height: 100),
+            UIResponder.keyboardFrameEndUserInfoKey: CGRect(x: 0, y: 0, width: 0, height: 100)
         ])
     }
 }

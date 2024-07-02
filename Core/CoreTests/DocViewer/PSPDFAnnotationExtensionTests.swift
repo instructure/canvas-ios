@@ -138,7 +138,7 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
     func testInk() {
         let apiAnnotation = model(type: .ink, color: "#00ffff", inklist: APIDocViewerInklist(gestures: [
             [APIDocViewerInkPoint(x: 1, y: 1, width: 1, opacity: 1), APIDocViewerInkPoint(x: 10, y: 10, width: 3, opacity: 1)],
-            [APIDocViewerInkPoint(x: 5, y: 5, width: 1, opacity: 1), APIDocViewerInkPoint(x: 10, y: 10, width: 2, opacity: 1)],
+            [APIDocViewerInkPoint(x: 5, y: 5, width: 1, opacity: 1), APIDocViewerInkPoint(x: 10, y: 10, width: 2, opacity: 1)]
         ]), width: 4.5)
         let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
@@ -186,13 +186,13 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
             APIDocViewerInkPoint(x: 10, y: 2, width: nil, opacity: nil),
             APIDocViewerInkPoint(x: 50, y: 0, width: nil, opacity: nil),
             APIDocViewerInkPoint(x: 90, y: -2, width: nil, opacity: nil),
-            APIDocViewerInkPoint(x: 100, y: 0, width: nil, opacity: nil),
+            APIDocViewerInkPoint(x: 100, y: 0, width: nil, opacity: nil)
         ]
         XCTAssertEqual(simplify(points, within: 1.99), [
             APIDocViewerInkPoint(x: 0, y: 0, width: nil, opacity: nil),
             APIDocViewerInkPoint(x: 10, y: 2, width: nil, opacity: nil),
             APIDocViewerInkPoint(x: 90, y: -2, width: nil, opacity: nil),
-            APIDocViewerInkPoint(x: 100, y: 0, width: nil, opacity: nil),
+            APIDocViewerInkPoint(x: 100, y: 0, width: nil, opacity: nil)
         ])
     }
 }

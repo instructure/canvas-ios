@@ -36,7 +36,7 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
 
         ("Black Holes Group", .group("1")),
         ("Cosmology Group", .group("2")),
-        ("From Planets to the Cosmos Group", .group("3")),
+        ("From Planets to the Cosmos Group", .group("3"))
     ] {
         didSet {
             isMockedDataChangedSinceTheLastLoad = true

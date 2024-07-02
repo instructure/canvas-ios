@@ -126,7 +126,7 @@ public struct PageEditorView: View {
                             title: String(localized: "Can Edit", bundle: .core),
                             sections: [ ItemPickerSection(items: options.map {
                                 ItemPickerItem(title: $0.string)
-                            }), ],
+                            }) ],
                             selected: options.firstIndex(of: editingRoles).flatMap {
                                 IndexPath(row: $0, section: 0)
                             },

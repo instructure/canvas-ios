@@ -98,7 +98,7 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
             moduleItems: [
                 .make(from: .make(id: "file-1", content: .file("file-1"))),
                 .make(from: .make(id: "quiz-1", content: .quiz("quiz-1"))),
-                .make(from: .make(id: "pages-1", content: .page("page-1"))),
+                .make(from: .make(id: "pages-1", content: .page("page-1")))
             ]
         ).sink()
 
@@ -122,9 +122,9 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
                     name: "module-1",
                     items: [
                         .make(id: "module-item-1", module_id: "module-1"),
-                        .make(id: "module-item-2", module_id: "module-1"),
+                        .make(id: "module-item-2", module_id: "module-1")
                     ]
-                ),
+                )
             ]
         )
     }
@@ -138,7 +138,7 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
             ),
             value: [
                 .make(id: "module-item-1"),
-                .make(id: "module-item-1"),
+                .make(id: "module-item-1")
             ]
         )
     }

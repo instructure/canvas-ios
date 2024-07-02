@@ -31,7 +31,7 @@ class GroupListInteractorLiveTests: CoreTestCase {
             GetAllCoursesGroupListUseCase(),
             value: [
                 .make(id: "1", name: "abc"),
-                .make(id: "2", name: "foe"),
+                .make(id: "2", name: "foe")
             ]
         )
         environment.app = .student
@@ -83,7 +83,7 @@ class GroupListInteractorLiveTests: CoreTestCase {
         api.mock(
             GetAllCoursesGroupListUseCase(),
             value: [
-                .make(id: "3", name: "xyz"),
+                .make(id: "3", name: "xyz")
             ]
         )
 

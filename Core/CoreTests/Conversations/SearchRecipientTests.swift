@@ -30,7 +30,7 @@ class SearchRecipientTests: CoreTestCase {
             type: .course,
             common_courses: [
                 "1": ["Teacher"],
-                "2": ["Student"],
+                "2": ["Student"]
             ])
         )
 
@@ -58,7 +58,7 @@ class SearchRecipientTests: CoreTestCase {
     func testHasRole() {
         let model = SearchRecipient.make(from: .make(common_courses: [
             "1": ["TeacherEnrollment"],
-            "2": ["StudentEnrollment"],
+            "2": ["StudentEnrollment"]
         ]))
         XCTAssertTrue(model.hasRole(.teacher, in: Context(.course, id: "1")))
         XCTAssertTrue(model.hasRole(.student, in: Context(.course, id: "2")))

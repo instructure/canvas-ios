@@ -24,7 +24,7 @@ extension FileUploadTarget {
         upload_url: URL = URL(string: "https://canvas.s3.bucket.com/bucket/1")!,
         upload_params: [String: String] = [
             "param1": "foo",
-            "param2": "bar",
+            "param2": "bar"
         ]
     ) -> FileUploadTarget {
         return FileUploadTarget(

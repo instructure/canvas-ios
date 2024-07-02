@@ -74,7 +74,7 @@ func docViewerConfigurationBuilder(_ builder: PDFConfigurationBuilder) {
         .square: [[.color]],
         .line: [[.color]],
         .strikeOut: [[]],
-        .freeText: [[.fontSize]],
+        .freeText: [[.fontSize]]
     ]
     builder.propertiesForAnnotations = properties
 

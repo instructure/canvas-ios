@@ -212,7 +212,7 @@ class GetAssignmentsTests: CoreTestCase {
             APIAssignment.make(id: "4", lock_at: Date.distantPast, submission_types: [.online_upload]),
             APIAssignment.make(id: "5", submission_types: [.online_upload], unlock_at: Date.distantFuture),
             APIAssignment.make(id: "6", locked_for_user: true, submission_types: [.online_upload]),
-            APIAssignment.make(id: "7", submission_types: [.none]),
+            APIAssignment.make(id: "7", submission_types: [.none])
         ]
         let getAssignments = GetSubmittableAssignments(courseID: "1")
         getAssignments.write(response: apiAssignments, urlResponse: nil, to: databaseClient)
@@ -337,7 +337,7 @@ class GetAssignmentsTests: CoreTestCase {
 
     func testItDeletesRubricRatings() {
         Assignment.make(from: .make(course_id: "2", id: "2", rubric: [
-            .make(ratings: [.make(id: "1")]),
+            .make(ratings: [.make(id: "1")])
         ]))
         var assignments: [Assignment] = databaseClient.fetch()
         var assignment = assignments.first
@@ -359,7 +359,7 @@ class GetAssignmentsTests: CoreTestCase {
 
     func testItChangesRatingsCorrectly() {
         Assignment.make(from: .make(course_id: "2", id: "2", rubric: [
-            .make(ratings: [.make(id: "1")]),
+            .make(ratings: [.make(id: "1")])
         ]))
 
         let apiAssignment = APIAssignment.make(

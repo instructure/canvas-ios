@@ -97,7 +97,7 @@ public struct GetContextUsersRequest: APIRequestable {
             .perPage(50),
             .include(["avatar_url", "enrollments"]),
             .optionalValue("enrollment_type", enrollment_type?.rawValue),
-            .optionalValue("search_term", search_term),
+            .optionalValue("search_term", search_term)
         ]
     }
 }

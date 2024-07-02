@@ -28,7 +28,7 @@ public struct GetMissingSubmissionsRequest: APIRequestable {
     public var query: [APIQueryItem] {[
         .array("course_ids", courseIds),
         .array("include", includes.map { $0.rawValue }),
-        .array("filter", ["current_grading_period", "submittable"]),
+        .array("filter", ["current_grading_period", "submittable"])
     ]}
 
     private let userId: String

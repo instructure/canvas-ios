@@ -25,7 +25,7 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
         super.setUp()
         let comments = [
             APICommentLibraryResponse.CommentBankItem(id: "1", comment: "First comment"),
-            APICommentLibraryResponse.CommentBankItem(id: "2", comment: "Second comment"),
+            APICommentLibraryResponse.CommentBankItem(id: "2", comment: "Second comment")
         ]
         let response = APICommentLibraryResponse(data: .init(user: .init(id: "1", commentBankItems: .init(nodes: comments))))
         api.mock(APICommentLibraryRequest(userId: "1"), value: response)
@@ -111,7 +111,7 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
             value: .make(
                 submission_comments: [
                     .make(id: "1", attempt: 1),
-                    .make(id: "2", attempt: 2),
+                    .make(id: "2", attempt: 2)
                 ]
             )
         )
@@ -147,7 +147,7 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
             value: .make(
                 submission_comments: [
                     .make(id: "1", attempt: 1),
-                    .make(id: "2", attempt: 2),
+                    .make(id: "2", attempt: 2)
                 ]
             )
         )
@@ -182,7 +182,7 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
             value: .make(
                 submission_comments: [
                     .make(id: "1", attempt: 1),
-                    .make(id: "2", attempt: 2),
+                    .make(id: "2", attempt: 2)
                 ]
             )
         )

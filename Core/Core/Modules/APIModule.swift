@@ -354,7 +354,7 @@ public struct GetModulesRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         var query: [APIQueryItem] = [
-            .include(include.map { $0.rawValue }),
+            .include(include.map { $0.rawValue })
         ]
         if let perPage = perPage {
             query.append(.perPage(perPage))
@@ -388,7 +388,7 @@ public struct GetModuleItemsRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         var query: [APIQueryItem] = [
-            .include(include.map { $0.rawValue }),
+            .include(include.map { $0.rawValue })
         ]
         if let perPage = perPage {
             query.append(.perPage(perPage))
@@ -416,7 +416,7 @@ public struct GetModuleItemRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         return [
-            .include(include.map { $0.rawValue }),
+            .include(include.map { $0.rawValue })
         ]
     }
 }
@@ -446,7 +446,7 @@ public struct GetModuleItemSequenceRequest: APIRequestable {
     public var query: [APIQueryItem] {
         return [
             .value("asset_type", assetType.rawValue),
-            .value("asset_id", assetID),
+            .value("asset_id", assetID)
         ]
     }
 }

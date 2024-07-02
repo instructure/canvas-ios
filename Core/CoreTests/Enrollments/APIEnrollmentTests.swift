@@ -39,7 +39,7 @@ class APIEnrollmentTests: XCTestCase {
             .include([GetEnrollmentsRequest.Include.avatar_url.rawValue]),
             .value("user_id", "1"),
             .value("grading_period_id", "2"),
-            .array("type", ["TeacherEnrollment"]),
+            .array("type", ["TeacherEnrollment"])
         ])
     }
 
@@ -51,7 +51,7 @@ class APIEnrollmentTests: XCTestCase {
             .value("per_page", "100"),
             .include([GetEnrollmentsRequest.Include.observed_users.rawValue, GetEnrollmentsRequest.Include.avatar_url.rawValue]),
             .array("state", expectedStates),
-            .array("role", ["ObserverEnrollment"]),
+            .array("role", ["ObserverEnrollment"])
         ])
     }
 }

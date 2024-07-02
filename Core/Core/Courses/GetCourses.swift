@@ -53,7 +53,7 @@ public class GetCourses: CollectionUseCase {
     public var scope: Scope {
         let order = [
             NSSortDescriptor(key: #keyPath(Course.name), ascending: true, naturally: true),
-            NSSortDescriptor(key: #keyPath(Course.id), ascending: true),
+            NSSortDescriptor(key: #keyPath(Course.id), ascending: true)
         ]
         let predicate: NSPredicate
         if showFavorites {
@@ -97,10 +97,10 @@ public class GetAllCourses: CollectionUseCase {
         var predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(format: "NONE %K IN %@", #keyPath(Course.enrollments.stateRaw), [EnrollmentState.invited.rawValue]),
             NSPredicate(format: "ANY %K != %@", #keyPath(Course.enrollments.stateRaw), EnrollmentState.deleted.rawValue),
-            NSPredicate(key: #keyPath(Course.isCourseDeleted), equals: false), ])
+            NSPredicate(key: #keyPath(Course.isCourseDeleted), equals: false) ])
         if AppEnvironment.shared.app == .student && AppEnvironment.shared.currentSession?.isFakeStudent == false {
             predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate,
-                                                                            NSPredicate(format: "%K == YES", #keyPath(Course.isPublished)), ])
+                                                                            NSPredicate(format: "%K == YES", #keyPath(Course.isPublished)) ])
         }
         return predicate
     }
@@ -109,7 +109,7 @@ public class GetAllCourses: CollectionUseCase {
         Scope(predicate: scopePredicate, order: [
             NSSortDescriptor(key: #keyPath(Course.isPastEnrollment), ascending: true),
             NSSortDescriptor(key: #keyPath(Course.name), ascending: true, naturally: true),
-            NSSortDescriptor(key: #keyPath(Course.id), ascending: true),
+            NSSortDescriptor(key: #keyPath(Course.id), ascending: true)
         ], sectionNameKeyPath: #keyPath(Course.isPastEnrollment))
     }
 
@@ -134,7 +134,7 @@ public class GetUserCourses: CollectionUseCase {
         predicate: NSPredicate(format: "ANY %K == %@", #keyPath(Course.enrollments.userID), userID),
         order: [
             NSSortDescriptor(key: #keyPath(Course.name), ascending: true, naturally: true),
-            NSSortDescriptor(key: #keyPath(Course.id), ascending: true),
+            NSSortDescriptor(key: #keyPath(Course.id), ascending: true)
         ]
     ) }
 }

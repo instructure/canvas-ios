@@ -38,7 +38,7 @@ public class GetModuleItemSequence: APIUseCase {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(ModuleItemSequence.courseID), equals: courseID),
             NSPredicate(key: #keyPath(ModuleItemSequence.assetTypeRaw), equals: assetType.rawValue),
-            NSPredicate(key: #keyPath(ModuleItemSequence.assetID), equals: assetID),
+            NSPredicate(key: #keyPath(ModuleItemSequence.assetID), equals: assetID)
         ])
         return Scope(predicate: predicate, orderBy: #keyPath(ModuleItemSequence.assetID))
     }

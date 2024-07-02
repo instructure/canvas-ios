@@ -62,10 +62,10 @@ private class InboxCoursePickerInteractorMock: InboxCoursePickerInteractor {
     public init(env: AppEnvironment) {
         self.courses = CurrentValueSubject<[Course], Never>([
             .save(.make(id: "1", name: "Course 1"), in: env.database.viewContext),
-            .save(.make(id: "2", name: "Course 2"), in: env.database.viewContext),
+            .save(.make(id: "2", name: "Course 2"), in: env.database.viewContext)
         ])
         self.groups = CurrentValueSubject<[Group], Never>([
-            .save(.make(id: "1", name: "Group 1"), in: env.database.viewContext),
+            .save(.make(id: "1", name: "Group 1"), in: env.database.viewContext)
         ])
     }
 

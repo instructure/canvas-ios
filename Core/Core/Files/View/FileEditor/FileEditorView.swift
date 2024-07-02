@@ -124,7 +124,7 @@ public struct FileEditorView: View {
                         title: String(localized: "Access", bundle: .core),
                         sections: [ ItemPickerSection(items: Access.allCases.map {
                             ItemPickerItem(title: $0.label)
-                        }), ],
+                        }) ],
                         selected: Access.allCases.firstIndex(of: access).flatMap {
                             IndexPath(row: $0, section: 0)
                         },
@@ -176,7 +176,7 @@ public struct FileEditorView: View {
                             title: String(localized: "Usage Right", bundle: .core),
                             sections: [ ItemPickerSection(items: UseJustification.allCases.map {
                                 ItemPickerItem(title: $0.label)
-                            }), ],
+                            }) ],
                             selected: UseJustification.allCases.firstIndex(of: justification).flatMap {
                                 IndexPath(row: $0, section: 0)
                             },
@@ -195,7 +195,7 @@ public struct FileEditorView: View {
                                 title: String(localized: "Creative Commons License", bundle: .core),
                                 sections: [ ItemPickerSection(items: License.allCases.map {
                                     ItemPickerItem(title: $0.label)
-                                }), ],
+                                }) ],
                                 selected: License.allCases.firstIndex(of: license).flatMap {
                                     IndexPath(row: $0, section: 0)
                                 },

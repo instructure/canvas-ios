@@ -27,7 +27,7 @@ class RouteHandlerTests: XCTestCase {
             .literal("b"),
             .param("c"),
             .literal("d"),
-            .splat("e"),
+            .splat("e")
         ])
     }
 
@@ -35,7 +35,7 @@ class RouteHandlerTests: XCTestCase {
         let route = RouteHandler("/a//b/:c/d/*e") { _, _, _ in return nil }
         XCTAssertEqual(route.match(.parse("/api/v1/a/b//c/d/e//f/g?h=%69&j=+k&l#mnop")), [
             "c": "c",
-            "e": "e/f/g",
+            "e": "e/f/g"
         ])
     }
 

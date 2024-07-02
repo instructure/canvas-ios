@@ -202,7 +202,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         let fileAnnotation = controller.annotationProvider!.annotationsForPage(at: 0)!.first!
         XCTAssertTrue(fileAnnotation.isFileAnnotation)
         let menuItems: [UIAction] = [
-            UIAction(title: "test", identifier: .PSPDFKit.editFreeText) { _ in },
+            UIAction(title: "test", identifier: .PSPDFKit.editFreeText) { _ in }
         ]
 
         // Call the delegate method with the file annotation and test if it returns no menu items

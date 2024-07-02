@@ -109,9 +109,9 @@ class QuizDetailsViewModelTests: CoreTestCase {
                         .make(
                             assignment_group_id: "AG1",
                             id: "3",
-                            name: "test quiz"),
+                            name: "test quiz")
                     ]
-                ),
+                )
             ]
         )
     }

@@ -22,7 +22,7 @@ import Core
 
 func attendanceError(message: String, code: Int = 0) -> Error {
     return NSError(domain: "com.instructure.rollcall", code: code, userInfo: [
-        NSLocalizedDescriptionKey: message,
+        NSLocalizedDescriptionKey: message
     ])
 }
 
@@ -172,7 +172,7 @@ class RollCallSession: NSObject, WKNavigationDelegate {
         api.makeRequest(request) { [self] (data, _, error) in
             guard let data = data else {
                 let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [
-                    NSLocalizedDescriptionKey: String(localized: "Error: No data returned from the rollcall api.", bundle: .teacher, comment: "rollcall status error"),
+                    NSLocalizedDescriptionKey: String(localized: "Error: No data returned from the rollcall api.", bundle: .teacher, comment: "rollcall status error")
                 ])
                 return completed(nil, error)
             }

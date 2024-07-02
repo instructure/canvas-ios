@@ -22,7 +22,7 @@ import Foundation
 extension URLResponse {
     public static var httpSuccess: URLResponse {
         return HTTPURLResponse(url: URL(string: "/")!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: [
-            HttpHeader.contentType: "application/json",
+            HttpHeader.contentType: "application/json"
         ])!
     }
 }
@@ -30,7 +30,7 @@ extension URLResponse {
 extension HTTPURLResponse {
     public convenience init(next: String) {
         let headers = [
-            "Link": "<\(next)>; rel=\"next\"; count=1",
+            "Link": "<\(next)>; rel=\"next\"; count=1"
         ]
         self.init(url: URL(string: "/")!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
     }

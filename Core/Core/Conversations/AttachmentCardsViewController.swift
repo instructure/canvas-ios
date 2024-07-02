@@ -136,7 +136,7 @@ class AttachmentCardView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             view.widthAnchor.constraint(equalToConstant: 120),
-            view.heightAnchor.constraint(equalToConstant: 104),
+            view.heightAnchor.constraint(equalToConstant: 104)
         ])
         return view
     }
@@ -182,7 +182,7 @@ class AttachmentCardView: UIView {
             NSLayoutConstraint.activate([
                 iconView.heightAnchor.constraint(equalToConstant: 32),
                 iconView.widthAnchor.constraint(equalToConstant: 32),
-                stack.centerYAnchor.constraint(equalTo: button.centerYAnchor),
+                stack.centerYAnchor.constraint(equalTo: button.centerYAnchor)
             ])
             fileStackView = stack
             return stack

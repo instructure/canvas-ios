@@ -33,7 +33,7 @@ class DocViewerSessionTests: CoreTestCase {
         let session = DocViewerSession {}
         let url = URL(string: "/")!
         let response = HTTPURLResponse(url: URL(string: "/")!, statusCode: 301, httpVersion: nil, headerFields: [
-            "Location": "https://doc.viewer/1/session1/view?query",
+            "Location": "https://doc.viewer/1/session1/view?query"
         ])
         let loginSession = LoginSession.make()
         api.mock(url: url, response: response)
@@ -84,7 +84,7 @@ class DocViewerSessionTests: CoreTestCase {
         session.metadata = .make()
         api.mock(GetDocViewerAnnotationsRequest(sessionID: ""), value: APIDocViewerAnnotations(data: [
             .make(id: "1", created_at: Date(timeIntervalSince1970: 1)),
-            .make(id: "2", created_at: Date(timeIntervalSince1970: 0)),
+            .make(id: "2", created_at: Date(timeIntervalSince1970: 0))
         ]))
         session.loadAnnotations()
         XCTAssertEqual(session.annotations?.count, 2)

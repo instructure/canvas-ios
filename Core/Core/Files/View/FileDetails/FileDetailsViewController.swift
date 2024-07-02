@@ -576,7 +576,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
             builder.sharingConfigurations = [ DocumentSharingConfiguration { builder in
                 builder.annotationOptions = .flatten
                 builder.pageSelectionOptions = .all
-            }, ]
+            } ]
 
             // Override the override
             builder.overrideClass(AnnotationToolbar.self, with: AnnotationToolbar.self)
@@ -603,7 +603,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
         navigationItem.rightBarButtonItems = [
             canEdit ? editButton : shareButton,
             annotate,
-            search,
+            search
         ]
         NotificationCenter.default.post(name: .init("FileViewControllerBarButtonItemsDidChange"), object: nil)
 

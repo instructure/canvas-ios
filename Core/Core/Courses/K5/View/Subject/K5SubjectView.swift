@@ -43,7 +43,7 @@ public struct K5SubjectView: View, ScreenViewTrackable {
                             features: [
                                 .disableZoom,
                                 .pullToRefresh(color: viewModel.courseColor),
-                                .invertColorsInDarkMode,
+                                .invertColorsInDarkMode
                             ],
                             configuration: viewModel.config)
                     .reload(on: viewModel.reloadWebView)

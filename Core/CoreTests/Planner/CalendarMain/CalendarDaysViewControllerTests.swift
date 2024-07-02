@@ -54,7 +54,7 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
             .make(plannable_id: "3", plannable_date: DateComponents(calendar: .current, year: 2020, month: 2, day: 15, hour: 12).date!),
             .make(plannable_id: "4", plannable_date: DateComponents(calendar: .current, year: 2020, month: 2, day: 16, hour: 12).date!),
             .make(plannable_id: "5", plannable_date: DateComponents(calendar: .current, year: 2020, month: 2, day: 16, hour: 13).date!),
-            .make(plannable_id: "6", plannable_date: DateComponents(calendar: .current, year: 2020, month: 2, day: 16, hour: 23, minute: 59).date!),
+            .make(plannable_id: "6", plannable_date: DateComponents(calendar: .current, year: 2020, month: 2, day: 16, hour: 23, minute: 59).date!)
         ])
         controller.view.layoutIfNeeded()
 

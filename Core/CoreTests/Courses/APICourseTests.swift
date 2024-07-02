@@ -38,7 +38,7 @@ class APICourseTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "settings"),
             URLQueryItem(name: "include[]", value: "grading_scheme"),
             URLQueryItem(name: "per_page", value: "10"),
-            URLQueryItem(name: "enrollment_state", value: "active"),
+            URLQueryItem(name: "enrollment_state", value: "active")
         ])
         XCTAssertEqual(GetCoursesRequest(enrollmentState: .completed, state: [.available, .completed, .unpublished], perPage: 20).queryItems, [
             URLQueryItem(name: "include[]", value: "banner_image"),
@@ -59,7 +59,7 @@ class APICourseTests: XCTestCase {
             URLQueryItem(name: "enrollment_state", value: "completed"),
             URLQueryItem(name: "state[]", value: "available"),
             URLQueryItem(name: "state[]", value: "completed"),
-            URLQueryItem(name: "state[]", value: "unpublished"),
+            URLQueryItem(name: "state[]", value: "unpublished")
         ])
         let req = GetCoursesRequest(enrollmentState: nil, state: nil, perPage: 10, studentID: "1")
         XCTAssertEqual(req.path, "users/1/courses")
@@ -81,7 +81,7 @@ class APICourseTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "total_scores"),
             URLQueryItem(name: "include[]", value: "observed_users"),
             URLQueryItem(name: "include[]", value: "settings"),
-            URLQueryItem(name: "include[]", value: "grading_scheme"),
+            URLQueryItem(name: "include[]", value: "grading_scheme")
         ])
     }
 

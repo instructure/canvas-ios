@@ -37,7 +37,7 @@ extension UNNotificationContent {
             AssignmentReminderKeys.assignmentId.rawValue: context.assignmentId,
             AssignmentReminderKeys.userId.rawValue: context.userId,
             AssignmentReminderKeys.triggerTimeText.rawValue: AssignmentReminderTimeFormatter().string(from: beforeTime) ?? "",
-            UNNotificationContent.RouteURLKey: "courses/\(context.courseId)/assignments/\(context.assignmentId)",
+            UNNotificationContent.RouteURLKey: "courses/\(context.courseId)/assignments/\(context.assignmentId)"
         ]
         return result
     }

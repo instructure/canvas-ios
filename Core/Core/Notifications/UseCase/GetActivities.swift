@@ -44,7 +44,7 @@ public class GetActivities: CollectionUseCase {
             return NSPredicate(format: "%K == %@", #keyPath(Activity.canvasContextIDRaw), contextID)
         }
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [pred, contextFilter])
-        let order = [ NSSortDescriptor(key: #keyPath(Activity.updatedAt), ascending: false), ]
+        let order = [ NSSortDescriptor(key: #keyPath(Activity.updatedAt), ascending: false) ]
         return Scope(predicate: predicate, order: order, sectionNameKeyPath: nil)
     }
 

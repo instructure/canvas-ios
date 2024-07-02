@@ -45,7 +45,7 @@ public struct QuizPreviewView: View {
                                 .script(viewModel.scrollToResultsJS),
                                 .onAppear(elementId: "preview_quiz_button") {
                                     markQuizLoaded()
-                                },
+                                }
                             ])
                     if !quizHTMLLoaded {
                         loadingIndicator.zIndex(1)

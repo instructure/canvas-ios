@@ -126,7 +126,7 @@ public struct DeveloperMenuView: View {
             DeveloperMenuItem("App Directory\n\(appDir)", icon: .toClipboard) {
                 UIPasteboard.general.string = appDir
                 snackBarViewModel.showSnack("App Directory copied to clipboard.")
-            },
+            }
         ])
 
         if let sharedDirectory {

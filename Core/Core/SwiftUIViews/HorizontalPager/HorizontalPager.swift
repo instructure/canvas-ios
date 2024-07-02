@@ -102,7 +102,7 @@ struct HorizontalPager_Previews: PreviewProvider {
         Color.red,
         Color.blue,
         Color.green,
-        Color.black,
+        Color.black
     ]
 
     static var previews: some View {

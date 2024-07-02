@@ -77,7 +77,7 @@ struct SubmissionGrader: View {
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignment.id),
                 NSPredicate(key: #keyPath(Submission.userID), equals: submission.userID),
-                NSPredicate(format: "%K != nil", #keyPath(Submission.submittedAt)),
+                NSPredicate(format: "%K != nil", #keyPath(Submission.submittedAt))
             ]),
             orderBy: #keyPath(Submission.attempt)
         ))
@@ -250,7 +250,7 @@ struct SubmissionGrader: View {
         return [
             String(localized: "Grades", bundle: .teacher),
             String(localized: "Comments", bundle: .teacher),
-            filesString,
+            filesString
         ]
     }
 

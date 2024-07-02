@@ -93,7 +93,7 @@ public struct SessionDefaults {
                     "Calendar": "/calendar",
                     "To-Do List": "/to-do",
                     "Notifications": "/notifications",
-                    "Messages": "/conversations",
+                    "Messages": "/conversations"
                 ]
                 if let path = map[legacy] {
                     self.landingPath = path

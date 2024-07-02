@@ -27,7 +27,7 @@ public class GetDashboardCourses: CollectionUseCase {
     public var scope: Scope {
         let order = [
             NSSortDescriptor(key: #keyPath(Course.name), ascending: true, naturally: true),
-            NSSortDescriptor(key: #keyPath(Course.id), ascending: true),
+            NSSortDescriptor(key: #keyPath(Course.id), ascending: true)
         ]
         let predicate = NSPredicate(format: "ANY %K == %@", #keyPath(Course.enrollments.stateRaw), enrollmentState.rawValue)
         return Scope(predicate: predicate, order: order)

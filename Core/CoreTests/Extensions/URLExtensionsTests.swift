@@ -137,7 +137,7 @@ class URLExtensionsTests: XCTestCase {
             URL(string: "/file")!,
             URL(string: "/file.txt")!,
             URL(string: "https://instructure.com/file.png")!,
-            URL(string: "/file.jpeg")!,
+            URL(string: "/file.jpeg")!
         ]
         XCTAssertEqual(urls.pathExtensions, Set(["txt", "jpeg", "png"]))
     }

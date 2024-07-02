@@ -68,10 +68,10 @@ public struct GetAccountsSearchRequest: APIRequestable {
     public var query: [APIQueryItem] {
         return [
             .perPage(50),
-            .value("search_term", searchTerm),
+            .value("search_term", searchTerm)
         ]
     }
     public let headers: [String: String?] = [
-        HttpHeader.authorization: nil,
+        HttpHeader.authorization: nil
     ]
 }

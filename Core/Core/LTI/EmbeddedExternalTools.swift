@@ -26,7 +26,7 @@ enum EmbeddedExternalTools {
         {
             $0.host?.contains("sharepoint.com") == true &&
             $0.path.contains("embed")
-        },
+        }
     ]
 
     /**

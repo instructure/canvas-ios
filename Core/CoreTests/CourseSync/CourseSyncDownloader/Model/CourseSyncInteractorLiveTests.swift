@@ -57,13 +57,13 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                     .init(id: "tab-conferences", name: "Conferences", type: .conferences),
                     .init(id: "tab-quizzes", name: "Quizzes", type: .quizzes),
                     .init(id: "tab-discussions", name: "Discussions", type: .discussions),
-                    .init(id: "tab-modules", name: "Modules", type: .modules),
+                    .init(id: "tab-modules", name: "Modules", type: .modules)
                 ],
                 files: [
                     .make(id: "file-1", displayName: "1", url: URL(string: "1.jpg")!, bytesToDownload: 1000),
-                    .make(id: "file-2", displayName: "2", url: URL(string: "2.jpg")!, bytesToDownload: 1000),
+                    .make(id: "file-2", displayName: "2", url: URL(string: "2.jpg")!, bytesToDownload: 1000)
                 ]
-            ),
+            )
         ]
     }
 
@@ -418,7 +418,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             contentInteractors: [
                 pagesInteractor,
                 assignmentsInteractor,
-                mockQuizzesInteractor,
+                mockQuizzesInteractor
             ],
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
@@ -445,7 +445,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             contentInteractors: [
                 pagesInteractor,
                 assignmentsInteractor,
-                mockDiscussionsInteractor,
+                mockDiscussionsInteractor
             ],
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
@@ -471,7 +471,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             brandThemeInteractor: BrandThemeDownloaderInteractorMock(),
             contentInteractors: [
                 pagesInteractor,
-                assignmentsInteractor,
+                assignmentsInteractor
             ],
             filesInteractor: filesInteractor,
             modulesInteractor: mockModulesInteractor,
@@ -499,13 +499,13 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                 hasFrontPage: true,
                 tabs: [.init(id: "tab-assignments", name: "Assignments", type: .assignments)],
                 files: []
-            ),
+            )
         ]
         let testee = CourseSyncInteractorLive(
             brandThemeInteractor: BrandThemeDownloaderInteractorMock(),
             contentInteractors: [
                 mockPagesInteractor,
-                assignmentsInteractor,
+                assignmentsInteractor
             ],
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
@@ -534,7 +534,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             contentInteractors: [
                 mockAssignmentsInteractor,
                 pagesInteractor,
-                mockDiscussionsInteractor,
+                mockDiscussionsInteractor
             ],
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
@@ -561,7 +561,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             contentInteractors: [
                 pagesInteractor,
                 assignmentsInteractor,
-                CourseSyncDiscussionsInteractorPublisherMock(),
+                CourseSyncDiscussionsInteractorPublisherMock()
             ],
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
@@ -591,7 +591,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             .make(from: .make(id: "discussion-id", content: .discussion("discussion-id"))),
             .make(from: .make(id: "file-id", content: .file("file-id"))),
             .make(from: .make(id: "quiz-id", content: .discussion("quiz-id"))),
-            .make(from: .make(id: "pages-id", content: .discussion("pages-id"))),
+            .make(from: .make(id: "pages-id", content: .discussion("pages-id")))
 
         ])
 
@@ -659,7 +659,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             brandThemeInteractor: BrandThemeDownloaderInteractorMock(),
             contentInteractors: [
                 pagesInteractor,
-                assignmentsInteractor,
+                assignmentsInteractor
             ],
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
@@ -695,7 +695,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             brandThemeInteractor: BrandThemeDownloaderInteractorMock(),
             contentInteractors: [
                 pagesInteractor,
-                assignmentsInteractor,
+                assignmentsInteractor
             ],
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
@@ -733,7 +733,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             brandThemeInteractor: BrandThemeDownloaderInteractorMock(),
             contentInteractors: [
-                assignmentsInteractor,
+                assignmentsInteractor
             ],
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
@@ -813,7 +813,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             brandThemeInteractor: BrandThemeDownloaderInteractorMock(),
             contentInteractors: [
-                assignmentsInteractor,
+                assignmentsInteractor
             ],
             filesInteractor: filesInteractor,
             modulesInteractor: modulesInteractor,
@@ -848,7 +848,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             brandThemeInteractor: BrandThemeDownloaderInteractorMock(),
             contentInteractors: [
-                assignmentsInteractor,
+                assignmentsInteractor
             ],
             filesInteractor: filesInteractor,
             modulesInteractor: CourseSyncModulesInteractorMock(),

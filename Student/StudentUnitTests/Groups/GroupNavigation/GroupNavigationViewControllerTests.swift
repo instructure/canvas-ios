@@ -32,7 +32,7 @@ class GroupNavigationViewControllerTests: StudentTestCase {
         api.mock(controller.tabs, value: [
             .make(id: "home", html_url: URL(string: "/home")!, position: 1),
             .make(id: "pages", html_url: URL(string: "/wiki")!, position: 2),
-            .make(id: "3", html_url: URL(string: "/tab")!, position: 3),
+            .make(id: "3", html_url: URL(string: "/tab")!, position: 3)
         ])
     }
 

@@ -173,7 +173,7 @@ struct FileProgressListView_Previews: PreviewProvider {
             .waiting,
             .uploading(progressText: "Uploading 10 MB of 13 MB", progress: 0.66),
             .failed(message: "error happened", error: "unknown error"),
-            .success,
+            .success
         ]
 
         ForEach(staticStates) {

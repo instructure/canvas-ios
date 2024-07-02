@@ -32,7 +32,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
         super.setUp()
         api.mock(controller.colors, value: .init(custom_colors: [
             "course_1": "#008800",
-            "group_1": "#000088",
+            "group_1": "#000088"
         ]))
         api.mock(GetCourse(courseID: "1"), value: .make())
         api.mock(GetGroup(groupID: "1"), value: .make())

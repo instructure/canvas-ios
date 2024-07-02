@@ -214,7 +214,7 @@ public struct GetConversationsRequest: APIRequestable {
         var q: [APIQueryItem] = [
             .include(include.map { $0.rawValue }),
             .perPage(perPage),
-            .optionalValue("scope", scope?.rawValue),
+            .optionalValue("scope", scope?.rawValue)
         ]
         if let filter = filter {
             q.append( .array("filter", [ filter ]) )

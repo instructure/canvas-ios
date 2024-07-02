@@ -26,7 +26,7 @@ extension UITextView {
 
         let attributes: [NSAttributedString.Key: Any] = [
             .paragraphStyle: paragraphStyle,
-            .font: font,
+            .font: font
         ]
 
         typingAttributes = attributes

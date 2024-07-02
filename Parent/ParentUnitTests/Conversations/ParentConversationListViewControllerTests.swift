@@ -35,7 +35,7 @@ class ParentConversationListViewControllerTests: ParentTestCase {
         Clock.mockNow(TestConstants.date2019)
         api.mock(controller.conversations, value: [
             .make(),
-            .make(id: "2", subject: "", workflow_state: .read, last_message: "last", last_message_at: TestConstants.date2018, context_name: "CTX"),
+            .make(id: "2", subject: "", workflow_state: .read, last_message: "last", last_message_at: TestConstants.date2018, context_name: "CTX")
         ])
     }
 

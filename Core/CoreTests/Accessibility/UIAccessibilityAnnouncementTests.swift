@@ -48,7 +48,7 @@ class UIAccessibilityAnnouncementTests: XCTestCase {
     private func postAnnouncementNotification(isSuccessful: Bool) {
         let userInfo: [String: Any] = [
             UIAccessibility.announcementStringValueUserInfoKey: "Test Announcement",
-            UIAccessibility.announcementWasSuccessfulUserInfoKey: isSuccessful,
+            UIAccessibility.announcementWasSuccessfulUserInfoKey: isSuccessful
         ]
         NotificationCenter.default.post(name: UIAccessibility.announcementDidFinishNotification, object: nil, userInfo: userInfo)
     }

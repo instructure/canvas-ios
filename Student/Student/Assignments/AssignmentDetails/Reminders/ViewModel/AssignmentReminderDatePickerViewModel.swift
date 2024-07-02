@@ -38,7 +38,7 @@ class AssignmentReminderDatePickerViewModel: ObservableObject {
         .init(minute: 30),
         .init(hour: 1),
         .init(day: 1),
-        .init(weekOfMonth: 1),
+        .init(weekOfMonth: 1)
     ]
     private let selectedTimeInterval: any Subject<DateComponents, Never>
 

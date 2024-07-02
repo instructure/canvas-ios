@@ -31,7 +31,7 @@ class APIMediaCommentTests: XCTestCase {
             .value("service", "uploadtoken"),
             .value("action", "upload"),
             .value("uploadTokenId", "3t4"),
-            .value("ks", "1ks2"),
+            .value("ks", "1ks2")
         ])
     }
 
@@ -63,7 +63,7 @@ class APIMediaCommentTests: XCTestCase {
             .value("service", "media"),
             .value("action", "addFromUploadedFile"),
             .value("uploadTokenId", "t"),
-            .value("ks", "k"),
+            .value("ks", "k")
         ])
     }
 

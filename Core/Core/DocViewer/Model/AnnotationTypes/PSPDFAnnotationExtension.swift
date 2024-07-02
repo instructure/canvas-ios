@@ -218,7 +218,7 @@ private func coordsFrom(_ rect: CGRect) -> [[Double]] {
         [ Double(rect.minX), Double(rect.minY) ],
         [ Double(rect.maxX), Double(rect.minY) ],
         [ Double(rect.minX), Double(rect.maxY) ],
-        [ Double(rect.maxX), Double(rect.maxY) ],
+        [ Double(rect.maxX), Double(rect.maxY) ]
     ]
 }
 

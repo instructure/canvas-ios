@@ -31,7 +31,7 @@ final class SelectCalendarViewModelTests: CoreTestCase {
             ("User 42", .user("42")),
             ("User 3", .user("3")),
             ("B Group", .group("0")),
-            ("A Group", .group("6")),
+            ("A Group", .group("6"))
         ]
     }
 

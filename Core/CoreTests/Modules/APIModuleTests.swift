@@ -48,7 +48,7 @@ class APIModuleItemTests: XCTestCase {
         XCTAssertEqual(GetModulesRequest(courseID: "1", include: [.items, .content_details], perPage: 10).queryItems, [
             URLQueryItem(name: "include[]", value: "items"),
             URLQueryItem(name: "include[]", value: "content_details"),
-            URLQueryItem(name: "per_page", value: "10"),
+            URLQueryItem(name: "per_page", value: "10")
         ])
     }
 
@@ -59,7 +59,7 @@ class APIModuleItemTests: XCTestCase {
             [
                 URLQueryItem(name: "include[]", value: "content_details"),
                 URLQueryItem(name: "include[]", value: "mastery_paths"),
-                URLQueryItem(name: "per_page", value: "10"),
+                URLQueryItem(name: "per_page", value: "10")
             ]
         )
     }
@@ -73,7 +73,7 @@ class APIModuleItemTests: XCTestCase {
             GetModuleItemSequenceRequest(courseID: "1", assetType: .moduleItem, assetID: "1").queryItems,
             [
                 URLQueryItem(name: "asset_type", value: GetModuleItemSequenceRequest.AssetType.moduleItem.rawValue),
-                URLQueryItem(name: "asset_id", value: "1"),
+                URLQueryItem(name: "asset_id", value: "1")
             ]
         )
     }

@@ -87,7 +87,7 @@ class CourseSyncAnnouncementsInteractorLiveTests: CoreTestCase {
                  value: [
                     .make(html_url: URL(string: "/courses/testCourse")!,
                           last_reply_at: Date(timeIntervalSince1970: 0),
-                          subscription_hold: "topic_is_announcement"),
+                          subscription_hold: "topic_is_announcement")
                  ])
         api.mock(GetEnabledFeatureFlags(context: .course("testCourse")),
                  value: [])

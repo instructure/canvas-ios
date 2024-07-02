@@ -24,7 +24,7 @@ public class AboutViewModel: ObservableObject {
         .domain(),
         .loginID(),
         .email(),
-        .version(),
+        .version()
     ]
     public let title = String(localized: "About", bundle: .core)
     public let entries: [AboutInfoEntry]

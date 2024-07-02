@@ -37,7 +37,7 @@ public class GetGlobalNavExternalToolsPlacements: CollectionUseCase {
                 enrollment.allowedGlobalLTIDomains.map {
                     NSPredicate(format: "%K == %@", #keyPath(ExternalToolLaunchPlacement.domain), $0)
                 }
-            ),
+            )
         ]), orderBy: #keyPath(ExternalToolLaunchPlacement.title), naturally: true)
     }
 

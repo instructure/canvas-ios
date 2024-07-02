@@ -32,8 +32,8 @@ class GetAssignmentsByGroupTests: CoreTestCase {
     func testFetchesAssignmentsWhenThereAreNoGradingPeriods() {
         let groups: [APIAssignmentGroup] = [
             .make(id: "1", name: "TestGroup", position: 1, assignments: [
-                .make(assignment_group_id: "1", grading_type: .points, id: "1", name: "Points", position: 1),
-            ]),
+                .make(assignment_group_id: "1", grading_type: .points, id: "1", name: "Points", position: 1)
+            ])
         ]
         let groupsRequest = GetAssignmentGroupsRequest(
             courseID: "tc",
@@ -62,8 +62,8 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         // Grading period 1 assignment and group
         let groups1: [APIAssignmentGroup] = [
             .make(id: "1", name: "TestGroup1", position: 1, assignments: [
-                .make(assignment_group_id: "1", grading_type: .points, id: "1", name: "Points1", position: 1),
-            ]),
+                .make(assignment_group_id: "1", grading_type: .points, id: "1", name: "Points1", position: 1)
+            ])
         ]
         let groupsRequest1 = GetAssignmentGroupsRequest(
             courseID: "tc",
@@ -79,8 +79,8 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         // Grading period 2 assignment and group
         let groups2: [APIAssignmentGroup] = [
             .make(id: "2", name: "TestGroup2", position: 2, assignments: [
-                .make(assignment_group_id: "2", grading_type: .points, id: "2", name: "Points2", position: 1),
-            ]),
+                .make(assignment_group_id: "2", grading_type: .points, id: "2", name: "Points2", position: 1)
+            ])
         ]
         let groupsRequest2 = GetAssignmentGroupsRequest(
             courseID: "tc",
@@ -98,7 +98,7 @@ class GetAssignmentsByGroupTests: CoreTestCase {
             gradingPeriodsCalled.fulfill()
             return ([
                 .make(id: "g1", title: "GP1"),
-                .make(id: "g2", title: "GP2"),
+                .make(id: "g2", title: "GP2")
              ], nil, nil)
         }
     }
@@ -151,7 +151,7 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         let groups: [APIAssignmentGroup] = [
             .make(id: "9732", name: "Test Assignment Group", position: 1, assignments: [APIAssignment.make(assignment_group_id: "9732", id: "63603", name: "File Upload", position: 1)]),
             .make(id: "9734", name: "Middle Group", position: 2, assignments: [APIAssignment.make(assignment_group_id: "9734", id: "63604", name: "File Upload 2", position: 1)]),
-            .make(id: "9733", name: "Test Assignment Group", position: 3, assignments: [APIAssignment.make(assignment_group_id: "9733", id: "63606", name: "File Upload 3", position: 1)]),
+            .make(id: "9733", name: "Test Assignment Group", position: 3, assignments: [APIAssignment.make(assignment_group_id: "9733", id: "63606", name: "File Upload 3", position: 1)])
         ]
         let result = [GetAssignmentsByGroup.AssignmentGroupsByGradingPeriod(gradingPeriod: nil, assignmentGroups: groups)]
 
@@ -166,8 +166,8 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         let groups: [APIAssignmentGroup] = [
             .make(id: "1", name: "Test", position: 1, assignments: [
                 .make(assignment_group_id: "1", grading_type: .points, id: "1", name: "Points", position: 1),
-                .make(assignment_group_id: "1", grading_type: .not_graded, id: "2", name: "Not Graded", position: 2),
-            ]),
+                .make(assignment_group_id: "1", grading_type: .not_graded, id: "2", name: "Not Graded", position: 2)
+            ])
         ]
         let result = [GetAssignmentsByGroup.AssignmentGroupsByGradingPeriod(gradingPeriod: nil, assignmentGroups: groups)]
 

@@ -105,6 +105,6 @@ public struct GetBrandVariablesRequest: APIRequestable {
 
     public let path = "brand_variables"
     public let headers: [String: String?] = [
-        HttpHeader.authorization: nil,
+        HttpHeader.authorization: nil
     ]
 }

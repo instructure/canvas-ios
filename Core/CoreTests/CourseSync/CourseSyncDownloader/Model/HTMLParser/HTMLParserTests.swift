@@ -190,7 +190,7 @@ class HTMLParserTests: CoreTestCase {
                                         rating_sum: nil,
                                         replies: nil,
                                         attachment: APIFile.make(id: "2", url: URL(string: "https://adamdomonkos.instructure.com/files/2")!), deleted: nil)
-                                ),
+                                )
         ]
         Just(discussionEntries)
             .setFailureType(to: Error.self)
@@ -214,7 +214,7 @@ class HTMLParserTests: CoreTestCase {
                                         assignment_id: nil,
                                         attachments: [
                                             APIFile.make(id: "1", url: URL(string: "https://adamdomonkos.instructure.com/files/1")!),
-                                            APIFile.make(id: "2", url: URL(string: "https://adamdomonkos.instructure.com/files/2")!),
+                                            APIFile.make(id: "2", url: URL(string: "https://adamdomonkos.instructure.com/files/2")!)
                                         ],
                                         author: nil,
                                         can_unpublish: nil,
@@ -244,7 +244,7 @@ class HTMLParserTests: CoreTestCase {
                                         subscription_hold: nil,
                                         unread_count: nil
                                     )
-                                ),
+                                )
         ]
         Just(discussionTopics)
             .setFailureType(to: Error.self)
@@ -282,10 +282,10 @@ class HTMLParserTests: CoreTestCase {
                                                 rating_sum: nil,
                                                 replies: nil,
                                                 attachment: APIFile.make(id: "2", url: URL(string: "https://adamdomonkos.instructure.com/files/2")!), deleted: nil
-                                            ),
+                                            )
                                         ],
                                         attachment: APIFile.make(id: "1", url: URL(string: "https://adamdomonkos.instructure.com/files/1")!), deleted: nil)
-                                ),
+                                )
         ]
         Just(discussionEntries)
             .setFailureType(to: Error.self)

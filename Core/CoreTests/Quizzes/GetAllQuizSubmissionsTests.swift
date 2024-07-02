@@ -44,7 +44,7 @@ class GetAllQuizSubmissionsTest: CoreTestCase {
         let useCase = GetAllQuizSubmissions(courseID: courseID, quizID: quizID)
         let quizSubmissions: [APIQuizSubmission] = [
             .make(id: "1", quiz_id: ID(quizID), user_id: "1", workflow_state: .complete),
-            .make(id: "2", quiz_id: ID(quizID), user_id: "2", workflow_state: .pending_review),
+            .make(id: "2", quiz_id: ID(quizID), user_id: "2", workflow_state: .pending_review)
         ]
         useCase.write(response: .init(quiz_submissions: quizSubmissions, submissions: nil), urlResponse: nil, to: databaseClient)
         XCTAssertNoThrow(try databaseClient.save())

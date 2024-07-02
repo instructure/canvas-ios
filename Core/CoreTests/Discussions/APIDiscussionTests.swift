@@ -24,7 +24,7 @@ class APIDiscussionTests: XCTestCase {
 
     func testPostDiscussionTopicRequest() {
         let request = PostDiscussionTopicRequest(context: context, form: [
-            .title: .string("Sorted"),
+            .title: .string("Sorted")
         ])
 
         XCTAssertEqual(request.path, "courses/1/discussion_topics")
@@ -126,7 +126,7 @@ class GetDiscussionTopicRequestTests: XCTestCase {
     func testQuery() {
         let request = GetDiscussionTopicRequest(context: .course("1"), topicID: "2", include: [.allDates, .overrides, .sections, .sectionsUserCount])
         XCTAssertEqual(request.query, [
-            .include(["all_dates", "overrides", "sections", "section_user_count"]),
+            .include(["all_dates", "overrides", "sections", "section_user_count"])
         ])
     }
 }
@@ -156,7 +156,7 @@ class ListDiscussionTopicsRequestTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "all_dates"),
             URLQueryItem(name: "include[]", value: "overrides"),
             URLQueryItem(name: "include[]", value: "sections"),
-            URLQueryItem(name: "include[]", value: "section_user_count"),
+            URLQueryItem(name: "include[]", value: "section_user_count")
         ])
     }
 }
@@ -173,7 +173,7 @@ class GetAllAnnouncementsRequestTests: XCTestCase {
         XCTAssertEqual(request.query, [
             .array("context_codes", ["1", "2"]),
             .optionalBool("active_only", nil),
-            .optionalBool("latest_only", nil),
+            .optionalBool("latest_only", nil)
         ])
     }
 
@@ -182,7 +182,7 @@ class GetAllAnnouncementsRequestTests: XCTestCase {
         XCTAssertEqual(request.query, [
             .array("context_codes", ["1", "2"]),
             .optionalBool("active_only", true),
-            .optionalBool("latest_only", false),
+            .optionalBool("latest_only", false)
         ])
     }
 }

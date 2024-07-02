@@ -59,12 +59,12 @@ class AssignmentPickerListServiceTests: CoreTestCase {
             mockAssignment(id: "A1", name: "unknown submission type"),
             mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
             mockAssignment(id: "A3", isLocked: true, name: "online upload, locked", submission_types: [.online_upload]),
-            mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool]),
+            mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool])
         ]))
         testee.courseID = "successID"
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(receivedResult, .success([
-            .init(id: "A2", name: "online upload", allowedExtensions: []),
+            .init(id: "A2", name: "online upload", allowedExtensions: [])
         ]))
     }
 
@@ -74,7 +74,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
 
         api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
             mockAssignment(id: "A1", name: "online upload", submission_types: [.online_upload]),
-            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
+            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload])
         ]))
         testee.courseID = "successID"
         waitForExpectations(timeout: 0.1)

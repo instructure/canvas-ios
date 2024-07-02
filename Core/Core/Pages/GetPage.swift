@@ -41,7 +41,7 @@ public struct GetPage: UseCase {
         // Unset previous flags to ensure we get the new front page
         let frontPages: [Page] = context.fetch(NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Page.contextID), equals: self.context.canvasContextID),
-            NSPredicate(format: "%K == true", #keyPath(Page.isFrontPage)),
+            NSPredicate(format: "%K == true", #keyPath(Page.isFrontPage))
         ]))
         for front in frontPages {
             front.isFrontPage = false

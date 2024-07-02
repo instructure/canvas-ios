@@ -32,7 +32,7 @@ class DashboardViewControllerTests: ParentTestCase {
                 short_name: "Short Name",
                 pronouns: "Pro/Noun"
             )),
-            .make(observed_user: .make(id: "2")),
+            .make(observed_user: .make(id: "2"))
         ]
         api.mock(GetObservedStudents(observerID: "1"), value: students)
         api.mock(GetContextPermissionsRequest(context: .account("self"), permissions: [.becomeUser]), value: APIPermissions.make())
@@ -126,7 +126,7 @@ class DashboardViewControllerTests: ParentTestCase {
         let students: [APIEnrollment] = [
             .make(observed_user: .make(id: "2")),
             .make(observed_user: .make(id: "3", name: "Full Name", short_name: "User 3")),
-            .make(observed_user: .make(id: "4")),
+            .make(observed_user: .make(id: "4"))
         ]
         api.mock(GetObservedStudents(observerID: "1"), value: students)
 
@@ -143,7 +143,7 @@ class DashboardViewControllerTests: ParentTestCase {
         let students: [APIEnrollment] = [
             .make(observed_user: .make(id: "2", name: "Full Name", short_name: "User 2")),
             .make(observed_user: .make(id: "3")),
-            .make(observed_user: .make(id: "4")),
+            .make(observed_user: .make(id: "4"))
         ]
         api.mock(GetObservedStudents(observerID: "1"), value: students)
 

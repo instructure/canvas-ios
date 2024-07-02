@@ -128,7 +128,7 @@ class APIRequestableTests: XCTestCase {
         let form: APIFormData? = [
             (key: "string", value: .string("abcde")),
             (key: "data", value: .data(filename: "data.txt", type: "text/plain", data: "hi".data(using: .utf8)!)),
-            (key: "file", value: .file(filename: "file.gif", type: "image/gif", at: URL(string: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==")!)),
+            (key: "file", value: .file(filename: "file.gif", type: "image/gif", at: URL(string: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==")!))
         ]
     }
 
@@ -219,7 +219,7 @@ class APIRequestableTests: XCTestCase {
         let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
         let next = "https://cgnuonline-eniversity.edu/api/v1/date?page=3"
         let headers = [
-            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1"
         ]
         let response = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
         XCTAssertEqual(GetDate().getNext(from: response)?.path, next)
@@ -229,7 +229,7 @@ class APIRequestableTests: XCTestCase {
     func testGetNextNone() {
         let curr = "https://cgnuonline-eniversity.edu/api/v1/date"
         let headers = [
-            "Link": "<\(curr)>; rel=\"current\"",
+            "Link": "<\(curr)>; rel=\"current\""
         ]
         let response = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
         XCTAssertNil(GetDate().getNext(from: response))

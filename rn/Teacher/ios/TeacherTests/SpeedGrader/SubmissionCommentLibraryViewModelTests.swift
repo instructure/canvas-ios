@@ -25,7 +25,7 @@ class SubmissionCommentLibraryViewModelTests: TeacherTestCase {
     override func setUp() {
         super.setUp()
         let comments = [APICommentLibraryResponse.CommentBankItem(id: "1", comment: "First comment"),
-                        APICommentLibraryResponse.CommentBankItem(id: "2", comment: "Second comment"), ]
+                        APICommentLibraryResponse.CommentBankItem(id: "2", comment: "Second comment") ]
         let response =  APICommentLibraryResponse(data: .init(user: .init(id: "1", commentBankItems: .init(nodes: comments ))))
         api.mock(APICommentLibraryRequest(userId: "1"), value: response)
     }

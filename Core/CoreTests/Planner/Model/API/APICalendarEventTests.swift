@@ -50,7 +50,7 @@ class APICalendarEventTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "submission"),
             URLQueryItem(name: "start_date", value: "2019-12-25T14:24:37Z"),
             URLQueryItem(name: "end_date", value: "2019-12-25T14:24:37Z"),
-            URLQueryItem(name: "context_codes[]", value: "course_1"),
+            URLQueryItem(name: "context_codes[]", value: "course_1")
         ])
     }
 

@@ -209,12 +209,12 @@ extension SubmissionCommentsViewController: SubmissionCommentsViewProtocol {
         case .insertRow(let row):
             tableView.insertRows(at: [
                 IndexPath(row: row.row * 2, section: row.section),
-                IndexPath(row: row.row * 2 + 1, section: row.section),
+                IndexPath(row: row.row * 2 + 1, section: row.section)
             ], with: .automatic)
         case .updateRow(let row):
             tableView.reloadRows(at: [
                 IndexPath(row: row.row * 2, section: row.section),
-                IndexPath(row: row.row * 2 + 1, section: row.section),
+                IndexPath(row: row.row * 2 + 1, section: row.section)
             ], with: .automatic)
         default:
             tableView.reloadData()

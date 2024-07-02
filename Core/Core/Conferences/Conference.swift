@@ -163,7 +163,7 @@ class GetConferences: APIUseCase {
         ),
         order: [
             NSSortDescriptor(key: #keyPath(Conference.isConcluded), ascending: true),
-            NSSortDescriptor(key: #keyPath(Conference.order), ascending: false, naturally: true),
+            NSSortDescriptor(key: #keyPath(Conference.order), ascending: false, naturally: true)
         ],
         sectionNameKeyPath: #keyPath(Conference.isConcluded)
     ) }
@@ -197,7 +197,7 @@ class GetLiveConferences: CollectionUseCase {
     var scope: Scope { Scope(
         predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Conference.isLive), equals: true),
-            NSPredicate(key: #keyPath(Conference.isIgnored), equals: false),
+            NSPredicate(key: #keyPath(Conference.isIgnored), equals: false)
         ]),
         orderBy: #keyPath(Conference.order), ascending: false, naturally: true
     ) }

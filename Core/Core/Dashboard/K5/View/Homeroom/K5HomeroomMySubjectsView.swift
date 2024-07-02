@@ -67,7 +67,7 @@ struct K5HomeroomMySubjectsView_Previews: PreviewProvider {
     static let cards = [
         K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: nil, name: "Math", color: .electric, infoLines: []),
         K5HomeroomSubjectCardViewModel(courseId: "2", imageURL: nil, name: "Social Studies", color: .fire, infoLines: []),
-        K5HomeroomSubjectCardViewModel(courseId: "3", imageURL: nil, name: "Music", color: nil, infoLines: []),
+        K5HomeroomSubjectCardViewModel(courseId: "3", imageURL: nil, name: "Music", color: nil, infoLines: [])
     ]
 
     static var previews: some View {

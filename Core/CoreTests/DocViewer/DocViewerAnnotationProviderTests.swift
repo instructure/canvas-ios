@@ -61,7 +61,7 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
     func testGetReplies() {
         let provider = getProviders(annotations: [
             APIDocViewerAnnotation.make(id: "2", type: .commentReply, inreplyto: "1"),
-            APIDocViewerAnnotation.make(id: "3", type: .commentReply, inreplyto: "1"),
+            APIDocViewerAnnotation.make(id: "3", type: .commentReply, inreplyto: "1")
         ])
         XCTAssertEqual(provider.annotationProvider.getReplies(to: try Annotation(dictionary: ["name": "1"])).count, 2)
     }

@@ -39,15 +39,15 @@ class GetDiscussionsTests: CoreTestCase {
         useCase.write(response: .make(
             participants: [
                 .make(id: 1, display_name: "Teacher"),
-                .make(id: 2, display_name: "Student"),
+                .make(id: 2, display_name: "Student")
             ],
             unread_entries: [1],
             forced_entries: [2],
             view: [
-                .make(id: 1, user_id: 1, message: "teacher reply"),
+                .make(id: 1, user_id: 1, message: "teacher reply")
             ],
             new_entries: [
-                .make(id: 2, user_id: 2, parent_id: 1, created_at: Date(), message: "student reply"),
+                .make(id: 2, user_id: 2, parent_id: 1, created_at: Date(), message: "student reply")
             ]
         ), urlResponse: nil, to: databaseClient)
         let entries: [DiscussionEntry] = databaseClient.fetch(scope: useCase.scope)

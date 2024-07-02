@@ -50,7 +50,7 @@ class OfflineModeInteractorLiveTests: CoreTestCase {
                 XCTAssertEqual($0, [
                     false, // initial value from DB
                     true, // flag to true
-                    false, // flag to false
+                    false // flag to false
                 ])
                 expectation.fulfill()
             }

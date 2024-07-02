@@ -37,7 +37,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
                 enrollment_state: .active,
                 type: "TeacherEnrollment",
                 user_id: environment.currentSession?.userID ?? "12"
-            ),
+            )
         ]))
         api.mock(controller.colors, value: .init(custom_colors: [ "course_1": "#0000ff" ]))
         api.mock(controller.topics, value: [
@@ -81,7 +81,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
                 locked: true,
                 posted_at: TestConstants.date1102,
                 title: "Locked"
-            ),
+            )
         ])
 
         let nav = UINavigationController(rootViewController: controller)
@@ -208,7 +208,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
                 id: "2",
                 posted_at: TestConstants.date1103,
                 title: "Overrides"
-            ),
+            )
         ])
     }
 
@@ -223,7 +223,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
                 last_reply_at: TestConstants.date1103,
                 permissions: .make(delete: true),
                 title: "Study group tomorrow"
-            ),
+            )
         ])
 
         let nav = UINavigationController(rootViewController: controller)

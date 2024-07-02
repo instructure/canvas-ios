@@ -29,7 +29,7 @@ class GetPagesTest: CoreTestCase {
         XCTAssertEqual(useCase.request.context.canvasContextID, courseContext.canvasContextID)
         XCTAssertEqual(useCase.scope, Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Page.contextID), equals: courseContext.canvasContextID),
-            NSPredicate(format: "%K == false", #keyPath(Page.isFrontPage)),
+            NSPredicate(format: "%K == false", #keyPath(Page.isFrontPage))
         ]), orderBy: #keyPath(Page.title), naturally: true))
     }
 

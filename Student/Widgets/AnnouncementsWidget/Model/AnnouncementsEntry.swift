@@ -43,7 +43,7 @@ class AnnouncementsEntry: WidgetModel {
                 url: url,
                 authorName: String(localized: "Janet Hammond", comment: "Example author name"),
                 courseName: String(localized: "American literature IV", comment: "Example course name"),
-                courseColor: .shamrock),
+                courseColor: .shamrock)
         ])
     }
 
@@ -74,7 +74,7 @@ extension AnnouncementsEntry {
             AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .barney),
             AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .shamrock),
             AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .barney),
-            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .shamrock),
+            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .shamrock)
         ])
     }
 }

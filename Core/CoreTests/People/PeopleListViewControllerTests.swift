@@ -38,14 +38,14 @@ class PeopleListViewControllerTests: CoreTestCase {
                 enrollments: [ .make(id: "2", course_id: "1", user_id: "2", role: "StudentEnrollment"),
                                .make(id: "2", course_id: "2", user_id: "2", role: "TeacherEnrollment"),
                                .make(id: "3", course_id: "1", user_id: "2", role: "Custom"),
-                               .make(id: "4", course_id: "1", user_id: "2", role: "StudentEnrollment"), ],
+                               .make(id: "4", course_id: "1", user_id: "2", role: "StudentEnrollment") ],
                 pronouns: "She/Her"
-            ),
+            )
         ])
         api.mock(GetSearchRecipientsRequest(context: course1, includeContexts: true), value: [
             .make(id: "course_1_teachers"),
             .make(id: "course_1_students"),
-            .make(id: "course_1_tas"),
+            .make(id: "course_1_tas")
         ])
     }
 

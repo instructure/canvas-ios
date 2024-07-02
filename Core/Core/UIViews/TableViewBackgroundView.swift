@@ -29,7 +29,7 @@ class TableViewBackgroundView: UIView {
             trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomAnchor.constraint(equalTo: view.bottomAnchor),
             centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            widthAnchor.constraint(equalTo: view.widthAnchor),
+            widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
     }
 }

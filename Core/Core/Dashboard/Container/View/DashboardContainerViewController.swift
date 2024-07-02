@@ -83,7 +83,7 @@ public class DashboardContainerViewController: HelmNavigationController {
         split.preferredDisplayMode = .oneBesideSecondary
         split.viewControllers = [
             HelmNavigationController(rootViewController: masterViewController),
-            HelmNavigationController(rootViewController: EmptyViewController()),
+            HelmNavigationController(rootViewController: EmptyViewController())
         ]
         split.masterNavigationController?.delegate = split
         return split

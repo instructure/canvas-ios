@@ -218,7 +218,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             title: String(localized: "Quiz Type", bundle: .core),
             sections: [ ItemPickerSection(items: options.map {
                 ItemPickerItem(title: $0.name)
-            }), ],
+            }) ],
             selected: options.firstIndex(of: quizType).flatMap {
                 IndexPath(row: $0, section: 0)
             },
@@ -233,7 +233,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             title: String(localized: "Assignment Group", bundle: .core),
             sections: [ ItemPickerSection(items: options.map {
                 ItemPickerItem(title: $0.name)
-            }), ],
+            }) ],
             selected: options.firstIndex(of: selectedGroup).flatMap {
                 IndexPath(row: $0, section: 0)
             },
@@ -247,7 +247,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             title: String(localized: "Quiz Score to Keep", bundle: .core),
             sections: [ ItemPickerSection(items: options.map {
                 ItemPickerItem(title: $0.text)
-            }), ],
+            }) ],
             selected: options.firstIndex(of: scoreToKeep ?? ScoringPolicy.keep_highest).flatMap {
                 IndexPath(row: $0, section: 0)
             },

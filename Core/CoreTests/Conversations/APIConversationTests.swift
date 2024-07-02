@@ -40,7 +40,7 @@ class APIConversationTests: CoreTestCase {
             URLQueryItem(name: "include[]", value: "participant_avatars"),
             URLQueryItem(name: "per_page", value: "50"),
             URLQueryItem(name: "scope", value: "sent"),
-            URLQueryItem(name: "filter[]", value: "course_1"),
+            URLQueryItem(name: "filter[]", value: "course_1")
         ])
     }
 
@@ -48,7 +48,7 @@ class APIConversationTests: CoreTestCase {
         XCTAssertEqual(GetConversationRequest(id: "1", include: []).path, "conversations/1")
         XCTAssertEqual(GetConversationRequest(id: "1", include: []).queryItems, [])
         XCTAssertEqual(GetConversationRequest(id: "2", include: [.participant_avatars]).queryItems, [
-            URLQueryItem(name: "include[]", value: "participant_avatars"),
+            URLQueryItem(name: "include[]", value: "participant_avatars")
         ])
     }
 

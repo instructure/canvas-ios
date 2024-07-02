@@ -166,7 +166,7 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
                 DismissObserverAlert(alertID: id).fetch { (_, _, error) in
                     completed(error == nil)
                 }
-            },
+            }
         ])
     }
 }

@@ -48,7 +48,7 @@ public class FilterHeaderView: UITableViewHeaderFooterView {
         NSLayoutConstraint.activate([
             filterButton.firstBaselineAnchor.constraint(equalTo: titleLabel.firstBaselineAnchor),
             filterButton.leadingAnchor.constraint(greaterThanOrEqualTo: titleLabel.trailingAnchor, constant: 4),
-            contentView.trailingAnchor.constraint(equalTo: filterButton.trailingAnchor, constant: 16),
+            contentView.trailingAnchor.constraint(equalTo: filterButton.trailingAnchor, constant: 16)
         ])
     }
 }

@@ -31,7 +31,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             dashboardTab(),
             calendarTab(),
             todoTab(),
-            notificationsTab(),
+            notificationsTab()
         ]
         if AppEnvironment.shared.currentSession?.isFakeStudent == false {
             viewControllers?.append(inboxTab())
@@ -97,7 +97,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         let split = HelmSplitViewController()
         split.viewControllers = [
             HelmNavigationController(rootViewController: PlannerViewController.create()),
-            HelmNavigationController(rootViewController: EmptyViewController()),
+            HelmNavigationController(rootViewController: EmptyViewController())
         ]
         split.view.tintColor = Brand.shared.primary
         split.tabBarItem.title = String(localized: "Calendar", bundle: .student, comment: "Calendar page title")
@@ -114,7 +114,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         let todoController = TodoListViewController.create()
         todo.viewControllers = [
             HelmNavigationController(rootViewController: todoController),
-            HelmNavigationController(rootViewController: EmptyViewController()),
+            HelmNavigationController(rootViewController: EmptyViewController())
         ]
         todo.tabBarItem.title = String(localized: "To Do", bundle: .student, comment: "Title of the Todo screen")
         todo.tabBarItem.image = .todoTab
@@ -131,7 +131,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         let split = HelmSplitViewController()
         split.viewControllers = [
             HelmNavigationController(rootViewController: ActivityStreamViewController.create()),
-            HelmNavigationController(rootViewController: EmptyViewController()),
+            HelmNavigationController(rootViewController: EmptyViewController())
         ]
         split.tabBarItem.title = String(localized: "Notifications", bundle: .student, comment: "Notifications tab title")
         split.tabBarItem.image = .alertsTab

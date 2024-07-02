@@ -35,7 +35,7 @@ public class GetEnvironmentFeatureFlags: CollectionUseCase {
         let predicate = NSCompoundPredicate(
             andPredicateWithSubpredicates: [
                 contextPredicate,
-                environmentFlagPredicate,
+                environmentFlagPredicate
             ]
         )
         return Scope(predicate: predicate, order: [NSSortDescriptor(key: #keyPath(FeatureFlag.name), ascending: true)])

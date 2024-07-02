@@ -34,7 +34,7 @@ extension LocalNotificationsInteractor {
         )
         content.userInfo = [
             RemindableStudentIDKey: studentID,
-            RemindableActionURLKey: event.htmlURL!.absoluteString,
+            RemindableActionURLKey: event.htmlURL!.absoluteString
         ]
         setReminder(id: event.id, content: content, at: date, callback: callback)
     }
@@ -49,7 +49,7 @@ extension LocalNotificationsInteractor {
         ) } ?? assignment.name
         content.userInfo = [
             RemindableStudentIDKey: studentID,
-            RemindableActionURLKey: assignment.htmlURL!.absoluteString,
+            RemindableActionURLKey: assignment.htmlURL!.absoluteString
         ]
         setReminder(id: assignment.id, content: content, at: date, callback: callback)
     }

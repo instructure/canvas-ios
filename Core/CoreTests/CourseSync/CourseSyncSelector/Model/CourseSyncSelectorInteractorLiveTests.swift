@@ -64,7 +64,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         mockCourseList(courseList: [
             .make(id: "1"),
-            .make(id: "2"),
+            .make(id: "2")
         ])
 
         var entries = [CourseSyncEntry]()
@@ -106,9 +106,9 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                         .make(id: "assignments", html_url: URL(string: "/assignments")!, label: "Assignments"),
                         .make(id: "files", html_url: URL(string: "/files")!, label: "Files"),
                         .make(id: "pages", html_url: URL(string: "/pages")!, label: "Pages"),
-                        .make(id: "quizzes", html_url: URL(string: "/quizzes")!, label: "Quizzes"),
+                        .make(id: "quizzes", html_url: URL(string: "/quizzes")!, label: "Quizzes")
                     ]
-                ),
+                )
             ]
         )
 
@@ -250,7 +250,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         mockCourseList(
             courseList: [
                 .make(id: "1", name: "course 1", tabs: [.make(id: "files", label: "Files")]),
-                .make(id: "2", name: "course 2", tabs: []),
+                .make(id: "2", name: "course 2", tabs: [])
             ]
         )
 
@@ -295,7 +295,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         mockCourseList(
             courseList: [
                 .make(id: "1", name: "course 1", tabs: [.make(id: "files", label: "Files")]),
-                .make(id: "2", name: "course 2", tabs: []),
+                .make(id: "2", name: "course 2", tabs: [])
             ]
         )
 
@@ -337,7 +337,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         mockCourseList(
             courseList: [
                 .make(id: "1", name: "course 1"),
-                .make(id: "2", name: "course 2"),
+                .make(id: "2", name: "course 2")
             ]
         )
 
@@ -365,7 +365,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         mockCourseList(
             courseList: [
                 .make(id: "1", name: "course 1"),
-                .make(id: "2", name: "course 2"),
+                .make(id: "2", name: "course 2")
             ]
         )
 
@@ -395,7 +395,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         mockCourseList(courseList: [
             .make(id: "1", name: "course 1", tabs: []),
-            .make(id: "2", name: "course 2", tabs: []),
+            .make(id: "2", name: "course 2", tabs: [])
         ])
 
         let testee = CourseSyncSelectorInteractorLive(
@@ -425,7 +425,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         mockCourseList(courseList: [
             .make(id: "1", name: "course 1", tabs: []),
-            .make(id: "2", name: "course 2", tabs: []),
+            .make(id: "2", name: "course 2", tabs: [])
         ])
 
         let testee = CourseSyncSelectorInteractorLive(
@@ -453,7 +453,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         mockCourseList(courseList: [
             .make(id: "1", name: "course 1", tabs: []),
-            .make(id: "2", name: "course 2", tabs: []),
+            .make(id: "2", name: "course 2", tabs: [])
         ])
 
         let testee = CourseSyncSelectorInteractorLive(courseID: "1", sessionDefaults: defaults)

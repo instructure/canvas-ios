@@ -45,7 +45,7 @@ class CourseSyncConferencesInteractorLiveTests: CoreTestCase {
                   description: "this is an ongoing test conference",
                   id: "2",
                   started_at: Date().addingTimeInterval(-1),
-                  title: "ongoing conference"),
+                  title: "ongoing conference")
         ]))
         XCTAssertFinish(CourseSyncConferencesInteractorLive().getContent(courseId: "testCourse"))
         API.resetMocks()

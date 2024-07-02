@@ -528,20 +528,20 @@ open class CoreUITestCase: XCTestCase {
             .sections,
             .syllabusBody,
             .term,
-            .totalScores,
+            .totalScores
         ]), value: course)
         mockData(GetCourseRequest(courseID: course.id.value, include: [
             .courseImage,
             .favorites,
             .permissions,
             .sections,
-            .term,
+            .term
         ]), value: course)
         mockData(GetContextPermissionsRequest(context: .course(course.id.value)), value: .make())
         mockData(GetEnabledFeatureFlagsRequest(context: .course(course.id.value)), value: [
             "rce_enhancements",
             "new_gradebook",
-            "assignment_attempts",
+            "assignment_attempts"
         ])
         mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true&per_page=100", value: [String]())
         mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true", value: [String]())
@@ -649,7 +649,7 @@ open class CoreUITestCase: XCTestCase {
         mockResponse(URLRequest(url: url)) { request in
             let data = dynamicData(request)
             let http = HTTPURLResponse(url: url, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: [
-                HttpHeader.contentType: "application/json",
+                HttpHeader.contentType: "application/json"
             ])
             return MockHTTPResponse(data: data, http: http)
         }
@@ -665,7 +665,7 @@ open class CoreUITestCase: XCTestCase {
         var http = response
         if response == nil, data != nil {
             http = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: [
-                HttpHeader.contentType: "application/json",
+                HttpHeader.contentType: "application/json"
             ])
         }
 

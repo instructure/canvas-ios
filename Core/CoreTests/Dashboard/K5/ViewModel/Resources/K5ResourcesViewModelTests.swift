@@ -27,7 +27,7 @@ class K5ResourcesViewModelTests: CoreTestCase {
         let courses = [
             APICourse.make(id: "1", name: "Homeroom 1", syllabus_body: "<h1>Infos</h1><p>This is a paragraph</p>", homeroom_course: true),
             APICourse.make(id: "2", name: "Homeroom 2", syllabus_body: "<b>IMPORTANT</b><p>Read the previous note</p>", homeroom_course: true),
-            APICourse.make(id: "3", name: "Math", homeroom_course: false),
+            APICourse.make(id: "3", name: "Math", homeroom_course: false)
         ]
         api.mock(GetCourses(enrollmentState: .active), value: courses)
     }
@@ -38,7 +38,7 @@ class K5ResourcesViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.homeroomInfos, [
             K5ResourcesHomeroomInfoViewModel(homeroomName: "Homeroom 1", htmlContent: "<h1>Infos</h1><p>This is a paragraph</p>"),
-            K5ResourcesHomeroomInfoViewModel(homeroomName: "Homeroom 2", htmlContent: "<b>IMPORTANT</b><p>Read the previous note</p>"),
+            K5ResourcesHomeroomInfoViewModel(homeroomName: "Homeroom 2", htmlContent: "<b>IMPORTANT</b><p>Read the previous note</p>")
         ])
     }
 
@@ -73,7 +73,7 @@ class K5ResourcesViewModelTests: CoreTestCase {
                                          label: "Google Drive 2 Label",
                                          icon_url: URL(string: "https://instructure.com/icon2.png")!),
                 name: "Google Apps 2",
-                url: nil),
+                url: nil)
         ])
 
         let testee = K5ResourcesViewModel()
@@ -81,12 +81,12 @@ class K5ResourcesViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.applications, [
             K5ResourcesApplicationViewModel(image: URL(string: "https://instructure.com/icon2.png")!, name: "Google Apps 2", routesBySubjectNames: [
-                ("Math", URL(string: "/courses/course_math/external_tools/2")!),
+                ("Math", URL(string: "/courses/course_math/external_tools/2")!)
             ]),
             K5ResourcesApplicationViewModel(image: URL(string: "https://instructure.com/icon.png")!, name: "Google Drive Text", routesBySubjectNames: [
                 ("Art", URL(string: "/courses/course_math/external_tools/1")!),
-                ("Math", URL(string: "/courses/course_art/external_tools/1")!),
-            ]),
+                ("Math", URL(string: "/courses/course_art/external_tools/1")!)
+            ])
         ])
     }
 
@@ -115,7 +115,7 @@ class K5ResourcesViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.contacts, [
             K5ResourcesContactViewModel(image: URL(string: "https://instucture.com/TA.png")!, name: "K5TA", role: "Teacher's Assistant", userId: "2", courseContextID: "1", courseName: "Homeroom 1"),
-            K5ResourcesContactViewModel(image: URL(string: "https://instucture.com/teacher.png")!, name: "K5Teacher", role: "Teacher", userId: "1", courseContextID: "2", courseName: "Homeroom 2"),
+            K5ResourcesContactViewModel(image: URL(string: "https://instucture.com/teacher.png")!, name: "K5Teacher", role: "Teacher", userId: "1", courseContextID: "2", courseName: "Homeroom 2")
         ])
     }
 

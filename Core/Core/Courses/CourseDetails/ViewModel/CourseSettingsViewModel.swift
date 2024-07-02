@@ -65,7 +65,7 @@ public class CourseSettingsViewModel: ObservableObject {
     public func defaultViewSelectorTapped(router: Router, viewController: WeakViewController) {
         let options = CourseDefaultView.allCases
         let sections = [
-            ItemPickerSection(items: options.map { ItemPickerItem(title: $0.string) }),
+            ItemPickerSection(items: options.map { ItemPickerItem(title: $0.string) })
         ]
 
         let selected: IndexPath? = options.firstIndex(of: newDefaultView).flatMap { IndexPath(row: $0, section: 0) }

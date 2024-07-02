@@ -31,7 +31,7 @@ class K5SImportantDatesViewModelTests: CoreTestCase {
         let apiCourses = [
             APICourse.make(id: "1", name: "Math", course_color: "#0000FF", enrollments: enrollments),
             APICourse.make(id: "2", name: "History", course_color: "#00FF00", enrollments: enrollments),
-            APICourse.make(id: "3", name: "Music", course_color: "#FF0000", enrollments: enrollments),
+            APICourse.make(id: "3", name: "Music", course_color: "#FF0000", enrollments: enrollments)
         ]
 
         api.mock(GetUserCourses(userID: "1"), value: apiCourses)
@@ -39,7 +39,7 @@ class K5SImportantDatesViewModelTests: CoreTestCase {
         let contexts: [Context] = [
             Context(.course, id: "1"),
             Context(.course, id: "2"),
-            Context(.course, id: "3"),
+            Context(.course, id: "3")
         ]
 
         let assignments = [
@@ -60,7 +60,7 @@ class K5SImportantDatesViewModelTests: CoreTestCase {
                 type: .assignment,
                 context_code: "course_1",
                 context_name: "Math"
-            ),
+            )
         ]
 
         api.mock(GetCalendarEvents(contexts: contexts, type: .assignment, importantDates: true), value: assignments)
@@ -83,7 +83,7 @@ class K5SImportantDatesViewModelTests: CoreTestCase {
                 type: .event,
                 context_code: "course_3",
                 context_name: "Music"
-            ),
+            )
         ]
 
         api.mock(GetCalendarEvents(contexts: contexts, type: .event, importantDates: true), value: events)

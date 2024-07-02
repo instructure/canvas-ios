@@ -28,7 +28,7 @@ class K5ScheduleWeekViewModelTests: CoreTestCase {
         let weekRange = weekStart..<weekEnd
         let testee = K5ScheduleWeekViewModel(weekRange: weekStart..<weekEnd, isTodayButtonAvailable: true, days: [
             K5ScheduleDayViewModel(range: weekStart..<weekStart.add(.day, number: 1), calendar: .current),
-            K5ScheduleDayViewModel(range: weekStart.add(.day, number: 1)..<weekStart.add(.day, number: 2), calendar: .current),
+            K5ScheduleDayViewModel(range: weekStart.add(.day, number: 1)..<weekStart.add(.day, number: 2), calendar: .current)
         ])
 
         let plannablesRequest = GetPlannablesRequest(userID: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")

@@ -45,7 +45,7 @@ class RubricViewControllerTests: StudentTestCase {
         let ratings: [APIRubricRating] = [
             APIRubricRating.make(description: "A", id: "1", long_description: "this is A", points: 10),
             APIRubricRating.make(description: "B", id: "2", long_description: "this is B", points: 20),
-            APIRubricRating.make(description: "C", id: "3", long_description: "this is C", points: 30),
+            APIRubricRating.make(description: "C", id: "3", long_description: "this is C", points: 30)
         ]
         let rubric = APIRubric.make(ratings: ratings)
 
@@ -72,7 +72,7 @@ class RubricViewControllerTests: StudentTestCase {
         let ratings: [APIRubricRating] = [
             APIRubricRating.make(description: "A", id: "1", long_description: "this is A", points: 10),
             APIRubricRating.make(description: "B", id: "2", long_description: "this is B", points: 20),
-            APIRubricRating.make(description: "C", id: "3", long_description: "this is C", points: 30),
+            APIRubricRating.make(description: "C", id: "3", long_description: "this is C", points: 30)
         ]
         let rubric = APIRubric.make(ratings: ratings)
 

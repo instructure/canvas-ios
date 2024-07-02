@@ -75,7 +75,7 @@ class NSErrorExtensionsTests: CoreTestCase {
 
         error = NSError(domain: "", code: 0, userInfo: [
             NSLocalizedDescriptionKey: "description",
-            NSLocalizedFailureReasonErrorKey: "reason",
+            NSLocalizedFailureReasonErrorKey: "reason"
         ])
         error.showAlert(from: view)
         alert = router.presented as? UIAlertController

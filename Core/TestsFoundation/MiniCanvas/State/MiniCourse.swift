@@ -68,11 +68,11 @@ public class MiniCourse {
 
         course.gradingPeriods = [
             .make(id: state.nextId(), title: "Grading Period 1"),
-            .make(id: state.nextId(), title: "Grading Period 2"),
+            .make(id: state.nextId(), title: "Grading Period 2")
         ]
         course.assignmentGroups = [
             .make(id: state.nextId(), name: "group 0", position: 0),
-            .make(id: state.nextId(), name: "group 1", position: 1),
+            .make(id: state.nextId(), name: "group 1", position: 1)
         ]
 
         course.add(assignment: makeAssignment(name: "Assignment 1"), toGroupAtIndex: 0)
@@ -204,7 +204,7 @@ public class MiniCourse {
         self.api = course
         tabs = [
             "announcements", "assignments", "discussions", "files",
-            "grades", "modules", "pages", "people", "quizzes", "conferences",
+            "grades", "modules", "pages", "people", "quizzes", "conferences"
         ].map { tabName in
             APITab.make(
                 id: ID(tabName),

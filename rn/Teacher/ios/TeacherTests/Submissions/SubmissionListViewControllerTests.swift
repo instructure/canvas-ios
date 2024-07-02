@@ -32,12 +32,12 @@ class SubmissionListViewControllerTests: TeacherTestCase {
             .make(id: "1", course_id: "1", course_section_id: "1", user_id: "1"),
             .make(id: "2", course_id: "1", course_section_id: "2", user_id: "2"),
             .make(id: "3", course_id: "1", course_section_id: "2", enrollment_state: .inactive, user_id: "3"),
-            .make(id: "4", course_id: "1", course_section_id: "3", user_id: "4", role: "CustomEnrollment"),
+            .make(id: "4", course_id: "1", course_section_id: "3", user_id: "4", role: "CustomEnrollment")
         ])
         api.mock(controller.sections, value: [
             .make(id: "1", name: "One"),
             .make(id: "2", name: "Two"),
-            .make(id: "3", name: "Three"),
+            .make(id: "3", name: "Three")
         ])
         api.mock(controller.submissions, value: [
             .make(
@@ -64,7 +64,7 @@ class SubmissionListViewControllerTests: TeacherTestCase {
                 user: .make(id: "4", name: "Rebecca", sortable_name: "Rebecca"),
                 user_id: "4",
                 workflow_state: .unsubmitted
-            ),
+            )
         ])
     }
 

@@ -37,7 +37,7 @@ public class K5DashboardViewModel: ObservableObject {
             TopBarItemViewModel(id: "", icon: .k5homeroom, label: Text("Homeroom", bundle: .core)),
             TopBarItemViewModel(id: "/schedule", icon: .k5schedule, label: Text("Schedule", bundle: .core)),
             TopBarItemViewModel(id: "/grades", icon: .k5grades, label: Text("Grades", bundle: .core)),
-            TopBarItemViewModel(id: "/resources", icon: .k5resources, label: Text("Resources", bundle: .core)),
+            TopBarItemViewModel(id: "/resources", icon: .k5resources, label: Text("Resources", bundle: .core))
         ]
 
         if UIDevice.current.userInterfaceIdiom != .pad {

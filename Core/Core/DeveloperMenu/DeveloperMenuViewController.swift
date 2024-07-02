@@ -200,7 +200,7 @@ extension DeveloperMenuViewController {
         guard let url = route else { return }
         let ignore = [
             "/dev-menu",
-            "/profile",
+            "/profile"
         ]
 
         if ignore.contains(url) { return }

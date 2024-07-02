@@ -152,7 +152,7 @@ public struct AssignmentEditorView: View, ScreenViewTrackable {
                             items: options.map {
                                 ItemPickerItem(title: $0.string)
                             }
-                        ),
+                        )
                     ],
                     selected: options.firstIndex(of: gradingType).flatMap {
                         IndexPath(row: $0, section: 0)

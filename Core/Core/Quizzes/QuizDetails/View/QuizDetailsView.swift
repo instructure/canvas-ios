@@ -40,7 +40,7 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
                         actionHandler: {
                             viewModel.editTapped(router: env.router, viewController: controller)
                         }
-                    ),
+                    )
                 ]
             }
             .onAppear {
@@ -216,7 +216,7 @@ struct QuizDetails_Previews: PreviewProvider {
     static var previews: some View {
         let quizAttributes: [QuizAttribute] = [
             QuizAttribute("Quiz Type:", "Graded Quiz"),
-            QuizAttribute("Time Limit:", "30 minutes"),
+            QuizAttribute("Time Limit:", "30 minutes")
         ]
         let viewModel = QuizDetailsViewModelPreview(
             state: .ready,

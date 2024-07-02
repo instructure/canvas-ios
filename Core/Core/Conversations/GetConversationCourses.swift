@@ -45,7 +45,7 @@ public class GetConversationCourses: APIUseCase {
                 ),
                 order: [
                     NSSortDescriptor(key: #keyPath(Enrollment.observedUser.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
-                    NSSortDescriptor(key: #keyPath(Enrollment.course.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
+                    NSSortDescriptor(key: #keyPath(Enrollment.course.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
                 ]
             )
         } else {
@@ -56,7 +56,7 @@ public class GetConversationCourses: APIUseCase {
                     #keyPath(Enrollment.stateRaw), "active"
                 ),
                 order: [
-                    NSSortDescriptor(key: #keyPath(Enrollment.course.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
+                    NSSortDescriptor(key: #keyPath(Enrollment.course.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
                 ]
             )
         }

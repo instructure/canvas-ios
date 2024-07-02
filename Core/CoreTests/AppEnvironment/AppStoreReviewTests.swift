@@ -86,7 +86,7 @@ class AppStoreReviewTests: CoreTestCase {
             "viewAssignmentDate": 0,
             "viewAssignmentCount": 0,
             "launchCount": 0,
-            "fakeRequest": 1,
+            "fakeRequest": 1
         ])
         let now = Int64(Date().timeIntervalSince1970 * 1000)
         AppStoreReview.setState("lastRequestDate", withValue: now)
@@ -100,7 +100,7 @@ class AppStoreReviewTests: CoreTestCase {
             "viewAssignmentDate": Int(now),
             "viewAssignmentCount": 2,
             "launchCount": 9,
-            "fakeRequest": 0,
+            "fakeRequest": 0
         ])
     }
 }

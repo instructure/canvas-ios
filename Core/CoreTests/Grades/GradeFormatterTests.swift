@@ -90,8 +90,8 @@ class GradeFormatterTests: CoreTestCase {
         _ = Course.save(.make(grading_scheme: [
             [
                 .init(value1: "A", value2: nil),
-                .init(value1: nil, value2: 0.0),
-            ],
+                .init(value1: nil, value2: 0.0)
+            ]
         ]), in: databaseClient)
         let assignment = Assignment.save(.make(), in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
         let submission = Submission.save(.make(), in: databaseClient)
@@ -214,8 +214,8 @@ class GradeFormatterTests: CoreTestCase {
         _ = Course.save(.make(grading_scheme: [
             [
                 .init(value1: "A", value2: nil),
-                .init(value1: nil, value2: 0.0),
-            ],
+                .init(value1: nil, value2: 0.0)
+            ]
         ]), in: databaseClient)
         let assignment = Assignment.save(.make(), in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
         let submission = Submission.save(.make(), in: databaseClient)
@@ -282,8 +282,8 @@ class GradeFormatterTests: CoreTestCase {
         _ = Course.save(.make(grading_scheme: [
             [
                 .init(value1: "A", value2: nil),
-                .init(value1: nil, value2: 0.0),
-            ],
+                .init(value1: nil, value2: 0.0)
+            ]
         ]), in: databaseClient)
         let assignment = Assignment.save(.make(), in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
         let submission = Submission.save(.make(), in: databaseClient)

@@ -273,7 +273,7 @@ class CalendarDayButton: UIButton {
 
             circleView.topAnchor.constraint(equalTo: topAnchor),
             circleView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            dotSpacingConstraint,
+            dotSpacingConstraint
         ])
 
         tintColorDidChange()

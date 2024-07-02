@@ -51,7 +51,7 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
             attachBadge.centerXAnchor.constraint(equalTo: button.trailingAnchor, constant: -10),
             attachBadge.centerYAnchor.constraint(equalTo: button.topAnchor, constant: 2),
             attachBadge.widthAnchor.constraint(equalToConstant: 16),
-            attachBadge.heightAnchor.constraint(equalToConstant: 16),
+            attachBadge.heightAnchor.constraint(equalToConstant: 16)
         ])
 
         let label = UILabel()

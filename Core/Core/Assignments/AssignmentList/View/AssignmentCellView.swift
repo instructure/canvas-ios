@@ -103,7 +103,7 @@ struct AssignmentCellView_Previews: PreviewProvider {
         APIAssignment.make(id: "2", name: "Long titled assignment to test how layout behaves", quiz_id: "1"),
         APIAssignment.make(id: "3", submission_types: [.discussion_topic]),
         APIAssignment.make(id: "4", submission_types: [.external_tool]),
-        APIAssignment.make(id: "5", locked_for_user: true),
+        APIAssignment.make(id: "5", locked_for_user: true)
     ]
 
     static var previews: some View {

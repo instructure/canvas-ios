@@ -49,7 +49,7 @@ public class SyllabusSummaryViewController: UITableViewController {
         let notHiddenPredicate = NSPredicate(format: "%K == false", #keyPath(CalendarEvent.isHidden))
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             contextPredicate,
-            notHiddenPredicate,
+            notHiddenPredicate
         ])
         let hasStartAt = NSSortDescriptor(key: #keyPath(CalendarEvent.hasStartAt), ascending: false)
         let startAt = NSSortDescriptor(key: #keyPath(CalendarEvent.startAt), ascending: true)

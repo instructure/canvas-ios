@@ -158,7 +158,7 @@ struct SubmissionCommentList: View {
                         .default(Text("Record Audio", bundle: .teacher), action: recordAudio),
                         .default(Text("Record Video", bundle: .teacher), action: recordVideo),
                         .default(Text("Choose Files", bundle: .teacher), action: chooseFile),
-                        .cancel(),
+                        .cancel()
                     ])
                 }
             CommentEditor(text: $comment, action: sendComment, containerHeight: containerHeight)

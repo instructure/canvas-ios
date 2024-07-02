@@ -25,13 +25,13 @@ class URLResponseExtensionsTests: XCTestCase {
         let curr = "https://cgnuonline-eniversity.edu/api/v1/courses?page=2"
         let next = "https://cgnuonline-eniversity.edu/api/v1/courses?page=3"
         let headers = [
-            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1"
         ]
         let response = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)
         XCTAssertEqual(response?.links, [
             "current": URL(string: curr)!,
             "prev": URL(string: prev)!,
-            "next": URL(string: next)!,
+            "next": URL(string: next)!
         ])
     }
 

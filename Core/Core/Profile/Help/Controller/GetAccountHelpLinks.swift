@@ -35,7 +35,7 @@ public class GetAccountHelpLinks: CollectionUseCase {
     public var scope: Scope {
         return Scope(predicate: NSCompoundPredicate(orPredicateWithSubpredicates: [
             NSPredicate(format: "%K contains %@", #keyPath(HelpLink.availableToRaw), enrollment.rawValue),
-            NSPredicate(format: "%K contains %@", #keyPath(HelpLink.availableToRaw), "user"),
+            NSPredicate(format: "%K contains %@", #keyPath(HelpLink.availableToRaw), "user")
         ]), orderBy: #keyPath(HelpLink.position))
     }
 

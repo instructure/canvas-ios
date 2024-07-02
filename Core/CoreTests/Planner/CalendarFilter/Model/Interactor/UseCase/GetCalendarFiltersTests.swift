@@ -36,7 +36,7 @@ class GetCalendarFiltersTests: CoreTestCase {
             groupsRequest,
             value: [
                 .make(id: "LockedCourseGroup", course_id: "1"),
-                .make(id: "AccountGroup", course_id: nil),
+                .make(id: "AccountGroup", course_id: nil)
             ]
         )
 

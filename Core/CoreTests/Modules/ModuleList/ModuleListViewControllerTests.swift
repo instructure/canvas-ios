@@ -91,7 +91,7 @@ class ModuleListViewControllerTests: CoreTestCase {
                 id: "4",
                 content_details: nil,
                 completion_requirement: .make(type: .must_submit, completed: true)
-            ),
+            )
         ])
         let nav = UINavigationController(rootViewController: viewController)
         loadView()
@@ -131,7 +131,7 @@ class ModuleListViewControllerTests: CoreTestCase {
                     lock_explanation: "Reasons"
                 ),
                 completion_requirement: nil
-            ),
+            )
         ])
         loadView()
         let item1 = moduleItemCell(at: IndexPath(row: 0, section: 0))
@@ -154,7 +154,7 @@ class ModuleListViewControllerTests: CoreTestCase {
                     lock_explanation: "Reasons"
                 ),
                 completion_requirement: nil
-            ),
+            )
         ])
         loadView()
         let item1 = moduleItemCell(at: IndexPath(row: 0, section: 0))
@@ -165,14 +165,14 @@ class ModuleListViewControllerTests: CoreTestCase {
     func testTableViewSort() {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [
             .make(id: "1", name: "B", position: 2, published: true, items: nil),
-            .make(id: "2", name: "A", position: 1, published: false, items: nil),
+            .make(id: "2", name: "A", position: 1, published: false, items: nil)
         ])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
             .make(id: "1", position: 1, title: "B1"),
-            .make(id: "2", position: 2, title: "B2", published: true),
+            .make(id: "2", position: 2, title: "B2", published: true)
         ])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths]), value: [
-            .make(id: "3", position: 3, title: "A1", published: false),
+            .make(id: "3", position: 3, title: "A1", published: false)
         ])
         loadView()
         // published/unpublished is not included because dependency is not injected
@@ -226,7 +226,7 @@ class ModuleListViewControllerTests: CoreTestCase {
             .make(id: "4", position: 4),
             .make(id: "5", position: 5),
             .make(id: "6", position: 6),
-            .make(id: "7", position: 7),
+            .make(id: "7", position: 7)
         ])
         api.mock(
             GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]),
@@ -340,7 +340,7 @@ class ModuleListViewControllerTests: CoreTestCase {
                 indent: 2,
                 content: .subHeader,
                 published: false
-            ),
+            )
         ])
         loadView()
         // published/unpublished is not included because dependency is not injected
@@ -394,7 +394,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [ .make(id: "1") ])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
             .make(id: "1", content: .assignment("1"), html_url: URL(string: "/courses/1/modules/items/1")!),
-            .make(id: "2", content: .page("2")),
+            .make(id: "2", content: .page("2"))
         ])
         loadView()
         viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
@@ -407,7 +407,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [ .make(id: "1") ])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
             .make(id: "1", position: 1, content: .assignment("1"), html_url: URL(string: "/courses/1/modules/items/1")!),
-            .make(id: "2", position: 2, content: .page("2")),
+            .make(id: "2", position: 2, content: .page("2"))
         ])
         let svc = MockSplitViewController()
         svc.mockCollapsed = false
@@ -424,7 +424,7 @@ class ModuleListViewControllerTests: CoreTestCase {
     func testViewWillAppearDeselectsSelectedRow() {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1") ])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
-            .make(content: .assignment("1")),
+            .make(content: .assignment("1"))
         ])
         loadView()
         viewController.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
@@ -436,13 +436,13 @@ class ModuleListViewControllerTests: CoreTestCase {
     func testModuleItemRequirementCompleted() {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1") ])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
-            .make(id: "1", completion_requirement: .make(type: .must_view, completed: false)),
+            .make(id: "1", completion_requirement: .make(type: .must_view, completed: false))
         ])
         loadView()
         var cell = moduleItemCell(at: IndexPath(row: 0, section: 0))
         XCTAssertEqual(cell.dueLabel.text, "View")
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
-            .make(id: "1", completion_requirement: .make(type: .must_view, completed: true)),
+            .make(id: "1", completion_requirement: .make(type: .must_view, completed: true))
         ])
         NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
         drainMainQueue()
@@ -454,7 +454,7 @@ class ModuleListViewControllerTests: CoreTestCase {
     func testLockedMasteryPath() {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1")])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
-            .make(id: "1", title: "Unlockable", mastery_paths: .make(locked: true)),
+            .make(id: "1", title: "Unlockable", mastery_paths: .make(locked: true))
         ])
         loadView()
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 2)
@@ -469,8 +469,8 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1")])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
             .make(id: "1", title: "Unlockable", mastery_paths: .make(locked: false, assignment_sets: [
-                .make(assignments: [.make(model: .make())]),
-            ])),
+                .make(assignments: [.make(model: .make())])
+            ]))
         ])
         let task = api.mock(
             PostSelectMasteryPath(courseID: "1", moduleID: "1", moduleItemID: "1", assignmentSetID: "1"),
@@ -487,7 +487,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertEqual((path.accessoryView as? UIImageView)?.image, UIImage.masteryPathsLine)
         viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
-            .make(id: "1", title: "Unlocked", mastery_paths: nil),
+            .make(id: "1", title: "Unlocked", mastery_paths: nil)
         ])
         let masteryPath = router.last as! MasteryPathViewController
         XCTAssertTrue(viewController.spinnerView.isHidden)
@@ -502,7 +502,7 @@ class ModuleListViewControllerTests: CoreTestCase {
     func testLockedByPrerequisiteModule() {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [
             .make(id: "1", name: "Module 1", position: 0, state: .unlocked),
-            .make(id: "2", position: 1, prerequisite_module_ids: ["1"], state: .locked),
+            .make(id: "2", position: 1, prerequisite_module_ids: ["1"], state: .locked)
         ])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [.make(id: "1")])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths]), value: [.make(id: "2")])
@@ -522,7 +522,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         Clock.mockNow(now)
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [
             .make(id: "1", name: "Module 1", position: 0, state: .unlocked),
-            .make(id: "2", position: 1, state: .locked, unlock_at: now.addDays(1)),
+            .make(id: "2", position: 1, state: .locked, unlock_at: now.addDays(1))
         ])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [.make(id: "1")])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths]), value: [.make(id: "2")])
@@ -543,7 +543,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(viewController.tabs, value: [.make(id: "assignments")])
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1") ])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
-            .make(content: .assignment("1")),
+            .make(content: .assignment("1"))
         ])
         loadView()
         XCTAssertFalse(viewController.errorView.isHidden)
@@ -581,7 +581,7 @@ class ModuleListViewControllerTests: CoreTestCase {
                         lock_explanation: "Reasons"
                     ),
                     completion_requirement: nil
-                ),
+                )
             ]
         )
     }

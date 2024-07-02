@@ -34,7 +34,7 @@ class MDMManagerTests: XCTestCase {
                 host: "canvas.instructure.com",
                 username: "apple",
                 password: "titaniumium"
-            ),
+            )
         ])
         MDMManager.mockNoUsers()
         XCTAssertEqual(MDMManager.shared.logins, [])

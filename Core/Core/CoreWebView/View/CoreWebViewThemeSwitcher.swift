@@ -97,7 +97,7 @@ final class CoreWebViewThemeSwitcherLive: CoreWebViewThemeSwitcher {
             topConstraint,
             button.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: Constants.horizontalPadding),
             button.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -Constants.horizontalPadding),
-            button.bottomAnchor.constraint(equalTo: host.topAnchor, constant: 0),
+            button.bottomAnchor.constraint(equalTo: host.topAnchor, constant: 0)
         ])
 
         // pin webView
@@ -105,7 +105,7 @@ final class CoreWebViewThemeSwitcherLive: CoreWebViewThemeSwitcher {
             leading.map { host.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: $0) },
             trailing.map { parent.trailingAnchor.constraint(equalTo: host.trailingAnchor, constant: $0)},
             top.map { host.topAnchor.constraint(equalTo: button.bottomAnchor, constant: $0) },
-            bottom.map { parent.bottomAnchor.constraint(equalTo: host.bottomAnchor, constant: $0) },
+            bottom.map { parent.bottomAnchor.constraint(equalTo: host.bottomAnchor, constant: $0) }
         ].compactMap { $0 })
 
         themeSwitcherButton = button

@@ -108,7 +108,7 @@ private class AddressbookInteractorMock: AddressbookInteractor {
             .save(.make(id: "2", name: "Recipient 2", common_courses: ["Course 1": ["StudentEnrollment"]]), filter: "", in: env.database.viewContext),
             .save(.make(id: "3", name: "Recipient 3", common_courses: ["Course 1": ["ObserverEnrollment"]]), filter: "", in: env.database.viewContext),
             .save(.make(id: "4", name: "Recipient 4", common_courses: ["Course 1": ["TaEnrollment", "DesignerEnrollment"]]), filter: "", in: env.database.viewContext),
-            .save(.make(id: "5", name: "Recipient 5", common_courses: ["Course 1": ["TaEnrollment"]]), filter: "", in: env.database.viewContext),
+            .save(.make(id: "5", name: "Recipient 5", common_courses: ["Course 1": ["TaEnrollment"]]), filter: "", in: env.database.viewContext)
         ])
     }
 

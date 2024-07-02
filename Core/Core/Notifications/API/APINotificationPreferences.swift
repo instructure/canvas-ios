@@ -78,7 +78,7 @@ struct GetNotificationDefaultsFlagRequest: APIRequestable {
 
     var path: String { "users/self/custom_data/data_sync" }
     var query: [APIQueryItem] { [
-        .value("ns", "MOBILE_CANVAS_USER_NOTIFICATION_STATUS_SETUP"),
+        .value("ns", "MOBILE_CANVAS_USER_NOTIFICATION_STATUS_SETUP")
     ] }
 }
 

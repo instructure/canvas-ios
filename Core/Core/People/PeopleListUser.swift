@@ -36,8 +36,8 @@ public final class PeopleListUser: NSManagedObject {
             NSPredicate(key: #keyPath(PeopleListEnrollment.enrolledUser.id), equals: id),
             NSCompoundPredicate(orPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(PeopleListEnrollment.canvasContextID), equals: "course_\(courseID ?? "")"),
-                NSPredicate(key: #keyPath(PeopleListEnrollment.canvasContextID), equals: "group_\(groupID ?? "")"),
-            ]),
+                NSPredicate(key: #keyPath(PeopleListEnrollment.canvasContextID), equals: "group_\(groupID ?? "")")
+            ])
         ]), order: [])
     }
 }
@@ -47,7 +47,7 @@ extension PeopleListUser {
     public static func save(_ item: APIUser, courseId: String? = nil, groupId: String? = nil, in context: NSManagedObjectContext) -> PeopleListUser {
         let predicates = [NSPredicate(key: #keyPath(PeopleListUser.id), equals: item.id.value),
                           NSPredicate(key: #keyPath(PeopleListUser.groupID), equals: groupId),
-                          NSPredicate(key: #keyPath(PeopleListUser.courseID), equals: courseId), ]
+                          NSPredicate(key: #keyPath(PeopleListUser.courseID), equals: courseId) ]
         let userPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         let scope = Scope(predicate: userPredicate, order: [])
         let user: PeopleListUser = context.first(scope: scope) ?? context.insert()

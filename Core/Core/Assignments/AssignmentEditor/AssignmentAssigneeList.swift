@@ -152,7 +152,7 @@ struct AssigmentAssigneeList: View {
     func searchScope(_ original: Scope, key: String, value: String) -> Scope {
         Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             original.predicate,
-            NSPredicate(format: "%K CONTAINS[cd] %@", key, value),
+            NSPredicate(format: "%K CONTAINS[cd] %@", key, value)
         ]), order: original.order)
     }
 

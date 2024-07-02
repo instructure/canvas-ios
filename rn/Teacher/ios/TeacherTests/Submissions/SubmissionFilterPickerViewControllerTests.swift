@@ -23,7 +23,7 @@ import XCTest
 class SubmissionFilterPickerViewControllerTests: TeacherTestCase {
     lazy var controller = SubmissionFilterPickerViewController.create(context: .course("1"), outOfText: "Out of 10", filter: [
         .section([ "1" ]),
-        .late,
+        .late
     ]) { [weak self] value in
         self?.filter = value
     }
@@ -34,7 +34,7 @@ class SubmissionFilterPickerViewControllerTests: TeacherTestCase {
         super.setUp()
         api.mock(controller.sections, value: [
             .make(id: "1", name: "One"),
-            .make(id: "2", name: "Two"),
+            .make(id: "2", name: "Two")
         ])
     }
 

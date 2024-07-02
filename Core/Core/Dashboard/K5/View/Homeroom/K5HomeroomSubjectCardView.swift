@@ -122,12 +122,12 @@ struct K5HomeroomSubjectCardView_Previews: PreviewProvider {
         let longCourseName = "long course title to test what happens if there's not enough space for it"
         let models = [
             K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: "SOCIAL STUDIES", color: .electric, infoLines: [
-                .make(dueToday: 0, missing: 0, courseId: ""),
+                .make(dueToday: 0, missing: 0, courseId: "")
             ]),
             K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: longCourseName, color: .electric, infoLines: [
                 .make(dueToday: 3, missing: 1, courseId: ""),
-                .make(from: announcement, courseId: "")!,
-            ]),
+                .make(from: announcement, courseId: "")!
+            ])
         ]
 
         ForEach(0..<2) { index in

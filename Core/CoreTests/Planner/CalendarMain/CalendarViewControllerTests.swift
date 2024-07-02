@@ -53,7 +53,7 @@ class CalendarViewControllerTests: CoreTestCase, CalendarViewControllerDelegate 
 
         XCTAssertEqual(controller.monthButton.configuration?.contentInsets.trailing, 32)
         XCTAssertEqual(controller.weekdayRow.arrangedSubviews.map { ($0 as? UILabel)?.text }, [
-            "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
+            "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
         ])
 
         XCTAssertEqual(controller.monthButton.accessibilityLabel, "Show a month at a time")

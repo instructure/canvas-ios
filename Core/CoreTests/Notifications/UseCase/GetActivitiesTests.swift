@@ -40,7 +40,7 @@ class GetActivitiesTests: CoreTestCase {
                                #keyPath(Activity.typeRaw), ActivityType.assessmentRequest.rawValue)
         let contextFilter = NSPredicate(value: true)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [pred, contextFilter])
-        let order = [ NSSortDescriptor(key: #keyPath(Activity.updatedAt), ascending: false), ]
+        let order = [ NSSortDescriptor(key: #keyPath(Activity.updatedAt), ascending: false) ]
         let expected = Scope(predicate: predicate, order: order, sectionNameKeyPath: nil)
         XCTAssertEqual(useCase.scope, expected)
     }
@@ -54,7 +54,7 @@ class GetActivitiesTests: CoreTestCase {
                                #keyPath(Activity.typeRaw), ActivityType.assessmentRequest.rawValue)
         let contextFilter = NSPredicate(format: "%K == %@", #keyPath(Activity.canvasContextIDRaw), contextID)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [pred, contextFilter])
-        let order = [ NSSortDescriptor(key: #keyPath(Activity.updatedAt), ascending: false), ]
+        let order = [ NSSortDescriptor(key: #keyPath(Activity.updatedAt), ascending: false) ]
         let expected = Scope(predicate: predicate, order: order, sectionNameKeyPath: nil)
         XCTAssertEqual(useCase.scope, expected)
     }

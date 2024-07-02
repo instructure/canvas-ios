@@ -23,7 +23,7 @@ class APIBrandVariablesTests: XCTestCase {
     func testGetBrandVariablesRequest() {
         XCTAssertEqual(GetBrandVariablesRequest().path, "brand_variables")
         XCTAssertEqual(GetBrandVariablesRequest().headers, [
-            HttpHeader.authorization: nil,
+            HttpHeader.authorization: nil
         ])
     }
 }

@@ -51,7 +51,7 @@ class GetConversationCoursesTests: CoreTestCase {
         let enrollments: [APIEnrollment] = [
             .make(id: "1", course_id: "1", type: "ObserverEnrollment", observed_user: userB),
             .make(id: "2", course_id: "2", type: "ObserverEnrollment", observed_user: userA),
-            .make(id: "3", course_id: "3", type: "ObserverEnrollment", observed_user: userA),
+            .make(id: "3", course_id: "3", type: "ObserverEnrollment", observed_user: userA)
         ]
         useCase.write(response: enrollments, urlResponse: nil, to: databaseClient)
 

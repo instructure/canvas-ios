@@ -34,7 +34,7 @@ class QuizSubmissionListInteractorLiveTests: TeacherTestCase {
         let quizSubmissionUsersRequest = GetQuizSubmissionUsers(courseID: courseID)
         api.mock(quizSubmissionUsersRequest, value: [
             .make(id: ID("1"), name: "First"),
-            .make(id: ID("2"), name: "Second"),
+            .make(id: ID("2"), name: "Second")
         ])
 
         let quizSubmissionsRequest = GetAllQuizSubmissions(courseID: courseID, quizID: quizID)
@@ -94,7 +94,7 @@ class QuizSubmissionListInteractorLiveTests: TeacherTestCase {
     func testCreateMessageUserInfo() {
         let expectedRecipients = [
             ["id": "1", "name": "First", "avatar_url": nil],
-            ["id": "2", "name": "Second", "avatar_url": nil],
+            ["id": "2", "name": "Second", "avatar_url": nil]
         ]
 
         let expectation = expectation(description: "Expected state reached")

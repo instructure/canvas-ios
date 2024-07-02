@@ -36,7 +36,7 @@ class GetInboxMessageListTests: CoreTestCase {
             "inbox/starred?contextCode=all",
             "inbox/unread?contextCode=all",
             "inbox/archived?contextCode=all",
-            "imbox/archived?contextCode=all",
+            "imbox/archived?contextCode=all"
         ]
         var ttls: [TTL] = []
 

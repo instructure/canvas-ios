@@ -87,7 +87,7 @@ struct TopBarView_Previews: PreviewProvider {
         let properties: [(horizontalInset: CGFloat, itemSpacing: CGFloat)] = [
             (16, 16),
             (0, 16),
-            (32, 16),
+            (32, 16)
         ]
 
         ForEach(0..<3) {
@@ -95,7 +95,7 @@ struct TopBarView_Previews: PreviewProvider {
                 TopBarItemViewModel(id: "1", icon: .addLine, label: Text(verbatim: "Add")),
                 TopBarItemViewModel(id: "2", icon: .audioLine, label: Text(verbatim: "Audio")),
                 TopBarItemViewModel(id: "3", icon: .noteLine, label: Text(verbatim: "Note")),
-                TopBarItemViewModel(id: "4", icon: .prerequisiteLine, label: Text(verbatim: "Prerequisite")),
+                TopBarItemViewModel(id: "4", icon: .prerequisiteLine, label: Text(verbatim: "Prerequisite"))
             ]), horizontalInset: properties[$0].horizontalInset, itemSpacing: properties[$0].itemSpacing)
                 .previewLayout(.sizeThatFits)
         }

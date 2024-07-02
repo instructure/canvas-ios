@@ -51,7 +51,7 @@ public class CourseSyncListInteractorLive: CourseSyncListInteractor {
         case let .courseId(courseId):
             let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(format: "%K == %@", #keyPath(CourseSyncSelectorCourse.courseId), courseId),
-                isPublishedPredicate,
+                isPublishedPredicate
             ])
             courseListStore = ReactiveStore(
                 useCase: GetCourseSyncSelectorCourses(
@@ -69,7 +69,7 @@ public class CourseSyncListInteractorLive: CourseSyncListInteractor {
         case let .courseIds(courseIds):
             let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(format: "courseId IN %@", courseIds),
-                isPublishedPredicate,
+                isPublishedPredicate
             ])
             courseListStore = ReactiveStore(
                 useCase: GetCourseSyncSelectorCourses(

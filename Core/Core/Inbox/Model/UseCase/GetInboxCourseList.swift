@@ -27,7 +27,7 @@ public class GetInboxCourseList: CollectionUseCase {
     }
     public var scope: Scope {
         let order = [
-            NSSortDescriptor(key: #keyPath(InboxCourse.name), ascending: true),
+            NSSortDescriptor(key: #keyPath(InboxCourse.name), ascending: true)
         ]
         return Scope(predicate: .all, order: order)
     }
