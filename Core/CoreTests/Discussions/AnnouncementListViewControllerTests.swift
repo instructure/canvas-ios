@@ -48,7 +48,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
                 enrollment_state: .active,
                 type: "TeacherEnrollment",
                 user_id: environment.currentSession?.userID ?? "12"
-            ),
+            )
         ]))
         api.mock(controller.colors, value: .init(custom_colors: [ "course_1": "#0000ff" ]))
         api.mock(controller.topics, value: [
@@ -75,7 +75,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
                 posted_at: TestConstants.date20201102,
                 subscription_hold: "topic_is_announcement",
                 title: "Another Announcement"
-            ),
+            )
         ])
 
         let nav = UINavigationController(rootViewController: controller)
@@ -136,7 +136,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
                 posted_at: TestConstants.date20201103,
                 subscription_hold: "topic_is_announcement",
                 title: "Study group tomorrow"
-            ),
+            )
         ])
 
         let nav = UINavigationController(rootViewController: controller)

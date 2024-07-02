@@ -35,7 +35,7 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
     public init(environment: AppEnvironment, messages: [InboxMessageListItem]) {
         self.messages = CurrentValueSubject<[InboxMessageListItem], Never>(messages)
         self.courses = CurrentValueSubject<[InboxCourse], Never>([
-            .save(.make(id: "1", name: "Test Course"), in: environment.database.viewContext),
+            .save(.make(id: "1", name: "Test Course"), in: environment.database.viewContext)
         ])
     }
 

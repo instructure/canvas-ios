@@ -113,7 +113,7 @@ public struct GetGroupsRequest: APIRequestable {
     public var path: String { "\(context.pathComponent)/groups" }
     public var query: [APIQueryItem] { [
         .include(include.map { $0.rawValue }),
-        .perPage(100),
+        .perPage(100)
     ] }
 
     public init(context: Context, include: [Include] = Self.Include.allCases) {
@@ -145,8 +145,8 @@ struct GetGroupUsersRequest: APIRequestable {
 
     public let query: [APIQueryItem] = [
         .array("include", [
-            "avatar_url",
-        ]),
+            "avatar_url"
+        ])
     ]
 }
 

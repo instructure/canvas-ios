@@ -29,7 +29,7 @@ class AssignmentNotificationTriggerTests: XCTestCase {
             (.init(hour: 1), "3024-02-16T13:00:00Z"),
             (.init(day: 1), "3024-02-15T14:00:00Z"),
             (.init(weekOfMonth: 1), "3024-02-09T14:00:00Z"),
-            (.init(weekOfMonth: 7), "3023-12-29T14:00:00Z"),
+            (.init(weekOfMonth: 7), "3023-12-29T14:00:00Z")
         ]
 
         for testEntry in testData {

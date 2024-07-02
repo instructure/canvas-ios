@@ -83,7 +83,7 @@ class BulkPublishInteractorTests: CoreTestCase {
                         .running(progress: 0.2),
                         .running(progress: 0.8),
                         .running(progress: 1),
-                        .completed,
+                        .completed
                     ]
                 )
             }

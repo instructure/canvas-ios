@@ -45,7 +45,7 @@ class APIPlannableTests: XCTestCase {
             URLQueryItem(name: "start_date", value: start.isoString()),
             URLQueryItem(name: "end_date", value: end.isoString()),
             URLQueryItem(name: "context_codes[]", value: "course_1"),
-            URLQueryItem(name: "filter", value: "new_activity"),
+            URLQueryItem(name: "filter", value: "new_activity")
         ]
 		XCTAssertEqual(req.queryItems, expected)
 	}

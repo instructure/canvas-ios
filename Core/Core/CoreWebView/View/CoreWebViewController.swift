@@ -69,7 +69,7 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
             n.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             n.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             n.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            n.heightAnchor.constraint(greaterThanOrEqualToConstant: 78),
+            n.heightAnchor.constraint(greaterThanOrEqualToConstant: 78)
         ])
         limitedInteractionView = n
     }

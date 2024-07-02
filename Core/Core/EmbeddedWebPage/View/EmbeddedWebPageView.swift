@@ -24,7 +24,7 @@ public struct EmbeddedWebPageView<ViewModel: EmbeddedWebPageViewModel>: View {
         .disableZoom,
         .darkModeForWebDiscussions,
         .forceDisableHorizontalScroll,
-        .hidePeerReviewLinkInWebDiscussions,
+        .hidePeerReviewLinkInWebDiscussions
     ]
 
     public init(

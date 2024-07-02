@@ -49,7 +49,7 @@ final class DiskSpaceInteractorLive: DiskSpaceInteractor {
         let url = URL(fileURLWithPath: NSHomeDirectory() as String)
         let keys: Set<URLResourceKey> = [
             URLResourceKey.volumeTotalCapacityKey,
-            URLResourceKey.volumeAvailableCapacityKey,
+            URLResourceKey.volumeAvailableCapacityKey
         ]
 
         guard

@@ -42,7 +42,7 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
                 """,
                 id: "1",
                 title: "Pandemic playthrough"
-            ),
+            )
         ]))
     }
 
@@ -84,7 +84,7 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
                 playback_formats: [ .make(length: "", type: "video", url: URL(string: "/playback")!) ],
                 playback_url: nil,
                 title: "Recording 1"
-            ), ]),
+            ) ])
         ]))
         controller.refreshControl.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.statusLabel.text, "Concluded " + TestConstants.date.dateTimeString)
@@ -109,11 +109,11 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
                 .make(
                     playback_formats: [
                         .make(type: "statistics", url: URL(string: "/statistics")!),
-                        .make(type: "video", url: URL(string: "/playback")!),
+                        .make(type: "video", url: URL(string: "/playback")!)
                     ],
                     playback_url: nil
-                ),
-            ]),
+                )
+            ])
         ]))
         controller.view.layoutIfNeeded()
         let index0 = IndexPath(row: 0, section: 0)

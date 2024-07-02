@@ -99,7 +99,7 @@ struct K5ImportantDates_Previews: PreviewProvider {
                         date: Date(fromISOString: "2022-01-03T09:00:00Z")!,
                         route: nil,
                         type: .assignment
-                    ),
+                    )
                 ]
             ),
             K5ImportantDate(
@@ -112,9 +112,9 @@ struct K5ImportantDates_Previews: PreviewProvider {
                         date: Date(fromISOString: "2022-01-03T08:00:00Z")!,
                         route: nil,
                         type: .event
-                    ),
+                    )
                 ]
-            ),
+            )
         ]
         return K5ImportantDatesViewModel(with: dates)
     }

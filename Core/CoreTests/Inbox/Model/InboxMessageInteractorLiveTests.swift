@@ -45,7 +45,7 @@ class InboxMessageInteractorLiveTests: CoreTestCase {
                             .make(id: "3",
                                   workflow_state: .read,
                                   starred: true,
-                                  properties: [.attachments]),
+                                  properties: [.attachments])
                         ],
                         scope: .starred,
                         context: Context(.course, id: "3"))
@@ -173,7 +173,7 @@ class InboxMessageInteractorLiveTests: CoreTestCase {
                                               filter: nil)
         api.mock(request) { _ in
             let responseHeaders: [String: String] = [
-                "Link": "<https://next.url>; rel=\"next\"",
+                "Link": "<https://next.url>; rel=\"next\""
             ]
             let urlResponse = HTTPURLResponse(url: URL(string: "/")!,
                                               statusCode: 200,

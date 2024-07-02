@@ -115,7 +115,7 @@ class GetCoursesTest: CoreTestCase {
             predicate: NSPredicate(format: "ANY %K == %@", #keyPath(Course.enrollments.userID), "2"),
             order: [
                 NSSortDescriptor(key: #keyPath(Course.name), ascending: true, naturally: true),
-                NSSortDescriptor(key: #keyPath(Course.id), ascending: true),
+                NSSortDescriptor(key: #keyPath(Course.id), ascending: true)
             ]
         ))
     }

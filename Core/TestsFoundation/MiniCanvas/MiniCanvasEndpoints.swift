@@ -639,12 +639,12 @@ enum MiniCanvasEndpoints {
             let todos = request.state.todos
             return .json([
                 "needs_grading_count": todos.map({ $0.needs_grading_count ?? 0 }).reduce(0, +),
-                "assignments_needing_submitting": 0,
+                "assignments_needing_submitting": 0
             ])
         },
         .rest("/api/v1/courses/:courseID/lti_apps/launch_definitions") { _ in .json([String]()) },
 
         // kaltura
-        .rest("/api_v3/index.php", method: .post) { _ in .ok(.text("<id>1234</id>")) },
+        .rest("/api_v3/index.php", method: .post) { _ in .ok(.text("<id>1234</id>")) }
     ]
 }

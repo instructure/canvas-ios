@@ -504,7 +504,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
 
         NotificationCenter.default.post(name: UploadManager.AssignmentSubmittedNotification, object: nil, userInfo: [
             "assignmentID": "1",
-            "submission": APISubmission.make(),
+            "submission": APISubmission.make()
         ])
         let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 1)

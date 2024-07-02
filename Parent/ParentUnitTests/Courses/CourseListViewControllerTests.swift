@@ -33,7 +33,7 @@ class CourseListViewControllerTests: ParentTestCase {
                     .make(
                         id: "1",
                         course_id: "1"
-                    ),
+                    )
                 ]
             ),
             .make(
@@ -46,7 +46,7 @@ class CourseListViewControllerTests: ParentTestCase {
                         current_grading_period_id: "2",
                         current_period_computed_current_score: 95,
                         current_period_computed_current_grade: "A"
-                    ),
+                    )
                 ]
             ),
             .make(
@@ -60,7 +60,7 @@ class CourseListViewControllerTests: ParentTestCase {
                         multiple_grading_periods_enabled: true,
                         totals_for_all_grading_periods_option: true,
                         current_grading_period_id: nil
-                    ),
+                    )
                 ]
             ),
             .make(
@@ -74,7 +74,7 @@ class CourseListViewControllerTests: ParentTestCase {
                         multiple_grading_periods_enabled: true,
                         totals_for_all_grading_periods_option: true,
                         current_grading_period_id: nil
-                    ),
+                    )
                 ]
             ),
             .make(
@@ -88,7 +88,7 @@ class CourseListViewControllerTests: ParentTestCase {
                         multiple_grading_periods_enabled: true,
                         totals_for_all_grading_periods_option: false,
                         current_grading_period_id: nil
-                    ),
+                    )
                 ]
             ),
             .make(
@@ -99,9 +99,9 @@ class CourseListViewControllerTests: ParentTestCase {
                         course_id: "6",
                         computed_final_score: 85,
                         computed_final_grade: nil
-                    ),
+                    )
                 ], hide_final_grades: true
-            ),
+            )
 
         ])
     }

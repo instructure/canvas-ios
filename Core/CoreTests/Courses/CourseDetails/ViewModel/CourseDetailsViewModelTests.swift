@@ -38,7 +38,7 @@ class CourseDetailsViewModelTests: CoreTestCase {
                     .make(id: ID("context_external_tool_2"),
                           html_url: URL(string: "/2")!,
                           label: "attendance",
-                          type: .external),
+                          type: .external)
                  ])
         let toolsRequest = api.mock(GetCourseNavigationToolsRequest(courseContextsCodes: ["course_1"]),
                                     value: [
@@ -47,7 +47,7 @@ class CourseDetailsViewModelTests: CoreTestCase {
                                               context_id: "course_1",
                                               course_navigation: nil,
                                               name: "attendance",
-                                              url: URL(string: "rollcall.instructure.com")!),
+                                              url: URL(string: "rollcall.instructure.com")!)
                                     ])
         toolsRequest.suspend()
 

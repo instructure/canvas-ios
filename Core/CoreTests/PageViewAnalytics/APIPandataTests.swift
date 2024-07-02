@@ -48,11 +48,11 @@ class APIPandataTests: XCTestCase {
                 agent: nil,
                 guid: "g",
                 customPageViewPath: nil
-            ), signedProperties: token.props_token),
+            ), signedProperties: token.props_token)
         ]
         let request = PostPandataEventsRequest(token: token, events: events)
         XCTAssertEqual(request.headers, [
-            HttpHeader.authorization: "Bearer \(token.auth_token)",
+            HttpHeader.authorization: "Bearer \(token.auth_token)"
         ])
         XCTAssertEqual(request.path, token.url.absoluteString)
         XCTAssertEqual(request.body?.events, events)

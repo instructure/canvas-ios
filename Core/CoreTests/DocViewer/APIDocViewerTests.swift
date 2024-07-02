@@ -24,7 +24,7 @@ class APIDocViewerTests: XCTestCase {
         XCTAssertEqual(GetDocViewerMetadataRequest(path: "/1/sessions/{}").path, "/1/sessions/{}")
         XCTAssertEqual(GetDocViewerMetadataRequest(path: "").headers, [
             HttpHeader.accept: "application/json",
-            HttpHeader.authorization: nil,
+            HttpHeader.authorization: nil
         ])
     }
 
@@ -32,7 +32,7 @@ class APIDocViewerTests: XCTestCase {
         XCTAssertEqual(GetDocViewerAnnotationsRequest(sessionID: "{}").path, "/2018-04-06/sessions/{}/annotations")
         XCTAssertEqual(GetDocViewerAnnotationsRequest(sessionID: "{}").headers, [
             HttpHeader.accept: "application/json",
-            HttpHeader.authorization: nil,
+            HttpHeader.authorization: nil
         ])
         let date = Date()
         let dateStr = ISO8601DateFormatter.string(from: date, timeZone: TimeZone(identifier: "GMT")!, formatOptions: [.withInternetDateTime, .withFractionalSeconds])
@@ -53,7 +53,7 @@ class APIDocViewerTests: XCTestCase {
         XCTAssertEqual(PutDocViewerAnnotationRequest(body: annotation, sessionID: "{}").path, "/2018-03-07/sessions/{}/annotations/1")
         XCTAssertEqual(PutDocViewerAnnotationRequest(body: annotation, sessionID: "{}").headers, [
             HttpHeader.accept: "application/json",
-            HttpHeader.authorization: nil,
+            HttpHeader.authorization: nil
         ])
         XCTAssertEqual(PutDocViewerAnnotationRequest(body: annotation, sessionID: "{}").body, annotation)
     }
@@ -88,7 +88,7 @@ class APIDocViewerTests: XCTestCase {
         XCTAssertEqual(DeleteDocViewerAnnotationRequest(annotationID: "1", sessionID: "{}").path, "/1/sessions/{}/annotations/1")
         XCTAssertEqual(DeleteDocViewerAnnotationRequest(annotationID: "1", sessionID: "{}").headers, [
             HttpHeader.accept: "application/json",
-            HttpHeader.authorization: nil,
+            HttpHeader.authorization: nil
         ])
     }
 

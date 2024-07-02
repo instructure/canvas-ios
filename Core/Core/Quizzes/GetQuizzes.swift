@@ -42,7 +42,7 @@ public struct GetQuizzes: CollectionUseCase {
             order: [
                 NSSortDescriptor(key: #keyPath(Quiz.quizTypeOrder), ascending: true),
                 NSSortDescriptor(key: #keyPath(Quiz.order), ascending: true),
-                NSSortDescriptor(key: #keyPath(Quiz.title), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
+                NSSortDescriptor(key: #keyPath(Quiz.title), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
             ],
             sectionNameKeyPath: #keyPath(Quiz.quizTypeRaw)
         )

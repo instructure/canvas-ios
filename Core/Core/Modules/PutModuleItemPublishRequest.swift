@@ -66,7 +66,7 @@ struct PutModuleItemPublishState: APIUseCase {
         self.action = action
         predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(ModuleItem.courseID), equals: courseId),
-            NSPredicate(key: #keyPath(ModuleItem.id), equals: moduleItemId),
+            NSPredicate(key: #keyPath(ModuleItem.id), equals: moduleItemId)
         ])
 
         request = PutModuleItemPublishRequest(

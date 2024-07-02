@@ -95,7 +95,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
             string: String(localized: "Pairing Code: ", bundle: .core),
             attributes: [
                 NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20),
-                NSAttributedString.Key.foregroundColor: UIColor.textDarkest,
+                NSAttributedString.Key.foregroundColor: UIColor.textDarkest
             ]
         )
 
@@ -103,7 +103,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
             string: pairingCode ?? "",
             attributes: [
                 NSAttributedString.Key.font: UIFont.scaledNamedFont(.semibold20),
-                NSAttributedString.Key.foregroundColor: UIColor.textDarkest,
+                NSAttributedString.Key.foregroundColor: UIColor.textDarkest
             ]
         )
         let mutableAttributedString = NSMutableAttributedString()

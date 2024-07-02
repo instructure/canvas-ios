@@ -57,7 +57,7 @@ class CourseSettingsViewModelTests: CoreTestCase {
             ItemPickerItem(title: String(localized: "Course Activity Stream", bundle: .core)),
             ItemPickerItem(title: String(localized: "Course Modules", bundle: .core)),
             ItemPickerItem(title: String(localized: "Syllabus", bundle: .core)),
-            ItemPickerItem(title: String(localized: "Pages Front Page", bundle: .core)),
+            ItemPickerItem(title: String(localized: "Pages Front Page", bundle: .core))
         ])
 
         XCTAssertEqual(testee.newDefaultView, .syllabus)

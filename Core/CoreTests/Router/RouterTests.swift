@@ -55,7 +55,7 @@ class RouterTests: CoreTestCase {
             },
             RouteHandler("/inbox") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         XCTAssert(router.count == 2)
     }
@@ -72,7 +72,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/modal") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/modal")!, from: mockView, options: .modal())
         XCTAssertNotNil(mockView.presented)
@@ -85,7 +85,7 @@ class RouterTests: CoreTestCase {
             RouteHandler("/match") { components, _, _ in
                 clean = components
                 return nil
-            },
+            }
         ]) { _, _, _, _ in }
         router.route(to: .parse("/match?q=a+b&u=a%26b"), from: MockViewController())
         XCTAssertNotNil(clean)
@@ -98,7 +98,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/modal") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/modal")!, from: mockView, options: .modal(embedInNav: true, addDoneButton: true))
         let nav = mockView.presented as? UINavigationController
@@ -110,7 +110,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/formSheet") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/formSheet")!, from: mockView, options: .modal(.formSheet))
         XCTAssertNotNil(mockView.presented)
@@ -122,7 +122,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/modalEmbed") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/modalEmbed")!, from: mockView, options: .modal(embedInNav: true))
         XCTAssertNotNil(mockView.presented)
@@ -136,7 +136,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.detail)
@@ -150,7 +150,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.detail)
@@ -163,7 +163,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.shown)
@@ -176,7 +176,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         let split = MockSplitViewController()
         split.viewControllers = [UINavigationController(rootViewController: mockView)]
@@ -194,7 +194,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options:
             .detail)
@@ -210,7 +210,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
 
         // not detail
@@ -251,7 +251,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/somewhere") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/somewhere")!, from: mockView)
         XCTAssertNotNil(mockView.shown)
@@ -262,7 +262,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/somewhere") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         router.route(to: "/somewhere", from: mockView)
         XCTAssertNotNil(mockView.shown)
@@ -273,7 +273,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/somewhere") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         let url = URL(string: "https://canvas.instructure.com/somewhere#fragment?query=yo")!
         router.route(to: url, from: mockView)
@@ -285,7 +285,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/somewhere") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         router.route(to: "/api/v1/somewhere", from: mockView)
         XCTAssertNotNil(mockView.shown)
@@ -298,7 +298,7 @@ class RouterTests: CoreTestCase {
             },
             RouteHandler("*path") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         XCTAssertNil(router.match(URLComponents(string: "/somewhere")!))
     }
@@ -307,7 +307,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/somewhere") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         var components = URLComponents()
         components.path = "/somewhere"
@@ -318,7 +318,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/somewhere") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         let components = URLComponents(string: "https://canvas.instructure.com/somewhere")!
         XCTAssertNotNil(router.match(components))
@@ -415,7 +415,7 @@ class RouterTests: CoreTestCase {
         let router = Router(routes: [
             RouteHandler("/courses/:courseId/assignments") { _, _, _ in
                 return UIViewController()
-            },
+            }
         ]) { _, _, _, _ in }
         AppEnvironment.shared.app = .teacher
         let analyticsHandler = MockAnalyticsHandler()
@@ -445,7 +445,7 @@ class RouterTests: CoreTestCase {
 
     func testRouteTemplate() {
         let testee = Router(routes: [
-            RouteHandler("/courses/:courseId/assignments") { _, _, _ in UIViewController() },
+            RouteHandler("/courses/:courseId/assignments") { _, _, _ in UIViewController() }
         ])
 
         XCTAssertEqual(testee.template(for: "/courses/1234/assignments"), "/courses/:courseId/assignments")
@@ -455,7 +455,7 @@ class RouterTests: CoreTestCase {
 
     func testIsRegisteredRoute() {
         let testee = Router(routes: [
-            RouteHandler("/courses/:courseId/assignments") { _, _, _ in UIViewController() },
+            RouteHandler("/courses/:courseId/assignments") { _, _, _ in UIViewController() }
         ])
 
         XCTAssertEqual(testee.isRegisteredRoute("/courses/1234/assignments"), true)
@@ -473,7 +473,7 @@ class RouterTests: CoreTestCase {
         let mockViewController = MockViewController()
         let externalURL = URL(string: "https://example.com/courses")!
         let testee = Router(routes: [
-            RouteHandler("/courses") { _, _, _ in UIViewController() },
+            RouteHandler("/courses") { _, _, _ in UIViewController() }
         ])
 
         testee.route(to: externalURL, from: mockViewController)
@@ -491,7 +491,7 @@ class RouterTests: CoreTestCase {
         externalURLComponents.originIsNotification = true
         let externalURL = externalURLComponents.url!
         let testee = Router(routes: [
-            RouteHandler("/courses") { _, _, _ in UIViewController() },
+            RouteHandler("/courses") { _, _, _ in UIViewController() }
         ])
 
         testee.route(to: externalURL, from: mockViewController)

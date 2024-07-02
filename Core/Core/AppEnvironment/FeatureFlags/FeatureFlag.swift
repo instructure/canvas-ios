@@ -47,7 +47,7 @@ public final class FeatureFlag: NSManagedObject, WriteableModel {
     public static func save(_ item: APIFeatureFlag, in context: NSManagedObjectContext) -> FeatureFlag {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), item.canvasContextID),
-            NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.name), item.key),
+            NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.name), item.key)
         ])
         let flag: FeatureFlag = context.fetch(predicate).first ?? context.insert()
         flag.name = item.key

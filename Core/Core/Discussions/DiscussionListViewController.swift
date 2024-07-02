@@ -164,7 +164,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     func togglePinned(at indexPath: IndexPath, completionHandler: @escaping (Bool) -> Void) {
         guard let topic = topics[indexPath] else { return completionHandler(false) }
         let useCase = UpdateDiscussionTopic(context: context, topicID: topic.id, form: [
-            .pinned: .bool(!topic.pinned),
+            .pinned: .bool(!topic.pinned)
         ])
         useCase.fetch { [weak self] result, _, error in performUIUpdate {
             if let error = error { self?.showError(error) }
@@ -175,7 +175,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     func toggleLocked(at indexPath: IndexPath, completionHandler: @escaping (Bool) -> Void) {
         guard let topic = topics[indexPath] else { return completionHandler(false) }
         let useCase = UpdateDiscussionTopic(context: context, topicID: topic.id, form: [
-            .locked: .bool(!topic.locked),
+            .locked: .bool(!topic.locked)
         ])
         useCase.fetch { [weak self] result, _, error in performUIUpdate {
             if let error = error { self?.showError(error) }

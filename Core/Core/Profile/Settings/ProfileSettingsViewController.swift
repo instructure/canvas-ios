@@ -145,7 +145,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 Row(String(localized: "Canvas on GitHub", bundle: .core), isSupportedOffline: false) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self)
-                },
+                }
             ])
         )
         self.sections = sections
@@ -170,7 +170,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                     isSupportedOffline: true) { [weak self] in
                         guard let self = self else { return }
                         self.env.router.route(to: "/offline/settings", from: self)
-                    },
+                    }
                ])
     }
 
@@ -205,7 +205,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         let options = [
             ItemPickerItem(title: String(localized: "System Settings", bundle: .core)),
             ItemPickerItem(title: String(localized: "Light Theme", bundle: .core)),
-            ItemPickerItem(title: String(localized: "Dark Theme", bundle: .core)),
+            ItemPickerItem(title: String(localized: "Dark Theme", bundle: .core))
         ]
         let selectedStyleIndex = env.userDefaults?.interfaceStyle?.rawValue ?? 0
 
@@ -222,7 +222,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                     }
                 }
                 self.show(pickerVC, sender: self)
-            },
+            }
         ]
     }
 
@@ -234,13 +234,13 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                     title: String(localized: "Landing Page", bundle: .core),
                     sections: [ ItemPickerSection(items: LandingPage.appCases.map { page in
                         ItemPickerItem(title: page.name)
-                    }), ],
+                    }) ],
                     selected: LandingPage.appCases.firstIndex(of: self.landingPage).flatMap {
                         IndexPath(row: $0, section: 0)
                     },
                     delegate: self
                 ), sender: self)
-            },
+            }
         ]
     }
 
@@ -252,7 +252,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 guard let self = self else { return }
                 let vc = PairWithObserverViewController.create()
                 self.env.router.show(vc, from: self, options: .modal(.formSheet, isDismissable: true, embedInNav: true, addDoneButton: true))
-            },
+            }
         ]
     }
 
@@ -261,7 +261,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
             Row(String(localized: "About", bundle: .core), isSupportedOffline: true) { [weak self] in
                 guard let self else { return }
                 self.env.router.route(to: "/about", from: self)
-            },
+            }
         ]
     }
 

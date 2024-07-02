@@ -260,7 +260,7 @@ class ReactiveStoreTests: CoreTestCase {
         let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
         let next = "https://cgnuonline-eniversity.edu/api/v1/date?page=3"
         let headers = [
-            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1"
         ]
         let urlResponse = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
         let page1 = [APICourse.make(id: "1")]

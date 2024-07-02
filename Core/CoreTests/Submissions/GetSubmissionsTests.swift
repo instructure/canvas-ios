@@ -148,7 +148,7 @@ class GetSubmissionsTests: CoreTestCase {
             attempt: 2,
             submission_history: [
                 APISubmission.make(assignment_id: "2", attempt: 2, user_id: "3"),
-                APISubmission.make(assignment_id: "2", attempt: 1, user_id: "3"),
+                APISubmission.make(assignment_id: "2", attempt: 1, user_id: "3")
             ],
             user_id: "3"
         )
@@ -216,7 +216,7 @@ class GetSubmissionsTests: CoreTestCase {
         XCTAssertEqual(useCase.scope.order, [
             NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true),
             NSSortDescriptor(key: #keyPath(Submission.user.sortableName), naturally: true),
-            NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true),
+            NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true)
         ])
         useCase.shuffled = true
         XCTAssertEqual(useCase.scope.order, [NSSortDescriptor(key: #keyPath(Submission.shuffleOrder), ascending: true)])
@@ -228,9 +228,9 @@ class GetSubmissionsTests: CoreTestCase {
                 NSPredicate(format: "NONE %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["inactive", "invited"]),
                 NSCompoundPredicate(andPredicateWithSubpredicates: [
                     NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["active"]),
-                    NSPredicate(format: "ANY %K != nil", #keyPath(Submission.enrollments.courseSectionID)),
-                ]),
-            ]),
+                    NSPredicate(format: "ANY %K != nil", #keyPath(Submission.enrollments.courseSectionID))
+                ])
+            ])
         ]))
 
         XCTAssertEqual(useCase.scopeKeepingIDs(["3"]).predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
@@ -241,13 +241,13 @@ class GetSubmissionsTests: CoreTestCase {
                 NSPredicate(format: "NONE %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["inactive", "invited"]),
                 NSCompoundPredicate(andPredicateWithSubpredicates: [
                     NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["active"]),
-                    NSPredicate(format: "ANY %K != nil", #keyPath(Submission.enrollments.courseSectionID)),
-                ]),
+                    NSPredicate(format: "ANY %K != nil", #keyPath(Submission.enrollments.courseSectionID))
+                ])
             ]),
             NSCompoundPredicate(orPredicateWithSubpredicates: [
                 NSCompoundPredicate(andPredicateWithSubpredicates: []),
-                NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), ["3"]),
-            ]),
+                NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), ["3"])
+            ])
         ]))
         useCase.filter = [.late]
         XCTAssertEqual(useCase.scope.predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
@@ -258,10 +258,10 @@ class GetSubmissionsTests: CoreTestCase {
                 NSPredicate(format: "NONE %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["inactive", "invited"]),
                 NSCompoundPredicate(andPredicateWithSubpredicates: [
                     NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["active"]),
-                    NSPredicate(format: "ANY %K != nil", #keyPath(Submission.enrollments.courseSectionID)),
-                ]),
+                    NSPredicate(format: "ANY %K != nil", #keyPath(Submission.enrollments.courseSectionID))
+                ])
             ]),
-            NSPredicate(key: #keyPath(Submission.late), equals: true),
+            NSPredicate(key: #keyPath(Submission.late), equals: true)
         ]))
     }
 
@@ -341,7 +341,7 @@ class GetSubmissionsTests: CoreTestCase {
             APISubmission.make(group: group, id: "1", submission_history: [], submitted_at: date, user: .make(id: "B2", sortable_name: "B"), user_id: "B2"),
             APISubmission.make(group: group, id: "2", submission_history: [], submitted_at: date, user: .make(id: "B1", sortable_name: "B"), user_id: "B1"),
             APISubmission.make(group: group, id: "3", submission_history: [], submitted_at: date, user: .make(id: "C", sortable_name: "C"), user_id: "C"),
-            APISubmission.make(group: group, id: "4", submission_history: [], submitted_at: date, user: .make(id: "A", sortable_name: "A"), user_id: "A"),
+            APISubmission.make(group: group, id: "4", submission_history: [], submitted_at: date, user: .make(id: "A", sortable_name: "A"), user_id: "A")
         ], in: databaseClient)
 
         let testee = GetSubmissions(context: .course("1"), assignmentID: "1")

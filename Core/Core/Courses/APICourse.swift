@@ -149,7 +149,7 @@ extension APICourse {
             user_id: "12",
             role: "StudentEnrollment",
             role_id: "3"
-        ), ],
+        ) ],
         grading_periods: [APIGradingPeriod]? = [],
         default_view: CourseDefaultView? = nil,
         syllabus_body: String? = nil,
@@ -294,7 +294,7 @@ public struct GetCoursesRequest: APIRequestable {
             .perPage(perPage),
             .optionalValue("enrollment_state", enrollmentState?.rawValue),
             .array("state", (state ?? []).map { $0.rawValue }),
-            .optionalValue("enrollment_type", enrollmentType?.rawValue),
+            .optionalValue("enrollment_type", enrollmentType?.rawValue)
         ]
     }
 }
@@ -332,7 +332,7 @@ public struct GetCourseRequest: APIRequestable {
         .totalScores,
         .observedUsers,
         .settings,
-        .grading_scheme,
+        .grading_scheme
     ]
 
     var include: [Include] = defaultIncludes
@@ -400,7 +400,7 @@ struct PostCourseRequest: APIRequestable {
     let body: Body?
 
     let headers: [String: String?] = [
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
     ]
     let method = APIMethod.post
     var path: String {

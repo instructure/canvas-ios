@@ -25,11 +25,11 @@ class DashboardCardsViewModelTests: CoreTestCase {
     func testFetchesDashboardCards() {
         api.mock(GetDashboardCourses(), value: [
             .make(id: 1),
-            .make(id: 2),
+            .make(id: 2)
         ])
         api.mock(GetDashboardCards(showOnlyTeacherEnrollment: false), value: [
             .make(id: 1, shortName: "card 1"),
-            .make(id: 2, shortName: "card 2"),
+            .make(id: 2, shortName: "card 2")
         ])
 
         let interactor = DashboardCourseCardListInteractorLive(showOnlyTeacherEnrollment: false)

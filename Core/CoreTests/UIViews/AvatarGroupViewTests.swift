@@ -39,7 +39,7 @@ class AvatarGroupViewTests: CoreTestCase {
 
         view.loadUsers([
             (name: "Coach Z", url: nil),
-            (name: "Strong Bad", url: URL(string: "data:image/png,")),
+            (name: "Strong Bad", url: URL(string: "data:image/png,"))
         ])
         view.layoutIfNeeded()
         let size = view.bounds.width / 3 * 2

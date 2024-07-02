@@ -43,13 +43,13 @@ class CoursePickerViewModelTests: CoreTestCase {
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), value: [
             APICourse.make(id: "testCourse1_ID", name: "testCourse1"),
             APICourse.make(id: "testCourse2_ID", name: "testCourse2"),
-            APICourse.make(id: "testCourse3_ID", name: nil),
+            APICourse.make(id: "testCourse3_ID", name: nil)
         ])
         let testee = CoursePickerViewModel()
         XCTAssertNil(testee.selectedCourse)
         XCTAssertEqual(testee.state, .data([
             .init(id: "testCourse1_ID", name: "testCourse1"),
-            .init(id: "testCourse2_ID", name: "testCourse2"),
+            .init(id: "testCourse2_ID", name: "testCourse2")
         ]))
     }
 
@@ -57,13 +57,13 @@ class CoursePickerViewModelTests: CoreTestCase {
         environment.userDefaults?.submitAssignmentCourseID = "testCourse2_ID"
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), value: [
             APICourse.make(id: "testCourse1_ID", name: "testCourse1"),
-            APICourse.make(id: "testCourse2_ID", name: "testCourse2"),
+            APICourse.make(id: "testCourse2_ID", name: "testCourse2")
         ])
         let testee = CoursePickerViewModel()
         XCTAssertEqual(testee.selectedCourse, .init(id: "testCourse2_ID", name: "testCourse2"))
         XCTAssertEqual(testee.state, .data([
             .init(id: "testCourse1_ID", name: "testCourse1"),
-            .init(id: "testCourse2_ID", name: "testCourse2"),
+            .init(id: "testCourse2_ID", name: "testCourse2")
         ]))
         // Keep the course ID so if the user submits another attempt without starting the app we'll pre-select
         XCTAssertNotNil(environment.userDefaults?.submitAssignmentCourseID)
@@ -93,7 +93,7 @@ class CoursePickerViewModelTests: CoreTestCase {
         Analytics.shared.handler = analyticsHandler
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), value: [
             APICourse.make(id: "testCourse1_ID", name: "testCourse1"),
-            APICourse.make(id: "testCourse2_ID", name: "testCourse2"),
+            APICourse.make(id: "testCourse2_ID", name: "testCourse2")
         ])
 
         _ = CoursePickerViewModel()

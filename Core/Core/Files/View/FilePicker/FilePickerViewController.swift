@@ -166,7 +166,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             toolbarItems = [
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
                 cancelButton,
-                UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             ]
         } else if failed {
             navigationController?.setToolbarHidden(false, animated: true)
@@ -180,7 +180,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             toolbarItems = [
                 cancelButton,
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-                retryButton,
+                retryButton
             ]
         } else {
             navigationController?.setToolbarHidden(true, animated: true)

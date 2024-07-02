@@ -118,7 +118,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.library.rawValue])
         let picker = router.presented as! UIImagePickerController
         picker.delegate?.imagePickerController?(MockImagePicker(), didFinishPickingMediaWithInfo: [
-            .originalImage: UIImage.instructureLine,
+            .originalImage: UIImage.instructureLine
         ])
 
         let index = IndexPath(row: 0, section: 0)
@@ -127,7 +127,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         XCTAssertEqual(row?.subtitleLabel.text?.contains(" KB"), true)
 
         picker.delegate?.imagePickerController?(MockImagePicker(), didFinishPickingMediaWithInfo: [
-            .mediaURL: URL.Directories.temporary.appendingPathComponent("bogus"),
+            .mediaURL: URL.Directories.temporary.appendingPathComponent("bogus")
         ])
         XCTAssert(router.presented is UIAlertController)
 

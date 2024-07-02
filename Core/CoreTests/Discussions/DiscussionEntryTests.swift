@@ -30,7 +30,7 @@ class DiscussionEntryTests: CoreTestCase {
 
     func testReplies() {
         let entry = DiscussionEntry.make(from: .make(replies: [
-            .make(id: "2"),
+            .make(id: "2")
         ]))
         XCTAssertEqual(entry.replies.count, 1)
         entry.replies = []

@@ -163,7 +163,7 @@ struct AssignmentListView_Previews: PreviewProvider {
             APIAssignment.make(id: "2", quiz_id: "1"),
             APIAssignment.make(id: "3", submission_types: [.discussion_topic]),
             APIAssignment.make(id: "4", submission_types: [.external_tool]),
-            APIAssignment.make(id: "5", locked_for_user: true),
+            APIAssignment.make(id: "5", locked_for_user: true)
         ]
         return assignments.map {
             Assignment.save($0, in: context, updateSubmission: false, updateScoreStatistics: false)
@@ -177,7 +177,7 @@ struct AssignmentListView_Previews: PreviewProvider {
         let assignments = createAssignments()
         let assignmentGroups: [AssignmentGroupViewModel] = [
             AssignmentGroupViewModel(name: "Assignment Group 1", id: "1", assignments: assignments, courseColor: .red),
-            AssignmentGroupViewModel(name: "Assignment Group 2", id: "2", assignments: assignments, courseColor: .red),
+            AssignmentGroupViewModel(name: "Assignment Group 2", id: "2", assignments: assignments, courseColor: .red)
         ]
         let viewModel = AssignmentListViewModel(state: .data(assignmentGroups))
         AssignmentListView(viewModel: viewModel)
