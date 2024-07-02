@@ -143,7 +143,7 @@ struct CourseSyncSelectorView: View {
                 VStack(spacing: 0) {
                     switch cell {
                     case let .item(item):
-                        ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                        OfflineListCellView(OfflineListCellViewModel(cellStyle: item.cellStyle,
                                                        title: item.title,
                                                        subtitle: item.subtitle,
                                                        selectionState: item.selectionState,

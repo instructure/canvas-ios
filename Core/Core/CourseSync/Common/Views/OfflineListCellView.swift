@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct ListCellView: View {
+public struct OfflineListCellView: View {
     enum ListCellStyle {
         case mainAccordionHeader
         case listAccordionHeader
@@ -45,9 +45,9 @@ public struct ListCellView: View {
         }
     }
 
-    @ObservedObject var viewModel: ListCellViewModel
+    @ObservedObject var viewModel: OfflineListCellViewModel
 
-    internal init(_ viewModel: ListCellViewModel) {
+    internal init(_ viewModel: OfflineListCellViewModel) {
         self.viewModel = viewModel
     }
 
@@ -225,6 +225,14 @@ public struct ListCellView: View {
                 }
             }
 
+            if viewModel.state.isError, viewModel.removeItemPressed != nil {
+                Button {
+                    viewModel.removeItemPressed?()
+                } label: {
+                    Text("Remove item", bundle: .core)
+                }
+            }
+
             // viewModel.state.isError logic has been removed, because
             // viewModel.removeItemPressed was never implemented.
         }
@@ -237,7 +245,7 @@ public struct ListCellView: View {
 struct ListCellView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 0) {
-            ListCellView(ListCellViewModel(cellStyle: .mainAccordionHeader,
+            OfflineListCellView(OfflineListCellViewModel(cellStyle: .mainAccordionHeader,
                                            title: "Top Secret.pdf",
                                            subtitle: "1MB",
                                            selectionState: .selected,
@@ -245,14 +253,14 @@ struct ListCellView_Previews: PreviewProvider {
                                            selectionDidToggle: {},
                                            state: .loading(nil)))
             Divider()
-            ListCellView(ListCellViewModel(cellStyle: .listAccordionHeader,
+            OfflineListCellView(OfflineListCellViewModel(cellStyle: .listAccordionHeader,
                                            title: "Something",
                                            subtitle: nil,
                                            selectionState: .deselected,
                                            selectionDidToggle: {},
                                            state: .loading(0.2)))
             Divider()
-            ListCellView(ListCellViewModel(cellStyle: .listAccordionHeader,
+            OfflineListCellView(OfflineListCellViewModel(cellStyle: .listAccordionHeader,
                                            title: "Files",
                                            subtitle: nil,
                                            selectionState: .deselected,
@@ -260,7 +268,7 @@ struct ListCellView_Previews: PreviewProvider {
                                            selectionDidToggle: {},
                                            state: .downloaded))
             Divider()
-            ListCellView(ListCellViewModel(cellStyle: .listItem,
+            OfflineListCellView(OfflineListCellViewModel(cellStyle: .listItem,
                                            title: "Creative Machines and Innovative Instrumentation.mov",
                                            subtitle: "4 GB",
                                            selectionState: .selected,
@@ -273,19 +281,19 @@ struct ListCellView_Previews: PreviewProvider {
         }
         VStack(spacing: 0) {
             Divider()
-            ListCellView(ListCellViewModel(cellStyle: .mainAccordionHeader,
+            OfflineListCellView(OfflineListCellViewModel(cellStyle: .mainAccordionHeader,
                                            title: "Top Secret.pdf",
                                            subtitle: nil,
                                            isCollapsed: false,
                                            state: .downloaded))
             Divider()
-            ListCellView(ListCellViewModel(cellStyle: .listAccordionHeader,
+            OfflineListCellView(OfflineListCellViewModel(cellStyle: .listAccordionHeader,
                                            title: "Files",
                                            subtitle: "1.13 GB",
                                            isCollapsed: false,
                                            state: .loading(0.5)))
             Divider()
-            ListCellView(ListCellViewModel(cellStyle: .listItem,
+            OfflineListCellView(OfflineListCellViewModel(cellStyle: .listItem,
                                            title: "Creative Machines and Innovative Instrumentation.mov",
                                            subtitle: "4 GB",
                                            isCollapsed: false,
