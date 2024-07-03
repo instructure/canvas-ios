@@ -37,14 +37,14 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
                       .init(id: "2", name: "Grades", type: .assignments),
                       .init(id: "3", name: "People", type: .assignments),
                       .init(id: "4", name: "Files", type: .files, isCollapsed: false),
-                      .init(id: "5", name: "Syllabus", type: .assignments),
+                      .init(id: "5", name: "Syllabus", type: .assignments)
                   ],
                   files: [
                       .make(id: "0", displayName: "Creative Machines and Innovative Instrumentation.mov"),
-                      .make(id: "1", displayName: "Intro Energy, Space and Time.mov"),
+                      .make(id: "1", displayName: "Intro Energy, Space and Time.mov")
                   ],
                   isCollapsed: false),
-            .init(name: "Empty Course", id: "1", hasFrontPage: false, tabs: [], files: []),
+            .init(name: "Empty Course", id: "1", hasFrontPage: false, tabs: [], files: [])
         ])
     }
 

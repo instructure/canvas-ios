@@ -59,7 +59,7 @@ public class CircleRefreshControl: UIRefreshControl {
             progressView.widthAnchor.constraint(equalToConstant: 32),
             progressView.heightAnchor.constraint(equalToConstant: 32),
             progressView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            progressView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            progressView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         progressView.alpha = 0
     }

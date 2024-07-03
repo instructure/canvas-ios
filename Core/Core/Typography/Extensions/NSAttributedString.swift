@@ -25,7 +25,7 @@ extension NSAttributedString {
         paragraphStyle.lineHeightMultiple = lineHeight.rawValue
 
         let attributes: [NSAttributedString.Key: Any] = [
-            .paragraphStyle: paragraphStyle,
+            .paragraphStyle: paragraphStyle
         ]
         return attributes
     }

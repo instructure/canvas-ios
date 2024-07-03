@@ -132,7 +132,7 @@ struct GetMobileVerifyRequest: APIRequestable {
     }
     let headers: [String: String?] = [
         HttpHeader.accept: "application/json",
-        HttpHeader.authorization: nil,
+        HttpHeader.authorization: nil
     ]
 }
 
@@ -187,7 +187,7 @@ struct PostLoginOAuthRequest: APIRequestable {
     }
 
     let headers: [String: String?] = [
-        HttpHeader.authorization: nil,
+        HttpHeader.authorization: nil
     ]
 }
 

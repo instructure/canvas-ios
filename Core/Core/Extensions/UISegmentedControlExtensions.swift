@@ -55,7 +55,7 @@ public extension UISegmentedControl {
     func setFontStyle() {
         let style: [NSAttributedString.Key: Any] = [
             .font: UIFont.scaledNamedFont(.regular14),
-            .foregroundColor: UIColor.textDark,
+            .foregroundColor: UIColor.textDark
         ]
 
         setTitleTextAttributes(style, for: .normal)

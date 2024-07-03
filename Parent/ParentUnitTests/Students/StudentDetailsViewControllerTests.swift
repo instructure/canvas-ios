@@ -29,7 +29,7 @@ class StudentDetailsViewControllerTests: ParentTestCase {
         User.make(from: .make(id: "1", short_name: "Legion", pronouns: "They/Them"))
         api.mock(controller.thresholds, value: [
             .make(id: "1", user_id: "1", alert_type: .courseGradeLow, threshold: 65),
-            .make(id: "2", user_id: "1", alert_type: .assignmentMissing, threshold: nil),
+            .make(id: "2", user_id: "1", alert_type: .assignmentMissing, threshold: nil)
         ])
     }
 

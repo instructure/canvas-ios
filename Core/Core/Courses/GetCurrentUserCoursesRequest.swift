@@ -25,7 +25,7 @@ public struct GetCurrentUserCoursesRequest: APIRequestable {
             .perPage(perPage),
             .optionalValue("enrollment_state", enrollmentState?.rawValue),
             .array("state", state.map { $0.rawValue }),
-            .include(includes.map { $0.rawValue }),
+            .include(includes.map { $0.rawValue })
         ]
     }
 

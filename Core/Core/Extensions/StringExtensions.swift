@@ -50,7 +50,7 @@ extension String {
             "&gt;": ">",
             "&amp;": "&",
             "&apos;": "'",
-            "&quot;": "\"",
+            "&quot;": "\""
         ]
         var result = self
 

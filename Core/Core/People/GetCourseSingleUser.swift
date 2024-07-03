@@ -38,7 +38,7 @@ public struct GetCourseSingleUser: APIUseCase {
 
     public var scope: Scope { Scope(
         predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(key: #keyPath(User.id), equals: userID),
+            NSPredicate(key: #keyPath(User.id), equals: userID)
         ]), order: [])}
 }
 

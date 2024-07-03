@@ -282,12 +282,12 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
         if dateRange.location != NSNotFound, attemptRange.location != NSNotFound {
             text.addAttributes([
                                 .font: UIFont.scaledNamedFont(.regular20),
-                                .foregroundColor: UIColor.textDarkest,
+                                .foregroundColor: UIColor.textDarkest
                                ],
                                range: dateRange)
             text.addAttributes([
                                 .font: UIFont.scaledNamedFont(.regular17),
-                                .foregroundColor: UIColor.textDarkest,
+                                .foregroundColor: UIColor.textDarkest
                                 ],
                                range: attemptRange)
         }

@@ -85,7 +85,7 @@ public struct GetSearchRecipientsRequest: APIRequestable {
             .value("context", context),
             .value("search", search),
             .value("synthetic_contexts", "1"),
-            .optionalValue("user_id", userID),
+            .optionalValue("user_id", userID)
         ]
         if skipVisibilityChecks {
             items.append(.bool("skip_visibility_checks", true))

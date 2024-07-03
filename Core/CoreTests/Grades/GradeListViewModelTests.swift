@@ -218,7 +218,7 @@ private let gradeListData = GradeListData(
     assignmentSections: [
         GradeListData.AssignmentSections(id: "1", title: "First group", assignments: [.make()]),
         GradeListData.AssignmentSections(id: "2", title: "Second group", assignments: [.make()]),
-        GradeListData.AssignmentSections(id: "3", title: "Third group", assignments: [.make()]),
+        GradeListData.AssignmentSections(id: "3", title: "Third group", assignments: [.make()])
     ],
     isGradingPeriodHidden: false,
     gradingPeriods: [],

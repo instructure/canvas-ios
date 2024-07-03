@@ -99,7 +99,7 @@ public class GetSubmittableAssignments: GetAssignments {
             NSPredicate(format: "%K == FALSE", #keyPath(Assignment.lockedForUser)),
             NSPredicate(format: "%K == NIL OR %K > %@", #keyPath(Assignment.lockAt), #keyPath(Assignment.lockAt), NSDate()),
             NSPredicate(format: "%K == NIL OR %K <= %@", #keyPath(Assignment.unlockAt), #keyPath(Assignment.unlockAt), NSDate()),
-            NSPredicate(format: "%K contains %@", #keyPath(Assignment.submissionTypesRaw), SubmissionType.online_upload.rawValue),
+            NSPredicate(format: "%K contains %@", #keyPath(Assignment.submissionTypesRaw), SubmissionType.online_upload.rawValue)
         ])
         //  this puts nil dueAt at the bottom of the list
         let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)

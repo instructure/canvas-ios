@@ -188,7 +188,7 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
                                    id: "testID",
                                    hasFrontPage: false,
                                    tabs: [
-                                       .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, selectionState: .deselected),
+                                       .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, selectionState: .deselected)
                                    ],
                                    files: [],
                                    isCollapsed: false,
@@ -209,10 +209,10 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
                                    id: "testID",
                                    hasFrontPage: false,
                                    tabs: [
-                                       .init(id: "0", name: "Files", type: .files, isCollapsed: false, selectionState: .deselected),
+                                       .init(id: "0", name: "Files", type: .files, isCollapsed: false, selectionState: .deselected)
                                    ],
                                    files: [
-                                       .make(id: "0", displayName: "test.txt", selectionState: .deselected),
+                                       .make(id: "0", displayName: "test.txt", selectionState: .deselected)
                                    ],
                                    isCollapsed: false,
                                    selectionState: .deselected)

@@ -219,7 +219,7 @@ struct GetDocViewerMetadataRequest: APIRequestable {
 
     let headers: [String: String?] = [
         HttpHeader.accept: "application/json",
-        HttpHeader.authorization: nil,
+        HttpHeader.authorization: nil
     ]
 }
 
@@ -235,7 +235,7 @@ struct GetDocViewerAnnotationsRequest: APIRequestable {
 
     let headers: [String: String?] = [
         HttpHeader.accept: "application/json",
-        HttpHeader.authorization: nil,
+        HttpHeader.authorization: nil
     ]
 
     static var decoder: JSONDecoder = {
@@ -276,7 +276,7 @@ struct PutDocViewerAnnotationRequest: APIRequestable {
 
     let headers: [String: String?] = [
         HttpHeader.accept: "application/json",
-        HttpHeader.authorization: nil,
+        HttpHeader.authorization: nil
     ]
 
     func encode(_ body: Body) throws -> Data {
@@ -311,7 +311,7 @@ struct DeleteDocViewerAnnotationRequest: APIRequestable {
 
     let headers: [String: String?] = [
         HttpHeader.accept: "application/json",
-        HttpHeader.authorization: nil,
+        HttpHeader.authorization: nil
     ]
 }
 

@@ -38,7 +38,7 @@ class ConferenceListViewControllerTests: CoreTestCase {
             .make(id: "1"),
             .make(id: "2"),
             .make(ended_at: Clock.now, id: "3"),
-            .make(id: "4", started_at: Clock.now),
+            .make(id: "4", started_at: Clock.now)
         ]))
     }
 

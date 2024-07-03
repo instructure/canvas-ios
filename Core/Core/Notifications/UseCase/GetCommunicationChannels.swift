@@ -27,6 +27,6 @@ public struct GetCommunicationChannels: CollectionUseCase {
 
     public let scope = Scope(predicate: .all, order: [
         NSSortDescriptor(key: #keyPath(CommunicationChannel.typeRaw), ascending: true),
-        NSSortDescriptor(key: #keyPath(CommunicationChannel.position), ascending: true),
+        NSSortDescriptor(key: #keyPath(CommunicationChannel.position), ascending: true)
     ])
 }

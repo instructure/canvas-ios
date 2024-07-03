@@ -196,7 +196,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         let items = UIMenu(children: [
             UIAction(title: "", identifier: .PSPDFKit.comments) { _ in },
             UIAction(title: "", identifier: .PSPDFKit.inspector) { _ in },
-            UIAction(title: "", identifier: .PSPDFKit.delete) { _ in },
+            UIAction(title: "", identifier: .PSPDFKit.delete) { _ in }
         ])
         let results = controller.pdfViewController(pdf,
                                                    menuForAnnotations: [Annotation()],

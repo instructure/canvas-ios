@@ -73,12 +73,12 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
                 user_id: "1",
                 workflow_state: .unread,
                 locked_for_user: true
-            ),
+            )
         ])
         api.mock(GetAlertThresholds(studentID: "1"), value: [
             .make(id: "1", user_id: "1", alert_type: .courseGradeHigh, threshold: 90),
             .make(id: "2", user_id: "1", alert_type: .courseGradeLow, threshold: 60),
-            .make(id: "3", user_id: "1", alert_type: .institutionAnnouncement, threshold: nil),
+            .make(id: "3", user_id: "1", alert_type: .institutionAnnouncement, threshold: nil)
         ])
     }
 

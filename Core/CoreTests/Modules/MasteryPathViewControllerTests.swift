@@ -31,11 +31,11 @@ class MasteryPathViewControllerTests: CoreTestCase {
             assignment_sets: [
                 .make(id: "1", position: 0, assignments: [
                     .make(position: 0, model: .make(id: "1", name: "A1", points_possible: 10)),
-                    .make(position: 1, model: .make(course_id: "1", id: "2", name: "A2")),
+                    .make(position: 1, model: .make(course_id: "1", id: "2", name: "A2"))
                 ]),
                 .make(id: "2", position: 1, assignments: [
-                    .make(position: 0, model: .make(id: "3", name: "A3")),
-                ]),
+                    .make(position: 0, model: .make(id: "3", name: "A3"))
+                ])
             ],
             selected_set_id: nil
         ), in: databaseClient)

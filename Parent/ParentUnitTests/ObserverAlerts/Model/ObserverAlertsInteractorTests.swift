@@ -26,7 +26,7 @@ class ObserverAlertsInteractorTests: ParentTestCase {
     func testLoadsAlertsWhereQuantitativeDataIsNotEnabled() {
         api.mock(GetObserverAlerts(studentID: "testStudent"), value: [
             .make(alert_type: .courseGradeLow, context_id: "c1", id: "a1", user_id: "testStudent"),
-            .make(alert_type: .courseGradeLow, context_id: "c2", id: "a2", user_id: "testStudent"),
+            .make(alert_type: .courseGradeLow, context_id: "c2", id: "a2", user_id: "testStudent")
         ])
         api.mock(GetAlertThresholds(studentID: "testStudent"), value: [])
         let mockSettingsInteractor = MockCourseSettingsInteractor()

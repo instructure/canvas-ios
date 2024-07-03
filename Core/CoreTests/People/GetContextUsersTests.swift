@@ -34,7 +34,7 @@ class GetContextUsersTests: CoreTestCase {
             URLQueryItem(name: "sort", value: "username"),
             URLQueryItem(name: "per_page", value: "50"),
             URLQueryItem(name: "include[]", value: "avatar_url"),
-            URLQueryItem(name: "include[]", value: "enrollments"),
+            URLQueryItem(name: "include[]", value: "enrollments")
         ])
         let useCase2 = GetContextUsers(context: .group("1"), type: .ta, search: "fred")
         XCTAssertEqual(useCase2.request.path, "groups/1/users")
@@ -45,7 +45,7 @@ class GetContextUsersTests: CoreTestCase {
             URLQueryItem(name: "include[]", value: "avatar_url"),
             URLQueryItem(name: "include[]", value: "enrollments"),
             URLQueryItem(name: "enrollment_type", value: "ta"),
-            URLQueryItem(name: "search_term", value: "fred"),
+            URLQueryItem(name: "search_term", value: "fred")
         ])
     }
 

@@ -117,7 +117,7 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
     func update() {
         navigationItem.rightBarButtonItems = [
             assignment.first?.anonymizeStudents == false && !submissions.isEmpty ? messageUsersButton : nil,
-            postPolicyButton,
+            postPolicyButton
         ].compactMap { $0 }
         loadingView.isHidden = submissions.state != .loading || refreshControl.isRefreshing
         emptyView.isHidden = submissions.state != .empty

@@ -31,10 +31,10 @@ public class GetInboxMessageList: CollectionUseCase {
     public var scope: Scope {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             messageScope.messageFilter,
-            context.inboxMessageFilter,
+            context.inboxMessageFilter
         ])
         let order = [
-            NSSortDescriptor(key: #keyPath(InboxMessageListItem.dateRaw), ascending: false),
+            NSSortDescriptor(key: #keyPath(InboxMessageListItem.dateRaw), ascending: false)
         ]
         return Scope(predicate: predicate, order: order)
     }

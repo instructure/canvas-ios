@@ -55,7 +55,7 @@ public struct LoginSession: Codable, Hashable {
             baseURL.host,
             originalBaseURL?.host,
             userID,
-            originalUserID,
+            originalUserID
         ]
         .compactMap { $0 }
         .joined(separator: "-")

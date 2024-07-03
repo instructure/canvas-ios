@@ -63,7 +63,7 @@ class K5GradesViewModelTests: CoreTestCase {
         api.mock(GetUserProfileRequest(userID: "self"), value: APIProfile.make())
         mockCourses()
         api.mock(GetEnrollmentsRequest(context: .currentUser, userID: "1", gradingPeriodID: "1", types: [ "StudentEnrollment" ], states: [ .active ]), value: [
-            .make(id: "1", course_id: "3", grades: .make(current_grade: "C")),
+            .make(id: "1", course_id: "3", grades: .make(current_grade: "C"))
         ])
 
         let testee = K5GradesViewModel()
@@ -87,9 +87,9 @@ class K5GradesViewModelTests: CoreTestCase {
                         multiple_grading_periods_enabled: true,
                         current_period_computed_current_score: 6,
                         current_period_computed_current_grade: "Hat"
-                    ),
+                    )
                 ]
-            ),
+            )
         ])
 
         let testee = K5GradesViewModel()
@@ -111,10 +111,10 @@ class K5GradesViewModelTests: CoreTestCase {
                         multiple_grading_periods_enabled: true,
                         current_period_computed_current_score: 6,
                         current_period_computed_current_grade: "Hat"
-                    ),
+                    )
                 ],
                 settings: APICourseSettings.make(restrict_quantitative_data: true)
-            ),
+            )
         ])
 
         let testee = K5GradesViewModel()
@@ -136,10 +136,10 @@ class K5GradesViewModelTests: CoreTestCase {
                         multiple_grading_periods_enabled: true,
                         current_period_computed_current_score: 6,
                         current_period_computed_current_grade: "Hat"
-                    ),
+                    )
                 ],
                 settings: APICourseSettings.make(restrict_quantitative_data: true)
-            ),
+            )
         ])
 
         let testee = K5GradesViewModel()
@@ -149,7 +149,7 @@ class K5GradesViewModelTests: CoreTestCase {
 
     func testShowsEnrollmentLetterGradeWhenQuantitativeDataEnabled() {
         let gradingPeriods: [APIGradingPeriod] = [
-            .make(id: "1", title: "grading period 1", start_date: Clock.now.addDays(-7)),
+            .make(id: "1", title: "grading period 1", start_date: Clock.now.addDays(-7))
         ]
         api.mock(GetUserCourses(userID: "1"), value: [
             .make(
@@ -161,12 +161,12 @@ class K5GradesViewModelTests: CoreTestCase {
                         id: "1",
                         course_id: "1",
                         user_id: "1"
-                    ),
+                    )
                 ],
                 grading_periods: gradingPeriods,
                 homeroom_course: false,
                 settings: APICourseSettings.make(restrict_quantitative_data: true)
-            ),
+            )
         ])
         let request = GetEnrollmentsRequest(context: .currentUser,
                                             userID: "1",
@@ -174,7 +174,7 @@ class K5GradesViewModelTests: CoreTestCase {
                                             types: ["StudentEnrollment"],
                                             states: [.active])
         api.mock(request, value: [
-            .make(id: "1", course_id: "1", computed_current_letter_grade: "B"),
+            .make(id: "1", course_id: "1", computed_current_letter_grade: "B")
         ])
 
         let testee = K5GradesViewModel()
@@ -189,7 +189,7 @@ class K5GradesViewModelTests: CoreTestCase {
     private func mockCourses() {
         let gradingPeriods: [APIGradingPeriod] = [
             .make(id: "1", title: "grading period 1", start_date: Clock.now),
-            .make(id: "2", title: "grading period 2", start_date: Clock.now.addDays(-7)),
+            .make(id: "2", title: "grading period 2", start_date: Clock.now.addDays(-7))
         ]
         api.mock(GetUserCourses(userID: "1"), value: [
             .make(
@@ -201,7 +201,7 @@ class K5GradesViewModelTests: CoreTestCase {
                         id: "1",
                         course_id: "1",
                         user_id: "1"
-                    ),
+                    )
                 ],
                 grading_periods: gradingPeriods,
                 homeroom_course: true
@@ -217,7 +217,7 @@ class K5GradesViewModelTests: CoreTestCase {
                         user_id: "1",
                         computed_current_score: 95,
                         computed_current_grade: "A"
-                    ),
+                    )
                 ],
                 grading_periods: gradingPeriods
             ),
@@ -232,7 +232,7 @@ class K5GradesViewModelTests: CoreTestCase {
                         user_id: "1",
                         computed_current_score: nil,
                         computed_current_grade: "B"
-                    ),
+                    )
                 ],
                 grading_periods: gradingPeriods
             ),
@@ -247,10 +247,10 @@ class K5GradesViewModelTests: CoreTestCase {
                         user_id: "1",
                         computed_current_score: 55,
                         computed_current_grade: nil
-                    ),
+                    )
                 ],
                 grading_periods: gradingPeriods
-            ),
+            )
         ])
     }
 }

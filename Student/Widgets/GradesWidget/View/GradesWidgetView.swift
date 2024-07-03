@@ -27,7 +27,7 @@ struct GradesWidgetView: View {
     private let lineCountByFamily: [WidgetFamily: Int] = [
         .systemMedium: 2,
         .systemLarge: 5,
-        .systemExtraLarge: 5,
+        .systemExtraLarge: 5
     ]
 
     var body: some View {

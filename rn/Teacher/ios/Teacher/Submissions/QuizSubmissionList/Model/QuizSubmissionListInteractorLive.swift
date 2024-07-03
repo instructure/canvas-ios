@@ -106,7 +106,7 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
                 [
                     "id": $0.id,
                     "name": $0.displayName,
-                    "avatar_url": $0.avatarURL,
+                    "avatar_url": $0.avatarURL
                 ] as [String: Any?]
             }
             let userInfo = [
@@ -115,7 +115,7 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
                 "contextName": courseName,
                 "contextCode": contextCode,
                 "canAddRecipients": false,
-                "onlySendIndividualMessages": true,
+                "onlySendIndividualMessages": true
             ]
             promise(.success(userInfo))
         }

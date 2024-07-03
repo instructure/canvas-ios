@@ -100,7 +100,7 @@ class CourseTests: CoreTestCase {
             id: nil,
             computed_current_score: 40.05,
             computed_current_grade: "F-"
-        ), ]))
+        ) ]))
         XCTAssertEqual(c.displayGrade, "40.05% - F-")
     }
 
@@ -109,7 +109,7 @@ class CourseTests: CoreTestCase {
             id: nil,
             computed_current_score: nil,
             computed_current_grade: "B+"
-        ), ]))
+        ) ]))
         XCTAssertEqual(c.displayGrade, "B+")
     }
 
@@ -118,7 +118,7 @@ class CourseTests: CoreTestCase {
             id: nil,
             computed_current_score: nil,
             computed_current_grade: nil
-        ), ]))
+        ) ]))
         XCTAssertEqual(c.displayGrade, "N/A")
     }
 
@@ -129,7 +129,7 @@ class CourseTests: CoreTestCase {
             current_grading_period_id: "1",
             current_period_computed_current_score: 90,
             current_period_computed_current_grade: "A-"
-        ), ]))
+        ) ]))
         XCTAssertEqual(c.displayGrade, "90% - A-")
     }
 
@@ -143,7 +143,7 @@ class CourseTests: CoreTestCase {
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: true,
             current_grading_period_id: nil
-        ), ]))
+        ) ]))
         XCTAssertEqual(c.displayGrade, "90% - A")
     }
 
@@ -153,7 +153,7 @@ class CourseTests: CoreTestCase {
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: false,
             current_grading_period_id: nil
-        ), ]))
+        ) ]))
         XCTAssertEqual(c.displayGrade, "N/A")
     }
 
@@ -256,7 +256,7 @@ class CourseTests: CoreTestCase {
                                     .make(id: nil,
                                           computed_current_score: 40.05,
                                           computed_current_grade: computed_current_grade,
-                                          computed_current_letter_grade: computed_current_letter_grade),
+                                          computed_current_letter_grade: computed_current_letter_grade)
                                 ],
                                 settings: .make(restrict_quantitative_data: restrict_quantitative_data)))
     }

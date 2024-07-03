@@ -44,7 +44,7 @@ struct SubmissionViewer: View {
                 WebView(url: url,
                         features: [
                             .userAgent(UserAgent.safariLTI.description),
-                            .invertColorsInDarkMode,
+                            .invertColorsInDarkMode
                         ]
                 )
                 .onLink(openInSafari)

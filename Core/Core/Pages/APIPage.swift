@@ -73,7 +73,7 @@ public struct GetPagesRequest: APIRequestable {
     public var query: [APIQueryItem] {
         return [
             .value("sort", "title"),
-            .include(Include.allCases.map { $0.rawValue }),
+            .include(Include.allCases.map { $0.rawValue })
         ]
     }
 }

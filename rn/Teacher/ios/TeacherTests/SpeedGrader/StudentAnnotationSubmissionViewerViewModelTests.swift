@@ -42,7 +42,7 @@ class StudentAnnotationSubmissionViewerViewModelTests: TeacherTestCase {
             testee.viewDidAppear()
         }, withExpectedUpdates: [
             nil,
-            .failure(NSError.instructureError(String(localized: "Unknown Error", bundle: .teacher))),
+            .failure(NSError.instructureError(String(localized: "Unknown Error", bundle: .teacher)))
         ])
     }
 
@@ -52,7 +52,7 @@ class StudentAnnotationSubmissionViewerViewModelTests: TeacherTestCase {
             testee.viewDidAppear()
         }, withExpectedUpdates: [
             nil,
-            .failure(NSError.instructureError("This is a test error")),
+            .failure(NSError.instructureError("This is a test error"))
         ])
     }
 
@@ -62,7 +62,7 @@ class StudentAnnotationSubmissionViewerViewModelTests: TeacherTestCase {
             testee.viewDidAppear()
         }, withExpectedUpdates: [
             nil,
-            .success(URL(string: "http://a.com")!),
+            .success(URL(string: "http://a.com")!)
         ])
     }
 
@@ -76,7 +76,7 @@ class StudentAnnotationSubmissionViewerViewModelTests: TeacherTestCase {
             nil,
             .failure(NSError.instructureError("This is a test error")),
             nil,
-            .success(URL(string: "http://a.com")!),
+            .success(URL(string: "http://a.com")!)
         ])
     }
 
