@@ -100,7 +100,7 @@ class OfflineListCellViewModel: ObservableObject {
     }
 
     var accessibilityText: String {
-        var titleText = title + (subtitle ?? "")
+        var titleText = title + " " + (subtitle ?? "")
         if case .error(let error) = state, let error = error {
             titleText.append("," + error)
         }
@@ -133,7 +133,29 @@ class OfflineListCellViewModel: ObservableObject {
                 progressText = String(localized: "Downloading", bundle: .core)
             }
         }
-        return titleText + "," + selectionText + "," + collapseText + "," + progressText + ","
+
+        var finalText = ""
+
+        if !titleText.isEmpty {
+            finalText.append(titleText)
+        }
+
+        if !selectionText.isEmpty {
+            finalText.append(", ")
+            finalText.append(selectionText)
+        }
+
+        if !collapseText.isEmpty {
+            finalText.append(", ")
+            finalText.append(collapseText)
+        }
+
+        if !progressText.isEmpty {
+            finalText.append(", ")
+            finalText.append(progressText)
+        }
+
+        return finalText
     }
 
 }
