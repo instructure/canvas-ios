@@ -36,4 +36,29 @@ extension FileManager {
         }
         .eraseToAnyPublisher()
     }
+
+    func allFiles(
+        withExtension: String,
+        inDirectory: URL
+    ) -> Set<URL> {
+        let fileExtension = withExtension.hasPrefix(".") ? withExtension : "." + withExtension
+        var filePaths: FileManager.DirectoryEnumerator?
+
+        if #available(iOSApplicationExtension 16.0, *) {
+            filePaths = enumerator(atPath: inDirectory.path())
+        }
+
+        var files = Set<URL>()
+
+        while let file = filePaths?.nextObject() as? String {
+            let fileURL = inDirectory.appendingPathComponent(file)
+            let isDirectory = (try? fileURL.resourceValues(forKeys: Set([.isDirectoryKey])).isDirectory) == true
+
+            if !isDirectory, file.hasSuffix(fileExtension) {
+                files.insert(fileURL)
+            }
+        }
+
+        return files
+    }
 }
