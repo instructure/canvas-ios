@@ -22,13 +22,16 @@ public class RemoteConfigManager {
     public static var shared = RemoteConfigManager()
     public var five9ConfigID: String = ""
     public var segmentKey: String = ""
+    public var xpertKey: String = ""
     public var formadataLabel: String = ""
 
     public func saveRemoteConfig(key: String, value: String?) {
         if key == "five9_config_id" {
-            five9ConfigID = value ?? "unknown"
+            five9ConfigID = value ?? "GS | Support_Main_Flow_Xpert"
         } else if key == "chat_segment_key" {
-            segmentKey = value ?? "unknown"
+            segmentKey = value ?? "7BKIV04l1A90BkuAlqLMkPiNAUhgbatW"
+        } else if key == "xpert_key" {
+            xpertKey = value ?? "degrees-canvas-support"
         } else if key == "five9_formdata_label" {
             formadataLabel = value ?? "unknown"
         }

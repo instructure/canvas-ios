@@ -36,7 +36,7 @@ class LiveChatViewModel: ObservableObject {
 
     var userName: String = ""
     var userEmail: String = ""
-    
+
     var appID: String {
         return "2U DEV" // TODO: change when go to PROD
 //        return "2U Inc"
@@ -60,13 +60,17 @@ class LiveChatViewModel: ObservableObject {
     private var configID: String {
         RemoteConfigManager.shared.five9ConfigID
     }
-    
+
     private var formadataLabel: String {
         RemoteConfigManager.shared.formadataLabel
     }
 
     private var chatSegmentKey: String {
         RemoteConfigManager.shared.segmentKey
+    }
+
+    private var xpertKey: String {
+        RemoteConfigManager.shared.xpertKey
     }
 
     var formDataString: String {
@@ -210,18 +214,20 @@ class LiveChatViewModel: ObservableObject {
                 <script>
                     const formData = ###FORMDATA###;
                     window.XpertChatbotFrontend = {
-                        xpertKey: 'degrees-canvas-support',
+                        xpertKey: '###XPERTKEY###',
                         configurations: {
                             chatApi: {
                                 payloadParams: {
                                     use_case: 'Canvas_Student',
                                 },
                             },
-                            liveChat: {
-                                options: {
-                                    appId: '###APPID###',
-                                    configId: '###CONFIGID###',
-                                    formData: formData,
+                            conversationScreen: {
+                                liveChat: {
+                                    options: {
+                                        appId: '###APPID###',
+                                        configId: '###CONFIGID###',
+                                        formData: formData,
+                                    },
                                 },
                             },
                         },
@@ -280,6 +286,7 @@ class LiveChatViewModel: ObservableObject {
             .replacingOccurrences(of: "###CONFIGID###", with: configID)
             .replacingOccurrences(of: "###SEGMENTKEY###", with: chatSegmentKey)
             .replacingOccurrences(of: "###APPID###", with: appID)
+            .replacingOccurrences(of: "###XPERTKEY###", with: xpertKey)
             .replacingOccurrences(of: "###shouldOpenFive9###", with: WKScriptEvent.shouldOpenFive9.rawValue)
             .replacingOccurrences(of: "###openChat###", with: WKScriptEvent.openChat.rawValue)
             .replacingOccurrences(of: "###closeChat###", with: WKScriptEvent.closeChat.rawValue)
