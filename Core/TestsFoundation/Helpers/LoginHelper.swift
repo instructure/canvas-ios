@@ -30,7 +30,7 @@ public class LoginHelper: BaseHelper {
             app.find(id: "LoginStartSession.\(user.host).\(dsUser.id)")
         }
         public static var invalidUsernameOrPasswordLabel: XCUIElement {
-            app.find(labelContaining: "Invalid username or password", type: .staticText)
+            app.find(labelContaining: "Please verify your username or password", type: .staticText)
         }
     }
 

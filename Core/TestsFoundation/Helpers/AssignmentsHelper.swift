@@ -236,7 +236,7 @@ public class AssignmentsHelper: BaseHelper {
         public static var navBar: XCUIElement { app.find(id: "Text Entry") }
         public static var cancelButton: XCUIElement { app.find(id: "screen.dismiss") }
         public static var submitButton: XCUIElement { app.find(id: "TextSubmission.submitButton") }
-        public static var textField: XCUIElement { app.find(id: "RichContentEditor.webView").find(type: .textView) }
+        public static var textField: XCUIElement { app.find(id: "RichContentEditor.webView").find(type: .textField) }
     }
 
     @discardableResult

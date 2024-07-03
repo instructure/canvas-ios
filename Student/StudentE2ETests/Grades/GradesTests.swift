@@ -312,10 +312,14 @@ class GradesTests: E2ETestCase {
         XCTAssertTrue(assignmentCellOfTestAG1.isVisible)
         XCTAssertTrue(assignmentCellOfTestAG2.isVisible)
 
+        let gradedLabelOfAssignment1 = GradesHelper.gradedLabel(assignmentCell: assignmentCellOfTestAG1).waitUntil(.visible)
         let gradeLabelOfAssignment1 = GradesHelper.gradeLabel(assignmentCell: assignmentCellOfTestAG1).waitUntil(.visible)
+        let gradedLabelOfAssignment2 = GradesHelper.gradedLabel(assignmentCell: assignmentCellOfTestAG2).waitUntil(.visible)
         let gradeLabelOfAssignment2 = GradesHelper.gradeLabel(assignmentCell: assignmentCellOfTestAG2).waitUntil(.visible)
         XCTAssertTrue(gradeLabelOfAssignment1.isVisible)
+        XCTAssertTrue(gradedLabelOfAssignment1.isVisible)
         XCTAssertTrue(gradeLabelOfAssignment2.isVisible)
+        XCTAssertTrue(gradedLabelOfAssignment2.isVisible)
         XCTAssertTrue(gradeLabelOfAssignment1.hasLabel(label: "Grade, \(gradeOfAssignment1) out of \(Int(maxPointOfAssignment))"))
         XCTAssertTrue(gradeLabelOfAssignment2.hasLabel(label: "Grade, \(gradeOfAssignment2) out of \(Int(maxPointOfAssignment))"))
     }

@@ -19,6 +19,8 @@ schemes:
       targets:
         Student: all
     test:
+      language: en
+      region: US
       targets: StudentE2ETests
       testPlans:
         - path: ../../TestPlans/IPadStudentTests.xctestplan
@@ -28,6 +30,8 @@ schemes:
       targets:
         Student: all
     test:
+      language: en
+      region: US
       targets: StudentE2ETests
       testPlans:
         - path: ../../TestPlans/StudentE2E.xctestplan
