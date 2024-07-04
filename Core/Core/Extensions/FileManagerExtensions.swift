@@ -37,6 +37,7 @@ extension FileManager {
         .eraseToAnyPublisher()
     }
 
+    /// This method returns urls for files ending with the specified extension inside a folder (recursively). Directories are not listed.
     func allFiles(
         withExtension: String,
         inDirectory: URL

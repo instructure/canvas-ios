@@ -109,7 +109,7 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
             return true
         }
 
-        StudioMediaInteractor
+        StudioAPIAuthInteractor
             .makeStudioAPI()
             .mapError { $0 as Error }
             .flatMap { api in
