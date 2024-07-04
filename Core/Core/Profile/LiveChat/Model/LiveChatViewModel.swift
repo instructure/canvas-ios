@@ -58,11 +58,11 @@ class LiveChatViewModel: ObservableObject {
         userName = profile.name
         userEmail = profile.email ?? ""
         // split name on first and last names
-        var components = userName.components(separatedBy: " ")
-        if components.count > 0 {
-            userFirstName = components.removeFirst()
-            userLastName = components.joined(separator: " ")
-        }
+//        var components = userName.components(separatedBy: " ")
+//        if components.count > 0 {
+//            userFirstName = components.removeFirst()
+//            userLastName = components.joined(separator: " ")
+//        }
     }
 
     private var configID: String {
@@ -96,7 +96,7 @@ class LiveChatViewModel: ObservableObject {
                 "type": "text",
                 "required": true,
                 "readOnly": false,
-                "value": "###FIRSTNAME###"
+                "value": ""
             },
             {
                 "label": "Last Name",
@@ -105,7 +105,7 @@ class LiveChatViewModel: ObservableObject {
                 "type": "text",
                 "required": true,
                 "readOnly": false,
-                "value": "###LASTNAME###"
+                "value": ""
             },
             {
                 "type": "hidden",
@@ -146,8 +146,8 @@ class LiveChatViewModel: ObservableObject {
             }
         ]
         """
-            .replacingOccurrences(of: "###FIRSTNAME###", with: userFirstName)
-            .replacingOccurrences(of: "###LASTNAME###", with: userLastName)
+//            .replacingOccurrences(of: "###FIRSTNAME###", with: userFirstName)
+//            .replacingOccurrences(of: "###LASTNAME###", with: userLastName)
             .replacingOccurrences(of: "###EMAIL###", with: userEmail)
             .replacingOccurrences(of: "###LABEL###", with: formadataLabel)
     }
