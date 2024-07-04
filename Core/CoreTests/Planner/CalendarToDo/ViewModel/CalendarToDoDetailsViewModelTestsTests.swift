@@ -71,10 +71,19 @@ class CalendarToDoDetailsViewModelTests: CoreTestCase {
         XCTAssertEqual(interactor.getToDoInput, inputPlannable.id)
     }
 
-    func testInitialValues() {
+    func testInitialValuesWhenGetToDoSucceeds() {
         XCTAssertEqual(testee.title, resultPlannable.title)
         XCTAssertEqual(testee.description, resultPlannable.details)
         XCTAssertEqual(testee.date, resultPlannable.date?.dateTimeString)
+    }
+
+    func testInitialValuesWhenGetToDoFails() {
+        interactor.getToDoResult = .failure(NSError.internalError())
+        testee = .init(plannable: inputPlannable, interactor: interactor)
+
+        XCTAssertEqual(testee.title, inputPlannable.title)
+        XCTAssertEqual(testee.description, inputPlannable.details)
+        XCTAssertEqual(testee.date, inputPlannable.date?.dateTimeString)
     }
 
     func testShowEditScreen() {

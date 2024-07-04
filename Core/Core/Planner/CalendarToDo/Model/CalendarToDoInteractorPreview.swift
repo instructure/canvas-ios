@@ -26,16 +26,16 @@ final class CalendarToDoInteractorPreview: CalendarToDoInteractor {
 
     var getToDoCallsCount: Int = 0
     var getToDoInput: String?
-    var getToDoResult: Result<Plannable, Never>?
+    var getToDoResult: Result<Plannable, Error>?
 
-    func getToDo(id: String) -> AnyPublisher<Plannable, Never> {
+    func getToDo(id: String) -> AnyPublisher<Plannable, Error> {
         getToDoCallsCount += 1
         getToDoInput = id
 
         if let getToDoResult {
             return getToDoResult.publisher.eraseToAnyPublisher()
         } else {
-            return Empty<Plannable, Never>().eraseToAnyPublisher()
+            return Empty().eraseToAnyPublisher()
         }
     }
 
@@ -55,7 +55,7 @@ final class CalendarToDoInteractorPreview: CalendarToDoInteractor {
         if let createToDoResult {
             return createToDoResult.publisher.eraseToAnyPublisher()
         } else {
-            return Empty<Void, Error>().eraseToAnyPublisher()
+            return Empty().eraseToAnyPublisher()
         }
     }
 
@@ -77,7 +77,7 @@ final class CalendarToDoInteractorPreview: CalendarToDoInteractor {
         if let updateToDoResult {
             return updateToDoResult.publisher.eraseToAnyPublisher()
         } else {
-            return Empty<Void, Error>().eraseToAnyPublisher()
+            return Empty().eraseToAnyPublisher()
         }
     }
 }

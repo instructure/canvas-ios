@@ -35,13 +35,28 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
         self.plannable = plannable
 
         interactor.getToDo(id: plannable.id)
-            .sink { [weak self] in
-                self?.title = $0.title
-                self?.date = $0.date?.dateTimeString
-                self?.description = $0.details
-                self?.navBarColor = $0.color.ensureContrast(against: .backgroundLightest)
-            }
+            .sink(
+                receiveCompletion: { [weak self] in
+                    switch $0 {
+                    case .finished:
+                        break
+                    case .failure:
+                        // fallback to input plannable values
+                        self?.updateValues(with: plannable)
+                    }
+                },
+                receiveValue: { [weak self] in
+                    self?.updateValues(with: $0)
+                }
+            )
             .store(in: &subscriptions)
+    }
+
+    private func updateValues(with plannable: Plannable) {
+        title = plannable.title
+        date = plannable.date?.dateTimeString
+        description = plannable.details
+        navBarColor = plannable.color.ensureContrast(against: .backgroundLightest)
     }
 
     public func showEditScreen(env: AppEnvironment, from source: WeakViewController) {

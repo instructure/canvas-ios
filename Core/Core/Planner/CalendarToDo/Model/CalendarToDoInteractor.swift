@@ -19,7 +19,7 @@
 import Combine
 
 public protocol CalendarToDoInteractor: AnyObject {
-    func getToDo(id: String) -> AnyPublisher<Plannable, Never>
+    func getToDo(id: String) -> AnyPublisher<Plannable, Error>
 
     func createToDo(
         title: String,
@@ -39,13 +39,12 @@ public protocol CalendarToDoInteractor: AnyObject {
 
 final class CalendarToDoInteractorLive: CalendarToDoInteractor {
 
-    func getToDo(id: String) -> AnyPublisher<Plannable, Never> {
+    func getToDo(id: String) -> AnyPublisher<Plannable, Error> {
         let predicate = NSPredicate(key: #keyPath(Plannable.id), equals: id)
         let useCase = LocalUseCase<Plannable>(scope: Scope(predicate: predicate, order: []))
         return ReactiveStore(useCase: useCase)
             .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
             .compactMap { $0.first }
-            .catch { _ in Empty() }
             .eraseToAnyPublisher()
     }
 
