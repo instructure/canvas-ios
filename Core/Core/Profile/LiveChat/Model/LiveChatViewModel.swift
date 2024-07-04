@@ -36,6 +36,8 @@ class LiveChatViewModel: ObservableObject {
 
     var userName: String = ""
     var userEmail: String = ""
+    var userFirstName: String = ""
+    var userLastName: String = ""
 
     var appID: String {
         return "2U DEV" // TODO: change when go to PROD
@@ -55,6 +57,12 @@ class LiveChatViewModel: ObservableObject {
         guard let profile = profile.first else { return }
         userName = profile.name
         userEmail = profile.email ?? ""
+        // split name on first and last names
+        var components = userName.components(separatedBy: " ")
+        if components.count > 0 {
+            userFirstName = components.removeFirst()
+            userLastName = components.joined(separator: " ")
+        }
     }
 
     private var configID: String {
@@ -82,13 +90,22 @@ class LiveChatViewModel: ObservableObject {
                 "required": false
             },
             {
-                "label": "Name",
-                "cav": "contact.name",
+                "label": "First Name",
+                "cav": "contact.firstName",
                 "formType": "both",
                 "type": "text",
                 "required": true,
                 "readOnly": false,
-                "value": "###NAME###"
+                "value": "###FIRSTNAME###"
+            },
+            {
+                "label": "Last Name",
+                "cav": "contact.lastName",
+                "formType": "both",
+                "type": "text",
+                "required": true,
+                "readOnly": false,
+                "value": "###LASTNAME###"
             },
             {
                 "type": "hidden",
@@ -96,7 +113,7 @@ class LiveChatViewModel: ObservableObject {
                 "required": false
             },
             {
-                "label": "Email",
+                "label": "University Email or Email Address on Record",
                 "cav": "contact.email",
                 "formType": "both",
                 "type": "email",
@@ -109,7 +126,7 @@ class LiveChatViewModel: ObservableObject {
                 "required": false
             },
             {
-                "label": "Question",
+                "label": "Question/Describe your Issue",
                 "cav": "Question",
                 "formType": "both",
                 "type": "textarea",
@@ -129,7 +146,8 @@ class LiveChatViewModel: ObservableObject {
             }
         ]
         """
-            .replacingOccurrences(of: "###NAME###", with: userName)
+            .replacingOccurrences(of: "###FIRSTNAME###", with: userFirstName)
+            .replacingOccurrences(of: "###LASTNAME###", with: userLastName)
             .replacingOccurrences(of: "###EMAIL###", with: userEmail)
             .replacingOccurrences(of: "###LABEL###", with: formadataLabel)
     }
