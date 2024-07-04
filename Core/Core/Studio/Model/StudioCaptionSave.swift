@@ -23,11 +23,9 @@ public extension APIStudioMediaItem.Caption {
     var srtFileName: String { "\(srclang).srt" }
 
     func save(
-        to directory: URL,
-        scheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue.global().eraseToAnyScheduler()
+        to directory: URL
     ) -> AnyPublisher<URL, Error> {
         Just(data)
-            .receive(on: scheduler)
             .tryMap { stringData in
                 try stringData.dataWithError(using: .utf8)
             }
@@ -45,13 +43,12 @@ public extension APIStudioMediaItem.Caption {
 public extension Array where Element == APIStudioMediaItem.Caption {
 
     func save(
-        to directory: URL,
-        scheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue.global().eraseToAnyScheduler()
+        to directory: URL
     ) -> AnyPublisher<[URL], Error> {
         Publishers
             .Sequence(sequence: self)
             .flatMap { caption in
-                caption.save(to: directory, scheduler: scheduler)
+                caption.save(to: directory)
             }
             .collect()
             .eraseToAnyPublisher()

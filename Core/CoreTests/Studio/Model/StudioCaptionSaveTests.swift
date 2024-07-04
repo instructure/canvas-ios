@@ -55,8 +55,7 @@ class StudioCaptionSaveTests: XCTestCase {
 
         // WHEN
         XCTAssertFinish([caption1, caption2].save(
-            to: directory,
-            scheduler: .immediate
+            to: directory
         ))
 
         // THEN
