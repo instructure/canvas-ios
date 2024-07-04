@@ -44,6 +44,7 @@ struct LiveChatView: View, ScreenViewTrackable {
                 env.router.dismiss(controller)
             }
         }
+        .navigationTitle("Live Chat")
     }
 }
 

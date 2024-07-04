@@ -444,6 +444,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/about": { _, _, _ in
         AboutAssembly.makeAboutViewController()
     },
+
+    "/profile/chat": { _, _, _ in
+        LiveChatAssembly.makeLiveChatViewController()
+    },    
 ]))
 
 private func nativeFactory(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
