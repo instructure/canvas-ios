@@ -39,7 +39,7 @@ final class EditCalendarToDoViewModel: ObservableObject {
     @Published var shouldShowAlert: Bool = false
 
     var isSaveButtonEnabled: Bool {
-        state == .data && title.isNotEmpty && date != nil && isTouched
+        state == .data && title.isNotEmpty && date != nil && isFieldsTouched
     }
 
     lazy var pageTitle: String = {
@@ -93,7 +93,8 @@ final class EditCalendarToDoViewModel: ObservableObject {
     private let toDoInteractor: CalendarToDoInteractor
     private let calendarListProviderInteractor: CalendarFilterInteractor
     private var selectedCalendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
-    private var isTouched: Bool = false
+    /// Returns true if any of the fields had been modified once by the user. It doesn't compare values.
+    private var isFieldsTouched: Bool = false
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -118,9 +119,9 @@ final class EditCalendarToDoViewModel: ObservableObject {
         date = plannable?.date ?? Clock.now.endOfDay() // end of today, to match default web behaviour
         details = plannable?.details ?? ""
 
-        subscribeIsTouched(to: $title)
-        subscribeIsTouched(to: $date)
-        subscribeIsTouched(to: $details)
+        subscribeisFieldsTouched(to: $title)
+        subscribeisFieldsTouched(to: $date)
+        subscribeisFieldsTouched(to: $details)
 
         calendarListProviderInteractor
             .load(ignoreCache: false)
@@ -138,15 +139,15 @@ final class EditCalendarToDoViewModel: ObservableObject {
                     }
                 }
             }
-            .sink { [weak selectedCalendar] in
-                selectedCalendar?.send($0)
+            .sink { [selectedCalendar] in
+                selectedCalendar.send($0)
             }
             .store(in: &subscriptions)
 
         selectedCalendar
             .map { [weak self] in
                 if let oldCalendarName = self?.calendarName, oldCalendarName != $0?.name {
-                    self?.isTouched = true
+                    self?.isFieldsTouched = true
                 }
                 return $0?.name
             }
@@ -162,34 +163,29 @@ final class EditCalendarToDoViewModel: ObservableObject {
                 self?.state = .data(loadingOverlay: true)
             }
             .flatMap { [weak self] in
-                guard let self else {
-                    return Just(Result<Void, Error>.failure(NSError.internalError()))
-                        .eraseToAnyPublisher()
-                }
-
-                return saveAction()
+                (self?.saveAction() ?? Empty().eraseToAnyPublisher())
+                    .catch { _ in
+                        self?.state = .data
+                        self?.shouldShowAlert = true
+                        return Empty<Void, Never>().eraseToAnyPublisher()
+                    }
+                    .eraseToAnyPublisher()
             }
-            .sink { [weak self] result in
-                switch result {
-                case .success:
-                    completion(.didUpdate)
-                case .failure:
-                    self?.state = .data
-                    self?.shouldShowAlert = true
-                }
+            .sink {
+                completion(.didUpdate)
             }
             .store(in: &subscriptions)
     }
 
-    private func subscribeIsTouched<T: Equatable>(to publisher: Published<T>.Publisher) {
+    private func subscribeisFieldsTouched<T: Equatable>(to publisher: Published<T>.Publisher) {
         publisher
             .removeDuplicates()
             .dropFirst()
-            .sink { [weak self] _ in self?.isTouched = true }
+            .sink { [weak self] _ in self?.isFieldsTouched = true }
             .store(in: &subscriptions)
     }
 
-    private func saveAction() -> AnyPublisher<Result<Void, Error>, Never> {
+    private func saveAction() -> AnyPublisher<Void, Error> {
         switch mode {
         case .add:
             toDoInteractor.createToDo(
@@ -198,8 +194,6 @@ final class EditCalendarToDoViewModel: ObservableObject {
                 calendar: selectedCalendar.value,
                 details: details
             )
-            .mapToResult()
-            .eraseToAnyPublisher()
         case .edit(let id):
             toDoInteractor.updateToDo(
                 id: id,
@@ -208,8 +202,6 @@ final class EditCalendarToDoViewModel: ObservableObject {
                 calendar: selectedCalendar.value,
                 details: details
             )
-            .mapToResult()
-            .eraseToAnyPublisher()
         }
     }
 }
