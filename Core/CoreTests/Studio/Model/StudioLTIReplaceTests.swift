@@ -33,7 +33,7 @@ class StudioLTIReplaceTests: XCTestCase {
         let subtitleEnglish = URL(string: "/en.srt")!
         let subtitleHungarian = URL(string: "/hu.srt")!
 
-        let result = StudioLTIReplace.replaceStudioIFrame(
+        let result = StudioIFrameReplaceInteractor.replaceStudioIFrame(
             html: html,
             iFrame: iframe,
             video: videoURL,

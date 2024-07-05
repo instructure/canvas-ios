@@ -20,9 +20,9 @@ import Combine
 import CombineExt
 import WebKit
 
-class StudioAPIAuthInteractor {
+public class StudioAPIAuthInteractor {
 
-    enum AuthError: Error {
+    public enum AuthError: Error {
         case failedToGetLTIs
         case failedToGetTokenFromWebView
         case failedToGetAPIBaseURL
@@ -30,16 +30,16 @@ class StudioAPIAuthInteractor {
         case failedToGetLaunchURL
     }
 
-    static func makeStudioAPI() -> AnyPublisher<API, AuthError> {
-        getStudioLaunchURL()
+    public func makeStudioAPI() -> AnyPublisher<API, AuthError> {
+        Self.getStudioLaunchURL()
             .flatMap { (webLaunchURL, apiBaseURL) in
-                launchStudioInHeadlessWebView(webLaunchURL: webLaunchURL)
+                Self.launchStudioInHeadlessWebView(webLaunchURL: webLaunchURL)
                     .map { webView in
                         (webView, apiBaseURL)
                     }
             }
             .flatMap { (webView, apiBaseURL) in
-                getSessionToken(studioWebView: webView)
+                Self.getSessionToken(studioWebView: webView)
                     .map { (userId, token) in
                         (userId, token, apiBaseURL)
                     }

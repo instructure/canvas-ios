@@ -24,14 +24,23 @@ public protocol CourseSyncStudioMediaInteractor {
 }
 
 public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteractor {
-    private let scheduler: AnySchedulerOf<DispatchQueue>
     private let offlineDirectory: URL
+    private let studioAuthInteractor: StudioAPIAuthInteractor
+    private let studioIFrameReplaceInteractor: StudioIFrameReplaceInteractor
+    private let studioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     public init(
         offlineDirectory: URL,
+        studioAuthInteractor: StudioAPIAuthInteractor,
+        studioIFrameReplaceInteractor: StudioIFrameReplaceInteractor,
+        studioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) {
         self.offlineDirectory = offlineDirectory
+        self.studioAuthInteractor = studioAuthInteractor
+        self.studioIFrameReplaceInteractor = studioIFrameReplaceInteractor
+        self.studioIFrameDiscoveryInteractor = studioIFrameDiscoveryInteractor
         self.scheduler = scheduler
     }
 
@@ -39,11 +48,11 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         Just(offlineDirectory)
             .setFailureType(to: Error.self)
             .receive(on: scheduler)
-            .flatMap { offlineDirectory in
-                Self.discoverStudioIFrames(in: offlineDirectory, courseIDs: courseIDs)
+            .flatMap { [studioIFrameDiscoveryInteractor] offlineDirectory in
+                studioIFrameDiscoveryInteractor.discoverStudioIFrames(in: offlineDirectory, courseIDs: courseIDs)
             }
-            .flatMap { (iframes: IFrames) in
-                StudioAPIAuthInteractor
+            .flatMap { [studioAuthInteractor] (iframes: StudioIFramesByLocation) in
+                studioAuthInteractor
                     .makeStudioAPI()
                     .mapError { $0 as Error }
                     .map { api in
@@ -51,14 +60,14 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                     }
             }
             .flatMap { api, iframes in
-                Self.downloadStudioMediaItems(api: api, courseIDs: courseIDs)
+                Self.fetchStudioMediaItems(api: api, courseIDs: courseIDs)
                     .map { mediaItems in
                         var mediaLTIIDsToDownload = iframes.values.flatMap { $0 }.map { $0.mediaLTILaunchID }
                         mediaLTIIDsToDownload = Array(Set(mediaLTIIDsToDownload))
                         return (mediaItems, mediaLTIIDsToDownload, iframes)
                     }
             }
-            .flatMap { [offlineDirectory] (mediaItems, mediaLTIIDsToDownload, iframes: IFrames) in
+            .flatMap { [offlineDirectory] (mediaItems, mediaLTIIDsToDownload, iframes: StudioIFramesByLocation) in
                 Self.downloadStudioVideos(
                     offlineDirectory: offlineDirectory,
                     mediaItems: mediaItems,
@@ -68,9 +77,9 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                     (offlineVideos, iframes)
                 }
             }
-            .tryMap { (offlineVideos: [StudioOfflineVideo], iframes: IFrames) in
+            .tryMap { [studioIFrameReplaceInteractor] (offlineVideos: [StudioOfflineVideo], iframes: StudioIFramesByLocation) in
                 for (htmlURL, iframes) in iframes {
-                    try StudioLTIReplace.replaceStudioIFrames(
+                    try studioIFrameReplaceInteractor.replaceStudioIFrames(
                         inHtmlAtURL: htmlURL,
                         iframes: iframes,
                         offlineVideos: offlineVideos
@@ -85,49 +94,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
             .eraseToAnyPublisher()
     }
 
-    private typealias IFrames = [URL: [StudioIFrame]]
-
-    private static func discoverStudioIFrames(
-        in offlineDirectory: URL,
-        courseIDs: [String]
-    ) -> AnyPublisher<IFrames, Never> {
-        Just(offlineDirectory)
-            .map { offlineDirectory in
-                let coursePaths = courseIDs.map { "course-\($0)"}
-                return FileManager
-                    .default
-                    .allFiles(withExtension: "html", inDirectory: offlineDirectory)
-                    .filter { url in
-                        for coursePath in coursePaths where url.absoluteString.contains(coursePath) {
-                            return true
-                        }
-                        return false
-                    }
-            }
-            .flatMap { htmls in
-                Publishers.Sequence(sequence: htmls)
-            }
-            .compactMap { htmlURL -> (URL, [StudioIFrame]) in
-                let iframes = StudioHTMLParser.extractStudioIFrames(htmlLocation: htmlURL)
-                return (htmlURL, iframes)
-            }
-            .collect()
-            .map {
-                var result: IFrames = [:]
-
-                for (url, iframes) in $0 {
-                    if iframes.isEmpty {
-                        continue
-                    }
-                    result[url] = iframes
-                }
-
-                return result
-            }
-            .eraseToAnyPublisher()
-    }
-
-    private static func downloadStudioMediaItems(
+    private static func fetchStudioMediaItems(
         api: API,
         courseIDs: [String]
     ) -> AnyPublisher<[APIStudioMediaItem], Error> {

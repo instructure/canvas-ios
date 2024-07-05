@@ -25,9 +25,9 @@ public struct StudioIFrame {
     let sourceHtml: String
 }
 
-public struct StudioHTMLParser {
+public class StudioHTMLParserInteractor {
 
-    public static func extractStudioIFrames(htmlLocation: URL) -> [StudioIFrame] {
+    public func extractStudioIFrames(htmlLocation: URL) -> [StudioIFrame] {
         guard let htmlData = try? Data(contentsOf: htmlLocation),
               let htmlString = String(data: htmlData, encoding: .utf8)
         else {

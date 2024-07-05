@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct StudioLTIReplace {
+public class StudioIFrameReplaceInteractor {
     public enum ReplaceError: Error {
         case failedToOpenHtml
         case failedToConvertDataToString
@@ -27,7 +27,7 @@ public struct StudioLTIReplace {
         case failedToSaveUpdatedHtml
     }
 
-    public static func replaceStudioIFrames(
+    public func replaceStudioIFrames(
         inHtmlAtURL htmlURL: URL,
         iframes: [StudioIFrame],
         offlineVideos: [StudioOfflineVideo]
@@ -42,15 +42,14 @@ public struct StudioLTIReplace {
 
         for iframe in iframes {
             guard let offlineVideo = offlineVideos.first(where: { $0.ltiLaunchID == iframe.mediaLTILaunchID }) else {
-                throw ReplaceError.offlineVideoIDNotFound
+                // We are using mixed prod / staging embeds so this will always fail.
+                //  throw ReplaceError.offlineVideoIDNotFound
+                continue
             }
-            htmlString = StudioLTIReplace.replaceStudioIFrame(
+            htmlString = replaceStudioIFrame(
                 html: htmlString,
-                iFrame: iframe.sourceHtml,
-                video: offlineVideo.videoLocation,
-                videoPoster: offlineVideo.videoPosterLocation,
-                videoMimeType: offlineVideo.videoMimeType,
-                captions: offlineVideo.captionLocations
+                iFrameHtml: iframe.sourceHtml,
+                studioVideo: offlineVideo
             )
         }
 
@@ -65,17 +64,14 @@ public struct StudioLTIReplace {
         }
     }
 
-    public static func replaceStudioIFrame(
+    public func replaceStudioIFrame(
         html: String,
-        iFrame: String,
-        video: URL,
-        videoPoster: URL,
-        videoMimeType: String,
-        captions: [URL]
+        iFrameHtml: String,
+        studioVideo: StudioOfflineVideo
     ) -> String {
         var captionTags = ""
 
-        for caption in captions {
+        for caption in studioVideo.captionLocations {
             let languageCode = caption.lastPathComponent.split(separator: ".").first
 
             guard let languageCode else {
@@ -86,12 +82,12 @@ public struct StudioLTIReplace {
         }
 
         let videoTag = """
-        <video controls playsinline preload="auto" poster="\(videoPoster.path)">
-          <source src="\(video.path)" type="\(videoMimeType)\" />
+        <video controls playsinline preload="auto" poster="\(studioVideo.videoPosterLocation.path)">
+          <source src="\(studioVideo.videoLocation.path)" type="\(studioVideo.videoMimeType)\" />
         \(captionTags)</video>
         """
 
-        let modifiedHtml = html.replacingOccurrences(of: iFrame, with: videoTag)
+        let modifiedHtml = html.replacingOccurrences(of: iFrameHtml, with: videoTag)
         return modifiedHtml
     }
 }

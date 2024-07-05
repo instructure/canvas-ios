@@ -108,20 +108,6 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
             }
             return true
         }
-
-        StudioAPIAuthInteractor
-            .makeStudioAPI()
-            .mapError { $0 as Error }
-            .flatMap { api in
-                let request = GetStudioCourseMediaRequest(courseId: "58625")
-                return api.makeRequest(request)
-            }
-            .sink { completion in
-                print(completion)
-            } receiveValue: { (videos, _) in
-                print(videos)
-            }
-            .store(in: &subscriptions)
     }
 
     private var subscriptions = Set<AnyCancellable>()
