@@ -19,6 +19,50 @@
 import Foundation
 
 public struct StudioLTIReplace {
+    public enum ReplaceError: Error {
+        case failedToOpenHtml
+        case failedToConvertDataToString
+        case offlineVideoIDNotFound
+        case failedToConvertHtmlToData
+        case failedToSaveUpdatedHtml
+    }
+
+    public static func replaceStudioIFrames(
+        inHtmlAtURL htmlURL: URL,
+        iframes: [StudioIFrame],
+        offlineVideos: [StudioOfflineVideo]
+    ) throws {
+        guard let htmlData = try? Data(contentsOf: htmlURL) else {
+            throw ReplaceError.failedToOpenHtml
+        }
+
+        guard var htmlString = String(data: htmlData, encoding: .utf8) else {
+            throw ReplaceError.failedToConvertDataToString
+        }
+
+        for iframe in iframes {
+            guard let offlineVideo = offlineVideos.first(where: { $0.ltiLaunchID == iframe.mediaLTILaunchID }) else {
+                throw ReplaceError.offlineVideoIDNotFound
+            }
+            htmlString = StudioLTIReplace.replaceStudioIFrame(
+                html: htmlString,
+                iFrame: iframe.sourceHtml,
+                video: offlineVideo.videoLocation,
+                videoMimeType: offlineVideo.videoMimeType,
+                captions: offlineVideo.captionLocations
+            )
+        }
+
+        guard let updatedHtmlData = htmlString.data(using: .utf8) else {
+            throw ReplaceError.failedToConvertHtmlToData
+        }
+
+        do {
+            try updatedHtmlData.write(to: htmlURL)
+        } catch (let error) {
+            throw ReplaceError.failedToSaveUpdatedHtml
+        }
+    }
 
     public static func replaceStudioIFrame(
         html: String,
@@ -36,12 +80,12 @@ public struct StudioLTIReplace {
                 continue
             }
 
-            captionTags.append("  <track kind=\"captions\" src=\"\(caption)\" srclang=\"\(languageCode)\"/>\n")
+            captionTags.append("  <track kind=\"captions\" src=\"\(caption.path)\" srclang=\"\(languageCode)\"></track>\n")
         }
 
         let videoTag = """
-        <video>
-          <source src="\(video)" type="\(videoMimeType)" />
+        <video controls playsinline preload="auto">
+          <source src="\(video.path)" type="\(videoMimeType)\" />
         \(captionTags)</video>
         """
 

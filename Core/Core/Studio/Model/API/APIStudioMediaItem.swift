@@ -29,7 +29,7 @@ public struct APIStudioMediaItem: Codable {
     }
 
     public let id: ID
-    /// The id used when this media is embedded as an LTI tool.
+    /// The id used when this media is embedded as an LTI tool. There is a 1:1 connection between this and the `id` property.
     public let lti_launch_id: String
     public let title: String
     public let mime_type: String

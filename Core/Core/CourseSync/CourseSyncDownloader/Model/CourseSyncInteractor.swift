@@ -39,6 +39,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let filesInteractor: CourseSyncFilesInteractor
     private let modulesInteractor: CourseSyncModulesInteractor
     private let progressWriterInteractor: CourseSyncProgressWriterInteractor
+    private let studioMediaInteractor: CourseSyncStudioMediaInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Never>.init([])
     private var safeCourseSyncEntriesValue: [CourseSyncEntry] {
@@ -73,6 +74,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         progressWriterInteractor: CourseSyncProgressWriterInteractor,
         notificationInteractor: CourseSyncNotificationInteractor,
         courseListInteractor: CourseListInteractor,
+        studioMediaInteractor: CourseSyncStudioMediaInteractor,
         backgroundActivity: BackgroundActivity,
         scheduler: AnySchedulerOf<DispatchQueue>,
         env: AppEnvironment
@@ -83,6 +85,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         self.modulesInteractor = modulesInteractor
         self.progressWriterInteractor = progressWriterInteractor
         self.courseListInteractor = courseListInteractor
+        self.studioMediaInteractor = studioMediaInteractor
         self.notificationInteractor = notificationInteractor
         self.backgroundActivity = backgroundActivity
         self.scheduler = scheduler
@@ -118,15 +121,19 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
             .collect()
-            .flatMap { [notificationInteractor] _ in
-                let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
-                unownedSelf.progressWriterInteractor.saveDownloadResult(
-                    isFinished: true,
-                    error: hasError ? unownedSelf.fileErrorMessage : nil
-                )
-
-                return notificationInteractor.send()
+            .flatMap { [studioMediaInteractor] _ in
+                let courseIDs = entries.map { $0.courseId }
+                return studioMediaInteractor.getContent(courseIDs: courseIDs)
             }
+//            .flatMap { [notificationInteractor] in
+//                let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
+//                unownedSelf.progressWriterInteractor.saveDownloadResult(
+//                    isFinished: true,
+//                    error: hasError ? unownedSelf.fileErrorMessage : nil
+//                )
+//
+//                return notificationInteractor.send()
+//            }
             .flatMap { unownedSelf.backgroundActivity.stop() }
             .sink(
                 receiveCompletion: { _ in

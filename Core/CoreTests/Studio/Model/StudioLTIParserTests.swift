@@ -33,7 +33,7 @@ class StudioLTIParserTests: XCTestCase {
     func testExtractsMedia() {
         let testHTML = "<p>\(Self.iframe)</p>"
 
-        let result = StudioLTIParser.extractStudioLTIs(html: testHTML)
+        let result = StudioHTMLParser.extractStudioLTIs(html: testHTML)
 
         XCTAssertEqual(
             result,

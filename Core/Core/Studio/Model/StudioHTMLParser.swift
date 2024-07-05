@@ -18,23 +18,31 @@
 
 import Foundation
 
-public struct StudioLTIParser {
-    public struct Media: Equatable {
-        /// The studio media ID the iframe pointing to. We use this to get the media's real ID from the API.
-        let mediaLTILaunchID: String
-        /// The html of the frame, we use this to replace the iframe with a video tag pointing to the downloded media.
-        let sourceFrame: String
-    }
+public struct StudioIFrame {
+    /// The studio media ID the iframe pointing to. We use this to get the media's real ID from the API.
+    let mediaLTILaunchID: String
+    /// The html of the frame, we use this to replace the iframe with a video tag pointing to the downloded media.
+    let sourceHtml: String
+}
 
-    public static func extractStudioLTIs(html: String) -> [Media] {
-        let iframes = html.extractiFrames()
+public struct StudioHTMLParser {
+
+    public static func extractStudioIFrames(htmlLocation: URL) -> [StudioIFrame] {
+        guard let htmlData = try? Data(contentsOf: htmlLocation),
+              let htmlString = String(data: htmlData, encoding: .utf8)
+        else {
+            return []
+        }
+
+        let iframes = htmlString.extractiFrames()
+
         return iframes.compactMap { iframe in
             guard let mediaID = iframe.extractStudioMediaIDFromIFrame() else {
                 return nil
             }
-            return Media(
+            return StudioIFrame(
                 mediaLTILaunchID: mediaID,
-                sourceFrame: iframe
+                sourceHtml: iframe
             )
         }
     }

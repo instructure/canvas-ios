@@ -18,22 +18,25 @@
 
 import Combine
 
-public class StudioMediaDownloadInteractor {
-    public struct DownloadResult {
-        public let video: URL
-        public let videoMimeType: String
-        public let captions: [URL]
-    }
+public struct StudioOfflineVideo {
+    public let ltiLaunchID: String
+    public let videoLocation: URL
+    public let videoMimeType: String
+    public let captionLocations: [URL]
+}
 
+public class StudioMediaDownloadInteractor {
     private let rootDirectory: URL
 
     public init(rootDirectory: URL) {
         self.rootDirectory = rootDirectory
     }
 
-    public func download(_ item: APIStudioMediaItem) -> AnyPublisher<DownloadResult, Error> {
+    public func download(_ item: APIStudioMediaItem) -> AnyPublisher<StudioOfflineVideo, Error> {
         let mediaFolder = rootDirectory.appendingPathComponent(item.id.value, isDirectory: true)
-        let mediaFile = mediaFolder.appendingPathComponent(item.id.value, isDirectory: true)
+        let mediaFile = mediaFolder
+            .appendingPathComponent(item.id.value, isDirectory: false)
+            .appendingPathExtension(item.url.pathExtension)
 
         return Just(())
             .setFailureType(to: Error.self)
@@ -46,10 +49,11 @@ public class StudioMediaDownloadInteractor {
                 item.captions.save(to: mediaFolder)
             }
             .map { captionURLs in
-                DownloadResult(
-                    video: mediaFile,
+                StudioOfflineVideo(
+                    ltiLaunchID: item.lti_launch_id,
+                    videoLocation: mediaFile,
                     videoMimeType: item.mime_type,
-                    captions: captionURLs
+                    captionLocations: captionURLs
                 )
             }
             .eraseToAnyPublisher()

@@ -86,15 +86,33 @@ public extension URL {
 
     enum Paths {
         public enum Offline {
-            public static func courseFolder(sessionID: String, courseId: String) -> String {
+
+            public static func root(
+                sessionID: String
+            ) -> String {
+                "\(sessionID)/Offline"
+            }
+
+            public static func courseFolder(
+                sessionID: String,
+                courseId: String
+            ) -> String {
                 "\(sessionID)/Offline/Files/course-\(courseId)"
             }
 
-            public static func courseSectionFolder(sessionId: String, courseId: String, sectionName: String) -> String {
+            public static func courseSectionFolder(
+                sessionId: String,
+                courseId: String,
+                sectionName: String
+            ) -> String {
                 "\(sessionId)/Offline/course-\(courseId)/\(sectionName)"
             }
 
-            public static func courseSectionFolderURL(sessionId: String, courseId: String, sectionName: String) -> URL {
+            public static func courseSectionFolderURL(
+                sessionId: String,
+                courseId: String,
+                sectionName: String
+            ) -> URL {
                 URL.Directories.documents.appendingPathComponent(
                     URL.Paths.Offline.courseSectionFolder(
                         sessionId: sessionId,
@@ -104,7 +122,10 @@ public extension URL {
                 )
             }
 
-            public static func courseSectionResourceFolder(sectionName: String, resourceId: String) -> String {
+            public static func courseSectionResourceFolder(
+                sectionName: String,
+                resourceId: String
+            ) -> String {
                 "\(sectionName)-\(resourceId)"
             }
 
@@ -114,7 +135,7 @@ public extension URL {
                 sectionName: String,
                 resourceId: String
             ) -> URL {
-                return Paths.Offline.courseSectionFolderURL(
+                Paths.Offline.courseSectionFolderURL(
                     sessionId: sessionId,
                     courseId: courseId,
                     sectionName: sectionName

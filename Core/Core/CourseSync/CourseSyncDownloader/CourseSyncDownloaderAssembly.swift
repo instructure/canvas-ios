@@ -35,6 +35,14 @@ public enum CourseSyncDownloaderAssembly {
         let calendarEventHtmlParser = makeHTMLParser(for: .calendarEvents, loginSession: loginSession, scheduler: scheduler)
         let discussionHtmlParser = makeHTMLParser(for: .discussions, loginSession: loginSession, scheduler: scheduler)
 
+        let offlineFolder = URL.Directories.documents.appendingPathComponent(
+            URL.Paths.Offline.root(sessionID: loginSession?.uniqueID ?? "")
+        )
+        let studioMediaInteractor = CourseSyncStudioMediaInteractorLive(
+            offlineDirectory: offlineFolder,
+            scheduler: scheduler
+        )
+
         let contentInteractors: [CourseSyncContentInteractor] = [
             CourseSyncPagesInteractorLive(htmlParser: pageHtmlParser),
             CourseSyncPeopleInteractorLive(),
@@ -56,6 +64,7 @@ public enum CourseSyncDownloaderAssembly {
                                         progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
                                         notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: progressInteractor),
                                         courseListInteractor: AllCoursesAssembly.makeCourseListInteractor(),
+                                        studioMediaInteractor: studioMediaInteractor,
                                         backgroundActivity: backgroundActivity,
                                         scheduler: scheduler,
                                         env: env)
