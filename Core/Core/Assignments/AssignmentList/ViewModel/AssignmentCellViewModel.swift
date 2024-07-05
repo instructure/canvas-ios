@@ -29,17 +29,7 @@ public class AssignmentCellViewModel: ObservableObject {
         self.courseColor = courseColor
     }
 
-    public var route: URL? {
-        if let discussionTopicID = assignment.discussionTopic?.id, isTeacher {
-            if isDiscussionRedesignEnabled() {
-                return assignment.htmlURL
-            } else {
-                return URL(string: "/courses/\(assignment.courseID)/discussion_topics/\(discussionTopicID)")
-            }
-        } else {
-            return assignment.htmlURL
-        }
-    }
+    public var route: URL? { assignment.htmlURL }
 
     public var icon: UIImage {
         assignment.icon ?? .assignmentLine
@@ -82,13 +72,5 @@ public class AssignmentCellViewModel: ObservableObject {
 
     private var isTeacher: Bool {
         env.app == .teacher
-    }
-
-    private func isDiscussionRedesignEnabled() -> Bool {
-        if let url = assignment.discussionTopic?.htmlURL, let context = Context(path: url.path) {
-            return EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context)
-        } else {
-            return false
-        }
     }
 }

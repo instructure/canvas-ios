@@ -22,7 +22,6 @@ import Foundation
 public enum EnvironmentFeatureFlags: String {
     case send_usage_metrics
     case mobile_offline_mode
-    case react_discussions_post
 }
 
 public class GetEnvironmentFeatureFlags: CollectionUseCase {

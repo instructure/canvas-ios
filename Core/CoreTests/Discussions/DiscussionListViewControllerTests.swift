@@ -254,8 +254,10 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.emptyView.isHidden, false)
     }
 
-    func testAnonymousDiscussionWhenRedesignIsDisabled() {
+    func testAnonymousDiscussionDeviceIsOffline() {
         // Given
+        let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: true)
+        controller = DiscussionListViewController.create(context: .course("1"), offlineModeInteractor: mockInteractor)
         mockCourseAndAssignmentWith(restrict_quantitative_data: false, isAnonymousDiscussion: true)
 
         // When
@@ -268,9 +270,10 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.contentView.alpha, 0.5)
     }
 
-    func testAnonymousDiscussionWhenRedesignIsEnabled() {
+    func testAnonymousDiscussionWhenDeviceIsOnline() {
         // Given
-        api.mock(GetEnabledFeatureFlagsRequest(context: .course("1")), value: ["react_discussions_post"])
+        let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
+        controller = DiscussionListViewController.create(context: .course("1"), offlineModeInteractor: mockInteractor)
         mockCourseAndAssignmentWith(restrict_quantitative_data: false, isAnonymousDiscussion: true)
 
         // When

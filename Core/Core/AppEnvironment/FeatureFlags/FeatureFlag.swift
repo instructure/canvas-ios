@@ -21,7 +21,6 @@ import CoreData
 
 public struct APIFeatureFlag {
     public enum Key: String {
-        case discussionRedesign = "react_discussions_post"
         case assignmentEnhancements = "assignments_2_student"
     }
     public let key: String
