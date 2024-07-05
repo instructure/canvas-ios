@@ -32,7 +32,11 @@ public struct CalendarToDoDetailsScreen: View {
             eventContent
         }
         .navigationTitle(viewModel.navigationTitle)
-        .navBarItems(trailing: .init(isBackgroundContextColor: true, image: .moreLine) {
+        .navBarItems(trailing: .init(
+            isBackgroundContextColor: true,
+            isAvailableOffline: false,
+            image: .moreLine
+        ) {
             viewModel.showEditScreen(env: env, from: controller)
         })
         .navigationBarStyle(.color(viewModel.navBarColor))

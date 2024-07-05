@@ -36,6 +36,7 @@ public class PlannerViewController: UIViewController {
     var studentID: String?
 
     lazy var calendarFilterInteractor: CalendarFilterInteractor = PlannerAssembly.makeFilterInteractor(observedUserId: studentID)
+    lazy var offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     private var subscriptions = Set<AnyCancellable>()
 
     private var currentlyDisplayedToday: Date?
@@ -110,6 +111,15 @@ public class PlannerViewController: UIViewController {
                 self?.plannerListWillRefresh()
             }
             .store(in: &subscriptions)
+
+        offlineModeInteractor
+            .observeIsOfflineMode()
+            .sink { [weak self] isOffline in
+                guard let self else { return }
+                addNoteButton.action = isOffline ? #selector(showOfflineAlert) : #selector(addNote)
+                addNoteButton.tintColor = isOffline ? .disabledGray : .backgroundLightest
+            }
+            .store(in: &subscriptions)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -140,6 +150,10 @@ public class PlannerViewController: UIViewController {
             options: .modal(isDismissable: false, embedInNav: true),
             analyticsRoute: "/calendar/new"
         )
+    }
+
+    @objc private func showOfflineAlert() {
+        UIAlertController.showItemNotAvailableInOfflineAlert()
     }
 
     @objc func selectToday() {

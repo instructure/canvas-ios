@@ -26,6 +26,7 @@ extension InstUI {
         @ViewBuilder private let content: () -> AnyView
         private let isBackgroundContextColor: Bool
         private let isEnabledOverride: Bool?
+        private let isAvailableOffline: Bool
         private let action: () -> Void
 
         private var isEnabled: Bool {
@@ -35,22 +36,30 @@ extension InstUI {
         public init(
             isBackgroundContextColor: Bool = false,
             isEnabled isEnabledOverride: Bool? = nil,
+            isAvailableOffline: Bool = true,
             action: @escaping () -> Void,
             content: @escaping () -> AnyView
         ) {
             self.content = content
             self.isBackgroundContextColor = isBackgroundContextColor
             self.isEnabledOverride = isEnabledOverride
+            self.isAvailableOffline = isAvailableOffline
             self.action = action
         }
 
         public init(
             isBackgroundContextColor: Bool = false,
             isEnabled isEnabledOverride: Bool? = nil,
+            isAvailableOffline: Bool = true,
             label: String,
             action: @escaping () -> Void
         ) {
-            self.init(isBackgroundContextColor: isBackgroundContextColor, isEnabled: isEnabledOverride, action: action) {
+            self.init(
+                isBackgroundContextColor: isBackgroundContextColor,
+                isEnabled: isEnabledOverride,
+                isAvailableOffline: isAvailableOffline,
+                action: action
+            ) {
                 AnyView(Text(label).font(.regular16, lineHeight: .fit))
             }
         }
@@ -58,20 +67,33 @@ extension InstUI {
         public init(
             isBackgroundContextColor: Bool = false,
             isEnabled isEnabledOverride: Bool? = nil,
+            isAvailableOffline: Bool = true,
             image: Image,
             action: @escaping () -> Void
         ) {
-            self.init(isBackgroundContextColor: isBackgroundContextColor, isEnabled: isEnabledOverride, action: action) {
+            self.init(
+                isBackgroundContextColor: isBackgroundContextColor,
+                isEnabled: isEnabledOverride,
+                isAvailableOffline: isAvailableOffline,
+                action: action
+            ) {
                 AnyView(image)
             }
         }
 
         public var body: some View {
-            Button(action: action) {
-                content()
-                    .foregroundStyle(color)
+            button
+                .foregroundStyle(color)
+                .environment(\.isEnabled, isEnabled)
+        }
+
+        @ViewBuilder
+        private var button: some View {
+            if isAvailableOffline {
+                Button(action: action, label: content)
+            } else {
+                OfflineObservingButton(action: action, label: content)
             }
-            .environment(\.isEnabled, isEnabled)
         }
 
         private var color: Color {
@@ -89,11 +111,13 @@ extension InstUI.NavigationBarButton {
     public static func cancel(
         isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
         action: @escaping () -> Void
     ) -> Self {
         .init(
             isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
+            isAvailableOffline: isAvailableOffline,
             label: String(localized: "Cancel", bundle: .core),
             action: action
         )
@@ -102,11 +126,13 @@ extension InstUI.NavigationBarButton {
     public static func done(
         isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
         action: @escaping () -> Void
     ) -> Self {
         .init(
             isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
+            isAvailableOffline: isAvailableOffline,
             label: String(localized: "Done", bundle: .core),
             action: action
         )
@@ -115,11 +141,13 @@ extension InstUI.NavigationBarButton {
     public static func add(
         isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
         action: @escaping () -> Void
     ) -> Self {
         .init(
             isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
+            isAvailableOffline: isAvailableOffline,
             label: String(localized: "Add", bundle: .core),
             action: action
         )
@@ -128,11 +156,13 @@ extension InstUI.NavigationBarButton {
     public static func save(
         isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
         action: @escaping () -> Void
     ) -> Self {
         .init(
             isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
+            isAvailableOffline: isAvailableOffline,
             label: String(localized: "Save", bundle: .core),
             action: action
         )
