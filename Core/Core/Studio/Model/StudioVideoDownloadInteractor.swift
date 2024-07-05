@@ -21,11 +21,13 @@ import Combine
 public struct StudioOfflineVideo {
     public let ltiLaunchID: String
     public let videoLocation: URL
+    /// The png file of the first frame of the video.
+    public let videoPosterLocation: URL
     public let videoMimeType: String
     public let captionLocations: [URL]
 }
 
-public class StudioMediaDownloadInteractor {
+public class StudioVideoDownloadInteractor {
     private let rootDirectory: URL
 
     public init(rootDirectory: URL) {
@@ -34,24 +36,35 @@ public class StudioMediaDownloadInteractor {
 
     public func download(_ item: APIStudioMediaItem) -> AnyPublisher<StudioOfflineVideo, Error> {
         let mediaFolder = rootDirectory.appendingPathComponent(item.id.value, isDirectory: true)
-        let mediaFile = mediaFolder
+        let videoFileLocation = mediaFolder
             .appendingPathComponent(item.id.value, isDirectory: false)
             .appendingPathExtension(item.url.pathExtension)
 
         return Just(())
             .setFailureType(to: Error.self)
             .flatMap { _ in
-                DownloadTaskPublisher(parameters: .init(remoteURL: item.url, localURL: mediaFile))
-                    .collect()
-                    .mapToVoid()
+                DownloadTaskPublisher(
+                    parameters: .init(
+                        remoteURL: item.url,
+                        localURL: videoFileLocation
+                    )
+                )
+                .collect()
+                .mapToVoid()
             }
             .flatMap {
                 item.captions.save(to: mediaFolder)
             }
-            .map { captionURLs in
+            .tryMap { captionURLs in
+                let posterLocation = mediaFolder.appendingPathComponent("poster.png", isDirectory: false)
+                try videoFileLocation.writeVideoPreview(to: posterLocation)
+                return (captionURLs, posterLocation)
+            }
+            .map { (captionURLs, posterURL) in
                 StudioOfflineVideo(
                     ltiLaunchID: item.lti_launch_id,
-                    videoLocation: mediaFile,
+                    videoLocation: videoFileLocation,
+                    videoPosterLocation: posterURL,
                     videoMimeType: item.mime_type,
                     captionLocations: captionURLs
                 )

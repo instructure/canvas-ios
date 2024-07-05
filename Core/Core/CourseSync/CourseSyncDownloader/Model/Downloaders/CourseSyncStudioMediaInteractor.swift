@@ -149,7 +149,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         mediaLTIIDsToDownload: [String]
     ) -> AnyPublisher<[StudioOfflineVideo], Error> {
         let studioDirectory = offlineDirectory.appendingPathComponent("studio", isDirectory: true)
-        let interactor = StudioMediaDownloadInteractor(rootDirectory: studioDirectory)
+        let interactor = StudioVideoDownloadInteractor(rootDirectory: studioDirectory)
         let mediaItemsForOffline = mediaItems.filter { mediaLTIIDsToDownload.contains($0.lti_launch_id) }
 
         return Publishers.Sequence(sequence: mediaItemsForOffline)

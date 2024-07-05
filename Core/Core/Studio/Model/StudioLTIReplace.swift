@@ -48,6 +48,7 @@ public struct StudioLTIReplace {
                 html: htmlString,
                 iFrame: iframe.sourceHtml,
                 video: offlineVideo.videoLocation,
+                videoPoster: offlineVideo.videoPosterLocation,
                 videoMimeType: offlineVideo.videoMimeType,
                 captions: offlineVideo.captionLocations
             )
@@ -59,7 +60,7 @@ public struct StudioLTIReplace {
 
         do {
             try updatedHtmlData.write(to: htmlURL)
-        } catch (let error) {
+        } catch {
             throw ReplaceError.failedToSaveUpdatedHtml
         }
     }
@@ -68,6 +69,7 @@ public struct StudioLTIReplace {
         html: String,
         iFrame: String,
         video: URL,
+        videoPoster: URL,
         videoMimeType: String,
         captions: [URL]
     ) -> String {
@@ -80,11 +82,11 @@ public struct StudioLTIReplace {
                 continue
             }
 
-            captionTags.append("  <track kind=\"captions\" src=\"\(caption.path)\" srclang=\"\(languageCode)\"></track>\n")
+            captionTags.append("  <track kind=\"captions\" src=\"\(caption.path)\" srclang=\"\(languageCode)\"/ >\n")
         }
 
         let videoTag = """
-        <video controls playsinline preload="auto">
+        <video controls playsinline preload="auto" poster="\(videoPoster.path)">
           <source src="\(video.path)" type="\(videoMimeType)\" />
         \(captionTags)</video>
         """

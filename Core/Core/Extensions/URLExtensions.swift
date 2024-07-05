@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import AVFoundation
 import UniformTypeIdentifiers
 
 extension Sequence where Element == URL {
@@ -213,5 +213,25 @@ public extension URL {
             }
         }
         return "application/octet-stream"
+    }
+
+    /// Returns an image of the first frame of the video located at this url.
+    func videoPreview() throws -> UIImage {
+        let asset = AVURLAsset(url: self)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+        imageGenerator.appliesPreferredTrackTransform = true
+
+        let cgImage = try imageGenerator.copyCGImage(at: .zero, actualTime: nil)
+
+        return UIImage(cgImage: cgImage)
+    }
+
+    /// Writes the result of the `videoPreview()` method to the given url in png format.
+    func writeVideoPreview(to url: URL) throws {
+        let previewImage = try videoPreview()
+        guard let imageData = previewImage.pngData() else {
+            throw "Failed to convert preview data to png."
+        }
+        try imageData.write(to: url)
     }
 }
