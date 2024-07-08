@@ -84,13 +84,13 @@ public struct AttachmentPickerView: View {
             ForEach(viewModel.fileList, id: \.self) { file in
                 rowView(for: file)
                     .listRowSpacing(0)
-                    .iOS16RemoveListRowSeparatorLeadingInset()
+                    .removeListRowSeparatorLeadingInset()
             }
 
             ForEach(viewModel.alreadyUploadedFileList, id: \.self) { file in
                 rowView(for: file, shouldDeleteOnRemove: false)
                     .listRowSpacing(0)
-                    .iOS16RemoveListRowSeparatorLeadingInset()
+                    .removeListRowSeparatorLeadingInset()
             }
         }
         .listStyle(.plain)

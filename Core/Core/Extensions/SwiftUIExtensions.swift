@@ -37,15 +37,3 @@ public extension Image {
         resizable().scaledToFill().frame(width: size, height: size)
     }
 }
-
-@available(iOS, deprecated: 16.0, message: "Use accessibilityActions(_:) for managing accessibility actions instead.")
-public extension View {
-    @ViewBuilder
-    func `if`<Content: View>(_ condition: Bool, content: (Self) -> Content) -> some View {
-        if condition {
-            content(self)
-        } else {
-            self
-        }
-    }
-}

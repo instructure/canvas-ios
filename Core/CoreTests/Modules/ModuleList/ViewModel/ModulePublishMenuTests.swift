@@ -20,7 +20,6 @@
 import TestsFoundation
 import XCTest
 
-@available(iOS 16.0, *)
 class ModulePublishMenuTests: XCTestCase {
     var hostView: UIViewController!
     var router: TestRouter!
