@@ -361,46 +361,48 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     model.toggleMessageExpand(message: message)
                 }
             } label: {
-                VStack(alignment: .leading, spacing: 0) {
-                    HStack {
-                        Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
-                            .font(.regular16)
-                            .foregroundStyle(Color.textDarkest)
-                            .lineLimit(1)
-                        Spacer()
-                        Text(message.createdAt?.dateTimeString ?? "")
-                            .font(.regular14)
-                            .foregroundStyle(Color.textDark)
-                            .lineLimit(1)
+                VStack(spacing: 0) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack {
+                            Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
+                                .font(.regular16)
+                                .foregroundStyle(Color.textDarkest)
+                                .lineLimit(1)
+                            Spacer()
+                            Text(message.createdAt?.dateTimeString ?? "")
+                                .font(.regular14)
+                                .foregroundStyle(Color.textDark)
+                                .lineLimit(1)
+
+                            withAnimation {
+                                Image.arrowOpenDownLine
+                                    .resizable()
+                                    .frame(
+                                        width: 15 * uiScale.iconScale,
+                                        height: 15 * uiScale.iconScale
+                                    )
+                                    .rotationEffect(.degrees(isExpanded ? 180 : 0))
+                                    .foregroundColor(.textDark)
+                            }
+                        }
 
                         withAnimation {
-                            Image.arrowOpenDownLine
-                                .resizable()
-                                .frame(
-                                    width: 15 * uiScale.iconScale,
-                                    height: 15 * uiScale.iconScale
-                                )
-                                .rotationEffect(.degrees(isExpanded ? 180 : 0))
-                                .foregroundColor(.textDark)
+                            Text(message.body)
+                                .font(.regular14)
+                                .foregroundStyle(Color.textDark)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(isExpanded ? nil : 1)
                         }
                     }
-
-                    withAnimation {
-                        Text(message.body)
-                            .font(.regular14)
-                            .foregroundStyle(Color.textDark)
-                            .multilineTextAlignment(.leading)
-                            .if(!isExpanded) { $0.lineLimit(1) }
+                    if isExpanded && !message.attachments.isEmpty {
+                        AttachmentsView(attachments: message.attachments, didSelectAttachment: { model.didSelectFile.accept((controller, $0))})
+                            .padding(.top, 16)
                     }
                 }
-            }
-            if isExpanded {
-                AttachmentsView(attachments: message.attachments, didSelectAttachment: { model.didSelectFile.accept((controller, $0))})
-                    .padding(.top, 16)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 12)
             }
         }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 16)
     }
 
     private var attachmentsView: some View {
