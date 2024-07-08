@@ -39,7 +39,7 @@ class ModuleTests: CoreTestCase {
         let module = APIModule.make(
             items: [
                 APIModuleItem.make(id: "1"),
-                APIModuleItem.make(id: "2"),
+                APIModuleItem.make(id: "2")
             ]
         )
         Module.save(module, forCourse: "1", in: databaseClient)
@@ -57,7 +57,7 @@ class ModuleTests: CoreTestCase {
             items: [
                 APIModuleItem.make(id: "1", completion_requirement: .make(type: .must_view, completed: false, min_score: 0)),
                 APIModuleItem.make(id: "2", completion_requirement: .make(type: .must_view, completed: false, min_score: 0)),
-                APIModuleItem.make(id: "3", completion_requirement: .make(type: .must_view, completed: false, min_score: 0)),
+                APIModuleItem.make(id: "3", completion_requirement: .make(type: .must_view, completed: false, min_score: 0))
             ]
         )
         let module = Module.make(from: apiModule)

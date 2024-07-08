@@ -88,7 +88,7 @@ struct WrappingHStack_Previews: PreviewProvider {
     static var previews: some View {
         WrappingHStack(models: [
             .init(id: "1", name: "Alice", avatarURL: nil),
-            .init(id: "2", name: "Bob", avatarURL: nil),
+            .init(id: "2", name: "Bob", avatarURL: nil)
         ]) { recipient in
             RecipientPillView(recipient: recipient, removeDidTap: { _ in  })
         }

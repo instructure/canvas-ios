@@ -138,7 +138,7 @@ class GetPlannablesTests: CoreTestCase {
     func testWriteCalendarEvents() {
         let response = GetPlannables.Response(plannables: nil, calendarEvents: [
             .make(id: "1", start_at: start, hidden: false),
-            .make(id: "2", start_at: start, hidden: true),
+            .make(id: "2", start_at: start, hidden: true)
         ])
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
         let plannables = databaseClient.fetch(scope: useCase.scope) as [Plannable]

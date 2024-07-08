@@ -31,7 +31,7 @@ public extension CourseSyncEntry {
         let mimeClass: String
         let updatedAt: Date?
         var state: State = .loading(nil)
-        var selectionState: ListCellView.SelectionState = .deselected
+        var selectionState: OfflineListCellView.SelectionState = .deselected
 
         /// Filesize in bytes, received from the API.
         let bytesToDownload: Int

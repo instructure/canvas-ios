@@ -130,7 +130,7 @@ public extension InstUI {
             title: "Non Rich Content Reference",
             description: "Click here!",
             isRichContent: false
-        ),
+        )
     ])
 }
 
@@ -148,7 +148,7 @@ public extension InstUI {
         .init(
             title: "Description",
             description: "Not added yet..."
-        ),
+        )
     ])
 }
 

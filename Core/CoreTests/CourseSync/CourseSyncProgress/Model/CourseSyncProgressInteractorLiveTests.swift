@@ -189,7 +189,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
                 id: "courses/course-id-1",
                 selection: .file("courses/course-id-1", "courses/course-id-1/files/file-1"),
                 state: .loading(0.4)
-            ),
+            )
         ])
         XCTAssertEqual(entries[0].files[0].state, .loading(0.4))
 
@@ -198,7 +198,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
                 id: "courses/course-id-1",
                 selection: .file("courses/course-id-1", "courses/course-id-1/files/file-1"),
                 state: .downloaded
-            ),
+            )
         ])
         XCTAssertEqual(entries[0].files[0].state, .downloaded)
 
@@ -207,7 +207,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
                 id: "courses/course-id-1",
                 selection: .tab("courses/course-id-1", "courses/course-id-1/tabs/files"),
                 state: .downloaded
-            ),
+            )
         ])
         XCTAssertEqual(entries[0].tabs[0].state, .downloaded)
 
@@ -216,7 +216,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
                 id: "courses/course-id-1",
                 selection: .course("courses/course-id-1"),
                 state: .downloaded
-            ),
+            )
         ])
         XCTAssertEqual(entries[0].state, .downloaded)
         subscription.cancel()
@@ -256,7 +256,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
                 id: "courses/course-id-1",
                 selection: .tab("courses/course-id-1", "courses/course-id-1/tabs/assignments"),
                 state: .error
-            ),
+            )
         ])
         XCTAssertEqual(entries[0].tabs[1].state, .error)
         subscription.cancel()
@@ -293,7 +293,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
                 hasFrontPage: false,
                 tabs: [
                     .init(id: "courses/course-id-1/tabs/files", name: "tab-files", type: .files, state: .error),
-                    .init(id: "courses/course-id-1/tabs/assignments", name: "tab-assignments", type: .assignments, state: .downloaded),
+                    .init(id: "courses/course-id-1/tabs/assignments", name: "tab-assignments", type: .assignments, state: .downloaded)
                 ],
                 files: [
                     .init(
@@ -315,7 +315,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
                         updatedAt: nil,
                         state: .downloaded,
                         bytesToDownload: 1000
-                    ),
+                    )
                 ],
                 state: .loading(nil)
             )
@@ -383,7 +383,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
                 hasFrontPage: false,
                 tabs: [
                     .init(id: "courses/course-id-1/tabs/files", name: "tab-files", type: .files),
-                    .init(id: "courses/course-id-1/tabs/assignments", name: "tab-assignments", type: .assignments),
+                    .init(id: "courses/course-id-1/tabs/assignments", name: "tab-assignments", type: .assignments)
                 ],
                 files: [
                     .init(
@@ -394,7 +394,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
                         mimeClass: "image",
                         updatedAt: nil,
                         bytesToDownload: 1000
-                    ),
+                    )
                 ]
             )
         )

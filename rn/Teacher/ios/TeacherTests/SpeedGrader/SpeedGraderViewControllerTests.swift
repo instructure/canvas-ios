@@ -29,7 +29,7 @@ class SpeedGraderViewControllerTests: TeacherTestCase {
         super.setUp()
         api.mock(GetAssignment(courseID: "1", assignmentID: "1", include: [ .overrides ]), value: .make())
         api.mock(GetSubmissions(context: .course("1"), assignmentID: "1"), value: [
-            .make(submission_history: [], user: .make(avatar_url: URL(string: "data:text/plain,"))),
+            .make(submission_history: [], user: .make(avatar_url: URL(string: "data:text/plain,")))
         ])
     }
 
@@ -50,12 +50,12 @@ class SpeedGraderViewControllerTests: TeacherTestCase {
         api.mock(GetAssignment(courseID: "1", assignmentID: "1", include: [ .overrides ]), value: .make())
         api.mock(GetSubmissions(context: .course("1"), assignmentID: "1"), value: [
             .make(id: "1", submission_history: [], submission_type: .online_upload, user_id: "1"),
-            .make(id: "2", submission_history: [], submission_type: .online_upload, user_id: "2"),
+            .make(id: "2", submission_history: [], submission_type: .online_upload, user_id: "2")
         ])
         // User2 should be inactive
         api.mock(GetEnrollments(context: .course("1")), value: [
             .make(id: "1", course_id: "1", enrollment_state: .active, user_id: "1"),
-            .make(id: "2", course_id: "1", enrollment_state: .inactive, user_id: "2"),
+            .make(id: "2", course_id: "1", enrollment_state: .inactive, user_id: "2")
         ])
         controller = SpeedGraderViewController(context: .course("1"), assignmentID: "1", userID: "1", filter: [.needsGrading])
 

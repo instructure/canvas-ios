@@ -85,10 +85,10 @@ struct K5ScheduleMissingItemsView_Previews: PreviewProvider {
             K5ScheduleMissingItemsView(missingItems: [
                 K5Preview.Data.Schedule.entries[2],
                 K5Preview.Data.Schedule.entries[2],
-                K5Preview.Data.Schedule.entries[2],
+                K5Preview.Data.Schedule.entries[2]
             ])
             K5ScheduleMissingItemsView(missingItems: [
-                K5Preview.Data.Schedule.entries[2],
+                K5Preview.Data.Schedule.entries[2]
             ])
             Spacer()
         }

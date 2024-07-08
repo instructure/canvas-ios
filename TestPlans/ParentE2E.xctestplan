@@ -18,6 +18,8 @@
         }
       ]
     },
+    "language" : "en",
+    "region" : "US",
     "targetForVariableExpansion" : {
       "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
       "identifier" : "5E6441861C3EE2E0003D7397",

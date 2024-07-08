@@ -28,7 +28,7 @@ class StudentListViewControllerTests: ParentTestCase {
         super.setUp()
         api.mock(controller.students, value: [
             .make(observed_user: .make(id: "2", short_name: "Bob", pronouns: "He/Him")),
-            .make(observed_user: .make(id: "3", short_name: "Ruth")),
+            .make(observed_user: .make(id: "3", short_name: "Ruth"))
         ])
     }
 

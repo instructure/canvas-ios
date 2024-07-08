@@ -53,7 +53,7 @@ public class MiniCanvasState {
         students = [
             APIUser.makeUser(role: "Student", id: idGenerator.next()),
             APIUser.makeUser(role: "Student", id: idGenerator.next()),
-            APIUser.makeUser(role: "Student", id: idGenerator.next()),
+            APIUser.makeUser(role: "Student", id: idGenerator.next())
         ]
 
         teachers = [APIUser.makeUser(role: "Teacher", id: idGenerator.next())]
@@ -65,7 +65,7 @@ public class MiniCanvasState {
         [
             APICourse.make(id: nextId(), name: "Course One", course_code: "C1", workflow_state: .available, enrollments: []),
             APICourse.make(id: nextId(), name: "Course Two (unpublished)", course_code: "C2", workflow_state: .unpublished, enrollments: []),
-            APICourse.make(id: nextId(), name: "Course Three (completed)", course_code: "C3", workflow_state: .completed, enrollments: []),
+            APICourse.make(id: nextId(), name: "Course Three (completed)", course_code: "C3", workflow_state: .completed, enrollments: [])
         ].forEach { MiniCourse.create($0, populatingState: self) }
     }
 }

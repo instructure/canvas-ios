@@ -61,7 +61,7 @@ class QuizListViewControllerTests: CoreTestCase {
                 id: "4",
                 quiz_type: .survey,
                 title: "D"
-            ),
+            )
         ])
     }
 

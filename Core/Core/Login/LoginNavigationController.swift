@@ -40,7 +40,7 @@ public class LoginNavigationController: UINavigationController {
         viewControllers = [
             LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: false, app: app, offlineModeInteractor: OfflineModeAssembly.make()),
             LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: .normalLogin),
-            LoginWebViewController.create(host: host, loginDelegate: loginDelegate, method: .normalLogin),
+            LoginWebViewController.create(host: host, loginDelegate: loginDelegate, method: .normalLogin)
         ]
     }
 }

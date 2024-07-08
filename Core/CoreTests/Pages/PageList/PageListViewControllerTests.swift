@@ -26,13 +26,13 @@ class PageListViewControllerTests: CoreTestCase {
         super.setUp()
         api.mock(controller.colors, value: .init(custom_colors: [
             "course_42": "#000088",
-            "group_1": "#facade",
+            "group_1": "#facade"
         ]))
         api.mock(controller.course, value: .make(id: "42"))
         api.mock(controller.frontPage, value: .make(front_page: true))
         api.mock(controller.pages, value: [
             .make(html_url: URL(string: "courses/42/pages/dois")!, page_id: "2", title: "Dois"),
-            .make(page_id: "3", title: "Trey"),
+            .make(page_id: "3", title: "Trey")
         ])
     }
 
@@ -124,7 +124,7 @@ class PageListViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         api.mock(controller.pages, value: [.make()], response: HTTPURLResponse(next: "/courses/42/pages?page=2"))
         api.mock(GetNextRequest(path: "/courses/42/pages?page=2"), value: [
-            APIPage.make(page_id: "12", title: "z next page"),
+            APIPage.make(page_id: "12", title: "z next page")
         ])
         let tableView = controller.tableView!
         tableView.refreshControl?.sendActions(for: .valueChanged)

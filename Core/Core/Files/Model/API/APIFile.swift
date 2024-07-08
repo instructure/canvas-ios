@@ -500,7 +500,7 @@ public class GetFoldersRequest: APIRequestable {
     public var query: [APIQueryItem] {
         [
             .include(["usage_rights"]),
-            .perPage(perPage),
+            .perPage(perPage)
         ]
     }
 }
@@ -524,7 +524,7 @@ public class GetFilesRequest: APIRequestable {
     public var query: [APIQueryItem] { [
         .include(["usage_rights"]),
         .optionalValue("search_term", searchTerm),
-        .perPage(perPage),
+        .perPage(perPage)
     ] }
 }
 

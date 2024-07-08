@@ -259,6 +259,7 @@ class LoginTests: E2ETestCase {
         XCTAssertTrue(invalidUsernameOrPasswordLabel.isVisible)
 
         // MARK: Correct username with wrong password
+        emailInput.cutText()
         emailInput.writeText(text: student.login_id!)
         passwordInput.writeText(text: "wrong password")
         loginButton.hit()

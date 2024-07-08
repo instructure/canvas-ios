@@ -24,7 +24,7 @@ class CourseListItemTests: CoreTestCase {
         let apiCourse = APICourse.make(enrollments: [
             .make(role: "TeacherEnrollment"),
             .make(role: "StudentEnrollment"),
-            .make(role: "StudentEnrollment"),
+            .make(role: "StudentEnrollment")
         ])
         let testee = CDAllCoursesCourseItem.save(apiCourse,
                                                  enrollmentState: .active,

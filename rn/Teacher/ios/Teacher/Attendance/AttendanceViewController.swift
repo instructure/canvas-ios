@@ -163,7 +163,7 @@ class AttendanceViewController: ScreenViewTrackableViewController, ColoredNavVie
             markAllButtonBottom,
             markAllButton.heightAnchor.constraint(equalToConstant: 50.0),
             markAllButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            markAllButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            markAllButton.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
         tableView.setEditing(false, animated: false)

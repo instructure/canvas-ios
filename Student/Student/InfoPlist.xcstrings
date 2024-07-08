@@ -113,6 +113,18 @@
             "value" : "Canvas Étudiant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac Léinn Canvas"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas Student"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -389,6 +401,18 @@
             "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail grianghraif agus físeáin le teachtaireachtaí agus postálacha fóraim nó cuir isteach iad mar uaslódálacha taisc."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संदेशों और चर्चा पोस्टों में फ़ोटो और वीडियो संलग्न करें या उन्हें असाइनमेंट सबमिशन के रूप में बदलें।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -639,6 +663,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aidez-nous à trouver des écoles près de chez vous."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cabhraigh linn scoileanna in aice leat a aimsiú."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपने नज़दीक स्कूल ढूंढने में हमारी मदद करें।"
           }
         },
         "ht" : {
@@ -893,6 +929,18 @@
             "value" : "Joindre des enregistrements audio aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail taifeadtaí fuaime le teachtaireachtaí agus postálacha fóraim nó cuir isteach iad mar uaslódálacha taisc."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संदेशों और चर्चा पोस्टों में फ़ोटो और ऑडियो रिकॉर्डिंग संलग्न करें या उन्हें असाइनमेंट सबमिशन के रूप में बदलें।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1145,6 +1193,18 @@
             "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail grianghraif agus físeáin le teachtaireachtaí agus postálacha fóraim nó cuir isteach iad mar uaslódálacha taisc."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संदेशों और चर्चा पोस्टों में फ़ोटो और वीडियो संलग्न करें या उन्हें असाइनमेंट सबमिशन के रूप में बदलें।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1395,6 +1455,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail grianghraif agus físeáin le teachtaireachtaí agus postálacha fóraim nó cuir isteach iad mar uaslódálacha taisc."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संदेशों और चर्चा पोस्टों में फ़ोटो और वीडियो संलग्न करें या उन्हें असाइनमेंट सबमिशन के रूप में बदलें।"
           }
         },
         "ht" : {

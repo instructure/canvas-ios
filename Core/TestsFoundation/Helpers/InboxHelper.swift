@@ -106,6 +106,12 @@ public class InboxHelper: BaseHelper {
             public static var addButton: XCUIElement { app.find(id: "attachments.add-btn") }
             public static var dismissButton: XCUIElement { app.find(id: "attachments.dismiss-btn") }
         }
+
+        public struct Recipients {
+            public static func teachers(course: DSCourse) -> XCUIElement { return app.find(id: "course_\(course.id)_teachers") }
+            public static func students(course: DSCourse) -> XCUIElement { return app.find(id: "course_\(course.id)_students") }
+            public static func userItem(user: DSUser) -> XCUIElement { return app.find(id: user.id) }
+        }
     }
 
     public static func navigateToInbox() {

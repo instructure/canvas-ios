@@ -69,7 +69,7 @@ public class PlannerViewController: UIViewController {
         NSLayoutConstraint.activate([
             calendar.view.topAnchor.constraint(equalTo: view.topAnchor),
             calendar.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            calendar.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            calendar.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
         let divider = DividerView()
@@ -90,7 +90,7 @@ public class PlannerViewController: UIViewController {
             listPageController.view.topAnchor.constraint(equalTo: divider.bottomAnchor),
             listPageController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             listPageController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            listPageController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            listPageController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
 
         listPageController.dataSource = self
@@ -169,7 +169,7 @@ public class PlannerViewController: UIViewController {
 
             let attributes: [NSAttributedString.Key: Any] = [
                 .font: font,
-                .paragraphStyle: paragraphStyle,
+                .paragraphStyle: paragraphStyle
             ]
 
             let attributedString = NSAttributedString(string: text, attributes: attributes)

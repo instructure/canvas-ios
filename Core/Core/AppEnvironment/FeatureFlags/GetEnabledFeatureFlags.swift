@@ -31,7 +31,7 @@ public class GetEnabledFeatureFlags: CollectionUseCase {
             andPredicateWithSubpredicates: [
                 contextPredicate,
                 enabledPredicate,
-                environmentFlagPredicate,
+                environmentFlagPredicate
             ]
         )
         return Scope(predicate: predicate, order: [NSSortDescriptor(key: #keyPath(FeatureFlag.name), ascending: true)])

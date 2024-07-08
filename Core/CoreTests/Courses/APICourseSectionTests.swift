@@ -23,7 +23,7 @@ class APICourseSectionTests: CoreTestCase {
     func testGetCourseSectionsRequest() {
         XCTAssertEqual(GetCourseSectionsRequest(courseID: "2", perPage: 5).path, "courses/2/sections")
         XCTAssertEqual(GetCourseSectionsRequest(courseID: "2", perPage: 5).queryItems, [
-            URLQueryItem(name: "per_page", value: "5"),
+            URLQueryItem(name: "per_page", value: "5")
         ])
     }
 }

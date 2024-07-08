@@ -45,7 +45,7 @@ class DatePickerDateCell: UICollectionViewCell {
             highlightView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             highlightView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
 
@@ -93,7 +93,7 @@ class DatePickerMonthHeaderView: UICollectionReusableView {
             stack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
             stack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 8),
             stack.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
         ])
     }
 

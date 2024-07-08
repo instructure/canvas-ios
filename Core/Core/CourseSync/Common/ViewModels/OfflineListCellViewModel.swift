@@ -18,28 +18,28 @@
 
 import SwiftUI
 
-class ListCellViewModel: ObservableObject {
+class OfflineListCellViewModel: ObservableObject {
 
-    let cellStyle: ListCellView.ListCellStyle
+    let cellStyle: OfflineListCellView.ListCellStyle
     let title: String
     let subtitle: String?
-    let selectionState: ListCellView.SelectionState
+    let selectionState: OfflineListCellView.SelectionState
     let isCollapsed: Bool?
     let selectionDidToggle: (() -> Void)?
     let collapseDidToggle: (() -> Void)?
     let removeItemPressed: (() -> Void)?
-    let state: ListCellView.State
+    let state: OfflineListCellView.State
 
-    init(cellStyle: ListCellView.ListCellStyle,
+    init(cellStyle: OfflineListCellView.ListCellStyle,
          title: String,
          subtitle: String? = nil,
-         selectionState: ListCellView.SelectionState = .deselected,
+         selectionState: OfflineListCellView.SelectionState = .deselected,
          isCollapsed: Bool? = nil,
          selectionDidToggle: (() -> Void)? = nil,
          collapseDidToggle: (() -> Void)? = nil,
          removeItemPressed: (() -> Void)? = nil,
          progress: Float? = nil,
-         state: ListCellView.State) {
+         state: OfflineListCellView.State) {
         self.cellStyle = cellStyle
         self.title = title
         self.subtitle = subtitle
@@ -100,7 +100,7 @@ class ListCellViewModel: ObservableObject {
     }
 
     var accessibilityText: String {
-        var titleText = title + (subtitle ?? "")
+        var titleText = title + " " + (subtitle ?? "")
         if case .error(let error) = state, let error = error {
             titleText.append("," + error)
         }
@@ -133,7 +133,29 @@ class ListCellViewModel: ObservableObject {
                 progressText = String(localized: "Downloading", bundle: .core)
             }
         }
-        return titleText + "," + selectionText + "," + collapseText + "," + progressText + ","
+
+        var finalText = ""
+
+        if !titleText.isEmpty {
+            finalText.append(titleText)
+        }
+
+        if !selectionText.isEmpty {
+            finalText.append(", ")
+            finalText.append(selectionText)
+        }
+
+        if !collapseText.isEmpty {
+            finalText.append(", ")
+            finalText.append(collapseText)
+        }
+
+        if !progressText.isEmpty {
+            finalText.append(", ")
+            finalText.append(progressText)
+        }
+
+        return finalText
     }
 
 }

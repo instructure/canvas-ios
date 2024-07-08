@@ -44,7 +44,7 @@ class CalendarFilterInteractorTests: CoreTestCase {
                 .course("1"),
                 .course("2"),
                 .group("1"),
-                .group("2"),
+                .group("2")
             ]),
             observedStudentId: nil
         )
@@ -64,14 +64,14 @@ class CalendarFilterInteractorTests: CoreTestCase {
         XCTAssertEqual(environment.userDefaults!.calendarSelectedContexts(observedStudentId: nil),
                        Set([
                         .course("2"),
-                        .group("2"),
+                        .group("2")
                        ]))
     }
 
     func testUpdatesSelectedContexts() {
         environment.userDefaults!.setCalendarSelectedContexts(
             Set([
-                .course("c1"),
+                .course("c1")
             ]),
             observedStudentId: nil
         )
@@ -127,7 +127,7 @@ class CalendarFilterInteractorTests: CoreTestCase {
     func testSelectsContextsUpToLimitOnFirstStart() {
         mockFilterProvider.mock(contexts: [.course("c1"), .course("c2"), .course("c3"), .course("c4"), .course("c5"),
                                            .group("g1"), .group("g2"), .group("g3"), .group("g4"), .group("g5"),
-                                           .user("u1"),
+                                           .user("u1")
                                           ])
 
         // Mock max 10 context filter limit
@@ -158,7 +158,7 @@ class CalendarFilterInteractorTests: CoreTestCase {
             .group("g1"),
             .group("g2"),
             .group("g3"),
-            .group("g4"),
+            .group("g4")
         ]))
     }
 }

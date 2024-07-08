@@ -233,7 +233,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
                     alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default))
                     env.router.show(alert, from: controller, options: .modal())
                 }
-            },
+            }
         ]
     }
 

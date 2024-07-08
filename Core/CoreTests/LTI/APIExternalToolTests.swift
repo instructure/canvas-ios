@@ -38,7 +38,7 @@ class APIExternalToolTests: XCTestCase {
             URLQueryItem(name: "url", value: "https://google.com"),
             URLQueryItem(name: "assignment_id", value: "3"),
             URLQueryItem(name: "module_item_id", value: "4"),
-            URLQueryItem(name: "resource_link_lookup_uuid", value: "5"),
+            URLQueryItem(name: "resource_link_lookup_uuid", value: "5")
         ])
     }
 
@@ -48,7 +48,7 @@ class APIExternalToolTests: XCTestCase {
         XCTAssertEqual(request.cacheKey, "course_1_external_tools")
         XCTAssertEqual(request.queryItems, [
             URLQueryItem(name: "per_page", value: "100"),
-            URLQueryItem(name: "include_parents", value: "true"),
+            URLQueryItem(name: "include_parents", value: "true")
         ])
     }
 }

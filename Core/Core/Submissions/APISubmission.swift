@@ -355,7 +355,7 @@ public struct GetSubmissionsForStudentRequest: APIRequestable {
         self.query = [
             .perPage(100),
             .array("student_ids", [studentID]),
-            .include(GetSubmissionsRequest.Include.allCases.map { $0.rawValue }),
+            .include(GetSubmissionsRequest.Include.allCases.map { $0.rawValue })
         ]
     }
 }
@@ -387,7 +387,7 @@ public struct GetSubmissionsRequest: APIRequestable {
     public var query: [APIQueryItem] {
         var query: [APIQueryItem] = [
             .perPage(100),
-            .include(include.map { $0.rawValue }),
+            .include(include.map { $0.rawValue })
         ]
         if let grouped = grouped {
             query.append(.bool("grouped", grouped))
@@ -553,7 +553,7 @@ public struct GetRecentlyGradedSubmissionsRequest: APIRequestable {
         return [
             .perPage(3),
             .include(["assignment"]),
-            .bool("only_current_submissions", true),
+            .bool("only_current_submissions", true)
         ]
     }
 }

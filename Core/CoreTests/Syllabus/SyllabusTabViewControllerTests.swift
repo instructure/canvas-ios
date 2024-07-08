@@ -26,7 +26,7 @@ class SyllabusTabViewControllerTests: CoreTestCase {
 
     func testLayout() {
         api.mock(controller.colors, value: APICustomColors(custom_colors: [
-            "course_1": "#f00",
+            "course_1": "#f00"
         ]))
         api.mock(controller.course, value: .make(syllabus_body: "not empty"))
         api.mock(controller.settings, value: .make())

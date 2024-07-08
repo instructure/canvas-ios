@@ -89,7 +89,7 @@ public final class InboxMessageListItem: NSManagedObject {
         let uniqueObjectPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             idPredicate,
             contextPredicate,
-            scopePredicate,
+            scopePredicate
         ])
         let scope = Scope(predicate: uniqueObjectPredicate, order: [])
 

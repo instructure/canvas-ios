@@ -30,7 +30,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
             ("Course 1", .course("1")),
             ("User 42", .user("42")),
             ("User 3", .user("3")),
-            ("Group 6", .group("6")),
+            ("Group 6", .group("6"))
         ]
     }
 

@@ -58,7 +58,7 @@ public enum CourseSyncDownloaderAssembly {
             CourseSyncConferencesInteractorLive(),
             CourseSyncAnnouncementsInteractorLive(htmlParser: announcementHtmlParser),
             CourseSyncQuizzesInteractorLive(htmlParser: quizHtmlParser),
-            CourseSyncDiscussionsInteractorLive(discussionHtmlParser: discussionHtmlParser),
+            CourseSyncDiscussionsInteractorLive(discussionHtmlParser: discussionHtmlParser)
         ]
         let progressInteractor = CourseSyncProgressObserverInteractorLive()
         let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, activityName: "Offline Sync")

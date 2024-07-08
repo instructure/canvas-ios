@@ -30,7 +30,7 @@ class GetAlertThresholdsTests: ParentTestCase {
         XCTAssertEqual(useCase.request.studentID, studentID)
 
         useCase.write(response: [
-            .make(id: "1", observer_id: studentID, alert_type: .courseGradeLow, threshold: 50),
+            .make(id: "1", observer_id: studentID, alert_type: .courseGradeLow, threshold: 50)
         ], urlResponse: nil, to: databaseClient)
         let alerts: [AlertThreshold] = databaseClient.fetch(scope: useCase.scope)
         XCTAssertEqual(alerts.count, 1)

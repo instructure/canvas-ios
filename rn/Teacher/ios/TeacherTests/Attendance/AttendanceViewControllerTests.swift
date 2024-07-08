@@ -38,17 +38,17 @@ class AttendanceViewControllerTests: TeacherTestCase {
         navigation = UINavigationController(rootViewController: controller)
 
         api.mock(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
-            context.canvasContextID: "#008EE2", // electric
+            context.canvasContextID: "#008EE2" // electric
         ]))
         api.mock(GetCourseRequest(courseID: context.id), value: .make())
         api.mock(GetCourseSectionsRequest(courseID: context.id, perPage: 100), value: [
             .make(),
-            .make(name: "section 2"),
+            .make(name: "section 2")
         ])
         let url = URL(string: "/statuses?section_id=1&class_date=2019-10-31", relativeTo: controller.session.baseURL)!
         api.mock(URLRequest(url: url), data: try? controller.session.encoder.encode([
             Status.make(attendance: .present),
-            Status.make(id: "2", studentID: "2", student: .make(id: "2", name: "Sally")),
+            Status.make(id: "2", studentID: "2", student: .make(id: "2", name: "Sally"))
         ]))
         api.mock(URLRequest(url: URL(string: "/statuses", relativeTo: controller.session.baseURL)!), data: try? controller.session.encoder.encode(Status.make()))
         api.mock(URLRequest(url: URL(string: "/statuses/1", relativeTo: controller.session.baseURL)!), data: try? controller.session.encoder.encode(Status.make()))

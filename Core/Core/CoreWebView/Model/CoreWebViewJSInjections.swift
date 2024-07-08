@@ -41,7 +41,7 @@ extension CoreWebView {
             Self.mathJaxJS,
             Self.LTIToolButtonJS,
             Self.fileContentJS,
-            Self.contentSizeJS,
+            Self.contentSizeJS
         ]
         let scriptsToInject = defaultScripts.filter {
             features.shouldInjectJS($0)

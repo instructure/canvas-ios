@@ -39,7 +39,7 @@ class AssignmentDueDatesViewModelTests: CoreTestCase {
     func testReadsInteractorData() {
         let dueDates = [
             AssignmentDate.save(.make(id: "1"), assignmentID: "1", in: databaseClient),
-            AssignmentDate.save(.make(id: "2"), assignmentID: "1", in: databaseClient),
+            AssignmentDate.save(.make(id: "2"), assignmentID: "1", in: databaseClient)
         ]
         mockInteractor.dueDates.send(dueDates)
 

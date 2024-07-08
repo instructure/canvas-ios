@@ -53,7 +53,7 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
                         id: "courses/course-id-1/tabs/additional-content",
                         name: "Additional Content",
                         type: .additionalContent
-                    ),
+                    )
                 ],
                 files: [
                     .init(
@@ -64,7 +64,7 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
                         mimeClass: "image",
                         updatedAt: Date(timeIntervalSince1970: 1000),
                         bytesToDownload: 1000
-                    ),
+                    )
                 ]
             )
         )
@@ -93,7 +93,7 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
                         id: "courses/course-id-1/tabs/additional-content",
                         name: "Additional Content",
                         type: .additionalContent
-                    ),
+                    )
                 ],
                 files: [
                     .init(
@@ -104,7 +104,7 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
                         mimeClass: "image",
                         updatedAt: Date(timeIntervalSince1970: 1000),
                         bytesToDownload: 1000
-                    ),
+                    )
                 ]
             )
         )
@@ -127,7 +127,7 @@ private class CourseSyncFilesInteractorMock: CourseSyncFilesInteractor {
                 filename: "file-name-1",
                 size: 1000,
                 updated_at: Date(timeIntervalSince1970: 1000)
-            )),
+            ))
         ]).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 

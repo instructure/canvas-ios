@@ -39,7 +39,7 @@ extension CourseSyncProgressViewModel {
         let title: String
         var subtitle: String?
         var isCollapsed: Bool?
-        let cellStyle: ListCellView.ListCellStyle
+        let cellStyle: OfflineListCellView.ListCellStyle
         let state: CourseSyncEntry.State
 
         fileprivate(set) var collapseDidToggle: (() -> Void)?

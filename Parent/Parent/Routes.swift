@@ -154,7 +154,7 @@ let router = Router(routes: [
 
     RouteHandler("/:context/:contextID/wiki/:url") {
         pageViewController(url: $0, params: $1, userInfo: $2)
-    },
+    }
 ])
 
 private func pageViewController(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

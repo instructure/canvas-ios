@@ -68,7 +68,7 @@ class APIFileTests: XCTestCase {
         XCTAssertEqual(request.path, "courses/1/folders")
         XCTAssertEqual(request.queryItems, [
             URLQueryItem(name: "include[]", value: "usage_rights"),
-            URLQueryItem(name: "per_page", value: "100"),
+            URLQueryItem(name: "per_page", value: "100")
         ])
     }
 
@@ -86,7 +86,7 @@ class APIFileTests: XCTestCase {
         XCTAssertEqual(request.path, "courses/1/files")
         XCTAssertEqual(request.queryItems, [
             URLQueryItem(name: "include[]", value: "usage_rights"),
-            URLQueryItem(name: "per_page", value: "100"),
+            URLQueryItem(name: "per_page", value: "100")
         ])
     }
 
@@ -166,7 +166,7 @@ extension APIFileTests {
             "locked_for_user": false,
             "lock_explanation": nil,
             "preview_url": nil,
-            "avatar": nil,
+            "avatar": nil
         ]
     }
 

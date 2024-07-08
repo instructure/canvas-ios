@@ -53,7 +53,7 @@ class AssignmentListRequestableTests: XCTestCase {
         let assignmentDueDate = Date(fromISOString: "2019-04-18T23:59:59-06:00")
 
         let grp1 = APIAssignmentListGroup.make(id: "1", name: "Group A", assignments: [
-            APIAssignmentListAssignment.make(dueAt: assignmentDueDate, quizID: "1"),
+            APIAssignmentListAssignment.make(dueAt: assignmentDueDate, quizID: "1")
         ])
 
         let strGrps = String(data: try! encoder.encode([grp1]), encoding: .utf8)!

@@ -394,7 +394,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         statusIconView?.tintColor = status.color
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
         statusLabel?.textColor = status.color
-        statusLabel?.text = status.text
+        statusLabel?.text = submission?.statusText
         dueSection?.subHeader.text = assignment.dueAt.flatMap {
             $0.dateTimeString
         } ?? String(localized: "No Due Date", bundle: .student)
@@ -498,9 +498,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             buttonConfig.image = .arrowOpenDownSolid
                 .scaleTo(.init(width: 14, height: 14))
                 .withRenderingMode(.alwaysTemplate)
-            if #available(iOS 16.0, *) {
-                buttonConfig.indicator = .none
-            }
+            buttonConfig.indicator = .none
 
             attemptDateButton.changesSelectionAsPrimaryAction = true
             attemptDateButton.showsMenuAsPrimaryAction = true
@@ -567,7 +565,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         parentStackView.insertArrangedSubview(reminderSection.view, at: dueSectionIndex + 1)
         NSLayoutConstraint.activate([
             reminderSection.view.leadingAnchor.constraint(equalTo: parentStackView.leadingAnchor),
-            reminderSection.view.trailingAnchor.constraint(equalTo: parentStackView.trailingAnchor),
+            reminderSection.view.trailingAnchor.constraint(equalTo: parentStackView.trailingAnchor)
         ])
         reminderSection.didMove(toParent: self)
     }

@@ -166,7 +166,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
                 }
             }
             .listStyle(.plain)
-            .iOS16HideListScrollContentBackground()
+            .scrollContentBackground(.hidden)
             .refreshable {
                 await viewModel.refresh()
             }
@@ -201,7 +201,7 @@ struct CourseDetailsView_Previews: PreviewProvider {
 
         return CourseDetailsViewModel(state: .data([
             GenericCellViewModel(tab: tab1, course: course, selectedCallback: {}),
-            GenericCellViewModel(tab: tab2, course: course, selectedCallback: {}),
+            GenericCellViewModel(tab: tab2, course: course, selectedCallback: {})
         ]))
     }
 

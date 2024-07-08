@@ -43,7 +43,7 @@ class APINotificationPreferencesTests: CoreTestCase {
         XCTAssertEqual(request.path, "users/self/communication_channels/4/notification_preferences")
         XCTAssertEqual(request.body, .init(notification_preferences: [
             "one": [ "frequency": .daily ],
-            "two": [ "frequency": .daily ],
+            "two": [ "frequency": .daily ]
         ]))
     }
 }

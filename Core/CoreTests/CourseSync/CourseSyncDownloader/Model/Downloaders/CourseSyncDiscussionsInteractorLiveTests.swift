@@ -59,7 +59,7 @@ class CourseSyncDiscussionsInteractorLiveTests: CoreTestCase {
                 .make(
                     html_url: URL(string: "https://canvas.instructure.com/courses/course-1/discussion_topics"),
                     id: "topic-1"
-                ),
+                )
             ]
         )
     }

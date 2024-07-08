@@ -24,7 +24,7 @@ class TopBarViewModelTests: XCTestCase {
     private var testee = TopBarViewModel(items: [
         TopBarItemViewModel(id: "1", icon: .addAudioLine, label: Text(verbatim: "1")),
         TopBarItemViewModel(id: "2", icon: .addAudioLine, label: Text(verbatim: "2")),
-        TopBarItemViewModel(id: "3", icon: .addAudioLine, label: Text(verbatim: "3")),
+        TopBarItemViewModel(id: "3", icon: .addAudioLine, label: Text(verbatim: "3"))
     ])
 
     func testSwiftUIUpdateTrigger() {

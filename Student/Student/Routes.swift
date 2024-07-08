@@ -447,7 +447,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/about": { _, _, _ in
         AboutAssembly.makeAboutViewController()
-    },
+    }
 ]))
 
 private func nativeFactory(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

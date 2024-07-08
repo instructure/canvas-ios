@@ -38,7 +38,7 @@ public class GetConversations: CollectionUseCase {
         if let filter = filter {
             return Scope(
                 predicate: NSPredicate(format: "%K == %@", #keyPath(Conversation.contextCode), filter),
-                order: [NSSortDescriptor(key: #keyPath(Conversation.lastMessageAt), ascending: false), ]
+                order: [NSSortDescriptor(key: #keyPath(Conversation.lastMessageAt), ascending: false) ]
             )
         } else {
             return Scope.all(orderBy: #keyPath(Conversation.lastMessageAt), ascending: false)
