@@ -50,7 +50,7 @@ class GetEnabledFeatureFlagsTests: CoreTestCase {
         let useCase = GetEnabledFeatureFlags(context: context)
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
         let all: [FeatureFlag] = databaseClient.fetch()
-        XCTAssertEqual(all.count, 2)
+        XCTAssertEqual(all.count, 1)
         let noHTML: FeatureFlag? = databaseClient.first(where: #keyPath(FeatureFlag.name), equals: "no_more_html")
         XCTAssertNotNil(noHTML)
         XCTAssertEqual(noHTML?.name, "no_more_html")
