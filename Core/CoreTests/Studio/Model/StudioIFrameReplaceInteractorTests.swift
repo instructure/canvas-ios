@@ -42,11 +42,11 @@ class StudioIFrameReplaceInteractorTests: AbstractStudioTest {
         )
 
         let expectedResult = """
-        <p>Test<br/>
-        <video>
+        <p>
+        <video controls playsinline preload="auto" poster="/video.png">
           <source src="\(videoURL)" type="\(mimeType)" />
-          <track kind="captions" src="\(subtitle1URL)" srclang="en"/>
-          <track kind="captions" src="\(subtitle2URL)" srclang="hu"/>
+          <track kind="captions" src="\(subtitle1URL)" srclang="en" />
+          <track kind="captions" src="\(subtitle2URL)" srclang="hu" />
         </video>
         </p>
         """
