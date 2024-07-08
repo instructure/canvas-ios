@@ -19,7 +19,6 @@
 @testable import Core
 import XCTest
 
-@available(iOS 16.0, *)
 class StudioCaptionsInteractorTests: AbstractStudioTest {
     private let srtContentEn = """
     1

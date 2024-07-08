@@ -43,7 +43,7 @@ class StudioHTMLParserTests: AbstractStudioTest {
                 .init(
                     mediaLTILaunchID: StudioTestData.mediaID,
                     sourceHtml: StudioTestData.iframe
-                ),
+                )
             ]
         )
     }
