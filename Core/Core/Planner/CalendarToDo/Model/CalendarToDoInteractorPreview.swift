@@ -80,6 +80,21 @@ final class CalendarToDoInteractorPreview: CalendarToDoInteractor {
             return Empty().eraseToAnyPublisher()
         }
     }
+
+    var deleteToDoCallsCount: Int = 0
+    var deleteToDoInput: String?
+    var deleteToDoResult: Result<Void, Error>? = .success
+
+    func deleteToDo(id: String) -> AnyPublisher<Void, Error> {
+        deleteToDoCallsCount += 1
+        deleteToDoInput = id
+
+        if let deleteToDoResult {
+            return deleteToDoResult.publisher.eraseToAnyPublisher()
+        } else {
+            return Empty().eraseToAnyPublisher()
+        }
+    }
 }
 
 #endif
