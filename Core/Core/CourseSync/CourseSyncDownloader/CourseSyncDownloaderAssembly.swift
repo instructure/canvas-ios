@@ -40,9 +40,9 @@ public enum CourseSyncDownloaderAssembly {
         )
         let studioMediaInteractor = CourseSyncStudioMediaInteractorLive(
             offlineDirectory: offlineFolder,
-            studioAuthInteractor: StudioAPIAuthInteractor(),
-            studioIFrameReplaceInteractor: StudioIFrameReplaceInteractor(),
-            studioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor(
+            authInteractor: StudioAPIAuthInteractor(),
+            iFrameReplaceInteractor: StudioIFrameReplaceInteractor(),
+            iFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor(
                 studioHtmlParser: StudioHTMLParserInteractor()
             ),
             captionsInteractor: StudioCaptionsInteractor(),

@@ -33,16 +33,16 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
 
     public init(
         offlineDirectory: URL,
-        studioAuthInteractor: StudioAPIAuthInteractor,
-        studioIFrameReplaceInteractor: StudioIFrameReplaceInteractor,
-        studioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor,
+        authInteractor: StudioAPIAuthInteractor,
+        iFrameReplaceInteractor: StudioIFrameReplaceInteractor,
+        iFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor,
         captionsInteractor: StudioCaptionsInteractor,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) {
         self.offlineDirectory = offlineDirectory
-        self.studioAuthInteractor = studioAuthInteractor
-        self.studioIFrameReplaceInteractor = studioIFrameReplaceInteractor
-        self.studioIFrameDiscoveryInteractor = studioIFrameDiscoveryInteractor
+        self.studioAuthInteractor = authInteractor
+        self.studioIFrameReplaceInteractor = iFrameReplaceInteractor
+        self.studioIFrameDiscoveryInteractor = iFrameDiscoveryInteractor
         self.captionsInteractor = captionsInteractor
         self.scheduler = scheduler
     }
