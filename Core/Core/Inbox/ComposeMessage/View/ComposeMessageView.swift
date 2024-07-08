@@ -28,7 +28,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     @FocusState private var subjectTextFieldFocus: Bool
     @FocusState private var messageTextFieldFocus: Bool
     @State private var headerHeight = CGFloat.zero
-    @State private var scrollViewOffset = CGFloat.zero
 
     init(model: ComposeMessageViewModel) {
         self.model = model
@@ -69,18 +68,19 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .foregroundColor(.textDarkest)
             .background(
                 GeometryReader { reader in
-                    DispatchQueue.main.async {
-                        model.showExtraSendButton = -reader.frame(in: .named("scroll")).origin.y > headerHeight
-                    }
                     return Color.backgroundLightest
                         .onTapGesture {
                             subjectTextFieldFocus = false
                             messageTextFieldFocus = false
                         }
+                        .preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
                 }
             )
             .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
             .navigationBarStyle(.modal)
+        }
+        .onPreferenceChange(ViewSizeKey.self) { offset in
+            model.showExtraSendButton = offset > headerHeight
         }
         .coordinateSpace(name: "scroll")
         .background(Color.backgroundLightest)
@@ -91,11 +91,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         ) { result in
             switch result {
             case .success(let urls):
-                urls.forEach { url in
-                    if url.startAccessingSecurityScopedResource() {
-                        model.addFile(url: url)
-                    }
-                }
+                model.addFiles(urls: urls)
             case .failure:
                 break
             }

@@ -121,7 +121,7 @@ public struct MessageDetailsView: View {
             VStack(spacing: 0) {
                 Color.borderMedium
                     .frame(height: 0.5)
-                    .padding(.horizontal, 8)
+                
                 MessageView(model: message,
                             replyDidTap: { model.replyTapped(message: message.conversationMessage, viewController: controller) },
                             moreDidTap: { model.messageMoreTapped(message: message.conversationMessage, viewController: controller) })

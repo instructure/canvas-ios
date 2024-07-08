@@ -132,6 +132,14 @@ class ComposeMessageViewModel: ObservableObject {
         showDialog(viewController: viewController)
     }
 
+    func addFiles(urls: [URL]) {
+        urls.forEach { url in
+            if url.startAccessingSecurityScopedResource() {
+                addFile(url: url)
+            }
+        }
+    }
+
     func addFile(url: URL) {
         isImagePickerVisible = false
         isTakePhotoVisible = false
@@ -295,7 +303,7 @@ class ComposeMessageViewModel: ObservableObject {
         guard let context = selectedContext else { return nil }
         let recipientIDs = Array(Set(recipients.flatMap { $0.ids }))
 
-        var body = bodyText.nilIfEmpty ?? String(localized: "[No message]")
+        var body = bodyText.nilIfEmpty ?? String(localized: "[No message]", bundle: .core)
         if !hiddenMessage.isEmpty {
             body = "\(bodyText)\n\(hiddenMessage)"
         }

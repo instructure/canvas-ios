@@ -17,7 +17,7 @@
 //
 
 import Combine
-import CombineExt
+import CombineSchedulers
 
 public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     // MARK: - Outputs
@@ -34,15 +34,11 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     private let restrictForFolderPath: Bool
 
     private var uploadFolder: Folder?
-    private var uploadFolderPathStore: Store<GetFolderByPath>?
     private let publisherProvider: URLSessionDataTaskPublisherProvider
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
-    private let files = CurrentValueSubject<[File], Error>([])
     private let alreadyUploadedFiles = CurrentValueSubject<[File], Never>([])
-
-    private lazy var fileStore = uploadManager.subscribe(batchID: batchId) { [weak self] in
-        self?.update()
-    }
+    private lazy var fileStore = uploadManager.subscribe(batchID: batchId, eventHandler: {})
 
     init(
         env: AppEnvironment = .shared,
@@ -50,6 +46,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
         uploadFolderPath: String? = nil,
         restrictForFolderPath: Bool = false,
         uploadManager: UploadManager,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
         publisherProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
     ) {
         self.env = env
@@ -57,6 +54,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
         self.batchId = batchId
         self.uploadFolderPath = uploadFolderPath
         self.restrictForFolderPath = restrictForFolderPath
+        self.scheduler = scheduler
         self.publisherProvider = publisherProvider
 
         getFolderByPath()
@@ -70,17 +68,16 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
             try uploadManager.add(url: url, batchID: batchId)
             fileStore.refresh()
             uploadFiles()
-        } catch {
-            files.send(completion: .failure(NSError.instructureError("Failed to add file")))
-        }
+        } catch { }
     }
 
     public func addFile(file: File) {
+        guard let uploadFolder else { getFolderByPath(); return  }
         file.taskID = "localProcess"
         var newValues = alreadyUploadedFiles.value
         newValues.append(file)
         alreadyUploadedFiles.send(newValues)
-        if restrictForFolderPath && file.folderID != uploadFolder?.id {
+        if restrictForFolderPath && file.folderID != uploadFolder.id {
             duplicateFileToUploadFolder(file: file)
         } else {
             file.taskID = nil
@@ -152,16 +149,12 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
 
     private func setupAttachmentListBinding() {
         alreadyUploadedFiles.setFailureType(to: Error.self)
-            .combineLatest(with: files)
-        .receive(on: DispatchQueue.main)
+            .combineLatest(with: fileStore.allObjects.setFailureType(to: Error.self))
+        .receive(on: scheduler)
         .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] combinedFiles in
             self?.attachments.send(combinedFiles[0] + combinedFiles[1])
         })
         .store(in: &subscriptions)
-    }
-
-    private func update() {
-        files.send(fileStore.all)
     }
 
     private func uploadFiles() {
@@ -203,6 +196,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
             .map { files in
                 return files.first?.url
             }
+            .receive(on: DispatchQueue.global())
             .flatMap { [weak self] url in
                 if let url,
                    let self,
@@ -220,20 +214,17 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
                 try? FileManager.default.moveItem(atPath: localURL.path, toPath: modifiedURL.path)
                 return modifiedURL
             }
+            .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
     private func getFolderByPath() {
-        uploadFolderPathStore = env.subscribe(GetFolderByPath(context: .currentUser, path: uploadFolderPath ?? ""))
-
-        uploadFolderPathStore?
-            .allObjects
+        ReactiveStore(useCase: GetFolderByPath(context: .currentUser, path: uploadFolderPath ?? ""))
+            .getEntities()
             .map { [weak self] folders in
                 self?.uploadFolder = folders.first
             }
             .sink()
             .store(in: &subscriptions)
-
-        uploadFolderPathStore?.exhaust()
     }
 }
