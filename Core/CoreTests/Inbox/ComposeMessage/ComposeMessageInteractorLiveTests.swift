@@ -283,7 +283,10 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
                 fileAddedExp.fulfill()
                 file = files.first
             }
-            if attachments.isEmpty && fileAddedFlag && !fileRemovedFlag {  fileRemovedExp.fulfill(); fileRemovedFlag = true }
+            if attachments.isEmpty && fileAddedFlag && !fileRemovedFlag {
+                fileRemovedFlag = true
+                fileRemovedExp.fulfill()
+            }
         }
         .store(in: &subscriptions)
 
@@ -291,7 +294,6 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         wait(for: [fileAddedExp], timeout: 5)
         XCTAssertTrue(attachments.contains(file!))
         file?.id = "1"
-        testee.attachments.send([file!])
 
         testee.removeFile(file: file!)
         wait(for: [fileRemovedExp], timeout: 5)
