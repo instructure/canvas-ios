@@ -33,7 +33,6 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     private let uploadFolderPath: String?
     private let restrictForFolderPath: Bool
 
-    private var uploadFolder: Folder?
     private let publisherProvider: URLSessionDataTaskPublisherProvider
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
@@ -57,7 +56,6 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
         self.scheduler = scheduler
         self.publisherProvider = publisherProvider
 
-        getFolderByPath()
         fileStore.refresh()
 
         setupAttachmentListBinding()
@@ -72,16 +70,20 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     }
 
     public func addFile(file: File) {
-        guard let uploadFolder else { getFolderByPath(); return  }
-        file.taskID = "localProcess"
-        var newValues = alreadyUploadedFiles.value
-        newValues.append(file)
-        alreadyUploadedFiles.send(newValues)
-        if restrictForFolderPath && file.folderID != uploadFolder.id {
-            duplicateFileToUploadFolder(file: file)
-        } else {
-            file.taskID = nil
-        }
+        getFolderByPath()
+            .sink(receiveCompletion: { _ in}, receiveValue: { [weak self] uploadFolder in
+                guard let self else { return }
+                file.taskID = "localProcess"
+                var newValues = alreadyUploadedFiles.value
+                newValues.append(file)
+                alreadyUploadedFiles.send(newValues)
+                if restrictForFolderPath && file.folderID != uploadFolder.id {
+                    duplicateFileToUploadFolder(file: file)
+                } else {
+                    file.taskID = nil
+                }
+            })
+            .store(in: &subscriptions)
     }
 
     public func retry() {
@@ -218,13 +220,13 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func getFolderByPath() {
-        ReactiveStore(useCase: GetFolderByPath(context: .currentUser, path: uploadFolderPath ?? ""))
+    private func getFolderByPath() -> AnyPublisher<Folder, Error> {
+        return ReactiveStore(useCase: GetFolderByPath(context: .currentUser, path: uploadFolderPath ?? ""))
             .getEntities()
-            .map { [weak self] folders in
-                self?.uploadFolder = folders.first
+            .compactMap { folders in
+                print(folders)
+                return folders.first
             }
-            .sink()
-            .store(in: &subscriptions)
+            .eraseToAnyPublisher()
     }
 }

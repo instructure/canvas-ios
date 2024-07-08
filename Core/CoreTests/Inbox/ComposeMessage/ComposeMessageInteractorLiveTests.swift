@@ -27,7 +27,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         super.setUp()
         mockData()
 
-        testee = ComposeMessageInteractorLive(batchId: "testId", uploadManager: uploadManager)
+        testee = ComposeMessageInteractorLive(batchId: "testId", uploadFolderPath: "", uploadManager: uploadManager)
 
         waitForState(.data)
     }
@@ -166,6 +166,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
             if !attachments.isEmpty { exp.fulfill() }
         }
         .store(in: &subscriptions)
+
         testee.addFile(file: file)
         wait(for: [exp], timeout: 5)
 
@@ -174,12 +175,16 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
 
     func testAddFileFromUserFilesWithDuplicate() {
         var subscriptions: [AnyCancellable] = []
-        let path = "conversation attachments"
+        let path = ""
         testee = ComposeMessageInteractorLive(batchId: "testId", uploadFolderPath: path, restrictForFolderPath: true, uploadManager: uploadManager)
         let rootFolderRequest = GetContextFolderHierarchyRequest(context: .currentUser, fullPath: path)
         let rootFolderResponse = [APIFolder.make(id: "1")]
         api.mock(rootFolderRequest, value: rootFolderResponse)
-        let file = File.make(from: APIFile.make(folder_id: "3"))
+        let uploadFolderRequest = GetFolderByPath(context: .currentUser, path: path)
+        let uploadFolderResponse = [APIFolder.make(id: "1")]
+        api.mock(uploadFolderRequest, value: uploadFolderResponse)
+
+        let file = File.make(from: APIFile.make(id: "1", folder_id: "3"))
         var attachments: [File] = []
         let exp = expectation(description: "fileAdded")
         testee.attachments.sink { files in
@@ -215,7 +220,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         let fileRemovedExp = expectation(description: "fileRemoved")
         var fileAddedFlag = false
 
-        let file = File.make()
+        let file = File.make(from: APIFile.make(folder_id: "1"))
         testee.attachments.sink { files in
             attachments = files
             if !attachments.isEmpty { fileAddedFlag = true; fileAddedExp.fulfill() }
@@ -240,7 +245,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         let fileRemovedExp = expectation(description: "fileRemoved")
         var fileAddedFlag = false
 
-        let file = File.make()
+        let file = File.make(from: APIFile.make(folder_id: "1"))
         testee.attachments.sink { files in
             attachments = files
             if !attachments.isEmpty { fileAddedFlag = true; fileAddedExp.fulfill() }
@@ -305,6 +310,10 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         let courses = [course1, course2]
 
         api.mock(GetInboxCourseList(), value: courses)
+
+        let uploadFolderRequest = GetFolderByPath(context: .currentUser, path: "")
+        let uploadFolderResponse = [APIFolder.make(id: "1")]
+        api.mock(uploadFolderRequest, value: uploadFolderResponse)
     }
 
     private func waitForState(_ state: StoreState) {
