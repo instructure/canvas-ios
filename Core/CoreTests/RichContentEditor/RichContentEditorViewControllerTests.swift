@@ -129,7 +129,7 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
     func testEditLinkDialog() {
         controller.updateState([
             "linkText": "Link Text",
-            "linkHref": "https://instructure.com",
+            "linkHref": "https://instructure.com"
         ])
         controller.toolbar.linkButton!.sendActions(for: .primaryActionTriggered)
         let alert = router.presented as! UIAlertController
@@ -144,7 +144,7 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
         controller.imagePickerController(MockPicker(), didFinishPickingMediaWithInfo: [:])
         XCTAssertEqual(error?.localizedDescription, "No image found from image picker")
         controller.imagePickerController(MockPicker(), didFinishPickingMediaWithInfo: [
-            .originalImage: UIImage(named: "wordmark", in: .core, compatibleWith: nil) as Any,
+            .originalImage: UIImage(named: "wordmark", in: .core, compatibleWith: nil) as Any
         ])
         let context = controller.uploadManager.viewContext
         context.performAndWait {
@@ -164,7 +164,7 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
         controller.toolbar.cameraButton?.sendActions(for: .primaryActionTriggered)
         XCTAssert(router.presented is UIImagePickerController)
         controller.imagePickerController(MockPicker(), didFinishPickingMediaWithInfo: [
-            .mediaURL: URL(string: "data:video/mp4,")!,
+            .mediaURL: URL(string: "data:video/mp4,")!
         ])
         XCTAssertTrue((self.databaseClient.fetch() as [File]).isEmpty)
         XCTAssertNotNil(error)
@@ -191,7 +191,7 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
         controller.webView.evaluateJavaScript("document.querySelector('.retry-upload').onclick()")
         wait(for: [expectation(for: .all, evaluatedWith: self) { () -> Bool in
             (self.databaseClient.fetch() as [File]).isEmpty // still empty due to error
-        }, ], timeout: 5)
+        } ], timeout: 5)
     }
 }
 

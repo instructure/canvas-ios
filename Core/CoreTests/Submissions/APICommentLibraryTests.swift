@@ -47,7 +47,7 @@ class APICommentLibraryTests: CoreTestCase {
 
     func testResponse() {
         let comments = [APICommentLibraryResponse.CommentBankItem(id: "1", comment: "First comment"),
-                        APICommentLibraryResponse.CommentBankItem(id: "2", comment: "Second comment"), ]
+                        APICommentLibraryResponse.CommentBankItem(id: "2", comment: "Second comment") ]
         let data = APICommentLibraryResponse.Data.init(user: .init(id: "1", commentBankItems: .init(nodes: comments )))
         let response =  APICommentLibraryResponse(data: data)
         api.mock(APICommentLibraryRequest(userId: "1"), value: response)

@@ -51,12 +51,13 @@ class PageViewEventRequestManager {
 
             let events = self.persistence.batchOfEvents(count, userID: userID)?.map { $0.apiEvent(token) } ?? []
 
-            self.env.api.makeRequest(PostPandataEventsRequest(token: token, events: events)) { (response, _, error) in
-                guard response?.lowercased() == "\"ok\"", error == nil else {
+            self.env.api.makeRequest(PostPandataEventsRequest(token: token, events: events)) { (_, _, error) in
+                guard error == nil else {
                     handler(error)
                     self.backgroundAppHelper?.endBackgroundTask(taskName: taskName)
                     return
                 }
+
                 self.persistence.dequeue(count, userID: userID, handler: {
                     handler(nil)
                     self.backgroundAppHelper?.endBackgroundTask(taskName: taskName)

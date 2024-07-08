@@ -60,8 +60,8 @@ class APIErrorTests: XCTestCase {
             "2": [ "b", "z" ],
             "3": [ "message": "c" ],
             "4": [ [ "message": "d" ], [ "message": "y" ] ],
-            "5": 5,
-            ], ]).split(separator: "\n").sorted().joined(separator: "\n"),
+            "5": 5
+            ] ]).split(separator: "\n").sorted().joined(separator: "\n"),
             "a\nb\nc\nd"
         )
         XCTAssertEqual(from(dict: [:]), "default")

@@ -60,7 +60,7 @@ public class DocViewerAnnotationToolbar: AnnotationToolbar {
             Item(type: .strikeOut, variant: nil) { _, _, _ in .strikethroughSolid },
             Item(type: .ink, variant: nil) { _, _, _ in .paintSolid },
             Item(type: .square, variant: nil) { _, _, _ in .boxSolid },
-            Item(type: .eraser, variant: nil),
+            Item(type: .eraser, variant: nil)
         ]
         let groups = items.map { AnnotationToolConfiguration.ToolGroup(items: [$0]) }
         return AnnotationToolConfiguration(annotationGroups: groups)

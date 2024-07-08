@@ -44,14 +44,14 @@ class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
                     .init(id: "2", name: "Grades", type: .assignments, state: .loading(0.5)),
                     .init(id: "3", name: "People", type: .assignments, state: .loading(0.75)),
                     .init(id: "4", name: "Files", type: .files, isCollapsed: false, state: .loading(1)),
-                    .init(id: "5", name: "Syllabus", type: .assignments, state: .loading(0.5)),
+                    .init(id: "5", name: "Syllabus", type: .assignments, state: .loading(0.5))
                   ],
                   files: [
                     .make(id: "0", displayName: "Creative Machines and Innovative Instrumentation.mov", state: .loading(1)),
-                    .make(id: "1", displayName: "Intro Energy, Space and Time.mov", state: .error),
+                    .make(id: "1", displayName: "Intro Energy, Space and Time.mov", state: .error)
                   ],
                   isCollapsed: false,
-                  state: .loading(0.78)),
+                  state: .loading(0.78))
         ])
     }
 

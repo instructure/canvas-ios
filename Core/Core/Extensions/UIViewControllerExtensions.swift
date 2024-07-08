@@ -161,7 +161,7 @@ extension UIViewController {
             },
             viewController.navigationItem.observe(\.leftItemsSupplementBackButton) { [weak self] item, _ in
                 self?.navigationItem.leftItemsSupplementBackButton = item.leftItemsSupplementBackButton || leftItemsSupplementBackButton
-            },
+            }
         ]
 
         if #available(iOSApplicationExtension 16.0, *) {

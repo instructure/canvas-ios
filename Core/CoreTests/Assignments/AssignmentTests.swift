@@ -341,7 +341,7 @@ class AssignmentTests: CoreTestCase {
         let a = Assignment.make(from: .make(all_dates: [
             .make(
                 due_at: DateComponents(calendar: .current, year: 2020, month: 6, day: 1).date
-            ),
+            )
         ]))
         XCTAssertEqual(a.allDates.count, 1)
     }
@@ -381,7 +381,7 @@ class AssignmentTests: CoreTestCase {
             .make(
                 id: 2,
                 due_at: DateComponents(calendar: .current, year: 2020, month: 6, day: 2).date
-            ),
+            )
         ]))
         XCTAssertTrue(a.hasMultipleDueDates)
     }

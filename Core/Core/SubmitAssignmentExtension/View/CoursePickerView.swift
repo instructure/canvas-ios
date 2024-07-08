@@ -97,7 +97,7 @@ struct CoursePickerView_Previews: PreviewProvider {
             .init(id: "0", name: "American Literature"),
             .init(id: "1", name: "History"),
             .init(id: "2", name: "Math"),
-            .init(id: "3", name: "Biology"),
+            .init(id: "3", name: "Biology")
         ]))
         CoursePickerView(viewModel: dataModel)
             .previewLayout(.fixed(width: 500, height: 500))

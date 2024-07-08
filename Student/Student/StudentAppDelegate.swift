@@ -268,7 +268,7 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         if let url = response.notification.request.routeURL {
             openURL(url, userInfo: [
                 "forceRefresh": true,
-                "pushNotification": response.notification.request.content.userInfo["aps"] ?? [:],
+                "pushNotification": response.notification.request.content.userInfo["aps"] ?? [:]
             ])
         }
         completionHandler()

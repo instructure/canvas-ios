@@ -98,7 +98,7 @@ class CourseListInteractorLiveTests: CoreTestCase {
         let futureCourseRequest = GetAllCoursesCourseListUseCase(enrollmentState: .invited_or_pending)
         api.mock(futureCourseRequest, value: [
             .make(id: "3", name: "ABC", workflow_state: .available),
-            .make(id: "4", name: "unpublished", workflow_state: .unpublished),
+            .make(id: "4", name: "unpublished", workflow_state: .unpublished)
         ])
 
         testee.getCourses()
@@ -114,7 +114,7 @@ class CourseListInteractorLiveTests: CoreTestCase {
         let futureCourseRequest = GetAllCoursesCourseListUseCase(enrollmentState: .invited_or_pending)
         api.mock(futureCourseRequest, value: [
             .make(id: "3", name: "ABC", workflow_state: .available),
-            .make(id: "4", name: "unpublished", workflow_state: .unpublished),
+            .make(id: "4", name: "unpublished", workflow_state: .unpublished)
         ])
 
         testee.getCourses()

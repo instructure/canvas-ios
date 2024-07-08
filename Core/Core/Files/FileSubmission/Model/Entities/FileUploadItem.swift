@@ -84,7 +84,7 @@ public extension FileUploadItem {
             publisher(for: \.apiID).map { _ in }.eraseToAnyPublisher(),
             publisher(for: \.uploadError).map { _ in }.eraseToAnyPublisher(),
             publisher(for: \.bytesUploaded).map { _ in }.eraseToAnyPublisher(),
-            publisher(for: \.bytesToUpload).map { _ in }.eraseToAnyPublisher(),
+            publisher(for: \.bytesToUpload).map { _ in }.eraseToAnyPublisher()
         ])
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()

@@ -47,7 +47,7 @@ final class GradeListInteractorPreview: GradeListInteractor {
                         id: UUID.string,
                         title: "Past Assignments",
                         assignments: [.save(.make(), in: context, updateSubmission: false, updateScoreStatistics: false)]
-                    ),
+                    )
                 ],
                 isGradingPeriodHidden: false,
                 gradingPeriods: [

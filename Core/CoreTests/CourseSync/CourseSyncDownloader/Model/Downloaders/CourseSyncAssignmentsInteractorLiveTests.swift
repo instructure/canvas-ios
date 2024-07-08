@@ -38,9 +38,9 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
             value: [
                 APIAssignmentGroup.make(
                     assignments: [
-                        .make(),
+                        .make()
                     ]
-                ),
+                )
             ]
         )
         api.mock(
@@ -54,7 +54,7 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
                 id: "1",
                 submission_comments: [
                     .make(id: "1", comment: "First comment"),
-                    .make(id: "2", comment: "Second comment"),
+                    .make(id: "2", comment: "Second comment")
                 ]
             )
         )
@@ -125,9 +125,9 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
             value: [
                 APIAssignmentGroup.make(
                     assignments: [
-                        .make(),
+                        .make()
                     ]
-                ),
+                )
             ]
         )
 

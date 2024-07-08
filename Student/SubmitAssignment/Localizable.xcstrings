@@ -106,6 +106,18 @@
             "value" : "Tâche"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assignment"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "असाइनमेंट"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -349,6 +361,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tâches"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tascanna"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "असाइनमेंट"
           }
         },
         "ht" : {
@@ -596,6 +620,18 @@
             "value" : "Commentaires…"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuairimí..."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणियां..."
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -839,6 +875,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cours"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cúrsa"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ्यक्रम"
           }
         },
         "ht" : {
@@ -1086,6 +1134,18 @@
             "value" : "Cours"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cúrsaí"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ्यक्रम"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1331,6 +1391,18 @@
             "value" : "Format non pris en charge"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ní thacaítear leis an bhformáid"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रारूप समर्थित नहीं है "
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1574,6 +1646,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoyer"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir isteach"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिट करें"
           }
         },
         "ht" : {

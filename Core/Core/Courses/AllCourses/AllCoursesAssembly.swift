@@ -66,7 +66,7 @@ public enum AllCoursesAssembly {
                       enrollment_state: .completed,
                       type: "TeacherEnrollment",
                       user_id: "1",
-                      role: "TeacherEnrollment"),
+                      role: "TeacherEnrollment")
             ]
         )
         let futureAPICourse = APICourse.make(id: "4", name: nil, course_code: "course_code")

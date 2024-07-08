@@ -50,7 +50,7 @@ public class GetEnrollments: CollectionUseCase {
         )
         var predicates = [
             NSPredicate(key: #keyPath(Enrollment.canvasContextID), equals: context.canvasContextID),
-            NSPredicate(format: "%K != nil", #keyPath(Enrollment.id)),
+            NSPredicate(format: "%K != nil", #keyPath(Enrollment.id))
         ]
         if let userID {
             predicates.append(NSPredicate(key: #keyPath(Enrollment.userID), equals: userID))

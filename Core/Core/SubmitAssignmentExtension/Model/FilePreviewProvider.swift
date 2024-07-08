@@ -36,10 +36,9 @@ public class FilePreviewProvider {
 
     /** Starts the asynchronous loading of preview data from the given url. */
     public func load() {
-        DispatchQueue.global().async { [weak self] in
+        Task.detached { [weak self] in
             guard let self = self else { return }
-
-            if let previewData = self.generatePreview() {
+            if let previewData = await self.generatePreview() {
                 self.resultSubject.send(previewData)
                 self.resultSubject.send(completion: .finished)
             } else {
@@ -48,26 +47,31 @@ public class FilePreviewProvider {
         }
     }
 
-    private func generatePreview() -> PreviewData? {
+    private func generatePreview() async -> PreviewData? {
         if let image = image() {
             return PreviewData(image: image, duration: nil)
         } else if let pdf = pdf() {
             return PreviewData(image: pdf, duration: nil)
-        } else if let movieData = movieData() {
+        } else if let movieData = await movieData() {
             return PreviewData(image: movieData.firstFrame, duration: movieData.movieLength)
         } else {
             return nil
         }
     }
 
-    private func movieData() -> (firstFrame: UIImage, movieLength: Double)? {
+    private func movieData() async -> (firstFrame: UIImage, movieLength: Double)? {
         let asset = AVURLAsset(url: url)
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         imageGenerator.appliesPreferredTrackTransform = true
 
-        guard let cgImage = try? imageGenerator.copyCGImage(at: .zero, actualTime: nil) else { return nil }
+        guard
+            let cgImage = try? imageGenerator.copyCGImage(at: .zero, actualTime: nil),
+            let duration = try? await asset.load(.duration)
+        else {
+            return nil
+        }
 
-        return (firstFrame: UIImage(cgImage: cgImage), movieLength: asset.duration.seconds)
+        return (firstFrame: UIImage(cgImage: cgImage), movieLength: duration.seconds)
     }
 
     /** Creates a thumbnail from the given URL if it's an image without reading the whole file into memory. */
@@ -79,7 +83,7 @@ public class FilePreviewProvider {
             kCGImageSourceShouldCacheImmediately: true,
             kCGImageSourceCreateThumbnailWithTransform: true,
             kCGImageSourceCreateThumbnailFromImageIfAbsent: true,
-            kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels,
+            kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels
         ] as CFDictionary
 
         guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, imageSourceOptions),

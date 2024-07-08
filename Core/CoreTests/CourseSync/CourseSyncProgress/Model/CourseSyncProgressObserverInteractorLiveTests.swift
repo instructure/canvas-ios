@@ -35,9 +35,9 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
                 tabs: [],
                 files: [
                     .make(id: "file-1", displayName: "file-1", bytesToDownload: 1000),
-                    .make(id: "file-2", displayName: "file-2", bytesToDownload: 1000),
+                    .make(id: "file-2", displayName: "file-2", bytesToDownload: 1000)
                 ]
-            ),
+            )
         ]
     }
 
@@ -234,12 +234,12 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
                 hasFrontPage: false,
                 tabs: [
                     .init(id: "tab-assignments", name: "Assignments", type: .assignments, state: .loading(0.5), selectionState: .selected),
-                    .init(id: "tab-files", name: "Files", type: .files, state: .loading(0.5), selectionState: .selected),
+                    .init(id: "tab-files", name: "Files", type: .files, state: .loading(0.5), selectionState: .selected)
                 ],
                 files: [
                     .make(id: "file-id", displayName: "file-display-name", bytesToDownload: 100_000, state: .loading(0.5), selectionState: .selected)
                 ]
-            ),
+            )
         ]
 
         helper.saveDownloadProgress(entries: entries)

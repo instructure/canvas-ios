@@ -105,6 +105,18 @@
             "value" : "%g sur %g"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%g out of %g"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%g में से %g"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -347,6 +359,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%g pts"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%g pte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%g पॉइंट्स"
           }
         },
         "ht" : {
@@ -593,6 +617,18 @@
             "value" : "Absent"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As láthair"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुपस्थित"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -835,6 +871,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter une pièce jointe"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir Ceangaltán leis"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संलग्नक जोड़ें"
           }
         },
         "ht" : {
@@ -1081,6 +1129,18 @@
             "value" : "Ajouter un commentaire"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir Trácht leis"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणी जोड़ें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1323,6 +1383,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toutes les notes sont actuellement masquées."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá gach mharc i bhfolach faoi láthair."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्तमान में सभी ग्रेड छिपे हुए हैं।"
           }
         },
         "ht" : {
@@ -1569,6 +1641,18 @@
             "value" : "Toutes les notes sont actuellement publiées."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá gach mharc postáilte faoi láthair."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्तमान में सभी ग्रेड पोस्ट किए गए हैं।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1811,6 +1895,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tous masqués"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gach rud atá i bhFolach"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी छिपाए हुए"
           }
         },
         "ht" : {
@@ -2057,6 +2153,18 @@
             "value" : "Tous publiés"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gach rud atá Postáilte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी पोस्ट किए गए"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2299,6 +2407,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tous les envois"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gach uaslódáil"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी सबमिशन"
           }
         },
         "ht" : {
@@ -2545,6 +2665,18 @@
             "value" : "Tous les envois"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gach Uaslódáil"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी सबमिशन"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2787,6 +2919,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tentative %lld"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iarracht %lld"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रयास %lld"
           }
         },
         "ht" : {
@@ -3033,6 +3177,18 @@
             "value" : "Participation"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attendance"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपस्थिति"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3277,6 +3433,18 @@
             "value" : "Erreur de présence"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earráid Tinrimh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपस्थिति त्रुटि"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3519,6 +3687,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retour"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ar ais"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वापस जाएं"
           }
         },
         "ht" : {
@@ -3766,6 +3946,12 @@
             "value" : "Calendrier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féilire"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4008,6 +4194,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annuler"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cealaigh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रद्द करें"
           }
         },
         "ht" : {
@@ -4254,6 +4452,18 @@
             "value" : "Modifier la section"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Athraigh Grúpa"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुभाग बदलें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4496,6 +4706,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choisir une section"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghnaigh Grúpa"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुभाग चुनें"
           }
         },
         "ht" : {
@@ -4742,6 +4964,18 @@
             "value" : "Choisir la date"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghnaigh Dáta"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तिथि चुनें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4984,6 +5218,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choisir des fichiers"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghnaigh Comhaid"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइलें चुनें"
           }
         },
         "ht" : {
@@ -5230,6 +5476,18 @@
             "value" : "Fermer"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dún"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बंद करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5472,6 +5730,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fermer le tiroir"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dún Tarraiceán"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ड्रॉर बंद करें"
           }
         },
         "ht" : {
@@ -5718,6 +5988,18 @@
             "value" : "Commentaire"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ráiteas"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणी"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5960,6 +6242,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bibliothèque de commentaires"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leabharlann Tráchta"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणी लाइब्रेरी"
           }
         },
         "ht" : {
@@ -6206,6 +6500,18 @@
             "value" : "La bibliothèque de commentaires n'est pas disponible"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl leabharlann nótaí ar fáil"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणी लाइब्रेरी उपलब्ध नहीं है"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6448,6 +6754,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commentaires"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ráitis"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणियां"
           }
         },
         "ht" : {
@@ -6694,6 +7012,18 @@
             "value" : "Terminé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Críochnaithe"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरा हुआ"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6936,6 +7266,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossible d’enregistrer le commentaire."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níorbh fhéidir an ráiteas a shábháil."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणी सहेजी नहीं जा सकी।"
           }
         },
         "ht" : {
@@ -7182,6 +7524,18 @@
             "value" : "Cours"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cúrsaí"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ्यक्रम"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7424,6 +7778,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Personnaliser la notation"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saincheap Marc"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गग्रेड कस्टमाइज करें"
           }
         },
         "ht" : {
@@ -7670,6 +8036,18 @@
             "value" : "Sélecteur de date"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghnóir dáta"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डेट पिकर"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7912,6 +8290,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rejeter"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diúltaigh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खारिज करें"
           }
         },
         "ht" : {
@@ -8158,6 +8548,18 @@
             "value" : "Terminé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déanta"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हो गया"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8402,6 +8804,18 @@
             "value" : "Modifier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir in eagar"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संपादित करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8644,6 +9058,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erreur"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earráid"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्रुटि"
           }
         },
         "ht" : {
@@ -8891,6 +9317,18 @@
             "value" : "Erreur : Aucune donnée renvoyée par l’API d’appel nominal."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earráid: Níor cuireadh aon shonraí ar ais ón api glaoch rolla."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्रुटि: रोलकॉल API से कोई डेटा वापस नहीं आया।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9133,6 +9571,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tous"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gach duine"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी"
           }
         },
         "ht" : {
@@ -9379,6 +9829,18 @@
             "value" : "Dispenser l’étudiant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ná bac leis an Mac Léinn"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "छात्र को माफ़ करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9621,6 +10083,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exempté"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leithscéal Faighte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "माफ़ किया"
           }
         },
         "ht" : {
@@ -9867,6 +10341,18 @@
             "value" : "Impossible de lancer l'outil LTI d’appel nominal."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar an uirlis Glaoch Rolla LTI a sheoladh."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रोलकॉल LTI उपकरण लॉन्च करने में विफल।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10111,6 +10597,18 @@
             "value" : "Échec lors du chargement des données d’envoi!"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar lódáil na sonraí uaslódála!"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन डेटा लोड करने में विफल!"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10353,6 +10851,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fichiers"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comhaid"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइलें"
           }
         },
         "ht" : {
@@ -10600,6 +11110,18 @@
             "value" : "Fichiers (%@)"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comhaid (%@)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइलें (%@)"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10842,6 +11364,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fichiers (%lld)"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comhaid (%lld)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइलें (%lld)"
           }
         },
         "ht" : {
@@ -11088,6 +11622,18 @@
             "value" : "Filtrer"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scag"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़िल्टर"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11330,6 +11876,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filtrer (%d)"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scagaire (%d)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़िल्टर (%d)"
           }
         },
         "ht" : {
@@ -11576,6 +12134,18 @@
             "value" : "Filtrer par"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scag de réir"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इसके अनुसार फ़िल्टर करें:"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11818,6 +12388,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filtrer les envois"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scag uaslódálacha"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन फ़िल्टर करें"
           }
         },
         "ht" : {
@@ -12064,6 +12646,18 @@
             "value" : "Note finale"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marc Deiridh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अंतिम ग्रेड"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12306,6 +12900,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Moyenne cumulative"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GPA"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GPA"
           }
         },
         "ht" : {
@@ -12552,6 +13158,18 @@
             "value" : "Note"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marc"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12794,6 +13412,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Politique de publication des notes"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Polasaí postála marc"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड पोस्ट नीति"
           }
         },
         "ht" : {
@@ -13040,6 +13670,18 @@
             "value" : "Curseur de notation"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleamhnán Marc"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड स्लाइडर"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13282,6 +13924,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noté"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcáilte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड किए गए"
           }
         },
         "ht" : {
@@ -13528,6 +14182,18 @@
             "value" : "Notes"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcanna"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13772,6 +14438,18 @@
             "value" : "Les notes seront rendues visibles à tous les étudiants"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beidh na marcanna infheicthe ag gach mac léinn"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी छात्रों के लिए ग्रेड को दृश्यमान बना दिया जाएगा"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14014,6 +14692,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les notes seront rendues visibles par les étudiants avec des envois notés"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beidh na marcanna infheicthe do mhic léinn a bhfuil uaslódálacha marcáilte acu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उन सभी छात्रों के लिए ग्रेड को दृश्यमान बना दिया जाएगा जिनके सबमिशन ग्रेड किए हुए हैं"
           }
         },
         "ht" : {
@@ -14676,6 +15366,72 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%d notes actuellement masquées"
+                }
+              }
+            }
+          }
+        },
+        "ga" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%d grades currently hidden"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%d grades currently hidden"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d marc folaithe faoi láthair"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d marcanna folaithe faoi láthair"
+                }
+              },
+              "two" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%d grades currently hidden"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d marcanna folaithe faoi láthair"
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d वर्तमान में छिपा हुआ ग्रेड"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d वर्तमान में छिपे हुए ग्रेड"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d वर्तमान में छिपे हुए ग्रेड"
                 }
               }
             }
@@ -15814,6 +16570,72 @@
             }
           }
         },
+        "ga" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%d grades currently posted"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%d grades currently posted"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d marc postáilte faoi láthair"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d marcanna postáilte faoi láthair"
+                }
+              },
+              "two" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%d grades currently posted"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d marcanna postáilte faoi láthair"
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d वर्तमान में  पोस्ट किया गया ग्रेड"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d वर्तमान में पोस्ट किए गए ग्रेड"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d वर्तमान में पोस्ट किए गए ग्रेड"
+                }
+              }
+            }
+          }
+        },
         "ht" : {
           "variations" : {
             "plural" : {
@@ -16526,6 +17348,18 @@
             "value" : "Groupe"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grúpa"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रुप"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16770,6 +17604,12 @@
             "value" : "Groupe %lld"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grúpa %lld"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17012,6 +17852,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Masquer les notes"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folaigh Marcanna"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड छिपाएं"
           }
         },
         "ht" : {
@@ -17259,6 +18111,18 @@
             "value" : "Boîte de réception"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bosca Isteach"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इनबॉक्स"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17501,6 +18365,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Incomplet"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neamhiomlán"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अधूरा"
           }
         },
         "ht" : {
@@ -17747,6 +18623,18 @@
             "value" : "Il semble qu’il n’y ait pas de soumissions valides à noter."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Is cosúil nach bhfuil aon uaslódálacha bailí le marcáil."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऐसा लगता है कि ग्रेड करने के लिए कोई वैध सबमिशन नहीं है।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17989,6 +18877,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "En retard"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déanach"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विलंब"
           }
         },
         "ht" : {
@@ -18235,6 +19135,18 @@
             "value" : "Notation par lettre"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marc litreach"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अक्षर ग्रेड"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18477,6 +19389,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "En cours de chargement"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ag lódáil"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लोड किया जा रहा है"
           }
         },
         "ht" : {
@@ -18723,6 +19647,18 @@
             "value" : "Marquer « Tous comme présent »"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcáil Uile mar i Láthair"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी को उपस्थित के रूप में चिह्नित करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18965,6 +19901,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Marquer comme « Restant comme présent »"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcáil an Méid atá Fágtha mar atá i Láthair"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शेष को उपस्थित के रूप में चिह्नित करें"
           }
         },
         "ht" : {
@@ -19211,6 +20159,18 @@
             "value" : "Notation modérée non prise en charge"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ní thacaítear le Marcáil Mhodhnaithe"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मॉडरेट की गई ग्रेडिंग असमर्थित है"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19453,6 +20413,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Requiert une notation"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcáil de Dhíth"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेडिंग की आवश्यकता है"
           }
         },
         "ht" : {
@@ -19699,6 +20671,18 @@
             "value" : "Non noté"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon Marc"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई ग्रेड नहीं"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19941,6 +20925,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucun envoi"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon Uaslódálacha"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई सबमिशन नहीं"
           }
         },
         "ht" : {
@@ -20187,6 +21183,18 @@
             "value" : "Aucune suggestion n’est disponible"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon mholtaí ar fáil"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई सुझाव उपलब्ध नहीं"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20429,6 +21437,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non noté"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl sé Marcáilte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड नहीं किया गया"
           }
         },
         "ht" : {
@@ -20675,6 +21695,18 @@
             "value" : "Non soumis"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl sé Curtha isteach"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिट नहीं किया गया"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20917,6 +21949,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CGL"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ठीक है"
           }
         },
         "ht" : {
@@ -21163,6 +22207,18 @@
             "value" : "Ouvrir la bibliothèque de commentaires"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oscail leabharlann ráitis"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणी लाइब्रेरी खोलें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21405,6 +22461,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ouvrir le tiroir en plein écran"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oscail Tarraiceán scáileán iomlán"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ड्रॉर को पूर्ण स्क्रीन पर खोलें"
           }
         },
         "ht" : {
@@ -21651,6 +22719,18 @@
             "value" : "Ouvrir le tiroir en demi-écran"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oscail Tarraiceán leathscáileán"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ड्रॉर को आधी स्क्रीन पर खोलें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21890,6 +22970,18 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out_of_g_pts"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out_of_g_pts"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "out_of_g_pts"
@@ -22139,6 +23231,18 @@
             "value" : "En attente"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ar feitheamh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लंबित"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22381,6 +23485,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pourcentage (%)"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Céatadán (%)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रतिशत (%)"
           }
         },
         "ht" : {
@@ -22627,6 +23743,18 @@
             "value" : "Points"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pointí"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पॉइंट्स"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22869,6 +23997,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Publier les notes"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Postáil Marcanna"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड पोस्ट करें"
           }
         },
         "ht" : {
@@ -23115,6 +24255,18 @@
             "value" : "Paramètres de publication"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Socruithe postála"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग्स पोस्ट करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23357,6 +24509,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Paramètres de l’article"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Socruithe Postála"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग्स पोस्ट करें"
           }
         },
         "ht" : {
@@ -23603,6 +24767,18 @@
             "value" : "Publier à..."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Postáil chuig..."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यहां पोस्ट करें..."
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23845,6 +25021,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les questionnaires pratiques et les sondages n'ont pas de vues détaillées."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl amhairc mionsonraithe ag quizzes & suirbhéanna le haghaidh cleachtadh."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभ्यास प्रश्नोत्तरी और सर्वेक्षण में विस्तृत दृश्य नहीं होते हैं।"
           }
         },
         "ht" : {
@@ -24091,6 +25279,18 @@
             "value" : "Présent"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I láthair"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपस्थित"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24333,6 +25533,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aperçu non disponible"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl Réamhamharc ar fáil"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूर्वावलोकन उपलब्ध नहीं है"
           }
         },
         "ht" : {
@@ -24579,6 +25791,18 @@
             "value" : "Invites pour une notation mise à jour"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leideanna le haghaidh marc nuashonraithe"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपडेट किए गए ग्रेड के लिए प्रॉम्प्ट करता है"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24821,6 +26045,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrer le son"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taifead Fuaim"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऑडियो रिकॉर्ड करें"
           }
         },
         "ht" : {
@@ -25067,6 +26303,18 @@
             "value" : "Enregistrer la vidéo"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taifead Físeán"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वीडियो रिकॉर्ड करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25309,6 +26557,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réinitialiser"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Athshocraigh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रीसेट करें"
           }
         },
         "ht" : {
@@ -25555,6 +26815,18 @@
             "value" : "Réessayer"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bain triail eile as"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फिर से कोशिश करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25797,6 +27069,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rubrique"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rúibric"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रुब्रिक"
           }
         },
         "ht" : {
@@ -26531,6 +27815,18 @@
             "value" : "Sélectionnez pour modifier la date d'appel nominal"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghnaigh chun dáta an glaoch rolla a athrú"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रोल कॉल तिथि बदलने के लिए चयन करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26773,6 +28069,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoyer"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seol"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भेजें"
           }
         },
         "ht" : {
@@ -27019,6 +28327,18 @@
             "value" : "Envoyer un message aux utilisateurs"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seol teachtaireacht chuig úsáideoirí"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपयोगकर्ताओं को संदेश भेजें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27261,6 +28581,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Score de similarité"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scór Cosúlachta"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "समानता अंक"
           }
         },
         "ht" : {
@@ -27507,6 +28839,18 @@
             "value" : "Sections spécifiques"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grúpaí ar Leith"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विशिष्ट अनुभाग"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27749,6 +29093,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Étudiant"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac léinn"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "छात्र"
           }
         },
         "ht" : {
@@ -27995,6 +29351,12 @@
             "value" : "Étudiant %lld"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Id %lMac Léinn"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28237,6 +29599,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envois"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uaslódálacha"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन"
           }
         },
         "ht" : {
@@ -28483,6 +29857,18 @@
             "value" : "Envoyé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Curtha isteach"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिट किया गया"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28725,6 +30111,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Étudiant test"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tástáil Mac Léinn"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "परीक्षण छात्र"
           }
         },
         "ht" : {
@@ -28971,6 +30369,18 @@
             "value" : "Il n’y a pas de message pour le moment."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon teachtaireachtaí go fóill."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी तक कोई संदेश नहीं हैं।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29213,6 +30623,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Une erreur est survenue lors du chargement des envois. Tirez pour actualiser et réessayer."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tharla earráid agus uaslódálacha á lódáil. Tarraing chun athnuachan a dhéanamh chun triail eile a bhaint as."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन लोड करने में त्रुटि हुई। फिर से कोशिश करने के लिए रीफ़्रेश करने के लिए खींचें।"
           }
         },
         "ht" : {
@@ -29459,6 +30881,18 @@
             "value" : "Cette tâche ne permet pas d’envoi."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ní cheadaíonn an tasc seo uaslódálcha."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह असाइनमेंट सबमिशन की अनुमति नहीं देती है।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29701,6 +31135,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cette tâche permet uniquement des envois sur support papier."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ní cheadaíonn an tasc seo ach uaslódálacha ar pháipéar."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह असाइनमेंट केवल कागज़ी सबमिशन की अनुमति देती है।"
           }
         },
         "ht" : {
@@ -29947,6 +31393,18 @@
             "value" : "Ce critère n'aura pas de répercussions sur le score."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ní bheidh aon tionchar ag an gcritéar seo ar an scór."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस मानदंड का अंक पर कोई असर नहीं पड़ेगा।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30189,6 +31647,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ce groupe n’a pas d’envoi pour cette tâche."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl uaslódáil ag an ngrúpa seo don tasc seo."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस ग्रुप के पास इस असाइनमेंट के लिए कोई सबमिशन नहीं है।"
           }
         },
         "ht" : {
@@ -30435,6 +31905,18 @@
             "value" : "Cet étudiant n’a pas d’envoi pour cette tâche."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl uaslódáil ag an mac léinn seo don tasc seo."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस छात्र के पास इस असाइनमेंट के लिए कोई सबमिशन नहीं है।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30677,6 +32159,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les réponses de cet étudiant sont masquées du fait que cette tâche est anonyme."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá freagraí an mac léinn seo i bhfolach toisc go bhfuil an tasc seo anaithnid"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस छात्र की प्रतिक्रियाएं छिपी हुई हैं, क्योंकि यह असाइनमेंट अनाम है।"
           }
         },
         "ht" : {
@@ -30923,6 +32417,18 @@
             "value" : "Cet envoi ne contient aucun fichier."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon chomhaid san uaslódáil seo."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस सबमिशन में कोई फ़ाइल नहीं है।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31165,6 +32671,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cet envoi est une URL vers une page externe. Nous avons inclus une capture d’écran de la page au moment où elle a été envoyée."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Is URL chuig leathanach seachtrach é an uaslódáil seo. Chuireamar pictiúr san áireamh den chuma a bhí ar an leathanach nuair a cuireadh isteach é."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह सबमिशन एक बाहरी पेज का URL है। हमने इसमें एक स्नैपशॉट शामिल किया है कि सबमिट किए जाने पर पेज कैसा दिखता था।"
           }
         },
         "ht" : {
@@ -31411,6 +32929,18 @@
             "value" : "À faire"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le Déanamh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "करने के लिए"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31653,6 +33183,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erreur inconnue"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earráid Anaithnid"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अज्ञात त्रुटि"
           }
         },
         "ht" : {
@@ -31899,6 +33441,18 @@
             "value" : "Décocher"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dímharcáil"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अचिह्नित करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32141,6 +33695,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL de prévisualisation de l’image"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Íomhá Réamhamhairc URL"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL पूर्वावलोकन छवि"
           }
         },
         "ht" : {
@@ -32387,6 +33953,18 @@
             "value" : "Voir le fichier %@ %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féach ar chomhad %@ %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल देखें %@ %@"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32629,6 +34207,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voir description longue"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féach ar Chur Síos Fada"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लंबा विवरण देखें"
           }
         },
         "ht" : {
@@ -32874,6 +34464,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voir la tentative d’envoi %@. %@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féach ar iarracht uaslódála %@. %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन प्रयास %@ देखें। %@"
           }
         },
         "ht" : {
@@ -33124,6 +34726,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voir la tentative d’envoi %1$lld. %2$@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féach ar iarracht uaslódála %1$lld. %2$@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन प्रयास %1$lld देखें। %2$@"
           }
         },
         "ht" : {

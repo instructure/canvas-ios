@@ -46,7 +46,7 @@ class AssignmentDueDatesInteractorLiveTests: CoreTestCase {
                     id: 3,
                     title: "april",
                     due_at: DateComponents(calendar: .current, year: 2023, month: 4, day: 2).date
-                ),
+                )
             ],
             id: ID(assignmentID)
         )

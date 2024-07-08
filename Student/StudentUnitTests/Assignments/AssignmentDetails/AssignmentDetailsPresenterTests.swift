@@ -504,7 +504,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
 
         NotificationCenter.default.post(name: UploadManager.AssignmentSubmittedNotification, object: nil, userInfo: [
             "assignmentID": "1",
-            "submission": APISubmission.make(),
+            "submission": APISubmission.make()
         ])
         let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 1)
@@ -585,7 +585,6 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         XCTAssertEqual(resultingAttemptPickerActiveState, false)
     }
 
-    @available(iOS 16.0, *)
     func testAttemptPicker() {
         Assignment.make()
         let submission1 = Submission.make(from: .make(attempt: 1, id: "1", score: 1))
@@ -607,7 +606,6 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         XCTAssertEqual(resultingGradeCellSubmission, submission1)
     }
 
-    @available(iOS 16.0, *)
     func testForwardsSelectedAttemptToSubmissionDetails() {
         // GIVEN
         Assignment.make()

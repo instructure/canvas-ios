@@ -74,7 +74,7 @@ class PushNotificationsInteractorTests: CoreTestCase {
                 getsIfPushChannelDefaultsAreSet,
                 getsPushChannelSettings,
                 putsNewPushChannelSettings,
-                putsThatPushChannelDefaultsAreSet,
+                putsThatPushChannelDefaultsAreSet
             ],
             timeout: 1
         )

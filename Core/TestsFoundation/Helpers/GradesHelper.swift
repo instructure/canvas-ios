@@ -31,8 +31,12 @@ public class GradesHelper: BaseHelper {
         return app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
     }
 
+    public static func gradedLabel(assignmentCell: XCUIElement) -> XCUIElement {
+        return assignmentCell.find(label: "Graded", type: .staticText)
+    }
+
     public static func gradeLabel(assignmentCell: XCUIElement) -> XCUIElement {
-        return assignmentCell.find(labelContaining: "Grade")
+        return assignmentCell.find(labelContaining: "Grade, ", type: .staticText)
     }
 
     public static func gradeOutOf(assignment: DSAssignment? = nil,

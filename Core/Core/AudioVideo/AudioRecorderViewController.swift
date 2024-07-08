@@ -73,7 +73,7 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
                 AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
                 AVSampleRateKey: 22050,
                 AVNumberOfChannelsKey: 2,
-                AVEncoderAudioQualityKey: AVAudioQuality.medium.rawValue,
+                AVEncoderAudioQualityKey: AVAudioQuality.medium.rawValue
             ])
             recorder?.delegate = self
             if recorder?.record() == true {

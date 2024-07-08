@@ -32,7 +32,7 @@ class DashboardViewControllerTests: ParentTestCase {
                 short_name: "Short Name",
                 pronouns: "Pro/Noun"
             )),
-            .make(observed_user: .make(id: "2")),
+            .make(observed_user: .make(id: "2"))
         ]
         api.mock(GetObservedStudents(observerID: "1"), value: students)
         api.mock(GetContextPermissionsRequest(context: .account("self"), permissions: [.becomeUser]), value: APIPermissions.make())
@@ -64,6 +64,7 @@ class DashboardViewControllerTests: ParentTestCase {
         (vc.studentListStack.arrangedSubviews[1] as? UIButton)?.sendActions(for: .primaryActionTriggered)
         drainMainQueue() // Wait for animation to complete
         XCTAssertEqual(vc.studentListHiddenHeight.isActive, true)
+        // FIXME: always fails locally, always works on CI
         XCTAssertEqual(vc.avatarView.name, "Bob")
         XCTAssertEqual(vc.titleLabel.text, "Bob")
         XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Current student: Bob. Tap to switch students")
@@ -125,7 +126,7 @@ class DashboardViewControllerTests: ParentTestCase {
         let students: [APIEnrollment] = [
             .make(observed_user: .make(id: "2")),
             .make(observed_user: .make(id: "3", name: "Full Name", short_name: "User 3")),
-            .make(observed_user: .make(id: "4")),
+            .make(observed_user: .make(id: "4"))
         ]
         api.mock(GetObservedStudents(observerID: "1"), value: students)
 
@@ -142,7 +143,7 @@ class DashboardViewControllerTests: ParentTestCase {
         let students: [APIEnrollment] = [
             .make(observed_user: .make(id: "2", name: "Full Name", short_name: "User 2")),
             .make(observed_user: .make(id: "3")),
-            .make(observed_user: .make(id: "4")),
+            .make(observed_user: .make(id: "4"))
         ]
         api.mock(GetObservedStudents(observerID: "1"), value: students)
 

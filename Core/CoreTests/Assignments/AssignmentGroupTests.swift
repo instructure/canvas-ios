@@ -48,7 +48,7 @@ class GetAssignmentGroupRequestTests: XCTestCase {
         req = GetAssignmentGroupsRequest(courseID: courseID, gradingPeriodID: "1", include: [.assignments])
         let expected = [
             URLQueryItem(name: "include[]", value: "assignments"),
-            URLQueryItem(name: "grading_period_id", value: "1"),
+            URLQueryItem(name: "grading_period_id", value: "1")
         ]
         XCTAssertEqual(req.queryItems, expected)
     }

@@ -27,15 +27,15 @@ class FileListViewControllerTests: CoreTestCase {
         super.setUp()
         api.mock(controller.colors, value: APICustomColors(custom_colors: [
             "course_1": "#f00",
-            "group_1": "#00f",
+            "group_1": "#00f"
         ]))
         api.mock(controller.folder, value: [
             .make(),
-            .make(full_name: "my files/Folder A", id: "2", name: "Folder A", parent_folder_id: "1"),
+            .make(full_name: "my files/Folder A", id: "2", name: "Folder A", parent_folder_id: "1")
         ])
         api.mock(GetFilesRequest(context: Context(.folder, id: "2")), value: [ .make(folder_id: "2") ])
         api.mock(GetFoldersRequest(context: Context(.folder, id: "2")), value: [
-            .make(full_name: "my files/Folder A/B", id: "3", name: "B", parent_folder_id: "2"),
+            .make(full_name: "my files/Folder A/B", id: "3", name: "B", parent_folder_id: "2")
         ])
     }
 
@@ -84,7 +84,7 @@ class FileListViewControllerTests: CoreTestCase {
 
         api.mock(GetFilesRequest(context: .currentUser, searchTerm: "File"), value: [
             .make(),
-            .make(created_at: Clock.now.add(.day, number: -1), thumbnail_url: URL(string: "/")),
+            .make(created_at: Clock.now.add(.day, number: -1), thumbnail_url: URL(string: "/"))
         ])
         controller.searchBar.delegate?.searchBarTextDidBeginEditing?(controller.searchBar)
         controller.searchBar.text = "File"
@@ -107,10 +107,10 @@ class FileListViewControllerTests: CoreTestCase {
         XCTAssert(router.lastRoutedTo("/users/self/files/1"))
 
         api.mock(controller.folder, value: [
-            .make(full_name: "my files/Folder A", id: "2", name: "Folder Refresh", parent_folder_id: "1"),
+            .make(full_name: "my files/Folder A", id: "2", name: "Folder Refresh", parent_folder_id: "1")
         ])
         api.mock(GetFilesRequest(context: Context(.folder, id: "2")), value: [
-            .make(folder_id: "2", display_name: "Picture", created_at: Clock.now.add(.day, number: -1), thumbnail_url: URL(string: "/")),
+            .make(folder_id: "2", display_name: "Picture", created_at: Clock.now.add(.day, number: -1), thumbnail_url: URL(string: "/"))
         ])
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false) // stops refreshing
@@ -144,7 +144,7 @@ class FileListViewControllerTests: CoreTestCase {
         api.mock(GetCourse(courseID: "1"), value: .make())
         controller = FileListViewController.create(context: .course("1"))
         api.mock(controller.folder, value: [
-            .make(context_type: "Course", context_id: "1", id: "2"),
+            .make(context_type: "Course", context_id: "1", id: "2")
         ])
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
@@ -164,7 +164,7 @@ class FileListViewControllerTests: CoreTestCase {
         api.mock(GetGroup(groupID: "1"), value: .make())
         controller = FileListViewController.create(context: .group("1"))
         api.mock(controller.folder, value: [
-            .make(context_type: "Group", context_id: "1", id: "2"),
+            .make(context_type: "Group", context_id: "1", id: "2")
         ])
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
@@ -188,7 +188,7 @@ class FileListViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.titleSubtitleView.title, "Folder A")
 
         api.mock(controller.folder, value: [
-            .make(full_name: "my files/Folder Z", id: "2", name: "Folder Z", parent_folder_id: "1"),
+            .make(full_name: "my files/Folder Z", id: "2", name: "Folder Z", parent_folder_id: "1")
         ])
         controller.errorView.retryButton.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 2), 2)
@@ -296,7 +296,7 @@ class FileListViewControllerTests: CoreTestCase {
         controller.viewWillAppear(false)
 
         api.mock(GetFilesRequest(context: .currentUser, searchTerm: "File"), value: [
-            .make(),
+            .make()
         ])
         controller.searchTerm = "File"
         controller.search()
@@ -317,7 +317,7 @@ class FileListViewControllerTests: CoreTestCase {
     func testDeleteFolder() {
         api.mock(GetFoldersRequest(context: Context(.folder, id: "2")), value: [
             .make(full_name: "my files/Folder A/B", id: "3", name: "B", parent_folder_id: "2"),
-            .make(files_count: 0, full_name: "my files/Folder A/EmptyFolder", id: "4", name: "EmptyFolder", parent_folder_id: "2"),
+            .make(files_count: 0, full_name: "my files/Folder A/EmptyFolder", id: "4", name: "EmptyFolder", parent_folder_id: "2")
         ])
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)

@@ -31,7 +31,7 @@ public class LoadingCell: UITableViewCell {
             indicator.widthAnchor.constraint(equalToConstant: 24),
             indicator.heightAnchor.constraint(equalToConstant: 24),
             indicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            indicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            indicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
         separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: CGFloat.greatestFiniteMagnitude)
     }

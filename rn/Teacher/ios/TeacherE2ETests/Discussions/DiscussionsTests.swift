@@ -20,7 +20,7 @@ import TestsFoundation
 
 class DiscussionsTests: E2ETestCase {
     typealias Helper = DiscussionsHelper
-    typealias DetailsHelper = Helper.Details
+    typealias DetailsHelper = Helper.NewDetails
     typealias ReplyHelper = DetailsHelper.Reply
     typealias EditorHelper = Helper.Editor
 
@@ -69,20 +69,57 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(discussionButton.isVisible)
 
         discussionButton.hit()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        let detailsOptionsButton = DetailsHelper.optionsButton.waitUntil(.visible)
-        let detailsTitleLabel = DetailsHelper.titleLabel.waitUntil(.visible)
-        let detailsLastPostLabel = DetailsHelper.lastPostLabel.waitUntil(.visible)
-        let detailsMessageLabel = DetailsHelper.messageLabel.waitUntil(.visible)
-        let detailsReplyButton = DetailsHelper.replyButton.waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-        XCTAssertTrue(detailsOptionsButton.isVisible)
-        XCTAssertTrue(detailsTitleLabel.isVisible)
-        XCTAssertTrue(detailsTitleLabel.hasLabel(label: discussion.title))
-        XCTAssertTrue(detailsLastPostLabel.isVisible)
-        XCTAssertTrue(detailsMessageLabel.isVisible)
-        XCTAssertTrue(detailsMessageLabel.hasLabel(label: discussion.message))
-        XCTAssertTrue(detailsReplyButton.isVisible)
+        let searchField = DetailsHelper.searchField.waitUntil(.visible)
+        let filterByLabel = DetailsHelper.filterByLabel.waitUntil(.visible)
+        let sortButton = DetailsHelper.sortButton.waitUntil(.visible)
+        let viewSplitScreenButton = DetailsHelper.viewSplitScreenButton.waitUntil(.visible)
+        let subscribeButton = DetailsHelper.subscribeButton.waitUntil(.visible)
+        let manageDiscussionButton = DetailsHelper.manageDiscussionButton.waitUntil(.visible)
+        let discussionTitle = DetailsHelper.discussionTitle(discussion: discussion).waitUntil(.visible)
+        let discussionBody = DetailsHelper.discussionBody(discussion: discussion).waitUntil(.visible)
+        var replyButton = DetailsHelper.replyButton.waitUntil(.visible)
+        XCTAssertTrue(searchField.isVisible)
+        XCTAssertTrue(searchField.hasValue(value: "Search entries or author..."))
+        XCTAssertTrue(filterByLabel.isVisible)
+        XCTAssertTrue(sortButton.isVisible)
+        XCTAssertTrue(sortButton.hasLabel(label: "Sorted by Descending", strict: false))
+        XCTAssertTrue(viewSplitScreenButton.isVisible)
+        XCTAssertTrue(subscribeButton.isVisible)
+        XCTAssertTrue(manageDiscussionButton.isVisible)
+        XCTAssertTrue(discussionTitle.isVisible)
+        XCTAssertTrue(discussionBody.isVisible)
+        XCTAssertTrue(replyButton.isVisible)
+
+        viewSplitScreenButton.hit()
+        let viewInlineButton = DetailsHelper.viewInlineButton.waitUntil(.visible)
+        XCTAssertTrue(viewSplitScreenButton.isVanished)
+        XCTAssertTrue(viewInlineButton.isVisible)
+
+        subscribeButton.hit()
+        let unsubscribeButton = DetailsHelper.unsubscribeButton.waitUntil(.visible)
+        XCTAssertTrue(subscribeButton.isVanished)
+        XCTAssertTrue(unsubscribeButton.isVisible)
+
+        manageDiscussionButton.hit()
+        let markAllAsReadButton = DetailsHelper.markAllAsRead.waitUntil(.visible)
+        let markAllAsUnreadButton = DetailsHelper.markAllAsUnread.waitUntil(.visible)
+        XCTAssertTrue(markAllAsReadButton.isVisible)
+        XCTAssertTrue(markAllAsUnreadButton.isVisible)
+
+        markAllAsUnreadButton.hit()
+        replyButton.hit()
+        let textInput = DetailsHelper.Reply.textInput.waitUntil(.visible)
+        let attachButton = DetailsHelper.Reply.attachButton.waitUntil(.visible)
+        let cancelButton = DetailsHelper.Reply.cancelButton.waitUntil(.visible)
+        replyButton = DetailsHelper.Reply.replyButton.waitUntil(.visible)
+        XCTAssertTrue(textInput.isVisible)
+        XCTAssertTrue(attachButton.isVisible)
+        XCTAssertTrue(cancelButton.isVisible)
+        XCTAssertTrue(replyButton.isVisible)
+
+        cancelButton.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
+        cancelButton.hit()
+        XCTAssertTrue(cancelButton.waitUntil(.vanish).isVanished)
     }
 
     func testReplyToDiscussion() {
@@ -103,49 +140,52 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(discussionButton.isVisible)
 
         discussionButton.hit()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
         let detailsReplyButton = DetailsHelper.replyButton.waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
         XCTAssertTrue(detailsReplyButton.isVisible)
 
         // MARK: Tap reply button and check buttons and labels of reply screen
         detailsReplyButton.hit()
-        let replyNavBar = ReplyHelper.navBar.waitUntil(.visible)
-        let replySendButton = ReplyHelper.sendButton.waitUntil(.visible)
-        let replyAttachmentButton = ReplyHelper.attachmentButton.waitUntil(.visible)
-        let replyTextField = ReplyHelper.textField.waitUntil(.visible)
-        XCTAssertTrue(replyNavBar.isVisible)
-        XCTAssertTrue(replySendButton.isVisible)
-        XCTAssertTrue(replySendButton.isDisabled)
-        XCTAssertTrue(replyAttachmentButton.isVisible)
-        XCTAssertTrue(replyTextField.isVisible)
+        let textInput = DetailsHelper.Reply.textInput.waitUntil(.visible)
+        let attachButton = DetailsHelper.Reply.attachButton.waitUntil(.visible)
+        let cancelButton = DetailsHelper.Reply.cancelButton.waitUntil(.visible)
+        let replyButton = DetailsHelper.Reply.replyButton.waitUntil(.visible)
+        XCTAssertTrue(textInput.isVisible)
+        XCTAssertTrue(attachButton.isVisible)
+        XCTAssertTrue(cancelButton.isVisible)
+        XCTAssertTrue(replyButton.isVisible)
 
-        // MARK: Write some text into reply text input and tap Send button
+        // MARK: Write some text into reply text input and tap Reply button
         let replyText = "Test replying to discussion"
-        replyTextField.pasteText(text: replyText)
-        XCTAssertTrue(replySendButton.waitUntil(.enabled).isEnabled)
-
-        replySendButton.hit()
+        textInput.writeText(text: replyText)
+        replyButton.hit()
+        XCTAssertTrue(textInput.waitUntil(.vanish).isVanished)
 
         // MARK: Check visibility and label of the reply
-        let repliesSection = DetailsHelper.repliesSection.waitUntil(.visible)
-        let replyLabel = app.find(label: replyText).waitUntil(.visible)
-        XCTAssertTrue(repliesSection.isVisible)
-        XCTAssertTrue(replyLabel.isVisible)
+        let replyFromLabel = DetailsHelper.replyFromLabel(user: teacher).waitUntil(.visible)
+        let replyBody = DetailsHelper.replyBody(replyText: replyText).waitUntil(.visible)
+        let replyToPostButton = DetailsHelper.replyToPostButton(user: teacher).waitUntil(.visible)
+        XCTAssertTrue(replyFromLabel.isVisible)
+        XCTAssertTrue(replyBody.isVisible)
+        XCTAssertTrue(replyToPostButton.isVisible)
 
         // MARK: Reply to thread
-        let replyToThreadButton = DetailsHelper.replyToThreadButton(threadIndex: 1).waitUntil(.visible)
-        let threadReplyText = "Test replying to thread"
-        XCTAssertTrue(replyToThreadButton.isVisible)
-        XCTAssertTrue(replyToThreadButton.hasLabel(label: "Reply to thread"))
+        let replyToPostText = "Text replying to reply of discussion"
+        replyToPostButton.hit()
 
-        replyToThreadButton.hit()
+        let replyButtons = DetailsHelper.Reply.replyButtons(count: 2)
+        XCTAssertTrue(replyButtons.count > 1)
+
+        let secondReplyButton = replyButtons[1].waitUntil(.visible)
+        XCTAssertTrue(textInput.waitUntil(.visible).isVisible)
+        XCTAssertTrue(secondReplyButton.isVisible)
+
+        textInput.writeText(text: replyToPostText)
+        secondReplyButton.hit()
+        XCTAssertTrue(textInput.waitUntil(.vanish).isVanished)
 
         // MARK: Check visibility and label of the thread reply
-        let replyWasSuccessful = Helper.replyToDiscussion(replyText: threadReplyText)
-        let threadReplyLabel = app.find(label: threadReplyText).waitUntil(.visible)
-        XCTAssertTrue(replyWasSuccessful)
-        XCTAssertTrue(threadReplyLabel.isVisible)
+        let replyToReplyBody = DetailsHelper.replyBody(replyText: replyToPostText).waitUntil(.visible)
+        XCTAssertTrue(replyToReplyBody.isVisible)
     }
 
     func testAssignmentDiscussion() {
@@ -184,43 +224,57 @@ class DiscussionsTests: E2ETestCase {
         let newDiscussionButton = DiscussionsHelper.newButton.waitUntil(.visible)
         XCTAssertTrue(newDiscussionButton.isVisible)
 
-        // MARK: Create new discussion
+        // MARK: Create new discussion, check elements
         newDiscussionButton.hit()
+        let cancelButton = EditorHelper.cancelButton.waitUntil(.visible)
+        let attachmentButton = EditorHelper.attachmentButton.waitUntil(.visible)
+        let doneButton = EditorHelper.doneButton.waitUntil(.visible)
         let titleField = EditorHelper.titleField.waitUntil(.visible)
         let descriptionField = EditorHelper.descriptionField.waitUntil(.visible)
         let publishToggle = EditorHelper.publishedToggle.waitUntil(.visible)
-        let sectionsButton = EditorHelper.sectionsButton.waitUntil(.visible)
-        let threadedReplies = EditorHelper.threadedToggle.waitUntil(.visible)
-        let userMustPostToggle = EditorHelper.requireInitialPostToggle.waitUntil(.visible)
-        let allowLikingToggle = EditorHelper.allowRatingToggle.waitUntil(.visible)
-        let availableFromButton = EditorHelper.availableFromButton.waitUntil(.visible)
-        let availableUntilButton = EditorHelper.availableUntilButton.waitUntil(.visible)
-        let doneButton = EditorHelper.doneButton.waitUntil(.visible)
+        let sections = EditorHelper.sectionsButton.waitUntil(.visible)
+        let threadedToggle = EditorHelper.threadedToggle.waitUntil(.visible)
+        let requireInitialPostToggle = EditorHelper.requireInitialPostToggle.waitUntil(.visible)
+        let allowRatingToggle = EditorHelper.allowRatingToggle.waitUntil(.visible)
+        XCTAssertTrue(cancelButton.isVisible)
+        XCTAssertTrue(attachmentButton.isVisible)
+        XCTAssertTrue(doneButton.isVisible)
         XCTAssertTrue(titleField.isVisible)
         XCTAssertTrue(descriptionField.isVisible)
         XCTAssertTrue(publishToggle.isVisible)
-        XCTAssertTrue(sectionsButton.isVisible)
-        XCTAssertTrue(threadedReplies.isVisible)
-        XCTAssertTrue(userMustPostToggle.isVisible)
-        XCTAssertTrue(allowLikingToggle.isVisible)
-        XCTAssertTrue(availableFromButton.isVisible)
-        XCTAssertTrue(availableUntilButton.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertTrue(publishToggle.hasValue(value: "0"))
+        XCTAssertTrue(sections.isVisible)
+        XCTAssertTrue(threadedToggle.isVisible)
+        XCTAssertTrue(threadedToggle.hasValue(value: "0"))
+        XCTAssertTrue(requireInitialPostToggle.isVisible)
+        XCTAssertTrue(requireInitialPostToggle.hasValue(value: "0"))
+        XCTAssertTrue(allowRatingToggle.isVisible)
+        XCTAssertTrue(allowRatingToggle.hasValue(value: "0"))
 
         titleField.writeText(text: newTitle)
         descriptionField.writeText(text: newDescription)
-        publishToggle.actionUntilElementCondition(action: .tap, condition: .value(expected: "1"))
-        threadedReplies.actionUntilElementCondition(action: .tap, condition: .value(expected: "1"))
-        allowLikingToggle.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
-        allowLikingToggle.actionUntilElementCondition(action: .tap, condition: .value(expected: "1"))
-        let onlyGradersCanLikeToggle = EditorHelper.onlyGradersCanRateToggle.waitUntil(.visible)
-        let sortByLikesToggle = EditorHelper.sortByRatingToggle.waitUntil(.visible)
+        publishToggle.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
+        publishToggle.hit()
+        allowRatingToggle.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
+        allowRatingToggle.hit()
+        publishToggle.waitUntil(.value(expected: "1"))
+        allowRatingToggle.waitUntil(.value(expected: "1"))
         XCTAssertTrue(publishToggle.hasValue(value: "1"))
-        XCTAssertTrue(threadedReplies.hasValue(value: "1"))
-        XCTAssertTrue(allowLikingToggle.hasValue(value: "1"))
-        XCTAssertTrue(onlyGradersCanLikeToggle.isVisible)
-        XCTAssertTrue(sortByLikesToggle.isVisible)
+        XCTAssertTrue(allowRatingToggle.hasValue(value: "1"))
 
+        let onlyGradersCanRateToggle = EditorHelper.onlyGradersCanRateToggle.waitUntil(.visible)
+        let sortByRatingToggle = EditorHelper.sortByRatingToggle.waitUntil(.visible)
+        XCTAssertTrue(onlyGradersCanRateToggle.isVisible)
+        XCTAssertTrue(onlyGradersCanRateToggle.hasValue(value: "0"))
+        XCTAssertTrue(sortByRatingToggle.isVisible)
+        XCTAssertTrue(sortByRatingToggle.hasValue(value: "0"))
+
+        let availableFromButton = EditorHelper.availableFromButton.waitUntil(.visible)
+        let availableUntilButton = EditorHelper.availableUntilButton.waitUntil(.visible)
+        XCTAssertTrue(availableFromButton.isVisible)
+        XCTAssertTrue(availableUntilButton.isVisible)
+
+        // MARK: Finish creating discussion, check if it was successful
         doneButton.hit()
 
         // MARK: Check if creating new discussion was successful

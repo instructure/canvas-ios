@@ -184,11 +184,11 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
                                    hasFrontPage: false,
                                    tabs: [
                                        .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, selectionState: .deselected),
-                                       .init(id: "0", name: "Files", type: .files, isCollapsed: false, selectionState: .deselected),
+                                       .init(id: "0", name: "Files", type: .files, isCollapsed: false, selectionState: .deselected)
                                    ],
                                    files: [
                                        .make(id: "0", displayName: "test.txt", selectionState: .deselected),
-                                       .make(id: "1", displayName: "test1.txt", selectionState: .deselected),
+                                       .make(id: "1", displayName: "test1.txt", selectionState: .deselected)
                                    ],
                                    isCollapsed: false,
                                    selectionState: .deselected)
@@ -219,7 +219,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
                                    id: "testID",
                                    hasFrontPage: false,
                                    tabs: [
-                                       .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, selectionState: .deselected),
+                                       .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, selectionState: .deselected)
                                    ],
                                    files: [],
                                    isCollapsed: false,
@@ -240,10 +240,10 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
                                    id: "testID",
                                    hasFrontPage: false,
                                    tabs: [
-                                       .init(id: "0", name: "Files", type: .files, isCollapsed: false, selectionState: .deselected),
+                                       .init(id: "0", name: "Files", type: .files, isCollapsed: false, selectionState: .deselected)
                                    ],
                                    files: [
-                                       .make(id: "0", displayName: "test.txt", selectionState: .deselected),
+                                       .make(id: "0", displayName: "test.txt", selectionState: .deselected)
                                    ],
                                    isCollapsed: false,
                                    selectionState: .deselected)
@@ -288,7 +288,7 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
         Just(false).eraseToAnyPublisher()
     }
 
-    func setSelected(selection: Core.CourseEntrySelection, selectionState: ListCellView.SelectionState) {
+    func setSelected(selection: Core.CourseEntrySelection, selectionState: OfflineListCellView.SelectionState) {
         lastSelected = (selection: selection, isSelected: selectionState == .selected ? true : false)
     }
 

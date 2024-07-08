@@ -31,7 +31,7 @@ class SubmissionDetailsPickerTests: StudentTestCase {
 
     func testPickerHiddenWithTwoSubmissionsOneWithoutDate() {
         let submission = APISubmission.make(attempt: 1, submission_history: [
-            .make(attempt: 0, submitted_at: nil),
+            .make(attempt: 0, submitted_at: nil)
         ], submitted_at: Date())
         api.mock(GetSubmission(context: context, assignmentID: "1", userID: "1"), value: submission)
 
@@ -44,7 +44,7 @@ class SubmissionDetailsPickerTests: StudentTestCase {
     func testPickerOffersOnlySubmissionsWithDate() {
         let submission = APISubmission.make(attempt: 2, submission_history: [
             .make(attempt: 1, submitted_at: Date()),
-            .make(attempt: 0, submitted_at: nil),
+            .make(attempt: 0, submitted_at: nil)
         ], submitted_at: Date())
         api.mock(GetSubmission(context: context, assignmentID: "1", userID: "1"), value: submission)
 

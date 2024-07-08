@@ -259,7 +259,7 @@ public struct DiscussionEditorView: View {
                             title: String(localized: "Display Grade as", bundle: .core),
                             sections: [ ItemPickerSection(items: options.map {
                                 ItemPickerItem(title: $0.string)
-                            }), ],
+                            }) ],
                             selected: options.firstIndex(of: gradingType).flatMap {
                                 IndexPath(row: $0, section: 0)
                             },
@@ -437,7 +437,7 @@ public struct DiscussionEditorView: View {
             .require_initial_post: .bool(requireInitialPost),
             .sort_by_rating: .bool(allowRating && sortByRating),
             .specific_sections: .string(sections.isEmpty ? "all" : sections.map { $0.id } .sorted().joined(separator: ",")),
-            .title: .string(title),
+            .title: .string(title)
         ]).fetch { result, _, fetchError in performUIUpdate {
             alert = fetchError.map { .error($0) }
             if fetchError == nil, result != nil {

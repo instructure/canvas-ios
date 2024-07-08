@@ -31,7 +31,7 @@ extension File: NSFileProviderItem {
         .allowsDeleting,
         .allowsReading,
         .allowsRenaming,
-        .allowsReparenting,
+        .allowsReparenting
     ] }
 
     public var typeIdentifier: String {
@@ -61,7 +61,7 @@ extension Folder: NSFileProviderItem {
         .allowsDeleting,
         .allowsReading,
         .allowsRenaming,
-        .allowsReparenting,
+        .allowsReparenting
     ] }
 
     public var childItemCount: NSNumber? { NSNumber(value: foldersCount + filesCount) }

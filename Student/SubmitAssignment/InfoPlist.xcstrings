@@ -113,6 +113,18 @@
             "value" : "Envoyer la tâche"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir Tasc Isteach"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "असाइनमेंट सबमिट करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",

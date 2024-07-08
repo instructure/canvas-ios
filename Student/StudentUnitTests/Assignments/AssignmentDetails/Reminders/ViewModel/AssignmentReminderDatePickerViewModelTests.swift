@@ -48,7 +48,7 @@ class AssignmentReminderDatePickerViewModelTests: XCTestCase {
             "1 Hour Before",
             "1 Day Before",
             "1 Week Before",
-            "Custom",
+            "Custom"
         ])
     }
 
@@ -90,7 +90,7 @@ class AssignmentReminderDatePickerViewModelTests: XCTestCase {
                     .init(minute: 30),
                     .init(hour: 1),
                     .init(day: 1),
-                    .init(weekOfMonth: 1),
+                    .init(weekOfMonth: 1)
                 ])
             }
             .store(in: &subscriptions)
@@ -125,7 +125,7 @@ class AssignmentReminderDatePickerViewModelTests: XCTestCase {
                     DateComponents(minute: 66),
                     DateComponents(hour: 66),
                     DateComponents(day: 66),
-                    DateComponents(weekOfMonth: 66),
+                    DateComponents(weekOfMonth: 66)
                 ])
             }
             .store(in: &subscriptions)

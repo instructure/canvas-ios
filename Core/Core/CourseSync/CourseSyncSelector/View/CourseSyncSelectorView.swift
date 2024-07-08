@@ -30,6 +30,8 @@ struct CourseSyncSelectorView: View {
         on: .main,
         in: .common
     ).autoconnect()
+    @State private var scrollOffset: CGFloat?
+    @State private var infoHeight: CGFloat?
 
     var body: some View {
         content
@@ -79,20 +81,41 @@ struct CourseSyncSelectorView: View {
             }
             .accessibilityElement(children: .combine)
         case .data:
-            VStack(spacing: 0) {
-                CourseSyncDiskSpaceInfoView(viewModel: diskSpaceViewModel)
-                    .padding(16)
-                Divider()
-                GeometryReader { geometry in
-                    ScrollView {
-                        if viewModel.cells.isEmpty {
-                            emptyList(geometry: geometry)
-                        } else {
-                            listCells
+            ZStack(alignment: .top) {
+                VStack(spacing: 0) {
+                    Divider()
+                    GeometryReader { geometry in
+                        ScrollView {
+                            if viewModel.cells.isEmpty {
+                                emptyList(geometry: geometry)
+                            } else {
+                                VStack(spacing: 0) {
+                                    // Applying the background to listCells that is a LazyVStack didn't work
+                                    Color.clear.frame(height: 0)
+                                        .bindTopPosition(
+                                            id: "scrollPosition",
+                                            coordinateSpaceName: "scroll",
+                                            to: $scrollOffset
+                                        )
+                                    listCells
+                                }
+                            }
                         }
+                        .coordinateSpace(name: "scroll")
+                    }
+                    syncButton
+                }
+
+                CourseSyncDiskSpaceInfoView(
+                    viewModel: diskSpaceViewModel,
+                    scrollOffset: scrollOffset ?? 0
+                )
+                .padding(16)
+                .onFrameChange(id: "infoViewHeight", coordinateSpace: .local) { newFrame in
+                    if infoHeight == nil {
+                        infoHeight = newFrame.height
                     }
                 }
-                syncButton
             }
             .confirmationAlert(
                 isPresented: $viewModel.isShowingSyncConfirmationDialog,
@@ -107,6 +130,7 @@ struct CourseSyncSelectorView: View {
 
     private var listCells: some View {
         LazyVStack(spacing: 0) {
+            Color.clear.frame(height: 0).padding(.top, infoHeight)
             ForEach(viewModel.cells) { cell in
                 let isListItem: Bool = {
                     if case let .item(item) = cell, item.cellStyle == .listItem {
@@ -119,7 +143,7 @@ struct CourseSyncSelectorView: View {
                 VStack(spacing: 0) {
                     switch cell {
                     case let .item(item):
-                        ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                        OfflineListCellView(OfflineListCellViewModel(cellStyle: item.cellStyle,
                                                        title: item.title,
                                                        subtitle: item.subtitle,
                                                        selectionState: item.selectionState,

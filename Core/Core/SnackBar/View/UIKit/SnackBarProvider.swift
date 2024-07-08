@@ -27,7 +27,7 @@ public extension UIViewController {
             self,
             tabBarController,
             presentingViewController,
-            presentingViewController?.tabBarController,
+            presentingViewController?.tabBarController
         ]
 
         let provider = possibleProviders
