@@ -177,6 +177,8 @@ final class EditCalendarToDoViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
+    // MARK: - Private methods
+
     private func subscribeIsFieldsTouched<T: Equatable>(to publisher: Published<T>.Publisher) {
         publisher
             .removeDuplicates()

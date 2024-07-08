@@ -94,14 +94,13 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
             trailing: .init(
                 isEnabled: viewModel.isSaveButtonEnabled,
                 isAvailableOffline: false,
-                label: viewModel.saveButtonTitle
-            ) {
-                viewModel.didTapSave.send()
-            }
+                label: viewModel.saveButtonTitle,
+                action: {
+                    viewModel.didTapSave.send()
+                }
+            )
         )
-        .errorAlert(isPresented: $viewModel.shouldShowAlert, presenting: viewModel.alert) {
-            viewModel.shouldShowAlert = false
-        }
+        .errorAlert(isPresented: $viewModel.shouldShowAlert, presenting: viewModel.alert)
     }
 }
 

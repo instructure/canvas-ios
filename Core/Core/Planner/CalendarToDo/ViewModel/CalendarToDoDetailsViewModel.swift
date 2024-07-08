@@ -20,22 +20,50 @@ import Foundation
 import Combine
 
 public class CalendarToDoDetailsViewModel: ObservableObject {
+
+    // MARK: - Output
+
     public let navigationTitle = String(localized: "To Do", bundle: .core)
     public let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
+    @Published private(set) var state: InstUI.ScreenState = .data
     @Published public private(set) var title: String?
     @Published public private(set) var date: String?
     @Published public private(set) var description: String?
     @Published public private(set) var navBarColor: UIColor?
+    @Published public var shouldShowDeleteConfirmation: Bool = false
     @Published public var shouldShowDeleteError: Bool = false
+
+    var isMoreButtonEnabled: Bool {
+        state == .data
+    }
+
+    public let deleteConfirmationAlert = ConfirmationAlertViewModel(
+        title: String(localized: "Delete To Do?", bundle: .core),
+        message: String(localized: "This will permanently delete your To Do item.", bundle: .core),
+        cancelButtonTitle: String(localized: "Cancel", bundle: .core),
+        confirmButtonTitle: String(localized: "Delete", bundle: .core),
+        isDestructive: false
+    )
+
+    // MARK: - Input
+
+    let didTapEdit = PassthroughSubject<WeakViewController, Never>()
+    let didTapDelete = PassthroughSubject<WeakViewController, Never>()
+
+    // MARK: - Private
 
     private let plannable: Plannable
     private let interactor: CalendarToDoInteractor
+    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(plannable: Plannable, interactor: CalendarToDoInteractor) {
+    // MARK: - Init
+
+    public init(plannable: Plannable, interactor: CalendarToDoInteractor, router: Router) {
         self.plannable = plannable
         self.interactor = interactor
+        self.router = router
 
         interactor.getToDo(id: plannable.id)
             .sink(
@@ -53,7 +81,24 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
                 }
             )
             .store(in: &subscriptions)
+
+        didTapEdit
+            .sink { [weak self] in self?.showEditScreen(from: $0) }
+            .store(in: &subscriptions)
+
+        didTapDelete
+            .map { [weak self] in
+                self?.shouldShowDeleteConfirmation = true
+                return $0
+            }
+            .flatMap { [deleteConfirmationAlert] in
+                deleteConfirmationAlert.userConfirmation(value: $0)
+            }
+            .sink { [weak self] in self?.deleteToDo(from: $0) }
+            .store(in: &subscriptions)
     }
+
+    // MARK: - Private methods
 
     private func updateValues(with plannable: Plannable) {
         title = plannable.title
@@ -62,17 +107,19 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
         navBarColor = plannable.color.ensureContrast(against: .backgroundLightest)
     }
 
-    public func showEditScreen(env: AppEnvironment, from source: WeakViewController) {
+    private func showEditScreen(from source: WeakViewController) {
         let weakVC = WeakViewController()
-        let vc = PlannerAssembly.makeEditToDoViewController(plannable: plannable) { _ in
-            env.router.dismiss(weakVC)
+        let vc = PlannerAssembly.makeEditToDoViewController(plannable: plannable) { [router] _ in
+            router.dismiss(weakVC)
         }
         weakVC.setValue(vc)
 
-        env.router.show(vc, from: source, options: .modal(isDismissable: false, embedInNav: true))
+        router.show(vc, from: source, options: .modal(isDismissable: false, embedInNav: true))
     }
 
-    public func deleteToDo(env: AppEnvironment, from source: WeakViewController) {
+    private func deleteToDo(from source: WeakViewController) {
+        state = .data(loadingOverlay: true)
+
         interactor.deleteToDo(id: plannable.id)
             .sink(
                 receiveCompletion: { [weak self] in
@@ -80,11 +127,12 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
                     case .finished:
                         break
                     case .failure:
+                        self?.state = .data
                         self?.shouldShowDeleteError = true
                     }
                 },
-                receiveValue: {
-                    env.router.pop(from: source)
+                receiveValue: { [router] in
+                    router.pop(from: source)
                 }
             )
             .store(in: &subscriptions)

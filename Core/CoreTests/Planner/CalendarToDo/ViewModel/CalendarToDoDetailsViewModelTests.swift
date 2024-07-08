@@ -51,7 +51,7 @@ class CalendarToDoDetailsViewModelTests: CoreTestCase {
 
         interactor = .init()
         interactor.getToDoResult = .success(resultPlannable)
-        testee = .init(plannable: inputPlannable, interactor: interactor)
+        testee = .init(plannable: inputPlannable, interactor: interactor, router: router)
     }
 
     override func tearDown() {
@@ -61,6 +61,8 @@ class CalendarToDoDetailsViewModelTests: CoreTestCase {
         testee = nil
         super.tearDown()
     }
+
+    // MARK: - Initial values
 
     func testProperties() {
         XCTAssertEqual(testee.navigationTitle, String(localized: "To Do", bundle: .core))
@@ -75,20 +77,32 @@ class CalendarToDoDetailsViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.title, resultPlannable.title)
         XCTAssertEqual(testee.description, resultPlannable.details)
         XCTAssertEqual(testee.date, resultPlannable.date?.dateTimeString)
+
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.isMoreButtonEnabled, true)
+        XCTAssertEqual(testee.shouldShowDeleteError, false)
+        XCTAssertEqual(testee.shouldShowDeleteConfirmation, false)
     }
 
     func testInitialValuesWhenGetToDoFails() {
         interactor.getToDoResult = .failure(NSError.internalError())
-        testee = .init(plannable: inputPlannable, interactor: interactor)
+        testee = .init(plannable: inputPlannable, interactor: interactor, router: router)
 
         XCTAssertEqual(testee.title, inputPlannable.title)
         XCTAssertEqual(testee.description, inputPlannable.details)
         XCTAssertEqual(testee.date, inputPlannable.date?.dateTimeString)
+
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.isMoreButtonEnabled, true)
+        XCTAssertEqual(testee.shouldShowDeleteError, false)
+        XCTAssertEqual(testee.shouldShowDeleteConfirmation, false)
     }
 
-    func testShowEditScreen() {
+    // MARK: - Did Tap Edit
+
+    func testDidTapEdit() {
         let sourceVC = UIViewController()
-        testee.showEditScreen(env: environment, from: .init(sourceVC))
+        testee.didTapEdit.send(WeakViewController(sourceVC))
 
         guard let lastPresentation = router.viewControllerCalls.last else {
             return XCTFail()
@@ -96,5 +110,44 @@ class CalendarToDoDetailsViewModelTests: CoreTestCase {
         XCTAssertTrue(lastPresentation.0 is CoreHostingController<EditCalendarToDoScreen>)
         XCTAssertEqual(lastPresentation.1, sourceVC)
         XCTAssertEqual(lastPresentation.2, .modal(isDismissable: false, embedInNav: true))
+
+        XCTAssertEqual(testee.shouldShowDeleteConfirmation, false)
+    }
+
+    // MARK: - Did Tap Delete
+
+    func testDidTapDelete() {
+        testee.didTapDelete.send(.init())
+
+        XCTAssertEqual(testee.shouldShowDeleteConfirmation, true)
+        XCTAssertEqual(testee.shouldShowDeleteError, false)
+        XCTAssertEqual(interactor.deleteToDoCallsCount, 0)
+
+        testee.deleteConfirmationAlert.notifyCompletion(isConfirmed: true)
+        XCTAssertEqual(interactor.deleteToDoCallsCount, 1)
+        XCTAssertEqual(testee.state, .data(loadingOverlay: true))
+        XCTAssertEqual(testee.isMoreButtonEnabled, false)
+    }
+
+    func testDeleteToDoOnSuccess() {
+        interactor.deleteToDoResult = .success
+
+        let sourceVC = UIViewController()
+        testee.didTapDelete.send(WeakViewController(sourceVC))
+        testee.deleteConfirmationAlert.notifyCompletion(isConfirmed: true)
+
+        XCTAssertEqual(router.popped, sourceVC)
+    }
+
+    func testDeleteToDoOnFailure() {
+        interactor.deleteToDoResult = .failure(NSError.internalError())
+
+        testee.didTapDelete.send(.init())
+        testee.deleteConfirmationAlert.notifyCompletion(isConfirmed: true)
+
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.isMoreButtonEnabled, true)
+        XCTAssertEqual(testee.shouldShowDeleteError, true)
+        XCTAssertEqual(router.popped, nil)
     }
 }

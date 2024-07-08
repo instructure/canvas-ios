@@ -77,10 +77,11 @@ public enum PlannerAssembly {
         return host
     }
 
-    public static func makeToDoDetailsViewController(plannable: Plannable) -> UIViewController {
+    public static func makeToDoDetailsViewController(plannable: Plannable, env: AppEnvironment = .shared) -> UIViewController {
         let viewModel = CalendarToDoDetailsViewModel(
             plannable: plannable,
-            interactor: CalendarToDoInteractorLive()
+            interactor: CalendarToDoInteractorLive(),
+            router: env.router
         )
         let view = CalendarToDoDetailsScreen(viewModel: viewModel)
         return CoreHostingController(view)
@@ -97,10 +98,11 @@ public enum PlannerAssembly {
         return EditCalendarToDoScreen(viewModel: viewModel)
     }
 
-    public static func makeToDoDetailsScreenPreview(plannable: Plannable) -> some View {
+    public static func makeToDoDetailsScreenPreview(plannable: Plannable, env: AppEnvironment = .shared) -> some View {
         let viewModel = CalendarToDoDetailsViewModel(
             plannable: plannable,
-            interactor: CalendarToDoInteractorPreview()
+            interactor: CalendarToDoInteractorPreview(),
+            router: env.router
         )
         return CalendarToDoDetailsScreen(viewModel: viewModel)
     }

@@ -28,19 +28,27 @@ public struct CalendarToDoDetailsScreen: View {
     }
 
     public var body: some View {
-        InstUI.BaseScreen(state: .data, config: viewModel.screenConfig) { _ in
+        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { _ in
             eventContent
         }
         .navigationTitle(viewModel.navigationTitle)
-        .navBarItems(trailing: .init(
-            isBackgroundContextColor: true,
-            isAvailableOffline: false,
-            image: .moreLine,
-            accessibilityLabel: String(localized: "More", bundle: .core)
-        ) {
-            viewModel.showEditScreen(env: env, from: controller)
-        })
+        .navBarItems(
+            trailing: .init(
+                isBackgroundContextColor: true,
+                isEnabled: viewModel.isMoreButtonEnabled,
+                isAvailableOffline: false,
+                image: .moreLine,
+                accessibilityLabel: String(localized: "More", bundle: .core),
+                action: {
+                    viewModel.didTapDelete.send(controller)
+                }
+            )
+        )
         .navigationBarStyle(.color(viewModel.navBarColor))
+        .confirmationAlert(
+            isPresented: $viewModel.shouldShowDeleteConfirmation,
+            presenting: viewModel.deleteConfirmationAlert
+        )
         .errorAlert(
             isPresented: $viewModel.shouldShowDeleteError,
             presenting: .init(
@@ -48,9 +56,7 @@ public struct CalendarToDoDetailsScreen: View {
                 message: String(localized: "Your To Do was not deleted, you can try it again.", bundle: .core),
                 buttonTitle: String(localized: "OK", bundle: .core)
             )
-        ) {
-            viewModel.shouldShowDeleteError = false
-        }
+        )
     }
 
     @ViewBuilder
