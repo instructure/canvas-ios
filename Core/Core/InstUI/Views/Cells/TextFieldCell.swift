@@ -98,25 +98,14 @@ extension InstUI {
         }
 
         private var textField: some View {
-            if #available(iOS 16, *) {
-                TextField("", text: $text, prompt: Text(placeholder).foregroundColor(Color.placeholderGray), axis: .vertical)
-                    .focused($isFocused)
-                    .multilineTextAlignment(.leading)
-                    .font(label == nil ? .semibold16 : .regular16, lineHeight: .fit)
-                    .foregroundStyle(Color.textDarkest)
-                    .submitLabel(.done)
-                    .accessibilityLabel(accessibilityLabel)
-                    .accessibilityValue(accessibilityValue)
-            } else {
-                TextField("", text: $text, prompt: Text(placeholder).foregroundColor(Color.placeholderGray))
-                    .focused($isFocused)
-                    .multilineTextAlignment(.leading)
-                    .font(label == nil ? .semibold16 : .regular16, lineHeight: .fit)
-                    .foregroundStyle(Color.textDarkest)
-                    .submitLabel(.done)
-                    .accessibilityLabel(accessibilityLabel)
-                    .accessibilityValue(accessibilityValue)
-            }
+            TextField("", text: $text, prompt: Text(placeholder).foregroundColor(Color.placeholderGray), axis: .vertical)
+                .focused($isFocused)
+                .multilineTextAlignment(.leading)
+                .font(label == nil ? .semibold16 : .regular16, lineHeight: .fit)
+                .foregroundStyle(Color.textDarkest)
+                .submitLabel(.done)
+                .accessibilityLabel(accessibilityLabel)
+                .accessibilityValue(accessibilityValue)
         }
     }
 }
