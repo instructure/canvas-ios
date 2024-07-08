@@ -119,9 +119,9 @@ final class EditCalendarToDoViewModel: ObservableObject {
         date = plannable?.date ?? Clock.now.endOfDay() // end of today, to match default web behaviour
         details = plannable?.details ?? ""
 
-        subscribeisFieldsTouched(to: $title)
-        subscribeisFieldsTouched(to: $date)
-        subscribeisFieldsTouched(to: $details)
+        subscribeIsFieldsTouched(to: $title)
+        subscribeIsFieldsTouched(to: $date)
+        subscribeIsFieldsTouched(to: $details)
 
         calendarListProviderInteractor
             .load(ignoreCache: false)
@@ -177,7 +177,7 @@ final class EditCalendarToDoViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func subscribeisFieldsTouched<T: Equatable>(to publisher: Published<T>.Publisher) {
+    private func subscribeIsFieldsTouched<T: Equatable>(to publisher: Published<T>.Publisher) {
         publisher
             .removeDuplicates()
             .dropFirst()
