@@ -2739,6 +2739,12 @@
             "value" : "%@..."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@..."
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41401,7 +41407,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rebutja"
+            "value" : "Rebutja-ho"
           }
         },
         "cy" : {
@@ -41413,7 +41419,7 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kasser"
+            "value" : "Kassér"
           }
         },
         "da-instk12" : {
@@ -41581,7 +41587,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignorar"
+            "value" : "Descartar"
           }
         },
         "pt-BR" : {
@@ -41605,13 +41611,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avbryt"
+            "value" : "Avvisa"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kasta"
+            "value" : "Avbryt"
           }
         },
         "th" : {
@@ -41641,13 +41647,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "丟棄"
+            "value" : "放棄"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "丟棄"
+            "value" : "放棄"
           }
         }
       }
