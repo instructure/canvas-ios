@@ -40,6 +40,16 @@ public struct CalendarToDoDetailsScreen: View {
             viewModel.showEditScreen(env: env, from: controller)
         })
         .navigationBarStyle(.color(viewModel.navBarColor))
+        .errorAlert(
+            isPresented: $viewModel.shouldShowDeleteError,
+            presenting: .init(
+                title: String(localized: "Delete Unsuccessful!", bundle: .core),
+                message: String(localized: "Your To Do was not deleted, you can try it again.", bundle: .core),
+                buttonTitle: String(localized: "OK", bundle: .core)
+            )
+        ) {
+            viewModel.shouldShowDeleteError = false
+        }
     }
 
     @ViewBuilder

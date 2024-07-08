@@ -27,12 +27,15 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
     @Published public private(set) var date: String?
     @Published public private(set) var description: String?
     @Published public private(set) var navBarColor: UIColor?
+    @Published public var shouldShowDeleteError: Bool = false
 
     private let plannable: Plannable
+    private let interactor: CalendarToDoInteractor
     private var subscriptions = Set<AnyCancellable>()
 
     public init(plannable: Plannable, interactor: CalendarToDoInteractor) {
         self.plannable = plannable
+        self.interactor = interactor
 
         interactor.getToDo(id: plannable.id)
             .sink(
@@ -67,5 +70,23 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
         weakVC.setValue(vc)
 
         env.router.show(vc, from: source, options: .modal(isDismissable: false, embedInNav: true))
+    }
+
+    public func deleteToDo(env: AppEnvironment, from source: WeakViewController) {
+        interactor.deleteToDo(id: plannable.id)
+            .sink(
+                receiveCompletion: { [weak self] in
+                    switch $0 {
+                    case .finished:
+                        break
+                    case .failure:
+                        self?.shouldShowDeleteError = true
+                    }
+                },
+                receiveValue: {
+                    env.router.pop(from: source)
+                }
+            )
+            .store(in: &subscriptions)
     }
 }
