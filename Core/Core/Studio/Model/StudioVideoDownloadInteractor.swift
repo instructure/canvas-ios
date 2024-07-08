@@ -29,9 +29,14 @@ public struct StudioOfflineVideo {
 
 public class StudioVideoDownloadInteractor {
     private let rootDirectory: URL
+    private let captionsInteractor: StudioCaptionsInteractor
 
-    public init(rootDirectory: URL) {
+    public init(
+        rootDirectory: URL,
+        captionsInteractor: StudioCaptionsInteractor
+    ) {
         self.rootDirectory = rootDirectory
+        self.captionsInteractor = captionsInteractor
     }
 
     public func download(_ item: APIStudioMediaItem) -> AnyPublisher<StudioOfflineVideo, Error> {
@@ -52,8 +57,11 @@ public class StudioVideoDownloadInteractor {
                 .collect()
                 .mapToVoid()
             }
-            .flatMap {
-                item.captions.write(to: mediaFolder)
+            .flatMap { [captionsInteractor] in
+                captionsInteractor.write(
+                    captions: item.captions,
+                    to: mediaFolder
+                )
             }
             .tryMap { captionURLs in
                 let posterLocation = mediaFolder.appendingPathComponent("poster.png", isDirectory: false)

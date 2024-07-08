@@ -28,6 +28,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
     private let studioAuthInteractor: StudioAPIAuthInteractor
     private let studioIFrameReplaceInteractor: StudioIFrameReplaceInteractor
     private let studioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor
+    private let captionsInteractor: StudioCaptionsInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     public init(
@@ -35,12 +36,14 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         studioAuthInteractor: StudioAPIAuthInteractor,
         studioIFrameReplaceInteractor: StudioIFrameReplaceInteractor,
         studioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor,
+        captionsInteractor: StudioCaptionsInteractor,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) {
         self.offlineDirectory = offlineDirectory
         self.studioAuthInteractor = studioAuthInteractor
         self.studioIFrameReplaceInteractor = studioIFrameReplaceInteractor
         self.studioIFrameDiscoveryInteractor = studioIFrameDiscoveryInteractor
+        self.captionsInteractor = captionsInteractor
         self.scheduler = scheduler
     }
 
@@ -67,8 +70,8 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                         return (mediaItems, mediaLTIIDsToDownload, iframes)
                     }
             }
-            .flatMap { [offlineDirectory] (mediaItems, mediaLTIIDsToDownload, iframes: StudioIFramesByLocation) in
-                Self.downloadStudioVideos(
+            .flatMap { [self, offlineDirectory] (mediaItems, mediaLTIIDsToDownload, iframes: StudioIFramesByLocation) in
+                downloadStudioVideos(
                     offlineDirectory: offlineDirectory,
                     mediaItems: mediaItems,
                     mediaLTIIDsToDownload: mediaLTIIDsToDownload
@@ -110,13 +113,16 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
             .eraseToAnyPublisher()
     }
 
-    private static func downloadStudioVideos(
+    private func downloadStudioVideos(
         offlineDirectory: URL,
         mediaItems: [APIStudioMediaItem],
         mediaLTIIDsToDownload: [String]
     ) -> AnyPublisher<[StudioOfflineVideo], Error> {
         let studioDirectory = offlineDirectory.appendingPathComponent("studio", isDirectory: true)
-        let interactor = StudioVideoDownloadInteractor(rootDirectory: studioDirectory)
+        let interactor = StudioVideoDownloadInteractor(
+            rootDirectory: studioDirectory,
+            captionsInteractor: captionsInteractor
+        )
         let mediaItemsForOffline = mediaItems.filter { mediaLTIIDsToDownload.contains($0.lti_launch_id) }
 
         return Publishers.Sequence(sequence: mediaItemsForOffline)

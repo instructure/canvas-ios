@@ -19,17 +19,52 @@
 import Combine
 import CombineSchedulers
 
-public extension APIStudioMediaItem.Caption {
-    var vttFileName: String { "\(srclang).vtt" }
+public class StudioCaptionsInteractor {
 
-    func write(
+    public func write(
+        captions: [APIStudioMediaItem.Caption],
+        to directory: URL
+    ) -> AnyPublisher<[URL], Error> {
+        Publishers
+            .Sequence(sequence: captions)
+            .flatMap { [self] caption in
+                self.write(caption: caption, to: directory)
+            }
+            .collect()
+            .eraseToAnyPublisher()
+    }
+
+    private func convertSrtToVttFormat(srtCaption: String) -> String {
+        var vttCaption = srtCaption
+
+        if !vttCaption.hasPrefix("WEBVTT") {
+            vttCaption.insert(contentsOf: "WEBVTT\n\n", at: vttCaption.startIndex)
+        }
+
+        // Replace , milliseconds separator with .
+        let pattern = #"(\d{2}:\d{2}:\d{2}),(\d{3}) --> (\d{2}:\d{2}:\d{2}),(\d{3})"#
+        // swiftlint:disable:next force_try
+        let regex = try! NSRegularExpression(pattern: pattern, options: [])
+
+        vttCaption = regex.stringByReplacingMatches(
+            in: vttCaption,
+            options: [],
+            range: vttCaption.nsRange,
+            withTemplate: "$1.$2 --> $3.$4"
+        )
+
+        return vttCaption
+    }
+
+    private func write(
+        caption: APIStudioMediaItem.Caption,
         to directory: URL
     ) -> AnyPublisher<URL, Error> {
-        Just(data)
-            .tryMap { stringData in
-                var output = "WEBVTT\n\n" + stringData
-                output = output.replacingOccurrences(of: ",", with: ".")
-                return try output.dataWithError(using: .utf8)
+        let vttFileName = "\(caption.srclang).vtt"
+        return Just(caption.data)
+            .tryMap { [self] srtCaptionString in
+                let vttCaptionString = convertSrtToVttFormat(srtCaption: srtCaptionString)
+                return try vttCaptionString.dataWithError(using: .utf8)
             }
             .map { fileData in
                 (fileData, directory.appendingPathComponent(vttFileName, isDirectory: false))
@@ -38,21 +73,6 @@ public extension APIStudioMediaItem.Caption {
                 try fileData.write(to: fileURL)
                 return fileURL
             }
-            .eraseToAnyPublisher()
-    }
-}
-
-public extension Array where Element == APIStudioMediaItem.Caption {
-
-    func write(
-        to directory: URL
-    ) -> AnyPublisher<[URL], Error> {
-        Publishers
-            .Sequence(sequence: self)
-            .flatMap { caption in
-                caption.write(to: directory)
-            }
-            .collect()
             .eraseToAnyPublisher()
     }
 }

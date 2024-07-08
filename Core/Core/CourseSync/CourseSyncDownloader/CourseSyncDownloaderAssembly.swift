@@ -42,7 +42,10 @@ public enum CourseSyncDownloaderAssembly {
             offlineDirectory: offlineFolder,
             studioAuthInteractor: StudioAPIAuthInteractor(),
             studioIFrameReplaceInteractor: StudioIFrameReplaceInteractor(),
-            studioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor(studioHtmlParser: StudioHTMLParserInteractor()),
+            studioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor(
+                studioHtmlParser: StudioHTMLParserInteractor()
+            ),
+            captionsInteractor: StudioCaptionsInteractor(),
             scheduler: scheduler
         )
 
