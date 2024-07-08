@@ -58,7 +58,7 @@ class AssignmentCellViewModelTests: CoreTestCase {
         environment.app = .teacher
         let assignment = Assignment.make(from: .make(course_id: "testCourse", discussion_topic: .make(id: "test")))
         let testee = AssignmentCellViewModel(assignment: assignment, courseColor: nil)
-        XCTAssertEqual(testee.route, URL(string: "/courses/testCourse/discussion_topics/test"))
+        XCTAssertEqual(testee.route, URL(string: "/courses/testCourse/assignments/1"))
     }
 
     func testStudentRouteToAssignmentHTML() {
