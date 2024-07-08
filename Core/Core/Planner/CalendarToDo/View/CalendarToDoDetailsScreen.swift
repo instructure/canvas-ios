@@ -33,14 +33,13 @@ public struct CalendarToDoDetailsScreen: View {
         }
         .navigationTitle(viewModel.navigationTitle)
         .navBarItems(
-            trailing: .init(
+            trailing: .moreIcon(
                 isBackgroundContextColor: true,
                 isEnabled: viewModel.isMoreButtonEnabled,
                 isAvailableOffline: false,
-                image: .moreLine,
-                accessibilityLabel: String(localized: "More", bundle: .core),
-                action: {
-                    viewModel.didTapDelete.send(controller)
+                menuContent: {
+                    InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
+                    InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
                 }
             )
         )
