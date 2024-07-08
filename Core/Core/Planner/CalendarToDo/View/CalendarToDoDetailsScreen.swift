@@ -35,7 +35,8 @@ public struct CalendarToDoDetailsScreen: View {
         .navBarItems(trailing: .init(
             isBackgroundContextColor: true,
             isAvailableOffline: false,
-            image: .moreLine
+            image: .moreLine,
+            accessibilityLabel: String(localized: "More", bundle: .core)
         ) {
             viewModel.showEditScreen(env: env, from: controller)
         })

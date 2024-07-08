@@ -69,6 +69,7 @@ extension InstUI {
             isEnabled isEnabledOverride: Bool? = nil,
             isAvailableOffline: Bool = true,
             image: Image,
+            accessibilityLabel: String,
             action: @escaping () -> Void
         ) {
             self.init(
@@ -77,7 +78,7 @@ extension InstUI {
                 isAvailableOffline: isAvailableOffline,
                 action: action
             ) {
-                AnyView(image)
+                AnyView(image.accessibilityLabel(accessibilityLabel))
             }
         }
 
@@ -185,7 +186,7 @@ private func previewsFactory(isContextBackground: Bool) -> some View {
         InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: false, label: "Disabled button") { }
             .disabled(false)
 
-        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: true, image: .settingsLine) { }
+        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: true, image: .settingsLine, accessibilityLabel: "Settings") { }
 
         InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: false, action: {}) {
             AnyView(Image.settingsLine)
