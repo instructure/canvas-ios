@@ -19,24 +19,7 @@
 @testable import Core
 import XCTest
 
-class StudioCaptionSaveTests: XCTestCase {
-    private let directory = URL.Directories.temporary.appendingPathComponent(
-        "StudioCaptionSaveTests",
-        isDirectory: true
-    )
-
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        try FileManager.default.createDirectory(
-            at: directory,
-            withIntermediateDirectories: true
-        )
-    }
-
-    override func tearDownWithError() throws {
-        try FileManager.default.removeItem(at: directory)
-        try super.tearDownWithError()
-    }
+class StudioCaptionSaveTests: AbstractStudioTest {
 
     @available(iOS 16.0, *)
     func testSavesCaptions() throws {
@@ -54,17 +37,17 @@ class StudioCaptionSaveTests: XCTestCase {
         )
 
         // WHEN
-        XCTAssertFinish([caption1, caption2].save(
-            to: directory
+        XCTAssertFinish([caption1, caption2].write(
+            to: workingDirectory
         ))
 
         // THEN
-        let caption1File = directory.appendingPathComponent("en.srt", isDirectory: false)
+        let caption1File = workingDirectory.appendingPathComponent("en.vtt", isDirectory: false)
         XCTAssertTrue(FileManager.default.fileExists(atPath: caption1File.path()))
         let caption1FileData = try Data(contentsOf: caption1File)
         XCTAssertEqual(String(data: caption1FileData, encoding: .utf8), caption1Content)
 
-        let caption2File = directory.appendingPathComponent("hu.srt", isDirectory: false)
+        let caption2File = workingDirectory.appendingPathComponent("hu.vtt", isDirectory: false)
         XCTAssertTrue(FileManager.default.fileExists(atPath: caption2File.path()))
         let caption2FileData = try Data(contentsOf: caption2File)
         XCTAssertEqual(String(data: caption2FileData, encoding: .utf8), caption2Content)

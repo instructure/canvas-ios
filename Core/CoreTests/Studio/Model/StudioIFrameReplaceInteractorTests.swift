@@ -19,34 +19,34 @@
 @testable import Core
 import XCTest
 
-class StudioLTIReplaceTests: XCTestCase {
+class StudioIFrameReplaceInteractorTests: AbstractStudioTest {
 
-    func testReplacesStudioIFrame() {
-        let iframe = "<iframe param=1></iframe>"
-        let html = """
-        <p>Test<br/>
-        \(iframe)
-        </p>
-        """
-        let videoURL = URL(string: "/video")!
+    func testReplacesStudioIFrame() throws {
+        let videoURL = URL(string: "/video.mp4")!
+        let videoPosterURL = URL(string: "/video.png")!
         let mimeType = "video/mp4"
-        let subtitleEnglish = URL(string: "/en.srt")!
-        let subtitleHungarian = URL(string: "/hu.srt")!
-
-        let result = StudioIFrameReplaceInteractor.replaceStudioIFrame(
-            html: html,
-            iFrame: iframe,
-            video: videoURL,
+        let subtitle1URL = URL(string: "/en.srt")!
+        let subtitle2URL = URL(string: "/hu.srt")!
+        let studioOfflineVideo = StudioOfflineVideo(
+            ltiLaunchID: StudioTestData.mediaID,
+            videoLocation: videoURL,
+            videoPosterLocation: videoPosterURL,
             videoMimeType: mimeType,
-            captions: [subtitleEnglish, subtitleHungarian]
+            captionLocations: [subtitle1URL, subtitle2URL]
+        )
+
+        let result = StudioIFrameReplaceInteractor().replaceStudioIFrame(
+            html: StudioTestData.html,
+            iFrameHtml: StudioTestData.iframe,
+            studioVideo: studioOfflineVideo
         )
 
         let expectedResult = """
         <p>Test<br/>
         <video>
           <source src="\(videoURL)" type="\(mimeType)" />
-          <track kind="captions" src="\(subtitleEnglish)" srclang="en"/>
-          <track kind="captions" src="\(subtitleHungarian)" srclang="hu"/>
+          <track kind="captions" src="\(subtitle1URL)" srclang="en"/>
+          <track kind="captions" src="\(subtitle2URL)" srclang="hu"/>
         </video>
         </p>
         """

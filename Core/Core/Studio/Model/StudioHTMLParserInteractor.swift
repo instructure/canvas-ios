@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct StudioIFrame {
+public struct StudioIFrame: Equatable {
     /// The studio media ID the iframe pointing to. We use this to get the media's real ID from the API.
     let mediaLTILaunchID: String
     /// The html of the frame, we use this to replace the iframe with a video tag pointing to the downloded media.

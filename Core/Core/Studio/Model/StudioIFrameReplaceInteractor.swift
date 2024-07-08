@@ -78,7 +78,7 @@ public class StudioIFrameReplaceInteractor {
                 continue
             }
 
-            captionTags.append("  <track kind=\"captions\" src=\"\(caption.path)\" srclang=\"\(languageCode)\"/ >\n")
+            captionTags.append("  <track kind=\"captions\" src=\"\(caption.path)\" srclang=\"\(languageCode)\" />\n")
         }
 
         let videoTag = """

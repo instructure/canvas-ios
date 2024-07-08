@@ -53,7 +53,7 @@ public class StudioVideoDownloadInteractor {
                 .mapToVoid()
             }
             .flatMap {
-                item.captions.save(to: mediaFolder)
+                item.captions.write(to: mediaFolder)
             }
             .tryMap { captionURLs in
                 let posterLocation = mediaFolder.appendingPathComponent("poster.png", isDirectory: false)

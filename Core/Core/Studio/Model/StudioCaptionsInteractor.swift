@@ -20,17 +20,19 @@ import Combine
 import CombineSchedulers
 
 public extension APIStudioMediaItem.Caption {
-    var srtFileName: String { "\(srclang).srt" }
+    var vttFileName: String { "\(srclang).vtt" }
 
-    func save(
+    func write(
         to directory: URL
     ) -> AnyPublisher<URL, Error> {
         Just(data)
             .tryMap { stringData in
-                try stringData.dataWithError(using: .utf8)
+                var output = "WEBVTT\n\n" + stringData
+                output = output.replacingOccurrences(of: ",", with: ".")
+                return try output.dataWithError(using: .utf8)
             }
             .map { fileData in
-                (fileData, directory.appendingPathComponent(srtFileName, isDirectory: false))
+                (fileData, directory.appendingPathComponent(vttFileName, isDirectory: false))
             }
             .tryMap { fileData, fileURL in
                 try fileData.write(to: fileURL)
@@ -42,13 +44,13 @@ public extension APIStudioMediaItem.Caption {
 
 public extension Array where Element == APIStudioMediaItem.Caption {
 
-    func save(
+    func write(
         to directory: URL
     ) -> AnyPublisher<[URL], Error> {
         Publishers
             .Sequence(sequence: self)
             .flatMap { caption in
-                caption.save(to: directory)
+                caption.write(to: directory)
             }
             .collect()
             .eraseToAnyPublisher()
