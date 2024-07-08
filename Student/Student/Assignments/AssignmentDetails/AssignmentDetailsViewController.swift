@@ -500,9 +500,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             buttonConfig.image = .arrowOpenDownSolid
                 .scaleTo(.init(width: 14, height: 14))
                 .withRenderingMode(.alwaysTemplate)
-            if #available(iOS 16.0, *) {
-                buttonConfig.indicator = .none
-            }
+            buttonConfig.indicator = .none
 
             attemptDateButton.changesSelectionAsPrimaryAction = true
             attemptDateButton.showsMenuAsPrimaryAction = true

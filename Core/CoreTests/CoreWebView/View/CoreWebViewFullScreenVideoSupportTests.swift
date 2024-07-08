@@ -20,7 +20,6 @@ import Core
 import WebKit
 import XCTest
 
-@available(iOS 16.0, *)
 class CoreWebViewFullScreenVideoSupportTests: XCTestCase {
 
     func testEnterFullScreenMode() {
@@ -57,7 +56,6 @@ class CoreWebViewFullScreenVideoSupportTests: XCTestCase {
     }
 }
 
-@available(iOS 16.0, *)
 class MockWebView: CoreWebView {
     var mockedFullscreenState: FullscreenState? {
         willSet {

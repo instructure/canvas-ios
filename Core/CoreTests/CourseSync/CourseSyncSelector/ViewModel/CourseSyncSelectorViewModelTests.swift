@@ -181,7 +181,7 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
         selectedSizeSubject.eraseToAnyPublisher()
     }
 
-    func setSelected(selection _: Core.CourseEntrySelection, selectionState _: ListCellView.SelectionState) {}
+    func setSelected(selection _: Core.CourseEntrySelection, selectionState _: OfflineListCellView.SelectionState) {}
 
     let saveSelectionSubject = PassthroughSubject<Void, Never>()
     func saveSelection() {
