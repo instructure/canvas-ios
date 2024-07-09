@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct APIStudioMediaItem: Codable {
+public struct APIStudioMediaItem: Codable, Equatable {
     public struct Caption: Codable, Equatable {
         /// Language of the caption
         public let srclang: String

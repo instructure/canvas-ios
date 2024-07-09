@@ -1,0 +1,191 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2024-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Combine
+@testable import Core
+import XCTest
+
+class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
+
+    func testDownload() {
+        let mockOfflineDirectory = URL(string: "/")!
+
+        // Step 1 - Discover iframes
+        let mockIFrameDiscoveryInteracor = MockStudioIFrameDiscoveryInteractor()
+        let mockLocalHtmlContentURL = URL(
+            string: "course_1/pages/body.html"
+        )!
+        let mockDiscoveredIFrames = [StudioIFrame(
+            mediaLTILaunchID: StudioTestData.ltiLaunchID,
+            sourceHtml: StudioTestData.iframe
+        )]
+        mockIFrameDiscoveryInteracor.mockedDiscoverResult = [
+            mockLocalHtmlContentURL: mockDiscoveredIFrames
+        ]
+
+        // Step 2 - Authenticate with the Studio API
+        let mockAuthInteractor = MockStudioAPIAuthInteractor()
+
+        // Step 3 - Download video metadata
+        let mockVideoRemoteURL = URL(string: "/")!
+        let apiMediaItem = APIStudioMediaItem(
+            id: ID("api_media_id"),
+            lti_launch_id: StudioTestData.ltiLaunchID,
+            title: "",
+            mime_type: "",
+            size: 0,
+            url: mockVideoRemoteURL,
+            captions: []
+        )
+        let studioMediaAPICalled = expectation(description: "Studio media API called")
+        api.mock(GetStudioCourseMediaRequest(courseId: "1")) { _ in
+            studioMediaAPICalled.fulfill()
+            return ([apiMediaItem], nil, nil)
+        }
+
+        // Step 4 - Download actual video files
+        let mockDownloadInteractor = MockStudioVideoDownloadInteractor()
+        let mockOfflineVideo = StudioOfflineVideo(
+            ltiLaunchID: StudioTestData.ltiLaunchID,
+            videoLocation: URL(string: "/")!,
+            videoPosterLocation: URL(string: "/")!,
+            videoMimeType: "",
+            captionLocations: []
+        )
+        mockDownloadInteractor.mockedOfflineVideoReponse = mockOfflineVideo
+
+        // Step 5 - Write offline urls back to htmls
+        let mockIFrameReplaceInteractor = MockStudioIFrameReplaceInteractor()
+
+        let testee = CourseSyncStudioMediaInteractorLive(
+            offlineDirectory: mockOfflineDirectory,
+            authInteractor: mockAuthInteractor,
+            iFrameReplaceInteractor: mockIFrameReplaceInteractor,
+            iFrameDiscoveryInteractor: mockIFrameDiscoveryInteracor,
+            downloadInteractor: mockDownloadInteractor,
+            scheduler: .immediate
+        )
+
+        XCTAssertFinish(testee.getContent(courseIDs: ["1"]))
+
+        // Step 1
+        XCTAssertTrue(mockIFrameDiscoveryInteracor.discoverCalled)
+        XCTAssertEqual(
+            mockIFrameDiscoveryInteracor.receivedOfflineDirectory,
+            mockOfflineDirectory
+        )
+        XCTAssertEqual(
+            mockIFrameDiscoveryInteracor.receivedCourseIDs,
+            ["1"]
+        )
+        
+        // Step 2
+        XCTAssertTrue(mockAuthInteractor.makeAPICalled)
+        
+        // Step 3
+        wait(for: [studioMediaAPICalled], timeout: 1)
+
+        // Step 4
+        XCTAssertEqual(
+            mockDownloadInteractor.receivedMediaItem,
+            apiMediaItem
+        )
+
+        // Step 5
+        XCTAssertEqual(
+            mockIFrameReplaceInteractor.receivedHtmlURL,
+            mockLocalHtmlContentURL
+        )
+        XCTAssertEqual(
+            mockIFrameReplaceInteractor.receivedIFrames,
+            mockDiscoveredIFrames
+        )
+        XCTAssertEqual(
+            mockIFrameReplaceInteractor.receivedOfflineVideos,
+            [mockOfflineVideo]
+        )
+    }
+}
+
+private class MockStudioAPIAuthInteractor: StudioAPIAuthInteractor {
+    private(set) var makeAPICalled = false
+
+    public override func makeStudioAPI() -> AnyPublisher<API, AuthError> {
+        makeAPICalled = true
+        return Just(API())
+            .setFailureType(to: AuthError.self)
+            .eraseToAnyPublisher()
+    }
+}
+
+private class MockStudioIFrameReplaceInteractor: StudioIFrameReplaceInteractor {
+    private(set) var receivedHtmlURL: URL?
+    private(set) var receivedIFrames: [StudioIFrame] = []
+    private(set) var receivedOfflineVideos: [StudioOfflineVideo] = []
+
+    public override func replaceStudioIFrames(
+        inHtmlAtURL htmlURL: URL,
+        iframes: [StudioIFrame],
+        offlineVideos: [StudioOfflineVideo]
+    ) throws {
+        receivedHtmlURL = htmlURL
+        receivedIFrames = iframes
+        receivedOfflineVideos = offlineVideos
+    }
+}
+
+private class MockStudioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor {
+    public var mockedDiscoverResult: StudioIFramesByLocation!
+    private(set) var discoverCalled = false
+    private(set) var receivedOfflineDirectory: URL?
+    private(set) var receivedCourseIDs: [String] = []
+
+    init() {
+        super.init(studioHtmlParser: MockStudioHTMLParserInteractor())
+    }
+
+    public override func discoverStudioIFrames(
+        in offlineDirectory: URL,
+        courseIDs: [String]
+    ) -> AnyPublisher<StudioIFramesByLocation, Never> {
+        discoverCalled = true
+        receivedOfflineDirectory = offlineDirectory
+        receivedCourseIDs = courseIDs
+        return Just(mockedDiscoverResult).eraseToAnyPublisher()
+    }
+}
+
+private class MockStudioVideoDownloadInteractor: StudioVideoDownloadInteractor {
+    public var mockedOfflineVideoReponse: StudioOfflineVideo!
+    private(set) var receivedMediaItem: APIStudioMediaItem?
+
+    init() {
+        super.init(rootDirectory: URL(string: "/")!, captionsInteractor: MockStudioCaptionsInteractor())
+    }
+
+    public override func download(
+        _ item: APIStudioMediaItem
+    ) -> AnyPublisher<StudioOfflineVideo, Error> {
+        receivedMediaItem = item
+        return Just(mockedOfflineVideoReponse)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+}
+
+private class MockStudioHTMLParserInteractor: StudioHTMLParserInteractor {}

@@ -28,7 +28,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
     private let studioAuthInteractor: StudioAPIAuthInteractor
     private let studioIFrameReplaceInteractor: StudioIFrameReplaceInteractor
     private let studioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor
-    private let captionsInteractor: StudioCaptionsInteractor
+    private let downloadInteractor: StudioVideoDownloadInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     public init(
@@ -36,14 +36,14 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         authInteractor: StudioAPIAuthInteractor,
         iFrameReplaceInteractor: StudioIFrameReplaceInteractor,
         iFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor,
-        captionsInteractor: StudioCaptionsInteractor,
+        downloadInteractor: StudioVideoDownloadInteractor,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) {
         self.offlineDirectory = offlineDirectory
         self.studioAuthInteractor = authInteractor
         self.studioIFrameReplaceInteractor = iFrameReplaceInteractor
         self.studioIFrameDiscoveryInteractor = iFrameDiscoveryInteractor
-        self.captionsInteractor = captionsInteractor
+        self.downloadInteractor = downloadInteractor
         self.scheduler = scheduler
     }
 
@@ -91,7 +91,10 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                 return ()
             }
             .catch { error in
-                print("XXX \(error)")
+                Analytics.shared.logError(
+                    name: "Studio Offline Sync Failed",
+                    reason: error.localizedDescription
+                )
                 return Just(())
             }
             .eraseToAnyPublisher()
@@ -118,24 +121,13 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         mediaItems: [APIStudioMediaItem],
         mediaLTIIDsToDownload: [String]
     ) -> AnyPublisher<[StudioOfflineVideo], Error> {
-        let studioDirectory = offlineDirectory.appendingPathComponent("studio", isDirectory: true)
-        let interactor = StudioVideoDownloadInteractor(
-            rootDirectory: studioDirectory,
-            captionsInteractor: captionsInteractor
-        )
         let mediaItemsForOffline = mediaItems.filter { mediaLTIIDsToDownload.contains($0.lti_launch_id) }
 
         return Publishers.Sequence(sequence: mediaItemsForOffline)
-            .flatMap(maxPublishers: .max(1)) { mediaItem in
-                interactor.download(mediaItem)
+            .flatMap(maxPublishers: .max(1)) { [downloadInteractor] mediaItem in
+                downloadInteractor.download(mediaItem)
             }
             .collect()
             .eraseToAnyPublisher()
-    }
-
-    private static func extractUniqueMediaIDs(_ mediaByFile: [URL: [StudioIFrame]]) -> [String] {
-        let mediaEntities = mediaByFile.values.flatMap { $0 }
-        let mediaIDs = mediaEntities.map(\.mediaLTILaunchID)
-        return Array(Set(mediaIDs))
     }
 }

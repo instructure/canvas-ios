@@ -35,20 +35,6 @@ public enum CourseSyncDownloaderAssembly {
         let calendarEventHtmlParser = makeHTMLParser(for: .calendarEvents, loginSession: loginSession, scheduler: scheduler)
         let discussionHtmlParser = makeHTMLParser(for: .discussions, loginSession: loginSession, scheduler: scheduler)
 
-        let offlineFolder = URL.Directories.documents.appendingPathComponent(
-            URL.Paths.Offline.root(sessionID: loginSession?.uniqueID ?? "")
-        )
-        let studioMediaInteractor = CourseSyncStudioMediaInteractorLive(
-            offlineDirectory: offlineFolder,
-            authInteractor: StudioAPIAuthInteractor(),
-            iFrameReplaceInteractor: StudioIFrameReplaceInteractor(),
-            iFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor(
-                studioHtmlParser: StudioHTMLParserInteractor()
-            ),
-            captionsInteractor: StudioCaptionsInteractor(),
-            scheduler: scheduler
-        )
-
         let contentInteractors: [CourseSyncContentInteractor] = [
             CourseSyncPagesInteractorLive(htmlParser: pageHtmlParser),
             CourseSyncPeopleInteractorLive(),
@@ -63,17 +49,27 @@ public enum CourseSyncDownloaderAssembly {
         let progressInteractor = CourseSyncProgressObserverInteractorLive()
         let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, activityName: "Offline Sync")
 
-        return CourseSyncInteractorLive(brandThemeInteractor: BrandThemeDownloaderInteractor(),
-                                        contentInteractors: contentInteractors,
-                                        filesInteractor: CourseSyncFilesInteractorLive(),
-                                        modulesInteractor: CourseSyncModulesInteractorLive(pageHtmlParser: pageHtmlParser, quizHtmlParser: quizHtmlParser),
-                                        progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-                                        notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: progressInteractor),
-                                        courseListInteractor: AllCoursesAssembly.makeCourseListInteractor(),
-                                        studioMediaInteractor: studioMediaInteractor,
-                                        backgroundActivity: backgroundActivity,
-                                        scheduler: scheduler,
-                                        env: env)
+        return CourseSyncInteractorLive(
+            brandThemeInteractor: BrandThemeDownloaderInteractor(),
+            contentInteractors: contentInteractors,
+            filesInteractor: CourseSyncFilesInteractorLive(),
+            modulesInteractor: CourseSyncModulesInteractorLive(
+                pageHtmlParser: pageHtmlParser,
+                quizHtmlParser: quizHtmlParser
+            ),
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
+            notificationInteractor: CourseSyncNotificationInteractor(
+                progressInteractor: progressInteractor
+            ),
+            courseListInteractor: AllCoursesAssembly.makeCourseListInteractor(),
+            studioMediaInteractor: makeStudioDownloader(
+                loginSession: loginSession,
+                scheduler: scheduler
+            ),
+            backgroundActivity: backgroundActivity,
+            scheduler: scheduler,
+            env: env
+        )
     }
 
     private static func makeHTMLParser(
@@ -92,6 +88,30 @@ public enum CourseSyncDownloaderAssembly {
         return HTMLParserLive(
             sessionId: sessionId,
             downloadInteractor: interactor
+        )
+    }
+
+    private static func makeStudioDownloader(
+        loginSession: LoginSession?,
+        scheduler: AnySchedulerOf<DispatchQueue>
+    ) -> CourseSyncStudioMediaInteractor {
+        let offlineFolder = URL.Directories.documents.appendingPathComponent(
+            URL.Paths.Offline.root(sessionID: loginSession?.uniqueID ?? "")
+        )
+        let studioDirectory = offlineFolder.appendingPathComponent("studio", isDirectory: true)
+        let studioDownloadInteractor = StudioVideoDownloadInteractor(
+            rootDirectory: studioDirectory,
+            captionsInteractor: StudioCaptionsInteractor()
+        )
+        return CourseSyncStudioMediaInteractorLive(
+            offlineDirectory: offlineFolder,
+            authInteractor: StudioAPIAuthInteractor(),
+            iFrameReplaceInteractor: StudioIFrameReplaceInteractor(),
+            iFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor(
+                studioHtmlParser: StudioHTMLParserInteractor()
+            ),
+            downloadInteractor: studioDownloadInteractor,
+            scheduler: scheduler
         )
     }
 }
