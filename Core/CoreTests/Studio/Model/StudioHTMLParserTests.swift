@@ -24,7 +24,7 @@ class StudioHTMLParserTests: AbstractStudioTest {
     func testExtractsMediaID() {
         let result = StudioTestData.iframe.extractStudioMediaIDFromIFrame()
 
-        XCTAssertEqual(result, StudioTestData.mediaID)
+        XCTAssertEqual(result, StudioTestData.ltiLaunchID)
     }
 
     func testExtractsMediaFromFile() throws {
@@ -41,7 +41,7 @@ class StudioHTMLParserTests: AbstractStudioTest {
             result,
             [
                 .init(
-                    mediaLTILaunchID: StudioTestData.mediaID,
+                    mediaLTILaunchID: StudioTestData.ltiLaunchID,
                     sourceHtml: StudioTestData.iframe
                 )
             ]

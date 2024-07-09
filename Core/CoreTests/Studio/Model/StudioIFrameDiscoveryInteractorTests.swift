@@ -42,7 +42,7 @@ class StudioIFrameDiscoveryInteractorTests: AbstractStudioTest {
 
         // THEN
         let expectedResult = [validCourseHtmlURL: [StudioIFrame(
-            mediaLTILaunchID: StudioTestData.mediaID,
+            mediaLTILaunchID: StudioTestData.ltiLaunchID,
             sourceHtml: StudioTestData.iframe
         )]]
         XCTAssertSingleOutputEquals(

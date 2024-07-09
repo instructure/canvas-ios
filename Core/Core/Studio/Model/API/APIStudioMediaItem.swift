@@ -19,7 +19,7 @@
 import Foundation
 
 public struct APIStudioMediaItem: Codable {
-    public struct Caption: Codable {
+    public struct Caption: Codable, Equatable {
         /// Language of the caption
         public let srclang: String
         /// Custom label of the caption

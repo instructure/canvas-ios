@@ -28,7 +28,7 @@ class StudioIFrameReplaceInteractorTests: AbstractStudioTest {
         let subtitle1URL = URL(string: "/en.srt")!
         let subtitle2URL = URL(string: "/hu.srt")!
         let studioOfflineVideo = StudioOfflineVideo(
-            ltiLaunchID: StudioTestData.mediaID,
+            ltiLaunchID: StudioTestData.ltiLaunchID,
             videoLocation: videoURL,
             videoPosterLocation: videoPosterURL,
             videoMimeType: mimeType,

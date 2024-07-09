@@ -18,7 +18,7 @@
 
 import Combine
 
-public struct StudioOfflineVideo {
+public struct StudioOfflineVideo: Equatable {
     public let ltiLaunchID: String
     public let videoLocation: URL
     /// The png file of the first frame of the video.

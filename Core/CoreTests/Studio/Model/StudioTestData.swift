@@ -19,9 +19,9 @@
 import Foundation
 
 struct StudioTestData {
-    static let mediaID = "65a145cf-f645-4318-8486-dbef129edfc0-1"
+    static let ltiLaunchID = "65a145cf-f645-4318-8486-dbef129edfc0-1"
     // swiftlint:disable:next line_length
-    static let iframe = "<iframe class=\"lti-embed\" style=\"width: 720px; height: 405px; display: inline-block;\" title=\"bookmarks\" src=\"https://test.com/courses/123/external_tools/retrieve?display=borderless&amp;url=https%3A%2F%2Ftestmedia.com%2Flti%2Flaunch%3Fcustom_arc_launch_type%3Dbare_embed%26custom_arc_media_id%3D\(mediaID)%26custom_arc_start_at%3D0\" width=\"720\" height=\"405\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"webkitallowfullscreen\" mozallowfullscreen=\"mozallowfullscreen\" allow=\"geolocation *; microphone *; camera *; midi *; encrypted-media *; autoplay *; clipboard-write *; display-capture *\" data-studio-resizable=\"true\" data-studio-tray-enabled=\"true\" data-studio-convertible-to-link=\"true\"></iframe>"
+    static let iframe = "<iframe class=\"lti-embed\" style=\"width: 720px; height: 405px; display: inline-block;\" title=\"bookmarks\" src=\"https://test.com/courses/123/external_tools/retrieve?display=borderless&amp;url=https%3A%2F%2Ftestmedia.com%2Flti%2Flaunch%3Fcustom_arc_launch_type%3Dbare_embed%26custom_arc_media_id%3D\(ltiLaunchID)%26custom_arc_start_at%3D0\" width=\"720\" height=\"405\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"webkitallowfullscreen\" mozallowfullscreen=\"mozallowfullscreen\" allow=\"geolocation *; microphone *; camera *; midi *; encrypted-media *; autoplay *; clipboard-write *; display-capture *\" data-studio-resizable=\"true\" data-studio-tray-enabled=\"true\" data-studio-convertible-to-link=\"true\"></iframe>"
     static let html = """
     <p>
     \(iframe)
