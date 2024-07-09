@@ -93,10 +93,10 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
             mockIFrameDiscoveryInteracor.receivedCourseIDs,
             ["1"]
         )
-        
+
         // Step 2
         XCTAssertTrue(mockAuthInteractor.makeAPICalled)
-        
+
         // Step 3
         wait(for: [studioMediaAPICalled], timeout: 1)
 

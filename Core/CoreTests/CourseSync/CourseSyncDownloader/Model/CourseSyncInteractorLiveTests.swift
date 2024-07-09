@@ -829,6 +829,32 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
+    func testDownloadsStudioVideos() {
+        let studioInteractorMock = CourseSyncStudioMediaInteractorMock()
+        let testee = CourseSyncInteractorLive(
+            brandThemeInteractor: BrandThemeDownloaderInteractorMock(),
+            contentInteractors: [],
+            filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
+            notificationInteractor: CourseSyncNotificationMock(progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            courseListInteractor: CourseListInteractorMock(),
+            studioMediaInteractor: studioInteractorMock,
+            backgroundActivity: BackgroundActivityMock(),
+            scheduler: .immediate,
+            env: environment
+        )
+
+        // WHEN
+        let subscription = testee
+            .downloadContent(for: entries)
+            .sink()
+
+        // THEN
+        XCTAssertTrue(studioInteractorMock.getContentCalled)
+        subscription.cancel()
+    }
+
     func testHandlesBackgroundSyncInterruption() {
         let backgroundActivityMock = BackgroundActivityMock()
         let testee = CourseSyncInteractorLive(
