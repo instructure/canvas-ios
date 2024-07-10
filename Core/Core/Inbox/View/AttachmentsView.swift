@@ -51,9 +51,9 @@ public struct AttachmentsView: View {
                     }
                     .background(GeometryReader { geometry in
                         Color.clear
-                            .preference(key: ViewSizeKey.self, value: geometry.frame(in: .global).height)
+                            .preference(key: ViewHeightKey.self, value: geometry.frame(in: .global).height)
                     })
-                    .onPreferenceChange(ViewSizeKey.self) { height in
+                    .onPreferenceChange(ViewHeightKey.self) { height in
                         isAttachmentDeleted = height == 1
                     }
                 } else {
@@ -78,6 +78,16 @@ public struct AttachmentsView: View {
                 .lineLimit(2)
                 .foregroundStyle(Color.textDark)
         }
+    }
+}
+
+private struct ViewHeightKey: PreferenceKey {
+    public typealias Value = CGFloat
+
+    public static var defaultValue: CGFloat = 0
+
+    public static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value += nextValue()
     }
 }
 
