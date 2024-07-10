@@ -222,11 +222,11 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 Spacer()
                 if !model.isContextDisabled { DisclosureIndicator() }
             }
+            .padding(.horizontal, defaultHorizontalPaddingValue)
+            .padding(.vertical, defaultVerticalPaddingValue)
         }
         .disabled(model.isContextDisabled)
         .opacity(model.isContextDisabled ? 0.6 : 1)
-        .padding(.horizontal, defaultHorizontalPaddingValue)
-        .padding(.vertical, defaultVerticalPaddingValue)
         .accessibilityLabel(courseSelectorAccessibilityLabel)
     }
 
@@ -249,11 +249,11 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     .padding(.vertical, 12)
                     .accessibilitySortPriority(1)
             }
+            .padding(.horizontal, defaultHorizontalPaddingValue)
             .accessibilityElement(children: .contain)
         }
         .disabled(model.isRecipientsDisabled)
         .opacity(model.isRecipientsDisabled ? 0.6 : 1)
-        .padding(.horizontal, defaultHorizontalPaddingValue)
         .accessibilityElement(children: .contain)
     }
 
