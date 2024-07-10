@@ -151,7 +151,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
 
     private func setupAttachmentListBinding() {
         alreadyUploadedFiles.setFailureType(to: Error.self)
-            .combineLatest(with: fileStore.allObjects.setFailureType(to: Error.self))
+        .combineLatest(with: fileStore.allObjects.setFailureType(to: Error.self))
         .receive(on: scheduler)
         .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] combinedFiles in
             self?.attachments.send(combinedFiles[0] + combinedFiles[1])
@@ -224,7 +224,6 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
         return ReactiveStore(useCase: GetFolderByPath(context: .currentUser, path: uploadFolderPath ?? ""))
             .getEntities()
             .compactMap { folders in
-                print(folders)
                 return folders.first
             }
             .eraseToAnyPublisher()
