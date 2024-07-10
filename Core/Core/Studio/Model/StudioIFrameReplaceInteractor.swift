@@ -19,12 +19,16 @@
 import Foundation
 
 public class StudioIFrameReplaceInteractor {
-    public enum ReplaceError: Error {
-        case failedToOpenHtml
+    public enum ReplaceError: LocalizedError {
+        case failedToOpenHtml(Error)
         case failedToConvertDataToString
         case offlineVideoIDNotFound
         case failedToConvertHtmlToData
         case failedToSaveUpdatedHtml
+
+        public var errorDescription: String? {
+            "\(Self.self).\(self)"
+        }
     }
 
     public func replaceStudioIFrames(
@@ -32,8 +36,11 @@ public class StudioIFrameReplaceInteractor {
         iframes: [StudioIFrame],
         offlineVideos: [StudioOfflineVideo]
     ) throws {
-        guard let htmlData = try? Data(contentsOf: htmlURL) else {
-            throw ReplaceError.failedToOpenHtml
+        let htmlData: Data
+        do {
+            htmlData = try Data(contentsOf: htmlURL)
+        } catch (let error) {
+            throw ReplaceError.failedToOpenHtml(error)
         }
 
         guard var htmlString = String(data: htmlData, encoding: .utf8) else {
