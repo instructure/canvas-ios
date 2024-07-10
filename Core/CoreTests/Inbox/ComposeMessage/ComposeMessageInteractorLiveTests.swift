@@ -248,8 +248,8 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         let file = File.make(from: APIFile.make(folder_id: "1"))
         testee.attachments.sink { files in
             attachments = files
-            if !attachments.isEmpty { fileAddedFlag = true; fileAddedExp.fulfill() }
-            if attachments.isEmpty && fileAddedFlag {  fileRemovedExp.fulfill() }
+            if !attachments.isEmpty && !fileAddedExp { fileAddedFlag = true; fileAddedExp.fulfill() }
+            if attachments.isEmpty && fileAddedFlag && !fileRemovedExp {  fileRemovedExp.fulfill() }
         }
         .store(in: &subscriptions)
 
