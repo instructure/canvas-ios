@@ -321,14 +321,24 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .padding(.leading, 16)
             .padding(.top, 12)
 
-            UITextViewWrapper(text: $model.bodyText, maxWidth: UIScreen.main.bounds.width - 24)
-                .font(.regular16, lineHeight: .condensed)
-                .textInputAutocapitalization(.sentences)
-                .focused($messageTextFieldFocus)
-                .foregroundColor(.textDarkest)
-                .padding(.horizontal, 12)
-                .frame(minHeight: 60)
-                .accessibility(label: Text("Message", bundle: .core))
+            UITextViewWrapper(text: $model.bodyText) {
+                let tv = UITextView()
+                tv.isScrollEnabled = false
+                tv.textContainer.widthTracksTextView = true
+                tv.textContainer.lineBreakMode = .byWordWrapping
+                tv.font = UIFont.scaledNamedFont(.regular16)
+                tv.translatesAutoresizingMaskIntoConstraints = false
+                tv.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 24).isActive = true
+                tv.backgroundColor = .backgroundLightest
+                return tv
+            }
+            .font(.regular16, lineHeight: .condensed)
+            .textInputAutocapitalization(.sentences)
+            .focused($messageTextFieldFocus)
+            .foregroundColor(.textDarkest)
+            .padding(.horizontal, 12)
+            .frame(minHeight: 60)
+            .accessibility(label: Text("Message", bundle: .core))
         }
         .disabled(model.isMessageDisabled)
         .opacity(model.isMessageDisabled ? 0.6 : 1)
