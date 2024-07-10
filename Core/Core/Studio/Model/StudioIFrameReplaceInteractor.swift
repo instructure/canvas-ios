@@ -42,9 +42,7 @@ public class StudioIFrameReplaceInteractor {
 
         for iframe in iframes {
             guard let offlineVideo = offlineVideos.first(where: { $0.ltiLaunchID == iframe.mediaLTILaunchID }) else {
-                // We are using mixed prod / staging embeds so this will always fail.
-                //  throw ReplaceError.offlineVideoIDNotFound
-                continue
+                throw ReplaceError.offlineVideoIDNotFound
             }
             htmlString = replaceStudioIFrame(
                 html: htmlString,

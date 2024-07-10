@@ -108,6 +108,7 @@ public enum CourseSyncDownloaderAssembly {
             iFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor(
                 studioHtmlParser: StudioHTMLParserInteractor()
             ),
+            cleanupInteractor: StudioVideoCleanupInteractor(offlineStudioDirectory: offlineFolder),
             downloadInteractor: studioDownloadInteractor,
             scheduler: scheduler
         )

@@ -28,6 +28,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
     private let studioAuthInteractor: StudioAPIAuthInteractor
     private let studioIFrameReplaceInteractor: StudioIFrameReplaceInteractor
     private let studioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor
+    private let cleanupInteractor: StudioVideoCleanupInteractor
     private let downloadInteractor: StudioVideoDownloadInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
@@ -36,6 +37,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         authInteractor: StudioAPIAuthInteractor,
         iFrameReplaceInteractor: StudioIFrameReplaceInteractor,
         iFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor,
+        cleanupInteractor: StudioVideoCleanupInteractor,
         downloadInteractor: StudioVideoDownloadInteractor,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) {
@@ -43,6 +45,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         self.studioAuthInteractor = authInteractor
         self.studioIFrameReplaceInteractor = iFrameReplaceInteractor
         self.studioIFrameDiscoveryInteractor = iFrameDiscoveryInteractor
+        self.cleanupInteractor = cleanupInteractor
         self.downloadInteractor = downloadInteractor
         self.scheduler = scheduler
     }
@@ -69,6 +72,15 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                         mediaLTIIDsToDownload = Array(Set(mediaLTIIDsToDownload))
                         return (mediaItems, mediaLTIIDsToDownload, iframes)
                     }
+            }
+            .flatMap { [cleanupInteractor] (mediaItems, mediaLTIIDsToDownload, iframes) in
+                return cleanupInteractor.removeNoLongerNeededVideos(
+                    allMediaItemsOnAPI: mediaItems,
+                    mediaLTIIDsUsedInOfflineMode: mediaLTIIDsToDownload
+                )
+                .map {
+                    (mediaItems, mediaLTIIDsToDownload, iframes)
+                }
             }
             .flatMap { [self, offlineDirectory] (mediaItems, mediaLTIIDsToDownload, iframes: StudioIFramesByLocation) in
                 downloadStudioVideos(

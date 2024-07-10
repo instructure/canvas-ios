@@ -235,3 +235,12 @@ public extension URL {
         try imageData.write(to: url)
     }
 }
+
+public extension Array where Element == URL {
+
+    func filterToDirectories() throws -> [URL] {
+        try filter { url in
+            try url.resourceValues(forKeys: Set([.isDirectoryKey])).isDirectory == true
+        }
+    }
+}

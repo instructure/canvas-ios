@@ -58,7 +58,10 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
             return ([apiMediaItem], nil, nil)
         }
 
-        // Step 4 - Download actual video files
+        // Step 4 - Clean up downloaded videos we don't use anymore
+        let mockCleanupInteractor = MockStudioVideoCleanupInteractor()
+
+        // Step 5 - Download actual video files
         let mockDownloadInteractor = MockStudioVideoDownloadInteractor()
         let mockOfflineVideo = StudioOfflineVideo(
             ltiLaunchID: StudioTestData.ltiLaunchID,
@@ -69,7 +72,7 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
         )
         mockDownloadInteractor.mockedOfflineVideoReponse = mockOfflineVideo
 
-        // Step 5 - Write offline urls back to htmls
+        // Step 6 - Write offline urls back to htmls
         let mockIFrameReplaceInteractor = MockStudioIFrameReplaceInteractor()
 
         let testee = CourseSyncStudioMediaInteractorLive(
@@ -77,6 +80,7 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
             authInteractor: mockAuthInteractor,
             iFrameReplaceInteractor: mockIFrameReplaceInteractor,
             iFrameDiscoveryInteractor: mockIFrameDiscoveryInteracor,
+            cleanupInteractor: mockCleanupInteractor,
             downloadInteractor: mockDownloadInteractor,
             scheduler: .immediate
         )
@@ -102,11 +106,21 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
 
         // Step 4
         XCTAssertEqual(
+            mockCleanupInteractor.receivedAPIMediaItems,
+            [apiMediaItem]
+        )
+        XCTAssertEqual(
+            mockCleanupInteractor.receivedLTIIDsForOfflineMode,
+            [StudioTestData.ltiLaunchID]
+        )
+
+        // Step 5
+        XCTAssertEqual(
             mockDownloadInteractor.receivedMediaItem,
             apiMediaItem
         )
 
-        // Step 5
+        // Step 6
         XCTAssertEqual(
             mockIFrameReplaceInteractor.receivedHtmlURL,
             mockLocalHtmlContentURL
@@ -189,3 +203,23 @@ private class MockStudioVideoDownloadInteractor: StudioVideoDownloadInteractor {
 }
 
 private class MockStudioHTMLParserInteractor: StudioHTMLParserInteractor {}
+
+private class MockStudioVideoCleanupInteractor: StudioVideoCleanupInteractor {
+    private(set) var receivedAPIMediaItems: [APIStudioMediaItem]?
+    private(set) var receivedLTIIDsForOfflineMode: [String]?
+
+    init() {
+        super.init(offlineStudioDirectory: URL(string: "/")!)
+    }
+
+    public override func removeNoLongerNeededVideos(
+        allMediaItemsOnAPI: [APIStudioMediaItem],
+        mediaLTIIDsUsedInOfflineMode: [String]
+    ) -> AnyPublisher<Void, Error> {
+        receivedAPIMediaItems = allMediaItemsOnAPI
+        receivedLTIIDsForOfflineMode = mediaLTIIDsUsedInOfflineMode
+        return Just(())
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+}
