@@ -21,13 +21,18 @@ import SwiftUI
 public struct ComposeMessageView: View, ScreenViewTrackable {
     @ObservedObject private var model: ComposeMessageViewModel
     @Environment(\.viewController) private var controller
+    @ScaledMetric private var uiScale: CGFloat = 1
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
-    @ScaledMetric private var uiScale: CGFloat = 1
-
-    @FocusState private var subjectTextFieldFocus: Bool
-    @FocusState private var messageTextFieldFocus: Bool
+    private enum FocusedInput {
+        case subject
+        case message
+    }
+    @FocusState private var focusedInput: FocusedInput?
     @State private var headerHeight = CGFloat.zero
+
+    private let defaultVerticalPaddingValue: CGFloat = 12
+    private let defaultHorizontalPaddingValue: CGFloat = 16
 
     init(model: ComposeMessageViewModel) {
         self.model = model
@@ -61,8 +66,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         includedMessages
                     }
                 }
-                separator
-
             }
             .font(.regular12)
             .foregroundColor(.textDarkest)
@@ -70,8 +73,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 GeometryReader { reader in
                     return Color.backgroundLightest
                         .onTapGesture {
-                            subjectTextFieldFocus = false
-                            messageTextFieldFocus = false
+                            focusedInput = nil
                         }
                         .preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
                 }
@@ -96,17 +98,17 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 break
             }
         }
-        .sheet(isPresented: $model.isImagePickerVisible, content: {
+        .sheet(isPresented: $model.isImagePickerVisible) {
             ImagePickerViewController(sourceType: .photoLibrary, imageHandler: model.addFile)
-        })
-        .sheet(isPresented: $model.isTakePhotoVisible, content: {
+        }
+        .sheet(isPresented: $model.isTakePhotoVisible) {
             ImagePickerViewController(sourceType: .camera, imageHandler: model.addFile)
                 .interactiveDismissDisabled()
-        })
-        .sheet(isPresented: $model.isAudioRecordVisible, content: {
-                    AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: model.router, onSelect: model.addFile)
-                        .interactiveDismissDisabled()
-                })
+        }
+        .sheet(isPresented: $model.isAudioRecordVisible) {
+            AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: model.router, onSelect: model.addFile)
+                .interactiveDismissDisabled()
+        }
         .confirmationAlert(
             isPresented: $model.isShowingCancelDialog,
             presenting: model.confirmAlert
@@ -173,12 +175,13 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .font(.semibold22)
                 .foregroundColor(.textDarkest)
                 .onTapGesture {
-                    subjectTextFieldFocus = true
+                    focusedInput = .subject
                 }
             Spacer()
             sendButton
         }
-        .padding(.horizontal, 16).padding(.vertical, 12)
+        .padding(.horizontal, defaultHorizontalPaddingValue)
+        .padding(.vertical, defaultVerticalPaddingValue)
         .frame(minHeight: 52)
     }
 
@@ -222,8 +225,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         }
         .disabled(model.isContextDisabled)
         .opacity(model.isContextDisabled ? 0.6 : 1)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
+        .padding(.horizontal, defaultHorizontalPaddingValue)
+        .padding(.vertical, defaultVerticalPaddingValue)
         .accessibilityLabel(courseSelectorAccessibilityLabel)
     }
 
@@ -250,7 +253,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         }
         .disabled(model.isRecipientsDisabled)
         .opacity(model.isRecipientsDisabled ? 0.6 : 1)
-        .padding(.horizontal, 16)
+        .padding(.horizontal, defaultHorizontalPaddingValue)
         .accessibilityElement(children: .contain)
     }
 
@@ -268,7 +271,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .font(.regular16, lineHeight: .condensed)
                 .foregroundColor(.textDark)
                 .onTapGesture {
-                    self.subjectTextFieldFocus = true
+                    self.focusedInput = .subject
                 }
                 .accessibilityHidden(true)
             TextField("", text: $model.subject)
@@ -276,12 +279,13 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .font(.regular16, lineHeight: .condensed)
                 .foregroundColor(.textDarkest)
                 .textInputAutocapitalization(.sentences)
-                .focused($subjectTextFieldFocus)
+                .focused($focusedInput, equals: .subject)
                 .accessibility(label: Text("Subject", bundle: .core))
         }
         .disabled(model.isSubjectDisabled)
         .opacity(model.isSubjectDisabled ? 0.6 : 1)
-        .padding(.horizontal, 16).padding(.vertical, 12)
+        .padding(.horizontal, defaultHorizontalPaddingValue)
+        .padding(.vertical, defaultVerticalPaddingValue)
     }
 
     private var individualView: some View {
@@ -291,8 +295,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .foregroundColor(.textDarkest)
         }
         .tint(.accentColor)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
+        .padding(.horizontal, defaultHorizontalPaddingValue)
+        .padding(.vertical, defaultVerticalPaddingValue)
     }
 
     private var bodyView: some View {
@@ -302,7 +306,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     .font(.regular16, lineHeight: .condensed)
                     .foregroundColor(.textDark)
                     .onTapGesture {
-                        self.messageTextFieldFocus = true
+                        self.focusedInput = .message
                     }
                     .accessibilityHidden(true)
                 Spacer()
@@ -314,12 +318,12 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         .renderingMode(.template)
                         .foregroundColor(.textDarkest)
                         .frame(width: 24, height: 24)
-                        .padding(.horizontal, 16)
+                        .padding(.horizontal, defaultHorizontalPaddingValue)
                 }
                 .accessibility(label: Text("Add attachment", bundle: .core))
             }
-            .padding(.leading, 16)
-            .padding(.top, 12)
+            .padding(.leading, defaultHorizontalPaddingValue)
+            .padding(.top, defaultVerticalPaddingValue)
 
             UITextViewWrapper(text: $model.bodyText) {
                 let tv = UITextView()
@@ -328,15 +332,15 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 tv.textContainer.lineBreakMode = .byWordWrapping
                 tv.font = UIFont.scaledNamedFont(.regular16)
                 tv.translatesAutoresizingMaskIntoConstraints = false
-                tv.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 24).isActive = true
+                tv.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 2 * defaultHorizontalPaddingValue).isActive = true
                 tv.backgroundColor = .backgroundLightest
                 return tv
             }
             .font(.regular16, lineHeight: .condensed)
             .textInputAutocapitalization(.sentences)
-            .focused($messageTextFieldFocus)
+            .focused($focusedInput, equals: .message)
             .foregroundColor(.textDarkest)
-            .padding(.horizontal, 12)
+            .padding(.horizontal, defaultHorizontalPaddingValue)
             .frame(minHeight: 60)
             .accessibility(label: Text("Message", bundle: .core))
         }
@@ -349,7 +353,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             Text("Previous messages", bundle: .core)
                 .font(.regular16, lineHeight: .condensed)
                 .foregroundColor(.textDark)
-                .padding(.horizontal, 16)
+                .padding(.horizontal, defaultHorizontalPaddingValue)
 
             ForEach(model.includedMessages, id: \.id) { conversationMessage in
                 separator
@@ -359,7 +363,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     .padding(.horizontal, 4)
             }
         }
-        .padding(.top, 24)
+        .padding(.top, 2 * defaultVerticalPaddingValue)
     }
 
     private func messageView(for message: ConversationMessage) -> some View {
@@ -406,11 +410,11 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     }
                     if isExpanded && !message.attachments.isEmpty {
                         AttachmentsView(attachments: message.attachments, didSelectAttachment: { model.didSelectFile.accept((controller, $0))})
-                            .padding(.top, 16)
+                            .padding(.top, defaultVerticalPaddingValue)
                     }
                 }
                 .padding(.vertical, 8)
-                .padding(.horizontal, 12)
+                .padding(.horizontal, defaultHorizontalPaddingValue)
             }
         }
     }

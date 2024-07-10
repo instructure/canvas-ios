@@ -66,7 +66,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
             try uploadManager.add(url: url, batchID: batchId)
             fileStore.refresh()
             uploadFiles()
-        } catch { }
+        } catch { } // Error can occur if file is not available. In that case the file just not added, the user has to retry
     }
 
     public func addFile(file: File) {

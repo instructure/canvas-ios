@@ -73,7 +73,7 @@ struct ConversationAttachmentCardView: View {
                 .padding(.all, 8)
                 .accessibilityLabel(Text("Uploaded", bundle: .core))
         } else if file.uploadError != nil {
-            Image.unpublishedLine
+            Image.noLine
                 .padding(.all, 8)
                 .accessibilityLabel(Text("Failed to upload", bundle: .core))
         }
