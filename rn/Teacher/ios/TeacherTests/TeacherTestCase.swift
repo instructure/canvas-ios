@@ -40,6 +40,7 @@ class TeacherTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        OfflineModeAssembly.mock(OfflineModeInteractorMock())
         Clock.reset()
         API.resetMocks()
         LoginSession.clearAll()
