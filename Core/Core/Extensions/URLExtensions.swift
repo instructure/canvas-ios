@@ -87,10 +87,10 @@ public extension URL {
     enum Paths {
         public enum Offline {
 
-            public static func root(
+            public static func rootURL(
                 sessionID: String
-            ) -> String {
-                "\(sessionID)/Offline"
+            ) -> URL {
+                URL.Directories.documents.appending(path: "\(sessionID)/Offline")
             }
 
             public static func courseFolder(

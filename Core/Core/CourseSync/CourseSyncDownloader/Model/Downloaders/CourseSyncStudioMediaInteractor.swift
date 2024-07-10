@@ -91,6 +91,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                 return ()
             }
             .catch { error in
+                Logger.shared.error(error)
                 Analytics.shared.logError(
                     name: "Studio Offline Sync Failed",
                     reason: error.localizedDescription

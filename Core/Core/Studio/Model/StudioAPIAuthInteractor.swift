@@ -131,7 +131,7 @@ private extension Array where Element == ExternalToolLaunchPlacement {
             guard let url = ltiTool.url else {
                 return false
             }
-            return url.absoluteString.contains("staging.instructuremedia.com")
+            return url.absoluteString.contains(".instructuremedia.com") && !url.absoluteString.contains("staging")
         }
     }
 }

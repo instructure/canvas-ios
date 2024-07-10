@@ -409,19 +409,18 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             ? String(localized: "Description", bundle: .student)
             : String(localized: "Instructions", bundle: .student)
 
-        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+        let offlinePath = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: env.currentSession?.uniqueID ?? "",
             courseId: courseID,
             sectionName: OfflineFolderPrefix.assignments.rawValue,
             resourceId: assignmentID
-        )
-        let offlinePath = rootURL.appendingPathComponent("body.html")
+        ).appendingPathComponent("body.html")
         webView.loadContent(
             isOffline: offlineModeInteractor?.isNetworkOffline(),
             filePath: offlinePath,
             content: presenter?.assignmentDescription(),
             originalBaseURL: baseURL,
-            offlineBaseURL: rootURL
+            offlineBaseURL: URL.Paths.Offline.rootURL(sessionID: env.currentSession?.uniqueID ?? "")
         )
 
         updateGradeCell(assignment, submission: submission)
