@@ -280,6 +280,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .foregroundColor(.textDarkest)
                 .textInputAutocapitalization(.sentences)
                 .focused($focusedInput, equals: .subject)
+                .submitLabel(.done)
                 .accessibility(label: Text("Subject", bundle: .core))
         }
         .disabled(model.isSubjectDisabled)
@@ -297,6 +298,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         .tint(.accentColor)
         .padding(.horizontal, defaultHorizontalPaddingValue)
         .padding(.vertical, defaultVerticalPaddingValue)
+        .contentShape(Rectangle())
     }
 
     private var bodyView: some View {
