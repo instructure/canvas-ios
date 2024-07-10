@@ -117,7 +117,7 @@ public class PlannerViewController: UIViewController {
             .sink { [weak self] isOffline in
                 guard let self else { return }
                 addNoteButton.action = isOffline ? #selector(showOfflineAlert) : #selector(addNote)
-                addNoteButton.tintColor = isOffline ? .disabledGray : .backgroundLightest
+                addNoteButton.tintColor = isOffline ? .disabledGray : .textLightest
             }
             .store(in: &subscriptions)
     }
