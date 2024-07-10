@@ -420,15 +420,10 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     private var attachmentsView: some View {
-        ForEach(model.attachments, id: \.self) { file in
-            Button {
-                model.didSelectFile.accept((controller, file))
-            } label: {
-                ConversationAttachmentCardView(file: file) {
-                    model.didRemoveFile.accept(file)
-                }
-            }
-            .foregroundColor(.textDarkest)
+        ConversationAttachmentsCardView(files: model.attachments) { file in
+            model.didSelectFile.accept((controller, file))
+        } removeHandler: { file in
+            model.didRemoveFile.accept(file)
         }
     }
 }

@@ -18,22 +18,35 @@
 
 import SwiftUI
 
-struct ConversationAttachmentCardView: View {
+struct ConversationAttachmentsCardView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    private let file: File
-    private let removeHandler: () -> Void
-    private var fileSize: String {
-        ByteCountFormatter.string(fromByteCount: Int64(file.size), countStyle: .file)
-    }
+    private let files: [File]
+    private let removeHandler: (_ file: File) -> Void
+    private let selectHandler: (_ file: File) -> Void
 
-    init(file: File, removeHandler: @escaping () -> Void) {
-        self.file = file
+    init(files: [File], selectHandler: @escaping (_ file: File) -> Void, removeHandler: @escaping (_ file: File) -> Void) {
+        self.files = files
         self.removeHandler = removeHandler
+        self.selectHandler = selectHandler
     }
 
     var body: some View {
-        VStack {
+        ForEach(files, id: \.self) { file in
+            Button {
+                selectHandler(file)
+            } label: {
+                attachmentView(for: file)
+            }
+            .foregroundColor(.textDarkest)
+        }
+
+    }
+
+    private func attachmentView(for file: File) -> some View {
+        let fileSize = ByteCountFormatter.string(fromByteCount: Int64(file.size), countStyle: .file)
+
+        return VStack {
             if file.thumbnailURL != nil { AsyncImage(url: file.thumbnailURL) }
             HStack {
                 VStack(alignment: .leading) {
@@ -45,7 +58,7 @@ struct ConversationAttachmentCardView: View {
                 progressIndicator(for: file)
 
                 Button {
-                    removeHandler()
+                    removeHandler(file)
                 } label: {
                     Image.xLine.foregroundStyle(Color.textDark)
                 }
@@ -55,7 +68,9 @@ struct ConversationAttachmentCardView: View {
             .foregroundColor(.textDarkest)
             .padding(12)
             .accessibilityElement(children: .combine)
-            .accessibilityAction(named: Text("Remove attachment", bundle: .core), removeHandler)
+            .accessibilityAction(named: Text("Remove attachment", bundle: .core)) {
+                removeHandler(file)
+            }
         }
         .background(RoundedRectangle(cornerRadius: 10).stroke(Color.tiara, lineWidth: 1))
         .padding(12)
