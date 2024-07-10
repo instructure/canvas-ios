@@ -219,12 +219,13 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         let fileAddedExp = expectation(description: "fileAdded")
         let fileRemovedExp = expectation(description: "fileRemoved")
         var fileAddedFlag = false
+        var fileRemovedFlag = false
 
         let file = File.make(from: APIFile.make(folder_id: "1"))
         testee.attachments.sink { files in
             attachments = files
             if !attachments.isEmpty { fileAddedFlag = true; fileAddedExp.fulfill() }
-            if attachments.isEmpty && fileAddedFlag {  fileRemovedExp.fulfill() }
+            if attachments.isEmpty && fileAddedFlag && !fileRemovedFlag { fileRemovedFlag = true; fileRemovedExp.fulfill() }
         }
         .store(in: &subscriptions)
         testee.addFile(file: file)
@@ -244,12 +245,13 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         let fileAddedExp = expectation(description: "fileAdded")
         let fileRemovedExp = expectation(description: "fileRemoved")
         var fileAddedFlag = false
+        var fileRemovedFlag = false
 
         let file = File.make(from: APIFile.make(folder_id: "1"))
         testee.attachments.sink { files in
             attachments = files
-            if !attachments.isEmpty && !fileAddedExp { fileAddedFlag = true; fileAddedExp.fulfill() }
-            if attachments.isEmpty && fileAddedFlag && !fileRemovedExp {  fileRemovedExp.fulfill() }
+            if !attachments.isEmpty && !fileAddedFlag { fileAddedFlag = true; fileAddedExp.fulfill() }
+            if attachments.isEmpty && fileAddedFlag && !fileRemovedFlag {  fileRemovedFlag = true; fileRemovedExp.fulfill() }
         }
         .store(in: &subscriptions)
 
