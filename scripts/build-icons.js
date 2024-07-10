@@ -128,7 +128,6 @@ const whitelist = [
   'trouble', // cancel
   'unlock',
   'unmuted', // bell / notification icon
-  'unpublished',
   'user',
   'video',
   'warning',
