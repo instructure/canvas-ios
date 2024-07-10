@@ -43,7 +43,7 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
         message: String(localized: "This will permanently delete your To Do item.", bundle: .core),
         cancelButtonTitle: String(localized: "Cancel", bundle: .core),
         confirmButtonTitle: String(localized: "Delete", bundle: .core),
-        isDestructive: false
+        isDestructive: true
     )
 
     // MARK: - Input
