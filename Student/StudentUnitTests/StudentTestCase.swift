@@ -41,7 +41,7 @@ class StudentTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        OfflineModeAssembly.mock(OfflineModeInteractorMock())
+        OfflineModeAssembly.mock(OfflineModeInteractorMock(mockIsFeatureFlagEnabled: false))
         Clock.reset()
         API.resetMocks()
         LoginSession.clearAll()
