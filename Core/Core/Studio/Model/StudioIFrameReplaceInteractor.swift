@@ -27,6 +27,7 @@ public class StudioIFrameReplaceInteractor {
         case failedToSaveUpdatedHtml
 
         public var errorDescription: String? {
+            // ReplaceError.failedToConvertDataToString
             "\(Self.self).\(self)"
         }
     }

@@ -19,7 +19,7 @@
 import Foundation
 
 public struct StudioIFrame: Equatable {
-    /// The studio media ID the iframe pointing to. We use this to get the media's real ID from the API.
+    /// The studio media LTI ID associated with the iframe. Equivalent to `APIStudioMediaItem.lti_launch_id`. We use this to get the media's real ID from the API.
     let mediaLTILaunchID: String
     /// The html of the frame, we use this to replace the iframe with a video tag pointing to the downloded media.
     let sourceHtml: String
@@ -50,10 +50,9 @@ public class StudioHTMLParserInteractor {
 
 extension String {
 
-    // custom_arc_media_id%3D([^%\"]+)
     // swiftlint:disable:next force_try
     private static let mediaIDPattern = try! NSRegularExpression(
-        pattern: "custom_arc_media_id%3D([^%\\\"]+)"
+        pattern: #"custom_arc_media_id%3D([^%\"]+)"#
     )
 
     func extractStudioMediaIDFromIFrame() -> String? {

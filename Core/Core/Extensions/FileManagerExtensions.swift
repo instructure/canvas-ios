@@ -43,12 +43,7 @@ extension FileManager {
         inDirectory: URL
     ) -> Set<URL> {
         let fileExtension = withExtension.hasPrefix(".") ? withExtension : "." + withExtension
-        var filePaths: FileManager.DirectoryEnumerator?
-
-        if #available(iOSApplicationExtension 16.0, *) {
-            filePaths = enumerator(atPath: inDirectory.path())
-        }
-
+        let filePaths = enumerator(atPath: inDirectory.path())
         var files = Set<URL>()
 
         while let file = filePaths?.nextObject() as? String {

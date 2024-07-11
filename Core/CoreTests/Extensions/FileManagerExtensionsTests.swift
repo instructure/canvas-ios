@@ -23,26 +23,9 @@ import XCTest
 
 class FileManagerExtensionsTests: CoreTestCase {
     private let fileManager = FileManager.default
-    private let directory = URL.Directories.temporary.appendingPathComponent(
-        "FileManagerExtensionsTests",
-        isDirectory: true
-    )
-
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        try fileManager.createDirectory(
-            at: directory,
-            withIntermediateDirectories: true
-        )
-    }
-
-    override func tearDownWithError() throws {
-        try fileManager.removeItem(at: directory)
-        try super.tearDownWithError()
-    }
 
     func testRemoveItemPublisher() {
-        let fileURL = directory.appendingPathComponent("test.txt")
+        let fileURL = workingDirectory.appendingPathComponent("test.txt")
         fileManager.createFile(
             atPath: fileURL.path,
             contents: "test".data(using: .utf8)
@@ -54,21 +37,21 @@ class FileManagerExtensionsTests: CoreTestCase {
     }
 
     func testListsAllFilesInDirectory() throws {
-        let subdirectory = directory
+        let subdirectory = workingDirectory
             .appendingPathComponent("subfolder", isDirectory: true)
         try fileManager.createDirectory(
             at: subdirectory,
             withIntermediateDirectories: true
         )
 
-        let subDirectoryWithTxtExtension = directory
+        let subDirectoryWithTxtExtension = workingDirectory
             .appendingPathComponent("subfolder.txt", isDirectory: true)
         try fileManager.createDirectory(
             at: subDirectoryWithTxtExtension,
             withIntermediateDirectories: true
         )
 
-        let file1URL = directory.appendingPathComponent("file1.txt")
+        let file1URL = workingDirectory.appendingPathComponent("file1.txt")
         fileManager.createFile(
             atPath: file1URL.path,
             contents: "test".data(using: .utf8)
@@ -93,11 +76,11 @@ class FileManagerExtensionsTests: CoreTestCase {
         // |- subfolder.txt
 
         XCTAssertEqual(
-            fileManager.allFiles(withExtension: "txt", inDirectory: directory),
+            fileManager.allFiles(withExtension: "txt", inDirectory: workingDirectory),
             Set([file1URL, file2URL])
         )
         XCTAssertEqual(
-            fileManager.allFiles(withExtension: ".html", inDirectory: directory),
+            fileManager.allFiles(withExtension: ".html", inDirectory: workingDirectory),
             Set([file3URL])
         )
     }
