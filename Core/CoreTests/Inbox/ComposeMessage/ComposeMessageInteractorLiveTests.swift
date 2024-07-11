@@ -28,8 +28,6 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         mockData()
 
         testee = ComposeMessageInteractorLive(batchId: "testId", uploadFolderPath: "", uploadManager: uploadManager)
-
-        waitForState(.data)
     }
 
     func testFailedCreate() {
@@ -240,6 +238,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
     }
 
     func testRemoveAlreadyUploadedFile() {
+        testee = ComposeMessageInteractorLive(batchId: "testRemoveAlreadyUploadedFile", uploadFolderPath: "", uploadManager: uploadManager)
         var subscriptions: [AnyCancellable] = []
         var attachments: [File] = []
         let fileAddedExp = expectation(description: "fileAdded")
@@ -265,6 +264,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
     }
 
     func testRemoveAndDeleteUploadedFile() {
+        testee = ComposeMessageInteractorLive(batchId: "testRemoveAndDeleteUploadedFile", uploadFolderPath: "", uploadManager: uploadManager)
         var subscriptions: [AnyCancellable] = []
         var attachments: [File] = []
         let fileAddedExp = expectation(description: "fileAdded")
