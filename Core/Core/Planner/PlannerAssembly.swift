@@ -48,7 +48,7 @@ public enum PlannerAssembly {
     // MARK: - ToDo
 
     public static func makeCreateToDoViewController(
-        calendarListProviderInteractor: CalendarFilterInteractor?,
+        calendarListProviderInteractor: CalendarFilterInteractor? = nil,
         completion: @escaping (Completion) -> Void
     ) -> UIViewController {
         let viewModel = EditCalendarToDoViewModel(
@@ -61,21 +61,48 @@ public enum PlannerAssembly {
         return host
     }
 
+    public static func makeEditToDoViewController(
+        plannable: Plannable,
+        calendarListProviderInteractor: CalendarFilterInteractor? = nil,
+        completion: @escaping (Completion) -> Void
+    ) -> UIViewController {
+        let viewModel = EditCalendarToDoViewModel(
+            plannable: plannable,
+            toDoInteractor: CalendarToDoInteractorLive(),
+            calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            completion: completion
+        )
+        let view = EditCalendarToDoScreen(viewModel: viewModel)
+        let host = CoreHostingController(view)
+        return host
+    }
+
     public static func makeToDoDetailsViewController(plannable: Plannable) -> UIViewController {
-        let viewModel = CalendarToDoDetailsViewModel(plannable: plannable)
+        let viewModel = CalendarToDoDetailsViewModel(
+            plannable: plannable,
+            interactor: CalendarToDoInteractorLive()
+        )
         let view = CalendarToDoDetailsScreen(viewModel: viewModel)
         return CoreHostingController(view)
     }
 
 #if DEBUG
 
-    public static func makeCreateToDoScreenPreview() -> some View {
+    public static func makeEditToDoScreenPreview() -> some View {
         let viewModel = EditCalendarToDoViewModel(
             toDoInteractor: CalendarToDoInteractorPreview(),
             calendarListProviderInteractor: CalendarFilterInteractorPreview(),
             completion: { _ in }
         )
         return EditCalendarToDoScreen(viewModel: viewModel)
+    }
+
+    public static func makeToDoDetailsScreenPreview(plannable: Plannable) -> some View {
+        let viewModel = CalendarToDoDetailsViewModel(
+            plannable: plannable,
+            interactor: CalendarToDoInteractorPreview()
+        )
+        return CalendarToDoDetailsScreen(viewModel: viewModel)
     }
 
     public static func makeSelectCalendarScreenPreview() -> some View {

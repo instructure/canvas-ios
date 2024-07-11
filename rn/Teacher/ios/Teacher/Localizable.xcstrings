@@ -27327,6 +27327,12 @@
             "value" : "Note supérieure à..."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored above..."
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27569,6 +27575,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Note inférieure à..."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored below..."
           }
         },
         "ht" : {

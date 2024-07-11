@@ -20,24 +20,41 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/planner.html#method.planner_notes.create
 struct PostPlannerNoteRequest: APIRequestable {
-    typealias Response = APINoContent
-
-    init(body: Body) {
-        self.body = body
-    }
-
-    var method: APIMethod = .post
-
-    var path: String = "planner_notes"
-
-    let body: Body?
+    typealias Response = APIPlannerNote
 
     struct Body: Codable, Equatable {
-        let title: String?
+        let title: String
         let details: String?
         let todo_date: Date
         let course_id: String?
         let linked_object_type: PlannableType?
         let linked_object_id: String?
     }
+
+    let method: APIMethod = .post
+    let path: String = "planner_notes"
+
+    let body: Body?
 }
+
+#if DEBUG
+extension PostPlannerNoteRequest.Body {
+    static func make(
+        title: String = "",
+        details: String? = nil,
+        todo_date: Date = Clock.now,
+        course_id: String? = nil,
+        linked_object_type: PlannableType? = nil,
+        linked_object_id: String? = nil
+    ) -> PostPlannerNoteRequest.Body {
+        .init(
+            title: title,
+            details: details,
+            todo_date: todo_date,
+            course_id: course_id,
+            linked_object_type: linked_object_type,
+            linked_object_id: linked_object_id
+        )
+    }
+}
+#endif

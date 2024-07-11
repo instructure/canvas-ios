@@ -17,17 +17,55 @@
 //
 
 import Foundation
+import Combine
 
 public class CalendarToDoDetailsViewModel: ObservableObject {
     public let navigationTitle = String(localized: "To Do", bundle: .core)
-    public let title: String?
-    public let date: String?
-    public let description: String?
     public let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
-    public init(plannable: Plannable) {
+    @Published public private(set) var title: String?
+    @Published public private(set) var date: String?
+    @Published public private(set) var description: String?
+    @Published public private(set) var navBarColor: UIColor?
+
+    private let plannable: Plannable
+    private var subscriptions = Set<AnyCancellable>()
+
+    public init(plannable: Plannable, interactor: CalendarToDoInteractor) {
+        self.plannable = plannable
+
+        interactor.getToDo(id: plannable.id)
+            .sink(
+                receiveCompletion: { [weak self] in
+                    switch $0 {
+                    case .finished:
+                        break
+                    case .failure:
+                        // fallback to input plannable values
+                        self?.updateValues(with: plannable)
+                    }
+                },
+                receiveValue: { [weak self] in
+                    self?.updateValues(with: $0)
+                }
+            )
+            .store(in: &subscriptions)
+    }
+
+    private func updateValues(with plannable: Plannable) {
         title = plannable.title
         date = plannable.date?.dateTimeString
         description = plannable.details
+        navBarColor = plannable.color.ensureContrast(against: .backgroundLightest)
+    }
+
+    public func showEditScreen(env: AppEnvironment, from source: WeakViewController) {
+        let weakVC = WeakViewController()
+        let vc = PlannerAssembly.makeEditToDoViewController(plannable: plannable) { _ in
+            env.router.dismiss(weakVC)
+        }
+        weakVC.setValue(vc)
+
+        env.router.show(vc, from: source, options: .modal(isDismissable: false, embedInNav: true))
     }
 }
