@@ -46,33 +46,49 @@ struct ConversationAttachmentsCardView: View {
     private func attachmentView(for file: File) -> some View {
         let fileSize = ByteCountFormatter.string(fromByteCount: Int64(file.size), countStyle: .file)
 
-        return VStack {
+        return HStack {
             if file.thumbnailURL != nil {
                 AsyncImage(url: file.thumbnailURL) { result in
                     switch result {
                     case .success(let image):
                         image
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(maxWidth: .infinity, maxHeight: 128)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: 128, maxHeight: 128)
                             .clipped()
                             .clipShape(
                                 .rect(
                                     topLeadingRadius: 10,
-                                    bottomLeadingRadius: 0,
+                                    bottomLeadingRadius: 10,
                                     bottomTrailingRadius: 0,
-                                    topTrailingRadius: 10
+                                    topTrailingRadius: 0
                                 )
                             )
                     default:
                         Color.clear
                     }
                 }
-
+                .frame(maxWidth: 128, maxHeight: 128)
+            } else {
+                Image(uiImage: file.icon)
+                    .frame(width: 128, height: 128)
+                    .background(Color.backgroundLight)
+                    .clipShape(
+                        .rect(
+                            topLeadingRadius: 10,
+                            bottomLeadingRadius: 10,
+                            bottomTrailingRadius: 0,
+                            topTrailingRadius: 0
+                        )
+                    )
             }
             HStack {
                 VStack(alignment: .leading) {
-                    Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? file.url?.lastPathComponent ?? "").font(.headline)
+                    Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? file.url?.lastPathComponent ?? "")
+                        .font(.headline)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(4)
+                        .truncationMode(.tail)
                     Text(fileSize)
                 }
                 Spacer()
@@ -96,7 +112,6 @@ struct ConversationAttachmentsCardView: View {
         }
         .background(RoundedRectangle(cornerRadius: 10).stroke(Color.tiara, lineWidth: 1))
         .padding(12)
-        .frame(maxWidth: 600)
     }
 
     @ViewBuilder
