@@ -99,7 +99,8 @@ public enum CourseSyncDownloaderAssembly {
         let studioDirectory = offlineFolder.appendingPathComponent("studio", isDirectory: true)
         let studioDownloadInteractor = StudioVideoDownloadInteractor(
             rootDirectory: studioDirectory,
-            captionsInteractor: StudioCaptionsInteractor()
+            captionsInteractor: StudioCaptionsInteractor(),
+            videoCacheInteractor: StudioVideoCacheInteractor()
         )
         return CourseSyncStudioMediaInteractorLive(
             offlineDirectory: offlineFolder,

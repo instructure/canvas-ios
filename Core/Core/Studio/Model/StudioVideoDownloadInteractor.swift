@@ -30,13 +30,16 @@ public struct StudioOfflineVideo: Equatable {
 public class StudioVideoDownloadInteractor {
     private let rootDirectory: URL
     private let captionsInteractor: StudioCaptionsInteractor
+    private let videoCacheInteractor: StudioVideoCacheInteractor
 
     public init(
         rootDirectory: URL,
-        captionsInteractor: StudioCaptionsInteractor
+        captionsInteractor: StudioCaptionsInteractor,
+        videoCacheInteractor: StudioVideoCacheInteractor
     ) {
         self.rootDirectory = rootDirectory
         self.captionsInteractor = captionsInteractor
+        self.videoCacheInteractor = videoCacheInteractor
     }
 
     public func download(_ item: APIStudioMediaItem) -> AnyPublisher<StudioOfflineVideo, Error> {
@@ -47,25 +50,41 @@ public class StudioVideoDownloadInteractor {
 
         return Just(())
             .setFailureType(to: Error.self)
-            .flatMap { _ in
-                DownloadTaskPublisher(
+            .map { [videoCacheInteractor] _ in
+                videoCacheInteractor.isVideoDownloaded(videoLocation: videoFileLocation, expectedSize: item.size)
+            }
+            .flatMap { (isVideoCached: Bool) in
+                if isVideoCached {
+                    return Just(isVideoCached)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+
+                return DownloadTaskPublisher(
                     parameters: .init(
                         remoteURL: item.url,
                         localURL: videoFileLocation
                     )
                 )
-                .collect()
-                .mapToVoid()
+                .collect() // Wait until progress percentage emits are finished.
+                .mapToValue(isVideoCached)
+                .eraseToAnyPublisher()
             }
-            .flatMap { [captionsInteractor] in
+            .flatMap { [captionsInteractor] isVideoCached in
+                /// Captions are already downloaded with the media metadata so we write them to disk to make sure they are up-to-date
                 captionsInteractor.write(
                     captions: item.captions,
                     to: mediaFolder
                 )
+                .map { (isVideoCached, $0) }
             }
-            .tryMap { captionURLs in
+            .tryMap { (isVideoCached: Bool, captionURLs: [URL]) in
                 let posterLocation = mediaFolder.appendingPathComponent("poster.png", isDirectory: false)
-                try videoFileLocation.writeVideoPreview(to: posterLocation)
+
+                if isVideoCached == false {
+                    try videoFileLocation.writeVideoPreview(to: posterLocation)
+                }
+
                 return (captionURLs, posterLocation)
             }
             .map { (captionURLs, posterURL) in

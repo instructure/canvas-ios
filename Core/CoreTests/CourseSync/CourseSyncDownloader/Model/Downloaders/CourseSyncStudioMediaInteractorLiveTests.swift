@@ -189,7 +189,11 @@ private class MockStudioVideoDownloadInteractor: StudioVideoDownloadInteractor {
     private(set) var receivedMediaItem: APIStudioMediaItem?
 
     init() {
-        super.init(rootDirectory: URL(string: "/")!, captionsInteractor: MockStudioCaptionsInteractor())
+        super.init(
+            rootDirectory: URL(string: "/")!,
+            captionsInteractor: MockStudioCaptionsInteractor(),
+            videoCacheInteractor: StudioVideoCacheInteractor()
+        )
     }
 
     public override func download(

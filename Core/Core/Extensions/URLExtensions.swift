@@ -151,6 +151,26 @@ public extension URL {
         return attributes?[FileAttributeKey.size] as? Int ?? 0
     }
 
+    func fileSize() throws -> Int {
+        guard isFileURL else {
+            throw NSError(
+                domain: NSURLErrorDomain,
+                code: NSURLErrorFileDoesNotExist
+            )
+        }
+
+        let attributes = try FileManager.default.attributesOfItem(atPath: path)
+
+        guard let size = attributes[.size] as? Int else {
+            throw NSError(
+                domain: NSURLErrorDomain,
+                code: NSURLErrorCannotDecodeRawData
+            )
+        }
+
+        return size
+    }
+
     func appendingQueryItems(_ items: URLQueryItem...) -> URL {
         var components = URLComponents.parse(self)
         components.queryItems = (components.queryItems ?? []) + items

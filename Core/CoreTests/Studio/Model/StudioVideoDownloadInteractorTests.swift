@@ -21,65 +21,117 @@ import Combine
 import XCTest
 
 class StudioVideoDownloadInteractorTests: CoreTestCase {
-
-    func testDownloadsVideoAndGeneratesPoster() {
-        let caption = APIStudioMediaItem.Caption(
+    private enum TestData {
+        static let caption = APIStudioMediaItem.Caption(
             srclang: "en",
             label: "English",
             data: "1\n00:00:02.000 --> 00:00:04.000\nShowing blanket with skiing bears on it."
         )
-        let mediaID = ID("123")
-        let mimeType = "video/mp4"
-        let downloadable = APIStudioMediaItem(
+        static let mediaID = ID("123")
+        static let mimeType = "video/mp4"
+        static let downloadable = APIStudioMediaItem(
             id: mediaID,
             lti_launch_id: StudioTestData.ltiLaunchID,
             title: "Test Video",
             mime_type: mimeType,
             size: 576,
-            url: Bundle(for: Self.self).url(
+            url: Bundle(for: StudioVideoDownloadInteractorTests.self).url(
                 forResource: "preview_test",
                 withExtension: "mp4"
             )!,
             captions: [caption]
         )
-        let captionsMock = MockStudioCaptionsInteractor()
+    }
+
+    override func setUp() {
+        super.setUp()
+        API.resetMocks(useMocks: false)
+    }
+
+    func testDownloadsVideoAndGeneratesPoster() {
+        let mockCacheInteractor = MockStudioVideoCacheInteractor(isVideoDownloadedResult: false)
+        let mockCaptionsInteractor = MockStudioCaptionsInteractor()
         let testee = StudioVideoDownloadInteractor(
             rootDirectory: workingDirectory,
-            captionsInteractor: captionsMock
+            captionsInteractor: mockCaptionsInteractor,
+            videoCacheInteractor: mockCacheInteractor
         )
-        let publisher = testee.download(downloadable)
-        let expectedVideoURL = workingDirectory.appending(path: "\(mediaID.value)/\(mediaID.value).mp4")
-        let expectedPosterURL = workingDirectory.appending(path: "\(mediaID.value)/poster.png")
-        let expectedCaptionURL = workingDirectory.appending(path: "\(mediaID.value)/\(caption.srclang).vtt")
-        captionsMock.mockedCaptionURL = expectedCaptionURL
+
+        let expectedVideoURL = workingDirectory.appending(path: "\(TestData.mediaID.value)/\(TestData.mediaID.value).mp4")
+        XCTAssertEqual(FileManager.default.fileExists(atPath: expectedVideoURL.path()), false)
+        let expectedPosterURL = workingDirectory.appending(path: "\(TestData.mediaID.value)/poster.png")
+        XCTAssertEqual(FileManager.default.fileExists(atPath: expectedPosterURL.path()), false)
+        let expectedCaptionURL = workingDirectory.appending(path: "\(TestData.mediaID.value)/\(TestData.caption.srclang).vtt")
+        mockCaptionsInteractor.mockedCaptionURL = expectedCaptionURL
 
         let expectedResult = StudioOfflineVideo(
             ltiLaunchID: StudioTestData.ltiLaunchID,
             videoLocation: expectedVideoURL,
             videoPosterLocation: expectedPosterURL,
-            videoMimeType: mimeType,
+            videoMimeType: TestData.mimeType,
             captionLocations: [expectedCaptionURL]
         )
 
         // WHEN
-        XCTAssertSingleOutputEquals(publisher, expectedResult, timeout: 1)
+        XCTAssertSingleOutputEquals(testee.download(TestData.downloadable), expectedResult, timeout: 1)
 
         // THEN
-        XCTAssertEqual(captionsMock.didWriteCaptions, [caption])
+        XCTAssertEqual(mockCaptionsInteractor.receivedCaptionsToWrite, [TestData.caption])
+        XCTAssertEqual(FileManager.default.fileExists(atPath: expectedVideoURL.path()), true)
+        XCTAssertEqual(FileManager.default.fileExists(atPath: expectedPosterURL.path()), true)
+    }
+
+    func testSkipsDownloadWhenVideoIsAlreadyCached() {
+        let mockCacheInteractor = MockStudioVideoCacheInteractor(isVideoDownloadedResult: true)
+        let mockCaptionsInteractor = MockStudioCaptionsInteractor()
+        let testee = StudioVideoDownloadInteractor(
+            rootDirectory: workingDirectory,
+            captionsInteractor: mockCaptionsInteractor,
+            videoCacheInteractor: mockCacheInteractor
+        )
+        let expectedVideoURL = workingDirectory.appending(path: "\(TestData.mediaID.value)/\(TestData.mediaID.value).mp4")
+
+        // WHEN
+        XCTAssertFinish(testee.download(TestData.downloadable), timeout: 1)
+
+        // THEN
+        XCTAssertEqual(mockCacheInteractor.receivedExpectedSize, TestData.downloadable.size)
+        XCTAssertEqual(mockCacheInteractor.receivedVideoLocation, expectedVideoURL)
+        XCTAssertEqual(FileManager.default.fileExists(atPath: expectedVideoURL.path()), false)
     }
 }
 
 class MockStudioCaptionsInteractor: StudioCaptionsInteractor {
-    private(set) var didWriteCaptions: [APIStudioMediaItem.Caption] = []
+    private(set) var receivedCaptionsToWrite: [APIStudioMediaItem.Caption] = []
     public var mockedCaptionURL: URL?
 
     override public func write(
         captions: [APIStudioMediaItem.Caption],
         to directory: URL
     ) -> AnyPublisher<[URL], Error> {
-        didWriteCaptions = captions
+        receivedCaptionsToWrite = captions
         return Just(mockedCaptionURL != nil ? [mockedCaptionURL!] : [])
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
+    }
+}
+
+class MockStudioVideoCacheInteractor: StudioVideoCacheInteractor {
+    public let isVideoDownloadedResult: Bool
+
+    private(set) var receivedVideoLocation: URL?
+    private(set) var receivedExpectedSize: Int?
+
+    init(isVideoDownloadedResult: Bool) {
+        self.isVideoDownloadedResult = isVideoDownloadedResult
+    }
+
+    public override func isVideoDownloaded(
+        videoLocation: URL,
+        expectedSize: Int
+    ) -> Bool {
+        receivedVideoLocation = videoLocation
+        receivedExpectedSize = expectedSize
+        return isVideoDownloadedResult
     }
 }
