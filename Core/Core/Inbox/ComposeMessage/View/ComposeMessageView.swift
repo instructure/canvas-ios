@@ -164,8 +164,10 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         } label: {
             Image.addLine
                 .foregroundColor(Color.textDarkest)
+                .padding(.vertical, 12)
         }
-        .accessibility(label: Text("Add recipient", bundle: .core))
+        .accessibilityLabel(Text("Add recipient", bundle: .core))
+        .accessibilityElement(children: .ignore)
     }
 
     private var headerView: some View {
@@ -245,13 +247,12 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         .accessibilitySortPriority(0)
                 }
                 Spacer()
+
                 addRecipientButton
-                    .padding(.vertical, 12)
                     .accessibilitySortPriority(1)
             }
-            .padding(.horizontal, defaultHorizontalPaddingValue)
-            .accessibilityElement(children: .contain)
         }
+        .padding(.horizontal, defaultHorizontalPaddingValue)
         .disabled(model.isRecipientsDisabled)
         .opacity(model.isRecipientsDisabled ? 0.6 : 1)
         .accessibilityElement(children: .contain)

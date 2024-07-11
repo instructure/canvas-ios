@@ -64,6 +64,7 @@ public struct AttachmentsView: View {
             .frame(width: 104, height: 104)
             .background(Color.backgroundLight)
             .border(Color.backgroundLight)
+            .accessibilityLabel(Text(file.filename))
         }
         .cornerRadius(5)
     }
