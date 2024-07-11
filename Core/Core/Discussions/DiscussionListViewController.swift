@@ -219,7 +219,7 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
         let cell: DiscussionListCell = tableView.dequeue(for: indexPath)
         let topic = topics[indexPath]
         cell.update(topic: topic, isTeacher: course?.first?.hasTeacherEnrollment == true, color: color)
-        if topic?.anonymousState != nil  && offlineModeInteractor?.isOfflineModeEnabled() == true {
+        if topic?.anonymousState != nil && offlineModeInteractor?.isOfflineModeEnabled() == true {
             cell.selectionStyle = .none
             cell.contentView.alpha = 0.5
             cell.statusLabel.text = String(localized: "Not supported", bundle: .core)
