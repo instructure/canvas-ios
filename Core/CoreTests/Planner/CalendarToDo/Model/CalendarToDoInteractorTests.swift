@@ -29,106 +29,178 @@ final class CalendarToDoInteractorTests: CoreTestCase {
         static let courseID = "some courseID"
     }
 
-    private var useCase: CreatePlannerNote!
     private var testee: CalendarToDoInteractorLive!
 
     override func setUp() {
         super.setUp()
-        useCase = .init(todoDate: .now)
         testee = .init()
     }
 
     override func tearDown() {
-        useCase = nil
         testee = nil
         super.tearDown()
     }
 
-    func testCreateToDoProperRequestIsMade() {
-        let expectation = XCTestExpectation(description: "Proper request is made")
-        api.mock(useCase.request) { _ in
-            expectation.fulfill()
-            return (nil, nil, nil)
+    // MARK: - GetToDo
+
+    func testGetToDoWhenPlannableIsStored() {
+        Plannable.save(.make(id: "7"), contextName: "context 7", in: databaseClient)
+        Plannable.save(.make(id: "42"), contextName: "context 42", in: databaseClient)
+
+        XCTAssertFirstValue(testee.getToDo(id: "42")) { plannable in
+            XCTAssertEqual(plannable.id, "42")
+            XCTAssertEqual(plannable.contextName, "context 42")
         }
-
-        let subscription = testee.createToDo(title: "", date: .now, calendar: nil, details: nil)
-            .sink()
-
-        wait(for: [expectation], timeout: 1)
-        subscription.cancel()
     }
 
+    func testGetToDoWhenPlannableIsNotStored() {
+        Plannable.save(.make(id: "7"), contextName: nil, in: databaseClient)
+
+        XCTAssertNoOutput(testee.getToDo(id: "42"))
+    }
+
+    // MARK: - CreateToDo
+
     func testCreateToDoParametersUseCaseProperly() {
-        api.mock(useCase.request) { request in
-            let body: PostPlannerNoteRequest.Body? = request.decodeBody()
-
-            XCTAssertEqual(body?.title, TestConstants.title)
-            XCTAssertEqual(body?.todo_date, TestConstants.date)
-            XCTAssertEqual(body?.course_id, nil)
-            XCTAssertEqual(body?.details, TestConstants.details)
-            return (nil, nil, nil)
-        }
-
-        let subscription = testee.createToDo(
+        verifyCreateToDo(
             title: TestConstants.title,
             date: TestConstants.date,
-            calendar: nil,
             details: TestConstants.details
-        ).sink()
-
-        subscription.cancel()
+        ) { body in
+            XCTAssertEqual(body.title, TestConstants.title)
+            XCTAssertEqual(body.todo_date, TestConstants.date)
+            XCTAssertEqual(body.course_id, nil)
+            XCTAssertEqual(body.details, TestConstants.details)
+        }
     }
 
     func testCreateToDoCourseIdWhenCalendarIsCourse() {
-        let calendar: CDCalendarFilterEntry = databaseClient.insert()
-        calendar.context = .course(TestConstants.courseID)
+        let calendar = makeCalendar(context: .course(TestConstants.courseID))
 
-        api.mock(useCase.request) { request in
-            let body: PostPlannerNoteRequest.Body? = request.decodeBody()
-
-            XCTAssertEqual(body?.course_id, TestConstants.courseID)
-            return (nil, nil, nil)
+        verifyCreateToDo(calendar: calendar) { body in
+            XCTAssertEqual(body.course_id, TestConstants.courseID)
         }
-
-        let subscription = testee.createToDo(title: "", date: .now, calendar: calendar, details: nil)
-            .sink()
-
-        subscription.cancel()
     }
 
     func testCreateToDoCourseIdWhenCalendarIsGroup() {
-        let calendar: CDCalendarFilterEntry = databaseClient.insert()
-        calendar.context = .group(TestConstants.courseID)
+        let calendar = makeCalendar(context: .group(TestConstants.courseID))
 
-        api.mock(useCase.request) { request in
-            let body: PostPlannerNoteRequest.Body? = request.decodeBody()
-
-            XCTAssertNotNil(body)
-            XCTAssertEqual(body?.course_id, nil)
-            return (nil, nil, nil)
+        verifyCreateToDo(calendar: calendar) { body in
+            XCTAssertEqual(body.course_id, nil)
         }
-
-        let subscription = testee.createToDo(title: "", date: .now, calendar: calendar, details: nil)
-            .sink()
-
-        subscription.cancel()
     }
 
     func testCreateToDoCourseIdWhenCalendarIsUser() {
-        let calendar: CDCalendarFilterEntry = databaseClient.insert()
-        calendar.context = .user(TestConstants.courseID)
+        let calendar = makeCalendar(context: .user(TestConstants.courseID))
 
-        api.mock(useCase.request) { request in
-            let body: PostPlannerNoteRequest.Body? = request.decodeBody()
+        verifyCreateToDo(calendar: calendar) { body in
+            XCTAssertEqual(body.course_id, nil)
+        }
+    }
 
-            XCTAssertNotNil(body)
-            XCTAssertEqual(body?.course_id, nil)
-            return (nil, nil, nil)
+    private func verifyCreateToDo(
+        title: String = "",
+        date: Date = Clock.now,
+        calendar: CDCalendarFilterEntry? = nil,
+        details: String? = nil,
+        bodyHandler: @escaping (PostPlannerNoteRequest.Body) -> Void
+    ) {
+        let request = PostPlannerNoteRequest(body: .make())
+        let expectation = XCTestExpectation(description: "Request was sent")
+        mockRequest(request) { (body: PostPlannerNoteRequest.Body) in
+            bodyHandler(body)
+            expectation.fulfill()
         }
 
-        let subscription = testee.createToDo(title: "", date: .now, calendar: calendar, details: nil)
-            .sink()
+        let publisher = testee.createToDo(title: title, date: date, calendar: calendar, details: details)
+        XCTAssertFinish(publisher)
 
-        subscription.cancel()
+        wait(for: [expectation], timeout: 1)
+    }
+
+    // MARK: - UpdateToDo
+
+    func testUpdateToDoParametersUseCaseProperly() {
+        verifyUpdateToDo(
+            title: TestConstants.title,
+            date: TestConstants.date,
+            details: TestConstants.details
+        ) { body in
+            XCTAssertEqual(body.title, TestConstants.title)
+            XCTAssertEqual(body.todo_date, TestConstants.date)
+            XCTAssertEqual(body.course_id, nil)
+            XCTAssertEqual(body.details, TestConstants.details)
+        }
+    }
+
+    func testUpdateToDoCourseIdWhenCalendarIsCourse() {
+        let calendar = makeCalendar(context: .course(TestConstants.courseID))
+
+        verifyUpdateToDo(calendar: calendar) { body in
+            XCTAssertEqual(body.course_id, TestConstants.courseID)
+        }
+    }
+
+    func testUpdateToDoCourseIdWhenCalendarIsGroup() {
+        let calendar = makeCalendar(context: .group(TestConstants.courseID))
+
+        verifyUpdateToDo(calendar: calendar) { body in
+            XCTAssertEqual(body.course_id, nil)
+        }
+    }
+
+    func testUpdateToDoCourseIdWhenCalendarIsUser() {
+        let calendar = makeCalendar(context: .user(TestConstants.courseID))
+
+        verifyUpdateToDo(calendar: calendar) { body in
+            XCTAssertEqual(body.course_id, nil)
+        }
+    }
+
+    private func verifyUpdateToDo(
+        id: String = "",
+        title: String = "",
+        date: Date = Clock.now,
+        calendar: CDCalendarFilterEntry? = nil,
+        details: String? = nil,
+        bodyHandler: @escaping (PutPlannerNoteRequest.Body) -> Void
+    ) {
+        let request = PutPlannerNoteRequest(id: "", body: .make())
+        let expectation = XCTestExpectation(description: "Request was sent")
+        mockRequest(request) { (body: PutPlannerNoteRequest.Body) in
+            bodyHandler(body)
+            expectation.fulfill()
+        }
+
+        let publisher = testee.updateToDo(id: id, title: title, date: date, calendar: calendar, details: details)
+        XCTAssertFinish(publisher)
+
+        wait(for: [expectation], timeout: 1)
+    }
+
+    // MARK: - Helpers
+
+    private func mockRequest<Request: APIRequestable, Body: Codable & Equatable>(
+        _ request: Request,
+        dataHandler: @escaping (Body) -> Void
+    ) {
+        api.mock(request) { urlRequest in
+            guard let body: Body = urlRequest.decodeBody() else {
+                XCTFail("Request body decoding failure")
+                return (nil, nil, nil)
+            }
+            dataHandler(body)
+            return (nil, nil, nil)
+        }
+    }
+
+    private func makeCalendar(
+        name: String = "",
+        context: Context
+    ) -> CDCalendarFilterEntry {
+        let calendar: CDCalendarFilterEntry = databaseClient.insert()
+        calendar.name = ""
+        calendar.context = context
+        return calendar
     }
 }

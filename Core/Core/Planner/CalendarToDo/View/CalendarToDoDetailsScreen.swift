@@ -19,7 +19,9 @@
 import SwiftUI
 
 public struct CalendarToDoDetailsScreen: View {
-    private let viewModel: CalendarToDoDetailsViewModel
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var controller
+    @ObservedObject private var viewModel: CalendarToDoDetailsViewModel
 
     public init(viewModel: CalendarToDoDetailsViewModel) {
         self.viewModel = viewModel
@@ -30,6 +32,14 @@ public struct CalendarToDoDetailsScreen: View {
             eventContent
         }
         .navigationTitle(viewModel.navigationTitle)
+        .navBarItems(trailing: .init(
+            isBackgroundContextColor: true,
+            isAvailableOffline: false,
+            image: .moreLine
+        ) {
+            viewModel.showEditScreen(env: env, from: controller)
+        })
+        .navigationBarStyle(.color(viewModel.navBarColor))
     }
 
     @ViewBuilder
@@ -67,7 +77,7 @@ public struct CalendarToDoDetailsScreen: View {
         userID: "",
         in: PreviewEnvironment().database.viewContext
     )
-    return CalendarToDoDetailsScreen(viewModel: CalendarToDoDetailsViewModel(plannable: plannable))
+    return PlannerAssembly.makeToDoDetailsScreenPreview(plannable: plannable)
 }
 
 #endif

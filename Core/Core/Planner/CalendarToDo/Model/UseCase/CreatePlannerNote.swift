@@ -21,27 +21,38 @@ import CoreData
 
 final class CreatePlannerNote: APIUseCase {
     typealias Model = Plannable
+
     let request: PostPlannerNoteRequest
     let cacheKey: String? = nil
-    var scope: Scope = Scope.all(orderBy: #keyPath(Plannable.details))
+    let scope: Scope = .all()
+
+    private let courseName: String?
 
     init(
-        title: String? = nil,
-        details: String? = nil,
+        title: String,
+        details: String?,
         todoDate: Date,
-        courseID: String? = nil,
+        courseID: String?,
+        courseName: String?,
         linkedObjectType: PlannableType = .planner_note,
         linkedObjectId: String? = nil
     ) {
-        request = PostPlannerNoteRequest(body: PostPlannerNoteRequest.Body(
-            title: title,
-            details: details,
-            todo_date: todoDate,
-            course_id: courseID,
-            linked_object_type: linkedObjectType,
-            linked_object_id: linkedObjectId))
+        self.request = PostPlannerNoteRequest(
+            body: .init(
+                title: title,
+                details: details,
+                todo_date: todoDate,
+                course_id: courseID,
+                linked_object_type: linkedObjectType,
+                linked_object_id: linkedObjectId
+            )
+        )
+        self.courseName = courseName
     }
 
-    func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    func write(response: APIPlannerNote?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response else { return }
+
+        Plannable.save(response, contextName: courseName, in: client)
     }
 }
