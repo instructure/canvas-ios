@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class StudioIFrameDiscoveryInteractorTests: AbstractStudioTest {
+class StudioIFrameDiscoveryInteractorTests: CoreTestCase {
 
     func testDiscoversIFrame() throws {
         var validCourseHtmlURL = workingDirectory.appendingPathComponent("validcourse-1")

@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class StudioCaptionsInteractorTests: AbstractStudioTest {
+class StudioCaptionsInteractorTests: CoreTestCase {
     private let srtContentEn = """
     1
     00:00:01,000 --> 00:00:02,000

@@ -20,7 +20,7 @@
 import Combine
 import XCTest
 
-class StudioVideoDownloadInteractorTests: AbstractStudioTest {
+class StudioVideoDownloadInteractorTests: CoreTestCase {
 
     func testDownloadsVideoAndGeneratesPoster() {
         let caption = APIStudioMediaItem.Caption(

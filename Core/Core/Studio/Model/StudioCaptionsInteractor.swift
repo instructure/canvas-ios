@@ -41,7 +41,7 @@ public class StudioCaptionsInteractor {
             vttCaption.insert(contentsOf: "WEBVTT\n\n", at: vttCaption.startIndex)
         }
 
-        // Replace , milliseconds separator with .
+        // Replace `,` milliseconds separator with `.`
         let pattern = #"(\d{2}:\d{2}:\d{2}),(\d{3}) --> (\d{2}:\d{2}:\d{2}),(\d{3})"#
         // swiftlint:disable:next force_try
         let regex = try! NSRegularExpression(pattern: pattern, options: [])

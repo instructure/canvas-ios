@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class StudioIFrameReplaceInteractorTests: AbstractStudioTest {
+class StudioIFrameReplaceInteractorTests: CoreTestCase {
 
     func testReplacesStudioIFrame() throws {
         let videoURL = URL(string: "/video.mp4")!

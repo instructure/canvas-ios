@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class StudioHTMLParserTests: AbstractStudioTest {
+class StudioHTMLParserTests: CoreTestCase {
 
     func testExtractsMediaID() {
         let result = StudioTestData.iframe.extractStudioMediaIDFromIFrame()

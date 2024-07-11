@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class StudioVideoCleanupInteractorTests: AbstractStudioTest {
+class StudioVideoCleanupInteractorTests: CoreTestCase {
     private enum TestConstants {
         static let video1ID = "1"
         static let video2ID = "2"

@@ -48,8 +48,21 @@ class CoreTestCase: XCTestCase {
         let bundle = Bundle(for: type(of: self))
         return bundle.url(forResource: "fileupload", withExtension: "txt")!
     }()
+    /// This directory can be used to store temporary files. It's cleared after each test case.
+    public let workingDirectory = URL.Directories.temporary.appendingPathComponent(
+        "CoreTestCase",
+        isDirectory: true
+    )
 
     let window = UIWindow()
+
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        try FileManager.default.createDirectory(
+            at: workingDirectory,
+            withIntermediateDirectories: true
+        )
+    }
 
     override func setUp() {
         super.setUp()
@@ -81,6 +94,11 @@ class CoreTestCase: XCTestCase {
         super.tearDown()
         LoginSession.clearAll()
         window.rootViewController = mainViewController
+    }
+
+    override func tearDownWithError() throws {
+        try FileManager.default.removeItem(at: workingDirectory)
+        try super.tearDownWithError()
     }
 
     func waitForMainAsync() {
