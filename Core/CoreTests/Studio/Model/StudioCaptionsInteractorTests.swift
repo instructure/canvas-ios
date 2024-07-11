@@ -96,4 +96,25 @@ class StudioCaptionsInteractorTests: CoreTestCase {
             vttContentHu
         )
     }
+
+    func testRemovesNoLongerAvailableCaptions() throws {
+        let captionEnFileURL = workingDirectory.appendingPathComponent("en.vtt", isDirectory: false)
+        try Data().write(to: captionEnFileURL)
+        XCTAssertTrue(FileManager.default.fileExists(atPath: captionEnFileURL.path()))
+
+        let captionHu = APIStudioMediaItem.Caption(
+            srclang: "hu",
+            label: "",
+            data: srtContentHu
+        )
+
+        // WHEN
+        XCTAssertFinish(StudioCaptionsInteractor().write(
+            captions: [captionHu],
+            to: workingDirectory
+        ))
+
+        // THEN
+        XCTAssertFalse(FileManager.default.fileExists(atPath: captionEnFileURL.path()))
+    }
 }

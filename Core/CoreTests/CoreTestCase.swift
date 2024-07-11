@@ -97,7 +97,17 @@ class CoreTestCase: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        try FileManager.default.removeItem(at: workingDirectory)
+        do {
+            try FileManager.default.removeItem(at: workingDirectory)
+        } catch (let error) {
+            let nsError = error as NSError
+
+            // Swallow no such file or directory error, the folder is already removed.
+            guard nsError.domain == NSCocoaErrorDomain, nsError.code == 4 else {
+                throw error
+            }
+        }
+
         try super.tearDownWithError()
     }
 

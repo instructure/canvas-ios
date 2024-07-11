@@ -25,12 +25,34 @@ public class StudioCaptionsInteractor {
         captions: [APIStudioMediaItem.Caption],
         to directory: URL
     ) -> AnyPublisher<[URL], Error> {
-        Publishers
-            .Sequence(sequence: captions)
-            .flatMap { [self] caption in
-                self.write(caption: caption, to: directory)
+        Just(())
+            .flatMap { self.deleteAllExistingVttFiles(in: directory) }
+            .flatMap { _ in
+                Publishers
+                    .Sequence(sequence: captions)
+                    .flatMap { [self] caption in
+                        self.write(caption: caption, to: directory)
+                    }
+                    .collect()
             }
-            .collect()
+            .eraseToAnyPublisher()
+    }
+
+    private func deleteAllExistingVttFiles(
+        in directory: URL
+    ) -> AnyPublisher<Void, Error> {
+        Just(directory)
+            .setFailureType(to: Error.self)
+            .tryMap { directory in
+                let vttFiles = FileManager.default.allFiles(
+                    withExtension: "vtt",
+                    inDirectory: directory
+                )
+                try vttFiles.forEach { vttURL in
+                    try FileManager.default.removeItem(at: vttURL)
+                }
+                return ()
+            }
             .eraseToAnyPublisher()
     }
 
