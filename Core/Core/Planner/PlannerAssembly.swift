@@ -29,17 +29,36 @@ public enum PlannerAssembly {
 
     public static func makeCreateEventViewController(
         calendarListProviderInteractor: CalendarFilterInteractor? = nil,
+        env: AppEnvironment = .shared,
         completion: @escaping (Completion) -> Void
     ) -> UIViewController {
-        .init()
+        let viewModel = EditCalendarEventViewModel(
+            toDoInteractor: CalendarToDoInteractorLive(),
+            calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            router: env.router,
+            completion: completion
+        )
+        let view = EditCalendarEventScreen(viewModel: viewModel)
+        let host = CoreHostingController(view)
+        return host
     }
 
     public static func makeEditEventViewController(
         plannable: Plannable,
         calendarListProviderInteractor: CalendarFilterInteractor? = nil,
+        env: AppEnvironment = .shared,
         completion: @escaping (Completion) -> Void
     ) -> UIViewController {
-        .init()
+        let viewModel = EditCalendarEventViewModel(
+            plannable: plannable,
+            toDoInteractor: CalendarToDoInteractorLive(),
+            calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            router: env.router,
+            completion: completion
+        )
+        let view = EditCalendarEventScreen(viewModel: viewModel)
+        let host = CoreHostingController(view)
+        return host
     }
 
     public static func makeEventDetailsViewController(eventId: String, env: AppEnvironment = .shared) -> UIViewController {
@@ -51,6 +70,16 @@ public enum PlannerAssembly {
     }
 
 #if DEBUG
+
+    public static func makeEditEventScreenPreview(env: AppEnvironment = .shared) -> some View {
+        let viewModel = EditCalendarEventViewModel(
+            toDoInteractor: CalendarToDoInteractorPreview(),
+            calendarListProviderInteractor: CalendarFilterInteractorPreview(),
+            router: env.router,
+            completion: { _ in }
+        )
+        return EditCalendarEventScreen(viewModel: viewModel)
+    }
 
     public static func makeEventDetailsScreenPreview(env: AppEnvironment = .shared) -> some View {
         let interactor = CalendarEventDetailsInteractorPreview()
