@@ -64,11 +64,13 @@ public enum PlannerAssembly {
 
     public static func makeCreateToDoViewController(
         calendarListProviderInteractor: CalendarFilterInteractor? = nil,
+        env: AppEnvironment = .shared,
         completion: @escaping (Completion) -> Void
     ) -> UIViewController {
         let viewModel = EditCalendarToDoViewModel(
             toDoInteractor: CalendarToDoInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            router: env.router,
             completion: completion
         )
         let view = EditCalendarToDoScreen(viewModel: viewModel)
@@ -79,12 +81,14 @@ public enum PlannerAssembly {
     public static func makeEditToDoViewController(
         plannable: Plannable,
         calendarListProviderInteractor: CalendarFilterInteractor? = nil,
+        env: AppEnvironment = .shared,
         completion: @escaping (Completion) -> Void
     ) -> UIViewController {
         let viewModel = EditCalendarToDoViewModel(
             plannable: plannable,
             toDoInteractor: CalendarToDoInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            router: env.router,
             completion: completion
         )
         let view = EditCalendarToDoScreen(viewModel: viewModel)
@@ -104,10 +108,11 @@ public enum PlannerAssembly {
 
 #if DEBUG
 
-    public static func makeEditToDoScreenPreview() -> some View {
+    public static func makeEditToDoScreenPreview(env: AppEnvironment = .shared) -> some View {
         let viewModel = EditCalendarToDoViewModel(
             toDoInteractor: CalendarToDoInteractorPreview(),
             calendarListProviderInteractor: CalendarFilterInteractorPreview(),
+            router: env.router,
             completion: { _ in }
         )
         return EditCalendarToDoScreen(viewModel: viewModel)
