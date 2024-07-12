@@ -20,24 +20,70 @@ import Combine
 import SwiftUI
 
 public class CalendarEventDetailsViewModel: ObservableObject {
+
     // MARK: Output
+
+    public let pageTitle = String(localized: "Event Details", bundle: .core)
+    public let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar")
+
+    @Published public private(set) var pageSubtitle: String?
+    @Published public private(set) var contextColor: UIColor?
     @Published public private(set) var state: InstUI.ScreenState = .loading
     @Published public private(set) var title: String = ""
     @Published public private(set) var date: String?
     @Published public private(set) var locationInfo: [InstUI.TextSectionView.Model] = []
     @Published public private(set) var details: InstUI.TextSectionView.Model?
-    @Published public private(set) var contextColor: UIColor?
-    public let pageTitle = String(localized: "Event Details", bundle: .core)
-    @Published public private(set) var pageSubtitle: String?
-    public let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar")
+    @Published public var shouldShowDeleteConfirmation: Bool = false
+    @Published public var shouldShowDeleteError: Bool = false
+
+    var isMoreButtonEnabled: Bool {
+        state == .data
+    }
+
+    public let deleteConfirmationAlert = ConfirmationAlertViewModel(
+        title: String(localized: "Delete Event?", bundle: .core),
+        message: String(localized: "This will permanently delete your Event.", bundle: .core),
+        cancelButtonTitle: String(localized: "Cancel", bundle: .core),
+        confirmButtonTitle: String(localized: "Delete", bundle: .core),
+        isDestructive: true
+    )
+
+    // MARK: - Input
+
+    let didTapEdit = PassthroughSubject<WeakViewController, Never>()
+    let didTapDelete = PassthroughSubject<WeakViewController, Never>()
+
+    // MARK: - Private
 
     private let interactor: CalendarEventDetailsInteractor
+    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(interactor: CalendarEventDetailsInteractor) {
+    // MARK: - Init
+
+    public init(interactor: CalendarEventDetailsInteractor, router: Router) {
         self.interactor = interactor
+        self.router = router
+
         loadData()
+
+        didTapEdit
+            .sink { [weak self] in self?.showEditScreen(from: $0) }
+            .store(in: &subscriptions)
+
+        didTapDelete
+            .map { [weak self] in
+                self?.shouldShowDeleteConfirmation = true
+                return $0
+            }
+            .flatMap { [deleteConfirmationAlert] in
+                deleteConfirmationAlert.userConfirmation(value: $0)
+            }
+            .sink { [weak self] in self?.deleteToDo(from: $0) }
+            .store(in: &subscriptions)
     }
+
+    // MARK: - Load
 
     public func reload(completion: @escaping () -> Void) {
         loadData(
@@ -105,5 +151,13 @@ public class CalendarEventDetailsViewModel: ObservableObject {
                 }
             }
             .store(in: &subscriptions)
+    }
+
+    // MARK: - Private methods
+
+    private func showEditScreen(from source: WeakViewController) {
+    }
+
+    private func deleteToDo(from source: WeakViewController) {
     }
 }
