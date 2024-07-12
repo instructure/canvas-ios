@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
     public var courseID = ""

@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 public protocol ColorDelegate: AnyObject {
     var iconColor: UIColor? { get }
@@ -43,6 +44,18 @@ public class SyllabusSummaryViewController: UITableViewController {
     lazy var color = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
     }
+
+    private var emptyPandaViewController: CoreHostingController<InteractivePanda> = {
+        let vc = CoreHostingController(
+            InteractivePanda(
+                scene: SpacePanda(),
+                title: Text("No syllabus"),
+                subtitle: Text("There is no syllabus to display.")
+            )
+        )
+        vc.view.backgroundColor = .backgroundLightest
+        return vc
+    }()
 
     public lazy var summary: Store<LocalUseCase<CalendarEvent>> = {
         let contextPredicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.contextRaw), self.context.canvasContextID)
@@ -94,6 +107,21 @@ public class SyllabusSummaryViewController: UITableViewController {
         let pending = assignments.pending || events.pending
         if tableView.refreshControl?.isRefreshing == true, !pending {
             tableView.refreshControl?.endRefreshing()
+        }
+
+        if summary.isEmpty {
+            tableView.backgroundColor = .clear
+            addChild(emptyPandaViewController)
+            emptyPandaViewController.didMove(toParent: self)
+            tableView.addSubview(emptyPandaViewController.view)
+            emptyPandaViewController.view.pin(inside: tableView)
+            NSLayoutConstraint.activate([
+                emptyPandaViewController.view.heightAnchor.constraint(equalTo: view.heightAnchor),
+                emptyPandaViewController.view.widthAnchor.constraint(equalTo: view.widthAnchor)
+            ])
+        } else if emptyPandaViewController.parent != nil, emptyPandaViewController.view.superview != nil {
+            emptyPandaViewController.removeFromParent()
+            emptyPandaViewController.view.removeFromSuperview()
         }
         tableView.reloadData()
     }
