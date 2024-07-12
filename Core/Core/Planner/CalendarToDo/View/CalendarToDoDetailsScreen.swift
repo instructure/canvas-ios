@@ -51,8 +51,8 @@ public struct CalendarToDoDetailsScreen: View {
         .errorAlert(
             isPresented: $viewModel.shouldShowDeleteError,
             presenting: .init(
-                title: String(localized: "Delete Unsuccessful!", bundle: .core),
-                message: String(localized: "Your To Do was not deleted, you can try it again.", bundle: .core),
+                title: String(localized: "Deletion not completed", bundle: .core),
+                message: String(localized: "We couldn't delete your To Do at this time. You can try it again.", bundle: .core),
                 buttonTitle: String(localized: "OK", bundle: .core)
             )
         )

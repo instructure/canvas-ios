@@ -60,14 +60,14 @@ final class EditCalendarToDoViewModel: ObservableObject {
         .init(
             title: {
                 switch mode {
-                case .add: String(localized: "Unsuccessful Creation!", bundle: .core)
-                case .edit: String(localized: "Save Unsuccessful!", bundle: .core)
+                case .add: String(localized: "Creation not completed", bundle: .core)
+                case .edit: String(localized: "Saving not completed", bundle: .core)
                 }
             }(),
             message: {
                 switch mode {
-                case .add: String(localized: "Your To Do was not added, you can try it again.", bundle: .core)
-                case .edit: String(localized: "Your changes were not saved, you can try it again.", bundle: .core)
+                case .add: String(localized: "We couldn't add your To Do at this time. You can try it again.", bundle: .core)
+                case .edit: String(localized: "We couldn't save your To Do at this time. You can try it again.", bundle: .core)
                 }
             }(),
             buttonTitle: String(localized: "OK", bundle: .core)
