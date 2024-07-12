@@ -36,7 +36,7 @@ final class EditCalendarToDoViewModel: ObservableObject {
     @Published var date: Date?
     @Published var calendarName: String?
     @Published var details: String
-    @Published var shouldShowAlert: Bool = false
+    @Published var shouldShowSaveError: Bool = false
 
     var isSaveButtonEnabled: Bool {
         state == .data && title.isNotEmpty && date != nil && isFieldsTouched
@@ -56,7 +56,7 @@ final class EditCalendarToDoViewModel: ObservableObject {
         }
     }()
 
-    lazy var alert: ErrorAlertViewModel = {
+    lazy var saveErrorAlert: ErrorAlertViewModel = {
         .init(
             title: {
                 switch mode {
@@ -74,7 +74,25 @@ final class EditCalendarToDoViewModel: ObservableObject {
         )
     }()
 
-    lazy var selectCalendarViewModel: SelectCalendarViewModel = {
+    // MARK: - Input
+
+    let didTapCancel = PassthroughSubject<Void, Never>()
+    let didTapSave = PassthroughSubject<Void, Never>()
+    let showCalendarSelector = PassthroughSubject<WeakViewController, Never>()
+
+    // MARK: - Private
+
+    private let mode: Mode
+    private let toDoInteractor: CalendarToDoInteractor
+    private let calendarListProviderInteractor: CalendarFilterInteractor
+    private let router: Router
+    private var selectedCalendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
+    /// Returns true if any of the fields had been modified once by the user. It doesn't compare values.
+    private var isFieldsTouched: Bool = false
+
+    private var subscriptions = Set<AnyCancellable>()
+
+    internal lazy var selectCalendarViewModel: SelectCalendarViewModel = {
         return .init(
             calendarListProviderInteractor: calendarListProviderInteractor,
             calendarTypes: [.user, .course],
@@ -82,32 +100,18 @@ final class EditCalendarToDoViewModel: ObservableObject {
         )
     }()
 
-    // MARK: - Input
-
-    let didTapCancel = PassthroughSubject<Void, Never>()
-    let didTapSave = PassthroughSubject<Void, Never>()
-
-    // MARK: - Private
-
-    private let mode: Mode
-    private let toDoInteractor: CalendarToDoInteractor
-    private let calendarListProviderInteractor: CalendarFilterInteractor
-    private var selectedCalendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
-    /// Returns true if any of the fields had been modified once by the user. It doesn't compare values.
-    private var isFieldsTouched: Bool = false
-
-    private var subscriptions = Set<AnyCancellable>()
-
     // MARK: - Init
 
     init(
         plannable: Plannable? = nil,
         toDoInteractor: CalendarToDoInteractor,
         calendarListProviderInteractor: CalendarFilterInteractor,
+        router: Router,
         completion: @escaping (PlannerAssembly.Completion) -> Void
     ) {
         self.toDoInteractor = toDoInteractor
         self.calendarListProviderInteractor = calendarListProviderInteractor
+        self.router = router
 
         if let plannable {
             mode = .edit(id: plannable.id)
@@ -132,8 +136,8 @@ final class EditCalendarToDoViewModel: ObservableObject {
             .first { $0.isEmpty == false }
             .compactMap {
                 $0.first {
-                    if let context = plannable?.context, context.contextType == .course {
-                        $0.context == context
+                    if let plannableContext = plannable?.context {
+                        $0.context == plannableContext
                     } else {
                         $0.context.contextType == .user
                     }
@@ -166,7 +170,7 @@ final class EditCalendarToDoViewModel: ObservableObject {
                 (self?.saveAction() ?? Empty().eraseToAnyPublisher())
                     .catch { _ in
                         self?.state = .data
-                        self?.shouldShowAlert = true
+                        self?.shouldShowSaveError = true
                         return Empty<Void, Never>().eraseToAnyPublisher()
                     }
                     .eraseToAnyPublisher()
@@ -174,6 +178,10 @@ final class EditCalendarToDoViewModel: ObservableObject {
             .sink {
                 completion(.didUpdate)
             }
+            .store(in: &subscriptions)
+
+        showCalendarSelector
+            .sink { [weak self] in self?.showSelectCalendarScreen(from: $0) }
             .store(in: &subscriptions)
     }
 
@@ -185,6 +193,13 @@ final class EditCalendarToDoViewModel: ObservableObject {
             .dropFirst()
             .sink { [weak self] _ in self?.isFieldsTouched = true }
             .store(in: &subscriptions)
+    }
+
+    private func showSelectCalendarScreen(from source: WeakViewController) {
+        let vc = CoreHostingController(
+            SelectCalendarScreen(viewModel: selectCalendarViewModel)
+        )
+        router.show(vc, from: source, options: .push)
     }
 
     private func saveAction() -> AnyPublisher<Void, Error> {
