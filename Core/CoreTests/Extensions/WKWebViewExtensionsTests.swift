@@ -58,4 +58,20 @@ class WKWebViewExtensionsTests: CoreTestCase {
         handler?.userContentController(configuration.userContentController, didReceive: message)
         wait(for: [expectation], timeout: 0.1)
     }
+
+    func testEvaluateJavaScript() {
+        let webView = WKWebView(frame: .zero)
+        webView.loadHTMLString("<!DOCTYPE html><html><head><title>Test Title</title></head><body></body></html>", baseURL: URL(string: "https://instructure.com")!)
+        XCTAssertFinish(
+            webView.waitUntilLoadFinishes(checkInterval: 2),
+            timeout: 10
+        )
+
+        XCTAssertFirstValueAndCompletion(
+            webView.evaluateJavaScript(js: "document.title"),
+            timeout: 5
+        ) { result in
+            XCTAssertEqual(result as? String, "Test Title")
+        }
+    }
 }

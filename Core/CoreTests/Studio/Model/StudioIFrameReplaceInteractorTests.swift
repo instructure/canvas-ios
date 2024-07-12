@@ -21,13 +21,25 @@ import XCTest
 
 class StudioIFrameReplaceInteractorTests: CoreTestCase {
 
-    func testReplacesStudioIFrame() throws {
+    func testReplacesStudioIFrames() throws {
         let videoURL = URL(string: "/video.mp4")!
         let videoPosterURL = URL(string: "/video.png")!
         let mimeType = "video/mp4"
         let subtitle1URL = URL(string: "/en.srt")!
         let subtitle2URL = URL(string: "/hu.srt")!
-        let studioOfflineVideo = StudioOfflineVideo(
+
+        let htmlFileURL = workingDirectory.appending(path: "body.html")
+        try StudioTestData.html.write(
+            to: htmlFileURL,
+            atomically: false,
+            encoding: .utf8
+        )
+
+        let iframe = StudioIFrame(
+            mediaLTILaunchID: StudioTestData.ltiLaunchID,
+            sourceHtml: StudioTestData.iframe
+        )
+        let offlineVideo = StudioOfflineVideo(
             ltiLaunchID: StudioTestData.ltiLaunchID,
             videoLocation: videoURL,
             videoPosterLocation: videoPosterURL,
@@ -35,10 +47,11 @@ class StudioIFrameReplaceInteractorTests: CoreTestCase {
             captionLocations: [subtitle1URL, subtitle2URL]
         )
 
-        let result = StudioIFrameReplaceInteractor().replaceStudioIFrame(
-            html: StudioTestData.html,
-            iFrameHtml: StudioTestData.iframe,
-            studioVideo: studioOfflineVideo
+        // WHEN
+        try StudioIFrameReplaceInteractor().replaceStudioIFrames(
+            inHtmlAtURL: htmlFileURL,
+            iframes: [iframe],
+            offlineVideos: [offlineVideo]
         )
 
         let expectedResult = """
@@ -50,6 +63,11 @@ class StudioIFrameReplaceInteractorTests: CoreTestCase {
         </video>
         </p>
         """
-        XCTAssertEqual(result, expectedResult)
+        let modifiedHtmlData = try Data(contentsOf: htmlFileURL)
+
+        XCTAssertEqual(
+            String(data: modifiedHtmlData, encoding: .utf8),
+            expectedResult
+        )
     }
 }
