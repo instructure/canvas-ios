@@ -19,7 +19,6 @@
 import SwiftUI
 
 public struct CalendarToDoDetailsScreen: View {
-    @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: CalendarToDoDetailsViewModel
 

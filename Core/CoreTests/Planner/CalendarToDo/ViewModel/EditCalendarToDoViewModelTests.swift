@@ -232,8 +232,8 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.pageTitle, String(localized: "New To Do", bundle: .core))
         XCTAssertEqual(testee.saveButtonTitle, String(localized: "Add", bundle: .core))
-        XCTAssertEqual(testee.alert.title, String(localized: "Unsuccessful Creation!", bundle: .core))
-        XCTAssertEqual(testee.alert.message, String(localized: "Your To Do was not added, you can try it again.", bundle: .core))
+        XCTAssertEqual(testee.alert.title, String(localized: "Creation not completed", bundle: .core))
+        XCTAssertEqual(testee.alert.message, String(localized: "We couldn't add your To Do at this time. You can try it again.", bundle: .core))
         XCTAssertEqual(testee.alert.buttonTitle, String(localized: "OK", bundle: .core))
     }
 
@@ -242,8 +242,8 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.pageTitle, String(localized: "Edit To Do", bundle: .core))
         XCTAssertEqual(testee.saveButtonTitle, String(localized: "Save", bundle: .core))
-        XCTAssertEqual(testee.alert.title, String(localized: "Save Unsuccessful!", bundle: .core))
-        XCTAssertEqual(testee.alert.message, String(localized: "Your changes were not saved, you can try it again.", bundle: .core))
+        XCTAssertEqual(testee.alert.title, String(localized: "Saving not completed", bundle: .core))
+        XCTAssertEqual(testee.alert.message, String(localized: "We couldn't save your To Do at this time. You can try it again.", bundle: .core))
         XCTAssertEqual(testee.alert.buttonTitle, String(localized: "OK", bundle: .core))
     }
 
