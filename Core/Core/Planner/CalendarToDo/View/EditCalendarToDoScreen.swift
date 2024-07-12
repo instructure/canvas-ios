@@ -20,7 +20,6 @@ import SwiftUI
 
 struct EditCalendarToDoScreen: View, ScreenViewTrackable {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var viewController
 
     @ObservedObject private var viewModel: EditCalendarToDoViewModel
@@ -56,13 +55,11 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
 
                     InstUI.LabelValueCell(
                         label: Text("Calendar", bundle: .core),
-                        value: viewModel.calendarName
-                    ) {
-                        let vc = CoreHostingController(
-                            SelectCalendarScreen(viewModel: viewModel.selectCalendarViewModel)
-                        )
-                        env.router.show(vc, from: viewController, options: .push)
-                    }
+                        value: viewModel.calendarName,
+                        action: {
+                            viewModel.showCalendarSelector.send(viewController)
+                        }
+                    )
 
                     InstUI.TextEditorCell(
                         label: Text("Details", bundle: .core),
@@ -100,7 +97,7 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
                 }
             )
         )
-        .errorAlert(isPresented: $viewModel.shouldShowAlert, presenting: viewModel.alert)
+        .errorAlert(isPresented: $viewModel.shouldShowSaveError, presenting: viewModel.saveErrorAlert)
     }
 }
 
