@@ -39,7 +39,7 @@ public class CalendarHelper: BaseHelper {
     // MARK: UI Elements
     public static var navBar: XCUIElement { app.find(id: "Core.PlannerView") }
     public static var todayButton: XCUIElement { app.find(id: "PlannerCalendar.todayButton") }
-    public static var addNoteButton: XCUIElement { app.find(id: "PlannerCalendar.addNoteButton") }
+    public static var addButton: XCUIElement { app.find(id: "PlannerCalendar.addButton") }
     public static var yearLabel: XCUIElement { app.find(id: "PlannerCalendar.yearLabel") }
     public static var monthButton: XCUIElement { app.find(id: "PlannerCalendar.monthButton") }
     public static var monthLabel: XCUIElement { app.find(id: "PlannerCalendar.monthButton").find(type: .staticText) }
