@@ -27,6 +27,21 @@ public enum PlannerAssembly {
 
     // MARK: - Event
 
+    public static func makeCreateEventViewController(
+        calendarListProviderInteractor: CalendarFilterInteractor? = nil,
+        completion: @escaping (Completion) -> Void
+    ) -> UIViewController {
+        .init()
+    }
+
+    public static func makeEditEventViewController(
+        plannable: Plannable,
+        calendarListProviderInteractor: CalendarFilterInteractor? = nil,
+        completion: @escaping (Completion) -> Void
+    ) -> UIViewController {
+        .init()
+    }
+
     public static func makeEventDetailsViewController(eventId: String, env: AppEnvironment = .shared) -> UIViewController {
         let interactor = CalendarEventDetailsInteractorLive(calendarEventId: eventId)
         let viewModel = CalendarEventDetailsViewModel(interactor: interactor, router: env.router)

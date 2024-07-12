@@ -24,7 +24,7 @@ extension View {
         navBarItems(trailing: { trailing })
     }
 
-    public func navBarItems(trailing: InstUI.NavigationBarButton) -> some View {
+    public func navBarItems(trailing: InstUI.NavigationBarButton?) -> some View {
         navBarItems(trailing: { trailing })
     }
 
