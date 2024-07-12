@@ -21,6 +21,7 @@ import SwiftUI
 public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
     public var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
 
+    @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: CalendarEventDetailsViewModel
 
     public init(viewModel: CalendarEventDetailsViewModel) {
@@ -35,7 +36,30 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
             eventContent
         }
         .navigationTitle(viewModel.pageTitle, subtitle: viewModel.pageSubtitle)
+        .navBarItems(
+            trailing: .moreIcon(
+                isBackgroundContextColor: true,
+                isEnabled: viewModel.isMoreButtonEnabled,
+                isAvailableOffline: false,
+                menuContent: {
+                    InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
+                    InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
+                }
+            )
+        )
         .navigationBarStyle(.color(viewModel.contextColor))
+        .confirmationAlert(
+            isPresented: $viewModel.shouldShowDeleteConfirmation,
+            presenting: viewModel.deleteConfirmationAlert
+        )
+        .errorAlert(
+            isPresented: $viewModel.shouldShowDeleteError,
+            presenting: .init(
+                title: String(localized: "Deletion not completed", bundle: .core),
+                message: String(localized: "We couldn't delete your Event at this time. You can try it again.", bundle: .core),
+                buttonTitle: String(localized: "OK", bundle: .core)
+            )
+        )
     }
 
     private var eventContent: some View {

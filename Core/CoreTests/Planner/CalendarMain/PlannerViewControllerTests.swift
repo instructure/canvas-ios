@@ -38,7 +38,7 @@ class PlannerViewControllerTests: CoreTestCase {
         _ = controller.profileButton.target?.perform(controller.profileButton.action)
         XCTAssert(router.lastRoutedTo("/profile", withOptions: .modal()))
 
-        _ = controller.addNoteButton.target?.perform(controller.addNoteButton.action)
+        _ = controller.addButton.target?.perform(controller.addButton.action)
         let presentedEventName = (router.presented as? CoreHostingController<EditCalendarToDoScreen>)?
             .rootView.content.screenViewTrackingParameters.eventName
         XCTAssertEqual(presentedEventName, "/calendar/new")
