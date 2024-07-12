@@ -412,7 +412,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         }
                     }
                     if isExpanded && !message.attachments.isEmpty {
-                        AttachmentsView(attachments: message.attachments, didSelectAttachment: { model.didSelectFile.accept((controller, $0))})
+                        AttachmentsView(attachments: message.attachments, didSelectAttachment: { model.didSelectFile.accept(($1, $0))})
                             .padding(.top, defaultVerticalPaddingValue)
                     }
                 }

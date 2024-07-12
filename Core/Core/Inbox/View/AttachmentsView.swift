@@ -20,10 +20,11 @@ import SwiftUI
 
 public struct AttachmentsView: View {
     private let attachments: [File]
-    private let didSelectAttachment: ((File) -> Void)?
+    private let didSelectAttachment: ((File, WeakViewController) -> Void)?
     @State private var isAttachmentDeleted = false
+    @Environment(\.viewController) private var controller
 
-    public init(attachments: [File], didSelectAttachment: ((File) -> Void)? = nil) {
+    public init(attachments: [File], didSelectAttachment: ((File, WeakViewController) -> Void)? = nil) {
         self.attachments = attachments
         self.didSelectAttachment = didSelectAttachment
     }
@@ -40,7 +41,7 @@ public struct AttachmentsView: View {
 
     private func attachmentView(for file: File) -> some View {
         Button {
-            didSelectAttachment?(file)
+            didSelectAttachment?(file, controller)
         } label: {
             VStack(spacing: 0) {
                 if let thumbnailURL = file.thumbnailURL, !isAttachmentDeleted {
