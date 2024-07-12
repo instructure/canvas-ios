@@ -30,10 +30,20 @@ public class StudioAPIAuthInteractor {
         case failedToGetLaunchURL
     }
 
+    private let webViewFactory: () -> WKWebView
+
+    /// - parameters:
+    ///   - webViewFactory: Injection point for a WKWebView for testing purposes.
+    public init(
+        webViewFactory: @escaping () -> WKWebView = { WKWebView(frame: .zero) }
+    ) {
+        self.webViewFactory = webViewFactory
+    }
+
     public func makeStudioAPI() -> AnyPublisher<API, AuthError> {
         Self.getStudioLaunchURL()
-            .flatMap { (webLaunchURL, apiBaseURL) in
-                Self.launchStudioInHeadlessWebView(webLaunchURL: webLaunchURL)
+            .flatMap { [self] (webLaunchURL, apiBaseURL) in
+                launchStudioInHeadlessWebView(webLaunchURL: webLaunchURL)
                     .map { webView in
                         (webView, apiBaseURL)
                     }
@@ -59,8 +69,8 @@ public class StudioAPIAuthInteractor {
     /// Launching studio in the background for two reasons:
     /// - To get the access token to the API
     /// - To trigger a permission sync between canvas courses and Studio
-    private static func launchStudioInHeadlessWebView(webLaunchURL: URL) -> AnyPublisher<WKWebView, Never> {
-        let webView = CoreWebView(features: [])
+    private func launchStudioInHeadlessWebView(webLaunchURL: URL) -> AnyPublisher<WKWebView, Never> {
+        let webView = webViewFactory()
         webView.load(URLRequest(url: webLaunchURL))
         return webView
             .waitUntilLoadFinishes(checkInterval: 1)
