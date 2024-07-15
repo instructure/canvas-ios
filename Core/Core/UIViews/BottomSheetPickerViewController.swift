@@ -84,6 +84,16 @@ public class BottomSheetPickerViewController: UIViewController {
         actions.append(BottomSheetAction(action: action, image: image, title: title))
     }
 
+    public func addAccessiblityDismissButton() {
+        accessibilityCustomActions = [
+            .init(name: String(localized: "Dismiss menu", bundle: .core),
+                  actionHandler: { [weak self] _ in
+                      self?.dismiss(animated: true)
+                      return true
+                  })
+        ]
+    }
+
     @objc func didSelect(_ button: UIButton) {
         dismiss(animated: true) {
             self.actions[button.tag].action()
