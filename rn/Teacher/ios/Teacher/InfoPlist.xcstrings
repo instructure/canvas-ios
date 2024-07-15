@@ -395,6 +395,12 @@
             "value" : "Múinteoir Canvas"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas Teacher"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",

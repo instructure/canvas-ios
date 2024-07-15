@@ -640,6 +640,12 @@
             "value" : "%@ roimh"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ पहले"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2740,6 +2746,12 @@
           }
         },
         "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@..."
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@..."
@@ -15401,6 +15413,12 @@
             "value" : "Gníomhachtaigh chun é a scriosadh"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मिटाने के लिए सक्रिय करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17488,6 +17506,12 @@
             "value" : "Cuir fógraí meabhrúcháin dáta dlite faoin tasc seo leis ar an ngléas seo."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस डिवाइस पर इस असाइनमेंट के बारे में नियत तिथि अनुस्मारक सूचनाएं जोड़ें।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19568,6 +19592,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tharla earráid anaithnid."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अज्ञात त्रुटि हुई।"
           }
         },
         "ht" : {
@@ -21921,6 +21951,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "An bhfuil tú cinnte gur mhaith leat an meabhrúchán seo a scriosadh?"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्या आप वाकई इस अनुस्मारक को मिटाना चाहते हैं?"
           }
         },
         "ht" : {
@@ -38138,6 +38174,12 @@
             "value" : "Saincheaptha"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कस्टम"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39166,6 +39208,12 @@
             "value" : "Laethanta Roimh"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दिन पहले"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39942,6 +39990,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scrios Meabhrúchán"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुस्मारक मिटाएं"
           }
         },
         "ht" : {
@@ -46221,6 +46275,12 @@
             "value" : "Meabhrúchán Dáta Dlite"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नियत तिथि अनुस्मारक"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51491,7 +51551,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "घटना विवरण"
+            "value" : "घटना का विवरण"
           }
         },
         "ht" : {
@@ -60399,7 +60459,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "An bhfuil ceisteanna agat faoi do thasc? Seol teachtaireacht chuig do theagascóir."
+            "value" : "An bhfuil ceisteanna agat faoi do thasc?\nSeol teachtaireacht chuig do theagascóir."
           }
         },
         "hi" : {
@@ -61441,6 +61501,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uaireanta Roimh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "घंटे पहले"
           }
         },
         "ht" : {
@@ -72714,6 +72780,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nóiméid Roimh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मिनट पहले"
           }
         },
         "ht" : {
@@ -91331,6 +91403,12 @@
             "value" : "Roghnaigh am amach anseo le haghaidh do mheabhrúchán!"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कृपया अपने अनुस्मारक के लिए आगामी समय चुनें!"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98662,6 +98740,12 @@
             "value" : "Meabhrúchán"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुस्मारक"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98912,6 +98996,12 @@
             "value" : "Theip ar Chruthú Meabhrúcháin"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुस्मारक नहीं बनाया जा सका"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99160,6 +99250,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Meabhrúchán Scriosta"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुस्मारक मिटाया गया"
           }
         },
         "ht" : {
@@ -125269,6 +125365,12 @@
             "value" : "Tá an tasc seo dlite i %@"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह असाइनमेंट इतने समय में नियत है: %@"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139401,6 +139503,12 @@
             "value" : "Seachtainí Roimh"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सप्ताह पहले"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -143071,6 +143179,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tá meabhrúchán socraithe agat don am seo cheana féin."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपने पहले ही इस समय के लिए अनुस्मारक निर्धारित कर दिया है।"
           }
         },
         "ht" : {

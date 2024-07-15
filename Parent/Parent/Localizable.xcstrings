@@ -6773,7 +6773,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "घटना विवरण"
+            "value" : "घटना का विवरण"
           }
         },
         "ht" : {
@@ -15473,7 +15473,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tá an mac léinn a bhfuil tú ag iarraidh a chur leis ar institiúid Canvas eile. Sínigh isteach nó cruthaigh cuntas leis an institiúid sin chun an mac léinn seo a chur leis."
+            "value" : "Tá an mac léinn a bhfuil tú ag iarraidh a chur leis ar institiúid Canvas eile.\nSínigh isteach nó cruthaigh cuntas leis an institiúid sin chun an mac léinn seo a chur leis."
           }
         },
         "hi" : {
