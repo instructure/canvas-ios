@@ -233,29 +233,24 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     private var toView: some View {
-        Button {
-            model.addRecipientButtonDidTap(viewController: controller)
-        } label: {
-            HStack {
-                Text("To", bundle: .core)
-                    .font(.regular16, lineHeight: .condensed)
-                    .foregroundColor(.textDark)
-                    .padding(.vertical, 12)
-                    .accessibilitySortPriority(2)
-                if !model.recipients.isEmpty {
-                    recipientsView
-                        .accessibilitySortPriority(0)
-                }
-                Spacer()
-
-                addRecipientButton
-                    .accessibilitySortPriority(1)
+        HStack {
+            Text("To", bundle: .core)
+                .font(.regular16, lineHeight: .condensed)
+                .foregroundColor(.textDark)
+                .padding(.vertical, 12)
+                .accessibilitySortPriority(2)
+            if !model.recipients.isEmpty {
+                recipientsView
+                    .accessibilitySortPriority(0)
             }
+            Spacer()
+
+            addRecipientButton
+                .accessibilitySortPriority(1)
         }
         .padding(.horizontal, defaultHorizontalPaddingValue)
         .disabled(model.isRecipientsDisabled)
         .opacity(model.isRecipientsDisabled ? 0.6 : 1)
-        .accessibilityElement(children: .contain)
     }
 
     private var recipientsView: some View {

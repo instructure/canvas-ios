@@ -29,23 +29,27 @@ public struct RecipientPillView: View {
     }
 
     public var body: some View {
-        HStack(spacing: 0) {
-            Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 26)
-                .padding(.trailing, 10)
-            Text(recipient.displayName)
-                .font(.regular14)
-                .foregroundColor(.textDark)
-                .padding(.trailing, 10)
-                .truncationMode(.tail)
-                .lineLimit(1)
-            removeButton
-                .padding(.trailing, 10)
+        Button {
+
+        } label: {
+            HStack(spacing: 0) {
+                Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 26)
+                    .padding(.trailing, 10)
+                Text(recipient.displayName)
+                    .font(.regular14)
+                    .foregroundColor(.textDark)
+                    .padding(.trailing, 10)
+                    .truncationMode(.tail)
+                    .lineLimit(1)
+                removeButton
+                    .padding(.trailing, 10)
+            }
+            .padding(5)
+            .overlay(
+                RoundedRectangle(cornerRadius: 100)
+                    .stroke(Color.textDark, lineWidth: 0.5)
+            )
         }
-        .padding(5)
-        .overlay(
-            RoundedRectangle(cornerRadius: 100)
-                .stroke(Color.textDark, lineWidth: 0.5)
-        )
         .font(.regular12)
         .foregroundColor(.textDarkest)
         .accessibilityElement(children: .ignore)
