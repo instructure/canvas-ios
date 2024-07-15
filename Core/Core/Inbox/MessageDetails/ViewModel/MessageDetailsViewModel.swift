@@ -121,8 +121,6 @@ class MessageDetailsViewModel: ObservableObject {
                 self.deleteConversationDidTap.send((conversationId, viewController))
             }
         }
-
-        sheet.addAccessiblityDismissButton()
         
         router.show(sheet, from: viewController, options: .modal())
     }

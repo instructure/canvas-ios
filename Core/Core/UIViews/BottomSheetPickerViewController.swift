@@ -53,6 +53,7 @@ public class BottomSheetPickerViewController: UIViewController {
         stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        addAccessiblityDismissButton()
     }
 
     public override func viewWillLayoutSubviews() {
@@ -84,7 +85,7 @@ public class BottomSheetPickerViewController: UIViewController {
         actions.append(BottomSheetAction(action: action, image: image, title: title))
     }
 
-    public func addAccessiblityDismissButton() {
+    private func addAccessiblityDismissButton() {
         accessibilityCustomActions = [
             .init(name: String(localized: "Dismiss menu", bundle: .core),
                   actionHandler: { [weak self] _ in

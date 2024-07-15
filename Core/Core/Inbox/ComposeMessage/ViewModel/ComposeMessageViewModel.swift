@@ -208,7 +208,6 @@ class ComposeMessageViewModel: ObservableObject {
 
         }
 
-        sheet.addAccessiblityDismissButton()
         router.show(sheet, from: viewController, options: .modal())
     }
 
