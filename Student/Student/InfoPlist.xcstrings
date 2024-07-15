@@ -395,6 +395,12 @@
             "value" : "Mac Léinn Canvas"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas Student"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",

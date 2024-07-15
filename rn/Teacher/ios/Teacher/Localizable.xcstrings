@@ -3952,6 +3952,12 @@
             "value" : "Féilire"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कैलेंडर"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17610,6 +17616,12 @@
             "value" : "Grúpa %lld"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रुप %lld"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27330,7 +27342,13 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scored above..."
+            "value" : "Scóráilte thuas..."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इससे ऊपर अंक आए..."
           }
         },
         "ht" : {
@@ -27580,7 +27598,13 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scored below..."
+            "value" : "Scóráilte faoi..."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इससे कम अंक आए..."
           }
         },
         "ht" : {
@@ -29367,6 +29391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Id %lMac Léinn"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "छात्र %lld"
           }
         },
         "ht" : {
