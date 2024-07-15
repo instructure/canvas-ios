@@ -54,7 +54,8 @@ public struct RecipientPillView: View {
         .foregroundColor(.textDarkest)
         .accessibilityElement(children: .ignore)
         .accessibility(label: Text(recipient.displayName))
-        .accessibilityAction(named: Text("Remove recipient", bundle: .core)) {
+        .accessibility(hint: Text("Double tap to remove", bundle: .core))
+        .accessibilityAction {
             removeDidTap(recipient)
         }
     }
