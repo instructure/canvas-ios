@@ -121,7 +121,6 @@ class MessageDetailsViewModel: ObservableObject {
                 self.deleteConversationDidTap.send((conversationId, viewController))
             }
         }
-        
         router.show(sheet, from: viewController, options: .modal())
     }
 

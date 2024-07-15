@@ -30,7 +30,7 @@ public struct RecipientPillView: View {
 
     public var body: some View {
         Button {
-
+            // Pill component's remove button combined with the Wrapping Hstack works only with this extra button
         } label: {
             HStack(spacing: 0) {
                 Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 26)
