@@ -238,16 +238,17 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .font(.regular16, lineHeight: .condensed)
                 .foregroundColor(.textDark)
                 .padding(.vertical, 12)
-                .accessibilitySortPriority(2)
+                .accessibilitySortPriority(3)
             if !model.recipients.isEmpty {
                 recipientsView
-                    .accessibilitySortPriority(0)
+                    .accessibilitySortPriority(1)
             }
             Spacer()
 
             addRecipientButton
-                .accessibilitySortPriority(1)
+                .accessibilitySortPriority(2)
         }
+        .accessibilityElement(children: .contain)
         .padding(.horizontal, defaultHorizontalPaddingValue)
         .disabled(model.isRecipientsDisabled)
         .opacity(model.isRecipientsDisabled ? 0.6 : 1)
