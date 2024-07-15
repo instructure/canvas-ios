@@ -79,7 +79,6 @@ public class BottomSheetPickerViewController: UIViewController {
             button.configuration?.imagePadding = 24
         }
         buttonHeight += button.sizeThatFits(CGSize(width: view.bounds.size.width, height: .greatestFiniteMagnitude)).height
-        print(buttonHeight)
 
         stackView.addArrangedSubview(button)
         actions.append(BottomSheetAction(action: action, image: image, title: title))
