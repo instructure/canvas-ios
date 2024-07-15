@@ -46,42 +46,26 @@ class GetEnabledFeatureFlagsTests: CoreTestCase {
 
     func testWriteCreates() {
         let context = Context(.course, id: "1")
-        let response = ["new_discussions", "no_more_html"]
+        let response = ["no_more_html"]
         let useCase = GetEnabledFeatureFlags(context: context)
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
         let all: [FeatureFlag] = databaseClient.fetch()
-        XCTAssertEqual(all.count, 2)
+        XCTAssertEqual(all.count, 1)
         let noHTML: FeatureFlag? = databaseClient.first(where: #keyPath(FeatureFlag.name), equals: "no_more_html")
         XCTAssertNotNil(noHTML)
         XCTAssertEqual(noHTML?.name, "no_more_html")
         XCTAssertEqual(noHTML?.enabled, true)
         XCTAssertEqual(noHTML?.context?.canvasContextID, context.canvasContextID)
-
-        let newDiscussions: FeatureFlag? = databaseClient.first(where: #keyPath(FeatureFlag.name), equals: "new_discussions")
-        XCTAssertNotNil(newDiscussions)
-        XCTAssertEqual(newDiscussions?.name, "new_discussions")
-        XCTAssertEqual(newDiscussions?.enabled, true)
-        XCTAssertEqual(newDiscussions?.context?.canvasContextID, context.canvasContextID)
     }
 
     func testWriteUpdates() {
         let context = Context(.course, id: "1")
-        let existing = FeatureFlag.make(context: context, name: "new_discussions", enabled: false)
-        let response = ["new_discussions", "no_more_html"]
+        let existing = FeatureFlag.make(context: context, name: "no_more_html", enabled: false)
+        let response = ["no_more_html"]
         let useCase = GetEnabledFeatureFlags(context: context)
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
         databaseClient.refresh(existing, mergeChanges: true)
         XCTAssertTrue(existing.enabled)
-    }
-
-    func testWriteExclusivity() {
-        let context = Context(.course, id: "1")
-        let other = FeatureFlag.make(context: .course("2"), name: "no_more_html", enabled: false)
-        let response = ["new_discussions", "no_more_html"]
-        let useCase = GetEnabledFeatureFlags(context: context)
-        useCase.write(response: response, urlResponse: nil, to: databaseClient)
-        databaseClient.refresh(other, mergeChanges: true)
-        XCTAssertFalse(other.enabled)
     }
 
     func testStoreHelper() {

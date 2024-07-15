@@ -222,7 +222,9 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         let tapGradedView = UITapGestureRecognizer(target: self, action: #selector(didTapSubmission(_:)))
         gradedView?.addGestureRecognizer(tapGradedView)
 
-        submitAssignmentButton.makeUnavailableInOfflineMode()
+        if presenter?.assignment?.isDiscussion != true {
+            submitAssignmentButton.makeUnavailableInOfflineMode()
+        }
         fileSubmissionButton?.makeUnavailableInOfflineMode()
         submissionButton?.makeUnavailableInOfflineMode()
 
@@ -548,7 +550,14 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             submitAssignmentButton.alpha = 0
         } else {
             scrollViewBottom.constant = -submitAssignmentButton.bounds.size.height
-            submitAssignmentButton.alpha = OfflineModeAssembly.make().isOfflineModeEnabled() ? UIButton.DisabledInOfflineAlpha : 1.0
+
+            if presenter?.assignment?.isDiscussion != true {
+                submitAssignmentButton.alpha = OfflineModeAssembly.make().isOfflineModeEnabled()
+                    ? UIButton.DisabledInOfflineAlpha
+                    : 1.0
+            } else {
+                submitAssignmentButton.alpha = 1
+            }
         }
     }
 
