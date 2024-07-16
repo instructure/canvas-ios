@@ -229,13 +229,19 @@ class LiveChatViewModel: ObservableObject {
             </head>
             <body>
                 <script>
-                    const formData = ###FORMDATA###;
                     window.XpertChatbotFrontend = {
                         xpertKey: '###XPERTKEY###',
                         configurations: {
                             chatApi: {
                                 payloadParams: {
                                     use_case: ['Canvas_Student', 'All_Users'],
+                                },
+                            },
+                            conversationScreen: {
+                                liveChat: {
+                                    options: {
+                                        appId: '###APPID###',
+                                    },
                                 },
                             },
                         },
@@ -290,8 +296,6 @@ class LiveChatViewModel: ObservableObject {
             </body>
         </html>
         """
-            .replacingOccurrences(of: "###FORMDATA###", with: formDataString)
-            .replacingOccurrences(of: "###CONFIGID###", with: configID)
             .replacingOccurrences(of: "###SEGMENTKEY###", with: chatSegmentKey)
             .replacingOccurrences(of: "###APPID###", with: appID)
             .replacingOccurrences(of: "###XPERTKEY###", with: xpertKey)
