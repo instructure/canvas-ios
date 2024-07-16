@@ -183,7 +183,7 @@ public class CalendarHelper: BaseHelper {
     public struct Todo {
         public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
         public static var addButton: XCUIElement { app.find(label: "Add", type: .button) }
-        public static var titleInput: XCUIElement { app.find(label: "Title", type: .textField) }
+        public static var titleInput: XCUIElement { app.find(label: "Title", type: .textView) }
         public static var calendarSelector: XCUIElement { app.find(labelContaining: "Calendar,", type: .button) }
         public static var dateButton: XCUIElement { app.find(label: "Date and Time Picker") }
         public static var datePicker: XCUIElement { dateButton.findAll(type: .button)[0] }
