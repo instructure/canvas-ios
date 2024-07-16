@@ -135,6 +135,8 @@ public class CalendarHelper: BaseHelper {
     }
 
     public struct Details {
+        public static var kebabButton: XCUIElement { app.find(label: "moreLine", type: .button) }
+
         public static func titleLabel(event: DSCalendarEvent) -> XCUIElement {
             return app.find(label: event.title, type: .staticText)
         }
@@ -183,6 +185,7 @@ public class CalendarHelper: BaseHelper {
     public struct Todo {
         public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
         public static var addButton: XCUIElement { app.find(label: "Add", type: .button) }
+        public static var saveButton: XCUIElement { app.find(label: "Save", type: .button) }
         public static var titleInput: XCUIElement { app.find(label: "Title", type: .textView) }
         public static var calendarSelector: XCUIElement { app.find(labelContaining: "Calendar,", type: .button) }
         public static var dateButton: XCUIElement { app.find(label: "Date and Time Picker") }
@@ -282,5 +285,25 @@ public class CalendarHelper: BaseHelper {
                 duplicate: duplicate)
         let requestBody = CreateDSCalendarEventRequest.Body(calendar_event: calendarEvent)
         return seeder.createCalendarEvent(requestBody: requestBody)
+    }
+    
+    @discardableResult
+    public static func createCalendarToDoItem(
+            user: DSUser,
+            title: String = "Sample Calendar ToDo Item",
+            details: String = "Don't forget to remember!",
+            todoDate: Date = Date.now
+    ) -> DSPlannerNote {
+        let type = "planner_note"
+        let contextCode = "user_\(user.id)"
+        let body = CreateDSPlannerNotesRequest.Body(
+            title: title,
+            details: details,
+            type: type,
+            todoDate: todoDate,
+            contextCode: contextCode,
+            userId: user.id
+        )
+        return seeder.createPlannerNote(requestBody: body)
     }
 }
