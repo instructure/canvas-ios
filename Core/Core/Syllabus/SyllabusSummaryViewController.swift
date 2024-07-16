@@ -104,8 +104,10 @@ public class SyllabusSummaryViewController: UITableViewController {
     }
 
     func update() {
-        let pending = assignments.pending || events.pending
-        if tableView.refreshControl?.isRefreshing == true, !pending {
+        guard !assignments.pending, !events.pending, !summary.pending, !course.pending else {
+            return
+        }
+        if tableView.refreshControl?.isRefreshing == true {
             tableView.refreshControl?.endRefreshing()
         }
 
