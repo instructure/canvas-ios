@@ -40,8 +40,7 @@ class LiveChatViewModel: ObservableObject {
     var userLastName: String = ""
 
     var appID: String {
-        return "2U DEV" // TODO: change when go to PROD
-//        return "2U Inc"
+        return "2U Inc"
     }
 
     private let env = AppEnvironment.shared
@@ -236,16 +235,7 @@ class LiveChatViewModel: ObservableObject {
                         configurations: {
                             chatApi: {
                                 payloadParams: {
-                                    use_case: 'Canvas_Student',
-                                },
-                            },
-                            conversationScreen: {
-                                liveChat: {
-                                    options: {
-                                        appId: '###APPID###',
-                                        configId: '###CONFIGID###',
-                                        formData: formData,
-                                    },
+                                    use_case: ['Canvas_Student', 'All_Users'],
                                 },
                             },
                         },
