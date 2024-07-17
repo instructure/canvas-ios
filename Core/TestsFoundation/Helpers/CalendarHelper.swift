@@ -286,7 +286,7 @@ public class CalendarHelper: BaseHelper {
         let requestBody = CreateDSCalendarEventRequest.Body(calendar_event: calendarEvent)
         return seeder.createCalendarEvent(requestBody: requestBody)
     }
-    
+
     @discardableResult
     public static func createCalendarToDoItem(
             user: DSUser,
