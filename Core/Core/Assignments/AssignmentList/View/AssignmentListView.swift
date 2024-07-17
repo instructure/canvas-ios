@@ -134,10 +134,6 @@ public struct AssignmentListView: View, ScreenViewTrackable {
     }
 
     private func assignmentList(_ groups: [AssignmentGroupViewModel]) -> some View {
-//        ListWithoutVerticalScrollIndicator {
-//            ForEach(groups, id: \.id) { assignmentGroup in
-//                AssignmentGroupView(viewModel: assignmentGroup)
-//                    .listRowBackground(SwiftUI.EmptyView())
         ScrollView {
             LazyVStack(pinnedViews: .sectionHeaders) {
                 ForEach(groups, id: \.id) { assignmentGroup in

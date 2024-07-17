@@ -121,7 +121,6 @@ public struct Brand: Equatable {
         navTextColorActive: UIColor?,
         primary: UIColor?
     ) {
-//        self.headerImageUrl = Bundle.core.url(forResource: "edx_logo", withExtension: "png")
         self.headerImage = headerImage ?? UIImage(named: "defaultHeaderImage", in: .core, compatibleWith: nil)
 
         self.buttonPrimaryBackgroundLight = buttonPrimaryBackground ?? .electric
