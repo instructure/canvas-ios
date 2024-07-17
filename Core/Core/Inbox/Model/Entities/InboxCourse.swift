@@ -28,8 +28,6 @@ public final class InboxCourse: NSManagedObject, WriteableModel {
 
     public var context: Context { .init(.course, id: courseId) }
 
-    #if DEBUG
-
     @discardableResult
     public static func save(_ apiEntity: APICourse, in context: NSManagedObjectContext) -> InboxCourse {
         let dbEntity: InboxCourse = context.first(where: #keyPath(InboxCourse.courseId),
@@ -38,6 +36,4 @@ public final class InboxCourse: NSManagedObject, WriteableModel {
         dbEntity.courseId = apiEntity.id.value
         return dbEntity
     }
-
-    #endif
 }
