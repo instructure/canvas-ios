@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class StudioHTMLParserInteractorTests: CoreTestCase {
+class StudioHTMLParserInteractorLiveTests: CoreTestCase {
 
     func testExtractsMediaID() {
         let result = StudioTestData.iframe.extractStudioMediaIDFromIFrame()
@@ -35,7 +35,7 @@ class StudioHTMLParserInteractorTests: CoreTestCase {
             encoding: .utf8
         )
 
-        let result = StudioHTMLParserInteractor().extractStudioIFrames(htmlLocation: htmlLocation)
+        let result = StudioHTMLParserInteractorLive().extractStudioIFrames(htmlLocation: htmlLocation)
 
         XCTAssertEqual(
             result,

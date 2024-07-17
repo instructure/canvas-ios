@@ -18,7 +18,15 @@
 
 import Combine
 
-public class StudioVideoCleanupInteractor {
+public protocol StudioVideoCleanupInteractor {
+
+    func removeNoLongerNeededVideos(
+        allMediaItemsOnAPI: [APIStudioMediaItem],
+        mediaLTIIDsUsedInOfflineMode: [String]
+    ) -> AnyPublisher<Void, Error>
+}
+
+public class StudioVideoCleanupInteractorLive: StudioVideoCleanupInteractor {
     private let offlineStudioDirectory: URL
 
     public init(offlineStudioDirectory: URL) {

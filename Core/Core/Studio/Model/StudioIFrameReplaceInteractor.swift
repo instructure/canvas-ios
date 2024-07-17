@@ -18,19 +18,29 @@
 
 import Foundation
 
-public class StudioIFrameReplaceInteractor {
-    public enum ReplaceError: LocalizedError {
-        case failedToOpenHtml(Error)
-        case failedToConvertDataToString
-        case offlineVideoIDNotFound
-        case failedToConvertHtmlToData
-        case failedToSaveUpdatedHtml
+public enum StudioIFrameReplaceError: LocalizedError {
+    case failedToOpenHtml(Error)
+    case failedToConvertDataToString
+    case offlineVideoIDNotFound
+    case failedToConvertHtmlToData
+    case failedToSaveUpdatedHtml
 
-        public var errorDescription: String? {
-            // ReplaceError.failedToConvertDataToString
-            "\(Self.self).\(self)"
-        }
+    public var errorDescription: String? {
+        // ReplaceError.failedToConvertDataToString
+        "\(Self.self).\(self)"
     }
+}
+
+public protocol StudioIFrameReplaceInteractor {
+
+    func replaceStudioIFrames(
+        inHtmlAtURL htmlURL: URL,
+        iframes: [StudioIFrame],
+        offlineVideos: [StudioOfflineVideo]
+    ) throws
+}
+
+public class StudioIFrameReplaceInteractorLive: StudioIFrameReplaceInteractor {
 
     public func replaceStudioIFrames(
         inHtmlAtURL htmlURL: URL,
@@ -41,16 +51,16 @@ public class StudioIFrameReplaceInteractor {
         do {
             htmlData = try Data(contentsOf: htmlURL)
         } catch (let error) {
-            throw ReplaceError.failedToOpenHtml(error)
+            throw StudioIFrameReplaceError.failedToOpenHtml(error)
         }
 
         guard var htmlString = String(data: htmlData, encoding: .utf8) else {
-            throw ReplaceError.failedToConvertDataToString
+            throw StudioIFrameReplaceError.failedToConvertDataToString
         }
 
         for iframe in iframes {
             guard let offlineVideo = offlineVideos.first(where: { $0.ltiLaunchID == iframe.mediaLTILaunchID }) else {
-                throw ReplaceError.offlineVideoIDNotFound
+                throw StudioIFrameReplaceError.offlineVideoIDNotFound
             }
             htmlString = replaceStudioIFrame(
                 html: htmlString,
@@ -60,13 +70,13 @@ public class StudioIFrameReplaceInteractor {
         }
 
         guard let updatedHtmlData = htmlString.data(using: .utf8) else {
-            throw ReplaceError.failedToConvertHtmlToData
+            throw StudioIFrameReplaceError.failedToConvertHtmlToData
         }
 
         do {
             try updatedHtmlData.write(to: htmlURL)
         } catch {
-            throw ReplaceError.failedToSaveUpdatedHtml
+            throw StudioIFrameReplaceError.failedToSaveUpdatedHtml
         }
     }
 

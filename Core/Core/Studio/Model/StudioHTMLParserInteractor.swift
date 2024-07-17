@@ -25,7 +25,12 @@ public struct StudioIFrame: Equatable {
     let sourceHtml: String
 }
 
-public class StudioHTMLParserInteractor {
+public protocol StudioHTMLParserInteractor {
+
+    func extractStudioIFrames(htmlLocation: URL) -> [StudioIFrame]
+}
+
+public class StudioHTMLParserInteractorLive: StudioHTMLParserInteractor {
 
     public func extractStudioIFrames(htmlLocation: URL) -> [StudioIFrame] {
         guard let htmlData = try? Data(contentsOf: htmlLocation),

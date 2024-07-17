@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class StudioIFrameDiscoveryInteractorTests: CoreTestCase {
+class StudioIFrameDiscoveryInteractorLiveTests: CoreTestCase {
 
     func testDiscoversIFrame() throws {
         var validCourseHtmlURL = workingDirectory.appendingPathComponent("validcourse-1")
@@ -32,7 +32,7 @@ class StudioIFrameDiscoveryInteractorTests: CoreTestCase {
         invalidCourseHtmlURL.append(path: "test.html", directoryHint: .notDirectory)
         try StudioTestData.html.write(to: invalidCourseHtmlURL, atomically: false, encoding: .utf8)
 
-        let testee = StudioIFrameDiscoveryInteractor(studioHtmlParser: .init())
+        let testee = StudioIFrameDiscoveryInteractorLive(studioHtmlParser: StudioHTMLParserInteractorLive())
 
         // WHEN
         let publisher = testee.discoverStudioIFrames(

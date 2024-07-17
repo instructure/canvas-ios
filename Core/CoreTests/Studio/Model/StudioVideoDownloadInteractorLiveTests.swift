@@ -20,7 +20,7 @@
 import Combine
 import XCTest
 
-class StudioVideoDownloadInteractorTests: CoreTestCase {
+class StudioVideoDownloadInteractorLiveTests: CoreTestCase {
     private enum TestData {
         static let caption = APIStudioMediaItem.Caption(
             srclang: "en",
@@ -35,7 +35,7 @@ class StudioVideoDownloadInteractorTests: CoreTestCase {
             title: "Test Video",
             mime_type: mimeType,
             size: 576,
-            url: Bundle(for: StudioVideoDownloadInteractorTests.self).url(
+            url: Bundle(for: StudioVideoDownloadInteractorLiveTests.self).url(
                 forResource: "preview_test",
                 withExtension: "mp4"
             )!,
@@ -51,7 +51,7 @@ class StudioVideoDownloadInteractorTests: CoreTestCase {
     func testDownloadsVideoAndGeneratesPoster() {
         let mockCacheInteractor = MockStudioVideoCacheInteractor(isVideoDownloadedResult: false)
         let mockCaptionsInteractor = MockStudioCaptionsInteractor()
-        let testee = StudioVideoDownloadInteractor(
+        let testee = StudioVideoDownloadInteractorLive(
             rootDirectory: workingDirectory,
             captionsInteractor: mockCaptionsInteractor,
             videoCacheInteractor: mockCacheInteractor
@@ -84,7 +84,7 @@ class StudioVideoDownloadInteractorTests: CoreTestCase {
     func testSkipsDownloadWhenVideoIsAlreadyCached() {
         let mockCacheInteractor = MockStudioVideoCacheInteractor(isVideoDownloadedResult: true)
         let mockCaptionsInteractor = MockStudioCaptionsInteractor()
-        let testee = StudioVideoDownloadInteractor(
+        let testee = StudioVideoDownloadInteractorLive(
             rootDirectory: workingDirectory,
             captionsInteractor: mockCaptionsInteractor,
             videoCacheInteractor: mockCacheInteractor
@@ -105,7 +105,7 @@ class MockStudioCaptionsInteractor: StudioCaptionsInteractor {
     private(set) var receivedCaptionsToWrite: [APIStudioMediaItem.Caption] = []
     public var mockedCaptionURL: URL?
 
-    override public func write(
+    public func write(
         captions: [APIStudioMediaItem.Caption],
         to directory: URL
     ) -> AnyPublisher<[URL], Error> {
@@ -126,7 +126,7 @@ class MockStudioVideoCacheInteractor: StudioVideoCacheInteractor {
         self.isVideoDownloadedResult = isVideoDownloadedResult
     }
 
-    public override func isVideoDownloaded(
+    public func isVideoDownloaded(
         videoLocation: URL,
         expectedSize: Int
     ) -> Bool {

@@ -21,7 +21,7 @@ import Combine
 import WebKit
 import XCTest
 
-class StudioAPIAuthInteractorTests: CoreTestCase {
+class StudioAPIAuthInteractorLiveTests: CoreTestCase {
     enum TestData {
         static let studioLaunchURL = URL(string: "https://test.instructuremedia.com/ltiLaunch")!
         static let studioAuthenticatedLaunchURL = URL(string: "test.instructuremedia.com/auth")!
@@ -42,7 +42,7 @@ class StudioAPIAuthInteractorTests: CoreTestCase {
                 userName: ""
             )
         )
-        let publisher = StudioAPIAuthInteractor(webViewFactory: { mockWebView }).makeStudioAPI()
+        let publisher = StudioAPIAuthInteractorLive(webViewFactory: { mockWebView }).makeStudioAPI()
 
         XCTAssertFirstValueAndCompletion(publisher, timeout: 10) { api in
             XCTAssertEqual(api.loginSession, expectedAPIResult.loginSession)

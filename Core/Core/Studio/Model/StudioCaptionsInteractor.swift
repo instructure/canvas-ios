@@ -19,7 +19,15 @@
 import Combine
 import CombineSchedulers
 
-public class StudioCaptionsInteractor {
+public protocol StudioCaptionsInteractor {
+
+    func write(
+        captions: [APIStudioMediaItem.Caption],
+        to directory: URL
+    ) -> AnyPublisher<[URL], Error>
+}
+
+public class StudioCaptionsInteractorLive: StudioCaptionsInteractor {
 
     public func write(
         captions: [APIStudioMediaItem.Caption],

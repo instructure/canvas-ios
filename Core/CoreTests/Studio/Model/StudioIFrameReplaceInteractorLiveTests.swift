@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class StudioIFrameReplaceInteractorTests: CoreTestCase {
+class StudioIFrameReplaceInteractorLiveTests: CoreTestCase {
 
     func testReplacesStudioIFrames() throws {
         let videoURL = URL(string: "/video.mp4")!
@@ -48,7 +48,7 @@ class StudioIFrameReplaceInteractorTests: CoreTestCase {
         )
 
         // WHEN
-        try StudioIFrameReplaceInteractor().replaceStudioIFrames(
+        try StudioIFrameReplaceInteractorLive().replaceStudioIFrames(
             inHtmlAtURL: htmlFileURL,
             iframes: [iframe],
             offlineVideos: [offlineVideo]

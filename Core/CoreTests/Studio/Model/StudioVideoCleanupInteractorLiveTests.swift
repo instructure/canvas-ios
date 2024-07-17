@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class StudioVideoCleanupInteractorTests: CoreTestCase {
+class StudioVideoCleanupInteractorLiveTests: CoreTestCase {
     private enum TestConstants {
         static let video1ID = "1"
         static let video2ID = "2"
@@ -76,7 +76,7 @@ class StudioVideoCleanupInteractorTests: CoreTestCase {
         ]
 
         // WHEN
-        let testee = StudioVideoCleanupInteractor(
+        let testee = StudioVideoCleanupInteractorLive(
             offlineStudioDirectory: workingDirectory
         ).removeNoLongerNeededVideos(
             allMediaItemsOnAPI: apiMediaItems,
@@ -91,7 +91,7 @@ class StudioVideoCleanupInteractorTests: CoreTestCase {
     }
 
     func testNotFailsIfStudioDirectoryNotExists() throws {
-        let testee = StudioVideoCleanupInteractor(offlineStudioDirectory: workingDirectory)
+        let testee = StudioVideoCleanupInteractorLive(offlineStudioDirectory: workingDirectory)
         try FileManager.default.removeItem(at: workingDirectory)
 
         XCTAssertFinish(testee.removeNoLongerNeededVideos(

@@ -139,10 +139,10 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
 private class MockStudioAPIAuthInteractor: StudioAPIAuthInteractor {
     private(set) var makeAPICalled = false
 
-    public override func makeStudioAPI() -> AnyPublisher<API, AuthError> {
+    public func makeStudioAPI() -> AnyPublisher<API, StudioAPIAuthError> {
         makeAPICalled = true
         return Just(API())
-            .setFailureType(to: AuthError.self)
+            .setFailureType(to: StudioAPIAuthError.self)
             .eraseToAnyPublisher()
     }
 }
@@ -152,7 +152,7 @@ private class MockStudioIFrameReplaceInteractor: StudioIFrameReplaceInteractor {
     private(set) var receivedIFrames: [StudioIFrame] = []
     private(set) var receivedOfflineVideos: [StudioOfflineVideo] = []
 
-    public override func replaceStudioIFrames(
+    public func replaceStudioIFrames(
         inHtmlAtURL htmlURL: URL,
         iframes: [StudioIFrame],
         offlineVideos: [StudioOfflineVideo]
@@ -169,11 +169,9 @@ private class MockStudioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteract
     private(set) var receivedOfflineDirectory: URL?
     private(set) var receivedCourseIDs: [String] = []
 
-    init() {
-        super.init(studioHtmlParser: MockStudioHTMLParserInteractor())
-    }
+    init() {}
 
-    public override func discoverStudioIFrames(
+    public func discoverStudioIFrames(
         in offlineDirectory: URL,
         courseIDs: [String]
     ) -> AnyPublisher<StudioIFramesByLocation, Never> {
@@ -188,15 +186,9 @@ private class MockStudioVideoDownloadInteractor: StudioVideoDownloadInteractor {
     public var mockedOfflineVideoReponse: StudioOfflineVideo!
     private(set) var receivedMediaItem: APIStudioMediaItem?
 
-    init() {
-        super.init(
-            rootDirectory: URL(string: "/")!,
-            captionsInteractor: MockStudioCaptionsInteractor(),
-            videoCacheInteractor: StudioVideoCacheInteractor()
-        )
-    }
+    init() {}
 
-    public override func download(
+    public func download(
         _ item: APIStudioMediaItem
     ) -> AnyPublisher<StudioOfflineVideo, Error> {
         receivedMediaItem = item
@@ -206,17 +198,20 @@ private class MockStudioVideoDownloadInteractor: StudioVideoDownloadInteractor {
     }
 }
 
-private class MockStudioHTMLParserInteractor: StudioHTMLParserInteractor {}
+private class MockStudioHTMLParserInteractor: StudioHTMLParserInteractor {
+
+    func extractStudioIFrames(htmlLocation: URL) -> [Core.StudioIFrame] {
+        []
+    }
+}
 
 private class MockStudioVideoCleanupInteractor: StudioVideoCleanupInteractor {
     private(set) var receivedAPIMediaItems: [APIStudioMediaItem]?
     private(set) var receivedLTIIDsForOfflineMode: [String]?
 
-    init() {
-        super.init(offlineStudioDirectory: URL(string: "/")!)
-    }
+    init() {}
 
-    public override func removeNoLongerNeededVideos(
+    public func removeNoLongerNeededVideos(
         allMediaItemsOnAPI: [APIStudioMediaItem],
         mediaLTIIDsUsedInOfflineMode: [String]
     ) -> AnyPublisher<Void, Error> {

@@ -27,7 +27,12 @@ public struct StudioOfflineVideo: Equatable {
     public let captionLocations: [URL]
 }
 
-public class StudioVideoDownloadInteractor {
+public protocol StudioVideoDownloadInteractor {
+
+    func download(_ item: APIStudioMediaItem) -> AnyPublisher<StudioOfflineVideo, Error>
+}
+
+public class StudioVideoDownloadInteractorLive: StudioVideoDownloadInteractor {
     private let rootDirectory: URL
     private let captionsInteractor: StudioCaptionsInteractor
     private let videoCacheInteractor: StudioVideoCacheInteractor

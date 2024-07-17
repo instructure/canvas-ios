@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class StudioCaptionsInteractorTests: CoreTestCase {
+class StudioCaptionsInteractorLiveTests: CoreTestCase {
     private let srtContentEn = """
     1
     00:00:01,000 --> 00:00:02,000
@@ -74,7 +74,7 @@ class StudioCaptionsInteractorTests: CoreTestCase {
         )
 
         // WHEN
-        XCTAssertFinish(StudioCaptionsInteractor().write(
+        XCTAssertFinish(StudioCaptionsInteractorLive().write(
             captions: [captionEn, captionHu],
             to: workingDirectory
         ))
@@ -109,7 +109,7 @@ class StudioCaptionsInteractorTests: CoreTestCase {
         )
 
         // WHEN
-        XCTAssertFinish(StudioCaptionsInteractor().write(
+        XCTAssertFinish(StudioCaptionsInteractorLive().write(
             captions: [captionHu],
             to: workingDirectory
         ))

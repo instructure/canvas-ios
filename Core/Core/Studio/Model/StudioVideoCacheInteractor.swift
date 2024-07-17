@@ -18,7 +18,16 @@
 
 import Foundation
 
-public class StudioVideoCacheInteractor {
+public protocol StudioVideoCacheInteractor {
+
+    /// If the downloaded video's size matches the size we received from the API then we consider the video downloaded.
+    func isVideoDownloaded(
+        videoLocation: URL,
+        expectedSize: Int
+    ) -> Bool
+}
+
+public class StudioVideoCacheInteractorLive: StudioVideoCacheInteractor {
 
     /// If the downloaded video's size matches the size we received from the API then we consider the video downloaded.
     public func isVideoDownloaded(

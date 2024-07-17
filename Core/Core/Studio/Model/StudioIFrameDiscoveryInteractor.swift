@@ -20,7 +20,15 @@ import Combine
 
 public typealias StudioIFramesByLocation = [URL: [StudioIFrame]]
 
-public class StudioIFrameDiscoveryInteractor {
+public protocol StudioIFrameDiscoveryInteractor {
+
+    func discoverStudioIFrames(
+        in offlineDirectory: URL,
+        courseIDs: [String]
+    ) -> AnyPublisher<StudioIFramesByLocation, Never>
+}
+
+public class StudioIFrameDiscoveryInteractorLive: StudioIFrameDiscoveryInteractor {
     private let studioHtmlParser: StudioHTMLParserInteractor
 
     public init(studioHtmlParser: StudioHTMLParserInteractor) {

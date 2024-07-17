@@ -19,12 +19,12 @@
 @testable import Core
 import XCTest
 
-class StudioVideoCacheInteractorTests: CoreTestCase {
+class StudioVideoCacheInteractorLiveTests: CoreTestCase {
     private lazy var videoURL = workingDirectory.appending(
         path: "test.mp4",
         directoryHint: .notDirectory
     )
-    let testee = StudioVideoCacheInteractor()
+    let testee = StudioVideoCacheInteractorLive()
 
     func testNotExistingFile() {
         XCTAssertFalse(testee.isVideoDownloaded(
