@@ -25,6 +25,9 @@ struct ConversationAttachmentsCardView: View {
     private let removeHandler: (_ file: File) -> Void
     private let selectHandler: (_ file: File) -> Void
 
+    @State private var refreshId = UUID.string
+    @State private var errorCount = 0
+
     init(files: [File], selectHandler: @escaping (_ file: File) -> Void, removeHandler: @escaping (_ file: File) -> Void) {
         self.files = files
         self.removeHandler = removeHandler
@@ -65,32 +68,21 @@ struct ConversationAttachmentsCardView: View {
                                 )
                             )
                     default:
-                        Image(uiImage: file.icon)
-                            .frame(width: 128, height: 128)
-                            .background(Color.backgroundLight)
-                            .clipShape(
-                                .rect(
-                                    topLeadingRadius: 10,
-                                    bottomLeadingRadius: 10,
-                                    bottomTrailingRadius: 0,
-                                    topTrailingRadius: 0
-                                )
-                            )
+                        if errorCount < 2 {
+                            defaultFileView(for: file)
+                            .onAppear {
+                                errorCount += 1
+                                refreshId = UUID.string
+                            }
+                        } else {
+                            defaultFileView(for: file)
+                        }
                     }
                 }
+                .identifier(refreshId)
                 .frame(maxWidth: 128, maxHeight: 128)
             } else {
-                Image(uiImage: file.icon)
-                    .frame(width: 128, height: 128)
-                    .background(Color.backgroundLight)
-                    .clipShape(
-                        .rect(
-                            topLeadingRadius: 10,
-                            bottomLeadingRadius: 10,
-                            bottomTrailingRadius: 0,
-                            topTrailingRadius: 0
-                        )
-                    )
+                defaultFileView(for: file)
             }
             HStack {
                 VStack(alignment: .leading) {
@@ -123,6 +115,20 @@ struct ConversationAttachmentsCardView: View {
         .padding(.all, 0.5) // Align border
         .background(RoundedRectangle(cornerRadius: 10).stroke(Color.tiara, lineWidth: 1))
         .padding(12)
+    }
+
+    func defaultFileView(for file: File) -> some View {
+        Image(uiImage: file.icon)
+            .frame(width: 128, height: 128)
+            .background(Color.backgroundLight)
+            .clipShape(
+                .rect(
+                    topLeadingRadius: 10,
+                    bottomLeadingRadius: 10,
+                    bottomTrailingRadius: 0,
+                    topTrailingRadius: 0
+                )
+            )
     }
 
     @ViewBuilder
