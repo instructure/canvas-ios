@@ -18,7 +18,6 @@
 
 import Foundation
 import UIKit
-import Combine
 
 public class TodoListViewController: ScreenViewTrackableViewController, ErrorViewController {
     @IBOutlet weak var emptyDescLabel: UILabel!
@@ -110,7 +109,6 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
         }
     }
 
-    private var subscriptions = Set<AnyCancellable>()
     @objc func openProfile() {
         env.router.route(to: "/profile", from: self, options: .modal())
     }
