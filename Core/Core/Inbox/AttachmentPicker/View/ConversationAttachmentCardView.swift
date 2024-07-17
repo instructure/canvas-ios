@@ -70,9 +70,11 @@ struct ConversationAttachmentsCardView: View {
                     default:
                         if errorCount < 2 {
                             defaultFileView(for: file)
-                            .onAppear {
-                                errorCount += 1
-                                refreshId = UUID.string
+                            .onAppear { // Reload the image if there is a new available image
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    errorCount += 1
+                                    refreshId = UUID.string
+                                }
                             }
                         } else {
                             defaultFileView(for: file)
