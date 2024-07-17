@@ -65,7 +65,17 @@ struct ConversationAttachmentsCardView: View {
                                 )
                             )
                     default:
-                        Color.clear
+                        Image(uiImage: file.icon)
+                            .frame(width: 128, height: 128)
+                            .background(Color.backgroundLight)
+                            .clipShape(
+                                .rect(
+                                    topLeadingRadius: 10,
+                                    bottomLeadingRadius: 10,
+                                    bottomTrailingRadius: 0,
+                                    topTrailingRadius: 0
+                                )
+                            )
                     }
                 }
                 .frame(maxWidth: 128, maxHeight: 128)
@@ -110,6 +120,7 @@ struct ConversationAttachmentsCardView: View {
                 removeHandler(file)
             }
         }
+        .padding(.all, 0.5) // Align border
         .background(RoundedRectangle(cornerRadius: 10).stroke(Color.tiara, lineWidth: 1))
         .padding(12)
     }
