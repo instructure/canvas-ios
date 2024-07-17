@@ -310,6 +310,7 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(courseItem.waitUntil(.value(expected: "1")).hasValue(value: "1"))
 
         newToDoButton.hit()
+        XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
         XCTAssertTrue(timePicker.waitUntil(.visible).isVisible)
 
         timePicker.hit()
@@ -396,6 +397,7 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(userItem.waitUntil(.value(expected: "1")).hasValue(value: "1"))
 
         newToDoButton.hit()
+        XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
         XCTAssertTrue(timePicker.waitUntil(.visible).isVisible)
 
         timePicker.hit()
@@ -482,6 +484,7 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(userItem.waitUntil(.value(expected: "1")).hasValue(value: "1"))
 
         newToDoButton.hit()
+        XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
         XCTAssertTrue(timePicker.waitUntil(.visible).isVisible)
 
         timePicker.hit()
