@@ -64,6 +64,7 @@ class DashboardViewControllerTests: ParentTestCase {
         (vc.studentListStack.arrangedSubviews[1] as? UIButton)?.sendActions(for: .primaryActionTriggered)
         drainMainQueue() // Wait for animation to complete
         XCTAssertEqual(vc.studentListHiddenHeight.isActive, true)
+        // FIXME: always fails locally, always works on CI
         XCTAssertEqual(vc.avatarView.name, "Bob")
         XCTAssertEqual(vc.titleLabel.text, "Bob")
         XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Current student: Bob. Tap to switch students")

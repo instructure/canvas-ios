@@ -113,6 +113,12 @@
             "value" : "Canvas Enseignant"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas Teacher"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -265,6 +271,18 @@
         }
       }
     },
+    "CFBundleSpokenName" : {
+      "comment" : "Accessibility Bundle Name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Canvas Teacher"
+          }
+        }
+      }
+    },
     "NSCameraUsageDescription" : {
       "comment" : "Privacy - Camera Usage Description",
       "extractionState" : "extracted_with_value",
@@ -375,6 +393,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Joindre des photos et des vidéos à l’envoi de commentaires."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन टिप्पणियों में फ़ोटो और वीडियो संलग्न करें।"
           }
         },
         "ht" : {
@@ -624,6 +648,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -881,6 +911,12 @@
             "value" : "Joindre les enregistrements audio à l’envoi de commentaires."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणियों को प्रस्तुत करने के लिए ऑडियो रिकॉर्डिंग संलग्न करें।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1133,6 +1169,12 @@
             "value" : "Joindre des photos et des vidéos à l’envoi de commentaires."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिशन टिप्पणियों में फ़ोटो और वीडियो संलग्न करें।"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1383,6 +1425,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Téléverser du contenu aux cours."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सामग्री को पाठ्यक्रमों में अपलोड करें।"
           }
         },
         "ht" : {

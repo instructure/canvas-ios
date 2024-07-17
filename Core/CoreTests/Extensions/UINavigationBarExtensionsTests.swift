@@ -47,7 +47,7 @@ class UINavigationBarExtensionsTests: XCTestCase {
             buttonSecondaryText: .white,
             fontColorDark: .white,
             headerImageBackground: .white,
-            headerImageUrl: nil,
+            headerImage: nil,
             linkColor: .white,
             navBackground: .white,
             navBadgeBackground: .white,

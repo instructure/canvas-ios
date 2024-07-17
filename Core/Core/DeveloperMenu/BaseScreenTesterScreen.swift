@@ -23,13 +23,24 @@ struct BaseScreenTesterScreen: View {
 
     var body: some View {
         InstUI.BaseScreen(state: state) { _ in
-            Text(verbatim: "Content")
+            VStack(spacing: 16) {
+                ForEach(0..<100) { index in
+                    HStack {
+                        Text(verbatim: "Content")
+                        Spacer()
+                        Text(verbatim: "Line #\(index)")
+                    }
+                    .padding(.horizontal, 16)
+                }
+            }
         }
         .overlay(alignment: .bottom) {
             Picker("", selection: $state) {
-                ForEach(InstUI.ScreenState.allCases) { state in
-                    Text(state.rawValue.capitalized).tag(state)
-                }
+                Text(verbatim: "Loading").tag(InstUI.ScreenState.loading)
+                Text(verbatim: "Error").tag(InstUI.ScreenState.error)
+                Text(verbatim: "Empty").tag(InstUI.ScreenState.empty)
+                Text(verbatim: "Data").tag(InstUI.ScreenState.data)
+                Text(verbatim: "Data with LoadingOverlay").tag(InstUI.ScreenState.data(loadingOverlay: true))
             }
             .padding()
         }

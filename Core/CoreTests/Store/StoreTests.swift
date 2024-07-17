@@ -534,6 +534,8 @@ class StoreTests: CoreTestCase {
         XCTAssertEqual(cached.objects.first?.id, "1")
         XCTAssertFalse(cached.pending)
         XCTAssertNil(cached.error)
+
+        Clock.reset()
     }
 
     func testSubscribeWithNetworkError() {

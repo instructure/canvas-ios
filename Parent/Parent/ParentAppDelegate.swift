@@ -17,6 +17,7 @@
 //
 
 import AVKit
+import Combine
 import Core
 import Firebase
 import Heap
@@ -29,6 +30,7 @@ var currentStudentID: String?
 @UIApplicationMain
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
+    private var subscriptions = Set<AnyCancellable>()
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -106,9 +108,14 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         Analytics.shared.logSession(session)
         getPreferences { userProfile in performUIUpdate {
             LocalizationManager.localizeForApp(UIApplication.shared, locale: userProfile.locale) {
-                GetBrandVariables().fetch(environment: self.environment) { [weak self] _, _, _ in performUIUpdate {
-                    self?.showRootView()
-                }}
+                ReactiveStore(useCase: GetBrandVariables())
+                    .getEntities()
+                    .receive(on: RunLoop.main)
+                    .sink(receiveCompletion: { _ in }) { [weak self] brandVars in
+                        brandVars.first?.applyBrandTheme()
+                        self?.showRootView()
+                    }
+                    .store(in: &self.subscriptions)
             }
         }}
     }

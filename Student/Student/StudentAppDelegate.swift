@@ -33,6 +33,7 @@ import UserNotifications
 @UIApplicationMain
 class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
+    private var subscriptions = Set<AnyCancellable>()
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -193,9 +194,14 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
             self.refreshNotificationTab()
             LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile?.locale ?? session.locale) {
-                GetBrandVariables().fetch(environment: self.environment) { _, _, _ in performUIUpdate {
-                    NativeLoginManager.login(as: session)
-                }}
+                ReactiveStore(useCase: GetBrandVariables())
+                    .getEntities()
+                    .receive(on: RunLoop.main)
+                    .sink(receiveCompletion: { _ in }) { brandVars in
+                        brandVars.first?.applyBrandTheme()
+                        NativeLoginManager.login(as: session)
+                    }
+                    .store(in: &self.subscriptions)
             }
         }}
     }

@@ -41,10 +41,11 @@ public class AnnouncementsHelper: BaseHelper {
 
     public struct Editor {
         public static var navBar: XCUIElement { app.find(id: "New Announcement") }
+        public static var cancelButton: XCUIElement { app.find(id: "screen.dismiss") }
         public static var attachment: XCUIElement { app.find(id: "DiscussionEditor.attachmentButton", type: .button) }
         public static var done: XCUIElement { app.find(id: "DiscussionEditor.doneButton") }
         public static var title: XCUIElement { app.find(id: "DiscussionEditor.titleField") }
-        public static var description: XCUIElement { app.find(label: "Description", type: .textView) }
+        public static var description: XCUIElement { app.find(label: "Description", type: .textField) }
         public static var sections: XCUIElement { app.find(id: "DiscussionEditor.sectionsButton") }
         public static var delayed: XCUIElement { app.find(id: "DiscussionEditor.delayedPostAtToggle").find(type: .switch) }
         public static var locked: XCUIElement { app.find(id: "DiscussionEditor.lockedToggle").find(type: .switch) }

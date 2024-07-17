@@ -104,7 +104,7 @@ public class QuizzesHelper: BaseHelper {
             public static var cancel: XCUIElement { app.find(label: "Cancel", type: .button) }
             public static var done: XCUIElement { app.find(label: "Done", type: .button) }
             public static var title: XCUIElement { app.find(id: "QuizEditor.titleField") }
-            public static var description: XCUIElement { app.find(id: "QuizEditor.description").find(type: .textView) }
+            public static var description: XCUIElement { app.find(id: "QuizEditor.description").find(type: .textField) }
             public static var quizType: XCUIElement { app.find(id: "QuizEditor.quizType") }
             public static var publish: XCUIElement { app.find(id: "QuizEditor.publish").find(type: .switch) }
             public static var assignmentGroup: XCUIElement { app.find(id: "QuizEditor.assignmentGroup") }

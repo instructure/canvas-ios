@@ -41,6 +41,7 @@ class StudentTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        Clock.reset()
         API.resetMocks()
         LoginSession.clearAll()
         queue = OperationQueue()

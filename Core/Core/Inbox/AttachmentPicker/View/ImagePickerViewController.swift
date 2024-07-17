@@ -22,6 +22,7 @@ import SwiftUI
 struct ImagePickerViewController: UIViewControllerRepresentable {
     typealias ImagePickedHandler = (URL) -> Void
     @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     let sourceType: UIImagePickerController.SourceType
     let imageHandler: ImagePickedHandler

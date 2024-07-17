@@ -96,6 +96,18 @@ public class DiscussionsHelper: BaseHelper {
         public static var markAllAsRead: XCUIElement { app.find(label: "Mark All as Read", type: .menuItem) }
         public static var markAllAsUnread: XCUIElement { app.find(label: "Mark All as Unread", type: .menuItem) }
 
+        public static func replyFromLabel(user: DSUser) -> XCUIElement {
+            return app.find(label: "Reply from \(user.name)", type: .staticText)
+        }
+
+        public static func replyBody(replyText: String) -> XCUIElement {
+            return app.find(label: replyText, type: .staticText)
+        }
+
+        public static func replyToPostButton(user: DSUser) -> XCUIElement {
+            return app.find(label: "Reply to post from \(user.name)", type: .button)
+        }
+
         public static func discussionTitle(discussion: DSDiscussionTopic) -> XCUIElement {
             return app.find(label: "Discussion Topic: \(discussion.title)", type: .staticText)
         }
@@ -105,15 +117,29 @@ public class DiscussionsHelper: BaseHelper {
         }
 
         public struct Reply {
-            public static var textInput: XCUIElement { app.find(labelContaining: "Rich Text Area", type: .other).find(type: .textView) }
+            public static var textInput: XCUIElement { app.find(labelContaining: "Rich Text Area", type: .other).find(type: .textField) }
             public static var attachButton: XCUIElement { app.find(label: "Attach", type: .button) }
             public static var replyButton: XCUIElement { app.find(label: "Reply", type: .button) }
             public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
+
+            public static func replyButtons(count: Int) -> [XCUIElement] {
+                let deadline = Date().addingTimeInterval(10)
+                while Date() < deadline {
+                    let replyButtons = app.findAll(label: "Reply", type: .button)
+                    if replyButtons.count > count - 1 {
+                        return replyButtons
+                    } else {
+                        sleep(1)
+                    }
+                }
+                return []
+            }
         }
 
     }
 
     public struct Editor {
+        public static var cancelButton: XCUIElement { app.find(id: "screen.dismiss") }
         public static var allowRatingToggle: XCUIElement { app.find(id: "DiscussionEditor.allowRatingToggle").find(type: .switch) }
         public static var attachmentButton: XCUIElement { app.find(id: "DiscussionEditor.attachmentButton") }
         public static var delayedPostAtToggle: XCUIElement { app.find(id: "DiscussionEditor.delayedPostAtToggle") }
@@ -132,7 +158,7 @@ public class DiscussionsHelper: BaseHelper {
         public static var titleField: XCUIElement { app.find(id: "DiscussionEditor.titleField") }
         public static var availableFromButton: XCUIElement { app.find(label: "Available from", type: .button) }
         public static var availableUntilButton: XCUIElement { app.find(label: "Available until", type: .button) }
-        public static var descriptionField: XCUIElement { richContentEditorWebView.find(type: .textView) }
+        public static var descriptionField: XCUIElement { richContentEditorWebView.find(type: .textField) }
 
         public static var richContentEditorWebView: XCUIElement { app.find(id: "RichContentEditor.webView") }
     }
@@ -162,15 +188,12 @@ public class DiscussionsHelper: BaseHelper {
 
     @discardableResult
     public static func replyToDiscussion(replyText: String = "Test replying to discussion", shouldPullToRefresh: Bool = false) -> Bool {
-        Details.replyButton.hit()
-        let textEntry = Details.Reply.textField.waitUntil(.visible)
-        textEntry.writeText(text: replyText)
-        Details.Reply.sendButton.hit()
-        sleep(3)
-        if shouldPullToRefresh {
-            pullToRefresh()
-        }
-        let repliesSection = Details.repliesSection.waitUntil(.visible)
-        return repliesSection.isVisible
+        NewDetails.replyButton.hit()
+        let textInput = NewDetails.Reply.textInput.waitUntil(.visible)
+        let replyButton = NewDetails.Reply.replyButton.waitUntil(.visible)
+        textInput.writeText(text: replyText)
+        replyButton.hit()
+        textInput.waitUntil(.vanish)
+        return NewDetails.replyBody(replyText: replyText).waitUntil(.visible).isVisible
     }
 }

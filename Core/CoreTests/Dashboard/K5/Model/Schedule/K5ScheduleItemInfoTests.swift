@@ -53,7 +53,7 @@ class K5ScheduleItemInfoTests: CoreTestCase {
                              buttonSecondaryText: nil,
                              fontColorDark: nil,
                              headerImageBackground: nil,
-                             headerImageUrl: nil,
+                             headerImage: nil,
                              linkColor: nil,
                              navBackground: nil,
                              navBadgeBackground: nil,

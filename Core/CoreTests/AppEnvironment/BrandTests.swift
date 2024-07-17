@@ -41,10 +41,12 @@ class BrandTests: XCTestCase {
     }
 
     func testHeaderImageView() {
+        let headerImage = UIImage.addImageLine
+        Brand.shared.headerImage = headerImage
         let view = Brand.shared.headerImageView()
         view.layoutIfNeeded()
         XCTAssertEqual(view.backgroundColor!.hexString, Brand.shared.headerImageBackground.hexString)
         XCTAssertEqual(view.frame, CGRect(x: 0, y: 0, width: 44, height: 44))
-        XCTAssertEqual(view.url, Brand.shared.headerImageUrl)
+        XCTAssertEqual(view.image, headerImage)
     }
 }

@@ -27,7 +27,9 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
         // MARK: - GIVEN
 
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
-        let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
+        let testee = DashboardOfflineSyncProgressCardViewModel(progressObserverInteractor: mockInteractor,
+                                                               progressWriterInteractor: CourseSyncProgressWriterInteractorMock(),
+                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router,
                                                                scheduler: .immediate)
 
@@ -46,7 +48,8 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
         // MARK: - GIVEN
 
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
-        let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
+        let testee = DashboardOfflineSyncProgressCardViewModel(progressObserverInteractor: mockInteractor,
+                                                               progressWriterInteractor: CourseSyncProgressWriterInteractorMock(),
                                                                offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router,
                                                                scheduler: .immediate)
@@ -107,7 +110,8 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
         // MARK: - GIVEN
 
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
-        let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
+        let testee = DashboardOfflineSyncProgressCardViewModel(progressObserverInteractor: mockInteractor,
+                                                               progressWriterInteractor: CourseSyncProgressWriterInteractorMock(),
                                                                offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router,
                                                                scheduler: .immediate)
@@ -129,7 +133,9 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
         let testScheduler: TestSchedulerOf<DispatchQueue> = DispatchQueue.test
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient,
                                                                       progressToReport: 1)
-        let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
+        let testee = DashboardOfflineSyncProgressCardViewModel(progressObserverInteractor: mockInteractor,
+                                                               progressWriterInteractor: CourseSyncProgressWriterInteractorMock(),
+                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router,
                                                                scheduler: testScheduler.eraseToAnyScheduler())
 
@@ -156,7 +162,9 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
 
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient,
                                                                       progressToReport: 1)
-        let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
+        let testee = DashboardOfflineSyncProgressCardViewModel(progressObserverInteractor: mockInteractor,
+                                                               progressWriterInteractor: CourseSyncProgressWriterInteractorMock(),
+                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router,
                                                                scheduler: .immediate)
 
@@ -184,7 +192,10 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
         // MARK: - GIVEN
 
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
-        let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
+        let expectation = expectation(description: "Function is called.")
+        let mockWriterInteractor = CourseSyncProgressWriterInteractorMock(expectation: expectation)
+        let testee = DashboardOfflineSyncProgressCardViewModel(progressObserverInteractor: mockInteractor,
+                                                               progressWriterInteractor: mockWriterInteractor,
                                                                offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router,
                                                                scheduler: .immediate)
@@ -201,13 +212,16 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
         // MARK: - THEN
 
         XCTAssertTrue(testee.state.isHidden)
+        waitForExpectations(timeout: 0.1)
     }
 
     func testCardTapRoutesToProgressView() {
         // MARK: - GIVEN
 
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
-        let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
+        let testee = DashboardOfflineSyncProgressCardViewModel(progressObserverInteractor: mockInteractor,
+                                                               progressWriterInteractor: CourseSyncProgressWriterInteractorMock(),
+                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router)
         let source = UIViewController()
 
@@ -295,6 +309,28 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
     func mockStateProgress() {
         stateProgressPublisher.send(stateProgressMock)
     }
+}
+
+class CourseSyncProgressWriterInteractorMock: CourseSyncProgressWriterInteractor {
+    let expectation: XCTestExpectation?
+
+    init(expectation: XCTestExpectation? = nil) {
+        self.expectation = expectation
+    }
+
+    func saveDownloadProgress(entries _: [CourseSyncEntry]) {}
+
+    func saveDownloadResult(isFinished _: Bool, error _: String?) {}
+
+    func cleanUpPreviousDownloadProgress() {
+        expectation?.fulfill()
+    }
+
+    func markInProgressDownloadsAsFailed() {}
+
+    func setInitialLoadingState(entries _: [CourseSyncEntry]) {}
+
+    func saveStateProgress(id _: String, selection _: CourseEntrySelection, state _: CourseSyncEntry.State) {}
 }
 
 private class MockOfflineModeInteractorEnabled: OfflineModeInteractor {

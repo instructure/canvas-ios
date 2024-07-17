@@ -26,8 +26,8 @@ public enum ObserverAlertWorkflowState: String, Codable {
 public final class ObserverAlert: NSManagedObject {
     @NSManaged public var actionDate: Date?
     @NSManaged public var alertTypeRaw: String
+    @NSManaged public var contextType: String?
     @NSManaged public var contextID: String?
-    @NSManaged public var courseID: String?
     @NSManaged public var htmlURL: URL?
     @NSManaged public var id: String
     @NSManaged public var observerID: String
@@ -46,6 +46,25 @@ public final class ObserverAlert: NSManagedObject {
         get { ObserverAlertWorkflowState(rawValue: workflowStateRaw) ?? .unread }
         set { workflowStateRaw = newValue.rawValue }
     }
+
+    public var courseID: String? {
+        switch alertType {
+        case .courseGradeHigh, .courseGradeLow:
+            return contextID
+        case .assignmentGradeHigh, .assignmentGradeLow:
+            guard
+                let paths = htmlURL?.pathComponents,
+                let courseIDIndex = paths.firstIndex(of: "courses")?.advanced(by: 1),
+                let courseID = paths[safeIndex: courseIDIndex]
+            else {
+                return nil
+            }
+
+            return courseID
+        default:
+            return nil
+        }
+    }
 }
 
 extension ObserverAlert: WriteableModel {
@@ -54,8 +73,8 @@ extension ObserverAlert: WriteableModel {
         let model: ObserverAlert = context.first(where: #keyPath(ObserverAlert.id), equals: item.id.value) ?? context.insert()
         model.actionDate = item.action_date
         model.alertType = item.alert_type
+        model.contextType = item.context_type
         model.contextID = item.context_id?.value
-        model.courseID = item.course_id?.value
         model.htmlURL = item.html_url?.rawValue
         model.id = item.id.value
         model.observerID = item.observer_id.value

@@ -20,13 +20,13 @@ import SwiftUI
 
 public extension InstUI {
 
-    enum ScreenState: String, Equatable, Identifiable, CaseIterable {
+    enum ScreenState: Equatable, Hashable {
         case loading
         case error
         case empty
-        case data
+        case data(loadingOverlay: Bool)
 
-        public var id: String { rawValue }
+        public static let data = Self.data(loadingOverlay: false)
     }
 
     /**
@@ -67,7 +67,7 @@ public extension InstUI {
             { $0() }
         }
 
-        @Environment(\.sizeCategory) private var sizeCategory
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
         private let state: ScreenState
         private let config: BaseScreenConfig
         private let refreshAction: (@escaping RefreshCompletion) -> Void
@@ -94,46 +94,31 @@ public extension InstUI {
             ZStack {
                 switch state {
                 case .loading:
-                    loadingIndicator
+                    loadingIndicator(showOverlay: false)
                 case .error:
                     panda(config: config.errorPandaConfig)
                 case .empty:
                     panda(config: config.emptyPandaConfig)
-                case .data:
-                    GeometryReader { geometry in
-                        let content = content(geometry)
-
-                        if config.refreshable {
-                            RefreshableScrollView(
-                                config.scrollAxes,
-                                showsIndicators: config.showsScrollIndicators,
-                                content: {
-                                    content
-                                },
-                                refreshAction: refreshAction
-                            )
-                            .frame(width: geometry.size.width, height: geometry.size.height)
-                        } else {
-                            ScrollView(
-                                config.scrollAxes,
-                                showsIndicators: config.showsScrollIndicators
-                            ) {
-                                content
-                            }
-                            .frame(width: geometry.size.width, height: geometry.size.height)
-                        }
+                case .data(let loadingOverlay):
+                    if loadingOverlay {
+                        data.disabled(true)
+                        loadingIndicator(showOverlay: true)
+                    } else {
+                        data
                     }
-                    .background(Color.backgroundLightest)
                 }
             }
             .animation(.default, value: state)
         }
 
-        private var loadingIndicator: some View {
+        private func loadingIndicator(showOverlay: Bool) -> some View {
             ProgressView()
                 .progressViewStyle(.indeterminateCircle(color: Color(Brand.shared.primary)))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.backgroundLightest)
+                .background(showOverlay
+                    ? Color.backgroundGrouped.opacity(0.5)
+                    : Color.backgroundLightest
+                )
         }
 
         private func panda(config: InteractivePanda.Config)
@@ -151,6 +136,33 @@ public extension InstUI {
                     refreshAction: refreshAction)
                 .background(Color.backgroundLightest)
             }
+        }
+
+        private var data: some View {
+            GeometryReader { geometry in
+                let content = content(geometry)
+
+                if config.refreshable {
+                    RefreshableScrollView(
+                        config.scrollAxes,
+                        showsIndicators: config.showsScrollIndicators,
+                        content: {
+                            content
+                        },
+                        refreshAction: refreshAction
+                    )
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                } else {
+                    ScrollView(
+                        config.scrollAxes,
+                        showsIndicators: config.showsScrollIndicators
+                    ) {
+                        content
+                    }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                }
+            }
+            .background(Color.backgroundLightest)
         }
     }
 }
@@ -177,6 +189,21 @@ public extension InstUI {
 
 #Preview("Vertical Scrollable Data") {
     InstUI.BaseScreen(state: .data) { _ in
+        VStack(alignment: .leading) {
+            ForEach(0..<100) { index in
+                HStack {
+                    Text(verbatim: "Data \(index)")
+                    Spacer()
+                    Text(verbatim: "Action \(index)")
+                }
+            }
+        }
+        .padding()
+    }
+}
+
+#Preview("Data With Loading Overlay") {
+    InstUI.BaseScreen(state: .data(loadingOverlay: true)) { _ in
         VStack(alignment: .leading) {
             ForEach(0..<100) { index in
                 HStack {
@@ -233,17 +260,19 @@ public extension InstUI {
     }
 }
 
-class ChangingViewModel: ObservableObject {
+private final class ChangingViewModel: ObservableObject {
     @Published var state = InstUI.ScreenState.loading
     private lazy var timer: Timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-        self?.state = InstUI.ScreenState.allCases.randomElement()!
+        let allStates: [InstUI.ScreenState] = [.loading, .error, .empty, .data, .data(loadingOverlay: true)]
+        self?.state = allStates.randomElement()!
     }
 
     init() {
         _ = timer
     }
 }
-struct ChangingView: View {
+
+private struct ChangingView: View {
     @StateObject var viewModel = ChangingViewModel()
 
     var body: some View {

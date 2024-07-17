@@ -34,6 +34,7 @@ public protocol CourseSyncContentInteractor {
 }
 
 public final class CourseSyncInteractorLive: CourseSyncInteractor {
+    private let brandThemeInteractor: BrandThemeDownloaderInteractor
     private let contentInteractors: [CourseSyncContentInteractor]
     private let filesInteractor: CourseSyncFilesInteractor
     private let modulesInteractor: CourseSyncModulesInteractor
@@ -65,6 +66,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
      when they access the "All Courses" screen the courses are listed.
      */
     public init(
+        brandThemeInteractor: BrandThemeDownloaderInteractor,
         contentInteractors: [CourseSyncContentInteractor],
         filesInteractor: CourseSyncFilesInteractor,
         modulesInteractor: CourseSyncModulesInteractor,
@@ -75,6 +77,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         scheduler: AnySchedulerOf<DispatchQueue>,
         env: AppEnvironment
     ) {
+        self.brandThemeInteractor = brandThemeInteractor
         self.contentInteractors = contentInteractors
         self.filesInteractor = filesInteractor
         self.modulesInteractor = modulesInteractor
@@ -109,6 +112,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         downloadSubscription = backgroundActivity
             .start { unownedSelf.handleSyncInterruptByOS() }
             .receive(on: scheduler)
+            .flatMap { [brandThemeInteractor] in brandThemeInteractor.getContent() }
             .flatMap { _ in unownedSelf.downloadCourseList() }
             .flatMap { Publishers.Sequence(sequence: entriesWithInitialLoadingState) }
             .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)

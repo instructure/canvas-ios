@@ -47,5 +47,7 @@ class CDWidgetAnnouncementTests: CoreTestCase {
         XCTAssertEqual(testee.courseName, "Course One")
         XCTAssertEqual(testee.courseColor.hexString,
                        UIColor.red.ensureContrast(against: .backgroundLightest).hexString)
+
+        Clock.reset()
     }
 }

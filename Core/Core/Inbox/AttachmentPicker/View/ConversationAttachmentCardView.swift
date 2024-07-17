@@ -19,6 +19,8 @@
 import SwiftUI
 
 struct ConversationAttachmentCardView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     private let file: File
     private let removeHandler: () -> Void
     private var fileSize: String {
@@ -45,6 +47,8 @@ struct ConversationAttachmentCardView: View {
                     Image.xLine.foregroundStyle(Color.textDark)
                 }
             }
+            .font(.regular12)
+            .foregroundColor(.textDarkest)
             .padding(12)
         }
         .background(RoundedRectangle(cornerRadius: 10).stroke(Color.tiara, lineWidth: 1))

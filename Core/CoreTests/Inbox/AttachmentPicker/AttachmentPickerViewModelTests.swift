@@ -35,7 +35,7 @@ class AttachmentPickerViewModelTests: CoreTestCase {
     func testCancelButton() {
         let viewController = WeakViewController(UIViewController())
 
-        testee.fileSelected(url: URL(string: "testDomain.com/testResourse1")!)
+        testee.didSelectFile(url: URL(string: "testDomain.com/testResourse1")!)
         testee.cancelButtonDidTap.accept(viewController)
         XCTAssertTrue(testee.fileList.isEmpty)
     }
@@ -44,7 +44,7 @@ class AttachmentPickerViewModelTests: CoreTestCase {
         let viewController = WeakViewController(UIViewController())
 
         let testFile = File.make()
-        testee.fileSelected(url: testFile.localFileURL ?? URL(string: "test")!)
+        testee.didSelectFile(url: testFile.localFileURL ?? URL(string: "test")!)
         XCTAssertTrue(interactor.addFileCalled)
 
         testee.uploadButtonDidTap.accept(viewController)
@@ -55,7 +55,7 @@ class AttachmentPickerViewModelTests: CoreTestCase {
         let viewController = WeakViewController(UIViewController())
 
         let testFile = File.make()
-        testee.fileSelected(url: testFile.localFileURL ?? URL(string: "test")!)
+        testee.didSelectFile(url: testFile.localFileURL ?? URL(string: "test")!)
         XCTAssertTrue(interactor.addFileCalled)
 
         testee.retryButtonDidTap.accept(viewController)
@@ -80,5 +80,36 @@ class AttachmentPickerViewModelTests: CoreTestCase {
         XCTAssertEqual(dialog?.title, "Error")
         XCTAssertEqual(dialog?.message, "Failed to add attachment. Please try again!")
         XCTAssertEqual(dialog?.actions.count, 1)
+    }
+
+    func testFileDelete() {
+        testee.deleteFileButtonDidTap.accept(File.make())
+
+        XCTAssertTrue(interactor.deleteFileCalled)
+    }
+
+    func testFileRemove() {
+        testee.removeButtonDidTap.accept(File.make())
+
+        XCTAssertTrue(interactor.removeFileCalled)
+    }
+
+    func testFileOpen() {
+        router.mock("https://canvas.instructure.com/files/1?canEdit=false", factory: { FileDetailsViewController() })
+        let file = File.make(from: APIFile.make(url: URL(string: "https://canvas.instructure.com/files/1")!))
+        testee.fileSelected.accept((WeakViewController(), file))
+
+        wait(for: [router.showExpectation], timeout: 1)
+        let viewController = router.presented as? FileDetailsViewController
+        XCTAssertNotNil(viewController)
+    }
+
+    func testFileOpenError() {
+        let file = File.make(from: APIFile.make(url: URL(string: "https://canvas.instructure.com/files/2")!))
+        testee.fileSelected.accept((WeakViewController(), file))
+
+        wait(for: [router.showExpectation], timeout: 1)
+        let viewController = router.presented as? UIAlertController
+        XCTAssertNotNil(viewController)
     }
 }

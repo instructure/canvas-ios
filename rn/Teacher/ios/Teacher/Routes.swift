@@ -55,7 +55,11 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/conversations": nil,
     "/conversations/compose": { url, params, userInfo in
         if ExperimentalFeature.nativeTeacherInbox.isEnabled {
-            return ComposeMessageAssembly.makeComposeMessageViewController(env: AppEnvironment.shared)
+            if let queryItems = url.queryItems {
+                return ComposeMessageAssembly.makeComposeMessageViewController(queryItems: queryItems)
+            } else {
+                return ComposeMessageAssembly.makeComposeMessageViewController()
+            }
         } else {
             return HelmViewController(moduleName: "/conversations/compose", url: url, params: params, userInfo: userInfo)
         }
@@ -421,7 +425,8 @@ private func fileList(url: URLComponents, params: [String: String], userInfo: [S
 
 private func fileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
-    return FileDetailsViewController.create(context: Context(path: url.path), fileID: fileID, originURL: url)
+    let canEdit = url.queryItems?.first(where: { $0.name == "canEdit" })?.value?.boolValue ?? true
+    return FileDetailsViewController.create(context: Context(path: url.path), fileID: fileID, originURL: url, canEdit: canEdit)
 }
 
 private func fileEditor(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

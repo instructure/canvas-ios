@@ -20,12 +20,20 @@ import XCTest
 @testable import Core
 
 class DueViewableTests: XCTestCase {
-    struct Model: DueViewable {
+
+    private enum TestConstants {
+        static let date1224 = DateComponents(calendar: .current, year: 2018, month: 12, day: 24).date!
+        static let date1225 = DateComponents(calendar: .current, year: 2018, month: 12, day: 25).date!
+        static let date1226 = DateComponents(calendar: .current, year: 2018, month: 12, day: 26).date!
+    }
+
+    private struct Model: DueViewable {
         let dueAt: Date?
     }
 
     override func tearDown() {
         Clock.reset()
+        super.tearDown()
     }
 
     func testDueAtNil() {
@@ -34,16 +42,16 @@ class DueViewableTests: XCTestCase {
     }
 
     func testDueFuture() {
-        Clock.mockNow(DateComponents(calendar: Calendar.current, year: 2018, month: 12, day: 24).date!)
-        let dueAt = DateComponents(calendar: Calendar.current, year: 2018, month: 12, day: 25).date
-        XCTAssertEqual(Model(dueAt: dueAt).dueText, "Due Dec 25, 2018, 12:00 AM")
+        Clock.mockNow(TestConstants.date1224)
+        let dueAt = TestConstants.date1225
+        XCTAssertEqual(Model(dueAt: dueAt).dueText, "Due " + TestConstants.date1225.relativeDateTimeString)
         XCTAssert(Model(dueAt: dueAt).assignmentDueByText.hasPrefix("This assignment is due by "))
     }
 
     func testDuePast() {
-        Clock.mockNow(DateComponents(calendar: Calendar.current, year: 2018, month: 12, day: 26).date!)
-        let dueAt = DateComponents(calendar: Calendar.current, year: 2018, month: 12, day: 25).date
-        XCTAssertEqual(Model(dueAt: dueAt).dueText, "Due Dec 25, 2018, 12:00 AM")
+        Clock.mockNow(TestConstants.date1226)
+        let dueAt = TestConstants.date1225
+        XCTAssertEqual(Model(dueAt: dueAt).dueText, "Due " + TestConstants.date1225.relativeDateTimeString)
         XCTAssert(Model(dueAt: dueAt).assignmentDueByText.hasPrefix("This assignment was due by "))
     }
 }

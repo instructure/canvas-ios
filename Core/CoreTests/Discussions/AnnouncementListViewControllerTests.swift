@@ -21,7 +21,25 @@ import XCTest
 import TestsFoundation
 
 class AnnouncementListViewControllerTests: CoreTestCase {
+
+    private enum TestConstants {
+        static let date20220101 = DateComponents(calendar: .current, year: 2022, month: 1, day: 1).date!
+        static let date20231103 = DateComponents(calendar: .current, year: 2023, month: 11, day: 3).date!
+        static let date20201103 = DateComponents(calendar: .current, year: 2020, month: 11, day: 3).date!
+        static let date20201102 = DateComponents(calendar: .current, year: 2020, month: 11, day: 2).date!
+    }
+
     lazy var controller = AnnouncementListViewController.create(context: .course("1"))
+
+    override func setUp() {
+        super.setUp()
+        Clock.mockNow(TestConstants.date20220101)
+    }
+
+    override func tearDown() {
+        Clock.reset()
+        super.tearDown()
+    }
 
     func testCourseAnnouncements() {
         api.mock(GetCourse(courseID: "1"), value: .make(enrollments: [
@@ -35,7 +53,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         api.mock(controller.colors, value: .init(custom_colors: [ "course_1": "#0000ff" ]))
         api.mock(controller.topics, value: [
             .make(
-                delayed_post_at: DateComponents(calendar: .current, year: 2030, month: 11, day: 3).date,
+                delayed_post_at: TestConstants.date20231103,
                 html_url: URL(string: "/courses/1/announcements/1"),
                 id: "1",
                 permissions: .make(delete: true),
@@ -46,15 +64,15 @@ class AnnouncementListViewControllerTests: CoreTestCase {
             .make(
                 html_url: URL(string: "/courses/1/announcements/2"),
                 id: "2",
-                last_reply_at: DateComponents(calendar: .current, year: 2020, month: 11, day: 3).date,
-                posted_at: DateComponents(calendar: .current, year: 2020, month: 11, day: 3).date,
+                last_reply_at: TestConstants.date20201103,
+                posted_at: TestConstants.date20201103,
                 subscription_hold: "topic_is_announcement",
                 title: "Class Cancelled due to Covid-19"
             ),
             .make(
                 html_url: URL(string: "/courses/1/announcements/3"),
                 id: "3",
-                posted_at: DateComponents(calendar: .current, year: 2020, month: 11, day: 2).date,
+                posted_at: TestConstants.date20201102,
                 subscription_hold: "topic_is_announcement",
                 title: "Another Announcement"
             ),
@@ -73,7 +91,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .calendarClockLine)
         XCTAssertEqual(cell?.iconImageView.state, nil)
         XCTAssertEqual(cell?.titleLabel.text, "Class Cancelled due to alien invasion")
-        XCTAssertEqual(cell?.dateLabel.text, "Delayed until Nov 3, 2030 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, "Delayed until " + TestConstants.date20231103.dateTimeString)
 
         let actions = controller.tableView.delegate?.tableView?(controller.tableView, trailingSwipeActionsConfigurationForRowAt: IndexPath(row: 0, section: 0))?.actions
         XCTAssertEqual(actions?.count, 1)
@@ -90,7 +108,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .announcementLine)
         XCTAssertEqual(cell?.iconImageView.state, .published)
         XCTAssertEqual(cell?.titleLabel.text, "Class Cancelled due to Covid-19")
-        XCTAssertEqual(cell?.dateLabel.text, "Last post Nov 3, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, "Last post " + TestConstants.date20201103.dateTimeString)
 
         XCTAssertNil(controller.tableView.delegate?.tableView?(controller.tableView, trailingSwipeActionsConfigurationForRowAt: IndexPath(row: 1, section: 0)))
 
@@ -98,7 +116,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .announcementLine)
         XCTAssertEqual(cell?.iconImageView.state, .published)
         XCTAssertEqual(cell?.titleLabel.text, "Another Announcement")
-        XCTAssertEqual(cell?.dateLabel.text, "Nov 2, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, TestConstants.date20201102.dateTimeString)
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 2, section: 0))
         XCTAssert(router.lastRoutedTo("courses/1/announcements/3", withOptions: .detail))
@@ -115,7 +133,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
                 html_url: URL(string: "/groups/1/announcements/1"),
                 id: "1",
                 permissions: .make(delete: true),
-                posted_at: DateComponents(calendar: .current, year: 2020, month: 11, day: 3).date,
+                posted_at: TestConstants.date20201103,
                 subscription_hold: "topic_is_announcement",
                 title: "Study group tomorrow"
             ),
@@ -137,7 +155,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .announcementLine)
         XCTAssertEqual(cell?.iconImageView.state, nil)
         XCTAssertEqual(cell?.titleLabel.text, "Study group tomorrow")
-        XCTAssertEqual(cell?.dateLabel.text, "Nov 3, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, TestConstants.date20201103.dateTimeString)
 
         api.mock(controller.topics, error: NSError.internalError())
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)

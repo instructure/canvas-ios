@@ -18,6 +18,8 @@
         }
       ]
     },
+    "language" : "en",
+    "region" : "US",
     "targetForVariableExpansion" : {
       "containerPath" : "container:Student.xcodeproj",
       "identifier" : "492704721CF4AF7100C631C6",
@@ -28,7 +30,7 @@
     {
       "target" : {
         "containerPath" : "container:Student.xcodeproj",
-        "identifier" : "E8C6F4CF23D626220086B865",
+        "identifier" : "A5253DAAB36ECE6D2EB5B620",
         "name" : "StudentE2ETests"
       }
     }

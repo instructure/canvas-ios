@@ -165,7 +165,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         statusIconView.tintColor = status.color
         statusLabel.isHidden = assignment.submissionStatusIsHidden
         statusLabel.textColor = status.color
-        statusLabel.text = status.text
+        statusLabel?.text = assignment.submission?.statusText
         dateLabel.text = assignment.dueAt?.dateTimeString ?? String(localized: "No Due Date", bundle: .parent)
         reminderSwitch.isEnabled = true
         reminderDateButton.isEnabled = true
@@ -239,6 +239,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             name,
             assignment.htmlURL?.absoluteString ?? ""
         )
+
         let compose = ComposeViewController.create(
             context: .course(courseID),
             observeeID: studentID,
