@@ -49,7 +49,8 @@ public enum CourseSyncDownloaderAssembly {
         let progressInteractor = CourseSyncProgressObserverInteractorLive()
         let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, activityName: "Offline Sync")
 
-        return CourseSyncInteractorLive(contentInteractors: contentInteractors,
+        return CourseSyncInteractorLive(brandThemeInteractor: BrandThemeDownloaderInteractor(),
+                                        contentInteractors: contentInteractors,
                                         filesInteractor: CourseSyncFilesInteractorLive(),
                                         modulesInteractor: CourseSyncModulesInteractorLive(pageHtmlParser: pageHtmlParser, quizHtmlParser: quizHtmlParser),
                                         progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),

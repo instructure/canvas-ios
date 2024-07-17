@@ -22,8 +22,8 @@ import Foundation
 public struct APIObserverAlert: Codable {
     let action_date: Date?
     let alert_type: AlertThresholdType
+    let context_type: String?
     let context_id: ID?
-    let course_id: ID?
     let html_url: APIURL?
     let id: ID
     let observer_id: ID
@@ -39,8 +39,8 @@ extension APIObserverAlert {
     public static func make(
         action_date: Date? = Clock.now,
         alert_type: AlertThresholdType = .institutionAnnouncement,
+        context_type: String? = "Course",
         context_id: String? = "1",
-        course_id: String? = nil,
         html_url: URL? = URL(string: "/accounts/self/account_notifications/1"),
         id: String = "1",
         observer_id: String = "1",
@@ -53,8 +53,8 @@ extension APIObserverAlert {
         return APIObserverAlert(
             action_date: action_date,
             alert_type: alert_type,
+            context_type: context_type,
             context_id: context_id.map { ID($0) },
-            course_id: course_id.map { ID($0) },
             html_url: APIURL(rawValue: html_url),
             id: ID(id),
             observer_id: ID(observer_id),

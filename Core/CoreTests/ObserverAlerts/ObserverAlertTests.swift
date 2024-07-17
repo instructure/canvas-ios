@@ -52,4 +52,32 @@ class ObserverAlertTests: CoreTestCase {
         ObserverAlert.save(.make(id: "testId", locked_for_user: true), in: databaseClient)
         XCTAssertEqual(alert.lockedForUser, true)
     }
+
+    func testCourseID() {
+        let alert: ObserverAlert = databaseClient.insert()
+        alert.contextID = "contextID"
+        alert.htmlURL = URL(string: "https://test.com/courses/courseID/assignments/1434231")!
+
+        alert.alertType = .courseGradeHigh
+        XCTAssertEqual(alert.courseID, "contextID")
+        alert.alertType = .courseGradeLow
+        XCTAssertEqual(alert.courseID, "contextID")
+
+        alert.alertType = .assignmentMissing
+        XCTAssertEqual(alert.courseID, nil)
+        alert.alertType = .courseAnnouncement
+        XCTAssertEqual(alert.courseID, nil)
+        alert.alertType = .institutionAnnouncement
+        XCTAssertEqual(alert.courseID, nil)
+
+        alert.alertType = .assignmentGradeHigh
+        XCTAssertEqual(alert.courseID, "courseID")
+        alert.alertType = .assignmentGradeLow
+        XCTAssertEqual(alert.courseID, "courseID")
+
+        // Invalid url scenarios
+        alert.alertType = .assignmentGradeLow
+        alert.htmlURL = URL(string: "https://test.com/courses")!
+        XCTAssertEqual(alert.courseID, nil)
+    }
 }

@@ -19,24 +19,12 @@
 import TestsFoundation
 
 class FeatureFlagOfflineTests: OfflineE2ETest {
-    open override var canvasFeatureFlags: [DSCanvasFeatureFlag] { [DSCanvasFeatureFlag(featureFlag: .newDiscussion, state: .allowedOn)] }
 
-    override func tearDown() {
-        // In case the tests fail at a point where the internet connection is turned off
-        setNetworkStateOnline()
-
-        // Disable discussion redesign feature flag
-        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .off)
-        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.off.rawValue)
-
-        super.tearDown()
-    }
-
-    func testDiscussionsButtonIsDisabledIfDiscussionRedesignIsEnabled() {
+    func testDiscussionsFallbackToNativeAppearanceWhenOffline() {
         // MARK: Seed the usual stuff with discussion and announcement
         let student = seeder.createUser()
         let course = seeder.createCourse()
-        DiscussionsHelper.createDiscussion(course: course)
+        let discussion = DiscussionsHelper.createDiscussion(course: course)
         AnnouncementsHelper.createAnnouncement(course: course)
         seeder.enrollStudent(student, in: course)
 
@@ -59,11 +47,9 @@ class FeatureFlagOfflineTests: OfflineE2ETest {
         XCTAssertTrue(courseButton.isVisible)
         XCTAssertTrue(unselectedTickerOfCourseButton.isVisible)
         XCTAssertTrue(syncButton.isVisible)
-        XCTAssertTrue(syncButton.isDisabled)
 
         unselectedTickerOfCourseButton.hit()
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(syncButton.waitUntil(.enabled).isEnabled)
 
         // MARK: Tap "Sync" button
         syncButton.hit()
@@ -92,20 +78,38 @@ class FeatureFlagOfflineTests: OfflineE2ETest {
         XCTAssertTrue(courseCard.isVisible)
 
         courseCard.hit()
-        let announcementsButton = CourseDetailsHelper.cell(type: .announcements).waitUntil(.visible)
+        let announcementsButton = CourseDetailsHelper.cell(type: .announcements).waitUntil(.visible, timeout: 60)
         let discussionButton = CourseDetailsHelper.cell(type: .discussions).waitUntil(.visible)
         XCTAssertTrue(announcementsButton.isVisible)
         XCTAssertTrue(discussionButton.isVisible)
 
         announcementsButton.hit()
-        let offlineWarning = DashboardHelper.Options.OfflineContent.notAvailableOfflineLabel.waitUntil(.visible)
-        let okButton = DashboardHelper.Options.OfflineContent.okButton.waitUntil(.visible)
-        XCTAssertTrue(offlineWarning.isVisible)
-        XCTAssertTrue(okButton.isVisible)
+        let announcementItem = AnnouncementsHelper.cell(index: 0).waitUntil(.visible)
+        XCTAssertTrue(announcementItem.isVisible)
 
-        okButton.hit()
+        announcementItem.hit()
+        let announcementTitleItem = AnnouncementsHelper.Details.title.waitUntil(.visible)
+        let announcementBodyItem = AnnouncementsHelper.Details.message.waitUntil(.visible)
+        let backButton = AnnouncementsHelper.backButton.waitUntil(.visible)
+        XCTAssertTrue(announcementTitleItem.isVisible)
+        XCTAssertTrue(announcementBodyItem.isVisible)
+        XCTAssertTrue(backButton.isVisible)
+
+        backButton.hit()
+        XCTAssertTrue(announcementItem.waitUntil(.visible).isVisible)
+        XCTAssertTrue(backButton.waitUntil(.visible).isVisible)
+
+        backButton.hit()
+        XCTAssertTrue(discussionButton.waitUntil(.visible).isVisible)
+
         discussionButton.hit()
-        XCTAssertTrue(offlineWarning.waitUntil(.visible).isVisible)
-        XCTAssertTrue(okButton.waitUntil(.visible).isVisible)
+        let discussionItem = DiscussionsHelper.discussionButton(discussion: discussion).waitUntil(.visible)
+        XCTAssertTrue(discussionItem.isVisible)
+
+        discussionItem.hit()
+        let discussionTitleItem = DiscussionsHelper.Details.titleLabel.waitUntil(.visible)
+        let discussionBodyItem = DiscussionsHelper.Details.messageLabel.waitUntil(.visible)
+        XCTAssertTrue(discussionTitleItem.isVisible)
+        XCTAssertTrue(discussionBodyItem.isVisible)
     }
 }

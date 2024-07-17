@@ -168,6 +168,7 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
             self?.didPerformPublishAction(action: action)
         }
         button.accessibilityLabel = String(localized: "Publish options", bundle: .core)
+        button.accessibilityIdentifier = "ModuleList.publishOptions"
         navigationItem.setRightBarButton(button, animated: true)
 
         publishInteractor

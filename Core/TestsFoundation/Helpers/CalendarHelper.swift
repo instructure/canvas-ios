@@ -182,24 +182,31 @@ public class CalendarHelper: BaseHelper {
 
     public struct Todo {
         public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
-        public static var doneButton: XCUIElement { app.find(label: "Done", type: .button) }
+        public static var addButton: XCUIElement { app.find(label: "Add", type: .button) }
         public static var titleInput: XCUIElement { app.find(label: "Title", type: .textField) }
-        public static var courseSelector: XCUIElement { app.find(labelContaining: "Course", type: .button) }
-        public static var dateButton: XCUIElement { app.find(label: "Date", type: .button) }
-        public static var descriptionInput: XCUIElement { app.find(label: "Description", type: .textView) }
+        public static var calendarSelector: XCUIElement { app.find(labelContaining: "Calendar,", type: .button) }
+        public static var dateButton: XCUIElement { app.find(label: "Date and Time Picker") }
+        public static var datePicker: XCUIElement { dateButton.findAll(type: .button)[0] }
+        public static var timePicker: XCUIElement { dateButton.findAll(type: .button)[1] }
+        public static var detailsInput: XCUIElement { app.find(label: "Details", type: .textView) }
 
-        public struct CourseSelector {
+        public struct CalendarSelector {
+            public static var newToDoButton: XCUIElement { app.find(label: "New To Do", type: .button) }
+
+            public static func userItem(user: DSUser) -> XCUIElement {
+                return app.find(label: user.name, type: .switch)
+            }
+
             public static func courseItem(course: DSCourse) -> XCUIElement {
-                return app.find(type: .table).waitUntil(.visible).find(label: course.name, type: .staticText)
+                return app.find(label: course.name, type: .switch)
             }
         }
 
         public struct DateSelector {
-            public static var datePicker: XCUIElement { app.find(type: .datePicker)}
-            public static var dateWheel: XCUIElement { datePicker.waitUntil(.visible).findAll(type: .pickerWheel)[0] }
-            public static var hourWheel: XCUIElement { datePicker.waitUntil(.visible).findAll(type: .pickerWheel)[1] }
-            public static var minutesWheel: XCUIElement { datePicker.waitUntil(.visible).findAll(type: .pickerWheel)[2] }
-            public static var meridiemWheel: XCUIElement { datePicker.waitUntil(.visible).findAll(type: .pickerWheel)[3] }
+            public static var picker: XCUIElement { app.find(type: .picker)}
+            public static var hourWheel: XCUIElement { picker.waitUntil(.visible).findAll(type: .pickerWheel)[0] }
+            public static var minutesWheel: XCUIElement { picker.waitUntil(.visible).findAll(type: .pickerWheel)[1] }
+            public static var meridiemWheel: XCUIElement { picker.waitUntil(.visible).findAll(type: .pickerWheel)[2] }
         }
     }
 

@@ -97,6 +97,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "NO"
+      language = "en"
+      region = "US"
       codeCoverageEnabled = "YES"
       onlyGenerateCoverageForSpecifiedTargets = "YES">
       <CodeCoverageTargets>
@@ -106,6 +108,13 @@
             BuildableName = "Teacher.app"
             BlueprintName = "Teacher"
             ReferencedContainer = "container:Teacher.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B90FCF66245CD7327BEE2CBF"
+            BuildableName = "Core.framework"
+            BlueprintName = "Core"
+            ReferencedContainer = "container:../../../Core/Core.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>

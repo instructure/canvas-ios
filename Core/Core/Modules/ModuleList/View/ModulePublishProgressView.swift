@@ -71,6 +71,7 @@ struct ModulePublishProgressView: View {
             Image.xLine.navigationBarButtonStyle()
                 .accessibilityLabel(Text("Dismiss", bundle: .core))
         }
+        .accessibilityIdentifier("ModulePublish.dismissButton")
     }
 
     @ViewBuilder
@@ -81,6 +82,7 @@ struct ModulePublishProgressView: View {
         } label: {
             Text("Cancel", bundle: .core).navigationBarButtonStyle()
         }
+        .accessibilityIdentifier("ModulePublish.cancelButton")
     }
 
     @ViewBuilder
@@ -90,6 +92,7 @@ struct ModulePublishProgressView: View {
         } label: {
             Text("Done", bundle: .core).navigationBarButtonStyle()
         }
+        .accessibilityIdentifier("ModulePublish.doneButton")
     }
 
     @ViewBuilder
@@ -107,10 +110,12 @@ struct ModulePublishProgressView: View {
         VStack(spacing: 8) {
             Text(progressTitle())
                 .font(.regular14).foregroundStyle(Color.textDarkest)
+                .accessibilityIdentifier("ModulePublish.progressTitle")
             ProgressView(value: viewModel.progress)
                 .progressViewStyle(.determinateBar(color: viewModel.progressViewColor))
                 .padding(.bottom, 8)
                 .animation(.default, value: viewModel.progress)
+                .accessibilityIdentifier("ModulePublish.progressIndicator")
         }
         .padding(.horizontal, 16)
         .accessibilityElement(children: .ignore)

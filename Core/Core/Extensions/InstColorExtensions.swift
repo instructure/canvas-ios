@@ -47,11 +47,13 @@ public extension UIColor {
     static let borderSuccess = UIColor(named: "borderSuccess", in: .core, compatibleWith: nil)!
     static let borderWarning = UIColor(named: "borderWarning", in: .core, compatibleWith: nil)!
     static let crimson = UIColor(named: "crimson", in: .core, compatibleWith: nil)!
+    static let disabledGray = UIColor(named: "disabledGray", in: .core, compatibleWith: nil)!
     static let electric = UIColor(named: "electric", in: .core, compatibleWith: nil)!
     static let electricHighContrast = UIColor(named: "electricHighContrast", in: .core, compatibleWith: nil)!
     static let fire = UIColor(named: "fire", in: .core, compatibleWith: nil)!
     static let licorice = UIColor(named: "licorice", in: .core, compatibleWith: nil)!
     static let oxford = UIColor(named: "oxford", in: .core, compatibleWith: nil)!
+    static let placeholderGray = UIColor(named: "placeholderGray", in: .core, compatibleWith: nil)!
     static let porcelain = UIColor(named: "porcelain", in: .core, compatibleWith: nil)!
     static let shamrock = UIColor(named: "shamrock", in: .core, compatibleWith: nil)!
     static let tabBarBackground = UIColor(named: "tabBarBackground", in: .core, compatibleWith: nil)!
@@ -97,11 +99,13 @@ public extension Color {
     static let borderSuccess = Color("borderSuccess", bundle: .core)
     static let borderWarning = Color("borderWarning", bundle: .core)
     static let crimson = Color("crimson", bundle: .core)
+    static let disabledGray = Color("disabledGray", bundle: .core)
     static let electric = Color("electric", bundle: .core)
     static let electricHighContrast = Color("electricHighContrast", bundle: .core)
     static let fire = Color("fire", bundle: .core)
     static let licorice = Color("licorice", bundle: .core)
     static let oxford = Color("oxford", bundle: .core)
+    static let placeholderGray = Color("placeholderGray", bundle: .core)
     static let porcelain = Color("porcelain", bundle: .core)
     static let shamrock = Color("shamrock", bundle: .core)
     static let tabBarBackground = Color("tabBarBackground", bundle: .core)

@@ -55,6 +55,7 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
     var localURL: URL?
     var pdfAnnotationsMutatedMoveToDocsDirectory = false
     var originURL: URLComponents?
+    var canEdit: Bool = true
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "\(context?.pathComponent ?? "")/files/\(fileID)"
     )
@@ -67,7 +68,7 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
     private var offlineFileInteractor: OfflineFileInteractor?
     private var imageLoader: ImageLoader?
 
-    public static func create(context: Context?, fileID: String, originURL: URLComponents? = nil, assignmentID: String? = nil,
+    public static func create(context: Context?, fileID: String, originURL: URLComponents? = nil, assignmentID: String? = nil, canEdit: Bool = true,
                               offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
@@ -75,6 +76,7 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
         controller.fileID = fileID
         controller.originURL = originURL
         controller.offlineFileInteractor = offlineFileInteractor
+        controller.canEdit = canEdit && controller.env.app == .teacher
 
         if let context {
             controller.accessReportInteractor = FileAccessReportInteractor(context: context,
@@ -122,7 +124,7 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
         if presentingViewController != nil, navigationItem.leftBarButtonItem == nil {
             addDoneButton(side: .left)
         }
-        navigationItem.rightBarButtonItems = env.app == .teacher ? [downloadBarButtonItem, editButton] : [downloadBarButtonItem, shareButton]
+        navigationItem.rightBarButtonItems = canEdit ? [downloadBarButtonItem, editButton] : [downloadBarButtonItem, shareButton]
         editButton.accessibilityIdentifier = "FileDetails.editButton"
         shareButton.accessibilityIdentifier = "FileDetails.shareButton"
         shareButton.isEnabled = false
@@ -612,7 +614,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
         search.accessibilityIdentifier = "FileDetails.searchButton"
         navigationItem.rightBarButtonItems = [
             downloadBarButtonItem,
-            env.app == .teacher ? editButton : shareButton,
+            canEdit ? editButton : shareButton,
             annotate,
             search,
         ]

@@ -32,6 +32,7 @@ public class OfflineSyncNextDateInteractor {
         let dates: [Date] = sessionUniqueIDs.compactMap { sessionID in
             let defaults = SessionDefaults(sessionID: sessionID)
             guard defaults.isOfflineAutoSyncEnabled == true,
+                  !defaults.offlineSyncSelections.isEmpty,
                   let nextSyncDate = defaults.offlineSyncNextDate
             else {
                 return nil

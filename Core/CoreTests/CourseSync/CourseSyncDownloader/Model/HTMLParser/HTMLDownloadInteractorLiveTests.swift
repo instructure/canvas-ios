@@ -91,7 +91,7 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
         XCTAssertTrue(FileManager.default.fileExists(atPath: rootURL.appendingPathComponent("body.html").path))
     }
 
-    class URLSessionDataTaskPublisherProviderMock: URLSessionDataTaskPublisherProvider {
+    private class URLSessionDataTaskPublisherProviderMock: URLSessionDataTaskPublisherProvider {
         let testString = "hello"
         let savedURL = URL.Directories.documents.appendingPathComponent("logo.txt")
 

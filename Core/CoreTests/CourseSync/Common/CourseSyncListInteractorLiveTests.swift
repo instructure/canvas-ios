@@ -104,6 +104,7 @@ class CourseSyncListInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries.count, 2)
         XCTAssertEqual(entries[0].courseId, "1")
         XCTAssertEqual(entries[1].courseId, "2")
+        XCTAssertEqual(environment.userDefaults?.offlineSyncSelections, ["courses/1", "courses/2"])
         subscription.cancel()
     }
 
@@ -131,6 +132,19 @@ class CourseSyncListInteractorLiveTests: CoreTestCase {
         // At this point testee is deallocated but the stream subscription is alive
         waitForExpectations(timeout: 1)
         subscription.cancel()
+    }
+
+    func testPreviousSelectionCleanUp() {
+        environment.userDefaults?.offlineSyncSelections = ["courses/1", "courses/2"]
+        let mockAPIRequest = GetCurrentUserCoursesRequest(
+            enrollmentState: .active,
+            state: [.current_and_concluded],
+            includes: [.tabs]
+        )
+        api.mock(mockAPIRequest, value: [.make(id: "1", name: "1")])
+
+        XCTAssertFinish(testee.getCourseSyncEntries(filter: .all))
+        XCTAssertEqual(environment.userDefaults?.offlineSyncSelections, ["courses/1"])
     }
 }
 

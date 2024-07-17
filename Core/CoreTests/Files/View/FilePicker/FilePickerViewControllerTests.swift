@@ -113,6 +113,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         controller.view.layoutIfNeeded()
         let tabBar = controller.sourcesTabBar!
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.camera.rawValue])
+        // FIXME: always fails locally, always works on CI
         XCTAssertNil(router.presented) // camera is unsupported in simulator
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.library.rawValue])
         let picker = router.presented as! UIImagePickerController
@@ -147,6 +148,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         controller.view.layoutIfNeeded()
         let tabBar = controller.sourcesTabBar!
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items!.first!)
+        // FIXME: always fails locally, always works on CI
         XCTAssertNil(router.presented)
     }
 

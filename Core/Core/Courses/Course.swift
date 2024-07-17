@@ -86,7 +86,7 @@ final public class Course: NSManagedObject, WriteableModel {
         model.syllabusBody = item.syllabus_body
         model.defaultViewRaw = item.default_view?.rawValue
         model.enrollments?.forEach { enrollment in
-            // we only want to delete dangling enrollments created from
+            // We only want to delete enrollments created from
             // the minimal enrollments attached to an APICourse
             if enrollment.id == nil {
                 context.delete(enrollment)
@@ -114,6 +114,8 @@ final public class Course: NSManagedObject, WriteableModel {
 
         if let apiEnrollments = item.enrollments {
             let enrollmentModels: [Enrollment] = apiEnrollments.map { apiItem in
+                /// This enrollment contains the grade fields necessary to calculate grades on the dashboard.
+                /// This is a special enrollment that has no courseID nor enrollmentID and contains no Grade objects.
                 let e: Enrollment = context.insert()
                 e.update(fromApiModel: apiItem, course: model, in: context)
                 return e
@@ -175,7 +177,9 @@ extension Course {
     }()
 
     public var displayGrade: String {
-        guard let enrollments = self.enrollments, let enrollment = enrollments.filter({ $0.isStudent }).first else {
+        /// We want to use the special enrollment that was downloaded along the course because that contains the
+        /// computedCurrentGrade, currentPeriodComputedCurrentGrade etc. values. It has no enrollment id so it's easy to identify it.
+        guard let enrollment = enrollments?.filter({ $0.isStudent && $0.id == nil }).first else {
             return ""
         }
 
@@ -239,7 +243,8 @@ extension Course {
         enrollments?.first {
             $0.state == .active &&
             $0.userID == userId &&
-            $0.type.lowercased().contains("student")
+            $0.type.lowercased().contains("student") &&
+            $0.id == nil
         }
     }
 }

@@ -149,6 +149,16 @@ public class InboxViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
         messageDidTap
+            .flatMap { [weak self] (messageID, controller) in
+                let message = self?.interactor.messages.value.first {
+                    $0.messageId == messageID
+                }
+                guard let message, let self, message.state != .archived else { return Just((messageID, controller)).eraseToAnyPublisher() }
+
+                return self.interactor.updateState(message: message, state: .read).map {
+                    (messageID, controller)
+                }.eraseToAnyPublisher()
+            }
             .sink { [router] (messageID, controller) in
                 router.route(to: "/conversations/\(messageID)", from: controller, options: .detail)
             }

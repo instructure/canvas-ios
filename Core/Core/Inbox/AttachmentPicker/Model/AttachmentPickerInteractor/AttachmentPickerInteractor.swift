@@ -21,14 +21,20 @@ import Combine
 
 protocol AttachmentPickerInteractor {
     var files: PassthroughSubject<[File], Error> { get }
+    var alreadyUploadedFiles: CurrentValueSubject<[File], Never> { get }
+    var isCancelConfirmationNeeded: Bool { get }
 
     func uploadFiles()
 
     func addFile(url: URL)
+
+    func addFile(file: File)
 
     func retry()
 
     func cancel()
 
     func removeFile(file: File)
+
+    func deleteFile(file: File) -> AnyPublisher<Void, Never>
 }

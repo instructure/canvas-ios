@@ -30,13 +30,15 @@ struct CourseSyncSelectorView: View {
         on: .main,
         in: .common
     ).autoconnect()
+    @State private var scrollOffset: CGFloat?
+    @State private var infoHeight: CGFloat?
 
     var body: some View {
         content
-        .background(Color.backgroundLightest)
-        .navigationTitleStyled(navBarTitleView)
-        .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
-        .navigationBarStyle(.modal)
+            .background(Color.backgroundLightest)
+            .navigationTitleStyled(navBarTitleView)
+            .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
+            .navigationBarStyle(.modal)
     }
 
     @ViewBuilder
@@ -46,7 +48,7 @@ struct CourseSyncSelectorView: View {
             InteractivePanda(scene: NoResultsPanda(),
                              title: Text(viewModel.labels.error.title),
                              subtitle: Text(viewModel.labels.error.message))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .loading:
             VStack(spacing: 12) {
                 Image("LoadingPanda", bundle: .core)
@@ -79,31 +81,59 @@ struct CourseSyncSelectorView: View {
             }
             .accessibilityElement(children: .combine)
         case .data:
-            VStack(spacing: 0) {
-                CourseSyncDiskSpaceInfoView(viewModel: diskSpaceViewModel)
-                    .padding(16)
-                Divider()
-                GeometryReader { geometry in
-                    ScrollView {
-                        if viewModel.cells.isEmpty {
-                            emptyList(geometry: geometry)
-                        } else {
-                            listCells
+            ZStack(alignment: .top) {
+                VStack(spacing: 0) {
+                    Divider()
+                    GeometryReader { geometry in
+                        ScrollView {
+                            if viewModel.cells.isEmpty {
+                                emptyList(geometry: geometry)
+                            } else {
+                                VStack(spacing: 0) {
+                                    // Applying the background to listCells that is a LazyVStack didn't work
+                                    Color.clear.frame(height: 0)
+                                        .bindTopPosition(
+                                            id: "scrollPosition",
+                                            coordinateSpaceName: "scroll",
+                                            to: $scrollOffset
+                                        )
+                                    listCells
+                                }
+                            }
                         }
+                        .coordinateSpace(name: "scroll")
+                    }
+                    syncButton
+                }
+
+                CourseSyncDiskSpaceInfoView(
+                    viewModel: diskSpaceViewModel,
+                    scrollOffset: scrollOffset ?? 0
+                )
+                .padding(16)
+                .onFrameChange(id: "infoViewHeight", coordinateSpace: .local) { newFrame in
+                    if infoHeight == nil {
+                        infoHeight = newFrame.height
                     }
                 }
-                syncButton
             }
-            .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
-                               presenting: viewModel.confirmAlert)
+            .confirmationAlert(
+                isPresented: $viewModel.isShowingSyncConfirmationDialog,
+                presenting: viewModel.syncConfirmAlert
+            )
+            .confirmationAlert(
+                isPresented: $viewModel.isShowingCancelConfirmationDialog,
+                presenting: viewModel.cancelConfirmAlert
+            )
         }
     }
 
     private var listCells: some View {
         LazyVStack(spacing: 0) {
+            Color.clear.frame(height: 0).padding(.top, infoHeight)
             ForEach(viewModel.cells) { cell in
                 let isListItem: Bool = {
-                    if case .item(let item) = cell, item.cellStyle == .listItem {
+                    if case let .item(item) = cell, item.cellStyle == .listItem {
                         return true
                     } else {
                         return false
@@ -112,7 +142,7 @@ struct CourseSyncSelectorView: View {
 
                 VStack(spacing: 0) {
                     switch cell {
-                    case .item(let item):
+                    case let .item(item):
                         ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
                                                        title: item.title,
                                                        subtitle: item.subtitle,
@@ -136,17 +166,17 @@ struct CourseSyncSelectorView: View {
                          title: Text(viewModel.labels.noCourses.title),
                          subtitle: Text(viewModel.labels.noCourses.message))
 
-        .padding(16)
-        .frame(maxWidth: .infinity, minHeight: geometry.size.height)
+            .padding(16)
+            .frame(maxWidth: .infinity, minHeight: geometry.size.height)
     }
 
     private var emptyCourse: some View {
         InteractivePanda(scene: SpacePanda(),
                          title: Text(viewModel.labels.noItems.title),
                          subtitle: Text(viewModel.labels.noItems.message))
-        .allowsHitTesting(false)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 32)
+            .allowsHitTesting(false)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 32)
     }
 
     private var navBarTitleView: some View {
@@ -180,9 +210,7 @@ struct CourseSyncSelectorView: View {
                 .font(.regular16, lineHeight: .fit)
                 .foregroundColor(.textLightest)
                 .background(Color(Brand.shared.primary))
-                .opacity(viewModel.syncButtonDisabled ? 0.42 : 1)
         }
-        .disabled(viewModel.syncButtonDisabled)
         .animation(.default, value: offlineModeViewModel.isOffline)
     }
 

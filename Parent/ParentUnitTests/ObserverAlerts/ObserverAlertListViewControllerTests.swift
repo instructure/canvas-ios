@@ -23,13 +23,21 @@ import CoreData
 import TestsFoundation
 
 class ObserverAlertListViewControllerTests: ParentTestCase {
+
+    private enum TestConstants {
+        static let date0630 = DateComponents(calendar: .current, year: 2020, month: 6, day: 30).date!
+        static let date0625 = DateComponents(calendar: .current, year: 2020, month: 6, day: 25).date!
+        static let date0615 = DateComponents(calendar: .current, year: 2020, month: 6, day: 15).date!
+        static let date0605 = DateComponents(calendar: .current, year: 2020, month: 6, day: 5).date!
+    }
+
     lazy var controller = ObserverAlertListViewController.create(studentID: "1")
 
     override func setUp() {
         super.setUp()
-        api.mock(controller.alerts, value: [
+        api.mock(GetObserverAlerts(studentID: "1"), value: [
             .make(
-                action_date: DateComponents(calendar: .current, year: 2020, month: 6, day: 30).date,
+                action_date: TestConstants.date0630,
                 alert_type: .courseGradeHigh,
                 context_id: "1", html_url: URL(string: "/courses/1"),
                 id: "1", observer_alert_threshold_id: "1",
@@ -38,7 +46,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
                 workflow_state: .unread
             ),
             .make(
-                action_date: DateComponents(calendar: .current, year: 2020, month: 6, day: 25).date,
+                action_date: TestConstants.date0625,
                 alert_type: .institutionAnnouncement,
                 context_id: "1", html_url: nil,
                 id: "3", observer_alert_threshold_id: "3",
@@ -47,9 +55,9 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
                 workflow_state: .read
             ),
             .make(
-                action_date: DateComponents(calendar: .current, year: 2020, month: 6, day: 15).date,
+                action_date: TestConstants.date0615,
                 alert_type: .assignmentGradeLow,
-                course_id: "1", html_url: URL(string: "/courses/1/assignments/1"),
+                html_url: URL(string: "/courses/1/assignments/1"),
                 id: "7", observer_alert_threshold_id: "7",
                 title: "Assignment graded: 46% on Practice Worksheet 3 in C1",
                 user_id: "1",
@@ -57,7 +65,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
             ),
             .make(id: "17", workflow_state: .dismissed),
             .make(
-                action_date: DateComponents(calendar: .current, year: 2020, month: 6, day: 5).date,
+                action_date: TestConstants.date0605,
                 alert_type: .courseGradeHigh,
                 context_id: "1", html_url: URL(string: "/courses/1"),
                 id: "11", observer_alert_threshold_id: "1",
@@ -67,7 +75,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
                 locked_for_user: true
             ),
         ])
-        api.mock(controller.thresholds, value: [
+        api.mock(GetAlertThresholds(studentID: "1"), value: [
             .make(id: "1", user_id: "1", alert_type: .courseGradeHigh, threshold: 90),
             .make(id: "2", user_id: "1", alert_type: .courseGradeLow, threshold: 60),
             .make(id: "3", user_id: "1", alert_type: .institutionAnnouncement, threshold: nil),
@@ -78,6 +86,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
+        drainMainQueue()
         XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.darkenToEnsureContrast(against: .white).hexString)
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 4)
@@ -87,7 +96,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.unreadView.isHidden, false)
         XCTAssertEqual(cell?.typeLabel.text, "Course Grade Above 90")
         XCTAssertEqual(cell?.titleLabel.text, "Course grade: 95% in C1")
-        XCTAssertEqual(cell?.dateLabel.text, "Jun 30, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, TestConstants.date0630.dateTimeString)
         XCTAssertEqual(cell?.iconView.image, .infoLine)
         XCTAssertEqual(cell?.iconView.tintColor, .textInfo)
 
@@ -99,7 +108,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.unreadView.isHidden, true)
         XCTAssertEqual(cell?.typeLabel.text, "Institution Announcement")
         XCTAssertEqual(cell?.titleLabel.text, "Institution announcement: \"Finals will be cancelled\"")
-        XCTAssertEqual(cell?.dateLabel.text, "Jun 25, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, TestConstants.date0625.dateTimeString)
         XCTAssertEqual(cell?.iconView.image, .infoLine)
         XCTAssertEqual(cell?.iconView.tintColor, .textDark)
 
@@ -111,7 +120,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.unreadView.isHidden, true)
         XCTAssertEqual(cell?.typeLabel.text, "Assignment Grade Below 0")
         XCTAssertEqual(cell?.titleLabel.text, "Assignment graded: 46% on Practice Worksheet 3 in C1")
-        XCTAssertEqual(cell?.dateLabel.text, "Jun 15, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, TestConstants.date0615.dateTimeString)
         XCTAssertEqual(cell?.iconView.image, .warningLine)
         XCTAssertEqual(cell?.iconView.tintColor, .textDanger)
 
@@ -120,7 +129,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.unreadView.isHidden, false)
         XCTAssertEqual(cell?.typeLabel.text, "Course Grade Above 90 • Locked")
         XCTAssertEqual(cell?.titleLabel.text, "Course grade: 95% in C1")
-        XCTAssertEqual(cell?.dateLabel.text, "Jun 5, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, TestConstants.date0605.dateTimeString)
         XCTAssertEqual(cell?.iconView.image, .lockLine)
         XCTAssertEqual(cell?.iconView.tintColor, .textInfo)
 
@@ -138,13 +147,14 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
             XCTAssertEqual(isSuccess, true)
         }
 
-        api.mock(controller.alerts, error: NSError.internalError())
+        api.mock(GetObserverAlerts(studentID: "1"), error: NSError.internalError())
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.errorView.isHidden, false)
         XCTAssertEqual(controller.errorView.messageLabel.text, "There was an error loading alerts. Pull to refresh to try again.")
 
-        api.mock(controller.alerts, value: [])
+        api.mock(GetObserverAlerts(studentID: "1"), value: [])
         controller.errorView.retryButton.sendActions(for: .primaryActionTriggered)
+        drainMainQueue()
         XCTAssertEqual(controller.emptyView.isHidden, false)
         XCTAssertEqual(controller.emptyTitleLabel.text, "No Alerts")
         XCTAssertEqual(controller.emptyMessageLabel.text, "There's nothing to be notified of yet.")

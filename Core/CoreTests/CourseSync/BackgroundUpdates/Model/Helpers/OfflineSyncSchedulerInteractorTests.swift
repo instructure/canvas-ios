@@ -33,5 +33,7 @@ class OfflineSyncSchedulerInteractorTests: XCTestCase {
 
         // THEN
         XCTAssertEqual(defaults.offlineSyncNextDate, now.addingTimeInterval(24 * 60 * 60))
+
+        Clock.reset()
     }
 }

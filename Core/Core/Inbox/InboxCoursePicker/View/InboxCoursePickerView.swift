@@ -28,12 +28,14 @@ public struct InboxCoursePickerView: View {
     public var body: some View {
         ScrollView {
             content
-                .navigationTitleStyled(Text("Select Course", bundle: .core).font(.semibold17).foregroundColor(.textDarkest))
+                .navigationTitleStyled(Text("Select Team", bundle: .core).font(.semibold17).foregroundColor(.textDarkest))
                 .navigationBarTitleDisplayMode(.inline)
         }
         .refreshable {
             await viewModel.refresh()
         }
+        .font(.regular12)
+        .foregroundColor(.textDarkest)
         .frame(maxWidth: .infinity)
         .navigationBarStyle(.modal)
     }

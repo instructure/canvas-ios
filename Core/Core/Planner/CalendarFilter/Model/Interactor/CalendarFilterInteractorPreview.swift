@@ -24,44 +24,36 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
     public var filters = CurrentValueSubject<[CDCalendarFilterEntry], Never>([])
     public var selectedContexts = CurrentValueSubject<Set<Context>, Never>(Set())
     public var filterCountLimit = CurrentValueSubject<CalendarFilterCountLimit, Never>(.extended)
+    public var mockedFilters: [(String, Context)] = [
+        ("Test User", .user("1")),
+
+        ("Black Holes", .course("1")),
+        ("Cosmology", .course("2")),
+        ("From Planets to the Cosmos", .course("3")),
+        ("General Astrophysics", .course("4")),
+        ("Life in The Universe", .course("5")),
+        ("Planets and the Solar System", .course("6")),
+
+        ("Black Holes Group", .group("1")),
+        ("Cosmology Group", .group("2")),
+        ("From Planets to the Cosmos Group", .group("3")),
+    ] {
+        didSet {
+            isMockedDataChangedSinceTheLastLoad = true
+        }
+    }
 
     private let env = PreviewEnvironment()
+    private var isMockedDataChangedSinceTheLastLoad = false
 
     public init() {}
 
     public func load(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        let makeFilterEntry: (String, Context) -> CDCalendarFilterEntry = { name, context in
-            let entry: CDCalendarFilterEntry = self.env.database.viewContext.insert()
-            entry.name = name
-            entry.context = context
-            return entry
+        guard isMockedDataChangedSinceTheLastLoad else {
+            return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
-
-        let filters: [CDCalendarFilterEntry] = {
-            var filters: [CDCalendarFilterEntry] = []
-            filters.append(makeFilterEntry("Test User", .user("1")))
-
-            filters.append(makeFilterEntry("Black Holes", .course("1")))
-            filters.append(makeFilterEntry("Cosmology", .course("2")))
-            filters.append(makeFilterEntry("From Planets to the Cosmos", .course("3")))
-            filters.append(makeFilterEntry("General Astrophysics", .course("4")))
-            filters.append(makeFilterEntry("Life in The Universe", .course("5")))
-            filters.append(makeFilterEntry("Planets and the Solar System", .course("6")))
-
-            filters.append(makeFilterEntry("Black Holes Group", .group("1")))
-            filters.append(makeFilterEntry("Cosmology Group", .group("2")))
-            filters.append(makeFilterEntry("From Planets to the Cosmos Group", .group("3")))
-            return filters
-        }()
-
-        filters.forEach { filter in
-            let color: ContextColor = env.database.viewContext.insert()
-            color.canvasContextID = filter.rawContextID
-            color.color = .random
-        }
-
-        self.filters.send(filters)
-        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+        isMockedDataChangedSinceTheLastLoad = false
+        return loadFilters(with: mockedFilters)
     }
 
     public func updateFilteredContexts(_ contexts: [Context], isSelected: Bool) -> AnyPublisher<Void, Error> {
@@ -72,6 +64,23 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
 
     public func contextsForAPIFiltering() -> [Context] {
         []
+    }
+
+    private func loadFilters(with parameters: [(String, Context)]) -> AnyPublisher<Void, Error> {
+        let filters: [CDCalendarFilterEntry] = parameters.map { name, context in
+            let filter: CDCalendarFilterEntry = env.database.viewContext.insert()
+            filter.name = name
+            filter.context = context
+
+            let color: ContextColor = env.database.viewContext.insert()
+            color.canvasContextID = filter.rawContextID
+            color.color = .random
+
+            return filter
+        }
+
+        self.filters.send(filters)
+        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
 

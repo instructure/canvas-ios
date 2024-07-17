@@ -25,6 +25,8 @@ open class BaseHelper {
     public static var nextButton: XCUIElement { app.find(id: "nextButton", type: .button) }
     public static var openInSafariButton: XCUIElement { app.find(id: "OpenInSafariButton") }
 
+    static func tacticalSleep(_ seconds: TimeInterval = 0.5) { usleep(UInt32(seconds*1000000)) }
+
     public static func pullToRefresh() {
         let window = app.find(type: .window)
         window.relativeCoordinate(x: 0.5, y: 0.2)

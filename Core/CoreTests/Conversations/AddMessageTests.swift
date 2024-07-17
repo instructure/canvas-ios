@@ -21,8 +21,18 @@ import Foundation
 import XCTest
 
 class AddMessageTests: CoreTestCase {
-    func testWrite() {
+
+    override func setUp() {
+        super.setUp()
         Clock.mockNow(Date())
+    }
+
+    override func tearDown() {
+        Clock.reset()
+        super.tearDown()
+    }
+
+    func testWrite() {
         let conversation = Conversation.make(from: .make(
             message_count: 1,
             messages: [ .make() ]
@@ -54,8 +64,6 @@ class AddMessageTests: CoreTestCase {
     }
 
     func testUsesLastAuthoredIfLastIsNull() {
-        Clock.mockNow(Date())
-
         let conversation = Conversation.make()
 
         let useCase = AddMessage(conversationID: "1", body: "See-Gee-IN-YOU")

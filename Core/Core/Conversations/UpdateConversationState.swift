@@ -17,12 +17,17 @@
 //
 
 import Foundation
+import CoreData
 
 public class UpdateConversationState: APIUseCase {
     public var cacheKey: String?
     public typealias Model = Conversation
     public let id: String
     public let state: ConversationWorkflowState
+
+    public var scope: Scope {
+        Scope.where(#keyPath(InboxMessageListItem.messageId), equals: id)
+    }
 
     public var request: PutConversationRequest {
         return PutConversationRequest(id: id, workflowState: state)
@@ -31,5 +36,23 @@ public class UpdateConversationState: APIUseCase {
     public init(id: String, state: ConversationWorkflowState) {
         self.id = id
         self.state = state
+    }
+
+    public func write(response: APIConversation?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response else {
+            return
+        }
+
+        let conversationEntities: [Conversation] = client.fetch(.id(response.id.value))
+        conversationEntities.forEach { conversation in
+            conversation.workflowState = state
+            try? client.save()
+        }
+
+        let entities: [InboxMessageListItem] = client.fetch(scope: scope)
+        entities.forEach { message in
+            message.state = state
+            try? client.save()
+        }
     }
 }

@@ -19,20 +19,20 @@
 import Foundation
 
 public class RecipientContext {
-    let name: String
-    let context: Context
+    public let name: String
+    public let context: Context
 
-    init(name: String, context: Context) {
+    public init(name: String, context: Context) {
         self.name = name
         self.context = context
     }
 
-    init(course: Course) {
+    public init(course: Course) {
         self.name = course.name ?? course.courseCode ?? ""
         self.context = Context.course(course.id)
     }
 
-    init(group: Group) {
+    public init(group: Group) {
         self.name = group.name
         self.context = Context.group(group.id)
     }

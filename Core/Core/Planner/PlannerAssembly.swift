@@ -20,11 +20,12 @@ import SwiftUI
 
 public enum PlannerAssembly {
 
-    public static func makeToDoDetailsScreen(plannable: Plannable) -> UIViewController {
-        let viewModel = ToDoDetailsScreenViewModel(plannable: plannable)
-        let view = ToDoDetailsScreen(viewModel: viewModel)
-        return CoreHostingController(view)
+    public enum Completion {
+        case didCancel
+        case didUpdate
     }
+
+    // MARK: - Event
 
     public static func makeEventDetailsViewController(eventId: String) -> UIViewController {
         let interactor = CalendarEventDetailsInteractorLive(calendarEventId: eventId)
@@ -34,18 +35,74 @@ public enum PlannerAssembly {
         return host
     }
 
+#if DEBUG
+
+    public static func makeEventDetailsScreenPreview() -> some View {
+        let interactor = CalendarEventDetailsInteractorPreview()
+        let viewModel = CalendarEventDetailsViewModel(interactor: interactor)
+        return CalendarEventDetailsScreen(viewModel: viewModel)
+    }
+
+#endif
+
+    // MARK: - ToDo
+
+    public static func makeCreateToDoViewController(
+        calendarListProviderInteractor: CalendarFilterInteractor?,
+        completion: @escaping (Completion) -> Void
+    ) -> UIViewController {
+        let viewModel = EditCalendarToDoViewModel(
+            toDoInteractor: CalendarToDoInteractorLive(),
+            calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            completion: completion
+        )
+        let view = EditCalendarToDoScreen(viewModel: viewModel)
+        let host = CoreHostingController(view)
+        return host
+    }
+
+    public static func makeToDoDetailsViewController(plannable: Plannable) -> UIViewController {
+        let viewModel = CalendarToDoDetailsViewModel(plannable: plannable)
+        let view = CalendarToDoDetailsScreen(viewModel: viewModel)
+        return CoreHostingController(view)
+    }
+
+#if DEBUG
+
+    public static func makeCreateToDoScreenPreview() -> some View {
+        let viewModel = EditCalendarToDoViewModel(
+            toDoInteractor: CalendarToDoInteractorPreview(),
+            calendarListProviderInteractor: CalendarFilterInteractorPreview(),
+            completion: { _ in }
+        )
+        return EditCalendarToDoScreen(viewModel: viewModel)
+    }
+
+    public static func makeSelectCalendarScreenPreview() -> some View {
+        let viewModel = SelectCalendarViewModel(
+            calendarListProviderInteractor: CalendarFilterInteractorPreview(),
+            calendarTypes: [.user, .course, .group],
+            selectedCalendar: .init(nil)
+        )
+        return SelectCalendarScreen(viewModel: viewModel)
+    }
+
+#endif
+
+    // MARK: - Calendar Filter
+
     public static func makeFilterViewController(
         observedUserId: String?,
         didDismissPicker: @escaping () -> Void
     ) -> UIViewController {
-        let interactor = makeInteractor(observedUserId: observedUserId)
+        let interactor = makeFilterInteractor(observedUserId: observedUserId)
         let viewModel = CalendarFilterViewModel(interactor: interactor, didDismissPicker: didDismissPicker)
         let view = CalendarFilterScreen(viewModel: viewModel)
         let host = CoreHostingController(view)
         return host
     }
 
-    public static func makeInteractor(observedUserId: String?) -> CalendarFilterInteractor {
+    public static func makeFilterInteractor(observedUserId: String?) -> CalendarFilterInteractor {
         CalendarFilterInteractorLive(
             observedUserId: observedUserId,
             filterProvider: makeFilterProvider(observedUserId: observedUserId)
@@ -67,12 +124,6 @@ public enum PlannerAssembly {
     }
 
 #if DEBUG
-
-    public static func makeEventDetailsPreview() -> some View {
-        let interactor = CalendarEventDetailsInteractorPreview()
-        let viewModel = CalendarEventDetailsViewModel(interactor: interactor)
-        return CalendarEventDetailsScreen(viewModel: viewModel)
-    }
 
     public static func makeFilterScreenPreview() -> some View {
         let interactor = CalendarFilterInteractorPreview()

@@ -20,6 +20,7 @@ import XCTest
 @testable import Core
 
 class UpdateConversationStateTests: CoreTestCase {
+
     func testPostRequest() {
         let conversationId = "testId"
         let newState = ConversationWorkflowState.read
@@ -47,5 +48,38 @@ class UpdateConversationStateTests: CoreTestCase {
             XCTAssertNotNil(error)
         }
         wait(for: [expectation], timeout: 0.1)
+    }
+
+    func testScope() {
+        let conversationId = "testId"
+        let newState = ConversationWorkflowState.read
+        let useCase = UpdateConversationState(id: conversationId, state: newState)
+
+        XCTAssertEqual(useCase.scope.predicate, NSPredicate(key: #keyPath(InboxMessageListItem.messageId), equals: conversationId))
+    }
+
+    func testWrite() {
+        let conversationId = "testId"
+        let newState = ConversationWorkflowState.read
+        let useCase = UpdateConversationState(id: conversationId, state: newState)
+        let apiconversation = APIConversation.make(workflow_state: .unread)
+        Conversation.save(apiconversation, in: databaseClient)
+        InboxMessageListItem.save(
+            apiconversation,
+            currentUserID: AppEnvironment.shared.currentSession?.userID ?? "",
+            isSent: false,
+            contextFilter: .none,
+            scopeFilter: .sent,
+            in: databaseClient
+        )
+
+        XCTAssertEqual((databaseClient.fetch() as [Conversation]).count, 1)
+        XCTAssertEqual((databaseClient.fetch() as [Conversation]).first?.workflowState, .unread)
+
+        let response = APIConversation.make(workflow_state: .read)
+        useCase.write(response: response, urlResponse: nil, to: databaseClient)
+
+        XCTAssertEqual((databaseClient.fetch() as [Conversation]).count, 1)
+        XCTAssertEqual((databaseClient.fetch() as [Conversation]).first?.workflowState, newState)
     }
 }

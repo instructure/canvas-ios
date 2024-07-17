@@ -83,22 +83,22 @@ class PagesTests: E2ETestCase {
         let assignmentDetailsNameLabel = AssignmentsHelper.Details.name.waitUntil(.visible)
         XCTAssertTrue(assignmentDetailsNameLabel.isVisible)
 
-        // MARK: Check deep link to the discussion
+        // MARK: Check deep link to discussion
         AssignmentsHelper.Details.backButton.hit()
         let discussionDeepLink = app.find(labelContaining: discussion.title).waitUntil(.visible)
         XCTAssertTrue(discussionDeepLink.isVisible)
 
         discussionDeepLink.hit()
-        let discussionDetailsNavBar = DiscussionsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(discussionDetailsNavBar.isVisible)
+        let discussionDetailsTitle = DiscussionsHelper.NewDetails.discussionTitle(discussion: discussion).waitUntil(.visible)
+        XCTAssertTrue(discussionDetailsTitle.isVisible)
 
-        // MARK: Check deep link to the announcement
+        // MARK: Check deep link to announcement
         DiscussionsHelper.Details.backButton.hit()
         let announcementDeepLink = app.find(labelContaining: announcement.title).waitUntil(.visible)
         XCTAssertTrue(announcementDeepLink.isVisible)
 
         announcementDeepLink.hit()
-        let announcementDetailsNavBar = AnnouncementsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(announcementDetailsNavBar.isVisible)
+        let announcementDetailsTitle = DiscussionsHelper.NewDetails.discussionTitle(discussion: announcement).waitUntil(.visible)
+        XCTAssertTrue(announcementDetailsTitle.isVisible)
     }
 }

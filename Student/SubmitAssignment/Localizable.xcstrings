@@ -106,6 +106,12 @@
             "value" : "Tâche"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "असाइनमेंट"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -349,6 +355,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tâches"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "असाइनमेंट"
           }
         },
         "ht" : {
@@ -596,6 +608,12 @@
             "value" : "Commentaires…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टिप्पणियां..."
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -839,6 +857,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cours"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ्यक्रम"
           }
         },
         "ht" : {
@@ -1086,6 +1110,12 @@
             "value" : "Cours"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ्यक्रम"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1331,6 +1361,12 @@
             "value" : "Format non pris en charge"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रारूप समर्थित नहीं है "
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1574,6 +1610,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoyer"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबमिट करें"
           }
         },
         "ht" : {

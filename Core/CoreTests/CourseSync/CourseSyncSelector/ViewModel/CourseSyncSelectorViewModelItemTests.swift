@@ -292,6 +292,8 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
         lastSelected = (selection: selection, isSelected: selectionState == .selected ? true : false)
     }
 
+    func saveSelection() {}
+
     func setCollapsed(selection: Core.CourseEntrySelection, isCollapsed: Bool) {
         lastCollapsed = (selection: selection, isCollapsed: isCollapsed)
     }

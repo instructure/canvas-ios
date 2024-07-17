@@ -57,6 +57,7 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/calendar?event_id=7") is CoreHostingController<CalendarEventDetailsScreen>)
         XCTAssert(router.match("/calendar_events/7") is CoreHostingController<CalendarEventDetailsScreen>)
 
+        // FIXME: always fails locally, always works on CI
         XCTAssertEqual((router.match("/conversations/1") as? HelmViewController)?.moduleName, "/conversations/:conversationID")
 
         XCTAssert(router.match("/courses") is CoreHostingController<AllCoursesView>)

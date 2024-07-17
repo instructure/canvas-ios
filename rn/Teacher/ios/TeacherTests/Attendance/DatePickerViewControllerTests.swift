@@ -29,6 +29,7 @@ class DatePickerViewControllerTests: TeacherTestCase, DatePickerDelegate {
 
     override func tearDown() {
         Clock.reset()
+        super.tearDown()
     }
 
     var selected: Date?

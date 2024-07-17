@@ -33,7 +33,7 @@ public class PagesHelper: BaseHelper {
         public static var published: XCUIElement { app.find(id: "PageEditor.publishedToggle") }
         public static var frontPage: XCUIElement { app.find(id: "PageEditor.frontPageToggle") }
         public static var editors: XCUIElement { app.find(id: "PageEditor.editorsButton") }
-        public static var content: XCUIElement { app.find(label: "Page content", type: .textView) }
+        public static var content: XCUIElement { app.find(label: "Page content", type: .textField) }
     }
 
     public struct Details {

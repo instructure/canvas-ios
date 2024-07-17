@@ -221,13 +221,13 @@ public final class GradeListInteractorLive: GradeListInteractor {
         var assignmentSections: [GradeListData.AssignmentSections] = []
         orderedAssignments.forEach { assignment in
             if let index = assignmentSections.firstIndex(where: { section in
-                section.title == assignment.assignmentGroupSectionName
+                section.id == assignment.assignmentGroupID ?? ""
             }) {
                 assignmentSections[index].assignments.append(assignment)
             } else {
                 assignmentSections.append(
                     GradeListData.AssignmentSections(
-                        id: UUID.string,
+                        id: assignment.assignmentGroupID ?? UUID.string,
                         title: assignment.assignmentGroupSectionName,
                         assignments: [assignment]
                     )

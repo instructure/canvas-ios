@@ -109,7 +109,7 @@ public class AttachmentCardsViewController: UIViewController {
         if attachment.mimeClass == "audio" || attachment.contentType?.hasPrefix("audio/") == true {
             return playAudio(url)
         }
-        env.router.route(to: url, from: self, options: .modal(embedInNav: true, addDoneButton: true))
+        env.router.route(to: url.appendingQueryItems(.init(name: "canEdit", value: "false")), from: self, options: .modal(embedInNav: true, addDoneButton: true))
     }
 
     @objc func longPressAttachment(sender: UILongPressGestureRecognizer) {

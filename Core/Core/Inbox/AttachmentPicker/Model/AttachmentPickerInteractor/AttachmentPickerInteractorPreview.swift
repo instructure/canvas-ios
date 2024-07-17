@@ -21,19 +21,26 @@ import Combine
 
 #if DEBUG
 class AttachmentPickerInteractorPreview: AttachmentPickerInteractor {
+    var alreadyUploadedFiles = CurrentValueSubject<[File], Never>([])
     var files: PassthroughSubject<[File], Error> = PassthroughSubject<[File], Error>()
+    var isCancelConfirmationNeeded = false
 
     public private(set) var uploadFilesCalled: Bool = false
     public private(set) var addFileCalled: Bool = false
     public private(set) var retryCalled: Bool = false
     public private(set) var cancelCalled: Bool = false
     public private(set) var removeFileCalled: Bool = false
+    public private(set) var deleteFileCalled: Bool = false
 
     func uploadFiles() {
         uploadFilesCalled = true
     }
 
     func addFile(url: URL) {
+        addFileCalled = true
+    }
+
+    func addFile(file: File) {
         addFileCalled = true
     }
 
@@ -47,6 +54,11 @@ class AttachmentPickerInteractorPreview: AttachmentPickerInteractor {
 
     func removeFile(file: File) {
         removeFileCalled = true
+    }
+
+    func deleteFile(file: File) -> AnyPublisher<Void, Never> {
+        deleteFileCalled = true
+        return Just(()).eraseToAnyPublisher()
     }
 
     func throwError() {

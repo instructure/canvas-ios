@@ -35,7 +35,6 @@ extension NativeLoginManager {
                 "buttonSecondaryText": brand.buttonSecondaryText.hexString,
                 "fontColorDark": brand.fontColorDark.hexString,
                 "headerImageBackground": brand.headerImageBackground.hexString,
-                "headerImageUrl": brand.headerImageUrl?.absoluteString ?? "",
                 "linkColor": brand.linkColor.hexString,
                 "navBackground": brand.navBackground.hexString,
                 "navBadgeBackground": brand.navBadgeBackground.hexString,
