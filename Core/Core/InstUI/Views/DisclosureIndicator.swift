@@ -41,25 +41,25 @@ extension InstUI {
 #Preview {
     VStack(spacing: 0) {
         InstUI.Divider()
-        Cell(label: "InstUI: arrowOpenRightLine") { InstUI.DisclosureIndicator() }
-        Cell(label: "Legacy: arrowOpenRightSolid") { Core.InstDisclosureIndicator() }
-        Cell(label: "Legacy: iOS chevron.right") { Core.DisclosureIndicator() }
+        Cell(title: "InstUI: arrowOpenRightLine") { InstUI.DisclosureIndicator() }
+        Cell(title: "Legacy: arrowOpenRightSolid") { Core.InstDisclosureIndicator() }
+        Cell(title: "Legacy: iOS chevron.right") { Core.DisclosureIndicator() }
     }
 }
 
 private struct Cell<Content: View>: View {
-    private let label: String
+    private let title: String
     @ViewBuilder private let disclosure: Content
 
-    init(label: String, @ViewBuilder disclosure: () -> Content) {
-        self.label = label
+    init(title: String, @ViewBuilder disclosure: () -> Content) {
+        self.title = title
         self.disclosure = disclosure()
     }
 
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                Text(label).textStyle(.cellLabel)
+                Text(title).textStyle(.cellLabel)
                 Text(verbatim: "Some value").textStyle(.cellValue)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 disclosure

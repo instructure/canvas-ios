@@ -85,12 +85,12 @@ extension InstUI {
 }
 
 extension InstUI.NavigationBarButton {
-    /// Button with string label.
+    /// Button with text label.
     public init(
         isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
         isAvailableOffline: Bool = true,
-        label: String,
+        title: String,
         action: @escaping () -> Void
     ) {
         self.init(
@@ -99,7 +99,7 @@ extension InstUI.NavigationBarButton {
             isAvailableOffline: isAvailableOffline,
             action: action
         ) {
-            AnyView(Text(label).font(.regular16, lineHeight: .fit))
+            AnyView(Text(title).font(.regular16, lineHeight: .fit))
         }
     }
 
@@ -122,12 +122,12 @@ extension InstUI.NavigationBarButton {
         }
     }
 
-    /// Menu with string label.
+    /// Menu with text label.
     public init<MenuContent: View>(
         isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
         isAvailableOffline: Bool = true,
-        label: String,
+        title: String,
         @ViewBuilder menuContent: () -> MenuContent
     ) {
         self.init(
@@ -137,7 +137,7 @@ extension InstUI.NavigationBarButton {
             action: {},
             menuContent: AnyView(menuContent())
         ) {
-            AnyView(Text(label).font(.regular16, lineHeight: .fit))
+            AnyView(Text(title).font(.regular16, lineHeight: .fit))
         }
     }
 
@@ -174,7 +174,7 @@ extension InstUI.NavigationBarButton {
             isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
             isAvailableOffline: isAvailableOffline,
-            label: String(localized: "Cancel", bundle: .core),
+            title: String(localized: "Cancel", bundle: .core),
             action: action
         )
     }
@@ -189,7 +189,7 @@ extension InstUI.NavigationBarButton {
             isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
             isAvailableOffline: isAvailableOffline,
-            label: String(localized: "Done", bundle: .core),
+            title: String(localized: "Done", bundle: .core),
             action: action
         )
     }
@@ -204,7 +204,7 @@ extension InstUI.NavigationBarButton {
             isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
             isAvailableOffline: isAvailableOffline,
-            label: String(localized: "Add", bundle: .core),
+            title: String(localized: "Add", bundle: .core),
             action: action
         )
     }
@@ -219,7 +219,7 @@ extension InstUI.NavigationBarButton {
             isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
             isAvailableOffline: isAvailableOffline,
-            label: String(localized: "Save", bundle: .core),
+            title: String(localized: "Save", bundle: .core),
             action: action
         )
     }
@@ -252,9 +252,9 @@ private func previewsFactory(isContextBackground: Bool) -> some View {
 
         InstUI.NavigationBarButton.add(isBackgroundContextColor: isContextBackground, isEnabled: false) { }
 
-        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: true, label: "Enabled button") { }
+        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: true, title: "Enabled button") { }
 
-        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: false, label: "Disabled button") { }
+        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: false, title: "Disabled button") { }
             .disabled(false)
 
         InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: true, image: .settingsLine, accessibilityLabel: "Settings") { }

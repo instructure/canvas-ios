@@ -23,12 +23,12 @@ extension InstUI {
     public struct CheckboxCell: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-        private let name: String
+        private let title: String
         @Binding private var isSelected: Bool
         private let color: Color
 
-        public init(name: String, isSelected: Binding<Bool>, color: Color) {
-            self.name = name
+        public init(title: String, isSelected: Binding<Bool>, color: Color) {
+            self.title = title
             self._isSelected = isSelected
             self.color = color
         }
@@ -44,7 +44,7 @@ extension InstUI {
                             color: color
                         )
                         .animation(.default, value: isSelected)
-                        Text(name)
+                        Text(title)
                             .font(.regular16, lineHeight: .fit)
                             .multilineTextAlignment(.leading)
                             .foregroundStyle(Color.textDarkest)
@@ -57,7 +57,7 @@ extension InstUI {
             }
             .accessibilityRepresentation {
                 Toggle(isOn: $isSelected) {
-                    Text(name)
+                    Text(title)
                 }
             }
         }
@@ -71,7 +71,7 @@ private struct Container: View {
 
     var body: some View {
         InstUI.CheckboxCell(
-            name: "Checkbox here",
+            title: "Checkbox here",
             isSelected: $isSelected,
             color: .orange
         )

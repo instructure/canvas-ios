@@ -23,7 +23,7 @@ extension InstUI {
     public struct RadioButtonCell<Value: Equatable>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
         @Binding private var selectedValue: Value?
-        private let name: String
+        private let title: String
         private let value: Value
         private let color: Color
 
@@ -31,12 +31,12 @@ extension InstUI {
         ///   - value: The value represented by this cell that will be passed to the `selectedValue` binding upon tap.
         ///   - selectedValue: This binding holds the currently selected value belonging to the radio button group. The value is equatable so this cell can decide when to display the selected state.
         public init(
-            name: String,
+            title: String,
             value: Value,
             selectedValue: Binding<Value?>,
             color: Color
         ) {
-            self.name = name
+            self.title = title
             self.value = value
             self._selectedValue = selectedValue
             self.color = color
@@ -53,7 +53,7 @@ extension InstUI {
                             color: color
                         )
                         .animation(.default, value: selectedValue)
-                        Text(name)
+                        Text(title)
                             .font(.regular16, lineHeight: .fit)
                             .multilineTextAlignment(.leading)
                             .foregroundStyle(Color.textDarkest)
@@ -73,7 +73,7 @@ extension InstUI {
                 }
 
                 Toggle(isOn: binding) {
-                    Text(name)
+                    Text(title)
                 }
             }
         }
@@ -88,13 +88,13 @@ private struct Container: View {
     var body: some View {
         VStack(spacing: 0) {
             InstUI.RadioButtonCell(
-                name: "Value 1",
+                title: "Value 1",
                 value: 1,
                 selectedValue: $selectedValue,
                 color: .orange
             )
             InstUI.RadioButtonCell(
-                name: "Value 2",
+                title: "Value 2",
                 value: 2,
                 selectedValue: $selectedValue,
                 color: .red
