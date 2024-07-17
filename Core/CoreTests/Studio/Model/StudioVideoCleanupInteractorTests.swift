@@ -89,4 +89,14 @@ class StudioVideoCleanupInteractorTests: CoreTestCase {
         XCTAssertEqual(FileManager.default.fileExists(atPath: notUsedVideoURL.path()), false)
         XCTAssertEqual(FileManager.default.fileExists(atPath: folderLikeFile.path()), true)
     }
+
+    func testNotFailsIfStudioDirectoryNotExists() throws {
+        let testee = StudioVideoCleanupInteractor(offlineStudioDirectory: workingDirectory)
+        try FileManager.default.removeItem(at: workingDirectory)
+
+        XCTAssertFinish(testee.removeNoLongerNeededVideos(
+            allMediaItemsOnAPI: [],
+            mediaLTIIDsUsedInOfflineMode: []
+        ))
+    }
 }

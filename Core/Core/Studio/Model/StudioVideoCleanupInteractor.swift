@@ -31,6 +31,9 @@ public class StudioVideoCleanupInteractor {
     ) -> AnyPublisher<Void, Error> {
         Just(())
             .tryMap { [offlineStudioDirectory] _ in
+                if !FileManager.default.fileExists(atPath: offlineStudioDirectory.path()) {
+                    return []
+                }
                 let allItemsInStudioDirectory = try FileManager.default.contentsOfDirectory(
                     at: offlineStudioDirectory,
                     includingPropertiesForKeys: [.isDirectoryKey]

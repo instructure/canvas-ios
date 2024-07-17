@@ -73,7 +73,7 @@ public class StudioAPIAuthInteractor {
         let webView = webViewFactory()
         webView.load(URLRequest(url: webLaunchURL))
         return webView
-            .waitUntilLoadFinishes(checkInterval: 1)
+            .waitUntilLoadFinishes(checkInterval: 2)
             .map { webView }
             .eraseToAnyPublisher()
     }
