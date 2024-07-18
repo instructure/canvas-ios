@@ -32,10 +32,7 @@ extension UITabBar {
         let itemAppearance = UITabBarItemAppearance.make(highlightColor: brand.tabBarHighlightColor)
         let tabBarAppearance = UITabBarAppearance.make(itemAppearance: itemAppearance)
         standardAppearance = tabBarAppearance
-
-        if #available(iOSApplicationExtension 15.0, *) {
-            scrollEdgeAppearance = tabBarAppearance
-        }
+        scrollEdgeAppearance = tabBarAppearance
     }
 }
 

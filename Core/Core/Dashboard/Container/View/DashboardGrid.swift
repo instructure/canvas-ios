@@ -49,27 +49,13 @@ public struct DashboardGrid<Content: View, ID: Hashable>: View {
     }
 
     public var body: some View {
-        if #available(iOSApplicationExtension 16.0, *) {
-            let columns = Array(repeating: GridItem(.fixed(itemWidth)), count: columnCount)
-            LazyVGrid(columns: columns, spacing: spacing) {
-                let items: [(index: Int, id: ID)] = itemIDs.enumerated().map {
-                    (index: $0.offset, id: $0.element)
-                }
-                ForEach(items, id: \.id) { item in
-                    content(item.index)
-                }
+        let columns = Array(repeating: GridItem(.fixed(itemWidth)), count: columnCount)
+        LazyVGrid(columns: columns, spacing: spacing) {
+            let items: [(index: Int, id: ID)] = itemIDs.enumerated().map {
+                (index: $0.offset, id: $0.element)
             }
-        } else {
-            VStack(alignment: .leading, spacing: spacing) {
-                ForEach(rows, id: \.id) { row in
-                    HStack(alignment: .top, spacing: spacing) {
-                        ForEach(row.items, id: \.id) { item in
-                            content(item.index)
-                                .frame(width: itemWidth)
-                        }
-                    }
-                    .fixedSize(horizontal: true, vertical: true)
-                }
+            ForEach(items, id: \.id) { item in
+                content(item.index)
             }
         }
     }
