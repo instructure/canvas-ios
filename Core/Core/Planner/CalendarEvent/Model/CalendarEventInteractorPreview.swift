@@ -24,14 +24,20 @@ public class CalendarEventInteractorPreview: CalendarEventInteractor {
     private let env = PreviewEnvironment()
 
     public func getCalendarEvent(
+        id: String,
         ignoreCache: Bool
     ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error> {
         let result = (
-            event: CalendarEvent.save(.make(title: "Creative Machines and Innovative Instrumentation Conference",
-                                            description: "We should meet 10 minutes before the event. <a href=\"\">Click here!</a>",
-                                            location_name: "UCF Department of Mechanical and Aerospace Engineering",
-                                            location_address: "12760 Pegasus Dr\nOrlando, FL 32816"),
-                                      in: env.database.viewContext),
+            event: CalendarEvent.save(
+                .make(
+                    id: .init(id),
+                    title: "Creative Machines and Innovative Instrumentation Conference",
+                    description: "We should meet 10 minutes before the event. <a href=\"\">Click here!</a>",
+                    location_name: "UCF Department of Mechanical and Aerospace Engineering",
+                    location_address: "12760 Pegasus Dr\nOrlando, FL 32816"
+                ),
+                in: env.database.viewContext
+            ),
             contextColor: UIColor.red
         )
         return Just(result)
