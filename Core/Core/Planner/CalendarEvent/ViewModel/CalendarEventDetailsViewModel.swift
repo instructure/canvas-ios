@@ -60,6 +60,8 @@ public class CalendarEventDetailsViewModel: ObservableObject {
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
+    private var event: CalendarEvent?
+
     // MARK: - Init
 
     public init(eventId: String, interactor: CalendarEventInteractor, router: Router) {
@@ -109,6 +111,8 @@ public class CalendarEventDetailsViewModel: ObservableObject {
                 }
             } receiveValue: { [weak self] (event, contextColor) in
                 guard let self else { return }
+
+                self.event = event
                 self.contextColor = contextColor
                 title = event.title
                 pageSubtitle = event.contextName
@@ -158,6 +162,15 @@ public class CalendarEventDetailsViewModel: ObservableObject {
     // MARK: - Private methods
 
     private func showEditScreen(from source: WeakViewController) {
+        guard let event else { return }
+
+        let weakVC = WeakViewController()
+        let vc = PlannerAssembly.makeEditEventViewController(event: event) { [router] _ in
+            router.dismiss(weakVC)
+        }
+        weakVC.setValue(vc)
+
+        router.show(vc, from: source, options: .modal(isDismissable: false, embedInNav: true))
     }
 
     private func deleteToDo(from source: WeakViewController) {
