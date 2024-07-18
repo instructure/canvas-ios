@@ -20,18 +20,15 @@ import Combine
 
 public protocol CalendarEventInteractor: AnyObject {
     func getCalendarEvent(
+        id: String,
         ignoreCache: Bool
     ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error>
 }
 
-public class CalendarEventInteractorLive: CalendarEventInteractor {
-    private let calendarEventId: String
+final class CalendarEventInteractorLive: CalendarEventInteractor {
 
-    public init(calendarEventId: String) {
-        self.calendarEventId = calendarEventId
-    }
-
-    public func getCalendarEvent(
+    func getCalendarEvent(
+        id: String,
         ignoreCache: Bool = false
     ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error> {
         let colorsUseCase = GetCustomColors()
@@ -41,7 +38,7 @@ public class CalendarEventInteractorLive: CalendarEventInteractor {
             .replaceError(with: [])
             .setFailureType(to: Error.self)
 
-        let eventUseCase = GetCalendarEvent(eventID: calendarEventId)
+        let eventUseCase = GetCalendarEvent(eventID: id)
         let eventStore = ReactiveStore(useCase: eventUseCase)
 
         return Publishers.CombineLatest(

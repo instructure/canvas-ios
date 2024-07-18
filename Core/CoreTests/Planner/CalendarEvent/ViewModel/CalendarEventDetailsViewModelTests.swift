@@ -38,7 +38,7 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
 
         event.isAllDay = true
         event.startAt = startDate
-        let testee = CalendarEventDetailsViewModel(interactor: mockInteractor, router: router)
+        let testee = makeViewModel()
         var expectedDate = startDate.dateOnlyString
         XCTAssertTrue(testee.date!.hasPrefix("\(expectedDate)\n"))
 
@@ -64,7 +64,7 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
         mockInteractor.mockColor = .red
 
         event.startAt = startDate
-        let testee = CalendarEventDetailsViewModel(interactor: mockInteractor, router: router)
+        let testee = makeViewModel()
         XCTAssertTrue(testee.date!.hasSuffix("\nDoes Not Repeat"))
 
         event.seriesInNaturalLanguage = "Weekly"
@@ -79,7 +79,7 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
 
         event.locationName = "test location"
         event.locationAddress = "test address"
-        let testee = CalendarEventDetailsViewModel(interactor: mockInteractor, router: router)
+        let testee = makeViewModel()
         XCTAssertEqual(testee.locationInfo, [
             .init(
                 title: "Location",
@@ -122,7 +122,7 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
         mockInteractor.mockEvent = event
         mockInteractor.mockColor = .red
 
-        let testee = CalendarEventDetailsViewModel(interactor: mockInteractor, router: router)
+        let testee = makeViewModel()
         XCTAssertEqual(testee.details, .init(title: "Details",
                                              description: "test details",
                                              isRichContent: true))
@@ -135,7 +135,7 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
         mockInteractor.mockEvent = event
         mockInteractor.mockColor = .red
 
-        let testee = CalendarEventDetailsViewModel(interactor: mockInteractor, router: router)
+        let testee = makeViewModel()
 
         XCTAssertEqual(testee.pageTitle, "Event Details")
         XCTAssertEqual(testee.pageSubtitle, "test context")
@@ -149,12 +149,16 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
         mockInteractor.mockEvent = event
         mockInteractor.mockColor = .red
 
-        let testee = CalendarEventDetailsViewModel(interactor: mockInteractor, router: router)
+        let testee = makeViewModel()
         XCTAssertEqual(testee.state, .data)
 
         mockInteractor.mockEvent = nil
         testee.reload {}
         XCTAssertEqual(testee.state, .error)
+    }
+
+    private func makeViewModel(eventId: String = "1") -> CalendarEventDetailsViewModel {
+        .init(eventId: eventId, interactor: mockInteractor, router: router)
     }
 }
 
@@ -163,6 +167,7 @@ final private class CalendarEventInteractorMock: CalendarEventInteractor {
     var mockColor: UIColor?
 
     func getCalendarEvent(
+        id: String,
         ignoreCache: Bool
     ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error> {
         guard let mockEvent, let mockColor else {
