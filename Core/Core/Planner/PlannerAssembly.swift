@@ -44,13 +44,13 @@ public enum PlannerAssembly {
     }
 
     public static func makeEditEventViewController(
-        plannable: Plannable,
+        event: CalendarEvent,
         calendarListProviderInteractor: CalendarFilterInteractor? = nil,
         env: AppEnvironment = .shared,
         completion: @escaping (Completion) -> Void
     ) -> UIViewController {
         let viewModel = EditCalendarEventViewModel(
-            plannable: plannable,
+            event: event,
             toDoInteractor: CalendarToDoInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
             router: env.router,

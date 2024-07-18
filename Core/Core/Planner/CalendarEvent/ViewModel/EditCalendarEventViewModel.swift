@@ -121,7 +121,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     // MARK: - Init
 
     init(
-        plannable: Plannable? = nil,
+        event: CalendarEvent? = nil,
         toDoInteractor: CalendarToDoInteractor,
         calendarListProviderInteractor: CalendarFilterInteractor,
         router: Router,
@@ -131,19 +131,20 @@ final class EditCalendarEventViewModel: ObservableObject {
         self.calendarListProviderInteractor = calendarListProviderInteractor
         self.router = router
 
-        if let plannable {
-            mode = .edit(id: plannable.id)
+        if let event {
+            mode = .edit(id: event.id)
         } else {
             mode = .add
         }
 
-        title = plannable?.title ?? ""
-        date = plannable?.date ?? Clock.now.endOfDay() // end of today, to match default web behaviour
-        /*TODO: */ startTime = Clock.now
-        /*TODO: */ endTime = Clock.now
-        /*TODO: */ location = ""
-        /*TODO: */ address = ""
-        details = plannable?.details ?? ""
+        title = event?.title ?? ""
+        // TODO: date handling
+        date = event?.startAt ?? Clock.now.endOfDay() // end of today, to match default web behaviour
+        startTime = event?.startAt ?? Clock.now
+        endTime = event?.endAt ?? Clock.now
+        location = event?.locationName ?? ""
+        address = event?.locationAddress ?? ""
+        details = event?.details ?? ""
 
         subscribeIsFieldsTouched(to: $title)
         subscribeIsFieldsTouched(to: $date)
@@ -163,7 +164,7 @@ final class EditCalendarEventViewModel: ObservableObject {
             .first { $0.isEmpty == false }
             .compactMap {
                 $0.first {
-                    if let context = plannable?.context, context.contextType == .course {
+                    if let context = event?.context, context.contextType == .course {
                         $0.context == context
                     } else {
                         $0.context.contextType == .user
