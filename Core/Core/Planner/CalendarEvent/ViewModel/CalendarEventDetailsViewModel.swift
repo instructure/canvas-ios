@@ -55,13 +55,15 @@ public class CalendarEventDetailsViewModel: ObservableObject {
 
     // MARK: - Private
 
+    private let eventId: String
     private let interactor: CalendarEventInteractor
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
-    public init(interactor: CalendarEventInteractor, router: Router) {
+    public init(eventId: String, interactor: CalendarEventInteractor, router: Router) {
+        self.eventId = eventId
         self.interactor = interactor
         self.router = router
 
@@ -97,7 +99,7 @@ public class CalendarEventDetailsViewModel: ObservableObject {
         ignoreCache: Bool = false
     ) {
         interactor
-            .getCalendarEvent(ignoreCache: ignoreCache)
+            .getCalendarEvent(id: eventId, ignoreCache: ignoreCache)
             .sink { [weak self] completion in
                 guard let self else { return }
                 refreshCompletion?()

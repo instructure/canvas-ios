@@ -62,8 +62,8 @@ public enum PlannerAssembly {
     }
 
     public static func makeEventDetailsViewController(eventId: String, env: AppEnvironment = .shared) -> UIViewController {
-        let interactor = CalendarEventInteractorLive(calendarEventId: eventId)
-        let viewModel = CalendarEventDetailsViewModel(interactor: interactor, router: env.router)
+        let interactor = CalendarEventInteractorLive()
+        let viewModel = CalendarEventDetailsViewModel(eventId: eventId, interactor: interactor, router: env.router)
         let view = CalendarEventDetailsScreen(viewModel: viewModel)
         let host = CoreHostingController(view)
         return host
@@ -83,7 +83,7 @@ public enum PlannerAssembly {
 
     public static func makeEventDetailsScreenPreview(env: AppEnvironment = .shared) -> some View {
         let interactor = CalendarEventInteractorPreview()
-        let viewModel = CalendarEventDetailsViewModel(interactor: interactor, router: env.router)
+        let viewModel = CalendarEventDetailsViewModel(eventId: "1", interactor: interactor, router: env.router)
         return CalendarEventDetailsScreen(viewModel: viewModel)
     }
 
