@@ -21,7 +21,7 @@ import Combine
 import XCTest
 
 class CalendarEventDetailsViewModelTests: CoreTestCase {
-    let mockInteractor = CalendarEventDetailsInteractorMock()
+    private let mockInteractor = CalendarEventInteractorMock()
 
     override func setUp() {
         super.setUp()
@@ -158,7 +158,7 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
     }
 }
 
-class CalendarEventDetailsInteractorMock: CalendarEventDetailsInteractor {
+final private class CalendarEventInteractorMock: CalendarEventInteractor {
     var mockEvent: CalendarEvent?
     var mockColor: UIColor?
 
