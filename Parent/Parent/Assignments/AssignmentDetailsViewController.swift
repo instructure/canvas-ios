@@ -20,6 +20,7 @@ import Foundation
 import UIKit
 import UserNotifications
 import Core
+import SafariServices
 import SwiftUI
 
 class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate {
@@ -38,6 +39,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewContainer: UIView!
+    @IBOutlet weak var submissionAndRubricButton: UIButton!
     let webView = CoreWebView()
     let refreshControl = CircleRefreshControl()
     var selectedDate: Date?
@@ -113,6 +115,27 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         )
 
         statusLabel.text = ""
+
+        submissionAndRubricButton.configuration = {
+            var config = UIButton.Configuration.borderedProminent()
+            config.background.cornerRadius = 6
+            config.background.strokeWidth = 1 / UIScreen.main.scale
+            config.background.strokeColor = .textDark
+            config.background.backgroundColor = .backgroundLightest
+            config.baseForegroundColor = Brand.shared.primary
+            config.image = .arrowOpenRightLine
+                .scaleTo(CGSize(width: 15, height: 15))
+                .withRenderingMode(.alwaysTemplate)
+            config.imagePadding = 3
+            config.imagePlacement = .trailing
+            config.attributedTitle = AttributedString(
+                String(localized: "Submission & Rubric", bundle: .core),
+                attributes: AttributeContainer(
+                    [.font: UIFont.scaledNamedFont(.regular16)]
+                )
+            )
+            return config
+        }()
 
         assignment.refresh()
         course.refresh()
@@ -248,5 +271,74 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             hiddenMessage: hiddenMessage
         )
         env.router.show(compose, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
+    }
+
+    @IBAction func submissionAndRubricButtonPressed(_ sender: Any) {
+        guard let assignmentHtmlURL = assignment.first?.htmlURL else {
+            return
+        }
+
+//        env.api.makeRequest(GetWebSessionRequest(to: assignmentHtmlURL)) { [env] response, _, _ in
+//            guard let sessionURL = response?.session_url else {
+//                return
+//            }
+//            performUIUpdate {
+                let safari = StudioViewController2(url: assignmentHtmlURL)
+                env.router.show(safari, from: self, options: .modal(.overFullScreen))
+//            }
+//        }
+    }
+}
+
+//private class ParentSubmissionsInSafariViewController: SFSafariViewController {
+//    public override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
+//
+//    public init(
+//        url URL: URL
+//    ) {
+//        let config = SFSafariViewController.Configuration()
+//        config.barCollapsingEnabled = true
+//        super.init(url: URL, configuration: config)
+//        modalPresentationCapturesStatusBarAppearance = true
+//        dismissButtonStyle = .close
+//    }
+//}
+
+class StudioViewController2: UINavigationController {
+    public override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
+
+    public init(url: URL) {
+        let controller = CoreWebViewController()
+//        controller.webView.load(request)
+        controller.addDoneButton()
+        controller.title = String(localized: "Studio", bundle: .core)
+
+        super.init(rootViewController: controller)
+
+        navigationBar.useModalStyle(forcedTheme: .light)
+        modalPresentationCapturesStatusBarAppearance = true
+
+        AppEnvironment.shared.api.makeRequest(GetWebSessionRequest(to: url)) { response, _, _ in
+            guard let sessionURL = response?.session_url else {
+                return
+            }
+
+            var request = URLRequest(url: sessionURL)
+            request.addValue("k5_observed_user_for_96505=96504", forHTTPHeaderField: "cookie")
+
+            performUIUpdate {
+                controller.webView.load(request)
+            }
+        }
+
+    }
+
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .backgroundLightest.resolvedColor(with: .light)
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
