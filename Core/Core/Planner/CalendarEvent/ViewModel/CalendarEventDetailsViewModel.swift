@@ -55,13 +55,13 @@ public class CalendarEventDetailsViewModel: ObservableObject {
 
     // MARK: - Private
 
-    private let interactor: CalendarEventDetailsInteractor
+    private let interactor: CalendarEventInteractor
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
-    public init(interactor: CalendarEventDetailsInteractor, router: Router) {
+    public init(interactor: CalendarEventInteractor, router: Router) {
         self.interactor = interactor
         self.router = router
 

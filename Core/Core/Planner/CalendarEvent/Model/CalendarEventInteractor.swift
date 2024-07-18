@@ -18,13 +18,13 @@
 
 import Combine
 
-public protocol CalendarEventDetailsInteractor: AnyObject {
+public protocol CalendarEventInteractor: AnyObject {
     func getCalendarEvent(
         ignoreCache: Bool
     ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error>
 }
 
-public class CalendarEventDetailsInteractorLive: CalendarEventDetailsInteractor {
+public class CalendarEventInteractorLive: CalendarEventInteractor {
     private let calendarEventId: String
 
     public init(calendarEventId: String) {

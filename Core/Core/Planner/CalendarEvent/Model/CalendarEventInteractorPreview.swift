@@ -20,7 +20,7 @@
 
 import Combine
 
-public class CalendarEventDetailsInteractorPreview: CalendarEventDetailsInteractor {
+public class CalendarEventInteractorPreview: CalendarEventInteractor {
     private let env = PreviewEnvironment()
 
     public func getCalendarEvent(
