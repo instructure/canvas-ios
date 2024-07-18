@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
     public let titleSubtitleView = TitleSubtitleView.create()
@@ -41,6 +42,18 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
         self?.update()
     }
 
+    private var emptyPandaViewController: CoreHostingController<InteractivePanda> = {
+        let vc = CoreHostingController(
+            InteractivePanda(
+                scene: SpacePanda(),
+                title: Text("No syllabus"),
+                subtitle: Text("There is no syllabus to display.")
+            )
+        )
+        vc.view.backgroundColor = .backgroundLightest
+        return vc
+    }()
+
     public static func create(courseID: String) -> SyllabusTabViewController {
         let controller = SyllabusTabViewController(nibName: nil, bundle: nil)
         controller.courseID = courseID
@@ -52,7 +65,7 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
         delegate = self
         setupTitleViewInNavbar(title: String(localized: "Course Syllabus", bundle: .core))
         view.backgroundColor = UIColor.backgroundLightest
-
+        emptyPandaViewController.view.backgroundColor = .backgroundLightest
         settings.refresh()
         colors.refresh()
         course.refresh()
@@ -74,6 +87,15 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
         }
         if settings.first?.syllabusCourseSummary == true {
             viewControllers.append(summary)
+        }
+        if viewControllers.isEmpty {
+            addChild(emptyPandaViewController)
+            emptyPandaViewController.didMove(toParent: self)
+            view.addSubview(emptyPandaViewController.view)
+            emptyPandaViewController.view.pin(inside: view)
+        } else if emptyPandaViewController.parent != nil, emptyPandaViewController.view.superview != nil {
+            emptyPandaViewController.removeFromParent()
+            emptyPandaViewController.view.removeFromSuperview()
         }
         updateFrames()
         reload()
