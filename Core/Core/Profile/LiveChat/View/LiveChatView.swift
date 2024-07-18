@@ -31,9 +31,11 @@ struct LiveChatView: View, ScreenViewTrackable {
             if model.currentChatType == .xpert {
                 WebView(html: model.xpertHTML, wkEvents: model.wkEvents)
                     .opacity(model.hideWebviewWhileLoading ? 0 : 1)
+                    .ignoresSafeArea(.keyboard)
             } else {
                 WebView(html: model.five9HTML, wkEvents: model.wkEvents)
                     .opacity(model.hideWebviewWhileLoading ? 0 : 1)
+                    .ignoresSafeArea(.keyboard)
             }
             if model.hideWebviewWhileLoading {
                 LoadingView()
