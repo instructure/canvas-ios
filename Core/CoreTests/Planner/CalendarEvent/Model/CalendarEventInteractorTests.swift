@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class CalendarEventDetailsInteractorTests: CoreTestCase {
+class CalendarEventInteractorTests: CoreTestCase {
 
     func testLoadsEventData() {
         let mockAPIEvent: APICalendarEvent = .make(id: "testEventID")
@@ -29,7 +29,7 @@ class CalendarEventDetailsInteractorTests: CoreTestCase {
         api.mock(GetCalendarEventRequest(eventID: mockAPIEvent.id.rawValue),
                  value: mockAPIEvent)
 
-        let testee = CalendarEventDetailsInteractorLive(calendarEventId: mockAPIEvent.id.rawValue)
+        let testee = CalendarEventInteractorLive(calendarEventId: mockAPIEvent.id.rawValue)
 
         XCTAssertFirstValueAndCompletion(testee.getCalendarEvent()) { (event, color) in
             XCTAssertEqual(color, UIColor(hexString: mockAPIColor))
@@ -45,7 +45,7 @@ class CalendarEventDetailsInteractorTests: CoreTestCase {
         api.mock(GetCalendarEventRequest(eventID: mockAPIEvent.id.rawValue),
                  value: nil)
 
-        let testee = CalendarEventDetailsInteractorLive(calendarEventId: mockAPIEvent.id.rawValue)
+        let testee = CalendarEventInteractorLive(calendarEventId: mockAPIEvent.id.rawValue)
 
         XCTAssertFailure(testee.getCalendarEvent())
     }
@@ -57,7 +57,7 @@ class CalendarEventDetailsInteractorTests: CoreTestCase {
         api.mock(GetCalendarEventRequest(eventID: mockAPIEvent.id.rawValue),
                  value: mockAPIEvent)
 
-        let testee = CalendarEventDetailsInteractorLive(calendarEventId: mockAPIEvent.id.rawValue)
+        let testee = CalendarEventInteractorLive(calendarEventId: mockAPIEvent.id.rawValue)
 
         XCTAssertFirstValueAndCompletion(testee.getCalendarEvent()) { (event, color) in
             XCTAssertEqual(color, UIColor.ash)
