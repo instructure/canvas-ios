@@ -32,10 +32,35 @@ public extension Date {
         self = date
     }
 
+    // MARK: - Components
+
+    var hours: Int {
+        return Cal.currentCalendar.component(.hour, from: self)
+    }
+
+    var minutes: Int {
+        return Cal.currentCalendar.component(.minute, from: self)
+    }
+
     // MARK: - add methods
 
     func addYears(_ years: Int) -> Date {
         return Calendar.current.date(byAdding: .year, value: years, to: self) ?? self
+    }
+
+    func addMonths(_ numberOfMonths: Int) -> Date {
+        let endDate = Calendar.current.date(byAdding: .month, value: numberOfMonths, to: self)
+        return endDate ?? Date()
+    }
+
+    func addDays(_ days: Int) -> Date {
+        let endDate = Calendar.current.date(byAdding: .day, value: days, to: self)
+        return endDate ?? Date()
+    }
+
+    func addHours(_ hours: Int) -> Date {
+        let endDate = Cal.currentCalendar.date(byAdding: .hour, value: hours, to: self)
+        return endDate ?? Date()
     }
 
     func addMinutes(_ minutes: Int) -> Date {
@@ -45,16 +70,6 @@ public extension Date {
 
     func addSeconds(_ seconds: Int) -> Date {
         Cal.currentCalendar.date(byAdding: .second, value: seconds, to: self) ?? Date()
-    }
-
-    func addDays(_ days: Int) -> Date {
-        let endDate = Calendar.current.date(byAdding: .day, value: days, to: self)
-        return endDate ?? Date()
-    }
-
-    func addMonths(_ numberOfMonths: Int) -> Date {
-        let endDate = Calendar.current.date(byAdding: .month, value: numberOfMonths, to: self)
-        return endDate ?? Date()
     }
 
     // MARK: - start/end methods
@@ -82,6 +97,10 @@ public extension Date {
 
     func endOfMonth() -> Date {
         return Cal.currentCalendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth()) ?? Date()
+    }
+
+    func startOfHour() -> Date {
+        return startOfDay().addHours(hours)
     }
 
     // MARK: - Formatters
