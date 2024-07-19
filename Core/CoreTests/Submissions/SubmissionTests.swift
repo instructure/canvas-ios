@@ -369,14 +369,12 @@ class SubmissionTypeTests: XCTestCase {
                  .on_paper,
                  .wiki_page,
                  .student_annotation,
-                 .online_url:
+                 .online_url,
+                 .media_recording,
+                 .basic_lti_launch,
+                 .external_tool:
                 let result = [submissionType].isStudioAccepted(allowedExtensions: [])
                 XCTAssertEqual(result, false)
-            case .external_tool,
-                 .media_recording,
-                 .basic_lti_launch:
-                let result = [submissionType].isStudioAccepted(allowedExtensions: [])
-                XCTAssertEqual(result, true)
             case .online_upload:
                 let acceptedFileExtensions = ["mp4", "mov", "avi"]
 

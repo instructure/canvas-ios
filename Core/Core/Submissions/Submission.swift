@@ -489,30 +489,21 @@ extension Array where Element == SubmissionType {
     public func isStudioAccepted(
         allowedExtensions: [String]
     ) -> Bool {
-        let studioTypes: [SubmissionType] = [
-            .external_tool,
-            .basic_lti_launch,
-            .media_recording
-        ]
+        guard self.contains(.online_upload) else {
+            return false
+        }
 
-        for studioType in studioTypes where self.contains(studioType) {
+        if allowedExtensions.isEmpty {
             return true
         }
 
-        if self.contains(.online_upload) {
-            if allowedExtensions.isEmpty {
+        for allowedExtension in allowedExtensions {
+            guard let fileType = UTType(filenameExtension: allowedExtension) else {
+                continue
+            }
+            if fileType.conforms(to: .audiovisualContent) {
                 return true
             }
-
-            for allowedExtension in allowedExtensions {
-                guard let fileType = UTType(filenameExtension: allowedExtension) else {
-                    continue
-                }
-                if fileType.conforms(to: .audiovisualContent) {
-                    return true
-                }
-            }
-
         }
 
         return false
