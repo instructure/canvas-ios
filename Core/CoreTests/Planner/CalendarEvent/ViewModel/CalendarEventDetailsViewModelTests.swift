@@ -163,6 +163,14 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
 }
 
 final private class CalendarEventInteractorMock: CalendarEventInteractor {
+    func createEvent(_ model: Core.CalendarEventRequestModel) -> AnyPublisher<Void, any Error> {
+        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+
+    func isRequestModelValid(_ model: Core.CalendarEventRequestModel?) -> Bool {
+        true
+    }
+
     var mockEvent: CalendarEvent?
     var mockColor: UIColor?
 

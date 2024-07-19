@@ -30,9 +30,8 @@ final class CreateCalendarEvent: APIUseCase {
         context_code: String,
         title: String,
         description: String?,
-        start_at: Date?,
-        end_at: Date?,
-        all_day: Bool,
+        start_at: Date,
+        end_at: Date,
         location_name: String?,
         location_address: String?
     ) {
@@ -44,7 +43,6 @@ final class CreateCalendarEvent: APIUseCase {
                     description: description,
                     start_at: start_at,
                     end_at: end_at,
-                    all_day: all_day,
                     location_name: location_name,
                     location_address: location_address
                 )
@@ -52,4 +50,3 @@ final class CreateCalendarEvent: APIUseCase {
         )
     }
 }
-

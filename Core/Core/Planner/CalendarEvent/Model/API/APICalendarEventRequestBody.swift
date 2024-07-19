@@ -24,9 +24,8 @@ struct APICalendarEventRequestBody: Codable, Equatable {
         let context_code: String
         let title: String
         let description: String?
-        let start_at: Date?
-        let end_at: Date?
-        let all_day: Bool?
+        let start_at: Date
+        let end_at: Date
         let location_name: String?
         let location_address: String?
         // TODO: let time_zone_edited: String?
@@ -41,9 +40,8 @@ extension APICalendarEventRequestBody {
         context_code: String = "",
         title: String = "",
         description: String? = nil,
-        start_at: Date? = nil,
-        end_at: Date? = nil,
-        all_day: Bool = true,
+        start_at: Date = Clock.now.startOfDay(),
+        end_at: Date = Clock.now.startOfDay(),
         location_name: String? = nil,
         location_address: String? = nil
     ) -> PostCalendarEventRequest.Body {
@@ -54,7 +52,6 @@ extension APICalendarEventRequestBody {
                 description: description,
                 start_at: start_at,
                 end_at: end_at,
-                all_day: all_day,
                 location_name: location_name,
                 location_address: location_address
             )

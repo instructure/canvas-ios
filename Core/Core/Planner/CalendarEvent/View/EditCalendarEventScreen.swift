@@ -52,20 +52,28 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                     InstUI.DatePickerCell(
                         label: Text("Date", bundle: .core),
                         date: $viewModel.date,
+                        mode: .dateOnly,
                         isClearable: false
                     )
 
-                    InstUI.DatePickerCell(
-                        label: Text("From", bundle: .core),
-                        date: $viewModel.startTime,
-                        isClearable: false
-                    )
+                    InstUI.ToggleCell(label: Text("All Day"), value: $viewModel.isAllDay)
 
-                    InstUI.DatePickerCell(
-                        label: Text("To", bundle: .core),
-                        date: $viewModel.endTime,
-                        isClearable: false
-                    )
+                    if !viewModel.isAllDay {
+                        InstUI.DatePickerCell(
+                            label: Text("From", bundle: .core),
+                            date: $viewModel.startTime,
+                            mode: .timeOnly,
+                            isClearable: false
+                        )
+
+                        InstUI.DatePickerCell(
+                            label: Text("To", bundle: .core),
+                            date: $viewModel.endTime,
+                            mode: .timeOnly,
+                            errorMessage: viewModel.endTimeErrorMessage,
+                            isClearable: false
+                        )
+                    }
 
                     InstUI.LabelValueCell(
                         label: Text("Frequency", bundle: .core),
@@ -103,6 +111,8 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                     )
                     .focused($focusedInput, equals: .details)
                 }
+                .animation(.default, value: viewModel.isAllDay)
+
                 // defocus inputs when otherwise non-tappable area is tapped
                 .background(
                     InstUI.TapArea()

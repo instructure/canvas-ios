@@ -39,22 +39,23 @@ final class EditCalendarEventViewModel: ObservableObject {
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
     @Published private(set) var state: InstUI.ScreenState = .data
-    @Published var title: String
+    @Published var title: String = ""
     @Published var date: Date?
+    @Published var isAllDay: Bool = false
     @Published var startTime: Date?
     @Published var endTime: Date?
     @Published var frequencyName: String?
     @Published var calendarName: String?
-    @Published var location: String
-    @Published var address: String
-    @Published var details: String
+    @Published var location: String = ""
+    @Published var address: String = ""
+    @Published var details: String = ""
+
+    @Published var endTimeErrorMessage: String?
     @Published var shouldShowSaveError: Bool = false
 
     var isSaveButtonEnabled: Bool {
         state == .data
-        && title.isNotEmpty
-        && date != nil
-        && selectedCalendar.value != nil
+        && eventInteractor.isRequestModelValid(model)
         && isFieldsTouched
     }
 
@@ -137,17 +138,11 @@ final class EditCalendarEventViewModel: ObservableObject {
             mode = .add
         }
 
-        title = event?.title ?? ""
-        // TODO: date handling
-        date = event?.startAt ?? Clock.now.endOfDay() // end of today, to match default web behaviour
-        startTime = event?.startAt ?? Clock.now
-        endTime = event?.endAt ?? Clock.now
-        location = event?.locationName ?? ""
-        address = event?.locationAddress ?? ""
-        details = event?.details ?? ""
+        setupFields(event: event)
 
         subscribeIsFieldsTouched(to: $title)
         subscribeIsFieldsTouched(to: $date)
+        subscribeIsFieldsTouched(to: $isAllDay)
         subscribeIsFieldsTouched(to: $startTime)
         subscribeIsFieldsTouched(to: $endTime)
         subscribeIsFieldsTouched(to: $date)
@@ -174,6 +169,14 @@ final class EditCalendarEventViewModel: ObservableObject {
             .sink { [selectedCalendar] in
                 selectedCalendar.send($0)
             }
+            .store(in: &subscriptions)
+
+        $startTime
+            .sink { [weak self] newStartTime in self?.updateEndTimeError(newStartTime, self?.endTime) }
+            .store(in: &subscriptions)
+
+        $endTime
+            .sink { [weak self] newEndTime in self?.updateEndTimeError(self?.startTime, newEndTime) }
             .store(in: &subscriptions)
 
         selectedFrequency
@@ -229,6 +232,45 @@ final class EditCalendarEventViewModel: ObservableObject {
 
     // MARK: - Private methods
 
+    private func setupFields(event: CalendarEvent?) {
+        title = event?.title ?? ""
+
+        date = event?.startAt ?? Clock.now.startOfDay()
+        isAllDay = event?.isAllDay ?? false
+
+        if isAllDay {
+            startTime = defaultStartTime
+            endTime = defaultEndTime
+        } else {
+            startTime = event?.startAt ?? defaultStartTime
+            endTime = event?.endAt ?? defaultEndTime
+        }
+
+        location = event?.locationName ?? ""
+        address = event?.locationAddress ?? ""
+        details = event?.details ?? ""
+    }
+
+    private var defaultStartTime: Date {
+        // 11:46 -> 12:00
+        Clock.now.startOfHour().addHours(1)
+    }
+
+    private var defaultEndTime: Date {
+        // 11:46 -> start 12:00, end 13:00
+        let startTime = startTime ?? defaultStartTime
+        let hours = startTime.hours + 1
+        return startTime.startOfDay().addHours(hours)
+    }
+
+    private func updateEndTimeError(_ startTime: Date?, _ endTime: Date?) {
+        if let startTime, let endTime, endTime < startTime {
+            endTimeErrorMessage = String(localized: "End time cannot be before Start time", bundle: .core)
+        } else {
+            endTimeErrorMessage = nil
+        }
+    }
+
     private func subscribeIsFieldsTouched<T: Equatable>(to publisher: Published<T>.Publisher) {
         publisher
             .removeDuplicates()
@@ -251,29 +293,35 @@ final class EditCalendarEventViewModel: ObservableObject {
         router.show(vc, from: source, options: .push)
     }
 
+    private var model: CalendarEventRequestModel? {
+        guard let date,
+              let startTime,
+              let endTime,
+              let calendar = selectedCalendar.value
+        else { return nil }
+
+        return .init(
+            title: title,
+            date: date,
+            isAllDay: isAllDay,
+            startTime: startTime,
+            endTime: endTime,
+            calendar: calendar,
+            location: location.nilIfEmpty,
+            address: address.nilIfEmpty,
+            details: details.nilIfEmpty
+        )
+    }
+
     private func saveAction() -> AnyPublisher<Void, Error>? {
-        guard let calendar = selectedCalendar.value else { return nil }
+        guard let model else { return nil }
 
         switch mode {
         case .add:
-            return eventInteractor.createEvent(
-                title: title,
-                startTime: startTime,
-                endTime: endTime,
-                calendar: calendar,
-                location: location,
-                address: address,
-                details: details
-            )
+            return eventInteractor.createEvent(model)
         case .edit(let id):
             return nil
-//            /*TODO: */ eventInteractor.updateEvent(
-//                id: id,
-//                title: title,
-//                date: date ?? Clock.now,
-//                calendar: selectedCalendar.value,
-//                details: details
-//            )
+//            /*TODO: */ return eventInteractor.updateEvent(model)
         }
     }
 }

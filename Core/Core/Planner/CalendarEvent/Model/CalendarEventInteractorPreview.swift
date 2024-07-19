@@ -45,16 +45,12 @@ class CalendarEventInteractorPreview: CalendarEventInteractor {
             .delay(for: 1, scheduler: RunLoop.main)
     }
 
-    func createEvent(
-        title: String,
-        startTime: Date?,
-        endTime: Date?,
-        calendar: CDCalendarFilterEntry,
-        location: String?,
-        address: String?,
-        details: String?
-    ) -> AnyPublisher<Void, Error> {
+    func createEvent(_ model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
         return Empty().eraseToAnyPublisher()
+    }
+
+    func isRequestModelValid(_ model: CalendarEventRequestModel?) -> Bool {
+        true
     }
 }
 

@@ -24,15 +24,9 @@ public protocol CalendarEventInteractor: AnyObject {
         ignoreCache: Bool
     ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error>
 
-    func createEvent(
-        title: String,
-        startTime: Date?,
-        endTime: Date?,
-        calendar: CDCalendarFilterEntry,
-        location: String?,
-        address: String?,
-        details: String?
-    ) -> AnyPublisher<Void, Error>
+    func createEvent(_ model: CalendarEventRequestModel) -> AnyPublisher<Void, Error>
+
+    func isRequestModelValid(_ model: CalendarEventRequestModel?) -> Bool
 }
 
 final class CalendarEventInteractorLive: CalendarEventInteractor {
@@ -64,28 +58,23 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
         }
     }
 
-    func createEvent(
-        title: String,
-        startTime: Date?,
-        endTime: Date?,
-        calendar: CDCalendarFilterEntry,
-        location: String?,
-        address: String?,
-        details: String?
-    ) -> AnyPublisher<Void, Error> {
+    func createEvent(_ model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
         let useCase = CreateCalendarEvent(
-            context_code: calendar.rawContextID,
-            title: title,
-            description: details,
-            start_at: startTime,
-            end_at: endTime,
-            all_day: startTime == nil && endTime == nil,
-            location_name: location,
-            location_address: address
+            context_code: model.calendar.rawContextID,
+            title: model.title,
+            description: model.details,
+            start_at: model.processedStartTime,
+            end_at: model.processedEndTime,
+            location_name: model.location,
+            location_address: model.address
         )
         return ReactiveStore(useCase: useCase)
             .getEntities()
             .mapToVoid()
             .eraseToAnyPublisher()
+    }
+
+    func isRequestModelValid(_ model: CalendarEventRequestModel?) -> Bool {
+        model?.isValid ?? false
     }
 }
