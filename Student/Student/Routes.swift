@@ -53,25 +53,18 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     },
 
     "/conversations": nil,
-    "/conversations/compose": { url, params, userInfo in
-        if ExperimentalFeature.nativeStudentInbox.isEnabled {
-            if let queryItems = url.queryItems {
-                return ComposeMessageAssembly.makeComposeMessageViewController(queryItems: queryItems)
-            } else {
-                return ComposeMessageAssembly.makeComposeMessageViewController()
-            }
+    "/conversations/compose": { url, _, _ in
+        if let queryItems = url.queryItems {
+            return ComposeMessageAssembly.makeComposeMessageViewController(queryItems: queryItems)
         } else {
-            return HelmViewController(moduleName: "/conversations/compose", url: url, params: params, userInfo: userInfo)
+            return ComposeMessageAssembly.makeComposeMessageViewController()
         }
+
     },
 
-    "/conversations/:conversationID": { url, params, userInfo in
-        if ExperimentalFeature.nativeStudentInbox.isEnabled {
-            guard let conversationID = params["conversationID"] else { return nil }
-            return MessageDetailsAssembly.makeViewController(env: AppEnvironment.shared, conversationID: conversationID)
-        } else {
-            return HelmViewController(moduleName: "/conversations/:conversationID", url: url, params: params, userInfo: userInfo)
-        }
+    "/conversations/:conversationID": { _, params, _ in
+        guard let conversationID = params["conversationID"] else { return nil }
+        return MessageDetailsAssembly.makeViewController(env: AppEnvironment.shared, conversationID: conversationID)
     },
 
     "/courses": { _, _, _ in AllCoursesAssembly.makeCourseListViewController(env: .shared) },
