@@ -500,6 +500,10 @@ extension Array where Element == SubmissionType {
         }
 
         if self.contains(.online_upload) {
+            if allowedExtensions.isEmpty {
+                return true
+            }
+
             for allowedExtension in allowedExtensions {
                 guard let fileType = UTType(filenameExtension: allowedExtension) else {
                     continue

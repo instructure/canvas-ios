@@ -378,19 +378,29 @@ class SubmissionTypeTests: XCTestCase {
                 let result = [submissionType].isStudioAccepted(allowedExtensions: [])
                 XCTAssertEqual(result, true)
             case .online_upload:
-                let acceptedTypes = ["mp4", "mov", "avi"]
+                let acceptedFileExtensions = ["mp4", "mov", "avi"]
 
-                for acceptedType in acceptedTypes {
-                    let result = [submissionType].isStudioAccepted(allowedExtensions: [acceptedType])
+                for acceptedFileExtension in acceptedFileExtensions {
+                    let result = [submissionType].isStudioAccepted(
+                        allowedExtensions: [acceptedFileExtension]
+                    )
                     XCTAssertEqual(result, true)
                 }
 
-                let notAcceptedTypes = ["pdf", "docx", "txt"]
+                let notAcceptedFileExtensions = ["pdf", "docx", "txt"]
 
-                for notAcceptedType in notAcceptedTypes {
-                    let result = [submissionType].isStudioAccepted(allowedExtensions: [notAcceptedType])
+                for notAcceptedFileExtension in notAcceptedFileExtensions {
+                    let result = [submissionType].isStudioAccepted(
+                        allowedExtensions: [notAcceptedFileExtension]
+                    )
                     XCTAssertEqual(result, false)
                 }
+
+                let noFileExtensionRestriction: [String] = []
+                let result = [submissionType].isStudioAccepted(
+                    allowedExtensions: noFileExtensionRestriction
+                )
+                XCTAssertEqual(result, true)
             }
         }
     }
