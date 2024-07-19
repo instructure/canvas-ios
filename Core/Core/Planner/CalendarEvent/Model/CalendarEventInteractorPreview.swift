@@ -20,10 +20,10 @@
 
 import Combine
 
-public class CalendarEventInteractorPreview: CalendarEventInteractor {
+class CalendarEventInteractorPreview: CalendarEventInteractor {
     private let env = PreviewEnvironment()
 
-    public func getCalendarEvent(
+    func getCalendarEvent(
         id: String,
         ignoreCache: Bool
     ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error> {
@@ -43,6 +43,18 @@ public class CalendarEventInteractorPreview: CalendarEventInteractor {
         return Just(result)
             .setFailureType(to: Error.self)
             .delay(for: 1, scheduler: RunLoop.main)
+    }
+
+    func createEvent(
+        title: String,
+        startTime: Date?,
+        endTime: Date?,
+        calendar: CDCalendarFilterEntry,
+        location: String?,
+        address: String?,
+        details: String?
+    ) -> AnyPublisher<Void, Error> {
+        return Empty().eraseToAnyPublisher()
     }
 }
 
