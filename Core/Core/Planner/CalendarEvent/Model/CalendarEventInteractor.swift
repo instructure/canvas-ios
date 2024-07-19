@@ -23,6 +23,16 @@ public protocol CalendarEventInteractor: AnyObject {
         id: String,
         ignoreCache: Bool
     ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error>
+
+    func createEvent(
+        title: String,
+        startTime: Date?,
+        endTime: Date?,
+        calendar: CDCalendarFilterEntry,
+        location: String?,
+        address: String?,
+        details: String?
+    ) -> AnyPublisher<Void, Error>
 }
 
 final class CalendarEventInteractorLive: CalendarEventInteractor {
@@ -52,5 +62,30 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
             let color = colors.first { $0.canvasContextID == event.contextRaw }?.color ?? .ash
             return (event, color)
         }
+    }
+
+    func createEvent(
+        title: String,
+        startTime: Date?,
+        endTime: Date?,
+        calendar: CDCalendarFilterEntry,
+        location: String?,
+        address: String?,
+        details: String?
+    ) -> AnyPublisher<Void, Error> {
+        let useCase = CreateCalendarEvent(
+            context_code: calendar.rawContextID,
+            title: title,
+            description: details,
+            start_at: startTime,
+            end_at: endTime,
+            all_day: startTime == nil && endTime == nil,
+            location_name: location,
+            location_address: address
+        )
+        return ReactiveStore(useCase: useCase)
+            .getEntities()
+            .mapToVoid()
+            .eraseToAnyPublisher()
     }
 }

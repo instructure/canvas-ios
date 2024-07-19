@@ -33,7 +33,7 @@ public enum PlannerAssembly {
         completion: @escaping (Completion) -> Void
     ) -> UIViewController {
         let viewModel = EditCalendarEventViewModel(
-            toDoInteractor: CalendarToDoInteractorLive(),
+            eventInteractor: CalendarEventInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
             router: env.router,
             completion: completion
@@ -51,7 +51,7 @@ public enum PlannerAssembly {
     ) -> UIViewController {
         let viewModel = EditCalendarEventViewModel(
             event: event,
-            toDoInteractor: CalendarToDoInteractorLive(),
+            eventInteractor: CalendarEventInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
             router: env.router,
             completion: completion
@@ -73,7 +73,7 @@ public enum PlannerAssembly {
 
     public static func makeEditEventScreenPreview(env: AppEnvironment = .shared) -> some View {
         let viewModel = EditCalendarEventViewModel(
-            toDoInteractor: CalendarToDoInteractorPreview(),
+            eventInteractor: CalendarEventInteractorPreview(),
             calendarListProviderInteractor: CalendarFilterInteractorPreview(),
             router: env.router,
             completion: { _ in }

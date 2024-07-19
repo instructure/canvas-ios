@@ -54,7 +54,7 @@ final class EditCalendarEventViewModel: ObservableObject {
         state == .data
         && title.isNotEmpty
         && date != nil
-        && startTime != nil && endTime != nil
+        && selectedCalendar.value != nil
         && isFieldsTouched
     }
 
@@ -100,7 +100,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     // MARK: - Private
 
     private let mode: Mode
-    /*TODO: */ private let toDoInteractor: CalendarToDoInteractor
+    private let eventInteractor: CalendarEventInteractor
     private let calendarListProviderInteractor: CalendarFilterInteractor
     private let router: Router
     /*TODO: */ private var selectedFrequency = CurrentValueSubject<EventFrequency?, Never>(nil)
@@ -122,12 +122,12 @@ final class EditCalendarEventViewModel: ObservableObject {
 
     init(
         event: CalendarEvent? = nil,
-        toDoInteractor: CalendarToDoInteractor,
+        eventInteractor: CalendarEventInteractor,
         calendarListProviderInteractor: CalendarFilterInteractor,
         router: Router,
         completion: @escaping (PlannerAssembly.Completion) -> Void
     ) {
-        self.toDoInteractor = toDoInteractor
+        self.eventInteractor = eventInteractor
         self.calendarListProviderInteractor = calendarListProviderInteractor
         self.router = router
 
@@ -251,23 +251,29 @@ final class EditCalendarEventViewModel: ObservableObject {
         router.show(vc, from: source, options: .push)
     }
 
-    private func saveAction() -> AnyPublisher<Void, Error> {
+    private func saveAction() -> AnyPublisher<Void, Error>? {
+        guard let calendar = selectedCalendar.value else { return nil }
+
         switch mode {
         case .add:
-            /*TODO: */ toDoInteractor.createToDo(
+            return eventInteractor.createEvent(
                 title: title,
-                date: date ?? Clock.now,
-                calendar: selectedCalendar.value,
+                startTime: startTime,
+                endTime: endTime,
+                calendar: calendar,
+                location: location,
+                address: address,
                 details: details
             )
         case .edit(let id):
-            /*TODO: */ toDoInteractor.updateToDo(
-                id: id,
-                title: title,
-                date: date ?? Clock.now,
-                calendar: selectedCalendar.value,
-                details: details
-            )
+            return nil
+//            /*TODO: */ eventInteractor.updateEvent(
+//                id: id,
+//                title: title,
+//                date: date ?? Clock.now,
+//                calendar: selectedCalendar.value,
+//                details: details
+//            )
         }
     }
 }
