@@ -99,21 +99,27 @@ public struct MessageDetailsView: View {
     }
 
     private var starButton: some View {
-        Button(action: {
-            model.starDidTap.send(!model.starred)
-        }, label: {
-            var star = Image.starLine
-            var a11yLabel = String(localized: "Un-starred", bundle: .core)
-            if model.starred {
-                star = Image.starSolid
-                a11yLabel = String(localized: "Starred", bundle: .core)
+        if model.starred {
+            Button {
+                model.starDidTap.send(!model.starred)
+            } label: {
+                return Image.starSolid
+                    .size(30)
+                    .foregroundColor(.textDark)
+                    .padding(.leading, 6)
+                    .accessibilityLabel(String(localized: "Mark as Unstarred", bundle: .core))
             }
-            return star
-                .size(30)
-                .foregroundColor(.textDark)
-                .padding(.leading, 6)
-                .accessibilityLabel(a11yLabel)
-        })
+        } else {
+            Button {
+                model.starDidTap.send(!model.starred)
+            } label: {
+                return Image.starLine
+                    .size(30)
+                    .foregroundColor(.textDark)
+                    .padding(.leading, 6)
+                    .accessibilityLabel(String(localized: "Mark as Starred", bundle: .core))
+            }
+        }
     }
 
     private var messageList: some View {
@@ -121,7 +127,7 @@ public struct MessageDetailsView: View {
             VStack(spacing: 0) {
                 Color.borderMedium
                     .frame(height: 0.5)
-                    .padding(.horizontal, 8)
+
                 MessageView(model: message,
                             replyDidTap: { model.replyTapped(message: message.conversationMessage, viewController: controller) },
                             moreDidTap: { model.messageMoreTapped(message: message.conversationMessage, viewController: controller) })
