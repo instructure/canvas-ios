@@ -356,4 +356,43 @@ class SubmissionTypeTests: XCTestCase {
         XCTAssertTrue(result.contains { $0.isImage })
         XCTAssertTrue(result.contains(.text))
     }
+
+    func testStudioSubmissionTypes() {
+        // The strange format is to make sure all cases are tested
+        for submissionType in SubmissionType.allCases {
+            switch submissionType {
+            case .discussion_topic,
+                 .none,
+                 .not_graded,
+                 .online_quiz,
+                 .online_text_entry,
+                 .on_paper,
+                 .wiki_page,
+                 .student_annotation,
+                 .online_url:
+                let result = [submissionType].isStudioAccepted(allowedExtensions: [])
+                XCTAssertEqual(result, false)
+            case .external_tool,
+                 .media_recording,
+                 .basic_lti_launch:
+                let result = [submissionType].isStudioAccepted(allowedExtensions: [])
+                XCTAssertEqual(result, true)
+            case .online_upload:
+                let acceptedTypes = ["mp4", "mov", "avi"]
+
+                for acceptedType in acceptedTypes {
+                    let result = [submissionType].isStudioAccepted(allowedExtensions: [acceptedType])
+                    XCTAssertEqual(result, true)
+                }
+
+                let notAcceptedTypes = ["pdf", "docx", "txt"]
+
+                for notAcceptedType in notAcceptedTypes {
+                    let result = [submissionType].isStudioAccepted(allowedExtensions: [notAcceptedType])
+                    XCTAssertEqual(result, false)
+                }
+            }
+        }
+    }
+
 }

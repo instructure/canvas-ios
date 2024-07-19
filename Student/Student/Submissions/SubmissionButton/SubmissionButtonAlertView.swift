@@ -30,7 +30,7 @@ enum SubmissionButtonAlertView {
             }
             alert.addAction(action)
         }
-        if arc {
+        if arc, assignment.submissionTypes.isStudioAccepted(allowedExtensions: assignment.allowedExtensions) {
             alert.addAction(UIAlertAction(title: String(localized: "Studio", bundle: .student), style: .default) { [weak presenter] _ in
                 presenter?.submitArc(assignment: assignment)
             })
