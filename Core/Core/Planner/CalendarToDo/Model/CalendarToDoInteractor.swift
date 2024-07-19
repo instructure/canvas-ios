@@ -35,6 +35,8 @@ public protocol CalendarToDoInteractor: AnyObject {
         calendar: CDCalendarFilterEntry?,
         details: String?
     ) -> AnyPublisher<Void, Error>
+
+    func deleteToDo(id: String) -> AnyPublisher<Void, Error>
 }
 
 final class CalendarToDoInteractorLive: CalendarToDoInteractor {
@@ -82,6 +84,14 @@ final class CalendarToDoInteractorLive: CalendarToDoInteractor {
             courseID: calendar?.context.courseId,
             courseName: calendar?.courseName
         )
+        return ReactiveStore(useCase: useCase)
+            .getEntities()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
+    func deleteToDo(id: String) -> AnyPublisher<Void, Error> {
+        let useCase = DeletePlannerNote(id: id)
         return ReactiveStore(useCase: useCase)
             .getEntities()
             .mapToVoid()

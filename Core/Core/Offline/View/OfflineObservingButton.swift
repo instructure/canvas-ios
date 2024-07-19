@@ -18,31 +18,32 @@
 
 import SwiftUI
 
-public struct OfflineObservingButton<Label>: View where Label: View {
+public struct OfflineObservingButton<Label: View>: View {
 
     @StateObject private var viewModel = OfflineModeAssembly.makeViewModel()
 
     private let action: () -> Void
-    private let label: Label
+    private let label: () -> Label
 
     public init(
         action: @escaping () -> Void,
         @ViewBuilder label: @escaping () -> Label
     ) {
         self.action = action
-        self.label = label()
+        self.label = label
     }
 
     public var body: some View {
-        Button {
-            if viewModel.isOffline {
-                UIAlertController.showItemNotAvailableInOfflineAlert()
-            } else {
-                action()
-            }
-        } label: {
-            label
-        }
+        Button(
+            action: {
+                if viewModel.isOffline {
+                    UIAlertController.showItemNotAvailableInOfflineAlert()
+                } else {
+                    action()
+                }
+            },
+            label: label
+        )
         .opacity(viewModel.isOffline ? UIButton.DisabledInOfflineAlpha : 1.0)
     }
 }

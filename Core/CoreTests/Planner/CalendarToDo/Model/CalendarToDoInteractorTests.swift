@@ -158,21 +158,36 @@ final class CalendarToDoInteractorTests: CoreTestCase {
     }
 
     private func verifyUpdateToDo(
-        id: String = "",
         title: String = "",
         date: Date = Clock.now,
         calendar: CDCalendarFilterEntry? = nil,
         details: String? = nil,
         bodyHandler: @escaping (PutPlannerNoteRequest.Body) -> Void
     ) {
-        let request = PutPlannerNoteRequest(id: "", body: .make())
+        let request = PutPlannerNoteRequest(id: "42", body: .make())
         let expectation = XCTestExpectation(description: "Request was sent")
         mockRequest(request) { (body: PutPlannerNoteRequest.Body) in
             bodyHandler(body)
             expectation.fulfill()
         }
 
-        let publisher = testee.updateToDo(id: id, title: title, date: date, calendar: calendar, details: details)
+        let publisher = testee.updateToDo(id: "42", title: title, date: date, calendar: calendar, details: details)
+        XCTAssertFinish(publisher)
+
+        wait(for: [expectation], timeout: 1)
+    }
+
+    // MARK: - DeleteToDo
+
+    func testDeleteToDo() {
+        let request = DeletePlannerNoteRequest(id: "42")
+        let expectation = XCTestExpectation(description: "Request was sent")
+        api.mock(request) { _ in
+            expectation.fulfill()
+            return (nil, nil, nil)
+        }
+
+        let publisher = testee.deleteToDo(id: "42")
         XCTAssertFinish(publisher)
 
         wait(for: [expectation], timeout: 1)

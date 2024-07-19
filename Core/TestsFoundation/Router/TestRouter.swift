@@ -38,6 +38,7 @@ public class TestRouter: Router {
     }
 
     public var dismissed: UIViewController?
+    public var popped: UIViewController?
     public var last: UIViewController? { viewControllerCalls.last?.0 }
     public var routes = [URLComponents: () -> UIViewController?]()
 
@@ -75,6 +76,7 @@ public class TestRouter: Router {
 
     public var popExpectation = XCTestExpectation(description: "pop")
     public override func pop(from: UIViewController) {
+        popped = from
         popExpectation.fulfill()
     }
 

@@ -39,7 +39,7 @@ public extension View {
     func errorAlert(
         isPresented: Binding<Bool>,
         presenting viewModel: ErrorAlertViewModel,
-        buttonAction: @escaping () -> Void
+        buttonAction: @escaping () -> Void = {}
     ) -> some View {
         alert(
             viewModel.title,
