@@ -112,6 +112,16 @@ class MessageDetailsViewModel: ObservableObject {
             }
         }
 
+        if conversations.first?.workflowState == .archived {
+            sheet.addAction(
+                image: .unarchiveLine,
+                title: String(localized: "Unarchive", bundle: .core),
+                accessibilityIdentifier: "MessageDetails.unarchive"
+            ) {
+                self.updateState.send(.read)
+            }
+        }
+
         sheet.addAction(
             image: .trashLine,
             title: String(localized: "Delete Conversation", bundle: .core),
