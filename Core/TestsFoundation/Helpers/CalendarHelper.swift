@@ -174,7 +174,7 @@ public class CalendarHelper: BaseHelper {
         public struct More {
             public static var editButton: XCUIElement { app.find(label: "Edit", type: .button) }
             public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }
-            
+
             public struct Delete {
                 public static var deleteTodoText: XCUIElement { app.find(label: "Delete To Do?", type: .staticText) }
                 public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
