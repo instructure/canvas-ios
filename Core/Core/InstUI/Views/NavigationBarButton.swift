@@ -157,7 +157,7 @@ extension InstUI.NavigationBarButton {
             action: {},
             menuContent: AnyView(menuContent())
         ) {
-            AnyView(image.accessibilityLabel(accessibilityLabel))
+            AnyView(image.accessibilityLabel(accessibilityLabel).accessibilityIdentifier(accessibilityLabel))
         }
     }
 }

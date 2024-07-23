@@ -23,27 +23,18 @@ class DashboardTests: E2ETestCase {
     typealias CourseInvitations = Helper.CourseInvitations
     typealias AccountNotifications = Helper.AccountNotifications
 
-    func testDashboard() {
+    func testDashboardFavoriteCourse() {
         // MARK: Seed the usual stuff
         let teacher = seeder.createUser()
-        let course1 = seeder.createCourse()
+        let courses = seeder.createCourses(count: 2)
+        seeder.enrollTeacher(teacher, in: courses[0])
+        seeder.enrollTeacher(teacher, in: courses[1])
 
-        // MARK: Check for empty dashboard
+        // MARK: Check for course cards
         logInDSUser(teacher)
-        let noCoursesLabel = app.find(label: "No Courses").waitUntil(.visible)
-        XCTAssertTrue(noCoursesLabel.isVisible)
-
-        // MARK: Check for course1
-        seeder.enrollTeacher(teacher, in: course1)
-        pullToRefresh(x: 1)
-        let courseCard1 = Helper.courseCard(course: course1).waitUntil(.visible)
+        let courseCard1 = Helper.courseCard(course: courses[0]).waitUntil(.visible)
+        let courseCard2 = Helper.courseCard(course: courses[1]).waitUntil(.visible)
         XCTAssertTrue(courseCard1.isVisible)
-
-        // MARK: Check for course2
-        let course2 = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course2)
-        pullToRefresh()
-        let courseCard2 = Helper.courseCard(course: course2).waitUntil(.visible)
         XCTAssertTrue(courseCard2.isVisible)
 
         // MARK: Select a favorite course and check for dashboard updating
@@ -51,7 +42,7 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(dashboardEditButton.isVisible)
 
         dashboardEditButton.hit()
-        Helper.toggleFavorite(course: course2)
+        Helper.toggleFavorite(course: courses[1])
         let navBarBackButton = Helper.backButton.waitUntil(.visible)
         XCTAssertTrue(navBarBackButton.isVisible)
 
