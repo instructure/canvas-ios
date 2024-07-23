@@ -555,7 +555,7 @@ class CalendarTests: E2ETestCase {
         let titleElement = app.find(label: newTitle, type: .staticText).waitUntil(.visible)
         XCTAssertTrue(titleElement.isVisible)
     }
-    
+
     func testDeleteCalendarTodoItem() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
@@ -563,7 +563,6 @@ class CalendarTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
         let title = "My dear calendar todo item"
         let description = "Description of my dear calendar todo item."
-        let newTitle = "My edited todo item"
 
         // MARK: Get the user logged in, navigate to Calendar
         logInDSUser(student)
