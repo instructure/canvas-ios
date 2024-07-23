@@ -45,6 +45,7 @@ public class CalendarHelper: BaseHelper {
     public static var monthLabel: XCUIElement { app.find(id: "PlannerCalendar.monthButton").find(type: .staticText) }
     public static var filterButton: XCUIElement { app.find(id: "PlannerCalendar.filterButton") }
     public static var firstDayButtonOfView: XCUIElement { app.find(idStartingWith: "PlannerCalendar.dayButton.") }
+    public static var emptyTitle: XCUIElement { app.find(id: "PlannerList.emptyTitle") }
 
     public static func dayButton(event: DSCalendarEvent) -> XCUIElement {
         let dateString = formatDateForDayButton(event: event)
@@ -135,7 +136,7 @@ public class CalendarHelper: BaseHelper {
     }
 
     public struct Details {
-        public static var kebabButton: XCUIElement { app.find(label: "moreLine", type: .button) }
+        public static var kebabButton: XCUIElement { app.find(id: "More") }
 
         public static func titleLabel(event: DSCalendarEvent) -> XCUIElement {
             return app.find(label: event.title, type: .staticText)
@@ -168,6 +169,17 @@ public class CalendarHelper: BaseHelper {
             dateFormatter.dateFormat = "MMM d, yyyy, h:mm"
             let formattedDate = dateFormatter.string(from: event.start_at)
             return formattedDate
+        }
+
+        public struct More {
+            public static var editButton: XCUIElement { app.find(label: "Edit", type: .button) }
+            public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }
+
+            public struct Delete {
+                public static var deleteTodoText: XCUIElement { app.find(label: "Delete To Do?", type: .staticText) }
+                public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
+                public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }
+            }
         }
     }
 
