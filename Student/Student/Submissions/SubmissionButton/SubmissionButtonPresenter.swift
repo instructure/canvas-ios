@@ -104,7 +104,7 @@ class SubmissionButtonPresenter: NSObject {
         guard assignment.canMakeSubmissions else { return }
         self.assignment = assignment
         let types = assignment.submissionTypes
-        let arc = types.contains(.online_upload) && arcID != .pending && arcID != .none
+        let arc = arcID != .pending && arcID != .none && assignment.submissionTypes.isStudioAccepted(allowedExtensions: assignment.allowedExtensions)
         if !arc && types.count == 1, let type = types.first {
             return submitType(type, for: assignment, button: button)
         }
