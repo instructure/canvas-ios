@@ -159,8 +159,14 @@ public class InboxViewModel: ObservableObject {
                     (messageID, controller)
                 }.eraseToAnyPublisher()
             }
-            .sink { [router] (messageID, controller) in
-                router.route(to: "/conversations/\(messageID)", from: controller, options: .detail)
+            .sink { [router, scopeDidChange] (messageID, controller) in
+                let openedFromSentFilter = scopeDidChange.value == .sent
+                router.route(
+                    to: "/conversations/\(messageID)",
+                    userInfo: ["allowArchive": !openedFromSentFilter],
+                    from: controller,
+                    options: .detail
+                )
             }
             .store(in: &subscriptions)
     }

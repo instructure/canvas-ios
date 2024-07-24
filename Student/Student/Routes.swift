@@ -62,9 +62,20 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     },
 
-    "/conversations/:conversationID": { _, params, _ in
+    "/conversations/:conversationID": { _, params, userInfo in
         guard let conversationID = params["conversationID"] else { return nil }
-        return MessageDetailsAssembly.makeViewController(env: AppEnvironment.shared, conversationID: conversationID)
+        let allowArchive: Bool = {
+            if let userInfo, let allowArchiveParam = userInfo["allowArchive"] as? Bool {
+                return allowArchiveParam
+            } else {
+                return true
+            }
+        }()
+        return MessageDetailsAssembly.makeViewController(
+            env: AppEnvironment.shared,
+            conversationID: conversationID,
+            allowArchive: allowArchive
+        )
     },
 
     "/courses": { _, _, _ in AllCoursesAssembly.makeCourseListViewController(env: .shared) },
