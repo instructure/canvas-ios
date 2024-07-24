@@ -163,19 +163,18 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
         var html = quiz?.lockExplanation ?? quiz?.details ?? ""
         if html.isEmpty { html = String(localized: "No Content", bundle: .student) }
 
-        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+        let offlinePath = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: env.currentSession?.uniqueID ?? "",
             courseId: courses.first?.id ?? "",
             sectionName: OfflineFolderPrefix.quizzes.rawValue,
             resourceId: quizID
-        )
-        let offlinePath = rootURL.appendingPathComponent("body.html")
+        ).appendingPathComponent("body.html")
         instructionsWebView.loadContent(
             isOffline: offlineModeInteractor?.isNetworkOffline(),
             filePath: offlinePath,
             content: html,
             originalBaseURL: quiz?.htmlURL,
-            offlineBaseURL: rootURL
+            offlineBaseURL: URL.Paths.Offline.rootURL(sessionID: env.currentSession?.uniqueID ?? "")
         )
 
         scrollView.isHidden = quiz == nil

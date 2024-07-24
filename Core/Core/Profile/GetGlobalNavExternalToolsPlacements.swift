@@ -44,18 +44,23 @@ public class GetGlobalNavExternalToolsPlacements: CollectionUseCase {
     public func write(response: [APIExternalToolLaunch]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let tools = response else { return }
 
-        for tool in tools { for (locationRaw, placement) in tool.placements {
-            let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
-                #keyPath(ExternalToolLaunchPlacement.definitionID), tool.definition_id.value,
-                #keyPath(ExternalToolLaunchPlacement.locationRaw), locationRaw
-            )
-            let model: ExternalToolLaunchPlacement = client.fetch(predicate).first ?? client.insert()
-            model.definitionID = tool.definition_id.value
-            model.domain = tool.domain
-            model.locationRaw = locationRaw
-            model.title = placement.title
-            model.url = placement.url
-        } }
+        for tool in tools {
+            for (locationRaw, placement) in tool.placements {
+                let predicate = NSPredicate(
+                    format: "%K == %@ AND %K == %@",
+                    #keyPath(ExternalToolLaunchPlacement.definitionID),
+                    tool.definition_id.value,
+                    #keyPath(ExternalToolLaunchPlacement.locationRaw),
+                    locationRaw
+                )
+                let model: ExternalToolLaunchPlacement = client.fetch(predicate).first ?? client.insert()
+                model.definitionID = tool.definition_id.value
+                model.domain = tool.domain
+                model.locationRaw = locationRaw
+                model.title = placement.title
+                model.url = placement.url
+            }
+        }
     }
 }
 

@@ -39,6 +39,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let filesInteractor: CourseSyncFilesInteractor
     private let modulesInteractor: CourseSyncModulesInteractor
     private let progressWriterInteractor: CourseSyncProgressWriterInteractor
+    private let studioMediaInteractor: CourseSyncStudioMediaInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Never>.init([])
     private var safeCourseSyncEntriesValue: [CourseSyncEntry] {
@@ -73,6 +74,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         progressWriterInteractor: CourseSyncProgressWriterInteractor,
         notificationInteractor: CourseSyncNotificationInteractor,
         courseListInteractor: CourseListInteractor,
+        studioMediaInteractor: CourseSyncStudioMediaInteractor,
         backgroundActivity: BackgroundActivity,
         scheduler: AnySchedulerOf<DispatchQueue>,
         env: AppEnvironment
@@ -83,6 +85,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         self.modulesInteractor = modulesInteractor
         self.progressWriterInteractor = progressWriterInteractor
         self.courseListInteractor = courseListInteractor
+        self.studioMediaInteractor = studioMediaInteractor
         self.notificationInteractor = notificationInteractor
         self.backgroundActivity = backgroundActivity
         self.scheduler = scheduler
@@ -109,25 +112,40 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         progressWriterInteractor.cleanUpPreviousDownloadProgress()
         progressWriterInteractor.setInitialLoadingState(entries: entriesWithInitialLoadingState)
 
+        let sendFinishedNotification: () -> AnyPublisher<Void, Never> = { [notificationInteractor] in
+            let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
+            unownedSelf.progressWriterInteractor.saveDownloadResult(
+                isFinished: true,
+                error: hasError ? unownedSelf.fileErrorMessage : nil
+            )
+
+            return notificationInteractor.send()
+        }
+        let syncStudioMedia: () -> AnyPublisher<Void, Never> = { [studioMediaInteractor] in
+            let courseIDs = entries.map { $0.courseId }
+            return studioMediaInteractor.getContent(courseIDs: courseIDs)
+        }
         downloadSubscription = backgroundActivity
             .start { unownedSelf.handleSyncInterruptByOS() }
             .receive(on: scheduler)
-            .flatMap { [brandThemeInteractor] in brandThemeInteractor.getContent() }
-            .flatMap { _ in unownedSelf.downloadCourseList() }
-            .flatMap { Publishers.Sequence(sequence: entriesWithInitialLoadingState) }
-            .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
-            .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
-            .collect()
-            .flatMap { [notificationInteractor] _ in
-                let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
-                unownedSelf.progressWriterInteractor.saveDownloadResult(
-                    isFinished: true,
-                    error: hasError ? unownedSelf.fileErrorMessage : nil
-                )
-
-                return notificationInteractor.send()
+            .flatMap { [brandThemeInteractor] (_: Void) -> AnyPublisher<Void, Never> in
+                brandThemeInteractor.getContent()
             }
-            .flatMap { unownedSelf.backgroundActivity.stop() }
+            .flatMap { (_: Void) -> AnyPublisher<Void, Never> in
+                unownedSelf.downloadCourseList()
+            }
+            .flatMap { (_: Void) -> AnyPublisher<Void, Never> in
+                unownedSelf.syncEntries(entriesWithInitialLoadingState)
+            }
+            .flatMap { (_: Void) -> AnyPublisher<Void, Never> in
+                syncStudioMedia()
+            }
+            .flatMap { (_: Void) -> AnyPublisher<Void, Never> in
+                sendFinishedNotification()
+            }
+            .flatMap { (_: Void) -> Future<Void, Never> in
+                unownedSelf.backgroundActivity.stop()
+            }
             .sink(
                 receiveCompletion: { _ in
                     NotificationCenter.default.post(name: .OfflineSyncCompleted, object: nil)
@@ -136,6 +154,17 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             )
 
         return courseSyncEntries.eraseToAnyPublisher()
+    }
+
+    private func syncEntries(_ entries: [CourseSyncEntry]) -> AnyPublisher<Void, Never> {
+        Publishers.Sequence(sequence: entries)
+            .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
+            .flatMap(maxPublishers: .max(3)) { [unowned self] (entry: CourseSyncEntry) -> AnyPublisher<Void, Never> in
+                self.downloadCourseDetails(entry)
+            }
+            .collect()
+            .mapToVoid()
+            .eraseToAnyPublisher()
     }
 
     public func cleanContent(for courseIds: [String]) -> AnyPublisher<Void, Never> {

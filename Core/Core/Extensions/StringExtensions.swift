@@ -82,6 +82,37 @@ extension String {
     public var nilIfEmpty: String? {
         self.isEmpty ? nil : self
     }
+
+    /// Returns a range that covers the whole string.
+    public var nsRange: NSRange {
+        NSRange(location: 0, length: count)
+    }
+
+    public func extractiFrames() -> [String] {
+        // swiftlint:disable:next force_try
+        let iframePattern = try! NSRegularExpression(
+            pattern: "<iframe[\\s\\S]*?</iframe>"
+        )
+
+        return iframePattern
+            .matches(in: self, range: nsRange)
+            .compactMap {
+                guard let stringRange = Range($0.range, in: self) else {
+                    return nil
+                }
+                return String(self[stringRange])
+            }
+    }
+
+    public func dataWithError(
+        using encoding: String.Encoding,
+        allowLossyConversion: Bool = false
+    ) throws -> Data {
+        guard let data = self.data(using: encoding, allowLossyConversion: allowLossyConversion) else {
+            throw "Failed to convert string to data using encoding \(encoding)."
+        }
+        return data
+    }
 }
 
 extension String: Error {

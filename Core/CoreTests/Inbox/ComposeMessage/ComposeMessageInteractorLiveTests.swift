@@ -27,9 +27,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         super.setUp()
         mockData()
 
-        testee = ComposeMessageInteractorLive()
-
-        waitForState(.data)
+        testee = ComposeMessageInteractorLive(batchId: "testId", uploadFolderPath: "", uploadManager: uploadManager)
     }
 
     func testFailedCreate() {
@@ -133,15 +131,175 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         waitForState(.data)
     }
 
-    func testDeleteFile() {
-        let fileId = "1"
-        let deleteRequest = DeleteFileRequest(fileID: fileId)
-        let response = APIFile.make()
-        api.mock(deleteRequest, value: response)
+    func testAddFileWithURL() {
+        XCTAssertFalse(uploadManager.addWasCalled)
+        XCTAssertFalse(uploadManager.uploadWasCalled)
 
-        XCTAssertFinish(testee.deleteFile(file: File.make(from: response)))
+        let url = URL.Directories.temporary.appendingPathComponent("upload-manager-add-test.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "hello".data(using: .utf8), attributes: nil)
+        testee.addFile(url: url)
 
-        waitForState(.data)
+        XCTAssertTrue(uploadManager.addWasCalled)
+        XCTAssertTrue(uploadManager.uploadWasCalled)
+    }
+
+    func testFailedToAddFileWithURL() {
+        XCTAssertFalse(uploadManager.addWasCalled)
+        XCTAssertFalse(uploadManager.uploadWasCalled)
+
+        let url = URL(string: "https://instructure.com")!
+        testee.addFile(url: url)
+
+        XCTAssertTrue(uploadManager.addWasCalled)
+        XCTAssertFalse(uploadManager.uploadWasCalled)
+    }
+
+    func testAddFileFromUserFilesWithoutDuplicate() {
+        var subscriptions: [AnyCancellable] = []
+        let file = File.make(from: APIFile.make(folder_id: "1"))
+        var attachments: [File] = []
+        let exp = expectation(description: "fileAdded")
+        testee.attachments.sink { files in
+            attachments = files
+            if !attachments.isEmpty { exp.fulfill() }
+        }
+        .store(in: &subscriptions)
+
+        testee.addFile(file: file)
+        wait(for: [exp], timeout: 5)
+
+        XCTAssertTrue(attachments.contains(file))
+    }
+
+    func testAddFileFromUserFilesWithDuplicate() {
+        var subscriptions: [AnyCancellable] = []
+        let path = ""
+        testee = ComposeMessageInteractorLive(batchId: "testId", uploadFolderPath: path, restrictForFolderPath: true, uploadManager: uploadManager)
+        let rootFolderRequest = GetContextFolderHierarchyRequest(context: .currentUser, fullPath: path)
+        let rootFolderResponse = [APIFolder.make(id: "1")]
+        api.mock(rootFolderRequest, value: rootFolderResponse)
+        let uploadFolderRequest = GetFolderByPath(context: .currentUser, path: path)
+        let uploadFolderResponse = [APIFolder.make(id: "1")]
+        api.mock(uploadFolderRequest, value: uploadFolderResponse)
+
+        let file = File.make(from: APIFile.make(id: "1", folder_id: "3"))
+        var attachments: [File] = []
+        let exp = expectation(description: "fileAdded")
+        testee.attachments.sink { files in
+            attachments = files
+            if !attachments.isEmpty { exp.fulfill() }
+        }
+        .store(in: &subscriptions)
+        testee.addFile(file: file)
+        wait(for: [exp], timeout: 5)
+
+        XCTAssertTrue(attachments.contains(file))
+    }
+
+    func testRetry() {
+        XCTAssertFalse(uploadManager.addWasCalled)
+        XCTAssertFalse(uploadManager.uploadWasCalled)
+
+        let url = URL.Directories.temporary.appendingPathComponent("upload-manager-add-test.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "hello".data(using: .utf8), attributes: nil)
+        testee.addFile(url: url)
+        uploadManager.uploadWasCalled = false
+
+        testee.retry()
+
+        XCTAssertTrue(uploadManager.uploadWasCalled)
+
+    }
+
+    func testCancel() {
+        var subscriptions: [AnyCancellable] = []
+        var attachments: [File] = []
+        let fileAddedExp = expectation(description: "fileAdded")
+        let fileRemovedExp = expectation(description: "fileRemoved")
+        var fileAddedFlag = false
+        var fileRemovedFlag = false
+
+        let file = File.make(from: APIFile.make(folder_id: "1"))
+        testee.attachments.sink { files in
+            attachments = files
+            if !attachments.isEmpty { fileAddedFlag = true; fileAddedExp.fulfill() }
+            if attachments.isEmpty && fileAddedFlag && !fileRemovedFlag { fileRemovedFlag = true; fileRemovedExp.fulfill() }
+        }
+        .store(in: &subscriptions)
+        testee.addFile(file: file)
+
+        wait(for: [fileAddedExp], timeout: 5)
+        XCTAssertTrue(attachments.contains(file))
+
+        testee.cancel()
+
+        wait(for: [fileRemovedExp], timeout: 5)
+        XCTAssertFalse(attachments.contains(file))
+    }
+
+    func testRemoveAlreadyUploadedFile() {
+        testee = ComposeMessageInteractorLive(batchId: "testRemoveAlreadyUploadedFile", uploadFolderPath: "", uploadManager: uploadManager)
+        var subscriptions: [AnyCancellable] = []
+        var attachments: [File] = []
+        let fileAddedExp = expectation(description: "fileAdded")
+        let fileRemovedExp = expectation(description: "fileRemoved")
+        var fileAddedFlag = false
+        var fileRemovedFlag = false
+
+        let file = File.make(from: APIFile.make(folder_id: "1"))
+        testee.attachments.sink { files in
+            attachments = files
+            if !attachments.isEmpty && !fileAddedFlag { fileAddedFlag = true; fileAddedExp.fulfill() }
+            if attachments.isEmpty && fileAddedFlag && !fileRemovedFlag {  fileRemovedFlag = true; fileRemovedExp.fulfill() }
+        }
+        .store(in: &subscriptions)
+
+        testee.addFile(file: file)
+        wait(for: [fileAddedExp], timeout: 5)
+        XCTAssertTrue(attachments.contains(file))
+
+        testee.removeFile(file: file)
+        wait(for: [fileRemovedExp], timeout: 5)
+        XCTAssertFalse(attachments.contains(file))
+    }
+
+    func testRemoveAndDeleteUploadedFile() {
+        testee = ComposeMessageInteractorLive(batchId: "testRemoveAndDeleteUploadedFile", uploadFolderPath: "", uploadManager: uploadManager)
+        var subscriptions: [AnyCancellable] = []
+        var attachments: [File] = []
+        let fileAddedExp = expectation(description: "fileAdded")
+        let fileRemovedExp = expectation(description: "fileRemoved")
+        var fileAddedFlag = false
+        var fileRemovedFlag = false
+        var file: File?
+        let deleteRequest = DeleteFileRequest(fileID: "1")
+        let deleteResponse = APIFile.make()
+        api.mock(deleteRequest, value: deleteResponse)
+
+        let url = URL.Directories.temporary.appendingPathComponent("upload-manager-add-test.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "hello".data(using: .utf8), attributes: nil)
+        testee.attachments.sink { files in
+            attachments = files
+            if !attachments.isEmpty && !fileAddedFlag {
+                fileAddedFlag = true
+                fileAddedExp.fulfill()
+                file = files.first
+            }
+            if attachments.isEmpty && fileAddedFlag && !fileRemovedFlag {
+                fileRemovedFlag = true
+                fileRemovedExp.fulfill()
+            }
+        }
+        .store(in: &subscriptions)
+
+        testee.addFile(url: url)
+        wait(for: [fileAddedExp], timeout: 5)
+        XCTAssertTrue(attachments.contains(file!))
+        file?.id = "1"
+
+        testee.removeFile(file: file!)
+        wait(for: [fileRemovedExp], timeout: 5)
+        XCTAssertFalse(attachments.contains(file!))
     }
 
     private func mockData() {
@@ -156,6 +314,10 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         let courses = [course1, course2]
 
         api.mock(GetInboxCourseList(), value: courses)
+
+        let uploadFolderRequest = GetFolderByPath(context: .currentUser, path: "")
+        let uploadFolderResponse = [APIFolder.make(id: "1")]
+        api.mock(uploadFolderRequest, value: uploadFolderResponse)
     }
 
     private func waitForState(_ state: StoreState) {

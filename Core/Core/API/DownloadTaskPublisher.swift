@@ -22,7 +22,6 @@ import Foundation
 struct DownloadTaskParameters {
     let remoteURL: URL
     let localURL: URL
-    let fileID: String
 }
 
 struct DownloadTaskPublisher: Publisher {

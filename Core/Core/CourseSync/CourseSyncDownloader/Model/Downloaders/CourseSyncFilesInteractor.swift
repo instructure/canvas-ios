@@ -202,8 +202,7 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
             return DownloadTaskPublisher(parameters:
                 DownloadTaskParameters(
                     remoteURL: url,
-                    localURL: localURL,
-                    fileID: fileID
+                    localURL: localURL
                 )
             )
             .eraseToAnyPublisher()
