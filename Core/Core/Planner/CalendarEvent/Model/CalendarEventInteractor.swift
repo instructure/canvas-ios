@@ -26,6 +26,8 @@ public protocol CalendarEventInteractor: AnyObject {
 
     func createEvent(_ model: CalendarEventRequestModel) -> AnyPublisher<Void, Error>
 
+    func deleteEvent(id: String) -> AnyPublisher<Void, Error>
+
     func isRequestModelValid(_ model: CalendarEventRequestModel?) -> Bool
 }
 
@@ -68,6 +70,14 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
             location_name: model.location,
             location_address: model.address
         )
+        return ReactiveStore(useCase: useCase)
+            .getEntities()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
+    func deleteEvent(id: String) -> AnyPublisher<Void, Error> {
+        let useCase = DeleteCalendarEvent(id: id)
         return ReactiveStore(useCase: useCase)
             .getEntities()
             .mapToVoid()

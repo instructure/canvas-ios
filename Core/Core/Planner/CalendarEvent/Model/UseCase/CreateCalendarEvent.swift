@@ -49,4 +49,10 @@ final class CreateCalendarEvent: APIUseCase {
             )
         )
     }
+
+    func write(response: APICalendarEvent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response else { return }
+
+        CalendarEvent.save(response, in: client)
+    }
 }

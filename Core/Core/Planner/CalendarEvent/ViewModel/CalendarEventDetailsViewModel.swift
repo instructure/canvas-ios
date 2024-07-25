@@ -58,16 +58,23 @@ public class CalendarEventDetailsViewModel: ObservableObject {
     private let eventId: String
     private let interactor: CalendarEventInteractor
     private let router: Router
+    private let completion: ((PlannerAssembly.Completion) -> Void)?
     private var subscriptions = Set<AnyCancellable>()
 
     private var event: CalendarEvent?
 
     // MARK: - Init
 
-    public init(eventId: String, interactor: CalendarEventInteractor, router: Router) {
+    public init(
+        eventId: String,
+        interactor: CalendarEventInteractor,
+        router: Router,
+        completion: ((PlannerAssembly.Completion) -> Void)?
+    ) {
         self.eventId = eventId
         self.interactor = interactor
         self.router = router
+        self.completion = completion
 
         loadData()
 
@@ -174,5 +181,24 @@ public class CalendarEventDetailsViewModel: ObservableObject {
     }
 
     private func deleteToDo(from source: WeakViewController) {
+        state = .data(loadingOverlay: true)
+
+        interactor.deleteEvent(id: eventId)
+            .sink(
+                receiveCompletion: { [weak self] in
+                    switch $0 {
+                    case .finished:
+                        break
+                    case .failure:
+                        self?.state = .data
+                        self?.shouldShowDeleteError = true
+                    }
+                },
+                receiveValue: { [weak self] in
+                    self?.completion?(.didDelete)
+                    self?.router.pop(from: source)
+                }
+            )
+            .store(in: &subscriptions)
     }
 }

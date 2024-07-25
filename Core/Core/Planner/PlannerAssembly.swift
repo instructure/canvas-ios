@@ -23,6 +23,7 @@ public enum PlannerAssembly {
     public enum Completion {
         case didCancel
         case didUpdate
+        case didDelete
     }
 
     // MARK: - Event
@@ -61,9 +62,13 @@ public enum PlannerAssembly {
         return host
     }
 
-    public static func makeEventDetailsViewController(eventId: String, env: AppEnvironment = .shared) -> UIViewController {
+    public static func makeEventDetailsViewController(
+        eventId: String,
+        env: AppEnvironment = .shared,
+        completion: ((Completion) -> Void)? = nil
+    ) -> UIViewController {
         let interactor = CalendarEventInteractorLive()
-        let viewModel = CalendarEventDetailsViewModel(eventId: eventId, interactor: interactor, router: env.router)
+        let viewModel = CalendarEventDetailsViewModel(eventId: eventId, interactor: interactor, router: env.router, completion: completion)
         let view = CalendarEventDetailsScreen(viewModel: viewModel)
         let host = CoreHostingController(view)
         return host
@@ -83,7 +88,7 @@ public enum PlannerAssembly {
 
     public static func makeEventDetailsScreenPreview(env: AppEnvironment = .shared) -> some View {
         let interactor = CalendarEventInteractorPreview()
-        let viewModel = CalendarEventDetailsViewModel(eventId: "1", interactor: interactor, router: env.router)
+        let viewModel = CalendarEventDetailsViewModel(eventId: "1", interactor: interactor, router: env.router, completion: nil)
         return CalendarEventDetailsScreen(viewModel: viewModel)
     }
 

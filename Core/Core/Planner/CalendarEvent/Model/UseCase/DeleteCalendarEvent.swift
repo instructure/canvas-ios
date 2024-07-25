@@ -17,3 +17,18 @@
 //
 
 import Foundation
+import CoreData
+
+final class DeleteCalendarEvent: DeleteUseCase {
+    typealias Model = CalendarEvent
+
+    var request: DeleteCalendarEventRequest { .init(id: id) }
+    let cacheKey: String? = nil
+    var scope: Scope { .where(#keyPath(CalendarEvent.id), equals: id) }
+
+    private let id: String
+
+    init(id: String) {
+        self.id = id
+    }
+}

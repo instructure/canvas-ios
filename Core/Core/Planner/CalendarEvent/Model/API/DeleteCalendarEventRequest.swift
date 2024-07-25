@@ -17,3 +17,13 @@
 //
 
 import Foundation
+
+// https://canvas.instructure.com/doc/api/calendar_events.html#method.calendar_events_api.destroy
+struct DeleteCalendarEventRequest: APIRequestable {
+    typealias Response = APICalendarEvent
+
+    let method: APIMethod = .delete
+    var path: String { "calendar_events/\(id)" }
+
+    let id: String
+}
