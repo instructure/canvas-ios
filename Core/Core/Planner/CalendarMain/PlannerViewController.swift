@@ -165,10 +165,7 @@ public class PlannerViewController: UIViewController {
         let weakVC = WeakViewController()
         let vc = PlannerAssembly.makeCreateToDoViewController(
             calendarListProviderInteractor: calendarFilterInteractor,
-            completion: { [weak self] in
-                if $0 == .didUpdate {
-                    self?.plannerListWillRefresh()
-                }
+            completion: { [weak self] _ in
                 self?.env.router.dismiss(weakVC)
             }
         )

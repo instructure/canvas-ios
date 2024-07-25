@@ -49,6 +49,10 @@ class CalendarEventInteractorPreview: CalendarEventInteractor {
         return Empty().eraseToAnyPublisher()
     }
 
+    func deleteEvent(id: String) -> AnyPublisher<Void, any Error> {
+        return Empty().eraseToAnyPublisher()
+    }
+
     func isRequestModelValid(_ model: CalendarEventRequestModel?) -> Bool {
         true
     }
