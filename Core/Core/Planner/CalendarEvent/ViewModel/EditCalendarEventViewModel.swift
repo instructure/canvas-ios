@@ -159,8 +159,8 @@ final class EditCalendarEventViewModel: ObservableObject {
             .first { $0.isEmpty == false }
             .compactMap {
                 $0.first {
-                    if let context = event?.context, context.contextType == .course {
-                        $0.context == context
+                    if let eventContext = event?.context {
+                        $0.context == eventContext
                     } else {
                         $0.context.contextType == .user
                     }
@@ -318,10 +318,9 @@ final class EditCalendarEventViewModel: ObservableObject {
 
         switch mode {
         case .add:
-            return eventInteractor.createEvent(model)
+            return eventInteractor.createEvent(model: model)
         case .edit(let id):
-            return nil
-//            /*TODO: */ return eventInteractor.updateEvent(model)
+            return eventInteractor.updateEvent(id: id, model: model)
         }
     }
 }

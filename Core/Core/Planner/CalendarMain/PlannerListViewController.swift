@@ -139,8 +139,11 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
             env.router.show(vc, from: self, options: .detail)
         case .calendar_event:
             let vc = PlannerAssembly.makeEventDetailsViewController(eventId: plannable.id) { [delegate] output in
-                if output == .didDelete {
+                switch output {
+                case .didUpdate, .didDelete:
                     delegate?.plannerListWillRefresh()
+                case .didCancel:
+                    break
                 }
             }
             env.router.show(vc, from: self, options: .detail)

@@ -158,16 +158,24 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
     }
 
     private func makeViewModel(eventId: String = "1") -> CalendarEventDetailsViewModel {
-        .init(eventId: eventId, interactor: mockInteractor, router: router)
+        .init(eventId: eventId, interactor: mockInteractor, router: router, completion: nil)
     }
 }
 
 final private class CalendarEventInteractorMock: CalendarEventInteractor {
-    func createEvent(_ model: Core.CalendarEventRequestModel) -> AnyPublisher<Void, any Error> {
+    func createEvent(model: CalendarEventRequestModel) -> AnyPublisher<Void, any Error> {
         Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
-    func isRequestModelValid(_ model: Core.CalendarEventRequestModel?) -> Bool {
+    func updateEvent(id: String, model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
+        return Empty().eraseToAnyPublisher()
+    }
+
+    func deleteEvent(id: String) -> AnyPublisher<Void, any Error> {
+        return Empty().eraseToAnyPublisher()
+    }
+
+    func isRequestModelValid(_ model: CalendarEventRequestModel?) -> Bool {
         true
     }
 

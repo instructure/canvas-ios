@@ -172,8 +172,12 @@ public class CalendarEventDetailsViewModel: ObservableObject {
         guard let event else { return }
 
         let weakVC = WeakViewController()
-        let vc = PlannerAssembly.makeEditEventViewController(event: event) { [router] _ in
-            router.dismiss(weakVC)
+        let vc = PlannerAssembly.makeEditEventViewController(event: event) { [weak self] output in
+            if output == .didUpdate {
+                self?.loadData(ignoreCache: false)
+                self?.completion?(.didUpdate)
+            }
+            self?.router.dismiss(weakVC)
         }
         weakVC.setValue(vc)
 

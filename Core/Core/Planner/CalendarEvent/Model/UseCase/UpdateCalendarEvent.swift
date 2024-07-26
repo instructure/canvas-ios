@@ -17,3 +17,44 @@
 //
 
 import Foundation
+import CoreData
+
+final class UpdateCalendarEvent: APIUseCase {
+    typealias Model = CalendarEvent
+
+    let request: PutCalendarEventRequest
+    let cacheKey: String? = nil
+    let scope: Scope = .all()
+
+    init(
+        id: String,
+        context_code: String,
+        title: String,
+        description: String?,
+        start_at: Date,
+        end_at: Date,
+        location_name: String?,
+        location_address: String?
+    ) {
+        self.request = PutCalendarEventRequest(
+            id: id,
+            body: .init(
+                calendar_event: .init(
+                    context_code: context_code,
+                    title: title,
+                    description: description,
+                    start_at: start_at,
+                    end_at: end_at,
+                    location_name: location_name,
+                    location_address: location_address
+                )
+            )
+        )
+    }
+
+    func write(response: APICalendarEvent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response else { return }
+
+        CalendarEvent.save(response, in: client)
+    }
+}
