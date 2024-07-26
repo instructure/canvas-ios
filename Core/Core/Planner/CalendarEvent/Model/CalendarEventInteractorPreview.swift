@@ -45,7 +45,11 @@ class CalendarEventInteractorPreview: CalendarEventInteractor {
             .delay(for: 1, scheduler: RunLoop.main)
     }
 
-    func createEvent(_ model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
+    func createEvent(model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
+        return Empty().eraseToAnyPublisher()
+    }
+
+    func updateEvent(id: String, model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
         return Empty().eraseToAnyPublisher()
     }
 

@@ -24,7 +24,9 @@ public protocol CalendarEventInteractor: AnyObject {
         ignoreCache: Bool
     ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error>
 
-    func createEvent(_ model: CalendarEventRequestModel) -> AnyPublisher<Void, Error>
+    func createEvent(model: CalendarEventRequestModel) -> AnyPublisher<Void, Error>
+
+    func updateEvent(id: String, model: CalendarEventRequestModel) -> AnyPublisher<Void, Error>
 
     func deleteEvent(id: String) -> AnyPublisher<Void, Error>
 
@@ -46,10 +48,12 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
 
         let eventUseCase = GetCalendarEvent(eventID: id)
         let eventStore = ReactiveStore(useCase: eventUseCase)
+        let eventPublisher = eventStore
+            .getEntities(ignoreCache: ignoreCache)
 
         return Publishers.CombineLatest(
             colorPublisher,
-            eventStore.getEntities(ignoreCache: ignoreCache)
+            eventPublisher
         )
         .tryMap { (colors, events) in
             guard let event = events.first else {
@@ -60,8 +64,25 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
         }
     }
 
-    func createEvent(_ model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
+    func createEvent(model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
         let useCase = CreateCalendarEvent(
+            context_code: model.calendar.rawContextID,
+            title: model.title,
+            description: model.details,
+            start_at: model.processedStartTime,
+            end_at: model.processedEndTime,
+            location_name: model.location,
+            location_address: model.address
+        )
+        return ReactiveStore(useCase: useCase)
+            .getEntities()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
+    func updateEvent(id: String, model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
+        let useCase = UpdateCalendarEvent(
+            id: id,
             context_code: model.calendar.rawContextID,
             title: model.title,
             description: model.details,
