@@ -383,7 +383,7 @@ class GradesTests: E2ETestCase {
         XCTAssertTrue(totalGrade.isVisible)
         XCTAssertTrue(totalGrade.hasLabel(label: basedOnGradedExpected, strict: false))
 
-        // MARK: Toggle switch and check changes
+        // MARK: Toggle switch, check Total Grade again
         basedOnGradedSwitch.hit()
         XCTAssertTrue(basedOnGradedSwitch.waitUntil(.value(expected: "0")).hasValue(value: "0"))
         XCTAssertTrue(totalGrade.isVisible)
