@@ -22,6 +22,7 @@ public class GradesHelper: BaseHelper {
     public static var totalGrade: XCUIElement { app.find(id: "CourseTotalGrade") }
     public static var filterButton: XCUIElement { app.find(type: .popUpButton) }
     public static var lockIcon: XCUIElement { app.find(id: "lockIcon") }
+    public static var basedOnGradedSwitch: XCUIElement { app.find(id: "BasedOnGradedToggle").find(type: .switch) }
 
     public static func labelOfAG(assignmentGroup: DSAssignmentGroup) -> XCUIElement {
         return app.find(label: assignmentGroup.name, type: .staticText)

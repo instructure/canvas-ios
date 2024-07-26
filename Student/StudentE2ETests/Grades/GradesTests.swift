@@ -352,4 +352,41 @@ class GradesTests: E2ETestCase {
         XCTAssertTrue(lockIcon.isVisible)
         XCTAssertTrue(totalGrade.isVanished)
     }
+
+    func testBasedOnGradedAssignments() {
+        // MARK: Seed the usual stuff with 4 assignments (2 graded, 2 ungraded)
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let pointsPossible = [Float(10), Float(100)]
+        let grades = ["5", "100"]
+        let gradedAssignments = GradesHelper.createAssignments(course: course, count: 2, points_possible: pointsPossible)
+        let ungradedAssignments = GradesHelper.createAssignments(course: course, count: 2, points_possible: pointsPossible)
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: gradedAssignments)
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: ungradedAssignments)
+        GradesHelper.gradeAssignments(grades: grades, course: course, assignments: gradedAssignments, user: student)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Grades, check Total Grade, check Based On Graded Assignments switch
+        let basedOnGradedExpected = "95.45"
+        let notBasedOnGradedExpected = "47.73"
+        GradesHelper.navigateToGrades(course: course)
+        let basedOnGradedSwitch = GradesHelper.basedOnGradedSwitch.waitUntil(.visible)
+        let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
+        totalGrade.waitUntil(.label(expected: basedOnGradedExpected))
+        XCTAssertTrue(basedOnGradedSwitch.isVisible)
+        XCTAssertTrue(basedOnGradedSwitch.hasValue(value: "1"))
+        XCTAssertTrue(totalGrade.isVisible)
+        XCTAssertTrue(totalGrade.hasLabel(label: basedOnGradedExpected, strict: false))
+
+        // MARK: Toggle switch and check changes
+        basedOnGradedSwitch.hit()
+        XCTAssertTrue(basedOnGradedSwitch.waitUntil(.value(expected: "0")).hasValue(value: "0"))
+        XCTAssertTrue(totalGrade.isVisible)
+        XCTAssertTrue(totalGrade.hasLabel(label: notBasedOnGradedExpected, strict: false))
+    }
 }
