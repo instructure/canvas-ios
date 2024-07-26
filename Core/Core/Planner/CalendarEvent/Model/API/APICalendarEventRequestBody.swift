@@ -28,7 +28,17 @@ struct APICalendarEventRequestBody: Codable, Equatable {
         let end_at: Date
         let location_name: String?
         let location_address: String?
-        // TODO: let time_zone_edited: String?
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(context_code, forKey: .context_code)
+            try container.encode(title, forKey: .title)
+            try container.encode(description, forKey: .description)
+            try container.encode(start_at, forKey: .start_at)
+            try container.encode(end_at, forKey: .end_at)
+            try container.encode(location_name, forKey: .location_name)
+            try container.encode(location_address, forKey: .location_address)
+        }
     }
 
     let calendar_event: CalendarEvent
