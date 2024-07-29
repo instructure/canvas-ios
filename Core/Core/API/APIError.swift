@@ -19,10 +19,10 @@
 import Foundation
 
 public enum HttpError {
-    static let unauthorized = 1000
-    static let forbidden = 1001
-    static let notFound = 1002
-    static let unexpected = 2000
+    public static let unauthorized = 1000
+    public static let forbidden = 1001
+    public static let notFound = 1002
+    public static let unexpected = 2000
 }
 
 public enum APIError: LocalizedError {
