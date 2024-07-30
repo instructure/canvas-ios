@@ -26,7 +26,7 @@ class CalendarEventInteractorPreview: CalendarEventInteractor {
     func getCalendarEvent(
         id: String,
         ignoreCache: Bool
-    ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor, managePermission: Bool), Error> {
+    ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error> {
         let result = (
             event: CalendarEvent.save(
                 .make(
@@ -38,12 +38,15 @@ class CalendarEventInteractorPreview: CalendarEventInteractor {
                 ),
                 in: env.database.viewContext
             ),
-            contextColor: UIColor.red,
-            managePermission: false
+            contextColor: UIColor.red
         )
         return Just(result)
             .setFailureType(to: Error.self)
             .delay(for: 1, scheduler: RunLoop.main)
+    }
+
+    func getManageCalendarPermission(context: Context, ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
+        return Empty().eraseToAnyPublisher()
     }
 
     func createEvent(model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {

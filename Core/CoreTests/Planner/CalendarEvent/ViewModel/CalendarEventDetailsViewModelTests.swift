@@ -163,6 +163,25 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
 }
 
 final private class CalendarEventInteractorMock: CalendarEventInteractor {
+
+    var mockEvent: CalendarEvent?
+    var mockColor: UIColor?
+
+    func getCalendarEvent(
+        id: String,
+        ignoreCache: Bool
+    ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error> {
+        guard let mockEvent, let mockColor else {
+            return Fail(error: NSError.internalError())
+        }
+        return Just((event: mockEvent, contextColor: mockColor))
+            .setFailureType(to: Error.self)
+    }
+
+    func getManageCalendarPermission(context: Core.Context, ignoreCache: Bool) -> AnyPublisher<Bool, any Error> {
+        Just(true).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+
     func createEvent(model: CalendarEventRequestModel) -> AnyPublisher<Void, any Error> {
         Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
@@ -177,19 +196,5 @@ final private class CalendarEventInteractorMock: CalendarEventInteractor {
 
     func isRequestModelValid(_ model: CalendarEventRequestModel?) -> Bool {
         true
-    }
-
-    var mockEvent: CalendarEvent?
-    var mockColor: UIColor?
-
-    func getCalendarEvent(
-        id: String,
-        ignoreCache: Bool
-    ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error> {
-        guard let mockEvent, let mockColor else {
-            return Fail(error: NSError.internalError())
-        }
-        return Just((event: mockEvent, contextColor: mockColor))
-            .setFailureType(to: Error.self)
     }
 }

@@ -22,7 +22,9 @@ public protocol CalendarEventInteractor: AnyObject {
     func getCalendarEvent(
         id: String,
         ignoreCache: Bool
-    ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor, managePermission: Bool), Error>
+    ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error>
+
+    func getManageCalendarPermission(context: Context, ignoreCache: Bool) -> AnyPublisher<Bool, Error>
 
     func createEvent(model: CalendarEventRequestModel) -> AnyPublisher<Void, Error>
 
@@ -38,7 +40,7 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
     func getCalendarEvent(
         id: String,
         ignoreCache: Bool = false
-    ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor, managePermission: Bool), Error> {
+    ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error> {
         let colorsUseCase = GetCustomColors()
         let colorsStore = ReactiveStore(useCase: colorsUseCase)
         let colorPublisher = colorsStore
@@ -50,43 +52,29 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
         let eventStore = ReactiveStore(useCase: eventUseCase)
         let eventPublisher = eventStore
             .getEntities(ignoreCache: ignoreCache)
-            .flatMap { [weak self] in
-                guard let self, let event = $0.first else {
-                    return Fail<(CalendarEvent, Bool), Error>(error: StoreError.emptyResponse).eraseToAnyPublisher()
-                }
-
-                guard event.context.contextType == .course || event.context.contextType == .group else {
-                    return Just(event).map { ($0, true) }.setFailureType(to: Error.self).eraseToAnyPublisher()
-                }
-
-                return getManageCalendarPermission(context: event.context, ignoreCache: ignoreCache)
-                    .map { permission in
-                        (event, permission)
-                    }
-                    .catch { _ in
-                        return Fail<(CalendarEvent, Bool), Error>(error: StoreError.emptyResponse).eraseToAnyPublisher()
-                    }
-                    .eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
 
         return Publishers.CombineLatest(
             colorPublisher,
             eventPublisher
         )
-        .map { (colors, eventAndPermission) in
-            let (event, permission) = eventAndPermission
+        .tryMap { (colors, events) in
+            guard let event = events.first else {
+                throw StoreError.emptyResponse
+            }
             let color = colors.first { $0.canvasContextID == event.contextRaw }?.color ?? .ash
-            return (event, color, permission)
+            return (event, color)
         }
     }
 
-    private func getManageCalendarPermission(context: Context, ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
+    func getManageCalendarPermission(context: Context, ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
         let useCase = GetContextPermissions(context: context, permissions: [.manageCalendar])
         return ReactiveStore(useCase: useCase)
             .getEntities(ignoreCache: ignoreCache)
-            .map {
-                $0.first?.manageCalendar ?? false
+            .tryMap {
+                guard let permissions = $0.first else {
+                    throw StoreError.emptyResponse
+                }
+                return permissions.manageCalendar
             }
             .eraseToAnyPublisher()
     }
