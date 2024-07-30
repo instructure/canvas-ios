@@ -33,6 +33,7 @@ public class CalendarEventDetailsViewModel: ObservableObject {
     @Published public private(set) var date: String?
     @Published public private(set) var locationInfo: [InstUI.TextSectionView.Model] = []
     @Published public private(set) var details: InstUI.TextSectionView.Model?
+    @Published public var shouldShowMenuButton: Bool = false
     @Published public var shouldShowDeleteConfirmation: Bool = false
     @Published public var shouldShowDeleteError: Bool = false
 
@@ -116,11 +117,12 @@ public class CalendarEventDetailsViewModel: ObservableObject {
                 case .finished: state = .data
                 case .failure: state = .error
                 }
-            } receiveValue: { [weak self] (event, contextColor) in
+            } receiveValue: { [weak self] (event, contextColor, managePermission) in
                 guard let self else { return }
 
                 self.event = event
                 self.contextColor = contextColor
+                self.shouldShowMenuButton = managePermission
                 title = event.title
                 pageSubtitle = event.contextName
 
