@@ -90,6 +90,7 @@ class AddressbookRoleViewModelTests: CoreTestCase {
 
     func testAllRecipientButtonVisible() {
         testee.searchText.value = ""
+        mockInteractor.canSelectAllRecipient.value = true
         XCTAssertTrue(testee.isAllRecipientButtonVisible)
 
         testee.searchText.value = "Test"
@@ -100,6 +101,7 @@ class AddressbookRoleViewModelTests: CoreTestCase {
 private class AddressbookInteractorMock: AddressbookInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.data)
     public var recipients: CurrentValueSubject<[SearchRecipient], Never>
+    public var canSelectAllRecipient = CurrentValueSubject<Bool, Never>(false)
     public private(set) var isRefreshCalled = false
 
     public init(env: AppEnvironment) {
