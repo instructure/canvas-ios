@@ -19,7 +19,7 @@
 import Foundation
 
 public extension Error {
-    
+
     var isFrameLoadInterrupted: Bool {
         nsError.domain == "WebKitErrorDomain" && nsError.code == 102
     }
