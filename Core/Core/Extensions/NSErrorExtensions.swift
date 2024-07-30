@@ -20,8 +20,8 @@ import Foundation
 
 extension NSError {
     public struct Constants {
-        static let domain = "com.instructure"
-        static let internalError = "Internal Error"
+        public static let domain = "com.instructure"
+        public static let internalError = "Internal Error"
     }
 
     public static func internalError(code: Int = 0) -> NSError {

@@ -21,7 +21,14 @@ import Foundation
 public extension Error {
 
     var isFrameLoadInterrupted: Bool {
-        let nsError = self as NSError
-        return nsError.domain == "WebKitErrorDomain" && nsError.code == 102
+        nsError.domain == "WebKitErrorDomain" && nsError.code == 102
+    }
+
+    var isForbidden: Bool {
+        nsError.domain == NSError.Constants.domain && nsError.code == HttpError.forbidden
+    }
+
+    private var nsError: NSError {
+        self as NSError
     }
 }

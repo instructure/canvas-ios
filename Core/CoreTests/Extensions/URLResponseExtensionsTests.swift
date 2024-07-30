@@ -40,10 +40,38 @@ class URLResponseExtensionsTests: XCTestCase {
         XCTAssertNil(response.links)
     }
 
-    func testUnauthenticated() {
-        XCTAssertTrue(HTTPURLResponse(url: URL(string: "/")!, statusCode: 401, httpVersion: nil, headerFields: nil)!.isUnauthorized)
-        XCTAssertFalse(HTTPURLResponse(url: URL(string: "/")!, statusCode: 201, httpVersion: nil, headerFields: nil)!.isUnauthorized)
-        XCTAssertFalse(URLResponse(url: URL(string: "/")!, mimeType: nil, expectedContentLength: 0, textEncodingName: nil).isUnauthorized)
+    func testUnauthorized() {
+        let unautorizedResponse = HTTPURLResponse(
+            url: URL(string: "/")!,
+            statusCode: 401,
+            httpVersion: nil,
+            headerFields: nil
+        )!
+        XCTAssertTrue(unautorizedResponse.isUnauthorized)
+
+        let forbiddenResponse = HTTPURLResponse(
+            url: URL(string: "/")!,
+            statusCode: 403,
+            httpVersion: nil,
+            headerFields: nil
+        )!
+        XCTAssertFalse(forbiddenResponse.isUnauthorized)
+
+        let createdResponse = HTTPURLResponse(
+            url: URL(string: "/")!,
+            statusCode: 201,
+            httpVersion: nil,
+            headerFields: nil
+        )!
+        XCTAssertFalse(createdResponse.isUnauthorized)
+
+        let nonHttpURLResponse = URLResponse(
+            url: URL(string: "/")!,
+            mimeType: nil,
+            expectedContentLength: 0,
+            textEncodingName: nil
+        )
+        XCTAssertFalse(nonHttpURLResponse.isUnauthorized)
     }
 
     func testExceededLimit() {
