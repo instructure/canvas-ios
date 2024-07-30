@@ -92,6 +92,8 @@
 		CF20B5C42B1F9D5700C00B39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF20B5C32B1F9D5700C00B39 /* LaunchScreen.storyboard */; };
 		CF34EC472C08C6700085EA33 /* ObserverAlertsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34EC462C08C6700085EA33 /* ObserverAlertsInteractor.swift */; };
 		CF34EC4A2C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34EC492C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift */; };
+		CF72EBD52C590A1D0056562A /* ParentSubmissionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF72EBD42C590A1D0056562A /* ParentSubmissionInteractor.swift */; };
+		CF72EBE02C5922AC0056562A /* ParentSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF72EBDF2C5922AC0056562A /* ParentSubmissionViewController.swift */; };
 		CFAA401D2AE26302002C7AAE /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFAA401C2AE26302002C7AAE /* PSPDFKit */; };
 		CFEE68D82B1A24ED00A04E43 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68D72B1A24ED00A04E43 /* InfoPlist.xcstrings */; };
 		CFEE68DB2B1A251C00A04E43 /* LaunchScreen.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */; };
@@ -248,6 +250,8 @@
 		CF20B5C32B1F9D5700C00B39 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF34EC462C08C6700085EA33 /* ObserverAlertsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertsInteractor.swift; sourceTree = "<group>"; };
 		CF34EC492C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertsInteractorTests.swift; sourceTree = "<group>"; };
+		CF72EBD42C590A1D0056562A /* ParentSubmissionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSubmissionInteractor.swift; sourceTree = "<group>"; };
+		CF72EBDF2C5922AC0056562A /* ParentSubmissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentSubmissionViewController.swift; sourceTree = "<group>"; };
 		CFEE68D72B1A24ED00A04E43 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = LaunchScreen.xcstrings; sourceTree = "<group>"; };
 		CFEE68DA2B1A251C00A04E43 /* Localizable.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -485,8 +489,8 @@
 		7D1801B724C2079800A7F023 /* Assignments */ = {
 			isa = PBXGroup;
 			children = (
-				7D1801BA24C2083300A7F023 /* AssignmentDetailsViewController.storyboard */,
-				7D1801B824C207B500A7F023 /* AssignmentDetailsViewController.swift */,
+				CF72EBD32C5909EC0056562A /* Model */,
+				CF72EBD02C5909340056562A /* View */,
 			);
 			path = Assignments;
 			sourceTree = "<group>";
@@ -697,7 +701,8 @@
 		97523A8523C9373F0086D825 /* Assignments */ = {
 			isa = PBXGroup;
 			children = (
-				97523A8623C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift */,
+				CF72EBE42C592CF60056562A /* Model */,
+				CF72EBE32C592CEE0056562A /* View */,
 			);
 			path = Assignments;
 			sourceTree = "<group>";
@@ -746,6 +751,39 @@
 			isa = PBXGroup;
 			children = (
 				CF34EC492C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF72EBD02C5909340056562A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF72EBDF2C5922AC0056562A /* ParentSubmissionViewController.swift */,
+				7D1801BA24C2083300A7F023 /* AssignmentDetailsViewController.storyboard */,
+				7D1801B824C207B500A7F023 /* AssignmentDetailsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF72EBD32C5909EC0056562A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF72EBD42C590A1D0056562A /* ParentSubmissionInteractor.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF72EBE32C592CEE0056562A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				97523A8623C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF72EBE42C592CF60056562A /* Model */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1205,7 +1243,9 @@
 				7DB92CA524C5FD26004A6C16 /* AccountNotificationDetailsViewController.swift in Sources */,
 				5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */,
 				7D1801B924C207B500A7F023 /* AssignmentDetailsViewController.swift in Sources */,
+				CF72EBD52C590A1D0056562A /* ParentSubmissionInteractor.swift in Sources */,
 				3BA9FF6D2332999900196A06 /* CourseDetailsViewController.swift in Sources */,
+				CF72EBE02C5922AC0056562A /* ParentSubmissionViewController.swift in Sources */,
 				CF34EC472C08C6700085EA33 /* ObserverAlertsInteractor.swift in Sources */,
 				4948BE691F915D330035BAFD /* BundleExtensions.swift in Sources */,
 				7DB92CAA24C608E9004A6C16 /* DiscussionDetailsViewController.swift in Sources */,

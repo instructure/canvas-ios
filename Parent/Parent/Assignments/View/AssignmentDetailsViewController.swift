@@ -278,67 +278,11 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             return
         }
 
-//        env.api.makeRequest(GetWebSessionRequest(to: assignmentHtmlURL)) { [env] response, _, _ in
-//            guard let sessionURL = response?.session_url else {
-//                return
-//            }
-//            performUIUpdate {
-                let safari = StudioViewController2(url: assignmentHtmlURL)
-                env.router.show(safari, from: self, options: .modal(.overFullScreen))
-//            }
-//        }
-    }
-}
-
-//private class ParentSubmissionsInSafariViewController: SFSafariViewController {
-//    public override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
-//
-//    public init(
-//        url URL: URL
-//    ) {
-//        let config = SFSafariViewController.Configuration()
-//        config.barCollapsingEnabled = true
-//        super.init(url: URL, configuration: config)
-//        modalPresentationCapturesStatusBarAppearance = true
-//        dismissButtonStyle = .close
-//    }
-//}
-
-class StudioViewController2: UINavigationController {
-    public override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
-
-    public init(url: URL) {
-        let controller = CoreWebViewController()
-//        controller.webView.load(request)
-        controller.addDoneButton()
-        controller.title = String(localized: "Studio", bundle: .core)
-
-        super.init(rootViewController: controller)
-
-        navigationBar.useModalStyle(forcedTheme: .light)
-        modalPresentationCapturesStatusBarAppearance = true
-
-        AppEnvironment.shared.api.makeRequest(GetWebSessionRequest(to: url)) { response, _, _ in
-            guard let sessionURL = response?.session_url else {
-                return
-            }
-
-            var request = URLRequest(url: sessionURL)
-            request.addValue("k5_observed_user_for_96505=96504", forHTTPHeaderField: "cookie")
-
-            performUIUpdate {
-                controller.webView.load(request)
-            }
-        }
-
-    }
-
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .backgroundLightest.resolvedColor(with: .light)
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        let interactor = ParentSubmissionInteractorLive(
+            assignmentHtmlURL: assignmentHtmlURL,
+            observedUserID: studentID
+        )
+        let submissionsViewController = ParentSubmissionViewController(interactor: interactor)
+        env.router.show(submissionsViewController, from: self, options: .modal(.overFullScreen))
     }
 }

@@ -14598,6 +14598,15 @@
         }
       }
     },
+    "Something went wrong" : {
+
+    },
+    "Submission" : {
+
+    },
+    "Submission & Rubric" : {
+
+    },
     "Summary" : {
       "localizations" : {
         "ar" : {
@@ -16645,6 +16654,9 @@
           }
         }
       }
+    },
+    "There was an error while communicating with the server" : {
+
     },
     "There's nothing to be notified of yet." : {
       "localizations" : {
