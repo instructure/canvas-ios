@@ -94,6 +94,7 @@
 		CF34EC4A2C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34EC492C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift */; };
 		CF72EBD52C590A1D0056562A /* ParentSubmissionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF72EBD42C590A1D0056562A /* ParentSubmissionInteractor.swift */; };
 		CF72EBE02C5922AC0056562A /* ParentSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF72EBDF2C5922AC0056562A /* ParentSubmissionViewController.swift */; };
+		CF72EBE82C5930CB0056562A /* ParentSubmissionInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF72EBE72C5930CB0056562A /* ParentSubmissionInteractorTests.swift */; };
 		CFAA401D2AE26302002C7AAE /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFAA401C2AE26302002C7AAE /* PSPDFKit */; };
 		CFEE68D82B1A24ED00A04E43 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68D72B1A24ED00A04E43 /* InfoPlist.xcstrings */; };
 		CFEE68DB2B1A251C00A04E43 /* LaunchScreen.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */; };
@@ -252,6 +253,7 @@
 		CF34EC492C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertsInteractorTests.swift; sourceTree = "<group>"; };
 		CF72EBD42C590A1D0056562A /* ParentSubmissionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSubmissionInteractor.swift; sourceTree = "<group>"; };
 		CF72EBDF2C5922AC0056562A /* ParentSubmissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentSubmissionViewController.swift; sourceTree = "<group>"; };
+		CF72EBE72C5930CB0056562A /* ParentSubmissionInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSubmissionInteractorTests.swift; sourceTree = "<group>"; };
 		CFEE68D72B1A24ED00A04E43 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = LaunchScreen.xcstrings; sourceTree = "<group>"; };
 		CFEE68DA2B1A251C00A04E43 /* Localizable.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -784,6 +786,7 @@
 		CF72EBE42C592CF60056562A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CF72EBE72C5930CB0056562A /* ParentSubmissionInteractorTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1215,6 +1218,7 @@
 				7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */,
 				CF34EC4A2C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift in Sources */,
 				CFFE286A27B3B8A90029A408 /* CourseListCellGradesTests.swift in Sources */,
+				CF72EBE82C5930CB0056562A /* ParentSubmissionInteractorTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
 				97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */,
