@@ -263,7 +263,7 @@ extension ComposeMessageOptions {
         }
 
         var recipients = [Recipient]()
-        if let author = message?.authorID, let participantIDs = message?.participantIDs {
+        if let participantIDs = message?.participantIDs {
             let recipientsSet = Set(participantIDs)
 
             for r in recipientsSet {

@@ -23,8 +23,8 @@ import Foundation
 
 class AddressbookInteractorPreview: AddressbookInteractor {
     var canSelectAllRecipient = CurrentValueSubject<Bool, Never>(true)
-    
-    var state: CurrentValueSubject<StoreState, Never> = CurrentValueSubject<StoreState, Never>(.loading)
+
+    var state: CurrentValueSubject<StoreState, Never> = .init(.loading)
 
     var recipients: CurrentValueSubject<[SearchRecipient], Never>
 
@@ -38,7 +38,6 @@ class AddressbookInteractorPreview: AddressbookInteractor {
     func refresh() -> Future<Void, Never> {
         Future<Void, Never> {_ in }
     }
-
 }
 
 #endif
