@@ -19,7 +19,6 @@
 import SwiftUI
 
 public struct CalendarToDoDetailsScreen: View {
-    @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: CalendarToDoDetailsViewModel
 
@@ -28,18 +27,34 @@ public struct CalendarToDoDetailsScreen: View {
     }
 
     public var body: some View {
-        InstUI.BaseScreen(state: .data, config: viewModel.screenConfig) { _ in
+        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { _ in
             eventContent
         }
         .navigationTitle(viewModel.navigationTitle)
-        .navBarItems(trailing: .init(
-            isBackgroundContextColor: true,
-            isAvailableOffline: false,
-            image: .moreLine
-        ) {
-            viewModel.showEditScreen(env: env, from: controller)
-        })
+        .navBarItems(
+            trailing: .moreIcon(
+                isBackgroundContextColor: true,
+                isEnabled: viewModel.isMoreButtonEnabled,
+                isAvailableOffline: false,
+                menuContent: {
+                    InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
+                    InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
+                }
+            )
+        )
         .navigationBarStyle(.color(viewModel.navBarColor))
+        .confirmationAlert(
+            isPresented: $viewModel.shouldShowDeleteConfirmation,
+            presenting: viewModel.deleteConfirmationAlert
+        )
+        .errorAlert(
+            isPresented: $viewModel.shouldShowDeleteError,
+            presenting: .init(
+                title: String(localized: "Deletion not completed", bundle: .core),
+                message: String(localized: "We couldn't delete your To Do at this time. You can try it again.", bundle: .core),
+                buttonTitle: String(localized: "OK", bundle: .core)
+            )
+        )
     }
 
     @ViewBuilder

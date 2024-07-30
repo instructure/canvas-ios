@@ -123,7 +123,6 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
 
     private var rolesView: some View {
         VStack(alignment: .leading, spacing: 0) {
-            separator
             if viewModel.isAllRecipientButtonVisible { allRecipient }
             ForEach(viewModel.roles, id: \.self) { role in
                 roleRowView(role)

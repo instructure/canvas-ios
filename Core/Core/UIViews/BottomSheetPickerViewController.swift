@@ -32,6 +32,8 @@ public class BottomSheetPickerViewController: UIViewController {
 
     public override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
 
+    private var buttonHeight: CGFloat = 0
+
     public static func create() -> BottomSheetPickerViewController {
         let controller = BottomSheetPickerViewController()
         controller.modalPresentationStyle = .custom
@@ -51,13 +53,13 @@ public class BottomSheetPickerViewController: UIViewController {
         stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        addAccessiblityDismissButton()
     }
 
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         let topPadding: CGFloat = 8
-        let buttonHeight: CGFloat = 56
-        view.frame.size.height = topPadding + CGFloat(stackView.arrangedSubviews.count) * buttonHeight + view.safeAreaInsets.bottom
+        view.frame.size.height = topPadding + buttonHeight + view.safeAreaInsets.bottom
     }
 
     public func addAction(image: UIImage?, title: String, accessibilityIdentifier: String? = nil, action: @escaping () -> Void = {}) {
@@ -77,9 +79,20 @@ public class BottomSheetPickerViewController: UIViewController {
             button.setImage(image, for: .normal)
             button.configuration?.imagePadding = 24
         }
+        buttonHeight += button.sizeThatFits(CGSize(width: view.bounds.size.width, height: .greatestFiniteMagnitude)).height
 
         stackView.addArrangedSubview(button)
         actions.append(BottomSheetAction(action: action, image: image, title: title))
+    }
+
+    private func addAccessiblityDismissButton() {
+        accessibilityCustomActions = [
+            .init(name: String(localized: "Dismiss menu", bundle: .core),
+                  actionHandler: { [weak self] _ in
+                      self?.dismiss(animated: true)
+                      return true
+                  })
+        ]
     }
 
     @objc func didSelect(_ button: UIButton) {

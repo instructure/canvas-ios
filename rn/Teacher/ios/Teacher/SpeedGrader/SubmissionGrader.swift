@@ -175,7 +175,7 @@ struct SubmissionGrader: View {
                 .onAppear { didChangeLayout(to: .portrait) }
             }
         }
-        .avoidKeyboardArea(force: true)
+        .avoidKeyboardArea()
     }
 
     @ViewBuilder

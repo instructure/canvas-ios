@@ -22,19 +22,66 @@ import TestsFoundation
 import XCTest
 
 class FileManagerExtensionsTests: CoreTestCase {
-    let fileManager = FileManager.default
-
-    private var subscriptions: [AnyCancellable] = []
+    private let fileManager = FileManager.default
 
     func testRemoveItemPublisher() {
-        let fileURL = URL.Directories.documents.appendingPathComponent("test.txt")
-        fileManager.createFile(atPath: fileURL.path, contents: "test".data(using: .utf8))
+        let fileURL = workingDirectory.appendingPathComponent("test.txt")
+        fileManager.createFile(
+            atPath: fileURL.path,
+            contents: "test".data(using: .utf8)
+        )
 
         XCTAssertTrue(fileManager.fileExists(atPath: fileURL.path))
+        XCTAssertFinish(fileManager.removeItemPublisher(at: fileURL))
+        XCTAssertFalse(fileManager.fileExists(atPath: fileURL.path))
+    }
 
-        fileManager.removeItemPublisher(at: fileURL).sink(receiveCompletion: { [fileManager] _ in
-            XCTAssertFalse(fileManager.fileExists(atPath: fileURL.path))
-        }, receiveValue: { })
-        .store(in: &subscriptions)
+    func testListsAllFilesInDirectory() throws {
+        let subdirectory = workingDirectory
+            .appendingPathComponent("subfolder", isDirectory: true)
+        try fileManager.createDirectory(
+            at: subdirectory,
+            withIntermediateDirectories: true
+        )
+
+        let subDirectoryWithTxtExtension = workingDirectory
+            .appendingPathComponent("subfolder.txt", isDirectory: true)
+        try fileManager.createDirectory(
+            at: subDirectoryWithTxtExtension,
+            withIntermediateDirectories: true
+        )
+
+        let file1URL = workingDirectory.appendingPathComponent("file1.txt")
+        fileManager.createFile(
+            atPath: file1URL.path,
+            contents: "test".data(using: .utf8)
+        )
+
+        let file2URL = subdirectory.appendingPathComponent("file2.txt")
+        fileManager.createFile(
+            atPath: file2URL.path,
+            contents: "test".data(using: .utf8)
+        )
+
+        let file3URL = subdirectory.appendingPathComponent("file3.html")
+        fileManager.createFile(
+            atPath: file3URL.path,
+            contents: "test".data(using: .utf8)
+        )
+
+        // file1.txt
+        // |- subfolder
+        //    |- file2.txt
+        //    |- file3.html
+        // |- subfolder.txt
+
+        XCTAssertEqual(
+            fileManager.allFiles(withExtension: "txt", inDirectory: workingDirectory),
+            Set([file1URL, file2URL])
+        )
+        XCTAssertEqual(
+            fileManager.allFiles(withExtension: ".html", inDirectory: workingDirectory),
+            Set([file3URL])
+        )
     }
 }

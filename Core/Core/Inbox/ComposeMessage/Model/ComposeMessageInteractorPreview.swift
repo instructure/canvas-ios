@@ -22,7 +22,34 @@ import Combine
 import CombineExt
 
 public class ComposeMessageInteractorPreview: ComposeMessageInteractor {
+    public var attachments = CurrentValueSubject<[File], Never>([])
     public var conversationAttachmentsFolder = CurrentValueSubject<[Folder], Never>([])
+
+    private var addFileWithURLCalled = false
+    private var addFileWithFileCalled = false
+    private var retryCalled = false
+    private var cancelCalled = false
+    private var removeFileCalled = false
+
+    public func addFile(url: URL) {
+        addFileWithURLCalled = true
+    }
+
+    public func addFile(file: File) {
+        addFileWithFileCalled = true
+    }
+
+    public func retry() {
+        retryCalled = true
+    }
+
+    public func cancel() {
+        cancelCalled = true
+    }
+
+    public func removeFile(file: File) {
+        removeFileCalled = true
+    }
 
     public func getOnlineFileURL(fileId: String) -> AnyPublisher<URL?, any Error> {
         return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()

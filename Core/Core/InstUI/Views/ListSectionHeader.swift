@@ -23,17 +23,17 @@ extension InstUI {
     public struct ListSectionHeader: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-        private let name: String?
+        private let title: String?
 
-        public init(name: String?) {
-            self.name = name
+        public init(title: String?) {
+            self.title = title
         }
 
         @ViewBuilder
         public var body: some View {
-            if let name {
+            if let title {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(name)
+                    Text(title)
                         .font(.semibold14)
                         .foregroundStyle(Color.textDark)
                         .paddingStyle(.all, .standard)
@@ -52,7 +52,7 @@ extension InstUI {
 #if DEBUG
 
 #Preview {
-    InstUI.ListSectionHeader(name: "Section Header Cell")
+    InstUI.ListSectionHeader(title: "Section Header Cell")
 }
 
 #endif
