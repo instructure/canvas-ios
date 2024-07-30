@@ -22,6 +22,7 @@ public protocol AddressbookInteractor {
     // MARK: - Outputs
     var state: CurrentValueSubject<StoreState, Never> { get }
     var recipients: CurrentValueSubject<[SearchRecipient], Never> { get }
-
+    var canSelectAllRecipient: CurrentValueSubject<Bool, Never> { get }
+    
     func refresh() -> Future<Void, Never>
 }

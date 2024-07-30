@@ -22,6 +22,8 @@ import Combine
 import Foundation
 
 class AddressbookInteractorPreview: AddressbookInteractor {
+    var canSelectAllRecipient = CurrentValueSubject<Bool, Never>(true)
+    
     var state: CurrentValueSubject<StoreState, Never> = CurrentValueSubject<StoreState, Never>(.loading)
 
     var recipients: CurrentValueSubject<[SearchRecipient], Never>
