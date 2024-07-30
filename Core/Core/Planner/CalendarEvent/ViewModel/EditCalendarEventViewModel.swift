@@ -114,7 +114,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     internal lazy var selectCalendarViewModel: SelectCalendarViewModel = {
         return .init(
             calendarListProviderInteractor: calendarListProviderInteractor,
-            /*TODO: */ calendarTypes: [.user, .group], // TODO: check `manage_calendar` field
+            calendarTypes: [.user, .group],
             selectedCalendar: selectedCalendar
         )
     }()

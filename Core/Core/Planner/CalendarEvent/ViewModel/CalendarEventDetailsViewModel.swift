@@ -62,7 +62,7 @@ public class CalendarEventDetailsViewModel: ObservableObject {
     private let completion: ((PlannerAssembly.Completion) -> Void)?
     private var subscriptions = Set<AnyCancellable>()
 
-    private var event: CalendarEvent?
+    private var event = CurrentValueSubject<CalendarEvent?, Never>(nil)
 
     // MARK: - Init
 
@@ -78,6 +78,15 @@ public class CalendarEventDetailsViewModel: ObservableObject {
         self.completion = completion
 
         loadData()
+
+        event
+            .flatMap { [weak self] in
+                return self?.canManageEvent(context: $0?.context) ?? Empty().eraseToAnyPublisher()
+            }
+            .sink { [weak self] in
+                self?.shouldShowMenuButton = $0
+            }
+            .store(in: &subscriptions)
 
         didTapEdit
             .sink { [weak self] in self?.showEditScreen(from: $0) }
@@ -117,12 +126,11 @@ public class CalendarEventDetailsViewModel: ObservableObject {
                 case .finished: state = .data
                 case .failure: state = .error
                 }
-            } receiveValue: { [weak self] (event, contextColor, managePermission) in
+            } receiveValue: { [weak self] (event, contextColor) in
                 guard let self else { return }
 
-                self.event = event
+                self.event.value = event
                 self.contextColor = contextColor
-                self.shouldShowMenuButton = managePermission
                 title = event.title
                 pageSubtitle = event.contextName
 
@@ -168,10 +176,32 @@ public class CalendarEventDetailsViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
+    private func canManageEvent(context: Context?) -> AnyPublisher<Bool, Never> {
+        guard let context else {
+            return Just(false).eraseToAnyPublisher()
+        }
+
+        // TODO: inject
+        let currentUserid = AppEnvironment.shared.currentSession?.actAsUserID ?? AppEnvironment.shared.currentSession?.userID ?? ""
+
+        return switch context.contextType {
+        case .user:
+            Just(context.id == currentUserid).eraseToAnyPublisher()
+        case .course, .group:
+            interactor.getManageCalendarPermission(context: context, ignoreCache: true)
+                .catch { _ in
+                    return Just(false).eraseToAnyPublisher()
+                }
+                .eraseToAnyPublisher()
+        default:
+            Just(false).eraseToAnyPublisher()
+        }
+    }
+
     // MARK: - Private methods
 
     private func showEditScreen(from source: WeakViewController) {
-        guard let event else { return }
+        guard let event = event.value else { return }
 
         let weakVC = WeakViewController()
         let vc = PlannerAssembly.makeEditEventViewController(event: event) { [weak self] output in
