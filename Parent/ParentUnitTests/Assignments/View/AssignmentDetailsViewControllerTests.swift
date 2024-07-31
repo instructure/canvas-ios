@@ -126,4 +126,19 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         controller.reminderDateButtonPressed(UIButton())
         XCTAssertTrue(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
     }
+
+    func testSubmissionAndRubricButtonPresentsSubmissionViewer() {
+        api.mock(controller.assignment, value: .make(description: "", due_at: nil, html_url: url))
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        // WHEN
+        controller.submissionAndRubricButtonPressed(self)
+
+        // THEN
+        let presentation = router.viewControllerCalls.last
+        XCTAssertTrue(presentation?.0 is ParentSubmissionViewController)
+        XCTAssertEqual(presentation?.1, controller)
+        XCTAssertEqual(presentation?.2, .modal(.overFullScreen))
+    }
 }

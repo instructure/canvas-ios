@@ -20,14 +20,14 @@ import Core
 import Combine
 import WebKit
 
-class ParentSubmissionViewController: UINavigationController, ErrorViewController {
+class ParentSubmissionViewController: UINavigationController {
     private var subscriptions = Set<AnyCancellable>()
-    private let interactor: ParentSubmissionInteractor
+    private let viewModel: ParentSubmissionViewModel
     private unowned let webView: WKWebView
     private weak var loadingIndicator: CircleProgressView?
 
-    public init(interactor: ParentSubmissionInteractor) {
-        self.interactor = interactor
+    public init(viewModel: ParentSubmissionViewModel) {
+        self.viewModel = viewModel
 
         let controller = CoreWebViewController()
         controller.addDoneButton()
@@ -41,21 +41,19 @@ class ParentSubmissionViewController: UINavigationController, ErrorViewControlle
         modalPresentationCapturesStatusBarAppearance = true
 
         showLoadingIndicator()
+
+        viewModel
+            .hideLoadingIndicator
+            .sink { [weak self] _ in
+                self?.hideLoadingIndicator()
+            }
+            .store(in: &subscriptions)
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        interactor
-            .loadParentFeedbackView(webView: webView)
-            .sink { [weak self] completion in
-                switch completion {
-                case .finished: self?.hideLoadingIndicator()
-                case .failure: self?.showAlert()
-                }
-
-            } receiveValue: { _ in }
-            .store(in: &subscriptions)
+        viewModel.viewDidLoad(viewController: self, webView: webView)
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -65,24 +63,6 @@ class ParentSubmissionViewController: UINavigationController, ErrorViewControlle
     private func showLoadingIndicator() {
         loadingIndicator?.startAnimating()
         webView.alpha = 0
-    }
-
-    private func showAlert() {
-        let alert = UIAlertController(
-            title: String(localized: "Something went wrong", bundle: .core),
-            message: String(localized: "There was an error while communicating with the server", bundle: .core),
-            preferredStyle: .alert
-        )
-        alert.addAction(
-            UIAlertAction(
-                title: String(localized: "OK", bundle: .core),
-                style: .default,
-                handler: { [weak self] _ in
-                    self?.dismiss(animated: true, completion: nil)
-                }
-            )
-        )
-        AppEnvironment.shared.router.show(alert, from: self, options: .modal())
     }
 
     private func hideLoadingIndicator() {

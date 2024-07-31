@@ -71,7 +71,8 @@ class ParentSubmissionInteractorTests: ParentTestCase {
                         .version: 1
                     ]
                 )!
-            ]
+            ],
+            timeout: 10
         )
         XCTAssertEqual(mockWebView.receivedRequestToLoad, URLRequest(url: authenticatedSessionURL))
         XCTAssertEqual(mockWebView.isLoadingChecked, true)

@@ -282,7 +282,12 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             assignmentHtmlURL: assignmentHtmlURL,
             observedUserID: studentID
         )
-        let submissionsViewController = ParentSubmissionViewController(interactor: interactor)
-        env.router.show(submissionsViewController, from: self, options: .modal(.overFullScreen))
+        let viewModel = ParentSubmissionViewModel(interactor: interactor, router: router)
+        let submissionsViewController = ParentSubmissionViewController(viewModel: viewModel)
+        env.router.show(
+            submissionsViewController,
+            from: self,
+            options: .modal(.overFullScreen)
+        )
     }
 }
