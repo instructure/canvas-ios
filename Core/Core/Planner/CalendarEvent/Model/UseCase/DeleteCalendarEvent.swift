@@ -19,16 +19,23 @@
 import Foundation
 import CoreData
 
+// Currently this removes from CoreData only the one event which initiated the deletion.
+// It doesn't handle removing related repeated items from CoreData.
+// This is OK for now, because we rely on force refreshing everything.
 final class DeleteCalendarEvent: DeleteUseCase {
     typealias Model = CalendarEvent
 
-    var request: DeleteCalendarEventRequest { .init(id: id) }
+    let request: DeleteCalendarEventRequest
     let cacheKey: String? = nil
     var scope: Scope { .where(#keyPath(CalendarEvent.id), equals: id) }
 
     private let id: String
 
-    init(id: String) {
+    init(id: String, seriesModificationType: APICalendarEventSeriesModificationType?) {
         self.id = id
+        self.request = DeleteCalendarEventRequest(
+            id: id,
+            body: .init(which: seriesModificationType)
+        )
     }
 }

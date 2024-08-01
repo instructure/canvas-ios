@@ -45,6 +45,8 @@ final public class CalendarEvent: NSManagedObject, WriteableModel {
     @NSManaged public var details: String?
     @NSManaged public var locationName: String?
     @NSManaged public var locationAddress: String?
+    @NSManaged public var repetitionRule: String?
+    @NSManaged public var isSeriesHead: Bool
     /// The event repetition in human readable format
     @NSManaged public var seriesInNaturalLanguage: String?
 
@@ -61,6 +63,10 @@ final public class CalendarEvent: NSManagedObject, WriteableModel {
     public var type: CalendarEventType {
         get { return CalendarEventType(rawValue: typeRaw) ?? .event }
         set { typeRaw = newValue.rawValue }
+    }
+
+    public var isPartOfSeries: Bool {
+        repetitionRule?.nilIfEmpty != nil && seriesInNaturalLanguage?.nilIfEmpty != nil
     }
 
     public var routingURL: URL {
@@ -86,6 +92,8 @@ final public class CalendarEvent: NSManagedObject, WriteableModel {
         model.details = item.description
         model.locationName = item.location_name
         model.locationAddress = item.location_address
+        model.repetitionRule = item.rrule
+        model.isSeriesHead = item.series_head ?? false
         model.seriesInNaturalLanguage = item.series_natural_language
         return model
     }

@@ -38,7 +38,7 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
         .navigationTitle(viewModel.pageTitle, subtitle: viewModel.pageSubtitle)
         .navBarItems(
             trailing: ExperimentalFeature.modifyCalendarEvent.isEnabled && viewModel.shouldShowMenuButton
-            ? .moreIcon(
+            ? InstUI.NavigationBarButton.moreIcon(
                 isBackgroundContextColor: true,
                 isEnabled: viewModel.isMoreButtonEnabled,
                 isAvailableOffline: false,
@@ -47,13 +47,13 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
                     InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
                 }
             )
+            .confirmation(
+                isPresented: $viewModel.shouldShowDeleteConfirmation,
+                presenting: viewModel.deleteConfirmation
+            )
             : nil
         )
         .navigationBarStyle(.color(viewModel.contextColor))
-        .confirmationAlert(
-            isPresented: $viewModel.shouldShowDeleteConfirmation,
-            presenting: viewModel.deleteConfirmationAlert
-        )
         .errorAlert(
             isPresented: $viewModel.shouldShowDeleteError,
             presenting: .init(

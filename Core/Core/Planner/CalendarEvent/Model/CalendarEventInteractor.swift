@@ -19,6 +19,8 @@
 import Combine
 
 public protocol CalendarEventInteractor: AnyObject {
+    typealias SeriesModificationType = APICalendarEventSeriesModificationType
+
     func getCalendarEvent(
         id: String,
         ignoreCache: Bool
@@ -30,7 +32,7 @@ public protocol CalendarEventInteractor: AnyObject {
 
     func updateEvent(id: String, model: CalendarEventRequestModel) -> AnyPublisher<Void, Error>
 
-    func deleteEvent(id: String) -> AnyPublisher<Void, Error>
+    func deleteEvent(id: String, seriesModificationType: SeriesModificationType?) -> AnyPublisher<Void, Error>
 
     func isRequestModelValid(_ model: CalendarEventRequestModel?) -> Bool
 }
@@ -112,8 +114,8 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
             .eraseToAnyPublisher()
     }
 
-    func deleteEvent(id: String) -> AnyPublisher<Void, Error> {
-        let useCase = DeleteCalendarEvent(id: id)
+    func deleteEvent(id: String, seriesModificationType: SeriesModificationType?) -> AnyPublisher<Void, Error> {
+        let useCase = DeleteCalendarEvent(id: id, seriesModificationType: seriesModificationType)
         return ReactiveStore(useCase: useCase)
             .getEntities()
             .mapToVoid()

@@ -18,6 +18,12 @@
 
 import Foundation
 
+public enum APICalendarEventSeriesModificationType: String, Codable {
+    case one
+    case all
+    case following
+}
+
 struct APICalendarEventRequestBody: Codable, Equatable {
 
     struct CalendarEvent: Codable, Equatable {
