@@ -20,10 +20,25 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/calendar_events.html#method.calendar_events_api.destroy
 struct DeleteCalendarEventRequest: APIRequestable {
-    typealias Response = APICalendarEvent
+    typealias Response = [APICalendarEvent]
+
+    struct Body: Codable, Equatable {
+        let which: APICalendarEventSeriesModificationType?
+    }
 
     let method: APIMethod = .delete
     var path: String { "calendar_events/\(id)" }
 
     let id: String
+    let body: Body?
+
+    // API can return either a single object or an array of objects, depending on whether the event repeats or not.
+    public func decode(_ data: Data) throws -> [APICalendarEvent] {
+        do {
+            let event = try APIJSONDecoder().decode(APICalendarEvent.self, from: data)
+            return [event]
+        } catch {
+            return try APIJSONDecoder().decode([APICalendarEvent].self, from: data)
+        }
+    }
 }
