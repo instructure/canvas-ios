@@ -57,7 +57,7 @@ class CalendarEventInteractorPreview: CalendarEventInteractor {
         return Empty().eraseToAnyPublisher()
     }
 
-    func deleteEvent(id: String) -> AnyPublisher<Void, any Error> {
+    func deleteEvent(id: String, seriesModificationType: SeriesModificationType?) -> AnyPublisher<Void, any Error> {
         return Empty().eraseToAnyPublisher()
     }
 
