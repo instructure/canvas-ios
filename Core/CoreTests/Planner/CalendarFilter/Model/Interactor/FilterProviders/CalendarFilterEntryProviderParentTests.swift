@@ -23,7 +23,7 @@ class CalendarFilterEntryProviderParentTests: CoreTestCase {
 
     func testFetch() {
         AppEnvironment.shared.currentSession = .init(
-            baseURL: URL(string: "/")!,
+            baseURL: .stub,
             userID: "testParentId",
             userName: "testParent"
         )

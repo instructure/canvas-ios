@@ -30,7 +30,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
     let course = Context(.course, id: "1")
     lazy var controller = DiscussionDetailsViewController.create(context: course, topicID: "1", offlineModeInteractor: OfflineModeInteractorMock(mockIsInOfflineMode: false))
 
-    let emptyResponse = HTTPURLResponse(url: URL(string: "/")!, statusCode: 204, httpVersion: nil, headerFields: nil)
+    let emptyResponse = HTTPURLResponse(url: .stub, statusCode: 204, httpVersion: nil, headerFields: nil)
     let unread = "class=\"\(DiscussionHTML.Styles.unread)\""
 
     var baseURL: URL { environment.api.baseURL }

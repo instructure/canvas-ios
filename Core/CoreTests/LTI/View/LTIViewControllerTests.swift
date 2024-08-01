@@ -26,7 +26,7 @@ class LTIViewControllerTests: CoreTestCase {
     func testLayout() {
         let tools = LTITools(id: "1")
         let controller = LTIViewController.create(tools: tools)
-        var task = api.mock(tools.request, value: .make(name: "So Descriptive", url: URL(string: "/")!))
+        var task = api.mock(tools.request, value: .make(name: "So Descriptive", url: .stub))
         task.suspend()
 
         controller.view.layoutIfNeeded()

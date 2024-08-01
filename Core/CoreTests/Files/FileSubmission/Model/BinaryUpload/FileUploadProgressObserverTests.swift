@@ -20,7 +20,7 @@ import Core
 import XCTest
 
 class FileUploadProgressObserverTests: CoreTestCase {
-    private lazy var mockTask = api.urlSession.dataTask(with: URL(string: "/")!)
+    private lazy var mockTask = api.urlSession.dataTask(with: .stub)
 
     // MARK: - Receive Progress Update
 

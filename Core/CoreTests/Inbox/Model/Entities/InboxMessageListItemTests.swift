@@ -77,7 +77,7 @@ class InboxMessageListItemTests: CoreTestCase {
         XCTAssertEqual(testee.avatar, .group)
 
         testee.avatarNameRaw = nil
-        testee.avatarURLRaw = URL(string: "/")!
+        testee.avatarURLRaw = .stub
         XCTAssertEqual(testee.avatar, .group)
 
         testee.avatarNameRaw = "testName"
@@ -86,8 +86,8 @@ class InboxMessageListItemTests: CoreTestCase {
                                                   profileImageURL: nil))
 
         testee.avatarNameRaw = "testName"
-        testee.avatarURLRaw = URL(string: "/")!
+        testee.avatarURLRaw = .stub
         XCTAssertEqual(testee.avatar, .individual(name: "testName",
-                                                  profileImageURL: URL(string: "/")!))
+                                                  profileImageURL: .stub))
     }
 }

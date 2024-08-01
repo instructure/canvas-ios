@@ -222,6 +222,14 @@ public extension URL {
         components.scheme = scheme
         return components.url
     }
+
+    #if DEBUG
+
+    static var stub: URL {
+        URL(string: "/")!
+    }
+
+    #endif
 }
 
 public extension URL {

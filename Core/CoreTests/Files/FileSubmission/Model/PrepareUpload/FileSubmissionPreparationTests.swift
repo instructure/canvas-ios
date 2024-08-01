@@ -28,12 +28,12 @@ class FileSubmissionPreparationTests: CoreTestCase {
 
         let file1 = databaseClient.insert() as FileUploadItem
         file1.uploadError = "testError"
-        file1.uploadTarget = FileUploadTarget(upload_url: URL(string: "/")!, upload_params: [:])
+        file1.uploadTarget = FileUploadTarget(upload_url: .stub, upload_params: [:])
         file1.apiID = "test"
         file1.fileSubmission = submission
         let file2 = databaseClient.insert() as FileUploadItem
         file2.uploadError = "testError"
-        file2.uploadTarget = FileUploadTarget(upload_url: URL(string: "/")!, upload_params: [:])
+        file2.uploadTarget = FileUploadTarget(upload_url: .stub, upload_params: [:])
         file2.apiID = "test"
         file2.fileSubmission = submission
 

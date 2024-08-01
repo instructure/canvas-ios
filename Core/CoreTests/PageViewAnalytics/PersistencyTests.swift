@@ -30,7 +30,7 @@ class PersistencyTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        AppEnvironment.shared.currentSession = .init(baseURL: URL(string: "/")!, userID: userID, userName: "")
+        AppEnvironment.shared.currentSession = .init(baseURL: .stub, userID: userID, userName: "")
         waitExpectation = XCTestExpectation(description: "expectation")
         persistenceTestFileName = "pageViewTests-\(Foundation.UUID().uuidString).dat"
         Persistency.persistencyFileName = persistenceTestFileName

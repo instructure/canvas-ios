@@ -39,7 +39,7 @@ class RCEFileUploadContextTests: XCTestCase {
         let result = FileUploadContext.makeForRCEUploads(app: .student,
                                                          context: .course("321"),
                                                          session: .init(accessToken: "7053~asd",
-                                                                        baseURL: URL(string: "/")!,
+                                                                        baseURL: .stub,
                                                                         userID: "7053~123",
                                                                         userName: ""))
         XCTAssertEqual(result, .context(.user("7053~123")))
@@ -49,7 +49,7 @@ class RCEFileUploadContextTests: XCTestCase {
         let result = FileUploadContext.makeForRCEUploads(app: .student,
                                                          context: .course("321"),
                                                          session: .init(accessToken: "7053~asd",
-                                                                        baseURL: URL(string: "/")!,
+                                                                        baseURL: .stub,
                                                                         userID: "123",
                                                                         userName: ""))
         XCTAssertEqual(result, .context(.user("7053~123")))
@@ -59,7 +59,7 @@ class RCEFileUploadContextTests: XCTestCase {
         let result = FileUploadContext.makeForRCEUploads(app: .student,
                                                          context: .course("321"),
                                                          session: .init(accessToken: "asd",
-                                                                        baseURL: URL(string: "/")!,
+                                                                        baseURL: .stub,
                                                                         userID: "7053~123",
                                                                         userName: ""))
         XCTAssertEqual(result, .context(.user("7053~123")))
@@ -69,7 +69,7 @@ class RCEFileUploadContextTests: XCTestCase {
         let result = FileUploadContext.makeForRCEUploads(app: .student,
                                                          context: .course("321"),
                                                          session: .init(accessToken: "asd",
-                                                                        baseURL: URL(string: "/")!,
+                                                                        baseURL: .stub,
                                                                         userID: "123",
                                                                         userName: ""))
         XCTAssertEqual(result, .context(.user("123")))

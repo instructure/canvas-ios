@@ -20,7 +20,7 @@ import XCTest
 @testable import Core
 
 class APIMediaCommentTests: XCTestCase {
-    let url = URL(string: "/")!
+    let url = URL.stub
 
     func testTokenDecode() {
         XCTAssertEqual(try PostMediaUploadTokenRequest(body: nil).decode("<id>token123</id>".data(using: .utf8)!).id, "token123")

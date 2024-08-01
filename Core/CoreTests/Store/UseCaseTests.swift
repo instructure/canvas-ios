@@ -62,7 +62,7 @@ class UseCaseTests: CoreTestCase {
 
     func testGetNext() {
         let useCase = TestUseCase()
-        let urlResponse = URLResponse(url: URL(string: "/")!, mimeType: nil, expectedContentLength: 2, textEncodingName: nil)
+        let urlResponse = URLResponse(url: .stub, mimeType: nil, expectedContentLength: 2, textEncodingName: nil)
         XCTAssertNil(useCase.getNext(from: urlResponse))
     }
 

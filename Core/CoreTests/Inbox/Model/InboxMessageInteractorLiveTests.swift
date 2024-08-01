@@ -175,7 +175,7 @@ class InboxMessageInteractorLiveTests: CoreTestCase {
             let responseHeaders: [String: String] = [
                 "Link": "<https://next.url>; rel=\"next\""
             ]
-            let urlResponse = HTTPURLResponse(url: URL(string: "/")!,
+            let urlResponse = HTTPURLResponse(url: .stub,
                                               statusCode: 200,
                                               httpVersion: nil,
                                               headerFields: responseHeaders)
