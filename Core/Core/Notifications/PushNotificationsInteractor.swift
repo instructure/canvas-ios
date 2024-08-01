@@ -115,7 +115,7 @@ public class PushNotificationsInteractor {
             }
             guard let channelID = channel?.id.value, error == nil else {
                 // Hide error alert when "Users can edit their communication channels" setting is turned off
-                if let apiError = error as? APIError, case .unauthorized = apiError {
+                if error?.isForbidden == true {
                     return
                 } else if error.isPushNotConfigured {
                     return
