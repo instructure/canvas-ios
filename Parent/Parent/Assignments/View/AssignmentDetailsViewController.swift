@@ -122,7 +122,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             config.background.strokeWidth = 1 / UIScreen.main.scale
             config.background.strokeColor = .textDark
             config.background.backgroundColor = .backgroundLightest
-            config.baseForegroundColor = Brand.shared.primary
+            config.baseForegroundColor = ColorScheme.observee(studentID).color.ensureContrast(against: .backgroundLightest)
             config.image = .arrowOpenRightLine
                 .scaleTo(CGSize(width: 15, height: 15))
                 .withRenderingMode(.alwaysTemplate)
