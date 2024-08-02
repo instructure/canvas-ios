@@ -43,76 +43,79 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                headerView
-                    .background(
-                        GeometryReader { proxy in
-                            Color.clear
-                                .onAppear {
-                                    headerHeight = proxy.size.height
-                                }
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(spacing: 0) {
+                    headerView
+                        .background(
+                            GeometryReader { proxy in
+                                Color.clear
+                                    .onAppear {
+                                        headerHeight = proxy.size.height
+                                    }
+                            }
+                        )
+                    separator
+                    VStack(spacing: 0) {
+                        propertiesView
+                    }
+                    separator
+                    VStack(spacing: 0) {
+                        bodyView(geometry: geometry)
+                        attachmentsView
+                        if !model.includedMessages.isEmpty {
+                            includedMessages
                         }
-                    )
-                separator
-                VStack(spacing: 0) {
-                    propertiesView
-                }
-                separator
-                VStack(spacing: 0) {
-                    bodyView
-                    attachmentsView
-                    if !model.includedMessages.isEmpty {
-                        includedMessages
                     }
                 }
+                .font(.regular12)
+                .foregroundColor(.textDarkest)
+                .background(
+                    GeometryReader { reader in
+                        return Color.backgroundLightest
+                            .onTapGesture {
+                                focusedInput = nil
+                            }
+                            .preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
+                    }
+                )
+                .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
+                .navigationBarStyle(.modal)
             }
-            .font(.regular12)
-            .foregroundColor(.textDarkest)
-            .background(
-                GeometryReader { reader in
-                    return Color.backgroundLightest
-                        .onTapGesture {
-                            focusedInput = nil
-                        }
-                        .preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
+            .onPreferenceChange(ViewSizeKey.self) { offset in
+                model.showExtraSendButton = offset > headerHeight
+            }
+            .coordinateSpace(name: "scroll")
+            .background(Color.backgroundLightest)
+            .fileImporter(
+                isPresented: $model.isFilePickerVisible,
+                allowedContentTypes: [.item],
+                allowsMultipleSelection: false
+            ) { result in
+                switch result {
+                case .success(let urls):
+                    model.addFiles(urls: urls)
+                case .failure:
+                    break
                 }
-            )
-            .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
-            .navigationBarStyle(.modal)
-        }
-        .onPreferenceChange(ViewSizeKey.self) { offset in
-            model.showExtraSendButton = offset > headerHeight
-        }
-        .coordinateSpace(name: "scroll")
-        .background(Color.backgroundLightest)
-        .fileImporter(
-            isPresented: $model.isFilePickerVisible,
-            allowedContentTypes: [.item],
-            allowsMultipleSelection: false
-        ) { result in
-            switch result {
-            case .success(let urls):
-                model.addFiles(urls: urls)
-            case .failure:
-                break
             }
+            .sheet(isPresented: $model.isImagePickerVisible) {
+                ImagePickerViewController(sourceType: .photoLibrary, imageHandler: model.addFile)
+            }
+            .sheet(isPresented: $model.isTakePhotoVisible) {
+                ImagePickerViewController(sourceType: .camera, imageHandler: model.addFile)
+                    .interactiveDismissDisabled()
+            }
+            .sheet(isPresented: $model.isAudioRecordVisible) {
+                AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: model.router, onSelect: model.addFile)
+                    .interactiveDismissDisabled()
+            }
+            .confirmationAlert(
+                isPresented: $model.isShowingCancelDialog,
+                presenting: model.confirmAlert
+            )
         }
-        .sheet(isPresented: $model.isImagePickerVisible) {
-            ImagePickerViewController(sourceType: .photoLibrary, imageHandler: model.addFile)
-        }
-        .sheet(isPresented: $model.isTakePhotoVisible) {
-            ImagePickerViewController(sourceType: .camera, imageHandler: model.addFile)
-                .interactiveDismissDisabled()
-        }
-        .sheet(isPresented: $model.isAudioRecordVisible) {
-            AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: model.router, onSelect: model.addFile)
-                .interactiveDismissDisabled()
-        }
-        .confirmationAlert(
-            isPresented: $model.isShowingCancelDialog,
-            presenting: model.confirmAlert
-        )
+
     }
 
     @ViewBuilder
@@ -298,7 +301,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         .contentShape(Rectangle())
     }
 
-    private var bodyView: some View {
+    @ViewBuilder
+    private func bodyView(geometry: GeometryProxy) -> some View {
         VStack(spacing: 0) {
             HStack {
                 Text("Message", bundle: .core)
@@ -331,7 +335,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 tv.textContainer.lineBreakMode = .byWordWrapping
                 tv.font = UIFont.scaledNamedFont(.regular16)
                 tv.translatesAutoresizingMaskIntoConstraints = false
-                tv.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 2 * defaultHorizontalPaddingValue).isActive = true
+                tv.widthAnchor.constraint(equalToConstant: geometry.frame(in: .global).width - (2 * defaultHorizontalPaddingValue)).isActive = true
                 tv.backgroundColor = .backgroundLightest
                 return tv
             }
