@@ -83,7 +83,7 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
 
     func createEvent(model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
         let useCase = CreateCalendarEvent(
-            context_code: model.calendar.rawContextID,
+            context_code: model.contextCode,
             title: model.title,
             description: model.details,
             start_at: model.processedStartTime,
@@ -100,7 +100,7 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
     func updateEvent(id: String, model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
         let useCase = UpdateCalendarEvent(
             id: id,
-            context_code: model.calendar.rawContextID,
+            context_code: model.contextCode,
             title: model.title,
             description: model.details,
             start_at: model.processedStartTime,

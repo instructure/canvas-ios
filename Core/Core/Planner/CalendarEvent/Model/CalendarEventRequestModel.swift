@@ -24,7 +24,7 @@ public struct CalendarEventRequestModel {
     let isAllDay: Bool
     let startTime: Date
     let endTime: Date
-    let calendar: CDCalendarFilterEntry
+    let contextCode: String
     let location: String?
     let address: String?
     let details: String?
@@ -56,3 +56,31 @@ extension CalendarEventRequestModel {
         }
     }
 }
+
+#if DEBUG
+extension CalendarEventRequestModel {
+    static func make(
+        title: String = "",
+        date: Date =  Clock.now.startOfDay(),
+        isAllDay: Bool = false,
+        startTime: Date = Clock.now.startOfDay(),
+        endTime: Date = Clock.now.startOfDay(),
+        contextCode: String = "",
+        location: String? = nil,
+        address: String? = nil,
+        details: String? = nil
+    ) -> CalendarEventRequestModel {
+        .init(
+            title: title,
+            date: date,
+            isAllDay: isAllDay,
+            startTime: startTime,
+            endTime: endTime,
+            contextCode: contextCode,
+            location: location,
+            address: address,
+            details: details
+        )
+    }
+}
+#endif

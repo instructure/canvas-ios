@@ -77,7 +77,19 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
 #if DEBUG
 
 #Preview {
-    PlannerAssembly.makeEventDetailsScreenPreview()
+    let event = CalendarEvent.save(
+        .make(
+            id: "",
+            title: "Creative Machines and Innovative Instrumentation Conference",
+            description: "We should meet 10 minutes before the event. <a href=\"\">Click here!</a>",
+            location_name: "UCF Department of Mechanical and Aerospace Engineering",
+            location_address: "12760 Pegasus Dr\nOrlando, FL 32816"
+        ),
+        in: PreviewEnvironment().database.viewContext
+    )
+    let contextColor: UIColor = .red
+
+    return PlannerAssembly.makeEventDetailsScreenPreview(event: event, contextColor: contextColor)
 }
 
 #endif

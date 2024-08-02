@@ -21,20 +21,32 @@ import Combine
 import XCTest
 
 class CalendarEventDetailsViewModelTests: CoreTestCase {
-    private let mockInteractor = CalendarEventInteractorMock()
+
+    private var event: CalendarEvent!
+    private var contextColor: UIColor!
+    private var interactor: CalendarEventInteractorPreview!
 
     override func setUp() {
         super.setUp()
-        mockInteractor.mockEvent = nil
-        mockInteractor.mockColor = nil
+        let event: CalendarEvent = databaseClient.insert()
+        self.event = event
+        contextColor = .red
+        interactor = .init()
+        interactor.getCalendarEventResult = .success((event, contextColor))
     }
+
+    override func tearDown() {
+        event = nil
+        contextColor = nil
+        interactor = nil
+        super.tearDown()
+    }
+
+    // MARK: - Fields
 
     func testEventDateFormatting() {
         let startDate = Date(timeIntervalSince1970: 0)
         let endDate = startDate.addMinutes(60)
-        let event: CalendarEvent = databaseClient.insert()
-        mockInteractor.mockEvent = event
-        mockInteractor.mockColor = .red
 
         event.isAllDay = true
         event.startAt = startDate
@@ -59,9 +71,6 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
 
     func testEventSeriesInfo() {
         let startDate = Date(timeIntervalSince1970: 0)
-        let event: CalendarEvent = databaseClient.insert()
-        mockInteractor.mockEvent = event
-        mockInteractor.mockColor = .red
 
         event.startAt = startDate
         let testee = makeViewModel()
@@ -73,10 +82,6 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
     }
 
     func testLocationInfo() {
-        let event: CalendarEvent = databaseClient.insert()
-        mockInteractor.mockEvent = event
-        mockInteractor.mockColor = .red
-
         event.locationName = "test location"
         event.locationAddress = "test address"
         let testee = makeViewModel()
@@ -117,84 +122,222 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
     }
 
     func testEventDetails() {
-        let event: CalendarEvent = databaseClient.insert()
         event.details = "test details"
-        mockInteractor.mockEvent = event
-        mockInteractor.mockColor = .red
 
         let testee = makeViewModel()
+
         XCTAssertEqual(testee.details, .init(title: "Details",
                                              description: "test details",
                                              isRichContent: true))
     }
 
+    // MARK: - Properties
+
     func testOtherProperties() {
-        let event: CalendarEvent = databaseClient.insert()
         event.title = "test title"
         event.contextName = "test context"
-        mockInteractor.mockEvent = event
-        mockInteractor.mockColor = .red
 
         let testee = makeViewModel()
 
         XCTAssertEqual(testee.pageTitle, "Event Details")
         XCTAssertEqual(testee.pageSubtitle, "test context")
-        XCTAssertEqual(testee.contextColor, .red)
+        XCTAssertEqual(testee.contextColor, contextColor)
         XCTAssertEqual(testee.title, "test title")
         XCTAssertEqual(testee.pageViewEvent, .init(eventName: "/calendar"))
     }
 
     func testStates() {
-        let event: CalendarEvent = databaseClient.insert()
-        mockInteractor.mockEvent = event
-        mockInteractor.mockColor = .red
-
         let testee = makeViewModel()
         XCTAssertEqual(testee.state, .data)
 
-        mockInteractor.mockEvent = nil
+        interactor.getCalendarEventResult = .failure(NSError.internalError())
         testee.reload {}
         XCTAssertEqual(testee.state, .error)
     }
 
-    private func makeViewModel(eventId: String = "1") -> CalendarEventDetailsViewModel {
-        .init(eventId: eventId, interactor: mockInteractor, router: router, completion: nil)
+    func testIsMoreButtonEnabled() {
+        let testee = makeViewModel()
+        XCTAssertEqual(testee.isMoreButtonEnabled, true)
+
+        interactor.getCalendarEventResult = .failure(NSError.internalError())
+        testee.reload {}
+        XCTAssertEqual(testee.isMoreButtonEnabled, false)
     }
-}
 
-final private class CalendarEventInteractorMock: CalendarEventInteractor {
+    func testShouldShowMenuButton() {
+        let testee = makeViewModel(userId: "42")
 
-    var mockEvent: CalendarEvent?
-    var mockColor: UIColor?
+        // current user's calendar
+        event.context = .user("42")
+        testee.reload {}
+        XCTAssertEqual(interactor.getManageCalendarPermissionCallsCount, 0)
+        XCTAssertEqual(testee.shouldShowMenuButton, true)
 
-    func getCalendarEvent(
-        id: String,
-        ignoreCache: Bool
-    ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error> {
-        guard let mockEvent, let mockColor else {
-            return Fail(error: NSError.internalError())
+        // another user's calendar (should not happen)
+        event.context = .user("1")
+        testee.reload {}
+        XCTAssertEqual(testee.shouldShowMenuButton, false)
+        XCTAssertEqual(interactor.getManageCalendarPermissionCallsCount, 0)
+
+        // non user/course/group calendar (should not happen)
+        event.context = .account("1")
+        testee.reload {}
+        XCTAssertEqual(testee.shouldShowMenuButton, false)
+        XCTAssertEqual(interactor.getManageCalendarPermissionCallsCount, 0)
+
+        // course calendar, with permission
+        event.context = .course("1")
+        interactor.getManageCalendarPermissionResult = .success(true)
+        testee.reload {}
+        XCTAssertEqual(testee.shouldShowMenuButton, true)
+        XCTAssertEqual(interactor.getManageCalendarPermissionInput?.context, .course("1"))
+        XCTAssertEqual(interactor.getManageCalendarPermissionInput?.ignoreCache, true)
+
+        // course calendar, without permission
+        event.context = .course("1")
+        interactor.getManageCalendarPermissionResult = .success(false)
+        testee.reload {}
+        XCTAssertEqual(testee.shouldShowMenuButton, false)
+
+        // group calendar, with permission
+        event.context = .group("1")
+        interactor.getManageCalendarPermissionResult = .success(true)
+        testee.reload {}
+        XCTAssertEqual(testee.shouldShowMenuButton, true)
+        XCTAssertEqual(interactor.getManageCalendarPermissionInput?.context, .group("1"))
+        XCTAssertEqual(interactor.getManageCalendarPermissionInput?.ignoreCache, true)
+
+        // group calendar, without permission
+        event.context = .group("1")
+        interactor.getManageCalendarPermissionResult = .success(false)
+        testee.reload {}
+        XCTAssertEqual(testee.shouldShowMenuButton, false)
+    }
+
+    func testGetManageCalendarPermissionFailureHandling() {
+        event.context = .user("42")
+        let testee = makeViewModel(userId: "42")
+        XCTAssertEqual(testee.shouldShowMenuButton, true)
+
+        // on failure set to false
+        event.context = .course("1")
+        interactor.getManageCalendarPermissionResult = .failure(NSError.internalError())
+        testee.reload {}
+        XCTAssertEqual(testee.shouldShowMenuButton, false)
+
+        // on reload with success set to result
+        interactor.getManageCalendarPermissionResult = .success(true)
+        testee.reload {}
+        XCTAssertEqual(testee.shouldShowMenuButton, true)
+    }
+
+    // MARK: - Did Tap Edit
+
+    func testDidTapEdit() {
+        let sourceVC = UIViewController()
+        let testee = makeViewModel()
+        testee.didTapEdit.send(WeakViewController(sourceVC))
+
+        guard let lastPresentation = router.viewControllerCalls.last else {
+            return XCTFail()
         }
-        return Just((event: mockEvent, contextColor: mockColor))
-            .setFailureType(to: Error.self)
+        XCTAssertTrue(lastPresentation.0 is CoreHostingController<EditCalendarEventScreen>)
+        XCTAssertEqual(lastPresentation.1, sourceVC)
+        XCTAssertEqual(lastPresentation.2, .modal(isDismissable: false, embedInNav: true))
+
+        XCTAssertEqual(testee.shouldShowDeleteConfirmation, false)
     }
 
-    func getManageCalendarPermission(context: Core.Context, ignoreCache: Bool) -> AnyPublisher<Bool, any Error> {
-        Just(true).setFailureType(to: Error.self).eraseToAnyPublisher()
+    // MARK: - Did Tap Delete
+
+    func testDidTapDelete() {
+        let testee = makeViewModel()
+        testee.didTapDelete.send(.init())
+
+        XCTAssertEqual(testee.shouldShowDeleteConfirmation, true)
+        XCTAssertEqual(testee.shouldShowDeleteError, false)
+        XCTAssertEqual(interactor.deleteEventCallsCount, 0)
+
+        testee.deleteConfirmation.notifyCompletion(option: .one)
+        XCTAssertEqual(interactor.deleteEventCallsCount, 1)
+        XCTAssertEqual(testee.state, .data(loadingOverlay: true))
+        XCTAssertEqual(testee.isMoreButtonEnabled, false)
     }
 
-    func createEvent(model: CalendarEventRequestModel) -> AnyPublisher<Void, any Error> {
-        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    func testDeleteConfirmation() {
+        let testee = makeViewModel()
+
+        updateEventAsPartOfSeries(false)
+        testee.reload {}
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons.count, 1)
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons.first?.title, "Delete")
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons.first?.option, .one)
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons.first?.buttonRole, .destructive)
+
+        updateEventAsPartOfSeries(true)
+        event.isSeriesHead = true
+        testee.reload {}
+        guard testee.deleteConfirmation.confirmButtons.count == 2 else {
+            XCTFail("Invalid confirm button count")
+            return
+        }
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[0].title, "Delete this event")
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[1].title, "Delete all events")
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[0].option, .one)
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[1].option, .all)
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[0].buttonRole, .destructive)
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[1].buttonRole, .destructive)
+
+        updateEventAsPartOfSeries(true)
+        event.isSeriesHead = false
+        testee.reload {}
+        guard testee.deleteConfirmation.confirmButtons.count == 3 else {
+            XCTFail("Invalid confirm button count")
+            return
+        }
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[0].title, "Delete this event")
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[1].title, "Delete all events")
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[2].title, "Delete this and all following events")
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[0].option, .one)
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[1].option, .all)
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[2].option, .following)
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[0].buttonRole, .destructive)
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[1].buttonRole, .destructive)
+        XCTAssertEqual(testee.deleteConfirmation.confirmButtons[2].buttonRole, .destructive)
     }
 
-    func updateEvent(id: String, model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
-        return Empty().eraseToAnyPublisher()
+    func testDeleteEventOnSuccess() {
+        interactor.deleteEventResult = .success
+        let testee = makeViewModel()
+
+        let sourceVC = UIViewController()
+        testee.didTapDelete.send(WeakViewController(sourceVC))
+        testee.deleteConfirmation.notifyCompletion(option: .one)
+
+        XCTAssertEqual(router.popped, sourceVC)
     }
 
-    func deleteEvent(id: String, seriesModificationType: SeriesModificationType?) -> AnyPublisher<Void, any Error> {
-        return Empty().eraseToAnyPublisher()
+    func testDeleteEventOnFailure() {
+        interactor.deleteEventResult = .failure(NSError.internalError())
+        let testee = makeViewModel()
+
+        testee.didTapDelete.send(.init())
+        testee.deleteConfirmation.notifyCompletion(option: .one)
+
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.isMoreButtonEnabled, true)
+        XCTAssertEqual(testee.shouldShowDeleteError, true)
+        XCTAssertEqual(router.popped, nil)
     }
 
-    func isRequestModelValid(_ model: CalendarEventRequestModel?) -> Bool {
-        true
+    // MARK: - Helpers
+
+    private func makeViewModel(eventId: String = "1", userId: String = "") -> CalendarEventDetailsViewModel {
+        .init(eventId: eventId, userId: userId, interactor: interactor, router: router, completion: nil)
+    }
+
+    private func updateEventAsPartOfSeries(_ isPart: Bool) {
+        event.repetitionRule = isPart ? "something" : nil
+        event.seriesInNaturalLanguage = "anything"
     }
 }

@@ -42,3 +42,15 @@ struct DeleteCalendarEventRequest: APIRequestable {
         }
     }
 }
+
+#if DEBUG
+extension DeleteCalendarEventRequest.Body {
+    static func make(
+        which: APICalendarEventSeriesModificationType? = nil
+    ) -> DeleteCalendarEventRequest.Body {
+        .init(
+            which: which
+        )
+    }
+}
+#endif

@@ -20,9 +20,34 @@ import XCTest
 @testable import Core
 
 class CalendarEventTests: CoreTestCase {
+
     func testRoutingURL() {
         let event = CalendarEvent.make()
         let expected = URL(string: "calendar_events/1")
         XCTAssertEqual(event.routingURL, expected)
+    }
+
+    func testIsPartOfSeries() {
+        let event = CalendarEvent.make()
+
+        event.repetitionRule = nil
+        event.seriesInNaturalLanguage = nil
+        XCTAssertEqual(event.isPartOfSeries, false)
+
+        event.repetitionRule = ""
+        event.seriesInNaturalLanguage = ""
+        XCTAssertEqual(event.isPartOfSeries, false)
+
+        event.repetitionRule = "something"
+        event.seriesInNaturalLanguage = nil
+        XCTAssertEqual(event.isPartOfSeries, false)
+
+        event.repetitionRule = nil
+        event.seriesInNaturalLanguage = "anything"
+        XCTAssertEqual(event.isPartOfSeries, false)
+
+        event.repetitionRule = "something"
+        event.seriesInNaturalLanguage = "anything"
+        XCTAssertEqual(event.isPartOfSeries, true)
     }
 }

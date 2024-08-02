@@ -20,49 +20,115 @@
 
 import Combine
 
-class CalendarEventInteractorPreview: CalendarEventInteractor {
-    private let env = PreviewEnvironment()
+final class CalendarEventInteractorPreview: CalendarEventInteractor {
+
+    init() { }
+
+    // MARK: - getCalendarEvent
+
+    var getCalendarEventCallsCount: Int = 0
+    var getCalendarEventInput: String?
+    var getCalendarEventResult: Result<(event: CalendarEvent, contextColor: UIColor), Error>?
+    var getCalendarEventDelay: Double?
 
     func getCalendarEvent(
         id: String,
         ignoreCache: Bool
     ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error> {
-        let result = (
-            event: CalendarEvent.save(
-                .make(
-                    id: .init(id),
-                    title: "Creative Machines and Innovative Instrumentation Conference",
-                    description: "We should meet 10 minutes before the event. <a href=\"\">Click here!</a>",
-                    location_name: "UCF Department of Mechanical and Aerospace Engineering",
-                    location_address: "12760 Pegasus Dr\nOrlando, FL 32816"
-                ),
-                in: env.database.viewContext
-            ),
-            contextColor: UIColor.red
-        )
-        return Just(result)
-            .setFailureType(to: Error.self)
-            .delay(for: 1, scheduler: RunLoop.main)
+        getCalendarEventCallsCount += 1
+        getCalendarEventInput = id
+
+        if let getCalendarEventResult {
+            if let getCalendarEventDelay {
+                return getCalendarEventResult.publisher
+                    .delay(for: RunLoop.SchedulerTimeType.Stride(getCalendarEventDelay), scheduler: RunLoop.main)
+            } else {
+                return getCalendarEventResult.publisher
+            }
+        } else {
+            return Empty().eraseToAnyPublisher()
+        }
     }
+
+    // MARK: - getManageCalendarPermission
+
+    var getManageCalendarPermissionCallsCount: Int = 0
+    var getManageCalendarPermissionInput: (context: Context, ignoreCache: Bool)?
+    var getManageCalendarPermissionResult: Result<Bool, Error>? = .success(true)
 
     func getManageCalendarPermission(context: Context, ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
-        return Empty().eraseToAnyPublisher()
+        getManageCalendarPermissionCallsCount += 1
+        getManageCalendarPermissionInput = (context: context, ignoreCache: ignoreCache)
+
+        if let getManageCalendarPermissionResult {
+            return getManageCalendarPermissionResult.publisher.eraseToAnyPublisher()
+        } else {
+            return Empty().eraseToAnyPublisher()
+        }
     }
+
+    // MARK: - createEvent
+
+    var createEventCallsCount: Int = 0
+    var createEventInput: CalendarEventRequestModel?
+    var createEventResult: Result<Void, Error>? = .success
 
     func createEvent(model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
-        return Empty().eraseToAnyPublisher()
+        createEventCallsCount += 1
+        createEventInput = model
+
+        if let createEventResult {
+            return createEventResult.publisher.eraseToAnyPublisher()
+        } else {
+            return Empty().eraseToAnyPublisher()
+        }
     }
+
+    // MARK: - updateEvent
+
+    var updateEventCallsCount: Int = 0
+    var updateEventInput: (id: String, model: CalendarEventRequestModel)?
+    var updateEventResult: Result<Void, Error>? = .success
 
     func updateEvent(id: String, model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
-        return Empty().eraseToAnyPublisher()
+        updateEventCallsCount += 1
+        updateEventInput = (id: id, model: model)
+
+        if let updateEventResult {
+            return updateEventResult.publisher.eraseToAnyPublisher()
+        } else {
+            return Empty().eraseToAnyPublisher()
+        }
     }
+
+    // MARK: - deleteEvent
+
+    var deleteEventCallsCount: Int = 0
+    var deleteEventInput: (id: String, seriesModificationType: SeriesModificationType?)?
+    var deleteEventResult: Result<Void, Error>? = .success
 
     func deleteEvent(id: String, seriesModificationType: SeriesModificationType?) -> AnyPublisher<Void, any Error> {
-        return Empty().eraseToAnyPublisher()
+        deleteEventCallsCount += 1
+        deleteEventInput = (id: id, seriesModificationType: seriesModificationType)
+
+        if let deleteEventResult {
+            return deleteEventResult.publisher.eraseToAnyPublisher()
+        } else {
+            return Empty().eraseToAnyPublisher()
+        }
     }
 
+    // MARK: - isRequestModelValid
+
+    var isRequestModelValidCallsCount: Int = 0
+    var isRequestModelValidInput: CalendarEventRequestModel?
+    var isRequestModelValidResult: Bool = true
+
     func isRequestModelValid(_ model: CalendarEventRequestModel?) -> Bool {
-        true
+        isRequestModelValidCallsCount += 1
+        isRequestModelValidInput = model
+
+        return isRequestModelValidResult
     }
 }
 

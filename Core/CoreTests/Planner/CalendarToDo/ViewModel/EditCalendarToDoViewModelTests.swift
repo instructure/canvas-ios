@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
 import XCTest
+@testable import Core
 
 final class EditCalendarToDoViewModelTests: CoreTestCase {
 
@@ -25,8 +25,8 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         static let id = "some id"
         static let title = "some title"
         static let details = "some details"
-        static let dateNow = DateComponents(calendar: .current, year: 2024, month: 1, day: 1, hour: 14).date!
-        static let dateEarlier = DateComponents(calendar: .current, year: 2023, month: 8, day: 8, hour: 8).date!
+        static let dateNow = Clock.date(year: 2024, month: 1, day: 1, hour: 14)
+        static let dateEarlier = Clock.date(year: 2023, month: 8, day: 8, hour: 8)
         static let calendars: [(name: String, context: Context)] = [
             ("Course 2", .course("2")),
             ("Course 1", .course("1")),
@@ -387,6 +387,19 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         XCTAssertEqual(hasGroupCalendars, false)
     }
 
+    func testShowCalendarScreen() {
+        let sourceVC = UIViewController()
+        let testee = makeAddViewModel()
+        testee.showCalendarSelector.send(WeakViewController(sourceVC))
+
+        guard let lastPresentation = router.viewControllerCalls.last else {
+            return XCTFail()
+        }
+        XCTAssertTrue(lastPresentation.0 is CoreHostingController<SelectCalendarScreen>)
+        XCTAssertEqual(lastPresentation.1, sourceVC)
+        XCTAssertEqual(lastPresentation.2, .push)
+    }
+
     func testSelectCalendarViewModelSelectsCalendar() {
         let testee = makeAddViewModel()
 
@@ -432,7 +445,8 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
                 todo_date: todoDate
             ),
             contextName: nil,
-            in: databaseClient)
+            in: databaseClient
+        )
         plannable.context = context
         return plannable
     }
