@@ -67,8 +67,9 @@ public enum PlannerAssembly {
         env: AppEnvironment = .shared,
         completion: ((Completion) -> Void)? = nil
     ) -> UIViewController {
+        let currentUserId = env.currentSession?.actAsUserID ?? env.currentSession?.userID ?? ""
         let interactor = CalendarEventInteractorLive()
-        let viewModel = CalendarEventDetailsViewModel(eventId: eventId, interactor: interactor, router: env.router, completion: completion)
+        let viewModel = CalendarEventDetailsViewModel(eventId: eventId, userId: currentUserId, interactor: interactor, router: env.router, completion: completion)
         let view = CalendarEventDetailsScreen(viewModel: viewModel)
         let host = CoreHostingController(view)
         return host
@@ -86,9 +87,11 @@ public enum PlannerAssembly {
         return EditCalendarEventScreen(viewModel: viewModel)
     }
 
-    public static func makeEventDetailsScreenPreview(env: AppEnvironment = .shared) -> some View {
+    public static func makeEventDetailsScreenPreview(event: CalendarEvent, contextColor: UIColor, env: AppEnvironment = .shared) -> some View {
         let interactor = CalendarEventInteractorPreview()
-        let viewModel = CalendarEventDetailsViewModel(eventId: "1", interactor: interactor, router: env.router, completion: nil)
+        interactor.getCalendarEventResult = .success((event, contextColor))
+        interactor.getCalendarEventDelay = 1
+        let viewModel = CalendarEventDetailsViewModel(eventId: "1", userId: "", interactor: interactor, router: env.router, completion: nil)
         return CalendarEventDetailsScreen(viewModel: viewModel)
     }
 

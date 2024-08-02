@@ -145,7 +145,6 @@ final class EditCalendarEventViewModel: ObservableObject {
         subscribeIsFieldsTouched(to: $isAllDay)
         subscribeIsFieldsTouched(to: $startTime)
         subscribeIsFieldsTouched(to: $endTime)
-        subscribeIsFieldsTouched(to: $date)
         subscribeIsFieldsTouched(to: $location)
         subscribeIsFieldsTouched(to: $address)
         subscribeIsFieldsTouched(to: $details)
@@ -306,7 +305,7 @@ final class EditCalendarEventViewModel: ObservableObject {
             isAllDay: isAllDay,
             startTime: startTime,
             endTime: endTime,
-            calendar: calendar,
+            contextCode: calendar.rawContextID,
             location: location.nilIfEmpty,
             address: address.nilIfEmpty,
             details: details.nilIfEmpty
