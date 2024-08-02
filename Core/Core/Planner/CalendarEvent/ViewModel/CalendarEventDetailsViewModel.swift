@@ -63,6 +63,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
 
     public init(
         eventId: String,
+        userId: String,
         interactor: CalendarEventInteractor,
         router: Router,
         completion: ((PlannerAssembly.Completion) -> Void)?
@@ -84,7 +85,8 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
         event
             .compactMap { $0 }
             .flatMap { [weak self] in
-                return self?.canManageEvent(context: $0.context) ?? Empty().eraseToAnyPublisher()
+                return self?.canManageEvent(context: $0.context, userId: userId)
+                    ?? Empty().eraseToAnyPublisher()
             }
             .sink { [weak self] in
                 self?.shouldShowMenuButton = $0
@@ -182,13 +184,10 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func canManageEvent(context: Context) -> AnyPublisher<Bool, Never> {
-        // TODO: inject
-        let currentUserid = AppEnvironment.shared.currentSession?.actAsUserID ?? AppEnvironment.shared.currentSession?.userID ?? ""
-
+    private func canManageEvent(context: Context, userId: String) -> AnyPublisher<Bool, Never> {
         return switch context.contextType {
         case .user:
-            Just(context.id == currentUserid).eraseToAnyPublisher()
+            Just(context.id == userId).eraseToAnyPublisher()
         case .course, .group:
             interactor.getManageCalendarPermission(context: context, ignoreCache: true)
                 .catch { _ in
@@ -218,15 +217,6 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
         router.show(vc, from: source, options: .modal(isDismissable: false, embedInNav: true))
     }
 
-    private let deleteSingleItemConfirmation = ConfirmationViewModel(
-        title: String(localized: "Delete Event?", bundle: .core),
-        message: String(localized: "This will permanently delete your Event.", bundle: .core),
-        cancelButtonTitle: String(localized: "Cancel", bundle: .core),
-        confirmButtonTitle: String(localized: "Delete", bundle: .core),
-        isDestructive: true,
-        confirmValue: SeriesModificationType.one
-    )
-
     private func makeDeleteConfirmation(event: CalendarEvent) -> ConfirmationViewModel<SeriesModificationType> {
         if event.isPartOfSeries {
             ConfirmationViewModel(
@@ -254,6 +244,15 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
             deleteSingleItemConfirmation
         }
     }
+
+    private let deleteSingleItemConfirmation = ConfirmationViewModel(
+        title: String(localized: "Delete Event?", bundle: .core),
+        message: String(localized: "This will permanently delete your Event.", bundle: .core),
+        cancelButtonTitle: String(localized: "Cancel", bundle: .core),
+        confirmButtonTitle: String(localized: "Delete", bundle: .core),
+        isDestructive: true,
+        confirmValue: SeriesModificationType.one
+    )
 
     private func deleteToDo(option: SeriesModificationType, from source: WeakViewController) {
         state = .data(loadingOverlay: true)

@@ -19,26 +19,27 @@
 import XCTest
 @testable import Core
 
-final class DeletePlannerNoteTests: CoreTestCase {
+final class DeleteCalendarEventTests: CoreTestCase {
 
     func testRequest() {
-        let testee = DeletePlannerNote(id: "42")
+        let testee = DeleteCalendarEvent(id: "42", seriesModificationType: .following)
         XCTAssertEqual(testee.request.id, "42")
+        XCTAssertEqual(testee.request.body?.which, .following)
     }
 
     func testWrite() {
-        Plannable.save(.make(id: "1"), contextName: nil, in: databaseClient)
-        Plannable.save(.make(id: "2"), contextName: nil, in: databaseClient)
-        Plannable.save(.make(id: "3"), contextName: nil, in: databaseClient)
-        let testee = DeletePlannerNote(id: "2")
+        CalendarEvent.save(.make(id: "1"), in: databaseClient)
+        CalendarEvent.save(.make(id: "2"), in: databaseClient)
+        CalendarEvent.save(.make(id: "3"), in: databaseClient)
+        let testee = DeleteCalendarEvent(id: "2", seriesModificationType: nil)
 
         testee.write(response: nil, urlResponse: nil, to: databaseClient)
 
-        let plannable1: Plannable? = databaseClient.first(where: #keyPath(Plannable.id), equals: "1")
-        let plannable2: Plannable? = databaseClient.first(where: #keyPath(Plannable.id), equals: "2")
-        let plannable3: Plannable? = databaseClient.first(where: #keyPath(Plannable.id), equals: "3")
-        XCTAssertEqual(plannable1?.id, "1")
-        XCTAssertEqual(plannable2?.id, nil)
-        XCTAssertEqual(plannable3?.id, "3")
+        let event1: CalendarEvent? = databaseClient.first(where: #keyPath(CalendarEvent.id), equals: "1")
+        let event2: CalendarEvent? = databaseClient.first(where: #keyPath(CalendarEvent.id), equals: "2")
+        let event3: CalendarEvent? = databaseClient.first(where: #keyPath(CalendarEvent.id), equals: "3")
+        XCTAssertEqual(event1?.id, "1")
+        XCTAssertEqual(event2?.id, nil)
+        XCTAssertEqual(event3?.id, "3")
     }
 }
