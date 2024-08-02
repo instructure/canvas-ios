@@ -23,7 +23,7 @@ class CalendarFilterEntryProviderStudentTests: CoreTestCase {
 
     func testFetch() {
         AppEnvironment.shared.currentSession = .init(
-            baseURL: .stub,
+            baseURL: .make(),
             userID: "testStudentId",
             userName: "testStudent"
         )

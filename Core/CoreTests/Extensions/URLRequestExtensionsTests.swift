@@ -22,7 +22,7 @@ import Core
 class URLRequestExtensionsTests: XCTestCase {
 
     func testBoundary() {
-        var testee = URLRequest(url: .stub)
+        var testee = URLRequest(url: .make())
         testee.setValue("multipart/form-data; charset=utf-8; boundary=\"testBoundary\"", forHTTPHeaderField: HttpHeader.contentType)
         XCTAssertEqual(testee.boundary, "testBoundary")
     }

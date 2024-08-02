@@ -26,7 +26,7 @@ class DiscussionWebPageViewModelTests: CoreTestCase {
     func testURLWithoutSession() {
         AppEnvironment.shared.currentSession = nil
         let testee = EmbeddedWebPageViewModelLive(context: .course("1"), webPageType: .discussion(id: "123"))
-        XCTAssertEqual(testee.url, .stub)
+        XCTAssertEqual(testee.url, .make())
     }
 
     func testCourseURL() {

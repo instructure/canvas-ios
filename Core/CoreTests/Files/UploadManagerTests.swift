@@ -141,7 +141,7 @@ class UploadManagerTests: CoreTestCase {
         try context.save()
         XCTAssertTrue(file.isUploading)
         let data = try encoder.encode(APIFile.make(id: "1"))
-        let task = manager.backgroundSession.dataTask(with: URLRequest(url: .stub))
+        let task = manager.backgroundSession.dataTask(with: URLRequest(url: .make()))
         task.taskID = "1"
         manager.urlSession(manager.backgroundSession, dataTask: task, didReceive: data)
         manager.urlSession(manager.backgroundSession, task: task, didCompleteWithError: nil)
@@ -161,9 +161,9 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertTrue(fileManager.fileExists(atPath: oneURL.path))
         XCTAssertTrue(fileManager.fileExists(atPath: twoURL.path))
         LoginSession.add(currentSession)
-        let task1 = manager.backgroundSession.dataTask(with: URLRequest(url: .stub))
+        let task1 = manager.backgroundSession.dataTask(with: URLRequest(url: .make()))
         task1.taskID = "1"
-        let task2 = manager.backgroundSession.dataTask(with: URLRequest(url: .stub))
+        let task2 = manager.backgroundSession.dataTask(with: URLRequest(url: .make()))
         task2.taskID = "2"
         mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["1", "2"], taskID: "3")
 
@@ -201,7 +201,7 @@ class UploadManagerTests: CoreTestCase {
         file.taskID = "1"
         file.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         try context.save()
-        let task = manager.backgroundSession.dataTask(with: URLRequest(url: .stub))
+        let task = manager.backgroundSession.dataTask(with: URLRequest(url: .make()))
         task.taskID = "1"
         manager.urlSession(manager.backgroundSession, task: task, didCompleteWithError: NSError.instructureError("invalid request"))
         let notification = notificationCenter.requests.last
@@ -246,7 +246,7 @@ class UploadManagerTests: CoreTestCase {
         file.size = 101
         file.bytesSent = 0
         try context.save()
-        let task = manager.backgroundSession.dataTask(with: .stub)
+        let task = manager.backgroundSession.dataTask(with: .make())
         task.taskID = "1"
         manager.urlSession(
             manager.backgroundSession,

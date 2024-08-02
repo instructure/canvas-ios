@@ -60,7 +60,7 @@ struct CoreWebViewContentErrorView: View {
 struct CoreWebViewContentErrorView_Previews: PreviewProvider {
     static var previews: some View {
         CoreWebViewContentErrorView {
-            CoreWebViewContentErrorViewModel(urlToOpenInBrowser: .stub)
+            CoreWebViewContentErrorViewModel(urlToOpenInBrowser: .make())
         }
         CoreWebViewContentErrorView {
             CoreWebViewContentErrorViewModel(urlToOpenInBrowser: nil)

@@ -83,7 +83,7 @@ class FileProgressListViewModelTests: CoreTestCase {
 
     func testOneFileReadyForUploadOtherIsUploading() {
         let file1 = makeFile()
-        file1.uploadTarget = FileUploadTarget(upload_url: .stub, upload_params: [:])
+        file1.uploadTarget = FileUploadTarget(upload_url: .make(), upload_params: [:])
         let file2 = makeFile()
         file2.bytesUploaded = 5
         saveFiles()

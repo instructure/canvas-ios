@@ -27,7 +27,7 @@ class PDFDocumentProviderExtensionsTests: CoreTestCase {
         let docViewerRotationMetadata = APIDocViewerMetadata(annotations: nil,
                                                              panda_push: nil,
                                                              rotations: ["0": 90],
-                                                             urls: .init(pdf_download: .stub))
+                                                             urls: .init(pdf_download: .make()))
 
         // WHEN
         providers.documentProvider.applyRotation(from: docViewerRotationMetadata)

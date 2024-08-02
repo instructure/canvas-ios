@@ -225,8 +225,8 @@ public extension URL {
 
     #if DEBUG
 
-    static var stub: URL {
-        URL(string: "/")!
+    static func make(_ string: String = "/") -> URL {
+        URL(string: string)!
     }
 
     #endif

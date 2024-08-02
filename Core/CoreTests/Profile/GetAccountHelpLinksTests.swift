@@ -42,9 +42,9 @@ class GetAccountHelpLinksTests: CoreTestCase {
     func testWriteCustom() {
         GetAccountHelpLinks(for: .student).write(response: .make(custom_help_links: [
             .instructorQuestion,
-            .make(id: "1", text: "Parent", subtext: nil, available_to: [.observer], url: .stub),
-            .make(id: "2", text: "Teacher", subtext: nil, available_to: [.teacher], url: .stub),
-            .make(id: "3", text: "Student", subtext: nil, available_to: [.student], url: .stub)
+            .make(id: "1", text: "Parent", subtext: nil, available_to: [.observer], url: .make()),
+            .make(id: "2", text: "Teacher", subtext: nil, available_to: [.teacher], url: .make()),
+            .make(id: "3", text: "Student", subtext: nil, available_to: [.student], url: .make())
         ]), urlResponse: nil, to: databaseClient)
 
         let observer: [HelpLink] = databaseClient.fetch(scope: GetAccountHelpLinks(for: .observer).scope)
@@ -81,9 +81,9 @@ class GetAccountHelpLinksTests: CoreTestCase {
 
     func testAvailableTo() {
         GetAccountHelpLinks(for: .student).write(response: .make(custom_help_links: [
-            .make(id: "1", text: "Parent", subtext: nil, available_to: [.observer, .unenrolled], url: .stub),
-            .make(id: "2", text: "Teacher", subtext: nil, available_to: [.teacher, .unenrolled], url: .stub),
-            .make(id: "3", text: "Student", subtext: nil, available_to: [.student, .unenrolled], url: .stub)
+            .make(id: "1", text: "Parent", subtext: nil, available_to: [.observer, .unenrolled], url: .make()),
+            .make(id: "2", text: "Teacher", subtext: nil, available_to: [.teacher, .unenrolled], url: .make()),
+            .make(id: "3", text: "Student", subtext: nil, available_to: [.student, .unenrolled], url: .make())
         ]), urlResponse: nil, to: databaseClient)
 
         let observer: [HelpLink] = databaseClient.fetch(scope: GetAccountHelpLinks(for: .observer).scope)

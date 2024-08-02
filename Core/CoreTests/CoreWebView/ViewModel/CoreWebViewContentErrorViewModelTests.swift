@@ -22,7 +22,7 @@ import XCTest
 class CoreWebViewContentErrorViewModelTests: XCTestCase {
 
     func testSubtitleWhenURLAvailable() {
-        let testee = CoreWebViewContentErrorViewModel(urlToOpenInBrowser: .stub)
+        let testee = CoreWebViewContentErrorViewModel(urlToOpenInBrowser: .make())
         XCTAssertEqual(testee.subtitle,
                        "Something went wrong beyond our control.\nYou can try to open the page in a browser.")
     }
@@ -34,7 +34,7 @@ class CoreWebViewContentErrorViewModelTests: XCTestCase {
     }
 
     func testOpenInBrowserButtonDisplayWhenURLAvailable() {
-        let testee = CoreWebViewContentErrorViewModel(urlToOpenInBrowser: .stub)
+        let testee = CoreWebViewContentErrorViewModel(urlToOpenInBrowser: .make())
         XCTAssertTrue(testee.shouldDisplayOpenInBrowserButton)
     }
 

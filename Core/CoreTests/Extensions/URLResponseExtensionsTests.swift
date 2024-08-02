@@ -42,7 +42,7 @@ class URLResponseExtensionsTests: XCTestCase {
 
     func testUnauthorized() {
         let unautorizedResponse = HTTPURLResponse(
-            url: .stub,
+            url: .make(),
             statusCode: 401,
             httpVersion: nil,
             headerFields: nil
@@ -50,7 +50,7 @@ class URLResponseExtensionsTests: XCTestCase {
         XCTAssertTrue(unautorizedResponse.isUnauthorized)
 
         let forbiddenResponse = HTTPURLResponse(
-            url: .stub,
+            url: .make(),
             statusCode: 403,
             httpVersion: nil,
             headerFields: nil
@@ -58,7 +58,7 @@ class URLResponseExtensionsTests: XCTestCase {
         XCTAssertFalse(forbiddenResponse.isUnauthorized)
 
         let createdResponse = HTTPURLResponse(
-            url: .stub,
+            url: .make(),
             statusCode: 201,
             httpVersion: nil,
             headerFields: nil
@@ -66,7 +66,7 @@ class URLResponseExtensionsTests: XCTestCase {
         XCTAssertFalse(createdResponse.isUnauthorized)
 
         let nonHttpURLResponse = URLResponse(
-            url: .stub,
+            url: .make(),
             mimeType: nil,
             expectedContentLength: 0,
             textEncodingName: nil

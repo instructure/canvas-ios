@@ -28,7 +28,7 @@ class UserTests: CoreTestCase {
             name: "John Doe",
             sortable_name: "Doe, John",
             short_name: "JD",
-            avatar_url: .stub,
+            avatar_url: .make(),
             enrollments: [.make(user_id: "1", role: "Custom Role")],
             email: "john@doe.com"
         )
@@ -37,7 +37,7 @@ class UserTests: CoreTestCase {
         XCTAssertEqual(user.name, "John Doe")
         XCTAssertEqual(user.sortableName, "Doe, John")
         XCTAssertEqual(user.shortName, "JD")
-        XCTAssertEqual(user.avatarURL, .stub)
+        XCTAssertEqual(user.avatarURL, .make())
         XCTAssertEqual(user.email, "john@doe.com")
         XCTAssertNotNil(user.enrollments)
         XCTAssertEqual(user.enrollments.count, 1)

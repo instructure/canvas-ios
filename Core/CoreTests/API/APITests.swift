@@ -192,7 +192,7 @@ class APITests: XCTestCase {
 
     func testNoFollowRedirect() {
         let expectation = XCTestExpectation(description: "handler called")
-        let url = URL.stub
+        let url = URL.make()
         NoFollowRedirect().urlSession(
             URLSession.noFollowRedirect,
             task: URLSession.noFollowRedirect.dataTask(with: accountResultsUrl),

@@ -71,7 +71,7 @@ class BackgroundURLSessionProviderTests: CoreTestCase {
         XCTAssertNil(mockUploadProgressObserversCache.receivedProgressUpdate)
         XCTAssertNil(mockUploadProgressObserversCache.receivedCompletionError)
         XCTAssertNil(mockUploadProgressObserversCache.receivedData)
-        let mockTask = api.urlSession.dataTask(with: .stub)
+        let mockTask = api.urlSession.dataTask(with: .make())
 
         testee.urlSession(api.urlSession, task: mockTask, didSendBodyData: 1, totalBytesSent: 2, totalBytesExpectedToSend: 3)
 

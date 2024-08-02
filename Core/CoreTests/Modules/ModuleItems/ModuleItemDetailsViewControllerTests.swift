@@ -213,7 +213,7 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
 
         api.mock(controller.store, value: .make(
             id: "3",
-            url: .stub,
+            url: .make(),
             completion_requirement: .make(type: .must_view, completed: false)
         ))
         controller.view.layoutIfNeeded()
@@ -231,7 +231,7 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
 
         api.mock(controller.store, value: .make(
             id: "3",
-            url: .stub,
+            url: .make(),
             completion_requirement: .make(type: .must_view, completed: nil)
         ))
         controller.view.layoutIfNeeded()

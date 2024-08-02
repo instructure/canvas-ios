@@ -58,7 +58,7 @@ class MockFilePreviewProvider: FilePreviewProvider {
         self.mockResult = resultSubject.eraseToAnyPublisher()
         self.previewData = previewData
         self.error = error
-        super.init(url: .stub)
+        super.init(url: .make())
     }
 
     override func load() {

@@ -92,7 +92,7 @@ public class MiniCanvasServer {
             _ routeRequest: R,
             handler: @escaping (APIRequest<R.Body?>) throws -> R.Response?
         ) -> Endpoint where R.Body: Decodable {
-            let urlRequest = try! routeRequest.urlRequest(relativeTo: .stub, accessToken: "", actAsUserID: "")
+            let urlRequest = try! routeRequest.urlRequest(relativeTo: .make(), accessToken: "", actAsUserID: "")
             return .rest(urlRequest.url!.path, method: routeRequest.method) { request in
                 let request = request.mapBody { try? APIJSONDecoder().decode(R.Body.self, from: $0) }
                 guard let response = try handler(request) else {
@@ -141,7 +141,7 @@ public class MiniCanvasServer {
     }
 
     public func expectationFor<R: APIRequestable>(request: R) -> MiniCanvasExpectation {
-        let urlRequest = try! request.urlRequest(relativeTo: .stub, accessToken: "", actAsUserID: "")
+        let urlRequest = try! request.urlRequest(relativeTo: .make(), accessToken: "", actAsUserID: "")
         return expectationForRequest(urlRequest.url!.path, method: request.method)
     }
 
