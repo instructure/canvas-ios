@@ -18,75 +18,169 @@
 
 private class DarkModeForWebDiscussions: CoreWebViewFeature {
     private let script: String = {
-        let textDark = UIColor.textDark.hexString(userInterfaceStyle: .dark)
-        let textDarkest = UIColor.textDark.hexString(userInterfaceStyle: .dark)
-        let backgroundLightest = UIColor.backgroundLightest.hexString(userInterfaceStyle: .dark)
+        let textLight = UIColor.textDark.hexString(userInterfaceStyle: .dark)
+        let textLightest = UIColor.textDarkest.hexString(userInterfaceStyle: .dark)
+        let backgroundDarkest = UIColor.backgroundLightest.hexString(userInterfaceStyle: .dark)
         let darkCss = """
         @media (prefers-color-scheme: dark) {
             body {
-                background: \(backgroundLightest);
+                background: \(backgroundDarkest);
             }
-            div[data-testid="discussion-topic-container"] {
-                color: \(textDarkest);
-            }
-            div[data-testid="discussion-root-entry-container"] {
-                color: \(textDarkest);
+            div[data-testid="discussion-topic-container"],
+            div[data-testid="discussion-root-entry-container"]{
+                color: \(textLightest);
             }
 
             span[data-testid="mobile-Designer"],
             span[data-testid="mobile-TA"],
             span[data-testid="mobile-Teacher"],
             span[data-testid="mobile-Author"] {
-                color: \(textDark);
+                color: \(textLight);
             }
 
             /* 3 dots for discussion post actions */
             svg[name="IconMore"] {
-                color: \(textDarkest) !important;
+                color: \(textLightest) !important;
             }
 
             /* Sort and filter bar background */
             .css-sg1rn7-view {
-                background-color: \(backgroundLightest) !important;
-                color: \(textDark) !important;
+                background-color: \(backgroundDarkest) !important;
+                color: \(textLight) !important;
             }
 
             /* No results panda */
             .css-1eo48d6-view-billboard {
-                background-color: \(backgroundLightest) !important;
+                background-color: \(backgroundDarkest) !important;
             }
             .css-10v72nd-view-heading {
-                color: \(textDarkest) !important;
+                color: \(textLightest) !important;
             }
             .css-x8g1lf-billboard__message {
-                color: \(textDark) !important;
+                color: \(textLight) !important;
             }
 
+            button[data-testid="groups-menu-btn"] span,
+            button[data-testid="sortButton"] span,
+            button[data-testid="ExpandCollapseThreads-button"] span,
+            button[data-testid="splitscreenButton"] span {
+                color: \(textLightest);
+                background: \(backgroundDarkest);
+                border-top-color: \(textLight);
+                border-right-color: \(textLight);
+                border-bottom-color: \(textLight);
+                border-left-color: \(textLight);
+            }
+
+            /* View dropdown */
+            ul[role="listbox"] li span {
+                color: \(textLightest);
+                background: \(backgroundDarkest);
+            }
+            /* Selected List Item */
+            span[aria-selected="true"] {
+                color: \(backgroundDarkest) !important;
+                background: \(textLight) !important;
+            }
+            input[role="combobox"] {
+                color: \(textLightest) !important;
+                background: \(backgroundDarkest) !important;
+            }
+
+            /* Kebab menu */
+            ul[role="menu"] li span {
+                color: \(textLightest);
+                background-color: \(backgroundDarkest);
+            }
+            ul[role="menu"] {
+                background: \(backgroundDarkest);
+            }
+
+            /* Search bar */
+            .css-1jienkz-textInput__facade,
+            .css-z3sx20-textInput__facade,
+            button[data-testid="manage-assign-to"] span {
+                color: \(textLightest) !important;
+                background: \(backgroundDarkest) !important;
+            }
+            input[data-testid="search-filter"]::placeholder,
+            input[data-testid="search-filter"],
+            input[data-testid="search-filter"]:focus,
+            button[data-testid="clear-search-button"] span {
+                color: \(textLightest) !important;
+            }
+
+            /********************/
             /* Edit post dialog */
+            /********************/
+
             #discussion-details-tab {
-                background: \(backgroundLightest);
+                background: \(backgroundDarkest);
             }
             #discussion-title {
-                background: \(backgroundLightest);
-                color: \(textDarkest) !important;
+                background: \(backgroundDarkest);
+                color: \(textLightest) !important;
             }
             /* "Post to" header */
             .css-j68kdy-formFieldLabel {
-                color: \(textDarkest) !important;
+                color: \(textLightest) !important;
             }
             /* Options header */
             .control-label {
-                color: \(textDark) !important;
+                color: \(textLight) !important;
             }
             /* Checkbox text */
             .control-group {
-                color: \(textDarkest);
+                color: \(textLightest);
             }
 
             /* Available From / Until */
             #delayed_post_at, #lock_at {
-                color: \(textDark);
-                background: \(backgroundLightest);
+                color: \(textLight);
+                background: \(backgroundDarkest);
+            }
+
+            /* Options Section Header */
+            .css-mum2ig-text {
+                color: \(textLightest);
+            }
+            /* Participants must respond... label */
+            .css-1ek001j-checkboxFacade__label {
+                color: \(textLightest) !important;
+            }
+
+            /* Allow liking label */
+            .css-1ek001j-checkboxFacade__label {
+                color: \(textLightest) !important;
+            }
+
+            /* Group settings cannot be changed warning box. */
+            span[data-testid="group-category-not-editable"] div {
+                color: \(textLightest);
+            }
+            .css-qfe6jw {
+                background: \(backgroundDarkest);
+            }
+
+            #TextInput_1 {
+                color: \(textLightest);
+            }
+
+            /* Anonym discussion radio buttons*/
+            .css-dx107t-radioInput__label {
+                color: \(textLightest) !important;
+            }
+
+            /* Assign to */
+            span[data-testid="module-item-edit-tray"],
+            span[data-testid="module-item-edit-tray-footer"] div {
+                background: \(backgroundDarkest);
+            }
+
+            /* Assign to header */
+            .css-1p1yt21-view-flexItem,
+            .css-12w1q2i-baseButton__content {
+                color: \(textLightest) !important;
             }
         }
         """
