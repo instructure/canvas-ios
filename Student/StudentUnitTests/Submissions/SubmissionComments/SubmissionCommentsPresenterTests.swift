@@ -68,7 +68,7 @@ class SubmissionCommentsPresenterTests: StudentTestCase {
     func testAddMediaComment() {
         view.expectError = expectation(description: "error")
         view.expectError?.assertForOverFulfill = false
-        presenter.addMediaComment(type: .audio, url: URL(string: "/")!)
+        presenter.addMediaComment(type: .audio, url: .make())
         wait(for: [view.expectError!], timeout: 5)
         XCTAssertNotNil(view.error)
     }

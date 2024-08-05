@@ -33,7 +33,7 @@ class CourseSyncEntryTests: XCTestCase {
         let testee = CourseSyncEntry.File(id: "courses/3/files/2",
                                           displayName: "",
                                           fileName: "",
-                                          url: URL(string: "/")!,
+                                          url: .make(),
                                           mimeClass: "",
                                           updatedAt: nil,
                                           bytesToDownload: 0)

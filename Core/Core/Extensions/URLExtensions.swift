@@ -222,6 +222,14 @@ public extension URL {
         components.scheme = scheme
         return components.url
     }
+
+    #if DEBUG
+
+    static func make(_ string: String = "/") -> URL {
+        URL(string: string)!
+    }
+
+    #endif
 }
 
 public extension URL {

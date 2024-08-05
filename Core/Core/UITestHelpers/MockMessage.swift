@@ -78,7 +78,7 @@ public class MockHTTPResponse: Codable {
         }
 
         self.init(data: data,
-                  http: HTTPURLResponse(url: URL(string: "/")!, statusCode: 200, httpVersion: nil, headerFields: nil))
+                  http: HTTPURLResponse(url: .make(), statusCode: 200, httpVersion: nil, headerFields: nil))
     }
 
     required public init(from decoder: Decoder) throws {
@@ -107,7 +107,7 @@ public class MockHTTPResponse: Codable {
     }
 
     public static var noContent: MockHTTPResponse {
-        MockHTTPResponse(http: HTTPURLResponse(url: URL(string: "/")!, statusCode: 204, httpVersion: nil, headerFields: [:]))
+        MockHTTPResponse(http: HTTPURLResponse(url: .make(), statusCode: 204, httpVersion: nil, headerFields: [:]))
     }
 }
 

@@ -26,7 +26,7 @@ class ContextBaseURLInteractorTests: CoreTestCase {
         let testee = ContextBaseURLInteractor(api: api)
 
         let mockRequest = GetContextHead(context: context)
-        let mockResponse = HTTPURLResponse(url: URL(string: "/")!,
+        let mockResponse = HTTPURLResponse(url: .make(),
                                            statusCode: 200,
                                            httpVersion: nil,
                                            headerFields: [
@@ -52,7 +52,7 @@ class ContextBaseURLInteractorTests: CoreTestCase {
         let testee = ContextBaseURLInteractor(api: api)
 
         let mockRequest = GetContextHead(context: context)
-        let mockResponse = HTTPURLResponse(url: URL(string: "/")!,
+        let mockResponse = HTTPURLResponse(url: .make(),
                                            statusCode: 200,
                                            httpVersion: nil,
                                            headerFields: [
@@ -68,7 +68,7 @@ class ContextBaseURLInteractorTests: CoreTestCase {
         let testee = ContextBaseURLInteractor(api: api)
 
         let mockRequest = GetContextHead(context: context)
-        let mockResponse = HTTPURLResponse(url: URL(string: "/")!,
+        let mockResponse = HTTPURLResponse(url: .make(),
                                            statusCode: 200,
                                            httpVersion: nil,
                                            headerFields: [:])

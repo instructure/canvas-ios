@@ -61,7 +61,7 @@ class StudioVideoCleanupInteractorLiveTests: CoreTestCase {
                 title: "",
                 mime_type: "",
                 size: 1,
-                url: URL(string: "/")!,
+                url: .make(),
                 captions: []
             ),
             .init(
@@ -70,7 +70,7 @@ class StudioVideoCleanupInteractorLiveTests: CoreTestCase {
                 title: "",
                 mime_type: "",
                 size: 1,
-                url: URL(string: "/")!,
+                url: .make(),
                 captions: []
             )
         ]

@@ -34,7 +34,7 @@ class FileUploadProgressObserversCacheTests: CoreTestCase {
         let submission = databaseClient.insert() as FileSubmission
         let item = databaseClient.insert() as FileUploadItem
         item.fileSubmission = submission
-        let mockTask = api.urlSession.dataTask(with: URL(string: "/")!)
+        let mockTask = api.urlSession.dataTask(with: .make())
         mockTask.taskID = item.objectID.uriRepresentation().absoluteString
 
         // MARK: - WHEN

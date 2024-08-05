@@ -227,7 +227,7 @@ class LTIToolsTests: CoreTestCase {
                                                      launchType: nil,
                                                      resourceLinkLookupUUID: nil)
 
-        api.mock(request, value: .make(name: "", url: URL(string: "/")!))
+        api.mock(request, value: .make(name: "", url: .make()))
         tools.presentTool(from: mockView, animated: true)
 
         let controller = try XCTUnwrap(router.presented as? StudioViewController)

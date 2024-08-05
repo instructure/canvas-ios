@@ -103,7 +103,7 @@ class GetDiscussionsTests: CoreTestCase {
         XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
     }
 
-    let emptyResponse = HTTPURLResponse(url: URL(string: "/")!, statusCode: 204, httpVersion: nil, headerFields: nil)
+    let emptyResponse = HTTPURLResponse(url: .make(), statusCode: 204, httpVersion: nil, headerFields: nil)
     func testMarkDiscussionEntriesRead() {
         let useCase = MarkDiscussionEntriesRead(context: context, topicID: "1", isRead: true, isForcedRead: true)
         XCTAssertNil(useCase.cacheKey)
