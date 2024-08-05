@@ -330,7 +330,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         }
         guard files.allSatisfy({ $0.isUploaded }) else { return }
         let fileIDs = files.compactMap { $0.id }
-        let submission = CreateSubmissionRequest.Body.Submission(text_comment: comment, submission_type: .online_upload, file_ids: fileIDs)
+        let submission = CreateSubmissionRequest.Body.Submission(text_comment: comment, group_comment: nil, submission_type: .online_upload, file_ids: fileIDs)
         let requestable = CreateSubmissionRequest(context: .course(courseID), assignmentID: assignmentID, body: .init(submission: submission))
         var task: APITask?
         // This is to make the background task wait until we receive the submission response from the API.

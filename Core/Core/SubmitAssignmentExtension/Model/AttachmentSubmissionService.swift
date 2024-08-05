@@ -29,12 +29,26 @@ public class AttachmentSubmissionService {
     /**
      - returns: The `FileSubmission` CoreData object for the newly created submission.
      */
-    public func submit(urls: [URL], courseID: String, assignmentID: String, assignmentName: String, comment: String?) -> NSManagedObjectID {
+    public func submit(
+        urls: [URL],
+        courseID: String,
+        assignmentID: String,
+        assignmentName: String,
+        comment: String?,
+        isGroupComment: Bool?
+    ) -> NSManagedObjectID {
         if let existingSubmissionID = existingSubmissionID {
             submissionAssembly.composer.deleteSubmission(submissionID: existingSubmissionID)
         }
 
-        let submissionID = submissionAssembly.composer.makeNewSubmission(courseId: courseID, assignmentId: assignmentID, assignmentName: assignmentName, comment: comment, files: urls)
+        let submissionID = submissionAssembly.composer.makeNewSubmission(
+            courseId: courseID,
+            assignmentId: assignmentID,
+            assignmentName: assignmentName,
+            comment: comment,
+            isGroupComment: isGroupComment,
+            files: urls
+        )
         existingSubmissionID = submissionID
         submissionAssembly.start(fileSubmissionID: submissionID)
         return submissionID
