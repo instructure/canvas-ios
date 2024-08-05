@@ -32,7 +32,7 @@ final class DeletePlannerNoteTests: CoreTestCase {
         Plannable.save(.make(id: "3"), contextName: nil, in: databaseClient)
         let testee = DeletePlannerNote(id: "2")
 
-        testee.write(response: .make(id: "3"), urlResponse: nil, to: databaseClient)
+        testee.write(response: nil, urlResponse: nil, to: databaseClient)
 
         let plannable1: Plannable? = databaseClient.first(where: #keyPath(Plannable.id), equals: "1")
         let plannable2: Plannable? = databaseClient.first(where: #keyPath(Plannable.id), equals: "2")

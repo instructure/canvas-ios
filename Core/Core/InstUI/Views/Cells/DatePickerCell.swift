@@ -21,12 +21,21 @@ import SwiftUI
 extension InstUI {
 
     public struct DatePickerCell<Label: View>: View {
+
+        public enum Mode {
+            case dateOnly
+            case timeOnly
+            case dateAndTime
+        }
+
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let label: Label
+        private let mode: Mode
         private let defaultDate: Date
         private let validFrom: Date
         private let validUntil: Date
+        private let errorMessage: String?
         private let isClearable: Bool
 
         @Binding private var date: Date?
@@ -34,16 +43,20 @@ extension InstUI {
         public init(
             label: Label,
             date: Binding<Date?>,
+            mode: Mode = .dateAndTime,
             defaultDate: Date = .now,
             validFrom: Date = .distantPast,
             validUntil: Date = .distantFuture,
+            errorMessage: String? = nil,
             isClearable: Bool
         ) {
             self.label = label
             self._date = date.animation()
+            self.mode = mode
             self.defaultDate = defaultDate
             self.validFrom = validFrom
             self.validUntil = validUntil
+            self.errorMessage = errorMessage
             self.isClearable = isClearable
         }
 
@@ -64,6 +77,13 @@ extension InstUI {
                     }
                 }
                 .frame(minHeight: 36) // To always have the same height despite datepicker visibility
+
+                if let errorMessage {
+                    Text(errorMessage)
+                        .textStyle(.errorMessage)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.top, 8)
+                }
             }
             .paddingStyle(.leading, .standard)
             .paddingStyle(.trailing, .standard)
@@ -83,16 +103,31 @@ extension InstUI {
             DatePicker(
                 selection: binding,
                 in: validFrom...validUntil,
-                displayedComponents: [.date, .hourAndMinute],
+                displayedComponents: components,
                 label: {}
             )
+        }
+
+        private var components: DatePicker<Label>.Components {
+            switch mode {
+            case .dateOnly: [.date]
+            case .timeOnly: [.hourAndMinute]
+            case .dateAndTime: [.date, .hourAndMinute]
+            }
         }
 
         @ViewBuilder
         private var placeholderButtons: some View {
             HStack(spacing: 4) {
-                placeholderButton(Text("Date", bundle: .core))
-                placeholderButton(Text("Time", bundle: .core))
+                switch mode {
+                case .dateOnly:
+                    placeholderButton(Text("Date", bundle: .core))
+                case .timeOnly:
+                    placeholderButton(Text("Time", bundle: .core))
+                case .dateAndTime:
+                    placeholderButton(Text("Date", bundle: .core))
+                    placeholderButton(Text("Time", bundle: .core))
+                }
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
         }
@@ -132,6 +167,8 @@ extension InstUI {
     VStack {
         InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(nil), isClearable: true)
         InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(.now), isClearable: true)
+        InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(.now), isClearable: false)
+        InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(.now), errorMessage: "Someting is wrong here.", isClearable: false)
         InstUI.DatePickerCell(
             label: Text(verbatim: "Important Date").foregroundStyle(Color.red).textStyle(.heading),
             date: .constant(.now),
