@@ -98,15 +98,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
         let inboxController: UIViewController
         let inboxSplit = HelmSplitViewController()
 
-        if ExperimentalFeature.nativeTeacherInbox.isEnabled {
-            inboxController = InboxAssembly.makeInboxViewController()
-        } else {
-            let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
-            inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
-            let inboxNav = HelmNavigationController(rootViewController: inboxVC)
-            inboxNav.navigationBar.useGlobalNavStyle()
-            inboxController = inboxNav
-        }
+        inboxController = InboxAssembly.makeInboxViewController()
 
         let empty = HelmNavigationController()
         empty.navigationBar.useGlobalNavStyle()

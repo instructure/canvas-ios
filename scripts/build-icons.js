@@ -126,6 +126,7 @@ const whitelist = [
   'text-color',
   'trash',
   'trouble', // cancel
+  'unarchive',
   'unlock',
   'unmuted', // bell / notification icon
   'user',

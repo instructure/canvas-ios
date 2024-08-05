@@ -27,6 +27,7 @@ class AddressbookRoleViewModel: ObservableObject {
     @Published public private(set) var selectedRecipients: [Recipient] = []
     @Published public private(set) var roles: [String] = []
     @Published public private(set) var roleRecipients: [String: [Recipient]] = [:]
+    @Published public private(set) var canSelectAllRecipient = false
 
     public var isRolesViewVisible: Bool {
         searchText.value.isEmpty && !roles.isEmpty && !teachersOnly
@@ -56,18 +57,6 @@ class AddressbookRoleViewModel: ObservableObject {
     private let interactor: AddressbookInteractor
     private let router: Router
     private var env: AppEnvironment
-    private var canSelectAllRecipient: Bool {
-        var isNotStudent = false
-        if let userId = env.currentSession?.userID {
-            roleRecipients.forEach { (roleName, recipients) in
-                if roleName != String(localized: "Students", bundle: .core) && recipients.flatMap({ $0.ids }).contains(userId) {
-                    isNotStudent = true
-                    return
-                }
-            }
-        }
-        return isNotStudent
-    }
     private let teachersOnly: Bool
 
     public init(
@@ -138,6 +127,9 @@ class AddressbookRoleViewModel: ObservableObject {
                 self?.roleRecipients = recipientsByRoles
             }
             .store(in: &subscriptions)
+
+        interactor.canSelectAllRecipient
+            .assign(to: &$canSelectAllRecipient)
 
         selectedRecipients
             .assign(to: &$selectedRecipients)

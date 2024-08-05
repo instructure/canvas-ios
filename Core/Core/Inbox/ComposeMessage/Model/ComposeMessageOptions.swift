@@ -223,11 +223,18 @@ extension ComposeMessageOptions {
         }
 
         var recipients = [Recipient]()
-        if let author = message?.authorID {
+        if let author = message?.authorID, let participantIDs = message?.participantIDs {
             recipients = conversation.audience.filter { $0.id == author }.map { Recipient(conversationParticipant: $0) }
 
             if recipients.isEmpty {
-                recipients = conversation.audience.map { Recipient(conversationParticipant: $0) }
+                let recipientsSet = Set(participantIDs).subtracting(Set([author]))
+
+                for r in recipientsSet {
+                    recipients.append(contentsOf: conversation.audience
+                        .filter { $0.id == r }
+                        .map { Recipient(conversationParticipant: $0) }
+                    )
+                }
             }
         } else {
             recipients = conversation.audience.map { Recipient(conversationParticipant: $0) }
@@ -255,7 +262,20 @@ extension ComposeMessageOptions {
             fieldContents.selectedContext = .init(name: conversation.contextName ?? "", context: context)
         }
 
-        let recipients = conversation.audience.map { Recipient(conversationParticipant: $0) }
+        var recipients = [Recipient]()
+        if let participantIDs = message?.participantIDs {
+            let recipientsSet = Set(participantIDs)
+
+            for r in recipientsSet {
+                recipients.append(contentsOf: conversation.audience
+                    .filter { $0.id == r }
+                    .map { Recipient(conversationParticipant: $0) }
+                )
+            }
+
+        } else {
+            recipients = conversation.audience.map { Recipient(conversationParticipant: $0) }
+        }
         fieldContents.selectedRecipients = recipients
 
         self.disabledFields = disabledOptions

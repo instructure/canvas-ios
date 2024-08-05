@@ -53,7 +53,7 @@ public final class InboxMessageListItem: NSManagedObject {
         }
     }
     public var isMarkAsReadActionAvailable: Bool { state == .unread || state == .archived }
-    public var isArchiveActionAvailable: Bool { state != .archived }
+    public var isArchiveActionAvailable: Bool { state != .archived && !isSent }
     public var date: String { dateRaw.relativeDateOnlyString }
     public var avatar: InboxMessageAvatar {
         if let name = avatarNameRaw {

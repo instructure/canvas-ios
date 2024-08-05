@@ -49,11 +49,13 @@ class MessageDetailsViewModel: ObservableObject {
     private let interactor: MessageDetailsInteractor
     private let router: Router
     private let myID: String
+    private let allowArchive: Bool
 
-    public init(router: Router, interactor: MessageDetailsInteractor, myID: String) {
+    public init(router: Router, interactor: MessageDetailsInteractor, myID: String, allowArchive: Bool) {
         self.interactor = interactor
         self.router = router
         self.myID = myID
+        self.allowArchive = allowArchive
 
         setupOutputBindings()
         setupInputBindings(router: router)
@@ -102,13 +104,23 @@ class MessageDetailsViewModel: ObservableObject {
             }
         }
 
-        if conversations.first?.workflowState != .archived {
+        if conversations.first?.workflowState != .archived, allowArchive {
             sheet.addAction(
                 image: .archiveLine,
                 title: String(localized: "Archive", bundle: .core),
                 accessibilityIdentifier: "MessageDetails.archive"
             ) {
                 self.updateState.send(.archived)
+            }
+        }
+
+        if conversations.first?.workflowState == .archived, allowArchive {
+            sheet.addAction(
+                image: .unarchiveLine,
+                title: String(localized: "Unarchive", bundle: .core),
+                accessibilityIdentifier: "MessageDetails.unarchive"
+            ) {
+                self.updateState.send(.read)
             }
         }
 
