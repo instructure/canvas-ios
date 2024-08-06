@@ -23,6 +23,10 @@ public class HelpHelper: BaseHelper {
         return app.find(id: "helpItems").find(labelContaining: "Search the Canvas Guides", type: .button)
     }
 
+    public static var customLink: XCUIElement {
+        return app.find(id: "helpItems").find(labelContaining: "CUSTOM LINK", type: .button)
+    }
+
     public static var askYourInstructor: XCUIElement {
         return app.find(id: "helpItems").find(labelContaining: "Ask Your Instructor", type: .button)
     }
