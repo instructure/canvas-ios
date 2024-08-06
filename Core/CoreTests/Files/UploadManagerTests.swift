@@ -314,6 +314,7 @@ class UploadManagerTests: CoreTestCase {
     private func mockSubmission(courseID: String, assignmentID: String, fileIDs: [String], comment: String? = nil, taskID: String, accessToken: String? = nil) {
         let submission = CreateSubmissionRequest.Body.Submission(
             text_comment: comment,
+            group_comment: nil,
             submission_type: .online_upload,
             body: nil,
             url: nil,

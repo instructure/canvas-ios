@@ -424,7 +424,7 @@ public struct CreateSubmissionRequest: APIRequestable {
             ) {
                 self.annotatable_attachment_id = annotatable_attachment_id
                 self.comment = text_comment
-                self.group_comment = group_comment
+                self.group_comment = group_comment ?? false
                 self.submission_type = submission_type
                 self.body = body
                 self.url = url

@@ -35,6 +35,7 @@ class APISubmissionTests: CoreTestCase {
     func testCreateSubmissionRequest() {
         let submission = CreateSubmissionRequest.Body.Submission(
             text_comment: "a comment",
+            group_comment: nil,
             submission_type: .online_text_entry,
             body: "yo",
             url: nil,
@@ -49,6 +50,30 @@ class APISubmissionTests: CoreTestCase {
         XCTAssertEqual(request.method, .post)
         XCTAssertEqual(request.body, body)
         XCTAssertEqual(request.body?.comment?.text_comment, "a comment")
+        XCTAssertEqual(request.body?.submission.group_comment, false)
+        XCTAssertEqual(request.body?.submission.comment, nil)
+    }
+
+    func testCreateGroupSubmissionRequest() {
+        let submission = CreateSubmissionRequest.Body.Submission(
+            text_comment: "a comment",
+            group_comment: true,
+            submission_type: .online_text_entry,
+            body: "yo",
+            url: nil,
+            file_ids: nil,
+            media_comment_id: nil,
+            media_comment_type: nil
+        )
+        let body = CreateSubmissionRequest.Body(submission: submission)
+        let request = CreateSubmissionRequest(context: .course("1"), assignmentID: "2", body: body)
+
+        XCTAssertEqual(request.path, "courses/1/assignments/2/submissions")
+        XCTAssertEqual(request.method, .post)
+        XCTAssertEqual(request.body, body)
+        XCTAssertEqual(request.body?.comment?.text_comment, nil)
+        XCTAssertEqual(request.body?.submission.group_comment, true)
+        XCTAssertEqual(request.body?.submission.comment, "a comment")
     }
 
     func testPutSubmissionGradeRequest() {
