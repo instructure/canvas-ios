@@ -72,11 +72,14 @@ public class SubmitAssignmentExtensionViewModel: ObservableObject {
 
     public func submitTapped() {
         Analytics.shared.logEvent("submit_tapped")
-        let submissionID = submissionService.submit(urls: selectedFileURLs,
-                                                    courseID: coursePickerViewModel.selectedCourse!.id,
-                                                    assignmentID: assignmentPickerViewModel.selectedAssignment!.id,
-                                                    assignmentName: assignmentPickerViewModel.selectedAssignment!.name,
-                                                    comment: comment)
+        let submissionID = submissionService.submit(
+            urls: selectedFileURLs,
+            courseID: coursePickerViewModel.selectedCourse!.id,
+            assignmentID: assignmentPickerViewModel.selectedAssignment!.id,
+            assignmentName: assignmentPickerViewModel.selectedAssignment!.name,
+            comment: comment,
+            isGroupComment: assignmentPickerViewModel.selectedAssignment?.gradeAsGroup == true
+        )
         let fileProgressViewModel = FileProgressListViewModel(submissionID: submissionID, dismiss: { [shareCompleted] in
             shareCompleted()
         })

@@ -77,6 +77,7 @@ class UrlSubmissionPresenterTests: StudentTestCase {
             assignmentID: "1",
             body: .init(submission: .init(
                 text_comment: nil,
+                group_comment: nil,
                 submission_type: .online_url,
                 body: nil,
                 url: url,

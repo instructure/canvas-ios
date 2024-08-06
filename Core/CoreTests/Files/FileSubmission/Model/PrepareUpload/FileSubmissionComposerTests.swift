@@ -38,6 +38,7 @@ class FileSubmissionComposerTests: CoreTestCase {
                                                     assignmentId: "testAssignmentID",
                                                     assignmentName: "testName",
                                                     comment: "testComment",
+                                                    isGroupComment: nil,
                                                     files: [
                                                         tempFileURL,
                                                         tempFileURL
@@ -71,6 +72,7 @@ class FileSubmissionComposerTests: CoreTestCase {
                                                     assignmentId: "testAssignmentID",
                                                     assignmentName: "testName",
                                                     comment: "testComment",
+                                                    isGroupComment: nil,
                                                     files: [
                                                         URL(string: "/test")!
                                                     ])
@@ -94,6 +96,7 @@ class FileSubmissionComposerTests: CoreTestCase {
                                                     assignmentId: "testAssignmentID",
                                                     assignmentName: "testName",
                                                     comment: "testComment",
+                                                    isGroupComment: nil,
                                                     files: [
                                                         URL(string: "/test")!
                                                     ])

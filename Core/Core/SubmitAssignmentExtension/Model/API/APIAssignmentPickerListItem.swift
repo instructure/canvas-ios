@@ -22,11 +22,13 @@ public struct APIAssignmentPickerListItem: Equatable {
     public let id: String
     public let name: String
     public let allowedExtensions: [String]
+    public let gradeAsGroup: Bool
 
-    public init(id: String, name: String, allowedExtensions: [String]) {
+    public init(id: String, name: String, allowedExtensions: [String], gradeAsGroup: Bool) {
         self.id = id
         self.name = name
         self.allowedExtensions = allowedExtensions
+        self.gradeAsGroup = gradeAsGroup
     }
 
     public func isFileAllowed(_ url: URL) -> Bool {

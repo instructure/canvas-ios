@@ -20,6 +20,7 @@ public struct AssignmentPickerItem: Equatable, Identifiable {
     public let id: String
     public let name: String
     public let notAvailableReason: String?
+    public let gradeAsGroup: Bool
 
     public init(apiItem: APIAssignmentPickerListItem, sharedFileExtensions: Set<String>) {
         let incompatibleExtensions = Array(sharedFileExtensions.subtracting(Set(apiItem.allowedExtensions))).sorted()
@@ -35,12 +36,18 @@ public struct AssignmentPickerItem: Equatable, Identifiable {
             notAvailableReason = "\(notCompatibleText)\n\(compatibleText)"
         }
 
-        self.init(id: apiItem.id, name: apiItem.name, notAvailableReason: notAvailableReason)
+        self.init(
+            id: apiItem.id,
+            name: apiItem.name,
+            notAvailableReason: notAvailableReason,
+            gradeAsGroup: apiItem.gradeAsGroup
+        )
     }
 
-    public init(id: String, name: String, notAvailableReason: String? = nil) {
+    public init(id: String, name: String, notAvailableReason: String? = nil, gradeAsGroup: Bool = false) {
         self.id = id
         self.name = name
         self.notAvailableReason = notAvailableReason
+        self.gradeAsGroup = gradeAsGroup
     }
 }

@@ -402,7 +402,8 @@ public struct CreateSubmissionRequest: APIRequestable {
     public struct Body: Codable, Equatable {
         public struct Submission: Codable, Equatable {
             let annotatable_attachment_id: String? // Required if submission_type is student_annotation
-            let text_comment: String?
+            fileprivate(set) var comment: String?
+            let group_comment: Bool?
             let submission_type: SubmissionType
             let body: String? // Requires submission_type of online_text_entry
             let url: URL? // Requires submission_type of online_url or basic_lti_launch
@@ -413,6 +414,7 @@ public struct CreateSubmissionRequest: APIRequestable {
             public init(
                 annotatable_attachment_id: String? = nil,
                 text_comment: String? = nil,
+                group_comment: Bool?,
                 submission_type: SubmissionType,
                 body: String? = nil,
                 url: URL? = nil,
@@ -421,7 +423,8 @@ public struct CreateSubmissionRequest: APIRequestable {
                 media_comment_type: MediaCommentType? = nil
             ) {
                 self.annotatable_attachment_id = annotatable_attachment_id
-                self.text_comment = text_comment
+                self.comment = text_comment
+                self.group_comment = group_comment ?? false
                 self.submission_type = submission_type
                 self.body = body
                 self.url = url
@@ -437,10 +440,18 @@ public struct CreateSubmissionRequest: APIRequestable {
 
         public init(submission: Submission) {
             self.submission = submission
-            self.comment = submission.text_comment.flatMap(Comment.init(text_comment:))
+
+            // For individually graded submissions, comment needs to be set as comment[text_comment].
+            // For group graded submissions, comment needs to be set as submission[comment].
+            if submission.group_comment == false {
+                self.comment = submission.comment.flatMap(Comment.init(text_comment:))
+                self.submission.comment = nil
+            } else {
+                self.comment = nil
+            }
         }
 
-        let submission: Submission
+        private(set) var submission: Submission
         let comment: Comment?
     }
 

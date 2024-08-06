@@ -22,38 +22,47 @@ import XCTest
 class AssignmentPickerItemTests: XCTestCase {
 
     func testSetupFromAPIEntity() {
-        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: ["pdf", "jpg"])
+        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: ["pdf", "jpg"], gradeAsGroup: false)
         let testee = AssignmentPickerItem(apiItem: apiAssignment, sharedFileExtensions: Set<String>())
         XCTAssertEqual(testee.id, "1")
         XCTAssertEqual(testee.name, "n1")
+        XCTAssertEqual(testee.gradeAsGroup, false)
+    }
+
+    func testSetupFromGroupAPIEntity() {
+        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: ["pdf", "jpg"], gradeAsGroup: true)
+        let testee = AssignmentPickerItem(apiItem: apiAssignment, sharedFileExtensions: Set<String>())
+        XCTAssertEqual(testee.id, "1")
+        XCTAssertEqual(testee.name, "n1")
+        XCTAssertEqual(testee.gradeAsGroup, true)
     }
 
     func testNoReasonWhenAllFilesAllowed() {
-        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: [])
+        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: [], gradeAsGroup: false)
         let testee = AssignmentPickerItem(apiItem: apiAssignment, sharedFileExtensions: Set<String>(["jpg"]))
         XCTAssertNil(testee.notAvailableReason)
     }
 
     func testUnknownFileExtensionReason() {
-        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: ["pdf", "jpg"])
+        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: ["pdf", "jpg"], gradeAsGroup: false)
         let testee = AssignmentPickerItem(apiItem: apiAssignment, sharedFileExtensions: Set<String>())
         XCTAssertNil(testee.notAvailableReason)
     }
 
     func testCompatibleFileExtensionReason() {
-        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: ["pdf", "jpg"])
+        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: ["pdf", "jpg"], gradeAsGroup: false)
         let testee = AssignmentPickerItem(apiItem: apiAssignment, sharedFileExtensions: Set<String>(["jpg"]))
         XCTAssertNil(testee.notAvailableReason)
     }
 
     func testIncompatibleFileExtensionReason() {
-        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: ["pdf"])
+        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: ["pdf"], gradeAsGroup: false)
         let testee = AssignmentPickerItem(apiItem: apiAssignment, sharedFileExtensions: Set<String>(["xls"]))
         XCTAssertEqual(testee.notAvailableReason, "The xls file type in your submission is incompatible with the selected assignment.\nPlease use pdf file extension.")
     }
 
     func testIncompatibleFilesExtensionReason() {
-        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: ["pdf", "jpg"])
+        let apiAssignment = APIAssignmentPickerListItem(id: "1", name: "n1", allowedExtensions: ["pdf", "jpg"], gradeAsGroup: false)
         let testee = AssignmentPickerItem(apiItem: apiAssignment, sharedFileExtensions: Set<String>(["xls", "docx", "pdf"]))
         XCTAssertEqual(testee.notAvailableReason, "The docx, xls file types in your submission are incompatible with the selected assignment.\nPlease use jpg, pdf file extensions.")
     }

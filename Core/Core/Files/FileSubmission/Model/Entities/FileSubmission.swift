@@ -28,6 +28,7 @@ public final class FileSubmission: NSManagedObject {
     @NSManaged public var assignmentName: String
     /** The user entered comment for the submission. **/
     @NSManaged public var comment: String?
+    @NSManaged public var isGroupComment: Bool
     @NSManaged public var files: Set<FileUploadItem>
     @NSManaged public var isHiddenOnDashboard: Bool
 

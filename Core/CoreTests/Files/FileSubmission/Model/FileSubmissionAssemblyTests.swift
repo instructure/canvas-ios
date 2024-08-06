@@ -41,7 +41,14 @@ class FileSubmissionAssemblyTests: CoreTestCase {
         // MARK: - GIVEN
 
         let testee = FileSubmissionAssembly.makeShareExtensionAssembly()
-        let submissionID = testee.composer.makeNewSubmission(courseId: "testCourse", assignmentId: "testAssignment", assignmentName: "testName", comment: "testComment", files: [testFileURL])
+        let submissionID = testee.composer.makeNewSubmission(
+            courseId: "testCourse",
+            assignmentId: "testAssignment",
+            assignmentName: "testName",
+            comment: "testComment",
+            isGroupComment: nil,
+            files: [testFileURL]
+        )
         let submission = try! databaseClient.existingObject(with: submissionID) as! FileSubmission
         XCTAssertEqual(databaseClient.registeredObjects.count, 2) // submission + item
 
@@ -65,6 +72,7 @@ class FileSubmissionAssemblyTests: CoreTestCase {
         // MARK: Submission mock
 
         let requestedSubmission = CreateSubmissionRequest.Body.Submission(text_comment: "testComment",
+                                                                          group_comment: nil,
                                                                           submission_type: .online_upload,
                                                                           file_ids: ["apiID"])
         let submissionRequest = CreateSubmissionRequest(context: .course("testCourse"),
@@ -130,7 +138,7 @@ class FileSubmissionAssemblyTests: CoreTestCase {
 
     func testCancelDeletesSubmission() {
         let testee = FileSubmissionAssembly.makeShareExtensionAssembly()
-        let submissionID = testee.composer.makeNewSubmission(courseId: "testCourse", assignmentId: "testAssignment", assignmentName: "testName", comment: "testComment", files: [])
+        let submissionID = testee.composer.makeNewSubmission(courseId: "testCourse", assignmentId: "testAssignment", assignmentName: "testName", comment: "testComment", isGroupComment: nil, files: [])
         XCTAssertEqual(databaseClient.registeredObjects.count, 1)
         testee.cancel(submissionID: submissionID)
         drainMainQueue()

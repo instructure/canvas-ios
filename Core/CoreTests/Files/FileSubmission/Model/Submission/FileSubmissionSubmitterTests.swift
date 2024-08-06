@@ -36,8 +36,9 @@ class FileSubmissionSubmitterTests: CoreTestCase {
         item.fileSubmission = submission
 
         let requestedSubmission = CreateSubmissionRequest.Body.Submission(text_comment: "testComment",
-                                                                 submission_type: .online_upload,
-                                                                 file_ids: ["itemAPIID"])
+                                                                          group_comment: nil,
+                                                                          submission_type: .online_upload,
+                                                                          file_ids: ["itemAPIID"])
         let request = CreateSubmissionRequest(context: .course("testCourse"),
                                               assignmentID: "testAssignment",
                                               body: .init(submission: requestedSubmission))
@@ -79,8 +80,9 @@ class FileSubmissionSubmitterTests: CoreTestCase {
         item.fileSubmission = submission
 
         let requestedSubmission = CreateSubmissionRequest.Body.Submission(text_comment: "testComment",
-                                                                 submission_type: .online_upload,
-                                                                 file_ids: ["itemAPIID"])
+                                                                          group_comment: nil,
+                                                                          submission_type: .online_upload,
+                                                                          file_ids: ["itemAPIID"])
         let request = CreateSubmissionRequest(context: .course("testCourse"),
                                               assignmentID: "testAssignment",
                                               body: .init(submission: requestedSubmission))
@@ -116,8 +118,9 @@ class FileSubmissionSubmitterTests: CoreTestCase {
         submission.assignmentID = "testAssignment"
 
         let requestedSubmission = CreateSubmissionRequest.Body.Submission(text_comment: "testComment",
-                                                                 submission_type: .online_upload,
-                                                                 file_ids: [])
+                                                                          group_comment: nil,
+                                                                          submission_type: .online_upload,
+                                                                          file_ids: [])
         let request = CreateSubmissionRequest(context: .course("testCourse"),
                                               assignmentID: "testAssignment",
                                               body: .init(submission: requestedSubmission))
