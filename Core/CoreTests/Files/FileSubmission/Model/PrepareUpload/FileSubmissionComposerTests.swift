@@ -37,7 +37,7 @@ class FileSubmissionComposerTests: CoreTestCase {
         let submissionID = testee.makeNewSubmission(courseId: "testCourseID",
                                                     assignmentId: "testAssignmentID",
                                                     assignmentName: "testName",
-                                                    comment: "testComment", 
+                                                    comment: "testComment",
                                                     isGroupComment: nil,
                                                     files: [
                                                         tempFileURL,

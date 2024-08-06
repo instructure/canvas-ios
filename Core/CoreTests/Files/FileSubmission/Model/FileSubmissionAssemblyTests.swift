@@ -41,7 +41,14 @@ class FileSubmissionAssemblyTests: CoreTestCase {
         // MARK: - GIVEN
 
         let testee = FileSubmissionAssembly.makeShareExtensionAssembly()
-        let submissionID = testee.composer.makeNewSubmission(courseId: "testCourse", assignmentId: "testAssignment", assignmentName: "testName", comment: "testComment", isGroupComment: nil, files: [testFileURL])
+        let submissionID = testee.composer.makeNewSubmission(
+            courseId: "testCourse",
+            assignmentId: "testAssignment",
+            assignmentName: "testName",
+            comment: "testComment",
+            isGroupComment: nil,
+            files: [testFileURL]
+        )
         let submission = try! databaseClient.existingObject(with: submissionID) as! FileSubmission
         XCTAssertEqual(databaseClient.registeredObjects.count, 2) // submission + item
 

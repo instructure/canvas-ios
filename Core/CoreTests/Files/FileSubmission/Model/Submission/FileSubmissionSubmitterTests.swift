@@ -80,7 +80,7 @@ class FileSubmissionSubmitterTests: CoreTestCase {
         item.fileSubmission = submission
 
         let requestedSubmission = CreateSubmissionRequest.Body.Submission(text_comment: "testComment",
-                                                                          group_comment: nil, 
+                                                                          group_comment: nil,
                                                                           submission_type: .online_upload,
                                                                           file_ids: ["itemAPIID"])
         let request = CreateSubmissionRequest(context: .course("testCourse"),
