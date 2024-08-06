@@ -301,6 +301,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
             .frame(minHeight: 51)
             .padding(.horizontal, 16)
+            .accessibilityIdentifier("BasedOnGradedToggle")
 
             if viewModel.isWhatIfScoreFlagEnabled {
                 Divider()
