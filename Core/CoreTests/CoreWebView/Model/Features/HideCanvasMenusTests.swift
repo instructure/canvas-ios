@@ -26,9 +26,12 @@ class HideCanvasMenusTests: XCTestCase {
         let webView = CoreWebView(features: [.hideHideCanvasMenus])
         webView.linkDelegate = mockLinkDelegate
         webView.loadHTMLString("<div>Test</div>")
+        let jsEvaluated = expectation(description: "JS evaluated")
+
+        // WHEN
         wait(for: [mockLinkDelegate.navigationFinishedExpectation], timeout: 10)
 
-        let jsEvaluated = expectation(description: "JS evaluated")
+        // THEN
         webView.evaluateJavaScript("document.head.querySelectorAll(\"style\")[2].innerHTML") { result, error in
             XCTAssertTrue((result as! String).contains("display: none !important;"))
             XCTAssertNil(error)
