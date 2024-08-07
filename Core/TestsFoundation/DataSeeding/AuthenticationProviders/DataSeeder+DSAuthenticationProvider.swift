@@ -19,8 +19,8 @@
 extension DataSeeder {
     @discardableResult
     public func setSelfRegistrationForCanvas(selfRegistration: DSSelfRegistration) -> DSAuthenticationProvider {
-        let body = CreateDSAuthenticationProviderRequest.Body(selfRegistration: selfRegistration)
-        let request = CreateDSAuthenticationProviderRequest(body: body)
+        let body = UpdateDSAuthenticationProviderRequest.Body(selfRegistration: selfRegistration)
+        let request = UpdateDSAuthenticationProviderRequest(body: body)
         return makeRequest(request)
     }
 }

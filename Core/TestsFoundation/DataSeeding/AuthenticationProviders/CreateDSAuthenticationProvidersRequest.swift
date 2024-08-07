@@ -18,8 +18,8 @@
 
 import Core
 
-// https://canvas.instructure.com/doc/api/pages.html#method.wiki_pages_api.create
-public struct CreateDSAuthenticationProviderRequest: APIRequestable {
+// https://canvas.instructure.com/doc/api/authentication_providers.html#method.authentication_providers.update
+public struct UpdateDSAuthenticationProviderRequest: APIRequestable {
     public typealias Response = DSAuthenticationProvider
 
     public let method = APIMethod.put
@@ -33,7 +33,7 @@ public struct CreateDSAuthenticationProviderRequest: APIRequestable {
     }
 }
 
-extension CreateDSAuthenticationProviderRequest {
+extension UpdateDSAuthenticationProviderRequest {
     public struct Body: Encodable {
         let self_registration: DSSelfRegistration
 
