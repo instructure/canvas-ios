@@ -29,7 +29,7 @@ class ParentSubmissionViewController: UINavigationController {
     public init(viewModel: ParentSubmissionViewModel) {
         self.viewModel = viewModel
 
-        let controller = CoreWebViewController()
+        let controller = CoreWebViewController(features: [.hideHideCanvasMenus])
         controller.addDoneButton()
         controller.title = String(localized: "Submission", bundle: .core)
         self.webView = controller.webView

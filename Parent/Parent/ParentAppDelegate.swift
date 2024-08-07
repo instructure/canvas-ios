@@ -194,7 +194,7 @@ extension ParentAppDelegate: LoginDelegate {
     }
 
     func launchLimitedWebView(url: URL, from sourceViewController: UIViewController) {
-        let controller = CoreWebViewController(invertColorsInDarkMode: true)
+        let controller = CoreWebViewController(features: [.invertColorsInDarkMode])
         controller.isInteractionLimited = true
         controller.webView.load(URLRequest(url: url))
         environment.router.show(controller, from: sourceViewController, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
