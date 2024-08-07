@@ -26,7 +26,7 @@ import XCTest
 class ParentSubmissionViewModelTests: ParentTestCase {
     private var mockInteractor: MockParentSubmissionInteractor!
     private let host = UIViewController()
-    private var webView = WKWebView()
+    private var mockWebView = MockWebView()
 
     override func setUp() {
         super.setUp()
@@ -47,10 +47,10 @@ class ParentSubmissionViewModelTests: ParentTestCase {
         )
 
         // WHEN
-        testee.viewDidLoad(viewController: host, webView: webView)
+        testee.viewDidLoad(viewController: host, webView: mockWebView)
 
         // THEN
-        XCTAssertEqual(mockInteractor.receivedWebView, webView)
+        XCTAssertEqual(mockInteractor.receivedWebView, mockWebView)
         waitUntil(1, shouldFail: true) {
             router.viewControllerCalls.isEmpty == false
         }
@@ -80,11 +80,33 @@ class ParentSubmissionViewModelTests: ParentTestCase {
             }
 
         // WHEN
-        testee.viewDidLoad(viewController: host, webView: webView)
+        testee.viewDidLoad(viewController: host, webView: mockWebView)
 
         // THEN
         wait(for: [didHideLoadingIndicator], timeout: 1)
         subscription.cancel()
+    }
+
+    func testUpdatesShowWebBackNavigationButtonState() {
+        mockInteractor.feedbackViewLoadShouldFail = false
+
+        let testee = ParentSubmissionViewModel(
+            interactor: mockInteractor,
+            router: router
+        )
+        testee.viewDidLoad(viewController: host, webView: mockWebView)
+
+        // WHEN
+        mockWebView.mockedCanGoBackResult = true
+
+        // THEN
+        XCTAssertSingleOutputEquals(testee.showWebBackNavigationButton, true)
+
+        // WHEN
+        mockWebView.mockedCanGoBackResult = false
+
+        // THEN
+        XCTAssertSingleOutputEquals(testee.showWebBackNavigationButton, false)
     }
 }
 
@@ -107,5 +129,35 @@ private class MockParentSubmissionInteractor: ParentSubmissionInteractor {
         } else {
             return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
+    }
+}
+
+private class MockWebView: WKWebView {
+    var mockedCanGoBackResult = false {
+        willSet {
+            willChangeValue(for: \.canGoBack)
+        }
+        didSet {
+            didChangeValue(for: \.canGoBack)
+        }
+    }
+
+    override var canGoBack: Bool {
+        mockedCanGoBackResult
+    }
+
+    init() {
+        let config = WKWebViewConfiguration()
+        config.websiteDataStore = .nonPersistent()
+        super.init(frame: .zero, configuration: config)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func load(_ request: URLRequest) -> WKNavigation? {
+        // noop to avoid unnecessary site load
+        nil
     }
 }

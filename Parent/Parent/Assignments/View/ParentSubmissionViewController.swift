@@ -36,6 +36,11 @@ class ParentSubmissionViewController: UINavigationController {
 
         super.init(rootViewController: controller)
 
+        controller.toolbarItems = [
+            .back(target: self, action: #selector(forwardBackActionToViewModel))
+        ]
+        controller.webView.linkDelegate = self
+
         addLoadingIndicator(to: controller.view)
         navigationBar.useModalStyle()
         modalPresentationCapturesStatusBarAppearance = true
@@ -46,6 +51,13 @@ class ParentSubmissionViewController: UINavigationController {
             .hideLoadingIndicator
             .sink { [weak self] _ in
                 self?.hideLoadingIndicator()
+            }
+            .store(in: &subscriptions)
+
+        viewModel
+            .showWebBackNavigationButton
+            .sink { [weak self] showBackNavigationButton in
+                self?.setToolbarHidden(!showBackNavigationButton, animated: true)
             }
             .store(in: &subscriptions)
     }
@@ -85,5 +97,18 @@ class ParentSubmissionViewController: UINavigationController {
             progressView.centerYAnchor.constraint(equalTo: parent.centerYAnchor, constant: 0)
         ])
         self.loadingIndicator = progressView
+    }
+
+    @objc
+    private func forwardBackActionToViewModel() {
+        viewModel.didTapNavigateWebBackButton.send(())
+    }
+}
+
+extension ParentSubmissionViewController: CoreWebViewLinkDelegate {
+
+    func handleLink(_ url: URL) -> Bool {
+        // Open all links inside the web view
+        false
     }
 }

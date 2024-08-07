@@ -79,7 +79,7 @@ class ParentSubmissionInteractorTests: ParentTestCase {
     }
 }
 
-class MockWebView: WKWebView {
+private class MockWebView: WKWebView {
     private(set) var receivedRequestToLoad: URLRequest?
     private(set) var isLoadingChecked = false
 

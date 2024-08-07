@@ -21,8 +21,14 @@ import Combine
 import WebKit
 
 class ParentSubmissionViewModel {
+    // MARK: - Outputs
     public let hideLoadingIndicator = PassthroughSubject<Void, Never>()
+    public let showWebBackNavigationButton = CurrentValueSubject<Bool, Never>(false)
 
+    // MARK: - Inputs
+    public let didTapNavigateWebBackButton = PassthroughSubject<Void, Never>()
+
+    // MARK: - Private
     private let interactor: ParentSubmissionInteractor
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
@@ -36,9 +42,21 @@ class ParentSubmissionViewModel {
         self.router = router
     }
 
-    public func viewDidLoad(viewController: UIViewController, webView: WKWebView) {
+    public func viewDidLoad(
+        viewController: UIViewController,
+        webView: WKWebView
+    ) {
         self.viewController = viewController
 
+        handleWebBackButtonTap(webView: webView)
+        showBackNavigationButtonIfWebViewCanGoBack(webView: webView)
+        handleFeedbackViewLoadResult(viewController: viewController, webView: webView)
+    }
+
+    private func handleFeedbackViewLoadResult(
+        viewController: UIViewController,
+        webView: WKWebView
+    ) {
         interactor
             .loadParentFeedbackView(webView: webView)
             .receive(on: RunLoop.main)
@@ -49,6 +67,27 @@ class ParentSubmissionViewModel {
                 }
 
             } receiveValue: { _ in }
+            .store(in: &subscriptions)
+    }
+
+    private func handleWebBackButtonTap(
+        webView: WKWebView
+    ) {
+        didTapNavigateWebBackButton
+            .sink { [weak webView] in
+                webView?.goBack()
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func showBackNavigationButtonIfWebViewCanGoBack(
+        webView: WKWebView
+    ) {
+        webView
+            .publisher(for: \.canGoBack)
+            .sink { [weak showWebBackNavigationButton] canGoBack in
+                showWebBackNavigationButton?.send(canGoBack)
+            }
             .store(in: &subscriptions)
     }
 
