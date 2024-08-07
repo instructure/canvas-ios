@@ -20,6 +20,7 @@ import Foundation
 import UIKit
 import UserNotifications
 import Core
+import SafariServices
 import SwiftUI
 
 class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate {
@@ -38,6 +39,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewContainer: UIView!
+    @IBOutlet weak var submissionAndRubricButton: UIButton!
     let webView = CoreWebView()
     let refreshControl = CircleRefreshControl()
     var selectedDate: Date?
@@ -113,6 +115,27 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         )
 
         statusLabel.text = ""
+
+        submissionAndRubricButton.configuration = {
+            var config = UIButton.Configuration.borderedProminent()
+            config.background.cornerRadius = 6
+            config.background.strokeWidth = 1 / UIScreen.main.scale
+            config.background.strokeColor = .textDark
+            config.background.backgroundColor = .backgroundLightest
+            config.baseForegroundColor = ColorScheme.observee(studentID).color.ensureContrast(against: .backgroundLightest)
+            config.image = .arrowOpenRightLine
+                .scaleTo(CGSize(width: 15, height: 15))
+                .withRenderingMode(.alwaysTemplate)
+            config.imagePadding = 3
+            config.imagePlacement = .trailing
+            config.attributedTitle = AttributedString(
+                String(localized: "Submission & Rubric", bundle: .core),
+                attributes: AttributeContainer(
+                    [.font: UIFont.scaledNamedFont(.regular16)]
+                )
+            )
+            return config
+        }()
 
         assignment.refresh()
         course.refresh()
@@ -248,5 +271,23 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             hiddenMessage: hiddenMessage
         )
         env.router.show(compose, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
+    }
+
+    @IBAction func submissionAndRubricButtonPressed(_ sender: Any) {
+        guard let assignmentHtmlURL = assignment.first?.htmlURL else {
+            return
+        }
+
+        let interactor = ParentSubmissionInteractorLive(
+            assignmentHtmlURL: assignmentHtmlURL,
+            observedUserID: studentID
+        )
+        let viewModel = ParentSubmissionViewModel(interactor: interactor, router: router)
+        let submissionsViewController = ParentSubmissionViewController(viewModel: viewModel)
+        env.router.show(
+            submissionsViewController,
+            from: self,
+            options: .modal(.overFullScreen)
+        )
     }
 }

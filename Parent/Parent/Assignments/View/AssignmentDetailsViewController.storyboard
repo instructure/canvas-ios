@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -60,10 +60,44 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wq8-fc-Gqd">
-                                        <rect key="frame" x="16" y="80.5" width="382" height="483"/>
+                                        <rect key="frame" x="16" y="80.5" width="382" height="570"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q7y-ay-BMN" userLabel="Submission &amp; Rubric Section">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="87"/>
+                                                <subviews>
+                                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ez7-0Q-O4q" customClass="DividerView" customModule="Parent" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="1"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="4aU-tj-Yzm"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3FV-47-gf4">
+                                                        <rect key="frame" x="0.0" y="16" width="382" height="55"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="55" id="voE-N9-09N"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                        <connections>
+                                                            <action selector="submissionAndRubricButtonPressed:" destination="Rwe-K5-TpS" eventType="primaryActionTriggered" id="YfD-fb-JJm"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="87" id="Qi1-cL-Ac3"/>
+                                                    <constraint firstItem="ez7-0Q-O4q" firstAttribute="leading" secondItem="q7y-ay-BMN" secondAttribute="leading" id="V4i-jQ-SVX"/>
+                                                    <constraint firstItem="3FV-47-gf4" firstAttribute="width" secondItem="q7y-ay-BMN" secondAttribute="width" id="WoP-mn-6P6"/>
+                                                    <constraint firstItem="3FV-47-gf4" firstAttribute="centerY" secondItem="q7y-ay-BMN" secondAttribute="centerY" id="fPy-rO-0rI"/>
+                                                    <constraint firstItem="3FV-47-gf4" firstAttribute="centerX" secondItem="q7y-ay-BMN" secondAttribute="centerX" id="fxp-4o-Hys"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ez7-0Q-O4q" secondAttribute="trailing" id="lFG-2C-FCu"/>
+                                                    <constraint firstItem="ez7-0Q-O4q" firstAttribute="top" secondItem="q7y-ay-BMN" secondAttribute="top" id="xLb-Y7-Xvi"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJE-Qk-W4d">
-                                                <rect key="frame" x="0.0" y="0.0" width="382" height="80"/>
+                                                <rect key="frame" x="0.0" y="87" width="382" height="80"/>
                                                 <subviews>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPa-nn-mO3" customClass="DividerView" customModule="Parent" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="1"/>
@@ -109,7 +143,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xqT-dQ-PaO">
-                                                <rect key="frame" x="0.0" y="80" width="382" height="353"/>
+                                                <rect key="frame" x="0.0" y="167" width="382" height="353"/>
                                                 <subviews>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2Y-vQ-TVI" customClass="DividerView" customModule="Parent" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="1"/>
@@ -177,7 +211,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P2k-EX-IuD">
-                                                <rect key="frame" x="0.0" y="433" width="382" height="50"/>
+                                                <rect key="frame" x="0.0" y="520" width="382" height="50"/>
                                                 <subviews>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eze-cn-VNs" customClass="DividerView" customModule="Parent" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="1"/>
@@ -284,6 +318,7 @@
                         <outlet property="scrollView" destination="pGe-DC-4hY" id="R95-rr-uN0"/>
                         <outlet property="statusIconView" destination="YLJ-ji-ykM" id="qQq-kP-AsP"/>
                         <outlet property="statusLabel" destination="dS1-sF-FYM" id="zfW-FF-ph2"/>
+                        <outlet property="submissionAndRubricButton" destination="3FV-47-gf4" id="Oa9-39-Ren"/>
                         <outlet property="titleLabel" destination="sJI-GY-ehK" id="9vZ-Zp-EPE"/>
                         <outlet property="webViewContainer" destination="Ofb-9i-Eu9" id="5xT-2S-7EM"/>
                     </connections>

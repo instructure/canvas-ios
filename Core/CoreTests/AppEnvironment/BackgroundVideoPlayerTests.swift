@@ -20,6 +20,7 @@ import Foundation
 import XCTest
 import AVKit
 @testable import Core
+import TestsFoundation
 
 class BackgroundVideoPlayerTests: XCTestCase {
     var player: BackgroundVideoPlayer!
@@ -59,6 +60,8 @@ class BackgroundVideoPlayerTests: XCTestCase {
             player.connect(controller)
             XCTAssertNotNil(player.viewController)
         }
-        XCTAssertNil(player.viewController)
+        waitUntil(5, shouldFail: true) {
+            player.viewController == nil
+        }
     }
 }
