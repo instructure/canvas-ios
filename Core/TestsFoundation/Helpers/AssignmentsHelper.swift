@@ -237,6 +237,10 @@ public class AssignmentsHelper: BaseHelper {
         public static var cancelButton: XCUIElement { app.find(id: "screen.dismiss") }
         public static var submitButton: XCUIElement { app.find(id: "TextSubmission.submitButton") }
         public static var textField: XCUIElement { app.find(id: "RichContentEditor.webView").find(type: .textField) }
+
+        public static var pandaFilePicker: XCUIElement { app.find(id: "PandaFilePicker") }
+        public static var filesButton: XCUIElement { app.find(id: "FilePicker.filesButton") }
+        public static var studioLabel: XCUIElement { app.find(labelContaining: "Studio") }
     }
 
     @discardableResult
@@ -252,7 +256,8 @@ public class AssignmentsHelper: BaseHelper {
         lockAt: Date? = nil,
         unlockAt: Date? = nil,
         assignmentGroup: DSAssignmentGroup? = nil,
-        sleepAfter: Bool = true
+        sleepAfter: Bool = true,
+        allowedExtensions: [String]? = nil
     ) -> DSAssignment {
         let assignmentBody = CreateDSAssignmentRequest.RequestedDSAssignment(
             name: name,
@@ -264,7 +269,8 @@ public class AssignmentsHelper: BaseHelper {
             due_at: dueDate,
             lock_at: lockAt,
             unlock_at: unlockAt,
-            assignment_group_id: assignmentGroup?.id ?? nil
+            assignment_group_id: assignmentGroup?.id ?? nil,
+            allowed_extensions: allowedExtensions
         )
         let result = seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody)
         if sleepAfter { sleep(1) }
