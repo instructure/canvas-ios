@@ -77,6 +77,10 @@ private class DarkModeForWebDiscussions: CoreWebViewFeature {
                 color: \(textLightest);
                 background: \(backgroundDarkest);
             }
+            .css-1dn3ise-textInput__facade {
+                background: \(backgroundDarkest) !important;
+            }
+
             /* Selected List Item */
             span[aria-selected="true"] {
                 color: \(backgroundDarkest) !important;
@@ -96,9 +100,24 @@ private class DarkModeForWebDiscussions: CoreWebViewFeature {
                 background: \(backgroundDarkest);
             }
 
+            /* Info boxes */
+            span[data-testid="anon-conversation"],
+            span[data-testid="locked-for-user"] {
+                color: \(textLightest) !important;
+            }
+            .css-1oqo41g-view-alert {
+                background: \(backgroundDarkest) !important;
+            }
+
+            svg[name="IconBookmark"] {
+                color: \(textLight) !important;
+            }
+
             /* Search bar */
             .css-1jienkz-textInput__facade,
             .css-z3sx20-textInput__facade,
+            .css-7naoe-textInput__facade,
+            .css-1dn3ise-textInput__facade,
             button[data-testid="manage-assign-to"] span {
                 color: \(textLightest) !important;
                 background: \(backgroundDarkest) !important;
