@@ -25,7 +25,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
         static let contextCode = "some contextCode"
         static let title = "some title"
         static let description = "some description"
-        static let startAt = Clock.date(year: 2024, month: 1, day: 1, hour: 3)
+        static let startAt = Date.make(year: 2024, month: 1, day: 1, hour: 3)
         static let endAt = startAt.addHours(2)
         static let locationName = "some locationName"
         static let locationAddress = "some locationAddress"
@@ -83,34 +83,34 @@ final class CalendarEventInteractorTests: CoreTestCase {
         }
     }
 
-    // MARK: - GetManageCalendarPermission
+    // MARK: - GetCanManageCalendarPermission
 
-    func testGetManageCalendarPermissionWhenItsTrue() {
+    func testGetCanManageCalendarPermissionWhenItsTrue() {
         let context: Context = .course("42")
         let request = GetContextPermissionsRequest(context: context, permissions: [.manageCalendar])
         api.mock(request, value: .make(manage_calendar: true, manage_groups: false))
 
-        XCTAssertFirstValueAndCompletion(testee.getManageCalendarPermission(context: context, ignoreCache: false)) { permission in
+        XCTAssertFirstValueAndCompletion(testee.getCanManageCalendarPermission(context: context, ignoreCache: false)) { permission in
             XCTAssertEqual(permission, true)
         }
     }
 
-    func testGetManageCalendarPermissionWhenItsFalse() {
+    func testGetCanManageCalendarPermissionWhenItsFalse() {
         let context: Context = .course("42")
         let request = GetContextPermissionsRequest(context: context, permissions: [.manageCalendar])
         api.mock(request, value: .make(manage_calendar: false, manage_groups: true))
 
-        XCTAssertFirstValueAndCompletion(testee.getManageCalendarPermission(context: context, ignoreCache: false)) { permission in
+        XCTAssertFirstValueAndCompletion(testee.getCanManageCalendarPermission(context: context, ignoreCache: false)) { permission in
             XCTAssertEqual(permission, false)
         }
     }
 
-    func testGetManageCalendarPermissionWhenItsNil() {
+    func testGetCanManageCalendarPermissionWhenItsNil() {
         let context: Context = .course("42")
         let request = GetContextPermissionsRequest(context: context, permissions: [.manageCalendar])
         api.mock(request, value: .make(manage_calendar: nil))
 
-        XCTAssertFirstValueAndCompletion(testee.getManageCalendarPermission(context: context, ignoreCache: false)) { permission in
+        XCTAssertFirstValueAndCompletion(testee.getCanManageCalendarPermission(context: context, ignoreCache: false)) { permission in
             XCTAssertEqual(permission, false)
         }
     }

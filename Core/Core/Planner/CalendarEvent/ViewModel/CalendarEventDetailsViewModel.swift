@@ -74,6 +74,16 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
         self.completion = completion
         self.deleteConfirmation = deleteSingleItemConfirmation
 
+        onEventSetUpdateDeleteConfirmationModel()
+        onEventSetUpdateMenuButtonVisibility(userId: userId)
+
+        loadData()
+
+        onEditButtonTapShowEditScreen()
+        onDeleteButtonTapDeleteEventAfterConfirmation()
+    }
+
+    private func onEventSetUpdateDeleteConfirmationModel() {
         event
             .compactMap { $0 }
             .sink { [weak self] in
@@ -81,7 +91,9 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
                 deleteConfirmation = makeDeleteConfirmation(event: $0)
             }
             .store(in: &subscriptions)
+    }
 
+    private func onEventSetUpdateMenuButtonVisibility(userId: String) {
         event
             .compactMap { $0 }
             .flatMap { [weak self] in
@@ -92,13 +104,15 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
                 self?.shouldShowMenuButton = $0
             }
             .store(in: &subscriptions)
+    }
 
-        loadData()
-
+    private func onEditButtonTapShowEditScreen() {
         didTapEdit
             .sink { [weak self] in self?.showEditScreen(from: $0) }
             .store(in: &subscriptions)
+    }
 
+    private func onDeleteButtonTapDeleteEventAfterConfirmation() {
         didTapDelete
             .map { [weak self] in
                 self?.shouldShowDeleteConfirmation = true
@@ -189,7 +203,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
         case .user:
             Just(context.id == userId).eraseToAnyPublisher()
         case .course, .group:
-            interactor.getManageCalendarPermission(context: context, ignoreCache: true)
+            interactor.getCanManageCalendarPermission(context: context, ignoreCache: true)
                 .catch { _ in
                     return Just(false).eraseToAnyPublisher()
                 }

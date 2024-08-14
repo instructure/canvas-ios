@@ -251,3 +251,11 @@ public extension Date {
         Date.timeOnlyFormatter.string(from: self)
     }
 }
+
+#if DEBUG
+public extension Date {
+    static func make(year: Int, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> Date {
+        DateComponents(calendar: .current, year: year, month: month, day: day, hour: hour, minute: minute, second: second).date!
+    }
+}
+#endif

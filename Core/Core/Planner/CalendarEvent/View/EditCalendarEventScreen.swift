@@ -56,7 +56,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                         isClearable: false
                     )
 
-                    InstUI.ToggleCell(label: Text("All Day"), value: $viewModel.isAllDay)
+                    InstUI.ToggleCell(label: Text("All Day", bundle: .core), value: $viewModel.isAllDay)
 
                     if !viewModel.isAllDay {
                         InstUI.DatePickerCell(
