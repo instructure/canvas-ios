@@ -78,7 +78,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         } else {
             let dashboard = CoreHostingController(DashboardContainerView(shouldShowGroupList: true,
                                                                     showOnlyTeacherEnrollment: false))
-            result = DashboardContainerViewController(rootViewController: dashboard) { HelmSplitViewController() }
+            result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
 
             tabBarTitle = String(localized: "Dashboard", bundle: .student, comment: "dashboard page title")
             tabBarImage = .dashboardTab
@@ -94,7 +94,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     }
 
     func calendarTab() -> UIViewController {
-        let split = HelmSplitViewController()
+        let split = CoreSplitViewController()
         split.viewControllers = [
             HelmNavigationController(rootViewController: PlannerViewController.create()),
             HelmNavigationController(rootViewController: EmptyViewController())
@@ -110,7 +110,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     }
 
     func todoTab() -> UIViewController {
-        let todo = HelmSplitViewController()
+        let todo = CoreSplitViewController()
         let todoController = TodoListViewController.create()
         todo.viewControllers = [
             HelmNavigationController(rootViewController: todoController),
@@ -128,7 +128,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     }
 
     func notificationsTab() -> UIViewController {
-        let split = HelmSplitViewController()
+        let split = CoreSplitViewController()
         split.viewControllers = [
             HelmNavigationController(rootViewController: ActivityStreamViewController.create()),
             HelmNavigationController(rootViewController: EmptyViewController())
@@ -144,7 +144,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 
     func inboxTab() -> UIViewController {
         let inboxController: UIViewController
-        let inboxSplit = HelmSplitViewController()
+        let inboxSplit = CoreSplitViewController()
 
         inboxController = InboxAssembly.makeInboxViewController()
 

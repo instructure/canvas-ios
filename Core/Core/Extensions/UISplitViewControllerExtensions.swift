@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2021-present  Instructure, Inc.
+// Copyright (C) 2017-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,8 +18,21 @@
 
 import UIKit
 
-extension UISplitViewController {
-    @objc open var masterNavigationController: UINavigationController? {
+public extension UISplitViewController {
+    var detailNavigationController: UINavigationController? {
+        guard viewControllers.count > 1 else { return nil }
+        return viewControllers.last as? UINavigationController
+    }
+
+    var masterNavigationController: UINavigationController? {
         viewControllers.first as? UINavigationController
+    }
+
+    var masterTopViewController: UIViewController? {
+        masterNavigationController?.topMostViewController()
+    }
+
+    var detailTopViewController: UIViewController? {
+        detailNavigationController?.topMostViewController()
     }
 }

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2017-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,9 +17,8 @@
 //
 
 import UIKit
-import Core
 
-public class HelmSplitViewController: UISplitViewController {
+public class CoreSplitViewController: UISplitViewController {
 
     public override init(nibName: String? = nil, bundle: Bundle? = nil) {
         super.init(nibName: nibName, bundle: bundle)
@@ -72,13 +71,13 @@ public class HelmSplitViewController: UISplitViewController {
         let icon: UIImage = collapse ? .exitFullScreenLine : .fullScreenLine
         let prettyButton = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
         prettyButton.accessibilityLabel = collapse ?
-            String(localized: "Collapse detail view", bundle: .canvas) :
-            String(localized: "Expand detail view", bundle: .canvas)
+            String(localized: "Collapse detail view", bundle: .core) :
+            String(localized: "Expand detail view", bundle: .core)
         return prettyButton
     }
 }
 
-extension HelmSplitViewController: UISplitViewControllerDelegate {
+extension CoreSplitViewController: UISplitViewControllerDelegate {
     public func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
         if svc.viewControllers.count == 2 {
             let top = (svc.viewControllers.last as? UINavigationController)?.topViewController
@@ -94,8 +93,6 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
         if let nav = secondaryViewController as? UINavigationController {
             if let _ = nav.topViewController as? EmptyViewController {
                 return true
-            } else if let helmVC = nav.topViewController as? HelmViewController, helmVC.moduleName.contains("placeholder") {
-                return true
             } else {
                 // Remove the display mode button item
                 for vc in nav.viewControllers {
@@ -103,10 +100,10 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
                 }
             }
         }
-        
+
         return false
     }
-    
+
     public func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
 
         // Setup default detail view provided by the master view controller
@@ -130,12 +127,6 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
         if let nav = primaryViewController as? UINavigationController, nav.viewControllers.count >= 2 {
             var newDeets = nav.viewControllers[nav.viewControllers.count - 1]
             nav.popViewController(animated: true)
-
-            if let helmVC = newDeets as? HelmViewController {
-                if HelmManager.shared.masterModules.contains(helmVC.moduleName) {
-                    newDeets = UINavigationController(rootViewController: EmptyViewController())
-                }
-            }
 
             if !(newDeets is UINavigationController) {
                 newDeets = HelmNavigationController(rootViewController: newDeets)
@@ -161,14 +152,14 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
 
             return newDeets
         }
-        
+
         return nil
     }
 }
 
 // - MARK: Master Navigation Controller Transition Actions
 
-extension HelmSplitViewController: UINavigationControllerDelegate {
+extension CoreSplitViewController: UINavigationControllerDelegate {
 
     /**
      This method gets called only when a real transition occurs. UINavigationControllerDelegate.willShow/didShow also
@@ -186,4 +177,4 @@ extension HelmSplitViewController: UINavigationControllerDelegate {
 }
 
 // Needed for the above bug mentioned in comments
-extension HelmSplitViewController: UIGestureRecognizerDelegate { }
+extension CoreSplitViewController: UIGestureRecognizerDelegate { }

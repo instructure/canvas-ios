@@ -59,7 +59,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
     func coursesTab() -> UIViewController {
         let cardView = CoreHostingController(DashboardContainerView(shouldShowGroupList: false,
                                                                showOnlyTeacherEnrollment: true))
-        let dashboard = DashboardContainerViewController(rootViewController: cardView) { HelmSplitViewController() }
+        let dashboard = DashboardContainerViewController(rootViewController: cardView) { CoreSplitViewController() }
         dashboard.tabBarItem.title = String(localized: "Courses", bundle: .teacher)
         dashboard.tabBarItem.image = .coursesTab
         dashboard.tabBarItem.selectedImage = .coursesTabActive
@@ -68,7 +68,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
     }
 
     func calendarTab() -> UIViewController {
-        let split = HelmSplitViewController()
+        let split = CoreSplitViewController()
         split.viewControllers = [
             HelmNavigationController(rootViewController: PlannerViewController.create()),
             HelmNavigationController(rootViewController: EmptyViewController())
@@ -96,7 +96,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
 
     func inboxTab() -> UIViewController {
         let inboxController: UIViewController
-        let inboxSplit = HelmSplitViewController()
+        let inboxSplit = CoreSplitViewController()
 
         inboxController = InboxAssembly.makeInboxViewController()
 
