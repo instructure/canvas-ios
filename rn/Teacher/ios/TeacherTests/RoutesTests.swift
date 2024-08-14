@@ -107,6 +107,8 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/1/assignments/syllabus") is SyllabusTabViewController)
         XCTAssert(router.match("/courses/1/syllabus") is SyllabusTabViewController)
         XCTAssert(router.match("/courses/1/syllabus/edit") is CoreHostingController<SyllabusEditorView>)
+        XCTAssert(router.match("/conversations/1") is CoreHostingController<MessageDetailsView>)
+        XCTAssert(router.match("/conversations/compose") is CoreHostingController<ComposeMessageView>)
     }
 
     func testCalendarRoutes() {

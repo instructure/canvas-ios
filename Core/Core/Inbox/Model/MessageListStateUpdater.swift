@@ -19,9 +19,7 @@
 import Foundation
 
 public class MessageListStateUpdater {
-
-    public init() {
-    }
+    public init() {}
 
     public func update(message: InboxMessageListItem,
                        newState: ConversationWorkflowState) {
@@ -29,6 +27,14 @@ public class MessageListStateUpdater {
 
         let movingToArchived = (newState == .archived)
         let movingFromArchived = (message.scopeFilter == ConversationWorkflowState.archived.rawValue)
+
+        let conversationEntities: [Conversation] = context.fetch(
+            scope: Scope.where(#keyPath(Conversation.id),
+                               equals: message.messageId)
+        )
+        conversationEntities.forEach { conversation in
+            conversation.workflowState = newState
+        }
 
         if movingToArchived || movingFromArchived {
             context.delete([message])

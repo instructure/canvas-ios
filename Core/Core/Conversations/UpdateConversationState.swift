@@ -51,8 +51,7 @@ public class UpdateConversationState: APIUseCase {
 
         let entities: [InboxMessageListItem] = client.fetch(scope: scope)
         entities.forEach { message in
-            message.state = state
-            try? client.save()
+            MessageListStateUpdater().update(message: message, newState: state)
         }
     }
 }

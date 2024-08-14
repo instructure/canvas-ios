@@ -26,8 +26,6 @@ import Foundation
 /// production that should only apply to certain accounts, courses, or people.
 public enum ExperimentalFeature: String, CaseIterable, Codable {
     case favoriteGroups = "favorite_groups"
-    case nativeStudentInbox = "native_student_inbox"
-    case nativeTeacherInbox = "native_teacher_inbox"
     case K5Dashboard = "enable_K5_dashboard"
     case whatIfScore = "what_if_score"
     case teacherCalendar = "teacher_calendar"
