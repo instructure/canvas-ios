@@ -522,6 +522,7 @@
         <attribute name="assignmentName" attributeType="String" defaultValueString=""/>
         <attribute name="comment" optional="YES" attributeType="String"/>
         <attribute name="courseID" attributeType="String"/>
+        <attribute name="isGroupComment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isHiddenOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="submissionError" optional="YES" attributeType="String"/>

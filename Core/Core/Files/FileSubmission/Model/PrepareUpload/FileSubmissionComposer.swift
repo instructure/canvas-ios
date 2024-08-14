@@ -31,7 +31,14 @@ public class FileSubmissionComposer {
     /**
      - returns: The `objectID` of the created `FileSubmission` object.
      */
-    public func makeNewSubmission(courseId: String, assignmentId: String, assignmentName: String, comment: String?, files: [URL]) -> NSManagedObjectID {
+    public func makeNewSubmission(
+        courseId: String,
+        assignmentId: String,
+        assignmentName: String,
+        comment: String?,
+        isGroupComment: Bool?,
+        files: [URL]
+    ) -> NSManagedObjectID {
         var result: NSManagedObjectID!
 
         context.performAndWait {
@@ -40,6 +47,7 @@ public class FileSubmissionComposer {
             fileSubmission.assignmentID = assignmentId
             fileSubmission.assignmentName = assignmentName
             fileSubmission.comment = comment
+            fileSubmission.isGroupComment = isGroupComment ?? false
             fileSubmission.files = Set(files.map {
                 let item: FileUploadItem = context.insert()
                 item.localFileURL = $0

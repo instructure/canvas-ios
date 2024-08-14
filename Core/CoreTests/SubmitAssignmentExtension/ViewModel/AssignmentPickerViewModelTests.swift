@@ -41,7 +41,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
 
     func testAssignmentFetchSuccessful() {
         mockService.mockResult = .success([
-            .init(id: "A2", name: "online upload", allowedExtensions: [])
+            .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ])
         testee.courseID = "successID"
         drainMainQueue()
@@ -51,10 +51,22 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         ]))
     }
 
+    func testGroupAssignmentFetchSuccessful() {
+        mockService.mockResult = .success([
+            .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: true)
+        ])
+        testee.courseID = "successID"
+        drainMainQueue()
+        XCTAssertNil(testee.selectedAssignment)
+        XCTAssertEqual(testee.state, .data([
+            .init(id: "A2", name: "online upload", gradeAsGroup: true)
+        ]))
+    }
+
     func testAssignmentFetchSuccessfulButSharedFilesArentReady() {
         testee.sharedFileExtensions.send(nil)
         mockService.mockResult = .success([
-            .init(id: "A2", name: "online upload", allowedExtensions: [])
+            .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ])
         testee.courseID = "successID"
         drainMainQueue()
@@ -64,7 +76,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
 
     func testSameCourseIdDoesntTriggerRefresh() {
         mockService.mockResult = .success([
-            .init(id: "A1", name: "online upload", allowedExtensions: [])
+            .init(id: "A1", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ])
         testee.courseID = "successID"
         drainMainQueue()
@@ -85,7 +97,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
     func testDefaultAssignmentSelection() {
         environment.userDefaults?.submitAssignmentID = "A2"
         mockService.mockResult = .success([
-            .init(id: "A2", name: "online upload", allowedExtensions: [])
+            .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ])
         testee.courseID = "successID"
         drainMainQueue()
@@ -99,7 +111,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
 
     func testCourseChangeRefreshesState() {
         mockService.mockResult = .success([
-            .init(id: "A1", name: "online upload", allowedExtensions: [])
+            .init(id: "A1", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ])
         testee.courseID = "successID"
         drainMainQueue()
@@ -109,7 +121,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
 
         testee.assignmentSelected(.init(id: "A1", name: "online upload"))
         mockService.mockResult = .success([
-            .init(id: "A2", name: "online upload", allowedExtensions: [])
+            .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ])
         testee.courseID = "successID2"
         drainMainQueue()

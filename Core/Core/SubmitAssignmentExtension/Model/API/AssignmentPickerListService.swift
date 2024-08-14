@@ -73,7 +73,12 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
     private static func filterAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> [APIAssignmentPickerListItem] {
         assignments.compactMap {
             guard $0.isLocked == false, $0.submissionTypes.contains(.online_upload) else { return nil }
-            return APIAssignmentPickerListItem(id: $0._id, name: $0.name, allowedExtensions: $0.allowedExtensions ?? [])
+            return APIAssignmentPickerListItem(
+                id: $0._id,
+                name: $0.name,
+                allowedExtensions: $0.allowedExtensions ?? [],
+                gradeAsGroup: $0.gradeAsGroup
+            )
         }
     }
 }

@@ -40,9 +40,12 @@ public class FileSubmissionSubmitter {
         context.performAndWait {
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else { return }
             let fileIDs = submission.files.compactMap { $0.apiID }
-            let requestedSubmission = CreateSubmissionRequest.Body.Submission(text_comment: submission.comment,
-                                                                     submission_type: .online_upload,
-                                                                     file_ids: fileIDs)
+            let requestedSubmission = CreateSubmissionRequest.Body.Submission(
+                text_comment: submission.comment,
+                group_comment: submission.isGroupComment,
+                submission_type: .online_upload,
+                file_ids: fileIDs
+            )
             let request = CreateSubmissionRequest(context: .course(submission.courseID),
                                                       assignmentID: submission.assignmentID,
                                                       body: .init(submission: requestedSubmission))
