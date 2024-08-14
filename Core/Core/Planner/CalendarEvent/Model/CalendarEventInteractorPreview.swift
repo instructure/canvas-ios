@@ -50,18 +50,18 @@ final class CalendarEventInteractorPreview: CalendarEventInteractor {
         }
     }
 
-    // MARK: - getManageCalendarPermission
+    // MARK: - getCanManageCalendarPermission
 
-    var getManageCalendarPermissionCallsCount: Int = 0
-    var getManageCalendarPermissionInput: (context: Context, ignoreCache: Bool)?
-    var getManageCalendarPermissionResult: Result<Bool, Error>? = .success(true)
+    var getCanManageCalendarPermissionCallsCount: Int = 0
+    var getCanManageCalendarPermissionInput: (context: Context, ignoreCache: Bool)?
+    var getCanManageCalendarPermissionResult: Result<Bool, Error>? = .success(true)
 
-    func getManageCalendarPermission(context: Context, ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
-        getManageCalendarPermissionCallsCount += 1
-        getManageCalendarPermissionInput = (context: context, ignoreCache: ignoreCache)
+    func getCanManageCalendarPermission(context: Context, ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
+        getCanManageCalendarPermissionCallsCount += 1
+        getCanManageCalendarPermissionInput = (context: context, ignoreCache: ignoreCache)
 
-        if let getManageCalendarPermissionResult {
-            return getManageCalendarPermissionResult.publisher.eraseToAnyPublisher()
+        if let getCanManageCalendarPermissionResult {
+            return getCanManageCalendarPermissionResult.publisher.eraseToAnyPublisher()
         } else {
             return Empty().eraseToAnyPublisher()
         }

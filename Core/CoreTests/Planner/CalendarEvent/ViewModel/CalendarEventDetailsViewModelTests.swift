@@ -170,63 +170,63 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
         // current user's calendar
         event.context = .user("42")
         testee.reload {}
-        XCTAssertEqual(interactor.getManageCalendarPermissionCallsCount, 0)
+        XCTAssertEqual(interactor.getCanManageCalendarPermissionCallsCount, 0)
         XCTAssertEqual(testee.shouldShowMenuButton, true)
 
         // another user's calendar (should not happen)
         event.context = .user("1")
         testee.reload {}
         XCTAssertEqual(testee.shouldShowMenuButton, false)
-        XCTAssertEqual(interactor.getManageCalendarPermissionCallsCount, 0)
+        XCTAssertEqual(interactor.getCanManageCalendarPermissionCallsCount, 0)
 
         // non user/course/group calendar (should not happen)
         event.context = .account("1")
         testee.reload {}
         XCTAssertEqual(testee.shouldShowMenuButton, false)
-        XCTAssertEqual(interactor.getManageCalendarPermissionCallsCount, 0)
+        XCTAssertEqual(interactor.getCanManageCalendarPermissionCallsCount, 0)
 
         // course calendar, with permission
         event.context = .course("1")
-        interactor.getManageCalendarPermissionResult = .success(true)
+        interactor.getCanManageCalendarPermissionResult = .success(true)
         testee.reload {}
         XCTAssertEqual(testee.shouldShowMenuButton, true)
-        XCTAssertEqual(interactor.getManageCalendarPermissionInput?.context, .course("1"))
-        XCTAssertEqual(interactor.getManageCalendarPermissionInput?.ignoreCache, true)
+        XCTAssertEqual(interactor.getCanManageCalendarPermissionInput?.context, .course("1"))
+        XCTAssertEqual(interactor.getCanManageCalendarPermissionInput?.ignoreCache, true)
 
         // course calendar, without permission
         event.context = .course("1")
-        interactor.getManageCalendarPermissionResult = .success(false)
+        interactor.getCanManageCalendarPermissionResult = .success(false)
         testee.reload {}
         XCTAssertEqual(testee.shouldShowMenuButton, false)
 
         // group calendar, with permission
         event.context = .group("1")
-        interactor.getManageCalendarPermissionResult = .success(true)
+        interactor.getCanManageCalendarPermissionResult = .success(true)
         testee.reload {}
         XCTAssertEqual(testee.shouldShowMenuButton, true)
-        XCTAssertEqual(interactor.getManageCalendarPermissionInput?.context, .group("1"))
-        XCTAssertEqual(interactor.getManageCalendarPermissionInput?.ignoreCache, true)
+        XCTAssertEqual(interactor.getCanManageCalendarPermissionInput?.context, .group("1"))
+        XCTAssertEqual(interactor.getCanManageCalendarPermissionInput?.ignoreCache, true)
 
         // group calendar, without permission
         event.context = .group("1")
-        interactor.getManageCalendarPermissionResult = .success(false)
+        interactor.getCanManageCalendarPermissionResult = .success(false)
         testee.reload {}
         XCTAssertEqual(testee.shouldShowMenuButton, false)
     }
 
-    func testGetManageCalendarPermissionFailureHandling() {
+    func testGetCanManageCalendarPermissionFailureHandling() {
         event.context = .user("42")
         let testee = makeViewModel(userId: "42")
         XCTAssertEqual(testee.shouldShowMenuButton, true)
 
         // on failure set to false
         event.context = .course("1")
-        interactor.getManageCalendarPermissionResult = .failure(NSError.internalError())
+        interactor.getCanManageCalendarPermissionResult = .failure(NSError.internalError())
         testee.reload {}
         XCTAssertEqual(testee.shouldShowMenuButton, false)
 
         // on reload with success set to result
-        interactor.getManageCalendarPermissionResult = .success(true)
+        interactor.getCanManageCalendarPermissionResult = .success(true)
         testee.reload {}
         XCTAssertEqual(testee.shouldShowMenuButton, true)
     }

@@ -25,8 +25,8 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         static let id = "some id"
         static let title = "some title"
         static let details = "some details"
-        static let dateNow = Clock.date(year: 2024, month: 1, day: 1, hour: 14)
-        static let dateEarlier = Clock.date(year: 2023, month: 8, day: 8, hour: 8)
+        static let dateNow = Date.make(year: 2024, month: 1, day: 1, hour: 14)
+        static let dateEarlier = Date.make(year: 2023, month: 8, day: 8, hour: 8)
         static let calendars: [(name: String, context: Context)] = [
             ("Course 2", .course("2")),
             ("Course 1", .course("1")),

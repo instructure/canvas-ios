@@ -23,7 +23,7 @@ final class CalendarEventRequestModelTests: CoreTestCase {
 
     func testIsValid() {
         var testee: CalendarEventRequestModel
-        let date = Clock.date(year: 2020, month: 1, day: 1, hour: 0)
+        let date = Date.make(year: 2020, month: 1, day: 1, hour: 0)
 
         testee = .make(title: "title", isAllDay: true)
         XCTAssertEqual(testee.isValid, true)
@@ -46,16 +46,16 @@ final class CalendarEventRequestModelTests: CoreTestCase {
 
     func testProcessedTimes() {
         var testee: CalendarEventRequestModel
-        let date = Clock.date(year: 1984, month: 1, day: 1, hour: 5)
-        let startTime = Clock.date(year: 2000, month: 1, day: 1, hour: 11, minute: 15)
-        let endTime = Clock.date(year: 2000, month: 1, day: 1, hour: 14, minute: 10)
+        let date = Date.make(year: 1984, month: 1, day: 1, hour: 5)
+        let startTime = Date.make(year: 2000, month: 1, day: 1, hour: 11, minute: 15)
+        let endTime = Date.make(year: 2000, month: 1, day: 1, hour: 14, minute: 10)
 
         testee = .make(date: date, isAllDay: true, startTime: startTime, endTime: endTime)
-        XCTAssertEqual(testee.processedStartTime, Clock.date(year: 1984, month: 1, day: 1))
-        XCTAssertEqual(testee.processedEndTime, Clock.date(year: 1984, month: 1, day: 1))
+        XCTAssertEqual(testee.processedStartTime, Date.make(year: 1984, month: 1, day: 1))
+        XCTAssertEqual(testee.processedEndTime, Date.make(year: 1984, month: 1, day: 1))
 
         testee = .make(date: date, isAllDay: false, startTime: startTime, endTime: endTime)
-        XCTAssertEqual(testee.processedStartTime, Clock.date(year: 1984, month: 1, day: 1, hour: 11, minute: 15))
-        XCTAssertEqual(testee.processedEndTime, Clock.date(year: 1984, month: 1, day: 1, hour: 14, minute: 10))
+        XCTAssertEqual(testee.processedStartTime, Date.make(year: 1984, month: 1, day: 1, hour: 11, minute: 15))
+        XCTAssertEqual(testee.processedEndTime, Date.make(year: 1984, month: 1, day: 1, hour: 14, minute: 10))
     }
 }

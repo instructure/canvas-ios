@@ -62,10 +62,4 @@ public class Clock {
         #endif
         return Date()
     }
-
-    #if DEBUG
-    public static func date(year: Int, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> Date {
-        DateComponents(calendar: .current, year: year, month: month, day: day, hour: hour, minute: minute, second: second).date!
-    }
-    #endif
 }

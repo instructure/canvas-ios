@@ -26,7 +26,7 @@ public protocol CalendarEventInteractor: AnyObject {
         ignoreCache: Bool
     ) -> any Publisher<(event: CalendarEvent, contextColor: UIColor), Error>
 
-    func getManageCalendarPermission(context: Context, ignoreCache: Bool) -> AnyPublisher<Bool, Error>
+    func getCanManageCalendarPermission(context: Context, ignoreCache: Bool) -> AnyPublisher<Bool, Error>
 
     func createEvent(model: CalendarEventRequestModel) -> AnyPublisher<Void, Error>
 
@@ -68,7 +68,7 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
         }
     }
 
-    func getManageCalendarPermission(context: Context, ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
+    func getCanManageCalendarPermission(context: Context, ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
         let useCase = GetContextPermissions(context: context, permissions: [.manageCalendar])
         return ReactiveStore(useCase: useCase)
             .getEntities(ignoreCache: ignoreCache)

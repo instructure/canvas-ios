@@ -27,8 +27,8 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         static let details = "some details"
         static let locationName = "some locationName"
         static let locationAddress = "some locationAddress"
-        static let dateNow = Clock.date(year: 2024, month: 1, day: 1, hour: 14, minute: 7)
-        static let dateStart = Clock.date(year: 2023, month: 8, day: 8, hour: 8, minute: 42)
+        static let dateNow = Date.make(year: 2024, month: 1, day: 1, hour: 14, minute: 7)
+        static let dateStart = Date.make(year: 2023, month: 8, day: 8, hour: 8, minute: 42)
         static let calendars: [(name: String, context: Context)] = [
             ("Course 2", .course("2")),
             ("Course 1", .course("1")),
@@ -70,10 +70,10 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.shouldShowSaveError, false)
 
         XCTAssertEqual(testee.title, "")
-        XCTAssertEqual(testee.date, Clock.date(year: 2024, month: 1, day: 1))
+        XCTAssertEqual(testee.date, Date.make(year: 2024, month: 1, day: 1))
         XCTAssertEqual(testee.isAllDay, false)
-        XCTAssertEqual(testee.startTime, Clock.date(year: 2024, month: 1, day: 1, hour: 15))
-        XCTAssertEqual(testee.endTime, Clock.date(year: 2024, month: 1, day: 1, hour: 16))
+        XCTAssertEqual(testee.startTime, Date.make(year: 2024, month: 1, day: 1, hour: 15))
+        XCTAssertEqual(testee.endTime, Date.make(year: 2024, month: 1, day: 1, hour: 16))
         XCTAssertEqual(testee.calendarName, "User 42") // first user calendar in TestConstants.calendars
         XCTAssertEqual(testee.location, "")
         XCTAssertEqual(testee.address, "")
@@ -109,8 +109,8 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.isAllDay, true)
         XCTAssertEqual(testee.date, TestConstants.dateStart)
-        XCTAssertEqual(testee.startTime, Clock.date(year: 2024, month: 1, day: 1, hour: 15))
-        XCTAssertEqual(testee.endTime, Clock.date(year: 2024, month: 1, day: 1, hour: 16))
+        XCTAssertEqual(testee.startTime, Date.make(year: 2024, month: 1, day: 1, hour: 15))
+        XCTAssertEqual(testee.endTime, Date.make(year: 2024, month: 1, day: 1, hour: 16))
 
         testee = makeEditViewModel(makeEvent(
             isAllDay: false,
