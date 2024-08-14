@@ -28,4 +28,13 @@ public extension WKHTTPCookieStore {
             }
         }.eraseToAnyPublisher()
     }
+
+    func setCookie(_ cookie: HTTPCookie) -> AnyPublisher<Void, Never> {
+        Future { promise in
+            self.setCookie(cookie) {
+                promise(.success)
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }
