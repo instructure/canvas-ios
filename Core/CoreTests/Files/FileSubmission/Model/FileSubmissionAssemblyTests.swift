@@ -57,7 +57,7 @@ class FileSubmissionAssemblyTests: CoreTestCase {
         // MARK: Binary upload mock
 
         let session = testee.backgroundURLSessionProvider.session
-        let mockDataTask = session.dataTask(with: URL(string: "/")!)
+        let mockDataTask = session.dataTask(with: .make())
         mockDataTask.taskID = submission.files.first!.objectID.uriRepresentation().absoluteString
         let uploadResponse = try! encoder.encode(APIFile.make(id: "apiID"))
         let urlSessionDelegate = session.delegate as! URLSessionDataDelegate
@@ -93,7 +93,7 @@ class FileSubmissionAssemblyTests: CoreTestCase {
         let session = testee.backgroundURLSessionProvider.session
 
         // MARK: - WHEN
-        session.dataTask(with: URLRequest(url: URL(string: "/")!)).resume()
+        session.dataTask(with: URLRequest(url: .make())).resume()
 
         // MARK: - THEN
         drainMainQueue()
@@ -114,7 +114,7 @@ class FileSubmissionAssemblyTests: CoreTestCase {
         let session = testee.backgroundURLSessionProvider.session
 
         // MARK: - WHEN
-        session.dataTask(with: URLRequest(url: URL(string: "/")!)).resume()
+        session.dataTask(with: URLRequest(url: .make())).resume()
 
         // MARK: - THEN
         drainMainQueue()
