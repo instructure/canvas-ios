@@ -91,6 +91,7 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
 
     public func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         if let nav = secondaryViewController as? UINavigationController {
+            // swiftlint:disable:next unused_optional_binding
             if let _ = nav.topViewController as? EmptyViewController {
                 return true
             } else {
@@ -111,8 +112,7 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
            nav.viewControllers.count > 1,
            let defaultViewProvider = nav.viewControllers.last as? DefaultViewProvider,
            let defaultRoute = defaultViewProvider.defaultViewRoute,
-           let defaultViewController = AppEnvironment.shared.router.match(defaultRoute, userInfo: nil)
-        {
+           let defaultViewController = AppEnvironment.shared.router.match(defaultRoute, userInfo: nil) {
             let detailNavController = HelmNavigationController(rootViewController: defaultViewController)
             detailNavController.syncStyles(from: nav, to: detailNavController)
 
