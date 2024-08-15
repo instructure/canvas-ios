@@ -144,7 +144,26 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                     }
                     .store(in: &self.subscriptions)
             }
+
+            self.setTabBarController()
         }}
+    }
+
+    func setTabBarController() {
+        let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [HelmNavigationController.self])
+        appearance.barTintColor = nil
+        appearance.tintColor = nil
+        appearance.titleTextAttributes = nil
+
+        guard let window = self.window else { return }
+        let controller = StudentTabBarController()
+        controller.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+            window.rootViewController = controller
+        }, completion: { _ in
+            self.environment.startupDidComplete()
+            UIApplication.shared.registerForPushNotifications()
+        })
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
