@@ -258,7 +258,6 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        PushNotifications.record(response.notification)
         if let url = response.notification.request.routeURL {
             openURL(url, userInfo: [
                 "forceRefresh": true,
