@@ -111,35 +111,10 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                     .receive(on: RunLoop.main)
                     .sink(receiveCompletion: { _ in }) { brandVars in
                         brandVars.first?.applyBrandTheme()
-                        NativeLoginManager.login(as: session)
                     }
                     .store(in: &self.subscriptions)
             }
         }}
-    }
-
-    @objc func prepareReactNative() {
-        HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
-        NativeLoginManager.shared().delegate = self
-        HelmManager.shared.onReactLoginComplete = {
-            guard let window = self.window else { return }
-            let controller = TeacherTabBarController()
-            controller.view.layoutIfNeeded()
-            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
-                window.rootViewController = controller
-            }, completion: { _ in
-                self.environment.startupDidComplete()
-                UIApplication.shared.registerForPushNotifications()
-            })
-        }
-        HelmManager.shared.onReactReload = {
-            guard self.window?.rootViewController is TeacherTabBarController else { return }
-            guard let session = LoginSession.mostRecent else {
-                self.changeUser()
-                return
-            }
-            self.setup(session: session)
-        }
     }
 
     func application(
@@ -301,7 +276,7 @@ extension TeacherAppDelegate: RCTBridgeDelegate {
     }
 }
 
-extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
+extension TeacherAppDelegate: LoginDelegate {
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         disableTracking()

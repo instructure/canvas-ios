@@ -374,11 +374,7 @@ let router = Router(routes: [
     },
 
     RouteHandler("/dev-menu/experimental-features") { _, _, _ in
-        let vc = ExperimentalFeaturesViewController()
-        vc.afterToggle = {
-            HelmManager.shared.reload()
-        }
-        return vc
+        ExperimentalFeaturesViewController()
     },
 
     RouteHandler("/dev-menu/pandas") { _, _, _ in
@@ -422,9 +418,7 @@ let router = Router(routes: [
     },
 
     RouteHandler("/profile/settings") { _, _, _ in
-        ProfileSettingsViewController.create(onElementaryViewToggleChanged: {
-            HelmManager.shared.reload()
-        })
+        ProfileSettingsViewController.create(onElementaryViewToggleChanged: { () })
     },
 
     RouteHandler("/support/problem") { _, _, _ in

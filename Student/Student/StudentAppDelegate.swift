@@ -141,7 +141,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                     .receive(on: RunLoop.main)
                     .sink(receiveCompletion: { _ in }) { brandVars in
                         brandVars.first?.applyBrandTheme()
-                        NativeLoginManager.login(as: session)
                     }
                     .store(in: &self.subscriptions)
             }
@@ -154,9 +153,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
            components.path.contains("student_view"),
            let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
             shouldSetK5StudentView = components.path.contains("k5")
-            if environment.currentSession != nil {
-                NativeLoginManager.shared().logout() // Cleanup old to prevent token errors
-            }
             userDidLogin(session: fakeStudent)
             return true
         }
@@ -344,7 +340,6 @@ extension StudentAppDelegate {
             configureRemoteConfig()
             Core.Analytics.shared.handler = self
         }
-        CanvasCrashlytics.setupForReactNative()
     }
 
     func setupDebugCrashLogging() {
@@ -435,7 +430,7 @@ extension StudentAppDelegate {
 
 // MARK: - Login Delegate
 
-extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
+extension StudentAppDelegate: LoginDelegate {
     func changeUser() {
         shouldSetK5StudentView = false
         environment.k5.userDidLogout()
