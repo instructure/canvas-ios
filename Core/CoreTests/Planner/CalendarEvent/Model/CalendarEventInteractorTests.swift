@@ -29,16 +29,19 @@ final class CalendarEventInteractorTests: CoreTestCase {
         static let endAt = startAt.addHours(2)
         static let locationName = "some locationName"
         static let locationAddress = "some locationAddress"
+        static let timeZone = TimeZone(identifier: "Australia/Sydney")!
     }
 
     var testee: CalendarEventInteractorLive!
 
     override func setUp() {
         super.setUp()
+        Cal.mockCalendar(.current, timeZone: TestConstants.timeZone)
         testee = .init()
     }
 
     override func tearDown() {
+        Cal.reset()
         testee = nil
         super.tearDown()
     }
@@ -138,6 +141,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
             XCTAssertEqual(body.calendar_event.end_at, TestConstants.endAt)
             XCTAssertEqual(body.calendar_event.location_name, TestConstants.locationName)
             XCTAssertEqual(body.calendar_event.location_address, TestConstants.locationAddress)
+            XCTAssertEqual(body.calendar_event.time_zone_edited, TestConstants.timeZone.identifier)
         }
     }
 
@@ -181,6 +185,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
             XCTAssertEqual(body.calendar_event.end_at, TestConstants.endAt)
             XCTAssertEqual(body.calendar_event.location_name, TestConstants.locationName)
             XCTAssertEqual(body.calendar_event.location_address, TestConstants.locationAddress)
+            XCTAssertEqual(body.calendar_event.time_zone_edited, TestConstants.timeZone.identifier)
         }
     }
 

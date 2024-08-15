@@ -55,6 +55,10 @@ extension CalendarEventRequestModel {
                 .addMinutes(endTime.minutes)
         }
     }
+
+    var timeZone: String {
+        Cal.currentCalendar.timeZone.identifier
+    }
 }
 
 #if DEBUG
