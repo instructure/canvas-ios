@@ -41,6 +41,14 @@ class HelpTests: E2ETestCase {
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas/ct-p/canvas"))
         HelpHelper.returnToHelpPage()
 
+        // MARK: Check "CUSTOM LINK" button
+        let customLinkButton = HelpHelper.customLink.waitUntil(.visible)
+        XCTAssertTrue(customLinkButton.isVisible)
+        customLinkButton.hit()
+        browserURL = SafariAppHelper.browserURL
+        XCTAssertTrue(browserURL.contains("https://www.instructure.com"))
+        HelpHelper.returnToHelpPage()
+
         // MARK: Check "Ask Your Instructor a Question" button
         let askYourInstructorButton = HelpHelper.askYourInstructor.waitUntil(.visible)
         XCTAssertTrue(askYourInstructorButton.isVisible)

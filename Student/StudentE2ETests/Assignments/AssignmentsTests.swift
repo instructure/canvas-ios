@@ -401,4 +401,41 @@ class AssignmentsTests: E2ETestCase {
             .rubricLongDescriptionLabel(rubric: rubric).waitUntil(.visible)
         XCTAssertTrue(rubricLongDescriptionLabel.isVisible)
     }
+
+    // Covers MBL-17735
+    func testRestrictedSubmissionTypesDoesNotAllowStudio() {
+        // MARK: Seed the usual stuff
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Create an assignment
+        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_upload], allowedExtensions: ["pdf"])
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Assignments and tap the assignment
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+
+        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
+        XCTAssertTrue(assignmentButton.isVisible)
+        assignmentButton.hit()
+
+        let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.visible)
+        XCTAssertTrue(submitAssignmentButton.isVisible)
+        submitAssignmentButton.hit()
+
+        // MARK: Check elements and if Studio is not available
+        let pandaFilePicker = SubmissionHelper.pandaFilePicker.waitUntil(.visible)
+        let filesButton = SubmissionHelper.filesButton.waitUntil(.visible)
+        let studioLabel = SubmissionHelper.studioLabel.waitUntil(.vanish)
+        XCTAssertTrue(pandaFilePicker.isVisible)
+        XCTAssertTrue(filesButton.isVisible)
+        XCTAssertTrue(studioLabel.isVanished)
+    }
 }
