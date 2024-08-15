@@ -228,7 +228,7 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/external_tools/:toolID") { _, params, _ in
         guard let courseID = params["courseID"], let toolID = params["toolID"] else { return nil }
-        guard let vc = HelmManager.shared.topMostViewController() else { return nil }
+        guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
         let tools = LTITools(context: .course(courseID), id: toolID)
         tools.presentTool(from: vc, animated: true)
         return nil

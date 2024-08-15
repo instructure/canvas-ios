@@ -461,13 +461,3 @@ private func isModalPresentation(_ userInfo: [String: Any]?) -> Bool {
     let navigatorOptions = userInfo?["navigatorOptions"] as? [String: Any]
     return navigatorOptions?["modal"] as? Bool ?? false
 }
-
-// MARK: - HelmModules
-
-extension ModuleListViewController: HelmModule {
-    public var moduleName: String { return "/courses/:courseID/modules" }
-}
-
-extension WrongAppViewController: HelmModule {
-    public var moduleName: String { return "/wrong-app" }
-}

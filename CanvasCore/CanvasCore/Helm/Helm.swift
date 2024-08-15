@@ -26,16 +26,6 @@ public typealias ModuleName = String
 public struct HelmViewControllerFactory {
     public typealias Props = [String: Any]
     public typealias Builder = (Props) -> UIViewController?
-    
-    public let builder: Builder
-    
-    public init(builder: @escaping Builder) {
-        self.builder = builder
-    }
-}
-
-public protocol HelmModule {
-    var moduleName: String { get }
 }
 
 
@@ -105,25 +95,5 @@ open class HelmManager: NSObject {
 extension HelmManager {
     @objc open func topMostViewController() -> UIViewController? {
         return AppEnvironment.shared.window?.rootViewController?.topMostViewController()
-    }
-}
-
-extension UIViewController {
-    @objc func topMostViewController() -> UIViewController? {
-        if let presented = presentedViewController {
-            return presented.topMostViewController()
-        } else if let tabBarSelected = (self as? UITabBarController)?.selectedViewController {
-            return tabBarSelected.topMostViewController()
-        } else if let navVisible = (self as? UINavigationController)?.visibleViewController {
-            return navVisible.topMostViewController()
-        } else {
-            return self
-        }
-    }
-}
-
-extension HelmManager: UIAdaptivePresentationControllerDelegate {
-    public func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
-        return false
     }
 }
