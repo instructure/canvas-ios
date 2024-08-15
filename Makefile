@@ -9,11 +9,9 @@ provision-ci: ## CI environment setup
 
 sync: ## Dependency installation 
 	@make gen
-	@cd rn/Teacher; yarn build-update
 
 sync-ci: ## Dependency installation 
 	@make gen-ci
-	@cd rn/Teacher; yarn build-update
 
 gen-ci: ## CI specific xproj file generation
 	@echo 🟡 Running xcodegen

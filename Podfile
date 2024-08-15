@@ -3,7 +3,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 workspace 'Canvas.xcworkspace'
 inhibit_all_warnings!
 platform :ios, '16.0'
-require_relative './rn/Teacher/node_modules/react-native/scripts/react_native_pods'
 
 def firebase_pods
   pod 'GoogleUtilities', '~> 7.13'
@@ -16,39 +15,16 @@ def canvas_crashlytics_rn_firebase_pods
   pod 'Firebase/Crashlytics', '~> 10.23.1'
 end
 
-def react_native_pods
-  use_react_native!(:path => './rn/Teacher/node_modules/react-native')
-
-  # node modules
-  # use_native_modules!
-  pod 'BVLinearGradient', :path => './rn/Teacher/node_modules/react-native-linear-gradient'
-  pod 'Interactable', :path => './rn/Teacher/node_modules/react-native-interactable'
-  pod 'react-native-camera', :path => './rn/Teacher/node_modules/react-native-camera'
-  pod 'react-native-document-picker', :path => './rn/Teacher/node_modules/react-native-document-picker'
-  pod 'react-native-image-picker', :path => './rn/Teacher/node_modules/react-native-image-picker'
-  pod 'react-native-segmented-control', :path => './rn/Teacher/node_modules/@react-native-community/segmented-control'
-  pod 'ReactNativeART', :path => './rn/Teacher/node_modules/@react-native-community/art'
-  pod 'RNAudio', :path => './rn/Teacher/node_modules/react-native-audio'
-  pod 'RNCAsyncStorage', :path => './rn/Teacher/node_modules/@react-native-community/async-storage'
-  pod 'RNCPicker', :path => './rn/Teacher/node_modules/@react-native-community/picker'
-  pod 'RNDateTimePicker', :path => './rn/Teacher/node_modules/@react-native-community/datetimepicker'
-  pod 'RNFS', :path => './rn/Teacher/node_modules/react-native-fs'
-  pod 'RNSearchBar', :path => './rn/Teacher/node_modules/react-native-search-bar'
-  pod 'RNSound', :path => './rn/Teacher/node_modules/react-native-sound'
-end
-
 abstract_target 'defaults' do
   use_frameworks!
 
-  react_native_pods
-
   target 'Teacher' do
-    project 'rn/Teacher/ios/Teacher.xcodeproj'
+    project 'Teacher/Teacher.xcodeproj'
     firebase_pods
   end
 
   target 'TeacherTests' do
-    project 'rn/Teacher/ios/Teacher.xcodeproj'
+    project 'Teacher/Teacher.xcodeproj'
     firebase_pods
   end
 
@@ -66,11 +42,7 @@ abstract_target 'defaults' do
     project 'Student/Student.xcodeproj'
     firebase_pods
   end
-
-  target 'CanvasCore' do
-    project 'CanvasCore/CanvasCore.xcodeproj'
-    canvas_crashlytics_rn_firebase_pods
-  end
+  
 end
 
 abstract_target 'parent_defaults' do

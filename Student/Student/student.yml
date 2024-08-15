@@ -19,7 +19,6 @@ targets:
     dependencies:
       - package: PSPDFKit
       - package: Heap
-      - target: CanvasCore/CanvasCore
       - target: Core/Core
       - target: SubmitAssignment
       - target: Widgets
