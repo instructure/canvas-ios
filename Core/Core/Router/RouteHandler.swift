@@ -34,7 +34,7 @@ public struct RouteHandler {
     public let factory: ViewFactory
     public let segments: [Segment]
 
-    public init(_ template: String, factory: @escaping ViewFactory) {
+    public init(_ template: String, _ factory: @escaping ViewFactory = { _,_,_ in nil }) {
         self.template = template
         self.factory = factory
         self.segments = template.split(separator: "/").map { part in
