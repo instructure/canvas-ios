@@ -79,8 +79,8 @@ let router = Router(routes: [
 
     RouteHandler("/courses") { _, _, _ in AllCoursesAssembly.makeCourseListViewController(env: .shared) },
 
-    RouteHandler("/courses/:courseID", courseDetails),
-    RouteHandler("/courses/:courseID/tabs", courseDetails),
+    RouteHandler("/courses/:courseID", factory: courseDetails),
+    RouteHandler("/courses/:courseID/tabs", factory: courseDetails),
 
     RouteHandler("/courses/:courseID/settings") { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
@@ -103,7 +103,7 @@ let router = Router(routes: [
         return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: true))
     },
 
-    RouteHandler("/:context/:contextID/announcements/:announcementID", discussionDetails),
+    RouteHandler("/:context/:contextID/announcements/:announcementID", factory: discussionDetails),
 
     RouteHandler("/courses/:courseID/assignments") { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
@@ -111,8 +111,8 @@ let router = Router(routes: [
         return CoreHostingController(AssignmentListView(viewModel: viewModel))
     },
 
-    RouteHandler("/courses/:courseID/assignments/syllabus", syllabus),
-    RouteHandler("/courses/:courseID/syllabus", syllabus),
+    RouteHandler("/courses/:courseID/assignments/syllabus", factory: syllabus),
+    RouteHandler("/courses/:courseID/syllabus", factory: syllabus),
     RouteHandler("/courses/:courseID/syllabus/edit") { url, params, _ in
         guard let context = Context(path: url.path), let courseID = params["courseID"] else { return nil }
         return CoreHostingController(SyllabusEditorView(context: context, courseID: courseID))
@@ -172,8 +172,8 @@ let router = Router(routes: [
         return CoreHostingController(DiscussionEditorView(context: context, topicID: nil, isAnnouncement: false))
     },
 
-    RouteHandler("/:context/:contextID/discussions/:discussionID", discussionDetails),
-    RouteHandler("/:context/:contextID/discussion_topics/:discussionID", discussionDetails),
+    RouteHandler("/:context/:contextID/discussions/:discussionID", factory: discussionDetails),
+    RouteHandler("/:context/:contextID/discussion_topics/:discussionID", factory: discussionDetails),
 
     RouteHandler("/:context/:contextID/discussion_topics/:discussionID/edit") { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
@@ -194,23 +194,23 @@ let router = Router(routes: [
         return DiscussionReplyViewController.create(context: context, topicID: topicID, replyToEntryID: entryID)
     },
 
-    RouteHandler("/files", fileList),
-    RouteHandler("/:context/:contextID/files", fileList),
-    RouteHandler("/files/folder/*subFolder", fileList),
-    RouteHandler("/:context/:contextID/files/folder/*subFolder", fileList),
+    RouteHandler("/files", factory: fileList),
+    RouteHandler("/:context/:contextID/files", factory: fileList),
+    RouteHandler("/files/folder/*subFolder", factory: fileList),
+    RouteHandler("/:context/:contextID/files/folder/*subFolder", factory: fileList),
     RouteHandler("/folders/:folderID/edit") { _, params, _ in
         guard let folderID = params["folderID"] else { return nil }
         return CoreHostingController(FileEditorView(folderID: folderID))
     },
 
-    RouteHandler("/files/:fileID", fileDetails),
-    RouteHandler("/files/:fileID/download", fileDetails),
-    RouteHandler("/files/:fileID/preview", fileDetails),
-    RouteHandler("/files/:fileID/edit", fileEditor),
-    RouteHandler("/:context/:contextID/files/:fileID", fileDetails),
-    RouteHandler("/:context/:contextID/files/:fileID/download", fileDetails),
-    RouteHandler("/:context/:contextID/files/:fileID/preview", fileDetails),
-    RouteHandler("/:context/:contextID/files/:fileID/edit", fileEditor),
+    RouteHandler("/files/:fileID", factory: fileDetails),
+    RouteHandler("/files/:fileID/download", factory: fileDetails),
+    RouteHandler("/files/:fileID/preview", factory: fileDetails),
+    RouteHandler("/files/:fileID/edit", factory: fileEditor),
+    RouteHandler("/:context/:contextID/files/:fileID", factory: fileDetails),
+    RouteHandler("/:context/:contextID/files/:fileID/download", factory: fileDetails),
+    RouteHandler("/:context/:contextID/files/:fileID/preview", factory: fileDetails),
+    RouteHandler("/:context/:contextID/files/:fileID/edit", factory: fileEditor),
 
     RouteHandler("/courses/:courseID/modules") { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }

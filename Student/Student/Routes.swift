@@ -80,8 +80,8 @@ let router = Router(routes: [
 
     RouteHandler("/courses") { _, _, _ in AllCoursesAssembly.makeCourseListViewController(env: .shared) },
 
-    RouteHandler("/courses/:courseID", courseDetails),
-    RouteHandler("/courses/:courseID/tabs", courseDetails),
+    RouteHandler("/courses/:courseID", factory: courseDetails),
+    RouteHandler("/courses/:courseID/tabs", factory: courseDetails),
 
     RouteHandler("/groups/:groupID") { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
@@ -112,7 +112,7 @@ let router = Router(routes: [
         return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: true))
     },
 
-    RouteHandler("/:context/:contextID/announcements/:announcementID", discussionViewController),
+    RouteHandler("/:context/:contextID/announcements/:announcementID", factory: discussionViewController),
 
     RouteHandler("/courses/:courseID/assignments") { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
@@ -223,8 +223,8 @@ let router = Router(routes: [
         return DiscussionReplyViewController.create(context: context, topicID: discussionID, replyToEntryID: entryID)
     },
 
-    RouteHandler("/:context/:contextID/discussions/:discussionID", discussionViewController),
-    RouteHandler("/:context/:contextID/discussion_topics/:discussionID", discussionViewController),
+    RouteHandler("/:context/:contextID/discussions/:discussionID", factory: discussionViewController),
+    RouteHandler("/:context/:contextID/discussion_topics/:discussionID", factory: discussionViewController),
 
     RouteHandler("/courses/:courseID/external_tools/:toolID") { _, params, _ in
         guard let courseID = params["courseID"], let toolID = params["toolID"] else { return nil }
@@ -234,24 +234,24 @@ let router = Router(routes: [
         return nil
     },
 
-    RouteHandler("/files", fileList),
-    RouteHandler("/:context/:contextID/files", fileList),
-    RouteHandler("/files/folder/*subFolder", fileList),
-    RouteHandler("/:context/:contextID/files/folder/*subFolder", fileList),
+    RouteHandler("/files", factory: fileList),
+    RouteHandler("/:context/:contextID/files", factory: fileList),
+    RouteHandler("/files/folder/*subFolder", factory: fileList),
+    RouteHandler("/:context/:contextID/files/folder/*subFolder", factory: fileList),
     RouteHandler("/folders/:folderID/edit") { _, params, _ in
         guard let folderID = params["folderID"] else { return nil }
         return CoreHostingController(FileEditorView(folderID: folderID))
     },
 
-    RouteHandler("/files/:fileID", fileDetails),
-    RouteHandler("/files/:fileID/download", fileDetails),
-    RouteHandler("/files/:fileID/preview", fileDetails),
-    RouteHandler("/files/:fileID/edit", fileEditor),
-    RouteHandler("/:context/:contextID/files/:fileID", fileDetails),
-    RouteHandler("/:context/:contextID/files/:fileID/download", fileDetails),
-    RouteHandler("/:context/:contextID/files/:fileID/preview", fileDetails),
-    RouteHandler("/:context/:contextID/files/:fileID/edit", fileEditor),
-    RouteHandler("/courses/:courseID/files/:section/:resourceID/:fileID/offline", offlineFileDetails),
+    RouteHandler("/files/:fileID", factory: fileDetails),
+    RouteHandler("/files/:fileID/download", factory: fileDetails),
+    RouteHandler("/files/:fileID/preview", factory: fileDetails),
+    RouteHandler("/files/:fileID/edit", factory: fileEditor),
+    RouteHandler("/:context/:contextID/files/:fileID", factory: fileDetails),
+    RouteHandler("/:context/:contextID/files/:fileID/download", factory: fileDetails),
+    RouteHandler("/:context/:contextID/files/:fileID/preview", factory: fileDetails),
+    RouteHandler("/:context/:contextID/files/:fileID/edit", factory: fileEditor),
+    RouteHandler("/courses/:courseID/files/:section/:resourceID/:fileID/offline", factory: offlineFileDetails),
 
     RouteHandler("/courses/:courseID/grades") { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
@@ -325,8 +325,8 @@ let router = Router(routes: [
         guard let context = Context(path: url.path) else { return nil }
         return CoreHostingController(PageEditorView(context: context))
     },
-    RouteHandler("/:context/:contextID/pages/:url", pageViewController),
-    RouteHandler("/:context/:contextID/wiki/:url", pageViewController),
+    RouteHandler("/:context/:contextID/pages/:url", factory: pageViewController),
+    RouteHandler("/:context/:contextID/wiki/:url", factory: pageViewController),
     RouteHandler("/:context/:contextID/pages/:url/edit") { url, params, _ in
         guard let context = Context(path: url.path), let slug = params["url"] else { return nil }
         return CoreHostingController(PageEditorView(context: context, url: slug))
@@ -367,8 +367,8 @@ let router = Router(routes: [
         return PeopleListViewController.create(context: .group(groupID))
     },
 
-    RouteHandler("/courses/:courseID/users/:userID", contextCard),
-    RouteHandler("/groups/:groupID/users/:userID", groupContextCard),
+    RouteHandler("/courses/:courseID/users/:userID", factory: contextCard),
+    RouteHandler("/groups/:groupID/users/:userID", factory: groupContextCard),
 
     RouteHandler("/dev-menu") { _, _, _ in
         CoreHostingController(DeveloperMenuView())
@@ -446,8 +446,8 @@ let router = Router(routes: [
         return emptyViewController
     },
 
-    RouteHandler("/native-route/*route", nativeFactory),
-    RouteHandler("/native-route-master/*route", nativeFactory),
+    RouteHandler("/native-route/*route", factory: nativeFactory),
+    RouteHandler("/native-route-master/*route", factory: nativeFactory),
 
     RouteHandler("/about") { _, _, _ in
         AboutAssembly.makeAboutViewController()
