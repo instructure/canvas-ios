@@ -43,7 +43,7 @@ public class DashboardContainerViewModel: ObservableObject {
                 let viewModel = DashboardSettingsViewModel(interactor: interactor)
                 let dashboard = CoreHostingController(DashboardSettingsView(viewModel: viewModel))
                 dashboard.addDoneButton(side: .left)
-                return (HelmNavigationController(rootViewController: dashboard), viewModel.popoverSize)
+                return (CoreNavigationController(rootViewController: dashboard), viewModel.popoverSize)
             }
             .subscribe(showSettings)
             .store(in: &subscriptions)

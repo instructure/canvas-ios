@@ -113,7 +113,7 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
            let defaultViewProvider = nav.viewControllers.last as? DefaultViewProvider,
            let defaultRoute = defaultViewProvider.defaultViewRoute,
            let defaultViewController = AppEnvironment.shared.router.match(defaultRoute, userInfo: nil) {
-            let detailNavController = HelmNavigationController(rootViewController: defaultViewController)
+            let detailNavController = CoreNavigationController(rootViewController: defaultViewController)
             detailNavController.syncStyles(from: nav, to: detailNavController)
 
             if let routeTemplate = AppEnvironment.shared.router.template(for: defaultRoute) {
@@ -129,7 +129,7 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
             nav.popViewController(animated: true)
 
             if !(newDeets is UINavigationController) {
-                newDeets = HelmNavigationController(rootViewController: newDeets)
+                newDeets = CoreNavigationController(rootViewController: newDeets)
             }
 
             let viewControllers = (newDeets as? UINavigationController)?.viewControllers ?? [newDeets]

@@ -47,7 +47,7 @@ extension StudentAppDelegate: RCTBridgeDelegate {
     }
 
     @objc func excludeHelmInBranding() {
-        let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [HelmNavigationController.self])
+        let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [CoreNavigationController.self])
         appearance.barTintColor = nil
         appearance.tintColor = nil
         appearance.titleTextAttributes = nil

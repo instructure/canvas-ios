@@ -31,7 +31,7 @@ class DashboardViewModelTests: CoreTestCase {
             .sink { (view: UIViewController, _) in
                 defer { viewShownExpectation.fulfill() }
 
-                guard let settings = (view as? HelmNavigationController)?.viewControllers.first,
+                guard let settings = (view as? CoreNavigationController)?.viewControllers.first,
                       settings is CoreHostingController<DashboardSettingsView>
                 else {
                     return XCTFail()

@@ -24,7 +24,7 @@ import UIKit
  that throws an error when we try to directly push a split view controller into a navigation controller. This subclass
  also synchronizes its navigation bar and the split view's navigation bar so only one is visible at a time.
  */
-public class DashboardContainerViewController: HelmNavigationController {
+public class DashboardContainerViewController: CoreNavigationController {
     public typealias SplitViewController = UISplitViewController & UINavigationControllerDelegate
     private let splitViewControllerFactory: () -> SplitViewController
 
@@ -82,8 +82,8 @@ public class DashboardContainerViewController: HelmNavigationController {
         let split = splitViewControllerFactory()
         split.preferredDisplayMode = .oneBesideSecondary
         split.viewControllers = [
-            HelmNavigationController(rootViewController: masterViewController),
-            HelmNavigationController(rootViewController: EmptyViewController())
+            CoreNavigationController(rootViewController: masterViewController),
+            CoreNavigationController(rootViewController: EmptyViewController())
         ]
         split.masterNavigationController?.delegate = split
         return split

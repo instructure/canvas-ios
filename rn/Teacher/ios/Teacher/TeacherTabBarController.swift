@@ -70,8 +70,8 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
     func calendarTab() -> UIViewController {
         let split = CoreSplitViewController()
         split.viewControllers = [
-            HelmNavigationController(rootViewController: PlannerViewController.create()),
-            HelmNavigationController(rootViewController: EmptyViewController())
+            CoreNavigationController(rootViewController: PlannerViewController.create()),
+            CoreNavigationController(rootViewController: EmptyViewController())
         ]
         split.view.tintColor = Brand.shared.primary
         split.tabBarItem.title = String(localized: "Calendar", bundle: .teacher, comment: "Calendar page title")
@@ -84,7 +84,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
     }
 
     func toDoTab() -> UIViewController {
-        let todo = HelmNavigationController(rootViewController: TodoListViewController.create())
+        let todo = CoreNavigationController(rootViewController: TodoListViewController.create())
         todo.tabBarItem.title = String(localized: "To Do", bundle: .teacher)
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
@@ -100,7 +100,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
 
         inboxController = InboxAssembly.makeInboxViewController()
 
-        let empty = HelmNavigationController()
+        let empty = CoreNavigationController()
         empty.navigationBar.useGlobalNavStyle()
 
         inboxSplit.viewControllers = [inboxController, empty]
