@@ -17,7 +17,6 @@
 //
 
 import UIKit
-import CanvasCore
 import Core
 import UserNotifications
 

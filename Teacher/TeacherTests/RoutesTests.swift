@@ -17,7 +17,6 @@
 //
 
 import XCTest
-@testable import CanvasCore
 @testable import Core
 @testable import Teacher
 import TestsFoundation

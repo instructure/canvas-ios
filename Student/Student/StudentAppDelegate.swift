@@ -17,7 +17,6 @@
 //
 
 import AVKit
-import CanvasCore
 import Combine
 import Core
 import Firebase
@@ -58,7 +57,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         #endif
 
         DocViewerViewController.setup(.studentPSPDFKitLicense)
-        prepareReactNative()
         setupDefaultErrorHandling()
         setupPageViewLogging()
         TabBarBadgeCounts.application = UIApplication.shared
