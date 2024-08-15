@@ -57,6 +57,7 @@ public struct AddressbookRecipientView: View, ScreenViewTrackable {
                 .font(.regular16)
                 .foregroundColor(.accentColor)
         }
+        .accessibilityIdentifier("Inbox.addRecipient.done")
     }
 
     private var peopleView: some View {

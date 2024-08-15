@@ -79,6 +79,7 @@ public struct MessageDetailsView: View {
         HStack {
             Text(model.subject)
                 .font(.semibold22)
+                .accessibilityIdentifier("MessageDetails.subject")
             Spacer()
             starButton
         }
@@ -94,7 +95,7 @@ public struct MessageDetailsView: View {
                 .moreLine
                 .foregroundColor(Color(Brand.shared.navTextColor))
         })
-        .identifier("MessageDetails.moreButton")
+        .identifier("MessageDetails.more")
         .accessibility(label: Text("More options", bundle: .core))
     }
 
@@ -108,6 +109,7 @@ public struct MessageDetailsView: View {
                     .foregroundColor(.textDark)
                     .padding(.leading, 6)
                     .accessibilityLabel(String(localized: "Mark as Unstarred", bundle: .core))
+                    .accessibilityIdentifier("MessageDetails.unstar")
             }
         } else {
             Button {
@@ -118,6 +120,7 @@ public struct MessageDetailsView: View {
                     .foregroundColor(.textDark)
                     .padding(.leading, 6)
                     .accessibilityLabel(String(localized: "Mark as Starred", bundle: .core))
+                    .accessibilityIdentifier("MessageDetails.star")
             }
         }
     }

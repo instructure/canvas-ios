@@ -54,9 +54,9 @@ class HelpTests: E2ETestCase {
         XCTAssertTrue(askYourInstructorButton.isVisible)
 
         askYourInstructorButton.hit()
-        let newMessageLabel = app.find(label: "New Message").waitUntil(.visible)
+        let sendButton = app.find(label: "Send", type: .button).waitUntil(.visible)
         let cancelButton = app.find(label: "Cancel").waitUntil(.visible)
-        XCTAssertTrue(newMessageLabel.isVisible)
+        XCTAssertTrue(sendButton.isVisible)
         XCTAssertTrue(cancelButton.isVisible)
 
         // MARK: Check "Report a Problem" button

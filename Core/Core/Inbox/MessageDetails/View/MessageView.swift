@@ -44,6 +44,7 @@ public struct MessageView: View {
                 Text("Reply", bundle: .core)
                     .font(.regular16)
                     .foregroundColor(Color(Brand.shared.linkColor))
+                    .accessibilityIdentifier("MessageDetails.replyButton")
             }
         }
     }
@@ -56,10 +57,12 @@ public struct MessageView: View {
                     .font(.regular16)
                     .foregroundColor(.textDarkest)
                     .lineLimit(1)
+                    .accessibilityIdentifier("MessageDetails.author")
 
                 Text(model.date)
                     .foregroundColor(.textDark)
                     .font(.regular12)
+                    .accessibilityIdentifier("MessageDetails.date")
             }
             Spacer()
             Button {
@@ -71,6 +74,7 @@ public struct MessageView: View {
                     .foregroundColor(.textDark)
                     .padding(.leading, 6)
                     .accessibilityLabel(Text("Reply", bundle: .core))
+                    .accessibilityIdentifier("MessageDetails.replyImage")
             }
             Button {
                 moreDidTap()
@@ -81,6 +85,7 @@ public struct MessageView: View {
                     .foregroundColor(.textDark)
                     .padding(.horizontal, 6)
                     .accessibilityLabel(Text("Conversation options", bundle: .core))
+                    .accessibilityIdentifier("MessageDetails.options")
             }
         }
     }
@@ -90,6 +95,7 @@ public struct MessageView: View {
             Text(model.body.toAttributedStringWithLinks())
                 .font(.regular16)
                 .textSelection(.enabled)
+                .accessibilityIdentifier("MessageDetails.body")
             if model.showAttachments {
                 AttachmentsView(attachments: model.attachments, didSelectAttachment: model.handleFileNavigation)
             }

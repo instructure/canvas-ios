@@ -244,9 +244,9 @@ class PeopleTests: E2ETestCase {
         // MARK: Tap the "Send Email" icon, Check recipient, Check elements
         sendEmailButton.hit()
         let sendButton = InboxHelper.Composer.sendButton.waitUntil(.visible)
-        let courseSelector = InboxHelper.Composer.courseSelectButton.waitUntil(.visible)
+        let courseSelector = InboxHelper.Composer.selectCourseButton.waitUntil(.visible)
         let subjectInput = InboxHelper.Composer.subjectInput.waitUntil(.visible)
-        let messageInput = InboxHelper.Composer.messageInput.waitUntil(.visible)
+        let messageInput = InboxHelper.Composer.bodyInput.waitUntil(.visible)
         XCTAssertTrue(sendButton.isVisible)
         XCTAssertTrue(sendButton.isDisabled)
         XCTAssertTrue(courseSelector.isVisible)
@@ -255,7 +255,7 @@ class PeopleTests: E2ETestCase {
 
         // MARK: Select course
         courseSelector.hit()
-        let courseItem = InboxHelper.Composer.courseSelectionItem(course: course).waitUntil(.visible)
+        let courseItem = InboxHelper.Composer.Recipients.allInCourse(course: course).waitUntil(.visible)
         XCTAssertTrue(courseItem.isVisible)
 
         courseItem.hit()
@@ -263,7 +263,7 @@ class PeopleTests: E2ETestCase {
         XCTAssertTrue(addRecipientButton.isVisible)
 
         addRecipientButton.hit()
-        let teachers = InboxHelper.Composer.Recipients.teachers(course: course).waitUntil(.visible)
+        let teachers = InboxHelper.Composer.Recipients.teachers.waitUntil(.visible)
         XCTAssertTrue(teachers.isVisible)
 
         teachers.hit()

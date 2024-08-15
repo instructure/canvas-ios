@@ -17,15 +17,32 @@
 //
 
 public class InboxHelper: BaseHelper {
-    public static var navBar: XCUIElement { app.find(id: "CanvasCore.HelmView") }
-    public static var profileButton: XCUIElement { app.find(id: "Inbox.profileButton") }
-    public static var newMessageButton: XCUIElement { app.find(id: "inbox.new-message") }
+    public static var profileButton: XCUIElement { app.find(id: "Inbox.profileButton", type: .button) }
+    public static var newMessageButton: XCUIElement { app.find(id: "Inbox.newMessageButton", type: .button) }
+    public static var filterByCourseButton: XCUIElement { app.find(id: "Inbox.filterByCourse") }
+    public static var filterByTypeButton: XCUIElement { app.find(id: "Inbox.filterByType") }
 
-    public static func conversation(conversation: DSConversation? = nil, conversationId: String? = nil) -> XCUIElement {
-        return app.find(id: "inbox.conversation-\(conversation?.id ?? conversationId!)")
+    public static func conversation(conversation: DSConversation) -> XCUIElement {
+        return app.find(id: "Conversation.\(conversation.id)")
     }
 
-    public static var conversations: [XCUIElement] { app.findAll(idStartingWith: "inbox.conversation-") }
+    public static func conversationDateLabel(conversation: DSConversation) -> XCUIElement {
+        return app.find(id: "Conversation.\(conversation.id).date")
+    }
+
+    public static func conversationParticipantLabel(conversation: DSConversation) -> XCUIElement {
+        return app.find(id: "Conversation.\(conversation.id).participantName")
+    }
+
+    public static func conversationTitleLabel(conversation: DSConversation) -> XCUIElement {
+        return app.find(id: "Conversation.\(conversation.id).title")
+    }
+
+    public static func conversationMessageLabel(conversation: DSConversation) -> XCUIElement {
+        return app.find(id: "Conversation.\(conversation.id).message")
+    }
+
+    public static var conversations: [XCUIElement] { app.findAll(idStartingWith: "Conversation.") }
 
     public static func addDateToSubject(subject: String, unread: Bool) -> String {
         let date = Date()
@@ -36,62 +53,62 @@ public class InboxHelper: BaseHelper {
         return unread ? result + ", Unread" : result
     }
 
-    public static func conversationBySubject(subject: String, unread: Bool = true) -> XCUIElement {
-        let stringToFind = addDateToSubject(subject: subject, unread: unread)
-        return app.find(label: stringToFind)
+    public static func conversationBySubject(subject: String) -> XCUIElement {
+        return app.find(label: subject, type: .staticText)
     }
 
     public struct Filter {
-        public static var all: XCUIElement { app.find(id: "inbox.filter-btn-all") }
-        public static var unread: XCUIElement { app.find(id: "inbox.filter-btn-unread") }
-        public static var starred: XCUIElement { app.find(id: "inbox.filter-btn-starred") }
-        public static var sent: XCUIElement { app.find(id: "inbox.filter-btn-sent") }
-        public static var archived: XCUIElement { app.find(id: "inbox.filter-btn-archived") }
-        public static var byCourse: XCUIElement { app.find(id: "inbox.filterByCourse") }
+        public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
+
+        // Filter by course
+        public static var allCourses: XCUIElement { app.find(label: "All Courses", type: .button) }
+        public static func course(course: DSCourse) -> XCUIElement { app.find(label: course.name, type: .button) }
+
+        // Filter by type
+        public static var inbox: XCUIElement { app.find(label: "Inbox", type: .button) }
+        public static var unread: XCUIElement { app.find(label: "Unread", type: .button) }
+        public static var starred: XCUIElement { app.find(label: "Starred", type: .button) }
+        public static var sent: XCUIElement { app.find(label: "Sent", type: .button) }
+        public static var archived: XCUIElement { app.find(label: "Archived", type: .button) }
     }
 
     public struct Details {
-        public static var navBar: XCUIElement { app.find(id: "Message Details") }
-        public static var optionsButton: XCUIElement { app.find(id: "inbox.detail.options.button") }
-        public static var replyButton: XCUIElement { app.find(id: "inbox.conversation-message-row.reply-button") }
-        public static var starButton: XCUIElement { app.find(id: "inbox.detail.not-starred") }
-        public static var unStarButton: XCUIElement { app.find(id: "inbox.detail.starred") }
-        public static func subjectLabel(conversation: DSConversation) -> XCUIElement { app.find(label: conversation.subject) }
-
-        public static func message(conversation: DSConversation) -> XCUIElement {
-            return app.find(id: "inbox.conversation-message-\(conversation.messages[0].id)")
-        }
-
-        public static func bodyOfMessage(conversation: DSConversation) -> XCUIElement {
-            return app.find(label: conversation.last_authored_message)
-        }
-
-        public static func messageOptions(conversation: DSConversation) -> XCUIElement {
-            return app.find(id: "conversation-message.kabob-\(conversation.messages[0].id)")
-        }
+        public static var optionsButton: XCUIElement { app.find(id: "MessageDetails.options") }
+        public static var moreButton: XCUIElement { app.find(id: "MessageDetails.more", type: .button) }
+        public static var replyImage: XCUIElement { app.find(id: "MessageDetails.replyImage") }
+        public static var replyButton: XCUIElement { app.find(id: "MessageDetails.replyButton") }
+        public static var authorLabel: XCUIElement { app.find(id: "MessageDetails.author") }
+        public static var starButton: XCUIElement { app.find(id: "MessageDetails.star") }
+        public static var unstarButton: XCUIElement { app.find(id: "MessageDetails.unstar") }
+        public static var dateLabel: XCUIElement { app.find(id: "MessageDetails.date") }
+        public static var bodyLabel: XCUIElement { app.find(id: "MessageDetails.body") }
+        public static var subjectLabel: XCUIElement { app.find(id: "MessageDetails.subject") }
 
         public struct Options {
-            public static var replyButton: XCUIElement { app.find(label: "Reply", type: .button) }
-            public static var replyAllButton: XCUIElement { app.find(label: "Reply All", type: .button) }
-            public static var forwardButton: XCUIElement { app.find(label: "Forward", type: .button) }
-            public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }
-            public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
+            public static var replyButton: XCUIElement { app.find(id: "MessageDetails.reply") }
+            public static var replyAllButton: XCUIElement { app.find(id: "MessageDetails.replyAll") }
+            public static var forwardButton: XCUIElement { app.find(id: "MessageDetails.forward") }
+            public static var deleteButton: XCUIElement { app.find(id: "MessageDetails.delete") }
+            public static var markAsUnreadButton: XCUIElement { app.find(id: "MessageDetails.markAsUnread") }
+            public static var markAsReadButton: XCUIElement { app.find(id: "MessageDetails.markAsRead") }
+            public static var archiveButton: XCUIElement { app.find(id: "MessageDetails.archive") }
+            public static var unarchiveButton: XCUIElement { app.find(id: "MessageDetails.unarchive") }
         }
     }
 
     public struct Composer {
-        public static var cancelButton: XCUIElement { app.find(id: "compose-message.cancel") }
-        public static var attachButton: XCUIElement { app.find(id: "compose-message.attach") }
-        public static var sendButton: XCUIElement { app.find(id: "compose-message.send") }
-        public static var courseSelectButton: XCUIElement { app.find(id: "compose.course-select") }
-        public static var subjectInput: XCUIElement { app.find(id: "compose-message.subject-text-input") }
-        public static var messageInput: XCUIElement { app.find(id: "compose-message.body-text-input") }
-        public static var individualSwitch: XCUIElement { app.find(labelContaining: "individual", type: .switch) }
-        public static var recipientsLabel: XCUIElement { app.find(id: "compose.recipients-placeholder") }
-        public static var addRecipientButton: XCUIElement { app.find(id: "compose.add-recipient") }
+        public static var cancelButton: XCUIElement { app.find(id: "ComposeMessage.cancel") }
+        public static var subjectLabel: XCUIElement { app.find(id: "ComposeMessage.subjectLabel") }
+        public static var sendButton: XCUIElement { app.find(id: "ComposeMessage.send") }
+        public static var selectCourseButton: XCUIElement { app.find(id: "ComposeMessage.course", type: .button) }
+        public static var subjectInput: XCUIElement { app.find(id: "ComposeMessage.subjectInput") }
+        public static var individualToggle: XCUIElement { app.find(id: "ComposeMessage.individual").find(type: .switch) }
+        public static var addAttachmentButton: XCUIElement { app.find(id: "ComposeMessage.attachment") }
+        public static var addRecipientButton: XCUIElement { app.find(id: "ComposeMessage.addRecipient").find(type: .button) }
+        public static var bodyInput: XCUIElement { app.find(id: "ComposeMessage.body") }
 
-        public static func courseSelectionItem(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
-            return app.find(id: "inbox.course-select.course-\(course?.id ?? courseId!)")
+        public static func courseItem(course: DSCourse) -> XCUIElement {
+            return app.find(id: "Inbox.course.\(course.id)")
         }
 
         public static func recipientSelectionItem(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
@@ -108,9 +125,17 @@ public class InboxHelper: BaseHelper {
         }
 
         public struct Recipients {
-            public static func teachers(course: DSCourse) -> XCUIElement { return app.find(id: "course_\(course.id)_teachers") }
-            public static func students(course: DSCourse) -> XCUIElement { return app.find(id: "course_\(course.id)_students") }
-            public static func userItem(user: DSUser) -> XCUIElement { return app.find(id: user.id) }
+            public static var students: XCUIElement { app.find(id: "Inbox.addRecipient.allStudents", type: .button) }
+            public static var teachers: XCUIElement { app.find(id: "Inbox.addRecipient.allTeachers", type: .button) }
+            public static var doneButton: XCUIElement { app.find(id: "Inbox.addRecipient.done") }
+
+            public static func allInCourse(course: DSCourse) -> XCUIElement {
+                return app.find(id: "Inbox.addRecipient.allIn.\(course.id)", type: .button)
+            }
+
+            public static func userItem(user: DSUser) -> XCUIElement {
+                return app.find(id: user.id)
+            }
         }
     }
 
@@ -125,12 +150,12 @@ public class InboxHelper: BaseHelper {
 
     public static func sendMessage(course: DSCourse, student: DSUser, subject: String?, message: String?) {
         newMessageButton.hit()
-        Composer.courseSelectButton.hit()
-        Composer.courseSelectionItem(course: course).hit()
+        Composer.selectCourseButton.hit()
+        Composer.Recipients.allInCourse(course: course).hit()
         Composer.addRecipientButton.hit()
         Composer.recipientSelectionItem(course: course).hit()
         Composer.subjectInput.hit().pasteText(text: subject ?? "Sample Subject of \(student.name)")
-        Composer.messageInput.hit().pasteText(text: message ?? "Sample Message of \(student.name)")
+        Composer.bodyInput.hit().pasteText(text: message ?? "Sample Message of \(student.name)")
         Composer.sendButton.hit()
     }
 

@@ -115,8 +115,8 @@ class SettingsTests: E2ETestCase {
         doneButton.hit()
         logOut()
         logInDSUser(student)
-        let inboxNavBar = InboxHelper.navBar.waitUntil(.visible)
-        XCTAssertTrue(inboxNavBar.isVisible)
+        let inboxNewMessageButton = InboxHelper.newMessageButton.waitUntil(.visible)
+        XCTAssertTrue(inboxNewMessageButton.isVisible)
     }
 
     func testAppearanceSetting() {
