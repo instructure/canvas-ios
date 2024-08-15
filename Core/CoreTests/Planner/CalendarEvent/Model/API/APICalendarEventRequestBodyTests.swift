@@ -29,6 +29,7 @@ final class APICalendarEventRequestBodyTests: XCTestCase {
         static let endAt = Clock.now.addHours(1)
         static let locationName = "some locationName"
         static let locationAddress = "some locationAddress"
+        static let timeZone = "some timeZone"
     }
 
     func testEncoding() throws {
@@ -39,7 +40,8 @@ final class APICalendarEventRequestBodyTests: XCTestCase {
             start_at: TestConstants.startAt,
             end_at: TestConstants.endAt,
             location_name: TestConstants.locationName,
-            location_address: TestConstants.locationAddress
+            location_address: TestConstants.locationAddress,
+            time_zone_edited: TestConstants.timeZone
         )
 
         let json = try testee.encodeToJson()
@@ -51,13 +53,15 @@ final class APICalendarEventRequestBodyTests: XCTestCase {
         XCTAssertEqual(json.contains(jsonKey: "end_at", value: TestConstants.endAt.isoString()), true)
         XCTAssertEqual(json.contains(jsonKey: "location_name", value: TestConstants.locationName), true)
         XCTAssertEqual(json.contains(jsonKey: "location_address", value: TestConstants.locationAddress), true)
+        XCTAssertEqual(json.contains(jsonKey: "time_zone_edited", value: TestConstants.timeZone), true)
     }
 
     func testEncodingShouldNotSkipNils() throws {
         let testee = APICalendarEventRequestBody.make(
             description: nil,
             location_name: nil,
-            location_address: nil
+            location_address: nil,
+            time_zone_edited: nil
         )
 
         let json = try testee.encodeToJson()
@@ -65,5 +69,6 @@ final class APICalendarEventRequestBodyTests: XCTestCase {
         XCTAssertEqual(json.contains(jsonKey: "description", value: nil), true)
         XCTAssertEqual(json.contains(jsonKey: "location_name", value: nil), true)
         XCTAssertEqual(json.contains(jsonKey: "location_address", value: nil), true)
+        XCTAssertEqual(json.contains(jsonKey: "time_zone_edited", value: nil), true)
     }
 }

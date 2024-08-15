@@ -29,6 +29,7 @@ final class CreateCalendarEventTests: CoreTestCase {
         static let endAt = Clock.now.addHours(1)
         static let locationName = "some locationName"
         static let locationAddress = "some locationAddress"
+        static let timeZone = "some timeZone"
 
         static let responseId: ID = "response id"
         static let responseContextCode = "response contextCode"
@@ -51,7 +52,8 @@ final class CreateCalendarEventTests: CoreTestCase {
             start_at: TestConstants.startAt,
             end_at: TestConstants.endAt,
             location_name: TestConstants.locationName,
-            location_address: TestConstants.locationAddress
+            location_address: TestConstants.locationAddress,
+            time_zone_edited: TestConstants.timeZone
         )
     }
 
@@ -69,6 +71,7 @@ final class CreateCalendarEventTests: CoreTestCase {
         XCTAssertEqual(nestedObject?.end_at, TestConstants.endAt)
         XCTAssertEqual(nestedObject?.location_name, TestConstants.locationName)
         XCTAssertEqual(nestedObject?.location_address, TestConstants.locationAddress)
+        XCTAssertEqual(nestedObject?.time_zone_edited, TestConstants.timeZone)
     }
 
     func testWrite() {

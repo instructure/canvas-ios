@@ -24,6 +24,8 @@ public enum APICalendarEventSeriesModificationType: String, Codable {
     case following
 }
 
+// https://canvas.instructure.com/doc/api/calendar_events.html#method.calendar_events_api.create
+// https://canvas.instructure.com/doc/api/calendar_events.html#method.calendar_events_api.update
 struct APICalendarEventRequestBody: Codable, Equatable {
 
     struct CalendarEvent: Codable, Equatable {
@@ -34,6 +36,8 @@ struct APICalendarEventRequestBody: Codable, Equatable {
         let end_at: Date
         let location_name: String?
         let location_address: String?
+        let time_zone_edited: String? // Needed for proper all_day calculation, otherwise account timezone would be used instead of device timezone
+        // let all_day: Bool? // We are not sending it, because we allow API to calculate it based start/end times (web does the same)
 
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
@@ -44,6 +48,7 @@ struct APICalendarEventRequestBody: Codable, Equatable {
             try container.encode(end_at, forKey: .end_at)
             try container.encode(location_name, forKey: .location_name)
             try container.encode(location_address, forKey: .location_address)
+            try container.encode(time_zone_edited, forKey: .time_zone_edited)
         }
     }
 
@@ -59,7 +64,8 @@ extension APICalendarEventRequestBody {
         start_at: Date = Clock.now.startOfDay(),
         end_at: Date = Clock.now.startOfDay(),
         location_name: String? = nil,
-        location_address: String? = nil
+        location_address: String? = nil,
+        time_zone_edited: String? = nil
     ) -> PostCalendarEventRequest.Body {
         .init(
             calendar_event: .init(
@@ -69,7 +75,8 @@ extension APICalendarEventRequestBody {
                 start_at: start_at,
                 end_at: end_at,
                 location_name: location_name,
-                location_address: location_address
+                location_address: location_address,
+                time_zone_edited: time_zone_edited
             )
         )
     }

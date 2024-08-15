@@ -58,4 +58,14 @@ final class CalendarEventRequestModelTests: CoreTestCase {
         XCTAssertEqual(testee.processedStartTime, Date.make(year: 1984, month: 1, day: 1, hour: 11, minute: 15))
         XCTAssertEqual(testee.processedEndTime, Date.make(year: 1984, month: 1, day: 1, hour: 14, minute: 10))
     }
+
+    func testTimeZone() throws {
+        let timeZone = try XCTUnwrap(TimeZone(identifier: "Australia/Sydney"))
+        Cal.mockCalendar(.current, timeZone: timeZone)
+        let testee = CalendarEventRequestModel.make()
+
+        XCTAssertEqual(testee.timeZone, "Australia/Sydney")
+
+        Cal.reset()
+    }
 }
