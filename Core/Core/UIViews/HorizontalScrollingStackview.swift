@@ -60,7 +60,7 @@ public class HorizontalScrollingStackview: UIView {
             scrollView.frameLayoutGuide.bottomAnchor.constraint(equalTo: bottomAnchor),
             scrollView.frameLayoutGuide.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.frameLayoutGuide.trailingAnchor.constraint(equalTo: trailingAnchor),
-            leadingPadding, trailingPadding, topPadding, bottomPadding,
+            leadingPadding, trailingPadding, topPadding, bottomPadding
         ])
     }
 

@@ -47,7 +47,7 @@ class CourseSyncDiskSpaceInfoViewModel: ObservableObject {
             diskUsage,
             String(localized: "Other Apps", bundle: .core) + String(format: " %.1f%%", 100 * chart.other),
             appName + String(format: " %.1f%%", 100 * chart.app),
-            String(localized: "Remaining", bundle: .core) + String(format: " %.1f%%", 100 * chart.free),
+            String(localized: "Remaining", bundle: .core) + String(format: " %.1f%%", 100 * chart.free)
         ].joined(separator: ",")
     }
 }

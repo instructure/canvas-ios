@@ -61,7 +61,7 @@ class SubmissionCommentsViewControllerTests: StudentTestCase {
                     author: .make(display_name: "Ron Burgandy", pronouns: nil),
                     comment: "This is a comment",
                     created_at: Clock.now.addDays(-2)
-                ),
+                )
             ],
             submission_type: .online_upload,
             user: .make(short_name: "John Smith", pronouns: "He/Him"),

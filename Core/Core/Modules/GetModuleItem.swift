@@ -37,7 +37,7 @@ public class GetModuleItem: APIUseCase {
         request = GetModuleItemRequest(courseID: courseID, moduleID: moduleID, itemID: itemID, include: [.content_details])
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(ModuleItem.courseID), equals: courseID),
-            NSPredicate(key: #keyPath(ModuleItem.id), equals: itemID),
+            NSPredicate(key: #keyPath(ModuleItem.id), equals: itemID)
         ])
         scope = Scope(predicate: predicate, order: [NSSortDescriptor(key: #keyPath(ModuleItem.id), ascending: true)])
         cacheKey = request.path

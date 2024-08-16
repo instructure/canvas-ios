@@ -72,7 +72,7 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         let assignmentGroups = [
             APIAssignmentGroup.make(id: "AG1", name: "AGroup1", position: 1, assignments: [.make(assignment_group_id: "AG1", id: "1", name: "Assignment1")]),
-            APIAssignmentGroup.make(id: "AG2", name: "AGroup2", position: 2, assignments: [.make(assignment_group_id: "AG2", id: "2", name: "Assignment2")]),
+            APIAssignmentGroup.make(id: "AG2", name: "AGroup2", position: 2, assignments: [.make(assignment_group_id: "AG2", id: "2", name: "Assignment2")])
         ]
         let assignmentGroupRequest = GetAssignmentGroupsRequest(
             courseID: "1",
@@ -101,7 +101,7 @@ class AssignmentListViewModelTests: CoreTestCase {
     func testEmptyStateIfNoAssignments() {
         let assignmentGroups = [
             APIAssignmentGroup.make(id: "AG1", name: "AGroup1", position: 1, assignments: []),
-            APIAssignmentGroup.make(id: "AG2", name: "AGroup2", position: 2, assignments: []),
+            APIAssignmentGroup.make(id: "AG2", name: "AGroup2", position: 2, assignments: [])
         ]
         let assignmentGroupRequest = GetAssignmentGroupsRequest(
             courseID: "1",
@@ -137,7 +137,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         )
 
         api.mock(assignmentGroupRequest, value: [
-            .make(id: "AG1", name: "AGroup1", position: 1, assignments: [.make(assignment_group_id: "AG1", id: "1", name: "Assignment1")]),
+            .make(id: "AG1", name: "AGroup1", position: 1, assignments: [.make(assignment_group_id: "AG1", id: "1", name: "Assignment1")])
         ])
 
         testee.gradingPeriodSelected(testee.gradingPeriods[1])

@@ -36,4 +36,25 @@ extension FileManager {
         }
         .eraseToAnyPublisher()
     }
+
+    /// This method returns urls for files ending with the specified extension inside a folder (recursively). Directories are not listed.
+    func allFiles(
+        withExtension: String,
+        inDirectory: URL
+    ) -> Set<URL> {
+        let fileExtension = withExtension.hasPrefix(".") ? withExtension : "." + withExtension
+        let filePaths = enumerator(atPath: inDirectory.path())
+        var files = Set<URL>()
+
+        while let file = filePaths?.nextObject() as? String {
+            let fileURL = inDirectory.appendingPathComponent(file)
+            let isDirectory = (try? fileURL.resourceValues(forKeys: Set([.isDirectoryKey])).isDirectory) == true
+
+            if !isDirectory, file.hasSuffix(fileExtension) {
+                files.insert(fileURL)
+            }
+        }
+
+        return files
+    }
 }

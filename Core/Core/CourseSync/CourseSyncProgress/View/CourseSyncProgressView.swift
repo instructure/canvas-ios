@@ -139,7 +139,7 @@ struct CourseSyncProgressView: View {
         VStack(spacing: 0) {
             switch item.state {
             case let .loading(progress):
-                ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                OfflineListCellView(OfflineListCellViewModel(cellStyle: item.cellStyle,
                                                title: item.title,
                                                subtitle: item.subtitle,
                                                isCollapsed: item.isCollapsed,
@@ -147,7 +147,7 @@ struct CourseSyncProgressView: View {
                                                removeItemPressed: item.removeItemPressed,
                                                state: .loading(progress)))
             case .downloaded:
-                ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                OfflineListCellView(OfflineListCellViewModel(cellStyle: item.cellStyle,
                                                title: item.title,
                                                subtitle: item.subtitle,
                                                isCollapsed: item.isCollapsed,
@@ -155,7 +155,7 @@ struct CourseSyncProgressView: View {
                                                removeItemPressed: item.removeItemPressed,
                                                state: .downloaded))
             case .error:
-                ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                OfflineListCellView(OfflineListCellViewModel(cellStyle: item.cellStyle,
                                                title: item.title,
                                                subtitle: item.subtitle,
                                                isCollapsed: item.isCollapsed,

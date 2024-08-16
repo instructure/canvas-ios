@@ -68,4 +68,18 @@ class CDCalendarFilterEntryTests: CoreTestCase {
 
         XCTAssertEqual(UIColor(testee.color).hexString, UIColor.red.hexString)
     }
+
+    func testCourseName() {
+        let testee: CDCalendarFilterEntry = databaseClient.insert()
+        testee.name = "some name"
+
+        testee.context = .course("1")
+        XCTAssertEqual(testee.courseName, "some name")
+
+        testee.context = .user("1")
+        XCTAssertEqual(testee.courseName, nil)
+
+        testee.context = .group("1")
+        XCTAssertEqual(testee.courseName, nil)
+    }
 }

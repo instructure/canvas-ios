@@ -34,9 +34,9 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
                 tabs: [],
                 files: [
                     .make(id: "file-1", displayName: "file-1", bytesToDownload: 1000),
-                    .make(id: "file-2", displayName: "file-2", bytesToDownload: 1000),
+                    .make(id: "file-2", displayName: "file-2", bytesToDownload: 1000)
                 ]
-            ),
+            )
         ]
     }
 

@@ -98,21 +98,21 @@ private enum ModulePublishMenuModel {
     static let allModules = [
         [
             AllModules.publishWithItems,
-            AllModules.publishWithoutItems,
+            AllModules.publishWithoutItems
         ],
         [
-            AllModules.unpublishWithItems,
-        ],
+            AllModules.unpublishWithItems
+        ]
     ]
 
     static let module = [
         [
             Module.publishWithItems,
-            Module.publishWithoutItems,
+            Module.publishWithoutItems
         ],
         [
-            Module.unpublishWithItems,
-        ],
+            Module.unpublishWithItems
+        ]
     ]
 
     static let itemPublish = [

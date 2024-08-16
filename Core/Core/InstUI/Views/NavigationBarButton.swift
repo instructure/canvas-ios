@@ -23,31 +23,141 @@ extension InstUI {
     public struct NavigationBarButton: View {
         @Environment(\.isEnabled) private var isEnabledViaEnvironment: Bool
 
-        @ViewBuilder private let content: () -> AnyView
+        @ViewBuilder private let label: () -> AnyView
+        private let isBackgroundContextColor: Bool
         private let isEnabledOverride: Bool?
+        private let isAvailableOffline: Bool
         private let action: () -> Void
+        private let menuContent: AnyView?
 
         private var isEnabled: Bool {
             isEnabledOverride ?? isEnabledViaEnvironment
         }
 
+        /// Designated init.
         public init(
+            isBackgroundContextColor: Bool = false,
             isEnabled isEnabledOverride: Bool? = nil,
+            isAvailableOffline: Bool = true,
             action: @escaping () -> Void,
-            content: @escaping () -> AnyView
+            menuContent: AnyView? = nil,
+            label: @escaping () -> AnyView
         ) {
-            self.content = content
+            self.label = label
+            self.isBackgroundContextColor = isBackgroundContextColor
             self.isEnabledOverride = isEnabledOverride
+            self.isAvailableOffline = isAvailableOffline
             self.action = action
+            self.menuContent = menuContent
         }
 
         public var body: some View {
-            Button(action: action) {
-                content()
-                    // TODO: Add option for darker(context) backgrounds
-                    .foregroundStyle(isEnabled ? Color.textDarkest : Color.disabledGray)
+            button
+                .foregroundStyle(color)
+                .environment(\.isEnabled, isEnabled)
+        }
+
+        @ViewBuilder
+        private var button: some View {
+            if let menuContent {
+                if isAvailableOffline {
+                    Menu(content: { menuContent }, label: label)
+                } else {
+                    OfflineObservingMenu(content: { menuContent }, label: label)
+                }
+            } else {
+                if isAvailableOffline {
+                    Button(action: action, label: label)
+                } else {
+                    OfflineObservingButton(action: action, label: label)
+                }
             }
-            .environment(\.isEnabled, isEnabled)
+        }
+
+        private var color: Color {
+            if isBackgroundContextColor {
+                isEnabled ? .textLightest : .disabledGray
+            } else {
+                isEnabled ? .textDarkest : .disabledGray
+            }
+        }
+    }
+}
+
+extension InstUI.NavigationBarButton {
+    /// Button with text label.
+    public init(
+        isBackgroundContextColor: Bool = false,
+        isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
+        title: String,
+        action: @escaping () -> Void
+    ) {
+        self.init(
+            isBackgroundContextColor: isBackgroundContextColor,
+            isEnabled: isEnabledOverride,
+            isAvailableOffline: isAvailableOffline,
+            action: action
+        ) {
+            AnyView(Text(title).font(.regular16, lineHeight: .fit))
+        }
+    }
+
+    /// Button with image label.
+    public init(
+        isBackgroundContextColor: Bool = false,
+        isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
+        image: Image,
+        accessibilityLabel: String,
+        action: @escaping () -> Void
+    ) {
+        self.init(
+            isBackgroundContextColor: isBackgroundContextColor,
+            isEnabled: isEnabledOverride,
+            isAvailableOffline: isAvailableOffline,
+            action: action
+        ) {
+            AnyView(image.accessibilityLabel(accessibilityLabel))
+        }
+    }
+
+    /// Menu with text label.
+    public init<MenuContent: View>(
+        isBackgroundContextColor: Bool = false,
+        isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
+        title: String,
+        @ViewBuilder menuContent: () -> MenuContent
+    ) {
+        self.init(
+            isBackgroundContextColor: isBackgroundContextColor,
+            isEnabled: isEnabledOverride,
+            isAvailableOffline: isAvailableOffline,
+            action: {},
+            menuContent: AnyView(menuContent())
+        ) {
+            AnyView(Text(title).font(.regular16, lineHeight: .fit))
+        }
+    }
+
+    /// Menu with image label.
+    public init<MenuContent: View>(
+        isBackgroundContextColor: Bool = false,
+        isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
+        image: Image,
+        accessibilityLabel: String,
+        @ViewBuilder menuContent: () -> MenuContent
+    ) {
+        self.init(
+            isBackgroundContextColor: isBackgroundContextColor,
+            isEnabled: isEnabledOverride,
+            isAvailableOffline: isAvailableOffline,
+            action: {},
+            menuContent: AnyView(menuContent())
+        ) {
+            AnyView(image.accessibilityLabel(accessibilityLabel).accessibilityIdentifier(accessibilityLabel))
         }
     }
 }
@@ -55,98 +165,119 @@ extension InstUI {
 extension InstUI.NavigationBarButton {
 
     public static func cancel(
+        isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
         action: @escaping () -> Void
     ) -> Self {
-        .textButton(
+        .init(
+            isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
-            label: String(localized: "Cancel", bundle: .core),
+            isAvailableOffline: isAvailableOffline,
+            title: String(localized: "Cancel", bundle: .core),
             action: action
         )
     }
 
     public static func done(
+        isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
         action: @escaping () -> Void
     ) -> Self {
-        .textButton(
+        .init(
+            isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
-            label: String(localized: "Done", bundle: .core),
+            isAvailableOffline: isAvailableOffline,
+            title: String(localized: "Done", bundle: .core),
             action: action
         )
     }
 
     public static func add(
+        isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
         action: @escaping () -> Void
     ) -> Self {
-        .textButton(
+        .init(
+            isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
-            label: String(localized: "Add", bundle: .core),
+            isAvailableOffline: isAvailableOffline,
+            title: String(localized: "Add", bundle: .core),
             action: action
         )
     }
 
     public static func save(
+        isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
         action: @escaping () -> Void
     ) -> Self {
-        .textButton(
+        .init(
+            isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
-            label: String(localized: "Save", bundle: .core),
+            isAvailableOffline: isAvailableOffline,
+            title: String(localized: "Save", bundle: .core),
             action: action
         )
     }
 
-    public static func textButton(
+    public static func moreIcon<MenuContent: View>(
+        isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
-        label: String,
-        action: @escaping () -> Void
+        isAvailableOffline: Bool = true,
+        @ViewBuilder menuContent: () -> MenuContent
     ) -> Self {
         .init(
+            isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
-            action: action) {
-                AnyView(Text(label).font(.regular16, lineHeight: .fit))
-            }
+            isAvailableOffline: isAvailableOffline,
+            image: .moreLine,
+            accessibilityLabel: String(localized: "More", bundle: .core),
+            menuContent: menuContent
+        )
     }
 }
 
 #if DEBUG
 
+private func previewsFactory(isContextBackground: Bool) -> some View {
+    VStack {
+        InstUI.NavigationBarButton.cancel(isBackgroundContextColor: isContextBackground) { }
+
+        InstUI.NavigationBarButton.done(isBackgroundContextColor: isContextBackground) { }
+            .disabled(true)
+
+        InstUI.NavigationBarButton.add(isBackgroundContextColor: isContextBackground, isEnabled: false) { }
+
+        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: true, title: "Enabled button") { }
+
+        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: false, title: "Disabled button") { }
+            .disabled(false)
+
+        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: true, image: .settingsLine, accessibilityLabel: "Settings") { }
+
+        InstUI.NavigationBarButton(isBackgroundContextColor: isContextBackground, isEnabled: false, action: {}) {
+            AnyView(Image.settingsLine)
+        }
+    }
+}
+
 #Preview {
     VStack {
-        let previewsFactory = {
-            VStack {
-                InstUI.NavigationBarButton.cancel(action: {})
-
-                InstUI.NavigationBarButton.done(action: {})
-                    .disabled(true)
-
-                InstUI.NavigationBarButton.add(isEnabled: false, action: {})
-
-                InstUI.NavigationBarButton.textButton(isEnabled: true, label: "Enabled button", action: {})
-
-                InstUI.NavigationBarButton.textButton(isEnabled: false, label: "Disabled button", action: {})
-                    .disabled(false)
-
-                InstUI.NavigationBarButton(isEnabled: true, action: {}) {
-                    AnyView(Image.settingsLine)
-                }
-
-                InstUI.NavigationBarButton(isEnabled: false, action: {}) {
-                    AnyView(Image.settingsLine)
-                }
-            }
-        }
         VStack {
             Text(verbatim: "Dialog Nav Bar Background")
-            previewsFactory().background(Color.backgroundLightest)
+            previewsFactory(isContextBackground: false)
+                .background(Color.backgroundLightest)
         }
         .padding()
         .border(Color.backgroundDarkest)
         VStack {
             Text(verbatim: "Context Nav Bar Background")
-            previewsFactory().background(Color(UIColor.electric.darkenToEnsureContrast(against: .textLightest)))
+            previewsFactory(isContextBackground: true)
+                .background(Color(UIColor.electric.darkenToEnsureContrast(against: .textLightest)))
         }
         .padding()
         .border(Color.backgroundDarkest)

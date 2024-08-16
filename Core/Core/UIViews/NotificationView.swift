@@ -94,7 +94,7 @@ public class NotificationView: UIView {
             dismiss.widthAnchor.constraint(equalToConstant: 40),
             dismiss.trailingAnchor.constraint(equalTo: container.trailingAnchor),
             dismiss.topAnchor.constraint(equalTo: container.topAnchor),
-            dismiss.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            dismiss.bottomAnchor.constraint(equalTo: container.bottomAnchor)
         ])
     }
 

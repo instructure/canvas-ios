@@ -18,4 +18,4 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
 
 trailing_comma:
-  mandatory_comma: true
+  mandatory_comma: false

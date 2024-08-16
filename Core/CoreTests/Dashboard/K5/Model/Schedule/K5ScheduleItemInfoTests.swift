@@ -66,12 +66,12 @@ class K5ScheduleItemInfoTests: CoreTestCase {
         XCTAssertEqual(APIPlannable.make(course_id: ID("testID")).k5ScheduleSubject(courseInfoByCourseIDs: ["testID": (color: .green,
                                                                                                                        image: nil,
                                                                                                                        isHomeroom: false,
-                                                                                                                       shouldHideQuantitativeData: false), ]).color, .green)
+                                                                                                                       shouldHideQuantitativeData: false) ]).color, .green)
         XCTAssertEqual(UIColor(APIPlannable.make(course_id: ID("testID")).k5ScheduleSubject(courseInfoByCourseIDs: [:]).color).cgColor.components, UIColor.red.cgColor.components)
         let subject = APIPlannable.make(course_id: ID("testID_2")).k5ScheduleSubject(courseInfoByCourseIDs: ["testID": (color: .green,
                                                                                                                         image: nil,
                                                                                                                         isHomeroom: false,
-                                                                                                                        shouldHideQuantitativeData: false), ])
+                                                                                                                        shouldHideQuantitativeData: false) ])
         XCTAssertEqual(UIColor(subject.color).cgColor.components, UIColor.red.cgColor.components)
     }
 

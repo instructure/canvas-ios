@@ -375,7 +375,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
             "uploadError": file.uploadError,
             "uploadErrorTitle": String(localized: "Failed Upload", bundle: .core),
             "bytesSent": file.bytesSent,
-            "size": file.size,
+            "size": file.size
         ] })
         let json = data.flatMap({ String(data: $0, encoding: .utf8) }) ?? "[]"
         webView.evaluateJavaScript("editor.updateUploadProgress(\(json))")

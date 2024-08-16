@@ -140,7 +140,7 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
             "grading_policies": (0, String(localized: "Grading Policies", bundle: .core), courseActivities),
             "late_grading": (0, String(localized: "Late Grading", bundle: .core), courseActivities),
             "membership_update": (4, String(localized: "Membership Update", bundle: .core), groups),
-            "other": (5, String(localized: "Administrative Notifications", bundle: .core), alerts),
+            "other": (5, String(localized: "Administrative Notifications", bundle: .core), alerts)
         ]) { (_, new) in new }
         return map
     }()
@@ -227,7 +227,7 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
                 title: categoryMap[row.category]?.1 ?? "",
                 sections: [ ItemPickerSection(items: NotificationFrequency.allCases.map { frequency in
                     ItemPickerItem(title: frequency.name, subtitle: frequency.label)
-                }), ],
+                }) ],
                 selected: NotificationFrequency.allCases.firstIndex(of: row.frequency)
                     .flatMap { IndexPath(row: $0, section: 0) },
                 delegate: self

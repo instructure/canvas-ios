@@ -234,7 +234,7 @@ extension APIDiscussionView {
     public static func make(
         participants: [APIDiscussionParticipant] = [
             .make(),
-            .make(id: 2, display_name: "Alice", html_url: URL(string: "/users/2")),
+            .make(id: 2, display_name: "Alice", html_url: URL(string: "/users/2"))
         ],
         unread_entries: [ID] = [1, 3, 5],
         entry_ratings: [String: Int] = ["3": 1, "5": 1],
@@ -243,11 +243,11 @@ extension APIDiscussionView {
             .make(id: 1, message: "m1", rating_sum: 1, replies: [
                 .make(id: 2, user_id: 2, parent_id: 1, message: "m2", rating_sum: 0, replies: [
                     .make(id: 3, parent_id: 2, message: "m3", rating_sum: 3, replies: [
-                        .make(id: 4, parent_id: 3, message: "m4 (deep)"),
-                    ]),
-                ]),
+                        .make(id: 4, parent_id: 3, message: "m4 (deep)")
+                    ])
+                ])
             ]),
-            .make(id: 5, message: "m5", rating_sum: 1),
+            .make(id: 5, message: "m5", rating_sum: 1)
         ],
         new_entries: [APIDiscussionEntry]? = nil
     ) -> APIDiscussionView {
@@ -521,7 +521,7 @@ struct GetDiscussionTopicsRequest: APIRequestable {
     public var query: [APIQueryItem] { [
         .perPage(perPage),
         .include(include.map { $0.rawValue }),
-        .optionalValue("only_announcements", isAnnouncement ? "1" : nil),
+        .optionalValue("only_announcements", isAnnouncement ? "1" : nil)
     ] }
 }
 
@@ -611,6 +611,6 @@ public struct GetAllAnnouncementsRequest: APIRequestable {
     public var query: [APIQueryItem] {[
         .array("context_codes", contextCodes),
         .optionalBool("active_only", activeOnly),
-        .optionalBool("latest_only", latestOnly),
+        .optionalBool("latest_only", latestOnly)
     ]}
 }

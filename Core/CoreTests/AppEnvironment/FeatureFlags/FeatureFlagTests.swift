@@ -23,6 +23,5 @@ class FeatureFlagTests: XCTestCase {
 
     func testFeatureFlagKeys() {
         XCTAssertEqual(APIFeatureFlag.Key.assignmentEnhancements.rawValue, "assignments_2_student")
-        XCTAssertEqual(APIFeatureFlag.Key.discussionRedesign.rawValue, "react_discussions_post")
     }
 }

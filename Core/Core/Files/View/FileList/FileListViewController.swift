@@ -312,7 +312,7 @@ extension FileListViewController: FilePickerDelegate {
     func updateNavButtons() {
         navigationItem.rightBarButtonItems = [
             canAddItem ? addButton : nil,
-            canEditFolder ? editButton : nil,
+            canEditFolder ? editButton : nil
         ].compactMap { $0 }
     }
 

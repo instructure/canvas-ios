@@ -1,24 +1,6 @@
 {
-  "originHash" : "86b76870a226968e740f43749faf5ff3dfe72ee9eebe6c2d22cc49b749b3c809",
+  "originHash" : "11fe93c817c90156e0f3f877294f17e6f6f2531589909069de1ba489329463c9",
   "pins" : [
-    {
-      "identity" : "aws-sdk-ios-spm",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/aws-amplify/aws-sdk-ios-spm",
-      "state" : {
-        "revision" : "af3f4e531da838a247d4ab90f9a2472d6c98a78f",
-        "version" : "2.33.10"
-      }
-    },
-    {
-      "identity" : "bugfendersdk-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/bugfender/BugfenderSDK-iOS",
-      "state" : {
-        "revision" : "d79eda587b2718ae60e2978ae610216733c4c5dd",
-        "version" : "1.13.2"
-      }
-    },
     {
       "identity" : "combine-schedulers",
       "kind" : "remoteSourceControl",
@@ -35,15 +17,6 @@
       "state" : {
         "revision" : "d7b896fa9ca8b47fa7bcde6b43ef9b70bf8c1f56",
         "version" : "1.8.1"
-      }
-    },
-    {
-      "identity" : "combinereachability",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/istvan-kreisz/CombineReachability.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "ba1cb2adeb111ee3ce475404ca1cdfb322505281"
       }
     },
     {
@@ -65,15 +38,6 @@
       }
     },
     {
-      "identity" : "mobile-offline-downloader-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/2uinc/mobile-offline-downloader-ios.git",
-      "state" : {
-        "branch" : "develop",
-        "revision" : "75bda95fd51320a0b14b67d3c99fc0d5b437de99"
-      }
-    },
-    {
       "identity" : "pspdfkit-sp",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/PSPDFKit/PSPDFKit-SP",
@@ -83,57 +47,12 @@
       }
     },
     {
-      "identity" : "reachability.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ashleymills/Reachability.swift",
-      "state" : {
-        "revision" : "7cbd73f46a7dfaeca079e18df7324c6de6d1834a",
-        "version" : "5.2.3"
-      }
-    },
-    {
-      "identity" : "realm-core",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/realm/realm-core.git",
-      "state" : {
-        "revision" : "9cf7ef4ad8e2f4c7a519c9a395ca3d253bb87aa8",
-        "version" : "14.6.2"
-      }
-    },
-    {
-      "identity" : "realm-swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/realm/realm-swift.git",
-      "state" : {
-        "revision" : "6e0772315809ff0a11cd265126350039a6aac59d",
-        "version" : "10.50.1"
-      }
-    },
-    {
       "identity" : "swifter",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/httpswift/swifter",
       "state" : {
         "revision" : "9483a5d459b45c3ffd059f7b55f9638e268632fd",
         "version" : "1.5.0"
-      }
-    },
-    {
-      "identity" : "swiftsoup",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/scinfu/SwiftSoup.git",
-      "state" : {
-        "revision" : "028487d4a8a291b2fe1b4392b5425b6172056148",
-        "version" : "2.7.2"
-      }
-    },
-    {
-      "identity" : "swiftui-introspect",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/siteline/swiftui-introspect.git",
-      "state" : {
-        "revision" : "9e1cc02a65b22e09a8251261cccbccce02731fc5",
-        "version" : "1.1.1"
       }
     },
     {

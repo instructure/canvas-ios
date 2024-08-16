@@ -395,7 +395,7 @@ public enum SubmissionStatus {
     }
 }
 
-public enum SubmissionType: String, Codable {
+public enum SubmissionType: String, Codable, CaseIterable {
     case discussion_topic
     case external_tool
     case media_recording
@@ -484,6 +484,29 @@ extension Array where Element == SubmissionType {
         }
 
         return utis
+    }
+
+    public func isStudioAccepted(
+        allowedExtensions: [String]
+    ) -> Bool {
+        guard self.contains(.online_upload) else {
+            return false
+        }
+
+        if allowedExtensions.isEmpty {
+            return true
+        }
+
+        for allowedExtension in allowedExtensions {
+            guard let fileType = UTType(filenameExtension: allowedExtension) else {
+                continue
+            }
+            if fileType.conforms(to: .audiovisualContent) {
+                return true
+            }
+        }
+
+        return false
     }
 }
 

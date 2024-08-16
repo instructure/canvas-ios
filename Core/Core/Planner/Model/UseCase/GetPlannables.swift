@@ -41,6 +41,7 @@ extension APIPlannable: PlannableItem {
     public var details: String? { self.plannable?.details }
     public var contextName: String? { context_name }
     public var isHidden: Bool { false }
+
     public var context: Context? {
         if let context = contextFromContextType() {
             return context
@@ -56,33 +57,18 @@ extension APIPlannable: PlannableItem {
         guard let raw = context_type, let type = ContextType(rawValue: raw.lowercased()) else {
             return nil
         }
-        switch type {
-        case .course:
-            if let id = course_id?.rawValue {
-                return Context(.course, id: id)
-            }
-        case .group:
-            if let id = group_id?.rawValue {
-                return Context(.group, id: id)
-            }
-        case .user:
-            if let id = user_id?.rawValue {
-                return Context(.user, id: id)
-            }
-        default: return nil
+        return switch type {
+        case .course: Context(.course, id: course_id?.rawValue)
+        case .group: Context(.group, id: group_id?.rawValue)
+        case .user: Context(.user, id: user_id?.rawValue)
+        default: nil
         }
-        return nil
     }
 
     private func contextFromInnerPlannableObject() -> Context? {
         // order matters: 'course_id' has precedence over 'user_id'
-        if let id = self.plannable?.course_id {
-            return Context(.course, id: id)
-        }
-        if let id = self.plannable?.user_id {
-            return Context(.user, id: id)
-        }
-        return nil
+        return Context(.course, id: self.plannable?.course_id)
+            ?? Context(.user, id: self.plannable?.user_id)
     }
 }
 
@@ -136,12 +122,12 @@ public class GetPlannables: UseCase {
         if let userID = userID {
             predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(Plannable.userID), equals: userID),
-                predicate,
+                predicate
             ])
         }
         let order = [
             NSSortDescriptor(key: #keyPath(Plannable.date), ascending: true),
-            NSSortDescriptor(key: #keyPath(Plannable.title), ascending: true, naturally: true),
+            NSSortDescriptor(key: #keyPath(Plannable.title), ascending: true, naturally: true)
         ]
         return Scope(predicate: predicate, order: order)
     }

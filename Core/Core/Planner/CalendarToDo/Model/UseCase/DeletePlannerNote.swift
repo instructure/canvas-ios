@@ -16,22 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Foundation
+import CoreData
 
-@available(iOS, introduced: 16.0)
-struct IOS16ScrollDisabled: ViewModifier {
-    func body(content: Content) -> some View {
-        content.scrollDisabled(true)
-    }
-}
+final class DeletePlannerNote: DeleteUseCase {
+    typealias Model = Plannable
 
-public extension View {
-    @ViewBuilder
-    func iOS16ScrollDisabled() -> some View {
-        if #available(iOS 16, *) {
-            self.modifier(IOS16ScrollDisabled())
-        } else {
-            self
-        }
+    var request: DeletePlannerNoteRequest { .init(id: id) }
+    let cacheKey: String? = nil
+    var scope: Scope { .where(#keyPath(Plannable.id), equals: id) }
+
+    private let id: String
+
+    init(id: String) {
+        self.id = id
     }
 }

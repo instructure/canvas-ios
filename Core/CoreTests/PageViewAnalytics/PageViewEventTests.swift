@@ -42,7 +42,7 @@ class PageViewEventTests: XCTestCase {
             "session_id": session_id,
             "agent": agent,
             "guid": "guid",
-            "customPageViewPath": customPageViewPath,
+            "customPageViewPath": customPageViewPath
         ]
         let e = PageViewEvent(eventName: "test", attributes: props, userID: "1", timestamp: date, eventDuration: 0.05)
         let tokenUrl = URL(string: "https://eventTokenUrl.localhost")!
@@ -90,7 +90,7 @@ class PageViewEventTests: XCTestCase {
             "session_id": session_id,
             "agent": agent,
             "guid": "guid",
-            "customPageViewPath": customPageViewPath,
+            "customPageViewPath": customPageViewPath
         ]
         let e = PageViewEvent(eventName: "test", attributes: props, userID: "1", timestamp: date, eventDuration: 0.05)
         let tokenUrl = URL(string: "https://eventTokenUrl.localhost")!

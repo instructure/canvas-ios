@@ -18,22 +18,29 @@
 
 import SwiftUI
 
-@available(iOS, introduced: 16.0, obsoleted: 16.1)
-struct IOS16RemoveListRowSeparatorLeadingInset: ViewModifier {
+struct RemoveListRowSeparatorLeadingInset: ViewModifier {
     func body(content: Content) -> some View {
         content.alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
-            return -viewDimensions.width
+            -viewDimensions.width
         }
     }
 }
 
 public extension View {
     @ViewBuilder
-    func iOS16RemoveListRowSeparatorLeadingInset() -> some View {
-        if #available(iOS 16, *) {
-            self.modifier(IOS16RemoveListRowSeparatorLeadingInset())
-        } else {
-            self
-        }
+    func removeListRowSeparatorLeadingInset() -> some View {
+        modifier(RemoveListRowSeparatorLeadingInset())
+    }
+}
+
+public extension View {
+    /**
+     This view modifier fixes the iOS 16.0 only bug where the List scroll content background is not hidden by default.
+     */
+    @ViewBuilder
+    func listSystemBackgroundColor() -> some View {
+        self
+            .iOS16HideListScrollContentBackground()
+            .background(Color.backgroundLightest.ignoresSafeArea())
     }
 }

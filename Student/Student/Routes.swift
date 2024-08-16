@@ -451,7 +451,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/profile/chat": { _, _, _ in
         LiveChatAssembly.makeLiveChatViewController()
-    },    
+    }
 ]))
 
 private func nativeFactory(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
@@ -520,7 +520,11 @@ private func pageViewController(url: URLComponents, params: [String: String], us
     return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
 }
 
-private func discussionViewController(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+private func discussionViewController(
+    url: URLComponents,
+    params: [String: String],
+    userInfo: [String: Any]?
+) -> UIViewController? {
     guard let context = Context(path: url.path) else { return nil }
 
     var webPageType: EmbeddedWebPageViewModelLive.EmbeddedWebPageType
@@ -541,7 +545,9 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
         )
     }
 
-    if EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) && !OfflineModeAssembly.make().isOfflineModeEnabled() {
+    if OfflineModeAssembly.make().isOfflineModeEnabled() {
+        return DiscussionDetailsViewController.create(context: context, topicID: webPageType.assetID)
+    } else {
         let viewModel = EmbeddedWebPageViewModelLive(
             context: context,
             webPageType: webPageType
@@ -552,8 +558,6 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
                 isPullToRefreshEnabled: true
             )
         )
-    } else {
-        return DiscussionDetailsViewController.create(context: context, topicID: webPageType.assetID)
     }
 }
 

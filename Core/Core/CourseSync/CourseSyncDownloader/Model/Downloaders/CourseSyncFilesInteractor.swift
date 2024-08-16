@@ -131,7 +131,7 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
 
         return publisher
             .tryCatch { error -> AnyPublisher<[FolderItem], Error> in
-                if case .unauthorized = error as? Core.APIError {
+                if error.isForbidden {
                     return Just([])
                         .setFailureType(to: Error.self)
                         .eraseToAnyPublisher()
@@ -202,8 +202,7 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
             return DownloadTaskPublisher(parameters:
                 DownloadTaskParameters(
                     remoteURL: url,
-                    localURL: localURL,
-                    fileID: fileID
+                    localURL: localURL
                 )
             )
             .eraseToAnyPublisher()

@@ -38,4 +38,4 @@ type_name:
   max_length: 50
 
 trailing_comma:
-  mandatory_comma: true
+  mandatory_comma: false

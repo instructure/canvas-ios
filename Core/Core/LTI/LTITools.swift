@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Foundation
 import SafariServices
 import WebKit
@@ -210,6 +211,18 @@ public class LTITools: NSObject {
 
     public func getSessionlessLaunchURL(completionBlock: @escaping (URL?) -> Void) {
         getSessionlessLaunch { completionBlock($0?.url) }
+    }
+
+    public func getSessionlessLaunchURL() -> AnyPublisher<URL, Error> {
+        Future { promise in
+            self.getSessionlessLaunchURL { url in
+                guard let url else {
+                    return promise(.failure(NSError.internalError()))
+                }
+                promise(.success(url))
+            }
+        }
+        .eraseToAnyPublisher()
     }
 
     private func markModuleItemRead() {

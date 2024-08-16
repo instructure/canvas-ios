@@ -94,69 +94,61 @@ class RoutesTests: XCTestCase {
     }
 
     func testNativeDiscussionDetailsRoute() {
+        let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: true)
+        OfflineModeAssembly.mock(mockInteractor)
+
         XCTAssert(router.match("/courses/2/discussions/3?origin=module_item_details") is DiscussionDetailsViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/3?origin=module_item_details") is DiscussionDetailsViewController)
     }
 
-    func testHybridDiscussionDetailsRoute() {
-        mockCourseDiscussionRedesignFlagEnabled(courseId: "2")
-        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
-        flag.name = "react_discussions_post"
-        flag.enabled = true
-        flag.context = .course("2")
+    func testHybridDiscussionDetailsRouteWhenDeviceIsOnline() {
+        let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
+        OfflineModeAssembly.mock(mockInteractor)
 
         XCTAssert(router.match("/courses/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
         XCTAssert(router.match("/courses/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
     }
 
-    func testNativeGroupDiscussionDetailsRoute() {
+    func testNativeGroupDiscussionDetailsRouteWhenDeviceIsOffline() {
+        let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: true)
+        OfflineModeAssembly.mock(mockInteractor)
+
         XCTAssert(router.match("/groups/2/discussions/3?origin=module_item_details") is DiscussionDetailsViewController)
         XCTAssert(router.match("/groups/2/discussion_topics/3?origin=module_item_details") is DiscussionDetailsViewController)
     }
 
-    func testHybridGroupDiscussionDetailsRoute() {
-        mockGroupDiscussionRedesignFlagEnabled(groupId: "2")
-        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
-        flag.name = "react_discussions_post"
-        flag.enabled = true
-        flag.context = .course("2")
-
-        let group = Group(context: AppEnvironment.shared.database.viewContext)
-        group.id = "2"
-        group.courseID = "2"
+    func testHybridGroupDiscussionDetailsRouteWhenDeviceIsOnline() {
+        let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
+        OfflineModeAssembly.mock(mockInteractor)
 
         XCTAssert(router.match("/groups/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
         XCTAssert(router.match("/groups/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
     }
 
     func testNativeAnnouncementDiscussionDetailsRoute() {
+        let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: true)
+        OfflineModeAssembly.mock(mockInteractor)
+
         XCTAssert(router.match("/courses/2/announcements/3?origin=module_item_details") is DiscussionDetailsViewController)
     }
 
-    func testHybridAnnouncementDiscussionDetailsRoute() {
-        mockCourseDiscussionRedesignFlagEnabled(courseId: "2")
-        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
-        flag.name = "react_discussions_post"
-        flag.enabled = true
-        flag.context = .course("2")
+    func testHybridAnnouncementDiscussionDetailsRouteWhenDeviceIsOnline() {
+        let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
+        OfflineModeAssembly.mock(mockInteractor)
 
         XCTAssert(router.match("/courses/2/announcements/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
     }
 
-    func testNativeGroupAnnouncementDiscussionDetailsRoute() {
+    func testNativeGroupAnnouncementDiscussionDetailsRouteWhenDeviceIsOffline() {
+        let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: true)
+        OfflineModeAssembly.mock(mockInteractor)
+
         XCTAssert(router.match("/groups/2/announcements/3") is DiscussionDetailsViewController)
     }
 
-    func testHybridGroupAnnouncementDiscussionDetailsRoute() {
-        mockGroupDiscussionRedesignFlagEnabled(groupId: "2")
-        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
-        flag.name = "react_discussions_post"
-        flag.enabled = true
-        flag.context = .course("2")
-
-        let group = Group(context: AppEnvironment.shared.database.viewContext)
-        group.id = "2"
-        group.courseID = "2"
+    func testHybridGroupAnnouncementDiscussionDetailsRouteWhenDeviceIsOnline() {
+        let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
+        OfflineModeAssembly.mock(mockInteractor)
 
         XCTAssert(router.match("/groups/2/announcements/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
     }
@@ -225,10 +217,10 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/1/assignments/2") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/1/assignments/2?origin=module_item_details") is AssignmentDetailsViewController)
         XCTAssert(router.match("/courses/1/discussions/2") is ModuleItemSequenceViewController)
-        XCTAssert(router.match("/groups/1/discussions/2") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/groups/1/discussions/2") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
         XCTAssert(router.match("/courses/1/discussion_topics/2") is ModuleItemSequenceViewController)
-        XCTAssert(router.match("/groups/1/discussion_topics/2") is DiscussionDetailsViewController)
-        XCTAssert(router.match("/courses/1/discussion_topics/2?origin=module_item_details") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/groups/1/discussion_topics/2") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/courses/1/discussion_topics/2?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
         XCTAssert(router.match("/files/1") is FileDetailsViewController)
         XCTAssert(router.match("/files/1/download") is FileDetailsViewController)
         XCTAssert(router.match("/courses/1/files/2") is ModuleItemSequenceViewController)
@@ -296,27 +288,5 @@ class RoutesTests: XCTestCase {
         api.mock(GetWebSessionRequest(to: expected), error: NSError.internalError())
         router.route(to: "https://canvas.com", from: UIViewController())
         XCTAssertEqual(login.opened, expected)
-    }
-
-    private func mockGroupDiscussionRedesignFlagEnabled(groupId: String = "1") {
-        let context = Context(.group, id: groupId)
-        let response = ["react_discussions_post": true]
-        let useCase = GetEnvironmentFeatureFlags(context: context)
-        useCase.write(
-            response: response,
-            urlResponse: nil,
-            to: AppEnvironment.shared.database.viewContext
-        )
-    }
-
-    private func mockCourseDiscussionRedesignFlagEnabled(courseId: String = "1") {
-        let context = Context(.course, id: courseId)
-        let response = ["new_discussions", "no_more_html"]
-        let useCase = GetEnabledFeatureFlags(context: context)
-        useCase.write(
-            response: response,
-            urlResponse: nil,
-            to: AppEnvironment.shared.database.viewContext
-        )
     }
 }

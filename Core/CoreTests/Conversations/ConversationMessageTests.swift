@@ -27,7 +27,7 @@ class ConversationMessageTests: CoreTestCase {
             attachments: [.make()],
             forwarded_messages: [ .make(
                 id: "2"
-            ), ]
+            ) ]
         ))
         XCTAssertEqual(message.mediaComment?.mediaID, "m-1234567890")
         XCTAssertEqual(message.attachments.first?.id, "1")
@@ -41,7 +41,7 @@ class ConversationMessageTests: CoreTestCase {
     func testLocalizedAudienceWithWithMeAnd1Recipient() {
         let userMap = [
             "1": ConversationParticipant.make( from: .make(id: "1", name: "User One") ),
-            "2": ConversationParticipant.make( from: .make(id: "2", name: "User Two") ),
+            "2": ConversationParticipant.make( from: .make(id: "2", name: "User Two") )
         ]
         let myID = "1"
 
@@ -55,7 +55,7 @@ class ConversationMessageTests: CoreTestCase {
         let userMap = [
             "1": ConversationParticipant.make( from: .make(id: "1", name: "User 1") ),
             "2": ConversationParticipant.make( from: .make(id: "2", name: "User 2") ),
-            "3": ConversationParticipant.make( from: .make(id: "3", name: "User 3") ),
+            "3": ConversationParticipant.make( from: .make(id: "3", name: "User 3") )
         ]
         let myID = "1"
 
@@ -70,7 +70,7 @@ class ConversationMessageTests: CoreTestCase {
             "1": ConversationParticipant.make( from: .make(id: "1", name: "User 1") ),
             "2": ConversationParticipant.make( from: .make(id: "2", name: "User 2") ),
             "3": ConversationParticipant.make( from: .make(id: "3", name: "User 3") ),
-            "4": ConversationParticipant.make( from: .make(id: "4", name: "User 4") ),
+            "4": ConversationParticipant.make( from: .make(id: "4", name: "User 4") )
         ]
         let myID = "1"
 
@@ -85,7 +85,7 @@ class ConversationMessageTests: CoreTestCase {
             "1": ConversationParticipant.make( from: .make(id: "1", name: "User 1") ),
             "2": ConversationParticipant.make( from: .make(id: "2", name: "User 2") ),
             "3": ConversationParticipant.make( from: .make(id: "3", name: "User 3") ),
-            "4": ConversationParticipant.make( from: .make(id: "4", name: "User 4") ),
+            "4": ConversationParticipant.make( from: .make(id: "4", name: "User 4") )
         ]
         let myID = "1"
 

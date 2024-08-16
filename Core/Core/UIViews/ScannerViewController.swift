@@ -75,7 +75,7 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
             guide.widthAnchor.constraint(equalToConstant: 225),
             guide.heightAnchor.constraint(equalToConstant: 225),
             guide.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            guide.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            guide.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
         ])
 
         let promptContainer = UIView()
@@ -89,7 +89,7 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
             promptContainer.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             // To prevent getting in front of the guide in landscape mode
             promptContainer.bottomAnchor.constraint(lessThanOrEqualTo: guide.topAnchor, constant: -15),
-            topPromptConstraint,
+            topPromptConstraint
         ])
 
         let prompt = UILabel()
@@ -115,7 +115,7 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
             cancel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             // To prevent getting in front of the guide in landscape mode
             cancel.topAnchor.constraint(greaterThanOrEqualTo: guide.bottomAnchor, constant: 10),
-            cancelBottomConstraint,
+            cancelBottomConstraint
         ])
 
         // startRunning is blocking until the camera wakes up so

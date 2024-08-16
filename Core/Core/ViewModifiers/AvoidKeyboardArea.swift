@@ -59,17 +59,11 @@ struct AvoidKeyboardArea<Content: View>: View {
 extension View {
 
     /**
-     This method adds a view modifier which pushes content up by modifying its bottom padding in case a keyboard appears on iOS 13. On iOS 14 this method does nothing as this behavior is automatically achieved by SwiftUI. On iOS 14.3 this automatic behavior doesn't work on some layouts, in such case the `force` flag can be used to add this modifier.
-
-     - parameters:
-        - force: On iOS 14.3 this parameter can enforce adding this view modifier which otherwise would be skipped on this iOS version.
+     This method adds a view modifier which pushes content up by modifying its bottom padding in case a keyboard appears.
+     Usually, this behavior is automatically achieved by SwiftUI but if not this modifier can be used to achieve a similar effect.
      */
     @ViewBuilder
-    public func avoidKeyboardArea(force: Bool = false) -> some View {
-        if #available(iOS 14.3, *), force {
-            AvoidKeyboardArea(content: self)
-        } else {
-            self
-        }
+    public func avoidKeyboardArea() -> some View {
+        AvoidKeyboardArea(content: self)
     }
 }

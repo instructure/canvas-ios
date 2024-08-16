@@ -52,6 +52,10 @@ public class CDCalendarFilterEntry: NSManagedObject {
             return Color(contextColor.color)
         }
     }
+
+    public var courseName: String? {
+        context.contextType == .course ? name : nil
+    }
 }
 
 extension CDCalendarFilterEntry: Comparable {

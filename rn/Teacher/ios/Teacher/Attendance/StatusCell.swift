@@ -47,7 +47,7 @@ class StatusCell: UITableViewCell {
             guide.leadingAnchor.constraint(equalTo: horizontalStack.leadingAnchor),
             guide.trailingAnchor.constraint(equalTo: horizontalStack.trailingAnchor),
             guide.topAnchor.constraint(equalTo: horizontalStack.topAnchor),
-            guide.bottomAnchor.constraint(equalTo: horizontalStack.bottomAnchor),
+            guide.bottomAnchor.constraint(equalTo: horizontalStack.bottomAnchor)
         ])
     }
 

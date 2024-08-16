@@ -37,6 +37,7 @@ public class PlannerListViewController: UIViewController {
     let env = AppEnvironment.shared
     var start: Date = Clock.now.startOfDay() // inclusive
     var end: Date = Clock.now.startOfDay().addDays(1) // exclusive
+    private var selectedPlannableId: String?
 
     var plannables: Store<GetPlannables>?
 
@@ -69,8 +70,10 @@ public class PlannerListViewController: UIViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let selected = tableView.indexPathForSelectedRow {
+        if let selected = tableView.indexPathForSelectedRow,
+           splitViewController?.isCollapsed ?? true {
             tableView.deselectRow(at: selected, animated: true)
+            selectedPlannableId = nil
         }
     }
 
@@ -98,6 +101,18 @@ public class PlannerListViewController: UIViewController {
         emptyStateView.isHidden = plannables?.error != nil || plannables?.isEmpty != true
         errorView.isHidden = plannables?.error == nil
         tableView.reloadData()
+        reselectRowAfterReload()
+    }
+
+    private func reselectRowAfterReload() {
+        guard let selectedPlannableId,
+              let index = plannables?.all.firstIndex(where: { $0.id == selectedPlannableId })
+        else {
+            return
+        }
+
+        let indexPath = IndexPath(row: index, section: 0)
+        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
     }
 }
 
@@ -114,9 +129,13 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let p = plannables?[indexPath], p.plannableType == .planner_note {
-            env.router.show(PlannerAssembly.makeToDoDetailsViewController(plannable: p), from: self, options: .detail)
-        } else if let url = plannables?[indexPath]?.htmlURL {
+        guard let plannable = plannables?[indexPath] else { return }
+
+        selectedPlannableId = plannable.id
+
+        if plannable.plannableType == .planner_note {
+            env.router.show(PlannerAssembly.makeToDoDetailsViewController(plannable: plannable), from: self, options: .detail)
+        } else if let url = plannable.htmlURL {
             let to = url.appendingQueryItems(URLQueryItem(name: "origin", value: "calendar"))
             env.router.route(to: to, from: self, options: .detail)
         }

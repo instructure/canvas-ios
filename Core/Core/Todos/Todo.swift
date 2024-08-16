@@ -108,7 +108,7 @@ class GetTodos: CollectionUseCase {
     }
     var scope: Scope { Scope(predicate: todoPredicate, order: [
         NSSortDescriptor(key: #keyPath(Todo.assignment.dueAtSortNilsAtBottom), ascending: true),
-        NSSortDescriptor(key: #keyPath(Todo.assignment.name), ascending: true, naturally: true),
+        NSSortDescriptor(key: #keyPath(Todo.assignment.name), ascending: true, naturally: true)
     ]) }
 
     init(_ type: TodoType? = nil) {

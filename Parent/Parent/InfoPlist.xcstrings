@@ -113,6 +113,12 @@
             "value" : "Canvas Parent"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Máthairchúrsa Canvas"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -383,6 +389,12 @@
             "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail grianghraif agus físeáin le teachtaireachtaí agus postálacha fóraim nó cuir isteach iad mar uaslódálacha taisc."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -639,6 +651,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Joindre des enregistrements audio aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail taifeadtaí fuaime le teachtaireachtaí agus postálacha fóraim nó cuir isteach iad mar uaslódálacha taisc."
           }
         },
         "hi" : {
@@ -899,6 +917,12 @@
             "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail grianghraif agus físeáin le teachtaireachtaí agus postálacha fóraim nó cuir isteach iad mar uaslódálacha taisc."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1155,6 +1179,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail grianghraif agus físeáin le teachtaireachtaí agus postálacha fóraim nó cuir isteach iad mar uaslódálacha taisc."
           }
         },
         "hi" : {

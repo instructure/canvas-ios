@@ -415,7 +415,7 @@ public struct GetAssignmentsRequest: APIRequestable {
             .include(include.map { $0.rawValue }),
             .optionalValue("order_by", orderBy?.rawValue),
             .array("assignment_ids", assignmentIDs ?? []),
-            .perPage(perPage),
+            .perPage(perPage)
         ]
     }
 }

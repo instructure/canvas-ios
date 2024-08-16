@@ -382,7 +382,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/about": { _, _, _ in
         AboutAssembly.makeAboutViewController()
-    },
+    }
 ]))
 
 private func discussionDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
@@ -397,7 +397,9 @@ private func discussionDetails(url: URLComponents, params: [String: String], use
         return nil
     }
 
-    if EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) {
+    if OfflineModeAssembly.make().isOfflineModeEnabled() {
+        return DiscussionDetailsViewController.create(context: context, topicID: webPageType.assetID)
+    } else {
         let viewModel = EmbeddedWebPageViewModelLive(
             context: context,
             webPageType: webPageType
@@ -408,8 +410,6 @@ private func discussionDetails(url: URLComponents, params: [String: String], use
                 isPullToRefreshEnabled: true
             )
         )
-    } else {
-        return DiscussionDetailsViewController.create(context: context, topicID: webPageType.assetID)
     }
 }
 

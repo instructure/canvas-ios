@@ -17,7 +17,6 @@
 //
 
 public enum DSFeatureFlag: String {
-    case newDiscussion = "react_discussions_post"
     case newQuiz = "quizzes_next"
 }
 

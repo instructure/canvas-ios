@@ -7,7 +7,7 @@ options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure.icanvas
   deploymentTarget:
-    iOS: 15.0
+    iOS: 16.0
   createIntermediateGroups: true
 settings:
   CODE_SIGN_STYLE: Automatic

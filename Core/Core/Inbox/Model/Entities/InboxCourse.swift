@@ -37,31 +37,3 @@ public final class InboxCourse: NSManagedObject, WriteableModel {
         return dbEntity
     }
 }
-
-#if DEBUG
-
-public extension InboxCourse {
-    static func make(name: String = "InboxCourse",
-                     courseId: String = "1",
-                     in context: NSManagedObjectContext)
-    -> InboxCourse {
-        let mockObject: InboxCourse = context.insert()
-        mockObject.name = name
-        mockObject.courseId = courseId
-        return mockObject
-    }
-}
-
-public extension Array where Element == InboxCourse {
-
-    static func make(count: Int,
-                     name: String = "",
-                     in context: NSManagedObjectContext)
-    -> [InboxCourse] {
-        (0..<count).reduce(into: [], { partialResult, index in
-            partialResult.append(.make(name: name, courseId: "\(index)", in: context))
-        })
-    }
-}
-
-#endif

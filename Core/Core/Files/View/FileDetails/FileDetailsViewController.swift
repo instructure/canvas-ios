@@ -177,8 +177,8 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
     func update() {
         guard let file = files.first, offlineFileInteractor?.isOffline == false else {
             if let error = files.error {
-                // If file download failed because of unauthorization error and we have a verifier token, then we modify the url and try to open the file in a webview.
-                if var url = originURL, url.containsVerifier, case .unauthorized = (error as? APIError) {
+                // If file download failed because of a forbidden error and we have a verifier token, then we modify the url and try to open the file in a webview.
+                if var url = originURL, url.containsVerifier, error.isForbidden {
                     if !url.path.hasSuffix("download") {
                         url.path.append("/download")
                         url.queryItems?.append(URLQueryItem(name: "download_frd", value: "1"))
@@ -588,7 +588,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
             builder.sharingConfigurations = [ DocumentSharingConfiguration { builder in
                 builder.annotationOptions = .flatten
                 builder.pageSelectionOptions = .all
-            }, ]
+            } ]
 
             // Override the override
             builder.overrideClass(AnnotationToolbar.self, with: AnnotationToolbar.self)
@@ -616,7 +616,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
             downloadBarButtonItem,
             canEdit ? editButton : shareButton,
             annotate,
-            search,
+            search
         ]
         NotificationCenter.default.post(name: .init("FileViewControllerBarButtonItemsDidChange"), object: nil)
 

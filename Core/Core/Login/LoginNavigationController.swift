@@ -47,7 +47,7 @@ public class LoginNavigationController: UINavigationController {
             startView,
 //            LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: false, app: app, offlineModeInteractor: OfflineModeAssembly.make()),
             LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: .normalLogin),
-            LoginWebViewController.create(host: host, loginDelegate: loginDelegate, method: .normalLogin),
+            LoginWebViewController.create(host: host, loginDelegate: loginDelegate, method: .normalLogin)
         ]
     }
 }

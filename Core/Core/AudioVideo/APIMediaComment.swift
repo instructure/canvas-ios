@@ -89,12 +89,12 @@ struct PostMediaUploadTokenRequest: APIRequestable {
 
     let method = APIMethod.post
     let headers: [String: String?] = [
-        HttpHeader.accept: "application/xml",
+        HttpHeader.accept: "application/xml"
     ]
     let path = "/api_v3/index.php"
     let query: [APIQueryItem] = [
         .value("service", "uploadtoken"),
-        .value("action", "add"),
+        .value("action", "add")
     ]
     let body: Body?
 
@@ -118,7 +118,7 @@ struct PostMediaUploadRequest: APIRequestable {
     let cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
     let method = APIMethod.post
     let headers: [String: String?] = [
-        HttpHeader.accept: nil,
+        HttpHeader.accept: nil
     ]
     let path = "/api_v3/index.php"
     var query: [APIQueryItem] {
@@ -126,7 +126,7 @@ struct PostMediaUploadRequest: APIRequestable {
             .value("service", "uploadtoken"),
             .value("action", "upload"),
             .value("uploadTokenId", token),
-            .value("ks", ks),
+            .value("ks", ks)
         ]
     }
     var form: APIFormData? {
@@ -136,7 +136,7 @@ struct PostMediaUploadRequest: APIRequestable {
                 value: type == .audio
                     ? APIFormDatum.file(filename: "audiocomment.m4a", type: "audio/x-m4a", at: fileURL)
                     : APIFormDatum.file(filename: "videocomment.mp4", type: "video/mp4", at: fileURL)
-            ),
+            )
         ]
     }
 }
@@ -165,7 +165,7 @@ struct PostMediaIDRequest: APIRequestable {
 
     let method = APIMethod.post
     let headers: [String: String?] = [
-        HttpHeader.accept: "application/xml",
+        HttpHeader.accept: "application/xml"
     ]
     let path = "/api_v3/index.php"
     var query: [APIQueryItem] {
@@ -173,7 +173,7 @@ struct PostMediaIDRequest: APIRequestable {
             .value("service", "media"),
             .value("action", "addFromUploadedFile"),
             .value("uploadTokenId", token),
-            .value("ks", ks),
+            .value("ks", ks)
         ]
     }
     var body: Body? {

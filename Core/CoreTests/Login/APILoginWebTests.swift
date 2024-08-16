@@ -22,11 +22,11 @@ import XCTest
 class APILoginWebTests: CoreTestCase {
     func testHeaders() {
         XCTAssertEqual(LoginWebRequest(authMethod: .normalLogin, clientID: "1", provider: nil).headers, [
-            HttpHeader.userAgent: UserAgent.safari.description,
+            HttpHeader.userAgent: UserAgent.safari.description
         ])
         XCTAssertEqual(LoginWebRequest(authMethod: .siteAdminLogin, clientID: "1", provider: nil).headers, [
             HttpHeader.userAgent: UserAgent.safari.description,
-            HttpHeader.cookie: "canvas_sa_delegated=1",
+            HttpHeader.cookie: "canvas_sa_delegated=1"
         ])
     }
 
@@ -35,7 +35,7 @@ class APILoginWebTests: CoreTestCase {
             .value("client_id", "1"),
             .value("response_type", "code"),
             .value("redirect_uri", "https://canvas/login"),
-            .value("mobile", "1"),
+            .value("mobile", "1")
         ])
         XCTAssertEqual(LoginWebRequest(authMethod: .canvasLogin, clientID: "1", provider: "p").query, [
             .value("client_id", "1"),
@@ -43,7 +43,7 @@ class APILoginWebTests: CoreTestCase {
             .value("redirect_uri", "https://canvas/login"),
             .value("mobile", "1"),
             .value("canvas_login", "1"),
-            .value("authentication_provider", "p"),
+            .value("authentication_provider", "p")
         ])
     }
 }

@@ -36,6 +36,7 @@ public class PlannerViewController: UIViewController {
     var studentID: String?
 
     lazy var calendarFilterInteractor: CalendarFilterInteractor = PlannerAssembly.makeFilterInteractor(observedUserId: studentID)
+    lazy var offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     private var subscriptions = Set<AnyCancellable>()
 
     private var currentlyDisplayedToday: Date?
@@ -69,7 +70,7 @@ public class PlannerViewController: UIViewController {
         NSLayoutConstraint.activate([
             calendar.view.topAnchor.constraint(equalTo: view.topAnchor),
             calendar.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            calendar.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            calendar.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
         let divider = DividerView()
@@ -90,7 +91,7 @@ public class PlannerViewController: UIViewController {
             listPageController.view.topAnchor.constraint(equalTo: divider.bottomAnchor),
             listPageController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             listPageController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            listPageController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            listPageController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
 
         listPageController.dataSource = self
@@ -108,6 +109,15 @@ public class PlannerViewController: UIViewController {
             .replaceError(with: ())
             .sink { [weak self] _ in
                 self?.plannerListWillRefresh()
+            }
+            .store(in: &subscriptions)
+
+        offlineModeInteractor
+            .observeIsOfflineMode()
+            .sink { [weak self] isOffline in
+                guard let self else { return }
+                addNoteButton.action = isOffline ? #selector(showOfflineAlert) : #selector(addNote)
+                addNoteButton.tintColor = isOffline ? .disabledGray : .textLightest
             }
             .store(in: &subscriptions)
     }
@@ -142,6 +152,10 @@ public class PlannerViewController: UIViewController {
         )
     }
 
+    @objc private func showOfflineAlert() {
+        UIAlertController.showItemNotAvailableInOfflineAlert()
+    }
+
     @objc func selectToday() {
         let date = Clock.now.startOfDay()
         calendar.showDate(date)
@@ -169,7 +183,7 @@ public class PlannerViewController: UIViewController {
 
             let attributes: [NSAttributedString.Key: Any] = [
                 .font: font,
-                .paragraphStyle: paragraphStyle,
+                .paragraphStyle: paragraphStyle
             ]
 
             let attributedString = NSAttributedString(string: text, attributes: attributes)

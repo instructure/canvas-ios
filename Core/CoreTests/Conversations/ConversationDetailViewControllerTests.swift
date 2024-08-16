@@ -32,7 +32,7 @@ class ConversationDetailViewControllerTests: CoreTestCase {
             participants: [
                 .make(id: "1", name: "user 1", pronouns: "They/Them"),
                 .make(id: "2", name: "user 2"),
-                .make(id: "4", name: "user 4", pronouns: "He/Him"),
+                .make(id: "4", name: "user 4", pronouns: "He/Him")
             ],
             messages: [
                 APIConversationMessage.make(
@@ -44,7 +44,7 @@ class ConversationDetailViewControllerTests: CoreTestCase {
                     attachments: [
                         .make(id: "1", mime_class: "doc"),
                         .make(id: "2", display_name: "Image", mime_class: "image"),
-                        .make(id: "3", url: URL(string: "data:text/plain,")!, mime_class: "video"),
+                        .make(id: "3", url: URL(string: "data:text/plain,")!, mime_class: "video")
                     ],
                     participating_user_ids: [ "1", "2" ]
                 ),
@@ -54,7 +54,7 @@ class ConversationDetailViewControllerTests: CoreTestCase {
                     body: "foo bar",
                     author_id: "1",
                     participating_user_ids: [ "1", "4" ]
-                ),
+                )
             ]
         )
         api.mock(controller.conversations, value: c)
@@ -110,7 +110,7 @@ class ConversationDetailViewControllerTests: CoreTestCase {
             participants: [
                 .make(id: "1", name: "user 1"),
                 .make(id: "2", name: "user 2"),
-                .make(id: "3", name: "user 3"),
+                .make(id: "3", name: "user 3")
             ],
             messages: [
                 APIConversationMessage.make(
@@ -119,7 +119,7 @@ class ConversationDetailViewControllerTests: CoreTestCase {
                   body: "older",
                   author_id: "2",
                   participating_user_ids: [ "1", "2", "3" ]
-                ),
+                )
             ]
         )
         api.mock(controller.conversations, value: c)

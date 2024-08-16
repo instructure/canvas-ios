@@ -58,7 +58,7 @@ class APIErroReportTests: CoreTestCase {
             "Hostname": "https://canvas.instructure.com",
             "App Version": "1.0 (1)",
             "Platform": UIDevice.current.model,
-            "OS Version": UIDevice.current.systemVersion,
+            "OS Version": UIDevice.current.systemVersion
         ])
         XCTAssertNil(min.message)
         XCTAssertEqual(min.subject, "s [https://canvas.instructure.com]")
@@ -69,7 +69,7 @@ class APIErroReportTests: CoreTestCase {
     func testMaximalPostErrorReportRequest() {
         let error = NSError(domain: "com.instructure", code: 1, userInfo: [
             NSLocalizedDescriptionKey: "Oops",
-            "extra": "info",
+            "extra": "info"
         ])
         let max = PostErrorReportRequest(error: error, email: "me@example.com", subject: "s", impact: 4, comments: "comment").body!.error
         XCTAssertEqual(max.category, "com.instructure")
@@ -96,7 +96,7 @@ class APIErroReportTests: CoreTestCase {
             "App Version": "1.0 (1)",
             "Platform": UIDevice.current.model,
             "OS Version": UIDevice.current.systemVersion,
-            "extra": "info",
+            "extra": "info"
         ])
         XCTAssertEqual(max.message, "Oops")
         XCTAssertEqual(max.subject, "s [https://canvas.instructure.com]")

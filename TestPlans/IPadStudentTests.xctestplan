@@ -33,6 +33,7 @@
         "DashboardTests\/testDashboardEditButtonDisplaysCorrectCourses()",
         "DashboardTests\/testNavigateToDashboard()",
         "DiscussionsTests\/testAssignmentDiscussion()",
+        "FeatureFlagOfflineTests",
         "GradeTotalsTests",
         "GradesTests\/testLetterGrades()",
         "GradesTests\/testPassFailGrades()",

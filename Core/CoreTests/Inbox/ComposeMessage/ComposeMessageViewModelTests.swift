@@ -28,7 +28,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        mockInteractor = ComposeMessageInteractorMock(context: databaseClient)
+        mockInteractor = ComposeMessageInteractorMock()
         testee = ComposeMessageViewModel(router: router, options: .init(fromType: .new), interactor: mockInteractor)
     }
 
@@ -66,7 +66,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.bodyText = "Test body"
         XCTAssertEqual(testee.sendButtonActive, true)
         testee.bodyText = ""
-        XCTAssertEqual(testee.sendButtonActive, false)
+        testee.didTapSend.accept(WeakViewController())
+        XCTAssertEqual(mockInteractor.isCreateConversationCalled, true)
+        XCTAssertEqual(mockInteractor.parameters?.body, String(localized: "[No message]"))
     }
 
     func testValidationForRecipients() {
@@ -82,39 +84,39 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.sendButtonActive, false)
     }
 
-    func testSuccesfulNewSend() {
+    func testSuccessfulNewSend() {
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
-        XCTAssertEqual(mockInteractor.isConversationAddSent, false)
+        XCTAssertEqual(mockInteractor.isCreateConversationCalled, false)
         testee.didTapSend.accept(WeakViewController(sourceView))
-        XCTAssertEqual(mockInteractor.isConversationAddSent, true)
+        XCTAssertEqual(mockInteractor.isCreateConversationCalled, true)
     }
 
-    func testSuccesfulReplySend() {
+    func testSuccessfulReplySend() {
         setupForReply()
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
-        XCTAssertEqual(mockInteractor.isMessageAddSent, false)
+        XCTAssertEqual(mockInteractor.isAddConversationMessageCalled, false)
         testee.didTapSend.accept(WeakViewController(sourceView))
-        XCTAssertEqual(mockInteractor.isMessageAddSent, true)
+        XCTAssertEqual(mockInteractor.isAddConversationMessageCalled, true)
     }
 
-    func testSuccesfulReplyAllSend() {
+    func testSuccessfulReplyAllSend() {
         setupForReplyAll()
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
-        XCTAssertEqual(mockInteractor.isMessageAddSent, false)
+        XCTAssertEqual(mockInteractor.isAddConversationMessageCalled, false)
         testee.didTapSend.accept(WeakViewController(sourceView))
-        XCTAssertEqual(mockInteractor.isMessageAddSent, true)
+        XCTAssertEqual(mockInteractor.isAddConversationMessageCalled, true)
     }
 
-    func testSuccesfulForwardSend() {
+    func testSuccessfulForwardSend() {
         setupForForward()
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
-        XCTAssertEqual(mockInteractor.isMessageAddSent, false)
+        XCTAssertEqual(mockInteractor.isAddConversationMessageCalled, false)
         testee.didTapSend.accept(WeakViewController(sourceView))
-        XCTAssertEqual(mockInteractor.isMessageAddSent, true)
+        XCTAssertEqual(mockInteractor.isAddConversationMessageCalled, true)
     }
 
     func testFailedSend() {
@@ -246,13 +248,81 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.includedMessages, [message1, message2, message3])
     }
 
-    func testAttachmnetButton() {
+    func testAttachmentButton() {
         let sourceView = UIViewController()
         let viewController = WeakViewController(sourceView)
         testee.attachmentButtonDidTap(viewController: viewController)
         wait(for: [router.showExpectation], timeout: 1)
 
-        XCTAssertNotNil(router.presented)
+        let presented = router.presented as? BottomSheetPickerViewController
+        XCTAssertNotNil(presented)
+    }
+
+    func testAttachmentOptionsDialog() {
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+        testee.attachmentButtonDidTap(viewController: viewController)
+
+        let presented = router.presented as? BottomSheetPickerViewController
+        XCTAssertNotNil(presented)
+
+        testee.isImagePickerVisible = false
+        testee.isTakePhotoVisible = false
+        testee.isFilePickerVisible = false
+        testee.isAudioRecordVisible = false
+        XCTAssertEqual(presented?.actions.count, 5)
+
+        let uploadFileAction = presented?.actions[0]
+        let uploadPhotoAction = presented?.actions[1]
+        let takePhotoAction = presented?.actions[2]
+        let recordAudioAction = presented?.actions[3]
+        let selectFileAction = presented?.actions[4]
+
+        XCTAssertEqual(uploadFileAction?.title, String(localized: "Upload file", bundle: .core))
+        XCTAssertEqual(uploadFileAction?.image, .documentLine)
+        uploadFileAction?.action()
+        XCTAssertTrue(testee.isFilePickerVisible)
+        XCTAssertFalse(testee.isImagePickerVisible)
+        XCTAssertFalse(testee.isTakePhotoVisible)
+        XCTAssertFalse(testee.isAudioRecordVisible)
+
+        XCTAssertEqual(uploadPhotoAction?.title, String(localized: "Upload photo", bundle: .core))
+        XCTAssertEqual(uploadPhotoAction?.image, .imageLine)
+        uploadPhotoAction?.action()
+        XCTAssertTrue(testee.isFilePickerVisible)
+        XCTAssertTrue(testee.isImagePickerVisible)
+        XCTAssertFalse(testee.isTakePhotoVisible)
+        XCTAssertFalse(testee.isAudioRecordVisible)
+
+        XCTAssertEqual(takePhotoAction?.title, String(localized: "Take photo", bundle: .core))
+        XCTAssertEqual(takePhotoAction?.image, .cameraLine)
+        takePhotoAction?.action()
+        XCTAssertTrue(testee.isFilePickerVisible)
+        XCTAssertTrue(testee.isImagePickerVisible)
+        XCTAssertTrue(testee.isTakePhotoVisible)
+        XCTAssertFalse(testee.isAudioRecordVisible)
+
+        XCTAssertEqual(recordAudioAction?.title, String(localized: "Record audio", bundle: .core))
+        XCTAssertEqual(recordAudioAction?.image, .audioLine)
+        recordAudioAction?.action()
+        XCTAssertTrue(testee.isFilePickerVisible)
+        XCTAssertTrue(testee.isImagePickerVisible)
+        XCTAssertTrue(testee.isTakePhotoVisible)
+        XCTAssertTrue(testee.isAudioRecordVisible)
+
+        XCTAssertEqual(selectFileAction?.title, String(localized: "Attach from Canvas files", bundle: .core))
+        XCTAssertEqual(selectFileAction?.image, .folderLine)
+        selectFileAction?.action()
+
+        XCTAssertTrue(testee.isFilePickerVisible)
+        XCTAssertTrue(testee.isImagePickerVisible)
+        XCTAssertTrue(testee.isTakePhotoVisible)
+        XCTAssertTrue(testee.isAudioRecordVisible)
+
+        wait(for: [router.showExpectation], timeout: 1)
+
+        let presentedFilePicker = router.presented as? CoreHostingController<FilePickerView>
+        XCTAssertNotNil(presentedFilePicker)
     }
 
     func testIncludedMessagesExpansion() {
@@ -272,43 +342,71 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.toggleMessageExpand(message: message2)
         XCTAssertEqual(testee.expandedIncludedMessageIds.count, 0)
     }
+
+    func testAttachmentWithURLSelected() {
+        testee.isImagePickerVisible = true
+        testee.isTakePhotoVisible = true
+        testee.isFilePickerVisible = true
+        testee.isAudioRecordVisible = true
+        testee.addFile(url: URL(string: "https://instructure.com")!)
+
+        XCTAssertFalse(testee.isImagePickerVisible)
+        XCTAssertFalse(testee.isTakePhotoVisible)
+        XCTAssertFalse(testee.isFilePickerVisible)
+        XCTAssertFalse(testee.isAudioRecordVisible)
+        XCTAssertTrue(mockInteractor.isAddFileWithURLCalled)
+    }
+
+    func testAttachmentWithFileSelected() {
+        testee.addFile(file: File.make())
+
+        XCTAssertTrue(mockInteractor.isAddFileWithFileCalled)
+    }
 }
 
 private class ComposeMessageInteractorMock: ComposeMessageInteractor {
-    var conversationAttachmentsFolder = CurrentValueSubject<[Core.Folder], Never>([])
-
-    var state: CurrentValueSubject<Core.StoreState, Never>
-    var courses: CurrentValueSubject<[Core.InboxCourse], Never>
+    var attachments = CurrentValueSubject<[Core.File], Never>([])
 
     var isSuccessfulMockFuture = true
-    var isMessageAddSent = false
-    var isConversationAddSent = false
-    var isFileURLCalled = false
-    var isFileDeleted = false
+    var isCreateConversationCalled = false
+    var isAddConversationMessageCalled = false
+    var isAddFileWithURLCalled = false
+    var isAddFileWithFileCalled = false
+    var isRetryCalled = false
+    var isCancelCalled = false
+    var isRemoveFileCalled = false
+    var parameters: MessageParameters?
 
-    init(context: NSManagedObjectContext) {
-        self.state = .init(.data)
-        self.courses = .init(.make(count: 5, in: context))
-    }
-
-    func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error> {
-        isConversationAddSent = true
+    func createConversation(parameters: Core.MessageParameters) -> Future<URLResponse?, any Error> {
+        self.parameters = parameters
+        isCreateConversationCalled = true
         return mockFuture
     }
 
-    func addConversationMessage(parameters: MessageParameters) -> Future<URLResponse?, Error> {
-        isMessageAddSent = true
+    func addConversationMessage(parameters: Core.MessageParameters) -> Future<URLResponse?, any Error> {
+        self.parameters = parameters
+        isAddConversationMessageCalled = true
         return mockFuture
     }
 
-    func deleteFile(file: Core.File) -> AnyPublisher<Void, Never> {
-        isFileDeleted = true
-        return Just(()).eraseToAnyPublisher()
+    func addFile(url: URL) {
+        isAddFileWithURLCalled = true
     }
 
-    func getOnlineFileURL(fileId: String) -> AnyPublisher<URL?, any Error> {
-        isFileURLCalled = true
-        return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
+    func addFile(file: Core.File) {
+        isAddFileWithFileCalled = true
+    }
+
+    func retry() {
+        isRetryCalled = true
+    }
+
+    func cancel() {
+        isCancelCalled = true
+    }
+
+    func removeFile(file: Core.File) {
+        isRemoveFileCalled = true
     }
 
     private var mockFuture: Future<URLResponse?, Error> {

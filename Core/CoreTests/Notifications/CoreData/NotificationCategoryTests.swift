@@ -36,7 +36,7 @@ class NotificationCategoryTests: CoreTestCase {
         useCase.write(response: .init(notification_preferences: [
             .make(notification: "not3", category: "cat2", frequency: .weekly),
             .make(notification: "not1", category: "cat1", frequency: .daily),
-            .make(notification: "not2", category: "cat1", frequency: .never),
+            .make(notification: "not2", category: "cat1", frequency: .never)
         ]), urlResponse: nil, to: databaseClient)
 
         let models: [NotificationCategory] = databaseClient.fetch(scope: useCase.scope)
@@ -60,7 +60,7 @@ class NotificationCategoryTests: CoreTestCase {
         // response is largely ignored
         useCase.write(response: .init(notification_preferences: [
             .make(notification: "z", category: "i", frequency: .weekly),
-            .make(notification: "y", category: "j", frequency: .daily),
+            .make(notification: "y", category: "j", frequency: .daily)
         ]), urlResponse: nil, to: databaseClient)
 
         let models: [NotificationCategory] = databaseClient.fetch(scope: useCase.scope)

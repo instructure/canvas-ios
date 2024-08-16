@@ -37,7 +37,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
                 enrollment_state: .active,
                 type: "TeacherEnrollment",
                 user_id: environment.currentSession?.userID ?? "12"
-            ),
+            )
         ]))
         api.mock(controller.colors, value: .init(custom_colors: [ "course_1": "#0000ff" ]))
         api.mock(controller.topics, value: [
@@ -81,7 +81,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
                 locked: true,
                 posted_at: TestConstants.date1102,
                 title: "Locked"
-            ),
+            )
         ])
 
         let nav = UINavigationController(rootViewController: controller)
@@ -208,7 +208,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
                 id: "2",
                 posted_at: TestConstants.date1103,
                 title: "Overrides"
-            ),
+            )
         ])
     }
 
@@ -223,7 +223,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
                 last_reply_at: TestConstants.date1103,
                 permissions: .make(delete: true),
                 title: "Study group tomorrow"
-            ),
+            )
         ])
 
         let nav = UINavigationController(rootViewController: controller)
@@ -254,8 +254,10 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.emptyView.isHidden, false)
     }
 
-    func testAnonymousDiscussionWhenRedesignIsDisabled() {
+    func testAnonymousDiscussionDeviceIsOffline() {
         // Given
+        let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: true)
+        controller = DiscussionListViewController.create(context: .course("1"), offlineModeInteractor: mockInteractor)
         mockCourseAndAssignmentWith(restrict_quantitative_data: false, isAnonymousDiscussion: true)
 
         // When
@@ -268,9 +270,10 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.contentView.alpha, 0.5)
     }
 
-    func testAnonymousDiscussionWhenRedesignIsEnabled() {
+    func testAnonymousDiscussionWhenDeviceIsOnline() {
         // Given
-        api.mock(GetEnabledFeatureFlagsRequest(context: .course("1")), value: ["react_discussions_post"])
+        let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
+        controller = DiscussionListViewController.create(context: .course("1"), offlineModeInteractor: mockInteractor)
         mockCourseAndAssignmentWith(restrict_quantitative_data: false, isAnonymousDiscussion: true)
 
         // When

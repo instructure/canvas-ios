@@ -71,7 +71,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
         let split = HelmSplitViewController()
         split.viewControllers = [
             HelmNavigationController(rootViewController: PlannerViewController.create()),
-            HelmNavigationController(rootViewController: EmptyViewController()),
+            HelmNavigationController(rootViewController: EmptyViewController())
         ]
         split.view.tintColor = Brand.shared.primary
         split.tabBarItem.title = String(localized: "Calendar", bundle: .teacher, comment: "Calendar page title")

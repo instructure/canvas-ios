@@ -53,7 +53,7 @@ struct SideMenuHeaderView: View {
                         },
                         .cancel(Text("Cancel", bundle: .core)) {
                             isShowingActionSheet = false
-                        },
+                        }
                     ])
                 }
                 .opacity(isUploadingImage ? 0.4 : 1)

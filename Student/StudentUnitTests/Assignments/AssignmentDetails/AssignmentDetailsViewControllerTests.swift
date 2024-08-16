@@ -48,7 +48,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         load()
 
         XCTAssertEqual(viewController.titleSubtitleView.title, "Assignment Details")
-        XCTAssertEqual(viewController.submitAssignmentButton.alpha, 0.0)
+        XCTAssertEqual(viewController.submitAssignmentButton.alpha, 1.0)
         XCTAssertEqual(viewController.scrollView?.contentInset, .zero)
         XCTAssertEqual(viewController.scrollView?.verticalScrollIndicatorInsets, .zero)
         XCTAssertEqual(viewController.dueSection?.header.text, "Due")

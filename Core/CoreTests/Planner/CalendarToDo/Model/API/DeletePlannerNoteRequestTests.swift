@@ -16,30 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import XCTest
+@testable import Core
 
-class CalendarToDoDetailsViewModelTests: CoreTestCase {
+final class DeletePlannerNoteRequestTests: XCTestCase {
 
     func testProperties() {
-        let todoDate = Date().addMonths(3)
-        let apiPlannable = APIPlannable.make(
-            plannable: .init(
-                details: "TestDetails",
-                title: "TestTitle"
-            ),
-            plannable_date: todoDate
-        )
-        let plannable = Plannable.make(from: apiPlannable,
-                                       in: databaseClient)
+        let testee = DeletePlannerNoteRequest(id: "42")
 
-        // WHEN
-        let testee = CalendarToDoDetailsViewModel(plannable: plannable)
-
-        // THEN
-        XCTAssertEqual(testee.navigationTitle, "To Do")
-        XCTAssertEqual(testee.title, "TestTitle")
-        XCTAssertEqual(testee.description, "TestDetails")
-        XCTAssertEqual(testee.date, todoDate.dateTimeString)
+        XCTAssertEqual(testee.method, .delete)
+        XCTAssertEqual(testee.path, "planner_notes/42")
     }
 }

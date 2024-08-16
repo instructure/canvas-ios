@@ -47,7 +47,7 @@ struct CustomizeCourseView: View {
         "#8D9900": Text("Olive", bundle: .core),
         "#D97900": Text("Pumpkin", bundle: .core),
         "#FD5D10": Text("Orange", bundle: .core),
-        "#F06291": Text("Pink", bundle: .core),
+        "#F06291": Text("Pink", bundle: .core)
     ]
 
     init(course: Course, hideColorOverlay: Bool) {

@@ -37,7 +37,7 @@ struct SelectCalendarScreen: View {
                                 itemCell(with: item)
                             }
                         } header: {
-                            InstUI.ListSectionHeader(name: section.title)
+                            InstUI.ListSectionHeader(title: section.title)
                         }
                     }
                 }
@@ -48,7 +48,7 @@ struct SelectCalendarScreen: View {
 
     private func itemCell(with item: CDCalendarFilterEntry) -> some View {
         InstUI.RadioButtonCell(
-            name: item.name,
+            title: item.name,
             value: item,
             selectedValue: $viewModel.selectedCalendar,
             color: item.color

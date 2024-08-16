@@ -78,7 +78,7 @@ final class SelectCalendarViewModel: ObservableObject {
                 self?.sections = [
                     Section(id: 0, title: nil, items: [userCalendar].compactMap { $0 }),
                     Section(id: 1, title: String(localized: "Courses", bundle: .core), items: courseCalendars),
-                    Section(id: 2, title: String(localized: "Groups", bundle: .core), items: groupCalendars),
+                    Section(id: 2, title: String(localized: "Groups", bundle: .core), items: groupCalendars)
                 ]
             }
             .store(in: &subscriptions)

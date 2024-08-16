@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 public protocol ColorDelegate: AnyObject {
     var iconColor: UIColor? { get }
@@ -44,12 +45,24 @@ public class SyllabusSummaryViewController: UITableViewController {
         self?.update()
     }
 
+    private var emptyPandaViewController: CoreHostingController<InteractivePanda> = {
+        let vc = CoreHostingController(
+            InteractivePanda(
+                scene: SpacePanda(),
+                title: Text("No syllabus"),
+                subtitle: Text("There is no syllabus to display.")
+            )
+        )
+        vc.view.backgroundColor = .backgroundLightest
+        return vc
+    }()
+
     public lazy var summary: Store<LocalUseCase<CalendarEvent>> = {
         let contextPredicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.contextRaw), self.context.canvasContextID)
         let notHiddenPredicate = NSPredicate(format: "%K == false", #keyPath(CalendarEvent.isHidden))
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             contextPredicate,
-            notHiddenPredicate,
+            notHiddenPredicate
         ])
         let hasStartAt = NSSortDescriptor(key: #keyPath(CalendarEvent.hasStartAt), ascending: false)
         let startAt = NSSortDescriptor(key: #keyPath(CalendarEvent.startAt), ascending: true)
@@ -91,9 +104,26 @@ public class SyllabusSummaryViewController: UITableViewController {
     }
 
     func update() {
-        let pending = assignments.pending || events.pending
-        if tableView.refreshControl?.isRefreshing == true, !pending {
+        guard !assignments.pending, !events.pending, !summary.pending, !course.pending else {
+            return
+        }
+        if tableView.refreshControl?.isRefreshing == true {
             tableView.refreshControl?.endRefreshing()
+        }
+
+        if summary.isEmpty {
+            tableView.backgroundColor = .clear
+            addChild(emptyPandaViewController)
+            emptyPandaViewController.didMove(toParent: self)
+            tableView.addSubview(emptyPandaViewController.view)
+            emptyPandaViewController.view.pin(inside: tableView)
+            NSLayoutConstraint.activate([
+                emptyPandaViewController.view.heightAnchor.constraint(equalTo: view.heightAnchor),
+                emptyPandaViewController.view.widthAnchor.constraint(equalTo: view.widthAnchor)
+            ])
+        } else if emptyPandaViewController.parent != nil, emptyPandaViewController.view.superview != nil {
+            emptyPandaViewController.removeFromParent()
+            emptyPandaViewController.view.removeFromSuperview()
         }
         tableView.reloadData()
     }

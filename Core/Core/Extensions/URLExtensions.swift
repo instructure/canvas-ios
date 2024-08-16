@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import AVFoundation
 import UniformTypeIdentifiers
 
 extension Sequence where Element == URL {
@@ -86,15 +86,33 @@ public extension URL {
 
     enum Paths {
         public enum Offline {
-            public static func courseFolder(sessionID: String, courseId: String) -> String {
+
+            public static func rootURL(
+                sessionID: String
+            ) -> URL {
+                URL.Directories.documents.appending(path: "\(sessionID)/Offline")
+            }
+
+            public static func courseFolder(
+                sessionID: String,
+                courseId: String
+            ) -> String {
                 "\(sessionID)/Offline/Files/course-\(courseId)"
             }
 
-            public static func courseSectionFolder(sessionId: String, courseId: String, sectionName: String) -> String {
+            public static func courseSectionFolder(
+                sessionId: String,
+                courseId: String,
+                sectionName: String
+            ) -> String {
                 "\(sessionId)/Offline/course-\(courseId)/\(sectionName)"
             }
 
-            public static func courseSectionFolderURL(sessionId: String, courseId: String, sectionName: String) -> URL {
+            public static func courseSectionFolderURL(
+                sessionId: String,
+                courseId: String,
+                sectionName: String
+            ) -> URL {
                 URL.Directories.documents.appendingPathComponent(
                     URL.Paths.Offline.courseSectionFolder(
                         sessionId: sessionId,
@@ -104,7 +122,10 @@ public extension URL {
                 )
             }
 
-            public static func courseSectionResourceFolder(sectionName: String, resourceId: String) -> String {
+            public static func courseSectionResourceFolder(
+                sectionName: String,
+                resourceId: String
+            ) -> String {
                 "\(sectionName)-\(resourceId)"
             }
 
@@ -114,7 +135,7 @@ public extension URL {
                 sectionName: String,
                 resourceId: String
             ) -> URL {
-                return Paths.Offline.courseSectionFolderURL(
+                Paths.Offline.courseSectionFolderURL(
                     sessionId: sessionId,
                     courseId: courseId,
                     sectionName: sectionName
@@ -128,6 +149,26 @@ public extension URL {
         guard self.isFileURL else { return 0 }
         let attributes = try? FileManager.default.attributesOfItem(atPath: path)
         return attributes?[FileAttributeKey.size] as? Int ?? 0
+    }
+
+    func fileSize() throws -> Int {
+        guard isFileURL else {
+            throw NSError(
+                domain: NSURLErrorDomain,
+                code: NSURLErrorFileDoesNotExist
+            )
+        }
+
+        let attributes = try FileManager.default.attributesOfItem(atPath: path)
+
+        guard let size = attributes[.size] as? Int else {
+            throw NSError(
+                domain: NSURLErrorDomain,
+                code: NSURLErrorCannotDecodeRawData
+            )
+        }
+
+        return size
     }
 
     func appendingQueryItems(_ items: URLQueryItem...) -> URL {
@@ -192,5 +233,34 @@ public extension URL {
             }
         }
         return "application/octet-stream"
+    }
+
+    /// Returns an image of the first frame of the video located at this url.
+    func videoPreview() throws -> UIImage {
+        let asset = AVURLAsset(url: self)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+        imageGenerator.appliesPreferredTrackTransform = true
+
+        let cgImage = try imageGenerator.copyCGImage(at: .zero, actualTime: nil)
+
+        return UIImage(cgImage: cgImage)
+    }
+
+    /// Writes the result of the `videoPreview()` method to the given url in png format.
+    func writeVideoPreview(to url: URL) throws {
+        let previewImage = try videoPreview()
+        guard let imageData = previewImage.pngData() else {
+            throw "Failed to convert preview data to png."
+        }
+        try imageData.write(to: url)
+    }
+}
+
+public extension Array where Element == URL {
+
+    func filterToDirectories() throws -> [URL] {
+        try filter { url in
+            try url.resourceValues(forKeys: Set([.isDirectoryKey])).isDirectory == true
+        }
     }
 }

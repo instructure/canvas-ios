@@ -126,7 +126,6 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
             var navButtonView = controller.value.navigationItem.rightBarButtonItem?.customView
 
             if navButtonView == nil,
-               #available(iOS 16.0, *),
                let trailingView = controller.value.navigationItem.trailingItemGroups.first?.barButtonItems.first?.customView {
                 navButtonView = trailingView
             }

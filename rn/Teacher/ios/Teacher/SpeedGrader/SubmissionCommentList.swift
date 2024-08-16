@@ -73,11 +73,7 @@ struct SubmissionCommentList: View {
                 ScrollView {
                     switch viewModel.state {
                     case .data(let comments):
-                        if #available(iOS 14, *) {
-                            LazyVStack(alignment: .leading, spacing: 0) { list(comments) }
-                        } else {
-                            VStack(alignment: .leading, spacing: 0) { list(comments) }
-                        }
+                        LazyVStack(alignment: .leading, spacing: 0) { list(comments) }
                     // Assume already loaded by parent, so skip loading & error
                     case .loading, .empty, .error:
                         EmptyPanda(.NoComments, message: Text("There are no messages yet.", bundle: .teacher))
@@ -158,7 +154,7 @@ struct SubmissionCommentList: View {
                         .default(Text("Record Audio", bundle: .teacher), action: recordAudio),
                         .default(Text("Record Video", bundle: .teacher), action: recordVideo),
                         .default(Text("Choose Files", bundle: .teacher), action: chooseFile),
-                        .cancel(),
+                        .cancel()
                     ])
                 }
             CommentEditor(text: $comment, action: sendComment, containerHeight: containerHeight)

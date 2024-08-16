@@ -32,10 +32,7 @@ extension UITabBar {
         let itemAppearance = UITabBarItemAppearance.make(highlightColor: brand.tabBarHighlightColor)
         let tabBarAppearance = UITabBarAppearance.make(itemAppearance: itemAppearance)
         standardAppearance = tabBarAppearance
-
-        if #available(iOSApplicationExtension 15.0, *) {
-            scrollEdgeAppearance = tabBarAppearance
-        }
+        scrollEdgeAppearance = tabBarAppearance
     }
 }
 
@@ -45,7 +42,7 @@ private extension UITabBarItemAppearance {
         let itemAppearance = UITabBarItemAppearance()
         itemAppearance.normal.titleTextAttributes = [
             .foregroundColor: UIColor.textDark,
-            .font: UIFont.scaledNamedFont(.semibold12),
+            .font: UIFont.scaledNamedFont(.semibold12)
         ]
         itemAppearance.normal.iconColor = .textDark
         itemAppearance.selected.titleTextAttributes = [.foregroundColor: highlightColor]
