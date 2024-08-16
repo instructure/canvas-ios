@@ -150,7 +150,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     }
 
     func setTabBarController() {
-        let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [HelmNavigationController.self])
+        let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [CoreNavigationController.self])
         appearance.barTintColor = nil
         appearance.tintColor = nil
         appearance.titleTextAttributes = nil
