@@ -23,6 +23,7 @@ class InboxTests: E2ETestCase {
     typealias ComposerHelper = Helper.Composer
     typealias FilterHelper = Helper.Filter
     typealias DetailsHelper = Helper.Details
+    typealias OptionsHelper = DetailsHelper.Options
 
     func testSendMessage() {
         // MARK: Seed the usual stuff
@@ -71,7 +72,7 @@ class InboxTests: E2ETestCase {
         courseItem.hit()
         XCTAssertTrue(addRecipientButton.waitUntil(.visible).isVisible)
 
-        // MARK: Add recipients
+        // MARK: Add "student2" as recipient
         addRecipientButton.hit()
         let allInCourseButton = ComposerHelper.Recipients.allInCourse(course: course).waitUntil(.visible)
         let studentsButton = ComposerHelper.Recipients.students.waitUntil(.visible)
@@ -80,8 +81,16 @@ class InboxTests: E2ETestCase {
         XCTAssertTrue(studentsButton.isVisible)
         XCTAssertTrue(doneButton.isVisible)
 
-        allInCourseButton.hit()
+        studentsButton.hit()
+        let recipientButton = ComposerHelper.recipient(user: student2).waitUntil(.visible)
+        XCTAssertTrue(recipientButton.isVisible)
+
+        recipientButton.hit()
+        XCTAssertTrue(recipientButton.hasLabel(label: "Selected", strict: false))
+
         doneButton.hit()
+        let recipientPill = ComposerHelper.recipientPillById(recipient: student2).waitUntil(.visible)
+        XCTAssertTrue(recipientPill.isVisible)
 
         // MARK: Fill "Subject" and "Message" inputs
         let subject = "Sample Subject of \(student1.name)"
@@ -161,17 +170,15 @@ class InboxTests: E2ETestCase {
     }
 
     func testMessageDetails() {
-        typealias OptionsHelper = DetailsHelper.Options
         // MARK: Seed the usual stuff with a conversation
-        let student1 = seeder.createUser()
-        let student2 = seeder.createUser()
+        let student = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollStudents([student1, student2], in: course)
+        seeder.enrollStudent(student, in: course)
 
-        let conversation = Helper.createConversation(course: course, recipients: [student1.id, student2.id])
+        let conversation = Helper.createConversation(course: course, recipients: [student.id])
 
         // MARK: Get the first student logged in
-        logInDSUser(student1)
+        logInDSUser(student)
         let inboxTab = Helper.TabBar.inboxTab.waitUntil(.visible)
         XCTAssertTrue(inboxTab.isVisible)
 

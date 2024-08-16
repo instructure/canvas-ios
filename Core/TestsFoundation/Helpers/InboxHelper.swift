@@ -111,12 +111,16 @@ public class InboxHelper: BaseHelper {
             return app.find(id: "Inbox.course.\(course.id)")
         }
 
-        public static func recipientSelectionItem(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
-            return app.find(id: "branch_course_\(course?.id ?? courseId!)")
+        public static func recipientPillById(recipient: DSUser) -> XCUIElement {
+            return app.find(id: "ComposeMessage.recipientPill.\(recipient.id)", type: .button)
         }
 
-        public static func recipientLabel(recipient: DSUser) -> XCUIElement {
-            return app.find(id: "message-recipient.\(recipient.id).label", type: .staticText)
+        public static func recipientPillByRole(role: String) -> XCUIElement {
+            return app.find(id: "ComposeMessage.recipientPill.all\(role)", type: .button)
+        }
+
+        public static func recipient(user: DSUser) -> XCUIElement {
+            return app.find(id: "ComposeMessage.recipient.\(user.id)", type: .button)
         }
 
         public struct Attachments {
@@ -151,9 +155,9 @@ public class InboxHelper: BaseHelper {
     public static func sendMessage(course: DSCourse, student: DSUser, subject: String?, message: String?) {
         newMessageButton.hit()
         Composer.selectCourseButton.hit()
-        Composer.Recipients.allInCourse(course: course).hit()
+        Composer.courseItem(course: course).hit()
         Composer.addRecipientButton.hit()
-        Composer.recipientSelectionItem(course: course).hit()
+        Composer.Recipients.allInCourse(course: course).hit()
         Composer.subjectInput.hit().pasteText(text: subject ?? "Sample Subject of \(student.name)")
         Composer.bodyInput.hit().pasteText(text: message ?? "Sample Message of \(student.name)")
         Composer.sendButton.hit()

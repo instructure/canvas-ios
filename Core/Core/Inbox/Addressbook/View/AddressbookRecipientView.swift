@@ -81,6 +81,7 @@ public struct AddressbookRecipientView: View, ScreenViewTrackable {
                         .foregroundColor(.textDarkest)
                         .lineLimit(1)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .accessibilityIdentifier("ComposeMessage.recipient.\(recipient.ids != [] ? recipient.ids[0] : "all\(recipient.displayName)")")
                     Spacer()
                     Image.checkSolid
                         .resizable()
@@ -108,6 +109,7 @@ public struct AddressbookRecipientView: View, ScreenViewTrackable {
                                 .font(.regular16)
                                 .foregroundColor(.textDarkest)
                                 .lineLimit(1)
+                                .accessibilityIdentifier("ComposeMessage.recipient.all\(viewModel.roleName)")
                             Text("\(viewModel.allRecipient.ids.count) People", bundle: .core)
                                 .font(.regular14)
                                 .foregroundColor(.textDark)
