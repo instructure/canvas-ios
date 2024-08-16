@@ -40,7 +40,6 @@ public extension View {
     @ViewBuilder
     func listSystemBackgroundColor() -> some View {
         self
-            .iOS16HideListScrollContentBackground()
             .background(Color.backgroundLightest.ignoresSafeArea())
     }
 }

@@ -106,6 +106,15 @@ struct DownloadsCourseDetailView: View, Navigatable {
                 navigationController.navigationBar.useContextColor(viewModel.courseViewModel.color)
             }
         }
+        .introspect(
+            .viewController,
+            on: .iOS(.v13, .v14, .v15, .v16, .v17)
+        ) { viewController in
+            DispatchQueue.main.async {
+                viewController.navigationController?.navigationBar.prefersLargeTitles = false
+                viewController.navigationController?.navigationBar.useContextColor(viewModel.courseViewModel.color)
+            }
+        }
     }
 
     private var phoneBody: some View {
@@ -135,18 +144,6 @@ struct DownloadsCourseDetailView: View, Navigatable {
         .onAppear {
             navigationController?.navigationBar.useContextColor(viewModel.courseViewModel.color)
         }
-        .if(UIDevice.current.userInterfaceIdiom == .pad) { view in
-            view.introspect(
-                .viewController,
-                on: .iOS(.v13, .v14, .v15, .v16, .v17)
-            ) { viewController in
-                DispatchQueue.main.async {
-                    viewController.navigationController?.navigationBar.prefersLargeTitles = false
-                    viewController.navigationController?.navigationBar.useContextColor(viewModel.courseViewModel.color)
-                }
-            }
-        }
-
     }
 
     @ViewBuilder
@@ -179,7 +176,6 @@ struct DownloadsCourseDetailView: View, Navigatable {
                     preferences = [.init(viewId: 0, bounds: geometry[bounds])]
                 }
             }
-            .iOS16HideListScrollContentBackground()
             .listStyle(.plain)
         }
     }

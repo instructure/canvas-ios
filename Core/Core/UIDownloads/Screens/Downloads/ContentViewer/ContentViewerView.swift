@@ -37,55 +37,17 @@ public struct ContentViewerView: View, Navigatable {
     // MARK: - Views -
 
     public var body: some View {
-        viewModel.requestType.flatMap { type in
-            SUWebView(
-                configurator: .init(
-                    requestType: type
-                ),
-                onLinkActivated: { url in
-                    if url.scheme?.contains("http") == true {
-                        openURL(url)
-                        return
-                    }
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            padBody
+        } else {
+            phoneBody
+        }
+    }
 
-                    if UIDevice.current.userInterfaceIdiom == .pad {
-                        self.url = url
-                    } else {
-                        onLinkActivated(url)
-                    }
-                }
-            )
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text(viewModel.title)
-                        .foregroundColor(.white)
-                        .font(.semibold16)
-                }
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    if viewModel.canShare {
-                        Button {
-                            share()
-                        } label: {
-                            Image(systemName: "square.and.arrow.up")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30, height: 30)
-                        }
-                        .foregroundColor(.white)
-                    }
-                    Button {
-                        viewModel.delete()
-                    } label: {
-                        Image(systemName: "trash.circle")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                    }
-                    .foregroundColor(.white)
-                }
-            }
-            .if(UIDevice.current.userInterfaceIdiom == .pad) { view in
-                view.background(
+    private var padBody: some View {
+        viewModel.requestType.flatMap { type in
+            content(for: type)
+                .background(
                     NavigationLink(
                         destination: destination,
                         isActive: $isActiveWebView
@@ -93,17 +55,69 @@ public struct ContentViewerView: View, Navigatable {
                         SwiftUI.EmptyView()
                     }.hidden()
                 )
-            }
-            .onReceive(viewModel.viewDismissalModePublisher) { shouldDismiss in
-                if shouldDismiss {
-                    presentationMode.wrappedValue.dismiss()
-                }
-            }
-            .if(UIDevice.current.userInterfaceIdiom == .pad) { view in
-                view.introspect(.viewController, on: .iOS(.v13, .v14, .v15, .v16, .v17)) {
+                .introspect(.viewController, on: .iOS(.v13, .v14, .v15, .v16, .v17)) {
                     $0.navigationController?.navigationBar.prefersLargeTitles = false
                     $0.navigationController?.navigationBar.tintColor = .white
                 }
+        }
+    }
+
+    private var phoneBody: some View {
+        viewModel.requestType.flatMap { type in
+            content(for: type)
+        }
+    }
+
+    private func content(for type: WebViewConfigurator.RequestType) -> some View {
+        SUWebView(
+            configurator: .init(
+                requestType: type
+            ),
+            onLinkActivated: { url in
+                if url.scheme?.contains("http") == true {
+                    openURL(url)
+                    return
+                }
+
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    self.url = url
+                } else {
+                    onLinkActivated(url)
+                }
+            }
+        )
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text(viewModel.title)
+                    .foregroundColor(.white)
+                    .font(.semibold16)
+            }
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                if viewModel.canShare {
+                    Button {
+                        share()
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                    }
+                    .foregroundColor(.white)
+                }
+                Button {
+                    viewModel.delete()
+                } label: {
+                    Image(systemName: "trash.circle")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                }
+                .foregroundColor(.white)
+            }
+        }
+        .onReceive(viewModel.viewDismissalModePublisher) { shouldDismiss in
+            if shouldDismiss {
+                presentationMode.wrappedValue.dismiss()
             }
         }
     }
