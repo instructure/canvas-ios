@@ -100,10 +100,14 @@ public class DashboardHelper: BaseHelper {
             public static var bigBlueButtonButton: XCUIElement { app.find(label: "BigBlueButton", type: .staticText) }
 
             // Functions
-            public static func courseButton(course: DSCourse) -> XCUIElement? {
-                let courseButtons = app.findAll(labelContaining: course.name, type: .button)
-                for b in courseButtons where b.hasLabel(label: "elected", strict: false) {
-                    return b
+            public static func courseButton(course: DSCourse, timeout: TimeInterval = 10) -> XCUIElement? {
+                let deadline = Date().addingTimeInterval(timeout)
+                while Date() < deadline {
+                    let courseButtons = app.findAll(labelContaining: course.name, type: .button)
+                    for b in courseButtons where b.hasLabel(label: "elected", strict: false) {
+                        return b
+                    }
+                    tacticalSleep(1)
                 }
                 return nil
             }

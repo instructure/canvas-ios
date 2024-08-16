@@ -18,6 +18,7 @@
 
 import AVKit
 import CanvasCore
+import Combine
 import Core
 import Firebase
 import Heap
@@ -30,6 +31,7 @@ import UserNotifications
 @UIApplicationMain
 class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
+    private var subscriptions = Set<AnyCancellable>()
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -105,9 +107,14 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
             Analytics.shared.logSession(session)
 
             LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile.locale) {
-                GetBrandVariables().fetch(environment: self.environment) { _, _, _ in performUIUpdate {
-                    NativeLoginManager.login(as: session)
-                }}
+                ReactiveStore(useCase: GetBrandVariables())
+                    .getEntities()
+                    .receive(on: RunLoop.main)
+                    .sink(receiveCompletion: { _ in }) { brandVars in
+                        brandVars.first?.applyBrandTheme()
+                        NativeLoginManager.login(as: session)
+                    }
+                    .store(in: &self.subscriptions)
             }
         }}
     }

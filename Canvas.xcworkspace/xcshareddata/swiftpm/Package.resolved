@@ -1,5 +1,5 @@
 {
-  "originHash" : "bacb1cec9369fe882a8cd727491d9cbcd5b131ffed3fcff575848dd060799771",
+  "originHash" : "86b76870a226968e740f43749faf5ff3dfe72ee9eebe6c2d22cc49b749b3c809",
   "pins" : [
     {
       "identity" : "aws-sdk-ios-spm",
@@ -56,15 +56,6 @@
       }
     },
     {
-      "identity" : "intercom-ios-sp",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/intercom/intercom-ios-sp",
-      "state" : {
-        "revision" : "5ac14202c4d4d40cde060832f4253fc661cb950a",
-        "version" : "17.1.0"
-      }
-    },
-    {
       "identity" : "lottie-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/airbnb/lottie-ios.git",
@@ -79,7 +70,7 @@
       "location" : "https://github.com/2uinc/mobile-offline-downloader-ios.git",
       "state" : {
         "branch" : "develop",
-        "revision" : "f1b952f898df7c2aaba72c5db4957c2e5448cf14"
+        "revision" : "75bda95fd51320a0b14b67d3c99fc0d5b437de99"
       }
     },
     {
@@ -96,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ashleymills/Reachability.swift",
       "state" : {
-        "revision" : "7b7018a69c84ea94ac2a38dff626e16ea81d1db9",
-        "version" : "5.2.1"
+        "revision" : "7cbd73f46a7dfaeca079e18df7324c6de6d1834a",
+        "version" : "5.2.3"
       }
     },
     {
@@ -105,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",
       "state" : {
-        "revision" : "374dd672af357732dccc135fecc905406fec3223",
-        "version" : "14.4.1"
+        "revision" : "9cf7ef4ad8e2f4c7a519c9a395ca3d253bb87aa8",
+        "version" : "14.6.2"
       }
     },
     {
@@ -114,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-swift.git",
       "state" : {
-        "revision" : "e0c2fbb442979fbf1e4be80e01d142f310a9c762",
-        "version" : "10.49.1"
+        "revision" : "6e0772315809ff0a11cd265126350039a6aac59d",
+        "version" : "10.50.1"
       }
     },
     {

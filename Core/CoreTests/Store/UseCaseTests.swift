@@ -51,11 +51,13 @@ class UseCaseTests: CoreTestCase {
 
         Clock.mockNow(now.addingTimeInterval(useCase.ttl + 1))
         XCTAssertTrue(useCase.hasExpired(in: databaseClient))
+
+        Clock.reset()
     }
 
     func testScope() {
         let useCase = TestUseCase()
-        XCTAssertEqual(useCase.scope, Scope.all(orderBy: "id"))
+        XCTAssertEqual(useCase.scope, Scope.all(orderBy: "objectID"))
     }
 
     func testGetNext() {

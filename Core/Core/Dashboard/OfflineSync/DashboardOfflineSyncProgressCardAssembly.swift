@@ -25,17 +25,28 @@ public enum DashboardOfflineSyncProgressCardAssembly {
                               router: Router = AppEnvironment.shared.router)
     -> DashboardOfflineSyncProgressCardViewModel {
         let offlineModeInteractor = OfflineModeAssembly.make()
-        let interactor = CourseSyncProgressObserverInteractorLive(container: container)
-        return DashboardOfflineSyncProgressCardViewModel(interactor: interactor, offlineModeInteractor: offlineModeInteractor, router: router)
+        let progressObserverInteractor = CourseSyncProgressObserverInteractorLive(container: container)
+        let progressWriterInteractor = CourseSyncProgressWriterInteractorLive(container: container)
+        return DashboardOfflineSyncProgressCardViewModel(
+            progressObserverInteractor: progressObserverInteractor,
+            progressWriterInteractor: progressWriterInteractor,
+            offlineModeInteractor: offlineModeInteractor,
+            router: router
+        )
     }
 
 #if DEBUG
 
     static func makePreview() -> some View {
         let offlineModeInteractor = OfflineModeAssembly.make()
-        let interactor = DashboardOfflineSyncInteractorPreview()
-        let viewModel = DashboardOfflineSyncProgressCardViewModel(interactor: interactor, offlineModeInteractor: offlineModeInteractor,
-                                                                  router: AppEnvironment.shared.router)
+        let progressObserverInteractor = DashboardOfflineSyncInteractorPreview()
+        let progressWriterInteractor = DashboardOfflineSyncProgressWriterInteractorPreview()
+        let viewModel = DashboardOfflineSyncProgressCardViewModel(
+            progressObserverInteractor: progressObserverInteractor,
+            progressWriterInteractor: progressWriterInteractor,
+            offlineModeInteractor: offlineModeInteractor,
+            router: AppEnvironment.shared.router
+        )
         return DashboardOfflineSyncProgressCardView(viewModel: viewModel)
     }
 

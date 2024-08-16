@@ -146,18 +146,22 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
         if !filter.isEmpty {
             subject = "\(filter) - \(subject)"
         }
-        env.router.route(to: "/conversations/compose", userInfo: [
-            "recipients": submissions.compactMap { $0.user } .map { (user: User) -> [String: Any?] in [
-                "id": user.id,
-                "name": user.name,
-                "avatar_url": user.avatarURL,
-            ] },
-            "subject": subject,
-            "contextName": course.first?.name ?? "",
-            "contextCode": context.canvasContextID,
-            "canAddRecipients": false,
-            "onlySendIndividualMessages": true,
-        ], from: self, options: .modal(embedInNav: true))
+
+        let composeMessageOptions = ComposeMessageOptions(
+            disabledFields: .init(contextDisabled: true, recipientsDisabled: true, individualDisabled: true),
+            fieldsContents: .init(
+                selectedContext: .init(name: course.first?.name ?? "", context: context),
+                selectedRecipients: submissions.compactMap { $0.user } .map { Recipient(id: $0.id, name: $0.name, avatarURL: $0.avatarURL) },
+                subjectText: subject,
+                individualSend: true
+            )
+        )
+
+        env.router.route(
+            to: URLComponents.parse("/conversations/compose", queryItems: composeMessageOptions.queryItems),
+            from: self,
+            options: .modal(embedInNav: true)
+        )
     }
 
     func setFilter(_ filter: [GetSubmissions.Filter]) {

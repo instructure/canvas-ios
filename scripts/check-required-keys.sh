@@ -18,13 +18,3 @@ if [ ! -f "$AWS_KEYS_PATH/bugfenderKey.dataset/bugfenderKey" ]; then
 echo "error: bugfenderKey is not present. Run in Terminal: yarn build-secrets \"bugfenderKey=bugfender_key_here\""
 exit 1
 fi
-
-if [ ! -f "$AWS_KEYS_PATH/intercomApiKey.dataset/intercomApiKey" ]; then
-echo "error: intercomApiKey is not present. Run in Terminal: yarn build-secrets \"intercomApiKey=intercom_api_key\" \"intercomAppId=intercom_app_id\""
-exit 1
-fi
-
-if [ ! -f "$AWS_KEYS_PATH/intercomAppId.dataset/intercomAppId" ]; then
-echo "error: intercomAppId is not present. Run in Terminal: yarn build-secrets \"intercomApiKey=intercom_api_key\" \"intercomAppId=intercom_app_id\""
-exit 1
-fi

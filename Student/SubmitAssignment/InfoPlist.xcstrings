@@ -113,6 +113,12 @@
             "value" : "Envoyer la tâche"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "असाइनमेंट सबमिट करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",

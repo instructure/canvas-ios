@@ -22,14 +22,14 @@ import CoreData
 public class AddMessage: APIUseCase {
     public typealias Model = Conversation
 
-    let conversationID: String
-
-    let attachmentIDs: [String]?
-    let body: String
-    let mediaCommentID: String?
-    let mediaCommentType: MediaCommentType?
-    let recipientIDs: [String]?
-    let includedMessages: [String]?
+    private let conversationID: String
+    private let attachmentIDs: [String]?
+    private let body: String
+    private let mediaCommentID: String?
+    private let mediaCommentType: MediaCommentType?
+    private let recipientIDs: [String]?
+    private let includedMessages: [String]?
+    private let inboxScopeFilter: InboxMessageScope
 
     public init(
         conversationID: String,
@@ -38,7 +38,8 @@ public class AddMessage: APIUseCase {
         mediaCommentID: String? = nil,
         mediaCommentType: MediaCommentType? = nil,
         recipientIDs: [String]? = nil,
-        includedMessages: [String]? = nil
+        includedMessages: [String]? = nil,
+        inboxScopeFilter: InboxMessageScope = .sent
     ) {
         self.conversationID = conversationID
         self.attachmentIDs = attachmentIDs
@@ -47,6 +48,7 @@ public class AddMessage: APIUseCase {
         self.mediaCommentType = mediaCommentType
         self.recipientIDs = recipientIDs
         self.includedMessages = includedMessages
+        self.inboxScopeFilter = inboxScopeFilter
     }
 
     public let cacheKey: String? = nil
@@ -88,5 +90,14 @@ public class AddMessage: APIUseCase {
         }
 
         model.workflowState = item.workflow_state
+
+        InboxMessageListItem.save(
+            item,
+            currentUserID: AppEnvironment.shared.currentSession?.userID ?? "",
+            isSent: true,
+            contextFilter: .none,
+            scopeFilter: inboxScopeFilter,
+            in: client
+        )
     }
 }

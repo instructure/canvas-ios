@@ -44,6 +44,22 @@ class AssignmentListViewModelTests: CoreTestCase {
 
     func testFilterButtonVisibleWhenTwoGradingPeriodsAvailable() {
         api.mock(GetGradingPeriods(courseID: "1"), value: [.make(id: "1", title: "GP1"), .make(id: "2", title: "GP2")])
+
+        // GetAssignmentsByGroup iterates through all grading periods so we have to mock it not to make the whole fetch fail
+        var assignmentGroupRequest = GetAssignmentGroupsRequest(
+            courseID: "1",
+            gradingPeriodID: "1",
+            perPage: 100
+        )
+        api.mock(assignmentGroupRequest, value: [])
+        // GetAssignmentsByGroup iterates through all grading periods so we have to mock it not to make the whole fetch fail
+        assignmentGroupRequest = GetAssignmentGroupsRequest(
+            courseID: "1",
+            gradingPeriodID: "2",
+            perPage: 100
+        )
+        api.mock(assignmentGroupRequest, value: [])
+
         let testee = AssignmentListViewModel(context: .course("1"))
 
         testee.viewDidAppear()
@@ -52,11 +68,19 @@ class AssignmentListViewModelTests: CoreTestCase {
     }
 
     func testAssignmentsPopulate() {
+        api.mock(GetGradingPeriods(courseID: "1"), value: [])
+
         let assignmentGroups = [
             APIAssignmentGroup.make(id: "AG1", name: "AGroup1", position: 1, assignments: [.make(assignment_group_id: "AG1", id: "1", name: "Assignment1")]),
             APIAssignmentGroup.make(id: "AG2", name: "AGroup2", position: 2, assignments: [.make(assignment_group_id: "AG2", id: "2", name: "Assignment2")]),
         ]
-        api.mock(GetAssignmentsByGroup(courseID: "1"), value: assignmentGroups)
+        let assignmentGroupRequest = GetAssignmentGroupsRequest(
+            courseID: "1",
+            gradingPeriodID: nil,
+            perPage: 100
+        )
+
+        api.mock(assignmentGroupRequest, value: assignmentGroups)
         let testee = AssignmentListViewModel(context: .course("1"))
 
         testee.viewDidAppear()
@@ -79,7 +103,12 @@ class AssignmentListViewModelTests: CoreTestCase {
             APIAssignmentGroup.make(id: "AG1", name: "AGroup1", position: 1, assignments: []),
             APIAssignmentGroup.make(id: "AG2", name: "AGroup2", position: 2, assignments: []),
         ]
-        api.mock(GetAssignmentsByGroup(courseID: "1"), value: assignmentGroups)
+        let assignmentGroupRequest = GetAssignmentGroupsRequest(
+            courseID: "1",
+            gradingPeriodID: nil,
+            perPage: 100
+        )
+        api.mock(assignmentGroupRequest, value: assignmentGroups)
         let testee = AssignmentListViewModel(context: .course("1"))
 
         testee.viewDidAppear()
@@ -93,7 +122,21 @@ class AssignmentListViewModelTests: CoreTestCase {
         let testee = AssignmentListViewModel(context: .course("1"))
         testee.viewDidAppear()
         XCTAssertEqual(testee.state, .empty)
-        api.mock(GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "2"), value: [
+        // GetAssignmentsByGroup iterates through all grading periods so we have to mock it not to make the whole fetch fail
+        var assignmentGroupRequest = GetAssignmentGroupsRequest(
+            courseID: "1",
+            gradingPeriodID: "1",
+            perPage: 100
+        )
+        api.mock(assignmentGroupRequest, value: [])
+
+        assignmentGroupRequest = GetAssignmentGroupsRequest(
+            courseID: "1",
+            gradingPeriodID: "2",
+            perPage: 100
+        )
+
+        api.mock(assignmentGroupRequest, value: [
             .make(id: "AG1", name: "AGroup1", position: 1, assignments: [.make(assignment_group_id: "AG1", id: "1", name: "Assignment1")]),
         ])
 

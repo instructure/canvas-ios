@@ -82,6 +82,8 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
         let events = p.batchOfEvents(1, userID: userID)
         XCTAssertEqual(events?.count, 1)
         XCTAssertEqual(events?.first?.eventName, "\(#function)")
+
+        Clock.reset()
     }
 }
 

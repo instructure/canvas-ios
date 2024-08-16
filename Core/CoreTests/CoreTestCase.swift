@@ -53,6 +53,7 @@ class CoreTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        Clock.reset()
         API.resetMocks()
         LoginSession.clearAll()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
@@ -71,6 +72,7 @@ class CoreTestCase: XCTestCase {
         environment.app = .student
         environment.window = window
         environment.k5.userDidLogout()
+        resetBrandConfig()
         window.rootViewController = mainViewController
         window.makeKeyAndVisible()
     }
@@ -85,6 +87,27 @@ class CoreTestCase: XCTestCase {
         let main = expectation(description: "main.async")
         DispatchQueue.main.async { main.fulfill() }
         wait(for: [main], timeout: 1)
+    }
+
+    private func resetBrandConfig() {
+        Brand.shared = Brand(
+            buttonPrimaryBackground: nil,
+            buttonPrimaryText: nil,
+            buttonSecondaryBackground: nil,
+            buttonSecondaryText: nil,
+            fontColorDark: nil,
+            headerImageBackground: nil,
+            headerImage: nil,
+            linkColor: nil,
+            navBackground: nil,
+            navBadgeBackground: nil,
+            navBadgeText: nil,
+            navIconFill: nil,
+            navIconFillActive: nil,
+            navTextColor: nil,
+            navTextColorActive: nil,
+            primary: nil
+        )
     }
 }
 

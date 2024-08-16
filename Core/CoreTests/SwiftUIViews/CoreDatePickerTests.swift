@@ -57,5 +57,7 @@ class CoreDatePickerTests: CoreTestCase {
         maxDate = now.addDays(-1)
         // maxDate is before minDate (invalid date range)
         XCTAssertEqual(dateRange, now.addYears(-1)...now.addYears(1))
+
+        Clock.reset()
     }
 }

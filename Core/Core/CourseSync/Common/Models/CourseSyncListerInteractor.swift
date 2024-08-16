@@ -89,9 +89,9 @@ public class CourseSyncListInteractorLive: CourseSyncListInteractor {
             }
             .collect()
             .replaceEmpty(with: [])
-            .map { [sessionDefaults] in
+            .map { [self] in
                 $0.applySelectionsFromPreviousSession(filter: filter,
-                                                      sessionDefaults: sessionDefaults)
+                                                      sessionDefaults: &sessionDefaults)
             }
             .map { shouldLimitResultsToCacheOnly ? $0.selectedEntries() : $0 }
             .receive(on: scheduler)
@@ -113,11 +113,7 @@ private extension Array where Element == CourseSyncEntry {
             }
     }
 
-    func setSelected(
-        selection: CourseEntrySelection,
-        filter _: CourseSyncListFilter,
-        sessionDefaults _: SessionDefaults
-    ) -> [CourseSyncEntry] {
+    func setSelected(selection: CourseEntrySelection) -> [CourseSyncEntry] {
         var entriesCpy = self
 
         switch selection {
@@ -134,17 +130,29 @@ private extension Array where Element == CourseSyncEntry {
 
     func applySelectionsFromPreviousSession(
         filter: CourseSyncListFilter,
-        sessionDefaults: SessionDefaults
+        sessionDefaults: inout SessionDefaults
     ) -> [CourseSyncEntry] {
         var entriesCpy = self
         let selections = sessionDefaults.offlineSyncSelections
             .compactMap { $0.toCourseEntrySelection(from: self) }
 
         for selection in selections {
-            let entriesWithSelection = entriesCpy.setSelected(selection: selection,
-                                                              filter: filter,
-                                                              sessionDefaults: sessionDefaults)
+            let entriesWithSelection = entriesCpy.setSelected(selection: selection)
             entriesCpy = entriesWithSelection
+        }
+
+        // When constructing the full course list, we need to clean up previous course selection to
+        // remove outdated courses.
+        if filter == .all {
+            let selectedIds = entriesCpy
+                .filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected }
+                .map { $0.id }
+
+            sessionDefaults.offlineSyncSelections.removeAll { selection in
+                !selectedIds.contains { id in
+                    selection.starts(with: id)
+                }
+            }
         }
 
         return entriesCpy

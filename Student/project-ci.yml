@@ -40,6 +40,3 @@ packages:
   AWSSDK:
     url: https://github.com/aws-amplify/aws-sdk-ios-spm
     exactVersion: 2.33.10
-  Intercom:
-    url: https://github.com/intercom/intercom-ios-sp
-    exactVersion: 16.5.6

@@ -11,8 +11,8 @@ settings:
   DEVELOPMENT_TEAM: 58GH9WB284 ## This line is removed in the project-ci.yml file so Bitrise can manage code sign.
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
-  CURRENT_PROJECT_VERSION: 14
-  MARKETING_VERSION: 1.3
+  CURRENT_PROJECT_VERSION: 19
+  MARKETING_VERSION: 1.4
   platform: iOS
   DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
 sources:
@@ -43,6 +43,3 @@ packages:
   AWSSDK:
     url: https://github.com/aws-amplify/aws-sdk-ios-spm
     exactVersion: 2.33.10
-  Intercom:
-    url: https://github.com/intercom/intercom-ios-sp
-    exactVersion: 17.1.0

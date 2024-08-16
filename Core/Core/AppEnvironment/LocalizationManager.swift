@@ -34,7 +34,7 @@ public class LocalizationManager {
         return currentLocale != effectiveLocale
     }
 
-    static func setCurrentLocale(_ locale: String?) {
+    static func convertCustomLocale(_ locale: String?) -> String {
         var newLocale = locale ?? ""
         // da-x-k12 -> da-instk12, en-AU-x-unimelb -> en-AU-unimelb
         let parts = newLocale.components(separatedBy: "-x-")
@@ -46,6 +46,11 @@ public class LocalizationManager {
             }
             newLocale = "\(parts[0])-\(custom)"
         }
+        return newLocale
+    }
+
+    static func setCurrentLocale(_ locale: String?) {
+        let newLocale = convertCustomLocale(locale)
         guard Bundle.main.localizations.contains(newLocale) else { return }
 
         UserDefaults.standard.set(newLocale, forKey: instUserLocale)

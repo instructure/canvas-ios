@@ -31,21 +31,26 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var isMessageDisabled: Bool = false
     @Published public private(set) var isIndividualDisabled: Bool = false
 
-    public let title = String(localized: "New Message", bundle: .core)
+    @Published public private(set) var expandedIncludedMessageIds = [String]()
+
+    public let title = String(localized: "[No Subject]", bundle: .core)
     public var sendButtonActive: Bool {
         !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
-        !subject.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !recipients.isEmpty
         && (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
 
     }
 
+    private(set) var alwaysShowRecipients: Bool = false
+
     // MARK: - Inputs
-    public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let recipientDidSelect = PassthroughRelay<Recipient>()
-    public let recipientDidRemove = PassthroughRelay<Recipient>()
+    public let didTapSend = PassthroughRelay<WeakViewController>()
+    public let didTapCancel = PassthroughRelay<WeakViewController>()
+    public let didSelectRecipient = PassthroughRelay<Recipient>()
+    public let didRemoveRecipient = PassthroughRelay<Recipient>()
     public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
+    public var didSelectFile = PassthroughRelay<(WeakViewController, File)>()
+    public let didRemoveFile = PassthroughRelay<File>()
 
     // MARK: - Inputs / Outputs
     @Published public var sendIndividual: Bool = false
@@ -55,6 +60,14 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var conversation: Conversation?
     @Published public var includedMessages: [ConversationMessage] = []
     @Published public var attachments: [File] = []
+    @Published public var isShowingCancelDialog = false
+    public let confirmAlert = ConfirmationAlertViewModel(
+        title: String(localized: "Unsaved Changes", bundle: .core),
+        message: String(localized: "You have unsaved changes in your message. If you leave now, your current message will be lost.", bundle: .core),
+        cancelButtonTitle: String(localized: "Cancel", bundle: .core),
+        confirmButtonTitle: String(localized: "Discard", bundle: .core),
+        isDestructive: true
+    )
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -67,18 +80,110 @@ class ComposeMessageViewModel: ObservableObject {
     private lazy var files = uploadManager.subscribe(batchID: batchId) { [weak self] in
         self?.update()
     }
+    private let alreadyUploadedFiles = CurrentValueSubject<[File], Never>([])
+    private var alreadyUploadedFileList: [File] = []
+    private var hiddenMessage: String = ""
+    private var autoTeacherSelect: Bool = false
+    private var teacherOnly: Bool = false
+
+    // MARK: Public interface
 
     public init(router: Router, options: ComposeMessageOptions, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
-
         self.messageType = options.messageType
+
         setIncludedMessages(messageType: options.messageType)
         setOptionItems(options: options)
 
         setupOutputBindings()
         setupInputBindings(router: router)
+    }
+
+    func courseSelectButtonDidTap(viewController: WeakViewController) {
+        router.show(InboxCoursePickerAssembly.makeInboxCoursePickerViewController(selected: selectedContext) { [weak self] course in
+            self?.courseDidSelect(selectedContext: course, viewController: viewController)
+        }, from: viewController)
+    }
+
+    func courseDidSelect(selectedContext: RecipientContext?, viewController: WeakViewController) {
+        self.selectedContext = selectedContext
+        selectedRecipients.value.removeAll()
+
+        if let context = selectedContext?.context, autoTeacherSelect {
+            selectedRecipients.send([.init(id: "\(context.canvasContextID)_teachers", name: String(localized: "Teachers"), avatarURL: nil)])
+        }
+
+        closeCourseSelectorDelayed(viewController)
+    }
+
+    func addRecipientButtonDidTap(viewController: WeakViewController) {
+        guard let context = selectedContext else { return }
+        let addressbook = AddressBookAssembly.makeAddressbookRoleViewController(
+            recipientContext: context,
+            teacherOnly: teacherOnly,
+            didSelectRecipient: didSelectRecipient,
+            selectedRecipients: selectedRecipients)
+        router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
+    }
+
+    func attachmentButtonDidTap(viewController: WeakViewController) {
+        files.refresh()
+        let attachmentList = AttachmentPickerAssembly.makeAttachmentPickerViewController(subTitle: subject, batchId: batchId, uploadManager: uploadManager, alreadyUploadedFiles: alreadyUploadedFiles)
+        router.show(attachmentList, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
+    }
+
+    func isMessageExpanded(message: ConversationMessage) -> Bool {
+        expandedIncludedMessageIds.contains(where: { $0 == message.id })
+    }
+
+    func toggleMessageExpand(message: ConversationMessage) {
+        if isMessageExpanded(message: message) {
+            expandedIncludedMessageIds.removeAll(where: { $0 == message.id })
+        } else {
+            expandedIncludedMessageIds.append(message.id)
+        }
+    }
+
+    // MARK: Private helpers
+
+    private func removeAttachment(file: File) {
+        if alreadyUploadedFileList.contains(file) {
+            let newValues = alreadyUploadedFileList.filter { $0 != file }
+            alreadyUploadedFiles.send(newValues)
+        } else {
+            uploadManager.viewContext.delete(file)
+            files.refresh()
+        }
+    }
+
+    private func setupOutputBindings() {
+        didSelectRecipient
+            .sink { [weak self] recipient in
+                if self?.selectedRecipients.value.contains(recipient) == true {
+                    self?.didRemoveRecipient.accept(recipient)
+                } else {
+                    self?.selectedRecipients.value.append(recipient)
+                }
+            }
+            .store(in: &subscriptions)
+
+        didRemoveRecipient
+            .sink { [weak self] recipient in
+                self?.selectedRecipients.value.removeAll { $0 == recipient }
+            }
+            .store(in: &subscriptions)
+
+        selectedRecipients
+            .assign(to: &$recipients)
+
+        alreadyUploadedFiles
+            .sink { [weak self] files in
+                self?.alreadyUploadedFileList = files
+                self?.update()
+            }
+        .store(in: &subscriptions)
     }
 
     private func setOptionItems(options: ComposeMessageOptions) {
@@ -94,6 +199,16 @@ class ComposeMessageViewModel: ObservableObject {
         self.selectedRecipients.value = fieldContents.selectedRecipients
         self.subject = fieldContents.subjectText
         self.bodyText = fieldContents.bodyText
+
+        let extras = options.extras
+        self.hiddenMessage = extras.hiddenMessage
+        self.autoTeacherSelect = extras.autoTeacherSelect
+        self.alwaysShowRecipients = extras.alwaysShowRecipients
+        self.teacherOnly = extras.teacherOnly
+
+        if autoTeacherSelect {
+            selectedRecipients.send([.init(ids: [], name: String(localized: "Teachers"), avatarURL: nil)])
+        }
     }
 
     private func setIncludedMessages(messageType: ComposeMessageOptions.MessageType) {
@@ -127,20 +242,7 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     private func update() {
-        attachments = files.all
-    }
-
-    public func courseSelectButtonDidTap(viewController: WeakViewController) {
-        router.show(InboxCoursePickerAssembly.makeInboxCoursePickerViewController(selected: selectedContext) { [weak self] course in
-            self?.courseDidSelect(selectedContext: course, viewController: viewController)
-        }, from: viewController)
-    }
-
-    public func courseDidSelect(selectedContext: RecipientContext?, viewController: WeakViewController) {
-        self.selectedContext = selectedContext
-        selectedRecipients.value.removeAll()
-
-        closeCourseSelectorDelayed(viewController)
+        attachments = files.all + alreadyUploadedFileList
     }
 
     private func closeCourseSelectorDelayed(_ viewController: WeakViewController) {
@@ -151,51 +253,22 @@ class ComposeMessageViewModel: ObservableObject {
         }
     }
 
-    public func addRecipientButtonDidTap(viewController: WeakViewController) {
-        guard let context = selectedContext else { return }
-        let addressbook = AddressBookAssembly.makeAddressbookRoleViewController(recipientContext: context, recipientDidSelect: recipientDidSelect, selectedRecipients: selectedRecipients)
-        router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
-    }
-
-    public func attachmentbuttonDidTap(viewController: WeakViewController) {
-        files.refresh()
-        let attachmentList = AttachmentPickerAssembly.makeAttachmentPickerViewController(batchId: batchId, uploadManager: uploadManager)
-        router.show(attachmentList, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
-    }
-
-    public func removeAttachment(file: File) {
-        uploadManager.viewContext.delete(file)
-        files.refresh()
-    }
-
-    private func setupOutputBindings() {
-        recipientDidSelect
-            .sink { [weak self] recipient in
-                if self?.selectedRecipients.value.contains(recipient) == true {
-                    self?.recipientDidRemove.accept(recipient)
-                } else {
-                    self?.selectedRecipients.value.append(recipient)
-                }
-            }
-            .store(in: &subscriptions)
-
-        recipientDidRemove
-            .sink { [weak self] recipient in
-                self?.selectedRecipients.value.removeAll { $0 == recipient }
-            }
-            .store(in: &subscriptions)
-
-        selectedRecipients
-            .assign(to: &$recipients)
-    }
-
     private func messageParameters() -> MessageParameters? {
         guard let context = selectedContext else { return nil }
         let recipientIDs = Array(Set(recipients.flatMap { $0.ids }))
 
+        var body = bodyText
+        if !hiddenMessage.isEmpty {
+            body = "\(bodyText)\n\(hiddenMessage)"
+        }
+
+        if subject.isEmpty {
+            subject = title
+        }
+
         return MessageParameters(
             subject: subject,
-            body: bodyText,
+            body: body,
             recipientIDs: recipientIDs,
             attachmentIDs: attachments.compactMap { $0.id },
             context: context.context,
@@ -219,15 +292,29 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     private func setupInputBindings(router: Router) {
-        cancelButtonDidTap
+        didTapCancel
+            .handleEvents(receiveOutput: { [weak self] _ in
+                self?.isShowingCancelDialog = true
+            })
+            .flatMap { [confirmAlert] value in
+                confirmAlert.userConfirmation().map { value }
+            }
+            .flatMap { [weak self] value in
+                guard let self else { return Just(value).eraseToAnyPublisher() }
+
+                return files.all.publisher.flatMap { file in
+                    self.interactor.deleteFile(file: file)
+                }.collect().map { _ in value }.eraseToAnyPublisher()
+            }
             .sink { [router] viewController in
                 router.dismiss(viewController)
             }
             .store(in: &subscriptions)
-        sendButtonDidTap
+
+        didTapSend
             .compactMap { [weak self] viewController -> (WeakViewController, MessageParameters, ComposeMessageOptions.MessageType)? in
-                guard let self = self, let params = self.messageParameters() else { return nil }
-                return (viewController, params, self.messageType)
+                guard let self = self, let params = messageParameters() else { return nil }
+                return (viewController, params, messageType)
             }
             .handleEvents(receiveOutput: { [weak self] (viewController, _, _) in
                 self?.isSendingMessage = true
@@ -261,6 +348,24 @@ class ComposeMessageViewModel: ObservableObject {
             }, receiveValue: { [weak self] _ in
                 self?.isSendingMessage = false
             })
+            .store(in: &subscriptions)
+
+        didSelectFile.sink(receiveCompletion: { _ in }, receiveValue: { (controller, file) in
+            guard let url = file.url, let fileController = router.match(url.appendingQueryItems(.init(name: "canEdit", value: "false"))) else { return }
+
+            router.show(fileController, from: controller, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
+        })
+        .store(in: &subscriptions)
+
+        didRemoveFile
+            .flatMap { [weak self] file in
+                guard let self, self.files.all.contains(file) else { return Just(file).eraseToAnyPublisher() }
+
+                return interactor.deleteFile(file: file).map { _ in file }.eraseToAnyPublisher()
+            }
+            .sink { [weak self] file in
+                self?.removeAttachment(file: file)
+            }
             .store(in: &subscriptions)
     }
 }

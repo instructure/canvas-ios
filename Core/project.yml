@@ -34,7 +34,7 @@ packages:
     branch: master
   mobile-offline-downloader-ios:
     url: https://github.com/2uinc/mobile-offline-downloader-ios.git
-    branch: develop
+    branch: downgrade_realm_version
   SwiftUIIntrospect:
     url: https://github.com/siteline/swiftui-introspect.git
     exactVersion: 1.1.1

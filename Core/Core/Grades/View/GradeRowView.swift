@@ -65,7 +65,7 @@ public struct GradeRowView: View {
             let submission = assignment.submissions?.first { $0.userID == userID }
             let status = submission?.status ?? .notSubmitted
 
-            Text(status.text)
+            Text(submission?.statusText ?? "")
                 .foregroundStyle(Color(status.color))
                 .font(.regular14)
         }

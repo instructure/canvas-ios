@@ -57,6 +57,7 @@ enum ModulePublishAction: Equatable {
 struct ModulePublishItem {
     let title: String
     let confirmMessage: String
+    var accessibilityIdentifier: String?
     let action: ModulePublishAction
 
     var icon: UIImage {

@@ -47,7 +47,9 @@
           "name" : "Parent"
         }
       ]
-    }
+    },
+    "language" : "en",
+    "region" : "US"
   },
   "testTargets" : [
     {

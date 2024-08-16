@@ -104,6 +104,7 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
         mockData.accept(entries)
     }
 
+    func saveSelection() {}
     func toggleAllCoursesSelection(isSelected _: Bool) {}
     func setCollapsed(selection _: CourseEntrySelection, isCollapsed _: Bool) {}
 

@@ -17,6 +17,8 @@
 //
 
 public class ModulesHelper: BaseHelper {
+    public static var publishOptionsButton: XCUIElement { app.find(id: "ModuleList.publishOptions") }
+
     public static func navBar(course: DSCourse) -> XCUIElement {
         return app.find(id: "Modules, \(course.id)")
     }
@@ -40,6 +42,26 @@ public class ModulesHelper: BaseHelper {
     public static func navigateToModules(course: DSCourse) {
         DashboardHelper.courseCard(course: course).hit()
         CourseDetailsHelper.cell(type: .modules).hit()
+    }
+
+    public struct PublishOptions {
+        public static var publishAllModulesAndItems: XCUIElement { app.find(id: "PublishAllModulesAndItems") }
+        public static var publishModulesOnly: XCUIElement { app.find(id: "PublishModulesOnly") }
+        public static var unpublishAllModulesAndItems: XCUIElement { app.find(id: "UnpublishAllModulesAndItems") }
+
+        public struct Alert {
+            public static var cancel: XCUIElement { app.find(label: "Cancel", type: .button) }
+            public static var publish: XCUIElement { app.find(label: "Publish", type: .button) }
+            public static var unpublish: XCUIElement { app.find(label: "Unpublish", type: .button) }
+        }
+
+        public struct Progress {
+            public static var progressTitle: XCUIElement { app.find(id: "ModulePublish.progressTitle") }
+            public static var progressIndicator: XCUIElement { app.find(id: "ModulePublish.progressIndicator") }
+            public static var cancelButton: XCUIElement { app.find(id: "ModulePublish.cancelButton") }
+            public static var dismissButton: XCUIElement { app.find(id: "ModulePublish.dismissButton") }
+            public static var doneButton: XCUIElement { app.find(id: "ModulePublish.doneButton") }
+        }
     }
 
     @discardableResult

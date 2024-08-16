@@ -29,12 +29,22 @@ public struct AttachmentPickerView: View {
     }
 
     public var body: some View {
-        VStack(alignment: .center) {
+        VStack(alignment: .center, spacing: 0) {
             headerView
-            if (viewModel.fileList.isEmpty) { emptyView } else { ScrollView { contentView } }
+            if viewModel.fileList.isEmpty && viewModel.alreadyUploadedFileList.isEmpty {
+                emptyView
+            } else {
+                contentView
+            }
         }
-        .background(Color.backgroundLightest)
-        .navigationTitle(viewModel.title)
+        .navigationTitleStyled(
+            VStack(spacing: 0) {
+                Text(viewModel.title).font(.headline)
+                if let subtitle = viewModel.subTitle, subtitle.isNotEmpty {
+                    Text(subtitle).font(.subheadline)
+                }
+            }
+        )
         .navigationBarItems(leading: cancelButton, trailing: actionButton)
         .fileImporter(
             isPresented: $viewModel.isFilePickerVisible,
@@ -45,72 +55,109 @@ public struct AttachmentPickerView: View {
             case .success(let urls):
                 urls.forEach { url in
                     if url.startAccessingSecurityScopedResource() {
-                        viewModel.fileSelected(url: url)
+                        viewModel.didSelectFile(url: url)
                     }
                 }
             case .failure:
-                viewModel.showFileErrorDialog()
+                viewModel.showDialog(title: viewModel.fileErrorTitle, message: viewModel.fileErrorMessage)
             }
         }
         .sheet(isPresented: $viewModel.isImagePickerVisible, content: {
-            ImagePickerViewController(sourceType: .photoLibrary, imageHandler: viewModel.fileSelected)
+            ImagePickerViewController(sourceType: .photoLibrary, imageHandler: viewModel.didSelectFile)
         })
         .sheet(isPresented: $viewModel.isTakePhotoVisible, content: {
-            ImagePickerViewController(sourceType: .camera, imageHandler: viewModel.fileSelected)
+            ImagePickerViewController(sourceType: .camera, imageHandler: viewModel.didSelectFile)
                 .interactiveDismissDisabled()
         })
         .sheet(isPresented: $viewModel.isAudioRecordVisible, content: {
-            AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: viewModel.router, onSelect: viewModel.fileSelected)
-                .interactiveDismissDisabled()
-        })
+                    AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: viewModel.router, onSelect: viewModel.didSelectFile)
+                        .interactiveDismissDisabled()
+                })
+        .confirmationAlert(
+            isPresented: $viewModel.isShowingCancelDialog,
+            presenting: viewModel.confirmAlert
+        )
     }
 
     private var contentView: some View {
-        VStack {
+        List {
             ForEach(viewModel.fileList, id: \.self) { file in
                 rowView(for: file)
+                    .listRowSpacing(0)
+                    .iOS16RemoveListRowSeparatorLeadingInset()
             }
-            Spacer()
+
+            ForEach(viewModel.alreadyUploadedFileList, id: \.self) { file in
+                rowView(for: file, shouldDeleteOnRemove: false)
+                    .listRowSpacing(0)
+                    .iOS16RemoveListRowSeparatorLeadingInset()
+            }
         }
+        .listStyle(.plain)
+        .accessibilityElement(children: .contain)
     }
 
     @ViewBuilder
-    private func rowView(for file: File) -> some View {
+    private func rowView(for file: File, shouldDeleteOnRemove: Bool = true) -> some View {
         let fileSizeWithUnit = ByteCountFormatter.string(fromByteCount: Int64(file.size), countStyle: .file)
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                VStack(alignment: .leading) {
-                    Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? "").font(.headline)
-                    Text(fileSizeWithUnit).foregroundStyle(Color.textDark)
-                }
-
-                Spacer()
-                if (file.isUploading) {
-                    ProgressView()
-                } else if (file.isUploaded) {
-                    Image.checkLine
-                } else if (file.uploadError != nil) {
-                    VStack {
-                        Image.warningLine
-                        Text(file.uploadError!).multilineTextAlignment(.center)
+        Button {
+            viewModel.fileSelected.accept((controller, file))
+        } label: {
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? "").font(.bold16).foregroundStyle(Color.textDarkest)
+                        Text(fileSizeWithUnit).font(.regular14).foregroundStyle(Color.textDark)
+                        if (file.uploadError != nil) {
+                            HStack(spacing: 0) {
+                                Image.warningLine
+                                    .resizable()
+                                    .frame(
+                                        width: 15 * uiScale.iconScale,
+                                        height: 15 * uiScale.iconScale
+                                    )
+                                Text(file.uploadError!).multilineTextAlignment(.leading)
+                            }
+                            .font(.regular14).foregroundStyle(Color.textAlert)
+                        }
                     }
-                } else {
-                    Button {
-                        viewModel.removeButtonDidTap.accept(file)
-                    } label: {
-                        Image.xLine
+
+                    Spacer()
+                    if (file.isUploading) {
+                        ProgressView()
+                    } else {
+                        Button {
+                            viewModel.deleteFileButtonDidTap.accept(file)
+                        } label: {
+                            Image.xLine
+                                .resizable()
+                                .frame(
+                                    width: 25 * uiScale.iconScale,
+                                    height: 25 * uiScale.iconScale
+                                )
+                        }
                     }
                 }
             }
-            .padding(.horizontal, 12)
-
-            separator
         }
         .foregroundStyle(Color.textDarkest)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(verbatim: "\(file.displayName ?? file.localFileURL?.lastPathComponent ?? "") (\(fileSizeWithUnit)"))
-        .accessibilityAction(named: Text("Remove attachment", bundle: .core)) {
-            viewModel.removeButtonDidTap.accept(file)
+        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+            Button {
+                if shouldDeleteOnRemove {
+                    viewModel.deleteFileButtonDidTap.accept(file)
+                } else {
+                    viewModel.removeButtonDidTap.accept(file)
+                }
+            } label: {
+                Image.trashLine
+                    .resizable()
+                    .frame(
+                        width: 25 * uiScale.iconScale,
+                        height: 25 * uiScale.iconScale
+                    )
+            }
         }
     }
 
@@ -120,16 +167,17 @@ public struct AttachmentPickerView: View {
                 progressHeader
             } else if viewModel.fileList.containsError {
                 errorHeader
-            } else {
-                selectionHeader
             }
+            selectionHeader
         }
+        .font(.regular16)
+        .foregroundStyle(Color.textDarkest)
     }
 
     private var selectionHeader: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                Text("\(viewModel.fileList.count) Items", bundle: .core)
+                Text("\(viewModel.fileList.count + viewModel.alreadyUploadedFileList.count) Items", bundle: .core)
                 Spacer()
                 Button {
                     viewModel.addAttachmentButtonDidTap.accept(controller)
@@ -137,11 +185,10 @@ public struct AttachmentPickerView: View {
                     Image.addLine
                         .resizable()
                         .frame(
-                            width: 20 * uiScale.iconScale,
-                            height: 20 * uiScale.iconScale
+                            width: 25 * uiScale.iconScale,
+                            height: 25 * uiScale.iconScale
                         )
                 }
-                .foregroundStyle(Color.textDarkest)
                 .accessibilityLabel(Text("Add new attachment", bundle: .core))
             }
             .padding(.vertical, 12)
@@ -191,13 +238,14 @@ public struct AttachmentPickerView: View {
                 .accessibilityHidden(true)
 
             Text("No attachments", bundle: .core)
-                .font(.headline)
+                .font(.bold20)
                 .foregroundStyle(Color.textDarkest)
                 .padding(.bottom, 6)
                 .accessibilityHidden(true)
 
             Text("Add an attachment by tapping the plus at top right.", bundle: .core)
                 .multilineTextAlignment(.center)
+                .font(.regular14)
                 .foregroundStyle(Color.textDarkest)
                 .accessibilityLabel(Text("No attachments, add an attachment by tapping the plus at top right.", bundle: .core))
 
@@ -217,6 +265,8 @@ public struct AttachmentPickerView: View {
                 retryButton
             } else if viewModel.fileList.containsUploading {
                 uploadButton.disabled(true)
+            } else if viewModel.alreadyUploadedFileList.contains(where: { $0.isUploading }) {
+                doneButton.disabled(true)
             } else if viewModel.fileList.isAllUploaded {
                 doneButton
             } else {

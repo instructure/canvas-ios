@@ -26,7 +26,6 @@ targets:
       - package: AWSSDK
         product: AWSSNS
       - package: BugfenderLibrary
-      - package: Intercom
       - target: CanvasCore/CanvasCore
       - target: Core/Core
       - target: SubmitAssignment
@@ -53,10 +52,12 @@ schemes:
       targets:
         Student: all
     test:
-      targets:
+      language: en
+      region: US
+      targets: 
         - Core/CoreTests
         - StudentUnitTests
         - name: Core/CoreTester
           skipped: true
       gatherCoverageData: true
-      coverageTargets: [Core/CoreTests, Student]
+      coverageTargets: [Core/Core, Student]

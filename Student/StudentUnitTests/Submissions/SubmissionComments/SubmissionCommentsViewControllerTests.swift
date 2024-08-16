@@ -76,6 +76,8 @@ class SubmissionCommentsViewControllerTests: StudentTestCase {
         XCTAssertEqual(headerCell(atRow: 1).authorNameLabel?.text, "Jane Doe (She/Her)")
         XCTAssertEqual(headerCell(atRow: 3).authorNameLabel?.text, "Ron Burgandy")
         XCTAssertEqual(headerCell(atRow: 5).authorNameLabel?.text, "John Smith (He/Him)")
+
+        Clock.reset()
     }
 }
 

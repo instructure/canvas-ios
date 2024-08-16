@@ -112,12 +112,20 @@ class DateExtensionsTests: XCTestCase {
 
     func testDateOnlyString() {
         XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2000, month: 12, day: 25).date?.dateOnlyString, "Dec 25, 2000")
+    }
+
+    func testRelativeDateOnlyString() {
         XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2000, month: 12, day: 25).date?.relativeDateOnlyString, "Dec 25, 2000")
+        XCTAssertEqual(Date.now.relativeDateOnlyString, "Today")
     }
 
     func testDateTimeString() {
         XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2000, month: 12, day: 25, hour: 11, minute: 45).date?.dateTimeString, "Dec 25, 2000 at 11:45 AM")
-        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2000, month: 12, day: 25, hour: 11, minute: 45).date?.relativeDateTimeString, "Dec 25, 2000, 11:45 AM")
+    }
+
+    func testRelativeDateTimeString() {
+        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2000, month: 12, day: 25, hour: 11, minute: 45).date?.relativeDateTimeString.contains("Dec 25, 2000"), true)
+        XCTAssertEqual(Date().relativeDateTimeString.contains("Today"), true)
     }
 
     func testWeekdayFormatting() {

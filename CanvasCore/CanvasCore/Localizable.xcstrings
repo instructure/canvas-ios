@@ -105,6 +105,12 @@
             "value" : "Retour"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वापस जाएं"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -347,6 +353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retour à la vue détaillée"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विस्तृत दृश्य पर वापस जाएं"
           }
         },
         "ht" : {
@@ -593,6 +605,12 @@
             "value" : "Réduire la vue détaillée"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विवरण दृश्य संक्षिप्त करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -835,6 +853,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terminé"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हो गया"
           }
         },
         "ht" : {
@@ -1081,6 +1105,12 @@
             "value" : "Développer la vue détaillée"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विवरण दृश्य बढ़ाएं"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1323,6 +1353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossible de trouver l'image au chemin d'accès"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पथ पर छवि ढूंढने में विफल"
           }
         },
         "ht" : {
@@ -1569,6 +1605,12 @@
             "value" : "Impossible d’écrire l’image"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "छवि लिखने में विफल"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1811,6 +1853,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Obtenir les notes pour"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इनके लिए ग्रेड पाएं:"
           }
         },
         "ht" : {

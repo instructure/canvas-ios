@@ -29,6 +29,7 @@ public struct WebView: UIViewRepresentable {
     private var reloadTrigger: AnyPublisher<Void, Never>?
     private var configuration: WKWebViewConfiguration
     private let features: [CoreWebViewFeature]
+    private var wkEvents: [String: (() -> Void)] = [:]
     private let baseURL: URL?
 
     @Environment(\.appEnvironment) private var env
@@ -52,13 +53,15 @@ public struct WebView: UIViewRepresentable {
                 baseURL: URL? = nil,
                 features: [CoreWebViewFeature] = [],
                 canToggleTheme: Bool = false,
-                configuration: WKWebViewConfiguration = .defaultConfiguration
+                configuration: WKWebViewConfiguration = .defaultConfiguration,
+                wkEvents: [String: (() -> Void)] = [:]
     ) {
         source = html.map { .html($0) }
         self.baseURL = baseURL
         self.features = features
         self.canToggleTheme = canToggleTheme
         self.configuration = configuration
+        self.wkEvents = wkEvents
     }
 
     public init(request: URLRequest,
@@ -123,6 +126,12 @@ public struct WebView: UIViewRepresentable {
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.alwaysBounceVertical = false
         webView.backgroundColor = .backgroundLightest
+        for eventName in wkEvents.keys {
+            webView.configuration.userContentController.add(
+                context.coordinator,
+                name: eventName
+            )
+        }
         return webViewContainer
     }
 
@@ -176,7 +185,7 @@ extension WebView {
         }
     }
 
-    public class Coordinator: CoreWebViewLinkDelegate, CoreWebViewSizeDelegate {
+    public class Coordinator: NSObject, CoreWebViewLinkDelegate, CoreWebViewSizeDelegate {
         var loaded: Source?
         private let view: WebView
         private var reloadObserver: AnyCancellable?
@@ -210,6 +219,22 @@ extension WebView {
                 webView.reload()
             }
         }
+    }
+}
+
+extension WebView.Coordinator: WKScriptMessageHandler {
+    public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        view.wkEvents[message.name]?()
+    }
+    public func clearWKEvents(in wkWebView: WKWebView) {
+        wkWebView.configuration.userContentController.removeAllScriptMessageHandlers()
+    }
+}
+extension WebView {
+    public static func dismantleUIView(_ uiView: UIView, coordinator: Coordinator) {
+        guard let webView = uiView.subviews.first as? WKWebView else { return }
+        coordinator.clearWKEvents(in: webView)
+        print("!!! dismantle")
     }
 }
 

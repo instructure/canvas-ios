@@ -55,6 +55,11 @@ class AttendanceViewControllerTests: TeacherTestCase {
         api.mock(URLRequest(url: URL(string: "/statuses/2", relativeTo: controller.session.baseURL)!), data: try? controller.session.encoder.encode(Status.make(id: "2")))
     }
 
+    override func tearDown() {
+        Clock.reset()
+        super.tearDown()
+    }
+
     func cellAt(_ index: IndexPath) -> StatusCell {
         return controller.tableView.cellForRow(at: index) as! StatusCell
     }

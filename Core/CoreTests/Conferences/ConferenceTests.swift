@@ -20,6 +20,12 @@ import XCTest
 @testable import Core
 
 class ConferenceTests: CoreTestCase {
+
+    private enum TestConstants {
+        static let date1 = DateComponents(calendar: .current, year: 2020, month: 3, day: 14, hour: 13).date!
+        static let date2 = DateComponents(calendar: .current, year: 2020, month: 3, day: 14, hour: 18).date!
+    }
+
     func testProperties() {
         let conference = Conference.make(from: .make(recordings: [.make()]))
         conference.canvasContextID = "bogus"
@@ -44,13 +50,13 @@ class ConferenceTests: CoreTestCase {
         XCTAssertEqual(conference.statusText, "Not Started")
         XCTAssertEqual(conference.statusLongText.string, "Not Started")
         XCTAssertEqual(conference.statusColor, .textDark)
-        conference.startedAt = DateComponents(calendar: .current, year: 2020, month: 3, day: 14, hour: 13).date
+        conference.startedAt = TestConstants.date1
         XCTAssertEqual(conference.statusText, "In Progress")
-        XCTAssertEqual(conference.statusLongText.string, "In Progress | Started Mar 14, 2020 at 1:00 PM")
+        XCTAssertEqual(conference.statusLongText.string, "In Progress | Started " + TestConstants.date1.dateTimeString)
         XCTAssertEqual(conference.statusColor, .textSuccess)
-        conference.endedAt = DateComponents(calendar: .current, year: 2020, month: 3, day: 14, hour: 13).date
-        XCTAssertEqual(conference.statusText, "Concluded Mar 14, 2020 at 1:00 PM")
-        XCTAssertEqual(conference.statusLongText.string, "Concluded Mar 14, 2020 at 1:00 PM")
+        conference.endedAt = TestConstants.date2
+        XCTAssertEqual(conference.statusText, "Concluded " + TestConstants.date2.dateTimeString)
+        XCTAssertEqual(conference.statusLongText.string, "Concluded " + TestConstants.date2.dateTimeString)
         XCTAssertEqual(conference.statusColor, .textDark)
     }
 
