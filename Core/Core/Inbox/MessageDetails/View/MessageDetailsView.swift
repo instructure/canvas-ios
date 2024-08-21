@@ -95,7 +95,7 @@ public struct MessageDetailsView: View {
                 .moreLine
                 .foregroundColor(Color(Brand.shared.navTextColor))
         })
-        .identifier("MessageDetails.more")
+        .accessibilityIdentifier("MessageDetails.more")
         .accessibility(label: Text("More options", bundle: .core))
     }
 

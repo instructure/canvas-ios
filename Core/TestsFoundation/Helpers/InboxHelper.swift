@@ -21,6 +21,7 @@ public class InboxHelper: BaseHelper {
     public static var newMessageButton: XCUIElement { app.find(id: "Inbox.newMessageButton", type: .button) }
     public static var filterByCourseButton: XCUIElement { app.find(id: "Inbox.filterByCourse") }
     public static var filterByTypeButton: XCUIElement { app.find(id: "Inbox.filterByType") }
+    public static var discardButton: XCUIElement { app.find(label: "Discard", type: .button) }
 
     public static func conversation(conversation: DSConversation) -> XCUIElement {
         return app.find(id: "Conversation.\(conversation.id)")
@@ -98,6 +99,7 @@ public class InboxHelper: BaseHelper {
 
     public struct Composer {
         public static var cancelButton: XCUIElement { app.find(id: "ComposeMessage.cancel") }
+        public static var dismissButton: XCUIElement { app.find(id: "screen.dismiss", type: .button) }
         public static var subjectLabel: XCUIElement { app.find(id: "ComposeMessage.subjectLabel") }
         public static var sendButton: XCUIElement { app.find(id: "ComposeMessage.send") }
         public static var selectCourseButton: XCUIElement { app.find(id: "ComposeMessage.course", type: .button) }
@@ -161,6 +163,13 @@ public class InboxHelper: BaseHelper {
         Composer.subjectInput.hit().pasteText(text: subject ?? "Sample Subject of \(student.name)")
         Composer.bodyInput.hit().pasteText(text: message ?? "Sample Message of \(student.name)")
         Composer.sendButton.hit()
+    }
+
+    public static func handleCancelAlert() {
+        let discardButton = discardButton.waitUntil(.visible, timeout: 5)
+        if discardButton.isVisible {
+            discardButton.hit()
+        }
     }
 
     @discardableResult

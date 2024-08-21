@@ -81,7 +81,7 @@ public struct AddressbookRecipientView: View, ScreenViewTrackable {
                         .foregroundColor(.textDarkest)
                         .lineLimit(1)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .accessibilityIdentifier("ComposeMessage.recipient.\(recipient.ids != [] ? recipient.ids[0] : "all\(recipient.displayName)")")
+                        .accessibilityIdentifier("ComposeMessage.recipient.\(recipient.ids.first ?? "all\(recipient.displayName)")")
                     Spacer()
                     Image.checkSolid
                         .resizable()

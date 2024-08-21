@@ -61,18 +61,19 @@ class HelpTests: E2ETestCase {
 
         // MARK: Check "Report a Problem" button
         cancelButton.hit()
+        InboxHelper.handleCancelAlert()
         HelpHelper.navigateToHelpPage()
         let reportAProblemButton = HelpHelper.reportAProblem.waitUntil(.visible)
         XCTAssertTrue(reportAProblemButton.isVisible)
 
         reportAProblemButton.hit()
-        cancelButton.waitUntil(.visible)
+        let dismissButton = InboxHelper.Composer.dismissButton.waitUntil(.visible)
         let reportAProblemLabel = app.find(label: "Report a Problem").waitUntil(.visible)
         XCTAssertTrue(reportAProblemLabel.isVisible)
-        XCTAssertTrue(cancelButton.isVisible)
+        XCTAssertTrue(dismissButton.isVisible)
 
         // MARK: Check "Submit a Feature Idea" button
-        cancelButton.hit()
+        dismissButton.hit()
         HelpHelper.navigateToHelpPage()
         let submitAFeatureButton = HelpHelper.submitAFeatureIdea.waitUntil(.visible)
         XCTAssertTrue(submitAFeatureButton.isVisible)
