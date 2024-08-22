@@ -48,15 +48,15 @@ end
 abstract_target 'parent_defaults' do
   use_frameworks!
 
-  firebase_pods
+  # firebase_pods
 
-  target 'Parent' do
-    project 'Parent/Parent.xcodeproj'
-  end
+  # target 'Parent' do
+  #   project 'Parent/Parent.xcodeproj'
+  # end
 
-  target 'ParentUnitTests' do
-    project 'Parent/Parent.xcodeproj'
-  end
+  # target 'ParentUnitTests' do
+  #   project 'Parent/Parent.xcodeproj'
+  # end
 end
 
 post_install do |installer|
