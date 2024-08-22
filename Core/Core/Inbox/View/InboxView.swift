@@ -195,7 +195,7 @@ public struct InboxView: View, ScreenViewTrackable {
                 .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
         }
         .frame(width: 44, height: 44).padding(.leading, -6)
-        .identifier("inbox.profileButton")
+        .identifier("Inbox.profileButton")
         .accessibility(label: Text("Profile Menu", bundle: .core))
     }
 
@@ -207,7 +207,7 @@ public struct InboxView: View, ScreenViewTrackable {
                 .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
         }
         .frame(width: 44, height: 44).padding(.trailing, -6)
-        .identifier("inbox.newMessageButton")
+        .identifier("Inbox.newMessageButton")
         .accessibility(label: Text("New Message", bundle: .core))
     }
 

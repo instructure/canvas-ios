@@ -88,7 +88,7 @@ class SettingsTests: E2ETestCase {
         XCTAssertTrue(inbox.isVisible)
         XCTAssertTrue(backButton.isVisible)
 
-        // MARK: Select "Inbox", logout, login, check landing page
+        // MARK: Select "Inbox", logout, log back in, check landing page
         inbox.hit()
         XCTAssertTrue(inbox.waitUntil(.visible).isVisible)
 
@@ -96,8 +96,8 @@ class SettingsTests: E2ETestCase {
         doneButton.hit()
         logOut()
         logInDSUser(teacher)
-        let inboxNavBar = InboxHelper.navBar.waitUntil(.visible)
-        XCTAssertTrue(inboxNavBar.isVisible)
+        let newMessageButton = InboxHelper.newMessageButton.waitUntil(.visible)
+        XCTAssertTrue(newMessageButton.isVisible)
     }
 
     func testAppearanceSetting() {

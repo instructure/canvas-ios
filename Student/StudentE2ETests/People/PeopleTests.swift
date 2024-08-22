@@ -244,39 +244,18 @@ class PeopleTests: E2ETestCase {
         // MARK: Tap the "Send Email" icon, Check recipient, Check elements
         sendEmailButton.hit()
         let sendButton = InboxHelper.Composer.sendButton.waitUntil(.visible)
-        let courseSelector = InboxHelper.Composer.courseSelectButton.waitUntil(.visible)
+        let courseSelector = InboxHelper.Composer.selectCourseButton.waitUntil(.visible)
         let subjectInput = InboxHelper.Composer.subjectInput.waitUntil(.visible)
-        let messageInput = InboxHelper.Composer.messageInput.waitUntil(.visible)
+        let messageInput = InboxHelper.Composer.bodyInput.waitUntil(.visible)
+        let recipientPill = InboxHelper.Composer.recipientPillById(recipient: teacher)
         XCTAssertTrue(sendButton.isVisible)
-        XCTAssertTrue(sendButton.isDisabled)
         XCTAssertTrue(courseSelector.isVisible)
         XCTAssertTrue(subjectInput.isVisible)
         XCTAssertTrue(messageInput.isVisible)
-
-        // MARK: Select course
-        courseSelector.hit()
-        let courseItem = InboxHelper.Composer.courseSelectionItem(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseItem.isVisible)
-
-        courseItem.hit()
-        let addRecipientButton = InboxHelper.Composer.addRecipientButton.waitUntil(.visible)
-        XCTAssertTrue(addRecipientButton.isVisible)
-
-        addRecipientButton.hit()
-        let teachers = InboxHelper.Composer.Recipients.teachers(course: course).waitUntil(.visible)
-        XCTAssertTrue(teachers.isVisible)
-
-        teachers.hit()
-        let teacherItem = InboxHelper.Composer.Recipients.userItem(user: teacher).waitUntil(.visible)
-        XCTAssertTrue(teacherItem.isVisible)
-
-        teacherItem.hit()
-        let recipientLabel = InboxHelper.Composer.recipientLabel(recipient: teacher).waitUntil(.visible)
-        XCTAssertTrue(recipientLabel.isVisible)
-        XCTAssertTrue(recipientLabel.hasLabel(label: teacher.name))
+        XCTAssertTrue(recipientPill.isVisible)
 
         // MARK: Add a subject and a message, Tap send, Check result
-        subjectInput.pasteText(text: messageSubject)
+        subjectInput.writeText(text: messageSubject)
         messageInput.writeText(text: messageBody)
         XCTAssertTrue(sendButton.waitUntil(.enabled).isEnabled)
 
@@ -285,10 +264,14 @@ class PeopleTests: E2ETestCase {
         XCTAssertTrue(inboxTab.isVisible)
 
         inboxTab.hit()
-        let sentTab = InboxHelper.Filter.sent.waitUntil(.visible)
-        XCTAssertTrue(sentTab.isVisible)
+        let filterByTypeButton = InboxHelper.filterByTypeButton.waitUntil(.visible)
+        XCTAssertTrue(filterByTypeButton.isVisible)
 
-        sentTab.hit()
+        filterByTypeButton.hit()
+        let sentOption = InboxHelper.Filter.sent.waitUntil(.visible)
+        XCTAssertTrue(sentOption.isVisible)
+
+        sentOption.hit()
         let conversationButton = InboxHelper.conversations[0].waitUntil(.visible)
         XCTAssertTrue(conversationButton.isVisible)
         XCTAssertTrue(conversationButton.hasLabel(label: messageSubject, strict: false))
