@@ -18,7 +18,7 @@
 
 import Foundation
 
-public class HelmNavigationController: UINavigationController {
+public class CoreNavigationController: UINavigationController {
     public init() {
         let emptyViewController = EmptyViewController(nibName: nil, bundle: nil)
         super.init(rootViewController: emptyViewController)
@@ -57,7 +57,7 @@ public class HelmNavigationController: UINavigationController {
     }
 }
 
-extension HelmNavigationController: UIGestureRecognizerDelegate {
+extension CoreNavigationController: UIGestureRecognizerDelegate {
 
     /**
      We only want the pop navigation gesture to work when there are multiple view controllers in the stack.

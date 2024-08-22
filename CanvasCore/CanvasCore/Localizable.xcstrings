@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Back" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -258,6 +259,7 @@
       }
     },
     "Back on detailed view" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -514,6 +516,7 @@
       }
     },
     "Collapse detail view" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -770,6 +773,7 @@
       }
     },
     "Done" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1026,6 +1030,7 @@
       }
     },
     "Expand detail view" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
