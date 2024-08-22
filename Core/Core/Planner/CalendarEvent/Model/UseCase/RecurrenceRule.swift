@@ -85,9 +85,7 @@ private enum RRuleKey {
 
     enum DaysOfTheWeek: Key {
         static var string: String { "BYDAY" }
-        static func validate(_ value: [DayOfWeek]) -> Bool {
-            value.count > 0 && value.allSatisfy({ (0 ... 53).contains(abs($0.weekNumber)) })
-        }
+        static func validate(_ value: [DayOfWeek]) -> Bool { value.count > 0 }
     }
 
     enum DaysOfTheMonth: Key {
@@ -212,6 +210,12 @@ struct RecurrenceEnd: Equatable {
 }
 
 enum Weekday: String, RRuleCodable {
+    static var weekDays: [Weekday] {
+        return [
+            .monday, .tuesday, .wednesday, .thursday, .friday
+        ]
+    }
+
     case sunday = "SU",
          monday = "MO",
          tuesday = "TU",
@@ -219,35 +223,55 @@ enum Weekday: String, RRuleCodable {
          thursday = "TH",
          friday = "FR",
          saturday = "SA"
+
+    var dateComponent: Int {
+        switch self {
+        case .sunday: return 1
+        case .monday: return 2
+        case .tuesday: return 3
+        case .wednesday: return 4
+        case .thursday: return 5
+        case .friday: return 6
+        case .saturday: return 7
+        }
+    }
+}
+
+enum WeekNumber: Int, RRuleCodable {
+    case first = 1, second = 2, third = 3, fourth = 4, fifth = 5, last = -1
+
+    init?(rruleString: String) {
+        guard let val = Int(rruleString) else { return nil }
+        self.init(rawValue: val)
+    }
+
+    var rruleString: String { String(rawValue) }
 }
 
 struct DayOfWeek: Equatable, RRuleCodable {
 
     init?(rruleString: String) {
-        guard let val = rruleString
-            .split(separator: /\d+/)
-            .last,
-        let day = Weekday(rawValue: String(val)) else { return nil }
+        guard 
+            let val = rruleString.split(separator: /\d+/).last,
+            let day = Weekday(rawValue: String(val)) else { return nil }
 
-        let num = Int(rruleString
-            .replacingOccurrences(of: day.rawValue, with: "")) ?? 0
-
+        let num = WeekNumber(rruleString: rruleString.replacingOccurrences(of: day.rawValue, with: ""))
         self.init(day, weekNumber: num)
     }
 
     var rruleString: String {
         var val = ""
-        if weekNumber != 0 {
-            val += "\(weekNumber)"
+        if let weekNumber {
+            val += weekNumber.rruleString
         }
         val += dayOfTheWeek.rawValue
         return val
     }
 
     let dayOfTheWeek: Weekday
-    let weekNumber: Int
+    let weekNumber: WeekNumber?
 
-    init(_ dayOfTheWeek: Weekday, weekNumber: Int = 0) {
+    init(_ dayOfTheWeek: Weekday, weekNumber: WeekNumber? = nil) {
         self.dayOfTheWeek = dayOfTheWeek
         self.weekNumber = weekNumber
     }

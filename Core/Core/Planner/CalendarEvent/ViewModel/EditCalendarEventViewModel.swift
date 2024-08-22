@@ -44,7 +44,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     @Published var isAllDay: Bool = false
     @Published var startTime: Date?
     @Published var endTime: Date?
-    @Published var frequencyName: String?
+    @Published var frequency: RecurrenceRule?
     @Published var calendarName: String?
     @Published var location: String = ""
     @Published var address: String = ""
@@ -104,7 +104,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     private let eventInteractor: CalendarEventInteractor
     private let calendarListProviderInteractor: CalendarFilterInteractor
     private let router: Router
-    /*TODO: */ private var selectedFrequency = CurrentValueSubject<EventFrequency?, Never>(nil)
+    /*TODO: */ private var selectedFrequency = CurrentValueSubject<RecurrenceRule?, Never>(nil)
     private var selectedCalendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
     /// Returns true if any of the fields had been modified once by the user. It doesn't compare values.
     private var isFieldsTouched: Bool = false
@@ -180,12 +180,12 @@ final class EditCalendarEventViewModel: ObservableObject {
 
         selectedFrequency
             .map { [weak self] in
-                if let oldfrequencyName = self?.frequencyName, oldfrequencyName != $0?.name {
+                if let oldfrequencyName = self?.frequency, oldfrequencyName != $0 {
                     self?.isFieldsTouched = true
                 }
-                return $0?.name
+                return $0
             }
-            .assign(to: \.frequencyName, on: self, ownership: .weak)
+            .assign(to: \.frequency, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
         selectedCalendar
@@ -280,8 +280,16 @@ final class EditCalendarEventViewModel: ObservableObject {
 
     private func showSelectFrequencyScreen(from source: WeakViewController) {
         let vc = CoreHostingController(
-            /*TODO: */ BaseScreenTesterScreen()
+            EditCustomFrequencyScreen(
+                viewModel: EditCustomFrequencyViewModel(
+                    rule: frequency,
+                    completion: { [weak self] savedRule in
+                        self?.frequency = savedRule
+                    }
+                )
+            )
         )
+
         router.show(vc, from: source, options: .push)
     }
 
