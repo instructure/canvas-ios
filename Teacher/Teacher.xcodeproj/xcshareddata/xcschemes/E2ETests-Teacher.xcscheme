@@ -82,7 +82,7 @@
       </CodeCoverageTargets>
       <TestPlans>
          <TestPlanReference
-            reference = "container:../../../TestPlans/TeacherE2E.xctestplan"
+            reference = "container:../TestPlans/TeacherE2E.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

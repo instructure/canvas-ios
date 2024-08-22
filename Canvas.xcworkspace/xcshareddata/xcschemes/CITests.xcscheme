@@ -45,7 +45,7 @@
                BlueprintIdentifier = "B15CA25C221DDB820014FB02"
                BuildableName = "TeacherTests.xctest"
                BlueprintName = "TeacherTests"
-               ReferencedContainer = "container:rn/Teacher/ios/Teacher.xcodeproj">
+               ReferencedContainer = "container:Teacher/Teacher.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry

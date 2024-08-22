@@ -13,9 +13,6 @@
    <FileRef
       location = "group:Teacher/Teacher.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
    <Group
       location = "container:TestPlans"
       name = "TestPlans">

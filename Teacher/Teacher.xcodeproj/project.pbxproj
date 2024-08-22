@@ -32,8 +32,6 @@
 		7D0D7AE2251E6E6C00550AEC /* SubmissionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D7AE1251E6E6C00550AEC /* SubmissionListViewController.swift */; };
 		7D0D7B36251EA41B00550AEC /* SubmissionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D0D7B35251EA41B00550AEC /* SubmissionListViewController.storyboard */; };
 		7D264DC72537A6E1007CDD90 /* SimilarityScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D264DC62537A6E1007CDD90 /* SimilarityScore.swift */; };
-		7D3DA83A2187615E000D828F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; };
-		7D3DA83B2187615E000D828F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D3DC0C0252291B400B0EBC1 /* SubmissionFilterPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3DC0BF252291B400B0EBC1 /* SubmissionFilterPickerViewController.swift */; };
 		7D3DC0C7252432DD00B0EBC1 /* SubmissionFilterPickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3DC0C6252432DD00B0EBC1 /* SubmissionFilterPickerViewControllerTests.swift */; };
 		7D3DC0CB252432ED00B0EBC1 /* SubmissionListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3DC0CA252432ED00B0EBC1 /* SubmissionListViewControllerTests.swift */; };
@@ -94,14 +92,12 @@
 		B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */; };
 		B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA29C221F16C90014FB02 /* BundleExtensions.swift */; };
 		B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1992AAA2264D51200396A1F /* RoutesTests.swift */; };
-		B1A5CDE62395836600BEA196 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
 		B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02D1240435B0004B7B1C /* KeychainTests.swift */; };
 		B417C2E62B1F169000CD6FA4 /* SubmissionCommentListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417C2E52B1F169000CD6FA4 /* SubmissionCommentListViewModelTests.swift */; };
 		B42B0E762C7741880038EE67 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42B0E752C7741880038EE67 /* FirebaseCrashlytics */; };
 		B42B0E782C7741880038EE67 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = B42B0E772C7741880038EE67 /* FirebaseRemoteConfig */; };
-		B42B0E7A2C7741E00038EE67 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42B0E792C7741E00038EE67 /* FirebaseCrashlytics */; };
-		B42B0E7C2C7741E00038EE67 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = B42B0E7B2C7741E00038EE67 /* FirebaseRemoteConfig */; };
-		B42B0E7E2C7741E00038EE67 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B42B0E7D2C7741E00038EE67 /* FirebaseRemoteConfigSwift */; };
+		B43562172C77486A00402DAE /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43562162C77486A00402DAE /* Core.framework */; };
+		B43562182C77486A00402DAE /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B43562162C77486A00402DAE /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4707B052B1DDF7900F67CA8 /* SubmissionCommentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4707B042B1DDF7900F67CA8 /* SubmissionCommentListViewModel.swift */; };
 		B49725D6290C06220067B91E /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = B49725D5290C06220067B91E /* Heap */; };
 		B4D8E5382C773F3E0001A506 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B4D8E5372C773F3E0001A506 /* FirebaseRemoteConfigSwift */; };
@@ -135,7 +131,6 @@
 		D9DE56ED255540C900CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */; };
 		E841D8B123D6472F00685A63 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8B423D6472F00685A63 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E881134922FCA81B00354C59 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EB12071F2601F2C50038E875 /* GradeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12071E2601F2C50038E875 /* GradeSlider.swift */; };
 		EB35BC5427BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35BC5327BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift */; };
 		EB368AB227BBD4DE00A9F1C1 /* CommentLibraryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB368AB127BBD4DE00A9F1C1 /* CommentLibraryList.swift */; };
@@ -162,17 +157,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4943ECC51E5CEFBD001DC5B5 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				7D3DA83B2187615E000D828F /* Core.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7D630B6A24A5003E0039A45D /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -189,8 +173,18 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E881134922FCA81B00354C59 /* Core.framework in Embed Frameworks */,
 				7DBF923B2269791600710D0F /* TestsFoundation.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B43562192C77486A00402DAE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B43562182C77486A00402DAE /* Core.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +299,8 @@
 		B1992AAA2264D51200396A1F /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		B1FF02D1240435B0004B7B1C /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		B417C2E52B1F169000CD6FA4 /* SubmissionCommentListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentListViewModelTests.swift; sourceTree = "<group>"; };
+		B43562132C77485F00402DAE /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B43562162C77486A00402DAE /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4707B042B1DDF7900F67CA8 /* SubmissionCommentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentListViewModel.swift; sourceTree = "<group>"; };
 		CF04D3152BC5714F009D8C86 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		CF13E54B299D090500F57F69 /* QuizSubmissionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListViewModel.swift; sourceTree = "<group>"; };
@@ -354,7 +350,6 @@
 				CFAA40232AE2633A002C7AAE /* PSPDFKit in Frameworks */,
 				B49725D6290C06220067B91E /* Heap in Frameworks */,
 				2C50EE031E735CBB0096592C /* AVFoundation.framework in Frameworks */,
-				7D3DA83A2187615E000D828F /* Core.framework in Frameworks */,
 				2C50EE011E735CB50096592C /* CoreMedia.framework in Frameworks */,
 				2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */,
 				2C50EDFF1E735CB10096592C /* CoreText.framework in Frameworks */,
@@ -364,6 +359,7 @@
 				B42B0E762C7741880038EE67 /* FirebaseCrashlytics in Frameworks */,
 				B4D8E5382C773F3E0001A506 /* FirebaseRemoteConfigSwift in Frameworks */,
 				2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */,
+				B43562172C77486A00402DAE /* Core.framework in Frameworks */,
 				2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,11 +376,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B42B0E7A2C7741E00038EE67 /* FirebaseCrashlytics in Frameworks */,
 				B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */,
-				B42B0E7E2C7741E00038EE67 /* FirebaseRemoteConfigSwift in Frameworks */,
-				B1A5CDE62395836600BEA196 /* CanvasCore.framework in Frameworks */,
-				B42B0E7C2C7741E00038EE67 /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +417,8 @@
 		2C50EDDF1E735CA50096592C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B43562162C77486A00402DAE /* Core.framework */,
+				B43562132C77485F00402DAE /* Core.framework */,
 				7D630B7224A53F7E0039A45D /* Core.framework */,
 				E8F6CFFE23045A01004347D9 /* CoreUITests.framework */,
 				2C50EDE01E735CA50096592C /* AssetsLibrary.framework */,
@@ -894,8 +888,8 @@
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
-				4943ECC51E5CEFBD001DC5B5 /* Embed Frameworks */,
 				7D630B6A24A5003E0039A45D /* Embed Foundation Extensions */,
+				B43562192C77486A00402DAE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -946,9 +940,6 @@
 			);
 			name = TeacherTests;
 			packageProductDependencies = (
-				B42B0E792C7741E00038EE67 /* FirebaseCrashlytics */,
-				B42B0E7B2C7741E00038EE67 /* FirebaseRemoteConfig */,
-				B42B0E7D2C7741E00038EE67 /* FirebaseRemoteConfigSwift */,
 			);
 			productName = TeacherTests;
 			productReference = B15CA25D221DDB820014FB02 /* TeacherTests.xctest */;
@@ -1792,21 +1783,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B4D8E5342C773F3E0001A506 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfig;
-		};
-		B42B0E792C7741E00038EE67 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B4D8E5342C773F3E0001A506 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
-		};
-		B42B0E7B2C7741E00038EE67 /* FirebaseRemoteConfig */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B4D8E5342C773F3E0001A506 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseRemoteConfig;
-		};
-		B42B0E7D2C7741E00038EE67 /* FirebaseRemoteConfigSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B4D8E5342C773F3E0001A506 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseRemoteConfigSwift;
 		};
 		B49725D5290C06220067B91E /* Heap */ = {
 			isa = XCSwiftPackageProductDependency;
