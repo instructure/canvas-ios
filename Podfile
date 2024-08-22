@@ -18,30 +18,30 @@ end
 abstract_target 'defaults' do
   use_frameworks!
 
-  target 'Teacher' do
-    project 'Teacher/Teacher.xcodeproj'
-    # firebase_pods
-  end
+  # target 'Teacher' do
+  #   project 'Teacher/Teacher.xcodeproj'
+  #   # firebase_pods
+  # end
 
-  target 'TeacherTests' do
-    project 'Teacher/Teacher.xcodeproj'
-    # firebase_pods
-  end
+  # target 'TeacherTests' do
+  #   project 'Teacher/Teacher.xcodeproj'
+  #   # firebase_pods
+  # end
 
-  target 'Student' do
-    project 'Student/Student.xcodeproj'
-    firebase_pods
-  end
+  # target 'Student' do
+  #   project 'Student/Student.xcodeproj'
+  #   # firebase_pods
+  # end
 
-  target 'SubmitAssignment' do
-    project 'Student/Student.xcodeproj'
-    firebase_pods
-  end
+  # target 'SubmitAssignment' do
+  #   project 'Student/Student.xcodeproj'
+  #   # firebase_pods
+  # end
 
-  target 'StudentUnitTests' do
-    project 'Student/Student.xcodeproj'
-    firebase_pods
-  end
+  # target 'StudentUnitTests' do
+  #   project 'Student/Student.xcodeproj'
+  #   # firebase_pods
+  # end
   
 end
 

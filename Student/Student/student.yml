@@ -19,6 +19,9 @@ targets:
     dependencies:
       - package: PSPDFKit
       - package: Heap
+      - package: FirebaseCrashlytics
+      - package: FirebaseRemoteConfig
+      - package: FirebaseRemoteConfigSwift
       - target: Core/Core
       - target: SubmitAssignment
       - target: Widgets

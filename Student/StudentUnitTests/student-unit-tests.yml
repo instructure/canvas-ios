@@ -13,3 +13,6 @@ targets:
           - ".swiftlint.yml"
     dependencies:
       - target: Student
+      # - package: FirebaseCrashlytics
+      # - package: FirebaseRemoteConfig
+      # - package: FirebaseRemoteConfigSwift
