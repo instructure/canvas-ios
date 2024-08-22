@@ -22,7 +22,6 @@ import Core
 import Firebase
 import Heap
 import PSPDFKit
-import React
 import SafariServices
 import UIKit
 import UserNotifications
@@ -53,7 +52,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         #endif
         setupDefaultErrorHandling()
         DocViewerViewController.setup(.teacherPSPDFKitLicense)
-        prepareReactNative()
         setupPageViewLogging()
         PushNotificationsInteractor.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
@@ -114,7 +112,21 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                     }
                     .store(in: &self.subscriptions)
             }
+
+            self.setTabBarController()
         }}
+    }
+
+    func setTabBarController() {
+        guard let window = self.window else { return }
+        let controller = TeacherTabBarController()
+        controller.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+            window.rootViewController = controller
+        }, completion: { _ in
+            self.environment.startupDidComplete()
+            UIApplication.shared.registerForPushNotifications()
+        })
     }
 
     func application(
@@ -137,7 +149,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        PushNotifications.record(response.notification)
         if let url = response.notification.request.routeURL {
             openURL(url, userInfo: [
                 "forceRefresh": true,
@@ -151,7 +162,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         if
             let notification = launchOptions?[.remoteNotification] as? [AnyHashable: AnyObject],
             let aps = notification["aps"] as? [String: AnyObject] {
-            PushNotifications.recordUserInfo(notification)
             if let url = notification.routeURL {
                 openURL(url, userInfo: [
                     "forceRefresh": true,
@@ -266,13 +276,6 @@ extension TeacherAppDelegate: AnalyticsHandler {
 
     private func disableTracking() {
         Heap.setTrackingEnabled(false)
-    }
-}
-
-extension TeacherAppDelegate: RCTBridgeDelegate {
-    func sourceURL(for bridge: RCTBridge!) -> URL! {
-        let url = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index.ios", fallbackResource: nil)
-        return url
     }
 }
 
@@ -406,7 +409,6 @@ extension TeacherAppDelegate {
             configureRemoteConfig()
             Core.Analytics.shared.handler = self
         }
-        CanvasCrashlytics.setupForReactNative()
     }
 }
 

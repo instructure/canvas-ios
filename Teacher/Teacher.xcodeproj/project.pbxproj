@@ -1249,7 +1249,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PROJECT_DIR}/../../../scripts/swiftLint.sh\n";
+			shellScript = "${PROJECT_DIR}/../scripts/swiftLint.sh\n";
 		};
 		B714E89FBF87F7C6C1A4CBF2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

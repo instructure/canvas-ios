@@ -324,11 +324,7 @@ let router = Router(routes: [
     },
 
     RouteHandler("/dev-menu/experimental-features") { _, _, _ in
-        let vc = ExperimentalFeaturesViewController()
-        vc.afterToggle = {
-            HelmManager.shared.reload()
-        }
-        return vc
+        ExperimentalFeaturesViewController()
     },
 
     RouteHandler("/dev-menu/pandas") { _, _, _ in
