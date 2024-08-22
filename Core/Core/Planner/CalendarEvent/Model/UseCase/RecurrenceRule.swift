@@ -1,0 +1,425 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2024-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Foundation
+
+// MARK: - RRule Value
+
+private protocol RRuleCodable {
+    init?(rruleString: String)
+    var rruleString: String { get }
+}
+
+extension RRuleCodable where Self: RawRepresentable, Self.RawValue == String {
+    init?(rruleString: String) { self.init(rawValue: rruleString) }
+    var rruleString: String { rawValue }
+}
+
+extension LosslessStringConvertible where Self: RRuleCodable {
+    init?(rruleString: String) {
+        self.init(rruleString)
+    }
+
+    var rruleString: String { self.description }
+}
+
+extension Int: RRuleCodable {}
+extension String: RRuleCodable {}
+extension Array: RRuleCodable where Element: RRuleCodable {
+
+    init?(rruleString: String) {
+        let list = rruleString.split(separator: ",").compactMap({ Element(rruleString: String($0)) })
+        if list.isEmpty { return nil }
+        self = list
+    }
+
+    var rruleString: String {
+        map({ $0.rruleString }).joined(separator: ",")
+    }
+}
+
+// MARK: - RRule SubRule Key
+
+private enum RRuleKey {
+
+    protocol Key {
+        static var string: String { get }
+        associatedtype Value: RRuleCodable
+        static func validate(_ value: Value) -> Bool
+    }
+
+    enum Frequency: Key {
+        static var string: String { "FREQ" }
+        static func validate(_ value: RecurrenceFrequency) -> Bool { true }
+    }
+
+    enum Interval: Key {
+        static var string: String { "INTERVAL" }
+        static func validate(_ value: Int) -> Bool { value > 0 }
+    }
+
+    enum EndDate: Key {
+        static var string: String { "UNTIL" }
+        static func validate(_ value: RecurrenceEnd.EndDate) -> Bool { true }
+    }
+
+    enum OccurrenceCount: Key {
+        static var string: String { "COUNT" }
+        static func validate(_ value: RecurrenceEnd.OccurrenceCount) -> Bool { value.count > 0 }
+    }
+
+    enum DaysOfTheWeek: Key {
+        static var string: String { "BYDAY" }
+        static func validate(_ value: [DayOfWeek]) -> Bool {
+            value.count > 0 && value.allSatisfy({ (0 ... 53).contains(abs($0.weekNumber)) })
+        }
+    }
+
+    enum DaysOfTheMonth: Key {
+        static var string: String { "BYMONTHDAY" }
+        static func validate(_ value: [Int]) -> Bool {
+            value.count > 0 && value.allSatisfy({ (1 ... 31).contains(abs($0)) })
+        }
+    }
+
+    enum DaysOfTheYear: Key {
+        static var string: String { "BYYEARDAY" }
+        static func validate(_ value: [Int]) -> Bool {
+            value.count > 0 && value.allSatisfy({ (1 ... 366).contains(abs($0)) })
+        }
+    }
+
+    enum WeeksOfTheYear: Key {
+        static var string: String { "BYWEEKNO" }
+        static func validate(_ value: [Int]) -> Bool {
+            value.count > 0 && value.allSatisfy({ (1 ... 53).contains(abs($0)) })
+        }
+    }
+
+    enum MonthsOfTheYear: Key {
+        static var string: String { "BYMONTH" }
+        static func validate(_ value: [Int]) -> Bool {
+            value.count > 0 && value.allSatisfy({ (1 ... 12).contains(abs($0)) })
+        }
+    }
+
+    enum SetPositions: Key {
+        static var string: String { "BYSETPOS" }
+        static func validate(_ value: [Int]) -> Bool {
+            value.count > 0 && value.allSatisfy({ (1 ... 366).contains(abs($0)) })
+        }
+    }
+}
+
+private extension RRuleKey.Key {
+
+    static func value(in dict: [String: String]) -> Value? {
+        guard let rrule = dict[string] else { return nil }
+        return parse(rruleValue: rrule)
+    }
+
+    static func parse(rruleValue: String) -> Value? {
+        guard let val = Value(rruleString: rruleValue) else { return nil }
+
+        if validate(val) { return val }
+
+        print("WARN: Invalid value for key \(string)")
+        return nil
+    }
+
+    static func rruleString(for value: Value?) -> String? {
+        guard let val = value, validate(val) else {
+            return nil
+        }
+        return "\(string)=\(val.rruleString)"
+    }
+}
+
+// MARK: - Models
+
+enum RecurrenceFrequency: String, RRuleCodable {
+    case daily = "DAILY"
+    case weekly = "WEEKLY"
+    case monthly = "MONTHLY"
+    case yearly = "YEARLY"
+}
+
+struct RecurrenceEnd: Equatable {
+
+    struct EndDate: RRuleCodable {
+        let date: Date
+
+        init(date: Date) {
+            self.date = date
+        }
+
+        init?(rruleString: String) {
+            guard let date = Date.parse(rruleDescription: rruleString) else { return nil }
+            self.date = date
+        }
+
+        var rruleString: String { date.rruleFormatted() }
+        var asRecurrenceEnd: RecurrenceEnd { .init(endDate: date) }
+    }
+
+    struct OccurrenceCount: RRuleCodable {
+        let count: Int
+
+        init(value: Int) { count = value }
+
+        init?(rruleString: String) {
+            guard let count = Int(rruleString) else { return nil }
+            self.count = count
+        }
+
+        var rruleString: String { String(count) }
+        var asRecurrenceEnd: RecurrenceEnd { .init(occurrenceCount: count) }
+    }
+
+    let endDate: Date?
+    let occurrenceCount: Int
+
+    init(endDate: Date) {
+        self.endDate = endDate
+        self.occurrenceCount = 0
+    }
+
+    init(occurrenceCount: Int) {
+        self.endDate = nil
+        self.occurrenceCount = occurrenceCount
+    }
+
+    var asEndDate: EndDate? { endDate.flatMap({ EndDate(date: $0) }) }
+    var asOccurrenceCount: OccurrenceCount? {
+        guard endDate == nil else { return nil }
+        return OccurrenceCount(value: occurrenceCount)
+    }
+}
+
+enum Weekday: String, RRuleCodable {
+    case sunday = "SU",
+         monday = "MO",
+         tuesday = "TU",
+         wednesday = "WE",
+         thursday = "TH",
+         friday = "FR",
+         saturday = "SA"
+}
+
+struct DayOfWeek: Equatable, RRuleCodable {
+
+    init?(rruleString: String) {
+        guard let val = rruleString
+            .split(separator: /\d+/)
+            .last,
+        let day = Weekday(rawValue: String(val)) else { return nil }
+
+        let num = Int(rruleString
+            .replacingOccurrences(of: day.rawValue, with: "")) ?? 0
+
+        self.init(day, weekNumber: num)
+    }
+
+    var rruleString: String {
+        var val = ""
+        if weekNumber != 0 {
+            val += "\(weekNumber)"
+        }
+        val += dayOfTheWeek.rawValue
+        return val
+    }
+
+    let dayOfTheWeek: Weekday
+    let weekNumber: Int
+
+    init(_ dayOfTheWeek: Weekday, weekNumber: Int = 0) {
+        self.dayOfTheWeek = dayOfTheWeek
+        self.weekNumber = weekNumber
+    }
+}
+
+// MARK: - Rule Impl.
+
+struct RecurrenceRule: Equatable {
+
+    public init(recurrenceWith type: RecurrenceFrequency,
+                interval: Int,
+                daysOfTheWeek days: [DayOfWeek]? = nil,
+                daysOfTheMonth monthDays: [Int]? = nil,
+                monthsOfTheYear months: [Int]? = nil,
+                weeksOfTheYear: [Int]? = nil,
+                daysOfTheYear: [Int]? = nil,
+                setPositions: [Int]? = nil,
+                end: RecurrenceEnd? = nil) {
+
+        self.frequency = type
+        self.interval = interval
+        self.daysOfTheWeek = days
+        self.daysOfTheMonth = monthDays
+        self.monthsOfTheYear = months
+        self.weeksOfTheYear = weeksOfTheYear
+        self.daysOfTheYear = daysOfTheYear
+        self.setPositions = setPositions
+        self.recurrenceEnd = end
+    }
+
+    var frequency: RecurrenceFrequency
+    var interval: Int
+    var recurrenceEnd: RecurrenceEnd?
+
+    var daysOfTheWeek: [DayOfWeek]?
+    var daysOfTheMonth: [Int]?
+    var daysOfTheYear: [Int]?
+    var weeksOfTheYear: [Int]?
+    var monthsOfTheYear: [Int]?
+    var setPositions: [Int]?
+}
+
+extension RecurrenceRule {
+
+    init?(rruleDescription: String) {
+        let rules = rruleDescription.asRRuleSubRules
+
+        guard
+            let frequency = RRuleKey.Frequency.value(in: rules),
+            let interval = RRuleKey.Interval.value(in: rules)
+        else { return nil }
+
+        let endDate = RRuleKey.EndDate.value(in: rules)
+        let occurCount = RRuleKey.OccurrenceCount.value(in: rules)
+
+        self.init(
+            recurrenceWith: frequency,
+            interval: interval,
+            daysOfTheWeek: RRuleKey.DaysOfTheWeek.value(in: rules),
+            daysOfTheMonth: RRuleKey.DaysOfTheMonth.value(in: rules),
+            monthsOfTheYear: RRuleKey.MonthsOfTheYear.value(in: rules),
+            weeksOfTheYear: RRuleKey.WeeksOfTheYear.value(in: rules),
+            daysOfTheYear: RRuleKey.DaysOfTheYear.value(in: rules),
+            setPositions: RRuleKey.SetPositions.value(in: rules),
+            end: endDate?.asRecurrenceEnd ?? occurCount?.asRecurrenceEnd)
+    }
+
+    var rruleDescription: String {
+
+        let subRules: [String] = [
+            RRuleKey.Frequency.rruleString(for: frequency),
+            RRuleKey.Interval.rruleString(for: interval),
+            RRuleKey.DaysOfTheWeek.rruleString(for: daysOfTheWeek),
+            RRuleKey.DaysOfTheMonth.rruleString(for: daysOfTheMonth),
+            RRuleKey.MonthsOfTheYear.rruleString(for: monthsOfTheYear),
+            RRuleKey.WeeksOfTheYear.rruleString(for: weeksOfTheYear),
+            RRuleKey.DaysOfTheYear.rruleString(for: daysOfTheYear),
+            RRuleKey.SetPositions.rruleString(for: setPositions),
+            RRuleKey.EndDate.rruleString(for: recurrenceEnd?.asEndDate),
+            RRuleKey.OccurrenceCount.rruleString(for: recurrenceEnd?.asOccurrenceCount)
+        ].compactMap({ $0 })
+
+        return "RRULE:" + subRules.joined(separator: ";")
+    }
+}
+
+// MARK: - Codable Conformance
+
+enum RecurrenceError: Error {
+    case decoding
+    case encoding
+}
+
+extension RecurrenceRule: Codable {
+
+    init(from decoder: any Decoder) throws {
+        let rruleString = try decoder.singleValueContainer().decode(String.self)
+        let rules = rruleString.asRRuleSubRules
+
+        guard
+            let frequency = RRuleKey.Frequency.value(in: rules),
+            let interval = RRuleKey.Interval.value(in: rules)
+        else { throw RecurrenceError.decoding }
+
+        let endDate = RRuleKey.EndDate.value(in: rules)
+        let occurCount = RRuleKey.OccurrenceCount.value(in: rules)
+
+        self.frequency = frequency
+        self.interval = interval
+        self.daysOfTheWeek = RRuleKey.DaysOfTheWeek.value(in: rules)
+        self.daysOfTheMonth = RRuleKey.DaysOfTheMonth.value(in: rules)
+        self.monthsOfTheYear = RRuleKey.MonthsOfTheYear.value(in: rules)
+        self.weeksOfTheYear = RRuleKey.WeeksOfTheYear.value(in: rules)
+        self.daysOfTheYear = RRuleKey.DaysOfTheYear.value(in: rules)
+        self.setPositions = RRuleKey.SetPositions.value(in: rules)
+        self.recurrenceEnd = endDate?.asRecurrenceEnd ?? occurCount?.asRecurrenceEnd
+    }
+
+    func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(rruleDescription)
+    }
+}
+
+// MARK: - Helpers
+
+private extension Date {
+
+    private static let rruleFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd'T'HHmmss'Z'"
+        return dateFormatter
+    }()
+
+    func rruleFormatted() -> String {
+        return Self.rruleFormatter.string(from: self)
+    }
+
+    static func parse(rruleDescription: String) -> Date? {
+        return Self.rruleFormatter.date(from: rruleDescription)
+    }
+}
+
+private extension String {
+
+    var asRRuleSubRules: [String: String] {
+        return self
+            .replacingOccurrences(of: "RRULE:", with: "")
+            .trimmed()
+            .split(separator: ";")
+            .map(String.init)
+            .compactMap({ $0.asKeyValuePair })
+            .reduce(into: [:]) { partialResult, pair in
+                partialResult[pair.key] = pair.value
+            }
+    }
+
+    var asKeyValuePair: (key: String, value: String)? {
+        let pair = split(separator: "=").map({ String($0).trimmingCharacters(in: .whitespaces) })
+
+        if pair.count >= 2 {
+            return (pair[0], pair[1])
+        }
+
+        return nil
+    }
+
+    func trimmed() -> Self {
+        return trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    var nonEmpty: String? {
+        trimmed().isEmpty ? nil : self
+    }
+}

@@ -38,18 +38,7 @@ struct APICalendarEventRequestBody: Codable, Equatable {
         let location_address: String?
         let time_zone_edited: String? // Needed for proper all_day calculation, otherwise account timezone would be used instead of device timezone
         // let all_day: Bool? // We are not sending it, because we allow API to calculate it based start/end times (web does the same)
-
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(context_code, forKey: .context_code)
-            try container.encode(title, forKey: .title)
-            try container.encode(description, forKey: .description)
-            try container.encode(start_at, forKey: .start_at)
-            try container.encode(end_at, forKey: .end_at)
-            try container.encode(location_name, forKey: .location_name)
-            try container.encode(location_address, forKey: .location_address)
-            try container.encode(time_zone_edited, forKey: .time_zone_edited)
-        }
+        let rrule: RecurrenceRule?
     }
 
     let calendar_event: CalendarEvent
@@ -65,7 +54,8 @@ extension APICalendarEventRequestBody {
         end_at: Date = Clock.now.startOfDay(),
         location_name: String? = nil,
         location_address: String? = nil,
-        time_zone_edited: String? = nil
+        time_zone_edited: String? = nil,
+        rrule: RecurrenceRule? = nil
     ) -> PostCalendarEventRequest.Body {
         .init(
             calendar_event: .init(
@@ -76,7 +66,8 @@ extension APICalendarEventRequestBody {
                 end_at: end_at,
                 location_name: location_name,
                 location_address: location_address,
-                time_zone_edited: time_zone_edited
+                time_zone_edited: time_zone_edited,
+                rrule: rrule
             )
         )
     }

@@ -90,7 +90,8 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
             end_at: model.processedEndTime,
             location_name: model.location,
             location_address: model.address,
-            time_zone_edited: model.timeZone
+            time_zone_edited: model.timeZone,
+            rrule: model.rrule
         )
         return ReactiveStore(useCase: useCase)
             .getEntities()
@@ -108,7 +109,8 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
             end_at: model.processedEndTime,
             location_name: model.location,
             location_address: model.address,
-            time_zone_edited: model.timeZone
+            time_zone_edited: model.timeZone,
+            rrule: model.rrule
         )
         return ReactiveStore(useCase: useCase)
             .getEntities()

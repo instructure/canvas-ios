@@ -308,7 +308,8 @@ final class EditCalendarEventViewModel: ObservableObject {
             contextCode: calendar.rawContextID,
             location: location.nilIfEmpty,
             address: address.nilIfEmpty,
-            details: details.nilIfEmpty
+            details: details.nilIfEmpty,
+            rrule: nil // TODO
         )
     }
 
