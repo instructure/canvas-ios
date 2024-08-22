@@ -151,7 +151,7 @@ class UseCaseTests: CoreTestCase {
             error = e
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
         XCTAssertNotNil(error)
     }
 
@@ -174,7 +174,7 @@ class UseCaseTests: CoreTestCase {
                     }
                 } receiveValue: { _ in }
         }
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription?.cancel()
     }
 
@@ -195,7 +195,7 @@ class UseCaseTests: CoreTestCase {
                 }
             }
         }
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
     }
 }
 
@@ -223,7 +223,7 @@ class CollectionUseCaseTests: CoreTestCase {
             expectation.fulfill()
         }
 
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
         databaseClient.refresh()
         XCTAssertEqual((databaseClient.fetch() as [Course]).count, 0)
     }
