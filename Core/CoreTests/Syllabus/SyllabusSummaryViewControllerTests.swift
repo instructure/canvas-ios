@@ -25,7 +25,6 @@ class SyllabusSummaryViewControllerTests: CoreTestCase {
     let courseID = "1"
     lazy var controller = SyllabusSummaryViewController.create(courseID: courseID)
 
-    // FIXME: flaky test (both locally and on CI)
     func testLayout() {
         let date = DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 12).date!
         let assignment = APICalendarEvent.make(
@@ -64,7 +63,10 @@ class SyllabusSummaryViewControllerTests: CoreTestCase {
 
         controller.view.layoutIfNeeded()
         let tableView = controller.tableView!
-        XCTAssertEqual(controller.tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 3)
+
+        waitUntil(1, shouldFail: true) {
+            controller.tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0) == 3
+        }
 
         let assignmentCell = cell(at: IndexPath(row: 0, section: 0))
         XCTAssertEqual(assignmentCell.itemNameLabel.text, "assignment")
