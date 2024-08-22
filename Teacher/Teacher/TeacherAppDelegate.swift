@@ -19,6 +19,8 @@
 import AVKit
 import Combine
 import Core
+import FirebaseCrashlyticsSwift
+import FirebaseRemoteConfigSwift
 import Firebase
 import Heap
 import PSPDFKit

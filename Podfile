@@ -20,12 +20,12 @@ abstract_target 'defaults' do
 
   target 'Teacher' do
     project 'Teacher/Teacher.xcodeproj'
-    firebase_pods
+    # firebase_pods
   end
 
   target 'TeacherTests' do
     project 'Teacher/Teacher.xcodeproj'
-    firebase_pods
+    # firebase_pods
   end
 
   target 'Student' do
