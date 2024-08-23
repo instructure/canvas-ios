@@ -36,10 +36,6 @@ struct MultiPickerView: UIViewRepresentable {
         picker.dataSource = context.coordinator
         picker.delegate = context.coordinator
 
-        if selections.isEmpty {
-            selections = (0 ..< content.count).map({ _ in 0 })
-        }
-
         return picker
     }
 
@@ -133,7 +129,7 @@ private class RowLabel: UIView {
 }
 
 #Preview {
-    @State var selection: [Int] = []
+    @State var selection: [Int] = [0, 0]
 
     return MultiPickerView(
         content: [

@@ -32,7 +32,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
 
     var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
 
-    @State var selection: [Int] = []
+    @State var selection: [Int] = [0, 0]
 
     init(viewModel: EditCustomFrequencyViewModel) {
         self.viewModel = viewModel
