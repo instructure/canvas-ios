@@ -251,7 +251,7 @@ enum WeekNumber: Int, RRuleCodable {
 struct DayOfWeek: Equatable, RRuleCodable {
 
     init?(rruleString: String) {
-        guard 
+        guard
             let val = rruleString.split(separator: /\d+/).last,
             let day = Weekday(rawValue: String(val)) else { return nil }
 
@@ -283,21 +283,21 @@ struct RecurrenceRule: Equatable {
 
     public init(recurrenceWith type: RecurrenceFrequency,
                 interval: Int,
-                daysOfTheWeek days: [DayOfWeek]? = nil,
+                daysOfTheWeek weekDays: [DayOfWeek]? = nil,
                 daysOfTheMonth monthDays: [Int]? = nil,
-                monthsOfTheYear months: [Int]? = nil,
-                weeksOfTheYear: [Int]? = nil,
-                daysOfTheYear: [Int]? = nil,
+                daysOfTheYear yearDays: [Int]? = nil,
+                weeksOfTheYear yearWeeks: [Int]? = nil,
+                monthsOfTheYear yearMonths: [Int]? = nil,
                 setPositions: [Int]? = nil,
                 end: RecurrenceEnd? = nil) {
 
         self.frequency = type
         self.interval = interval
-        self.daysOfTheWeek = days
+        self.daysOfTheWeek = weekDays
         self.daysOfTheMonth = monthDays
-        self.monthsOfTheYear = months
-        self.weeksOfTheYear = weeksOfTheYear
-        self.daysOfTheYear = daysOfTheYear
+        self.daysOfTheYear = yearDays
+        self.weeksOfTheYear = yearWeeks
+        self.monthsOfTheYear = yearMonths
         self.setPositions = setPositions
         self.recurrenceEnd = end
     }
@@ -315,46 +315,68 @@ struct RecurrenceRule: Equatable {
 }
 
 extension RecurrenceRule {
+    private typealias RK = RRuleKey
 
     init?(rruleDescription: String) {
         let rules = rruleDescription.asRRuleSubRules
 
         guard
-            let frequency = RRuleKey.Frequency.value(in: rules),
-            let interval = RRuleKey.Interval.value(in: rules)
+            let frequency = RK.Frequency.value(in: rules),
+            let interval = RK.Interval.value(in: rules)
         else { return nil }
 
-        let endDate = RRuleKey.EndDate.value(in: rules)
-        let occurCount = RRuleKey.OccurrenceCount.value(in: rules)
+        let endDate = RK.EndDate.value(in: rules)
+        let occurCount = RK.OccurrenceCount.value(in: rules)
 
-        self.init(
-            recurrenceWith: frequency,
-            interval: interval,
-            daysOfTheWeek: RRuleKey.DaysOfTheWeek.value(in: rules),
-            daysOfTheMonth: RRuleKey.DaysOfTheMonth.value(in: rules),
-            monthsOfTheYear: RRuleKey.MonthsOfTheYear.value(in: rules),
-            weeksOfTheYear: RRuleKey.WeeksOfTheYear.value(in: rules),
-            daysOfTheYear: RRuleKey.DaysOfTheYear.value(in: rules),
-            setPositions: RRuleKey.SetPositions.value(in: rules),
-            end: endDate?.asRecurrenceEnd ?? occurCount?.asRecurrenceEnd)
+        self.frequency = frequency
+        self.interval = interval
+
+        if [.weekly, .monthly, .yearly].contains(frequency) {
+            self.daysOfTheWeek = RK.DaysOfTheWeek.value(in: rules)
+        }
+
+        if case .monthly = frequency {
+            self.daysOfTheMonth = RK.DaysOfTheMonth.value(in: rules)
+        }
+
+        if case .yearly = frequency {
+            self.daysOfTheYear = RK.DaysOfTheYear.value(in: rules)
+            self.weeksOfTheYear = RK.WeeksOfTheYear.value(in: rules)
+            self.monthsOfTheYear = RK.MonthsOfTheYear.value(in: rules)
+        }
+
+        self.setPositions = RK.SetPositions.value(in: rules)
+        self.recurrenceEnd = endDate?.asRecurrenceEnd ?? occurCount?.asRecurrenceEnd
     }
 
     var rruleDescription: String {
 
-        let subRules: [String] = [
-            RRuleKey.Frequency.rruleString(for: frequency),
-            RRuleKey.Interval.rruleString(for: interval),
-            RRuleKey.DaysOfTheWeek.rruleString(for: daysOfTheWeek),
-            RRuleKey.DaysOfTheMonth.rruleString(for: daysOfTheMonth),
-            RRuleKey.MonthsOfTheYear.rruleString(for: monthsOfTheYear),
-            RRuleKey.WeeksOfTheYear.rruleString(for: weeksOfTheYear),
-            RRuleKey.DaysOfTheYear.rruleString(for: daysOfTheYear),
-            RRuleKey.SetPositions.rruleString(for: setPositions),
-            RRuleKey.EndDate.rruleString(for: recurrenceEnd?.asEndDate),
-            RRuleKey.OccurrenceCount.rruleString(for: recurrenceEnd?.asOccurrenceCount)
-        ].compactMap({ $0 })
+        var subRules: [String?] = [
+            RK.Frequency.rruleString(for: frequency),
+            RK.Interval.rruleString(for: interval)
+        ]
 
-        return "RRULE:" + subRules.joined(separator: ";")
+        if [.weekly, .monthly, .yearly].contains(frequency) {
+            subRules.append(
+                RK.DaysOfTheWeek.rruleString(for: daysOfTheWeek)
+            )
+        }
+
+        if case .monthly = frequency {
+            subRules.append(
+                RK.DaysOfTheMonth.rruleString(for: daysOfTheMonth)
+            )
+        }
+
+        if case .yearly = frequency {
+            subRules.append(contentsOf: [
+                RK.DaysOfTheYear.rruleString(for: daysOfTheYear),
+                RK.WeeksOfTheYear.rruleString(for: weeksOfTheYear),
+                RK.MonthsOfTheYear.rruleString(for: monthsOfTheYear)
+            ])
+        }
+
+        return "RRULE:" + subRules.compactMap({ $0 }).joined(separator: ";")
     }
 }
 
@@ -369,25 +391,11 @@ extension RecurrenceRule: Codable {
 
     init(from decoder: any Decoder) throws {
         let rruleString = try decoder.singleValueContainer().decode(String.self)
-        let rules = rruleString.asRRuleSubRules
 
-        guard
-            let frequency = RRuleKey.Frequency.value(in: rules),
-            let interval = RRuleKey.Interval.value(in: rules)
+        guard let rule = Self.init(rruleDescription: rruleString)
         else { throw RecurrenceError.decoding }
 
-        let endDate = RRuleKey.EndDate.value(in: rules)
-        let occurCount = RRuleKey.OccurrenceCount.value(in: rules)
-
-        self.frequency = frequency
-        self.interval = interval
-        self.daysOfTheWeek = RRuleKey.DaysOfTheWeek.value(in: rules)
-        self.daysOfTheMonth = RRuleKey.DaysOfTheMonth.value(in: rules)
-        self.monthsOfTheYear = RRuleKey.MonthsOfTheYear.value(in: rules)
-        self.weeksOfTheYear = RRuleKey.WeeksOfTheYear.value(in: rules)
-        self.daysOfTheYear = RRuleKey.DaysOfTheYear.value(in: rules)
-        self.setPositions = RRuleKey.SetPositions.value(in: rules)
-        self.recurrenceEnd = endDate?.asRecurrenceEnd ?? occurCount?.asRecurrenceEnd
+        self = rule
     }
 
     func encode(to encoder: any Encoder) throws {
@@ -445,5 +453,12 @@ private extension String {
 
     var nonEmpty: String? {
         trimmed().isEmpty ? nil : self
+    }
+}
+
+extension Array {
+    func nonEmpty() -> Self? {
+        if isEmpty { return nil }
+        return self
     }
 }

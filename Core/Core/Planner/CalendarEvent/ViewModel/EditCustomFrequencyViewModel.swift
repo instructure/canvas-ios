@@ -65,9 +65,9 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             interval: interval,
             daysOfTheWeek: daysOfTheWeek.nonEmpty(),
             daysOfTheMonth: daysOfTheMonth.nonEmpty(),
-            monthsOfTheYear: monthsOfTheYear.nonEmpty(),
-            weeksOfTheYear: weeksOfTheYear.nonEmpty(),
             daysOfTheYear: daysOfTheYear.nonEmpty(),
+            weeksOfTheYear: weeksOfTheYear.nonEmpty(),
+            monthsOfTheYear: monthsOfTheYear.nonEmpty(),
             setPositions: setPositions.nonEmpty(),
             end: recurrenceEnd
         )
@@ -79,12 +79,5 @@ extension Array where Element: Equatable {
     mutating func insert(_ element: Element) {
         guard contains(element) == false else { return }
         append(element)
-    }
-}
-
-extension Array {
-    func nonEmpty() -> Self? {
-        if isEmpty { return nil }
-        return self
     }
 }

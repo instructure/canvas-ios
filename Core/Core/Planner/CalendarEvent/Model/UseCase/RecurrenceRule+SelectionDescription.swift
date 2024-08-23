@@ -1,31 +1,29 @@
-//
-// This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as
-// published by the Free Software Foundation, either version 3 of the
-// License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-//
-// You should have received a copy of the GNU Affero General Public License
-// along with this program.  If not, see <https://www.gnu.org/licenses/>.
-//
-
-import Foundation
-
 extension RecurrenceFrequency {
 
-    var text: String {
+    var everyTime: String {
         switch self {
-        case .daily: String(localized: "Daily", bundle: .core)
-        case .weekly: String(localized: "Weekly", bundle: .core)
-        case .monthly: String(localized: "Monthly", bundle: .core)
-        case .yearly: String(localized: "Yearly", bundle: .core)
+        case .daily: String(localized: "Daily")
+        case .weekly: String(localized: "Weekly")
+        case .monthly: String(localized: "Monthly")
+        case .yearly: String(localized: "Yearly")
+        }
+    }
+
+    var everyOther: String {
+        switch self {
+        case .daily: String(localized: "Every other day")
+        case .weekly: String(localized: "Every other week")
+        case .monthly: String(localized: "Every other month")
+        case .yearly: String(localized: "Every other year")
+        }
+    }
+
+    var everyMultipleFormat: String {
+        switch self {
+        case .daily: String(localized: "Every %@ day")
+        case .weekly: String(localized: "Every %@ week")
+        case .monthly: String(localized: "Every %@ month")
+        case .yearly: String(localized: "Every %@ year")
         }
     }
 }
@@ -43,19 +41,19 @@ extension Weekday {
     var pluralText: String {
         switch self {
         case .sunday:
-            String(localized: "Sundays", bundle: .core)
+            String(localized: "Sundays")
         case .monday:
-            String(localized: "Mondays", bundle: .core)
+            String(localized: "Mondays")
         case .tuesday:
-            String(localized: "Tuesdays", bundle: .core)
+            String(localized: "Tuesdays")
         case .wednesday:
-            String(localized: "Wednesdays", bundle: .core)
+            String(localized: "Wednesdays")
         case .thursday:
-            String(localized: "Thursdays", bundle: .core)
+            String(localized: "Thursdays")
         case .friday:
-            String(localized: "Fridays", bundle: .core)
+            String(localized: "Fridays")
         case .saturday:
-            String(localized: "Saturdays", bundle: .core)
+            String(localized: "Saturdays")
         }
     }
 }
@@ -64,22 +62,23 @@ extension WeekNumber {
     var text: String {
         switch self {
         case .first:
-            String(localized: "First", bundle: .core)
+            String(localized: "First")
         case .second:
-            String(localized: "Second", bundle: .core)
+            String(localized: "Second")
         case .third:
-            String(localized: "Third", bundle: .core)
+            String(localized: "Third")
         case .fourth:
-            String(localized: "Fourth", bundle: .core)
+            String(localized: "Fourth")
         case .fifth:
-            String(localized: "Fifth", bundle: .core)
+            String(localized: "Fifth")
         case .last:
-            String(localized: "Last", bundle: .core)
+            String(localized: "Last")
         }
     }
 }
 
 extension DayOfWeek {
+
     var shortText: String {
         var txt: [String] = []
         if let weekNumber { txt.append(weekNumber.text) }
@@ -87,7 +86,14 @@ extension DayOfWeek {
         return txt.joined(separator: " ")
     }
 
-    var text: String {
+    var fullText: String {
+        var txt: [String] = []
+        if let weekNumber { txt.append(weekNumber.text) }
+        txt.append(dayOfTheWeek.text)
+        return txt.joined(separator: " ")
+    }
+
+    var selectionText: String {
         var txt: [String] = []
         if let weekNumber {
             txt.append(weekNumber.text)
@@ -115,71 +121,24 @@ extension Array where Element == DayOfWeek {
         filter({ Weekday.weekDays.contains($0.dayOfTheWeek) == false })
     }
 
-    var texts: [String] {
+    var selectionTexts: [String] {
         var tags = [String]()
 
         if hasWeekdays {
-            tags.append(String(localized: "Weekdays", bundle: .core))
+            tags.append(String(localized: "Weekdays"))
         }
 
         if let nonWeekDays = nonWeekdays.nonEmpty() {
 
             let long = tags.isEmpty ? nonWeekDays.count <= 2 : false
             for wday in nonWeekDays {
-                tags.append(long ? wday.text : wday.shortText)
+                tags.append(long ? wday.selectionText : wday.shortText)
             }
         }
 
         return tags
     }
 
-}
-
-enum IntervalUnit {
-    case day
-    case week
-    case month
-    case year
-
-    var one: String {
-        switch self {
-        case .day: String(localized: "Every day", bundle: .core)
-        case .week: String(localized: "Every week", bundle: .core)
-        case .month: String(localized: "Every month", bundle: .core)
-        case .year: String(localized: "Every year", bundle: .core)
-        }
-    }
-
-    var two: String {
-        switch self {
-        case .day: String(localized: "Every other day", bundle: .core)
-        case .week: String(localized: "Every other week", bundle: .core)
-        case .month: String(localized: "Every other month", bundle: .core)
-        case .year: String(localized: "Every other year", bundle: .core)
-        }
-    }
-
-    var moreFormat: String {
-        switch self {
-        case .day: String(localized: "Every %@ day", bundle: .core)
-        case .week: String(localized: "Every %@ week", bundle: .core)
-        case .month: String(localized: "Every %@ month", bundle: .core)
-        case .year: String(localized: "Every %@ year", bundle: .core)
-        }
-    }
-
-    init(given frequency: RecurrenceFrequency) {
-        switch frequency {
-        case .daily:
-            self = .day
-        case .weekly:
-            self = .week
-        case .monthly:
-            self = .month
-        case .yearly:
-            self = .year
-        }
-    }
 }
 
 extension Int {
@@ -190,11 +149,11 @@ extension Int {
         return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
     }
 
-    func asInterval(_ unit: IntervalUnit) -> String {
+    func asInterval(for frequency: RecurrenceFrequency) -> String {
         if self == 0 { return "" }
-        if self == 1 { return unit.one }
-        if self == 2 { return unit.two }
-        return String(format: unit.moreFormat, ordinal)
+        if self == 1 { return frequency.everyTime }
+        if self == 2 { return frequency.everyOther }
+        return String(format: frequency.everyMultipleFormat, ordinal)
     }
 
     var asDay: String {
@@ -230,14 +189,58 @@ extension RecurrenceRule {
     var text: String {
         var words: [String] = []
 
+        if frequency != .daily {
 
+            if let days = daysOfTheWeek {
 
-        if interval > 1 {
-            words.append(interval.asInterval(.init(given: frequency)))
+                if days.hasWeekdays, case .weekly = frequency, interval == 1 {
+                    words.append(String(localized: "Every Weekday", bundle: .core))
+                } else {
+                    words.append(interval.asInterval(for: frequency))
+                    words.append(" on ")
+                    words.append(days.map({ $0.fullText }).joined(separator: ", "))
+                }
+
+            } else {
+                words.append(interval.asInterval(for: frequency))
+            }
         } else {
-            words.append(frequency.text)
+            words.append(interval.asInterval(for: frequency))
+            return words.joined()
         }
 
+        func seperator() {
+            words.append(words.count == 1 ? " on " : ", ")
+        }
 
+        if let weeks = weeksOfTheYear {
+            seperator()
+
+            words.append(weeks.map({ $0.asWeek }).joined(separator: ", "))
+        }
+
+        if let months = monthsOfTheYear, months.count == 1,
+           let days = daysOfTheMonth, days.count == 1,
+            let month = months.first,
+            let day = days.first {
+
+            seperator()
+            words.append(month.asMonth)
+            words.append(" ")
+            words.append(day.formatted(.number))
+        } else {
+
+            if let months = monthsOfTheYear {
+                seperator()
+                words.append(months.map({ $0.asMonth }).joined(separator: ", "))
+            }
+
+            if let days = daysOfTheMonth {
+                seperator()
+                words.append(days.map({ $0.asDay }).joined(separator: ", "))
+            }
+        }
+
+        return words.joined()
     }
 }
