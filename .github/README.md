@@ -106,7 +106,7 @@ Writing code in a testable way is paramount for long term success. These apps ar
 
 ### Conventions
 
-We make and keep strong [conventions](./CONVENTIONS.md) in order to reduce mental overhead.
+We make and keep strong [conventions](./guidelines/CONVENTIONS.md) in order to reduce mental overhead.
 
 ### No Tricky Stuff
 
@@ -217,4 +217,4 @@ Change the `username`, `password`, and `host` to your test credentials. You can 
 
 ## Xcode Templates
 
-Xcode templates can be found under the `templates` directory. Copy the contents of that directory to `~/Library/Developer/Xcode/Templates/`. Run `make sync` to update your project after you have created your files from these templates.
+Xcode templates can be found under the `./.github/templates` directory. Copy the contents of that directory to `~/Library/Developer/Xcode/Templates/`. Run `make sync` to update your project after you have created your files from these templates.
