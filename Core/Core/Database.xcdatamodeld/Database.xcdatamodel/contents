@@ -11,7 +11,7 @@
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="htmlURL" attributeType="URI"/>
+        <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="message" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
