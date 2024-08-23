@@ -23,8 +23,6 @@ include:
   - StudentE2ETests/student-e2e-tests.yml
   - StudentUnitTests/student-unit-tests.yml
 projectReferences:
-  CanvasCore:
-    path: ../CanvasCore/CanvasCore.xcodeproj
   Core:
     path: ../Core/Core.xcodeproj
 packages:
