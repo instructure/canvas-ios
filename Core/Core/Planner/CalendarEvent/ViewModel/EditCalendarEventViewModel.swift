@@ -283,6 +283,7 @@ final class EditCalendarEventViewModel: ObservableObject {
             EditCustomFrequencyScreen(
                 viewModel: EditCustomFrequencyViewModel(
                     rule: frequency,
+                    proposedDate: date ?? Clock.now,
                     completion: { [weak self] savedRule in
                         self?.frequency = savedRule
                     }
@@ -317,7 +318,7 @@ final class EditCalendarEventViewModel: ObservableObject {
             location: location.nilIfEmpty,
             address: address.nilIfEmpty,
             details: details.nilIfEmpty,
-            rrule: nil // TODO
+            rrule: frequency
         )
     }
 

@@ -53,7 +53,8 @@ final class CreateCalendarEventTests: CoreTestCase {
             end_at: TestConstants.endAt,
             location_name: TestConstants.locationName,
             location_address: TestConstants.locationAddress,
-            time_zone_edited: TestConstants.timeZone
+            time_zone_edited: TestConstants.timeZone,
+            rrule: nil
         )
     }
 

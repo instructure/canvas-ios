@@ -32,6 +32,8 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
 
     var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
 
+    @State var selection: [Int] = []
+
     init(viewModel: EditCustomFrequencyViewModel) {
         self.viewModel = viewModel
     }
@@ -40,9 +42,15 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
         InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { geometry in
             VStack(alignment: .leading, spacing: 0) {
                 VStack(spacing: 0) {
-
-
-
+                    MultiPickerView(
+                        content: [
+                            (1 ... 400).map({ String($0) }),
+                            ["Daily", "Weekly", "Monthly", "Yearly"]
+                        ],
+                        widths: [3, 7],
+                        alignments: [.right, .left],
+                        selections: $selection
+                    )
                 }
             }
         }

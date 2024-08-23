@@ -315,64 +315,64 @@ struct RecurrenceRule: Equatable {
 }
 
 extension RecurrenceRule {
-    private typealias RK = RRuleKey
+    private typealias RRK = RRuleKey
 
     init?(rruleDescription: String) {
         let rules = rruleDescription.asRRuleSubRules
 
         guard
-            let frequency = RK.Frequency.value(in: rules),
-            let interval = RK.Interval.value(in: rules)
+            let frequency = RRK.Frequency.value(in: rules),
+            let interval = RRK.Interval.value(in: rules)
         else { return nil }
 
-        let endDate = RK.EndDate.value(in: rules)
-        let occurCount = RK.OccurrenceCount.value(in: rules)
+        let endDate = RRK.EndDate.value(in: rules)
+        let occurCount = RRK.OccurrenceCount.value(in: rules)
 
         self.frequency = frequency
         self.interval = interval
 
         if [.weekly, .monthly, .yearly].contains(frequency) {
-            self.daysOfTheWeek = RK.DaysOfTheWeek.value(in: rules)
+            self.daysOfTheWeek = RRK.DaysOfTheWeek.value(in: rules)
         }
 
         if case .monthly = frequency {
-            self.daysOfTheMonth = RK.DaysOfTheMonth.value(in: rules)
+            self.daysOfTheMonth = RRK.DaysOfTheMonth.value(in: rules)
         }
 
         if case .yearly = frequency {
-            self.daysOfTheYear = RK.DaysOfTheYear.value(in: rules)
-            self.weeksOfTheYear = RK.WeeksOfTheYear.value(in: rules)
-            self.monthsOfTheYear = RK.MonthsOfTheYear.value(in: rules)
+            self.daysOfTheYear = RRK.DaysOfTheYear.value(in: rules)
+            self.weeksOfTheYear = RRK.WeeksOfTheYear.value(in: rules)
+            self.monthsOfTheYear = RRK.MonthsOfTheYear.value(in: rules)
         }
 
-        self.setPositions = RK.SetPositions.value(in: rules)
+        self.setPositions = RRK.SetPositions.value(in: rules)
         self.recurrenceEnd = endDate?.asRecurrenceEnd ?? occurCount?.asRecurrenceEnd
     }
 
     var rruleDescription: String {
 
         var subRules: [String?] = [
-            RK.Frequency.rruleString(for: frequency),
-            RK.Interval.rruleString(for: interval)
+            RRK.Frequency.rruleString(for: frequency),
+            RRK.Interval.rruleString(for: interval)
         ]
 
         if [.weekly, .monthly, .yearly].contains(frequency) {
             subRules.append(
-                RK.DaysOfTheWeek.rruleString(for: daysOfTheWeek)
+                RRK.DaysOfTheWeek.rruleString(for: daysOfTheWeek)
             )
         }
 
         if case .monthly = frequency {
             subRules.append(
-                RK.DaysOfTheMonth.rruleString(for: daysOfTheMonth)
+                RRK.DaysOfTheMonth.rruleString(for: daysOfTheMonth)
             )
         }
 
         if case .yearly = frequency {
             subRules.append(contentsOf: [
-                RK.DaysOfTheYear.rruleString(for: daysOfTheYear),
-                RK.WeeksOfTheYear.rruleString(for: weeksOfTheYear),
-                RK.MonthsOfTheYear.rruleString(for: monthsOfTheYear)
+                RRK.DaysOfTheYear.rruleString(for: daysOfTheYear),
+                RRK.WeeksOfTheYear.rruleString(for: weeksOfTheYear),
+                RRK.MonthsOfTheYear.rruleString(for: monthsOfTheYear)
             ])
         }
 

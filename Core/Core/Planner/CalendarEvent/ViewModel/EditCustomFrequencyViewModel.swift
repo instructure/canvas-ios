@@ -30,6 +30,8 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     let didTapCancel = PassthroughSubject<Void, Never>()
     let didTapDone = PassthroughSubject<Void, Never>()
 
+    let proposedDate: Date
+
     @Published private(set) var state: InstUI.ScreenState = .data
     @Published var frequency: RecurrenceFrequency = .daily
     @Published var interval: Int = 1
@@ -42,7 +44,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     @Published var daysOfTheYear: [Int] = []
     @Published var setPositions: [Int] = []
 
-    init(rule: RecurrenceRule?, completion: @escaping (RecurrenceRule?) -> Void) {
+    init(rule: RecurrenceRule?, proposedDate date: Date, completion: @escaping (RecurrenceRule?) -> Void) {
         self.frequency = rule?.frequency ?? .daily
         self.interval = rule?.interval ?? 1
         self.recurrenceEnd = rule?.recurrenceEnd
@@ -53,6 +55,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         self.weeksOfTheYear = rule?.weeksOfTheYear ?? []
         self.daysOfTheYear = rule?.daysOfTheYear ?? []
         self.setPositions = rule?.setPositions ?? []
+        self.proposedDate = date
     }
 
     var isSaveButtonEnabled: Bool {
