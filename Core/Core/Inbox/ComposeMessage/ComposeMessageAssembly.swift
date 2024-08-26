@@ -30,7 +30,8 @@ public enum ComposeMessageAssembly {
             uploadManager: UploadManager(identifier: batchId),
             publisherProvider: URLSessionDataTaskPublisherProviderLive()
         )
-        let viewModel = ComposeMessageViewModel(router: env.router, options: options, interactor: interactor)
+        let recipientUseCase = RecipientUseCase()
+        let viewModel = ComposeMessageViewModel(router: env.router, options: options, interactor: interactor, recipientUseCase: recipientUseCase)
 
         let view = ComposeMessageView(model: viewModel)
         return CoreHostingController(view)
@@ -46,7 +47,7 @@ public enum ComposeMessageAssembly {
     -> ComposeMessageView {
         let interactor = ComposeMessageInteractorPreview()
         let options = ComposeMessageOptions()
-        let viewModel = ComposeMessageViewModel(router: env.router, options: options, interactor: interactor)
+        let viewModel = ComposeMessageViewModel(router: env.router, options: options, interactor: interactor, recipientUseCase: RecipientUseCase())
         return ComposeMessageView(model: viewModel)
     }
 
