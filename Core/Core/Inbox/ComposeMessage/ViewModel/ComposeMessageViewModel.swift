@@ -57,6 +57,7 @@ class ComposeMessageViewModel: ObservableObject {
     public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
     public var didSelectFile = PassthroughRelay<(WeakViewController, File)>()
     public let didRemoveFile = PassthroughRelay<File>()
+    @Published var textRecipientSearch = ""
 
     // MARK: - Inputs / Outputs
     @Published public var sendIndividual: Bool = false
@@ -67,6 +68,8 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var includedMessages: [ConversationMessage] = []
     @Published public var attachments: [File] = []
     @Published public var isShowingCancelDialog = false
+    @Published private(set) var searchedRecipients: [Recipient] = []
+    @Published var showSearchRecipientsView: Bool = false
     public let confirmAlert = ConfirmationAlertViewModel(
         title: String(localized: "Unsaved Changes", bundle: .core),
         message: String(localized: "You have unsaved changes in your message. If you leave now, your current message will be lost.", bundle: .core),
@@ -79,26 +82,61 @@ class ComposeMessageViewModel: ObservableObject {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: ComposeMessageInteractor
+    private let recipientUseCase: RecipientUseCaseType
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var messageType: ComposeMessageOptions.MessageType
-
+    var allRecipients = CurrentValueSubject<[Recipient], Never>([])
     private var hiddenMessage: String = ""
     private var autoTeacherSelect: Bool = false
     private var teacherOnly: Bool = false
 
     // MARK: Public interface
-
-    public init(router: Router, options: ComposeMessageOptions, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    public init(router: Router,
+                options: ComposeMessageOptions,
+                interactor: ComposeMessageInteractor,
+                scheduler: AnySchedulerOf<DispatchQueue> = .main,
+                recipientUseCase: RecipientUseCaseType) {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
         self.messageType = options.messageType
-
+        self.recipientUseCase = recipientUseCase
         setIncludedMessages(messageType: options.messageType)
         setOptionItems(options: options)
 
         setupOutputBindings()
         setupInputBindings(router: router)
+        bindSearchRecipients()
+    }
+
+    private func getRecipients() {
+        recipientUseCase
+            .getRecipients(by: selectedContext?.context)
+            .sink { [weak self] result in
+                self?.allRecipients.send(result)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func bindSearchRecipients() {
+        Publishers.CombineLatest($textRecipientSearch, allRecipients)
+            .filter { (text, recipients) in
+                text.trimmingCharacters(in: .whitespaces).count >= 3 && !recipients.isEmpty
+            }
+            .map { (text, recipients) in
+                recipients.filter { $0.displayName.lowercased().contains(text.lowercased()) }
+            }
+            .assign(to: &$searchedRecipients)
+
+        $searchedRecipients
+            .map { !$0.isEmpty }
+            .assign(to: &$showSearchRecipientsView)
+
+        $textRecipientSearch
+            .sink { [weak self] text in
+                self?.searchedRecipients = text.count >= 3 ? (self?.searchedRecipients ?? []) : []
+            }
+            .store(in: &subscriptions)
     }
 
     func courseSelectButtonDidTap(viewController: WeakViewController) {
@@ -114,7 +152,7 @@ class ComposeMessageViewModel: ObservableObject {
         if let context = selectedContext?.context, autoTeacherSelect {
             selectedRecipients.send([.init(id: "\(context.canvasContextID)_teachers", name: String(localized: "Teachers"), avatarURL: nil)])
         }
-
+        getRecipients()
         closeCourseSelectorDelayed(viewController)
     }
 
@@ -220,12 +258,14 @@ class ComposeMessageViewModel: ObservableObject {
                     self?.didRemoveRecipient.accept(recipient)
                 } else {
                     self?.selectedRecipients.value.append(recipient)
+                    self?.allRecipients.value.removeAll { $0 == recipient }
                 }
             }
             .store(in: &subscriptions)
 
         didRemoveRecipient
             .sink { [weak self] recipient in
+                self?.allRecipients.value.append(recipient)
                 self?.selectedRecipients.value.removeAll { $0 == recipient }
             }
             .store(in: &subscriptions)
