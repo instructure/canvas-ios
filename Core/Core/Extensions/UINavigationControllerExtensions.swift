@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import Core
 
 extension UINavigationController {
     // Sets the barTintColor on self as well as a detail in a split view controller situation
