@@ -34,6 +34,7 @@ struct RecipientRow: View {
                     .font(.regular16)
                     .foregroundStyle(Color.textDark)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityHidden(true)
 
             }
             .background(Color.backgroundLightest)

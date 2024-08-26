@@ -23,6 +23,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     @Environment(\.viewController) private var controller
     @ScaledMetric private var uiScale: CGFloat = 1
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
+    @State private var recipientViewHeight: CGFloat = .zero
 
     private enum FocusedInput {
         case subject
@@ -56,20 +57,40 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                             }
                         )
                     separator
-                    VStack(spacing: 0) {
-                        propertiesView
-                    }
+                    courseView
                     separator
-                    VStack(spacing: 0) {
-                        bodyView(geometry: geometry)
-                        attachmentsView
-                        if !model.includedMessages.isEmpty {
-                            includedMessages
+                    ZStack(alignment: .topLeading) {
+                        VStack(spacing: 0) {
+                            propertiesView
+                            separator
+
+                            bodyView(geometry: geometry)
+                            attachmentsView
+                            if !model.includedMessages.isEmpty {
+                                includedMessages
+                            }
                         }
+                        if model.showSearchRecipientsView {
+                            RecipientFilterView(recipient: model.searchedRecipients) { selectedRecipient in
+                                model.showSearchRecipientsView = false
+                                model.textRecipientSearch = ""
+                                model.didSelectRecipient.accept(selectedRecipient)
+                            }
+                            .offset(y: model.recipients.isEmpty ? 45 : recipientViewHeight + 45)
+                            .padding(.horizontal, 30)
+                        }
+
                     }
                 }
                 .font(.regular12)
                 .foregroundColor(.textDarkest)
+                .background(
+                    InstUI.TapArea()
+                        .onTapGesture {
+                            model.showSearchRecipientsView = false
+                            focusedInput = nil
+                        }
+                )
                 .background(
                     GeometryReader { reader in
                         return Color.backgroundLightest
@@ -99,6 +120,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     break
                 }
             }
+            .animation(.smooth, value: model.showSearchRecipientsView)
             .sheet(isPresented: $model.isImagePickerVisible) {
                 ImagePickerViewController(sourceType: .photoLibrary, imageHandler: model.addFile)
             }
@@ -196,8 +218,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     private var propertiesView: some View {
         VStack(spacing: 0) {
-            courseView
-            separator
             if model.selectedContext != nil || model.alwaysShowRecipients {
                 toView
                 separator
@@ -241,26 +261,41 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     private var toView: some View {
-        HStack {
-            Text("To", bundle: .core)
-                .font(.regular16, lineHeight: .condensed)
-                .foregroundColor(.textDark)
-                .padding(.vertical, 12)
-                .accessibilitySortPriority(3)
-                .accessibilityIdentifier("ComposeMessage.to")
-            if !model.recipients.isEmpty {
-                recipientsView
-                    .accessibilitySortPriority(1)
+        HStack(alignment: .top) {
+            toRecipientText
+            VStack {
+                if !model.recipients.isEmpty {
+                    recipientsView
+                        .accessibilitySortPriority(1)
+                }
+
+                TextField(String(localized: "Search", bundle: .core), text: $model.textRecipientSearch)
+                    .font(.regular16)
+                    .foregroundColor(.textDark)
+                    .frame(height: 50, alignment: .center)
+                    .accessibilitySortPriority(4)
+                    .accessibilityLabel(String(localized: "Search for Recipients", bundle: .core))
+                    .accessibilityAddTraits(.isSearchField)
             }
             Spacer()
 
             addRecipientButton
                 .accessibilitySortPriority(2)
         }
+        .animation(.easeInOut, value: model.recipients.isEmpty)
         .accessibilityElement(children: .contain)
         .padding(.horizontal, defaultHorizontalPaddingValue)
         .disabled(model.isRecipientsDisabled)
         .opacity(model.isRecipientsDisabled ? 0.6 : 1)
+    }
+
+    private var toRecipientText: some View {
+        Text("To", bundle: .core)
+            .font(.regular16, lineHeight: .condensed)
+            .foregroundColor(.textDark)
+            .padding(.vertical, 12)
+            .accessibilitySortPriority(3)
+            .accessibilityIdentifier("ComposeMessage.to")
     }
 
     private var recipientsView: some View {
@@ -268,6 +303,9 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             RecipientPillView(recipient: recipient, removeDidTap: { recipient in
                 model.didRemoveRecipient.accept(recipient)
             })
+        }
+        .readingFrame { frame in
+            recipientViewHeight = frame.height
         }
     }
 

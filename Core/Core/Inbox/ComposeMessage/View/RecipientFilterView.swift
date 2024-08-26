@@ -28,18 +28,19 @@ struct RecipientFilterView: View {
         ScrollView {
             VStack {
                 ForEach(recipient, id: \.self) { recipient in
-                    RecipientRow(recipient: recipient)
-                        .frame(height: 50)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            didSelectRecipient(recipient)
-                        }
+                    Button {
+                        didSelectRecipient(recipient)
+                    } label: {
+                        RecipientRow(recipient: recipient)
+                            .frame(height: 50)
+                            .accessibilityLabel(recipient.displayName)
+                            .accessibility(hint: Text("Double tap to select", bundle: .core))
+                    }
                 }
             }
             .background(Color.backgroundLightest)
         }
         .frame(maxHeight: 160)
-        .clipShape(RoundedRectangle(cornerRadius: 4))
         .shadow(color: Color.textDark.opacity(0.2), radius: 5, x: 0, y: 0)
         .padding(5)
     }
