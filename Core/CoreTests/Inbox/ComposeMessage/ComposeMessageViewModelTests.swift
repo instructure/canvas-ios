@@ -24,27 +24,34 @@ import XCTest
 
 class ComposeMessageViewModelTests: CoreTestCase {
     private var mockInteractor: ComposeMessageInteractorMock!
+    private var recipientUseCaseMock: RecipientUseCaseMock!
     var testee: ComposeMessageViewModel!
+    private var subscriptions = Set<AnyCancellable>()
 
     override func setUp() {
         super.setUp()
+        recipientUseCaseMock = RecipientUseCaseMock()
         mockInteractor = ComposeMessageInteractorMock()
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .new), interactor: mockInteractor)
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .new), interactor: mockInteractor, recipientUseCase: recipientUseCaseMock)
     }
 
     private func setupForReply() {
         let conversation: Conversation = .make()
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .reply(conversation: conversation, message: nil)), interactor: mockInteractor)
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .reply(conversation: conversation, message: nil)), interactor: mockInteractor, recipientUseCase: recipientUseCaseMock)
     }
 
     private func setupForReplyAll() {
         let conversation: Conversation = .make()
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .replyAll(conversation: conversation, message: nil)), interactor: mockInteractor)
+        testee = ComposeMessageViewModel(router: router,
+                                         options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
+                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock)
     }
 
     private func setupForForward() {
         let conversation: Conversation = .make()
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .forward(conversation: conversation, message: nil)), interactor: mockInteractor)
+        testee = ComposeMessageViewModel(router: router,
+                                         options: .init(fromType: .forward(conversation: conversation, message: nil)),
+                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock)
     }
 
     func testValidationForSubject() {
@@ -165,7 +172,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .reply(conversation: conversation, message: message2)), interactor: mockInteractor)
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .reply(conversation: conversation, message: message2)),
+                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock)
 
         XCTAssertEqual(testee.subject, "Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
@@ -180,8 +188,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .reply(conversation: conversation, message: nil)), interactor: mockInteractor)
-
+        testee = ComposeMessageViewModel(router: router,
+                                         options: .init(fromType: .reply(conversation: conversation, message: nil)),
+                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock)
         XCTAssertEqual(testee.subject, "Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
         XCTAssertEqual(testee.recipients.first?.ids.first, message2.authorID)
@@ -195,8 +204,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .replyAll(conversation: conversation, message: nil)), interactor: mockInteractor)
-
+        testee = ComposeMessageViewModel(router: router,
+                                         options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
+                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock)
         XCTAssertEqual(testee.subject, "Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
         XCTAssertEqual(testee.recipients.flatMap { $0.ids }, conversation.participants.map { $0.id })
@@ -210,7 +220,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .replyAll(conversation: conversation, message: nil)), interactor: mockInteractor)
+        testee = ComposeMessageViewModel(router: router,
+                                         options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
+                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock)
 
         XCTAssertEqual(testee.subject, "Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
@@ -225,7 +237,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .forward(conversation: conversation, message: message2)), interactor: mockInteractor)
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .forward(conversation: conversation, message: message2)),
+                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock)
 
         XCTAssertEqual(testee.subject, "Fw: Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
@@ -240,8 +253,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .forward(conversation: conversation, message: nil)), interactor: mockInteractor)
-
+        testee = ComposeMessageViewModel(router: router,
+                                         options: .init(fromType: .forward(conversation: conversation, message: nil)),
+                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock)
         XCTAssertEqual(testee.subject, "Fw: Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
         XCTAssertEqual(testee.recipients.count, 0)
@@ -332,7 +346,10 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .forward(conversation: conversation, message: nil)), interactor: mockInteractor)
+        testee = ComposeMessageViewModel(router: router,
+                                         options: .init(fromType: .forward(conversation: conversation, message: nil)),
+                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock)
+
         XCTAssertTrue(testee.expandedIncludedMessageIds.isEmpty)
 
         testee.toggleMessageExpand(message: message2)
@@ -361,6 +378,70 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.addFile(file: File.make())
 
         XCTAssertTrue(mockInteractor.isAddFileWithFileCalled)
+    }
+
+    func test_getRecipients_showRecipientsViewWhichHasFourItems() throws {
+        // Given
+        let viewController = WeakViewController(UIViewController())
+        let context = RecipientContext(course: Course.make())
+        testee.textRecipientSearch = "Can"
+        // When
+        testee.courseDidSelect(selectedContext: context, viewController: viewController)
+        // Then
+        XCTAssertEqual(testee.searchedRecipients.count, 4)
+        XCTAssertTrue(testee.showSearchRecipientsView)
+    }
+
+    func test_getRecipients_contextIsNill_hideRecipientsVieAndSearchedRecipientIsEmpty() {
+        // Given
+        let viewController = WeakViewController(UIViewController())
+        testee.textRecipientSearch = "Can"
+
+        // When
+        testee.courseDidSelect(selectedContext: nil, viewController: viewController)
+
+        // Then
+        XCTAssertTrue(testee.searchedRecipients.isEmpty)
+        XCTAssertFalse(testee.showSearchRecipientsView)
+    }
+
+    func test_bindSearchRecipients_hideSearchRecipientsViewWhenCharctersLessThanThree() {
+        // Given
+        let viewController = WeakViewController(UIViewController())
+        let context = RecipientContext(course: Course.make())
+        testee.textRecipientSearch = "Ca"
+
+        // When
+        testee.courseDidSelect(selectedContext: context, viewController: viewController)
+
+        // Then
+        XCTAssertTrue(testee.searchedRecipients.isEmpty)
+        XCTAssertFalse(testee.showSearchRecipientsView)
+    }
+
+    func test_didSelectRecipient_deleteTheSelectRecipient_andCountOfSearchRecipientIsZero() {
+        // Given
+        let viewController = WeakViewController(UIViewController())
+        let context = RecipientContext(course: Course.make())
+        testee.textRecipientSearch = "ios"
+        // When
+        testee.courseDidSelect(selectedContext: context, viewController: viewController)
+        testee.didSelectRecipient.accept(ReceiptStub.recipients.last!)
+        // Then
+        XCTAssertEqual(testee.searchedRecipients.count, 0)
+    }
+
+    func test_didRemoveRecipient_addRecipientToSearchRecipientsAgain() {
+        // Given
+        let viewController = WeakViewController(UIViewController())
+        let context = RecipientContext(course: Course.make())
+        testee.textRecipientSearch = "ios"
+        // When
+        testee.courseDidSelect(selectedContext: context, viewController: viewController)
+        testee.didSelectRecipient.accept(ReceiptStub.recipients.last!)
+        testee.didRemoveRecipient.accept(ReceiptStub.recipients.last!)
+        // Then
+        XCTAssertEqual(testee.searchedRecipients.count, 1)
     }
 }
 
