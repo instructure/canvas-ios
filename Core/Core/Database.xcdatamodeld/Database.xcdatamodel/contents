@@ -121,8 +121,10 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="isAllDay" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isSeriesHead" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="locationAddress" optional="YES" attributeType="String"/>
         <attribute name="locationName" optional="YES" attributeType="String"/>
+        <attribute name="repetitionRule" optional="YES" attributeType="String"/>
         <attribute name="seriesInNaturalLanguage" optional="YES" attributeType="String"/>
         <attribute name="startAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" attributeType="String"/>
