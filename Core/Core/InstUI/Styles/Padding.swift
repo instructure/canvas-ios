@@ -52,6 +52,8 @@ extension InstUI.Styles {
         /// Paddings to negate TextEditor insets
         case textEditorCorrection
 
+        case dropDownOption
+
         var config: Config {
             switch self {
             case .standardCell:
@@ -74,6 +76,13 @@ extension InstUI.Styles {
                     bottom: .textEditorVerticalCorrection,
                     leading: .textEditorHorizontalCorrection,
                     trailing: .textEditorHorizontalCorrection
+                )
+            case .dropDownOption:
+                Config(
+                    top: .cellTop,
+                    bottom: .cellBottom,
+                    leading: .standard,
+                    trailing: .standard
                 )
             }
         }

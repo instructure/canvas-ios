@@ -40,6 +40,7 @@ public extension UIImage {
     static var arrowOpenRightSolid: UIImage { UIImage(named: "arrowOpenRightSolid", in: .core, compatibleWith: nil)! }
     static var arrowOpenUpLine: UIImage { UIImage(named: "arrowOpenUpLine", in: .core, compatibleWith: nil)! }
     static var arrowOpenUpSolid: UIImage { UIImage(named: "arrowOpenUpSolid", in: .core, compatibleWith: nil)! }
+    static var arrowUpDownLine: UIImage { UIImage(named: "arrowUpDownLine", in: .core, compatibleWith: nil)! }
     static var assignmentLine: UIImage { UIImage(named: "assignmentLine", in: .core, compatibleWith: nil)! }
     static var assignmentSolid: UIImage { UIImage(named: "assignmentSolid", in: .core, compatibleWith: nil)! }
     static var audioLine: UIImage { UIImage(named: "audioLine", in: .core, compatibleWith: nil)! }
@@ -287,6 +288,7 @@ public extension Image {
     static var arrowOpenRightSolid: Image { Image("arrowOpenRightSolid", bundle: .core) }
     static var arrowOpenUpLine: Image { Image("arrowOpenUpLine", bundle: .core) }
     static var arrowOpenUpSolid: Image { Image("arrowOpenUpSolid", bundle: .core) }
+    static var arrowUpDownLine: Image { Image("arrowUpDownLine", bundle: .core) }
     static var assignmentLine: Image { Image("assignmentLine", bundle: .core) }
     static var assignmentSolid: Image { Image("assignmentSolid", bundle: .core) }
     static var audioLine: Image { Image("audioLine", bundle: .core) }

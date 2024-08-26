@@ -209,7 +209,7 @@ struct RecurrenceEnd: Equatable {
     }
 }
 
-enum Weekday: String, RRuleCodable {
+enum Weekday: String, RRuleCodable, CaseIterable {
     static var weekDays: [Weekday] {
         return [
             .monday, .tuesday, .wednesday, .thursday, .friday

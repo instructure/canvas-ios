@@ -125,6 +125,17 @@ extension DayOfWeek {
     }
 }
 
+extension Array where Element == Weekday {
+
+    var hasWeekdays: Bool {
+        Weekday
+            .weekDays
+            .allSatisfy({ wd in
+                contains(wd)
+            })
+    }
+}
+
 extension Array where Element == DayOfWeek {
 
     var hasWeekdays: Bool {

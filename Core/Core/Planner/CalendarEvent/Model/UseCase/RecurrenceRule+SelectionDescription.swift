@@ -78,3 +78,38 @@ extension Array where Element == DayOfWeek {
         return tags
     }
 }
+
+extension Array where Element == Weekday {
+
+    var nonWeekdays: Self {
+        filter({ Weekday.weekDays.contains($0) == false })
+    }
+
+    var allDaysIncluded: Bool {
+        Weekday.allCases.allSatisfy({ contains($0) })
+    }
+
+    var selectionTexts: [String] {
+        var tags = [String]()
+
+        if allDaysIncluded {
+            return [String(localized: "Every Day of the Week", bundle: .core)]
+        }
+
+        if hasWeekdays {
+            tags.append("Weekdays".localized())
+
+            if let nonWeekDays = nonWeekdays.nonEmpty() {
+                tags.append(contentsOf: nonWeekDays.map({ $0.shortText }))
+            }
+
+        } else {
+            let long = count < 3
+            tags.append(contentsOf: map { wday in
+                return long ? wday.pluralText : wday.shortText
+            })
+        }
+
+        return tags.nonEmpty() ?? ["Not selected"]
+    }
+}
