@@ -83,7 +83,6 @@ function runTests() {
     -resultBundlePath ${resultBundlePath}`,
     { stdio: 'inherit' }
   )
-  run(`yarn test --coverage`, { cwd: 'rn/Teacher' })
 }
 
 function reportCoverage () {
@@ -98,40 +97,11 @@ function reportCoverage () {
   run(`xcrun xccov view --report --json ${folder} > scripts/coverage/tmp.json`)
   const report = JSON.parse(readFileSync('scripts/coverage/tmp.json'))
 
-  try {
-    console.log(`Reading Jest Istanbul coverage report`)
-    const jest = JSON.parse(readFileSync('scripts/coverage/react-native/coverage-summary.json', 'utf8'))
-    const rnfiles = []
-    for (const path of Object.keys(jest)) {
-      if (!path.endsWith('.js')) { continue }
-      rnfiles.push({
-        path,
-        name: basename(path),
-        coveredLines: jest[path].lines.covered,
-        lineCoverage: jest[path].lines.pct / 100,
-        executableLines: jest[path].lines.total,
-        functions: [],
-      })
-    }
-    report.targets.push({
-      coveredLines: jest.total.lines.total,
-      lineCoverage: jest.total.lines.pct / 100,
-      files: rnfiles,
-    })
-  } catch (err) {
-    console.error(err)
-    console.log('Failed to read Jest Istanbul coverage report. Skipping.')
-  }
-
   console.log('Generating html report')
   const cssPath = resolve(`${coverageFolder}/hljs.css`)
   run(`rm -rf "${coverageFolder}"`)
-  run(`mkdir -p "${coverageFolder}/rn/Teacher"`)
   run(`cp node_modules/highlight.js/styles/xcode.css "${cssPath}"`)
   run(`cat scripts/coverage/coverage.css >> "${cssPath}"`)
-  try {
-    run(`cp scripts/coverage/react-native/*.{css,png,js} "${coverageFolder}/rn/Teacher/"`)
-  } catch (err) {}
   let coveredLines = 0
   let executableLines = 0
   const summary = {}
@@ -171,15 +141,6 @@ function writeFileHTML (file, content, cssPath) {
   const ext = extname(file.path).replace('.', '')
   const htmlPath = resolve(`${coverageFolder}/${relPath}.html`)
   run(`mkdir -p "${dirname(htmlPath)}"`)
-
-  if (ext === 'js') {
-    const path = relPath.replace('rn/Teacher', 'scripts/coverage/react-native')
-    const html = readFileSync(`${path}.html`, 'utf8')
-    return writeFileSync(htmlPath, html.replace(
-      /<h1>.*<\/h1>/is,
-      `<h1>${header(relPath)}</h1>`
-    ))
-  }
 
   const source = hljs.highlight(ext, content).value
   writeFileSync(htmlPath, `<!doctype html>
