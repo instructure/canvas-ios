@@ -33,7 +33,6 @@ public struct DropDownButton<Label>: View where Label: View {
             label: label
         )
         .buttonStyle(.plain)
-        .border(Color.yellow)
         .background {
             GeometryReader(content: { geometry in
                 Color
@@ -91,7 +90,7 @@ extension DropDownButtonState {
 
         let maxWidth = min(screenFrame.width - 50, 320)
         dims.listMaxSize.width = prefSize.flatMap({ min(maxWidth, $0.width) }) ?? maxWidth
-        
+
         let leftSpace = frame.minX
         let rightSpace = screenFrame.width - frame.maxX
 

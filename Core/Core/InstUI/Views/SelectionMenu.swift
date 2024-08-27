@@ -45,6 +45,7 @@ struct SelectionMenu<Value: Equatable, ID: Hashable>: View {
                 } label: {
                     HStack {
                         Text(op[keyPath: textKey])
+                            .font(.regular14)
                         if selection == op {
                             Image(systemName: "checkmark")
                         }
@@ -54,9 +55,8 @@ struct SelectionMenu<Value: Equatable, ID: Hashable>: View {
         } label: {
             HStack {
                 Text(selection?[keyPath: textKey] ?? "Not selected")
-                if selection == nil {
-                    DropDownIcons.Selection()
-                }
+                    .font(.regular14)
+                DropDownIcons.Selection()
             }
         }
         .tint(selection == nil ? Color.textDark : Color.textDarkest)

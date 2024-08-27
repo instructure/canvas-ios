@@ -36,11 +36,11 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
 
     @State var selection: [Int] = [0, 0]
 
-    @State var isOccurenceDialogPresented: Bool = false
+    @State var isOccurrencesDialogPresented: Bool = false
     @State var weekDays: [Weekday] = []
     @State var endMode: RecurrenceEndMode?
     @State var endDate: Date? = Clock.now
-    @State var occurencesCount: Int = 0
+    @State var occurrencesCount: Int = 0
 
     private var selectedFrequency: RecurrenceFrequency {
         return RecurrenceFrequency.allCases[selection[1]]
@@ -89,7 +89,8 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
         .dropDownDetails(state: $weekDayDropDownState) {
             WeekDaysSelectionListView(selection: $weekDays)
         }
-
+        .occurrencesCountInputDialog(isPresented: $isOccurrencesDialogPresented,
+                                     value: $occurrencesCount)
     }
 
     private var weekDaysCell: some View {
@@ -111,15 +112,12 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     private var endModeCell: some View {
-        InstUI.PickerCell(
+        InstUI.SelectionMenuCell(
             label: Text("End Repeat", bundle: .core),
-            content: {
-                ForEach(RecurrenceEndMode.allCases, id: \.self) { mode in
-                    Text(mode.title).tag(mode as RecurrenceEndMode?)
-                }
-            },
-            selection: $endMode,
-            placeholder: "Not selected"
+            options: RecurrenceEndMode.allCases,
+            id: \.self,
+            text: \.title,
+            selection: $endMode
         )
     }
 
@@ -134,12 +132,12 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
         )
     }
 
-    private var endOccurencesCountCell: some View {
+    private var endOccurrencesCountCell: some View {
         InstUI.LabelValueCell(
-            label: Text("Number of Occurences", bundle: .core),
-            value: occurencesCount.formatted(.number), 
+            label: Text("Number of Occurrences", bundle: .core),
+            value: occurrencesCount.formatted(.number),
             equalWidth: false) {
-                isOccurenceDialogPresented = true
+                isOccurrencesDialogPresented = true
             }
     }
 
@@ -148,22 +146,22 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
         switch endMode {
         case .onDate:
             endDateCell
-        case .afterOccurences:
-            endOccurencesCountCell
+        case .afterOccurrences:
+            endOccurrencesCountCell
         }
     }
 }
 
 enum RecurrenceEndMode: Equatable, CaseIterable {
     case onDate
-    case afterOccurences
+    case afterOccurrences
 
     var title: String {
         switch self {
         case .onDate:
             return "On date".localized()
-        case .afterOccurences:
-            return "After Occurences".localized()
+        case .afterOccurrences:
+            return "After Occurrences".localized()
         }
     }
 }

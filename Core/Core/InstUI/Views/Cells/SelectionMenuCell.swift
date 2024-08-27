@@ -85,6 +85,7 @@ extension InstUI.SelectionMenuCell where Value: Identifiable, ID == Value.ID {
     }
 }
 
+#if DEBUG
 
 #Preview {
     @State var selection: String?
@@ -92,6 +93,9 @@ extension InstUI.SelectionMenuCell where Value: Identifiable, ID == Value.ID {
     return InstUI.SelectionMenuCell(
         label: Text("Example"),
         options: (1 ... 5).map { "No. \($0)" },
+        id: \.self,
         text: \.self,
         selection: $selection)
 }
+
+#endif

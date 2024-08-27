@@ -52,13 +52,10 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
                         VStack {
                             Spacer()
                                 .frame(width: 100, height: dims.topSpacerHeight)
-                                .border(Color.green)
 
                             HStack {
                                 Spacer()
-
                                     .frame(width: dims.leftSpacerWidth, height: 100)
-                                    .border(Color.mint)
 
                                 ZStack {
                                     Color.white

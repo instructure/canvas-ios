@@ -106,7 +106,7 @@ public extension InstUI.Styles.Padding {
     /// Correction to negate baked in TextEditor inset. Estimated value.
     static let textEditorHorizontalCorrection = value(-5)
 
-    static let controlInCellTrailing = value(10)
+    static let controlInCellTrailing = value(14)
 
     static let dropDownOption = value(12)
 }
