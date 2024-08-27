@@ -100,6 +100,7 @@ function reportCoverage () {
   console.log('Generating html report')
   const cssPath = resolve(`${coverageFolder}/hljs.css`)
   run(`rm -rf "${coverageFolder}"`)
+  run(`mkdir "${coverageFolder}"`)
   run(`cp node_modules/highlight.js/styles/xcode.css "${cssPath}"`)
   run(`cat scripts/coverage/coverage.css >> "${cssPath}"`)
   let coveredLines = 0
