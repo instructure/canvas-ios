@@ -219,7 +219,6 @@ workflows:
                 exit 1
             fi
     - *yarn-install-root
-    - *yarn-install
     - script:
         title: Save results
         is_always_run: true
