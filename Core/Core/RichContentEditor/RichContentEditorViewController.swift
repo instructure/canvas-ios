@@ -30,7 +30,7 @@ public class RichContentEditorViewController: UIViewController {
     let toolbar = RichContentToolbarView()
     public var webView = CoreWebView(frame: .zero)
 
-    let batchID = UUID.string
+    private let batchID = UUID.string
     public weak var delegate: RichContentEditorDelegate?
     var env = AppEnvironment.shared
     public var placeholder: String = "" {
@@ -49,11 +49,11 @@ public class RichContentEditorViewController: UIViewController {
     public var uploadContext = FileUploadContext.myFiles
     let uploadManager = UploadManager.shared
 
-    lazy var files = uploadManager.subscribe(batchID: batchID) { [weak self] in
+    private lazy var files = uploadManager.subscribe(batchID: batchID) { [weak self] in
         self?.updateUploadProgress()
     }
 
-    lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context)) {}
+    private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context)) {}
     /// The base url to be used for API access during file upload.
     public var fileUploadBaseURL: URL?
 
@@ -90,11 +90,11 @@ public class RichContentEditorViewController: UIViewController {
         }
     }
 
-    public func showError(_ error: Error) {
+    private func showError(_ error: Error) {
         delegate?.rce(self, didError: error)
     }
 
-    func loadHTML() {
+    private func loadHTML() {
         webView.loadHTMLString("""
             <style>
             :root {
@@ -146,7 +146,7 @@ public class RichContentEditorViewController: UIViewController {
         webView.evaluateJavaScript("editor.backupRange()")
     }
 
-    public func focus() {
+    func focus() {
         webView.evaluateJavaScript("editor.focus()")
     }
 
@@ -170,7 +170,7 @@ public class RichContentEditorViewController: UIViewController {
         delegate?.rce(self, canSubmit: !isEmpty && !isUploading)
     }
 
-    func setFeatureFlags() {
+    private func setFeatureFlags() {
         let flags = featureFlags.map { $0.name }
         if let data = try? JSONSerialization.data(withJSONObject: flags),
             let flags = String(data: data, encoding: .utf8) {
@@ -178,7 +178,7 @@ public class RichContentEditorViewController: UIViewController {
         }
     }
 
-    func updateScroll(_ state: [String: Any?]?) {
+    private func updateScroll(_ state: [String: Any?]?) {
         guard
             let r = state?["selection"] as? [String: CGFloat],
             let x = r["x"], let y = r["y"], let width = r["width"], let height = r["height"]
@@ -231,11 +231,11 @@ public class RichContentEditorViewController: UIViewController {
 }
 
 extension RichContentEditorViewController {
-    enum Message: String, CaseIterable {
+    private enum Message: String, CaseIterable {
         case link, ready, state, retryUpload
     }
 
-    func setupScriptMessaging() {
+    private func setupScriptMessaging() {
         for message in Message.allCases {
             webView.handle(message.rawValue) { [weak self] message in
                 self?.handleScriptMessage(message)
@@ -254,7 +254,7 @@ extension RichContentEditorViewController {
         }
     }
 
-    func handleScriptMessage(_ message: WKScriptMessage) {
+    private func handleScriptMessage(_ message: WKScriptMessage) {
         guard let name = Message(rawValue: message.name) else { return }
         switch name {
         case .link:
@@ -300,7 +300,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
         }
     }
 
-    func retry(_ url: URL) {
+    private func retry(_ url: URL) {
         if ["png", "jpeg", "jpg"].contains(url.pathExtension) {
             createFile(url, isRetry: true, then: uploadImage)
         } else {
@@ -308,7 +308,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
         }
     }
 
-    func createFile(_ url: URL, isRetry: Bool, then: @escaping (URL, File, Bool) -> Void) {
+    private func createFile(_ url: URL, isRetry: Bool, then: @escaping (URL, File, Bool) -> Void) {
         let context = uploadManager.viewContext
         context.performAndWait {
             do {
@@ -329,7 +329,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
         }
     }
 
-    func uploadImage(_ url: URL, file: File, isRetry: Bool) {
+    private func uploadImage(_ url: URL, file: File, isRetry: Bool) {
         do {
             if !isRetry {
                 let string = CoreWebView.jsString(url.absoluteString)
@@ -343,7 +343,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
         }
     }
 
-    func uploadMedia(_ url: URL, file: File, isRetry: Bool) {
+    private func uploadMedia(_ url: URL, file: File, isRetry: Bool) {
         if !isRetry {
             let string = CoreWebView.jsString(url.absoluteString)
             webView.evaluateJavaScript("editor.insertVideoPlaceholder(\(string))")
@@ -353,7 +353,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
         }
     }
 
-    func updateFile(_ file: File, error: Error?, mediaID: String? = nil) {
+    private func updateFile(_ file: File, error: Error?, mediaID: String? = nil) {
         let context = uploadManager.viewContext
         context.performAndWait { [weak self] in
             do {
@@ -367,7 +367,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
         }
     }
 
-    func updateUploadProgress() {
+    private func updateUploadProgress() {
         let data = try? JSONSerialization.data(withJSONObject: files.map { file -> [String: Any?] in [
             "localFileURL": file.localFileURL?.absoluteString,
             "url": file.url?.absoluteString,
