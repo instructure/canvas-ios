@@ -25,11 +25,13 @@ extension InstUI {
 
         private let label: Label
         private let value: String?
+        private let equalWidth: Bool
         private let action: () -> Void
 
-        public init(label: Label, value: String?, action: @escaping () -> Void) {
+        public init(label: Label, value: String?, equalWidth: Bool = true, action: @escaping () -> Void) {
             self.label = label
             self.value = value
+            self.equalWidth = equalWidth
             self.action = action
         }
 
@@ -37,15 +39,17 @@ extension InstUI {
             VStack(spacing: 0) {
                 Button(action: action) {
                     HStack(spacing: 0) {
-                        label
-                            .textStyle(.cellLabel)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .paddingStyle(.trailing, .standard)
 
-                        Text(value ?? "")
-                            .textStyle(.cellValue)
-                            .multilineTextAlignment(.trailing)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        if equalWidth {
+                            labelView
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .paddingStyle(.trailing, .standard)
+                            valueView.frame(maxWidth: .infinity, alignment: .trailing)
+                        } else {
+                            labelView
+                            Spacer()
+                            valueView
+                        }
 
                         InstUI.DisclosureIndicator()
                             .padding(.leading, InstUI.DisclosureIndicator.leadingPadding)
@@ -56,6 +60,16 @@ extension InstUI {
 
                 InstUI.Divider()
             }
+        }
+
+        private var labelView: some View {
+            label.textStyle(.cellLabel)
+        }
+
+        private var valueView: some View {
+            Text(value ?? "")
+                .textStyle(.cellValue)
+                .multilineTextAlignment(.trailing)
         }
     }
 }

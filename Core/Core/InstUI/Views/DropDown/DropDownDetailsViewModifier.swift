@@ -23,7 +23,7 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
     @ViewBuilder let listContent: () -> ListContent
 
     @State private var screenFrame: CGRect = .zero
-    @State private var preferredDetailsHeight: CGFloat?
+    @State private var preferredDetailsSize: CGSize?
 
     func body(content: Content) -> some View {
         content
@@ -37,7 +37,7 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
                 if state.isDetailsShown {
                     let dims = state
                         .dimensions(given: screenFrame,
-                                    prefHeight: preferredDetailsHeight)
+                                    prefSize: preferredDetailsSize)
 
                     ZStack {
                         Color
@@ -67,9 +67,8 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
                                 }
                                     .frame(maxWidth: dims.listMaxSize.width,
                                            maxHeight: dims.listMaxSize.height)
-                                    .clipped()
+                                    .clipShape(RoundedRectangle(cornerRadius: 4))
                                     .shadow(radius: 4)
-                                    .border(Color.blue)
                                 Spacer()
                             }
                             Spacer()
@@ -82,8 +81,8 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
                     )
                 }
             })
-            .onPreferenceChange(DropDownDetailsHeightPrefKey.self, perform: { value in
-                preferredDetailsHeight = value
+            .onPreferenceChange(DropDownDetailsSizePrefKey.self, perform: { size in
+                preferredDetailsSize = size
             })
             .onPreferenceChange(ScreenFramePrefKey.self, perform: { value in
                 screenFrame = value

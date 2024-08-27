@@ -63,7 +63,7 @@ extension DropDownButtonState {
         var leftSpacerWidth: CGFloat
     }
 
-    func dimensions(given screenFrame: CGRect, prefHeight: CGFloat?) -> Dimensions {
+    func dimensions(given screenFrame: CGRect, prefSize: CGSize?) -> Dimensions {
         let topSpace = frame.minY - screenFrame.minY
         let bottomSpace = screenFrame.maxY - frame.maxY
 
@@ -72,9 +72,9 @@ extension DropDownButtonState {
                               leftSpacerWidth: 0)
 
         if topSpace > bottomSpace {
-            let maxHeight = topSpace - 40
-            let proposedHeight = prefHeight
-                .flatMap({ min(maxHeight, $0) }) ?? maxHeight
+            let maxHeight = topSpace - 20
+            let proposedHeight = prefSize
+                .flatMap({ min(maxHeight, $0.height) }) ?? maxHeight
 
             dims.listMaxSize.height = proposedHeight
             dims.topSpacerHeight = topSpace - dims.listMaxSize.height - 5
@@ -82,15 +82,16 @@ extension DropDownButtonState {
         } else {
             dims.topSpacerHeight = frame.maxY - screenFrame.minY + 5
 
-            let maxHeight = bottomSpace - 40
-            let proposedHeight = prefHeight
-                .flatMap({ min(maxHeight, $0) }) ?? maxHeight
+            let maxHeight = bottomSpace - 20
+            let proposedHeight = prefSize
+                .flatMap({ min(maxHeight, $0.height) }) ?? maxHeight
 
             dims.listMaxSize.height = proposedHeight
         }
 
-        dims.listMaxSize.width = min(screenFrame.width - 70, 320)
-
+        let maxWidth = min(screenFrame.width - 50, 320)
+        dims.listMaxSize.width = prefSize.flatMap({ min(maxWidth, $0.width) }) ?? maxWidth
+        
         let leftSpace = frame.minX
         let rightSpace = screenFrame.width - frame.maxX
 
@@ -119,25 +120,25 @@ extension View {
     }
 }
 
-struct DropDownDetailsHeightPrefKey: PreferenceKey {
-    static var defaultValue: CGFloat? { nil }
-    static func reduce(value: inout CGFloat?, nextValue: () -> CGFloat?) {
+struct DropDownDetailsSizePrefKey: PreferenceKey {
+    static var defaultValue: CGSize? { nil }
+    static func reduce(value: inout CGSize?, nextValue: () -> CGSize?) {
         value = value ?? nextValue()
     }
 }
 
 extension View {
 
-    func preferredHeightAsDropDownDetails(_ height: CGFloat?) -> some View {
-        preference(key: DropDownDetailsHeightPrefKey.self, value: height)
+    func preferredDropDownDetailsSize(_ size: CGSize?) -> some View {
+        preference(key: DropDownDetailsSizePrefKey.self, value: size)
     }
 
-    func sizeAsPreferredDropDownDetailsHeight() -> some View {
+    func preferredAsDropDownDetails() -> some View {
         background(content: {
             GeometryReader(content: { geometry in
                 Color
                     .clear
-                    .preferredHeightAsDropDownDetails(geometry.size.height)
+                    .preferredDropDownDetailsSize(geometry.size)
             })
         })
     }

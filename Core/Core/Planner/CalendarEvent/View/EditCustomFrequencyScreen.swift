@@ -32,11 +32,19 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
 
     var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
 
+    @State private var weekDayDropDownState = DropDownButtonState()
+
     @State var selection: [Int] = [0, 0]
 
-    @State var weekDayDropDownState = DropDownButtonState()
-
+    @State var isOccurenceDialogPresented: Bool = false
     @State var weekDays: [Weekday] = []
+    @State var endMode: RecurrenceEndMode?
+    @State var endDate: Date? = Clock.now
+    @State var occurencesCount: Int = 0
+
+    private var selectedFrequency: RecurrenceFrequency {
+        return RecurrenceFrequency.allCases[selection[1]]
+    }
 
     init(viewModel: EditCustomFrequencyViewModel) {
         self.viewModel = viewModel
@@ -49,7 +57,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                 MultiPickerView(
                     content: [
                         (1 ... 400).map({ String($0) }),
-                        ["Daily", "Weekly", "Monthly", "Yearly"]
+                        RecurrenceFrequency.allCases.map { $0.selectionText }
                     ],
                     widths: [3, 7],
                     alignments: [.right, .left],
@@ -57,40 +65,19 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                 )
                 .frame(maxWidth: .infinity)
 
-                InstUI.DropDownCell(
-                    label: Text("Repeats On"),
-                    state: $weekDayDropDownState) {
+                if selectedFrequency != .daily {
+                    weekDaysCell
+                }
 
-                        if weekDays.isEmpty {
-                            HStack(spacing: 10) {
-                                Text("Select")
-                                    .font(.regular14).foregroundStyle(Color.textDark)
-                                SelectIcon()
-                            }
-                        } else {
+                endModeCell
 
-                            HStack(spacing: 8) {
-
-                                ForEach(weekDays.selectionTexts, id: \.self) { day in
-                                    Text(day)
-                                        .lineLimit(1)
-                                        .minimumScaleFactor(0.7)
-                                        .font(.regular14)
-                                        .foregroundStyle(Color.textDarkest)
-                                        .padding(EdgeInsets(top: 6, leading: 12, bottom: 6, trailing: 12))
-                                        .background(Color.backgroundLight)
-                                        .clipShape(RoundedRectangle(cornerRadius: 4))
-                                }
-                            }
-                        }
-                    }
+                if let endMode {
+                    cellForEndMode(endMode)
+                }
             }
         }
         .navigationTitle(viewModel.pageTitle)
         .navBarItems(
-            leading: .cancel {
-                viewModel.didTapCancel.send()
-            },
             trailing: .init(
                 isAvailableOffline: false,
                 title: viewModel.doneButtonTitle,
@@ -102,70 +89,81 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
         .dropDownDetails(state: $weekDayDropDownState) {
             WeekDaysSelectionListView(selection: $weekDays)
         }
+
     }
 
-    struct SelectIcon: View {
-        static let leadingPadding: CGFloat = 12
+    private var weekDaysCell: some View {
+        InstUI.DropDownCell(
+            label: Text("Repeats on", bundle: .core),
+            state: $weekDayDropDownState) {
 
-        @ScaledMetric private var uiScale: CGFloat = 1
+                if weekDays.isEmpty {
+                    DropDownPromptLabel()
+                } else {
 
-        public var body: some View {
-            Image.arrowUpDownLine
-                .resizable()
-                .scaledToFit()
-                .frame(width: uiScale.iconScale * 16,
-                       height: uiScale.iconScale * 16)
-                .foregroundStyle(Color.textDark)
+                    HStack(spacing: 8) {
+                        ForEach(weekDays.selectionTexts, id: \.self) { day in
+                            DropDownSelectedValueView(text: day)
+                        }
+                    }
+                }
+            }
+    }
+
+    private var endModeCell: some View {
+        InstUI.PickerCell(
+            label: Text("End Repeat", bundle: .core),
+            content: {
+                ForEach(RecurrenceEndMode.allCases, id: \.self) { mode in
+                    Text(mode.title).tag(mode as RecurrenceEndMode?)
+                }
+            },
+            selection: $endMode,
+            placeholder: "Not selected"
+        )
+    }
+
+    private var endDateCell: some View {
+        InstUI.DatePickerCell(
+            label: Text("End date", bundle: .core),
+            date: $endDate,
+            mode: .dateOnly,
+            defaultDate: .now,
+            validFrom: endDate.flatMap({ min($0, .now) }) ?? .now,
+            isClearable: false
+        )
+    }
+
+    private var endOccurencesCountCell: some View {
+        InstUI.LabelValueCell(
+            label: Text("Number of Occurences", bundle: .core),
+            value: occurencesCount.formatted(.number), 
+            equalWidth: false) {
+                isOccurenceDialogPresented = true
+            }
+    }
+
+    @ViewBuilder
+    private func cellForEndMode(_ endMode: RecurrenceEndMode) -> some View {
+        switch endMode {
+        case .onDate:
+            endDateCell
+        case .afterOccurences:
+            endOccurencesCountCell
         }
     }
 }
 
-struct WeekDaysSelectionListView: View {
+enum RecurrenceEndMode: Equatable, CaseIterable {
+    case onDate
+    case afterOccurences
 
-    @Binding var selection: [Weekday]
-
-    var body: some View {
-        ScrollView {
-            VStack {
-                ForEach(Weekday.allCases, id: \.rawValue) { weekDay in
-
-                    Button(
-                        action: {
-                            selection.toggleInsert(with: weekDay)
-                        },
-                        label: {
-                            HStack {
-                                Text(weekDay.text)
-                                    .font(.medium16)
-                                    .foregroundStyle(Color.textDarkest)
-                                Spacer()
-                                if selection.contains(weekDay) {
-                                    CheckMark()
-                                }
-                            }
-                            .contentShape(Rectangle())
-                        })
-                    .buttonStyle(.plain)
-
-                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
-                    InstUI.Divider()
-                }
-            }
-        }
-        .preferredHeightAsDropDownDetails(
-            CGFloat(Weekday.allCases.count) * 45)
-    }
-
-    struct CheckMark: View {
-        @ScaledMetric private var uiScale: CGFloat = 1
-
-        public var body: some View {
-            Image.checkLine
-                .resizable()
-                .scaledToFit()
-                .frame(width: uiScale.iconScale * 18,
-                       height: uiScale.iconScale * 18)
-                .foregroundStyle(Color.textDarkest)
+    var title: String {
+        switch self {
+        case .onDate:
+            return "On date".localized()
+        case .afterOccurences:
+            return "After Occurences".localized()
         }
     }
 }

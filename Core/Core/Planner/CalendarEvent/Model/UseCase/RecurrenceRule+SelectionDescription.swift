@@ -18,6 +18,22 @@
 
 import Foundation
 
+extension RecurrenceFrequency {
+
+    var selectionText: String {
+        switch self {
+        case .daily:
+            "Daily".localized()
+        case .weekly:
+            "Weekly".localized()
+        case .monthly:
+            "Monthly".localized()
+        case .yearly:
+            "Yearly".localized()
+        }
+    }
+}
+
 extension Weekday {
 
     var pluralText: String {

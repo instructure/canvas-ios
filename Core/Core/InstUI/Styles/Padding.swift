@@ -22,26 +22,11 @@ import SwiftUI
 
 extension InstUI.Styles {
 
-    public enum Padding: CGFloat {
-        case standard = 16
-
-        case cellTop = 12
-        case cellBottom = 14
-        /// The horizontal padding before a cell's leading icon
-        case cellIconLeading = 22
-        /// The horizontal padding between a cell's leading icon and its text
-        case cellIconText = 18
-
-        case paragraphTop = 24
-        case paragraphBottom = 28
-
-        /// When displaying multiple Text components below each other we use this spacing to separate them
-        case textVertical = 4
-
-        /// Correction to negate baked in TextEditor inset. Estimated value.
-        case textEditorVerticalCorrection = -7
-        /// Correction to negate baked in TextEditor inset. Estimated value.
-        case textEditorHorizontalCorrection = -5
+    public struct Padding {
+        public let rawValue: CGFloat
+        fileprivate init(_ value: CGFloat) {
+            self.rawValue = value
+        }
     }
 
     public enum PaddingSet {
@@ -94,6 +79,36 @@ extension InstUI.Styles {
             let trailing: Padding?
         }
     }
+}
+
+// MARK: - Paddings
+
+public extension InstUI.Styles.Padding {
+    private static func value(_ value: CGFloat) -> Self { Self(value) }
+
+    static let standard = value(16)
+
+    static let cellTop = value(12)
+    static let cellBottom = value(14)
+    /// The horizontal padding before a cell's leading icon
+    static let cellIconLeading = value(22)
+    /// The horizontal padding between a cell's leading icon and its text
+    static let cellIconText = value(18)
+
+    static let paragraphTop = value(24)
+    static let paragraphBottom = value(28)
+
+    /// When displaying multiple Text components below each other we use this spacing to separate them
+    static let textVertical = value(4)
+
+    /// Correction to negate baked in TextEditor inset. Estimated value.
+    static let textEditorVerticalCorrection = value(-7)
+    /// Correction to negate baked in TextEditor inset. Estimated value.
+    static let textEditorHorizontalCorrection = value(-5)
+
+    static let controlInCellTrailing = value(10)
+
+    static let dropDownOption = value(12)
 }
 
 // MARK: - Modifiers

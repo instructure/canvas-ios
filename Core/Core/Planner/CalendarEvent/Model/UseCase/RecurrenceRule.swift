@@ -150,7 +150,7 @@ private extension RRuleKey.Key {
 
 // MARK: - Models
 
-enum RecurrenceFrequency: String, RRuleCodable {
+enum RecurrenceFrequency: String, RRuleCodable, CaseIterable {
     case daily = "DAILY"
     case weekly = "WEEKLY"
     case monthly = "MONTHLY"

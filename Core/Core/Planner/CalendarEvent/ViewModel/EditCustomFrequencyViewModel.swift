@@ -27,7 +27,6 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new/frequency")
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
-    let didTapCancel = PassthroughSubject<Void, Never>()
     let didTapDone = PassthroughSubject<Void, Never>()
 
     let proposedDate: Date
