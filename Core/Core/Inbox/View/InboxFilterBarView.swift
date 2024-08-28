@@ -66,6 +66,7 @@ public struct InboxFilterBarView: View {
         }
         .accessibilityLabel(Text("Filter messages by course", bundle: .core))
         .accessibilityHint(Text(model.course))
+        .accessibilityIdentifier("Inbox.filterByCourse")
     }
 
     private var scopeFilterButton: some View {
@@ -94,6 +95,7 @@ public struct InboxFilterBarView: View {
         }
         .accessibilityLabel(Text("Filter messages by type", bundle: .core))
         .accessibilityHint(Text(model.scope.localizedName))
+        .accessibilityIdentifier("Inbox.filterByType")
     }
 
     private var scopeFilterButtons: [ActionSheet.Button] {

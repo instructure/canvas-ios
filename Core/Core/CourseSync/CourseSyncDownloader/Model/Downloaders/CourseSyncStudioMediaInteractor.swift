@@ -29,6 +29,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
     private let studioIFrameReplaceInteractor: StudioIFrameReplaceInteractor
     private let studioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor
     private let cleanupInteractor: StudioVideoCleanupInteractor
+    private let metadataDownloadInteractor: StudioMetadataDownloadInteractor
     private let downloadInteractor: StudioVideoDownloadInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
@@ -38,6 +39,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         iFrameReplaceInteractor: StudioIFrameReplaceInteractor,
         iFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor,
         cleanupInteractor: StudioVideoCleanupInteractor,
+        metadataDownloadInteractor: StudioMetadataDownloadInteractor,
         downloadInteractor: StudioVideoDownloadInteractor,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) {
@@ -46,6 +48,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         self.studioIFrameReplaceInteractor = iFrameReplaceInteractor
         self.studioIFrameDiscoveryInteractor = iFrameDiscoveryInteractor
         self.cleanupInteractor = cleanupInteractor
+        self.metadataDownloadInteractor = metadataDownloadInteractor
         self.downloadInteractor = downloadInteractor
         self.scheduler = scheduler
     }
@@ -65,8 +68,9 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                         (api, iframes)
                     }
             }
-            .flatMap { api, iframes in
-                Self.fetchStudioMediaItems(api: api, courseIDs: courseIDs)
+            .flatMap { [metadataDownloadInteractor] api, iframes in
+                metadataDownloadInteractor
+                    .fetchStudioMediaItems(api: api, courseIDs: courseIDs)
                     .map { mediaItems in
                         var mediaLTIIDsToDownload = iframes.values.flatMap { $0 }.map { $0.mediaLTILaunchID }
                         mediaLTIIDsToDownload = Array(Set(mediaLTIIDsToDownload))
@@ -109,22 +113,6 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                     reason: error.localizedDescription
                 )
                 return Just(())
-            }
-            .eraseToAnyPublisher()
-    }
-
-    private static func fetchStudioMediaItems(
-        api: API,
-        courseIDs: [String]
-    ) -> AnyPublisher<[APIStudioMediaItem], Error> {
-        Publishers.Sequence(sequence: courseIDs)
-            .flatMap { courseID in
-                let request = GetStudioCourseMediaRequest(courseId: courseID)
-                return api.makeRequest(request).map(\.body)
-            }
-            .collect()
-            .map { (mediaData: [[APIStudioMediaItem]]) in
-                mediaData.flatMap { $0 }
             }
             .eraseToAnyPublisher()
     }

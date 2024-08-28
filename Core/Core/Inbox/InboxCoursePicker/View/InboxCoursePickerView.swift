@@ -153,6 +153,7 @@ public struct InboxCoursePickerView: View {
             .padding(.vertical, 16)
             .background(.background)
             .accessibilityLabel(accessibilityLabel)
+            .accessibilityIdentifier("Inbox.course.\(course.id)")
 
             separator
         }
@@ -183,6 +184,7 @@ public struct InboxCoursePickerView: View {
             .padding(.vertical, 16)
             .background(.background)
             .accessibilityLabel(accessibilityLabel)
+            .accessibilityIdentifier("Inbox.group.\(group.id)")
 
             separator
         }

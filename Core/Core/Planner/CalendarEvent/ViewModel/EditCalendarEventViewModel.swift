@@ -19,13 +19,6 @@
 import Combine
 import SwiftUI
 
-/*TODO: */ final class EventFrequency {
-    var name: String
-    init(name: String) {
-        self.name = name
-    }
-}
-
 final class EditCalendarEventViewModel: ObservableObject {
 
     private enum Mode {
@@ -50,7 +43,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     @Published var address: String = ""
     @Published var details: String = ""
 
-    @Published var endTimeErrorMessage: String?
+    @Published private(set) var endTimeErrorMessage: String?
     @Published var shouldShowSaveError: Bool = false
 
     var isSaveButtonEnabled: Bool {

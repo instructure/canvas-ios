@@ -139,6 +139,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
                 .foregroundColor(.accentColor)
+                .accessibilityIdentifier("ComposeMessage.cancel")
         }
     }
 
@@ -151,6 +152,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         .accessibility(label: Text("Send", bundle: .core))
         .disabled(!model.sendButtonActive)
         .frame(maxHeight: .infinity, alignment: .top)
+        .accessibilityIdentifier("ComposeMessage.send")
 
     }
 
@@ -171,11 +173,13 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         }
         .accessibilityLabel(Text("Add recipient", bundle: .core))
         .accessibilityElement(children: .ignore)
+        .accessibilityIdentifier("ComposeMessage.addRecipient")
     }
 
     private var headerView: some View {
         HStack(alignment: .center) {
             Text(model.subject.isEmpty ? model.title : model.subject)
+                .accessibilityIdentifier("ComposeMessage.subjectLabel")
                 .multilineTextAlignment(.leading)
                 .font(.semibold22)
                 .foregroundColor(.textDarkest)
@@ -218,6 +222,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 Text("Course", bundle: .core)
                     .font(.regular16, lineHeight: .condensed)
                     .foregroundColor(.textDark)
+                    .accessibilityIdentifier("ComposeMessage.course")
                 if let context = model.selectedContext {
                     Text(context.name)
                         .font(.regular16, lineHeight: .condensed)
@@ -242,6 +247,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .foregroundColor(.textDark)
                 .padding(.vertical, 12)
                 .accessibilitySortPriority(3)
+                .accessibilityIdentifier("ComposeMessage.to")
             if !model.recipients.isEmpty {
                 recipientsView
                     .accessibilitySortPriority(1)
@@ -282,6 +288,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .focused($focusedInput, equals: .subject)
                 .submitLabel(.done)
                 .accessibility(label: Text("Subject", bundle: .core))
+                .accessibilityIdentifier("ComposeMessage.subjectInput")
         }
         .disabled(model.isSubjectDisabled)
         .opacity(model.isSubjectDisabled ? 0.6 : 1)
@@ -299,6 +306,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         .padding(.horizontal, defaultHorizontalPaddingValue)
         .padding(.vertical, defaultVerticalPaddingValue)
         .contentShape(Rectangle())
+        .accessibilityIdentifier("ComposeMessage.individual")
     }
 
     @ViewBuilder
@@ -324,6 +332,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         .padding(.horizontal, defaultHorizontalPaddingValue)
                 }
                 .accessibility(label: Text("Add attachment", bundle: .core))
+                .accessibilityIdentifier("ComposeMessage.attachment")
             }
             .padding(.leading, defaultHorizontalPaddingValue)
             .padding(.top, defaultVerticalPaddingValue)
@@ -346,6 +355,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .padding(.horizontal, defaultHorizontalPaddingValue)
             .frame(minHeight: 60)
             .accessibility(label: Text("Message", bundle: .core))
+            .accessibilityIdentifier("ComposeMessage.body")
         }
         .disabled(model.isMessageDisabled)
         .opacity(model.isMessageDisabled ? 0.6 : 1)

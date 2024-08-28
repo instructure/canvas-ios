@@ -41,6 +41,7 @@ public struct RecipientPillView: View {
                     .padding(.trailing, 10)
                     .truncationMode(.tail)
                     .lineLimit(1)
+                    .accessibilityIdentifier("ComposeMessage.recipientPill.\(recipient.ids.first ?? "all\(recipient.displayName)")")
                 removeButton
                     .padding(.trailing, 10)
             }

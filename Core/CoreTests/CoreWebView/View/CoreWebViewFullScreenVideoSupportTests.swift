@@ -54,6 +54,47 @@ class CoreWebViewFullScreenVideoSupportTests: XCTestCase {
         XCTAssertTrue(constraint.isActive)
         XCTAssertEqual(webView.backgroundColor, .purple)
     }
+
+    func testNotCrashesWhenWebViewHasNoParentAfterExitingFullScreen() {
+        let host = UIView(frame: .init(origin: .zero, size: .init(width: 123, height: 321)))
+        let webView = MockWebView()
+        host.addSubview(webView)
+        webView.pinWithThemeSwitchButton(
+            inside: host,
+            leading: 0,
+            trailing: nil,
+            top: nil,
+            bottom: nil
+        )
+        webView.mockedFullscreenState = .enteringFullscreen
+        webView.mockedFullscreenState = .inFullscreen
+
+        // WHEN
+        webView.removeFromSuperview()
+        webView.mockedFullscreenState = .notInFullscreen
+    }
+
+    func testNotCrashesWhenWebViewHasDifferentParentThanThemeSwitcherAfterExitingFullScreen() {
+        let host = UIView(frame: .init(origin: .zero, size: .init(width: 123, height: 321)))
+        let webView = MockWebView()
+        host.addSubview(webView)
+        webView.pinWithThemeSwitchButton(
+            inside: host,
+            leading: 0,
+            trailing: nil,
+            top: nil,
+            bottom: nil
+        )
+        webView.mockedFullscreenState = .enteringFullscreen
+        webView.mockedFullscreenState = .inFullscreen
+
+        let newHost = UIView(frame: .init(origin: .zero, size: .init(width: 123, height: 321)))
+        webView.removeFromSuperview()
+        newHost.addSubview(webView)
+
+        // WHEN
+        webView.mockedFullscreenState = .notInFullscreen
+    }
 }
 
 class MockWebView: CoreWebView {
