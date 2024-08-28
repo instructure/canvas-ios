@@ -47,15 +47,17 @@ public class InboxViewModel: ObservableObject {
     public let courseDidChange = CurrentValueSubject<InboxCourse?, Never>(nil)
     public let updateState = PassthroughSubject<(messageId: String, state: ConversationWorkflowState), Never>()
     public let contentDidScrollToBottom = PassthroughSubject<Void, Never>()
-
+    public let starDidTap = PassthroughSubject<(Bool, String), Never>()
     // MARK: - Private State
     private static let DefaultScope: InboxMessageScope = .inbox
     private let interactor: InboxMessageInteractor
+    private let messageInteractor: InboxMessageFavouriteInteractor
     private var subscriptions = Set<AnyCancellable>()
     private var isLoadingNextPage = CurrentValueSubject<Bool, Never>(false)
 
     public init(interactor: InboxMessageInteractor, router: Router) {
         self.interactor = interactor
+        self.messageInteractor = messageInteractor
         bindInputsToDataSource()
         bindDataSourceOutputsToSelf()
         bindUserActionsToOutputs()
@@ -133,6 +135,12 @@ public class InboxViewModel: ObservableObject {
                 return (message: message, state: state)
             }
             .map { interactor.updateState(message: $0.message, state: $0.state) }
+            .sink()
+            .store(in: &subscriptions)
+
+        starDidTap
+            .map { [messageInteractor] starred, messageId in
+                messageInteractor.updateStarred(starred: starred, messageId: messageId) }
             .sink()
             .store(in: &subscriptions)
     }

@@ -21,7 +21,7 @@ import SwiftUI
 extension View {
     public func readingFrame(
         coordinateSpace: CoordinateSpace = .global,
-        onChange: @escaping ( _ frame: CGRect) -> ()
+        onChange: @escaping (_ frame: CGRect) -> Void
     ) -> some View {
         background(
             FrameReader(coordinateSpace: coordinateSpace, onChange: onChange)

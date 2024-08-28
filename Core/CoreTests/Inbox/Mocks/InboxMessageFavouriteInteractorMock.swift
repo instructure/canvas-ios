@@ -17,16 +17,3 @@
 //
 
 import Foundation
-import Combine
-
-public protocol InboxMessageFavouriteInteractor {
-    func updateStarred(starred: Bool, messageId: String) -> Future<URLResponse?, Error>
-}
-
-public final class InboxMessageFavouriteInteractorLive: InboxMessageFavouriteInteractor {
-
-    public init() { }
-    public func updateStarred(starred: Bool, messageId: String) -> Future<URLResponse?, Error> {
-        StarConversation(id: messageId, starred: starred).fetchWithFuture()
-    }
-}

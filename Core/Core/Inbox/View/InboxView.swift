@@ -91,11 +91,28 @@ public struct InboxView: View, ScreenViewTrackable {
                 } else {
                     archiveButton(message: message)
                 }
+                starButton(messageId: message.id, isStarred: message.isStarred)
             }
             .swipeActions(edge: .leading) {
                 readStatusToggleButton(message: message)
             }
         }
+    }
+
+    @ViewBuilder
+    private func starButton(messageId: String, isStarred: Bool) -> some View {
+        Button {
+            model.starDidTap.send((!isStarred, messageId))
+        } label: {
+            let image = isStarred ? Image.starSolid : Image.starLine
+            let accessibilityLabel = String(localized: isStarred ? "Mark as Unstarred" : "Mark as Starred", bundle: .core)
+             image
+                .size(30)
+                .foregroundColor(.textDark)
+                .padding(.leading, 6)
+                .accessibilityLabel(accessibilityLabel)
+        }
+        .tint(.ash)
     }
 
     @ViewBuilder
