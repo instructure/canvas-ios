@@ -17,3 +17,17 @@
 //
 
 import Foundation
+import Combine
+@testable import Core
+
+final class InboxMessageFavouriteInteractorMock: InboxMessageFavouriteInteractor {
+
+    var updateStarredIsCalled = false
+
+    func updateStarred(starred: Bool, messageId: String) -> Future<URLResponse?, any Error> {
+        updateStarredIsCalled = true
+       return Future { promise in
+            promise(.success(URLResponse()))
+        }
+    }
+}

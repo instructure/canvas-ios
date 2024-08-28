@@ -23,12 +23,14 @@ import XCTest
 
 class InboxViewModelTests: CoreTestCase {
     private var mockInteractor: InboxMessageInteractorMock!
+    private var messageInteractor: InboxMessageFavouriteInteractorMock!
     var testee: InboxViewModel!
 
     override func setUp() {
         super.setUp()
+        messageInteractor = InboxMessageFavouriteInteractorMock()
         mockInteractor = InboxMessageInteractorMock(context: databaseClient)
-        testee = InboxViewModel(interactor: mockInteractor, router: router)
+        testee = InboxViewModel(interactor: mockInteractor, router: router, messageInteractor: messageInteractor)
     }
 
     func testInteractorStateMappedToViewModel() {
@@ -108,6 +110,16 @@ class InboxViewModelTests: CoreTestCase {
         RunLoop.main.run(until: Date() + 2)
 
         XCTAssertTrue(mockInteractor.loadNextPageCalled)
+    }
+
+    func test_favouriteMessage_interactorUpdateStarredIsCalled() {
+        // Given
+        let messageId = "1"
+        let favourite = true
+        // When
+        testee.starDidTap.send((favourite, messageId))
+        // Then
+        XCTAssertTrue(messageInteractor.updateStarredIsCalled)
     }
 }
 

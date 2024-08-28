@@ -17,30 +17,41 @@
 //
 
 import XCTest
+import Combine
+@testable import Core
 
-final class InboxMessageFavouriteInteractorLiveTests: XCTestCase {
+final class InboxMessageFavouriteInteractorLiveTests: CoreTestCase {
 
+    // MARK: - Properties
+    private var sut: InboxMessageFavouriteInteractorLive!
+    private var subscriptions = Set<AnyCancellable>()
+
+    // MARK: - Life Cycle
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        sut = InboxMessageFavouriteInteractorLive()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    // MARK: - Tests Functions
+    func test_updateStarred_starredIsTrue() {
+        // Given
+        let conversationId = "1"
+        let useCase = StarConversation(id: conversationId, starred: true)
+        let result = APIConversation.make()
+        // When
+        api.mock(useCase.request, value: result)
+        let expectation = XCTestExpectation(description: "make request")
+        // Then
+        sut.updateStarred(starred: true, messageId: conversationId)
+            .sink { _ in
+            } receiveValue: { _ in
+                XCTAssertTrue(useCase.starred)
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+        wait(for: [expectation], timeout: 0.1)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
