@@ -20,14 +20,14 @@ import XCTest
 import Combine
 @testable import Core
 
-final class RecipientUseCaseTests: CoreTestCase {
+final class RecipientInteractorLiveTests: CoreTestCase {
 
     // MARK: - Properties
-    private var sut: RecipientUseCase!
+    private var sut: RecipientInteractorLive!
     private var subscriptions = Set<AnyCancellable>()
     // MARK: - Life Cycle
     override func setUpWithError() throws {
-        sut = RecipientUseCase()
+        sut = RecipientInteractorLive()
     }
 
     override func tearDownWithError() throws {

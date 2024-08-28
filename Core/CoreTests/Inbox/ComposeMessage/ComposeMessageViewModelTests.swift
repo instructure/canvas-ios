@@ -24,13 +24,13 @@ import XCTest
 
 class ComposeMessageViewModelTests: CoreTestCase {
     private var mockInteractor: ComposeMessageInteractorMock!
-    private var recipientUseCaseMock: RecipientUseCaseMock!
+    private var recipientUseCaseMock: RecipientInteractorMock!
     var testee: ComposeMessageViewModel!
     private var subscriptions = Set<AnyCancellable>()
 
     override func setUp() {
         super.setUp()
-        recipientUseCaseMock = RecipientUseCaseMock()
+        recipientUseCaseMock = RecipientInteractorMock()
         mockInteractor = ComposeMessageInteractorMock()
         testee = ComposeMessageViewModel(router: router, options: .init(fromType: .new), interactor: mockInteractor, recipientUseCase: recipientUseCaseMock)
     }

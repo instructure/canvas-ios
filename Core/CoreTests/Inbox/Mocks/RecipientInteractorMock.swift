@@ -20,7 +20,7 @@ import Foundation
 import Combine
 @testable import Core
 
-final class RecipientUseCaseMock: RecipientUseCaseType {
+final class RecipientInteractorMock: RecipientInteractor {
 
     func getRecipients(by context: Context?) -> AnyPublisher<[Recipient], Never> {
         if context == nil {

@@ -19,11 +19,11 @@
 import Foundation
 import Combine
 
-protocol RecipientUseCaseType {
+protocol RecipientInteractor {
     func getRecipients(by context: Context?) -> AnyPublisher<[Recipient], Never>
 }
 
-final class RecipientUseCase: RecipientUseCaseType {
+final class RecipientInteractorLive: RecipientInteractor {
 
     // MARK: - Properties
     private var subscriptions = Set<AnyCancellable>()
@@ -31,26 +31,18 @@ final class RecipientUseCase: RecipientUseCaseType {
     // MARK: - Functions
     func getRecipients(by context: Context?) -> AnyPublisher<[Recipient], Never> {
 
-        Future<[Recipient], Never> { [self] promise in
-            guard let context = context else {
-                promise(.success([]))
-                return
-            }
-
-            ReactiveStore(
-                useCase: GetSearchRecipients(context: context)
-            ).getEntities()
-                .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
-                .map { Recipient(id: $0.id, name: $0.name, avatarURL: $0.avatarURL) }
-                .collect()
-                .replaceError(with: [])
-                .receive(on: DispatchQueue.main)
-
-                .sink { result in
-                    promise(.success(result))
-                }
-                .store(in: &subscriptions)
+        guard let context else {
+            return Just([])
+                .eraseToAnyPublisher()
         }
-        .eraseToAnyPublisher()
+       return ReactiveStore(
+            useCase: GetSearchRecipients(context: context)
+        ).getEntities()
+            .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
+            .map { Recipient(id: $0.id, name: $0.name, avatarURL: $0.avatarURL) }
+            .collect()
+            .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 }
