@@ -105,7 +105,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                     .focused($focusedInput, equals: .address)
                     InstUI.Divider()
 
-                    InstUI.TextEditorCell(
+                    InstUI.RichContentEditorCell(
                         label: Text("Details", bundle: .core),
                         text: $viewModel.details
                     )

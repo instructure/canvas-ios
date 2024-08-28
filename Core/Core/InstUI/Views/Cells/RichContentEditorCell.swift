@@ -30,6 +30,7 @@ extension InstUI {
 
         @Binding private var text: String
         @FocusState private var isFocused: Bool
+        @State private var rceHeight: CGFloat = 0
 
         private var accessibilityLabel: Text {
             customAccessibilityLabel ?? label ?? Text("")
@@ -94,14 +95,21 @@ extension InstUI {
         }
 
         private var rcEditor: some View {
-            TextField("", text: $text, prompt: Text(placeholder).foregroundColor(Color.placeholderGray))
-                .focused($isFocused)
-                .multilineTextAlignment(.leading)
-                .font(label == nil ? .semibold16 : .regular16, lineHeight: .fit)
-                .foregroundStyle(Color.textDarkest)
-                .submitLabel(.done)
-                .accessibilityLabel(accessibilityLabel)
-                .accessibilityValue(accessibilityValue)
+            return RichContentEditor(
+                placeholder: placeholder,
+                a11yLabel: "Some custom acc label",
+                html: $text,
+                context: .currentUser, // TODO: inject
+                uploadTo: .context(.currentUser), // TODO: file context, inject or calculate
+                height: $rceHeight,
+                canSubmit: .constant(true), // TODO: inject
+                error: .constant(nil) // TODO: inject (or only some alert string?)
+            )
+            .scrollDisabled(true)
+            .focused($isFocused)
+            .frame(height: rceHeight)
+//            .accessibilityLabel(accessibilityLabel)
+//            .accessibilityValue(accessibilityValue)
         }
     }
 }
