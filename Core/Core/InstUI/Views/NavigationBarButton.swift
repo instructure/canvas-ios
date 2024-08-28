@@ -179,6 +179,22 @@ extension InstUI.NavigationBarButton {
         )
     }
 
+    public static func back(
+        isBackgroundContextColor: Bool = false,
+        isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
+        action: @escaping () -> Void
+    ) -> Self {
+        .init(
+            isBackgroundContextColor: isBackgroundContextColor,
+            isEnabled: isEnabledOverride,
+            isAvailableOffline: isAvailableOffline,
+            title: String(localized: "Back", bundle: .core),
+            
+            action: action
+        )
+    }
+
     public static func done(
         isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,

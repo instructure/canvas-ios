@@ -59,14 +59,11 @@ extension Weekday {
 extension DayOfWeek {
 
     var selectionText: String {
-        var txt: [String] = []
         if let weekNumber {
-            txt.append(weekNumber.text)
-            txt.append(dayOfTheWeek.text)
+            return String(format: weekNumber.standaloneFormat, dayOfTheWeek.text)
         } else {
-            txt.append(dayOfTheWeek.pluralText)
+            return dayOfTheWeek.pluralText
         }
-        return txt.joined(separator: " ")
     }
 }
 

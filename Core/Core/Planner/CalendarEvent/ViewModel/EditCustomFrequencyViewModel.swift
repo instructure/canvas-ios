@@ -29,6 +29,8 @@ final class EditCustomFrequencyViewModel: ObservableObject {
 
     let didTapDone = PassthroughSubject<Void, Never>()
 
+    private var subscriptions = Set<AnyCancellable>()
+
     let proposedDate: Date
 
     @Published private(set) var state: InstUI.ScreenState = .data
@@ -55,6 +57,12 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         self.daysOfTheYear = rule?.daysOfTheYear ?? []
         self.setPositions = rule?.setPositions ?? []
         self.proposedDate = date
+
+        didTapDone
+            .sink {
+                completion(rule)
+            }
+            .store(in: &subscriptions)
     }
 
     var isSaveButtonEnabled: Bool {

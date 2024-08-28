@@ -210,6 +210,11 @@ struct RecurrenceEnd: Equatable {
 }
 
 enum Weekday: String, RRuleCodable, CaseIterable {
+    
+    static var allCases: [Weekday] {
+        return [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
+    }
+
     static var weekDays: [Weekday] {
         return [
             .monday, .tuesday, .wednesday, .thursday, .friday

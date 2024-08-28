@@ -63,47 +63,47 @@ extension RecurrenceFrequency {
 extension Weekday {
 
     var text: String {
-        return Calendar.autoupdatingCurrent.standaloneWeekdaySymbols[dateComponent - 1]
+        return dateComponent.asWeekDay
     }
 
     var shortText: String {
-        return Calendar.autoupdatingCurrent.shortStandaloneWeekdaySymbols[dateComponent - 1]
+        return dateComponent.asWeekDayShort
     }
 }
 
 extension WeekNumber {
 
-    var text: String {
+    var standaloneFormat: String {
         switch self {
         case .first:
-            "First".localized()
+            "First %@".localized()
         case .second:
-            "Second".localized()
+            "Second %@".localized()
         case .third:
-            "Third".localized()
+            "Third %@".localized()
         case .fourth:
-            "Fourth".localized()
+            "Fourth %@".localized()
         case .fifth:
-            "Fifth".localized()
+            "Fifth %@".localized()
         case .last:
-            "Last".localized()
+            "Last %@".localized()
         }
     }
 
-    var middleText: String {
+    var middleFormat: String {
         switch self {
         case .first:
-            "The First".localized()
+            "The First %@".localized()
         case .second:
-            "The Second".localized()
+            "The Second %@".localized()
         case .third:
-            "The Third".localized()
+            "The Third %@".localized()
         case .fourth:
-            "The Fourth".localized()
+            "The Fourth %@".localized()
         case .fifth:
-            "The Fifth".localized()
+            "The Fifth %@".localized()
         case .last:
-            "The Last".localized()
+            "The Last %@".localized()
         }
     }
 }
@@ -111,17 +111,17 @@ extension WeekNumber {
 extension DayOfWeek {
 
     var shortText: String {
-        var txt: [String] = []
-        if let weekNumber { txt.append(weekNumber.text) }
-        txt.append(dayOfTheWeek.shortText)
-        return txt.joined(separator: .space)
+        if let weekNumber {
+            return String(format: weekNumber.standaloneFormat, dayOfTheWeek.shortText)
+        }
+        return dayOfTheWeek.shortText
     }
 
     var middleText: String {
-        var txt: [String] = []
-        if let weekNumber { txt.append(weekNumber.middleText) }
-        txt.append(dayOfTheWeek.text)
-        return txt.joined(separator: .space)
+        if let weekNumber {
+            return String(format: weekNumber.middleFormat, dayOfTheWeek.text)
+        }
+        return dayOfTheWeek.text
     }
 }
 
@@ -172,8 +172,28 @@ extension Int {
         String(format: "Week %i".localized(), self)
     }
 
+    var asWeekDay: String {
+        let calendar = Calendar.current
+        return calendar
+            .date(bySetting: .weekday, value: self, of: .now)?
+            .formatted(format: "EEEE", calendar: calendar)
+        ?? calendar.standaloneWeekdaySymbols[self - 1]
+    }
+
+    var asWeekDayShort: String {
+        let calendar = Calendar.current
+        return calendar
+            .date(bySetting: .weekday, value: self, of: .now)?
+            .formatted(format: "EEE", calendar: calendar)
+        ?? calendar.shortStandaloneWeekdaySymbols[self - 1]
+    }
+
     var asMonth: String {
-        Calendar.autoupdatingCurrent.standaloneMonthSymbols[self - 1]
+        let calendar = Calendar.current
+        return calendar
+            .date(bySetting: .month, value: self, of: .now)?
+            .formatted(format: "MMMM", calendar: calendar)
+        ?? calendar.standaloneMonthSymbols[self - 1]
     }
 }
 

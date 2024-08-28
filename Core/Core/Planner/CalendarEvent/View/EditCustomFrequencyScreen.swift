@@ -27,6 +27,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     @FocusState private var focusedInput: FocusedInput?
 
     @Environment(\.viewController) private var viewController
+    @Environment(\.dismiss) private var dismiss
 
     @ObservedObject private var viewModel: EditCustomFrequencyViewModel
 
@@ -41,6 +42,8 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     @State var endMode: RecurrenceEndMode?
     @State var endDate: Date? = Clock.now
     @State var occurrencesCount: Int = 0
+
+    @State var monthOption: MonthOption?
 
     private var selectedFrequency: RecurrenceFrequency {
         return RecurrenceFrequency.allCases[selection[1]]
@@ -65,8 +68,12 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                 )
                 .frame(maxWidth: .infinity)
 
-                if selectedFrequency != .daily {
+                if case .weekly = selectedFrequency {
                     weekDaysCell
+                } else if case .monthly = selectedFrequency {
+                    monthDaysCell
+                } else if case .yearly = selectedFrequency {
+                    yearDayCell
                 }
 
                 endModeCell
@@ -77,7 +84,11 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             }
         }
         .navigationTitle(viewModel.pageTitle)
+        .navigationBarBackButtonHidden()
         .navBarItems(
+            leading: .cancel {
+                dismiss()
+            },
             trailing: .init(
                 isAvailableOffline: false,
                 title: viewModel.doneButtonTitle,
@@ -91,6 +102,34 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
         }
         .occurrencesCountInputDialog(isPresented: $isOccurrencesDialogPresented,
                                      value: $occurrencesCount)
+    }
+
+    private var monthDaysCell: some View {
+        let options = ProposedEventDay
+            .Representation
+            .monthOptions
+            .map({ MonthOption(eventDay: proposedDay, representation: $0) })
+
+        return InstUI.SelectionMenuCell(
+            label: Text("Repeats on", bundle: .core),
+            options: options,
+            id: \.representation,
+            text: \.title,
+            selection: $monthOption
+        )
+    }
+
+    private var proposedDay: ProposedEventDay {
+        ProposedEventDay(date: viewModel.proposedDate, calendar: .current)
+    }
+
+    private var yearDayCell: some View {
+        InstUI.LabelValueCell(
+            label: Text("Repeats on", bundle: .core),
+            value: proposedDay.title(as: .yearDay),
+            equalWidth: false,
+            action: {}
+        )
     }
 
     private var weekDaysCell: some View {
@@ -163,6 +202,15 @@ enum RecurrenceEndMode: Equatable, CaseIterable {
         case .afterOccurrences:
             return "After Occurrences".localized()
         }
+    }
+}
+
+struct MonthOption: Equatable {
+    let eventDay: ProposedEventDay
+    let representation: ProposedEventDay.Representation
+
+    var title: String {
+        return eventDay.title(as: representation)
     }
 }
 
