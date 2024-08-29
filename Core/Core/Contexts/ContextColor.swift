@@ -20,18 +20,20 @@ import Foundation
 import CoreData
 import UIKit
 
-public final class ContextColor: NSManagedObject {
+public final class CDContextColor: NSManagedObject {
     @NSManaged public var canvasContextID: String
     /// This is the color assigned by the teacher to elementary courses.
+    /// Nil in case the context is a user or a group since they have no default/teacher assigned colors.
     @NSManaged public var courseColorHex: String?
-    /// This is the custom color that the user can override.
+    /// This is the custom color that the user can assign to the context.
     @NSManaged public var contextColorHex: String?
 
     @discardableResult
     public static func save(
-        _ responses: GetCourseColorsUseCase.APIResponses,
+        _ responses: GetContextColorsUseCase.APIResponses,
         in context: NSManagedObjectContext
-    ) -> [ContextColor] {
+    ) -> [CDContextColor] {
+        // TODO also save group/user colors
         responses.courses.compactMap { apiCourse in
             let contextID = apiCourse.context.canvasContextID
             let courseColorHex = apiCourse.course_color
@@ -39,10 +41,10 @@ public final class ContextColor: NSManagedObject {
 
             let predicate = NSPredicate(
                 format: "%K == %@",
-                #keyPath(ContextColor.canvasContextID),
+                #keyPath(CDContextColor.canvasContextID),
                 contextID
             )
-            let model: ContextColor = context.fetch(predicate).first ?? context.insert()
+            let model: CDContextColor = context.fetch(predicate).first ?? context.insert()
             model.canvasContextID = contextID
             model.courseColorHex = courseColorHex
             model.contextColorHex = contextColorHex

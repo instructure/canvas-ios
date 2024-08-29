@@ -38,21 +38,21 @@ class ContextColorsInteractorLive: ContextColorsInteractor {
         ReactiveStore(useCase: localColors)
             .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
             .map { [k5State] contextColors in
-                var colorsByCourse: [ContextID: UIColor] = [:]
+                var colorsByContext: [ContextID: UIColor] = [:]
 
                 for contextColor in contextColors {
-                    colorsByCourse[contextColor.canvasContextID] = .contextColor(
+                    colorsByContext[contextColor.canvasContextID] = .contextColor(
                         courseColorHex: contextColor.courseColorHex,
                         contextColorHex: contextColor.contextColorHex,
                         k5State: k5State
                     )
                 }
 
-                return colorsByCourse
+                return colorsByContext
             }
             .sink { _ in
-            } receiveValue: { [weak contextColors] colorsByCourse in
-                contextColors?.send(colorsByCourse)
+            } receiveValue: { [weak contextColors] colorsByContext in
+                contextColors?.send(colorsByContext)
             }
             .store(in: &subscriptions)
     }
@@ -63,7 +63,7 @@ class ContextColorsInteractorLive: ContextColorsInteractor {
     }
 
     private func refreshColorsFromAPI(ignoreCache: Bool = false) {
-        let colorsUseCase = GetCourseColorsUseCase()
+        let colorsUseCase = GetContextColorsUseCase()
         ReactiveStore(useCase: colorsUseCase)
             .getEntities(ignoreCache: ignoreCache)
             .sink()

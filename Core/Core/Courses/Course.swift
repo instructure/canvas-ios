@@ -26,7 +26,6 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var bannerImageDownloadURL: URL?
     @NSManaged public var canCreateAnnouncement: Bool
     @NSManaged public var canCreateDiscussionTopic: Bool
-    @NSManaged var contextColor: ContextColor?
     @NSManaged public var courseCode: String?
     /** Teacher assigned course color for K5 in hex format. */
     @NSManaged public var courseColor: String?
@@ -63,14 +62,6 @@ final public class Course: NSManagedObject, WriteableModel {
 
     public var canvasContextID: String {
         Context(.course, id: id).canvasContextID
-    }
-
-    public var color: UIColor {
-        if AppEnvironment.shared.k5.isK5Enabled {
-            return UIColor(hexString: courseColor)?.ensureContrast(against: .backgroundLightest) ?? .oxford
-        } else {
-            return contextColor?.color.ensureContrast(against: .backgroundLightest) ?? .ash
-        }
     }
 
     @discardableResult
@@ -121,10 +112,6 @@ final public class Course: NSManagedObject, WriteableModel {
                 return e
             }
             model.enrollments = Set(enrollmentModels)
-        }
-
-        if let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: model.canvasContextID)).first {
-            model.contextColor = contextColor
         }
 
         if let permissions = item.permissions {

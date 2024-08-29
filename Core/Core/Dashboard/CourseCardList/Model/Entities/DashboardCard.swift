@@ -22,7 +22,6 @@ public final class DashboardCard: NSManagedObject {
     typealias JSON = APIDashboardCard
 
     @NSManaged public var course: Course?
-    @NSManaged public var contextColor: ContextColor?
     @NSManaged public var courseCode: String
     @NSManaged public var enrollmentType: String
     @NSManaged public var href: URL?
@@ -40,7 +39,6 @@ public final class DashboardCard: NSManagedObject {
     @NSManaged public var term: String?
 
     public var context: Context { Context(.course, id: id) }
-    public lazy var color: UIColor = contextColor?.color.ensureContrast(against: .backgroundLightest) ?? .ash
 
     public var isTeacherEnrollment: Bool {
         let teacherRoles = ["teacher", "ta"]
@@ -76,10 +74,6 @@ public final class DashboardCard: NSManagedObject {
         model.shortName = item.shortName
         model.subtitle = item.subtitle
         model.term = item.term
-
-        if let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: "course_\(model.id)")).first {
-            model.contextColor = contextColor
-        }
 
         if let course: Course = context.fetch(scope: .where(#keyPath(Course.id), equals: model.id)).first {
             model.course = course

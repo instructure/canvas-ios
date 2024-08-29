@@ -162,6 +162,11 @@
         <attribute name="observedUserId" optional="YES" attributeType="String"/>
         <attribute name="rawContextID" attributeType="String"/>
     </entity>
+    <entity name="CDContextColor" representedClassName="Core.ContextColor" syncable="YES">
+        <attribute name="canvasContextID" attributeType="String"/>
+        <attribute name="contextColorHex" optional="YES" attributeType="String"/>
+        <attribute name="courseColorHex" optional="YES" attributeType="String" valueTransformerName="" customClassName="UIKit.UIColor"/>
+    </entity>
     <entity name="CDCourseSyncDownloadProgress" representedClassName="Core.CDCourseSyncDownloadProgress" syncable="YES">
         <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="bytesToDownload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -239,13 +244,6 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="conference" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conference" inverseName="recordingsRaw" inverseEntity="Conference"/>
     </entity>
-    <entity name="ContextColor" representedClassName="Core.ContextColor" syncable="YES">
-        <attribute name="canvasContextID" attributeType="String"/>
-        <attribute name="colorRaw" attributeType="Integer 32" valueTransformerName="" defaultValueString="0" usesScalarValueType="YES" customClassName="UIKit.UIColor"/>
-        <relationship name="card" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardCard" inverseName="contextColor" inverseEntity="DashboardCard"/>
-        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="contextColor" inverseEntity="Course"/>
-        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="contextColor" inverseEntity="Group"/>
-    </entity>
     <entity name="Conversation" representedClassName="Core.Conversation" syncable="YES">
         <attribute name="audienceIDsRaw" attributeType="String"/>
         <attribute name="avatarURL" attributeType="URI"/>
@@ -304,7 +302,6 @@
         <attribute name="roles" optional="YES" attributeType="String"/>
         <attribute name="syllabusBody" optional="YES" attributeType="String"/>
         <attribute name="termName" optional="YES" attributeType="String"/>
-        <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="course" inverseEntity="ContextColor"/>
         <relationship name="dashboardCards" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardCard" inverseName="course" inverseEntity="DashboardCard"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
         <relationship name="gradingPeriods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="course" inverseEntity="GradingPeriod"/>
@@ -354,7 +351,6 @@
         <attribute name="shortName" attributeType="String"/>
         <attribute name="subtitle" attributeType="String"/>
         <attribute name="term" optional="YES" attributeType="String"/>
-        <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="card" inverseEntity="ContextColor"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="dashboardCards" inverseEntity="Course"/>
     </entity>
     <entity name="DiscussionEntry" representedClassName="Core.DiscussionEntry" syncable="YES">
@@ -606,7 +602,6 @@
         <attribute name="isFavorite" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="showOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="groups" inverseEntity="ContextColor"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="groups" inverseEntity="Course"/>
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="group" inverseEntity="Todo"/>
     </entity>

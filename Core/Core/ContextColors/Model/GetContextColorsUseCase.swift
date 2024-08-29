@@ -19,7 +19,7 @@
 import Combine
 import CoreData
 
-public class GetCourseColorsUseCase: UseCase {
+public class GetContextColorsUseCase: UseCase {
     public typealias Model = ContextColor
     public typealias Response = APIResponses
 
@@ -28,7 +28,7 @@ public class GetCourseColorsUseCase: UseCase {
         let customColors: APICustomColors
     }
 
-    public var cacheKey: String? = "course_colors"
+    public var cacheKey: String? = "context_colors"
 
     private var subscriptions = Set<AnyCancellable>()
 
