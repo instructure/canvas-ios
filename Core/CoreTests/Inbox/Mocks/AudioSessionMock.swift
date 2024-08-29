@@ -17,19 +17,20 @@
 //
 
 import Foundation
-import Combine
+import AVKit
 @testable import Core
 
-final class InboxMessageFavouriteInteractorMock: InboxMessageFavouriteInteractor {
-
+final class AudioSessionMock: AudioSessionProtocol {
     // MARK: - Properties
-    var updateStarredIsCalled = false
+    var mockPermission: AVAudioSession.RecordPermission = .denied
+    var shouldGrantPermission: Bool = false
+
+    var recordPermission: AVAudioSession.RecordPermission {
+        return mockPermission
+    }
 
     // MARK: - Simulate Behaviours
-    func updateStarred(starred: Bool, messageId: String) -> Future<URLResponse?, any Error> {
-        updateStarredIsCalled = true
-       return Future { promise in
-            promise(.success(URLResponse()))
-        }
+    func requestRecordPermission(_ response: @escaping (Bool) -> Void) {
+        response(shouldGrantPermission)
     }
 }

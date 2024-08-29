@@ -82,7 +82,8 @@ class ComposeMessageViewModel: ObservableObject {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: ComposeMessageInteractor
-    private let recipientUseCase: RecipientUseCaseType
+    private let recipientUseCase: RecipientInteractor
+    private let audioSession: AudioSessionProtocol
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var messageType: ComposeMessageOptions.MessageType
     var allRecipients = CurrentValueSubject<[Recipient], Never>([])
@@ -232,7 +233,12 @@ class ComposeMessageViewModel: ObservableObject {
             title: String(localized: "Record audio", bundle: .core),
             accessibilityIdentifier: nil
         ) { [weak self] in
-            self?.isAudioRecordVisible = true
+            guard let self else {
+                return
+            }
+            AudioRecorderViewController.requestPermission(audioSession: self.audioSession) { isEnabled in
+                 isEnabled ? self.isAudioRecordVisible = true : viewController.value.showPermissionError(.microphone)
+             }
         }
         sheet.addAction(
             image: .folderLine,
@@ -287,6 +293,7 @@ class ComposeMessageViewModel: ObservableObject {
 
         let fieldContents = options.fieldContents
         self.selectedContext = fieldContents.selectedContext
+        getRecipients()
         self.selectedRecipients.value = fieldContents.selectedRecipients
         self.subject = fieldContents.subjectText
         self.bodyText = fieldContents.bodyText

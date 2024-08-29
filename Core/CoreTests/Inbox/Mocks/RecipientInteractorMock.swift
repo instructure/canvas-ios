@@ -22,6 +22,7 @@ import Combine
 
 final class RecipientInteractorMock: RecipientInteractor {
 
+    // MARK: - Simulate Behaviours
     func getRecipients(by context: Context?) -> AnyPublisher<[Recipient], Never> {
         if context == nil {
             Just([])
