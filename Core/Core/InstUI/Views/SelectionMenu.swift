@@ -56,7 +56,7 @@ struct SelectionMenu<Value: Equatable, ID: Hashable>: View {
             HStack {
                 Text(selection?[keyPath: textKey] ?? "Not selected")
                     .font(.regular14)
-                DropDownIcons.Selection()
+                InstUI.Icons.Selection()
             }
         }
         .tint(selection == nil ? Color.textDark : Color.textDarkest)

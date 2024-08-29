@@ -71,57 +71,84 @@ extension Weekday {
     }
 }
 
+typealias WeekNumber = Int
+
 extension WeekNumber {
 
     var standaloneFormat: String {
         switch self {
-        case .first:
+        case 1:
             "First %@".localized()
-        case .second:
+        case 2:
             "Second %@".localized()
-        case .third:
+        case 3:
             "Third %@".localized()
-        case .fourth:
+        case 4:
             "Fourth %@".localized()
-        case .fifth:
+        case 5:
             "Fifth %@".localized()
-        case .last:
+        case -1:
             "Last %@".localized()
+        default:
+            "\(formatted(.ordinal)) %@"
         }
     }
 
     var middleFormat: String {
         switch self {
-        case .first:
+        case 1:
             "The First %@".localized()
-        case .second:
+        case 2:
             "The Second %@".localized()
-        case .third:
+        case 3:
             "The Third %@".localized()
-        case .fourth:
+        case 4:
             "The Fourth %@".localized()
-        case .fifth:
+        case 5:
             "The Fifth %@".localized()
-        case .last:
+        case -1:
             "The Last %@".localized()
+        default:
+            "\(formatted(.ordinal)) %@"
         }
     }
 }
 
+struct OrdinalFormatStyle<Value>: FormatStyle where Value : BinaryInteger {
+    typealias FormatInput = Value
+    typealias FormatOutput = String
+    
+    func format(_ value: Value) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .ordinal
+        return formatter.string(from: NSNumber(value: Int(value))) ?? "\(value)"
+    }
+}
+
+extension FormatStyle where Self == OrdinalFormatStyle<Int> {
+    static var ordinal: OrdinalFormatStyle<Int> {
+        OrdinalFormatStyle<Int>()
+    }
+}
+
+
+
+
+
 extension DayOfWeek {
 
     var shortText: String {
-        if let weekNumber {
-            return String(format: weekNumber.standaloneFormat, dayOfTheWeek.shortText)
+        if weekNumber != 0 {
+            return String(format: weekNumber.standaloneFormat, weekday.shortText)
         }
-        return dayOfTheWeek.shortText
+        return weekday.shortText
     }
 
     var middleText: String {
-        if let weekNumber {
-            return String(format: weekNumber.middleFormat, dayOfTheWeek.text)
+        if weekNumber != 0 {
+            return String(format: weekNumber.middleFormat, weekday.text)
         }
-        return dayOfTheWeek.text
+        return weekday.text
     }
 }
 
@@ -143,7 +170,7 @@ extension Array where Element == DayOfWeek {
             .weekDays
             .allSatisfy({ wd in
                 contains(where: { d in
-                    d.dayOfTheWeek == wd && d.weekNumber == nil
+                    d.weekday == wd && d.weekNumber == 0
                 })
             })
     }

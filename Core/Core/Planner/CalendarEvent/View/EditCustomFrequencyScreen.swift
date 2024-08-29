@@ -34,16 +34,9 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
 
     @State private var weekDayDropDownState = DropDownButtonState()
+    @State private var isOccurrencesDialogPresented: Bool = false
 
     @State var selection: [Int] = [0, 0]
-
-    @State var isOccurrencesDialogPresented: Bool = false
-    @State var weekDays: [Weekday] = []
-    @State var endMode: RecurrenceEndMode?
-    @State var endDate: Date? = Clock.now
-    @State var occurrencesCount: Int = 0
-
-    @State var monthOption: MonthOption?
 
     private var selectedFrequency: RecurrenceFrequency {
         return RecurrenceFrequency.allCases[selection[1]]
@@ -78,7 +71,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
 
                 endModeCell
 
-                if let endMode {
+                if let endMode = viewModel.endMode {
                     cellForEndMode(endMode)
                 }
             }
@@ -86,7 +79,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
         .navigationTitle(viewModel.pageTitle)
         .navigationBarBackButtonHidden()
         .navBarItems(
-            leading: .cancel {
+            leading: .back {
                 dismiss()
             },
             trailing: .init(
@@ -98,29 +91,20 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             )
         )
         .dropDownDetails(state: $weekDayDropDownState) {
-            WeekDaysSelectionListView(selection: $weekDays)
+            WeekDaysSelectionListView(selection: $viewModel.daysOfTheWeek)
         }
         .occurrencesCountInputDialog(isPresented: $isOccurrencesDialogPresented,
-                                     value: $occurrencesCount)
+                                     value: $viewModel.occurrenceCount)
     }
 
     private var monthDaysCell: some View {
-        let options = ProposedEventDay
-            .Representation
-            .monthOptions
-            .map({ MonthOption(eventDay: proposedDay, representation: $0) })
-
         return InstUI.SelectionMenuCell(
             label: Text("Repeats on", bundle: .core),
-            options: options,
-            id: \.representation,
+            options: [DayOfMonth].options(for: viewModel.proposedDate),
+            id: \.id,
             text: \.title,
-            selection: $monthOption
+            selection: $viewModel.dayOfMonth
         )
-    }
-
-    private var proposedDay: ProposedEventDay {
-        ProposedEventDay(date: viewModel.proposedDate, calendar: .current)
     }
 
     private var yearDayCell: some View {
@@ -137,12 +121,12 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             label: Text("Repeats on", bundle: .core),
             state: $weekDayDropDownState) {
 
-                if weekDays.isEmpty {
+                if viewModel.daysOfTheWeek.isEmpty {
                     DropDownPromptLabel()
                 } else {
 
                     HStack(spacing: 8) {
-                        ForEach(weekDays.selectionTexts, id: \.self) { day in
+                        ForEach(viewModel.daysOfTheWeek.selectionTexts, id: \.self) { day in
                             DropDownSelectedValueView(text: day)
                         }
                     }
@@ -156,17 +140,17 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             options: RecurrenceEndMode.allCases,
             id: \.self,
             text: \.title,
-            selection: $endMode
+            selection: $viewModel.endMode
         )
     }
 
     private var endDateCell: some View {
         InstUI.DatePickerCell(
             label: Text("End date", bundle: .core),
-            date: $endDate,
+            date: $viewModel.endDate,
             mode: .dateOnly,
             defaultDate: .now,
-            validFrom: endDate.flatMap({ min($0, .now) }) ?? .now,
+            validFrom: viewModel.endDate.flatMap({ min($0, .now) }) ?? .now,
             isClearable: false
         )
     }
@@ -174,7 +158,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     private var endOccurrencesCountCell: some View {
         InstUI.LabelValueCell(
             label: Text("Number of Occurrences", bundle: .core),
-            value: occurrencesCount.formatted(.number),
+            value: viewModel.occurrenceCount.formatted(.number),
             equalWidth: false) {
                 isOccurrencesDialogPresented = true
             }

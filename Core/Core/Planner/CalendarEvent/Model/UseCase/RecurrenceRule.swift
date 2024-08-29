@@ -210,7 +210,7 @@ struct RecurrenceEnd: Equatable {
 }
 
 enum Weekday: String, RRuleCodable, CaseIterable {
-    
+
     static var allCases: [Weekday] {
         return [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
     }
@@ -240,17 +240,14 @@ enum Weekday: String, RRuleCodable, CaseIterable {
         case .saturday: return 7
         }
     }
-}
 
-enum WeekNumber: Int, RRuleCodable {
-    case first = 1, second = 2, third = 3, fourth = 4, fifth = 5, last = -1
-
-    init?(rruleString: String) {
-        guard let val = Int(rruleString) else { return nil }
-        self.init(rawValue: val)
+    init?(component: Int) {
+        guard let first = Self
+            .allCases
+            .first(where: { $0.dateComponent == component })
+        else { return nil }
+        self = first
     }
-
-    var rruleString: String { String(rawValue) }
 }
 
 struct DayOfWeek: Equatable, RRuleCodable {
@@ -260,24 +257,24 @@ struct DayOfWeek: Equatable, RRuleCodable {
             let val = rruleString.split(separator: /\d+/).last,
             let day = Weekday(rawValue: String(val)) else { return nil }
 
-        let num = WeekNumber(rruleString: rruleString.replacingOccurrences(of: day.rawValue, with: ""))
-        self.init(day, weekNumber: num)
+        let num = Int(rruleString: rruleString.replacingOccurrences(of: day.rawValue, with: ""))
+        self.init(day, weekNumber: num ?? 0)
     }
 
     var rruleString: String {
         var val = ""
-        if let weekNumber {
+        if weekNumber != 0 {
             val += weekNumber.rruleString
         }
-        val += dayOfTheWeek.rawValue
+        val += weekday.rawValue
         return val
     }
 
-    let dayOfTheWeek: Weekday
-    let weekNumber: WeekNumber?
+    let weekday: Weekday
+    let weekNumber: Int
 
-    init(_ dayOfTheWeek: Weekday, weekNumber: WeekNumber? = nil) {
-        self.dayOfTheWeek = dayOfTheWeek
+    init(_ weekday: Weekday, weekNumber: Int = 0) {
+        self.weekday = weekday
         self.weekNumber = weekNumber
     }
 }

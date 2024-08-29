@@ -18,71 +18,58 @@
 
 import Foundation
 
-struct ProposedEventDay: Equatable {
-    let date: Date
-    let calendar: Calendar
+struct DayOfMonth: Identifiable {
+    let id: UUID
 
-    init(date: Date, calendar: Calendar) {
-        self.date = date
-        self.calendar = calendar
+    var weekday: DayOfWeek?
+    var day: Int?
+
+    init(weekday: DayOfWeek) {
+        self.id = UUID()
+        self.weekday = weekday
+        self.day = nil
     }
 
-    private var weekComps: DateComponents {
-        calendar.dateComponents(
-            [.calendar, .weekday, .weekdayOrdinal, .month, .year],
-            from: date
-        )
-    }
-
-    private var dayComps: DateComponents {
-        calendar.dateComponents(
-            [.calendar, .day, .month, .year],
-            from: date
-        )
-    }
-
-    var isLastWeekdayInMonth: Bool {
-        var copy = weekComps
-        copy.weekdayOrdinal = copy.weekdayOrdinal.flatMap({ $0 + 1 })
-        return copy.isValidDate == false
-    }
-
-    var weekday: Int { weekComps.weekday ?? 0 }
-    var weekdayOrdinal: Int { weekComps.weekdayOrdinal ?? 0 }
-    var weekdayOrdinalValued: WeekNumber? {
-        if isLastWeekdayInMonth { return .last }
-        return WeekNumber(rawValue: weekdayOrdinal)
-    }
-
-    var day: Int { dayComps.day ?? 0 }
-
-    func title(as representation: Representation) -> String {
-        switch representation {
-        case .weekDay:
-            let dayText = date.formatted(format: "EEEE", calendar: calendar)
-            if let format = weekdayOrdinalValued?.standaloneFormat {
-                return String(format: format, dayText)
-            }
-            return dayText
-        case .monthDay:
-            return String(format: "Day %i", day)
-        case .yearDay:
-            return date.formatted(format: "MMMM d", calendar: calendar)
-        }
-    }
-
-    enum Representation {
-        static let monthOptions: [Representation] = [.monthDay, .weekDay]
-
-        case weekDay
-        case monthDay
-        case yearDay
+    init(day: Int) {
+        self.id = UUID()
+        self.weekday = nil
+        self.day = day
     }
 }
 
-extension ProposedEventDay.Representation {
-    func title(for eventDay: ProposedEventDay) -> String {
-        return eventDay.title(as: self)
+extension [DayOfMonth] {
+    
+    static func options(for date: Date, in calendar: Calendar = .current) -> Self {
+        let comps = calendar.dateComponents(
+            [.calendar, .day, .weekday, .weekdayOrdinal, .month, .year],
+            from: date
+        )
+
+        let weekday = Weekday(component: comps.weekday!) ?? .sunday
+        let weekNumber = comps.weekdayOrdinal!
+        let day = comps.day!
+
+        return [
+            DayOfMonth(day: day),
+            DayOfMonth(weekday: DayOfWeek(weekday, weekNumber: weekNumber)),
+        ]
+    }
+}
+
+extension DayOfMonth {
+
+    var title: String {
+
+        if let day {
+            return String(format: "Day %i", day.formatted(.number))
+        }
+
+        if let weekday {
+            let format = weekday.weekNumber.standaloneFormat
+            return String(format: format, weekday.weekday.text)
+        }
+
+        return "[Invalid Day]"
     }
 }
 

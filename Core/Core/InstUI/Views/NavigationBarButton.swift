@@ -189,9 +189,15 @@ extension InstUI.NavigationBarButton {
             isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
             isAvailableOffline: isAvailableOffline,
-            title: String(localized: "Back", bundle: .core),
-            
-            action: action
+            action: action,
+            label: {
+                AnyView(
+                    HStack(spacing: 5) {
+                        InstUI.Icons.Back()
+                        Text("Back", bundle: .core)
+                    }
+                )
+            }
         )
     }
 

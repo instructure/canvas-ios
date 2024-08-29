@@ -19,6 +19,11 @@
 import SwiftUI
 import Combine
 
+struct DayOfYear {
+    var day: Int
+    var month: Int
+}
+
 final class EditCustomFrequencyViewModel: ObservableObject {
 
     let pageTitle = String(localized: "Custom Frequency", bundle: .core)
@@ -36,26 +41,54 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     @Published private(set) var state: InstUI.ScreenState = .data
     @Published var frequency: RecurrenceFrequency = .daily
     @Published var interval: Int = 1
-    @Published var recurrenceEnd: RecurrenceEnd?
 
-    @Published var daysOfTheWeek: [DayOfWeek] = []
-    @Published var daysOfTheMonth: [Int] = []
-    @Published var monthsOfTheYear: [Int] = []
-    @Published var weeksOfTheYear: [Int] = []
-    @Published var daysOfTheYear: [Int] = []
-    @Published var setPositions: [Int] = []
+    @Published var endMode: RecurrenceEndMode?
+    @Published var endDate: Date?
+    @Published var occurrenceCount: Int
+
+    // Specific to our business logic
+
+    // Specific to Weekly
+    @Published var daysOfTheWeek: [Weekday] = []
+
+    // Specific to Monthly
+    @Published var dayOfMonth: DayOfMonth?
+
+    // Specific to Yearly
+    @Published var dayOfYear: DayOfYear?
 
     init(rule: RecurrenceRule?, proposedDate date: Date, completion: @escaping (RecurrenceRule?) -> Void) {
-        self.frequency = rule?.frequency ?? .daily
-        self.interval = rule?.interval ?? 1
-        self.recurrenceEnd = rule?.recurrenceEnd
+        let frequency = rule?.frequency ?? .daily
 
-        self.daysOfTheWeek = rule?.daysOfTheWeek ?? []
-        self.daysOfTheMonth = rule?.daysOfTheMonth ?? []
-        self.monthsOfTheYear = rule?.monthsOfTheYear ?? []
-        self.weeksOfTheYear = rule?.weeksOfTheYear ?? []
-        self.daysOfTheYear = rule?.daysOfTheYear ?? []
-        self.setPositions = rule?.setPositions ?? []
+        self.frequency = frequency
+        self.interval = rule?.interval ?? 1
+
+        if let end = rule?.recurrenceEnd {
+            self.endMode = end.endDate != nil ? .onDate : .afterOccurrences
+        }
+
+        self.endDate = rule?.recurrenceEnd?.endDate
+        self.occurrenceCount = rule?.recurrenceEnd?.occurrenceCount ?? 0
+
+        if case .weekly = frequency {
+            self.daysOfTheWeek = rule?.daysOfTheWeek?.map({ $0.weekday }) ?? []
+        }
+
+        if case .monthly = frequency {
+            if let dayOfWeek = rule?.daysOfTheWeek?.first {
+                self.dayOfMonth = DayOfMonth(weekday: dayOfWeek)
+            } else {
+                self.dayOfMonth = DayOfMonth(day: rule?.daysOfTheMonth?.first ?? 0)
+            }
+        }
+
+        if case .yearly = frequency {
+            if let day = rule?.daysOfTheMonth?.first,
+               let month = rule?.monthsOfTheYear?.first {
+                self.dayOfYear = DayOfYear(day: day, month: month)
+            }
+        }
+
         self.proposedDate = date
 
         didTapDone
@@ -66,20 +99,48 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     }
 
     var isSaveButtonEnabled: Bool {
-        state == .data && recurrenceEnd != nil
+        state == .data && endMode != nil
     }
 
     var rule: RecurrenceRule {
+
+        var daysOfWeek: [DayOfWeek]?
+        var daysOfTheMonth: [Int]?
+        var monthsOfTheYear: [Int]?
+
+        if case .weekly = frequency {
+            daysOfWeek = daysOfTheWeek.map({ DayOfWeek($0) }).nonEmpty()
+        }
+
+        if case .monthly = frequency {
+            daysOfWeek = weekdayOfMonth.flatMap({ [$0] })
+            daysOfTheMonth = dayOfMonth.flatMap({ [$0] })
+        }
+
+        if case .yearly = frequency {
+            daysOfTheMonth = dayOfYear.flatMap({ [$0.day] })
+            monthsOfTheYear = dayOfYear.flatMap({ [$0.month] })
+        }
+
+        var end: RecurrenceEnd?
+        switch (endMode, endDate, occurrenceCount) {
+        case (.onDate, .some(let date), _):
+            end = RecurrenceEnd(endDate: date)
+        case (.afterOccurrences, _, let count) where count > 0:
+            end = RecurrenceEnd(occurrenceCount: count)
+        default: break
+        }
+
         return RecurrenceRule(
             recurrenceWith: frequency,
             interval: interval,
-            daysOfTheWeek: daysOfTheWeek.nonEmpty(),
-            daysOfTheMonth: daysOfTheMonth.nonEmpty(),
-            daysOfTheYear: daysOfTheYear.nonEmpty(),
-            weeksOfTheYear: weeksOfTheYear.nonEmpty(),
-            monthsOfTheYear: monthsOfTheYear.nonEmpty(),
-            setPositions: setPositions.nonEmpty(),
-            end: recurrenceEnd
+            daysOfTheWeek: daysOfWeek,
+            daysOfTheMonth: daysOfTheMonth,
+            daysOfTheYear: nil,
+            weeksOfTheYear: nil,
+            monthsOfTheYear: monthsOfTheYear,
+            setPositions: nil,
+            end: end
         )
     }
 }

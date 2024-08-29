@@ -37,7 +37,7 @@ struct WeekDaysSelectionListView: View {
                                     .foregroundStyle(Color.textDarkest)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 Spacer()
-                                DropDownIcons.Checkmark()
+                                InstUI.Icons.Checkmark()
                                     .layoutPriority(1)
                                     .opacity(selection.contains(weekDay) ? 1 : 0)
                             }
