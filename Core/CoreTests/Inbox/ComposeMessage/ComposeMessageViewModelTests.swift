@@ -178,6 +178,35 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertTrue(delegate.didSendMailIsCalled)
     }
 
+    func test_totalAttachmentSize() {
+        XCTAssertEqual(testee.totalAttachmentSize, 26.2)
+    }
+
+    func test_addFiles_addTwoFilesWithNotExceedSize() {
+        // Given
+        let firstFile = FileStub.createTemporaryFile(with: 1024)! // 1 KB of zeroed bytes
+        let secondFile = FileStub.createTemporaryFile(with: 2024)! // 2 KB of zeroed bytes
+        // When
+        testee.addFiles(urls: [firstFile, secondFile])
+        // Then
+        XCTAssertEqual(mockInteractor.numberOfCallingAddFile.count, 2)
+    }
+
+    func test_addFiles_addThreeFilesWithExceedSize() {
+        // Given
+        let firstFile = FileStub.createTemporaryFile(with: 3072)! // 3 KB of zeroed bytes
+        let secondFile = FileStub.createTemporaryFile(with: 2024 )! // 2 KB of zeroed bytes
+        let thirdFile = FileStub.createTemporaryFile(with: 1024 * 1024)! // 26 KB of zeroed bytes
+        testee.totalAttachmentSize = 0.5 // 0.5 MB
+        // When
+        testee.addFiles(urls: [firstFile])
+        testee.addFiles(urls: [secondFile])
+        testee.addFiles(urls: [thirdFile])
+
+        // Then
+        XCTAssertEqual(mockInteractor.numberOfCallingAddFile.count, 2)
+        XCTAssertNotNil(testee.snackBarViewModel.visibleSnack)
+    }
     func testShowCourseSelector() {
         let sourceView = UIViewController()
         let viewController = WeakViewController(sourceView)
@@ -427,7 +456,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertFalse(testee.isTakePhotoVisible)
         XCTAssertFalse(testee.isFilePickerVisible)
         XCTAssertFalse(testee.isAudioRecordVisible)
-        XCTAssertTrue(mockInteractor.isAddFileWithURLCalled)
+        XCTAssertEqual(mockInteractor.numberOfCallingAddFile.count, 1)
     }
 
     func testAttachmentWithFileSelected() {
@@ -507,7 +536,7 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
     var isSuccessfulMockFuture = true
     var isCreateConversationCalled = false
     var isAddConversationMessageCalled = false
-    var isAddFileWithURLCalled = false
+    var numberOfCallingAddFile: [URL] = []
     var isAddFileWithFileCalled = false
     var isRetryCalled = false
     var isCancelCalled = false
@@ -527,7 +556,7 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
     }
 
     func addFile(url: URL) {
-        isAddFileWithURLCalled = true
+        numberOfCallingAddFile.append(url)
     }
 
     func addFile(file: Core.File) {
