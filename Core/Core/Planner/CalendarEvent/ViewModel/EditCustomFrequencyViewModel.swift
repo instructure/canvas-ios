@@ -19,36 +19,6 @@
 import SwiftUI
 import Combine
 
-struct FrequencyInterval: Equatable {
-    static var options: [FrequencyInterval] { (1 ... 400).map({ FrequencyInterval(value: $0) }) }
-
-    let value: Int
-    var title: String { value.formatted(.number) }
-
-    init(value: Int) {
-        self.value = value
-    }
-}
-
-struct DayOfYear {
-    var day: Int
-    var month: Int
-
-    init(given date: Date, in calendar: Calendar = .current) {
-        let comps = calendar.dateComponents(
-            [.day, .month, .year],
-            from: date
-        )
-
-        self.init(day: comps.day!, month: comps.month!)
-    }
-
-    init(day: Int, month: Int) {
-        self.day = day
-        self.month = month
-    }
-}
-
 final class EditCustomFrequencyViewModel: ObservableObject {
 
     let pageTitle = String(localized: "Custom Frequency", bundle: .core)
@@ -126,8 +96,8 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         didTapDone
-            .sink {
-                completion(rule)
+            .sink { [weak self] in
+                completion(self?.translatedRule)
             }
             .store(in: &subscriptions)
     }
@@ -161,7 +131,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         }
     }
 
-    var rule: RecurrenceRule? {
+    var translatedRule: RecurrenceRule? {
 
         var daysOfWeek: [DayOfWeek]?
         var daysOfTheMonth: [Int]?
@@ -194,6 +164,54 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         )
     }
 }
+
+// MARK: - Helper Types
+
+struct FrequencyInterval: Equatable {
+    static var options: [FrequencyInterval] { (1 ... 400).map({ FrequencyInterval(value: $0) }) }
+
+    let value: Int
+    var title: String { value.formatted(.number) }
+
+    init(value: Int) {
+        self.value = value
+    }
+}
+
+struct DayOfYear {
+    var day: Int
+    var month: Int
+
+    init(given date: Date, in calendar: Calendar = .current) {
+        let comps = calendar.dateComponents(
+            [.day, .month, .year],
+            from: date
+        )
+
+        self.init(day: comps.day!, month: comps.month!)
+    }
+
+    init(day: Int, month: Int) {
+        self.day = day
+        self.month = month
+    }
+}
+
+enum RecurrenceEndMode: Equatable, CaseIterable {
+    case onDate
+    case afterOccurrences
+
+    var title: String {
+        switch self {
+        case .onDate:
+            return "On date".localized()
+        case .afterOccurrences:
+            return "After Occurrences".localized()
+        }
+    }
+}
+
+// MARK: - Utils
 
 extension Array where Element: Equatable {
 

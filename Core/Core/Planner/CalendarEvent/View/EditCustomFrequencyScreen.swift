@@ -164,20 +164,6 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 }
 
-enum RecurrenceEndMode: Equatable, CaseIterable {
-    case onDate
-    case afterOccurrences
-
-    var title: String {
-        switch self {
-        case .onDate:
-            return "On date".localized()
-        case .afterOccurrences:
-            return "After Occurrences".localized()
-        }
-    }
-}
-
 #if DEBUG
 
 #Preview {
