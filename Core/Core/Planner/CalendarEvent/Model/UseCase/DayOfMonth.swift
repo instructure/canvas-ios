@@ -43,7 +43,7 @@ struct DayOfMonth: Equatable, Identifiable {
 
 extension Array where Element == DayOfMonth {
 
-    static func options(for date: Date, in calendar: Calendar = .current) -> Self {
+    static func options(for date: Date, in calendar: Calendar = Cal.currentCalendar) -> Self {
         let comps = calendar.dateComponents(
             [.calendar, .day, .weekday, .weekdayOrdinal, .month, .year],
             from: date
@@ -81,7 +81,7 @@ extension DayOfMonth {
 
 extension DateFormatter {
     private static let _default = DateFormatter()
-    static func `default`(format: String, calendar: Calendar = .current) -> DateFormatter {
+    static func `default`(format: String, calendar: Calendar = Cal.currentCalendar) -> DateFormatter {
         _default.calendar = calendar
         _default.dateFormat = format
         return _default
@@ -90,7 +90,7 @@ extension DateFormatter {
 
 extension Date {
 
-    func formatted(format: String, calendar: Calendar = .current) -> String {
+    func formatted(format: String, calendar: Calendar = Cal.currentCalendar) -> String {
         return DateFormatter
             .default(format: format, calendar: calendar)
             .string(from: self)

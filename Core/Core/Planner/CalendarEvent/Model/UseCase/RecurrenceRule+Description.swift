@@ -173,15 +173,16 @@ extension Int {
     }
 
     var asWeekDay: String {
-        let calendar = Calendar.current
-        return calendar
+        let calendar = Cal.currentCalendar
+        return Cal
+            .currentCalendar
             .date(bySetting: .weekday, value: self, of: .now)?
             .formatted(format: "EEEE", calendar: calendar)
         ?? calendar.standaloneWeekdaySymbols[self - 1]
     }
 
     var asWeekDayShort: String {
-        let calendar = Calendar.current
+        let calendar = Cal.currentCalendar
         return calendar
             .date(bySetting: .weekday, value: self, of: .now)?
             .formatted(format: "EEE", calendar: calendar)
@@ -189,7 +190,7 @@ extension Int {
     }
 
     var asMonth: String {
-        let calendar = Calendar.current
+        let calendar = Cal.currentCalendar
         return calendar
             .date(bySetting: .month, value: self, of: .now)?
             .formatted(format: "MMMM", calendar: calendar)
@@ -304,8 +305,7 @@ extension NumberFormatter {
     }()
 }
 
-
-struct OrdinalFormatStyle<Value>: FormatStyle where Value : BinaryInteger {
+struct OrdinalFormatStyle<Value>: FormatStyle where Value: BinaryInteger {
     typealias FormatInput = Value
     typealias FormatOutput = String
 

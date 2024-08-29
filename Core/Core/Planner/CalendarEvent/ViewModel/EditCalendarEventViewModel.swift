@@ -19,6 +19,16 @@
 import Combine
 import SwiftUI
 
+struct TitledFrequency: Equatable {
+    let value: RecurrenceRule
+    let title: String
+
+    init(_ value: RecurrenceRule, title: String?) {
+        self.title = title ?? value.text
+        self.value = value
+    }
+}
+
 final class EditCalendarEventViewModel: ObservableObject {
 
     private enum Mode {
@@ -37,7 +47,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     @Published var isAllDay: Bool = false
     @Published var startTime: Date?
     @Published var endTime: Date?
-    @Published var frequency: RecurrenceRule?
+    @Published var frequency: TitledFrequency?
     @Published var calendarName: String?
     @Published var location: String = ""
     @Published var address: String = ""
@@ -65,6 +75,10 @@ final class EditCalendarEventViewModel: ObservableObject {
         case .edit: String(localized: "Save", bundle: .core)
         }
     }()
+
+    var frequencySelectionText: String {
+        return frequency?.title ?? "Does Not Repeat".localized()
+    }
 
     lazy var saveErrorAlert: ErrorAlertViewModel = {
         .init(
@@ -97,7 +111,6 @@ final class EditCalendarEventViewModel: ObservableObject {
     private let eventInteractor: CalendarEventInteractor
     private let calendarListProviderInteractor: CalendarFilterInteractor
     private let router: Router
-    /*TODO: */ private var selectedFrequency = CurrentValueSubject<RecurrenceRule?, Never>(nil)
     private var selectedCalendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
     /// Returns true if any of the fields had been modified once by the user. It doesn't compare values.
     private var isFieldsTouched: Bool = false
@@ -141,6 +154,7 @@ final class EditCalendarEventViewModel: ObservableObject {
         subscribeIsFieldsTouched(to: $location)
         subscribeIsFieldsTouched(to: $address)
         subscribeIsFieldsTouched(to: $details)
+        subscribeIsFieldsTouched(to: $frequency)
 
         calendarListProviderInteractor
             .load(ignoreCache: false)
@@ -169,16 +183,6 @@ final class EditCalendarEventViewModel: ObservableObject {
 
         $endTime
             .sink { [weak self] newEndTime in self?.updateEndTimeError(self?.startTime, newEndTime) }
-            .store(in: &subscriptions)
-
-        selectedFrequency
-            .map { [weak self] in
-                if let oldfrequencyName = self?.frequency, oldfrequencyName != $0 {
-                    self?.isFieldsTouched = true
-                }
-                return $0
-            }
-            .assign(to: \.frequency, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
         selectedCalendar
@@ -241,6 +245,10 @@ final class EditCalendarEventViewModel: ObservableObject {
         location = event?.locationName ?? ""
         address = event?.locationAddress ?? ""
         details = event?.details ?? ""
+
+        if let rrule = event?.repetitionRule.flatMap({ RecurrenceRule(rruleDescription: $0) }) {
+            frequency = TitledFrequency(rrule, title: event?.seriesInNaturalLanguage)
+        }
     }
 
     private var defaultStartTime: Date {
@@ -273,12 +281,13 @@ final class EditCalendarEventViewModel: ObservableObject {
 
     private func showSelectFrequencyScreen(from source: WeakViewController) {
         let vc = CoreHostingController(
-            EditCustomFrequencyScreen(
-                viewModel: EditCustomFrequencyViewModel(
-                    rule: frequency,
-                    proposedDate: date ?? Clock.now,
-                    completion: { [weak self] savedRule in
-                        self?.frequency = savedRule
+            EditEventFrequencyScreen(
+                viewModel: EditEventFrequencyViewModel(
+                    eventDate: date ?? .now,
+                    savedRule: frequency?.value,
+                    router: router,
+                    completion: { [weak self] newRule in
+                        self?.frequency = newRule
                     }
                 )
             )
@@ -311,7 +320,7 @@ final class EditCalendarEventViewModel: ObservableObject {
             location: location.nilIfEmpty,
             address: address.nilIfEmpty,
             details: details.nilIfEmpty,
-            rrule: frequency
+            rrule: frequency?.value
         )
     }
 

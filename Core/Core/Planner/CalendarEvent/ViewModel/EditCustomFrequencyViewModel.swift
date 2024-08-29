@@ -29,7 +29,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
 
     private var subscriptions = Set<AnyCancellable>()
 
-    let didTapDone = PassthroughSubject<Void, Never>()
+    let didTapDone = PassthroughSubject<RecurrenceRule, Never>()
     let proposedDate: Date
 
     var titleForProposedDayOfYear: String {
@@ -54,7 +54,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     // Specific to Yearly
     @Published var dayOfYear: DayOfYear?
 
-    init(rule: RecurrenceRule?, proposedDate date: Date, completion: @escaping (RecurrenceRule?) -> Void) {
+    init(rule: RecurrenceRule?, proposedDate date: Date, completion: @escaping (RecurrenceRule) -> Void) {
         let frequency = rule?.frequency ?? .daily
 
         self.frequency = frequency
@@ -96,8 +96,8 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         didTapDone
-            .sink { [weak self] in
-                completion(self?.translatedRule)
+            .sink { ruleToSave in
+                completion(ruleToSave)
             }
             .store(in: &subscriptions)
     }

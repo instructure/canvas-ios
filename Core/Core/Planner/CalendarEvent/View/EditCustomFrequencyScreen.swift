@@ -74,7 +74,10 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                 isAvailableOffline: false,
                 title: viewModel.doneButtonTitle,
                 action: {
-                    viewModel.didTapDone.send()
+                    guard let rule = self.viewModel.translatedRule else {
+                        return // This should not happen
+                    }
+                    viewModel.didTapDone.send(rule)
                     dismiss()
                 }
             )
@@ -178,7 +181,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                             proposedDate: Date(),
                             completion: { rule in
                                 print("Selected rule:")
-                                print(rule?.rruleDescription)
+                                print(rule.rruleDescription)
                             })
                 )
                 .navigationBarTitleDisplayMode(.inline)
@@ -195,7 +198,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                 proposedDate: Date(),
                 completion: { rule in
                     print("Selected rule:")
-                    print(rule?.rruleDescription)
+                    print(rule.rruleDescription)
                 })
     )
 }

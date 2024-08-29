@@ -378,6 +378,12 @@ extension RecurrenceRule {
             ])
         }
 
+        subRules.append(contentsOf: [
+            RRK.SetPositions.rruleString(for: setPositions),
+            RRK.EndDate.rruleString(for: recurrenceEnd?.asEndDate),
+            RRK.OccurrenceCount.rruleString(for: recurrenceEnd?.asOccurrenceCount)
+        ])
+
         return "RRULE:" + subRules.compactMap({ $0 }).joined(separator: ";")
     }
 }
