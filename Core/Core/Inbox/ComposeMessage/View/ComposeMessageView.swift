@@ -170,17 +170,22 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         }
     }
 
-    private var sendButton: some View {
-        Button {
-            model.didTapSend.accept(controller)
-        } label: {
-            sendButtonImage
+   @ViewBuilder
+   private var sendButton: some View {
+        if model.showLoader {
+            ProgressView()
+                .progressViewStyle(.indeterminateCircle())
+        } else {
+            Button {
+                model.didTapSend.accept(controller)
+            } label: {
+                sendButtonImage
+            }
+            .accessibility(label: Text("Send", bundle: .core))
+            .disabled(!model.sendButtonActive)
+            .frame(maxHeight: .infinity, alignment: .top)
+            .accessibilityIdentifier("ComposeMessage.send")
         }
-        .accessibility(label: Text("Send", bundle: .core))
-        .disabled(!model.sendButtonActive)
-        .frame(maxHeight: .infinity, alignment: .top)
-        .accessibilityIdentifier("ComposeMessage.send")
-
     }
 
     private var sendButtonImage: some View {
