@@ -114,27 +114,6 @@ extension WeekNumber {
     }
 }
 
-struct OrdinalFormatStyle<Value>: FormatStyle where Value : BinaryInteger {
-    typealias FormatInput = Value
-    typealias FormatOutput = String
-    
-    func format(_ value: Value) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .ordinal
-        return formatter.string(from: NSNumber(value: Int(value))) ?? "\(value)"
-    }
-}
-
-extension FormatStyle where Self == OrdinalFormatStyle<Int> {
-    static var ordinal: OrdinalFormatStyle<Int> {
-        OrdinalFormatStyle<Int>()
-    }
-}
-
-
-
-
-
 extension DayOfWeek {
 
     var shortText: String {
@@ -178,17 +157,11 @@ extension Array where Element == DayOfWeek {
 
 extension Int {
 
-    var ordinal: String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .ordinal
-        return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
-    }
-
     func asInterval(for frequency: RecurrenceFrequency) -> String {
         if self == 0 { return "" }
         if self == 1 { return frequency.everyTimeText }
         if self == 2 { return frequency.everyOtherText }
-        return String(format: frequency.everyMultipleFormat, ordinal)
+        return String(format: frequency.everyMultipleFormat, formatted(.ordinal))
     }
 
     var asDay: String {
@@ -320,5 +293,29 @@ private extension String {
 extension String {
     func localized(in bundle: Bundle = .core) -> Self {
         return String(localized: LocalizationValue(self), bundle: .core)
+    }
+}
+
+extension NumberFormatter {
+    static let ordinal: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .ordinal
+        return formatter
+    }()
+}
+
+
+struct OrdinalFormatStyle<Value>: FormatStyle where Value : BinaryInteger {
+    typealias FormatInput = Value
+    typealias FormatOutput = String
+
+    func format(_ value: Value) -> String {
+        return NumberFormatter.ordinal.string(from: NSNumber(value: Int(value))) ?? "\(value)"
+    }
+}
+
+extension FormatStyle where Self == OrdinalFormatStyle<Int> {
+    static var ordinal: OrdinalFormatStyle<Int> {
+        OrdinalFormatStyle<Int>()
     }
 }

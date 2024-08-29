@@ -41,8 +41,8 @@ struct DayOfMonth: Equatable, Identifiable {
     }
 }
 
-extension [DayOfMonth] {
-    
+extension Array where Element == DayOfMonth {
+
     static func options(for date: Date, in calendar: Calendar = .current) -> Self {
         let comps = calendar.dateComponents(
             [.calendar, .day, .weekday, .weekdayOrdinal, .month, .year],
@@ -55,7 +55,7 @@ extension [DayOfMonth] {
 
         return [
             DayOfMonth(day: day),
-            DayOfMonth(weekday: DayOfWeek(weekday, weekNumber: weekNumber)),
+            DayOfMonth(weekday: DayOfWeek(weekday, weekNumber: weekNumber))
         ]
     }
 }
@@ -79,19 +79,28 @@ extension DayOfMonth {
 
 // MARK: - Utils
 
-extension Date {
-    static let defaultFormatter = DateFormatter()
+extension DateFormatter {
+    private static let _default = DateFormatter()
+    static func `default`(format: String, calendar: Calendar = .current) -> DateFormatter {
+        _default.calendar = calendar
+        _default.dateFormat = format
+        return _default
+    }
+}
 
-    func formatted(format: String, calendar: Calendar) -> String {
-        Self.defaultFormatter.calendar = calendar
-        Self.defaultFormatter.dateFormat = format
-        return Self.defaultFormatter.string(from: self)
+extension Date {
+
+    func formatted(format: String, calendar: Calendar = .current) -> String {
+        return DateFormatter
+            .default(format: format, calendar: calendar)
+            .string(from: self)
     }
 
     #if DEBUG
     init?(_ stringValue: String, format: String) {
-        Self.defaultFormatter.dateFormat = format
-        guard let parsed = Self.defaultFormatter.date(from: stringValue) else { return nil }
+        guard let parsed = DateFormatter
+            .default(format: format)
+            .date(from: stringValue) else { return nil }
         self = parsed
     }
     #endif

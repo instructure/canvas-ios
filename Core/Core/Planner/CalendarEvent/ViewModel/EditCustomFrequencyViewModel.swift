@@ -19,6 +19,17 @@
 import SwiftUI
 import Combine
 
+struct FrequencyInterval: Equatable {
+    static var options: [FrequencyInterval] { (1 ... 400).map({ FrequencyInterval(value: $0) }) }
+
+    let value: Int
+    var title: String { value.formatted(.number) }
+
+    init(value: Int) {
+        self.value = value
+    }
+}
+
 struct DayOfYear {
     var day: Int
     var month: Int
@@ -43,24 +54,26 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     let pageTitle = String(localized: "Custom Frequency", bundle: .core)
     let doneButtonTitle: String = String(localized: "Done", bundle: .core)
 
-    let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new/frequency")
+    let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new/frequency/custom")
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
-
-    let didTapDone = PassthroughSubject<Void, Never>()
 
     private var subscriptions = Set<AnyCancellable>()
 
+    let didTapDone = PassthroughSubject<Void, Never>()
     let proposedDate: Date
 
+    var titleForProposedDayOfYear: String {
+        return proposedDate.formatted(format: "MMMM d")
+    }
+
     @Published private(set) var state: InstUI.ScreenState = .data
+
     @Published var frequency: RecurrenceFrequency = .daily
-    @Published var interval: Int = 1
+    @Published var interval = FrequencyInterval(value: 1)
 
     @Published var endMode: RecurrenceEndMode?
     @Published var endDate: Date?
     @Published var occurrenceCount: Int
-
-    // Specific to our business logic
 
     // Specific to Weekly
     @Published var daysOfTheWeek: [Weekday] = []
@@ -75,7 +88,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         let frequency = rule?.frequency ?? .daily
 
         self.frequency = frequency
-        self.interval = rule?.interval ?? 1
+        self.interval = FrequencyInterval(value: rule?.interval ?? 1)
 
         if let end = rule?.recurrenceEnd {
             self.endMode = end.endDate != nil ? .onDate : .afterOccurrences
@@ -120,10 +133,35 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     }
 
     var isSaveButtonEnabled: Bool {
-        state == .data && endMode != nil
+        guard state == .data && end != nil else { return false }
+
+        if case .weekly = frequency {
+            return daysOfTheWeek.isEmpty == false
+        }
+
+        if case .monthly = frequency {
+            return dayOfMonth != nil
+        }
+
+        if case .yearly = frequency {
+            return dayOfYear != nil
+        }
+        
+        return true
     }
 
-    var rule: RecurrenceRule {
+    var end: RecurrenceEnd? {
+        switch (endMode, endDate, occurrenceCount) {
+        case (.onDate, .some(let date), _):
+            return RecurrenceEnd(endDate: date)
+        case (.afterOccurrences, _, let count) where count > 0:
+            return RecurrenceEnd(occurrenceCount: count)
+        default:
+            return nil
+        }
+    }
+
+    var rule: RecurrenceRule? {
 
         var daysOfWeek: [DayOfWeek]?
         var daysOfTheMonth: [Int]?
@@ -143,18 +181,9 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             monthsOfTheYear = dayOfYear.flatMap({ [$0.month] })
         }
 
-        var end: RecurrenceEnd?
-        switch (endMode, endDate, occurrenceCount) {
-        case (.onDate, .some(let date), _):
-            end = RecurrenceEnd(endDate: date)
-        case (.afterOccurrences, _, let count) where count > 0:
-            end = RecurrenceEnd(occurrenceCount: count)
-        default: break
-        }
-
         return RecurrenceRule(
             recurrenceWith: frequency,
-            interval: interval,
+            interval: interval.value,
             daysOfTheWeek: daysOfWeek,
             daysOfTheMonth: daysOfTheMonth,
             daysOfTheYear: nil,

@@ -19,12 +19,6 @@
 import SwiftUI
 
 struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
-    private enum FocusedInput {
-        case frequencyInterval
-        case repeatsOn
-        case endRepeat
-    }
-    @FocusState private var focusedInput: FocusedInput?
 
     @Environment(\.viewController) private var viewController
     @Environment(\.dismiss) private var dismiss
@@ -36,12 +30,6 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     @State private var weekDayDropDownState = DropDownButtonState()
     @State private var isOccurrencesDialogPresented: Bool = false
 
-    @State var selection: [Int] = [0, 0]
-
-    private var selectedFrequency: RecurrenceFrequency {
-        return RecurrenceFrequency.allCases[selection[1]]
-    }
-
     init(viewModel: EditCustomFrequencyViewModel) {
         self.viewModel = viewModel
     }
@@ -51,21 +39,21 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             VStack(alignment: .leading, spacing: 0) {
 
                 MultiPickerView(
-                    content: [
-                        (1 ... 400).map({ String($0) }),
-                        RecurrenceFrequency.allCases.map { $0.selectionText }
-                    ],
+                    content1: FrequencyInterval.options,
+                    titleKey1: \.title,
+                    selection1: $viewModel.interval,
+                    content2: RecurrenceFrequency.allCases,
+                    titleKey2: \.selectionText,
+                    selection2: $viewModel.frequency,
                     widths: [3, 7],
-                    alignments: [.right, .left],
-                    selections: $selection
-                )
+                    alignments: [.right, .left])
                 .frame(maxWidth: .infinity)
 
-                if case .weekly = selectedFrequency {
+                if case .weekly = viewModel.frequency {
                     weekDaysCell
-                } else if case .monthly = selectedFrequency {
+                } else if case .monthly = viewModel.frequency {
                     monthDaysCell
-                } else if case .yearly = selectedFrequency {
+                } else if case .yearly = viewModel.frequency {
                     yearDayCell
                 }
 
@@ -87,6 +75,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                 title: viewModel.doneButtonTitle,
                 action: {
                     viewModel.didTapDone.send()
+                    dismiss()
                 }
             )
         )
@@ -108,13 +97,9 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     private var yearDayCell: some View {
-        let yearDay = viewModel
-            .proposedDate
-            .formatted(format: "MMMM d", calendar: .current)
-
         return InstUI.LabelValueCell(
             label: Text("Repeats on", bundle: .core),
-            value: yearDay,
+            value: viewModel.titleForProposedDayOfYear,
             equalWidth: false,
             action: {}
         )
@@ -148,6 +133,16 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
         )
     }
 
+    @ViewBuilder
+    private func cellForEndMode(_ endMode: RecurrenceEndMode) -> some View {
+        switch endMode {
+        case .onDate:
+            endDateCell
+        case .afterOccurrences:
+            endOccurrencesCountCell
+        }
+    }
+
     private var endDateCell: some View {
         InstUI.DatePickerCell(
             label: Text("End date", bundle: .core),
@@ -166,16 +161,6 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             equalWidth: false) {
                 isOccurrencesDialogPresented = true
             }
-    }
-
-    @ViewBuilder
-    private func cellForEndMode(_ endMode: RecurrenceEndMode) -> some View {
-        switch endMode {
-        case .onDate:
-            endDateCell
-        case .afterOccurrences:
-            endOccurrencesCountCell
-        }
     }
 }
 

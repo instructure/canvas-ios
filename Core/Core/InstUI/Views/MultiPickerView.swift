@@ -19,12 +19,17 @@
 import UIKit
 import SwiftUI
 
-struct MultiPickerView: UIViewRepresentable {
-    var content: [[String]]
-    var widths: [CGFloat]
-    var alignments: [NSTextAlignment]
+struct MultiPickerView<Value1, Value2>: UIViewRepresentable where Value1: Equatable, Value2: Equatable {
+    let content1: [Value1]
+    let titleKey1: KeyPath<Value1, String>
+    @Binding var selection1: Value1
 
-    @Binding var selections: [Int]
+    let content2: [Value2]
+    let titleKey2: KeyPath<Value2, String>
+    @Binding var selection2: Value2
+
+    let widths: [CGFloat]
+    let alignments: [NSTextAlignment]
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -40,15 +45,76 @@ struct MultiPickerView: UIViewRepresentable {
     }
 
     func updateUIView(_ view: UIPickerView, context: UIViewRepresentableContext<MultiPickerView>) {
+        for component in 0 ..< view.numberOfComponents {
+            if let index = selectionIndex(for: component) {
+                view.selectRow(index, inComponent: component, animated: false)
+            }
+        }
+        context.coordinator.view = self
+    }
+}
 
-        for i in 0 ..< self.selections.count {
-            view
-                .selectRow(self.selections[i],
-                           inComponent: i,
-                           animated: false)
+private extension MultiPickerView {
+
+    func contentCount(for component: Int) -> Int {
+        switch component {
+        case 0:
+            return content1.count
+        case 1:
+            return content2.count
+        default:
+            return 0
+        }
+    }
+
+    func widthRatio(for component: Int) -> CGFloat {
+        let width = widths[safeIndex: component] ?? widths.prefix(2).last ?? 1
+
+        let total: CGFloat
+        if widths.isEmpty {
+            total = 2
+        } else {
+            total = widths.prefix(2).reduce(0, { $0 + $1 })
         }
 
-        context.coordinator.view = self
+        return width / total
+    }
+
+    func title(forRow row: Int, ofComponent component: Int) -> String? {
+        switch component {
+        case 0:
+            return content1[safeIndex: row].flatMap({ $0[keyPath: titleKey1] })
+        case 1:
+            return content2[safeIndex: row].flatMap({ $0[keyPath: titleKey2] })
+        default: 
+            return nil
+        }
+    }
+
+    func alignment(for component: Int) -> NSTextAlignment {
+        alignments[safeIndex: component] ?? .natural
+    }
+
+    func selectionIndex(for component: Int) -> Int? {
+        switch component {
+        case 0:
+            return content1.firstIndex(of: selection1)
+        case 1:
+            return content2.firstIndex(of: selection2)
+        default:
+            return nil
+        }
+    }
+
+    func setSelection(to index: Int, for component: Int) {
+        switch component {
+        case 0:
+            selection1 = content1[index]
+        case 1:
+            selection2 = content2[index]
+        default:
+            return
+        }
     }
 }
 
@@ -65,45 +131,31 @@ extension MultiPickerView {
         }
 
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            return view.content.count
+            return 2
         }
 
         func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-
             let margins = pickerView.directionalLayoutMargins
             let horizontalMargins = margins.leading + margins.trailing
-
             let fullWidth = pickerView.frame.width - horizontalMargins
-            let width = view.widths[safeIndex: component] ?? view.widths.last ?? 1
-
-            let total: CGFloat
-            if view.widths.isEmpty {
-                total = CGFloat(view.content.count)
-            } else {
-                total = view.widths.reduce(0, { $0 + $1 })
-            }
-
-            let ratio = width / total
-
-            return fullWidth * ratio
+            return fullWidth * view.widthRatio(for: component)
         }
 
         func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-            return view.content[component].count
+            return view.contentCount(for: component)
         }
 
         func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
 
             let label = view as? RowLabel ?? RowLabel()
-
-            label.textLabel.text = self.view.content[component][row]
-            label.textLabel.textAlignment = self.view.alignments[safeIndex: component] ?? .natural
+            label.textLabel.text = self.view.title(forRow: row, ofComponent: component)
+            label.textLabel.textAlignment = self.view.alignment(for: component)
 
             return label
         }
 
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            view.selections[component] = row
+            view.setSelection(to: row, for: component)
         }
     }
 }
@@ -129,15 +181,31 @@ private class RowLabel: UIView {
 }
 
 #Preview {
-    @State var selection: [Int] = [0, 0]
+    struct PreviewView: View {
+        @State var selection1: Int = 5
+        @State var selection2: String = "Monthly"
 
-    return MultiPickerView(
-        content: [
-            (1 ... 400).map({ String($0) }),
-            ["Daily", "Weekly", "Monthly", "Yearly"]
-        ],
-        widths: [3, 7],
-        alignments: [.right, .left],
-        selections: $selection
-    )
+        var body: some View {
+            MultiPickerView(
+                content1: (1 ... 400).map({ $0 }), 
+                titleKey1: \.description,
+                selection1: $selection1,
+
+                content2: ["Daily", "Weekly", "Monthly", "Yearly"], 
+                titleKey2: \.self,
+                selection2: $selection2,
+
+                widths: [3, 7],
+                alignments: [.right, .left]
+            )
+            .onChange(of: selection1) { newValue in
+                print("Interval: \(newValue)")
+            }
+            .onChange(of: selection2) { newValue in
+                print("Frequency: \(newValue)")
+            }
+        }
+    }
+
+    return PreviewView()
 }
