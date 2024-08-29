@@ -33,7 +33,7 @@ extension InstUI {
 
         public var body: some View {
             VStack(spacing: 0) {
-                Toggle(isOn: $value) { label }
+                Toggle(isOn: $value) { label.allowsHitTesting(false) }
                     .textStyle(.cellLabel)
                     .paddingStyle(.leading, .standard)
                     .paddingStyle(.trailing, .standard)
