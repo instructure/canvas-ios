@@ -136,6 +136,11 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 isPresented: $model.isShowingCancelDialog,
                 presenting: model.confirmAlert
             )
+            .confirmationAlert(
+                isPresented: $model.isShowingErrorDialog,
+                presenting: model.errorAlert
+            )
+            .snackBar(viewModel: model.snackBarViewModel)
         }
 
     }

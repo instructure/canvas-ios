@@ -20,7 +20,11 @@ import Combine
 import CombineExt
 import CombineSchedulers
 
-class ComposeMessageViewModel: ObservableObject {
+public protocol ComposeMessageDelete: AnyObject {
+    func didSendMailSuccessfully()
+}
+
+final class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var recipients: [Recipient] = []
     @Published public private(set) var isSendingMessage: Bool = false
@@ -29,6 +33,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var isImagePickerVisible: Bool = false
     @Published public var isTakePhotoVisible: Bool = false
     @Published public var isAudioRecordVisible: Bool = false
+    @Published public private(set) var showLoader: Bool = false
 
     @Published public private(set) var isContextDisabled: Bool = false
     @Published public private(set) var isRecipientsDisabled: Bool = false
@@ -39,7 +44,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var expandedIncludedMessageIds = [String]()
 
     @Published public var showExtraSendButton = false
-
+    public weak var delegate: ComposeMessageDelete?
     public let title = String(localized: "[No Subject]", bundle: .core)
     public var sendButtonActive: Bool {
         !recipients.isEmpty
@@ -68,6 +73,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var includedMessages: [ConversationMessage] = []
     @Published public var attachments: [File] = []
     @Published public var isShowingCancelDialog = false
+    @Published public var isShowingErrorDialog = false
     @Published private(set) var searchedRecipients: [Recipient] = []
     @Published var showSearchRecipientsView: Bool = false
     public let confirmAlert = ConfirmationAlertViewModel(
@@ -77,16 +83,26 @@ class ComposeMessageViewModel: ObservableObject {
         confirmButtonTitle: String(localized: "Discard", bundle: .core),
         isDestructive: true
     )
+
+     let errorAlert = ConfirmationAlertViewModel(
+        title: String(localized: "Oops!", bundle: .core),
+        message: String(localized: "This message could not be sent. Tap to try again.", bundle: .core),
+        cancelButtonTitle: String(localized: "Back to editing", bundle: .core),
+        confirmButtonTitle: String(localized: "Retry", bundle: .core),
+        isDestructive: false
+    )
     let router: Router
 
     // MARK: - Private
+    public let didTapRetry = PassthroughRelay<WeakViewController>()
+    private var viewController  = WeakViewController()
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: ComposeMessageInteractor
     private let recipientUseCase: RecipientInteractor
     private let audioSession: AudioSessionProtocol
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var messageType: ComposeMessageOptions.MessageType
-    var allRecipients = CurrentValueSubject<[Recipient], Never>([])
+    private var allRecipients = CurrentValueSubject<[Recipient], Never>([])
     private var hiddenMessage: String = ""
     private var autoTeacherSelect: Bool = false
     private var teacherOnly: Bool = false
@@ -96,12 +112,15 @@ class ComposeMessageViewModel: ObservableObject {
                 options: ComposeMessageOptions,
                 interactor: ComposeMessageInteractor,
                 scheduler: AnySchedulerOf<DispatchQueue> = .main,
-                recipientUseCase: RecipientUseCaseType) {
+                recipientUseCase: RecipientInteractor,
+                delegate: ComposeMessageDelete? = nil, audioSession: AudioSessionProtocol) {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
         self.messageType = options.messageType
         self.recipientUseCase = recipientUseCase
+        self.delegate = delegate
+        self.audioSession = audioSession
         setIncludedMessages(messageType: options.messageType)
         setOptionItems(options: options)
 
@@ -372,19 +391,6 @@ class ComposeMessageViewModel: ObservableObject {
         )
     }
 
-    private func showResultDialog(title: String, message: String, completion: (() -> Void)? = nil) {
-        let actionTitle = String(localized: "OK", bundle: .core)
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: actionTitle, style: .default) { _ in
-            completion?()
-        }
-        alert.addAction(action)
-
-        if let top = AppEnvironment.shared.window?.rootViewController {
-            router.show(alert, from: top, options: .modal())
-        }
-    }
-
     private func setupInputBindings(router: Router) {
         didTapCancel
             .handleEvents(receiveOutput: { [weak self] _ in
@@ -405,8 +411,8 @@ class ComposeMessageViewModel: ObservableObject {
                 return (viewController, params, messageType)
             }
             .handleEvents(receiveOutput: { [weak self] (viewController, _, _) in
-                self?.isSendingMessage = true
-                self?.router.dismiss(viewController)
+                self?.showLoader = true
+                self?.viewController = viewController
             })
             .flatMap { [interactor] (viewController, params, type) in
                 switch type {
@@ -416,22 +422,23 @@ class ComposeMessageViewModel: ObservableObject {
                         .map { _ in
                             viewController
                         }
+                        .replaceError(with: nil) // Replace the error to nil to avoid so the pipeline once got an error
                 case .forward, .reply, .replyAll:
                     return interactor
                         .addConversationMessage(parameters: params)
                         .map { _ in
                             viewController
                         }
+                        .replaceError(with: nil)
                 }
             }
             .receive(on: scheduler)
-            .sink(receiveCompletion: { completion in
-                if case .failure = completion {
-                    Logger.shared.error("ComposeMessageView message failure")
-                    let title = String(localized: "Message could not be sent", bundle: .core)
-                    let message = String(localized: "Please try again!", bundle: .core)
-                    self.showResultDialog(title: title, message: message)
-                    self.isSendingMessage = false
+            .sink(receiveValue: { [weak self] viewController in
+                self?.showLoader = false
+                if let viewController {
+                    self?.sentMailSuccessfully(viewController: viewController)
+                } else {
+                    self?.sentMailFailed()
                 }
             }, receiveValue: { [weak self] _ in
                 self?.isSendingMessage = false
@@ -450,5 +457,30 @@ class ComposeMessageViewModel: ObservableObject {
                 self?.interactor.removeFile(file: file)
             }
             .store(in: &subscriptions)
+
+        didTapRetry
+            .handleEvents(receiveOutput: { [weak self] _ in
+                self?.isShowingErrorDialog = true
+            })
+            .flatMap { [errorAlert] value in
+                errorAlert.userConfirmation().map { value }
+            }
+            .sink { [weak self] viewController in
+                self?.didTapSend.accept(viewController)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func sentMailSuccessfully(viewController: WeakViewController) {
+        delegate?.didSendMailSuccessfully()
+        router.dismiss(viewController)
+    }
+
+    private func sentMailFailed() {
+        Logger.shared.error("ComposeMessageView message failure")
+        didTapRetry.accept(viewController)
+    }
+    private func bytesToMegabytes(bytes: Int) -> Double {
+        return Double(bytes / (1024 * 1024))
     }
 }

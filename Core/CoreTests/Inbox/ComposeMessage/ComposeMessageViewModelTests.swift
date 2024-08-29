@@ -26,6 +26,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
     private var mockInteractor: ComposeMessageInteractorMock!
     private var recipientUseCaseMock: RecipientInteractorMock!
     private var audioSession: AudioSessionMock!
+    private var delegate: ComposeMessageDeleteMock!
+
     var testee: ComposeMessageViewModel!
     private var subscriptions = Set<AnyCancellable>()
 
@@ -34,7 +36,17 @@ class ComposeMessageViewModelTests: CoreTestCase {
         recipientUseCaseMock = RecipientInteractorMock()
         mockInteractor = ComposeMessageInteractorMock()
         audioSession = AudioSessionMock()
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .new), interactor: mockInteractor, recipientUseCase: recipientUseCaseMock, audioSession: audioSession)
+        delegate = ComposeMessageDeleteMock()
+        testee = ComposeMessageViewModel(
+            router: router,
+            options: .init(
+                fromType: .new
+            ),
+            interactor: mockInteractor,
+            recipientUseCase: recipientUseCaseMock,
+            delegate: delegate,
+            audioSession: audioSession
+        )
     }
 
     private func setupForReply() {
@@ -131,18 +143,39 @@ class ComposeMessageViewModelTests: CoreTestCase {
     }
 
     func testFailedSend() {
+        // Given
         mockInteractor.isSuccessfulMockFuture = false
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
+        // When
         testee.didTapSend.accept(WeakViewController(sourceView))
+        let showExpectation = expectation(description: "Show Error Alert")
+        // Then
+        testee.$isShowingErrorDialog
+            .dropFirst() // Escape the initial event and wait the second (real) one
+            .sink { value in
+                XCTAssertFalse(self.testee.showLoader)
+                XCTAssertTrue(value)
 
-        wait(for: [router.showExpectation], timeout: 1)
-        let dialog = router.presented as? UIAlertController
-        XCTAssertNotNil(dialog)
-        XCTAssertEqual(dialog?.title, "Message could not be sent")
-        XCTAssertEqual(dialog?.message, "Please try again!")
-        XCTAssertEqual(dialog?.actions.count, 1)
-        XCTAssertEqual(dialog?.actions.first?.title, "OK")
+                showExpectation.fulfill()
+            }.store(in: &subscriptions)
+
+        wait(for: [showExpectation], timeout: 0.5)
+    }
+
+    func test_retrySendingMail_success_dismissViewIsCalled_AND_didSendMailIsCalled() {
+        // Given
+        mockInteractor.isSuccessfulMockFuture = true
+        testee.selectedContext = RecipientContext(course: Course.make())
+        let sourceView = WeakViewController()
+        // When
+        testee.didTapRetry.accept(sourceView)
+        testee.errorAlert.notifyCompletion(isConfirmed: true)
+        // Then
+        XCTAssertTrue(testee.showLoader)
+        wait(for: [router.dismissExpectation], timeout: 0.5)
+        XCTAssertFalse(testee.showLoader)
+        XCTAssertTrue(delegate.didSendMailIsCalled)
     }
 
     func testShowCourseSelector() {

@@ -80,11 +80,13 @@ public class TestRouter: Router {
         popExpectation.fulfill()
     }
 
+    public var dismissExpectation = XCTestExpectation(description: "dismiss")
     public override func dismiss(_ view: UIViewController, completion: (() -> Void)? = nil) {
         dismissed = view
         if viewControllerCalls.last?.0 == view {
             viewControllerCalls.removeLast()
         }
+        dismissExpectation.fulfill()
         completion?()
     }
 
