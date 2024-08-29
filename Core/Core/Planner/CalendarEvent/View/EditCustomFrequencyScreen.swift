@@ -108,9 +108,13 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     private var yearDayCell: some View {
-        InstUI.LabelValueCell(
+        let yearDay = viewModel
+            .proposedDate
+            .formatted(format: "MMMM d", calendar: .current)
+
+        return InstUI.LabelValueCell(
             label: Text("Repeats on", bundle: .core),
-            value: proposedDay.title(as: .yearDay),
+            value: yearDay,
             equalWidth: false,
             action: {}
         )
@@ -186,15 +190,6 @@ enum RecurrenceEndMode: Equatable, CaseIterable {
         case .afterOccurrences:
             return "After Occurrences".localized()
         }
-    }
-}
-
-struct MonthOption: Equatable {
-    let eventDay: ProposedEventDay
-    let representation: ProposedEventDay.Representation
-
-    var title: String {
-        return eventDay.title(as: representation)
     }
 }
 

@@ -18,20 +18,24 @@
 
 import Foundation
 
-struct DayOfMonth: Identifiable {
-    let id: UUID
+struct DayOfMonth: Equatable, Identifiable {
+    var id: String {
+        return [
+            "weekday: \(weekday?.weekday.dateComponent ?? 0)",
+            "weekNumber: \(weekday?.weekNumber ?? 0)",
+            "day: \(day ?? 0)"
+        ].joined(separator: ", ")
+    }
 
     var weekday: DayOfWeek?
     var day: Int?
 
     init(weekday: DayOfWeek) {
-        self.id = UUID()
         self.weekday = weekday
         self.day = nil
     }
 
     init(day: Int) {
-        self.id = UUID()
         self.weekday = nil
         self.day = day
     }
@@ -61,7 +65,7 @@ extension DayOfMonth {
     var title: String {
 
         if let day {
-            return String(format: "Day %i", day.formatted(.number))
+            return String(format: "Day %@", day.formatted(.number))
         }
 
         if let weekday {

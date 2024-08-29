@@ -22,6 +22,20 @@ import Combine
 struct DayOfYear {
     var day: Int
     var month: Int
+
+    init(given date: Date, in calendar: Calendar = .current) {
+        let comps = calendar.dateComponents(
+            [.day, .month, .year],
+            from: date
+        )
+
+        self.init(day: comps.day!, month: comps.month!)
+    }
+
+    init(day: Int, month: Int) {
+        self.day = day
+        self.month = month
+    }
 }
 
 final class EditCustomFrequencyViewModel: ObservableObject {
@@ -91,6 +105,13 @@ final class EditCustomFrequencyViewModel: ObservableObject {
 
         self.proposedDate = date
 
+        self.$frequency
+            .filter({ $0 == .yearly })
+            .sink { [weak self] _ in
+                self?.dayOfYear = DayOfYear(given: date, in: .current)
+            }
+            .store(in: &subscriptions)
+
         didTapDone
             .sink {
                 completion(rule)
@@ -113,8 +134,8 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         }
 
         if case .monthly = frequency {
-            daysOfWeek = weekdayOfMonth.flatMap({ [$0] })
-            daysOfTheMonth = dayOfMonth.flatMap({ [$0] })
+            daysOfWeek = dayOfMonth?.weekday.flatMap({ [$0] })
+            daysOfTheMonth = dayOfMonth?.day.flatMap({ [$0] })
         }
 
         if case .yearly = frequency {

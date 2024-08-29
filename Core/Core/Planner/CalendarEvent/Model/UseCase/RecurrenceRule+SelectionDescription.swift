@@ -59,10 +59,10 @@ extension Weekday {
 extension DayOfWeek {
 
     var selectionText: String {
-        if let weekNumber {
-            return String(format: weekNumber.standaloneFormat, dayOfTheWeek.text)
+        if weekNumber != 0 {
+            return String(format: weekNumber.standaloneFormat, weekday.text)
         } else {
-            return dayOfTheWeek.pluralText
+            return weekday.pluralText
         }
     }
 }
@@ -70,7 +70,7 @@ extension DayOfWeek {
 extension Array where Element == DayOfWeek {
 
     var nonWeekdays: Self {
-        filter({ Weekday.weekDays.contains($0.dayOfTheWeek) == false })
+        filter({ Weekday.weekDays.contains($0.weekday) == false })
     }
 
     var selectionTexts: [String] {
