@@ -22,15 +22,14 @@ import UIKit
 
 public final class CDContextColor: NSManagedObject {
     @NSManaged public var canvasContextID: String
-    /// This is the color assigned by the teacher to elementary courses.
-    /// Nil in case the context is a user or a group since they have no default/teacher assigned colors.
-    @NSManaged public var courseColorHex: String?
-    /// This is the custom color that the user can assign to the context.
-    @NSManaged public var contextColorHex: String?
+    /// This is the color assigned by the teacher to elementary courses. Nil for non-elementary courses and for other context types (groups, users).
+    @NSManaged public var elementaryCourseColorHex: String?
+    /// This is the custom color of the context that the user can change. A color is always assigned by the API to a context.
+    @NSManaged public var contextColorHex: String
 
     @discardableResult
     public static func save(
-        _ responses: GetContextColorsUseCase.APIResponses,
+        _ responses: GetCDContextColorsUseCase.APIResponses,
         in context: NSManagedObjectContext
     ) -> [CDContextColor] {
         // TODO also save group/user colors
@@ -39,6 +38,10 @@ public final class CDContextColor: NSManagedObject {
             let courseColorHex = apiCourse.course_color
             let contextColorHex = responses.customColors.custom_colors[contextID]
 
+            guard let contextColorHex else {
+                return nil
+            }
+
             let predicate = NSPredicate(
                 format: "%K == %@",
                 #keyPath(CDContextColor.canvasContextID),
@@ -46,7 +49,7 @@ public final class CDContextColor: NSManagedObject {
             )
             let model: CDContextColor = context.fetch(predicate).first ?? context.insert()
             model.canvasContextID = contextID
-            model.courseColorHex = courseColorHex
+            model.elementaryCourseColorHex = courseColorHex
             model.contextColorHex = contextColorHex
             return model
         }

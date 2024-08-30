@@ -18,55 +18,129 @@
 
 import Combine
 
-public protocol ContextColorsInteractor {
-    typealias ContextID = String
-
-    var contextColors: CurrentValueSubject<[ContextID: UIColor], Never> { get }
+public enum ColorContext {
+    case course(courseID: String)
+    case group(groupID: String, parentCourseID: String?)
 }
 
-class ContextColorsInteractorLive: ContextColorsInteractor {
-    let contextColors = CurrentValueSubject<[ContextID: UIColor], Never>([:])
+public protocol ContextColorsInteractor {
 
-    private let k5State: K5State
-    private var subscriptions = Set<AnyCancellable>()
+    func getContextColor(
+        _ colorContext: ColorContext,
+        ignoreCache: Bool
+    ) -> AnyPublisher<UIColor, Never>
+}
 
-    init(k5State: K5State) {
-        self.k5State = k5State
-        refreshColorsFromAPI()
+public class ContextColorsInteractorLive: ContextColorsInteractor {
 
-        let localColors = LocalUseCase<ContextColor>(scope: .all)
-        ReactiveStore(useCase: localColors)
-            .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
-            .map { [k5State] contextColors in
-                var colorsByContext: [ContextID: UIColor] = [:]
+    public init() {}
 
-                for contextColor in contextColors {
-                    colorsByContext[contextColor.canvasContextID] = .contextColor(
-                        courseColorHex: contextColor.courseColorHex,
-                        contextColorHex: contextColor.contextColorHex,
-                        k5State: k5State
+    public func getContextColor(
+        _ colorContext: ColorContext,
+        ignoreCache: Bool
+    ) -> AnyPublisher<UIColor, Never> {
+        switch colorContext {
+        case .course(let courseID):
+            return getElementaryStateForCourse(
+                courseID: courseID,
+                ignoreCache: ignoreCache
+            )
+            .flatMap { isElementary in
+                self.getContextColor(
+                    Context(.course, id: courseID),
+                    isElementary: isElementary,
+                    ignoreCache: ignoreCache
+                )
+            }
+            .eraseToAnyPublisher()
+
+        case .group(let groupID, let parentCourseID):
+            let isElementary: AnyPublisher<Bool, Never> = {
+                if let parentCourseID {
+                    return getElementaryStateForCourse(courseID: parentCourseID, ignoreCache: ignoreCache)
+                } else {
+                    return Just(false).eraseToAnyPublisher()
+                }
+            }()
+
+            return isElementary
+                .flatMap { isElementary in
+                    self.getContextColor(
+                        Context(.group, id: groupID),
+                        isElementary: isElementary,
+                        ignoreCache: ignoreCache
                     )
                 }
-
-                return colorsByContext
-            }
-            .sink { _ in
-            } receiveValue: { [weak contextColors] colorsByContext in
-                contextColors?.send(colorsByContext)
-            }
-            .store(in: &subscriptions)
+                .eraseToAnyPublisher()
+        }
     }
 
-    /// Force refreshes colors from API. Results are published via the `courseColors` subject.
-    func refresh() {
-        refreshColorsFromAPI(ignoreCache: true)
-    }
+    // MARK: - Private Helpers
 
-    private func refreshColorsFromAPI(ignoreCache: Bool = false) {
-        let colorsUseCase = GetContextColorsUseCase()
-        ReactiveStore(useCase: colorsUseCase)
+    private func getElementaryStateForCourse(
+        courseID: String,
+        ignoreCache: Bool
+    ) -> AnyPublisher<Bool, Never> {
+        let useCase = GetDashboardCards(showOnlyTeacherEnrollment: false)
+        return ReactiveStore(useCase: useCase)
             .getEntities(ignoreCache: ignoreCache)
-            .sink()
-            .store(in: &subscriptions)
+            .map { dashboardCards in
+                let cardForCourse = dashboardCards.first { $0.id == courseID }
+                return cardForCourse?.isK5Subject ?? false
+            }
+            .replaceError(with: false)
+            .eraseToAnyPublisher()
+    }
+
+    private func getContextColor(
+        _ context: Context,
+        isElementary: Bool = false,
+        ignoreCache: Bool = false
+    ) -> AnyPublisher<UIColor, Never> {
+        getColors(ignoreCache: ignoreCache)
+            .map { colorObjects -> CDContextColor? in
+                colorObjects.first(where: { $0.canvasContextID == context.canvasContextID })
+            }
+            .map { colorObject -> UIColor in
+                return .contextColor(
+                    elementaryCourseColorHex: colorObject?.elementaryCourseColorHex,
+                    contextColorHex: colorObject?.contextColorHex,
+                    isElementary: isElementary
+                )
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func getColors(
+        ignoreCache: Bool = false
+    ) -> AnyPublisher<[CDContextColor], Never> {
+        let colorsUseCase = GetCDContextColorsUseCase()
+        return ReactiveStore(useCase: colorsUseCase)
+            .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .eraseToAnyPublisher()
+    }
+}
+
+extension UIColor {
+
+    static var defaultContextColor: UIColor { .ash }
+    static var defaultElementaryColor: UIColor { .oxford }
+
+    /// - parameters:
+    ///   - courseColorHex: The course color assigned to an elementary course by the teacher.
+    ///   - contextColorHex: The context's color that can be customized by the user.
+    static func contextColor(
+        elementaryCourseColorHex: String?,
+        contextColorHex: String?,
+        isElementary: Bool
+    ) -> UIColor {
+        let effectiveColorHex = isElementary ? elementaryCourseColorHex : contextColorHex
+
+        guard let effectiveColor = UIColor(hexString: effectiveColorHex) else {
+            return isElementary ? defaultElementaryColor : defaultContextColor
+        }
+
+        return effectiveColor.ensureContrast(against: backgroundLightest)
     }
 }

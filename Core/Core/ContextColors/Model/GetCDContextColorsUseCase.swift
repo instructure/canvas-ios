@@ -19,8 +19,8 @@
 import Combine
 import CoreData
 
-public class GetContextColorsUseCase: UseCase {
-    public typealias Model = ContextColor
+public class GetCDContextColorsUseCase: UseCase {
+    public typealias Model = CDContextColor
     public typealias Response = APIResponses
 
     public struct APIResponses: Codable {
@@ -59,6 +59,6 @@ public class GetContextColorsUseCase: UseCase {
         to client: NSManagedObjectContext
     ) {
         guard let response else { return }
-        ContextColor.save(response, in: client)
+        CDContextColor.save(response, in: client)
     }
 }
