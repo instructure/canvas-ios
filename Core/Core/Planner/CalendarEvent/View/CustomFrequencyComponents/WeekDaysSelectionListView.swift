@@ -33,7 +33,7 @@ struct WeekDaysSelectionListView: View {
                         label: {
                             HStack {
                                 Text(weekDay.text)
-                                    .font(.medium16)
+                                    .font(.regular16)
                                     .foregroundStyle(Color.textDarkest)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 Spacer()

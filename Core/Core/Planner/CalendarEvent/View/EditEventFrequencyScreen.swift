@@ -44,7 +44,7 @@ struct EditEventFrequencyScreen: View, ScreenViewTrackable {
 
                 ChoiceButton(
                     title: Text("Custom", bundle: .core),
-                    selected: viewModel.isCustomSelected) {
+                    selected: viewModel.selection.isCustom) {
                         viewModel.didSelectCustomFrequency.send(viewController)
                     }
                 InstUI.Divider()

@@ -19,6 +19,19 @@
 import SwiftUI
 import Combine
 
+struct FrequencySelection: Equatable {
+    let value: RecurrenceRule
+    let title: String
+    let preset: FrequencyPreset
+
+    init(_ value: RecurrenceRule, title: String? = nil, preset: FrequencyPreset) {
+        let customTitle: String? = preset.isCustom ? "Custom".localized() : nil
+        self.title = title ?? customTitle ?? value.text
+        self.value = value
+        self.preset = preset
+    }
+}
+
 final class EditEventFrequencyViewModel: ObservableObject {
 
     let pageTitle = String(localized: "Frequency", bundle: .core)
@@ -39,23 +52,18 @@ final class EditEventFrequencyViewModel: ObservableObject {
         return FrequencyChoice.allCases(given: eventDate)
     }
 
-    var isCustomSelected: Bool {
-        if case .custom = selection { return true }
-        return false
-    }
-
     @Published private(set) var state: InstUI.ScreenState = .data
-    @Published var selection: FrequencySelection
+    @Published var selection: FrequencyPreset
 
     init(eventDate: Date,
          savedRule: RecurrenceRule?,
          router: Router,
-         completion: @escaping (TitledFrequency?) -> Void) {
+         completion: @escaping (FrequencySelection?) -> Void) {
 
         self.router = router
         self.eventDate = eventDate
         self.savedRule = savedRule
-        self.selection = FrequencySelection(given: savedRule, date: eventDate)
+        self.selection = FrequencyPreset(given: savedRule, date: eventDate)
 
         didSelectCustomFrequency
             .sink { [weak self] weakVC in
@@ -68,9 +76,8 @@ final class EditEventFrequencyViewModel: ObservableObject {
                 guard let self,
                       let rule = self.selection.rule(given: eventDate)
                 else { return completion(nil) }
-
-                let title = self.isCustomSelected ? "Custom".localized() : nil
-                completion(TitledFrequency(rule, title: title))
+                let frequency = FrequencySelection(rule, preset: selection)
+                completion(frequency)
             }
             .store(in: &subscriptions)
     }
@@ -95,24 +102,24 @@ final class EditEventFrequencyViewModel: ObservableObject {
 struct FrequencyChoice: Identifiable {
 
     static func allCases(given date: Date) -> [FrequencyChoice] {
-        return FrequencySelection
-            .predefinedCases
+        return FrequencyPreset
+            .presetCases
             .map({ FrequencyChoice(date: date, selectionCase: $0) })
     }
 
     let id = Foundation.UUID()
     let date: Date
-    let selectionCase: FrequencySelection
+    let selectionCase: FrequencyPreset
 
-    private init(date: Date, selectionCase: FrequencySelection) {
+    private init(date: Date, selectionCase: FrequencyPreset) {
         self.date = date
         self.selectionCase = selectionCase
     }
 }
 
-enum FrequencySelection: Equatable {
+enum FrequencyPreset: Equatable {
 
-    static var predefinedCases: [FrequencySelection] {
+    static var presetCases: [FrequencyPreset] {
         return [
             .noRepeat, .daily, .weeklyOnThatDay, .monthlyOnThatWeekday, .yearlyOnThatMonth, .everyWeekday
         ]
@@ -126,32 +133,44 @@ enum FrequencySelection: Equatable {
     case everyWeekday
     case custom(RecurrenceRule)
 
+    var isCustom: Bool {
+        if case .custom = self { return true }
+        return false
+    }
+
     func rule(given date: Date) -> RecurrenceRule? {
         switch self {
         case .noRepeat:
             return nil
         case .daily:
-            return RecurrenceRule(recurrenceWith: .daily, 
-                                  interval: 1,
-                                  end: RecurrenceEnd(occurrenceCount: 365))
+            return RecurrenceRule(
+                recurrenceWith: .daily,
+                interval: 1,
+                end: RecurrenceEnd(occurrenceCount: 365)
+            )
         case .weeklyOnThatDay:
             let weekday = DayOfWeek(date.weekday, weekNumber: 0)
-            return RecurrenceRule(recurrenceWith: .weekly, 
-                                  interval: 1,
-                                  daysOfTheWeek: [weekday],
-                                  end: RecurrenceEnd(occurrenceCount: 52))
+            return RecurrenceRule(
+                recurrenceWith: .weekly,
+                interval: 1,
+                daysOfTheWeek: [weekday],
+                end: RecurrenceEnd(occurrenceCount: 52)
+            )
         case .monthlyOnThatWeekday:
-            return RecurrenceRule(recurrenceWith: .monthly, 
-                                  interval: 1,
-                                  daysOfTheWeek: [date.monthWeekday],
-                                  end: RecurrenceEnd(occurrenceCount: 12))
-
+            return RecurrenceRule(
+                recurrenceWith: .monthly,
+                interval: 1,
+                daysOfTheWeek: [date.monthWeekday],
+                end: RecurrenceEnd(occurrenceCount: 12)
+            )
         case .yearlyOnThatMonth:
-            return RecurrenceRule(recurrenceWith: .yearly,
-                                  interval: 1,
-                                  daysOfTheMonth: [date.monthDay],
-                                  monthsOfTheYear: [date.month],
-                                  end: RecurrenceEnd(occurrenceCount: 5))
+            return RecurrenceRule(
+                recurrenceWith: .yearly,
+                interval: 1,
+                daysOfTheMonth: [date.monthDay],
+                monthsOfTheYear: [date.month],
+                end: RecurrenceEnd(occurrenceCount: 5)
+            )
         case .everyWeekday:
             return RecurrenceRule(
                 recurrenceWith: .weekly,
@@ -170,7 +189,7 @@ enum FrequencySelection: Equatable {
             return
         }
 
-        self = Self.predefinedCases.first(where: { $0.rule(given: date) == rule }) ?? .custom(rule)
+        self = Self.presetCases.first(where: { $0.rule(given: date) == rule }) ?? .custom(rule)
     }
 }
 

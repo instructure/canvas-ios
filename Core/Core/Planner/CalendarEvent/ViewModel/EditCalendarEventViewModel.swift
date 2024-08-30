@@ -19,15 +19,6 @@
 import Combine
 import SwiftUI
 
-struct TitledFrequency: Equatable {
-    let value: RecurrenceRule
-    let title: String
-
-    init(_ value: RecurrenceRule, title: String?) {
-        self.title = title ?? value.text
-        self.value = value
-    }
-}
 
 final class EditCalendarEventViewModel: ObservableObject {
 
@@ -47,7 +38,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     @Published var isAllDay: Bool = false
     @Published var startTime: Date?
     @Published var endTime: Date?
-    @Published var frequency: TitledFrequency?
+    @Published var frequency: FrequencySelection?
     @Published var calendarName: String?
     @Published var location: String = ""
     @Published var address: String = ""
@@ -177,6 +168,19 @@ final class EditCalendarEventViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
 
+        $date
+            .sink { [weak self] newDate in
+                guard let date = newDate,
+                      let self,
+                      let frequency = self.frequency,
+                      frequency.preset.isCustom == false else { return }
+
+                if let newRule = frequency.preset.rule(given: date) {
+                    self.frequency = FrequencySelection(newRule, preset: frequency.preset)
+                }
+            }
+            .store(in: &subscriptions)
+
         $startTime
             .sink { [weak self] newStartTime in self?.updateEndTimeError(newStartTime, self?.endTime) }
             .store(in: &subscriptions)
@@ -231,7 +235,8 @@ final class EditCalendarEventViewModel: ObservableObject {
     private func setupFields(event: CalendarEvent?) {
         title = event?.title ?? ""
 
-        date = event?.startAt ?? Clock.now.startOfDay()
+        let eventDate = event?.startAt ?? Clock.now.startOfDay()
+        date = eventDate
         isAllDay = event?.isAllDay ?? false
 
         if isAllDay {
@@ -247,7 +252,8 @@ final class EditCalendarEventViewModel: ObservableObject {
         details = event?.details ?? ""
 
         if let rrule = event?.repetitionRule.flatMap({ RecurrenceRule(rruleDescription: $0) }) {
-            frequency = TitledFrequency(rrule, title: event?.seriesInNaturalLanguage)
+            let preset = FrequencyPreset(given: rrule, date: eventDate)
+            frequency = FrequencySelection(rrule, title: event?.seriesInNaturalLanguage, preset: preset)
         }
     }
 
