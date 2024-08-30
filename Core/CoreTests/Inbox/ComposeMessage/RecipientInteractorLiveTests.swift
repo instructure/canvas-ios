@@ -44,7 +44,7 @@ final class RecipientInteractorLiveTests: CoreTestCase {
         sut.getRecipients(by: context)
             .sink { result in
                 // Then
-                XCTAssertEqual(result.count, 4)
+                XCTAssertEqual(result.count, 5)
                 didLoadRecipients.fulfill()
             }
             .store(in: &subscriptions)

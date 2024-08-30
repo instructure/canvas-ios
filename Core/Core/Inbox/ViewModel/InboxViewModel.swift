@@ -29,6 +29,7 @@ public class InboxViewModel: ObservableObject {
     @Published public private(set) var hasNextPage = false
     @Published public var isShowingScopeSelector = false
     @Published public var isShowingCourseSelector = false
+    public let snackBarViewModel = SnackBarViewModel()
     public let scopes = InboxMessageScope.allCases
     public let emptyState = (scene: SpacePanda() as PandaScene,
                              title: String(localized: "No Messages", bundle: .core),
@@ -54,8 +55,12 @@ public class InboxViewModel: ObservableObject {
     private let messageInteractor: InboxMessageFavouriteInteractor
     private var subscriptions = Set<AnyCancellable>()
     private var isLoadingNextPage = CurrentValueSubject<Bool, Never>(false)
-
-    public init(interactor: InboxMessageInteractor, router: Router) {
+    // MARK: - Init
+    public init(
+        interactor: InboxMessageInteractor,
+        router: Router,
+        messageInteractor: InboxMessageFavouriteInteractor
+    ) {
         self.interactor = interactor
         self.messageInteractor = messageInteractor
         bindInputsToDataSource()
@@ -153,7 +158,11 @@ public class InboxViewModel: ObservableObject {
             .store(in: &subscriptions)
         newMessageDidTap
             .sink { [router] source in
-                router.route(to: "/conversations/compose", from: source, options: .modal(isDismissable: false, embedInNav: true))
+                router.show(
+                    ComposeMessageAssembly.makeComposeMessageViewController(delegate: self),
+                    from: source,
+                    options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
+                )
             }
             .store(in: &subscriptions)
         messageDidTap
@@ -177,5 +186,12 @@ public class InboxViewModel: ObservableObject {
                 )
             }
             .store(in: &subscriptions)
+    }
+}
+
+// MARK: - Send Successfully Mail Delegate
+extension InboxViewModel: ComposeMessageDelete {
+    public func didSendMailSuccessfully() {
+        snackBarViewModel.showSnack(InboxMessageScope.sent.localizedName)
     }
 }

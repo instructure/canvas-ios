@@ -121,6 +121,25 @@ class InboxViewModelTests: CoreTestCase {
         // Then
         XCTAssertTrue(messageInteractor.updateStarredIsCalled)
     }
+
+    func test_addNewMessage_presentComposeMessageView() {
+        // Given
+        let viewController = WeakViewController()
+        // When
+        testee
+            .newMessageDidTap
+            .send(viewController)
+        // Then
+        wait(for: [router.showExpectation], timeout: 0.5)
+        XCTAssertTrue(router.presented is CoreHostingController<ComposeMessageView>)
+    }
+
+    func test_didSendMailSuccessfully_showSnackBarView() {
+        // When
+        testee.didSendMailSuccessfully()
+        // Then
+        XCTAssertEqual(testee.snackBarViewModel.visibleSnack, "Sent")
+    }
 }
 
 private class InboxMessageInteractorMock: InboxMessageInteractor {

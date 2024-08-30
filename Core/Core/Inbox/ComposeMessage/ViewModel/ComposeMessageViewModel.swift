@@ -61,7 +61,7 @@ final class ComposeMessageViewModel: ObservableObject {
     public var didSelectFile = PassthroughRelay<(WeakViewController, File)>()
     public let didRemoveFile = PassthroughRelay<File>()
     public let snackBarViewModel = SnackBarViewModel()
-    var totalAttachmentSize = 26.2 // The max number is attachments is 26.2 MB.
+    var totalAttachmentSize = 26.2 // The max number for attachments is 26.2 MB.
     @Published var textRecipientSearch = ""
 
     // MARK: - Inputs / Outputs

@@ -205,7 +205,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
 
         // Then
         XCTAssertEqual(mockInteractor.numberOfCallingAddFile.count, 2)
-        XCTAssertNotNil(testee.snackBarViewModel.visibleSnack)
+        XCTAssertEqual(testee.snackBarViewModel.visibleSnack,  "One or more files weren’t attached due to the attachment limit. Limit 26.2 MB.")
+
     }
     func testShowCourseSelector() {
         let sourceView = UIViewController()
