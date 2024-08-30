@@ -131,23 +131,33 @@ enum FrequencySelection: Equatable {
         case .noRepeat:
             return nil
         case .daily:
-            return RecurrenceRule(recurrenceWith: .daily, interval: 1)
+            return RecurrenceRule(recurrenceWith: .daily, 
+                                  interval: 1,
+                                  end: RecurrenceEnd(occurrenceCount: 365))
         case .weeklyOnThatDay:
             let weekday = DayOfWeek(date.weekday, weekNumber: 0)
-            return RecurrenceRule(recurrenceWith: .weekly, interval: 1, daysOfTheWeek: [weekday])
+            return RecurrenceRule(recurrenceWith: .weekly, 
+                                  interval: 1,
+                                  daysOfTheWeek: [weekday],
+                                  end: RecurrenceEnd(occurrenceCount: 52))
         case .monthlyOnThatWeekday:
-            return RecurrenceRule(recurrenceWith: .monthly, interval: 1, daysOfTheWeek: [date.monthWeekday])
+            return RecurrenceRule(recurrenceWith: .monthly, 
+                                  interval: 1,
+                                  daysOfTheWeek: [date.monthWeekday],
+                                  end: RecurrenceEnd(occurrenceCount: 12))
 
         case .yearlyOnThatMonth:
             return RecurrenceRule(recurrenceWith: .yearly,
                                   interval: 1,
                                   daysOfTheMonth: [date.monthDay],
-                                  monthsOfTheYear: [date.month])
+                                  monthsOfTheYear: [date.month],
+                                  end: RecurrenceEnd(occurrenceCount: 5))
         case .everyWeekday:
             return RecurrenceRule(
                 recurrenceWith: .weekly,
                 interval: 1,
-                daysOfTheWeek: Weekday.weekDays.map({ DayOfWeek($0) })
+                daysOfTheWeek: Weekday.weekDays.map({ DayOfWeek($0) }),
+                end: RecurrenceEnd(occurrenceCount: 260)
             )
         case .custom(let rule):
             return rule
@@ -183,7 +193,7 @@ extension Date {
 
     var dayOfYear: Int {
         let calendar = Cal.currentCalendar
-        let lapsedDays = calendar.dateComponents([.day], 
+        let lapsedDays = calendar.dateComponents([.day],
                                                  from: startOfYear(),
                                                  to: calendar.startOfDay(for: self)).day ?? 0
         return lapsedDays + 1
