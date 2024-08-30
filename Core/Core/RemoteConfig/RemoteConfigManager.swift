@@ -24,6 +24,7 @@ public class RemoteConfigManager {
     public var segmentKey: String = ""
     public var xpertKey: String = ""
     public var formadataLabel: String = ""
+    public var placementPortalPath: String = ""
 
     public func saveRemoteConfig(key: String, value: String?) {
         if key == "five9_config_id" {
@@ -34,6 +35,8 @@ public class RemoteConfigManager {
             xpertKey = value ?? "degrees-canvas-support"
         } else if key == "five9_formdata_label" {
             formadataLabel = value ?? "unknown"
+        } else if key == "placement_portal_path_stg" { //ToDo: Change to prod
+            placementPortalPath = value ?? "/accounts/1/external_tools/1570"
         }
     }
 }

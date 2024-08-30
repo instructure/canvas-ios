@@ -85,6 +85,13 @@ struct SideMenuBottomSection: View {
             }
             .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
 
+            Button {
+                self.route(to: RemoteConfigManager.shared.placementPortalPath, options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
+            } label: {
+                SideMenuItem(id: "placement_portal", image: .placementPortal, title: Text("Placement Portal", bundle: .core))
+            }
+            .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
+
             if let root = helpLinks.first, helpLinks.count > 1 {
                 PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
                     showHelpMenu()

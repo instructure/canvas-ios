@@ -455,6 +455,7 @@ public extension Image {
     static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
+    static var placementPortal: Image { Image("placementPortal", bundle: .core) }
 
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }

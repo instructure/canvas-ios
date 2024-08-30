@@ -230,6 +230,14 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return nil
     },
 
+    "/accounts/:accountID/external_tools/:toolID": { _, params, _ in
+        guard let accountID = params["accountID"], let toolID = params["toolID"] else { return nil }
+        guard let vc = HelmManager.shared.topMostViewController() else { return nil }
+        let tools = LTITools(context: .account(accountID), id: toolID)
+        tools.presentTool(from: vc, animated: true)
+        return nil
+    },
+
     "/files": fileList,
     "/:context/:contextID/files": fileList,
     "/files/folder/*subFolder": fileList,

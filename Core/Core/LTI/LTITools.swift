@@ -168,7 +168,10 @@ public class LTITools: NSObject {
                 self?.markModuleItemRead()
                 completionHandler?(success)
             }
-            let url = response.url.appendingQueryItems(URLQueryItem(name: "platform", value: "mobile"))
+            var url = response.url.appendingQueryItems(URLQueryItem(name: "platform", value: "mobile"))
+            if url.absoluteString.contains(RemoteConfigManager.shared.placementPortalPath) {
+                url = url.appendingQueryItems(URLQueryItem(name: "launch_type", value: "global_navigation"))
+            }
             if response.name == "Google Apps" {
                 let controller = GoogleCloudAssignmentViewController(url: url)
                 self.env.router.show(controller, from: view, options: .modal(.overFullScreen, embedInNav: true, addDoneButton: true)) {
