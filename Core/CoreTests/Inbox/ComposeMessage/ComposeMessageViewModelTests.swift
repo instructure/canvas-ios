@@ -192,22 +192,6 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(mockInteractor.numberOfCallingAddFile.count, 2)
     }
 
-    func test_addFiles_addThreeFilesWithExceedSize() {
-        // Given
-        let firstFile = FileStub.createTemporaryFile(with: 3072)! // 3 KB of zeroed bytes
-        let secondFile = FileStub.createTemporaryFile(with: 2024 )! // 2 KB of zeroed bytes
-        let thirdFile = FileStub.createTemporaryFile(with: 1024 * 1024)! // 26 KB of zeroed bytes
-        testee.totalAttachmentSize = 0.5 // 0.5 MB
-        // When
-        testee.addFiles(urls: [firstFile])
-        testee.addFiles(urls: [secondFile])
-        testee.addFiles(urls: [thirdFile])
-
-        // Then
-        XCTAssertEqual(mockInteractor.numberOfCallingAddFile.count, 2)
-        XCTAssertEqual(testee.snackBarViewModel.visibleSnack,  "One or more files weren’t attached due to the attachment limit. Limit 26.2 MB.")
-
-    }
     func testShowCourseSelector() {
         let sourceView = UIViewController()
         let viewController = WeakViewController(sourceView)

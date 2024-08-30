@@ -60,7 +60,6 @@ final class ComposeMessageViewModel: ObservableObject {
     public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
     public var didSelectFile = PassthroughRelay<(WeakViewController, File)>()
     public let didRemoveFile = PassthroughRelay<File>()
-    public let snackBarViewModel = SnackBarViewModel()
     var totalAttachmentSize = 26.2 // The max number for attachments is 26.2 MB.
     @Published var textRecipientSearch = ""
 
@@ -192,30 +191,11 @@ final class ComposeMessageViewModel: ObservableObject {
     }
 
     func addFiles(urls: [URL]) {
-        guard canAddNewFile(urls: urls) else {
-            return
-        }
-
         urls.forEach { url in
             if url.startAccessingSecurityScopedResource() {
                 addFile(url: url)
             }
         }
-    }
-
-    private func canAddNewFile(urls: [URL]) -> Bool {
-        let fileSize = urls.reduce(0) { partialResult, url in
-             partialResult + url.lookupFileSize()
-         }
-
-         let fileSizeInMB = bytesToMegabytes(bytes: fileSize)
-
-         guard totalAttachmentSize >= accumulateAttachmentSize + fileSizeInMB else {
-             snackBarViewModel.showSnack(String(localized: "One or more files weren’t attached due to the attachment limit. Limit 26.2 MB.", bundle: .core))
-             return false
-         }
-         accumulateAttachmentSize += fileSizeInMB
-        return true
     }
 
     func addFile(url: URL) {

@@ -140,7 +140,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 isPresented: $model.isShowingErrorDialog,
                 presenting: model.errorAlert
             )
-            .snackBar(viewModel: model.snackBarViewModel)
         }
 
     }
