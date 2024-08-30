@@ -478,7 +478,4 @@ final class ComposeMessageViewModel: ObservableObject {
         Logger.shared.error("ComposeMessageView message failure")
         didTapRetry.accept(viewController)
     }
-    private func bytesToMegabytes(bytes: Int) -> Double {
-        return Double(bytes / (1024 * 1024))
-    }
 }
