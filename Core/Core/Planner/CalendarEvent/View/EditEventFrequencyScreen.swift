@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct EditEventFrequencyScreen: View, ScreenViewTrackable {
-    
     @Environment(\.viewController) private var viewController
     @Environment(\.dismiss) private var dismiss
 
@@ -131,4 +130,3 @@ extension FrequencyChoice {
 }
 
 #endif
-

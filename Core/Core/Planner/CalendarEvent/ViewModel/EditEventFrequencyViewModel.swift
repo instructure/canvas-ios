@@ -164,7 +164,6 @@ enum FrequencySelection: Equatable {
     }
 }
 
-
 // MARK: - Utils
 
 extension Date {

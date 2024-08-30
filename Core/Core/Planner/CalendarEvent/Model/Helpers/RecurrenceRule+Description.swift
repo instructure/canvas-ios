@@ -72,7 +72,6 @@ extension Weekday {
 }
 
 typealias WeekNumber = Int
-
 extension WeekNumber {
 
     var standaloneFormat: String {
@@ -155,7 +154,7 @@ extension Array where Element == DayOfWeek {
     }
 }
 
-extension Int {
+private extension Int {
 
     func asInterval(for frequency: RecurrenceFrequency) -> String {
         if self == 0 { return "" }
@@ -198,7 +197,7 @@ extension Int {
     }
 }
 
-extension Array where Element == Int {
+private extension Array where Element == Int {
 
     var asDays: [String] {
         map { $0.asDay }
@@ -297,6 +296,8 @@ extension String {
     }
 }
 
+// MARK: - Formatting
+
 extension NumberFormatter {
     static let ordinal: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -317,5 +318,22 @@ struct OrdinalFormatStyle<Value>: FormatStyle where Value: BinaryInteger {
 extension FormatStyle where Self == OrdinalFormatStyle<Int> {
     static var ordinal: OrdinalFormatStyle<Int> {
         OrdinalFormatStyle<Int>()
+    }
+}
+
+extension DateFormatter {
+    private static let _default = DateFormatter()
+    static func `default`(format: String, calendar: Calendar = Cal.currentCalendar) -> DateFormatter {
+        _default.calendar = calendar
+        _default.dateFormat = format
+        return _default
+    }
+}
+
+extension Date {
+    func formatted(format: String, calendar: Calendar = Cal.currentCalendar) -> String {
+        return DateFormatter
+            .default(format: format, calendar: calendar)
+            .string(from: self)
     }
 }

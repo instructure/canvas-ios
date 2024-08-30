@@ -69,7 +69,7 @@ extension DayOfWeek {
 
 extension Array where Element == DayOfWeek {
 
-    var nonWeekdays: Self {
+    private var nonWeekdays: Self {
         filter({ Weekday.weekDays.contains($0.weekday) == false })
     }
 
@@ -94,11 +94,11 @@ extension Array where Element == DayOfWeek {
 
 extension Array where Element == Weekday {
 
-    var nonWeekdays: Self {
+    private var nonWeekdays: Self {
         filter({ Weekday.weekDays.contains($0) == false })
     }
 
-    var allDaysIncluded: Bool {
+    private var allDaysIncluded: Bool {
         Weekday.allCases.allSatisfy({ contains($0) })
     }
 

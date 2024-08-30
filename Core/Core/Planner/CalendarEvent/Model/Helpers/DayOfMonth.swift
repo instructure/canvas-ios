@@ -76,32 +76,3 @@ extension DayOfMonth {
         return "[Invalid Day]"
     }
 }
-
-// MARK: - Utils
-
-extension DateFormatter {
-    private static let _default = DateFormatter()
-    static func `default`(format: String, calendar: Calendar = Cal.currentCalendar) -> DateFormatter {
-        _default.calendar = calendar
-        _default.dateFormat = format
-        return _default
-    }
-}
-
-extension Date {
-
-    func formatted(format: String, calendar: Calendar = Cal.currentCalendar) -> String {
-        return DateFormatter
-            .default(format: format, calendar: calendar)
-            .string(from: self)
-    }
-
-    #if DEBUG
-    init?(_ stringValue: String, format: String) {
-        guard let parsed = DateFormatter
-            .default(format: format)
-            .date(from: stringValue) else { return nil }
-        self = parsed
-    }
-    #endif
-}
