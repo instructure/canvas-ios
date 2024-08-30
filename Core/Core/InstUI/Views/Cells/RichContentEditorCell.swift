@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import Combine
 
 extension InstUI {
 
@@ -29,8 +30,11 @@ extension InstUI {
         private let placeholder: String
 
         @Binding private var text: String
-        @FocusState private var isFocused: Bool
         @State private var rceHeight: CGFloat = 0
+
+        @FocusState private var isFocused: Bool
+        private let onFocus: (() -> Void)?
+        private let focusedPublisher = PassthroughSubject<Void, Never>()
 
         private var accessibilityLabel: Text {
             customAccessibilityLabel ?? label ?? Text("")
@@ -48,26 +52,30 @@ extension InstUI {
             labelTransform: @escaping (Text) -> Label = { $0 },
             customAccessibilityLabel: Text? = nil,
             placeholder: String? = nil,
-            text: Binding<String>
+            text: Binding<String>,
+            onFocus: (() -> Void)? = nil
         ) {
             self.label = label
             self.labelTransform = labelTransform
             self.customAccessibilityLabel = customAccessibilityLabel
             self.placeholder = placeholder ?? ""
             self._text = text
+            self.onFocus = onFocus
         }
 
         public init(
             customAccessibilityLabel: Text? = nil,
             placeholder: String? = nil,
-            text: Binding<String>
+            text: Binding<String>,
+            onFocus: (() -> Void)? = nil
         ) where Label == Text? {
             self.init(
                 label: nil,
                 labelTransform: { $0 },
                 customAccessibilityLabel: customAccessibilityLabel,
                 placeholder: placeholder,
-                text: text
+                text: text,
+                onFocus: onFocus
             )
         }
 
@@ -92,6 +100,10 @@ extension InstUI {
             .onTapGesture {
                 isFocused = true
             }
+            .onChange(of: isFocused) {
+                guard $0 else { return }
+                focusedPublisher.send()
+            }
         }
 
         private var rcEditor: some View {
@@ -103,7 +115,9 @@ extension InstUI {
                 uploadTo: .context(.currentUser), // TODO: file context, inject or calculate
                 height: $rceHeight,
                 canSubmit: .constant(true), // TODO: inject
-                error: .constant(nil) // TODO: inject (or only some alert string?)
+                error: .constant(nil), // TODO: inject (or only some alert string?)
+                onFocus: onFocus,
+                focusTrigger: focusedPublisher.eraseToAnyPublisher()
             )
             .scrollDisabled(true)
             .focused($isFocused)

@@ -20,10 +20,16 @@ import MobileCoreServices
 import UIKit
 import WebKit
 import UniformTypeIdentifiers
+import Combine
 
 public protocol RichContentEditorDelegate: AnyObject {
     func rce(_ editor: RichContentEditorViewController, canSubmit: Bool)
     func rce(_ editor: RichContentEditorViewController, didError error: Error)
+    func rceDidFocus(_ editor: RichContentEditorViewController)
+}
+
+public extension RichContentEditorDelegate {
+    func rceDidFocus(_ editor: RichContentEditorViewController) {}
 }
 
 public class RichContentEditorViewController: UIViewController {
@@ -48,6 +54,7 @@ public class RichContentEditorViewController: UIViewController {
     public var context = Context.currentUser
     public var uploadContext = FileUploadContext.myFiles
     let uploadManager = UploadManager.shared
+    private var focusObserver: AnyCancellable?
 
     private lazy var files = uploadManager.subscribe(batchID: batchID) { [weak self] in
         self?.updateUploadProgress()
@@ -170,6 +177,17 @@ public class RichContentEditorViewController: UIViewController {
         delegate?.rce(self, canSubmit: !isEmpty && !isUploading)
     }
 
+    func subscribeToFocusTrigger(_ trigger: AnyPublisher<Void, Never>) {
+        focusObserver?.cancel()
+        focusObserver = trigger.sink { [weak self] in
+            self?.focus()
+        }
+    }
+
+    private func didFocus() {
+        delegate?.rceDidFocus(self)
+    }
+
     private func setFeatureFlags() {
         let flags = featureFlags.map { $0.name }
         if let data = try? JSONSerialization.data(withJSONObject: flags),
@@ -232,7 +250,7 @@ public class RichContentEditorViewController: UIViewController {
 
 extension RichContentEditorViewController {
     private enum Message: String, CaseIterable {
-        case link, ready, state, retryUpload
+        case link, ready, state, retryUpload, focused
     }
 
     private func setupScriptMessaging() {
@@ -268,6 +286,8 @@ extension RichContentEditorViewController {
         case .retryUpload:
             guard let url = (message.body as? String).flatMap({ URL(string: $0) }) else { return }
             retry(url)
+        case .focused:
+            didFocus()
         }
     }
 }
