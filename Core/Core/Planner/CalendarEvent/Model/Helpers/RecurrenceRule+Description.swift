@@ -58,6 +58,32 @@ extension RecurrenceFrequency {
             "Every %@ year".localized()
         }
     }
+    
+    var singleUnitText: String {
+        switch self {
+        case .daily:
+            "Day".localized()
+        case .weekly:
+            "Week".localized()
+        case .monthly:
+            "Month".localized()
+        case .yearly:
+            "Year".localized()
+        }
+    }
+
+    var pluralUnitText: String {
+        switch self {
+        case .daily:
+            "Days".localized()
+        case .weekly:
+            "Weeks".localized()
+        case .monthly:
+            "Months".localized()
+        case .yearly:
+            "Years".localized()
+        }
+    }
 }
 
 extension Weekday {

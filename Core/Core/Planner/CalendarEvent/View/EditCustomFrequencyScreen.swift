@@ -44,6 +44,9 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                     selection1: $viewModel.interval,
                     content2: RecurrenceFrequency.allCases,
                     titleKey2: \.selectionText,
+                    title2GivenSelected1: { freq, interval in
+                        return interval.value > 1 ? freq.pluralUnitText : freq.singleUnitText
+                    },
                     selection2: $viewModel.frequency,
                     widths: [3, 7],
                     alignments: [.right, .left])

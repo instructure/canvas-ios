@@ -22,10 +22,12 @@ import SwiftUI
 struct MultiPickerView<Value1, Value2>: UIViewRepresentable where Value1: Equatable, Value2: Equatable {
     let content1: [Value1]
     let titleKey1: KeyPath<Value1, String>
+    var title1GivenSelected2: ((Value1, Value2) -> String)?
     @Binding var selection1: Value1
 
     let content2: [Value2]
     let titleKey2: KeyPath<Value2, String>
+    var title2GivenSelected1: ((Value2, Value1) -> String)?
     @Binding var selection2: Value2
 
     let widths: [CGFloat]
@@ -83,10 +85,18 @@ private extension MultiPickerView {
     func title(forRow row: Int, ofComponent component: Int) -> String? {
         switch component {
         case 0:
-            return content1[safeIndex: row].flatMap({ $0[keyPath: titleKey1] })
+            if let titleBlock = title1GivenSelected2, let value1 = content1[safeIndex: row] {
+                return titleBlock(value1, selection2)
+            } else {
+                return content1[safeIndex: row].flatMap({ $0[keyPath: titleKey1] })
+            }
         case 1:
-            return content2[safeIndex: row].flatMap({ $0[keyPath: titleKey2] })
-        default: 
+            if let titleBlock = title2GivenSelected1, let value2 = content2[safeIndex: row] {
+                return titleBlock(value2, selection1)
+            } else {
+                return content2[safeIndex: row].flatMap({ $0[keyPath: titleKey2] })
+            }
+        default:
             return nil
         }
     }
@@ -156,6 +166,14 @@ extension MultiPickerView {
 
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             view.setSelection(to: row, for: component)
+
+            if view.title2GivenSelected1 != nil, component == 0 {
+                pickerView.reloadComponent(1)
+            }
+
+            if view.title1GivenSelected2 != nil, component == 1 {
+                pickerView.reloadComponent(0)
+            }
         }
     }
 }
@@ -193,6 +211,10 @@ private class RowLabel: UIView {
 
                 content2: ["Daily", "Weekly", "Monthly", "Yearly"], 
                 titleKey2: \.self,
+                title2GivenSelected1: { val2, val1 in
+                    let suffix = val1 > 1 ? "s" : ""
+                    return val2 + suffix
+                },
                 selection2: $selection2,
 
                 widths: [3, 7],
