@@ -205,11 +205,11 @@ private class RowLabel: UIView {
 
         var body: some View {
             MultiPickerView(
-                content1: (1 ... 400).map({ $0 }), 
+                content1: (1 ... 400).map({ $0 }),
                 titleKey1: \.description,
                 selection1: $selection1,
 
-                content2: ["Daily", "Weekly", "Monthly", "Yearly"], 
+                content2: ["Daily", "Weekly", "Monthly", "Yearly"],
                 titleKey2: \.self,
                 title2GivenSelected1: { val2, val1 in
                     let suffix = val1 > 1 ? "s" : ""

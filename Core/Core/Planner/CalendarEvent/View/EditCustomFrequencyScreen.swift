@@ -35,7 +35,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     var body: some View {
-        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { geometry in
+        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { _ in
             VStack(alignment: .leading, spacing: 0) {
 
                 MultiPickerView(
@@ -117,12 +117,11 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             state: $weekDayDropDownState) {
 
                 if viewModel.daysOfTheWeek.isEmpty {
-                    DropDownPromptLabel()
+                    WeekdaysDropDownPromptLabel()
                 } else {
-
                     HStack(spacing: 8) {
                         ForEach(viewModel.daysOfTheWeek.selectionTexts, id: \.self) { day in
-                            DropDownSelectedValueView(text: day)
+                            WeekdaysDropDownSelectedLabel(text: day)
                         }
                     }
                 }

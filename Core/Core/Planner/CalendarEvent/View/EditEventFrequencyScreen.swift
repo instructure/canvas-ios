@@ -36,8 +36,8 @@ struct EditEventFrequencyScreen: View, ScreenViewTrackable {
                 ForEach(viewModel.frequencyChoices) { choice in
                     ChoiceButton(
                         title: choice.title,
-                        selected: viewModel.selection == choice.selectionCase) {
-                            viewModel.selection = choice.selectionCase
+                        selected: viewModel.selection == choice.preset) {
+                            viewModel.selection = choice.preset
                         }
                     InstUI.Divider()
                 }
@@ -93,23 +93,30 @@ struct ChoiceButton: View {
 extension FrequencyChoice {
 
     var title: Text {
-        switch selectionCase {
+        switch preset {
         case .noRepeat:
             return Text("Does Not Repeat", bundle: .core)
         case .daily:
             return Text("Daily", bundle: .core)
         case .weeklyOnThatDay:
-            let string = String(format: "Weekly on %@".localized(), date.formatted(format: "EEEE"))
+            let string = String(localized: "Weekly on %@", bundle: .core)
+                .asFormat(for: date.formatted(format: "EEEE"))
+
             return Text(string)
         case .monthlyOnThatWeekday:
             let weekday = date.monthWeekday
-            let string = String(format: "Monthly on %@".localized(), weekday.middleText)
+            let string = String(localized: "Monthly on %@", bundle: .core)
+                .asFormat(for: weekday.middleText)
             return Text(string)
         case .yearlyOnThatMonth:
-            let string = String(format: "Annually on %@".localized(), date.formatted(format: "MMMM d"))
+            let string = String(localized: "Annually on %@")
+                .asFormat(for: date.formatted(format: "MMMM d"))
             return Text(string)
         case .everyWeekday:
             return Text("Every Weekday (Monday to Friday)", bundle: .core)
+        case .selected(let seriesTitle, let rule):
+            let text = seriesTitle ?? rule.text
+            return Text(text)
         case .custom:
             return Text("Custom", bundle: .core) // Should not fall to this case
         }
@@ -122,7 +129,8 @@ extension FrequencyChoice {
     EditEventFrequencyScreen(
         viewModel: EditEventFrequencyViewModel(
             eventDate: Date(),
-            savedRule: nil,
+            selectedFrequency: nil,
+            originalPreset: nil,
             router: AppEnvironment.shared.router,
             completion: { _ in }
         )

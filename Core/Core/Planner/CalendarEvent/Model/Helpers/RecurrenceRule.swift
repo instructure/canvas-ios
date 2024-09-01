@@ -43,7 +43,9 @@ extension String: RRuleCodable {}
 extension Array: RRuleCodable where Element: RRuleCodable {
 
     init?(rruleString: String) {
-        let list = rruleString.split(separator: ",").compactMap({ Element(rruleString: String($0)) })
+        let list = rruleString
+            .split(separator: ",")
+            .compactMap({ Element(rruleString: String($0)) })
         if list.isEmpty { return nil }
         self = list
     }

@@ -23,65 +23,65 @@ extension RecurrenceFrequency {
     var everyTimeText: String {
         switch self {
         case .daily:
-            "Daily".localized()
+            String(localized: "Daily", bundle: .core)
         case .weekly:
-            "Weekly".localized()
+            String(localized: "Weekly", bundle: .core)
         case .monthly:
-            "Monthly".localized()
+            String(localized: "Monthly", bundle: .core)
         case .yearly:
-            "Annually".localized()
+            String(localized: "Annually", bundle: .core)
         }
     }
 
     var everyOtherText: String {
         switch self {
         case .daily:
-            "Every other day".localized()
+            String(localized: "Every other day", bundle: .core)
         case .weekly:
-            "Every other week".localized()
+            String(localized: "Every other week", bundle: .core)
         case .monthly:
-            "Every other month".localized()
+            String(localized: "Every other month", bundle: .core)
         case .yearly:
-            "Every other year".localized()
+            String(localized: "Every other year", bundle: .core)
         }
     }
 
     var everyMultipleFormat: String {
         switch self {
         case .daily:
-            "Every %@ day".localized()
+            String(localized: "Every %@ day", bundle: .core, comment: "Every 4th day")
         case .weekly:
-            "Every %@ week".localized()
+            String(localized: "Every %@ week", bundle: .core, comment: "Every 4th week")
         case .monthly:
-            "Every %@ month".localized()
+            String(localized: "Every %@ month", bundle: .core, comment: "Every 4th month")
         case .yearly:
-            "Every %@ year".localized()
+            String(localized: "Every %@ year", bundle: .core, comment: "Every 4th year")
         }
     }
     
     var singleUnitText: String {
         switch self {
         case .daily:
-            "Day".localized()
+            String(localized: "Day", bundle: .core)
         case .weekly:
-            "Week".localized()
+            String(localized: "Week", bundle: .core)
         case .monthly:
-            "Month".localized()
+            String(localized: "Month", bundle: .core)
         case .yearly:
-            "Year".localized()
+            String(localized: "Year", bundle: .core)
         }
     }
 
     var pluralUnitText: String {
         switch self {
         case .daily:
-            "Days".localized()
+            String(localized: "Days", bundle: .core)
         case .weekly:
-            "Weeks".localized()
+            String(localized: "Weeks", bundle: .core)
         case .monthly:
-            "Months".localized()
+            String(localized: "Months", bundle: .core)
         case .yearly:
-            "Years".localized()
+            String(localized: "Years", bundle: .core)
         }
     }
 }
@@ -103,17 +103,17 @@ extension WeekNumber {
     var standaloneFormat: String {
         switch self {
         case 1:
-            "First %@".localized()
+            String(localized: "First %@", bundle: .core, comment: "First Sunday")
         case 2:
-            "Second %@".localized()
+            String(localized: "Second %@", bundle: .core, comment: "Second Sunday")
         case 3:
-            "Third %@".localized()
+            String(localized: "Third %@", bundle: .core, comment: "Third Sunday")
         case 4:
-            "Fourth %@".localized()
+            String(localized: "Fourth %@", bundle: .core, comment: "Fourth Sunday")
         case 5:
-            "Fifth %@".localized()
+            String(localized: "Fifth %@", bundle: .core, comment: "Fifth Sunday")
         case -1:
-            "Last %@".localized()
+            String(localized: "Last %@", bundle: .core, comment: "Last Sunday")
         default:
             "\(formatted(.ordinal)) %@"
         }
@@ -122,19 +122,21 @@ extension WeekNumber {
     var middleFormat: String {
         switch self {
         case 1:
-            "The First %@".localized()
+            return String(localized: "The First %@", bundle: .core, comment: "The First Sunday")
         case 2:
-            "The Second %@".localized()
+            return String(localized: "The Second %@", bundle: .core, comment: "The Second Sunday")
         case 3:
-            "The Third %@".localized()
+            return String(localized: "The Third %@", bundle: .core, comment: "The Third Sunday")
         case 4:
-            "The Fourth %@".localized()
+            return String(localized: "The Fourth %@", bundle: .core, comment: "The Fourth Sunday")
         case 5:
-            "The Fifth %@".localized()
+            return String(localized: "The Fifth %@", bundle: .core, comment: "The Fifth Sunday")
         case -1:
-            "The Last %@".localized()
+            return String(localized: "The Last %@", bundle: .core, comment: "The Last Sunday")
         default:
-            "\(formatted(.ordinal)) %@"
+            let ordinal = String(localized: "The %@", bundle: .core, comment: "The 4th")
+                .asFormat(for: formatted(.ordinal))
+            return "\(ordinal) %@"
         }
     }
 }
@@ -190,11 +192,11 @@ private extension Int {
     }
 
     var asDay: String {
-        String(format: "Day %i".localized(), self)
+        String(format: String(localized: "Day %i", bundle: .core), self)
     }
 
     var asWeek: String {
-        String(format: "Week %i".localized(), self)
+        String(format: String(localized: "Week %i", bundle: .core), self)
     }
 
     var asWeekDay: String {
@@ -248,7 +250,7 @@ extension RecurrenceRule {
             if let days = daysOfTheWeek {
 
                 if days.hasWeekdays, case .weekly = frequency, interval == 1 {
-                    words.append("Every Weekday".localized())
+                    words.append(String(localized: "Every Weekday", bundle: .core))
                 } else {
                     words.append(interval.asInterval(for: frequency))
                     words.append(.onSpaced)
@@ -303,7 +305,7 @@ extension RecurrenceRule {
 
 private extension String {
 
-    static var on: String { "on".localized() }
+    static var on: String { String(localized: "on", bundle: .core) }
 
     static var onSpaced: String {
         " " + on + " "
@@ -317,8 +319,8 @@ private extension String {
 }
 
 extension String {
-    func localized(in bundle: Bundle = .core) -> Self {
-        return String(localized: LocalizationValue(self), bundle: .core)
+    func asFormat(for arguments: any CVarArg...) -> String {
+        return String(format: self, arguments)
     }
 }
 

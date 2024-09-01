@@ -23,13 +23,13 @@ extension RecurrenceFrequency {
     var selectionText: String {
         switch self {
         case .daily:
-            "Daily".localized()
+            String(localized: "Daily", bundle: .core)
         case .weekly:
-            "Weekly".localized()
+            String(localized: "Weekly", bundle: .core)
         case .monthly:
-            "Monthly".localized()
+            String(localized: "Monthly", bundle: .core)
         case .yearly:
-            "Yearly".localized()
+            String(localized: "Yearly", bundle: .core)
         }
     }
 }
@@ -39,19 +39,19 @@ extension Weekday {
     var pluralText: String {
         switch self {
         case .sunday:
-            "Sundays".localized()
+            String(localized: "Sundays", bundle: .core)
         case .monday:
-            "Mondays".localized()
+            String(localized: "Mondays", bundle: .core)
         case .tuesday:
-            "Tuesdays".localized()
+            String(localized: "Tuesdays", bundle: .core)
         case .wednesday:
-            "Wednesdays".localized()
+            String(localized: "Wednesdays", bundle: .core)
         case .thursday:
-            "Thursdays".localized()
+            String(localized: "Thursdays", bundle: .core)
         case .friday:
-            "Fridays".localized()
+            String(localized: "Fridays", bundle: .core)
         case .saturday:
-            "Saturdays".localized()
+            String(localized: "Saturdays", bundle: .core)
         }
     }
 }
@@ -77,7 +77,7 @@ extension Array where Element == DayOfWeek {
         var tags = [String]()
 
         if hasWeekdays {
-            tags.append("Weekdays".localized())
+            tags.append(String(localized: "Weekdays", bundle: .core))
         }
 
         if let nonWeekDays = nonWeekdays.nonEmpty() {
@@ -110,7 +110,7 @@ extension Array where Element == Weekday {
         }
 
         if hasWeekdays {
-            tags.append("Weekdays".localized())
+            tags.append(String(localized: "Weekdays", bundle: .core))
 
             if let nonWeekDays = nonWeekdays.nonEmpty() {
                 tags.append(contentsOf: nonWeekDays.map({ $0.shortText }))
@@ -123,6 +123,6 @@ extension Array where Element == Weekday {
             })
         }
 
-        return tags.nonEmpty() ?? ["Not selected"]
+        return tags.nonEmpty() ?? [String(localized: "Not selected", bundle: .core)]
     }
 }

@@ -204,9 +204,9 @@ enum RecurrenceEndMode: Equatable, CaseIterable {
     var title: String {
         switch self {
         case .onDate:
-            return "On date".localized()
+            return String(localized: "On date", bundle: .core)
         case .afterOccurrences:
-            return "After Occurrences".localized()
+            return String(localized: "After Occurrences", bundle: .core)
         }
     }
 }

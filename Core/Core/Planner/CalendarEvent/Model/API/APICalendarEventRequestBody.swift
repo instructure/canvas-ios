@@ -39,6 +39,19 @@ struct APICalendarEventRequestBody: Codable, Equatable {
         let time_zone_edited: String? // Needed for proper all_day calculation, otherwise account timezone would be used instead of device timezone
         // let all_day: Bool? // We are not sending it, because we allow API to calculate it based start/end times (web does the same)
         let rrule: RecurrenceRule?
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(context_code, forKey: .context_code)
+            try container.encode(title, forKey: .title)
+            try container.encode(description, forKey: .description)
+            try container.encode(start_at, forKey: .start_at)
+            try container.encode(end_at, forKey: .end_at)
+            try container.encode(location_name, forKey: .location_name)
+            try container.encode(location_address, forKey: .location_address)
+            try container.encode(time_zone_edited, forKey: .time_zone_edited)
+            try container.encode(rrule, forKey: .rrule)
+        }
     }
 
     let calendar_event: CalendarEvent

@@ -19,7 +19,6 @@
 import Combine
 import SwiftUI
 
-
 final class EditCalendarEventViewModel: ObservableObject {
 
     private enum Mode {
@@ -68,7 +67,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     }()
 
     var frequencySelectionText: String {
-        return frequency?.title ?? "Does Not Repeat".localized()
+        return frequency?.title ?? String(localized: "Does Not Repeat", bundle: .core)
     }
 
     lazy var saveErrorAlert: ErrorAlertViewModel = {
@@ -99,6 +98,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     // MARK: - Private
 
     private let mode: Mode
+    private let eventFrequencyPreset: FrequencyPreset?
     private let eventInteractor: CalendarEventInteractor
     private let calendarListProviderInteractor: CalendarFilterInteractor
     private let router: Router
@@ -126,6 +126,7 @@ final class EditCalendarEventViewModel: ObservableObject {
         completion: @escaping (PlannerAssembly.Completion) -> Void
     ) {
         self.eventInteractor = eventInteractor
+        self.eventFrequencyPreset = event?.frequencyPreset
         self.calendarListProviderInteractor = calendarListProviderInteractor
         self.router = router
 
@@ -234,9 +235,7 @@ final class EditCalendarEventViewModel: ObservableObject {
 
     private func setupFields(event: CalendarEvent?) {
         title = event?.title ?? ""
-
-        let eventDate = event?.startAt ?? Clock.now.startOfDay()
-        date = eventDate
+        date = event?.startAt ?? Clock.now.startOfDay()
         isAllDay = event?.isAllDay ?? false
 
         if isAllDay {
@@ -250,11 +249,7 @@ final class EditCalendarEventViewModel: ObservableObject {
         location = event?.locationName ?? ""
         address = event?.locationAddress ?? ""
         details = event?.details ?? ""
-
-        if let rrule = event?.repetitionRule.flatMap({ RecurrenceRule(rruleDescription: $0) }) {
-            let preset = FrequencyPreset(given: rrule, date: eventDate)
-            frequency = FrequencySelection(rrule, title: event?.seriesInNaturalLanguage, preset: preset)
-        }
+        frequency = event?.frequencySelection
     }
 
     private var defaultStartTime: Date {
@@ -290,10 +285,11 @@ final class EditCalendarEventViewModel: ObservableObject {
             EditEventFrequencyScreen(
                 viewModel: EditEventFrequencyViewModel(
                     eventDate: date ?? .now,
-                    savedRule: frequency?.value,
+                    selectedFrequency: frequency,
+                    originalPreset: eventFrequencyPreset,
                     router: router,
-                    completion: { [weak self] newRule in
-                        self?.frequency = newRule
+                    completion: { [weak self] newSelection in
+                        self?.frequency = newSelection
                     }
                 )
             )
