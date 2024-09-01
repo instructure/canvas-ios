@@ -60,10 +60,9 @@ final class ComposeMessageViewModel: ObservableObject {
     public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
     public var didSelectFile = PassthroughRelay<(WeakViewController, File)>()
     public let didRemoveFile = PassthroughRelay<File>()
-    var totalAttachmentSize = 26.2 // The max number for attachments is 26.2 MB.
-    @Published var textRecipientSearch = ""
 
     // MARK: - Inputs / Outputs
+    @Published var textRecipientSearch = ""
     @Published public var sendIndividual: Bool = false
     @Published public var bodyText: String = ""
     @Published public var subject: String = ""
@@ -105,7 +104,6 @@ final class ComposeMessageViewModel: ObservableObject {
     private var hiddenMessage: String = ""
     private var autoTeacherSelect: Bool = false
     private var teacherOnly: Bool = false
-    private var accumulateAttachmentSize = 0.0 // Accumulate attachments size in MB.
 
     // MARK: Public interface
     public init(router: Router,
