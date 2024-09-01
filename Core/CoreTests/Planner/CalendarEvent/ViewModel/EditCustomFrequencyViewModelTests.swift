@@ -83,7 +83,7 @@ final class EditCustomFrequencyViewModelTests: CoreTestCase {
 
     func test_frequency_change() {
         let model = makeViewModel(TestConstants.eventDate)
-        
+
         model.frequency = .daily
         XCTAssertNil(model.dayOfYear)
 
@@ -106,7 +106,7 @@ final class EditCustomFrequencyViewModelTests: CoreTestCase {
             model.endMode = values.endMode
             model.endDate = values.endDate
             model.occurrenceCount = values.occurrenceCount
-            
+
             model.daysOfTheWeek = values.daysOfTheWeek
             model.dayOfMonth = values.dayOfMonth
             model.dayOfYear = values.dayOfYear

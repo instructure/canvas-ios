@@ -339,7 +339,7 @@ extension RecurrenceRule {
             self.daysOfTheWeek = RRK.DaysOfTheWeek.value(in: rules)
         }
 
-        if [.monthly, .yearly].contains(frequency)  {
+        if [.monthly, .yearly].contains(frequency) {
             self.daysOfTheMonth = RRK.DaysOfTheMonth.value(in: rules)
         }
 

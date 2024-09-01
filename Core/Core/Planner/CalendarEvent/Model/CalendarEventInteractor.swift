@@ -93,7 +93,6 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
             time_zone_edited: model.timeZone,
             rrule: model.rrule
         )
-        
         return ReactiveStore(useCase: useCase)
             .getEntities()
             .mapToVoid()

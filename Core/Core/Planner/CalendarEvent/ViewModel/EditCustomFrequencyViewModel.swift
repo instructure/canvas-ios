@@ -129,7 +129,6 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         if case .yearly = frequency {
             return dayOfYear != nil
         }
-        
         return true
     }
 
