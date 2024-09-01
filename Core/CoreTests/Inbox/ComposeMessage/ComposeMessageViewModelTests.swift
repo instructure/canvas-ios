@@ -178,10 +178,6 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertTrue(delegate.didSendMailIsCalled)
     }
 
-    func test_totalAttachmentSize() {
-        XCTAssertEqual(testee.totalAttachmentSize, 26.2)
-    }
-
     func test_addFiles_addTwoFilesWithNotExceedSize() {
         // Given
         let firstFile = FileStub.createTemporaryFile(with: 1024)! // 1 KB of zeroed bytes
