@@ -203,7 +203,7 @@ private extension Int {
         let calendar = Cal.currentCalendar
         return Cal
             .currentCalendar
-            .date(bySetting: .weekday, value: self, of: .now)?
+            .date(bySetting: .weekday, value: self, of: Clock.now)?
             .formatted(format: "EEEE", calendar: calendar)
         ?? calendar.standaloneWeekdaySymbols[self - 1]
     }
@@ -211,7 +211,7 @@ private extension Int {
     var asWeekDayShort: String {
         let calendar = Cal.currentCalendar
         return calendar
-            .date(bySetting: .weekday, value: self, of: .now)?
+            .date(bySetting: .weekday, value: self, of: Clock.now)?
             .formatted(format: "EEE", calendar: calendar)
         ?? calendar.shortStandaloneWeekdaySymbols[self - 1]
     }
@@ -219,7 +219,7 @@ private extension Int {
     var asMonth: String {
         let calendar = Cal.currentCalendar
         return calendar
-            .date(bySetting: .month, value: self, of: .now)?
+            .date(bySetting: .month, value: self, of: Clock.now)?
             .formatted(format: "MMMM", calendar: calendar)
         ?? calendar.standaloneMonthSymbols[self - 1]
     }

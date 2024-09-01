@@ -153,8 +153,8 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             label: Text("End date", bundle: .core),
             date: $viewModel.endDate,
             mode: .dateOnly,
-            defaultDate: Date.now.addDays(3),
-            validFrom: viewModel.endDate.flatMap({ min($0, .now) }) ?? .now,
+            defaultDate: Clock.now.addDays(3),
+            validFrom: viewModel.endDate.flatMap({ min($0, Clock.now) }) ?? Clock.now,
             isClearable: false
         )
     }

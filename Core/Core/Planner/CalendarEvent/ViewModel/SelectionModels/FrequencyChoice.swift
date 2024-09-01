@@ -34,6 +34,31 @@ struct FrequencyChoice: Identifiable {
         self.date = date
         self.preset = preset
     }
+
+    var title: String {
+        switch preset {
+        case .noRepeat:
+            return String(localized: "Does Not Repeat", bundle: .core)
+        case .daily:
+            return String(localized: "Daily", bundle: .core)
+        case .weeklyOnThatDay:
+            return String(localized: "Weekly on %@", bundle: .core)
+                .asFormat(for: date.formatted(format: "EEEE"))
+        case .monthlyOnThatWeekday:
+            let weekday = date.monthWeekday
+            return String(localized: "Monthly on %@", bundle: .core)
+                .asFormat(for: weekday.middleText)
+        case .yearlyOnThatMonth:
+            return String(localized: "Annually on %@")
+                .asFormat(for: date.formatted(format: "MMMM d"))
+        case .everyWeekday:
+            return String(localized: "Every Weekday (Monday to Friday)", bundle: .core)
+        case .selected(let seriesTitle, let rule):
+            return seriesTitle ?? rule.text
+        case .custom:
+            return String(localized: "Custom", bundle: .core) // Should not fall to this case
+        }
+    }
 }
 
 extension FrequencyPreset {

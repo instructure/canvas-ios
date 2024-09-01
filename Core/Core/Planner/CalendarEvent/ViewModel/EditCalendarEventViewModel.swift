@@ -284,7 +284,7 @@ final class EditCalendarEventViewModel: ObservableObject {
         let vc = CoreHostingController(
             EditEventFrequencyScreen(
                 viewModel: EditEventFrequencyViewModel(
-                    eventDate: date ?? .now,
+                    eventDate: date ?? Clock.now,
                     selectedFrequency: frequency,
                     originalPreset: eventFrequencyPreset,
                     router: router,

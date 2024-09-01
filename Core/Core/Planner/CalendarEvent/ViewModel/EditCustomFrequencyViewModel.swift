@@ -42,7 +42,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     @Published var interval = FrequencyInterval(value: 1)
 
     @Published var endMode: RecurrenceEndMode?
-    @Published var endDate: Date? = .now
+    @Published var endDate: Date? = Clock.now
     @Published var occurrenceCount: Int
 
     // Specific to Weekly
@@ -64,7 +64,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             self.endMode = end.endDate != nil ? .onDate : .afterOccurrences
         }
 
-        self.endDate = rule?.recurrenceEnd?.endDate ?? .now
+        self.endDate = rule?.recurrenceEnd?.endDate ?? Clock.now
         self.occurrenceCount = rule?.recurrenceEnd?.occurrenceCount ?? 0
 
         if case .weekly = frequency {

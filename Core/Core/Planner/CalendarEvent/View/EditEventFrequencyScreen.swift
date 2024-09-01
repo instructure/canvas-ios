@@ -43,7 +43,7 @@ struct EditEventFrequencyScreen: View, ScreenViewTrackable {
                 }
 
                 ChoiceButton(
-                    title: Text("Custom", bundle: .core),
+                    title: String(localized: "Custom", bundle: .core),
                     selected: viewModel.selection.isCustom) {
                         viewModel.didSelectCustomFrequency.send(viewController)
                     }
@@ -65,7 +65,7 @@ struct EditEventFrequencyScreen: View, ScreenViewTrackable {
 }
 
 struct ChoiceButton: View {
-    let title: Text
+    let title: String
     let selected: Bool
     let action: () -> Void
 
@@ -74,7 +74,7 @@ struct ChoiceButton: View {
             action: action,
             label: {
                 HStack {
-                    title
+                    Text(title)
                         .font(.regular14, lineHeight: .fit)
                         .foregroundStyle(Color.textDarkest)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -88,39 +88,6 @@ struct ChoiceButton: View {
             })
         .buttonStyle(.plain)
         .paddingStyle(set: .standardCell)
-    }
-}
-
-extension FrequencyChoice {
-
-    var title: Text {
-        switch preset {
-        case .noRepeat:
-            return Text("Does Not Repeat", bundle: .core)
-        case .daily:
-            return Text("Daily", bundle: .core)
-        case .weeklyOnThatDay:
-            let string = String(localized: "Weekly on %@", bundle: .core)
-                .asFormat(for: date.formatted(format: "EEEE"))
-
-            return Text(string)
-        case .monthlyOnThatWeekday:
-            let weekday = date.monthWeekday
-            let string = String(localized: "Monthly on %@", bundle: .core)
-                .asFormat(for: weekday.middleText)
-            return Text(string)
-        case .yearlyOnThatMonth:
-            let string = String(localized: "Annually on %@")
-                .asFormat(for: date.formatted(format: "MMMM d"))
-            return Text(string)
-        case .everyWeekday:
-            return Text("Every Weekday (Monday to Friday)", bundle: .core)
-        case .selected(let seriesTitle, let rule):
-            let text = seriesTitle ?? rule.text
-            return Text(text)
-        case .custom:
-            return Text("Custom", bundle: .core) // Should not fall to this case
-        }
     }
 }
 
