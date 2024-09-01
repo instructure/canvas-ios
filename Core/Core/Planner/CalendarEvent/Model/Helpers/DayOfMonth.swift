@@ -65,7 +65,7 @@ extension DayOfMonth {
     var title: String {
 
         if let day {
-            return String(format: "Day %@", day.formatted(.number))
+            return String(localized: "Day %@", bundle: .core).asFormat(for: day.formatted(.number))
         }
 
         if let weekday {

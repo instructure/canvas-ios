@@ -456,19 +456,4 @@ private extension String {
 
         return nil
     }
-
-    func trimmed() -> Self {
-        return trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-
-    var nonEmpty: String? {
-        trimmed().isEmpty ? nil : self
-    }
-}
-
-extension Array {
-    func nonEmpty() -> Self? {
-        if isEmpty { return nil }
-        return self
-    }
 }

@@ -58,7 +58,7 @@ extension RecurrenceFrequency {
             String(localized: "Every %@ year", bundle: .core, comment: "Every 4th year")
         }
     }
-    
+
     var singleUnitText: String {
         switch self {
         case .daily:
@@ -316,52 +316,4 @@ private extension String {
     }
 
     static var space: String { " " }
-}
-
-extension String {
-    func asFormat(for arguments: any CVarArg...) -> String {
-        return String(format: self, arguments)
-    }
-}
-
-// MARK: - Formatting
-
-extension NumberFormatter {
-    static let ordinal: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .ordinal
-        return formatter
-    }()
-}
-
-struct OrdinalFormatStyle<Value>: FormatStyle where Value: BinaryInteger {
-    typealias FormatInput = Value
-    typealias FormatOutput = String
-
-    func format(_ value: Value) -> String {
-        return NumberFormatter.ordinal.string(from: NSNumber(value: Int(value))) ?? "\(value)"
-    }
-}
-
-extension FormatStyle where Self == OrdinalFormatStyle<Int> {
-    static var ordinal: OrdinalFormatStyle<Int> {
-        OrdinalFormatStyle<Int>()
-    }
-}
-
-extension DateFormatter {
-    private static let _default = DateFormatter()
-    static func `default`(format: String, calendar: Calendar = Cal.currentCalendar) -> DateFormatter {
-        _default.calendar = calendar
-        _default.dateFormat = format
-        return _default
-    }
-}
-
-extension Date {
-    func formatted(format: String, calendar: Calendar = Cal.currentCalendar) -> String {
-        return DateFormatter
-            .default(format: format, calendar: calendar)
-            .string(from: self)
-    }
 }

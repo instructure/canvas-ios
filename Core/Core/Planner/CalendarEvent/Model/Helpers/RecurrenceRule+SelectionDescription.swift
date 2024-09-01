@@ -80,7 +80,7 @@ extension Array where Element == DayOfWeek {
             tags.append(String(localized: "Weekdays", bundle: .core))
         }
 
-        if let nonWeekDays = nonWeekdays.nonEmpty() {
+        if let nonWeekDays = nonWeekdays.nilIfEmpty {
 
             let long = tags.isEmpty ? nonWeekDays.count <= 2 : false
             for wday in nonWeekDays {
@@ -112,7 +112,7 @@ extension Array where Element == Weekday {
         if hasWeekdays {
             tags.append(String(localized: "Weekdays", bundle: .core))
 
-            if let nonWeekDays = nonWeekdays.nonEmpty() {
+            if let nonWeekDays = nonWeekdays.nilIfEmpty {
                 tags.append(contentsOf: nonWeekDays.map({ $0.shortText }))
             }
 
@@ -123,6 +123,6 @@ extension Array where Element == Weekday {
             })
         }
 
-        return tags.nonEmpty() ?? [String(localized: "Not selected", bundle: .core)]
+        return tags.nilIfEmpty ?? [String(localized: "Not selected", bundle: .core)]
     }
 }

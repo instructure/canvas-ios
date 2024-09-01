@@ -138,7 +138,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         var monthsOfTheYear: [Int]?
 
         if case .weekly = frequency {
-            daysOfWeek = daysOfTheWeek.map({ DayOfWeek($0) }).nonEmpty()
+            daysOfWeek = daysOfTheWeek.map({ DayOfWeek($0) }).nilIfEmpty
         }
 
         if case .monthly = frequency {
