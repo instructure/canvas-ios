@@ -52,7 +52,7 @@ final class EditEventFrequencyViewModelTests: CoreTestCase {
         completionValue = nil
     }
 
-    func testInitialValues() {
+    func testInitialization() {
         let frequency = TestConstants.dailyFrequency
         let model = makeViewModel(
             TestConstants.eventDate,
@@ -60,8 +60,6 @@ final class EditEventFrequencyViewModelTests: CoreTestCase {
             originalPreset: .weeklyOnThatDay)
 
         XCTAssertEqual(model.eventDate, TestConstants.eventDate)
-        XCTAssertEqual(model.selectedRule, frequency.value)
-        XCTAssertEqual(model.originalPreset, .weeklyOnThatDay)
         XCTAssertEqual(model.selection, frequency.preset)
     }
 

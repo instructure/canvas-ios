@@ -339,7 +339,7 @@ extension RecurrenceRule {
             self.daysOfTheWeek = RRK.DaysOfTheWeek.value(in: rules)
         }
 
-        if case .monthly = frequency {
+        if [.monthly, .yearly].contains(frequency)  {
             self.daysOfTheMonth = RRK.DaysOfTheMonth.value(in: rules)
         }
 
@@ -360,24 +360,24 @@ extension RecurrenceRule {
             RRK.Interval.rruleString(for: interval)
         ]
 
-        if [.weekly, .monthly, .yearly].contains(frequency) {
-            subRules.append(
-                RRK.DaysOfTheWeek.rruleString(for: daysOfTheWeek)
-            )
+        if case .yearly = frequency {
+            subRules.append(contentsOf: [
+                RRK.MonthsOfTheYear.rruleString(for: monthsOfTheYear),
+                RRK.WeeksOfTheYear.rruleString(for: weeksOfTheYear),
+                RRK.DaysOfTheYear.rruleString(for: daysOfTheYear)
+            ])
         }
 
-        if case .monthly = frequency {
+        if [.monthly, .yearly].contains(frequency) {
             subRules.append(
                 RRK.DaysOfTheMonth.rruleString(for: daysOfTheMonth)
             )
         }
 
-        if case .yearly = frequency {
-            subRules.append(contentsOf: [
-                RRK.DaysOfTheYear.rruleString(for: daysOfTheYear),
-                RRK.WeeksOfTheYear.rruleString(for: weeksOfTheYear),
-                RRK.MonthsOfTheYear.rruleString(for: monthsOfTheYear)
-            ])
+        if [.weekly, .monthly, .yearly].contains(frequency) {
+            subRules.append(
+                RRK.DaysOfTheWeek.rruleString(for: daysOfTheWeek)
+            )
         }
 
         subRules.append(contentsOf: [

@@ -27,9 +27,10 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new/frequency/custom")
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
+    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
-    let didTapDone = PassthroughSubject<RecurrenceRule, Never>()
+    let didTapDone = PassthroughSubject<WeakViewController, Never>()
     let proposedDate: Date
 
     var titleForProposedDayOfYear: String {
@@ -54,11 +55,15 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     // Specific to Yearly
     @Published var dayOfYear: DayOfYear?
 
-    init(rule: RecurrenceRule?, proposedDate date: Date, completion: @escaping (RecurrenceRule) -> Void) {
-        let frequency = rule?.frequency ?? .daily
+    init(rule: RecurrenceRule?,
+         proposedDate date: Date,
+         router: Router,
+         completion: @escaping (RecurrenceRule) -> Void) {
 
+        let frequency = rule?.frequency ?? .daily
         self.frequency = frequency
         self.interval = FrequencyInterval(value: rule?.interval ?? 1)
+        self.router = router
 
         if let end = rule?.recurrenceEnd {
             self.endMode = end.endDate != nil ? .onDate : .afterOccurrences
@@ -72,10 +77,10 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         }
 
         if case .monthly = frequency {
-            if let dayOfWeek = rule?.daysOfTheWeek?.first {
-                self.dayOfMonth = DayOfMonth(weekday: dayOfWeek)
-            } else {
-                self.dayOfMonth = DayOfMonth(day: rule?.daysOfTheMonth?.first ?? 0)
+            if let weekDay = rule?.daysOfTheWeek?.first {
+                self.dayOfMonth = DayOfMonth(weekday: weekDay)
+            } else if let monthDay = rule?.daysOfTheMonth?.first {
+                self.dayOfMonth = DayOfMonth(day: monthDay)
             }
         }
 
@@ -89,15 +94,23 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         self.proposedDate = date
 
         self.$frequency
+            .dropFirst()
+            .removeDuplicates()
             .filter({ $0 == .yearly })
-            .sink { [weak self] _ in
+            .sink { [weak self] freq in
+                guard case .yearly = freq else {
+                    self?.dayOfYear = nil
+                    return
+                }
                 self?.dayOfYear = DayOfYear(given: date, in: .current)
             }
             .store(in: &subscriptions)
 
         didTapDone
-            .sink { ruleToSave in
-                completion(ruleToSave)
+            .sink { [weak self] weakVC in
+                guard let rule = self?.translatedRule else { return }
+                completion(rule)
+                router.pop(from: weakVC.value)
             }
             .store(in: &subscriptions)
     }
@@ -132,6 +145,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     }
 
     var translatedRule: RecurrenceRule? {
+        guard let end else { return nil }
 
         var daysOfWeek: [DayOfWeek]?
         var daysOfTheMonth: [Int]?
@@ -178,7 +192,7 @@ struct FrequencyInterval: Equatable {
     }
 }
 
-struct DayOfYear {
+struct DayOfYear: Equatable {
     var day: Int
     var month: Int
 

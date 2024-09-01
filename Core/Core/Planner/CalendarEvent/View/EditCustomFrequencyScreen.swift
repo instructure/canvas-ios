@@ -74,14 +74,11 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                 dismiss()
             },
             trailing: .init(
+                isEnabled: viewModel.isSaveButtonEnabled,
                 isAvailableOffline: false,
                 title: viewModel.doneButtonTitle,
                 action: {
-                    guard let rule = self.viewModel.translatedRule else {
-                        return // This should not happen
-                    }
-                    viewModel.didTapDone.send(rule)
-                    dismiss()
+                    viewModel.didTapDone.send(viewController)
                 }
             )
         )
@@ -181,6 +178,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                         EditCustomFrequencyViewModel(
                             rule: nil,
                             proposedDate: Date(),
+                            router: AppEnvironment.shared.router,
                             completion: { rule in
                                 print("Selected rule:")
                                 print(rule.rruleDescription)
@@ -198,6 +196,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             EditCustomFrequencyViewModel(
                 rule: nil,
                 proposedDate: Date(),
+                router: AppEnvironment.shared.router,
                 completion: { rule in
                     print("Selected rule:")
                     print(rule.rruleDescription)

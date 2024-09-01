@@ -30,8 +30,7 @@ final class EditEventFrequencyViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
 
     let eventDate: Date
-    let selectedRule: RecurrenceRule?
-    let originalPreset: FrequencyPreset?
+    private let originalPreset: FrequencyPreset?
 
     let didTapBack = PassthroughSubject<Void, Never>()
     let didSelectCustomFrequency = PassthroughSubject<WeakViewController, Never>()
@@ -55,7 +54,6 @@ final class EditEventFrequencyViewModel: ObservableObject {
 
         self.router = router
         self.eventDate = eventDate
-        self.selectedRule = selectedFrequency?.value
         self.originalPreset = originalPreset
         self.selection = selectedFrequency?.preset
             ?? .preset(given: selectedFrequency?.value, date: eventDate)
@@ -81,8 +79,9 @@ final class EditEventFrequencyViewModel: ObservableObject {
         let vc = CoreHostingController(
             EditCustomFrequencyScreen(
                 viewModel: EditCustomFrequencyViewModel(
-                    rule: selectedRule,
+                    rule: selection.isCustom ? selection.rule(given: eventDate) : nil,
                     proposedDate: eventDate,
+                    router: router,
                     completion: { [weak self] newRule in
                         self?.selection = .custom(newRule)
                     }
