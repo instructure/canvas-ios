@@ -23,17 +23,10 @@ extension InstUI {
     enum Icons {
 
         struct Selection: View {
-            static let leadingPadding: CGFloat = 12
-
             @ScaledMetric private var uiScale: CGFloat = 1
 
             public var body: some View {
-                Image.arrowUpDownLine
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: uiScale.iconScale * 16,
-                           height: uiScale.iconScale * 16)
-                    .foregroundStyle(Color.textDark)
+                Image.arrowUpDownLine.size(uiScale.iconScale * 16)
             }
         }
 
@@ -41,12 +34,7 @@ extension InstUI {
             @ScaledMetric private var uiScale: CGFloat = 1
 
             public var body: some View {
-                Image.checkLine
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: uiScale.iconScale * 18,
-                           height: uiScale.iconScale * 18)
-                    .foregroundStyle(Color.textDarkest)
+                Image.checkLine.size(uiScale.iconScale * 18)
             }
         }
 
@@ -54,12 +42,7 @@ extension InstUI {
             @ScaledMetric private var uiScale: CGFloat = 1
 
             public var body: some View {
-                Image.arrowOpenLeftLine
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: uiScale.iconScale * 18,
-                           height: uiScale.iconScale * 18)
-                    .foregroundStyle(Color.textDarkest)
+                Image.arrowOpenLeftLine.size(uiScale.iconScale * 18)
             }
         }
     }

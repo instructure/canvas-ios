@@ -26,6 +26,7 @@ struct WeekdaysDropDownPromptLabel: View {
                 .font(.regular14)
                 .foregroundStyle(Color.textDark)
             InstUI.Icons.Selection()
+                .foregroundStyle(Color.textDark)
         }
     }
 }

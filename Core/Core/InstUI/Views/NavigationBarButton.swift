@@ -193,7 +193,7 @@ extension InstUI.NavigationBarButton {
             label: {
                 AnyView(
                     HStack(spacing: 5) {
-                        InstUI.Icons.Back()
+                        InstUI.Icons.Back().foregroundStyle(Color.textDarkest)
                         Text("Back", bundle: .core)
                     }
                 )

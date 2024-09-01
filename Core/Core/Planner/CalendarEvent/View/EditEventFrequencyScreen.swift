@@ -80,6 +80,7 @@ struct ChoiceButton: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     Spacer()
                     InstUI.Icons.Checkmark()
+                        .foregroundStyle(Color.textDarkest)
                         .layoutPriority(1)
                         .opacity(selected ? 1 : 0)
                 }

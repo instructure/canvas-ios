@@ -57,6 +57,7 @@ struct SelectionMenu<Value: Equatable, ID: Hashable>: View {
                 Text(selection?[keyPath: textKey] ?? "Not selected")
                     .font(.regular14)
                 InstUI.Icons.Selection()
+                    .foregroundStyle(Color.textDark)
             }
         }
         .tint(selection == nil ? Color.textDark : Color.textDarkest)
