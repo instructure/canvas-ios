@@ -44,7 +44,6 @@ public class StarConversation: APIUseCase {
         }
 
         Conversation.save(response, in: client)
-
         let entities: [InboxMessageListItem] = client.fetch(scope: scope)
 
         entities
