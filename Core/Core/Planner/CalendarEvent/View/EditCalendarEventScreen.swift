@@ -110,14 +110,8 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                             label: Text("Details", bundle: .core),
                             text: $viewModel.details,
                             onFocus: {
+                                // wait a bit for keyboard to start appearing, so it's considered during scroll
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                    // wait a bit for keyboard to start appearing, so it's considered during scroll
-                                    withAnimation {
-                                        scrollProxy.scrollTo("details", anchor: .bottom)
-                                    }
-                                }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                                    // wait some more just in case we started scrolling too fast
                                     withAnimation {
                                         scrollProxy.scrollTo("details", anchor: .bottom)
                                     }

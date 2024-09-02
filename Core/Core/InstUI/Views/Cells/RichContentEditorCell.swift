@@ -130,4 +130,22 @@ extension InstUI {
 
 #if DEBUG
 
+#Preview {
+    VStack {
+        InstUI.RichContentEditorCell(placeholder: "Add text here", text: .constant(""))
+        InstUI.RichContentEditorCell(label: Text(verbatim: "Label"), placeholder: "Add text here", text: .constant(""))
+        InstUI.RichContentEditorCell(label: Text(verbatim: "Label"), placeholder: "Add text here", text: .constant(InstUI.PreviewData.loremIpsumMedium))
+        InstUI.RichContentEditorCell(
+            label: Text(verbatim: "Styled Label"),
+            labelTransform: {
+                $0
+                    .foregroundStyle(Color.red)
+                    .textStyle(.heading)
+            },
+            placeholder: "Add text here",
+            text: .constant("Some text entered")
+        )
+    }
+}
+
 #endif
