@@ -53,7 +53,7 @@ public class StarConversation: APIUseCase {
                 InboxMessageListItem.save(
                     response,
                     currentUserID: AppEnvironment.shared.currentSession?.userID ?? "",
-                    isSent: true,
+                    isSent: scope == .sent,
                     contextFilter: .none,
                     scopeFilter: scope,
                     in: client

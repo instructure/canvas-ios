@@ -17,10 +17,11 @@
 //
 
 import XCTest
+import Combine
 @testable import Core
 
 class StarConversationStateTests: CoreTestCase {
-
+    private var subscriptions = Set<AnyCancellable>()
     func testPostRequest() {
         let conversationId = "testId"
         let useCase = StarConversation(id: conversationId, starred: true)
@@ -59,7 +60,7 @@ class StarConversationStateTests: CoreTestCase {
     func testWrite() {
         let conversationId = "testId"
         let useCase = StarConversation(id: conversationId, starred: true)
-        let apiconversation = APIConversation.make(starred: false)
+        let apiconversation = APIConversation.make(id: conversationId, starred: false)
         Conversation.save(apiconversation, in: databaseClient)
         InboxMessageListItem.save(
             apiconversation,
@@ -73,7 +74,7 @@ class StarConversationStateTests: CoreTestCase {
         XCTAssertEqual((databaseClient.fetch() as [Conversation]).count, 1)
         XCTAssertEqual((databaseClient.fetch() as [Conversation]).first?.starred, false)
 
-        let response = APIConversation.make(starred: true)
+        let response = APIConversation.make(id: conversationId, starred: true)
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
         XCTAssertEqual((databaseClient.fetch() as [Conversation]).count, 1)
