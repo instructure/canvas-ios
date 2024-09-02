@@ -39,95 +39,112 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
     }
 
     var body: some View {
-        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { geometry in
-            VStack(alignment: .leading, spacing: 0) {
-                VStack(spacing: 0) {
-                    InstUI.TextFieldCell(
-                        label: Text("Title", bundle: .core),
-                        placeholder: String(localized: "Add title", bundle: .core),
-                        text: $viewModel.title
-                    )
-                    .focused($focusedInput, equals: .title)
+        ScrollViewReader { scrollProxy in
+            InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { geometry in
+                VStack(alignment: .leading, spacing: 0) {
+                    VStack(spacing: 0) {
+                        InstUI.TextFieldCell(
+                            label: Text("Title", bundle: .core),
+                            placeholder: String(localized: "Add title", bundle: .core),
+                            text: $viewModel.title
+                        )
+                        .focused($focusedInput, equals: .title)
 
-                    InstUI.DatePickerCell(
-                        label: Text("Date", bundle: .core),
-                        date: $viewModel.date,
-                        mode: .dateOnly,
-                        isClearable: false
-                    )
-
-                    InstUI.ToggleCell(label: Text("All Day", bundle: .core), value: $viewModel.isAllDay)
-
-                    if !viewModel.isAllDay {
                         InstUI.DatePickerCell(
-                            label: Text("From", bundle: .core),
-                            date: $viewModel.startTime,
-                            mode: .timeOnly,
+                            label: Text("Date", bundle: .core),
+                            date: $viewModel.date,
+                            mode: .dateOnly,
                             isClearable: false
                         )
 
-                        InstUI.DatePickerCell(
-                            label: Text("To", bundle: .core),
-                            date: $viewModel.endTime,
-                            mode: .timeOnly,
-                            errorMessage: viewModel.endTimeErrorMessage,
-                            isClearable: false
+                        InstUI.ToggleCell(label: Text("All Day", bundle: .core), value: $viewModel.isAllDay)
+
+                        if !viewModel.isAllDay {
+                            InstUI.DatePickerCell(
+                                label: Text("From", bundle: .core),
+                                date: $viewModel.startTime,
+                                mode: .timeOnly,
+                                isClearable: false
+                            )
+
+                            InstUI.DatePickerCell(
+                                label: Text("To", bundle: .core),
+                                date: $viewModel.endTime,
+                                mode: .timeOnly,
+                                errorMessage: viewModel.endTimeErrorMessage,
+                                isClearable: false
+                            )
+                        }
+
+                        InstUI.LabelValueCell(
+                            label: Text("Frequency", bundle: .core),
+                            value: viewModel.frequencyName,
+                            action: {
+                                viewModel.showFrequencySelector.send(viewController)
+                            }
                         )
+
+                        InstUI.LabelValueCell(
+                            label: Text("Calendar", bundle: .core),
+                            value: viewModel.calendarName,
+                            action: {
+                                viewModel.showCalendarSelector.send(viewController)
+                            }
+                        )
+
+                        InstUI.TextEditorCell(
+                            label: Text("Location", bundle: .core),
+                            text: $viewModel.location
+                        )
+                        .focused($focusedInput, equals: .location)
+                        InstUI.Divider()
+
+                        InstUI.TextEditorCell(
+                            label: Text("Address", bundle: .core),
+                            text: $viewModel.address
+                        )
+                        .focused($focusedInput, equals: .address)
+                        InstUI.Divider()
+
+                        InstUI.RichContentEditorCell(
+                            label: Text("Details", bundle: .core),
+                            text: $viewModel.details,
+                            onFocus: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                    // wait a bit for keyboard to start appearing, so it's considered during scroll
+                                    withAnimation {
+                                        scrollProxy.scrollTo("details", anchor: .bottom)
+                                    }
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                    // wait some more just in case we started scrolling too fast
+                                    withAnimation {
+                                        scrollProxy.scrollTo("details", anchor: .bottom)
+                                    }
+                                }
+                            }
+                        )
+                        .id("details")
+                        .focused($focusedInput, equals: .details)
                     }
+                    .animation(.default, value: viewModel.isAllDay)
 
-                    InstUI.LabelValueCell(
-                        label: Text("Frequency", bundle: .core),
-                        value: viewModel.frequencyName,
-                        action: {
-                            viewModel.showFrequencySelector.send(viewController)
-                        }
+                    // defocus inputs when otherwise non-tappable area is tapped
+                    .background(
+                        InstUI.TapArea()
+                            .onTapGesture {
+                                focusedInput = nil
+                            }
                     )
-
-                    InstUI.LabelValueCell(
-                        label: Text("Calendar", bundle: .core),
-                        value: viewModel.calendarName,
-                        action: {
-                            viewModel.showCalendarSelector.send(viewController)
-                        }
-                    )
-
-                    InstUI.TextEditorCell(
-                        label: Text("Location", bundle: .core),
-                        text: $viewModel.location
-                    )
-                    .focused($focusedInput, equals: .location)
-                    InstUI.Divider()
-
-                    InstUI.TextEditorCell(
-                        label: Text("Address", bundle: .core),
-                        text: $viewModel.address
-                    )
-                    .focused($focusedInput, equals: .address)
-                    InstUI.Divider()
-
-                    InstUI.RichContentEditorCell(
-                        label: Text("Details", bundle: .core),
-                        text: $viewModel.details
-                    )
-                    .focused($focusedInput, equals: .details)
-                }
-                .animation(.default, value: viewModel.isAllDay)
-
-                // defocus inputs when otherwise non-tappable area is tapped
-                .background(
+                    // focus 'Details' input when tapped below last cell
                     InstUI.TapArea()
+                        .layoutPriority(-1)
                         .onTapGesture {
-                            focusedInput = nil
+                            focusedInput = .details
                         }
-                )
-                // focus 'Details' input when tapped below last cell
-                InstUI.TapArea()
-                    .layoutPriority(-1)
-                    .onTapGesture {
-                        focusedInput = .details
-                    }
+                }
+                .frame(minHeight: geometry.size.height)
             }
-            .frame(minHeight: geometry.size.height)
         }
         .navigationTitle(viewModel.pageTitle)
         .navBarItems(
