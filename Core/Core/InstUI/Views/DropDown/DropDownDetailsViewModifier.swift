@@ -60,12 +60,19 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
                                 ZStack {
                                     Color.white
                                     listContent()
-
                                 }
                                     .frame(maxWidth: dims.listMaxSize.width,
                                            maxHeight: dims.listMaxSize.height)
                                     .clipShape(RoundedRectangle(cornerRadius: 4))
                                     .shadow(radius: 4)
+                                    .accessibilityElement(children: .contain)
+                                    .accessibilityLabel(Text("Select Weekdays", bundle: .core))
+                                    .accessibilityAddTraits(.isModal)
+                                    .accessibilityAction(.escape) {
+                                        withAnimation {
+                                            state.isDetailsShown = false
+                                        }
+                                    }
                                 Spacer()
                             }
                             Spacer()
