@@ -25,6 +25,7 @@ final class RecurrenceRuleTests: XCTestCase {
         for useCase in TestConstants.useCases {
             let parsedRule = RecurrenceRule(rruleDescription: useCase.raw)
             XCTAssertEqual(useCase.rule, parsedRule)
+            XCTAssertEqual(useCase.text, parsedRule?.text)
         }
     }
 
@@ -57,6 +58,7 @@ private enum TestConstants {
     struct UseCase {
         let raw: String
         let rule: RecurrenceRule
+        let text: String
     }
 
     static let date = Date.make(year: 2024, month: 3, day: 1, hour: 14, minute: 0)
@@ -69,7 +71,8 @@ private enum TestConstants {
                 recurrenceWith: .daily,
                 interval: 3,
                 end: RecurrenceEnd(occurrenceCount: 32)
-            )
+            ),
+            text: "Every 3rd day, 32 times"
         ),
         UseCase(
             raw: "RRULE:FREQ=DAILY;INTERVAL=1;UNTIL=20240927T000000Z",
@@ -77,7 +80,8 @@ private enum TestConstants {
                 recurrenceWith: .daily,
                 interval: 1,
                 end: RecurrenceEnd(endDate: .make(year: 2024, month: 9, day: 27))
-            )
+            ),
+            text: "Daily, until Sep 27, 2024"
         ),
 
         // Weekly
@@ -90,20 +94,36 @@ private enum TestConstants {
                     DayOfWeek(.monday), DayOfWeek(.wednesday), DayOfWeek(.friday)
                 ],
                 end: RecurrenceEnd(occurrenceCount: 11)
-            )
+            ),
+            text: "Every 4th week on Monday, Wednesday, Friday, 11 times"
         ),
         UseCase(
-            raw: "RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=SU,MO,TU,WE,TH,FR,SA;UNTIL=20240916T000000Z",
+            raw: "RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=MO,TU,WE,TH,FR;UNTIL=20240916T000000Z",
             rule: RecurrenceRule(
                 recurrenceWith: .weekly,
                 interval: 2,
                 daysOfTheWeek: [
-                    DayOfWeek(.sunday), DayOfWeek(.monday), DayOfWeek(.tuesday),
-                    DayOfWeek(.wednesday), DayOfWeek(.thursday), DayOfWeek(.friday),
-                    DayOfWeek(.saturday)
+                    DayOfWeek(.monday), DayOfWeek(.tuesday),
+                    DayOfWeek(.wednesday), DayOfWeek(.thursday),
+                    DayOfWeek(.friday)
                 ],
                 end: RecurrenceEnd(endDate: .make(year: 2024, month: 9, day: 16))
-            )
+            ),
+            text: "Every other week on Every Weekday, until Sep 16, 2024"
+        ),
+        UseCase(
+            raw: "RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=MO,TU,WE,TH,FR;UNTIL=20240808T000000Z",
+            rule: RecurrenceRule(
+                recurrenceWith: .weekly,
+                interval: 1,
+                daysOfTheWeek: [
+                    DayOfWeek(.monday), DayOfWeek(.tuesday),
+                    DayOfWeek(.wednesday), DayOfWeek(.thursday),
+                    DayOfWeek(.friday)
+                ],
+                end: RecurrenceEnd(endDate: .make(year: 2024, month: 8, day: 8))
+            ),
+            text: "Every Weekday, until Aug 8, 2024"
         ),
 
         // Monthly
@@ -118,7 +138,8 @@ private enum TestConstants {
                     DayOfWeek(.saturday, weekNumber: 3)
                 ],
                 end: RecurrenceEnd(occurrenceCount: 8)
-            )
+            ),
+            text: "Monthly on The First Monday, The Second Sunday, The Third Saturday, 8 times"
         ),
         UseCase(
             raw: "RRULE:FREQ=MONTHLY;INTERVAL=3;BYMONTHDAY=4,8,18;UNTIL=20241219T000000Z",
@@ -127,7 +148,8 @@ private enum TestConstants {
                 interval: 3,
                 daysOfTheMonth: [4, 8, 18],
                 end: RecurrenceEnd(endDate: .make(year: 2024, month: 12, day: 19))
-            )
+            ),
+            text: "Every 3rd month on Day 4, Day 8, Day 18, until Dec 19, 2024"
         ),
 
         // Yearly
@@ -144,7 +166,8 @@ private enum TestConstants {
                 ],
                 monthsOfTheYear: [9],
                 end: RecurrenceEnd(endDate: .make(year: 2025, month: 5, day: 22))
-            )
+            ),
+            text: "Every 6th year on September, The Second Friday, The Fourth Saturday, The Fifth Tuesday, The Last Thursday, until May 22, 2025"
         ),
         UseCase(
             raw: "RRULE:FREQ=YEARLY;INTERVAL=2;BYMONTH=11;BYMONTHDAY=3,5,6,9;COUNT=5",
@@ -154,7 +177,8 @@ private enum TestConstants {
                 daysOfTheMonth: [3, 5, 6, 9],
                 monthsOfTheYear: [11],
                 end: RecurrenceEnd(occurrenceCount: 5)
-            )
+            ),
+            text: "Every other year on November, Day 3, Day 5, Day 6, Day 9, 5 times"
         )
     ]
 }

@@ -134,7 +134,7 @@ extension WeekNumber {
         case -1:
             return String(localized: "The Last %@", bundle: .core, comment: "The Last Sunday")
         default:
-            let ordinal = String(localized: "The %@", bundle: .core, comment: "The 4th")
+            let ordinal = String(localized: "The %@", bundle: .core, comment: "The 7th")
                 .asFormat(for: formatted(.ordinal))
             return "\(ordinal) %@"
         }
@@ -174,6 +174,16 @@ extension Array where Element == DayOfWeek {
     var hasWeekdays: Bool {
         Weekday
             .weekDays
+            .allSatisfy({ wd in
+                contains(where: { d in
+                    d.weekday == wd && d.weekNumber == 0
+                })
+            })
+    }
+
+    var hasAllWeek: Bool {
+        Weekday
+            .allCases
             .allSatisfy({ wd in
                 contains(where: { d in
                     d.weekday == wd && d.weekNumber == 0
@@ -240,61 +250,83 @@ private extension Array where Element == Int {
     }
 }
 
+private extension RecurrenceEnd {
+
+    var text: String? {
+        if occurrenceCount > 0 {
+            let format = String(localized: "%d times", bundle: .core)
+            return String(format: format, occurrenceCount)
+        }
+        if let endDate {
+            let format = String(localized: "until %@", bundle: .core)
+            return String(format: format, endDate.formatted(date: .abbreviated, time: .omitted))
+        }
+        return nil
+    }
+}
+
 extension RecurrenceRule {
 
     var text: String {
         var words: [String] = []
 
-        if frequency != .daily {
-
-            if let days = daysOfTheWeek {
-
-                if days.hasWeekdays, case .weekly = frequency, interval == 1 {
-                    words.append(String(localized: "Every Weekday", bundle: .core))
-                } else {
-                    words.append(interval.asInterval(for: frequency))
-                    words.append(.onSpaced)
-                    words.append(days.map({ $0.middleText }).joined(separator: .commaSpaced))
-                }
-
-            } else {
-                words.append(interval.asInterval(for: frequency))
-            }
-        } else {
+        if frequency == .daily {
             words.append(interval.asInterval(for: frequency))
+            if let end = recurrenceEnd?.text { words.append(contentsOf: [.commaSpaced, end]) }
             return words.joined()
         }
 
-        func seperator() {
-            words.append(words.count == 1 ? .onSpaced : .commaSpaced)
+        var isDaysOfTheWeekAdded: Bool = false
+        if case .weekly = frequency, let days = daysOfTheWeek, days.hasWeekdays {
+            if interval > 1 {
+                words.append(interval.asInterval(for: frequency))
+                words.append(.onSpaced)
+            }
+            words.append(String(localized: "Every Weekday", bundle: .core))
+            isDaysOfTheWeekAdded = true
+        } else {
+            words.append(interval.asInterval(for: frequency))
         }
 
-        if let weeks = weeksOfTheYear {
-            seperator()
-
-            words.append(weeks.map({ $0.asWeek }).joined(separator: .commaSpaced))
-        }
-
-        if let months = monthsOfTheYear, months.count == 1,
+        if weeksOfTheYear == nil,
+           let months = monthsOfTheYear, months.count == 1,
            let days = daysOfTheMonth, days.count == 1,
             let month = months.first,
             let day = days.first {
 
-            seperator()
+            words.append(.onSpaced)
             words.append(month.asMonth)
             words.append(.space)
             words.append(day.formatted(.number))
         } else {
+
+            func seperator() {
+                words.append(words.count == 1 ? .onSpaced : .commaSpaced)
+            }
 
             if let months = monthsOfTheYear {
                 seperator()
                 words.append(months.map({ $0.asMonth }).joined(separator: .commaSpaced))
             }
 
+            if let weeks = weeksOfTheYear {
+                seperator()
+                words.append(weeks.map({ $0.asWeek }).joined(separator: .commaSpaced))
+            }
+
             if let days = daysOfTheMonth {
                 seperator()
                 words.append(days.map({ $0.asDay }).joined(separator: .commaSpaced))
             }
+
+            if let days = daysOfTheWeek, isDaysOfTheWeekAdded == false {
+                seperator()
+                words.append(days.map({ $0.middleText }).joined(separator: .commaSpaced))
+            }
+        }
+
+        if let end = recurrenceEnd?.text {
+            words.append(contentsOf: [.commaSpaced, end])
         }
 
         return words.joined()
