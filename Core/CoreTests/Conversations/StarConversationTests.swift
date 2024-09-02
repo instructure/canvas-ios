@@ -17,11 +17,10 @@
 //
 
 import XCTest
-import Combine
 @testable import Core
 
 class StarConversationStateTests: CoreTestCase {
-    private var subscriptions = Set<AnyCancellable>()
+
     func testPostRequest() {
         let conversationId = "testId"
         let useCase = StarConversation(id: conversationId, starred: true)
