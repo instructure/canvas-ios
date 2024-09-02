@@ -56,6 +56,7 @@ final class EditEventFrequencyViewModel: ObservableObject {
         self.eventDate = eventDate
         self.originalPreset = originalPreset
         self.selection = selectedFrequency?.preset ?? .preset(given: selectedFrequency?.value, date: eventDate)
+
         didSelectCustomFrequency
             .sink { [weak self] weakVC in
                 self?.showCustomFrequencyScreen(from: weakVC)
