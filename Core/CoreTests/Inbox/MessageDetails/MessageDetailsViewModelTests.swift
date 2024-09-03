@@ -157,6 +157,184 @@ class MessageDetailsViewModelTests: CoreTestCase {
         XCTAssertEqual(links[0].absoluteString, "https://instructure.com")
         XCTAssertEqual(links[1].absoluteString, "https://instructure.design")
     }
+
+    func test_messageMoreTapped_reply_presentComposeMessageView() {
+        // Given
+        let sourceView = UIViewController()
+        // When
+        testee.messageMoreTapped(
+            message: ConversationMessage.make(),
+            viewController: WeakViewController(
+                sourceView
+            )
+        )
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let replyAction = sheet?.actions[0]
+        replyAction?.action()
+        wait(for: [router.showExpectation], timeout: 1)
+        XCTAssertTrue(router.presented is CoreHostingController<ComposeMessageView>)
+    }
+
+    func test_messageMoreTapped_replyAll_presentComposeMessageView() {
+        // Given
+        let sourceView = UIViewController()
+        // When
+        testee.messageMoreTapped(
+            message: ConversationMessage.make(),
+            viewController: WeakViewController(
+                sourceView
+            )
+        )
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let replyAction = sheet?.actions[1]
+        replyAction?.action()
+        wait(for: [router.showExpectation], timeout: 1)
+        XCTAssertTrue(router.presented is CoreHostingController<ComposeMessageView>)
+    }
+
+    func test_messageMoreTapped_forward_presentComposeMessageView() {
+        // Given
+        let sourceView = UIViewController()
+        // When
+        testee.messageMoreTapped(
+            message: ConversationMessage.make(),
+            viewController: WeakViewController(
+                sourceView
+            )
+        )
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let replyAction = sheet?.actions[2]
+        replyAction?.action()
+        wait(for: [router.showExpectation], timeout: 1)
+        XCTAssertTrue(router.presented is CoreHostingController<ComposeMessageView>)
+    }
+
+    func test_messageMoreTapped_withCannotReplyIsTrue_numberOfActionsOnSheetMustBeTwo() {
+        // Given
+        let sourceView = UIViewController()
+        // When
+        mockInteractor.passConversationEvent(with: true)
+        testee.messageMoreTapped(
+            message: ConversationMessage.make(),
+            viewController: WeakViewController(
+                sourceView
+            )
+        )
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        XCTAssertEqual(sheet?.actions.count, 2)
+    }
+
+    func test_messageMoreTapped_delete_showAlert() {
+        // Given
+        let sourceView = UIViewController()
+        // When
+        testee.messageMoreTapped(
+            message: ConversationMessage.make(),
+            viewController: WeakViewController(
+                sourceView
+            )
+        )
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let replyAction = sheet?.actions[3]
+        replyAction?.action()
+        wait(for: [router.showExpectation], timeout: 1)
+        XCTAssertTrue(testee.isShowingCancelDialog)
+    }
+
+    func test_conversationMoreTapped_withCannotReplyIsTrue_numberOfActionsOnSheetMustBeFour() {
+        // Given
+        let sourceView = WeakViewController()
+        // When
+        mockInteractor.passConversationEvent(with: true)
+        testee.conversationMoreTapped(viewController: sourceView)
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        XCTAssertEqual(sheet?.actions.count, 4)
+    }
+
+    func test_conversationMoreTapped_replyAll_presentComposeMessageView() {
+        // Given
+        let sourceView = WeakViewController()
+        // When
+        testee.conversationMoreTapped(viewController: sourceView)
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let replyAction = sheet?.actions[1]
+        replyAction?.action()
+        wait(for: [router.showExpectation], timeout: 0.3)
+        XCTAssertTrue(router.presented is CoreHostingController<ComposeMessageView>)
+    }
+
+    func test_conversationMoreTapped_reply_presentComposeMessageView() {
+        // Given
+        let sourceView = WeakViewController()
+        // When
+        testee.conversationMoreTapped(viewController: sourceView)
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let replyAction = sheet?.actions[0]
+        replyAction?.action()
+        wait(for: [router.showExpectation], timeout: 0.3)
+        XCTAssertTrue(router.presented is CoreHostingController<ComposeMessageView>)
+    }
+
+    func test_conversationMoreTapped_delete_showAlert() {
+        // Given
+        let sourceView = WeakViewController()
+        // When
+        testee.conversationMoreTapped(viewController: sourceView)
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let replyAction = sheet?.actions[5]
+        replyAction?.action()
+        wait(for: [router.showExpectation], timeout: 0.3)
+        XCTAssertTrue(testee.isShowingCancelDialog)
+    }
+
+    func test_conversationMoreTapped_markAsRead_updateStateCalled() {
+        // Given
+        let sourceView = WeakViewController()
+        // When
+        testee.conversationMoreTapped(viewController: sourceView)
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let replyAction = sheet?.actions[3]
+        replyAction?.action()
+        wait(for: [router.showExpectation], timeout: 0.3)
+        XCTAssertTrue(mockInteractor.updateStateCalled)
+    }
+
+    func test_conversationMoreTapped_archive_updateStateCalled() {
+        // Given
+        let sourceView = WeakViewController()
+        // When
+        testee.conversationMoreTapped(viewController: sourceView)
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let replyAction = sheet?.actions[4]
+        replyAction?.action()
+        wait(for: [router.showExpectation], timeout: 0.3)
+        XCTAssertTrue(mockInteractor.updateStateCalled)
+    }
+
+    func test_conversationMoreTapped_forward_presentComposeMessageView() {
+        // Given
+        let sourceView = WeakViewController()
+        // When
+        testee.conversationMoreTapped(viewController: sourceView)
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let replyAction = sheet?.actions[2]
+        replyAction?.action()
+        wait(for: [router.showExpectation], timeout: 0.3)
+        XCTAssertTrue(router.presented is CoreHostingController<ComposeMessageView>)
+    }
+
 }
 
 private class MessageDetailsInteractorMock: MessageDetailsInteractor {
@@ -213,5 +391,10 @@ private class MessageDetailsInteractorMock: MessageDetailsInteractor {
         Future<URLResponse?, Error> { promise in
             promise(.success(nil))
         }
+    }
+
+    func passConversationEvent(with cannotReply: Bool) {
+        conversation.send(([
+            Conversation.make(from: .make( message_count: 1, messages: [ .make() ], cannot_reply: cannotReply))]))
     }
 }

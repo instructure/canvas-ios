@@ -25,6 +25,7 @@ class MessageDetailsViewModel: ObservableObject {
     @Published public private(set) var messages: [MessageViewModel] = []
     @Published public private(set) var conversations: [Conversation] = []
     @Published public private(set) var starred: Bool = false
+    @Published public private(set) var hideReplyButton: Bool = false
 
     public let title = String(localized: "Message Details", bundle: .core)
 
@@ -63,27 +64,23 @@ class MessageDetailsViewModel: ObservableObject {
 
     public func conversationMoreTapped(viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
-        sheet.addAction(
-            image: .replyLine,
-            title: String(localized: "Reply"),
-            accessibilityIdentifier: "MessageDetails.reply"
-        ) {
-            self.replyTapped(message: nil, viewController: viewController)
-        }
-        sheet.addAction(
-            image: .replyAllLine,
-            title: String(localized: "Reply All", bundle: .core),
-            accessibilityIdentifier: "MessageDetails.replyAll"
-        ) {
-            self.replyAllTapped(message: nil, viewController: viewController)
+       if !hideReplyButton {
+           addReplyAction(sheet) { [weak self] in
+               self?.replyTapped(message: nil, viewController: viewController)
+           }
+
+           addReplyAllAction(sheet) { [weak self] in
+               self?.replyAllTapped(message: nil, viewController: viewController)
+
+           }
         }
 
         sheet.addAction(
             image: .forwardLine,
             title: String(localized: "Forward", bundle: .core),
             accessibilityIdentifier: "MessageDetails.forward"
-        ) {
-            self.forwardTapped(message: nil, viewController: viewController)
+        ) { [weak self] in
+            self?.forwardTapped(message: nil, viewController: viewController)
         }
 
         if (conversations.first?.workflowState == .read) {
@@ -91,16 +88,16 @@ class MessageDetailsViewModel: ObservableObject {
                 image: .nextUnreadLine,
                 title: String(localized: "Mark as Unread", bundle: .core),
                 accessibilityIdentifier: "MessageDetails.markAsUnread"
-            ) {
-                self.updateState.send(.unread)
+            ) { [weak self] in
+                self?.updateState.send(.unread)
             }
         } else {
             sheet.addAction(
                 image: .emailLine,
                 title: String(localized: "Mark as Read", bundle: .core),
                 accessibilityIdentifier: "MessageDetails.markAsRead"
-            ) {
-                self.updateState.send(.read)
+            ) { [weak self] in
+                self?.updateState.send(.read)
             }
         }
 
@@ -109,8 +106,8 @@ class MessageDetailsViewModel: ObservableObject {
                 image: .archiveLine,
                 title: String(localized: "Archive", bundle: .core),
                 accessibilityIdentifier: "MessageDetails.archive"
-            ) {
-                self.updateState.send(.archived)
+            ) { [weak self] in
+                self?.updateState.send(.archived)
             }
         }
 
@@ -119,8 +116,8 @@ class MessageDetailsViewModel: ObservableObject {
                 image: .unarchiveLine,
                 title: String(localized: "Unarchive", bundle: .core),
                 accessibilityIdentifier: "MessageDetails.unarchive"
-            ) {
-                self.updateState.send(.read)
+            ) { [weak self] in
+                self?.updateState.send(.read)
             }
         }
 
@@ -128,9 +125,9 @@ class MessageDetailsViewModel: ObservableObject {
             image: .trashLine,
             title: String(localized: "Delete Conversation", bundle: .core),
             accessibilityIdentifier: "MessageDetails.delete"
-        ) {
-            if let conversationId = self.conversations.first?.id {
-                self.deleteConversationDidTap.send((conversationId, viewController))
+        ) { [weak self] in
+            if let conversationId = self?.conversations.first?.id {
+                self?.deleteConversationDidTap.send((conversationId, viewController))
             }
         }
         router.show(sheet, from: viewController, options: .modal())
@@ -138,22 +135,17 @@ class MessageDetailsViewModel: ObservableObject {
 
     public func messageMoreTapped(message: ConversationMessage?, viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
-        sheet.addAction(
-            image: .replyLine,
-            title: String(localized: "Reply", bundle: .core),
-            accessibilityIdentifier: "MessageDetails.reply"
-        ) {
-            if let message {
-                self.replyTapped(message: message, viewController: viewController)
+        if !hideReplyButton {
+            addReplyAction(sheet) { [weak self] in
+                if let message {
+                    self?.replyTapped(message: message, viewController: viewController)
+                }
             }
-        }
-        sheet.addAction(
-            image: .replyAllLine,
-            title: String(localized: "Reply All", bundle: .core),
-            accessibilityIdentifier: "MessageDetails.replyAll"
-        ) {
-            if let message {
-                self.replyAllTapped(message: message, viewController: viewController)
+
+            addReplyAllAction(sheet) { [weak self] in
+                if let message {
+                    self?.replyAllTapped(message: message, viewController: viewController)
+                }
             }
         }
 
@@ -161,20 +153,34 @@ class MessageDetailsViewModel: ObservableObject {
             image: .forwardLine,
             title: String(localized: "Forward", bundle: .core),
             accessibilityIdentifier: "MessageDetails.forward"
-        ) {
-            self.forwardTapped(message: message, viewController: viewController)
+        ) { [weak self] in
+            self?.forwardTapped(message: message, viewController: viewController)
         }
 
         sheet.addAction(
             image: .trashLine,
             title: String(localized: "Delete Message", bundle: .core),
             accessibilityIdentifier: "MessageDetails.delete"
-        ) {
-            if let conversationId = self.conversations.first?.id, let messageId = message?.id {
-                self.deleteConversationMessageDidTap.send((conversationId: conversationId, messageId: messageId, viewController: viewController))
+        ) { [weak self] in
+            if let conversationId = self?.conversations.first?.id, let messageId = message?.id {
+                self?.deleteConversationMessageDidTap.send((conversationId: conversationId, messageId: messageId, viewController: viewController))
             }
         }
         router.show(sheet, from: viewController, options: .modal())
+    }
+
+    private func addReplyAction(_ sheet: BottomSheetPickerViewController, action: @escaping () -> Void ) {
+        sheet.addAction(
+            image: .replyLine,
+            title: String(localized: "Reply", bundle: .core),
+            accessibilityIdentifier: "MessageDetails.reply", action: action)
+    }
+
+    private func addReplyAllAction(_ sheet: BottomSheetPickerViewController, action: @escaping () -> Void ) {
+        sheet.addAction(
+            image: .replyAllLine,
+            title: String(localized: "Reply All", bundle: .core),
+            accessibilityIdentifier: "MessageDetails.replyAll", action: action)
     }
 
     public func forwardTapped(message: ConversationMessage? = nil, viewController: WeakViewController) {
@@ -214,6 +220,10 @@ class MessageDetailsViewModel: ObservableObject {
             .assign(to: &$subject)
 
         interactor.conversation
+            .map { [weak self] in
+                self?.hideReplyButton = $0.first?.cannotReply ?? false
+                return $0
+            }
             .assign(to: &$conversations)
         interactor.messages
             .map { messages in
