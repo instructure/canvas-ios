@@ -119,8 +119,7 @@ public struct AssignmentEditorView: View, ScreenViewTrackable {
                 placeholder: String(localized: "Add description", bundle: .core),
                 a11yLabel: String(localized: "Description", bundle: .core),
                 html: $description,
-                context: .course(courseID),
-                uploadTo: .context(.course(courseID)),
+                uploadParameters: .init(context: .course(courseID)),
                 height: $rceHeight,
                 canSubmit: $rceCanSubmit,
                 error: Binding(get: {

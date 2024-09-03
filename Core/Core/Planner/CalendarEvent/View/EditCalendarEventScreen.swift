@@ -109,6 +109,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                         InstUI.RichContentEditorCell(
                             label: Text("Details", bundle: .core),
                             html: $viewModel.details,
+                            uploadParameters: viewModel.uploadParameters,
                             isUploading: $viewModel.isUploading,
                             onFocus: {
                                 // wait a bit for keyboard to start appearing, so it's considered during scroll

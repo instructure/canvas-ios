@@ -550,6 +550,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
             event: event,
             eventInteractor: eventInteractor,
             calendarListProviderInteractor: calendarListProviderInteractor,
+            uploadParameters: .init(context: .course("128")),
             router: router,
             completion: { [weak self] in
                 self?.completionValue = $0

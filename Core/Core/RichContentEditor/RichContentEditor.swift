@@ -23,8 +23,7 @@ struct RichContentEditor: UIViewControllerRepresentable {
     private let placeholder: String
     private let a11yLabel: String
     @Binding private var html: String
-    private let context: Context
-    private let uploadTo: FileUploadContext
+    private let uploadParameters: RichContentEditorUploadParameters
     @Binding private var height: CGFloat
     @Binding private var canSubmit: Bool
     @Binding private var isUploading: Bool
@@ -69,8 +68,7 @@ struct RichContentEditor: UIViewControllerRepresentable {
         placeholder: String,
         a11yLabel: String,
         html: Binding<String>,
-        context: Context,
-        uploadTo: FileUploadContext,
+        uploadParameters: RichContentEditorUploadParameters,
         height: Binding<CGFloat>,
         canSubmit: Binding<Bool> = .constant(true),
         isUploading: Binding<Bool> = .constant(false),
@@ -81,8 +79,7 @@ struct RichContentEditor: UIViewControllerRepresentable {
         self.placeholder = placeholder
         self.a11yLabel = a11yLabel
         self._html = html
-        self.context = context
-        self.uploadTo = uploadTo
+        self.uploadParameters = uploadParameters
         self._height = height
         self._canSubmit = canSubmit
         self._isUploading = isUploading
@@ -96,7 +93,11 @@ struct RichContentEditor: UIViewControllerRepresentable {
     }
 
     func makeUIViewController(context: Self.Context) -> RichContentEditorViewController {
-        let uiViewController = RichContentEditorViewController.create(context: self.context, uploadTo: uploadTo)
+        let uiViewController = RichContentEditorViewController.create(
+            context: uploadParameters.context,
+            uploadTo: uploadParameters.uploadTo
+        )
+        uiViewController.fileUploadBaseURL = uploadParameters.baseUrl
         uiViewController.webView.autoresizesHeight = true
         uiViewController.delegate = context.coordinator
         uiViewController.webView.sizeDelegate = context.coordinator
@@ -136,8 +137,7 @@ struct RichContentEditorView_Previews: PreviewProvider {
                 placeholder: "Placeholder",
                 a11yLabel: "Editor",
                 html: $html,
-                context: .course("1"),
-                uploadTo: .myFiles,
+                uploadParameters: .init(context: .course("1")),
                 height: $height,
                 canSubmit: $canSubmit,
                 isUploading: $isUploading,

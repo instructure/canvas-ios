@@ -28,6 +28,7 @@ extension InstUI {
         private let labelTransform: (Text) -> Label
         private let customAccessibilityLabel: Text?
         private let placeholder: String
+        private let uploadParameters: RichContentEditorUploadParameters
 
         @Binding private var html: String
         @Binding private var isUploading: Bool
@@ -55,6 +56,7 @@ extension InstUI {
             customAccessibilityLabel: Text? = nil,
             placeholder: String? = nil,
             html: Binding<String>,
+            uploadParameters: RichContentEditorUploadParameters,
             isUploading: Binding<Bool> = .constant(false),
             error: Binding<Error?> = .constant(nil),
             onFocus: (() -> Void)? = nil
@@ -64,6 +66,7 @@ extension InstUI {
             self.customAccessibilityLabel = customAccessibilityLabel
             self.placeholder = placeholder ?? ""
             self._html = html
+            self.uploadParameters = uploadParameters
             self._isUploading = isUploading
             self._error = error
             self.onFocus = onFocus
@@ -73,6 +76,7 @@ extension InstUI {
             customAccessibilityLabel: Text? = nil,
             placeholder: String? = nil,
             html: Binding<String>,
+            uploadParameters: RichContentEditorUploadParameters,
             isUploading: Binding<Bool> = .constant(false),
             error: Binding<Error?> = .constant(nil),
             onFocus: (() -> Void)? = nil
@@ -83,6 +87,7 @@ extension InstUI {
                 customAccessibilityLabel: customAccessibilityLabel,
                 placeholder: placeholder,
                 html: html,
+                uploadParameters: uploadParameters,
                 isUploading: isUploading,
                 error: error,
                 onFocus: onFocus
@@ -121,8 +126,7 @@ extension InstUI {
                 placeholder: placeholder,
                 a11yLabel: "Some custom acc label",
                 html: $html,
-                context: .currentUser, // TODO: inject
-                uploadTo: .context(.currentUser), // TODO: file context, inject or calculate
+                uploadParameters: uploadParameters,
                 height: $rceHeight,
                 isUploading: $isUploading,
                 error: $error,
@@ -141,10 +145,12 @@ extension InstUI {
 #if DEBUG
 
 #Preview {
-    VStack {
-        InstUI.RichContentEditorCell(placeholder: "Add text here", html: .constant(""))
-        InstUI.RichContentEditorCell(label: Text(verbatim: "Label"), placeholder: "Add text here", html: .constant(""))
-        InstUI.RichContentEditorCell(label: Text(verbatim: "Label"), placeholder: "Add text here", html: .constant(InstUI.PreviewData.loremIpsumMedium))
+    let uploadParameters = RichContentEditorUploadParameters(context: .course("1"))
+
+    return VStack {
+        InstUI.RichContentEditorCell(placeholder: "Add text here", html: .constant(""), uploadParameters: uploadParameters)
+        InstUI.RichContentEditorCell(label: Text(verbatim: "Label"), placeholder: "Add text here", html: .constant(""), uploadParameters: uploadParameters)
+        InstUI.RichContentEditorCell(label: Text(verbatim: "Label"), placeholder: "Add text here", html: .constant(InstUI.PreviewData.loremIpsumMedium), uploadParameters: uploadParameters)
         InstUI.RichContentEditorCell(
             label: Text(verbatim: "Styled Label"),
             labelTransform: {
@@ -153,7 +159,8 @@ extension InstUI {
                     .textStyle(.heading)
             },
             placeholder: "Add text here",
-            html: .constant("Some text entered")
+            html: .constant("Some text entered"),
+            uploadParameters: uploadParameters
         )
     }
 }

@@ -114,8 +114,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
                 placeholder: String(localized: "Add description", bundle: .core),
                 a11yLabel: String(localized: "Description", bundle: .core),
                 html: $viewModel.description,
-                context: .course(viewModel.courseID),
-                uploadTo: .context(.course(viewModel.courseID)),
+                uploadParameters: .init(context: .course(viewModel.courseID)),
                 height: $rceHeight,
                 canSubmit: $rceCanSubmit,
                 error: Binding(get: {

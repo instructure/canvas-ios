@@ -38,6 +38,7 @@ final class EditCalendarEventViewModel: ObservableObject {
 
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new")
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
+    let uploadParameters: RichContentEditorUploadParameters
 
     @Published private(set) var state: InstUI.ScreenState = .data
     @Published var title: String = ""
@@ -128,11 +129,13 @@ final class EditCalendarEventViewModel: ObservableObject {
         event: CalendarEvent? = nil,
         eventInteractor: CalendarEventInteractor,
         calendarListProviderInteractor: CalendarFilterInteractor,
+        uploadParameters: RichContentEditorUploadParameters,
         router: Router,
         completion: @escaping (PlannerAssembly.Completion) -> Void
     ) {
         self.eventInteractor = eventInteractor
         self.calendarListProviderInteractor = calendarListProviderInteractor
+        self.uploadParameters = uploadParameters
         self.router = router
 
         if let event {
