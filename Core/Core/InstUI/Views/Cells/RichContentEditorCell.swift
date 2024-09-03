@@ -29,7 +29,7 @@ extension InstUI {
         private let customAccessibilityLabel: Text?
         private let placeholder: String
 
-        @Binding private var text: String
+        @Binding private var html: String
         @Binding private var isUploading: Bool
         @Binding private var error: Error?
         @State private var rceHeight: CGFloat = 0
@@ -45,7 +45,7 @@ extension InstUI {
         private var accessibilityValue: String {
             // adding pause before `value`, not after `label`, otherwise it will be read out
             let pause = accessibilityLabel != Text("") ? "," : ""
-            let value = text.nilIfEmpty ?? placeholder
+            let value = html.nilIfEmpty ?? placeholder
             return pause + value
         }
 
@@ -54,7 +54,7 @@ extension InstUI {
             labelTransform: @escaping (Text) -> Label = { $0 },
             customAccessibilityLabel: Text? = nil,
             placeholder: String? = nil,
-            text: Binding<String>,
+            html: Binding<String>,
             isUploading: Binding<Bool> = .constant(false),
             error: Binding<Error?> = .constant(nil),
             onFocus: (() -> Void)? = nil
@@ -63,7 +63,7 @@ extension InstUI {
             self.labelTransform = labelTransform
             self.customAccessibilityLabel = customAccessibilityLabel
             self.placeholder = placeholder ?? ""
-            self._text = text
+            self._html = html
             self._isUploading = isUploading
             self._error = error
             self.onFocus = onFocus
@@ -72,7 +72,7 @@ extension InstUI {
         public init(
             customAccessibilityLabel: Text? = nil,
             placeholder: String? = nil,
-            text: Binding<String>,
+            html: Binding<String>,
             isUploading: Binding<Bool> = .constant(false),
             error: Binding<Error?> = .constant(nil),
             onFocus: (() -> Void)? = nil
@@ -82,7 +82,7 @@ extension InstUI {
                 labelTransform: { $0 },
                 customAccessibilityLabel: customAccessibilityLabel,
                 placeholder: placeholder,
-                text: text,
+                html: html,
                 isUploading: isUploading,
                 error: error,
                 onFocus: onFocus
@@ -120,7 +120,7 @@ extension InstUI {
             return RichContentEditor(
                 placeholder: placeholder,
                 a11yLabel: "Some custom acc label",
-                html: $text,
+                html: $html,
                 context: .currentUser, // TODO: inject
                 uploadTo: .context(.currentUser), // TODO: file context, inject or calculate
                 height: $rceHeight,
@@ -142,9 +142,9 @@ extension InstUI {
 
 #Preview {
     VStack {
-        InstUI.RichContentEditorCell(placeholder: "Add text here", text: .constant(""))
-        InstUI.RichContentEditorCell(label: Text(verbatim: "Label"), placeholder: "Add text here", text: .constant(""))
-        InstUI.RichContentEditorCell(label: Text(verbatim: "Label"), placeholder: "Add text here", text: .constant(InstUI.PreviewData.loremIpsumMedium))
+        InstUI.RichContentEditorCell(placeholder: "Add text here", html: .constant(""))
+        InstUI.RichContentEditorCell(label: Text(verbatim: "Label"), placeholder: "Add text here", html: .constant(""))
+        InstUI.RichContentEditorCell(label: Text(verbatim: "Label"), placeholder: "Add text here", html: .constant(InstUI.PreviewData.loremIpsumMedium))
         InstUI.RichContentEditorCell(
             label: Text(verbatim: "Styled Label"),
             labelTransform: {
@@ -153,7 +153,7 @@ extension InstUI {
                     .textStyle(.heading)
             },
             placeholder: "Add text here",
-            text: .constant("Some text entered")
+            html: .constant("Some text entered")
         )
     }
 }
