@@ -55,9 +55,9 @@ extension InstUI {
 #if DEBUG
 
 #Preview {
-    InstUI.DropDownCell(label: Text("Repeats On"),
+    InstUI.DropDownCell(label: Text(verbatim: "Repeats On"),
                         state: .constant(DropDownButtonState()),
-                        value: { Text("Value") })
+                        value: { Text(verbatim: "Value") })
 }
 
 #endif

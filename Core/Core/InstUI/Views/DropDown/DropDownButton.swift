@@ -91,15 +91,17 @@ extension DropDownButtonState {
         let maxWidth = min(screenFrame.width - 50, 320)
         dims.listMaxSize.width = prefSize.flatMap({ min(maxWidth, $0.width) }) ?? maxWidth
 
-        let leftSpace = frame.minX
+        let leftSpace = frame.minX - screenFrame.minX
         let rightSpace = screenFrame.width - frame.maxX
 
         if leftSpace > rightSpace {
             let widthAdjustment = max(dims.listMaxSize.width - (leftSpace + frame.width), 0)
-            dims.leftSpacerWidth = max(10, frame.maxX - dims.listMaxSize.width + widthAdjustment)
+            let rightFrameLocalEdge = frame.maxX - screenFrame.minX
+            dims.leftSpacerWidth = max(10, rightFrameLocalEdge - dims.listMaxSize.width + widthAdjustment)
         } else {
             let widthAdjustment = min(rightSpace + frame.width - dims.listMaxSize.width, 0)
-            dims.leftSpacerWidth = min(frame.minX + widthAdjustment, screenFrame.width - 10)
+            let leftFrameLocalEdge = frame.minX - screenFrame.minX
+            dims.leftSpacerWidth = min(leftFrameLocalEdge + widthAdjustment, screenFrame.width - 10)
         }
 
         return dims

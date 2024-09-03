@@ -19,6 +19,26 @@
 import UIKit
 import SwiftUI
 
+enum PickerTextAlignment {
+    case leading, center, trailing, natural
+
+    func toLabelTextAlignment() -> NSTextAlignment {
+        let direction = Locale.current.language.characterDirection
+        let isRTL = direction == .rightToLeft
+
+        switch self {
+        case .leading:
+            return isRTL ? .right : .left
+        case .trailing:
+            return isRTL ? .left : .right
+        case .center:
+            return .center
+        case .natural:
+            return .natural
+        }
+    }
+}
+
 struct MultiPickerView<Value1, Value2>: UIViewRepresentable where Value1: Equatable, Value2: Equatable {
     let content1: [Value1]
     let titleKey1: KeyPath<Value1, String>
@@ -31,7 +51,7 @@ struct MultiPickerView<Value1, Value2>: UIViewRepresentable where Value1: Equata
     @Binding var selection2: Value2
 
     let widths: [CGFloat]
-    let alignments: [NSTextAlignment]
+    let alignments: [PickerTextAlignment]
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -102,7 +122,7 @@ private extension MultiPickerView {
     }
 
     func alignment(for component: Int) -> NSTextAlignment {
-        alignments[safeIndex: component] ?? .natural
+        return (alignments[safeIndex: component] ?? .natural).toLabelTextAlignment()
     }
 
     func selectionIndex(for component: Int) -> Int? {
@@ -218,7 +238,7 @@ private class RowLabel: UIView {
                 selection2: $selection2,
 
                 widths: [3, 7],
-                alignments: [.right, .left]
+                alignments: [.trailing, .leading]
             )
             .onChange(of: selection1) { newValue in
                 print("Interval: \(newValue)")

@@ -26,7 +26,7 @@ extension InstUI {
             @ScaledMetric private var uiScale: CGFloat = 1
 
             public var body: some View {
-                Image.arrowUpDownLine.size(uiScale.iconScale * 16)
+                Image.expandItemsLine.size(uiScale.iconScale * 16)
             }
         }
 

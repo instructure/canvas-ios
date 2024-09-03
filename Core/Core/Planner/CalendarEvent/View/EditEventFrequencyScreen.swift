@@ -84,10 +84,11 @@ struct ChoiceButton: View {
                         .layoutPriority(1)
                         .opacity(selected ? 1 : 0)
                 }
+                .paddingStyle(set: .standardCell)
                 .contentShape(Rectangle())
             })
         .buttonStyle(.plain)
-        .paddingStyle(set: .standardCell)
+        .contentShape(Rectangle())
     }
 }
 

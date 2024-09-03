@@ -42,10 +42,11 @@ struct WeekDaysSelectionListView: View {
                                     .layoutPriority(1)
                                     .opacity(selection.contains(weekDay) ? 1 : 0)
                             }
+                            .paddingStyle(.all, .dropDownOption)
                             .contentShape(Rectangle())
                         })
                     .buttonStyle(.plain)
-                    .paddingStyle(.all, .dropDownOption)
+                    .contentShape(Rectangle())
                     InstUI.Divider()
                 }
             }

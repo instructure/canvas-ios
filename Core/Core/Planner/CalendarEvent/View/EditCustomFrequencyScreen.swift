@@ -49,7 +49,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                     },
                     selection2: $viewModel.frequency,
                     widths: [3, 7],
-                    alignments: [.right, .left])
+                    alignments: [.trailing, .leading])
                 .frame(maxWidth: .infinity)
 
                 if case .weekly = viewModel.frequency {

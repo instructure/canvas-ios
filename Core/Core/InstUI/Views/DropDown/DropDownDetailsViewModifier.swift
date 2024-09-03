@@ -19,11 +19,16 @@
 import SwiftUI
 
 struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
+
+    @Environment(\.layoutDirection) private var layoutDirection
+
     @Binding var state: DropDownButtonState
     @ViewBuilder let listContent: () -> ListContent
 
     @State private var screenFrame: CGRect = .zero
     @State private var preferredDetailsSize: CGSize?
+
+    @AccessibilityFocusState var isFocused: Bool
 
     func body(content: Content) -> some View {
         content
@@ -47,33 +52,38 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
                                 withAnimation {
                                     state.isDetailsShown = false
                                 }
-                        }
+                            }
+                            .accessibilityElement()
+                            .accessibilityAction(.escape) {
+                                state.isDetailsShown = false
+                            }
 
                         VStack {
                             Spacer()
-                                .frame(width: 100, height: dims.topSpacerHeight)
+                                .frame(width: 5, height: dims.topSpacerHeight)
 
                             HStack {
-                                Spacer()
-                                    .frame(width: dims.leftSpacerWidth, height: 100)
+
+                                if layoutDirection == .leftToRight {
+                                    Spacer().frame(width: dims.leftSpacerWidth, height: 5)
+                                } else {
+                                    Spacer()
+                                }
 
                                 ZStack {
-                                    Color.white
-                                    listContent()
+                                    Color.backgroundLightest
+                                    listContent().accessibilityFocused($isFocused)
                                 }
                                     .frame(maxWidth: dims.listMaxSize.width,
                                            maxHeight: dims.listMaxSize.height)
                                     .clipShape(RoundedRectangle(cornerRadius: 4))
                                     .shadow(radius: 4)
-                                    .accessibilityElement(children: .contain)
-                                    .accessibilityLabel(Text("Select Weekdays", bundle: .core))
-                                    .accessibilityAddTraits(.isModal)
-                                    .accessibilityAction(.escape) {
-                                        withAnimation {
-                                            state.isDetailsShown = false
-                                        }
-                                    }
-                                Spacer()
+
+                                if layoutDirection == .rightToLeft {
+                                    Spacer().frame(width: dims.leftSpacerWidth, height: 5)
+                                } else {
+                                    Spacer()
+                                }
                             }
                             Spacer()
                         }
@@ -91,6 +101,9 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
             .onPreferenceChange(ScreenFramePrefKey.self, perform: { value in
                 screenFrame = value
             })
+            .onChange(of: state.isDetailsShown) { newValue in
+                if newValue { isFocused = true }
+            }
     }
 }
 
