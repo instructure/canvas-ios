@@ -27,7 +27,7 @@ private struct OccurrencesCountInputAlertViewModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .alert("Number of Occurrences",
+            .alert(String(localized: "Number of Occurrences", bundle: .core),
                    isPresented: $isPresented) {
 
                 TextField("Occurrences",
@@ -42,20 +42,23 @@ private struct OccurrencesCountInputAlertViewModifier: ViewModifier {
                 })
 
                 Button(action: {
-                    count = tempCount
+                    if isTypedCountValid { count = tempCount }
                     isPresented = false
                 }, label: {
                     Text("Done", bundle: .core)
                 })
-                .disabled(tempCount > 400 || tempCount < 0)
+                .disabled(isTypedCountValid == false)
 
             } message: {
                 Text("How many times would you like to repeat? (Max 400)", bundle: .core)
             }
             .onChange(of: isPresented) { newValue in
-                guard newValue else { return }
                 tempCount = count
             }
+    }
+
+    private var isTypedCountValid: Bool {
+        return (0 ... 400).contains(tempCount)
     }
 
     private var formatter: Formatter {

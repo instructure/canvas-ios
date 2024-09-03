@@ -54,7 +54,7 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
                                 }
                             }
                             .accessibilityElement()
-                            .accessibilityAddTraits(.isModal)
+                            .accessibilitySortPriority(1)
                             .accessibilityHint(Text("Dismiss Drop Down Details", bundle: .core))
                             .accessibilityAction {
                                 state.isDetailsShown = false
@@ -74,7 +74,9 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
 
                                 ZStack {
                                     Color.backgroundLightest
-                                    listContent().accessibilityFocused($isFocused)
+                                    listContent()
+                                        .accessibilityFocused($isFocused)
+                                        .accessibilitySortPriority(2)
                                 }
                                     .frame(maxWidth: dims.listMaxSize.width,
                                            maxHeight: dims.listMaxSize.height)

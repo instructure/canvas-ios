@@ -66,7 +66,7 @@ final class EditEventFrequencyViewModel: ObservableObject {
 
         didSelectCustomFrequency
             .sink { [weak self] weakVC in
-                self?.showCustomFrequencyScreen(from: weakVC)
+                self?.showCustomFrequencyScreen(from: weakVC, completion: completion)
             }
             .store(in: &subscriptions)
 
@@ -81,15 +81,19 @@ final class EditEventFrequencyViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func showCustomFrequencyScreen(from source: WeakViewController) {
+    private func showCustomFrequencyScreen(from source: WeakViewController,
+                                           completion: @escaping (FrequencySelection?) -> Void) {
+
         let vc = CoreHostingController(
             EditCustomFrequencyScreen(
                 viewModel: EditCustomFrequencyViewModel(
                     rule: selection.isCustom ? selection.rule(given: eventDate) : nil,
                     proposedDate: eventDate,
                     router: router,
-                    completion: { [weak self] newRule in
-                        self?.selection = .custom(newRule)
+                    completion: { newRule in
+                        completion(
+                            FrequencySelection(newRule, preset: .custom(newRule))
+                        )
                     }
                 )
             )

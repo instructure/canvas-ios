@@ -20,7 +20,6 @@ import SwiftUI
 
 struct EditEventFrequencyScreen: View, ScreenViewTrackable {
     @Environment(\.viewController) private var viewController
-    @Environment(\.dismiss) private var dismiss
 
     @ObservedObject private var viewModel: EditEventFrequencyViewModel
 
@@ -54,13 +53,9 @@ struct EditEventFrequencyScreen: View, ScreenViewTrackable {
             .frame(minHeight: geometry.size.height)
         }
         .navigationTitle(viewModel.pageTitle)
-        .navigationBarBackButtonHidden()
-        .navBarItems(
-            leading: .back {
-                viewModel.didTapBack.send()
-                dismiss()
-            }
-        )
+        .onDisappear {
+            viewModel.didTapBack.send()
+        }
     }
 }
 

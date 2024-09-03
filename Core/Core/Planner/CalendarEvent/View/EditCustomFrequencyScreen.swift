@@ -21,7 +21,6 @@ import SwiftUI
 struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
 
     @Environment(\.viewController) private var viewController
-    @Environment(\.dismiss) private var dismiss
 
     @ObservedObject private var viewModel: EditCustomFrequencyViewModel
 
@@ -48,7 +47,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                         return freq.unitText(given: interval.value)
                     },
                     selection2: $viewModel.frequency,
-                    widths: [3, 7],
+                    widths: [4, 5],
                     alignments: [.trailing, .leading])
                 .frame(maxWidth: .infinity)
 
@@ -68,11 +67,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             }
         }
         .navigationTitle(viewModel.pageTitle)
-        .navigationBarBackButtonHidden()
         .navBarItems(
-            leading: .back {
-                dismiss()
-            },
             trailing: .init(
                 isEnabled: viewModel.isSaveButtonEnabled,
                 isAvailableOffline: false,

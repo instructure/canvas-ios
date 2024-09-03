@@ -137,7 +137,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             .sink { [weak self] weakVC in
                 guard let rule = self?.translatedRule else { return }
                 completion(rule)
-                router.pop(from: weakVC.value)
+                router.popToRoot(from: weakVC.value)
             }
             .store(in: &subscriptions)
     }

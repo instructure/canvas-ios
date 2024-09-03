@@ -60,24 +60,21 @@ extension RecurrenceFrequency {
     }
 
     func unitText(given value: Int) -> String {
-        let valueTxt = "\(value)"
-        let valuedText = unitFormat.asFormat(for: value)
-        return valuedText
-            .replacingOccurrences(of: valueTxt, with: "")
-            .trimmed()
-    }
+        let formatted: String
 
-    private var unitFormat: String {
         switch self {
         case .daily:
-            String(localized: "%d Days", bundle: .core)
+            formatted = String(localized: "\(value) Days", bundle: .core)
         case .weekly:
-            String(localized: "%d Weeks", bundle: .core)
+            formatted = String(localized: "\(value) Weeks", bundle: .core)
         case .monthly:
-            String(localized: "%d Months", bundle: .core)
+            formatted = String(localized: "\(value) Months", bundle: .core)
         case .yearly:
-            String(localized: "%d Years", bundle: .core)
+            formatted = String(localized: "\(value) Years", bundle: .core)
         }
+
+        let digitLocalized = String.localizedStringWithFormat("%lld", value)
+        return formatted.replacingOccurrences(of: digitLocalized, with: "").trimmed()
     }
 }
 

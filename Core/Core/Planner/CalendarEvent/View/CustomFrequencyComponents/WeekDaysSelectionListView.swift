@@ -46,7 +46,6 @@ struct WeekDaysSelectionListView: View {
                             .contentShape(Rectangle())
                         })
                     .buttonStyle(.plain)
-                    .contentShape(Rectangle())
                     InstUI.Divider()
                 }
             }
@@ -54,6 +53,7 @@ struct WeekDaysSelectionListView: View {
             .fixedSize()
             .preferredAsDropDownDetails()
         }
+        .onTapGesture { } // Fixes an issue with tappable area of first and last buttons.
     }
 }
 

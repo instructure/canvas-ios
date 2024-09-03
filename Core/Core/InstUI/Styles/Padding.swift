@@ -39,6 +39,8 @@ extension InstUI.Styles {
 
         case dropDownOption
 
+        case selectionValueLabel
+
         var config: Config {
             switch self {
             case .standardCell:
@@ -68,6 +70,14 @@ extension InstUI.Styles {
                     bottom: .cellBottom,
                     leading: .standard,
                     trailing: .standard
+                )
+
+            case .selectionValueLabel:
+                Config(
+                    top: .selectionLabelVertical,
+                    bottom: .selectionLabelVertical,
+                    leading: .selectionLabelHorizontal,
+                    trailing: .selectionLabelHorizontal
                 )
             }
         }
@@ -110,7 +120,9 @@ public extension InstUI.Styles.Padding {
 
     static let dropDownOption = value(12)
 
-    static let selectionPromptLabel = value(8)
+    static let selectionLabelHorizontal = value(12)
+
+    static let selectionLabelVertical = value(6)
 }
 
 // MARK: - Modifiers

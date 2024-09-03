@@ -57,7 +57,7 @@ struct SelectionMenu<Value: Equatable, ID: Hashable>: View {
                 Text(title).font(.regular14)
                 InstUI.Icons.Selection().foregroundStyle(Color.textDark)
             }
-            .paddingStyle(.all, .selectionPromptLabel)
+            .paddingStyle(set: .selectionValueLabel)
             .contentShape(Rectangle())
         }
         .tint(selection == nil ? Color.textDark : Color.textDarkest)

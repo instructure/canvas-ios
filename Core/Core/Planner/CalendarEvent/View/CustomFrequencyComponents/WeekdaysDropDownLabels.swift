@@ -28,7 +28,7 @@ struct WeekdaysDropDownPromptLabel: View {
             InstUI.Icons.Selection()
                 .foregroundStyle(Color.textDark)
         }
-        .paddingStyle(.all, .selectionPromptLabel)
+        .paddingStyle(set: .selectionValueLabel)
         .contentShape(Rectangle())
     }
 }
@@ -44,7 +44,7 @@ struct WeekdaysDropDownSelectedLabel: View {
             .minimumScaleFactor(0.7)
             .font(.regular14)
             .foregroundStyle(color)
-            .padding(EdgeInsets(top: 6, leading: 12, bottom: 6, trailing: 12))
+            .paddingStyle(set: .selectionValueLabel)
             .background(Color.backgroundLight)
             .clipShape(RoundedRectangle(cornerRadius: 4))
     }
