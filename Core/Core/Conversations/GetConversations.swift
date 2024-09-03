@@ -21,6 +21,7 @@ import CoreData
 
 public class GetConversations: CollectionUseCase {
     public typealias Model = Conversation
+    public typealias Response = [APIConversation]
     let include: [GetConversationsRequest.Include] = [.participant_avatars]
     let perPage: Int = 100
     let requestScope: GetConversationsRequest.Scope?

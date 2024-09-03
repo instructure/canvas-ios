@@ -160,6 +160,7 @@ public class GetSubmission: APIUseCase {
 
 public class GetSubmissionsForStudent: CollectionUseCase {
     public typealias Model = Submission
+    public typealias Response = [APISubmission]
 
     public let cacheKey: String?
     public let request: GetSubmissionsForStudentRequest
@@ -182,6 +183,7 @@ public class GetSubmissionsForStudent: CollectionUseCase {
 
 public class GetSubmissions: CollectionUseCase {
     public typealias Model = Submission
+    public typealias Response = [APISubmission]
 
     public let context: Context
     public let assignmentID: String

@@ -22,6 +22,7 @@ import CoreData
 public class GetActivities: CollectionUseCase {
 
     public typealias Model = Activity
+    public typealias Response = [APIActivity]
 
     private let context: Context?
     public init(context: Context? = nil) {

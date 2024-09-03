@@ -81,6 +81,7 @@ public class GetFolder: APIUseCase {
 
 public class GetFolders: CollectionUseCase {
     public typealias Model = Folder
+    public typealias Response = [APIFolder]
 
     let context: Context
 

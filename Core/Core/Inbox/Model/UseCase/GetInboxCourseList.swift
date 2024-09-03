@@ -20,6 +20,7 @@ import Foundation
 
 public class GetInboxCourseList: CollectionUseCase {
     public typealias Model = InboxCourse
+    public typealias Response = [APICourse]
 
     public var cacheKey: String? { "inboxCourseList" }
     public var request: GetCurrentUserCoursesRequest {

@@ -20,6 +20,7 @@ import Foundation
 
 public class GetCourseSections: CollectionUseCase {
     public typealias Model = CourseSection
+    public typealias Response = [APICourseSection]
 
     let courseID: String
     let perPage: Int

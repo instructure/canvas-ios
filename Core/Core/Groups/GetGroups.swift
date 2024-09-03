@@ -64,6 +64,7 @@ public class GetGroup: APIUseCase {
 
 public class GetDashboardGroups: CollectionUseCase {
     public typealias Model = Group
+    public typealias Response = [APIGroup]
 
     public var cacheKey: String? { "users/self/favorites/groups" }
     public var request: GetFavoriteGroupsRequest { GetFavoriteGroupsRequest(context: .currentUser) }

@@ -20,6 +20,7 @@ import Foundation
 
 public class GetObserverAlerts: CollectionUseCase {
     public typealias Model = ObserverAlert
+    public typealias Response = [APIObserverAlert]
 
     public let studentID: String
     public init(studentID: String) {

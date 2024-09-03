@@ -96,6 +96,7 @@ public final class Todo: NSManagedObject, WriteableModel {
 
 class GetTodos: CollectionUseCase {
     typealias Model = Todo
+    typealias Response = [APITodo]
 
     let type: TodoType?
     var cacheKey: String? { nil }
