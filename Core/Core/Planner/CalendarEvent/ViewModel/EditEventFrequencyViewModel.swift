@@ -49,7 +49,6 @@ final class EditEventFrequencyViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Inputs / Outputs
-    
     @Published private(set) var state: InstUI.ScreenState = .data
     @Published var selection: FrequencyPreset
 

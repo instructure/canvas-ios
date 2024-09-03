@@ -52,7 +52,7 @@ private struct OccurrencesCountInputAlertViewModifier: ViewModifier {
             } message: {
                 Text("How many times would you like to repeat? (Max 400)", bundle: .core)
             }
-            .onChange(of: isPresented) { newValue in
+            .onChange(of: isPresented) { _ in
                 tempCount = count
             }
     }
