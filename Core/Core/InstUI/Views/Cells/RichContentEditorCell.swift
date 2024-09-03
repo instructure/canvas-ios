@@ -43,13 +43,6 @@ extension InstUI {
             customAccessibilityLabel ?? label ?? Text("")
         }
 
-        private var accessibilityValue: String {
-            // adding pause before `value`, not after `label`, otherwise it will be read out
-            let pause = accessibilityLabel != Text("") ? "," : ""
-            let value = html.nilIfEmpty ?? placeholder
-            return pause + value
-        }
-
         public init(
             label: Text?,
             labelTransform: @escaping (Text) -> Label = { $0 },
@@ -124,7 +117,7 @@ extension InstUI {
         private var rcEditor: some View {
             return RichContentEditor(
                 placeholder: placeholder,
-                a11yLabel: "Some custom acc label",
+                a11yLabel: "",
                 html: $html,
                 uploadParameters: uploadParameters,
                 height: $rceHeight,
@@ -136,8 +129,8 @@ extension InstUI {
             .scrollDisabled(true)
             .focused($isFocused)
             .frame(height: rceHeight)
-//            .accessibilityLabel(accessibilityLabel)
-//            .accessibilityValue(accessibilityValue)
+            .accessibilityElement(children: .contain)
+            .accessibilityLabel(accessibilityLabel)
         }
     }
 }
