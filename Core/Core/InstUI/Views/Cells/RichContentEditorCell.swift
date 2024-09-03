@@ -30,6 +30,8 @@ extension InstUI {
         private let placeholder: String
 
         @Binding private var text: String
+        @Binding private var isUploading: Bool
+        @Binding private var error: Error?
         @State private var rceHeight: CGFloat = 0
 
         @FocusState private var isFocused: Bool
@@ -53,6 +55,8 @@ extension InstUI {
             customAccessibilityLabel: Text? = nil,
             placeholder: String? = nil,
             text: Binding<String>,
+            isUploading: Binding<Bool> = .constant(false),
+            error: Binding<Error?> = .constant(nil),
             onFocus: (() -> Void)? = nil
         ) {
             self.label = label
@@ -60,6 +64,8 @@ extension InstUI {
             self.customAccessibilityLabel = customAccessibilityLabel
             self.placeholder = placeholder ?? ""
             self._text = text
+            self._isUploading = isUploading
+            self._error = error
             self.onFocus = onFocus
         }
 
@@ -67,6 +73,8 @@ extension InstUI {
             customAccessibilityLabel: Text? = nil,
             placeholder: String? = nil,
             text: Binding<String>,
+            isUploading: Binding<Bool> = .constant(false),
+            error: Binding<Error?> = .constant(nil),
             onFocus: (() -> Void)? = nil
         ) where Label == Text? {
             self.init(
@@ -75,6 +83,8 @@ extension InstUI {
                 customAccessibilityLabel: customAccessibilityLabel,
                 placeholder: placeholder,
                 text: text,
+                isUploading: isUploading,
+                error: error,
                 onFocus: onFocus
             )
         }
@@ -114,8 +124,8 @@ extension InstUI {
                 context: .currentUser, // TODO: inject
                 uploadTo: .context(.currentUser), // TODO: file context, inject or calculate
                 height: $rceHeight,
-                canSubmit: .constant(true), // TODO: inject
-                error: .constant(nil), // TODO: inject (or only some alert string?)
+                isUploading: $isUploading,
+                error: $error,
                 onFocus: onFocus,
                 focusTrigger: focusedPublisher.eraseToAnyPublisher()
             )

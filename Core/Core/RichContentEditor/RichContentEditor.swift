@@ -27,6 +27,7 @@ struct RichContentEditor: UIViewControllerRepresentable {
     private let uploadTo: FileUploadContext
     @Binding private var height: CGFloat
     @Binding private var canSubmit: Bool
+    @Binding private var isUploading: Bool
     @Binding private var error: Error?
     private let onFocus: (() -> Void)?
     private let focusTrigger: AnyPublisher<Void, Never>?
@@ -45,6 +46,10 @@ struct RichContentEditor: UIViewControllerRepresentable {
                 self.lastHTML = $0
                 self.view.html = $0
             }
+        }
+
+        func rce(_ editor: RichContentEditorViewController, isUploading: Bool) {
+            view.isUploading = isUploading
         }
 
         func rce(_ editor: RichContentEditorViewController, didError error: Error) {
@@ -67,7 +72,8 @@ struct RichContentEditor: UIViewControllerRepresentable {
         context: Context,
         uploadTo: FileUploadContext,
         height: Binding<CGFloat>,
-        canSubmit: Binding<Bool>,
+        canSubmit: Binding<Bool> = .constant(true),
+        isUploading: Binding<Bool> = .constant(false),
         error: Binding<Error?>,
         onFocus: (() -> Void)? = nil,
         focusTrigger: AnyPublisher<Void, Never>? = nil
@@ -79,6 +85,7 @@ struct RichContentEditor: UIViewControllerRepresentable {
         self.uploadTo = uploadTo
         self._height = height
         self._canSubmit = canSubmit
+        self._isUploading = isUploading
         self._error = error
         self.onFocus = onFocus
         self.focusTrigger = focusTrigger
@@ -122,6 +129,7 @@ struct RichContentEditorView_Previews: PreviewProvider {
         @State var html: String = "Edit Me!"
         @State var height: CGFloat = 200
         @State var canSubmit: Bool = false
+        @State var isUploading: Bool = false
         @State var error: Error?
         var body: some View {
             RichContentEditor(
@@ -132,6 +140,7 @@ struct RichContentEditorView_Previews: PreviewProvider {
                 uploadTo: .myFiles,
                 height: $height,
                 canSubmit: $canSubmit,
+                isUploading: $isUploading,
                 error: $error
             ).frame(minHeight: 60, idealHeight: max(60, height))
         }

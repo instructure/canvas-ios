@@ -24,11 +24,14 @@ import Combine
 
 public protocol RichContentEditorDelegate: AnyObject {
     func rce(_ editor: RichContentEditorViewController, canSubmit: Bool)
+    func rce(_ editor: RichContentEditorViewController, isUploading: Bool)
     func rce(_ editor: RichContentEditorViewController, didError error: Error)
     func rceDidFocus(_ editor: RichContentEditorViewController)
 }
 
 public extension RichContentEditorDelegate {
+    func rce(_ editor: RichContentEditorViewController, canSubmit: Bool) {}
+    func rce(_ editor: RichContentEditorViewController, isUploading: Bool) {}
     func rceDidFocus(_ editor: RichContentEditorViewController) {}
 }
 
@@ -175,6 +178,7 @@ public class RichContentEditorViewController: UIViewController {
         let isEmpty = state?["isEmpty"] as? Bool ?? true
         let isUploading = state?["isUploading"] as? Bool ?? false
         delegate?.rce(self, canSubmit: !isEmpty && !isUploading)
+        delegate?.rce(self, isUploading: isUploading)
     }
 
     func subscribeToFocusTrigger(_ trigger: AnyPublisher<Void, Never>) {

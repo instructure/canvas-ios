@@ -50,12 +50,14 @@ final class EditCalendarEventViewModel: ObservableObject {
     @Published var location: String = ""
     @Published var address: String = ""
     @Published var details: String = ""
+    @Published var isUploading: Bool = false
 
     @Published private(set) var endTimeErrorMessage: String?
     @Published var shouldShowSaveError: Bool = false
 
     var isSaveButtonEnabled: Bool {
         state == .data
+        && !isUploading
         && eventInteractor.isRequestModelValid(model)
         && isFieldsTouched
     }
