@@ -155,27 +155,3 @@ extension View {
         preference(key: ScreenFramePrefKey.self, value: rect)
     }
 }
-
-// MARK: - Helpers
-
-extension Binding {
-
-    func toggle<W: Equatable>(with value: Value) where Value == W? {
-        if wrappedValue == value {
-            wrappedValue = nil
-        } else {
-            wrappedValue = value
-        }
-    }
-}
-
-extension Array where Element: Equatable {
-
-    mutating func toggleInsert(with value: Element) {
-        if contains(value) {
-            removeAll(where: { $0 == value })
-        } else {
-            append(value)
-        }
-    }
-}

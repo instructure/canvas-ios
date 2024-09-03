@@ -18,26 +18,33 @@
 
 import Foundation
 
-struct DayOfMonth: Equatable, Identifiable {
+enum DayOfMonth: Equatable, Identifiable {
+    case weekday(DayOfWeek)
+    case day(Int)
+
     var id: String {
-        return [
-            "weekday: \(weekday?.weekday.dateComponent ?? 0)",
-            "weekNumber: \(weekday?.weekNumber ?? 0)",
-            "day: \(day ?? 0)"
-        ].joined(separator: ", ")
+        let info: String
+        switch self {
+        case .weekday(let dayOfWeek):
+            info = [
+                "weekday: \(dayOfWeek.weekday.dateComponent)",
+                "weekNumber: \(dayOfWeek.weekNumber)"
+            ].joined(separator: ", ")
+        case .day(let dayNo):
+            info = "day: \(dayNo)"
+        }
+        return "[DayOfMonth - \(info)]"
     }
 
-    var weekday: DayOfWeek?
-    var day: Int?
-
-    init(weekday: DayOfWeek) {
-        self.weekday = weekday
-        self.day = nil
-    }
-
-    init(day: Int) {
-        self.weekday = nil
-        self.day = day
+    var title: String {
+        switch self {
+        case .weekday(let dayOfWeek):
+            let format = dayOfWeek.weekNumber.standaloneFormat
+            return String(format: format, dayOfWeek.weekday.text)
+        case .day(let dayNo):
+            return String(localized: "Day %@", bundle: .core)
+                .asFormat(for: dayNo.formatted(.number))
+        }
     }
 }
 
@@ -54,25 +61,8 @@ extension Array where Element == DayOfMonth {
         let day = comps.day!
 
         return [
-            DayOfMonth(day: day),
-            DayOfMonth(weekday: DayOfWeek(weekday, weekNumber: weekNumber))
+            DayOfMonth.day(day),
+            DayOfMonth.weekday(DayOfWeek(weekday, weekNumber: weekNumber))
         ]
-    }
-}
-
-extension DayOfMonth {
-
-    var title: String {
-
-        if let day {
-            return String(localized: "Day %@", bundle: .core).asFormat(for: day.formatted(.number))
-        }
-
-        if let weekday {
-            let format = weekday.weekNumber.standaloneFormat
-            return String(format: format, weekday.weekday.text)
-        }
-
-        return "[Invalid Day]"
     }
 }

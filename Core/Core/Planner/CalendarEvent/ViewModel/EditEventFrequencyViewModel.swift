@@ -21,19 +21,16 @@ import Combine
 
 final class EditEventFrequencyViewModel: ObservableObject {
 
-    let pageTitle = String(localized: "Frequency", bundle: .core)
+    // MARK: - Page Setup
 
+    let pageTitle = String(localized: "Frequency", bundle: .core)
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new/frequency")
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
-    private let router: Router
-    private var subscriptions = Set<AnyCancellable>()
+    // MARK: - Data
 
     let eventDate: Date
     private let originalPreset: FrequencyPreset?
-
-    let didTapBack = PassthroughSubject<Void, Never>()
-    let didSelectCustomFrequency = PassthroughSubject<WeakViewController, Never>()
 
     var frequencyChoices: [FrequencyChoice] {
         var presets = FrequencyChoice.allCases(given: eventDate)
@@ -43,6 +40,16 @@ final class EditEventFrequencyViewModel: ObservableObject {
         return presets
     }
 
+    // MARK: - Actions & Utils
+
+    let didTapBack = PassthroughSubject<Void, Never>()
+    let didSelectCustomFrequency = PassthroughSubject<WeakViewController, Never>()
+
+    private let router: Router
+    private var subscriptions = Set<AnyCancellable>()
+
+    // MARK: - Inputs / Outputs
+    
     @Published private(set) var state: InstUI.ScreenState = .data
     @Published var selection: FrequencyPreset
 
@@ -74,7 +81,7 @@ final class EditEventFrequencyViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    func showCustomFrequencyScreen(from source: WeakViewController) {
+    private func showCustomFrequencyScreen(from source: WeakViewController) {
         let vc = CoreHostingController(
             EditCustomFrequencyScreen(
                 viewModel: EditCustomFrequencyViewModel(

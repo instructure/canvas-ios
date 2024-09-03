@@ -109,6 +109,8 @@ public extension InstUI.Styles.Padding {
     static let controlInCellTrailing = value(14)
 
     static let dropDownOption = value(12)
+
+    static let selectionPromptLabel = value(8)
 }
 
 // MARK: - Modifiers

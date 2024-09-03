@@ -59,29 +59,24 @@ extension RecurrenceFrequency {
         }
     }
 
-    var singleUnitText: String {
-        switch self {
-        case .daily:
-            String(localized: "Day", bundle: .core)
-        case .weekly:
-            String(localized: "Week", bundle: .core)
-        case .monthly:
-            String(localized: "Month", bundle: .core)
-        case .yearly:
-            String(localized: "Year", bundle: .core)
-        }
+    func unitText(given value: Int) -> String {
+        let valueTxt = "\(value)"
+        let valuedText = unitFormat.asFormat(for: value)
+        return valuedText
+            .replacingOccurrences(of: valueTxt, with: "")
+            .trimmed()
     }
 
-    var pluralUnitText: String {
+    private var unitFormat: String {
         switch self {
         case .daily:
-            String(localized: "Days", bundle: .core)
+            String(localized: "%d Days", bundle: .core)
         case .weekly:
-            String(localized: "Weeks", bundle: .core)
+            String(localized: "%d Weeks", bundle: .core)
         case .monthly:
-            String(localized: "Months", bundle: .core)
+            String(localized: "%d Months", bundle: .core)
         case .yearly:
-            String(localized: "Years", bundle: .core)
+            String(localized: "%d Years", bundle: .core)
         }
     }
 }

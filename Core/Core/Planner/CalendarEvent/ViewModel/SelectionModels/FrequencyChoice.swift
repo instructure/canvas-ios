@@ -49,7 +49,7 @@ struct FrequencyChoice: Identifiable {
             return String(localized: "Monthly on %@", bundle: .core)
                 .asFormat(for: weekday.middleText)
         case .yearlyOnThatMonth:
-            return String(localized: "Annually on %@")
+            return String(localized: "Annually on %@", bundle: .core)
                 .asFormat(for: date.formatted(format: "MMMM d"))
         case .everyWeekday:
             return String(localized: "Every Weekday (Monday to Friday)", bundle: .core)

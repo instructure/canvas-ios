@@ -50,7 +50,7 @@ private struct OccurrencesCountInputAlertViewModifier: ViewModifier {
                 .disabled(tempCount > 400 || tempCount < 0)
 
             } message: {
-                Text("How many times would you like to repeat? (Max 400)")
+                Text("How many times would you like to repeat? (Max 400)", bundle: .core)
             }
             .onChange(of: isPresented) { newValue in
                 guard newValue else { return }

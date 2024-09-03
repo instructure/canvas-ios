@@ -47,20 +47,24 @@ struct SelectionMenu<Value: Equatable, ID: Hashable>: View {
                         Text(op[keyPath: textKey])
                             .font(.regular14)
                         if selection == op {
-                            Image(systemName: "checkmark")
+                            Image.checkLine
                         }
                     }
                 }
             }
         } label: {
             HStack {
-                Text(selection?[keyPath: textKey] ?? "Not selected")
-                    .font(.regular14)
-                InstUI.Icons.Selection()
-                    .foregroundStyle(Color.textDark)
+                Text(title).font(.regular14)
+                InstUI.Icons.Selection().foregroundStyle(Color.textDark)
             }
+            .paddingStyle(.all, .selectionPromptLabel)
+            .contentShape(Rectangle())
         }
         .tint(selection == nil ? Color.textDark : Color.textDarkest)
+    }
+
+    private var title: String {
+        return selection?[keyPath: textKey] ?? String(localized: "Not selected", bundle: .core)
     }
 }
 

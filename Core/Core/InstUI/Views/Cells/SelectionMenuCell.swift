@@ -91,7 +91,7 @@ extension InstUI.SelectionMenuCell where Value: Identifiable, ID == Value.ID {
     @State var selection: String?
 
     return InstUI.SelectionMenuCell(
-        label: Text("Example"),
+        label: Text(verbatim: "Example"),
         options: (1 ... 5).map { "No. \($0)" },
         id: \.self,
         text: \.self,

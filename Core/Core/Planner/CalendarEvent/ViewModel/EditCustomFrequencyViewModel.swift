@@ -21,21 +21,20 @@ import Combine
 
 final class EditCustomFrequencyViewModel: ObservableObject {
 
+    // MARK: - Page Setup
+
     let pageTitle = String(localized: "Custom Frequency", bundle: .core)
     let doneButtonTitle: String = String(localized: "Done", bundle: .core)
-
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new/frequency/custom")
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
-    private let router: Router
-    private var subscriptions = Set<AnyCancellable>()
-
-    let didTapDone = PassthroughSubject<WeakViewController, Never>()
+    // MARK: - Data
     let proposedDate: Date
 
-    var titleForProposedDayOfYear: String {
-        return proposedDate.formatted(format: "MMMM d")
-    }
+    // MARK: - Actions
+    let didTapDone = PassthroughSubject<WeakViewController, Never>()
+
+    // MARK: - Inputs / Outputs
 
     @Published private(set) var state: InstUI.ScreenState = .data
 
@@ -46,14 +45,42 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     @Published var endDate: Date? = Clock.now
     @Published var occurrenceCount: Int
 
-    // Specific to Weekly
+    /// Specific to Weekly
     @Published var daysOfTheWeek: [Weekday] = []
 
-    // Specific to Monthly
+    /// Specific to Monthly
     @Published var dayOfMonth: DayOfMonth?
 
-    // Specific to Yearly
+    // MARK: - Outputs
+
+    /// Specific to Yearly
     @Published var dayOfYear: DayOfYear?
+
+    var titleForProposedDayOfYear: String {
+        return proposedDate.formatted(format: "MMMM d")
+    }
+
+    var isSaveButtonEnabled: Bool {
+        guard state == .data && end != nil else { return false }
+
+        if case .weekly = frequency {
+            return daysOfTheWeek.isEmpty == false
+        }
+
+        if case .monthly = frequency {
+            return dayOfMonth != nil
+        }
+
+        if case .yearly = frequency {
+            return dayOfYear != nil
+        }
+        return true
+    }
+
+    // MARK: - Private
+
+    private let router: Router
+    private var subscriptions = Set<AnyCancellable>()
 
     init(rule: RecurrenceRule?,
          proposedDate date: Date,
@@ -78,9 +105,9 @@ final class EditCustomFrequencyViewModel: ObservableObject {
 
         if case .monthly = frequency {
             if let weekDay = rule?.daysOfTheWeek?.first {
-                self.dayOfMonth = DayOfMonth(weekday: weekDay)
+                self.dayOfMonth = DayOfMonth.weekday(weekDay)
             } else if let monthDay = rule?.daysOfTheMonth?.first {
-                self.dayOfMonth = DayOfMonth(day: monthDay)
+                self.dayOfMonth = DayOfMonth.day(monthDay)
             }
         }
 
@@ -115,24 +142,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    var isSaveButtonEnabled: Bool {
-        guard state == .data && end != nil else { return false }
-
-        if case .weekly = frequency {
-            return daysOfTheWeek.isEmpty == false
-        }
-
-        if case .monthly = frequency {
-            return dayOfMonth != nil
-        }
-
-        if case .yearly = frequency {
-            return dayOfYear != nil
-        }
-        return true
-    }
-
-    var end: RecurrenceEnd? {
+    private var end: RecurrenceEnd? {
         switch (endMode, endDate, occurrenceCount) {
         case (.onDate, .some(let date), _):
             return RecurrenceEnd(endDate: date)
@@ -154,9 +164,13 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             daysOfWeek = daysOfTheWeek.map({ DayOfWeek($0) }).nilIfEmpty
         }
 
-        if case .monthly = frequency {
-            daysOfWeek = dayOfMonth?.weekday.flatMap({ [$0] })
-            daysOfTheMonth = dayOfMonth?.day.flatMap({ [$0] })
+        if case .monthly = frequency, let monthDay = dayOfMonth {
+            switch monthDay {
+            case .weekday(let weekday):
+                daysOfWeek = [weekday]
+            case .day(let dayNo):
+                daysOfTheMonth = [dayNo]
+            }
         }
 
         if case .yearly = frequency {

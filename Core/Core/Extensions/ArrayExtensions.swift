@@ -44,3 +44,16 @@ extension Array where Element: UIBarButtonItem {
         }
     }
 }
+
+public extension Array where Element: Equatable {
+
+    /// Appends element if not included in the array, otherwise it will remove
+    /// all occurrences of it.
+    mutating func toggleInsert(with value: Element) {
+        if contains(value) {
+            removeAll(where: { $0 == value })
+        } else {
+            append(value)
+        }
+    }
+}

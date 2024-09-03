@@ -54,7 +54,9 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
                                 }
                             }
                             .accessibilityElement()
-                            .accessibilityAction(.escape) {
+                            .accessibilityAddTraits(.isModal)
+                            .accessibilityHint(Text("Dismiss Drop Down Details", bundle: .core))
+                            .accessibilityAction {
                                 state.isDetailsShown = false
                             }
 

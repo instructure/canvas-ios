@@ -137,8 +137,7 @@ private extension RRuleKey.Key {
         guard let val = Value(rruleString: rruleValue) else { return nil }
 
         if validate(val) { return val }
-
-        print("WARN: Invalid value for key \(string)")
+        
         return nil
     }
 

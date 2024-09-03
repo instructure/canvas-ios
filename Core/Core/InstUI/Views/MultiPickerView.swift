@@ -218,6 +218,9 @@ private class RowLabel: UIView {
     }
 }
 
+
+#if DEBUG
+
 #Preview {
     struct PreviewView: View {
         @State var selection1: Int = 5
@@ -251,3 +254,5 @@ private class RowLabel: UIView {
 
     return PreviewView()
 }
+
+#endif
