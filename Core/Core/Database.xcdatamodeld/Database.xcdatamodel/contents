@@ -165,7 +165,6 @@
     <entity name="CDContextColor" representedClassName="Core.ContextColor" syncable="YES">
         <attribute name="canvasContextID" attributeType="String"/>
         <attribute name="contextColorHex" optional="YES" attributeType="String"/>
-        <attribute name="courseColorHex" optional="YES" attributeType="String" valueTransformerName="" customClassName="UIKit.UIColor"/>
     </entity>
     <entity name="CDCourseSyncDownloadProgress" representedClassName="Core.CDCourseSyncDownloadProgress" syncable="YES">
         <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

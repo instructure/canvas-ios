@@ -133,7 +133,6 @@ public struct SessionDefaults {
     // MARK: - Calendar Settings
 
     private typealias ObservedStudentID = String
-    private typealias CanvasContextId = String
     private let calendarSelectedContextsContainerKey = "calendarSelectedContexts"
 
     public mutating func setCalendarSelectedContexts(
@@ -141,7 +140,7 @@ public struct SessionDefaults {
         observedStudentId: String?
     ) {
         let observedStudentId = observedStudentId ?? ""
-        var container = self[calendarSelectedContextsContainerKey] as? [ObservedStudentID: [CanvasContextId]] ?? [:]
+        var container = self[calendarSelectedContextsContainerKey] as? [ObservedStudentID: [CanvasContextID]] ?? [:]
         container[observedStudentId] = Array(selectedContexts.map { $0.canvasContextID })
         self[calendarSelectedContextsContainerKey] = container
     }
@@ -153,7 +152,7 @@ public struct SessionDefaults {
         let observedStudentId = observedStudentId ?? ""
 
         guard
-            let container = self[calendarSelectedContextsContainerKey] as? [ObservedStudentID: [CanvasContextId]],
+            let container = self[calendarSelectedContextsContainerKey] as? [ObservedStudentID: [CanvasContextID]],
             let selectedContextCodes = container[observedStudentId]
         else {
             return nil

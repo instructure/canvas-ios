@@ -106,8 +106,7 @@ public struct APIUser: Codable, Equatable {
 }
 
 public struct APICustomColors: Codable, Equatable {
-    typealias CanvasContextID = String
-    typealias HexColor = String
+    /// Does not include elementary courses.
     let custom_colors: [CanvasContextID: HexColor]
 }
 

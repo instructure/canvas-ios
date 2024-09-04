@@ -77,4 +77,6 @@ public extension Context {
     var courseId: String? { contextType == .course ? id : nil }
     var groupId: String? { contextType == .group ? id : nil }
     var userId: String? { contextType == .user ? id : nil }
+
+    var isGroup: Bool { contextType == .group }
 }

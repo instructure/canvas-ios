@@ -19,6 +19,8 @@
 import Foundation
 import UIKit
 
+public typealias HexColor = String
+
 extension UIColor {
     // MARK: Hex ARGB Handling
 

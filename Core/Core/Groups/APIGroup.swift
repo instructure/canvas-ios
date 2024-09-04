@@ -56,6 +56,14 @@ public struct APIGroup: Codable, Equatable {
         let create_announcement: Bool
         let create_discussion_topic: Bool
     }
+
+    public var context: Context { Context(.group, id: id.rawValue) }
+    public var courseContext: Context? {
+        guard let courseId = course_id?.value else {
+            return nil
+        }
+        return Context(.course, id: courseId)
+    }
 }
 
 #if DEBUG

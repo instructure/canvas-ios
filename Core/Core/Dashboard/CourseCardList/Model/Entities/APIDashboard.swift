@@ -28,6 +28,7 @@ struct APIDashboardCardLink: Codable, Equatable {
 }
 
 public struct APIDashboardCard: Codable, Equatable {
+    /// The canvas context id of the course e.g. `course_123`.
     let assetString: String
     let courseCode: String
     /** Teacher assigned hex color for K5 courses */

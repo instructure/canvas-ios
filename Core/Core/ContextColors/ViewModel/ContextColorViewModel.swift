@@ -22,31 +22,32 @@ public class ContextColorViewModel: ObservableObject {
     @Published public private(set) var color: UIColor = UIColor.defaultContextColor
 
     private let interactor: ContextColorsInteractor
-    private let colorContext: ColorContext
+    private let context: Context
     private let callback: ((UIColor) -> Void)?
-    private var colorObservation: AnyCancellable?
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(
-        _ colorContext: ColorContext,
+        _ context: Context,
         interactor: ContextColorsInteractor = ContextColorsInteractorLive(),
         callback: ((UIColor) -> Void)? = nil
     ) {
         self.interactor = interactor
-        self.colorContext = colorContext
+        self.context = context
         self.callback = callback
-        loadColor(ignoreCache: false)
-    }
-
-    public func refresh() {
-        loadColor(ignoreCache: true)
-    }
-
-    private func loadColor(ignoreCache: Bool) {
-        colorObservation = interactor
-            .getContextColor(colorContext, ignoreCache: ignoreCache)
+        
+        interactor
+            .observeContextColor(context)
             .sink { [weak self] color in
                 self?.color = color
                 self?.callback?(color)
             }
+            .store(in: &subscriptions)
+    }
+
+    public func refresh() {
+        interactor
+            .refresh()
+            .sink()
+            .store(in: &subscriptions)
     }
 }

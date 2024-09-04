@@ -21,14 +21,10 @@ import CoreData
 
 public class GetCDContextColorsUseCase: UseCase {
     public typealias Model = CDContextColor
-    public typealias Response = APIResponses
+    public typealias Response = APIContextColorsResponse
 
-    public struct APIResponses: Codable {
-        let courses: [APICourse]
-        let customColors: APICustomColors
-    }
-
-    public var cacheKey: String? = "context_colors"
+    public var cacheKey: String? { "context_colors" }
+    public var ttl: TimeInterval { 24 * 60 * 60 }
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -37,14 +33,24 @@ public class GetCDContextColorsUseCase: UseCase {
         completionHandler: @escaping RequestCallback
     ) {
         let coursesRequest = GetCoursesRequest()
+        let groupsRequest = GetGroupsRequest(context: .currentUser)
         let customColorsRequest = GetCustomColorsRequest()
+        let dashboardCardsRequest = GetDashboardCardsRequest()
 
-        Publishers.CombineLatest(
+        // TODO: Fetch only required fields with GraphQL?
+        Publishers.CombineLatest4(
             environment.api.exhaust(coursesRequest),
-            environment.api.makeRequest(customColorsRequest, refreshToken: true)
+            environment.api.exhaust(groupsRequest),
+            environment.api.makeRequest(customColorsRequest, refreshToken: true),
+            environment.api.makeRequest(dashboardCardsRequest)
         )
-        .map { coursesResponse, customColorsResponse in
-            APIResponses(courses: coursesResponse.body, customColors: customColorsResponse.body)
+        .map { coursesResponse, groupsResponse, customColorsResponse, dashboardCardsResponse in
+            APIContextColorsResponse(
+                courses: coursesResponse.body,
+                groups: groupsResponse.body,
+                customColors: customColorsResponse.body,
+                dashboardCards: dashboardCardsResponse.body
+            )
         }
         .sink { _ in
         } receiveValue: { responses in
@@ -54,7 +60,7 @@ public class GetCDContextColorsUseCase: UseCase {
     }
 
     public func write(
-        response: APIResponses?,
+        response: APIContextColorsResponse?,
         urlResponse: URLResponse?,
         to client: NSManagedObjectContext
     ) {

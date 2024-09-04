@@ -24,23 +24,19 @@ public final class CDContextColor: NSManagedObject {
     @NSManaged public var canvasContextID: String
     /// This is the color assigned by the teacher to elementary courses. Nil for non-elementary courses and for other context types (groups, users).
     @NSManaged public var elementaryCourseColorHex: String?
-    /// This is the custom color of the context that the user can change. A color is always assigned by the API to a context.
+    /// This is the calculated color for the context.
     @NSManaged public var contextColorHex: String
 
     @discardableResult
     public static func save(
-        _ responses: GetCDContextColorsUseCase.APIResponses,
+        _ response: APIContextColorsResponse,
+        interactor: ContextColorLookupInteractor = ContextColorLookupInteractorLive(),
         in context: NSManagedObjectContext
     ) -> [CDContextColor] {
-        // TODO also save group/user colors
-        responses.courses.compactMap { apiCourse in
-            let contextID = apiCourse.context.canvasContextID
-            let courseColorHex = apiCourse.course_color
-            let contextColorHex = responses.customColors.custom_colors[contextID]
+        let colorMap = interactor.contextColors(from: response)
 
-            guard let contextColorHex else {
-                return nil
-            }
+        return colorMap.map { (canvasContext, hexColor) in
+            let contextID = canvasContext.canvasContextID
 
             let predicate = NSPredicate(
                 format: "%K == %@",
@@ -49,8 +45,7 @@ public final class CDContextColor: NSManagedObject {
             )
             let model: CDContextColor = context.fetch(predicate).first ?? context.insert()
             model.canvasContextID = contextID
-            model.elementaryCourseColorHex = courseColorHex
-            model.contextColorHex = contextColorHex
+            model.contextColorHex = hexColor
             return model
         }
     }
