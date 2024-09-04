@@ -17,13 +17,18 @@
 //
 
 import Foundation
+import AVKit
 @testable import Core
 
-final class ComposeMessageDeleteMock: ComposeMessageDelete {
-    // MARK: - Properties
-    var didSendMailIsCalled = false
+final class CameraPermissionServiceMock: CameraPermissionService {
+    static var mockAuthorizationStatus: AVAuthorizationStatus = .authorized
+    static var mockRequestAccessResponse: Bool = true
 
-    func didSendMailSuccessfully() {
-        didSendMailIsCalled = true
+    static func authorizationStatus(for mediaType: AVMediaType) -> AVAuthorizationStatus {
+        return mockAuthorizationStatus
+    }
+
+    static func requestAccess(for mediaType: AVMediaType, completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(mockRequestAccessResponse)
     }
 }

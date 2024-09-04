@@ -20,18 +20,18 @@ import SwiftUI
 
 struct RecipientFilterView: View {
     // MARK: - Properties
-    let recipient: [Recipient]
+    let recipients: [Recipient]
     var didSelectRecipient: ((Recipient) -> Void)
 
     // MARK: - Body
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(recipient, id: \.self) { recipient in
+                ForEach(recipients, id: \.self) { recipient in
                     Button {
                         didSelectRecipient(recipient)
                     } label: {
-                        RecipientRow(recipient: recipient)
+                        RecipientRow(recipient: recipient, showSeparator: recipient != recipients.last)
                             .frame(height: 50)
                             .accessibilityLabel(recipient.displayName)
                             .accessibility(hint: Text("Double tap to select", bundle: .core))
@@ -49,7 +49,7 @@ struct RecipientFilterView: View {
 #if DEBUG
 #Preview {
     let imageUrl = URL(string: "https://png.pngtree.com/thumb_back/fh260/background/20230614/pngtree-cartoon-image-of-a-bearded-man-with-glasses-image_2876117.jpg")
-    return RecipientFilterView(recipient: [
+    return RecipientFilterView(recipients: [
         .init(id: "1", name: "Canvas IOS 1", avatarURL: imageUrl),
         .init(id: "2", name: "Canvas", avatarURL: imageUrl),
         .init(id: "3", name: "Canvas Test ", avatarURL: imageUrl),

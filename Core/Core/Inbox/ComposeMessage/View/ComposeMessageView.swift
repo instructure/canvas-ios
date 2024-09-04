@@ -71,13 +71,13 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                             }
                         }
                         if model.showSearchRecipientsView {
-                            RecipientFilterView(recipient: model.searchedRecipients) { selectedRecipient in
+                            RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
                                 model.showSearchRecipientsView = false
                                 model.textRecipientSearch = ""
                                 model.didSelectRecipient.accept(selectedRecipient)
                             }
                             .offset(y: model.recipients.isEmpty ? 45 : recipientViewHeight + 45)
-                            .padding(.horizontal, 30)
+                            .padding(.horizontal, 35)
                         }
 
                     }
@@ -282,6 +282,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     .font(.regular16)
                     .foregroundColor(.textDark)
                     .frame(height: 50, alignment: .center)
+                    .padding(.leading, 5)
                     .accessibilitySortPriority(4)
                     .accessibilityLabel(String(localized: "Search for Recipients", bundle: .core))
                     .accessibilityAddTraits(.isSearchField)

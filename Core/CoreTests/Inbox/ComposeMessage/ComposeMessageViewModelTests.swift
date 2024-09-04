@@ -26,8 +26,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
     private var mockInteractor: ComposeMessageInteractorMock!
     private var recipientUseCaseMock: RecipientInteractorMock!
     private var audioSession: AudioSessionMock!
-    private var delegate: ComposeMessageDeleteMock!
-
+    private var cameraPermission = CameraPermissionServiceMock.self
     var testee: ComposeMessageViewModel!
     private var subscriptions = Set<AnyCancellable>()
 
@@ -36,7 +35,6 @@ class ComposeMessageViewModelTests: CoreTestCase {
         recipientUseCaseMock = RecipientInteractorMock()
         mockInteractor = ComposeMessageInteractorMock()
         audioSession = AudioSessionMock()
-        delegate = ComposeMessageDeleteMock()
         testee = ComposeMessageViewModel(
             router: router,
             options: .init(
@@ -44,30 +42,45 @@ class ComposeMessageViewModelTests: CoreTestCase {
             ),
             interactor: mockInteractor,
             recipientUseCase: recipientUseCaseMock,
-            delegate: delegate,
-            audioSession: audioSession
+            audioSession: audioSession,
+            cameraPermission: cameraPermission
         )
     }
 
     private func setupForReply() {
         let conversation: Conversation = .make()
-        testee = ComposeMessageViewModel(router: router,
-                                         options: .init(fromType: .reply(conversation: conversation, message: nil)),
-                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock, audioSession: audioSession)
+        testee = ComposeMessageViewModel(
+            router: router,
+            options: .init(fromType: .reply(conversation: conversation, message: nil)),
+            interactor: mockInteractor,
+            recipientUseCase: recipientUseCaseMock,
+            audioSession: audioSession,
+            cameraPermission: cameraPermission
+        )
     }
 
     private func setupForReplyAll() {
         let conversation: Conversation = .make()
-        testee = ComposeMessageViewModel(router: router,
-                                         options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
-                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock, audioSession: audioSession)
+        testee = ComposeMessageViewModel(
+            router: router,
+            options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
+            interactor: mockInteractor,
+            recipientUseCase: recipientUseCaseMock,
+            audioSession: audioSession,
+            cameraPermission: cameraPermission
+        )
     }
 
     private func setupForForward() {
         let conversation: Conversation = .make()
-        testee = ComposeMessageViewModel(router: router,
-                                         options: .init(fromType: .forward(conversation: conversation, message: nil)),
-                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock, audioSession: audioSession)
+        testee = ComposeMessageViewModel(
+            router: router,
+            options: .init(fromType: .forward(conversation: conversation, message: nil)),
+            interactor: mockInteractor,
+            recipientUseCase: recipientUseCaseMock,
+            audioSession: audioSession,
+            cameraPermission: cameraPermission
+        )
     }
 
     func testValidationForSubject() {
@@ -175,7 +188,6 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertTrue(testee.showLoader)
         wait(for: [router.dismissExpectation], timeout: 0.5)
         XCTAssertFalse(testee.showLoader)
-        XCTAssertTrue(delegate.didSendMailIsCalled)
     }
 
     func test_addFiles_addTwoFilesWithNotExceedSize() {
@@ -219,8 +231,14 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .reply(conversation: conversation, message: message2)),
-                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock, audioSession: audioSession)
+        testee = ComposeMessageViewModel(
+            router: router,
+            options: .init(fromType: .reply(conversation: conversation, message: message2)),
+            interactor: mockInteractor,
+            recipientUseCase: recipientUseCaseMock,
+            audioSession: audioSession,
+            cameraPermission: cameraPermission
+        )
 
         XCTAssertEqual(testee.subject, "Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
@@ -235,9 +253,14 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router,
-                                         options: .init(fromType: .reply(conversation: conversation, message: nil)),
-                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock, audioSession: audioSession)
+        testee = ComposeMessageViewModel(
+            router: router,
+            options: .init(fromType: .reply(conversation: conversation, message: nil)),
+            interactor: mockInteractor,
+            recipientUseCase: recipientUseCaseMock,
+            audioSession: audioSession,
+            cameraPermission: cameraPermission
+        )
         XCTAssertEqual(testee.subject, "Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
         XCTAssertEqual(testee.recipients.first?.ids.first, message2.authorID)
@@ -251,9 +274,14 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router,
-                                         options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
-                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock, audioSession: audioSession)
+        testee = ComposeMessageViewModel(
+            router: router,
+            options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
+            interactor: mockInteractor,
+            recipientUseCase: recipientUseCaseMock,
+            audioSession: audioSession,
+            cameraPermission: cameraPermission
+        )
         XCTAssertEqual(testee.subject, "Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
         XCTAssertEqual(testee.recipients.flatMap { $0.ids }, conversation.participants.map { $0.id })
@@ -267,9 +295,14 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router,
-                                         options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
-                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock, audioSession: audioSession)
+        testee = ComposeMessageViewModel(
+            router: router,
+            options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
+            interactor: mockInteractor,
+            recipientUseCase: recipientUseCaseMock,
+            audioSession: audioSession,
+            cameraPermission: cameraPermission
+        )
 
         XCTAssertEqual(testee.subject, "Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
@@ -284,8 +317,14 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .forward(conversation: conversation, message: message2)),
-                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock, audioSession: audioSession)
+        testee = ComposeMessageViewModel(
+            router: router,
+            options: .init(fromType: .forward(conversation: conversation, message: message2)),
+            interactor: mockInteractor,
+            recipientUseCase: recipientUseCaseMock,
+            audioSession: audioSession,
+            cameraPermission: cameraPermission
+        )
 
         XCTAssertEqual(testee.subject, "Fw: Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
@@ -300,9 +339,14 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router,
-                                         options: .init(fromType: .forward(conversation: conversation, message: nil)),
-                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock, audioSession: audioSession)
+        testee = ComposeMessageViewModel(
+            router: router,
+            options: .init(fromType: .forward(conversation: conversation, message: nil)),
+            interactor: mockInteractor,
+            recipientUseCase: recipientUseCaseMock,
+            audioSession: audioSession,
+            cameraPermission: cameraPermission
+        )
         XCTAssertEqual(testee.subject, "Fw: Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
         XCTAssertEqual(testee.recipients.count, 0)
@@ -357,6 +401,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
 
         XCTAssertEqual(takePhotoAction?.title, String(localized: "Take photo", bundle: .core))
         XCTAssertEqual(takePhotoAction?.image, .cameraLine)
+        cameraPermission.mockAuthorizationStatus = .authorized
+        cameraPermission.mockRequestAccessResponse = true
         takePhotoAction?.action()
         XCTAssertTrue(testee.isFilePickerVisible)
         XCTAssertTrue(testee.isImagePickerVisible)
@@ -388,20 +434,35 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertNotNil(presentedFilePicker)
     }
 
-    func test_attachmentOptionsDialog_AudioRecordIsDisabled() {
+    func test_attachmentOptionsDialog_audioRecordIsDisabled() {
         // Given
         let sourceView = UIViewController()
         let viewController = WeakViewController(sourceView)
         // When
         testee.attachmentButtonDidTap(viewController: viewController)
         let bottomSheet = router.presented as? BottomSheetPickerViewController
-        testee.isAudioRecordVisible = false
         let recordAudioAction = bottomSheet?.actions[3]
         audioSession.mockPermission = .denied
         audioSession.shouldGrantPermission = false
         recordAudioAction?.action()
         // Then
         XCTAssertFalse(testee.isAudioRecordVisible)
+        XCTAssertTrue(router.presented is UIAlertController)
+    }
+
+    func test_attachmentOptionsDialog_camerIsDisabled() {
+        // Given
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+        // When
+        testee.attachmentButtonDidTap(viewController: viewController)
+        let bottomSheet = router.presented as? BottomSheetPickerViewController
+        let cameraAction = bottomSheet?.actions[2]
+        cameraPermission.mockRequestAccessResponse = false
+        cameraPermission.mockAuthorizationStatus = .denied
+        cameraAction?.action()
+        // Then
+        XCTAssertFalse(testee.isTakePhotoVisible)
         XCTAssertTrue(router.presented is UIAlertController)
     }
 
@@ -412,9 +473,14 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(router: router,
-                                         options: .init(fromType: .forward(conversation: conversation, message: nil)),
-                                         interactor: mockInteractor, recipientUseCase: recipientUseCaseMock, audioSession: audioSession)
+        testee = ComposeMessageViewModel(
+            router: router,
+            options: .init(fromType: .forward(conversation: conversation, message: nil)),
+            interactor: mockInteractor,
+            recipientUseCase: recipientUseCaseMock,
+            audioSession: audioSession,
+            cameraPermission: cameraPermission
+        )
 
         XCTAssertTrue(testee.expandedIncludedMessageIds.isEmpty)
 
@@ -455,6 +521,42 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.courseDidSelect(selectedContext: context, viewController: viewController)
         // Then
         XCTAssertEqual(testee.searchedRecipients.count, 4)
+        XCTAssertTrue(testee.showSearchRecipientsView)
+    }
+
+    func test_getRecipients_forwardMessage_showRecipientsViewWhichHasTwoItems() throws {
+        // Given
+        let context = RecipientContext(course: Course.make())
+        let messageField: DefaultMessageFieldContents = .init(
+            selectedContext: context,
+            selectedRecipients: [
+                ReceiptStub.recipients[0],
+                ReceiptStub.recipients[1]
+            ],
+            subjectText: "Subject Text Test",
+            bodyText: "bodyText",
+            individualSend: true
+        )
+        testee = ComposeMessageViewModel(
+            router: router,
+            options: ComposeMessageOptions(
+                disabledFields: .init(),
+                fieldsContents: messageField,
+                messageType: .forward(
+                    conversation: Conversation.make(),
+                    message: nil
+                ),
+                extras: .init()
+            ),
+            interactor: mockInteractor,
+            recipientUseCase: recipientUseCaseMock,
+            audioSession: audioSession,
+            cameraPermission: cameraPermission
+        )
+        testee.selectedRecipients.send([ReceiptStub.recipients[0], ReceiptStub.recipients[1]])
+        testee.textRecipientSearch = "Can"
+        // Then
+        XCTAssertEqual(testee.searchedRecipients.count, 2)
         XCTAssertTrue(testee.showSearchRecipientsView)
     }
 

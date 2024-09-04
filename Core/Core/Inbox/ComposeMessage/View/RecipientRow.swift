@@ -21,7 +21,7 @@ import SwiftUI
 struct RecipientRow: View {
     // MARK: - Properties
     let recipient: Recipient
-
+    let showSeparator: Bool
     // MARK: - Body
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -41,6 +41,7 @@ struct RecipientRow: View {
             .padding(.horizontal, 15)
             .padding(.vertical, 7)
             InstUI.Divider()
+                .opacity(showSeparator ? 1 : 0)
         }
     }
 }
@@ -52,7 +53,7 @@ struct RecipientRow: View {
             id: "1",
             name: "Canvas IOS",
             avatarURL: URL(string: "https://png.pngtree.com/thumb_back/fh260/background/20230614/pngtree-cartoon-image-of-a-bearded-man-with-glasses-image_2876117.jpg")
-        )
+        ), showSeparator: true
     )
 }
 

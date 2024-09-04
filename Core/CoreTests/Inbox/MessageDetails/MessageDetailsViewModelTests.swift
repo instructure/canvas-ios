@@ -157,13 +157,6 @@ class MessageDetailsViewModelTests: CoreTestCase {
         XCTAssertEqual(links[0].absoluteString, "https://instructure.com")
         XCTAssertEqual(links[1].absoluteString, "https://instructure.design")
     }
-
-    func test_didSendMailSuccessfully_showSnackBarView() {
-        // When
-        testee.didSendMailSuccessfully()
-        // Then
-        XCTAssertEqual(testee.snackBarViewModel.visibleSnack, "Sent")
-    }
 }
 
 private class MessageDetailsInteractorMock: MessageDetailsInteractor {

@@ -133,13 +133,6 @@ class InboxViewModelTests: CoreTestCase {
         wait(for: [router.showExpectation], timeout: 0.5)
         XCTAssertTrue(router.presented is CoreHostingController<ComposeMessageView>)
     }
-
-    func test_didSendMailSuccessfully_showSnackBarView() {
-        // When
-        testee.didSendMailSuccessfully()
-        // Then
-        XCTAssertEqual(testee.snackBarViewModel.visibleSnack, "Sent")
-    }
 }
 
 private class InboxMessageInteractorMock: InboxMessageInteractor {

@@ -55,6 +55,7 @@ public class InboxViewModel: ObservableObject {
     private let messageInteractor: InboxMessageFavouriteInteractor
     private var subscriptions = Set<AnyCancellable>()
     private var isLoadingNextPage = CurrentValueSubject<Bool, Never>(false)
+    private var didSentMailSuccessfully = PassthroughSubject<Void, Never>()
     // MARK: - Init
     public init(
         interactor: InboxMessageInteractor,
@@ -148,6 +149,13 @@ public class InboxViewModel: ObservableObject {
                 messageInteractor.updateStarred(starred: starred, messageId: messageId) }
             .sink()
             .store(in: &subscriptions)
+
+        didSentMailSuccessfully
+            .handleEvents(receiveOutput: { [weak self] in
+                self?.snackBarViewModel.showSnack(InboxMessageScope.sent.localizedName)
+            })
+            .sink()
+            .store(in: &subscriptions)
     }
 
     private func subscribeToTapEvents(router: Router) {
@@ -157,9 +165,9 @@ public class InboxViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
         newMessageDidTap
-            .sink { [router] source in
+            .sink { [router, didSentMailSuccessfully] source in
                 router.show(
-                    ComposeMessageAssembly.makeComposeMessageViewController(delegate: self),
+                    ComposeMessageAssembly.makeComposeMessageViewController(sentMailEvent: didSentMailSuccessfully),
                     from: source,
                     options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
                 )
@@ -186,12 +194,5 @@ public class InboxViewModel: ObservableObject {
                 )
             }
             .store(in: &subscriptions)
-    }
-}
-
-// MARK: - Send Successfully Mail Delegate
-extension InboxViewModel: ComposeMessageDelete {
-    public func didSendMailSuccessfully() {
-        snackBarViewModel.showSnack(InboxMessageScope.sent.localizedName)
     }
 }

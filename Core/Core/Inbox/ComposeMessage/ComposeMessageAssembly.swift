@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Combine
 import AVKit
 
 public enum ComposeMessageAssembly {
@@ -24,7 +25,7 @@ public enum ComposeMessageAssembly {
     public static func makeComposeMessageViewController(
         env: AppEnvironment = .shared,
         options: ComposeMessageOptions = ComposeMessageOptions(),
-        delegate: ComposeMessageDelete? = nil
+        sentMailEvent: PassthroughSubject<Void, Never>? = nil
     ) -> UIViewController {
 
         let batchId = UUID.string
@@ -38,12 +39,15 @@ public enum ComposeMessageAssembly {
         )
         let recipientUseCase = RecipientInteractorLive()
         let audioSession = AVAudioSession.sharedInstance()
+        let cameraPermission = AVCaptureDevice.self
         let viewModel = ComposeMessageViewModel(
             router: env.router,
             options: options,
             interactor: interactor,
             recipientUseCase: recipientUseCase,
-            delegate: delegate, audioSession: audioSession
+            sentMailEvent: sentMailEvent,
+            audioSession: audioSession,
+            cameraPermission: cameraPermission
         )
 
         let view = ComposeMessageView(model: viewModel)
@@ -65,7 +69,9 @@ public enum ComposeMessageAssembly {
             options: options,
             interactor: interactor,
             recipientUseCase: RecipientInteractorLive(),
-            audioSession: AVAudioSession.sharedInstance()
+            sentMailEvent: nil,
+            audioSession: AVAudioSession.sharedInstance(),
+            cameraPermission: AVCaptureDevice.self
         )
         return ComposeMessageView(model: viewModel)
     }
