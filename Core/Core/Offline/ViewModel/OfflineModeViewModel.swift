@@ -22,6 +22,8 @@ public class OfflineModeViewModel: ObservableObject {
     @Published public var isOffline: Bool
     @Published public var isOfflineFeatureEnabled: Bool
 
+    @Injected(\.reachability) var reachability: ReachabilityProvider
+
     private let interactor: OfflineModeInteractor
 
     public init(interactor: OfflineModeInteractor) {

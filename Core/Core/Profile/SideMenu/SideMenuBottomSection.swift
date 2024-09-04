@@ -79,7 +79,7 @@ struct SideMenuBottomSection: View {
             }
 
             Button {
-                route(to: "/profile/chat", options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
+                showLiveChat()
             } label: {
                 SideMenuItem(id: "livechat", image: Image(systemName: "questionmark.bubble"), title: Text("Live Chat", bundle: .core))
             }
@@ -207,6 +207,14 @@ struct SideMenuBottomSection: View {
         let helpViewController = CoreHostingController(helpView)
         helpViewController.title = root.text
         env.router.show(helpViewController, from: controller.value, options: .modal(.formSheet, embedInNav: true, addDoneButton: true), analyticsRoute: "/profile/help")
+    }
+
+    private func showLiveChat() {
+        if offlineModeViewModel.reachability.isConnected {
+            route(to: "/profile/chat", options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
+        } else {
+            UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
     }
 
     private static func readDevMenuVisibilityFromUserDefaults() -> Bool {
