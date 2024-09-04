@@ -33,14 +33,13 @@ enum DayOfMonth: Equatable, Identifiable {
         case .day(let dayNo):
             info = "day: \(dayNo)"
         }
-        return "[DayOfMonth - \(info)]"
+        return "[\(info)]"
     }
 
     var title: String {
         switch self {
         case .weekday(let dayOfWeek):
-            let format = dayOfWeek.weekNumber.standaloneFormat
-            return String(format: format, dayOfWeek.weekday.text)
+            return dayOfWeek.standaloneText
         case .day(let dayNo):
             return String(localized: "Day %@", bundle: .core)
                 .asFormat(for: dayNo.formatted(.number))

@@ -135,6 +135,13 @@ extension WeekNumber {
 
 extension DayOfWeek {
 
+    var standaloneText: String {
+        if weekNumber != 0 {
+            return String(format: weekNumber.standaloneFormat, weekday.text)
+        }
+        return weekday.text
+    }
+
     var shortText: String {
         if weekNumber != 0 {
             return String(format: weekNumber.standaloneFormat, weekday.shortText)
