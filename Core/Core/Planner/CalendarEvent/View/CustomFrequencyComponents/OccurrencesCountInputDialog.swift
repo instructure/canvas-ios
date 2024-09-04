@@ -20,10 +20,15 @@ import SwiftUI
 
 private struct OccurrencesCountInputAlertViewModifier: ViewModifier {
 
-    @State private var tempCount: Int = 0
-
     @Binding var isPresented: Bool
-    @Binding var count: Int
+    @StateObject var inputModel: OccurrencesCountInputModel
+
+    init(isPresented: Binding<Bool>, count: Binding<Int>) {
+        self._isPresented = isPresented
+        self._inputModel = StateObject(
+            wrappedValue: OccurrencesCountInputModel(submitted: count)
+        )
+    }
 
     func body(content: Content) -> some View {
         content
@@ -31,7 +36,7 @@ private struct OccurrencesCountInputAlertViewModifier: ViewModifier {
                    isPresented: $isPresented) {
 
                 TextField("Occurrences",
-                          value: $tempCount,
+                          value: $inputModel.value,
                           formatter: formatter)
                 .keyboardType(.asciiCapableNumberPad)
 
@@ -42,23 +47,19 @@ private struct OccurrencesCountInputAlertViewModifier: ViewModifier {
                 })
 
                 Button(action: {
-                    if isTypedCountValid { count = tempCount }
+                    inputModel.submit()
                     isPresented = false
                 }, label: {
                     Text("Done", bundle: .core)
                 })
-                .disabled(isTypedCountValid == false)
+                .disabled(inputModel.isValid == false)
 
             } message: {
                 Text("How many times would you like to repeat? (Max 400)", bundle: .core)
             }
             .onChange(of: isPresented) { _ in
-                tempCount = count
+                inputModel.update()
             }
-    }
-
-    private var isTypedCountValid: Bool {
-        return (0 ... 400).contains(tempCount)
     }
 
     private var formatter: Formatter {
@@ -74,7 +75,6 @@ extension View {
     func occurrencesCountInputDialog(
         isPresented: Binding<Bool>,
         value: Binding<Int>) -> some View {
-
         modifier(OccurrencesCountInputAlertViewModifier(isPresented: isPresented, count: value))
     }
 }
