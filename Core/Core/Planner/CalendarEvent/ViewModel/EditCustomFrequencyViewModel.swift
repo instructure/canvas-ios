@@ -142,7 +142,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private var end: RecurrenceEnd? {
+    var end: RecurrenceEnd? {
         switch (endMode, endDate, occurrenceCount) {
         case (.onDate, .some(let date), _):
             return RecurrenceEnd(endDate: date)

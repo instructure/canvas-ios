@@ -225,7 +225,7 @@ private extension EditCustomFrequencyViewModelTests {
                 interval: .init(value: 2),
                 endMode: .afterOccurrences,
                 occurrenceCount: 10,
-                dayOfMonth: DayOfMonth(weekday: DayOfWeek(.sunday, weekNumber: 2))
+                dayOfMonth: DayOfMonth.weekday(DayOfWeek(.sunday, weekNumber: 2))
             )
         )
 
@@ -241,7 +241,7 @@ private extension EditCustomFrequencyViewModelTests {
                 interval: .init(value: 3),
                 endMode: .afterOccurrences,
                 occurrenceCount: 10,
-                dayOfMonth: DayOfMonth(day: 1)
+                dayOfMonth: DayOfMonth.day(1)
             )
         )
 
@@ -297,7 +297,7 @@ private extension EditCustomFrequencyViewModelTests {
                 interval: .init(value: 3),
                 endMode: .onDate,
                 endDate: dateNow.addDays(30),
-                dayOfMonth: DayOfMonth(day: 8)
+                dayOfMonth: DayOfMonth.day(8)
             )
         )
 
