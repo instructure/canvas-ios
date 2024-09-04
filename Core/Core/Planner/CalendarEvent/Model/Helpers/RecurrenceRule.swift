@@ -135,9 +135,7 @@ private extension RRuleKey.Key {
 
     static func parse(rruleValue: String) -> Value? {
         guard let val = Value(rruleString: rruleValue) else { return nil }
-
         if validate(val) { return val }
-        
         return nil
     }
 
