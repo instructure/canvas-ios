@@ -56,42 +56,6 @@ extension Weekday {
     }
 }
 
-extension DayOfWeek {
-
-    var selectionText: String {
-        if weekNumber != 0 {
-            return String(format: weekNumber.standaloneFormat, weekday.text)
-        } else {
-            return weekday.pluralText
-        }
-    }
-}
-
-extension Array where Element == DayOfWeek {
-
-    private var nonWeekdays: Self {
-        filter({ Weekday.weekDays.contains($0.weekday) == false })
-    }
-
-    var selectionTexts: [String] {
-        var tags = [String]()
-
-        if hasWeekdays {
-            tags.append(String(localized: "Weekdays", bundle: .core))
-        }
-
-        if let nonWeekDays = nonWeekdays.nilIfEmpty {
-
-            let long = tags.isEmpty ? nonWeekDays.count <= 2 : false
-            for wday in nonWeekDays {
-                tags.append(long ? wday.selectionText : wday.shortText)
-            }
-        }
-
-        return tags
-    }
-}
-
 extension Array where Element == Weekday {
 
     private var nonWeekdays: Self {
