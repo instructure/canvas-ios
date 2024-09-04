@@ -52,6 +52,48 @@ final class RecurrenceRuleTests: XCTestCase {
             XCTAssertEqual(useCase.rule, rule)
         }
     }
+
+    func test_selection_texts() throws {
+        // Given
+        var weekdays: [Weekday] = []
+        let weekDaysText = String(localized: "Weekdays", bundle: .core)
+        let allDaysText = String(localized: "Every Day of the Week", bundle: .core)
+
+        // When - 1
+        weekdays = [.sunday]
+        // Then
+        XCTAssertEqual(weekdays.selectionTexts, weekdays.map({ $0.pluralText }))
+
+        // When - 2
+        weekdays = [.sunday, .monday]
+        // Then
+        XCTAssertEqual(weekdays.selectionTexts, weekdays.map({ $0.pluralText }))
+
+        // When - 3
+        weekdays = [.sunday, .monday, .friday]
+        // Then
+        XCTAssertEqual(weekdays.selectionTexts, weekdays.map({ $0.shortText }))
+
+        // When - 4
+        weekdays = [.sunday, .monday, .friday, .saturday]
+        // Then
+        XCTAssertEqual(weekdays.selectionTexts, weekdays.map({ $0.shortText }))
+
+        // When - Weekdays
+        weekdays = [.monday, .tuesday, .wednesday, .thursday, .friday]
+        // Then
+        XCTAssertEqual(weekdays.selectionTexts, [weekDaysText])
+
+        // When - Weekdays + 1
+        weekdays = [.monday, .tuesday, .wednesday, .thursday, .friday, .sunday]
+        // Then
+        XCTAssertEqual(weekdays.selectionTexts, [weekDaysText, Weekday.sunday.shortText])
+
+        // When - All days
+        weekdays = Weekday.allCases
+        // Then
+        XCTAssertEqual(weekdays.selectionTexts, [allDaysText])
+    }
 }
 
 private enum TestConstants {
