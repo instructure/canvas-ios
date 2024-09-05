@@ -36,6 +36,9 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     var body: some View {
         InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { _ in
             VStack(alignment: .leading, spacing: 0) {
+                InstUI.LabelCell(
+                    label: Text("Repeats every", bundle: .core)
+                )
 
                 MultiPickerView(
                     content1: FrequencyInterval.options,
@@ -47,9 +50,11 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                         return freq.unitText(given: interval.value)
                     },
                     selection2: $viewModel.frequency,
-                    widths: [4, 5],
+                    widths: [4, 6],
                     alignments: [.trailing, .leading])
                 .frame(maxWidth: .infinity)
+
+                InstUI.Divider()
 
                 if case .weekly = viewModel.frequency {
                     weekDaysCell
