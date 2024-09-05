@@ -274,7 +274,6 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                     hideColorOverlay: hideColorOverlay,
                     showGrade: showGrade,
                     width: layoutInfo.cardWidth,
-                    contextColor: card.color,
                     isWideLayout: layoutInfo.isWideLayout,
                     isAvailable: availabilityBinding
                 )

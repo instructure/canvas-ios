@@ -31,22 +31,22 @@ struct CustomizeCourseView: View {
     @State var isSaving = false
     @State var name: String
 
-    static let colors: KeyValuePairs<String, Text> = [
-        "#BD3C14": Text("Brick", bundle: .core),
-        "#FF2717": Text("Red", bundle: .core),
-        "#E71F63": Text("Magenta", bundle: .core),
-        "#8F3E97": Text("Purple", bundle: .core),
-        "#65499D": Text("Deep Purple", bundle: .core),
-        "#4554A4": Text("Indigo", bundle: .core),
-        "#1770AB": Text("Blue", bundle: .core),
-        "#0B9BE3": Text("Light Blue", bundle: .core),
-        "#06A3B7": Text("Cyan", bundle: .core),
-        "#009688": Text("Teal", bundle: .core),
-        "#009606": Text("Green", bundle: .core),
-        "#8D9900": Text("Olive", bundle: .core),
-        "#D97900": Text("Pumpkin", bundle: .core),
-        "#FD5D10": Text("Orange", bundle: .core),
-        "#F06291": Text("Pink", bundle: .core)
+    static let colors: KeyValuePairs<UIColor, Text> = [
+        UIColor(hexString: "#BD3C14")!.ensureContrast(against: .backgroundLightest): Text("Brick", bundle: .core),
+        UIColor(hexString: "#FF2717")!.ensureContrast(against: .backgroundLightest): Text("Red", bundle: .core),
+        UIColor(hexString: "#E71F63")!.ensureContrast(against: .backgroundLightest): Text("Magenta", bundle: .core),
+        UIColor(hexString: "#8F3E97")!.ensureContrast(against: .backgroundLightest): Text("Purple", bundle: .core),
+        UIColor(hexString: "#65499D")!.ensureContrast(against: .backgroundLightest): Text("Deep Purple", bundle: .core),
+        UIColor(hexString: "#4554A4")!.ensureContrast(against: .backgroundLightest): Text("Indigo", bundle: .core),
+        UIColor(hexString: "#1770AB")!.ensureContrast(against: .backgroundLightest): Text("Blue", bundle: .core),
+        UIColor(hexString: "#0B9BE3")!.ensureContrast(against: .backgroundLightest): Text("Light Blue", bundle: .core),
+        UIColor(hexString: "#06A3B7")!.ensureContrast(against: .backgroundLightest): Text("Cyan", bundle: .core),
+        UIColor(hexString: "#009688")!.ensureContrast(against: .backgroundLightest): Text("Teal", bundle: .core),
+        UIColor(hexString: "#009606")!.ensureContrast(against: .backgroundLightest): Text("Green", bundle: .core),
+        UIColor(hexString: "#8D9900")!.ensureContrast(against: .backgroundLightest): Text("Olive", bundle: .core),
+        UIColor(hexString: "#D97900")!.ensureContrast(against: .backgroundLightest): Text("Pumpkin", bundle: .core),
+        UIColor(hexString: "#FD5D10")!.ensureContrast(against: .backgroundLightest): Text("Orange", bundle: .core),
+        UIColor(hexString: "#F06291")!.ensureContrast(against: .backgroundLightest): Text("Pink", bundle: .core)
     ]
 
     init(course: Course, hideColorOverlay: Bool) {
@@ -92,7 +92,7 @@ struct CustomizeCourseView: View {
                     width: width - 32 // account for padding
                 ) { itemIndex in
                     let item = Self.colors[itemIndex]
-                    let uiColor = UIColor(hexString: item.key) ?? .ash
+                    let uiColor = item.key
                     let isSelected = uiColor.difference(to: color) < 0.02
                     Button(action: { color = uiColor }, label: {
                         Circle().fill(Color(uiColor))
