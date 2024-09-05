@@ -31,6 +31,7 @@ final class UpdateCalendarEventTests: CoreTestCase {
         static let locationName = "some locationName"
         static let locationAddress = "some locationAddress"
         static let timeZone = "some timeZone"
+        static let rrule = RecurrenceRule(recurrenceWith: .monthly, interval: 1, end: .occurrenceCount(12))
 
         static let responseId: ID = "response id"
         static let responseContextCode = "response contextCode"
@@ -56,7 +57,7 @@ final class UpdateCalendarEventTests: CoreTestCase {
             location_name: TestConstants.locationName,
             location_address: TestConstants.locationAddress,
             time_zone_edited: TestConstants.timeZone,
-            rrule: nil
+            rrule: TestConstants.rrule
         )
     }
 
@@ -77,6 +78,7 @@ final class UpdateCalendarEventTests: CoreTestCase {
         XCTAssertEqual(nestedObject?.location_name, TestConstants.locationName)
         XCTAssertEqual(nestedObject?.location_address, TestConstants.locationAddress)
         XCTAssertEqual(nestedObject?.time_zone_edited, TestConstants.timeZone)
+        XCTAssertEqual(nestedObject?.rrule, TestConstants.rrule)
     }
 
     func testWrite() {
@@ -87,7 +89,8 @@ final class UpdateCalendarEventTests: CoreTestCase {
             end_at: TestConstants.responseEndAt,
             description: TestConstants.responseDescription,
             location_name: TestConstants.responseLocationName,
-            location_address: TestConstants.responseLocationAddress
+            location_address: TestConstants.responseLocationAddress,
+            rrule: TestConstants.rrule.rruleDescription
         )
 
         testee.write(response: response, urlResponse: nil, to: databaseClient)
@@ -99,5 +102,6 @@ final class UpdateCalendarEventTests: CoreTestCase {
         XCTAssertEqual(model?.details, TestConstants.responseDescription)
         XCTAssertEqual(model?.locationName, TestConstants.responseLocationName)
         XCTAssertEqual(model?.locationAddress, TestConstants.responseLocationAddress)
+        XCTAssertEqual(model?.repetitionRule, TestConstants.rrule.rruleDescription)
     }
 }
