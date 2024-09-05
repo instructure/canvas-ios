@@ -20,6 +20,7 @@ import XCTest
 @testable import Core
 
 final class FrequencyPresetTests: CoreTestCase {
+    typealias DayOfWeek = RecurrenceRule.DayOfWeek
 
     func test_non_calculative() {
         // Given
@@ -99,6 +100,7 @@ final class FrequencyPresetTests: CoreTestCase {
 }
 
 private enum TestConstants {
+    typealias DayOfWeek = RecurrenceRule.DayOfWeek
 
     struct UseCase {
         let preset: FrequencyPreset

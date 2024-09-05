@@ -41,7 +41,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     @Published var frequency: RecurrenceFrequency = .daily
     @Published var interval = FrequencyInterval(value: 1)
 
-    @Published var endMode: RecurrenceEndMode?
+    @Published var endMode: EndMode?
     @Published var endDate: Date? = Clock.now
     @Published var occurrenceCount: Int
 
@@ -262,48 +262,6 @@ struct FrequencyInterval: Equatable {
 
     init(value: Int) {
         self.value = value
-    }
-}
-
-struct DayOfYear: Equatable {
-    var day: Int
-    var month: Int
-
-    init(given date: Date, in calendar: Calendar = .current) {
-        let comps = calendar.dateComponents(
-            [.day, .month, .year],
-            from: date
-        )
-
-        self.init(day: comps.day!, month: comps.month!)
-    }
-
-    init(day: Int, month: Int) {
-        self.day = day
-        self.month = month
-    }
-}
-
-enum RecurrenceEndMode: Equatable, CaseIterable {
-    case onDate
-    case afterOccurrences
-
-    var title: String {
-        switch self {
-        case .onDate:
-            return String(localized: "On date", bundle: .core)
-        case .afterOccurrences:
-            return String(localized: "After Occurrences", bundle: .core)
-        }
-    }
-
-    static func mode(of end: RecurrenceEnd) -> RecurrenceEndMode {
-        switch end {
-        case .endDate:
-            return .onDate
-        case .occurrenceCount:
-            return .afterOccurrences
-        }
     }
 }
 

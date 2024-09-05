@@ -20,6 +20,7 @@ import XCTest
 @testable import Core
 
 final class EditCustomFrequencyViewModelTests: CoreTestCase {
+    typealias DayOfWeek = RecurrenceRule.DayOfWeek
 
     private var completionValue: RecurrenceRule?
 
@@ -206,11 +207,14 @@ final class EditCustomFrequencyViewModelTests: CoreTestCase {
 // MARK: - Testing Values
 
 private extension EditCustomFrequencyViewModelTests {
+    typealias DayOfMonth = EditCustomFrequencyViewModel.DayOfMonth
+    typealias DayOfYear = EditCustomFrequencyViewModel.DayOfYear
+    typealias EndMode = EditCustomFrequencyViewModel.EndMode
 
     struct RRuleExpectedModel {
         var frequency: RecurrenceFrequency
         var interval: FrequencyInterval
-        var endMode: RecurrenceEndMode
+        var endMode: EndMode
         var endDate: Date = Clock.now
         var occurrenceCount: Int = 0
         var daysOfTheWeek: [Weekday] = []
@@ -251,7 +255,7 @@ private extension EditCustomFrequencyViewModelTests {
             rule: RecurrenceRule(
                 recurrenceWith: .weekly,
                 interval: 5,
-                daysOfTheWeek: [DayOfWeek(.thursday, weekNumber: -1), DayOfWeek(.friday, weekNumber: 0)],
+                daysOfTheWeek: [DayOfWeek(.thursday, weekNumber: -1), DayOfWeek(.friday)],
                 daysOfTheMonth: [6, 18],
                 end: .endDate(eventDate.addDays(20))
             ),

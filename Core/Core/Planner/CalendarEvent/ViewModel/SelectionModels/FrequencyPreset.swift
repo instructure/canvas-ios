@@ -45,7 +45,7 @@ enum FrequencyPreset: Equatable {
                 end: .occurrenceCount(365)
             )
         case .weeklyOnThatDay:
-            let weekday = DayOfWeek(date.weekday, weekNumber: 0)
+            let weekday = RecurrenceRule.DayOfWeek(date.weekday)
             return RecurrenceRule(
                 recurrenceWith: .weekly,
                 interval: 1,
@@ -71,7 +71,7 @@ enum FrequencyPreset: Equatable {
             return RecurrenceRule(
                 recurrenceWith: .weekly,
                 interval: 1,
-                daysOfTheWeek: Weekday.weekDays.map({ DayOfWeek($0) }),
+                daysOfTheWeek: Weekday.weekDays.map({ RecurrenceRule.DayOfWeek($0) }),
                 end: .occurrenceCount(260)
             )
         case .custom(let rule), .selected(_, let rule):
@@ -146,9 +146,9 @@ extension Date {
         return lapsedDays + 1
     }
 
-    var monthWeekday: DayOfWeek {
+    var monthWeekday: RecurrenceRule.DayOfWeek {
         let weekdayOrdinal = Cal.currentCalendar.component(.weekdayOrdinal, from: self)
-        return DayOfWeek(weekday, weekNumber: weekdayOrdinal)
+        return RecurrenceRule.DayOfWeek(weekday, weekNumber: weekdayOrdinal)
     }
 
     func startOfYear() -> Date {

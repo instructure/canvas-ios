@@ -55,6 +55,8 @@ final class RecurrenceRuleTests: XCTestCase {
 }
 
 private enum TestConstants {
+    typealias DayOfWeek = RecurrenceRule.DayOfWeek
+
     struct UseCase {
         let raw: String
         let rule: RecurrenceRule

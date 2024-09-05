@@ -133,7 +133,7 @@ extension WeekNumber {
     }
 }
 
-extension DayOfWeek {
+extension RecurrenceRule.DayOfWeek {
 
     var standaloneText: String {
         if let weekNumber {
@@ -168,14 +168,14 @@ extension Array where Element == Weekday {
     }
 }
 
-extension Array where Element == DayOfWeek {
+extension Array where Element == RecurrenceRule.DayOfWeek {
 
     var hasWeekdays: Bool {
         Weekday
             .weekDays
             .allSatisfy({ wd in
                 contains(where: { d in
-                    d.weekday == wd && d.weekNumber == 0
+                    d.weekday == wd && d.weekNumber == nil
                 })
             })
     }
@@ -185,7 +185,7 @@ extension Array where Element == DayOfWeek {
             .allCases
             .allSatisfy({ wd in
                 contains(where: { d in
-                    d.weekday == wd && d.weekNumber == 0
+                    d.weekday == wd && d.weekNumber == nil
                 })
             })
     }

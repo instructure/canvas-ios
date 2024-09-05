@@ -19,6 +19,7 @@
 import SwiftUI
 
 struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
+    typealias EndMode = EditCustomFrequencyViewModel.EndMode
 
     @Environment(\.viewController) private var viewController
 
@@ -92,7 +93,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     private var monthDaysCell: some View {
         return InstUI.SelectionMenuCell(
             label: Text("Repeats on", bundle: .core),
-            options: [DayOfMonth].options(for: viewModel.proposedDate),
+            options: viewModel.dayOfMonthOptions(for: viewModel.proposedDate),
             id: \.id,
             text: \.title,
             selection: $viewModel.dayOfMonth
@@ -128,7 +129,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     private var endModeCell: some View {
         InstUI.SelectionMenuCell(
             label: Text("End Repeat", bundle: .core),
-            options: RecurrenceEndMode.allCases,
+            options: EndMode.allCases,
             id: \.self,
             text: \.title,
             selection: $viewModel.endMode
@@ -136,7 +137,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private func cellForEndMode(_ endMode: RecurrenceEndMode) -> some View {
+    private func cellForEndMode(_ endMode: EndMode) -> some View {
         switch endMode {
         case .onDate:
             endDateCell

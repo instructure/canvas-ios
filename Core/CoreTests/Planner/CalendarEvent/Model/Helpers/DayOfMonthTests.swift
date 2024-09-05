@@ -20,6 +20,8 @@ import XCTest
 @testable import Core
 
 final class DayOfMonthTests: XCTestCase {
+    typealias DayOfWeek = RecurrenceRule.DayOfWeek
+    typealias DayOfMonth = EditCustomFrequencyViewModel.DayOfMonth
 
     func test_title_day() {
         let dayOfMonth = DayOfMonth.day(4)

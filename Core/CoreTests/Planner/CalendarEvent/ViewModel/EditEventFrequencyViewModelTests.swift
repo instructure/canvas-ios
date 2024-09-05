@@ -20,6 +20,7 @@ import XCTest
 @testable import Core
 
 final class EditEventFrequencyViewModelTests: CoreTestCase {
+    typealias DayOfWeek = RecurrenceRule.DayOfWeek
 
     private enum TestConstants {
         static let eventDate = Date.make(year: 2024, month: 3, day: 1, hour: 14, minute: 0)

@@ -97,7 +97,7 @@ private enum RRuleKey {
 
     enum DaysOfTheWeek: Key {
         static let string = "BYDAY"
-        static func validate(_ value: [DayOfWeek]) -> Bool { value.count > 0 }
+        static func validate(_ value: [RecurrenceRule.DayOfWeek]) -> Bool { value.count > 0 }
     }
 
     enum DaysOfTheMonth: Key {
@@ -222,38 +222,38 @@ enum Weekday: String, RRuleCodable, CaseIterable {
     }
 }
 
-struct DayOfWeek: Equatable, RRuleCodable {
-
-    init?(rruleString: String) {
-        guard
-            let val = rruleString.split(separator: /\d+/).last,
-            let day = Weekday(rawValue: String(val)) else { return nil }
-
-        let num = Int(rruleString: rruleString.replacingOccurrences(of: day.rawValue, with: ""))
-        self.init(day, weekNumber: num)
-    }
-
-    var rruleString: String {
-        var val = ""
-        if let weekNumber {
-            val += weekNumber.rruleString
-        }
-        val += weekday.rawValue
-        return val
-    }
-
-    let weekday: Weekday
-    let weekNumber: Int?
-
-    init(_ weekday: Weekday, weekNumber: Int? = nil) {
-        self.weekday = weekday
-        self.weekNumber = weekNumber
-    }
-}
-
 // MARK: - Rule Impl.
 
 struct RecurrenceRule: Equatable {
+
+    struct DayOfWeek: Equatable, RRuleCodable {
+
+        init?(rruleString: String) {
+            guard
+                let val = rruleString.split(separator: /\d+/).last,
+                let day = Weekday(rawValue: String(val)) else { return nil }
+
+            let num = Int(rruleString: rruleString.replacingOccurrences(of: day.rawValue, with: ""))
+            self.init(day, weekNumber: num)
+        }
+
+        var rruleString: String {
+            var val = ""
+            if let weekNumber {
+                val += weekNumber.rruleString
+            }
+            val += weekday.rawValue
+            return val
+        }
+
+        let weekday: Weekday
+        let weekNumber: Int?
+
+        init(_ weekday: Weekday, weekNumber: Int? = nil) {
+            self.weekday = weekday
+            self.weekNumber = weekNumber
+        }
+    }
 
     public init(recurrenceWith type: RecurrenceFrequency,
                 interval: Int,
