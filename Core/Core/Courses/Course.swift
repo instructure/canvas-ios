@@ -59,7 +59,10 @@ final public class Course: NSManagedObject, WriteableModel {
     }
 
     public var canvasContextID: String {
-        Context(.course, id: id).canvasContextID
+        context.canvasContextID
+    }
+    public var context: Context {
+        Context(.course, id: id)
     }
 
     @discardableResult

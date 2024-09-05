@@ -38,20 +38,6 @@ public class ContextColorLookupInteractorLive: ContextColorLookupInteractor {
             return Context(canvasContextID: dashboardCard.assetString)
         }
 
-        let elementaryColors: [Context: HexColor] = {
-            var colorMap: [Context: HexColor] = [:]
-
-            for elementaryCourseContext in elementaryCourseContexts {
-                guard let course = apiResponse.courses.first(where: { $0.context == elementaryCourseContext }) else {
-                    continue
-                }
-
-                colorMap[elementaryCourseContext] = course.course_color
-            }
-
-            return colorMap
-        }()
-
         let isElementaryCourse: (Context) -> Bool = { context in
             elementaryCourseContexts.contains(context)
         }

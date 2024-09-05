@@ -18,47 +18,34 @@
 
 import Combine
 
-public class ContextColorViewModel: ObservableObject {
-    @Published public private(set) var color: UIColor = UIColor.defaultContextColor
-
+public class ContextColorsViewModel: ObservableObject {
     private let interactor: ContextColorsInteractor
-    private let context: Context
-    private let callback: ((UIColor) -> Void)?
+    private let callback: (() -> Void)?
     private var subscriptions = Set<AnyCancellable>()
 
     public init(
-        _ context: Context,
         interactor: ContextColorsInteractor = ContextColorsInteractorLive(),
-        callback: ((UIColor) -> Void)? = nil
+        callback: (() -> Void)? = nil
     ) {
         self.interactor = interactor
-        self.context = context
         self.callback = callback
 
         interactor
-            .observeContextColor(context)
-            .sink { [weak self] color in
-                self?.color = color
-                self?.callback?(color)
+            .observeContextColorChanges()
+            .sink { [weak self] in
+                self?.callback?()
+                self?.objectWillChange.send()
             }
             .store(in: &subscriptions)
     }
 
-    public convenience init(
-        courseID: String,
-        interactor: ContextColorsInteractor = ContextColorsInteractorLive(),
-        callback: ((UIColor) -> Void)? = nil
-    ) {
-        self.init(
-            Context(.course, id: courseID),
-            interactor: interactor,
-            callback: callback
-        )
+    public func contextColor(_ context: Context) -> UIColor {
+        interactor.contextColor(context)
     }
 
-    public func refresh(ignoreCache: Bool = false) {
+    public func refresh() {
         interactor
-            .refresh(ignoreCache: ignoreCache)
+            .refresh(ignoreCache: true)
             .sink()
             .store(in: &subscriptions)
     }

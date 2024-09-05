@@ -20,12 +20,19 @@ import Combine
 
 public protocol ContextColorsInteractor {
 
+    /// Returns the context's color from the cache.
+    func contextColor(_ context: Context) -> UIColor
+
+    /// Publishes a value when a context's color changes in the cache. Doesn't directly fetch from the API. Useful on screen working with multiple contexts.
+    func observeContextColorChanges() -> AnyPublisher<Void, Never>
+
+    /// Publishes the context's color when it changes in the cache. Doesn't directly fetch from the API.
     func observeContextColor(
         _ context: Context
     ) -> AnyPublisher<UIColor, Never>
 
-    /// Force refreshes the color database from the API and publishes changes via the observation.
-    func refresh() -> AnyPublisher<Void, Never>
+    /// Refreshes the color database from the API and publishes changes via the observation.
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never>
 }
 
 public class ContextColorsInteractorLive: ContextColorsInteractor {
@@ -33,7 +40,19 @@ public class ContextColorsInteractorLive: ContextColorsInteractor {
     private var subscriptions = Set<AnyCancellable>()
 
     public init() {
-        observeContextColorChanges()
+        observeContextColorChangesInDatabase()
+    }
+
+    public func contextColor(_ context: Context) -> UIColor {
+        colorMapCache.value[context] ?? UIColor.defaultContextColor
+    }
+
+    public func observeContextColorChanges(
+    ) -> AnyPublisher<Void, Never> {
+        colorMapCache
+            .removeDuplicates()
+            .mapToVoid()
+            .eraseToAnyPublisher()
     }
 
     public func observeContextColor(
@@ -43,19 +62,20 @@ public class ContextColorsInteractorLive: ContextColorsInteractor {
             .map { colors -> UIColor in
                 colors[context] ?? UIColor.defaultContextColor
             }
+            .removeDuplicates()
             .eraseToAnyPublisher()
     }
 
-    public func refresh() -> AnyPublisher<Void, Never> {
+    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         let useCase = GetCDContextColorsUseCase()
         return ReactiveStore(useCase: useCase)
-            .getEntities(ignoreCache: true)
+            .getEntities(ignoreCache: ignoreCache)
             .mapToVoid()
             .ignoreFailure(completeImmediately: true)
     }
 
-    private func observeContextColorChanges() {
-        let useCase = GetCDContextColorsUseCase()
+    private func observeContextColorChangesInDatabase() {
+        let useCase = LocalUseCase<CDContextColor>(scope: .all)
         ReactiveStore(useCase: useCase)
             .getEntities(keepObservingDatabaseChanges: true)
             .replaceError(with: [])

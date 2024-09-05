@@ -19,6 +19,7 @@
 import SwiftUI
 
 public extension Color {
+    var hexString: String { UIColor(self).hexString(userInterfaceStyle: .current) }
 
     init?(hexString: String?) {
         if let color = UIColor(hexString: hexString) {

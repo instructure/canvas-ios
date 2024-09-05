@@ -50,3 +50,27 @@ public final class CDContextColor: NSManagedObject {
         }
     }
 }
+
+#if DEBUG
+
+public extension CDContextColor {
+
+    @discardableResult
+    static func save(
+        contextID: CanvasContextID,
+        hexColor: HexColor,
+        in context: NSManagedObjectContext
+    ) -> CDContextColor {
+        let predicate = NSPredicate(
+            format: "%K == %@",
+            #keyPath(CDContextColor.canvasContextID),
+            contextID
+        )
+        let model: CDContextColor = context.fetch(predicate).first ?? context.insert()
+        model.canvasContextID = contextID
+        model.contextColorHex = hexColor
+        return model
+    }
+}
+
+#endif

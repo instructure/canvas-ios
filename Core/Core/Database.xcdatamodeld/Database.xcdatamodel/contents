@@ -162,7 +162,7 @@
         <attribute name="observedUserId" optional="YES" attributeType="String"/>
         <attribute name="rawContextID" attributeType="String"/>
     </entity>
-    <entity name="CDContextColor" representedClassName="Core.ContextColor" syncable="YES">
+    <entity name="CDContextColor" representedClassName="Core.CDContextColor" syncable="YES">
         <attribute name="canvasContextID" attributeType="String"/>
         <attribute name="contextColorHex" optional="YES" attributeType="String"/>
     </entity>
