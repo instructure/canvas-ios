@@ -25,7 +25,7 @@ final class FrequencyPresetTests: CoreTestCase {
         // Given
         let rule = RecurrenceRule(recurrenceWith: .daily,
                                   interval: 2,
-                                  end: RecurrenceEnd(occurrenceCount: 33))
+                                  end: .occurrenceCount(33))
 
         // Then
         XCTAssertNil(FrequencyPreset.noRepeat.rule(given: .now))
@@ -76,7 +76,7 @@ final class FrequencyPresetTests: CoreTestCase {
             recurrenceWith: .weekly,
             interval: 3,
             daysOfTheWeek: [DayOfWeek(.sunday), DayOfWeek(.wednesday), DayOfWeek(.thursday)],
-            end: RecurrenceEnd(occurrenceCount: 33)
+            end: .occurrenceCount(33)
         )
 
         // When
@@ -116,7 +116,7 @@ private enum TestConstants {
             expected: RecurrenceRule(
                 recurrenceWith: .daily,
                 interval: 1,
-                end: RecurrenceEnd(occurrenceCount: 365)
+                end: .occurrenceCount(365)
             )
         ),
         UseCase(
@@ -128,7 +128,7 @@ private enum TestConstants {
                 daysOfTheWeek: [
                     DayOfWeek(date.weekday)
                 ],
-                end: RecurrenceEnd(occurrenceCount: 52)
+                end: .occurrenceCount(52)
             )
         ),
         UseCase(
@@ -140,7 +140,7 @@ private enum TestConstants {
                 daysOfTheWeek: [
                     date.monthWeekday
                 ],
-                end: RecurrenceEnd(occurrenceCount: 12)
+                end: .occurrenceCount(12)
             )
         ),
         UseCase(
@@ -151,7 +151,7 @@ private enum TestConstants {
                 interval: 1,
                 daysOfTheMonth: [date.monthDay],
                 monthsOfTheYear: [date.month],
-                end: RecurrenceEnd(occurrenceCount: 5)
+                end: .occurrenceCount(5)
             )
         ),
         UseCase(
@@ -161,7 +161,7 @@ private enum TestConstants {
                 recurrenceWith: .weekly,
                 interval: 1,
                 daysOfTheWeek: Weekday.weekDays.map({ DayOfWeek($0) }),
-                end: RecurrenceEnd(occurrenceCount: 260)
+                end: .occurrenceCount(260)
             )
         )
     ]

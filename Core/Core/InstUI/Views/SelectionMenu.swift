@@ -55,7 +55,7 @@ struct SelectionMenu<Value: Equatable, ID: Hashable>: View {
         } label: {
             HStack {
                 Text(title).font(.regular14)
-                InstUI.Icons.Selection().foregroundStyle(Color.textDark)
+                InstUI.Icons.DropDown().foregroundStyle(Color.textDark)
             }
             .paddingStyle(set: .selectionValueLabel)
             .contentShape(Rectangle())

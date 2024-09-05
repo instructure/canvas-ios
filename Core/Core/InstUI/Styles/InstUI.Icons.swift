@@ -22,7 +22,7 @@ extension InstUI {
 
     enum Icons {
 
-        struct Selection: View {
+        struct DropDown: View {
             @ScaledMetric private var uiScale: CGFloat = 1
 
             public var body: some View {
@@ -35,14 +35,6 @@ extension InstUI {
 
             public var body: some View {
                 Image.checkLine.size(uiScale.iconScale * 18)
-            }
-        }
-
-        struct Back: View {
-            @ScaledMetric private var uiScale: CGFloat = 1
-
-            public var body: some View {
-                Image.arrowOpenLeftLine.size(uiScale.iconScale * 18)
             }
         }
     }

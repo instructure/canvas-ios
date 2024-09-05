@@ -19,64 +19,93 @@
 import UIKit
 import SwiftUI
 
-enum PickerTextAlignment {
-    case leading, center, trailing, natural
+extension InstUI {
+    public enum PickerTextAlignment {
+        case leading, center, trailing, natural
 
-    func toLabelTextAlignment() -> NSTextAlignment {
-        let direction = Locale.current.language.characterDirection
-        let isRTL = direction == .rightToLeft
+        func toLabelTextAlignment() -> NSTextAlignment {
+            let direction = Locale.current.language.characterDirection
+            let isRTL = direction == .rightToLeft
 
-        switch self {
-        case .leading:
-            return isRTL ? .right : .left
-        case .trailing:
-            return isRTL ? .left : .right
-        case .center:
-            return .center
-        case .natural:
-            return .natural
-        }
-    }
-}
-
-struct MultiPickerView<Value1, Value2>: UIViewRepresentable where Value1: Equatable, Value2: Equatable {
-    let content1: [Value1]
-    let titleKey1: KeyPath<Value1, String>
-    var title1GivenSelected2: ((Value1, Value2) -> String)?
-    @Binding var selection1: Value1
-
-    let content2: [Value2]
-    let titleKey2: KeyPath<Value2, String>
-    var title2GivenSelected1: ((Value2, Value1) -> String)?
-    @Binding var selection2: Value2
-
-    let widths: [CGFloat]
-    let alignments: [PickerTextAlignment]
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-
-    func makeUIView(context: UIViewRepresentableContext<MultiPickerView>) -> UIPickerView {
-        let picker = UIPickerView(frame: .zero)
-
-        picker.dataSource = context.coordinator
-        picker.delegate = context.coordinator
-
-        return picker
-    }
-
-    func updateUIView(_ view: UIPickerView, context: UIViewRepresentableContext<MultiPickerView>) {
-        for component in 0 ..< view.numberOfComponents {
-            if let index = selectionIndex(for: component) {
-                view.selectRow(index, inComponent: component, animated: false)
+            switch self {
+            case .leading:
+                return isRTL ? .right : .left
+            case .trailing:
+                return isRTL ? .left : .right
+            case .center:
+                return .center
+            case .natural:
+                return .natural
             }
         }
-        context.coordinator.view = self
+    }
+
+    public struct MultiPickerView<Value1, Value2>: UIViewRepresentable where Value1: Equatable, Value2: Equatable {
+        let content1: [Value1]
+        let titleKey1: KeyPath<Value1, String>
+        var title1GivenSelected2: ((Value1, Value2) -> String)?
+        @Binding var selection1: Value1
+
+        let content2: [Value2]
+        let titleKey2: KeyPath<Value2, String>
+        var title2GivenSelected1: ((Value2, Value1) -> String)?
+        @Binding var selection2: Value2
+
+        let widths: [CGFloat]
+        let alignments: [PickerTextAlignment]
+
+        public init(content1: [Value1],
+                    titleKey1: KeyPath<Value1, String>,
+                    title1GivenSelected2: ((Value1, Value2) -> String)? = nil,
+                    selection1: Binding<Value1>,
+
+                    content2: [Value2],
+                    titleKey2: KeyPath<Value2, String>,
+                    title2GivenSelected1: ((Value2, Value1) -> String)? = nil,
+                    selection2: Binding<Value2>,
+
+                    widths: [CGFloat],
+                    alignments: [PickerTextAlignment]) {
+
+            self.content1 = content1
+            self.titleKey1 = titleKey1
+            self.title1GivenSelected2 = title1GivenSelected2
+            self._selection1 = selection1
+
+            self.content2 = content2
+            self.titleKey2 = titleKey2
+            self.title2GivenSelected1 = title2GivenSelected1
+            self._selection2 = selection2
+
+            self.widths = widths
+            self.alignments = alignments
+        }
+
+        public func makeCoordinator() -> Coordinator {
+            Coordinator(self)
+        }
+
+        public func makeUIView(context: UIViewRepresentableContext<MultiPickerView>) -> UIPickerView {
+            let picker = UIPickerView(frame: .zero)
+
+            picker.dataSource = context.coordinator
+            picker.delegate = context.coordinator
+
+            return picker
+        }
+
+        public func updateUIView(_ view: UIPickerView, context: UIViewRepresentableContext<MultiPickerView>) {
+            for component in 0 ..< view.numberOfComponents {
+                if let index = selectionIndex(for: component) {
+                    view.selectRow(index, inComponent: component, animated: false)
+                }
+            }
+            context.coordinator.view = self
+        }
     }
 }
 
-private extension MultiPickerView {
+private extension InstUI.MultiPickerView {
 
     func contentCount(for component: Int) -> Int {
         switch component {
@@ -148,34 +177,35 @@ private extension MultiPickerView {
     }
 }
 
-extension MultiPickerView {
+extension InstUI.MultiPickerView {
+    typealias PickerView = Self
 
-    class Coordinator: NSObject,
-                       UIPickerViewDataSource,
-                       UIPickerViewDelegate {
+    public class Coordinator: NSObject,
+                              UIPickerViewDataSource,
+                              UIPickerViewDelegate {
 
-        var view: MultiPickerView
+        fileprivate var view: PickerView
 
-        init(_ view: MultiPickerView) {
+        fileprivate init(_ view: PickerView) {
             self.view = view
         }
 
-        func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        public func numberOfComponents(in pickerView: UIPickerView) -> Int {
             return 2
         }
 
-        func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        public func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
             let margins = pickerView.directionalLayoutMargins
             let horizontalMargins = margins.leading + margins.trailing
             let fullWidth = pickerView.frame.width - horizontalMargins
             return fullWidth * view.widthRatio(for: component)
         }
 
-        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
             return view.contentCount(for: component)
         }
 
-        func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
 
             let label = view as? RowLabel ?? RowLabel()
             label.textLabel.text = self.view.title(forRow: row, ofComponent: component)
@@ -184,7 +214,7 @@ extension MultiPickerView {
             return label
         }
 
-        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             view.setSelection(to: row, for: component)
 
             if view.title2GivenSelected1 != nil, component == 0 {
@@ -226,7 +256,7 @@ private class RowLabel: UIView {
         @State var selection2: String = "Monthly"
 
         var body: some View {
-            MultiPickerView(
+            InstUI.MultiPickerView(
                 content1: (1 ... 400).map({ $0 }),
                 titleKey1: \.description,
                 selection1: $selection1,

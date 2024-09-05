@@ -40,6 +40,16 @@ extension LosslessStringConvertible where Self: RRuleCodable {
 
 extension Int: RRuleCodable {}
 extension String: RRuleCodable {}
+extension Date: RRuleCodable {
+
+    init?(rruleString: String) {
+        guard let date = Date.parse(rruleDescription: rruleString) else { return nil }
+        self = date
+    }
+
+    var rruleString: String { rruleFormatted() }
+}
+
 extension Array: RRuleCodable where Element: RRuleCodable {
 
     init?(rruleString: String) {
@@ -66,60 +76,60 @@ private enum RRuleKey {
     }
 
     enum Frequency: Key {
-        static var string: String { "FREQ" }
+        static let string = "FREQ"
         static func validate(_ value: RecurrenceFrequency) -> Bool { true }
     }
 
     enum Interval: Key {
-        static var string: String { "INTERVAL" }
+        static let string = "INTERVAL"
         static func validate(_ value: Int) -> Bool { value > 0 }
     }
 
     enum EndDate: Key {
-        static var string: String { "UNTIL" }
-        static func validate(_ value: RecurrenceEnd.EndDate) -> Bool { true }
+        static let string = "UNTIL"
+        static func validate(_ value: Date) -> Bool { true }
     }
 
     enum OccurrenceCount: Key {
-        static var string: String { "COUNT" }
-        static func validate(_ value: RecurrenceEnd.OccurrenceCount) -> Bool { value.count > 0 }
+        static let string = "COUNT"
+        static func validate(_ value: Int) -> Bool { value > 0 }
     }
 
     enum DaysOfTheWeek: Key {
-        static var string: String { "BYDAY" }
+        static let string = "BYDAY"
         static func validate(_ value: [DayOfWeek]) -> Bool { value.count > 0 }
     }
 
     enum DaysOfTheMonth: Key {
-        static var string: String { "BYMONTHDAY" }
+        static let string = "BYMONTHDAY"
         static func validate(_ value: [Int]) -> Bool {
             value.count > 0 && value.allSatisfy({ (1 ... 31).contains(abs($0)) })
         }
     }
 
     enum DaysOfTheYear: Key {
-        static var string: String { "BYYEARDAY" }
+        static let string = "BYYEARDAY"
         static func validate(_ value: [Int]) -> Bool {
             value.count > 0 && value.allSatisfy({ (1 ... 366).contains(abs($0)) })
         }
     }
 
     enum WeeksOfTheYear: Key {
-        static var string: String { "BYWEEKNO" }
+        static let string = "BYWEEKNO"
         static func validate(_ value: [Int]) -> Bool {
             value.count > 0 && value.allSatisfy({ (1 ... 53).contains(abs($0)) })
         }
     }
 
     enum MonthsOfTheYear: Key {
-        static var string: String { "BYMONTH" }
+        static let string = "BYMONTH"
         static func validate(_ value: [Int]) -> Bool {
             value.count > 0 && value.allSatisfy({ (1 ... 12).contains(abs($0)) })
         }
     }
 
     enum SetPositions: Key {
-        static var string: String { "BYSETPOS" }
+        static let string = "BYSETPOS"
         static func validate(_ value: [Int]) -> Bool {
             value.count > 0 && value.allSatisfy({ (1 ... 366).contains(abs($0)) })
         }
@@ -156,55 +166,18 @@ enum RecurrenceFrequency: String, RRuleCodable, CaseIterable {
     case yearly = "YEARLY"
 }
 
-struct RecurrenceEnd: Equatable {
+enum RecurrenceEnd: Equatable {
+    case endDate(Date)
+    case occurrenceCount(Int)
 
-    struct EndDate: RRuleCodable {
-        let date: Date
-
-        init(date: Date) {
-            self.date = date
-        }
-
-        init?(rruleString: String) {
-            guard let date = Date.parse(rruleDescription: rruleString) else { return nil }
-            self.date = date
-        }
-
-        var rruleString: String { date.rruleFormatted() }
-        var asRecurrenceEnd: RecurrenceEnd { .init(endDate: date) }
+    var asEndDate: Date? {
+        if case .endDate(let date) = self { return date }
+        return nil
     }
 
-    struct OccurrenceCount: RRuleCodable {
-        let count: Int
-
-        init(value: Int) { count = value }
-
-        init?(rruleString: String) {
-            guard let count = Int(rruleString) else { return nil }
-            self.count = count
-        }
-
-        var rruleString: String { String(count) }
-        var asRecurrenceEnd: RecurrenceEnd { .init(occurrenceCount: count) }
-    }
-
-    let endDate: Date?
-    let occurrenceCount: Int
-
-    init(endDate: Date) {
-        self.endDate = endDate
-        self.occurrenceCount = 0
-    }
-
-    init(occurrenceCount: Int) {
-        self.endDate = nil
-        self.occurrenceCount = occurrenceCount
-    }
-
-    var asEndDate: EndDate? { endDate.flatMap({ EndDate(date: $0) }) }
-    var asOccurrenceCount: OccurrenceCount? {
-        guard endDate == nil else { return nil }
-        return OccurrenceCount(value: occurrenceCount)
+    var asOccurrenceCount: Int? {
+        if case .occurrenceCount(let count) = self { return count }
+        return nil
     }
 }
 
@@ -326,8 +299,8 @@ extension RecurrenceRule {
             let interval = RRK.Interval.value(in: rules)
         else { return nil }
 
-        let endDate = RRK.EndDate.value(in: rules)
-        let occurCount = RRK.OccurrenceCount.value(in: rules)
+        let dateEnd = RRK.EndDate.value(in: rules).flatMap({ RecurrenceEnd.endDate($0) })
+        let countEnd = RRK.OccurrenceCount.value(in: rules).flatMap({ RecurrenceEnd.occurrenceCount($0) })
 
         self.frequency = frequency
         self.interval = interval
@@ -347,7 +320,7 @@ extension RecurrenceRule {
         }
 
         self.setPositions = RRK.SetPositions.value(in: rules)
-        self.recurrenceEnd = endDate?.asRecurrenceEnd ?? occurCount?.asRecurrenceEnd
+        self.recurrenceEnd = dateEnd ?? countEnd
     }
 
     var rruleDescription: String {

@@ -40,7 +40,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                     label: Text("Repeats every", bundle: .core)
                 )
 
-                MultiPickerView(
+                InstUI.MultiPickerView(
                     content1: FrequencyInterval.options,
                     titleKey1: \.title,
                     selection1: $viewModel.interval,

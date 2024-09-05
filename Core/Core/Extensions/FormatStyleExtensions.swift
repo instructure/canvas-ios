@@ -18,8 +18,8 @@
 
 import Foundation
 
-extension NumberFormatter {
-    fileprivate static let ordinal: NumberFormatter = {
+private extension NumberFormatter {
+    static let ordinal: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .ordinal
         return formatter

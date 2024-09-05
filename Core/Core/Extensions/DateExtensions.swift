@@ -187,9 +187,11 @@ public extension Date {
     }()
 
     private static let _defaultFormatter = DateFormatter()
-    private static func formatter(withFormat format: String,
-                                  locale: Locale,
-                                  calendar: Calendar) -> DateFormatter {
+    private static func formatter(
+        withFormat format: String,
+        locale: Locale,
+        calendar: Calendar
+    ) -> DateFormatter {
         _defaultFormatter.locale = locale
         _defaultFormatter.calendar = calendar
         _defaultFormatter.dateFormat = format

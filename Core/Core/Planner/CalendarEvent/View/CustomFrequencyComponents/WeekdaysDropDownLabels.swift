@@ -25,7 +25,7 @@ struct WeekdaysDropDownPromptLabel: View {
             Text("Not selected", bundle: .core)
                 .font(.regular14)
                 .foregroundStyle(Color.textDark)
-            InstUI.Icons.Selection()
+            InstUI.Icons.DropDown()
                 .foregroundStyle(Color.textDark)
         }
         .paddingStyle(set: .selectionValueLabel)

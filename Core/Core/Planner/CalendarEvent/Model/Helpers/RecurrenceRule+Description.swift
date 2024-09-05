@@ -251,16 +251,15 @@ private extension Array where Element == Int {
 
 private extension RecurrenceEnd {
 
-    var text: String? {
-        if occurrenceCount > 0 {
-            let format = String(localized: "%d times", bundle: .core)
-            return String(format: format, occurrenceCount)
-        }
-        if let endDate {
+    var text: String {
+        switch self {
+        case .endDate(let date):
             let format = String(localized: "until %@", bundle: .core)
-            return String(format: format, endDate.formatted(date: .abbreviated, time: .omitted))
+            return String(format: format, date.formatted(date: .abbreviated, time: .omitted))
+        case .occurrenceCount(let count):
+            let format = String(localized: "%d times", bundle: .core)
+            return String(format: format, count)
         }
-        return nil
     }
 }
 

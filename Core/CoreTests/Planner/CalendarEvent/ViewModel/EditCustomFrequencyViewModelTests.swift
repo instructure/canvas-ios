@@ -185,7 +185,7 @@ private extension EditCustomFrequencyViewModelTests {
             rule: RecurrenceRule(
                 recurrenceWith: .daily,
                 interval: 1,
-                end: RecurrenceEnd(endDate: eventDate.addDays(30))
+                end: .endDate(eventDate.addDays(30))
             ),
             expected: RRuleExpectedModel(
                 frequency: .daily,
@@ -201,7 +201,7 @@ private extension EditCustomFrequencyViewModelTests {
                 interval: 5,
                 daysOfTheWeek: [DayOfWeek(.thursday, weekNumber: -1), DayOfWeek(.friday, weekNumber: 0)],
                 daysOfTheMonth: [6, 18],
-                end: RecurrenceEnd(endDate: eventDate.addDays(20))
+                end: .endDate(eventDate.addDays(20))
             ),
             expected: RRuleExpectedModel(
                 frequency: .weekly,
@@ -218,7 +218,7 @@ private extension EditCustomFrequencyViewModelTests {
                 interval: 2,
                 daysOfTheWeek: [DayOfWeek(.sunday, weekNumber: 2), DayOfWeek(.monday, weekNumber: 1)],
                 daysOfTheMonth: [6, 18],
-                end: RecurrenceEnd(occurrenceCount: 10)
+                end: .occurrenceCount(10)
             ),
             expected: RRuleExpectedModel(
                 frequency: .monthly,
@@ -234,7 +234,7 @@ private extension EditCustomFrequencyViewModelTests {
                 recurrenceWith: .monthly,
                 interval: 3,
                 daysOfTheMonth: [1, 3, 25],
-                end: RecurrenceEnd(occurrenceCount: 10)
+                end: .occurrenceCount(10)
             ),
             expected: RRuleExpectedModel(
                 frequency: .monthly,
@@ -252,7 +252,7 @@ private extension EditCustomFrequencyViewModelTests {
                 daysOfTheWeek: [DayOfWeek(.tuesday, weekNumber: 2)],
                 daysOfTheMonth: [7, 12],
                 monthsOfTheYear: [3, 6],
-                end: RecurrenceEnd(occurrenceCount: 5)
+                end: .occurrenceCount(5)
             ),
             expected: RRuleExpectedModel(
                 frequency: .yearly,
@@ -274,7 +274,7 @@ private extension EditCustomFrequencyViewModelTests {
                 recurrenceWith: .weekly,
                 interval: 6,
                 daysOfTheWeek: [DayOfWeek(.wednesday), DayOfWeek(.thursday), DayOfWeek(.friday)],
-                end: RecurrenceEnd(occurrenceCount: 15)
+                end: .occurrenceCount(15)
             ),
             expected: RRuleExpectedModel(
                 frequency: .weekly,
@@ -290,7 +290,7 @@ private extension EditCustomFrequencyViewModelTests {
                 recurrenceWith: .monthly,
                 interval: 3,
                 daysOfTheMonth: [8],
-                end: RecurrenceEnd(endDate: dateNow.addDays(30))
+                end: .endDate(dateNow.addDays(30))
             ),
             expected: RRuleExpectedModel(
                 frequency: .monthly,
@@ -307,7 +307,7 @@ private extension EditCustomFrequencyViewModelTests {
                 interval: 1,
                 daysOfTheMonth: [9],
                 monthsOfTheYear: [5],
-                end: RecurrenceEnd(occurrenceCount: 5)
+                end: .occurrenceCount(5)
             ),
             expected: RRuleExpectedModel(
                 frequency: .yearly,

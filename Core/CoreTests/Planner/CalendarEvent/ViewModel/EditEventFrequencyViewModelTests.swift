@@ -28,7 +28,7 @@ final class EditEventFrequencyViewModelTests: CoreTestCase {
             let dailyRule = RecurrenceRule(
                 recurrenceWith: .daily,
                 interval: 1,
-                end: RecurrenceEnd(occurrenceCount: 365))
+                end: .occurrenceCount(365))
             return FrequencySelection(dailyRule, preset: .daily)
         }()
 
@@ -36,7 +36,7 @@ final class EditEventFrequencyViewModelTests: CoreTestCase {
             let rule = RecurrenceRule(recurrenceWith: .weekly,
                                       interval: 2,
                                       daysOfTheWeek: [DayOfWeek(.sunday), DayOfWeek(.monday)],
-                                      end: RecurrenceEnd(occurrenceCount: 10))
+                                      end: .occurrenceCount(10))
             let seriesNaturalLanguage = "Weekly on Each Sunday, 10 times"
             return FrequencySelection(rule,
                                       title: seriesNaturalLanguage,

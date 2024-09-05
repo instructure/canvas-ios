@@ -93,11 +93,11 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         self.router = router
 
         if let end = rule?.recurrenceEnd {
-            self.endMode = end.endDate != nil ? .onDate : .afterOccurrences
+            self.endMode = .mode(of: end)
         }
 
-        self.endDate = rule?.recurrenceEnd?.endDate ?? Clock.now
-        self.occurrenceCount = rule?.recurrenceEnd?.occurrenceCount ?? 0
+        self.endDate = rule?.recurrenceEnd?.asEndDate ?? Clock.now
+        self.occurrenceCount = rule?.recurrenceEnd?.asOccurrenceCount ?? 0
 
         if case .weekly = frequency {
             self.daysOfTheWeek = rule?.daysOfTheWeek?.map({ $0.weekday }) ?? []
@@ -145,9 +145,9 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     var end: RecurrenceEnd? {
         switch (endMode, endDate, occurrenceCount) {
         case (.onDate, .some(let date), _):
-            return RecurrenceEnd(endDate: date)
+            return .endDate(date)
         case (.afterOccurrences, _, let count) where count > 0:
-            return RecurrenceEnd(occurrenceCount: count)
+            return .occurrenceCount(count)
         default:
             return nil
         }
@@ -234,6 +234,15 @@ enum RecurrenceEndMode: Equatable, CaseIterable {
             return String(localized: "On date", bundle: .core)
         case .afterOccurrences:
             return String(localized: "After Occurrences", bundle: .core)
+        }
+    }
+
+    static func mode(of end: RecurrenceEnd) -> RecurrenceEndMode {
+        switch end {
+        case .endDate: 
+            return .onDate
+        case .occurrenceCount:
+            return .afterOccurrences
         }
     }
 }
