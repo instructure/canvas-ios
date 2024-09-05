@@ -84,8 +84,14 @@ final class OccurrencesCountInputModelTests: XCTestCase {
         model.submit()
 
         // Then
-        XCTAssertEqual(model.isValid, false)
-        XCTAssertEqual(submitted.baseValue, 237)
+        XCTAssertEqual(submitted.baseValue, 0)
+
+        // When
+        model.value = 700
+        model.submit()
+
+        // Then
+        XCTAssertEqual(submitted.baseValue, 400)
     }
 }
 

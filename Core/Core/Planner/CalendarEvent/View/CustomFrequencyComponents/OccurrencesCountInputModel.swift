@@ -37,8 +37,6 @@ class OccurrencesCountInputModel: ObservableObject {
     }
 
     func submit() {
-        if isValid {
-            submittedCount.wrappedValue = value
-        }
+        submittedCount.wrappedValue = min(max(value, 0), 400)
     }
 }
