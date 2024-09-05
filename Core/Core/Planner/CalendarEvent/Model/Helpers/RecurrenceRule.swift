@@ -230,12 +230,12 @@ struct DayOfWeek: Equatable, RRuleCodable {
             let day = Weekday(rawValue: String(val)) else { return nil }
 
         let num = Int(rruleString: rruleString.replacingOccurrences(of: day.rawValue, with: ""))
-        self.init(day, weekNumber: num ?? 0)
+        self.init(day, weekNumber: num)
     }
 
     var rruleString: String {
         var val = ""
-        if weekNumber != 0 {
+        if let weekNumber {
             val += weekNumber.rruleString
         }
         val += weekday.rawValue
@@ -243,9 +243,9 @@ struct DayOfWeek: Equatable, RRuleCodable {
     }
 
     let weekday: Weekday
-    let weekNumber: Int
+    let weekNumber: Int?
 
-    init(_ weekday: Weekday, weekNumber: Int = 0) {
+    init(_ weekday: Weekday, weekNumber: Int? = nil) {
         self.weekday = weekday
         self.weekNumber = weekNumber
     }

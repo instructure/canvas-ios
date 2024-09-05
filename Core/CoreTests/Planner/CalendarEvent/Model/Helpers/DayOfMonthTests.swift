@@ -40,10 +40,17 @@ final class DayOfMonthTests: XCTestCase {
         XCTAssertEqual(dayOfMonth.id, expectedID)
     }
 
-    func test_id_weekday() {
+    func test_id_weekday_of_month() {
         let dayOfWeek = DayOfWeek(.sunday, weekNumber: 1)
         let dayOfMonth = DayOfMonth.weekday(dayOfWeek)
         let expectedID = "[weekday: \(Weekday.sunday.dateComponent), weekNumber: 1]"
+        XCTAssertEqual(dayOfMonth.id, expectedID)
+    }
+
+    func test_id_weekday() {
+        let dayOfWeek = DayOfWeek(.sunday)
+        let dayOfMonth = DayOfMonth.weekday(dayOfWeek)
+        let expectedID = "[weekday: \(Weekday.sunday.dateComponent)]"
         XCTAssertEqual(dayOfMonth.id, expectedID)
     }
 }

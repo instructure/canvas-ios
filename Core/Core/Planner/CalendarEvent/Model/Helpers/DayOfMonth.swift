@@ -28,8 +28,10 @@ enum DayOfMonth: Equatable, Identifiable {
         case .weekday(let dayOfWeek):
             info = [
                 "weekday: \(dayOfWeek.weekday.dateComponent)",
-                "weekNumber: \(dayOfWeek.weekNumber)"
-            ].joined(separator: ", ")
+                dayOfWeek.weekNumber.flatMap({ "weekNumber: \($0)" })
+            ]
+                .compactMap({ $0 })
+                .joined(separator: ", ")
         case .day(let dayNo):
             info = "day: \(dayNo)"
         }

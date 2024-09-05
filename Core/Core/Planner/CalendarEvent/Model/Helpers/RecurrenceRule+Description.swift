@@ -136,21 +136,21 @@ extension WeekNumber {
 extension DayOfWeek {
 
     var standaloneText: String {
-        if weekNumber != 0 {
+        if let weekNumber {
             return String(format: weekNumber.standaloneFormat, weekday.text)
         }
         return weekday.text
     }
 
     var shortText: String {
-        if weekNumber != 0 {
+        if let weekNumber {
             return String(format: weekNumber.standaloneFormat, weekday.shortText)
         }
         return weekday.shortText
     }
 
     var middleText: String {
-        if weekNumber != 0 {
+        if let weekNumber {
             return String(format: weekNumber.middleFormat, weekday.text)
         }
         return weekday.text

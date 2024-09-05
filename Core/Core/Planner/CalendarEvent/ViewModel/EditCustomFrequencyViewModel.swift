@@ -299,7 +299,7 @@ enum RecurrenceEndMode: Equatable, CaseIterable {
 
     static func mode(of end: RecurrenceEnd) -> RecurrenceEndMode {
         switch end {
-        case .endDate: 
+        case .endDate:
             return .onDate
         case .occurrenceCount:
             return .afterOccurrences
