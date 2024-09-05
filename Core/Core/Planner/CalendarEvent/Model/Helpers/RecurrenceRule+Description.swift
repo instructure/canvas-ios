@@ -210,25 +210,21 @@ private extension Int {
 
     var asWeekDay: String {
         let calendar = Cal.currentCalendar
-        return Cal
-            .currentCalendar
-            .date(bySetting: .weekday, value: self, of: Clock.now)?
+        return calendar.date(bySetting: .weekday, value: self, of: Clock.now)?
             .formatted(format: "EEEE", calendar: calendar)
         ?? calendar.standaloneWeekdaySymbols[self - 1]
     }
 
     var asWeekDayShort: String {
         let calendar = Cal.currentCalendar
-        return calendar
-            .date(bySetting: .weekday, value: self, of: Clock.now)?
+        return calendar.date(bySetting: .weekday, value: self, of: Clock.now)?
             .formatted(format: "EEE", calendar: calendar)
         ?? calendar.shortStandaloneWeekdaySymbols[self - 1]
     }
 
     var asMonth: String {
         let calendar = Cal.currentCalendar
-        return calendar
-            .date(bySetting: .month, value: self, of: Clock.now)?
+        return calendar.date(bySetting: .month, value: self, of: Clock.now)?
             .formatted(format: "MMMM", calendar: calendar)
         ?? calendar.standaloneMonthSymbols[self - 1]
     }
@@ -334,16 +330,8 @@ extension RecurrenceRule {
 // MARK: - Helpers
 
 private extension String {
-
-    static var on: String { String(localized: "on", bundle: .core) }
-
-    static var onSpaced: String {
-        " " + on + " "
-    }
-
-    static var commaSpaced: String {
-        ", "
-    }
-
-    static var space: String { " " }
+    static let on = String(localized: "on", bundle: .core)
+    static let onSpaced = " " + on + " "
+    static let commaSpaced = ", "
+    static let space = " "
 }

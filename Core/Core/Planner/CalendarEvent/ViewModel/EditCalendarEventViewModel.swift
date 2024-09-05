@@ -37,8 +37,8 @@ final class EditCalendarEventViewModel: ObservableObject {
     @Published var isAllDay: Bool = false
     @Published var startTime: Date?
     @Published var endTime: Date?
-    @Published var frequency: FrequencySelection?
-    @Published var calendarName: String?
+    @Published private(set) var frequency: FrequencySelection?
+    @Published private(set) var calendarName: String?
     @Published var location: String = ""
     @Published var address: String = ""
     @Published var details: String = ""

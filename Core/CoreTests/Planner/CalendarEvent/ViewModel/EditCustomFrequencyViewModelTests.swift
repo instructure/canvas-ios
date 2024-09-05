@@ -137,6 +137,58 @@ final class EditCustomFrequencyViewModelTests: CoreTestCase {
         XCTAssertEqual(router.popped, sourceVC)
     }
 
+    func test_selection_texts() throws {
+        // Given
+        let model = makeViewModel(TestConstants.eventDate)
+        model.daysOfTheWeek = []
+
+        var weekdays: [Weekday] = []
+        let weekDaysText = String(localized: "Weekdays", bundle: .core)
+        let allDaysText = String(localized: "Every Day of the Week", bundle: .core)
+
+        // When - 1
+        weekdays = [.sunday]
+        model.daysOfTheWeek = weekdays
+        // Then
+        XCTAssertEqual(model.selectedWeekdaysTexts, weekdays.map({ $0.pluralText }))
+
+        // When - 2
+        weekdays = [.sunday, .monday]
+        model.daysOfTheWeek = weekdays
+        // Then
+        XCTAssertEqual(model.selectedWeekdaysTexts, weekdays.map({ $0.pluralText }))
+
+        // When - 3
+        weekdays = [.sunday, .monday, .friday]
+        model.daysOfTheWeek = weekdays
+        // Then
+        XCTAssertEqual(model.selectedWeekdaysTexts, weekdays.map({ $0.shortText }))
+
+        // When - 4
+        weekdays = [.sunday, .monday, .friday, .saturday]
+        model.daysOfTheWeek = weekdays
+        // Then
+        XCTAssertEqual(model.selectedWeekdaysTexts, weekdays.map({ $0.shortText }))
+
+        // When - Weekdays
+        weekdays = [.monday, .tuesday, .wednesday, .thursday, .friday]
+        model.daysOfTheWeek = weekdays
+        // Then
+        XCTAssertEqual(model.selectedWeekdaysTexts, [weekDaysText])
+
+        // When - Weekdays + 1
+        weekdays = [.monday, .tuesday, .wednesday, .thursday, .friday, .sunday]
+        model.daysOfTheWeek = weekdays
+        // Then
+        XCTAssertEqual(model.selectedWeekdaysTexts, [weekDaysText, Weekday.sunday.shortText])
+
+        // When - All days
+        weekdays = Weekday.allCases
+        model.daysOfTheWeek = weekdays
+        // Then
+        XCTAssertEqual(model.selectedWeekdaysTexts, [allDaysText])
+    }
+
     // MARK: - Helpers
 
     private func makeViewModel(_ eventDate: Date, selected: RecurrenceRule? = nil) -> EditCustomFrequencyViewModel {

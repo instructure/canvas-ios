@@ -55,38 +55,3 @@ extension Weekday {
         }
     }
 }
-
-extension Array where Element == Weekday {
-
-    private var nonWeekdays: Self {
-        filter({ Weekday.weekDays.contains($0) == false })
-    }
-
-    private var allDaysIncluded: Bool {
-        Weekday.allCases.allSatisfy({ contains($0) })
-    }
-
-    var selectionTexts: [String] {
-        var tags = [String]()
-
-        if allDaysIncluded {
-            return [String(localized: "Every Day of the Week", bundle: .core)]
-        }
-
-        if hasWeekdays {
-            tags.append(String(localized: "Weekdays", bundle: .core))
-
-            if let nonWeekDays = nonWeekdays.nilIfEmpty {
-                tags.append(contentsOf: nonWeekDays.map({ $0.shortText }))
-            }
-
-        } else {
-            let long = count < 3
-            tags.append(contentsOf: map { wday in
-                return long ? wday.pluralText : wday.shortText
-            })
-        }
-
-        return tags.nilIfEmpty ?? [String(localized: "Not selected", bundle: .core)]
-    }
-}

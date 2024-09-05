@@ -192,6 +192,66 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     }
 }
 
+// MARK: - Selected Weekdays Text
+
+extension EditCustomFrequencyViewModel {
+
+    /// ### Possible cases:
+    ///
+    /// 1. Less than 3 selected ~> returns **Plural** forms.
+    ///
+    /// Example: `[.sunday, .monday] ~> [Sundays, Mondays]`
+    ///
+    /// 2. 3 or more selected -> returns **Short** forms.
+    ///
+    /// Example: `[.sunday, .monday, .friday] ~> [Sun, Mon, Fri]`
+    ///
+    /// 3. Weekdays (Monday to Friday) selected ~> returns **"Weekdays"**
+    ///
+    /// 4. Weekdays & 1 more selected ~> returns **["Weekdays", "{DAY Short Form}"]**
+    ///
+    /// Example: `[.monday, .., .friday, .saturday] ~>  ["Weekdays", "Sat"]`
+    ///
+    /// 5. All days selected ~> returns **["Every Day of the Week"]**
+    ///
+    var selectedWeekdaysTexts: [String] {
+
+        let weekdays = daysOfTheWeek
+        var tags = [String]()
+
+        if weekdays.allDaysIncluded {
+            return [String(localized: "Every Day of the Week", bundle: .core)]
+        }
+
+        if weekdays.hasWeekdays {
+            tags.append(String(localized: "Weekdays", bundle: .core))
+
+            if let nonWeekDays = weekdays.nonWeekdays.nilIfEmpty {
+                tags.append(contentsOf: nonWeekDays.map({ $0.shortText }))
+            }
+
+        } else {
+            let fewDays = weekdays.count < 3
+            tags.append(contentsOf: weekdays.map { wday in
+                return fewDays ? wday.pluralText : wday.shortText
+            })
+        }
+
+        return tags.nilIfEmpty ?? [String(localized: "Not selected", bundle: .core)]
+    }
+}
+
+private extension Array where Element == Weekday {
+
+    var nonWeekdays: Self {
+        filter({ Weekday.weekDays.contains($0) == false })
+    }
+
+    var allDaysIncluded: Bool {
+        Weekday.allCases.allSatisfy({ contains($0) })
+    }
+}
+
 // MARK: - Helper Types
 
 struct FrequencyInterval: Equatable {

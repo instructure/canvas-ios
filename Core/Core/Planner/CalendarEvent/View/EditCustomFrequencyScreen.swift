@@ -117,7 +117,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                     WeekdaysDropDownPromptLabel()
                 } else {
                     HStack(spacing: 8) {
-                        ForEach(viewModel.daysOfTheWeek.selectionTexts, id: \.self) { day in
+                        ForEach(viewModel.selectedWeekdaysTexts, id: \.self) { day in
                             WeekdaysDropDownSelectedLabel(text: day)
                         }
                     }
