@@ -23,8 +23,6 @@ import UIKit
 
 public extension UIImage {
     static var addLine: UIImage { UIImage(named: "addLine", in: .core, compatibleWith: nil)! }
-
-    
     static var addSolid: UIImage { UIImage(named: "addSolid", in: .core, compatibleWith: nil)! }
     static var addressBookLine: UIImage { UIImage(named: "addressBookLine", in: .core, compatibleWith: nil)! }
     static var addressBookSolid: UIImage { UIImage(named: "addressBookSolid", in: .core, compatibleWith: nil)! }
@@ -214,7 +212,6 @@ public extension UIImage {
     static var warningBorderlessSolid: UIImage { UIImage(named: "warningBorderlessSolid", in: .core, compatibleWith: nil)! }
     static var xLine: UIImage { UIImage(named: "xLine", in: .core, compatibleWith: nil)! }
     static var xSolid: UIImage { UIImage(named: "xSolid", in: .core, compatibleWith: nil)! }
-
     static var addAudioLine: UIImage { UIImage(named: "addAudioLine", in: .core, compatibleWith: nil)! }
     static var addCameraLine: UIImage { UIImage(named: "addCameraLine", in: .core, compatibleWith: nil)! }
     static var addDocumentLine: UIImage { UIImage(named: "addDocumentLine", in: .core, compatibleWith: nil)! }
