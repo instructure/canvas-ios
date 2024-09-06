@@ -399,14 +399,21 @@ public struct GradeListView: View, ScreenViewTrackable {
         userID: String
     ) -> some View {
         List {
-            ForEach(assignmentSections) { section in
-                Section(header: listSectionView(title: section.title)) {
-                    ForEach(section.assignments) { assignment in
+            ForEach(assignmentSections, id: \.id) { section in
+                AssignmentSection {
+                    listSectionView(title: section.title)
+                } content: {
+                    ForEach(section.assignments, id: \.self) { assignment in
                         listRowView(
                             assignment: assignment,
                             userID: userID,
                             courseColor: courseColor
                         )
+                        .listRowBackground(Color.clear)
+                        if assignment.id != section.assignments.last?.id {
+                            InstUI.Divider()
+                                .accessibilityHidden(true)
+                        }
                     }
                 }
                 .listSectionSeparator(.hidden)
@@ -444,8 +451,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 isScoreEditorPresented.toggle()
             }
         }
-        .listRowInsets(EdgeInsets())
-        .removeListRowSeparatorLeadingInset()
+        .listRowSeparator(.hidden)
         .swipeActions(edge: .trailing) { revertWhatIfScoreSwipeButton() }
         .accessibilityAction(named: Text("Edit What-if score", bundle: .core)) {
             isScoreEditorPresented.toggle()
