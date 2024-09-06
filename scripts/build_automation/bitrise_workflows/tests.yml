@@ -245,13 +245,5 @@ workflows:
             }
 
             report_file "Swift lint" tmp/swift-lint-results.txt
-            report_file "Yarn lint" tmp/yarn-lint-results.txt
-            sed -n '/Summary of all failing tests/,$ p' < tmp/yarn-test-results.txt > tmp/yarn-test-failures.txt || true
-            report_file "JS tests" tmp/yarn-test-failures.txt
 
-            mkdir -p scripts/coverage/react-native
-
-            tar -cJf $BITRISE_DEPLOY_DIR/results.tar.xz \
-                scripts/coverage/react-native \
-                tmp/report_to_danger_subbuild.md
     - deploy-to-bitrise-io: {}
