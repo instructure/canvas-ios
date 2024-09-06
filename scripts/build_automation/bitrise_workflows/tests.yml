@@ -215,6 +215,7 @@ workflows:
             mkdir -p tmp
             if ! ./scripts/runSwiftLint.sh > tmp/swift-lint-results-raw.txt 2>&1; then
                 xcbeautify < tmp/swift-lint-results-raw.txt > tmp/swift-lint-results.txt
+                ./scripts/run-swift suggest-lint-fix $BITRISE_PULL_REQUEST
                 exit 1
             fi
     - *yarn-install-root
