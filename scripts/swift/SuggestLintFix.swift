@@ -43,7 +43,6 @@ struct SuggestLintFix: ParsableCommand {
         }
 
         _ = try cmd("./scripts/runSwiftLint.sh", "fix").combineError.runString()
-        try inDir("rn/Teacher") { try cmd("yarn", "lint:fix").run() }
 
         // don't read gitconfig, it might mess with diff format
         let gitEnv = ["GIT_CONFIG_NOGLOBAL": "1", "HOME": "", "XDG_CONFIG_HOME": ""]
