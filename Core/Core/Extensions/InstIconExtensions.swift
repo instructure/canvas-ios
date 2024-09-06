@@ -23,6 +23,8 @@ import UIKit
 
 public extension UIImage {
     static var addLine: UIImage { UIImage(named: "addLine", in: .core, compatibleWith: nil)! }
+
+    
     static var addSolid: UIImage { UIImage(named: "addSolid", in: .core, compatibleWith: nil)! }
     static var addressBookLine: UIImage { UIImage(named: "addressBookLine", in: .core, compatibleWith: nil)! }
     static var addressBookSolid: UIImage { UIImage(named: "addressBookSolid", in: .core, compatibleWith: nil)! }
