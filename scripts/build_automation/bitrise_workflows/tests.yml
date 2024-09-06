@@ -246,7 +246,7 @@ workflows:
 
             report_file "Swift lint" tmp/swift-lint-results.txt
 
-            mkdir scripts/coverage
+            mkdir -p scripts/coverage
             
             tar -cJf $BITRISE_DEPLOY_DIR/results.tar.xz \
                 scripts/coverage \
