@@ -117,7 +117,7 @@ struct ExportCoverage: ParsableCommand {
                     let (line, hits) = components.tup2!
                     guard hits != "*" else { continue }
                     var fragments = [String: CoverageLine.Fragment]()
-                    if components[safe: 2] == "[" && !queue.isEmpty {
+                    if components[safe: 2] == "[" {
                         while let fragment = CoverageLine.Fragment(fromArchive: queue.removeLast()) {
                             fragments["\(fragment.start)-\(fragment.length)"] = fragment
                         }
