@@ -246,4 +246,10 @@ workflows:
 
             report_file "Swift lint" tmp/swift-lint-results.txt
 
+            mkdir scripts/coverage
+            
+            tar -cJf $BITRISE_DEPLOY_DIR/results.tar.xz \
+                scripts/coverage \
+                tmp/report_to_danger_subbuild.md
+
     - deploy-to-bitrise-io: {}
