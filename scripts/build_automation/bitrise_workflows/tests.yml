@@ -70,11 +70,6 @@ workflows:
     - &yarn-install-root
       yarn:
         title: yarn install root dependencies
-    - &yarn-install
-      yarn:
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        title: rn yarn install
     - &run-make-sync
       script:
         title: Run make-sync
@@ -224,19 +219,6 @@ workflows:
                 exit 1
             fi
     - *yarn-install-root
-    - *yarn-install
-    - &yarn-lint
-      yarn:
-        title: rn yarn lint
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: lint:ci
-    - &yarn-test
-      yarn:
-        title: rn yarn test
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: test:ci
     - script:
         title: Save results
         is_always_run: true
