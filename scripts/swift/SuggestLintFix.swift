@@ -57,8 +57,7 @@ struct SuggestLintFix: ParsableCommand {
         let commit = try cmd("git", "rev-parse", "HEAD").runString()
 
         var threads: [Github.DraftPullRequestReviewThread] = []
-        if !diffs.isEmpty {
-          for diff in diffs {
+        for diff in diffs {
             for hunk in diff.hunks {
                 print(diff.previousFilePath, hunk.oldLineStart, hunk.oldLineSpan)
                 var lines = [Int: String]()
@@ -73,9 +72,8 @@ struct SuggestLintFix: ParsableCommand {
                     default: fatalError()
                     }
                 }
-                if !lines.isEmpty {
-                    for (line, suggestion) in lines.sorted(by: { $0.key < $1.key }) {
-                      threads.append(Github.DraftPullRequestReviewThread(
+                for (line, suggestion) in lines.sorted(by: { $0.key < $1.key }) {
+                    threads.append(Github.DraftPullRequestReviewThread(
                                      body: """
                                        ```suggestion
                                        \(suggestion)```
@@ -84,10 +82,9 @@ struct SuggestLintFix: ParsableCommand {
                                      line: line
                                    ))
                 }
-                }
             }
-          }
         }
+
         let prID = try Github.findPullRequestId(prNumber: prNumber)
 
         let review = Github.AddPullRequestReviewInput(
