@@ -80,8 +80,8 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
                                 }
                                     .frame(maxWidth: dims.listMaxSize.width,
                                            maxHeight: dims.listMaxSize.height)
-                                    .clipShape(RoundedRectangle(cornerRadius: 4))
-                                    .shadow(radius: 4)
+                                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                                    .shadow(color: .shadow(opacity: 0.16), radius: 100, y: 10)
 
                                 if layoutDirection == .rightToLeft {
                                     Spacer().frame(width: dims.leftSpacerWidth, height: 5)
@@ -93,8 +93,8 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
                         }
                     }
                     .transition(
-                        .opacity.animation(
-                            .spring(duration: 0.3)
+                        .opacity.combined(with: .scale(scale: 0.80)).animation(
+                            .spring(duration: 0.25)
                         )
                     )
                 }
@@ -117,5 +117,11 @@ extension View {
         state: Binding<DropDownButtonState>,
         @ViewBuilder content: @escaping () -> C) -> some View {
         modifier(DropDownDetailsViewModifier(state: state, listContent: content))
+    }
+}
+
+extension Color {
+    static func shadow(opacity: CGFloat = 0.33) -> Color {
+        Color(.sRGBLinear, white: 0, opacity: opacity)
     }
 }

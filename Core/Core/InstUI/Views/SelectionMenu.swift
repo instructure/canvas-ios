@@ -60,11 +60,12 @@ struct SelectionMenu<Value: Equatable, ID: Hashable>: View {
             .paddingStyle(set: .selectionValueLabel)
             .contentShape(Rectangle())
         }
-        .tint(selection == nil ? Color.textDark : Color.textDarkest)
+        .tint(Color.textDark)
     }
 
     private var title: String {
-        return selection?[keyPath: textKey] ?? String(localized: "Not selected", bundle: .core)
+        return selection?[keyPath: textKey] 
+            ?? String(localized: "Not selected", bundle: .core)
     }
 }
 

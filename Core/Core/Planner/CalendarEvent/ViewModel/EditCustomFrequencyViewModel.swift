@@ -237,7 +237,7 @@ extension EditCustomFrequencyViewModel {
             })
         }
 
-        return tags.nilIfEmpty ?? [String(localized: "Not selected", bundle: .core)]
+        return tags.nilIfEmpty ?? []
     }
 }
 

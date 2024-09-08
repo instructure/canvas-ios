@@ -22,7 +22,7 @@ struct WeekdaysDropDownPromptLabel: View {
 
     var body: some View {
         HStack(spacing: 7) {
-            Text("Not selected", bundle: .core)
+            Text("Choose days", bundle: .core)
                 .textStyle(.cellValue)
             InstUI.Icons.DropDown()
                 .foregroundStyle(Color.textDark)

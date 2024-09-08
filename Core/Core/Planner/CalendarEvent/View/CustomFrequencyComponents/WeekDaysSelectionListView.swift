@@ -35,8 +35,7 @@ struct WeekDaysSelectionListView: View {
                         label: {
                             HStack {
                                 Text(weekDay.text)
-                                    .font(.regular16)
-                                    .foregroundStyle(Color.textDarkest)
+                                    .textStyle(.dropDownOption)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 Spacer()
                                 InstUI.Icons.Checkmark()
@@ -44,14 +43,17 @@ struct WeekDaysSelectionListView: View {
                                     .layoutPriority(1)
                                     .hidden(selection.contains(weekDay) == false)
                             }
-                            .paddingStyle(.all, .dropDownOption)
+                            .paddingStyle(set: .standardCell)
                             .contentShape(Rectangle())
                         })
                     .buttonStyle(.plain)
-                    InstUI.Divider()
+
+                    if Weekday.allCases.last != weekDay {
+                        InstUI.Divider()
+                    }
                 }
             }
-            .frame(minWidth: 200)
+            .frame(minWidth: 260)
             .fixedSize()
             .preferredAsDropDownDetails()
         }

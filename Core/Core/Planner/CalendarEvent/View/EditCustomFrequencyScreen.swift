@@ -92,7 +92,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
 
     private var monthDaysCell: some View {
         return InstUI.SelectionMenuCell(
-            label: Text("Repeats on", bundle: .core),
+            label: Text("On", bundle: .core),
             options: viewModel.dayOfMonthOptions(for: viewModel.proposedDate),
             id: \.id,
             text: \.title,
@@ -102,7 +102,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
 
     private var yearDayCell: some View {
         return InstUI.LabelValueCell(
-            label: Text("Repeats on", bundle: .core),
+            label: Text("On", bundle: .core),
             value: viewModel.titleForProposedDayOfYear,
             equalWidth: false
         )
@@ -110,7 +110,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
 
     private var weekDaysCell: some View {
         InstUI.DropDownCell(
-            label: Text("Repeats on", bundle: .core),
+            label: Text("On", bundle: .core),
             state: $weekDayDropDownState) {
 
                 if viewModel.daysOfTheWeek.isEmpty {
@@ -127,7 +127,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
 
     private var endModeCell: some View {
         InstUI.SelectionMenuCell(
-            label: Text("End Repeat", bundle: .core),
+            label: Text("Ends", bundle: .core),
             options: EndMode.allCases,
             id: \.self,
             text: \.title,

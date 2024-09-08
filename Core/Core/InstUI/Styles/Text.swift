@@ -29,6 +29,7 @@ public extension InstUI.Styles {
         case cellValue
         case selectedValue
         case errorMessage
+        case dropDownOption
     }
 }
 
@@ -70,6 +71,10 @@ public extension View {
             self
                 .font(.regular16, lineHeight: .fontDefault)
                 .foregroundStyle(Color.textDanger)
+        case .dropDownOption:
+            self
+                .font(.regular16, lineHeight: .fit)
+                .foregroundStyle(Color.textDarkest)
         }
     }
 }
