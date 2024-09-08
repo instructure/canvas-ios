@@ -27,6 +27,7 @@ public extension InstUI.Styles {
         case infoDescription
         case cellLabel
         case cellValue
+        case selectedValue
         case errorMessage
     }
 }
@@ -61,6 +62,10 @@ public extension View {
             self
                 .font(.regular14, lineHeight: .fontDefault)
                 .foregroundStyle(Color.textDark)
+        case .selectedValue:
+            self
+                .font(.regular14, lineHeight: .fontDefault)
+                .foregroundStyle(Color.textDarkest)
         case .errorMessage:
             self
                 .font(.regular16, lineHeight: .fontDefault)

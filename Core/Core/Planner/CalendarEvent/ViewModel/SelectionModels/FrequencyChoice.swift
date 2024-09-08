@@ -23,7 +23,7 @@ struct FrequencyChoice: Identifiable {
     static func allCases(given date: Date) -> [FrequencyChoice] {
         return FrequencyPreset
             .choicesPresets
-            .map({ FrequencyChoice(date: date, preset: $0) })
+            .map { FrequencyChoice(date: date, preset: $0) }
     }
 
     let id = Foundation.UUID()

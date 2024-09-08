@@ -23,6 +23,11 @@ private struct OccurrencesCountInputAlertViewModifier: ViewModifier {
     @Binding var isPresented: Bool
     @StateObject var inputModel: OccurrencesCountInputModel
 
+    /// This is to walk-around a SwiftUI limitation of actions in alerts,
+    /// by which actions when tapped won't trigger their closures if they appeared
+    /// with disabled state.
+    @State private var isDoneDisabled: Bool = false
+
     init(isPresented: Binding<Bool>, count: Binding<Int>) {
         self._isPresented = isPresented
         self._inputModel = StateObject(
@@ -35,10 +40,8 @@ private struct OccurrencesCountInputAlertViewModifier: ViewModifier {
             .alert(String(localized: "Number of Occurrences", bundle: .core),
                    isPresented: $isPresented) {
 
-                TextField("Occurrences",
-                          value: $inputModel.value,
-                          formatter: formatter)
-                .keyboardType(.asciiCapableNumberPad)
+                TextField("Occurrences", text: $inputModel.text)
+                    .keyboardType(.asciiCapableNumberPad)
 
                 Button(role: .cancel, action: {
                     isPresented = false
@@ -52,21 +55,22 @@ private struct OccurrencesCountInputAlertViewModifier: ViewModifier {
                 }, label: {
                     Text("Done", bundle: .core)
                 })
-                .disabled(inputModel.isValid == false)
+                .disabled(isDoneDisabled)
 
             } message: {
                 Text("How many times would you like to repeat? (Max 400)", bundle: .core)
             }
-            .onChange(of: isPresented) { _ in
+            .onChange(of: isPresented) { presented in
                 inputModel.update()
-            }
-    }
 
-    private var formatter: Formatter {
-        let formatter = NumberFormatter()
-        formatter.zeroSymbol = ""
-        formatter.allowsFloats = false
-        return formatter
+                if !presented {
+                    isDoneDisabled = false
+                }
+            }
+            .onChange(of: inputModel.text) { _ in
+                guard isPresented else { return }
+                isDoneDisabled = inputModel.isValid == false
+            }
     }
 }
 

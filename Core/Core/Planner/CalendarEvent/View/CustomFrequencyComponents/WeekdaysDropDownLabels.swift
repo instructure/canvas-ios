@@ -23,8 +23,7 @@ struct WeekdaysDropDownPromptLabel: View {
     var body: some View {
         HStack(spacing: 7) {
             Text("Not selected", bundle: .core)
-                .font(.regular14)
-                .foregroundStyle(Color.textDark)
+                .textStyle(.cellValue)
             InstUI.Icons.DropDown()
                 .foregroundStyle(Color.textDark)
         }
@@ -36,14 +35,11 @@ struct WeekdaysDropDownPromptLabel: View {
 struct WeekdaysDropDownSelectedLabel: View {
 
     let text: String
-    var color: Color = .textDarkest
-
     var body: some View {
         Text(text)
             .lineLimit(1)
             .minimumScaleFactor(0.7)
-            .font(.regular14)
-            .foregroundStyle(color)
+            .textStyle(.selectedValue)
             .paddingStyle(set: .selectionValueLabel)
             .background(Color.backgroundLight)
             .clipShape(RoundedRectangle(cornerRadius: 4))

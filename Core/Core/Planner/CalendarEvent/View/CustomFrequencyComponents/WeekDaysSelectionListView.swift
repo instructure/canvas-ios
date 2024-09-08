@@ -20,6 +20,8 @@ import SwiftUI
 
 struct WeekDaysSelectionListView: View {
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     @Binding var selection: [Weekday]
 
     var body: some View {
@@ -28,7 +30,7 @@ struct WeekDaysSelectionListView: View {
                 ForEach(Weekday.allCases, id: \.rawValue) { weekDay in
                     Button(
                         action: {
-                            selection.toggleInsert(with: weekDay)
+                            selection.appendOrRemove(weekDay)
                         },
                         label: {
                             HStack {
@@ -40,7 +42,7 @@ struct WeekDaysSelectionListView: View {
                                 InstUI.Icons.Checkmark()
                                     .foregroundStyle(Color.textDarkest)
                                     .layoutPriority(1)
-                                    .opacity(selection.contains(weekDay) ? 1 : 0)
+                                    .hidden(selection.contains(weekDay) == false)
                             }
                             .paddingStyle(.all, .dropDownOption)
                             .contentShape(Rectangle())

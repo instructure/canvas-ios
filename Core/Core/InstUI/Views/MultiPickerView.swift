@@ -41,31 +41,33 @@ extension InstUI {
     }
 
     public struct MultiPickerView<Value1, Value2>: UIViewRepresentable where Value1: Equatable, Value2: Equatable {
-        let content1: [Value1]
-        let titleKey1: KeyPath<Value1, String>
-        var title1GivenSelected2: ((Value1, Value2) -> String)?
+        private let content1: [Value1]
+        private let titleKey1: KeyPath<Value1, String>
+        private var title1GivenSelected2: ((Value1, Value2) -> String)?
         @Binding var selection1: Value1
 
-        let content2: [Value2]
-        let titleKey2: KeyPath<Value2, String>
-        var title2GivenSelected1: ((Value2, Value1) -> String)?
+        private let content2: [Value2]
+        private let titleKey2: KeyPath<Value2, String>
+        private var title2GivenSelected1: ((Value2, Value1) -> String)?
         @Binding var selection2: Value2
 
-        let widths: [CGFloat]
-        let alignments: [PickerTextAlignment]
+        private let widths: [CGFloat]
+        private let alignments: [PickerTextAlignment]
 
-        public init(content1: [Value1],
-                    titleKey1: KeyPath<Value1, String>,
-                    title1GivenSelected2: ((Value1, Value2) -> String)? = nil,
-                    selection1: Binding<Value1>,
+        public init(
+            content1: [Value1],
+            titleKey1: KeyPath<Value1, String>,
+            title1GivenSelected2: ((Value1, Value2) -> String)? = nil,
+            selection1: Binding<Value1>,
 
-                    content2: [Value2],
-                    titleKey2: KeyPath<Value2, String>,
-                    title2GivenSelected1: ((Value2, Value1) -> String)? = nil,
-                    selection2: Binding<Value2>,
+            content2: [Value2],
+            titleKey2: KeyPath<Value2, String>,
+            title2GivenSelected1: ((Value2, Value1) -> String)? = nil,
+            selection2: Binding<Value2>,
 
-                    widths: [CGFloat],
-                    alignments: [PickerTextAlignment]) {
+            widths: [CGFloat],
+            alignments: [PickerTextAlignment]
+        ) {
 
             self.content1 = content1
             self.titleKey1 = titleKey1

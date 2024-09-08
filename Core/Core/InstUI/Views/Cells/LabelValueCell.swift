@@ -26,7 +26,7 @@ extension InstUI {
         private let label: Label
         private let value: String?
         private let equalWidth: Bool
-        private let action: () -> Void
+        private let action: (() -> Void)?
 
         /// Initializes a Label & View cell.
         ///
@@ -36,7 +36,12 @@ extension InstUI {
         ///   - equalWidth: If `true`, label & value views are given equal widths with (leading, trailing) alignment respectively. Otherwise both of them are given their ideal sizes with a `Spacer()` in between to fill in the container view.
         ///   - action: A closure to call when cell is tapped.
         ///   
-        public init(label: Label, value: String?, equalWidth: Bool = true, action: @escaping () -> Void) {
+        public init(
+            label: Label,
+            value: String?,
+            equalWidth: Bool = true,
+            action: (() -> Void)? = nil
+        ) {
             self.label = label
             self.value = value
             self.equalWidth = equalWidth
@@ -45,39 +50,29 @@ extension InstUI {
 
         public var body: some View {
             VStack(spacing: 0) {
-                Button(action: action) {
+                Button(action: { action?() }) {
                     HStack(spacing: 0) {
+                        label
+                            .textStyle(.cellLabel)
 
-                        if equalWidth {
-                            labelView
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .paddingStyle(.trailing, .standard)
-                            valueView.frame(maxWidth: .infinity, alignment: .trailing)
-                        } else {
-                            labelView
-                            Spacer()
-                            valueView
+                        Spacer()
+
+                        Text(value ?? "")
+                            .textStyle(.cellValue)
+                            .multilineTextAlignment(.trailing)
+
+                        if action != nil {
+                            InstUI.DisclosureIndicator()
+                                .padding(.leading, InstUI.DisclosureIndicator.leadingPadding)
                         }
-
-                        InstUI.DisclosureIndicator()
-                            .padding(.leading, InstUI.DisclosureIndicator.leadingPadding)
                     }
                     .paddingStyle(set: .standardCell)
                     .contentShape(Rectangle())
                 }
+                .disabled(action == nil)
 
                 InstUI.Divider()
             }
-        }
-
-        private var labelView: some View {
-            label.textStyle(.cellLabel)
-        }
-
-        private var valueView: some View {
-            Text(value ?? "")
-                .textStyle(.cellValue)
-                .multilineTextAlignment(.trailing)
         }
     }
 }

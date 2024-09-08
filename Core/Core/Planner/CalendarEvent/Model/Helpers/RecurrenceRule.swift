@@ -299,9 +299,6 @@ extension RecurrenceRule {
             let interval = RRK.Interval.value(in: rules)
         else { return nil }
 
-        let dateEnd = RRK.EndDate.value(in: rules).flatMap({ RecurrenceEnd.endDate($0) })
-        let countEnd = RRK.OccurrenceCount.value(in: rules).flatMap({ RecurrenceEnd.occurrenceCount($0) })
-
         self.frequency = frequency
         self.interval = interval
 
@@ -320,7 +317,8 @@ extension RecurrenceRule {
         }
 
         self.setPositions = RRK.SetPositions.value(in: rules)
-        self.recurrenceEnd = dateEnd ?? countEnd
+        self.recurrenceEnd = RRK.EndDate.value(in: rules).flatMap { .endDate($0) }
+            ?? RRK.OccurrenceCount.value(in: rules).flatMap { .occurrenceCount($0) }
     }
 
     var rruleDescription: String {
@@ -418,7 +416,7 @@ private extension String {
     }
 
     var asKeyValuePair: (key: String, value: String)? {
-        let pair = split(separator: "=").map({ String($0).trimmingCharacters(in: .whitespaces) })
+        let pair = split(separator: "=").map { String($0).trimmingCharacters(in: .whitespaces) }
 
         if pair.count >= 2 {
             return (pair[0], pair[1])

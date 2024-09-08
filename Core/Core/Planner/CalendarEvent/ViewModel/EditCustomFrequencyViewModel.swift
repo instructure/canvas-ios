@@ -100,7 +100,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         self.occurrenceCount = rule?.recurrenceEnd?.asOccurrenceCount ?? 0
 
         if case .weekly = frequency {
-            self.daysOfTheWeek = rule?.daysOfTheWeek?.map({ $0.weekday }) ?? []
+            self.daysOfTheWeek = rule?.daysOfTheWeek?.map { $0.weekday } ?? []
         }
 
         if case .monthly = frequency {
@@ -227,7 +227,7 @@ extension EditCustomFrequencyViewModel {
             tags.append(String(localized: "Weekdays", bundle: .core))
 
             if let nonWeekDays = weekdays.nonWeekdays.nilIfEmpty {
-                tags.append(contentsOf: nonWeekDays.map({ $0.shortText }))
+                tags.append(contentsOf: nonWeekDays.map { $0.shortText })
             }
 
         } else {
@@ -244,18 +244,18 @@ extension EditCustomFrequencyViewModel {
 private extension Array where Element == Weekday {
 
     var nonWeekdays: Self {
-        filter({ Weekday.weekDays.contains($0) == false })
+        filter { Weekday.weekDays.contains($0) == false }
     }
 
     var allDaysIncluded: Bool {
-        Weekday.allCases.allSatisfy({ contains($0) })
+        Weekday.allCases.allSatisfy { contains($0) }
     }
 }
 
 // MARK: - Helper Types
 
 struct FrequencyInterval: Equatable {
-    static var options: [FrequencyInterval] { (1 ... 400).map({ FrequencyInterval(value: $0) }) }
+    static var options: [FrequencyInterval] { (1 ... 400).map { FrequencyInterval(value: $0) } }
 
     let value: Int
     var title: String { value.formatted(.number) }

@@ -68,7 +68,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                 endModeCell
 
                 if let endMode = viewModel.endMode {
-                    cellForEndMode(endMode)
+                    endModeDetailsCell(endMode)
                 }
             }
         }
@@ -104,8 +104,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
         return InstUI.LabelValueCell(
             label: Text("Repeats on", bundle: .core),
             value: viewModel.titleForProposedDayOfYear,
-            equalWidth: false,
-            action: {}
+            equalWidth: false
         )
     }
 
@@ -137,7 +136,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private func cellForEndMode(_ endMode: EndMode) -> some View {
+    private func endModeDetailsCell(_ endMode: EndMode) -> some View {
         switch endMode {
         case .onDate:
             endDateCell

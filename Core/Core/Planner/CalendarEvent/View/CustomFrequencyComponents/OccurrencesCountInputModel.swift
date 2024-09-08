@@ -17,10 +17,11 @@
 //
 
 import SwiftUI
+import Combine
 
 class OccurrencesCountInputModel: ObservableObject {
 
-    @Published var value: Int = 0
+    @Published var text: String = ""
 
     var submittedCount: Binding<Int>
 
@@ -29,14 +30,38 @@ class OccurrencesCountInputModel: ObservableObject {
     }
 
     var isValid: Bool {
+        guard let value = text.integerValue else { return false }
         return (0 ... 400).contains(value)
     }
 
     func update() {
-        value = submittedCount.wrappedValue
+        text = submittedCount.inputFormatted ?? ""
     }
 
     func submit() {
+        guard let value = text.integerValue else { return }
         submittedCount.wrappedValue = min(max(value, 0), 400)
+    }
+}
+
+// MARK: - Number Evaluation & Formatting
+
+private extension String {
+
+    static let inputFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.zeroSymbol = ""
+        formatter.allowsFloats = false
+        return formatter
+    }()
+
+    var integerValue: Int? {
+        Self.inputFormatter.number(from: self)?.intValue
+    }
+}
+
+private extension Binding where Value == Int {
+    var inputFormatted: String? {
+        return String.inputFormatter.string(from: NSNumber(value: wrappedValue))
     }
 }

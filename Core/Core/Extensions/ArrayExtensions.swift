@@ -49,11 +49,11 @@ public extension Array where Element: Equatable {
 
     /// Appends element if not included in the array, otherwise it will remove
     /// all occurrences of it.
-    mutating func toggleInsert(with value: Element) {
-        if contains(value) {
-            removeAll(where: { $0 == value })
+    mutating func appendOrRemove(_ element: Element) {
+        if contains(element) {
+            removeAll(where: { $0 == element })
         } else {
-            append(value)
+            append(element)
         }
     }
 }

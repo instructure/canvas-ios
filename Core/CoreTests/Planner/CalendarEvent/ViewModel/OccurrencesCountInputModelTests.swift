@@ -28,13 +28,13 @@ final class OccurrencesCountInputModelTests: XCTestCase {
         let model = OccurrencesCountInputModel(submitted: submitted.binding)
 
         // Then
-        XCTAssertEqual(model.value, 0)
+        XCTAssertEqual(model.text, "")
 
         // When
         model.update()
 
         // Then
-        XCTAssertEqual(model.value, 34)
+        XCTAssertEqual(model.text, "34")
     }
 
     func test_validation() {
@@ -43,19 +43,25 @@ final class OccurrencesCountInputModelTests: XCTestCase {
         let model = OccurrencesCountInputModel(submitted: submitted.binding)
 
         // When
-        model.value = 300
+        model.text = "300"
 
         // Then
         XCTAssertEqual(model.isValid, true)
 
         // When
-        model.value = 500
+        model.text = "500"
 
         // Then
         XCTAssertEqual(model.isValid, false)
 
         // When
-        model.value = -2
+        model.text = "-2"
+
+        // Then
+        XCTAssertEqual(model.isValid, false)
+
+        // When
+        model.text = "js324fkjn"
 
         // Then
         XCTAssertEqual(model.isValid, false)
@@ -67,7 +73,7 @@ final class OccurrencesCountInputModelTests: XCTestCase {
         let model = OccurrencesCountInputModel(submitted: submitted.binding)
 
         // When
-        model.value = 237
+        model.text = "237"
 
         // Then
         XCTAssertEqual(model.submittedCount.wrappedValue, 0)
@@ -80,14 +86,14 @@ final class OccurrencesCountInputModelTests: XCTestCase {
         XCTAssertEqual(submitted.baseValue, 237)
 
         // When
-        model.value = -100
+        model.text = "-100"
         model.submit()
 
         // Then
         XCTAssertEqual(submitted.baseValue, 0)
 
         // When
-        model.value = 700
+        model.text = "700"
         model.submit()
 
         // Then

@@ -71,7 +71,7 @@ enum FrequencyPreset: Equatable {
             return RecurrenceRule(
                 recurrenceWith: .weekly,
                 interval: 1,
-                daysOfTheWeek: Weekday.weekDays.map({ RecurrenceRule.DayOfWeek($0) }),
+                daysOfTheWeek: Weekday.weekDays.map { RecurrenceRule.DayOfWeek($0) },
                 end: .occurrenceCount(260)
             )
         case .custom(let rule), .selected(_, let rule):
