@@ -83,7 +83,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                 }
             )
         )
-        .dropDownDetails(state: $weekDayDropDownState) {
+        .dropDownDetailsContainer(state: $weekDayDropDownState) {
             WeekDaysSelectionListView(selection: $viewModel.daysOfTheWeek)
         }
         .occurrencesCountInputDialog(isPresented: $isOccurrencesDialogPresented,
@@ -94,18 +94,28 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
         return InstUI.SelectionMenuCell(
             label: Text("On", bundle: .core),
             options: viewModel.dayOfMonthOptions(for: viewModel.proposedDate),
-            id: \.id,
             text: \.title,
+            defaultValue: viewModel.proposedDayOfMonth,
             selection: $viewModel.dayOfMonth
         )
     }
 
+    @ViewBuilder
     private var yearDayCell: some View {
-        return InstUI.LabelValueCell(
-            label: Text("On", bundle: .core),
-            value: viewModel.titleForProposedDayOfYear,
-            equalWidth: false
-        )
+        if let options = viewModel.dayOfYearOptions {
+            InstUI.SelectionMenuCell(
+                label: Text("On", bundle: .core),
+                options: options,
+                text: \.title,
+                defaultValue: viewModel.proposedDayOfYear,
+                selection: $viewModel.dayOfYear
+            )
+        } else {
+            InstUI.LabelValueCell(
+                label: Text("On", bundle: .core),
+                value: viewModel.dayOfYear.title
+            )
+        }
     }
 
     private var weekDaysCell: some View {
@@ -159,10 +169,10 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     private var endOccurrencesCountCell: some View {
         InstUI.LabelValueCell(
             label: Text("Number of Occurrences", bundle: .core),
-            value: viewModel.occurrenceCount.formatted(.number),
-            equalWidth: false) {
-                isOccurrencesDialogPresented = true
-            }
+            value: viewModel.occurrenceCount.formatted(.number)
+        ) {
+            isOccurrencesDialogPresented = true
+        }
     }
 }
 

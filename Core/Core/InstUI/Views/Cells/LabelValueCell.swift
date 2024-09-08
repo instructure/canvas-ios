@@ -25,7 +25,6 @@ extension InstUI {
 
         private let label: Label
         private let value: String?
-        private let equalWidth: Bool
         private let action: (() -> Void)?
 
         /// Initializes a Label & View cell.
@@ -33,18 +32,15 @@ extension InstUI {
         /// - Parameters:
         ///   - label: A view to show on the leading edge of the cell. Indicating the label of a value.
         ///   - value: A text value to show on the trailing edge of the cell.
-        ///   - equalWidth: If `true`, label & value views are given equal widths with (leading, trailing) alignment respectively. Otherwise both of them are given their ideal sizes with a `Spacer()` in between to fill in the container view.
         ///   - action: A closure to call when cell is tapped.
         ///   
         public init(
             label: Label,
             value: String?,
-            equalWidth: Bool = true,
             action: (() -> Void)? = nil
         ) {
             self.label = label
             self.value = value
-            self.equalWidth = equalWidth
             self.action = action
         }
 

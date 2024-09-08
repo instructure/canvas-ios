@@ -49,16 +49,16 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     @Published var daysOfTheWeek: [Weekday] = []
 
     /// Specific to Monthly
-    @Published var dayOfMonth: DayOfMonth?
+    let proposedDayOfMonth: DayOfMonth
+    @Published var dayOfMonth: DayOfMonth
 
     // MARK: - Outputs
 
     /// Specific to Yearly
-    @Published var dayOfYear: DayOfYear?
+    let proposedDayOfYear: DayOfYear
 
-    var titleForProposedDayOfYear: String {
-        return proposedDate.formatted(format: "MMMM d")
-    }
+    @Published var dayOfYear: DayOfYear
+    @Published private(set) var dayOfYearOptions: [DayOfYear]?
 
     var isSaveButtonEnabled: Bool {
         guard state == .data && end != nil else { return false }
@@ -67,13 +67,6 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             return daysOfTheWeek.isEmpty == false
         }
 
-        if case .monthly = frequency {
-            return dayOfMonth != nil
-        }
-
-        if case .yearly = frequency {
-            return dayOfYear != nil
-        }
         return true
     }
 
@@ -99,10 +92,13 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         self.endDate = rule?.recurrenceEnd?.asEndDate ?? Clock.now
         self.occurrenceCount = rule?.recurrenceEnd?.asOccurrenceCount ?? 0
 
+        self.daysOfTheWeek = [date.weekday]
         if case .weekly = frequency {
             self.daysOfTheWeek = rule?.daysOfTheWeek?.map { $0.weekday } ?? []
         }
 
+        self.proposedDayOfMonth = DayOfMonth.day(date.monthDay)
+        self.dayOfMonth = proposedDayOfMonth
         if case .monthly = frequency {
             if let weekDay = rule?.daysOfTheWeek?.first {
                 self.dayOfMonth = DayOfMonth.weekday(weekDay)
@@ -111,27 +107,25 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             }
         }
 
+        self.proposedDayOfYear = DayOfYear(given: date, in: .current)
+        self.dayOfYear = proposedDayOfYear
         if case .yearly = frequency {
             if let day = rule?.daysOfTheMonth?.first,
                let month = rule?.monthsOfTheYear?.first {
-                self.dayOfYear = DayOfYear(day: day, month: month)
+
+                let savedDayOfYear = DayOfYear(day: day, month: month)
+                if savedDayOfYear != proposedDayOfYear {
+                    dayOfYearOptions = [
+                        savedDayOfYear,
+                        proposedDayOfYear
+                    ]
+                }
+
+                self.dayOfYear = savedDayOfYear
             }
         }
 
         self.proposedDate = date
-
-        self.$frequency
-            .dropFirst()
-            .removeDuplicates()
-            .filter({ $0 == .yearly })
-            .sink { [weak self] freq in
-                guard case .yearly = freq else {
-                    self?.dayOfYear = nil
-                    return
-                }
-                self?.dayOfYear = DayOfYear(given: date, in: .current)
-            }
-            .store(in: &subscriptions)
 
         didTapDone
             .sink { [weak self] weakVC in
@@ -164,8 +158,8 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             daysOfWeek = daysOfTheWeek.map({ DayOfWeek($0) }).nilIfEmpty
         }
 
-        if case .monthly = frequency, let monthDay = dayOfMonth {
-            switch monthDay {
+        if case .monthly = frequency {
+            switch dayOfMonth {
             case .weekday(let weekday):
                 daysOfWeek = [weekday]
             case .day(let dayNo):
@@ -174,8 +168,8 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         }
 
         if case .yearly = frequency {
-            daysOfTheMonth = dayOfYear.flatMap({ [$0.day] })
-            monthsOfTheYear = dayOfYear.flatMap({ [$0.month] })
+            daysOfTheMonth = [dayOfYear.day]
+            monthsOfTheYear = [dayOfYear.month]
         }
 
         return RecurrenceRule(

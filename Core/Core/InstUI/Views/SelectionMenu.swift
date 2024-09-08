@@ -64,7 +64,7 @@ struct SelectionMenu<Value: Equatable, ID: Hashable>: View {
     }
 
     private var title: String {
-        return selection?[keyPath: textKey] 
+        return selection?[keyPath: textKey]
             ?? String(localized: "Not selected", bundle: .core)
     }
 }

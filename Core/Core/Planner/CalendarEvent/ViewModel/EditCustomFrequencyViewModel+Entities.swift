@@ -52,11 +52,12 @@ extension EditCustomFrequencyViewModel {
         }
     }
 
-    struct DayOfYear: Equatable {
+    struct DayOfYear: Equatable, Identifiable {
+        var id: String { "\(day)-\(month)" }
         var day: Int
         var month: Int
 
-        init(given date: Date, in calendar: Calendar = .current) {
+        init(given date: Date, in calendar: Calendar = Cal.currentCalendar) {
             let comps = calendar.dateComponents(
                 [.day, .month, .year],
                 from: date
@@ -68,6 +69,19 @@ extension EditCustomFrequencyViewModel {
         init(day: Int, month: Int) {
             self.day = day
             self.month = month
+        }
+
+        var title: String {
+            title(in: Cal.currentCalendar)
+        }
+
+        func title(in calendar: Calendar) -> String {
+            var components = calendar
+                .dateComponents([.calendar, .year, .month, .day, .hour, .minute], from: Clock.now)
+            components.day = day
+            components.month = month
+            guard let date = components.date else { return "\(day)/\(month)" }
+            return date.formatted(format: "MMMM d")
         }
     }
 

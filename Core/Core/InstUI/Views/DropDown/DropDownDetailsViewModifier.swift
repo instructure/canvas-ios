@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
+struct DropDownDetailsContainerViewModifier<ListContent: View>: ViewModifier {
 
     @Environment(\.layoutDirection) private var layoutDirection
 
@@ -113,14 +113,14 @@ struct DropDownDetailsViewModifier<ListContent: View>: ViewModifier {
 
 extension View {
 
-    func dropDownDetails<C: View>(
+    func dropDownDetailsContainer<C: View>(
         state: Binding<DropDownButtonState>,
-        @ViewBuilder content: @escaping () -> C) -> some View {
-        modifier(DropDownDetailsViewModifier(state: state, listContent: content))
+        @ViewBuilder detailsContent: @escaping () -> C) -> some View {
+        modifier(DropDownDetailsContainerViewModifier(state: state, listContent: detailsContent))
     }
 }
 
-extension Color {
+private extension Color {
     static func shadow(opacity: CGFloat = 0.33) -> Color {
         Color(.sRGBLinear, white: 0, opacity: opacity)
     }

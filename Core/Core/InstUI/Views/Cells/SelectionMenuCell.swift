@@ -77,11 +77,50 @@ extension InstUI.SelectionMenuCell where Value: Identifiable, ID == Value.ID {
          text: KeyPath<Value, String>,
          selection: Binding<Value?>) {
 
+        self.init(label: label,
+                  options: options,
+                  id: \.id,
+                  text: text,
+                  selection: selection)
+    }
+}
+
+extension InstUI.SelectionMenuCell where Value: Identifiable, ID == Value.ID {
+    init(label: Label,
+         options: [Value],
+         text: KeyPath<Value, String>,
+         defaultValue: Value,
+         selection: Binding<Value>) {
+        self.init(label: label,
+                  options: options,
+                  id: \.id,
+                  text: text,
+                  defaultValue: defaultValue,
+                  selection: selection)
+    }
+}
+
+extension InstUI.SelectionMenuCell {
+
+    init(label: Label,
+         options: [Value],
+         id: KeyPath<Value, ID>,
+         text: KeyPath<Value, String>,
+         defaultValue: Value,
+         selection: Binding<Value>) {
+
         self.label = label
         self.options = options
-        self.idKey = \.id
+        self.idKey = id
         self.textKey = text
-        self._selection = selection
+        self._selection = Binding(
+            get: {
+                return selection.wrappedValue
+            },
+            set: { newValue in
+                selection.wrappedValue = newValue ?? defaultValue
+            }
+        )
     }
 }
 
