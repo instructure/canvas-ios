@@ -13,7 +13,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:../TestPlans/IPadParentTests.xctestplan"
+            reference = "container:../../../TestPlans/IPadTeacherTests.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
@@ -22,10 +22,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E80763C723E08DA10085DAFB"
-               BuildableName = "ParentE2ETests.xctest"
-               BlueprintName = "ParentE2ETests"
-               ReferencedContainer = "container:Parent.xcodeproj">
+               BlueprintIdentifier = "E841D8A223D6472F00685A63"
+               BuildableName = "TeacherE2ETests.xctest"
+               BlueprintName = "TeacherE2ETests"
+               ReferencedContainer = "container:Teacher.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

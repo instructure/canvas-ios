@@ -17,7 +17,6 @@
 //
 
 import AVKit
-import CanvasCore
 import Combine
 import Core
 import Firebase
@@ -58,7 +57,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         #endif
 
         DocViewerViewController.setup(.studentPSPDFKitLicense)
-        prepareReactNative()
         setupDefaultErrorHandling()
         setupPageViewLogging()
         TabBarBadgeCounts.application = UIApplication.shared
@@ -143,11 +141,29 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                     .receive(on: RunLoop.main)
                     .sink(receiveCompletion: { _ in }) { brandVars in
                         brandVars.first?.applyBrandTheme()
-                        NativeLoginManager.login(as: session)
                     }
                     .store(in: &self.subscriptions)
             }
+
+            self.setTabBarController()
         }}
+    }
+
+    func setTabBarController() {
+        let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [CoreNavigationController.self])
+        appearance.barTintColor = nil
+        appearance.tintColor = nil
+        appearance.titleTextAttributes = nil
+
+        guard let window = self.window else { return }
+        let controller = StudentTabBarController()
+        controller.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+            window.rootViewController = controller
+        }, completion: { _ in
+            self.environment.startupDidComplete()
+            UIApplication.shared.registerForPushNotifications()
+        })
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -156,9 +172,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
            components.path.contains("student_view"),
            let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
             shouldSetK5StudentView = components.path.contains("k5")
-            if environment.currentSession != nil {
-                NativeLoginManager.shared().logout() // Cleanup old to prevent token errors
-            }
             userDidLogin(session: fakeStudent)
             return true
         }
@@ -264,7 +277,6 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        PushNotifications.record(response.notification)
         if let url = response.notification.request.routeURL {
             openURL(url, userInfo: [
                 "forceRefresh": true,
@@ -346,7 +358,6 @@ extension StudentAppDelegate {
             configureRemoteConfig()
             Core.Analytics.shared.handler = self
         }
-        CanvasCrashlytics.setupForReactNative()
     }
 
     func setupDebugCrashLogging() {
@@ -437,7 +448,7 @@ extension StudentAppDelegate {
 
 // MARK: - Login Delegate
 
-extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
+extension StudentAppDelegate: LoginDelegate {
     func changeUser() {
         shouldSetK5StudentView = false
         environment.k5.userDidLogout()

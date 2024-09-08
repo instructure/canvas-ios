@@ -70,11 +70,6 @@ workflows:
     - &yarn-install-root
       yarn:
         title: yarn install root dependencies
-    - &yarn-install
-      yarn:
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        title: rn yarn install
     - &run-make-sync
       script:
         title: Run make-sync
@@ -224,19 +219,6 @@ workflows:
                 exit 1
             fi
     - *yarn-install-root
-    - *yarn-install
-    - &yarn-lint
-      yarn:
-        title: rn yarn lint
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: lint:ci
-    - &yarn-test
-      yarn:
-        title: rn yarn test
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: test:ci
     - script:
         title: Save results
         is_always_run: true
@@ -263,13 +245,11 @@ workflows:
             }
 
             report_file "Swift lint" tmp/swift-lint-results.txt
-            report_file "Yarn lint" tmp/yarn-lint-results.txt
-            sed -n '/Summary of all failing tests/,$ p' < tmp/yarn-test-results.txt > tmp/yarn-test-failures.txt || true
-            report_file "JS tests" tmp/yarn-test-failures.txt
 
-            mkdir -p scripts/coverage/react-native
-
+            mkdir -p scripts/coverage
+            
             tar -cJf $BITRISE_DEPLOY_DIR/results.tar.xz \
-                scripts/coverage/react-native \
+                scripts/coverage \
                 tmp/report_to_danger_subbuild.md
+
     - deploy-to-bitrise-io: {}

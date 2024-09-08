@@ -7,23 +7,15 @@ provision: ## Environment setup
 provision-ci: ## CI environment setup
 	@brew install "xcodegen"
 
-sync: ## Dependency installation 
-	@make gen
-	@cd rn/Teacher; yarn build-update
-
-sync-ci: ## Dependency installation 
-	@make gen-ci
-	@cd rn/Teacher; yarn build-update
-
-gen-ci: ## CI specific xproj file generation
-	@echo 🟡 Running xcodegen
-	@cd Core; xcodegen
-	@cd Student; xcodegen --spec "project-ci.yml"
-
-gen: ## xproj file generation
+sync: ## xproj file generation
 	@echo 🟡 Running xcodegen
 	@cd Core; xcodegen
 	@cd Student; xcodegen
+
+sync-ci: ## CI specific xproj file generation
+	@echo 🟡 Running xcodegen
+	@cd Core; xcodegen
+	@cd Student; xcodegen --spec "project-ci.yml"
 
 unexport INFOPLIST_FILE
 unexport INFOPLIST_PATH

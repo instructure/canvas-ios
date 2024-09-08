@@ -214,7 +214,6 @@ public extension UIImage {
     static var warningBorderlessSolid: UIImage { UIImage(named: "warningBorderlessSolid", in: .core, compatibleWith: nil)! }
     static var xLine: UIImage { UIImage(named: "xLine", in: .core, compatibleWith: nil)! }
     static var xSolid: UIImage { UIImage(named: "xSolid", in: .core, compatibleWith: nil)! }
-
     static var addAudioLine: UIImage { UIImage(named: "addAudioLine", in: .core, compatibleWith: nil)! }
     static var addCameraLine: UIImage { UIImage(named: "addCameraLine", in: .core, compatibleWith: nil)! }
     static var addDocumentLine: UIImage { UIImage(named: "addDocumentLine", in: .core, compatibleWith: nil)! }
@@ -463,6 +462,7 @@ public extension Image {
     static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
+
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
     static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }

@@ -23,8 +23,6 @@ include:
   - StudentE2ETests/student-e2e-tests.yml
   - StudentUnitTests/student-unit-tests.yml
 projectReferences:
-  CanvasCore:
-    path: ../CanvasCore/CanvasCore.xcodeproj
   Core:
     path: ../Core/Core.xcodeproj
 packages:
@@ -34,3 +32,12 @@ packages:
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 13.0.1
+  FirebaseCrashlytics:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    exactVersion: 10.23.1
+  FirebaseRemoteConfig:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    exactVersion: 10.23.1
+  FirebaseRemoteConfigSwift:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    exactVersion: 10.23.1

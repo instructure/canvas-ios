@@ -17,7 +17,6 @@
 //
 
 import UIKit
-import CanvasCore
 import Core
 
 class StudentTabBarController: UITabBarController, SnackBarProvider {
