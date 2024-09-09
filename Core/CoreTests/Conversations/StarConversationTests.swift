@@ -36,11 +36,12 @@ class StarConversationStateTests: CoreTestCase {
     }
 
     func testPostRequestError() {
+        // Given
         let conversationId = "testId"
         let useCase = StarConversation(id: conversationId, starred: true)
         api.mock(useCase.request, error: NSError.instructureError("Error"))
-
         let expectation = XCTestExpectation(description: "make request")
+        // Then
         useCase.makeRequest(environment: environment) { (_, _, error) in
             expectation.fulfill()
             XCTAssertNotNil(error)
