@@ -11,8 +11,8 @@ settings:
   DEVELOPMENT_TEAM: 58GH9WB284 ## This line is removed in the project-ci.yml file so Bitrise can manage code sign.
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
-  CURRENT_PROJECT_VERSION: 19
-  MARKETING_VERSION: 1.4
+  CURRENT_PROJECT_VERSION: 23
+  MARKETING_VERSION: 1.6
   platform: iOS
   DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
 sources:
