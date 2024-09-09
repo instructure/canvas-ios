@@ -130,7 +130,6 @@ function normalizeLocale(locale) {
 }
 
 async function importXcodeTranslations() {
-  await run('make', ['pod'])
   const folder = 'scripts/translations/imports/all'
   const files = await new Promise(resolve =>
     readdir(folder, (err, files) => resolve(files || []))
