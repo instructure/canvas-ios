@@ -35,7 +35,7 @@ public class RemoteConfigManager {
             xpertKey = value ?? "degrees-canvas-support"
         } else if key == "five9_formdata_label" {
             formadataLabel = value ?? "unknown"
-        } else if key == "placement_portal_path_stg" { //ToDo: Change to prod
+        } else if key == "placement_portal_path" {
             placementPortalPath = value ?? "/accounts/1/external_tools/1570"
         }
     }

@@ -320,7 +320,7 @@ class LiveChatViewModel: ObservableObject {
         [
             WKScriptEvent.shouldOpenFive9.rawValue: shouldOpenFive9Event,
             WKScriptEvent.openChat.rawValue: openChatEvent,
-            WKScriptEvent.closeChat.rawValue: closeChatEvent,
+            WKScriptEvent.closeChat.rawValue: closeChatEvent
         ]
     }
 }
