@@ -37,17 +37,17 @@ public enum ComposeMessageAssembly {
             uploadManager: UploadManager(identifier: batchId),
             publisherProvider: URLSessionDataTaskPublisherProviderLive()
         )
-        let recipientUseCase = RecipientInteractorLive()
+        let recipientInteractor = RecipientInteractorLive()
         let audioSession = AVAudioSession.sharedInstance()
-        let cameraPermission = AVCaptureDevice.self
+        let cameraPermissionService = AVCaptureDevice.self
         let viewModel = ComposeMessageViewModel(
             router: env.router,
             options: options,
             interactor: interactor,
-            recipientUseCase: recipientUseCase,
+            recipientInteractor: recipientInteractor,
             sentMailEvent: sentMailEvent,
             audioSession: audioSession,
-            cameraPermission: cameraPermission
+            cameraPermissionService: cameraPermissionService
         )
 
         let view = ComposeMessageView(model: viewModel)
@@ -68,10 +68,10 @@ public enum ComposeMessageAssembly {
             router: env.router,
             options: options,
             interactor: interactor,
-            recipientUseCase: RecipientInteractorLive(),
+            recipientInteractor: RecipientInteractorLive(),
             sentMailEvent: nil,
             audioSession: AVAudioSession.sharedInstance(),
-            cameraPermission: AVCaptureDevice.self
+            cameraPermissionService: AVCaptureDevice.self
         )
         return ComposeMessageView(model: viewModel)
     }

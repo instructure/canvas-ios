@@ -27,7 +27,7 @@ final class ComposeMessageViewModel: ObservableObject {
     @Published public var isImagePickerVisible: Bool = false
     @Published public var isTakePhotoVisible: Bool = false
     @Published public var isAudioRecordVisible: Bool = false
-    @Published public private(set) var showLoader: Bool = false
+    @Published public private(set) var isLoaderVisible: Bool = false
 
     @Published public private(set) var isContextDisabled: Bool = false
     @Published public private(set) var isRecipientsDisabled: Bool = false
@@ -76,7 +76,7 @@ final class ComposeMessageViewModel: ObservableObject {
         isDestructive: true
     )
 
-     let errorAlert = ConfirmationAlertViewModel(
+    let errorAlert = ConfirmationAlertViewModel(
         title: String(localized: "Oops!", bundle: .core),
         message: String(localized: "This message could not be sent. Tap to try again.", bundle: .core),
         cancelButtonTitle: String(localized: "Back to editing", bundle: .core),
@@ -91,9 +91,9 @@ final class ComposeMessageViewModel: ObservableObject {
     private var viewController  = WeakViewController()
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: ComposeMessageInteractor
-    private let recipientUseCase: RecipientInteractor
+    private let recipientInteractor: RecipientInteractor
     private let audioSession: AudioSessionProtocol
-    private let cameraPermission: CameraPermissionService.Type
+    private let cameraPermissionService: CameraPermissionService.Type
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var messageType: ComposeMessageOptions.MessageType
     private var allRecipients = CurrentValueSubject<[Recipient], Never>([])
@@ -102,22 +102,24 @@ final class ComposeMessageViewModel: ObservableObject {
     private var teacherOnly: Bool = false
 
     // MARK: Public interface
-    public init(router: Router,
-                options: ComposeMessageOptions,
-                interactor: ComposeMessageInteractor,
-                scheduler: AnySchedulerOf<DispatchQueue> = .main,
-                recipientUseCase: RecipientInteractor,
-                sentMailEvent: PassthroughSubject<Void, Never>? = nil,
-                audioSession: AudioSessionProtocol,
-                cameraPermission: CameraPermissionService.Type ) {
+    public init(
+        router: Router,
+        options: ComposeMessageOptions,
+        interactor: ComposeMessageInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
+        recipientInteractor: RecipientInteractor,
+        sentMailEvent: PassthroughSubject<Void, Never>? = nil,
+        audioSession: AudioSessionProtocol,
+        cameraPermissionService: CameraPermissionService.Type
+    ) {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
         self.messageType = options.messageType
-        self.recipientUseCase = recipientUseCase
+        self.recipientInteractor = recipientInteractor
         self.didSentMailSuccessfully = sentMailEvent
         self.audioSession = audioSession
-        self.cameraPermission = cameraPermission
+        self.cameraPermissionService = cameraPermissionService
         setIncludedMessages(messageType: options.messageType)
         setOptionItems(options: options)
 
@@ -127,7 +129,7 @@ final class ComposeMessageViewModel: ObservableObject {
     }
 
     private func getRecipients() {
-        recipientUseCase
+        recipientInteractor
             .getRecipients(by: selectedContext?.context)
             .map { [selectedRecipients] values in
                 values.filter { recipient in
@@ -147,6 +149,8 @@ final class ComposeMessageViewModel: ObservableObject {
             }
             .map { (text, recipients) in
                 recipients.filter { $0.displayName.lowercased().contains(text.lowercased()) }
+                                 .prefix(6)
+                                 .map { $0 }
             }
             .assign(to: &$searchedRecipients)
 
@@ -250,8 +254,12 @@ final class ComposeMessageViewModel: ObservableObject {
             guard let self else {
                 return
             }
-            VideoRecorder.requestPermission(cameraService: cameraPermission) { isEnabled in
-                isEnabled ? self.isTakePhotoVisible = true : viewController.value.showPermissionError(.camera)
+            VideoRecorder.requestPermission(cameraService: cameraPermissionService) { isEnabled in
+                if isEnabled {
+                    self.isTakePhotoVisible = true
+                } else {
+                    viewController.value.showPermissionError(.camera)
+                }
             }
         }
         sheet.addAction(
@@ -263,7 +271,11 @@ final class ComposeMessageViewModel: ObservableObject {
                 return
             }
             AudioRecorderViewController.requestPermission(audioSession: self.audioSession) { isEnabled in
-                 isEnabled ? self.isAudioRecordVisible = true : viewController.value.showPermissionError(.microphone)
+                if isEnabled {
+                    self.isAudioRecordVisible = true
+                } else {
+                    viewController.value.showPermissionError(.microphone)
+                }
              }
         }
         sheet.addAction(
@@ -418,7 +430,7 @@ final class ComposeMessageViewModel: ObservableObject {
                 return (viewController, params, messageType)
             }
             .handleEvents(receiveOutput: { [weak self] (viewController, _, _) in
-                self?.showLoader = true
+                self?.isLoaderVisible = true
                 self?.viewController = viewController
             })
             .flatMap { [interactor] (viewController, params, type) in
@@ -441,7 +453,7 @@ final class ComposeMessageViewModel: ObservableObject {
             }
             .receive(on: scheduler)
             .sink(receiveValue: { [weak self] viewController in
-                self?.showLoader = false
+                self?.isLoaderVisible = false
                 if let viewController {
                     self?.didSendMessage(viewController: viewController)
                 } else {

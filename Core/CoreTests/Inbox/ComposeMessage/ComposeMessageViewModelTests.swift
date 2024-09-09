@@ -24,15 +24,15 @@ import XCTest
 
 class ComposeMessageViewModelTests: CoreTestCase {
     private var mockInteractor: ComposeMessageInteractorMock!
-    private var recipientUseCaseMock: RecipientInteractorMock!
+    private var recipientInteractorMock: RecipientInteractorMock!
     private var audioSession: AudioSessionMock!
-    private var cameraPermission = CameraPermissionServiceMock.self
+    private var cameraPermissionService = CameraPermissionServiceMock.self
     var testee: ComposeMessageViewModel!
     private var subscriptions = Set<AnyCancellable>()
 
     override func setUp() {
         super.setUp()
-        recipientUseCaseMock = RecipientInteractorMock()
+        recipientInteractorMock = RecipientInteractorMock()
         mockInteractor = ComposeMessageInteractorMock()
         audioSession = AudioSessionMock()
         testee = ComposeMessageViewModel(
@@ -41,9 +41,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
                 fromType: .new
             ),
             interactor: mockInteractor,
-            recipientUseCase: recipientUseCaseMock,
+            recipientInteractor: recipientInteractorMock,
             audioSession: audioSession,
-            cameraPermission: cameraPermission
+            cameraPermissionService: cameraPermissionService
         )
     }
 
@@ -53,9 +53,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
             router: router,
             options: .init(fromType: .reply(conversation: conversation, message: nil)),
             interactor: mockInteractor,
-            recipientUseCase: recipientUseCaseMock,
+            recipientInteractor: recipientInteractorMock,
             audioSession: audioSession,
-            cameraPermission: cameraPermission
+            cameraPermissionService: cameraPermissionService
         )
     }
 
@@ -65,9 +65,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
             router: router,
             options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
             interactor: mockInteractor,
-            recipientUseCase: recipientUseCaseMock,
+            recipientInteractor: recipientInteractorMock,
             audioSession: audioSession,
-            cameraPermission: cameraPermission
+            cameraPermissionService: cameraPermissionService
         )
     }
 
@@ -77,9 +77,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
             router: router,
             options: .init(fromType: .forward(conversation: conversation, message: nil)),
             interactor: mockInteractor,
-            recipientUseCase: recipientUseCaseMock,
+            recipientInteractor: recipientInteractorMock,
             audioSession: audioSession,
-            cameraPermission: cameraPermission
+            cameraPermissionService: cameraPermissionService
         )
     }
 
@@ -167,7 +167,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.$isShowingErrorDialog
             .dropFirst() // Escape the initial event and wait the second (real) one
             .sink { value in
-                XCTAssertFalse(self.testee.showLoader)
+                XCTAssertFalse(self.testee.isLoaderVisible)
                 XCTAssertTrue(value)
 
                 showExpectation.fulfill()
@@ -185,9 +185,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.didTapRetry.accept(sourceView)
         testee.errorAlert.notifyCompletion(isConfirmed: true)
         // Then
-        XCTAssertTrue(testee.showLoader)
+        XCTAssertTrue(testee.isLoaderVisible)
         wait(for: [router.dismissExpectation], timeout: 0.5)
-        XCTAssertFalse(testee.showLoader)
+        XCTAssertFalse(testee.isLoaderVisible)
     }
 
     func test_addFiles_addTwoFilesWithNotExceedSize() {
@@ -235,9 +235,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
             router: router,
             options: .init(fromType: .reply(conversation: conversation, message: message2)),
             interactor: mockInteractor,
-            recipientUseCase: recipientUseCaseMock,
+            recipientInteractor: recipientInteractorMock,
             audioSession: audioSession,
-            cameraPermission: cameraPermission
+            cameraPermissionService: cameraPermissionService
         )
 
         XCTAssertEqual(testee.subject, "Test subject")
@@ -257,9 +257,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
             router: router,
             options: .init(fromType: .reply(conversation: conversation, message: nil)),
             interactor: mockInteractor,
-            recipientUseCase: recipientUseCaseMock,
+            recipientInteractor: recipientInteractorMock,
             audioSession: audioSession,
-            cameraPermission: cameraPermission
+            cameraPermissionService: cameraPermissionService
         )
         XCTAssertEqual(testee.subject, "Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
@@ -278,9 +278,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
             router: router,
             options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
             interactor: mockInteractor,
-            recipientUseCase: recipientUseCaseMock,
+            recipientInteractor: recipientInteractorMock,
             audioSession: audioSession,
-            cameraPermission: cameraPermission
+            cameraPermissionService: cameraPermissionService
         )
         XCTAssertEqual(testee.subject, "Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
@@ -299,9 +299,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
             router: router,
             options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
             interactor: mockInteractor,
-            recipientUseCase: recipientUseCaseMock,
+            recipientInteractor: recipientInteractorMock,
             audioSession: audioSession,
-            cameraPermission: cameraPermission
+            cameraPermissionService: cameraPermissionService
         )
 
         XCTAssertEqual(testee.subject, "Test subject")
@@ -321,9 +321,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
             router: router,
             options: .init(fromType: .forward(conversation: conversation, message: message2)),
             interactor: mockInteractor,
-            recipientUseCase: recipientUseCaseMock,
+            recipientInteractor: recipientInteractorMock,
             audioSession: audioSession,
-            cameraPermission: cameraPermission
+            cameraPermissionService: cameraPermissionService
         )
 
         XCTAssertEqual(testee.subject, "Fw: Test subject")
@@ -343,9 +343,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
             router: router,
             options: .init(fromType: .forward(conversation: conversation, message: nil)),
             interactor: mockInteractor,
-            recipientUseCase: recipientUseCaseMock,
+            recipientInteractor: recipientInteractorMock,
             audioSession: audioSession,
-            cameraPermission: cameraPermission
+            cameraPermissionService: cameraPermissionService
         )
         XCTAssertEqual(testee.subject, "Fw: Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
@@ -401,8 +401,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
 
         XCTAssertEqual(takePhotoAction?.title, String(localized: "Take photo", bundle: .core))
         XCTAssertEqual(takePhotoAction?.image, .cameraLine)
-        cameraPermission.mockAuthorizationStatus = .authorized
-        cameraPermission.mockRequestAccessResponse = true
+        cameraPermissionService.mockAuthorizationStatus = .authorized
+        cameraPermissionService.mockRequestAccessResponse = true
         takePhotoAction?.action()
         XCTAssertTrue(testee.isFilePickerVisible)
         XCTAssertTrue(testee.isImagePickerVisible)
@@ -458,8 +458,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.attachmentButtonDidTap(viewController: viewController)
         let bottomSheet = router.presented as? BottomSheetPickerViewController
         let cameraAction = bottomSheet?.actions[2]
-        cameraPermission.mockRequestAccessResponse = false
-        cameraPermission.mockAuthorizationStatus = .denied
+        cameraPermissionService.mockRequestAccessResponse = false
+        cameraPermissionService.mockAuthorizationStatus = .denied
         cameraAction?.action()
         // Then
         XCTAssertFalse(testee.isTakePhotoVisible)
@@ -477,9 +477,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
             router: router,
             options: .init(fromType: .forward(conversation: conversation, message: nil)),
             interactor: mockInteractor,
-            recipientUseCase: recipientUseCaseMock,
+            recipientInteractor: recipientInteractorMock,
             audioSession: audioSession,
-            cameraPermission: cameraPermission
+            cameraPermissionService: cameraPermissionService
         )
 
         XCTAssertTrue(testee.expandedIncludedMessageIds.isEmpty)
@@ -549,9 +549,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
                 extras: .init()
             ),
             interactor: mockInteractor,
-            recipientUseCase: recipientUseCaseMock,
+            recipientInteractor: recipientInteractorMock,
             audioSession: audioSession,
-            cameraPermission: cameraPermission
+            cameraPermissionService: cameraPermissionService
         )
         testee.selectedRecipients.send([ReceiptStub.recipients[0], ReceiptStub.recipients[1]])
         testee.textRecipientSearch = "Can"

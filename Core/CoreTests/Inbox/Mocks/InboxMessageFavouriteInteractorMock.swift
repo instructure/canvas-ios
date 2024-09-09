@@ -26,7 +26,7 @@ final class InboxMessageFavouriteInteractorMock: InboxMessageFavouriteInteractor
     var updateStarredIsCalled = false
 
     // MARK: - Simulate Behaviours
-    func updateStarred(starred: Bool, messageId: String) -> Future<URLResponse?, any Error> {
+    func updateStarred(to starred: Bool, messageId: String) -> Future<URLResponse?, any Error> {
         updateStarredIsCalled = true
        return Future { promise in
             promise(.success(URLResponse()))

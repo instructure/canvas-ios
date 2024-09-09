@@ -18,42 +18,42 @@
 
 import SwiftUI
 
-struct RecipientRow: View {
+struct RecipientFilterRow: View {
     // MARK: - Properties
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     let recipient: Recipient
-    let showSeparator: Bool
+    let isShowSeparator: Bool
+
     // MARK: - Body
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .center, spacing: 13) {
-                if let imageUrl = recipient.avatarURL {
-                    RemoteImage(imageUrl, width: 36, height: 36)
-                        .clipShape(Circle())
-                }
+                Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 36)
                 Text(recipient.displayName)
                     .font(.regular16)
                     .foregroundStyle(Color.textDark)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
                     .accessibilityHidden(true)
 
             }
             .background(Color.backgroundLightest)
-            .padding(.horizontal, 15)
+            .paddingStyle(.horizontal, .standard)
             .padding(.vertical, 7)
             InstUI.Divider()
-                .opacity(showSeparator ? 1 : 0)
+                .hidden(!isShowSeparator)
         }
     }
 }
 
 #if DEBUG
 #Preview {
-    RecipientRow(
+    RecipientFilterRow(
         recipient: .init(
             id: "1",
             name: "Canvas IOS",
             avatarURL: URL(string: "https://png.pngtree.com/thumb_back/fh260/background/20230614/pngtree-cartoon-image-of-a-bearded-man-with-glasses-image_2876117.jpg")
-        ), showSeparator: true
+        ), isShowSeparator: true
     )
 }
 

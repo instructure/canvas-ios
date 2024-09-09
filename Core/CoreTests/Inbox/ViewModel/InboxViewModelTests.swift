@@ -30,7 +30,7 @@ class InboxViewModelTests: CoreTestCase {
         super.setUp()
         messageInteractor = InboxMessageFavouriteInteractorMock()
         mockInteractor = InboxMessageInteractorMock(context: databaseClient)
-        testee = InboxViewModel(interactor: mockInteractor, router: router, messageInteractor: messageInteractor)
+        testee = InboxViewModel(messageInteractor: mockInteractor, router: router, favouriteInteractor: messageInteractor)
     }
 
     func testInteractorStateMappedToViewModel() {
@@ -117,7 +117,7 @@ class InboxViewModelTests: CoreTestCase {
         let messageId = "1"
         let favourite = true
         // When
-        testee.starDidTap.send((favourite, messageId))
+        testee.didTapStar.send((favourite, messageId))
         // Then
         XCTAssertTrue(messageInteractor.updateStarredIsCalled)
     }

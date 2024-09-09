@@ -31,8 +31,8 @@ struct RecipientFilterView: View {
                     Button {
                         didSelectRecipient(recipient)
                     } label: {
-                        RecipientRow(recipient: recipient, showSeparator: recipient != recipients.last)
-                            .frame(height: 50)
+                        RecipientFilterRow(recipient: recipient, isShowSeparator: recipient != recipients.last)
+                            .frame(minHeight: 50)
                             .accessibilityLabel(recipient.displayName)
                             .accessibility(hint: Text("Double tap to select", bundle: .core))
                     }
@@ -40,7 +40,6 @@ struct RecipientFilterView: View {
             }
             .background(Color.backgroundLightest)
         }
-        .frame(maxHeight: 160)
         .shadow(color: Color.textDark.opacity(0.2), radius: 5, x: 0, y: 0)
         .padding(5)
     }

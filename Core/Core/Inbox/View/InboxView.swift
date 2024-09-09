@@ -100,13 +100,12 @@ public struct InboxView: View, ScreenViewTrackable {
         }
     }
 
-    @ViewBuilder
     private func starButton(messageId: String, isStarred: Bool) -> some View {
         Button {
-            model.starDidTap.send((!isStarred, messageId))
+            model.didTapStar.send((!isStarred, messageId))
         } label: {
             let image = isStarred ? Image.starSolid : Image.starLine
-            let accessibilityLabel = String(localized: isStarred ? "Mark as Unstarred" : "Mark as Starred", bundle: .core)
+            let accessibilityLabel = isStarred ? String(localized: "Mark as Unstarred", bundle: .core) : String(localized: "Mark as Starred", bundle: .core)
              image
                 .size(30)
                 .foregroundColor(.textDark)

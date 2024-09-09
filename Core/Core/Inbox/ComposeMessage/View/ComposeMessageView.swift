@@ -24,6 +24,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     @ScaledMetric private var uiScale: CGFloat = 1
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
     @State private var recipientViewHeight: CGFloat = .zero
+    @State private var searchTextFieldHeight: CGFloat = .zero
 
     private enum FocusedInput {
         case subject
@@ -76,7 +77,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                                 model.textRecipientSearch = ""
                                 model.didSelectRecipient.accept(selectedRecipient)
                             }
-                            .offset(y: model.recipients.isEmpty ? 45 : recipientViewHeight + 45)
+                            .offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
                             .padding(.horizontal, 35)
                         }
 
@@ -171,7 +172,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
    @ViewBuilder
    private var sendButton: some View {
-        if model.showLoader {
+        if model.isLoaderVisible {
             ProgressView()
                 .progressViewStyle(.indeterminateCircle())
         } else {
@@ -281,15 +282,20 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 TextField(String(localized: "Search", bundle: .core), text: $model.textRecipientSearch)
                     .font(.regular16)
                     .foregroundColor(.textDark)
-                    .frame(height: 50, alignment: .center)
+                    .frame(maxHeight: .infinity, alignment: .center)
+                    .frame(minHeight: 50)
                     .padding(.leading, 5)
                     .accessibilitySortPriority(4)
                     .accessibilityLabel(String(localized: "Search for Recipients", bundle: .core))
                     .accessibilityAddTraits(.isSearchField)
+                    .readingFrame { frame in
+                        searchTextFieldHeight = frame.height - 5
+                    }
             }
             Spacer()
 
             addRecipientButton
+                .frame(maxHeight: .infinity, alignment: .center)
                 .accessibilitySortPriority(2)
         }
         .animation(.easeInOut, value: model.recipients.isEmpty)

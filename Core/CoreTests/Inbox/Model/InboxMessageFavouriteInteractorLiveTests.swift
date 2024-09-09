@@ -45,7 +45,7 @@ final class InboxMessageFavouriteInteractorLiveTests: CoreTestCase {
         api.mock(useCase.request, value: result)
         let expectation = XCTestExpectation(description: "make request")
         // Then
-        sut.updateStarred(starred: true, messageId: conversationId)
+        sut.updateStarred(to: true, messageId: conversationId)
             .sink { _ in
             } receiveValue: { _ in
                 XCTAssertTrue(useCase.starred)
