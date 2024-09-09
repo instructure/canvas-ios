@@ -23,27 +23,27 @@ public struct MessageView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
 
     private var model: MessageViewModel
-    private let hideReplyButton: Bool
+    private let isReplyButtonVisible: Bool
     private var replyDidTap: () -> Void
     private var moreDidTap: () -> Void
 
     public init(
         model: MessageViewModel,
-        hideReplyButton: Bool,
+        isReplyButtonVisible: Bool,
         replyDidTap: @escaping () -> Void,
         moreDidTap: @escaping () -> Void
     ) {
         self.model = model
         self.replyDidTap = replyDidTap
         self.moreDidTap = moreDidTap
-        self.hideReplyButton = hideReplyButton
+        self.isReplyButtonVisible = isReplyButtonVisible
     }
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             headerView
             bodyView
-            if !hideReplyButton {
+            if isReplyButtonVisible {
                 replyButton
             }
         }
@@ -76,7 +76,7 @@ public struct MessageView: View {
                     .accessibilityIdentifier("MessageDetails.date")
             }
             Spacer()
-            if !hideReplyButton {
+            if isReplyButtonVisible {
                 replyIconButton
             }
             Button {

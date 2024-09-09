@@ -25,7 +25,7 @@ class MessageDetailsViewModel: ObservableObject {
     @Published public private(set) var messages: [MessageViewModel] = []
     @Published public private(set) var conversations: [Conversation] = []
     @Published public private(set) var starred: Bool = false
-    @Published public private(set) var isHideReplyButton: Bool = false
+    @Published public private(set) var isReplyButtonVisible: Bool = false
 
     public let title = String(localized: "Message Details", bundle: .core)
 
@@ -64,7 +64,7 @@ class MessageDetailsViewModel: ObservableObject {
 
     public func conversationMoreTapped(viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
-       if !isHideReplyButton {
+       if isReplyButtonVisible {
            addReplyAction(sheet) { [weak self] in
                self?.replyTapped(message: nil, viewController: viewController)
            }
@@ -135,7 +135,7 @@ class MessageDetailsViewModel: ObservableObject {
 
     public func messageMoreTapped(message: ConversationMessage?, viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
-        if !isHideReplyButton {
+        if isReplyButtonVisible {
             addReplyAction(sheet) { [weak self] in
                 if let message {
                     self?.replyTapped(message: message, viewController: viewController)
@@ -221,7 +221,7 @@ class MessageDetailsViewModel: ObservableObject {
 
         interactor.conversation
             .map { [weak self] in
-                self?.isHideReplyButton = $0.first?.cannotReply ?? false
+                self?.isReplyButtonVisible = !($0.first?.cannotReply ?? false)
                 return $0
             }
             .assign(to: &$conversations)

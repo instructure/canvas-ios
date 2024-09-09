@@ -249,7 +249,7 @@
     <entity name="Conversation" representedClassName="Core.Conversation" syncable="YES">
         <attribute name="audienceIDsRaw" attributeType="String"/>
         <attribute name="avatarURL" attributeType="URI"/>
-        <attribute name="cannotReply" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="cannotReply" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="contextCode" optional="YES" attributeType="String"/>
         <attribute name="contextName" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
