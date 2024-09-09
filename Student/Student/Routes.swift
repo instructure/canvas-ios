@@ -461,7 +461,7 @@ let router = Router(routes: [
         AboutAssembly.makeAboutViewController()
     },
 
-    "/profile/chat": { _, _, _ in
+    RouteHandler("/profile/chat") { _, _, _ in
         LiveChatAssembly.makeLiveChatViewController()
     }
 ])

@@ -44,7 +44,7 @@ public class DashboardContainerViewController: CoreNavigationController {
 
         if vc is CoreHostingController<DownloadsView> {
             let container = UIViewController()
-            container.embed(HelmNavigationController(rootViewController: vc), in: container.view)
+            container.embed(CoreNavigationController(rootViewController: vc), in: container.view)
             super.show(container, sender: sender)
             return
         }
