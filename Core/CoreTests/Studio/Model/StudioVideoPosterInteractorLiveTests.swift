@@ -46,7 +46,11 @@ class StudioVideoPosterInteractorLiveTests: CoreTestCase {
     }
 
     func testSkipsPosterGenerationIfVideoIsCached() {
-        let testee = StudioVideoPosterInteractorLive()
+        let posterFactoryNotCalled = expectation(description: "posterFactoryNotCalled")
+        posterFactoryNotCalled.isInverted = true
+        let testee = StudioVideoPosterInteractorLive { _, _ in
+            posterFactoryNotCalled.fulfill()
+        }
         let expectedPosterURL = workingDirectory.appending(path: "123/poster.png")
         XCTAssertEqual(FileManager.default.fileExists(atPath: expectedPosterURL.path()), false)
 
@@ -59,7 +63,8 @@ class StudioVideoPosterInteractorLiveTests: CoreTestCase {
 
         // THEN
         XCTAssertEqual(FileManager.default.fileExists(atPath: expectedPosterURL.path()), false)
-        XCTAssertEqual(posterURL, nil)
+        XCTAssertEqual(posterURL, expectedPosterURL)
+        wait(for: [posterFactoryNotCalled], timeout: 0.1)
     }
 
     func testSwallowsNoVideoTrackError() {
