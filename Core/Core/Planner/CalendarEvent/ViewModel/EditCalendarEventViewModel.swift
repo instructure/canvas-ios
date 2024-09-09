@@ -170,7 +170,7 @@ final class EditCalendarEventViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         $date
-            .compactMap({ $0 })
+            .compactMap { $0 }
             .sink { [weak self] newDate in
                 self?.resetFrequencySelection(given: newDate)
             }
