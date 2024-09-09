@@ -40,6 +40,7 @@ struct RecipientFilterView: View {
             }
             .background(Color.backgroundLightest)
         }
+        .frame(maxHeight: 326)
         .shadow(color: Color.textDark.opacity(0.2), radius: 5, x: 0, y: 0)
         .padding(5)
     }

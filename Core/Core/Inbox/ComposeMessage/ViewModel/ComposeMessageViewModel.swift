@@ -149,8 +149,6 @@ final class ComposeMessageViewModel: ObservableObject {
             }
             .map { (text, recipients) in
                 recipients.filter { $0.displayName.lowercased().contains(text.lowercased()) }
-                                 .prefix(6)
-                                 .map { $0 }
             }
             .assign(to: &$searchedRecipients)
 
