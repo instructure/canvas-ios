@@ -27,10 +27,12 @@ public struct MessageView: View {
     private var replyDidTap: () -> Void
     private var moreDidTap: () -> Void
 
-    public init(model: MessageViewModel,
-                hideReplyButton: Bool,
-                replyDidTap: @escaping () -> Void,
-                moreDidTap: @escaping () -> Void ) {
+    public init(
+        model: MessageViewModel,
+        hideReplyButton: Bool,
+        replyDidTap: @escaping () -> Void,
+        moreDidTap: @escaping () -> Void
+    ) {
         self.model = model
         self.replyDidTap = replyDidTap
         self.moreDidTap = moreDidTap
