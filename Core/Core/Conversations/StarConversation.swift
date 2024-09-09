@@ -44,7 +44,6 @@ public class StarConversation: APIUseCase {
         }
 
         Conversation.save(response, in: client)
-
         let entities: [InboxMessageListItem] = client.fetch(scope: scope)
 
         entities
@@ -53,7 +52,7 @@ public class StarConversation: APIUseCase {
                 InboxMessageListItem.save(
                     response,
                     currentUserID: AppEnvironment.shared.currentSession?.userID ?? "",
-                    isSent: true,
+                    isSent: scope == .sent,
                     contextFilter: .none,
                     scopeFilter: scope,
                     in: client
