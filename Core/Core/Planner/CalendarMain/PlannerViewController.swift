@@ -182,6 +182,7 @@ public class PlannerViewController: UIViewController {
     private func addEvent() {
         let weakVC = WeakViewController()
         let vc = PlannerAssembly.makeCreateEventViewController(
+            selectedDate: selectedDate,
             calendarListProviderInteractor: calendarFilterInteractor,
             completion: { [weak self] in
                 if $0 == .didUpdate {

@@ -29,11 +29,13 @@ public enum PlannerAssembly {
     // MARK: - Event
 
     public static func makeCreateEventViewController(
+        selectedDate: Date,
         calendarListProviderInteractor: CalendarFilterInteractor? = nil,
         env: AppEnvironment = .shared,
         completion: @escaping (Completion) -> Void
     ) -> UIViewController {
         let viewModel = EditCalendarEventViewModel(
+            selectedDate: selectedDate,
             eventInteractor: CalendarEventInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
             uploadParameters: makeUploadParameters(env: env),
