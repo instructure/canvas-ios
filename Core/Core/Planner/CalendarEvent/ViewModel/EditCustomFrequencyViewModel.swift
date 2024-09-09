@@ -55,10 +55,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     // MARK: - Outputs
 
     /// Specific to Yearly
-    let proposedDayOfYear: DayOfYear
-
     @Published var dayOfYear: DayOfYear
-    @Published private(set) var dayOfYearOptions: [DayOfYear]?
 
     var isSaveButtonEnabled: Bool {
         guard state == .data && end != nil else { return false }
@@ -107,21 +104,11 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             }
         }
 
-        self.proposedDayOfYear = DayOfYear(given: date, in: .current)
-        self.dayOfYear = proposedDayOfYear
+        self.dayOfYear = DayOfYear(given: date, in: .current)
         if case .yearly = frequency {
             if let day = rule?.daysOfTheMonth?.first,
                let month = rule?.monthsOfTheYear?.first {
-
-                let savedDayOfYear = DayOfYear(day: day, month: month)
-                if savedDayOfYear != proposedDayOfYear {
-                    dayOfYearOptions = [
-                        savedDayOfYear,
-                        proposedDayOfYear
-                    ]
-                }
-
-                self.dayOfYear = savedDayOfYear
+                self.dayOfYear = DayOfYear(day: day, month: month)
             }
         }
 

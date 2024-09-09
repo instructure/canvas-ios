@@ -170,15 +170,9 @@ final class EditCalendarEventViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         $date
+            .compactMap({ $0 })
             .sink { [weak self] newDate in
-                guard let date = newDate,
-                      let self,
-                      let frequency = self.frequency,
-                      frequency.preset.isCustom == false else { return }
-
-                if let newRule = frequency.preset.rule(given: date) {
-                    self.frequency = FrequencySelection(newRule, preset: frequency.preset)
-                }
+                self?.resetFrequencySelection(given: newDate)
             }
             .store(in: &subscriptions)
 
@@ -262,6 +256,36 @@ final class EditCalendarEventViewModel: ObservableObject {
         let startTime = startTime ?? defaultStartTime
         let hours = startTime.hours + 1
         return startTime.startOfDay().addHours(hours)
+    }
+
+    private func resetFrequencySelection(given newDate: Date) {
+        guard let selection = frequency else { return }
+
+        if case .custom(var rule) = selection.preset {
+
+            switch rule.frequency {
+            case .monthly:
+
+                if rule.daysOfTheWeek == nil {
+                    rule.daysOfTheMonth = [newDate.monthDay]
+                } else {
+                    rule.daysOfTheWeek = [newDate.monthWeekday]
+                }
+
+            case .yearly:
+
+                rule.monthsOfTheYear = [newDate.month]
+                rule.daysOfTheMonth = [newDate.monthDay]
+
+            default: return
+            }
+
+            self.frequency = FrequencySelection(rule, preset: .custom(rule))
+
+        } else if let newRule = selection.preset.rule(given: newDate) {
+
+            self.frequency = FrequencySelection(newRule, preset: selection.preset)
+        }
     }
 
     private func updateEndTimeError(_ startTime: Date?, _ endTime: Date?) {

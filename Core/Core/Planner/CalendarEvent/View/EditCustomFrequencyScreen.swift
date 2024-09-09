@@ -102,20 +102,10 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
 
     @ViewBuilder
     private var yearDayCell: some View {
-        if let options = viewModel.dayOfYearOptions {
-            InstUI.SelectionMenuCell(
-                label: Text("On", bundle: .core),
-                options: options,
-                text: \.title,
-                defaultValue: viewModel.proposedDayOfYear,
-                selection: $viewModel.dayOfYear
-            )
-        } else {
-            InstUI.LabelValueCell(
-                label: Text("On", bundle: .core),
-                value: viewModel.dayOfYear.title
-            )
-        }
+        InstUI.LabelValueCell(
+            label: Text("On", bundle: .core),
+            value: viewModel.dayOfYear.title
+        )
     }
 
     private var weekDaysCell: some View {
