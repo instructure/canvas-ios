@@ -76,6 +76,9 @@ public extension XCTestCase {
         subscription.cancel()
     }
 
+    /**
+     This method asserts if the stream's next emitted value after the subscription equals the expected one.
+     */
     func XCTAssertSingleOutputEquals<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         _ expectedOutput: Output,

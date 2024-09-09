@@ -19,7 +19,8 @@
 import Foundation
 
 public struct APITodo: Codable {
-    let assignment: APIAssignment
+    let assignment: APIAssignment?
+    let quiz: APIQuiz?
     let context_type: String
     let course_id: ID?
     let group_id: ID?
@@ -33,7 +34,8 @@ public struct APITodo: Codable {
 #if DEBUG
 extension APITodo {
     public static func make(
-        assignment: APIAssignment = .make(),
+        assignment: APIAssignment? = .make(),
+        quiz: APIQuiz? = nil,
         context_type: String = "Course",
         course_id: ID? = "1",
         group_id: ID? = nil,
@@ -45,6 +47,7 @@ extension APITodo {
     ) -> APITodo {
         return APITodo(
             assignment: assignment,
+            quiz: quiz,
             context_type: context_type,
             course_id: course_id,
             group_id: group_id,
@@ -61,7 +64,22 @@ extension APITodo {
 struct GetTodosRequest: APIRequestable {
     typealias Response = [APITodo]
     var path: String { "users/self/todo" }
-    var query: [APIQueryItem] { [ APIQueryItem.perPage(100) ] }
+    let include: [GetTodosInclude]
+
+    public enum GetTodosInclude: String, CaseIterable {
+        case ungraded_quizzes
+    }
+
+    init(include: [GetTodosInclude] = GetTodosRequest.GetTodosInclude.allCases) {
+        self.include = include
+    }
+
+    public var query: [APIQueryItem] {
+        [
+            .include(include.map { $0.rawValue }),
+            .perPage(100)
+        ]
+    }
 }
 
 struct DeleteTodoRequest: APIRequestable {

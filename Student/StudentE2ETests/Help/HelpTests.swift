@@ -41,30 +41,39 @@ class HelpTests: E2ETestCase {
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas/ct-p/canvas"))
         HelpHelper.returnToHelpPage()
 
+        // MARK: Check "CUSTOM LINK" button
+        let customLinkButton = HelpHelper.customLink.waitUntil(.visible)
+        XCTAssertTrue(customLinkButton.isVisible)
+        customLinkButton.hit()
+        browserURL = SafariAppHelper.browserURL
+        XCTAssertTrue(browserURL.contains("https://www.instructure.com"))
+        HelpHelper.returnToHelpPage()
+
         // MARK: Check "Ask Your Instructor a Question" button
         let askYourInstructorButton = HelpHelper.askYourInstructor.waitUntil(.visible)
         XCTAssertTrue(askYourInstructorButton.isVisible)
 
         askYourInstructorButton.hit()
-        let newMessageLabel = app.find(label: "New Message").waitUntil(.visible)
-        let cancelButton = app.find(label: "Cancel").waitUntil(.visible)
-        XCTAssertTrue(newMessageLabel.isVisible)
+        let sendButton = InboxHelper.Composer.sendButton.waitUntil(.visible)
+        let cancelButton = InboxHelper.Composer.cancelButton.waitUntil(.visible)
+        XCTAssertTrue(sendButton.isVisible)
         XCTAssertTrue(cancelButton.isVisible)
 
         // MARK: Check "Report a Problem" button
         cancelButton.hit()
+        InboxHelper.handleCancelAlert()
         HelpHelper.navigateToHelpPage()
         let reportAProblemButton = HelpHelper.reportAProblem.waitUntil(.visible)
         XCTAssertTrue(reportAProblemButton.isVisible)
 
         reportAProblemButton.hit()
-        cancelButton.waitUntil(.visible)
+        let dismissButton = InboxHelper.Composer.dismissButton.waitUntil(.visible)
         let reportAProblemLabel = app.find(label: "Report a Problem").waitUntil(.visible)
         XCTAssertTrue(reportAProblemLabel.isVisible)
-        XCTAssertTrue(cancelButton.isVisible)
+        XCTAssertTrue(dismissButton.isVisible)
 
         // MARK: Check "Submit a Feature Idea" button
-        cancelButton.hit()
+        dismissButton.hit()
         HelpHelper.navigateToHelpPage()
         let submitAFeatureButton = HelpHelper.submitAFeatureIdea.waitUntil(.visible)
         XCTAssertTrue(submitAFeatureButton.isVisible)

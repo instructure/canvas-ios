@@ -151,7 +151,7 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Analytics.shared.logEvent("todo_selected")
-        guard let url = todos[indexPath]?.assignment.htmlURL else { return }
+        guard let url = todos[indexPath]?.htmlURL else { return }
         if env.app == .teacher, let todo = todos[indexPath], todo.type == .grading {
             let speedGrader = url.appendingPathComponent("submissions/speedgrader")
                 .appendingQueryItems(URLQueryItem(name: "filter", value: "needs_grading"))
@@ -196,14 +196,14 @@ class TodoListCell: UITableViewCell {
     }
 
     func update(_ todo: Todo?) {
-        accessIconView.icon = todo?.assignment.icon
+        accessIconView.icon = todo?.icon
         if todo?.type == .submitting {
             accessIconView.state = nil
         } else {
-            accessIconView.published = todo?.assignment.published == true
+            accessIconView.published = todo?.isPublished == true
         }
         backgroundColor = .backgroundLightest
-        titleLabel.setText(todo?.assignment.name, style: .textCellTitle)
+        titleLabel.setText(todo?.name, style: .textCellTitle)
         subtitleLabel.setText(todo?.dueText, style: .textCellSupportingText)
         tintColor = todo?.contextColor
         contextLabel.textColor = tintColor
@@ -211,7 +211,7 @@ class TodoListCell: UITableViewCell {
         needsGradingView.isHidden = todo?.type != .grading
         needsGradingSpacer.isHidden = needsGradingView.isHidden
         needsGradingLabel.text = todo?.needsGradingText
-        accessibilityIdentifier = "to-do.list.\(todo?.assignment.id ?? "unknown").row"
-        accessibilityLabel = [accessIconView.accessibilityLabel, todo?.contextName, todo?.assignment.name, todo?.dueText, todo?.needsGradingText].compactMap { $0 }.joined(separator: ", ")
+        accessibilityIdentifier = "to-do.list.\(todo?.assignmentOrQuizID ?? "unknown").row"
+        accessibilityLabel = [accessIconView.accessibilityLabel, todo?.contextName, todo?.name, todo?.dueText, todo?.needsGradingText].compactMap { $0 }.joined(separator: ", ")
     }
 }

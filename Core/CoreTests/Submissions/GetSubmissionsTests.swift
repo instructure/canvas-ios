@@ -89,7 +89,7 @@ class CreateSubmissionTests: CoreTestCase {
 
     func testItPostsModuleCompletedRequirement() {
         let context = Context(.course, id: "1")
-        let request = CreateSubmissionRequest(context: context, assignmentID: "2", body: .init(submission: .init(submission_type: .online_text_entry)))
+        let request = CreateSubmissionRequest(context: context, assignmentID: "2", body: .init(submission: .init(group_comment: nil, submission_type: .online_text_entry)))
         api.mock(request, value: nil)
         let expectation = XCTestExpectation(description: "notification")
         var notification: Notification?
@@ -109,7 +109,7 @@ class CreateSubmissionTests: CoreTestCase {
 
     func testItDoesNotPostModuleCompletedRequirementIfError() {
         let context = Context(.course, id: "1")
-        let request = CreateSubmissionRequest(context: context, assignmentID: "2", body: .init(submission: .init(submission_type: .online_text_entry)))
+        let request = CreateSubmissionRequest(context: context, assignmentID: "2", body: .init(submission: .init(group_comment: nil, submission_type: .online_text_entry)))
         api.mock(request, error: NSError.instructureError("oops"))
         let expectation = XCTestExpectation(description: "notification")
         expectation.isInverted = true

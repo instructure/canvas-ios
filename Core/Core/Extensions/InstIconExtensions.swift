@@ -196,6 +196,8 @@ public extension UIImage {
     static var trashSolid: UIImage { UIImage(named: "trashSolid", in: .core, compatibleWith: nil)! }
     static var troubleLine: UIImage { UIImage(named: "troubleLine", in: .core, compatibleWith: nil)! }
     static var troubleSolid: UIImage { UIImage(named: "troubleSolid", in: .core, compatibleWith: nil)! }
+    static var unarchiveLine: UIImage { UIImage(named: "unarchiveLine", in: .core, compatibleWith: nil)! }
+    static var unarchiveSolid: UIImage { UIImage(named: "unarchiveSolid", in: .core, compatibleWith: nil)! }
     static var unlockLine: UIImage { UIImage(named: "unlockLine", in: .core, compatibleWith: nil)! }
     static var unlockSolid: UIImage { UIImage(named: "unlockSolid", in: .core, compatibleWith: nil)! }
     static var unmutedLine: UIImage { UIImage(named: "unmutedLine", in: .core, compatibleWith: nil)! }
@@ -441,6 +443,8 @@ public extension Image {
     static var trashSolid: Image { Image("trashSolid", bundle: .core) }
     static var troubleLine: Image { Image("troubleLine", bundle: .core) }
     static var troubleSolid: Image { Image("troubleSolid", bundle: .core) }
+    static var unarchiveLine: Image { Image("unarchiveLine", bundle: .core) }
+    static var unarchiveSolid: Image { Image("unarchiveSolid", bundle: .core) }
     static var unlockLine: Image { Image("unlockLine", bundle: .core) }
     static var unlockSolid: Image { Image("unlockSolid", bundle: .core) }
     static var unmutedLine: Image { Image("unmutedLine", bundle: .core) }
@@ -456,7 +460,6 @@ public extension Image {
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
     static var placementPortal: Image { Image("placementPortal", bundle: .core) }
-
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
     static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }

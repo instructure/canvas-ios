@@ -27,7 +27,7 @@ public final class InboxMessageListItem: NSManagedObject {
 
     // MARK: Convertible Raw Properties
 
-    @NSManaged public var dateRaw: Date
+    @NSManaged public var dateRaw: Date?
     /** String value of `ConversationWorkflowState` cases. */
     @NSManaged public var stateRaw: String
     @NSManaged public var avatarNameRaw: String?
@@ -53,8 +53,8 @@ public final class InboxMessageListItem: NSManagedObject {
         }
     }
     public var isMarkAsReadActionAvailable: Bool { state == .unread || state == .archived }
-    public var isArchiveActionAvailable: Bool { state != .archived }
-    public var date: String { dateRaw.relativeDateOnlyString }
+    public var isArchiveActionAvailable: Bool { state != .archived && !isSent }
+    public var date: String { dateRaw?.relativeDateOnlyString ?? "" }
     public var avatar: InboxMessageAvatar {
         if let name = avatarNameRaw {
             return .individual(name: name, profileImageURL: avatarURLRaw)
@@ -99,7 +99,7 @@ public final class InboxMessageListItem: NSManagedObject {
         dbEntity.title = apiEntity.subject ?? ""
         dbEntity.message = apiEntity.last_authored_message ?? apiEntity.last_message ?? ""
         dbEntity.isStarred = apiEntity.starred
-        dbEntity.dateRaw = (apiEntity.last_authored_message_at ?? apiEntity.last_message_at ?? Date())
+        dbEntity.dateRaw = apiEntity.last_authored_message_at ?? apiEntity.last_message_at
         dbEntity.stateRaw = apiEntity.workflow_state.rawValue
         dbEntity.isSent = isSent
         dbEntity.contextFilter = contextFilter?.canvasContextID

@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
 import XCTest
+@testable import Core
 
 final class EditCalendarToDoViewModelTests: CoreTestCase {
 
@@ -25,8 +25,8 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         static let id = "some id"
         static let title = "some title"
         static let details = "some details"
-        static let dateNow = DateComponents(calendar: .current, year: 2024, month: 1, day: 1, hour: 14).date!
-        static let dateEarlier = DateComponents(calendar: .current, year: 2023, month: 8, day: 8, hour: 8).date!
+        static let dateNow = Date.make(year: 2024, month: 1, day: 1, hour: 14)
+        static let dateEarlier = Date.make(year: 2023, month: 8, day: 8, hour: 8)
         static let calendars: [(name: String, context: Context)] = [
             ("Course 2", .course("2")),
             ("Course 1", .course("1")),
@@ -64,7 +64,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         let testee = makeAddViewModel()
 
         XCTAssertEqual(testee.state, .data)
-        XCTAssertEqual(testee.shouldShowAlert, false)
+        XCTAssertEqual(testee.shouldShowSaveError, false)
 
         XCTAssertEqual(testee.title, "")
         XCTAssertEqual(testee.date, TestConstants.dateNow.endOfDay())
@@ -80,7 +80,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         ))
 
         XCTAssertEqual(testee.state, .data)
-        XCTAssertEqual(testee.shouldShowAlert, false)
+        XCTAssertEqual(testee.shouldShowSaveError, false)
 
         XCTAssertEqual(testee.title, TestConstants.title)
         XCTAssertEqual(testee.date, TestConstants.dateEarlier)
@@ -95,12 +95,12 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         testee = makeEditViewModel(makePlannable(context: .course("4")))
         XCTAssertEqual(testee.calendarName, "Course 4")
 
-        // no context (should not happen)
-        testee = makeEditViewModel(makePlannable(context: nil))
-        XCTAssertEqual(testee.calendarName, firstUserCalendarName)
-
         // existing non-course context
         testee = makeEditViewModel(makePlannable(context: .user("3")))
+        XCTAssertEqual(testee.calendarName, "User 3")
+
+        // no context (should not happen)
+        testee = makeEditViewModel(makePlannable(context: nil))
         XCTAssertEqual(testee.calendarName, firstUserCalendarName)
 
         // not existing context (should not happen)
@@ -232,9 +232,9 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.pageTitle, String(localized: "New To Do", bundle: .core))
         XCTAssertEqual(testee.saveButtonTitle, String(localized: "Add", bundle: .core))
-        XCTAssertEqual(testee.alert.title, String(localized: "Creation not completed", bundle: .core))
-        XCTAssertEqual(testee.alert.message, String(localized: "We couldn't add your To Do at this time. You can try it again.", bundle: .core))
-        XCTAssertEqual(testee.alert.buttonTitle, String(localized: "OK", bundle: .core))
+        XCTAssertEqual(testee.saveErrorAlert.title, String(localized: "Creation not completed", bundle: .core))
+        XCTAssertEqual(testee.saveErrorAlert.message, String(localized: "We couldn't add your To Do at this time. You can try it again.", bundle: .core))
+        XCTAssertEqual(testee.saveErrorAlert.buttonTitle, String(localized: "OK", bundle: .core))
     }
 
     func testEditModeStrings() {
@@ -242,9 +242,9 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.pageTitle, String(localized: "Edit To Do", bundle: .core))
         XCTAssertEqual(testee.saveButtonTitle, String(localized: "Save", bundle: .core))
-        XCTAssertEqual(testee.alert.title, String(localized: "Saving not completed", bundle: .core))
-        XCTAssertEqual(testee.alert.message, String(localized: "We couldn't save your To Do at this time. You can try it again.", bundle: .core))
-        XCTAssertEqual(testee.alert.buttonTitle, String(localized: "OK", bundle: .core))
+        XCTAssertEqual(testee.saveErrorAlert.title, String(localized: "Saving not completed", bundle: .core))
+        XCTAssertEqual(testee.saveErrorAlert.message, String(localized: "We couldn't save your To Do at this time. You can try it again.", bundle: .core))
+        XCTAssertEqual(testee.saveErrorAlert.buttonTitle, String(localized: "OK", bundle: .core))
     }
 
     // MARK: - Did Tap Cancel
@@ -333,7 +333,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         testee.didTapSave.send()
 
         XCTAssertEqual(testee.state, .data)
-        XCTAssertEqual(testee.shouldShowAlert, true)
+        XCTAssertEqual(testee.shouldShowSaveError, true)
         XCTAssertEqual(completionCallsCount, 0)
     }
 
@@ -387,6 +387,19 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         XCTAssertEqual(hasGroupCalendars, false)
     }
 
+    func testShowCalendarScreen() {
+        let sourceVC = UIViewController()
+        let testee = makeAddViewModel()
+        testee.showCalendarSelector.send(WeakViewController(sourceVC))
+
+        guard let lastPresentation = router.viewControllerCalls.last else {
+            return XCTFail()
+        }
+        XCTAssertTrue(lastPresentation.0 is CoreHostingController<SelectCalendarScreen>)
+        XCTAssertEqual(lastPresentation.1, sourceVC)
+        XCTAssertEqual(lastPresentation.2, .push)
+    }
+
     func testSelectCalendarViewModelSelectsCalendar() {
         let testee = makeAddViewModel()
 
@@ -409,6 +422,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
             plannable: plannable,
             toDoInteractor: toDoInteractor,
             calendarListProviderInteractor: calendarListProviderInteractor,
+            router: router,
             completion: { [weak self] in
                 self?.completionValue = $0
                 self?.completionCallsCount += 1
@@ -431,7 +445,8 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
                 todo_date: todoDate
             ),
             contextName: nil,
-            in: databaseClient)
+            in: databaseClient
+        )
         plannable.context = context
         return plannable
     }

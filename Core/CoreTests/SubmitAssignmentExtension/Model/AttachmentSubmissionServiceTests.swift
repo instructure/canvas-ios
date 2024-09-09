@@ -44,7 +44,7 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
         let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
 
         // MARK: - WHEN
-        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment", isGroupComment: nil)
 
         // MARK: - THEN
         XCTAssertEqual(mockAssembly.mockComposer.startedSubmissionID, submissionID)
@@ -56,13 +56,31 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
         XCTAssertEqual(mockAssembly.startedSubmission, submissionID)
     }
 
+    func testGroupCommentSubmit() {
+        // MARK: - GIVEN
+        let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
+
+        // MARK: - WHEN
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment", isGroupComment: true)
+
+        // MARK: - THEN
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmissionID, submissionID)
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.courseId, "testCourseID")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.assignmentId, "testAssignmentID")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.assignmentName, "testName")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.comment, "testComment")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.isGroupComment, true)
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.files, [fileURL])
+        XCTAssertEqual(mockAssembly.startedSubmission, submissionID)
+    }
+
     func testReSubmitDeletesPreviousSubmission() {
         // MARK: - GIVEN
         let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
 
         // MARK: - WHEN
-        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
-        let submissionID2 = testee.submit(urls: [fileURL], courseID: "testCourseID2", assignmentID: "testAssignmentID2", assignmentName: "testName2", comment: "testComment2")
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment", isGroupComment: nil)
+        let submissionID2 = testee.submit(urls: [fileURL], courseID: "testCourseID2", assignmentID: "testAssignmentID2", assignmentName: "testName2", comment: "testComment2", isGroupComment: nil)
 
         // MARK: - THEN
         XCTAssertEqual(mockAssembly.mockComposer.deletedSubmission, submissionID)
@@ -78,7 +96,7 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
     func testCancel() {
         // MARK: - GIVEN
         let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
-        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment", isGroupComment: nil)
 
         // MARK: - WHEN
         testee.fileProgressViewModelCancel(FileProgressListViewModel(submissionID: submissionID, dismiss: {}))
@@ -90,7 +108,7 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
     func testRetry() {
         // MARK: - GIVEN
         let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
-        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment", isGroupComment: nil)
 
         // MARK: - WHEN
         testee.fileProgressViewModelRetry(FileProgressListViewModel(submissionID: submissionID, dismiss: {}))
@@ -102,7 +120,7 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
     func testItemDeletion() {
         // MARK: - GIVEN
         let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
-        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment", isGroupComment: nil)
         let itemID = NSManagedObjectID()
 
         // MARK: - WHEN
@@ -115,7 +133,7 @@ class AttachmentSubmissionServiceTests: CoreTestCase {
     func testSuccess() {
         // MARK: - GIVEN
         let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
-        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment", isGroupComment: nil)
 
         // MARK: - WHEN
         testee.fileProgressViewModel(FileProgressListViewModel(submissionID: submissionID, dismiss: {}), didAcknowledgeSuccess: submissionID)
@@ -156,6 +174,7 @@ class MockFileSubmissionComposer: FileSubmissionComposer {
         let assignmentId: String
         let assignmentName: String
         let comment: String?
+        let isGroupComment: Bool?
         let files: [URL]
     }
     var deletedSubmission: NSManagedObjectID?
@@ -163,11 +182,12 @@ class MockFileSubmissionComposer: FileSubmissionComposer {
     var startedSubmission: StartedSubmissionParams?
     var startedSubmissionID: NSManagedObjectID?
 
-    public override func makeNewSubmission(courseId: String, assignmentId: String, assignmentName: String, comment: String?, files: [URL]) -> NSManagedObjectID {
+    public override func makeNewSubmission(courseId: String, assignmentId: String, assignmentName: String, comment: String?, isGroupComment: Bool?, files: [URL]) -> NSManagedObjectID {
         startedSubmission = StartedSubmissionParams(courseId: courseId,
                                                     assignmentId: assignmentId,
                                                     assignmentName: assignmentName,
                                                     comment: comment,
+                                                    isGroupComment: isGroupComment,
                                                     files: files)
         let startedSubmissionID = NSManagedObjectID()
         self.startedSubmissionID = startedSubmissionID

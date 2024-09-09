@@ -51,6 +51,7 @@ public class CreateSubmission: APIUseCase {
         userID: String,
         submissionType: SubmissionType,
         textComment: String? = nil,
+        isGroupComment: Bool? = nil,
         body: String? = nil,
         url: URL? = nil,
         fileIDs: [String]? = nil,
@@ -65,6 +66,7 @@ public class CreateSubmission: APIUseCase {
         let submission = CreateSubmissionRequest.Body.Submission(
             annotatable_attachment_id: annotatableAttachmentID,
             text_comment: textComment,
+            group_comment: isGroupComment,
             submission_type: submissionType,
             body: body,
             url: url,

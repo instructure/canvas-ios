@@ -45,8 +45,8 @@ class CalendarTests: E2ETestCase {
         let todayButton = Helper.todayButton.waitUntil(.visible)
         XCTAssertTrue(todayButton.isVisible)
 
-        let addNoteButton = Helper.addNoteButton.waitUntil(.visible)
-        XCTAssertTrue(addNoteButton.isVisible)
+        let addButton = Helper.addButton.waitUntil(.visible)
+        XCTAssertTrue(addButton.isVisible)
 
         let eventDateButton = Helper.dayButton(event: event).waitUntil(.visible)
         XCTAssertTrue(eventDateButton.isVisible)
@@ -275,7 +275,7 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(calendarTab.isVisible)
 
         calendarTab.hit()
-        let addButton = Helper.addNoteButton.waitUntil(.visible)
+        let addButton = Helper.addButton.waitUntil(.visible)
         XCTAssertTrue(addButton.isVisible)
 
         // MARK: Tap on "Add" button, check UI elements
@@ -362,7 +362,7 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(calendarTab.isVisible)
 
         calendarTab.hit()
-        let addButton = Helper.addNoteButton.waitUntil(.visible)
+        let addButton = Helper.addButton.waitUntil(.visible)
         XCTAssertTrue(addButton.isVisible)
 
         // MARK: Tap on "Add" button, check UI elements
@@ -450,7 +450,7 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(calendarTab.isVisible)
 
         calendarTab.hit()
-        let addButton = Helper.addNoteButton.waitUntil(.visible)
+        let addButton = Helper.addButton.waitUntil(.visible)
         XCTAssertTrue(addButton.isVisible)
 
         // MARK: Create Calendar Todo Item
@@ -570,7 +570,7 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(calendarTab.isVisible)
 
         calendarTab.hit()
-        let addButton = Helper.addNoteButton.waitUntil(.visible)
+        let addButton = Helper.addButton.waitUntil(.visible)
         XCTAssertTrue(addButton.isVisible)
 
         // MARK: Create Calendar Todo Item

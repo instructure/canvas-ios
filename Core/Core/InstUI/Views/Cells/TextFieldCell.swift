@@ -74,7 +74,7 @@ extension InstUI {
             VStack(spacing: 0) {
                 SwiftUI.Group {
                     if let label {
-                        HStack(alignment: .top, spacing: 0) {
+                        HStack(alignment: .center, spacing: 0) {
                             labelTransform(label)
                                 .textStyle(.cellLabel)
                                 .paddingStyle(.trailing, .standard)
@@ -98,7 +98,7 @@ extension InstUI {
         }
 
         private var textField: some View {
-            TextField("", text: $text, prompt: Text(placeholder).foregroundColor(Color.placeholderGray), axis: .vertical)
+            TextField("", text: $text, prompt: Text(placeholder).foregroundColor(Color.placeholderGray))
                 .focused($isFocused)
                 .multilineTextAlignment(.leading)
                 .font(label == nil ? .semibold16 : .regular16, lineHeight: .fit)

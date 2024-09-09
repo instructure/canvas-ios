@@ -87717,7 +87717,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open in..."
+            "value" : "Oscail i..."
           }
         },
         "hi" : {
@@ -110607,7 +110607,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bài Nộp Và Bảng Đánh Giá Theo Tiêu Chí"
+            "value" : "Bài Nộp và Bảng Đánh Giá Theo Tiêu Chí"
           }
         },
         "zh" : {
@@ -135503,7 +135503,7 @@
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Llwytho i fyny"
+            "value" : "Wrthi’n llwytho i fyny"
           }
         },
         "da" : {
@@ -135581,13 +135581,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Envoi"
+            "value" : "En cours de chargement"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Téléversement"
+            "value" : "Téléversement en cours"
           }
         },
         "ga" : {
@@ -135617,7 +135617,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hlaða upp"
+            "value" : "Hleður upp"
           }
         },
         "it" : {
@@ -135671,7 +135671,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A realizar carregamento"
+            "value" : "Carregamento"
           }
         },
         "pt-BR" : {
@@ -135713,7 +135713,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Đang Tải Lên"
+            "value" : "Đang tải lên"
           }
         },
         "zh" : {

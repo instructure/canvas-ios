@@ -23,7 +23,7 @@ import UIKit
 class UIImageViewExtensionsTests: CoreTestCase {
 
     func testLoad() {
-        let url = URL(string: "/")!
+        let url = URL.make()
         api.mock(url: url).suspend()
         let view = UIImageView()
 
@@ -37,7 +37,7 @@ class UIImageViewExtensionsTests: CoreTestCase {
     }
 
     func testLoadUrlWithResult() {
-        let url = URL(string: "/")!
+        let url = URL.make()
         let view = UIImageView()
         let image = UIImage.animatedImage(with: [
             UIImage(data: Data(base64Encoded: "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")!)!

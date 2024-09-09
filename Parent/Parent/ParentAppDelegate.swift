@@ -122,7 +122,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     func showRootView() {
         guard let window = self.window else { return }
-        let controller = HelmNavigationController(rootViewController: DashboardViewController.create())
+        let controller = CoreNavigationController(rootViewController: DashboardViewController.create())
         controller.view.layoutIfNeeded()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
             window.rootViewController = controller
@@ -194,7 +194,7 @@ extension ParentAppDelegate: LoginDelegate {
     }
 
     func launchLimitedWebView(url: URL, from sourceViewController: UIViewController) {
-        let controller = CoreWebViewController(invertColorsInDarkMode: true)
+        let controller = CoreWebViewController(features: [.invertColorsInDarkMode])
         controller.isInteractionLimited = true
         controller.webView.load(URLRequest(url: url))
         environment.router.show(controller, from: sourceViewController, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))

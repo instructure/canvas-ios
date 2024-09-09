@@ -30,7 +30,7 @@ public enum InboxAssembly {
         let inboxVC = CoreHostingController(InboxView(model: viewModel))
         inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
 
-        let nav = HelmNavigationController(rootViewController: inboxVC)
+        let nav = CoreNavigationController(rootViewController: inboxVC)
         nav.navigationBar.useGlobalNavStyle()
         return nav
     }

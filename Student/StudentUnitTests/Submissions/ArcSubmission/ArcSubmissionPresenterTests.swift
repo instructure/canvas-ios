@@ -52,6 +52,7 @@ class ArcSubmissionPresenterTests: StudentTestCase {
             assignmentID: "1",
             body: .init(submission: .init(
                 text_comment: nil,
+                group_comment: nil,
                 submission_type: .basic_lti_launch,
                 body: nil,
                 url: URL(string: "https://arc.com/media/1")!,
@@ -78,6 +79,7 @@ class ArcSubmissionPresenterTests: StudentTestCase {
             assignmentID: "2",
             body: .init(submission: .init(
                 text_comment: nil,
+                group_comment: nil,
                 submission_type: .basic_lti_launch,
                 body: nil,
                 url: URL(string: "https://arc.com/media/1")!,
@@ -104,6 +106,7 @@ class ArcSubmissionPresenterTests: StudentTestCase {
             assignmentID: "2",
             body: .init(submission: .init(
                 text_comment: nil,
+                group_comment: nil,
                 submission_type: .basic_lti_launch,
                 body: nil,
                 url: URL(string: "https://arc.com/media/1")!,

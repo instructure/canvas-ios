@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="22G120" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23G80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -11,7 +11,7 @@
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="htmlURL" attributeType="URI"/>
+        <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="message" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
@@ -121,8 +121,10 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="isAllDay" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isSeriesHead" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="locationAddress" optional="YES" attributeType="String"/>
         <attribute name="locationName" optional="YES" attributeType="String"/>
+        <attribute name="repetitionRule" optional="YES" attributeType="String"/>
         <attribute name="seriesInNaturalLanguage" optional="YES" attributeType="String"/>
         <attribute name="startAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" attributeType="String"/>
@@ -522,6 +524,7 @@
         <attribute name="assignmentName" attributeType="String" defaultValueString=""/>
         <attribute name="comment" optional="YES" attributeType="String"/>
         <attribute name="courseID" attributeType="String"/>
+        <attribute name="isGroupComment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isHiddenOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="submissionError" optional="YES" attributeType="String"/>
@@ -623,7 +626,7 @@
         <attribute name="avatarNameRaw" optional="YES" attributeType="String"/>
         <attribute name="avatarURLRaw" optional="YES" attributeType="URI"/>
         <attribute name="contextFilter" optional="YES" attributeType="String"/>
-        <attribute name="dateRaw" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO"/>
+        <attribute name="dateRaw" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="hasAttachment" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isSent" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isStarred" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -1068,14 +1071,17 @@
     </entity>
     <entity name="Todo" representedClassName="Core.Todo" syncable="YES">
         <attribute name="contextRaw" attributeType="String"/>
+        <attribute name="dueAtSortNilsAtBottom" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="ignorePermanentlyURL" attributeType="URI"/>
         <attribute name="ignoreURL" attributeType="URI"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="needsGradingCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="typeRaw" attributeType="String"/>
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="todo" inverseEntity="Assignment"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="todos" inverseEntity="Course"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="todos" inverseEntity="Group"/>
+        <relationship name="quiz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz"/>
     </entity>
     <entity name="TTL" representedClassName="Core.TTL" syncable="YES">
         <attribute name="key" attributeType="String"/>

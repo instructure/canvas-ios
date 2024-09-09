@@ -86,7 +86,11 @@ public struct InboxView: View, ScreenViewTrackable {
             .listRowInsets(EdgeInsets())
             .listRowSeparator(.hidden)
             .swipeActions(edge: .trailing) {
-                archiveButton(message: message)
+                if model.scopeDidChange.value == .archived {
+                    unarchiveButton(message: message)
+                } else {
+                    archiveButton(message: message)
+                }
             }
             .swipeActions(edge: .leading) {
                 readStatusToggleButton(message: message)
@@ -105,6 +109,27 @@ public struct InboxView: View, ScreenViewTrackable {
                     Text("Archive", bundle: .core)
                 } icon: {
                     Image.archiveLine
+                        .foregroundColor(.textLightest)
+                }
+                .labelStyle(.iconOnly)
+            }
+            .tint(.ash)
+        } else {
+            SwiftUI.EmptyView()
+        }
+    }
+
+    @ViewBuilder
+    private func unarchiveButton(message: InboxMessageListItemViewModel) -> some View {
+        if message.state == .archived {
+            Button {
+                model.updateState.send((messageId: message.id, state: .read))
+            }
+            label: {
+                Label {
+                    Text("Unarchive", bundle: .core)
+                } icon: {
+                    Image.unarchiveLine
                         .foregroundColor(.textLightest)
                 }
                 .labelStyle(.iconOnly)
@@ -170,7 +195,7 @@ public struct InboxView: View, ScreenViewTrackable {
                 .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
         }
         .frame(width: 44, height: 44).padding(.leading, -6)
-        .identifier("inbox.profileButton")
+        .identifier("Inbox.profileButton")
         .accessibility(label: Text("Profile Menu", bundle: .core))
     }
 
@@ -182,7 +207,7 @@ public struct InboxView: View, ScreenViewTrackable {
                 .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
         }
         .frame(width: 44, height: 44).padding(.trailing, -6)
-        .identifier("inbox.newMessageButton")
+        .identifier("Inbox.newMessageButton")
         .accessibility(label: Text("New Message", bundle: .core))
     }
 

@@ -21,6 +21,7 @@ import SwiftUI
 public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
     public var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
 
+    @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: CalendarEventDetailsViewModel
 
     public init(viewModel: CalendarEventDetailsViewModel) {
@@ -35,7 +36,32 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
             eventContent
         }
         .navigationTitle(viewModel.pageTitle, subtitle: viewModel.pageSubtitle)
+        .navBarItems(
+            trailing: ExperimentalFeature.modifyCalendarEvent.isEnabled && viewModel.shouldShowMenuButton
+            ? InstUI.NavigationBarButton.moreIcon(
+                isBackgroundContextColor: true,
+                isEnabled: viewModel.isMoreButtonEnabled,
+                isAvailableOffline: false,
+                menuContent: {
+                    InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
+                    InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
+                }
+            )
+            .confirmation(
+                isPresented: $viewModel.shouldShowDeleteConfirmation,
+                presenting: viewModel.deleteConfirmation
+            )
+            : nil
+        )
         .navigationBarStyle(.color(viewModel.contextColor))
+        .errorAlert(
+            isPresented: $viewModel.shouldShowDeleteError,
+            presenting: .init(
+                title: String(localized: "Deletion not completed", bundle: .core),
+                message: String(localized: "We couldn't delete your Event at this time. You can try it again.", bundle: .core),
+                buttonTitle: String(localized: "OK", bundle: .core)
+            )
+        )
     }
 
     private var eventContent: some View {
@@ -51,7 +77,19 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
 #if DEBUG
 
 #Preview {
-    PlannerAssembly.makeEventDetailsScreenPreview()
+    let event = CalendarEvent.save(
+        .make(
+            id: "",
+            title: "Creative Machines and Innovative Instrumentation Conference",
+            description: "We should meet 10 minutes before the event. <a href=\"\">Click here!</a>",
+            location_name: "UCF Department of Mechanical and Aerospace Engineering",
+            location_address: "12760 Pegasus Dr\nOrlando, FL 32816"
+        ),
+        in: PreviewEnvironment().database.viewContext
+    )
+    let contextColor: UIColor = .red
+
+    return PlannerAssembly.makeEventDetailsScreenPreview(event: event, contextColor: contextColor)
 }
 
 #endif

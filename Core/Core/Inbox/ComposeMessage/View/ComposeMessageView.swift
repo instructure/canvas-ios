@@ -43,76 +43,79 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                headerView
-                    .background(
-                        GeometryReader { proxy in
-                            Color.clear
-                                .onAppear {
-                                    headerHeight = proxy.size.height
-                                }
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(spacing: 0) {
+                    headerView
+                        .background(
+                            GeometryReader { proxy in
+                                Color.clear
+                                    .onAppear {
+                                        headerHeight = proxy.size.height
+                                    }
+                            }
+                        )
+                    separator
+                    VStack(spacing: 0) {
+                        propertiesView
+                    }
+                    separator
+                    VStack(spacing: 0) {
+                        bodyView(geometry: geometry)
+                        attachmentsView
+                        if !model.includedMessages.isEmpty {
+                            includedMessages
                         }
-                    )
-                separator
-                VStack(spacing: 0) {
-                    propertiesView
-                }
-                separator
-                VStack(spacing: 0) {
-                    bodyView
-                    attachmentsView
-                    if !model.includedMessages.isEmpty {
-                        includedMessages
                     }
                 }
+                .font(.regular12)
+                .foregroundColor(.textDarkest)
+                .background(
+                    GeometryReader { reader in
+                        return Color.backgroundLightest
+                            .onTapGesture {
+                                focusedInput = nil
+                            }
+                            .preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
+                    }
+                )
+                .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
+                .navigationBarStyle(.modal)
             }
-            .font(.regular12)
-            .foregroundColor(.textDarkest)
-            .background(
-                GeometryReader { reader in
-                    return Color.backgroundLightest
-                        .onTapGesture {
-                            focusedInput = nil
-                        }
-                        .preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
+            .onPreferenceChange(ViewSizeKey.self) { offset in
+                model.showExtraSendButton = offset > headerHeight
+            }
+            .coordinateSpace(name: "scroll")
+            .background(Color.backgroundLightest)
+            .fileImporter(
+                isPresented: $model.isFilePickerVisible,
+                allowedContentTypes: [.item],
+                allowsMultipleSelection: false
+            ) { result in
+                switch result {
+                case .success(let urls):
+                    model.addFiles(urls: urls)
+                case .failure:
+                    break
                 }
-            )
-            .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
-            .navigationBarStyle(.modal)
-        }
-        .onPreferenceChange(ViewSizeKey.self) { offset in
-            model.showExtraSendButton = offset > headerHeight
-        }
-        .coordinateSpace(name: "scroll")
-        .background(Color.backgroundLightest)
-        .fileImporter(
-            isPresented: $model.isFilePickerVisible,
-            allowedContentTypes: [.item],
-            allowsMultipleSelection: false
-        ) { result in
-            switch result {
-            case .success(let urls):
-                model.addFiles(urls: urls)
-            case .failure:
-                break
             }
+            .sheet(isPresented: $model.isImagePickerVisible) {
+                ImagePickerViewController(sourceType: .photoLibrary, imageHandler: model.addFile)
+            }
+            .sheet(isPresented: $model.isTakePhotoVisible) {
+                ImagePickerViewController(sourceType: .camera, imageHandler: model.addFile)
+                    .interactiveDismissDisabled()
+            }
+            .sheet(isPresented: $model.isAudioRecordVisible) {
+                AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: model.router, onSelect: model.addFile)
+                    .interactiveDismissDisabled()
+            }
+            .confirmationAlert(
+                isPresented: $model.isShowingCancelDialog,
+                presenting: model.confirmAlert
+            )
         }
-        .sheet(isPresented: $model.isImagePickerVisible) {
-            ImagePickerViewController(sourceType: .photoLibrary, imageHandler: model.addFile)
-        }
-        .sheet(isPresented: $model.isTakePhotoVisible) {
-            ImagePickerViewController(sourceType: .camera, imageHandler: model.addFile)
-                .interactiveDismissDisabled()
-        }
-        .sheet(isPresented: $model.isAudioRecordVisible) {
-            AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: model.router, onSelect: model.addFile)
-                .interactiveDismissDisabled()
-        }
-        .confirmationAlert(
-            isPresented: $model.isShowingCancelDialog,
-            presenting: model.confirmAlert
-        )
+
     }
 
     @ViewBuilder
@@ -136,6 +139,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
                 .foregroundColor(.accentColor)
+                .accessibilityIdentifier("ComposeMessage.cancel")
         }
     }
 
@@ -148,6 +152,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         .accessibility(label: Text("Send", bundle: .core))
         .disabled(!model.sendButtonActive)
         .frame(maxHeight: .infinity, alignment: .top)
+        .accessibilityIdentifier("ComposeMessage.send")
 
     }
 
@@ -168,11 +173,13 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         }
         .accessibilityLabel(Text("Add recipient", bundle: .core))
         .accessibilityElement(children: .ignore)
+        .accessibilityIdentifier("ComposeMessage.addRecipient")
     }
 
     private var headerView: some View {
         HStack(alignment: .center) {
             Text(model.subject.isEmpty ? model.title : model.subject)
+                .accessibilityIdentifier("ComposeMessage.subjectLabel")
                 .multilineTextAlignment(.leading)
                 .font(.semibold22)
                 .foregroundColor(.textDarkest)
@@ -215,6 +222,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 Text("Course", bundle: .core)
                     .font(.regular16, lineHeight: .condensed)
                     .foregroundColor(.textDark)
+                    .accessibilityIdentifier("ComposeMessage.course")
                 if let context = model.selectedContext {
                     Text(context.name)
                         .font(.regular16, lineHeight: .condensed)
@@ -239,6 +247,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .foregroundColor(.textDark)
                 .padding(.vertical, 12)
                 .accessibilitySortPriority(3)
+                .accessibilityIdentifier("ComposeMessage.to")
             if !model.recipients.isEmpty {
                 recipientsView
                     .accessibilitySortPriority(1)
@@ -279,6 +288,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .focused($focusedInput, equals: .subject)
                 .submitLabel(.done)
                 .accessibility(label: Text("Subject", bundle: .core))
+                .accessibilityIdentifier("ComposeMessage.subjectInput")
         }
         .disabled(model.isSubjectDisabled)
         .opacity(model.isSubjectDisabled ? 0.6 : 1)
@@ -296,9 +306,11 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         .padding(.horizontal, defaultHorizontalPaddingValue)
         .padding(.vertical, defaultVerticalPaddingValue)
         .contentShape(Rectangle())
+        .accessibilityIdentifier("ComposeMessage.individual")
     }
 
-    private var bodyView: some View {
+    @ViewBuilder
+    private func bodyView(geometry: GeometryProxy) -> some View {
         VStack(spacing: 0) {
             HStack {
                 Text("Message", bundle: .core)
@@ -320,6 +332,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         .padding(.horizontal, defaultHorizontalPaddingValue)
                 }
                 .accessibility(label: Text("Add attachment", bundle: .core))
+                .accessibilityIdentifier("ComposeMessage.attachment")
             }
             .padding(.leading, defaultHorizontalPaddingValue)
             .padding(.top, defaultVerticalPaddingValue)
@@ -331,7 +344,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 tv.textContainer.lineBreakMode = .byWordWrapping
                 tv.font = UIFont.scaledNamedFont(.regular16)
                 tv.translatesAutoresizingMaskIntoConstraints = false
-                tv.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 2 * defaultHorizontalPaddingValue).isActive = true
+                tv.widthAnchor.constraint(equalToConstant: geometry.frame(in: .global).width - (2 * defaultHorizontalPaddingValue)).isActive = true
                 tv.backgroundColor = .backgroundLightest
                 return tv
             }
@@ -342,6 +355,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .padding(.horizontal, defaultHorizontalPaddingValue)
             .frame(minHeight: 60)
             .accessibility(label: Text("Message", bundle: .core))
+            .accessibilityIdentifier("ComposeMessage.body")
         }
         .disabled(model.isMessageDisabled)
         .opacity(model.isMessageDisabled ? 0.6 : 1)

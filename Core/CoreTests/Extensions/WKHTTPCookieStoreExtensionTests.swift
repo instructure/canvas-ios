@@ -21,19 +21,26 @@ import WebKit
 import XCTest
 
 class WKHTTPCookieStoreExtensionTests: XCTestCase {
+    private var webViewConfiguration: WKWebViewConfiguration!
+    private let cookie = HTTPCookie(
+        properties: [
+            .name: "testName",
+            .value: "testValue",
+            .path: "/login",
+            .domain: "instructure.com",
+            .version: 1
+        ]
+    )!
+
+    override func setUp() {
+        super.setUp()
+        webViewConfiguration = WKWebViewConfiguration()
+        webViewConfiguration.websiteDataStore = .nonPersistent()
+    }
 
     func testGetAllCookies() {
-        let webView = WKWebView(frame: .zero)
+        let webView = WKWebView(frame: .zero, configuration: webViewConfiguration)
         let cookieStore = webView.configuration.websiteDataStore.httpCookieStore
-        let cookie = HTTPCookie(
-            properties: [
-                .name: "testName",
-                .value: "testValue",
-                .path: "/login",
-                .domain: "instructure.com",
-                .version: 1
-            ]
-        )!
         let cookieWasSet = expectation(description: "Cookie was set.")
         cookieStore.setCookie(cookie) {
             cookieWasSet.fulfill()
@@ -46,6 +53,26 @@ class WKHTTPCookieStoreExtensionTests: XCTestCase {
         // THEN
         XCTAssertSingleOutputEquals(
             publisher,
+            [cookie],
+            timeout: 10
+        )
+    }
+
+    func testSetCookie() {
+        let webView = WKWebView(frame: .zero, configuration: webViewConfiguration)
+        let cookieStore = webView.configuration.websiteDataStore.httpCookieStore
+        XCTAssertSingleOutputEquals(
+            cookieStore.getAllCookies(),
+            [],
+            timeout: 10
+        )
+
+        // WHEN
+        XCTAssertFinish(cookieStore.setCookie(cookie))
+
+        // THEN
+        XCTAssertSingleOutputEquals(
+            cookieStore.getAllCookies(),
             [cookie],
             timeout: 10
         )
