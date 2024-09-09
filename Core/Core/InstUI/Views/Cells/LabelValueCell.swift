@@ -59,7 +59,7 @@ extension InstUI {
 
                         if action != nil {
                             InstUI.DisclosureIndicator()
-                                .padding(.leading, InstUI.DisclosureIndicator.leadingPadding)
+                                .paddingStyle(.leading, .cellAccessoryPadding)
                         }
                     }
                     .paddingStyle(set: .standardCell)

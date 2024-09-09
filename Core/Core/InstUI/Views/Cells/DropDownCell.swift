@@ -39,9 +39,7 @@ extension InstUI {
         public var body: some View {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
-                    label
-                        .textStyle(.cellLabel)
-                        .paddingStyle(.trailing, .standard)
+                    label.textStyle(.cellLabel)
                     Spacer()
                     DropDownButton(state: $state, label: value)
                 }

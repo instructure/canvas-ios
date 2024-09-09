@@ -48,20 +48,15 @@ extension InstUI {
                 HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
                     label.textStyle(.cellLabel)
                     Spacer()
-                    picker
+                    selectionMenu
                 }
-                .frame(minHeight: 36)
-                .paddingStyle(.leading, .standard)
-                .paddingStyle(.trailing, .controlInCellTrailing)
-                .padding(.top, 5)
-                .padding(.bottom, 7)
-
+                .paddingStyle(set: .standardCell)
                 InstUI.Divider()
             }
         }
 
         @ViewBuilder
-        private var picker: some View {
+        private var selectionMenu: some View {
             SelectionMenu(
                 options: options,
                 id: idKey,

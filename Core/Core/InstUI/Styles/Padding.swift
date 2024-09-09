@@ -44,6 +44,8 @@ public extension InstUI.Styles.Padding {
     /// The horizontal padding between a cell's leading icon and its text
     static let cellIconText = value(18)
 
+    static let cellAccessoryPadding = value(12)
+
     static let paragraphTop = value(24)
     static let paragraphBottom = value(28)
 
@@ -54,8 +56,6 @@ public extension InstUI.Styles.Padding {
     static let textEditorVerticalCorrection = value(-7)
     /// Correction to negate baked in TextEditor inset. Estimated value.
     static let textEditorHorizontalCorrection = value(-5)
-
-    static let controlInCellTrailing = value(14)
 
     static let dropDownOption = value(12)
 
