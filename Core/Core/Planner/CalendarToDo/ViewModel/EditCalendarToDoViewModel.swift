@@ -104,6 +104,7 @@ final class EditCalendarToDoViewModel: ObservableObject {
 
     init(
         plannable: Plannable? = nil,
+        selectedDate: Date? = nil,
         toDoInteractor: CalendarToDoInteractor,
         calendarListProviderInteractor: CalendarFilterInteractor,
         router: Router,
@@ -120,7 +121,7 @@ final class EditCalendarToDoViewModel: ObservableObject {
         }
 
         title = plannable?.title ?? ""
-        date = plannable?.date ?? Clock.now.endOfDay() // end of today, to match default web behaviour
+        date = plannable?.date ?? (selectedDate ?? Clock.now).endOfDay() // end of day, to match default web behaviour
         details = plannable?.details ?? ""
 
         subscribeIsFieldsTouched(to: $title)
