@@ -18,12 +18,12 @@
 
 import SwiftUI
 
-struct DropDownDetailsContainerViewModifier<ListContent: View>: ViewModifier {
+struct DropDownDetailsContainerViewModifier<DetailsContent: View>: ViewModifier {
 
     @Environment(\.layoutDirection) private var layoutDirection
 
     @Binding var state: DropDownButtonState
-    @ViewBuilder let listContent: () -> ListContent
+    @ViewBuilder let detailsContent: () -> DetailsContent
 
     @State private var screenFrame: CGRect = .zero
     @State private var preferredDetailsSize: CGSize?
@@ -74,7 +74,7 @@ struct DropDownDetailsContainerViewModifier<ListContent: View>: ViewModifier {
 
                                 ZStack {
                                     Color.backgroundLightest
-                                    listContent()
+                                    detailsContent()
                                         .accessibilityFocused($isFocused)
                                         .accessibilitySortPriority(2)
                                 }
@@ -116,7 +116,7 @@ extension View {
     func dropDownDetailsContainer<C: View>(
         state: Binding<DropDownButtonState>,
         @ViewBuilder detailsContent: @escaping () -> C) -> some View {
-        modifier(DropDownDetailsContainerViewModifier(state: state, listContent: detailsContent))
+        modifier(DropDownDetailsContainerViewModifier(state: state, detailsContent: detailsContent))
     }
 }
 

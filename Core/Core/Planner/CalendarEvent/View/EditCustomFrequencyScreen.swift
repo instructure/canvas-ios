@@ -109,30 +109,61 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     private var weekDaysCell: some View {
-        InstUI.DropDownCell(
-            label: Text("On", bundle: .core),
-            state: $weekDayDropDownState) {
+//        InstUI.DropDownCell(
+//            label: Text("On", bundle: .core),
+//            state: $weekDayDropDownState) {
+//
+//                if viewModel.daysOfTheWeek.isEmpty {
+//                    WeekdaysDropDownPromptLabel()
+//                } else {
+//                    HStack(spacing: 8) {
+//                        ForEach(viewModel.selectedWeekdaysTexts, id: \.self) { day in
+//                            WeekdaysDropDownSelectedLabel(text: day)
+//                        }
+//                    }
+//                }
+//            }
 
-                if viewModel.daysOfTheWeek.isEmpty {
-                    WeekdaysDropDownPromptLabel()
-                } else {
-                    HStack(spacing: 8) {
-                        ForEach(viewModel.selectedWeekdaysTexts, id: \.self) { day in
-                            WeekdaysDropDownSelectedLabel(text: day)
-                        }
-                    }
-                }
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                Text("On", bundle: .core).textStyle(.cellLabel)
+                Spacer()
+                DropDownSelector(
+                    choices: Weekday.allCases,
+                    id: \.rawValue,
+                    title: \.text,
+                    selection: $viewModel.daysOfTheWeek,
+                    prompt: "Choose days"
+                )
             }
+            .paddingStyle(set: .standardCell)
+            InstUI.Divider()
+        }
     }
 
     private var endModeCell: some View {
-        InstUI.SelectionMenuCell(
-            label: Text("Ends", bundle: .core),
-            options: EndMode.allCases,
-            id: \.self,
-            text: \.title,
-            selection: $viewModel.endMode
-        )
+//        InstUI.SelectionMenuCell(
+//            label: Text("Ends", bundle: .core),
+//            options: EndMode.allCases,
+//            id: \.self,
+//            text: \.title,
+//            selection: $viewModel.endMode
+//        )
+
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                Text("Ends", bundle: .core).textStyle(.cellLabel)
+                Spacer()
+                DropDownSelector(
+                    choices: EndMode.allCases,
+                    id: \.self,
+                    title: \.title,
+                    selection: $viewModel.endMode
+                )
+            }
+            .paddingStyle(set: .standardCell)
+            InstUI.Divider()
+        }
     }
 
     @ViewBuilder
