@@ -139,43 +139,43 @@ final class EditCustomFrequencyViewModelTests: CoreTestCase {
         weekdays = [.sunday]
         model.daysOfTheWeek = weekdays
         // Then
-        XCTAssertEqual(model.selectedWeekdaysTexts, weekdays.map({ $0.pluralText }))
+        XCTAssertEqual(model.selectedWeekdayTexts, weekdays.map({ $0.pluralText }))
 
         // When - 2
-        weekdays = [.sunday, .monday]
+        weekdays = [.monday, .sunday]
         model.daysOfTheWeek = weekdays
         // Then
-        XCTAssertEqual(model.selectedWeekdaysTexts, weekdays.map({ $0.pluralText }))
+        XCTAssertEqual(model.selectedWeekdayTexts, weekdays.map({ $0.pluralText }))
 
         // When - 3
-        weekdays = [.sunday, .monday, .friday]
+        weekdays = [.monday, .friday, .sunday]
         model.daysOfTheWeek = weekdays
         // Then
-        XCTAssertEqual(model.selectedWeekdaysTexts, weekdays.map({ $0.shortText }))
+        XCTAssertEqual(model.selectedWeekdayTexts, weekdays.map({ $0.shortText }))
 
         // When - 4
-        weekdays = [.sunday, .monday, .friday, .saturday]
+        weekdays = [.monday, .friday, .saturday, .sunday]
         model.daysOfTheWeek = weekdays
         // Then
-        XCTAssertEqual(model.selectedWeekdaysTexts, weekdays.map({ $0.shortText }))
+        XCTAssertEqual(model.selectedWeekdayTexts, weekdays.map({ $0.shortText }))
 
         // When - Weekdays
         weekdays = [.monday, .tuesday, .wednesday, .thursday, .friday]
         model.daysOfTheWeek = weekdays
         // Then
-        XCTAssertEqual(model.selectedWeekdaysTexts, [weekDaysText])
+        XCTAssertEqual(model.selectedWeekdayTexts, [weekDaysText])
 
         // When - Weekdays + 1
         weekdays = [.monday, .tuesday, .wednesday, .thursday, .friday, .sunday]
         model.daysOfTheWeek = weekdays
         // Then
-        XCTAssertEqual(model.selectedWeekdaysTexts, [weekDaysText, Weekday.sunday.shortText])
+        XCTAssertEqual(model.selectedWeekdayTexts, [weekDaysText, Weekday.sunday.shortText])
 
         // When - All days
         weekdays = Weekday.allCases
         model.daysOfTheWeek = weekdays
         // Then
-        XCTAssertEqual(model.selectedWeekdaysTexts, [allDaysText])
+        XCTAssertEqual(model.selectedWeekdayTexts, [allDaysText])
     }
 
     // MARK: - Helpers
@@ -189,6 +189,14 @@ final class EditCustomFrequencyViewModelTests: CoreTestCase {
                 self?.completionValue = newRule
             }
         )
+    }
+}
+
+// MARK: -
+
+extension EditCustomFrequencyViewModel {
+    var selectedWeekdayTexts: [String] {
+        return selectedWeekdayTags.map { $0.text }
     }
 }
 
