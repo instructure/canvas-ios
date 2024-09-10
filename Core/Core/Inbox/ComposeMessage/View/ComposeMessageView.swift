@@ -291,8 +291,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     .font(.regular16)
                     .focused($focusedInput, equals: .search)
                     .foregroundColor(.textDark)
-                    .frame(maxHeight: .infinity, alignment: .center)
                     .frame(minHeight: 50)
+                    .frame(maxHeight: .infinity, alignment: .center)
                     .padding(.leading, 5)
                     .accessibilityHidden(true)
                     .readingFrame { frame in
