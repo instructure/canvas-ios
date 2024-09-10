@@ -29,6 +29,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     private enum FocusedInput {
         case subject
         case message
+        case search
     }
     @FocusState private var focusedInput: FocusedInput?
     @State private var headerHeight = CGFloat.zero
@@ -54,6 +55,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                                 Color.clear
                                     .onAppear {
                                         headerHeight = proxy.size.height
+                                        model.showSearchRecipientsView = false
+                                        focusedInput = nil
                                     }
                             }
                         )
@@ -73,7 +76,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                             // This Rectangle adds extra height to ensure smoother display of the list of recipients
                             // without affecting the UI or any logic.
                             Rectangle()
-                                .fill(Color.backgroundLightest)
+                                .fill(Color.clear)
                                 .frame(height: 150)
                         }
                         if model.showSearchRecipientsView {
@@ -82,6 +85,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                                 model.textRecipientSearch = ""
                                 model.didSelectRecipient.accept(selectedRecipient)
                             }
+                            .accessibilityHidden(true)
                             .offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
                             .padding(.horizontal, 35)
                             .animation(.smooth, value: model.showSearchRecipientsView)
@@ -147,7 +151,10 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 presenting: model.errorAlert
             )
         }
-
+        .onTapGesture {
+            focusedInput = nil
+            model.showSearchRecipientsView = false
+        }
     }
 
     @ViewBuilder
@@ -282,13 +289,12 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
                 TextField(String(localized: "Search", bundle: .core), text: $model.textRecipientSearch)
                     .font(.regular16)
+                    .focused($focusedInput, equals: .search)
                     .foregroundColor(.textDark)
                     .frame(maxHeight: .infinity, alignment: .center)
                     .frame(minHeight: 50)
                     .padding(.leading, 5)
-                    .accessibilitySortPriority(4)
-                    .accessibilityLabel(String(localized: "Search for Recipients", bundle: .core))
-                    .accessibilityAddTraits(.isSearchField)
+                    .accessibilityHidden(true)
                     .readingFrame { frame in
                         searchTextFieldHeight = frame.height - 5
                     }
