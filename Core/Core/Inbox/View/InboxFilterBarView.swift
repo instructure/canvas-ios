@@ -135,7 +135,7 @@ struct InboxFilterBar_Previews: PreviewProvider {
         let favouriteInteractor = InboxMessageFavouriteInteractorLive()
         let viewModel = InboxViewModel(
             messageInteractor: messageInteractor,
-            favouriteInteractor: favouriteInteractor, 
+            favouriteInteractor: favouriteInteractor,
             router: AppEnvironment.shared.router
         )
         InboxFilterBarView(model: viewModel)
