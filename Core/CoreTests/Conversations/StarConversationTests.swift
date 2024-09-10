@@ -36,11 +36,12 @@ class StarConversationStateTests: CoreTestCase {
     }
 
     func testPostRequestError() {
+        // Given
         let conversationId = "testId"
         let useCase = StarConversation(id: conversationId, starred: true)
         api.mock(useCase.request, error: NSError.instructureError("Error"))
-
         let expectation = XCTestExpectation(description: "make request")
+        // Then
         useCase.makeRequest(environment: environment) { (_, _, error) in
             expectation.fulfill()
             XCTAssertNotNil(error)
@@ -59,7 +60,7 @@ class StarConversationStateTests: CoreTestCase {
     func testWrite() {
         let conversationId = "testId"
         let useCase = StarConversation(id: conversationId, starred: true)
-        let apiconversation = APIConversation.make(starred: false)
+        let apiconversation = APIConversation.make(id: conversationId, starred: false)
         Conversation.save(apiconversation, in: databaseClient)
         InboxMessageListItem.save(
             apiconversation,
@@ -73,7 +74,7 @@ class StarConversationStateTests: CoreTestCase {
         XCTAssertEqual((databaseClient.fetch() as [Conversation]).count, 1)
         XCTAssertEqual((databaseClient.fetch() as [Conversation]).first?.starred, false)
 
-        let response = APIConversation.make(starred: true)
+        let response = APIConversation.make(id: conversationId, starred: true)
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
         XCTAssertEqual((databaseClient.fetch() as [Conversation]).count, 1)

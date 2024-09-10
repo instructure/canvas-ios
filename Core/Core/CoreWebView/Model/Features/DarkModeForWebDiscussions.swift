@@ -102,7 +102,8 @@ private class DarkModeForWebDiscussions: CoreWebViewFeature {
 
             /* Info boxes */
             span[data-testid="anon-conversation"],
-            span[data-testid="locked-for-user"] {
+            span[data-testid="locked-for-user"],
+            span[data-testid="post-required"] {
                 color: \(textLightest) !important;
             }
             .css-1oqo41g-view-alert {
