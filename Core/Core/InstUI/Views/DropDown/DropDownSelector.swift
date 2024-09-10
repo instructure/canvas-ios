@@ -71,7 +71,7 @@ where ID: Hashable,
                 } else {
                     HStack {
                         let title = selection.first?[keyPath: title] ?? prompt
-                        Text(title).font(.regular14)
+                        Text(title).font(.regular14).foregroundStyle(Color.textDark)
                         InstUI.Icons.DropDown().foregroundStyle(Color.textDark)
                     }
                     .contentShape(Rectangle())
