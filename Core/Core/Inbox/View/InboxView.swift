@@ -92,7 +92,7 @@ public struct InboxView: View, ScreenViewTrackable {
                 } else {
                     archiveButton(message: message)
                 }
-                starButton(messageId: message.id, isStarred: message.isStarred)
+                starButton(messageId: message.id, isCurrentlyStarred: message.isStarred)
             }
             .swipeActions(edge: .leading) {
                 readStatusToggleButton(message: message)
@@ -100,12 +100,12 @@ public struct InboxView: View, ScreenViewTrackable {
         }
     }
 
-    private func starButton(messageId: String, isStarred: Bool) -> some View {
+    private func starButton(messageId: String, isCurrentlyStarred: Bool) -> some View {
         Button {
-            model.didTapStar.send((!isStarred, messageId))
+            model.didTapStar.send((!isCurrentlyStarred, messageId))
         } label: {
-            let image = isStarred ? Image.starSolid : Image.starLine
-            let accessibilityLabel = isStarred ? String(localized: "Mark as Unstarred", bundle: .core) : String(localized: "Mark as Starred", bundle: .core)
+            let image = isCurrentlyStarred ? Image.starSolid : Image.starLine
+            let accessibilityLabel = isCurrentlyStarred ? String(localized: "Mark as Unstarred", bundle: .core) : String(localized: "Mark as Starred", bundle: .core)
              image
                 .size(30)
                 .foregroundColor(.textDark)

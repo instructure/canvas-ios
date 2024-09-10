@@ -26,7 +26,11 @@ public enum InboxAssembly {
                                                     tabBarCountUpdater: .init(),
                                                     messageListStateUpdater: .init())
         let favouriteInteractor = InboxMessageFavouriteInteractorLive()
-        let viewModel = InboxViewModel(messageInteractor: messageInteractor, router: env.router, favouriteInteractor: favouriteInteractor)
+        let viewModel = InboxViewModel(
+            messageInteractor: messageInteractor,
+            favouriteInteractor: favouriteInteractor,
+            router: env.router
+        )
 
         let inboxVC = CoreHostingController(InboxView(model: viewModel))
         inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
@@ -43,7 +47,11 @@ public enum InboxAssembly {
     -> InboxView {
         let messageInteractor = InboxMessageInteractorPreview(environment: environment, messages: messages)
         let favouriteInteractor = InboxMessageFavouriteInteractorLive()
-        let viewModel = InboxViewModel(messageInteractor: messageInteractor, router: environment.router, favouriteInteractor: favouriteInteractor)
+        let viewModel = InboxViewModel(
+            messageInteractor: messageInteractor,
+            favouriteInteractor: favouriteInteractor,
+            router: environment.router
+        )
         return InboxView(model: viewModel)
     }
 

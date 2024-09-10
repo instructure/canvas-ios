@@ -45,7 +45,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        GeometryReader { geometry in
+        InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
             ScrollView {
                 VStack(spacing: 0) {
                     headerView
@@ -70,6 +70,11 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                             if !model.includedMessages.isEmpty {
                                 includedMessages
                             }
+                            // This Rectangle adds extra height to ensure smoother display of the list of recipients
+                            // without affecting the UI or any logic.
+                            Rectangle()
+                                .fill(Color.backgroundLightest)
+                                .frame(height: 150)
                         }
                         if model.showSearchRecipientsView {
                             RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
@@ -79,6 +84,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                             }
                             .offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
                             .padding(.horizontal, 35)
+                            .animation(.smooth, value: model.showSearchRecipientsView)
                         }
 
                     }
@@ -121,7 +127,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     break
                 }
             }
-            .animation(.smooth, value: model.showSearchRecipientsView)
             .sheet(isPresented: $model.isImagePickerVisible) {
                 ImagePickerViewController(sourceType: .photoLibrary, imageHandler: model.addFile)
             }
@@ -171,21 +176,16 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
    @ViewBuilder
-   private var sendButton: some View {
-        if model.isLoaderVisible {
-            ProgressView()
-                .progressViewStyle(.indeterminateCircle())
-        } else {
-            Button {
-                model.didTapSend.accept(controller)
-            } label: {
-                sendButtonImage
-            }
-            .accessibility(label: Text("Send", bundle: .core))
-            .disabled(!model.sendButtonActive)
-            .frame(maxHeight: .infinity, alignment: .top)
-            .accessibilityIdentifier("ComposeMessage.send")
+    private var sendButton: some View {
+        Button {
+            model.didTapSend.accept(controller)
+        } label: {
+            sendButtonImage
         }
+        .accessibility(label: Text("Send", bundle: .core))
+        .disabled(!model.sendButtonActive)
+        .frame(maxHeight: .infinity, alignment: .top)
+        .accessibilityIdentifier("ComposeMessage.send")
     }
 
     private var sendButtonImage: some View {
@@ -238,6 +238,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 individualView
             }
         }
+        .fixedSize(horizontal: false, vertical: true)
     }
 
     private var courseSelectorAccessibilityLabel: Text {

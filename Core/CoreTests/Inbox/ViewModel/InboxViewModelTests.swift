@@ -30,7 +30,11 @@ class InboxViewModelTests: CoreTestCase {
         super.setUp()
         messageInteractor = InboxMessageFavouriteInteractorMock()
         mockInteractor = InboxMessageInteractorMock(context: databaseClient)
-        testee = InboxViewModel(messageInteractor: mockInteractor, router: router, favouriteInteractor: messageInteractor)
+        testee = InboxViewModel(
+            messageInteractor: mockInteractor,
+            favouriteInteractor: messageInteractor,
+            router: router
+        )
     }
 
     func testInteractorStateMappedToViewModel() {

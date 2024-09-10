@@ -61,8 +61,8 @@ public class InboxViewModel: ObservableObject {
     // MARK: - Init
     public init(
         messageInteractor: InboxMessageInteractor,
-        router: Router,
-        favouriteInteractor: InboxMessageFavouriteInteractor
+        favouriteInteractor: InboxMessageFavouriteInteractor,
+        router: Router
     ) {
         self.messageInteractor = messageInteractor
         self.favouriteInteractor = favouriteInteractor
@@ -154,10 +154,9 @@ public class InboxViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         didSendMailSuccessfully
-            .handleEvents(receiveOutput: { [weak self] in
+            .sink { [weak self] in
                 self?.snackBarViewModel.showSnack(InboxMessageScope.sent.localizedName)
-            })
-            .sink()
+            }
             .store(in: &subscriptions)
     }
 

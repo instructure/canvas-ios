@@ -27,7 +27,7 @@ final class ComposeMessageViewModel: ObservableObject {
     @Published public var isImagePickerVisible: Bool = false
     @Published public var isTakePhotoVisible: Bool = false
     @Published public var isAudioRecordVisible: Bool = false
-    @Published public private(set) var isLoaderVisible: Bool = false
+    @Published public private(set) var state: InstUI.ScreenState = .data
 
     @Published public private(set) var isContextDisabled: Bool = false
     @Published public private(set) var isRecipientsDisabled: Bool = false
@@ -39,6 +39,7 @@ final class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var expandedIncludedMessageIds = [String]()
 
     @Published public var showExtraSendButton = false
+    public let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
     public let title = String(localized: "[No Subject]", bundle: .core)
     public var sendButtonActive: Bool {
         !recipients.isEmpty
@@ -428,7 +429,7 @@ final class ComposeMessageViewModel: ObservableObject {
                 return (viewController, params, messageType)
             }
             .handleEvents(receiveOutput: { [weak self] (viewController, _, _) in
-                self?.isLoaderVisible = true
+                self?.state = .loading
                 self?.viewController = viewController
             })
             .flatMap { [interactor] (viewController, params, type) in
@@ -451,7 +452,7 @@ final class ComposeMessageViewModel: ObservableObject {
             }
             .receive(on: scheduler)
             .sink(receiveValue: { [weak self] viewController in
-                self?.isLoaderVisible = false
+                self?.state = .data
                 if let viewController {
                     self?.didSendMessage(viewController: viewController)
                 } else {

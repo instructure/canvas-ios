@@ -167,7 +167,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.$isShowingErrorDialog
             .dropFirst() // Escape the initial event and wait the second (real) one
             .sink { value in
-                XCTAssertFalse(self.testee.isLoaderVisible)
+                XCTAssertEqual(self.testee.state, .data)
                 XCTAssertTrue(value)
 
                 showExpectation.fulfill()
@@ -185,9 +185,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.didTapRetry.accept(sourceView)
         testee.errorAlert.notifyCompletion(isConfirmed: true)
         // Then
-        XCTAssertTrue(testee.isLoaderVisible)
+        XCTAssertEqual(self.testee.state, .loading)
         wait(for: [router.dismissExpectation], timeout: 0.5)
-        XCTAssertFalse(testee.isLoaderVisible)
+        XCTAssertEqual(self.testee.state, .data)
     }
 
     func test_addFiles_addTwoFilesWithNotExceedSize() {

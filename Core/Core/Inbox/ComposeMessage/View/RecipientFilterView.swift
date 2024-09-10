@@ -26,7 +26,7 @@ struct RecipientFilterView: View {
     // MARK: - Body
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(spacing: 0) {
                 ForEach(recipients, id: \.self) { recipient in
                     Button {
                         didSelectRecipient(recipient)
@@ -40,7 +40,7 @@ struct RecipientFilterView: View {
             }
             .background(Color.backgroundLightest)
         }
-        .frame(maxHeight: 326)
+        .frame(maxHeight: 320)
         .shadow(color: Color.textDark.opacity(0.2), radius: 5, x: 0, y: 0)
         .padding(5)
     }

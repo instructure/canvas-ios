@@ -306,9 +306,9 @@ class MessageDetailsViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         didSendMailSuccessfully
-            .sink(receiveValue: { [weak self] in
+            .sink { [weak self] in
                 self?.snackBarViewModel.showSnack(InboxMessageScope.sent.localizedName)
-            })
+            }
             .store(in: &subscriptions)
     }
 }
