@@ -33,6 +33,7 @@ final public class Conversation: NSManagedObject, WriteableModel {
     @NSManaged public var starred: Bool
     @NSManaged public var subject: String
     @NSManaged var workflowStateRaw: String
+    @NSManaged public var cannotReply: Bool
 
     public var audience: [ConversationParticipant] {
         return audienceIDs.compactMap { id in participants.first(where: { $0.id == id }) }
@@ -76,6 +77,7 @@ final public class Conversation: NSManagedObject, WriteableModel {
         }
 
         model.starred = item.starred
+        model.cannotReply = item.cannot_reply ?? false
         model.subject = item.subject ?? ""
         model.workflowState = item.workflow_state
         return model
