@@ -147,8 +147,7 @@ public struct DiscussionEditorView: View {
                     placeholder: String(localized: "Add description", bundle: .core),
                     a11yLabel: String(localized: "Description", bundle: .core),
                     html: $message,
-                    context: context,
-                    uploadTo: .context(context),
+                    uploadParameters: .init(context: context),
                     height: $rceHeight,
                     canSubmit: $rceCanSubmit,
                     error: Binding(get: {

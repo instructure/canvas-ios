@@ -91,8 +91,7 @@ public struct PageEditorView: View {
                     placeholder: String(localized: "Add content", bundle: .core),
                     a11yLabel: String(localized: "Page content", bundle: .core),
                     html: $html,
-                    context: context,
-                    uploadTo: .context(context),
+                    uploadParameters: .init(context: context),
                     height: $rceHeight,
                     canSubmit: $rceCanSubmit,
                     error: $error
