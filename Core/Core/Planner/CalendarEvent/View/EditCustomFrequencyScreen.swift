@@ -21,6 +21,7 @@ import SwiftUI
 struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     typealias EndMode = EditCustomFrequencyViewModel.EndMode
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
 
     @ObservedObject private var viewModel: EditCustomFrequencyViewModel

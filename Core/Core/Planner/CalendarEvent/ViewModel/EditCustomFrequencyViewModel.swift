@@ -197,7 +197,7 @@ extension EditCustomFrequencyViewModel {
     ///
     var selectedWeekdaysTexts: [String] {
 
-        let weekdays = daysOfTheWeek
+        let weekdays = daysOfTheWeek.sorted(by: { $0.sortOrder < $1.sortOrder })
         var tags = [String]()
 
         if weekdays.allDaysIncluded {
