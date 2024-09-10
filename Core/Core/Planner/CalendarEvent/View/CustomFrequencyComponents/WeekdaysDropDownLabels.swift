@@ -37,6 +37,13 @@ struct WeekdaysDropDownSelectedLabel: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     let text: String
+    let accessibilityLabel: String
+
+    init(tag: EditCustomFrequencyViewModel.SelectedWeekdayTag) {
+        self.text = tag.text
+        self.accessibilityLabel = tag.accessibilityLabel
+    }
+
     var body: some View {
         Text(text)
             .lineLimit(1)
@@ -45,5 +52,6 @@ struct WeekdaysDropDownSelectedLabel: View {
             .paddingStyle(set: .selectionValueLabel)
             .background(Color.backgroundLight)
             .clipShape(RoundedRectangle(cornerRadius: 4))
+            .accessibilityLabel(accessibilityLabel)
     }
 }

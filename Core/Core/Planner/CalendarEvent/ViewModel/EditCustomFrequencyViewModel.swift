@@ -195,30 +195,48 @@ extension EditCustomFrequencyViewModel {
     ///
     /// 5. All days selected ~> returns **["Every Day of the Week"]**
     ///
-    var selectedWeekdaysTexts: [String] {
+    var selectedWeekdayTags: [SelectedWeekdayTag] {
+        typealias Tag = SelectedWeekdayTag
 
         let weekdays = daysOfTheWeek.sorted(by: { $0.sortOrder < $1.sortOrder })
-        var tags = [String]()
+        var tags = [Tag]()
 
         if weekdays.allDaysIncluded {
-            return [String(localized: "Every Day of the Week", bundle: .core)]
+            return [Tag(text: String(localized: "Every Day of the Week", bundle: .core))]
         }
 
         if weekdays.hasWeekdays {
-            tags.append(String(localized: "Weekdays", bundle: .core))
+            tags.append(Tag(text: String(localized: "Weekdays", bundle: .core)))
 
             if let nonWeekDays = weekdays.nonWeekdays.nilIfEmpty {
-                tags.append(contentsOf: nonWeekDays.map { $0.shortText })
+                tags.append(
+                    contentsOf: nonWeekDays.map {
+                        Tag(text: $0.shortText, accessibilityLabel: $0.text)
+                    }
+                )
             }
 
         } else {
             let fewDays = weekdays.count < 3
             tags.append(contentsOf: weekdays.map { wday in
-                return fewDays ? wday.pluralText : wday.shortText
+                return Tag(
+                    text: fewDays ? wday.pluralText : wday.shortText,
+                    accessibilityLabel: fewDays ? wday.pluralText : wday.text
+                )
             })
         }
 
         return tags.nilIfEmpty ?? []
+    }
+
+    struct SelectedWeekdayTag {
+        let text: String
+        let accessibilityLabel: String
+
+        init(text: String, accessibilityLabel: String? = nil) {
+            self.text = text
+            self.accessibilityLabel = accessibilityLabel ?? text
+        }
     }
 }
 
