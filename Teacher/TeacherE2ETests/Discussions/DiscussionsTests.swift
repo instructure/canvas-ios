@@ -157,7 +157,11 @@ class DiscussionsTests: E2ETestCase {
         // MARK: Write some text into reply text input and tap Reply button
         let replyText = "Test replying to discussion"
         textInput.writeText(text: replyText)
+
+        // Workaround for flaky behaviour of reply button
+        app.swipeUp()
         replyButton.hit()
+        replyButton.actionUntilElementCondition(action: .tap, element: textInput, condition: .vanish)
         XCTAssertTrue(textInput.waitUntil(.vanish).isVanished)
 
         // MARK: Check visibility and label of the reply
