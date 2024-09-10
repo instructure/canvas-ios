@@ -28,6 +28,8 @@ struct WeekDaysSelectionListView: View {
         ScrollView {
             VStack(spacing: 0) {
                 ForEach(Weekday.allCases, id: \.rawValue) { weekDay in
+                    let isSelected = selection.contains(weekDay)
+
                     Button(
                         action: {
                             selection.appendOrRemove(weekDay)
@@ -41,12 +43,13 @@ struct WeekDaysSelectionListView: View {
                                 InstUI.Icons.Checkmark()
                                     .foregroundStyle(Color.textDarkest)
                                     .layoutPriority(1)
-                                    .hidden(selection.contains(weekDay) == false)
+                                    .hidden(isSelected == false)
                             }
                             .paddingStyle(set: .standardCell)
                             .contentShape(Rectangle())
                         })
                     .buttonStyle(.plain)
+                    .accessibilityAddTraits(isSelected ? .isSelected : [])
 
                     if Weekday.allCases.last != weekDay {
                         InstUI.Divider()

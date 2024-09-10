@@ -40,17 +40,20 @@ struct SelectionMenu<Value: Equatable, ID: Hashable>: View {
     var body: some View {
         Menu {
             ForEach(options, id: idKey) { op in
+                let isSelected = selection == op
+
                 Button {
                     selection = op
                 } label: {
                     HStack {
                         Text(op[keyPath: textKey])
                             .font(.regular14)
-                        if selection == op {
+                        if isSelected {
                             Image.checkLine
                         }
                     }
                 }
+                .accessibilityAddTraits(isSelected ? .isSelected : [])
             }
         } label: {
             HStack {
