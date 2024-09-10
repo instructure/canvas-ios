@@ -32,6 +32,8 @@ struct DropDownDetailsContainerViewModifier<DetailsContent: View>: ViewModifier 
 
     func body(content: Content) -> some View {
         content
+            .accessibilityHidden(state.isDetailsShown)
+            .allowsHitTesting(state.isDetailsShown == false)
             .background(content: {
                 GeometryReader(content: { geometry in
                     Color.clear.screenFrame(geometry.frame(in: .global))
