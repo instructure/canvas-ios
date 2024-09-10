@@ -23,29 +23,40 @@ public struct MessageView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
 
     private var model: MessageViewModel
+    private let isReplyButtonVisible: Bool
     private var replyDidTap: () -> Void
     private var moreDidTap: () -> Void
 
-    public init(model: MessageViewModel,
-                replyDidTap: @escaping () -> Void,
-                moreDidTap: @escaping () -> Void ) {
+    public init(
+        model: MessageViewModel,
+        isReplyButtonVisible: Bool,
+        replyDidTap: @escaping () -> Void,
+        moreDidTap: @escaping () -> Void
+    ) {
         self.model = model
         self.replyDidTap = replyDidTap
         self.moreDidTap = moreDidTap
+        self.isReplyButtonVisible = isReplyButtonVisible
     }
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             headerView
             bodyView
-            Button {
-                replyDidTap()
-            } label: {
-                Text("Reply", bundle: .core)
-                    .font(.regular16)
-                    .foregroundColor(Color(Brand.shared.linkColor))
-                    .accessibilityIdentifier("MessageDetails.replyButton")
+            if isReplyButtonVisible {
+                replyButton
             }
+        }
+    }
+
+    private var replyButton: some View {
+        Button {
+            replyDidTap()
+        } label: {
+            Text("Reply", bundle: .core)
+                .font(.regular16)
+                .foregroundColor(Color(Brand.shared.linkColor))
+                .accessibilityIdentifier("MessageDetails.replyButton")
         }
     }
 
@@ -65,16 +76,8 @@ public struct MessageView: View {
                     .accessibilityIdentifier("MessageDetails.date")
             }
             Spacer()
-            Button {
-                replyDidTap()
-            } label: {
-                Image
-                    .replyLine
-                    .size(uiScale.iconScale * 20)
-                    .foregroundColor(.textDark)
-                    .padding(.leading, 6)
-                    .accessibilityLabel(Text("Reply", bundle: .core))
-                    .accessibilityIdentifier("MessageDetails.replyImage")
+            if isReplyButtonVisible {
+                replyIconButton
             }
             Button {
                 moreDidTap()
@@ -87,6 +90,20 @@ public struct MessageView: View {
                     .accessibilityLabel(Text("Conversation options", bundle: .core))
                     .accessibilityIdentifier("MessageDetails.options")
             }
+        }
+    }
+
+    private var replyIconButton: some View {
+        Button {
+            replyDidTap()
+        } label: {
+            Image
+                .replyLine
+                .size(uiScale.iconScale * 20)
+                .foregroundColor(.textDark)
+                .padding(.leading, 6)
+                .accessibilityLabel(Text("Reply", bundle: .core))
+                .accessibilityIdentifier("MessageDetails.replyImage")
         }
     }
 

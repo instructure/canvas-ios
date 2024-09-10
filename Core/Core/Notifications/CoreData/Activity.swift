@@ -76,7 +76,7 @@ public final class Activity: NSManagedObject, WriteableModel {
 extension Activity {
     public var icon: UIImage? {
         switch type {
-        case .discussion:       return .discussionLine
+        case .discussion, .discussionEntry: return .discussionLine
         case .announcement:     return .announcementLine
         case .conversation:     return .emailLine
         case .message:          return .assignmentLine

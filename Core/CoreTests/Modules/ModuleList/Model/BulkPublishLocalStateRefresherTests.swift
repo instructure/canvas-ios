@@ -81,7 +81,7 @@ class BulkPublishLocalStateRefresherTests: CoreTestCase {
         XCTAssertTrue(file.availability == .published)
 
         // MARK: WHEN
-        XCTAssertFinish(testee.refreshStates())
+        XCTAssertFinish(testee.refreshStates(), timeout: 1.0)
 
         // MARK: THEN
         XCTAssertFalse(assignment.published)

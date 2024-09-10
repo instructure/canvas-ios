@@ -110,6 +110,7 @@ public enum CourseSyncDownloaderAssembly {
                 studioHtmlParser: StudioHTMLParserInteractorLive()
             ),
             cleanupInteractor: StudioVideoCleanupInteractorLive(offlineStudioDirectory: studioDirectory),
+            metadataDownloadInteractor: StudioMetadataDownloadInteractorLive(),
             downloadInteractor: studioDownloadInteractor,
             scheduler: scheduler
         )

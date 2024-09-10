@@ -133,6 +133,7 @@ public struct MessageDetailsView: View {
                     .frame(height: 0.5)
 
                 MessageView(model: message,
+                            isReplyButtonVisible: model.isReplyButtonVisible,
                             replyDidTap: { model.replyTapped(message: message.conversationMessage, viewController: controller) },
                             moreDidTap: { model.messageMoreTapped(message: message.conversationMessage, viewController: controller) })
                 .padding(16)

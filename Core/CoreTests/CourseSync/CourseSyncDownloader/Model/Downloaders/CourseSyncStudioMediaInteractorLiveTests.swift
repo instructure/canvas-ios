@@ -52,11 +52,8 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
             url: mockVideoRemoteURL,
             captions: []
         )
-        let studioMediaAPICalled = expectation(description: "Studio media API called")
-        api.mock(GetStudioCourseMediaRequest(courseId: "1")) { _ in
-            studioMediaAPICalled.fulfill()
-            return ([apiMediaItem], nil, nil)
-        }
+        let mockMedatadaDownloader = MockStudioMetadataDownloadInteractor()
+        mockMedatadaDownloader.response = [apiMediaItem]
 
         // Step 4 - Clean up downloaded videos we don't use anymore
         let mockCleanupInteractor = MockStudioVideoCleanupInteractor()
@@ -81,6 +78,7 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
             iFrameReplaceInteractor: mockIFrameReplaceInteractor,
             iFrameDiscoveryInteractor: mockIFrameDiscoveryInteracor,
             cleanupInteractor: mockCleanupInteractor,
+            metadataDownloadInteractor: mockMedatadaDownloader,
             downloadInteractor: mockDownloadInteractor,
             scheduler: .immediate
         )
@@ -102,7 +100,7 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
         XCTAssertTrue(mockAuthInteractor.makeAPICalled)
 
         // Step 3
-        wait(for: [studioMediaAPICalled], timeout: 1)
+        XCTAssertTrue(mockMedatadaDownloader.fetchCalled)
 
         // Step 4
         XCTAssertEqual(
@@ -218,6 +216,21 @@ private class MockStudioVideoCleanupInteractor: StudioVideoCleanupInteractor {
         receivedAPIMediaItems = allMediaItemsOnAPI
         receivedLTIIDsForOfflineMode = mediaLTIIDsUsedInOfflineMode
         return Just(())
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+}
+
+private class MockStudioMetadataDownloadInteractor: StudioMetadataDownloadInteractor {
+    var response: [APIStudioMediaItem] = []
+    private(set) var fetchCalled = false
+
+    func fetchStudioMediaItems(
+        api: API,
+        courseIDs: [String]
+    ) -> AnyPublisher<[APIStudioMediaItem], Error> {
+        fetchCalled = true
+        return Just(response)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }

@@ -39,6 +39,10 @@ public struct APICalendarEvent: Codable, Equatable {
     let location_address: String?
     let hidden: Bool?
     let important_dates: Bool
+    /// The event repetition rule
+    let rrule: String?
+    /// Whether it is the first event of repeating events
+    let series_head: Bool?
     /// The event repetition in human readable format
     let series_natural_language: String?
 }
@@ -56,8 +60,8 @@ extension APICalendarEvent {
         context_code: String = "course_1",
         effective_context_code: String? = nil,
         context_name: String? = "Course One",
-        created_at: Date = Clock.now,
-        updated_at: Date = Clock.now,
+        created_at: Date = Clock.now.startOfHour(),
+        updated_at: Date = Clock.now.startOfHour(),
         workflow_state: CalendarEventWorkflowState = .active,
         assignment: APIAssignment? = nil,
         description: String? = nil,
@@ -65,6 +69,8 @@ extension APICalendarEvent {
         location_address: String? = nil,
         hidden: Bool? = false,
         important_dates: Bool = false,
+        rrule: String? = nil,
+        series_head: Bool? = nil,
         series_natural_language: String? = "Weekly on Wed, 52 times"
     ) -> APICalendarEvent {
         return APICalendarEvent(
@@ -87,6 +93,8 @@ extension APICalendarEvent {
             location_address: location_address,
             hidden: hidden,
             important_dates: important_dates,
+            rrule: rrule,
+            series_head: series_head,
             series_natural_language: series_natural_language
         )
     }

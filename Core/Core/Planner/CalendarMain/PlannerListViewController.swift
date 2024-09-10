@@ -133,11 +133,25 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
 
         selectedPlannableId = plannable.id
 
-        if plannable.plannableType == .planner_note {
-            env.router.show(PlannerAssembly.makeToDoDetailsViewController(plannable: plannable), from: self, options: .detail)
-        } else if let url = plannable.htmlURL {
-            let to = url.appendingQueryItems(URLQueryItem(name: "origin", value: "calendar"))
-            env.router.route(to: to, from: self, options: .detail)
+        switch plannable.plannableType {
+        case .planner_note:
+            let vc = PlannerAssembly.makeToDoDetailsViewController(plannable: plannable)
+            env.router.show(vc, from: self, options: .detail)
+        case .calendar_event:
+            let vc = PlannerAssembly.makeEventDetailsViewController(eventId: plannable.id) { [delegate] output in
+                switch output {
+                case .didUpdate, .didDelete:
+                    delegate?.plannerListWillRefresh()
+                case .didCancel:
+                    break
+                }
+            }
+            env.router.show(vc, from: self, options: .detail)
+        default:
+            if let url = plannable.htmlURL {
+                let to = url.appendingQueryItems(URLQueryItem(name: "origin", value: "calendar"))
+                env.router.route(to: to, from: self, options: .detail)
+            }
         }
     }
 

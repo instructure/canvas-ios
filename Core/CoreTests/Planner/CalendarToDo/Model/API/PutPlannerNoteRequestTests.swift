@@ -43,12 +43,12 @@ final class PutPlannerNoteRequestTests: XCTestCase {
             course_id: TestConstants.courseId
         )
 
-        let json = try encode(testee)
+        let json = try testee.encodeToJson()
 
-        XCTAssertEqual(json.contains(key: "title", value: TestConstants.title), true)
-        XCTAssertEqual(json.contains(key: "details", value: TestConstants.details), true)
-        XCTAssertEqual(json.contains(key: "todo_date", value: TestConstants.todoDate.isoString()), true)
-        XCTAssertEqual(json.contains(key: "course_id", value: TestConstants.courseId), true)
+        XCTAssertEqual(json.contains(jsonKey: "title", value: TestConstants.title), true)
+        XCTAssertEqual(json.contains(jsonKey: "details", value: TestConstants.details), true)
+        XCTAssertEqual(json.contains(jsonKey: "todo_date", value: TestConstants.todoDate.isoString()), true)
+        XCTAssertEqual(json.contains(jsonKey: "course_id", value: TestConstants.courseId), true)
     }
 
     func testBodyEncodingShouldNotSkipNils() throws {
@@ -57,31 +57,9 @@ final class PutPlannerNoteRequestTests: XCTestCase {
             course_id: nil
         )
 
-        let json = try encode(testee)
+        let json = try testee.encodeToJson()
 
-        XCTAssertEqual(json.contains(key: "details", value: nil), true)
-        XCTAssertEqual(json.contains(key: "course_id", value: nil), true)
-    }
-
-    private func encode(_ body: PutPlannerNoteRequest.Body) throws -> String {
-        let encoder = APIJSONEncoder()
-        let data = try encoder.encode(body)
-        return try XCTUnwrap(String(data: data, encoding: .utf8))
-    }
-}
-
-private extension String {
-    func contains(key: String, value: String?) -> Bool {
-        let text: String
-        if let value {
-            text = """
-            "\(key)":"\(value)"
-            """
-        } else {
-            text = """
-            "\(key)":null
-            """
-        }
-        return contains(text)
+        XCTAssertEqual(json.contains(jsonKey: "details", value: nil), true)
+        XCTAssertEqual(json.contains(jsonKey: "course_id", value: nil), true)
     }
 }

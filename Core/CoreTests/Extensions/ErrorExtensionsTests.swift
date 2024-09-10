@@ -36,4 +36,12 @@ class ErrorExtensionsTests: XCTestCase {
         )
         XCTAssertTrue(error.isForbidden)
     }
+
+    func testNotFoundError() {
+        let error: Error = NSError(
+            domain: NSError.Constants.domain,
+            code: HttpError.notFound
+        )
+        XCTAssertTrue(error.isNotFound)
+    }
 }

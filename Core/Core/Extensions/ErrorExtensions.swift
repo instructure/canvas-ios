@@ -28,6 +28,10 @@ public extension Error {
         nsError.domain == NSError.Constants.domain && nsError.code == HttpError.forbidden
     }
 
+    var isNotFound: Bool {
+        nsError.domain == NSError.Constants.domain && nsError.code == HttpError.notFound
+    }
+
     private var nsError: NSError {
         self as NSError
     }
