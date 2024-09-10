@@ -22,7 +22,6 @@ extension InstUI {
 
     public struct DropDownCell<Label: View, Value: View>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-        
         private let label: Label
 
         @ViewBuilder
