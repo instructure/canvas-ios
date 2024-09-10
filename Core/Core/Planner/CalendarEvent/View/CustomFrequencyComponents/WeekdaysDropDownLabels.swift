@@ -19,6 +19,7 @@
 import SwiftUI
 
 struct WeekdaysDropDownPromptLabel: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         HStack(spacing: 7) {
@@ -33,6 +34,7 @@ struct WeekdaysDropDownPromptLabel: View {
 }
 
 struct WeekdaysDropDownSelectedLabel: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     let text: String
     var body: some View {

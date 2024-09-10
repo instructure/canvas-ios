@@ -21,6 +21,7 @@ import SwiftUI
 extension InstUI {
 
     public struct SelectionMenuCell<Label, Value, ID>: View where Label: View, Value: Equatable, ID: Hashable {
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let label: Label
         private let options: [Value]

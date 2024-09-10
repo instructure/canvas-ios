@@ -19,6 +19,7 @@
 import SwiftUI
 
 struct SelectionMenu<Value: Equatable, ID: Hashable>: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private let options: [Value]
     private let idKey: KeyPath<Value, ID>

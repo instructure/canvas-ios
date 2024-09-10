@@ -21,6 +21,8 @@ import SwiftUI
 extension InstUI {
 
     public struct LabelCell<Label: View>: View {
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
         private let label: Label
 
         public init(label: Label) {
