@@ -84,6 +84,7 @@ struct ChoiceButton: View {
             })
         .buttonStyle(.plain)
         .contentShape(Rectangle())
+        .accessibilityAddTraits(selected ? .isSelected : [])
     }
 }
 
