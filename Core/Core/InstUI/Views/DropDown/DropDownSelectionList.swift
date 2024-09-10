@@ -32,12 +32,14 @@ where ID: Hashable,
     private let id: KeyPath<Value, ID>
     private let title: KeyPath<Value, String>
 
+    @Binding var isPresented: Bool
     @Binding private var selection: [Value]
 
     public init(
         choices: Choices,
         id: KeyPath<Value, ID>,
         title: KeyPath<Value, String>,
+        isPresented: Binding<Bool>,
         selection: Binding<[Value]>,
         multiSelection: Bool
     ) {
@@ -45,6 +47,7 @@ where ID: Hashable,
         self.id = id
         self.title = title
         self.isMultiSelectionOn = multiSelection
+        self._isPresented = isPresented
         self._selection = selection
     }
 
@@ -58,6 +61,7 @@ where ID: Hashable,
                                 selection.appendOrRemove(choice)
                             } else {
                                 selection = [choice]
+                                isPresented = false
                             }
                         },
                         label: {
@@ -89,229 +93,6 @@ where ID: Hashable,
     }
 }
 
-// MARK: - Convenience Initializers
-
-extension DropDownSelectionList {
-
-    public init(
-        choices: Choices,
-        id: KeyPath<Value, ID>,
-        title: KeyPath<Value, String>,
-        selection: Binding<Value>
-    ) {
-
-        let defaultValue = selection.wrappedValue
-
-        self.init(
-            choices: choices,
-            id: id,
-            title: title,
-            selection: Binding(
-                get: {
-                    return [selection.wrappedValue]
-                },
-                set: { newList in
-                    selection.wrappedValue = newList.first ?? defaultValue
-                }
-            ),
-            multiSelection: false
-        )
-    }
-
-    public init(
-        choices: Choices,
-        id: KeyPath<Value, ID>,
-        title: KeyPath<Value, String>,
-        selection: Binding<Value?>
-    ) {
-
-        self.init(
-            choices: choices,
-            id: id,
-            title: title,
-            selection: Binding(
-                get: {
-                    return selection.wrappedValue.flatMap { [$0] } ?? []
-                },
-                set: { newList in
-                    selection.wrappedValue = newList.first
-                }
-            ),
-            multiSelection: false
-        )
-    }
-}
-
-// MARK: - View Modifiers
-
-public extension View {
-
-    func dropDownSelectionListContainer<ID, Value, Choices>(
-        state: Binding<DropDownButtonState>,
-        choices: Choices,
-        id: KeyPath<Value, ID>,
-        title: KeyPath<Value, String>,
-        selection: Binding<[Value]>,
-        multiSelection: Bool = true
-    ) -> some View
-    where ID: Hashable,
-          Value: Equatable,
-          Choices: RandomAccessCollection,
-          Choices.Element == Value {
-
-              modifier(
-                DropDownDetailsContainerViewModifier(
-                    state: state,
-                    detailsContent: {
-                        DropDownSelectionList(
-                            choices: choices,
-                            id: id,
-                            title: title,
-                            selection: selection,
-                            multiSelection: multiSelection
-                        )
-                    }
-                )
-              )
-          }
-
-    func dropDownSelectionListContainer<ID, Value, Choices>(
-        state: Binding<DropDownButtonState>,
-        choices: Choices,
-        id: KeyPath<Value, ID>,
-        title: KeyPath<Value, String>,
-        selection: Binding<Value>
-    ) -> some View
-    where ID: Hashable,
-          Value: Equatable,
-          Choices: RandomAccessCollection,
-          Choices.Element == Value {
-
-              modifier(
-                DropDownDetailsContainerViewModifier(
-                    state: state,
-                    detailsContent: {
-                        DropDownSelectionList(
-                            choices: choices,
-                            id: id,
-                            title: title,
-                            selection: selection
-                        )
-                    }
-                )
-              )
-          }
-
-    func dropDownSelectionListContainer<ID, Value, Choices>(
-        state: Binding<DropDownButtonState>,
-        choices: Choices,
-        id: KeyPath<Value, ID>,
-        title: KeyPath<Value, String>,
-        selection: Binding<Value?>
-    ) -> some View
-    where ID: Hashable,
-          Value: Equatable,
-          Choices: RandomAccessCollection,
-          Choices.Element == Value {
-
-              modifier(
-                DropDownDetailsContainerViewModifier(
-                    state: state,
-                    detailsContent: {
-                        DropDownSelectionList(
-                            choices: choices,
-                            id: id,
-                            title: title,
-                            selection: selection
-                        )
-                    }
-                )
-              )
-          }
-}
-
-// MARK: - Identifiable Conveniences
-
-public extension View {
-
-    func dropDownSelectionListContainer<ID, Value, Choices>(
-        state: Binding<DropDownButtonState>,
-        choices: Choices,
-        title: KeyPath<Value, String>,
-        selection: Binding<[Value]>,
-        multiSelection: Bool
-    ) -> some View
-    where Value: Equatable & Identifiable,
-          Choices: RandomAccessCollection,
-          Choices.Element == Value {
-
-              modifier(
-                DropDownDetailsContainerViewModifier(
-                    state: state,
-                    detailsContent: {
-                        DropDownSelectionList(
-                            choices: choices,
-                            id: \Value.id,
-                            title: title,
-                            selection: selection,
-                            multiSelection: multiSelection
-                        )
-                    }
-                )
-              )
-          }
-
-    func dropDownSelectionListContainer<ID, Value, Choices>(
-        state: Binding<DropDownButtonState>,
-        choices: Choices,
-        title: KeyPath<Value, String>,
-        selection: Binding<Value>
-    ) -> some View
-    where Value: Equatable & Identifiable,
-          Choices: RandomAccessCollection,
-          Choices.Element == Value {
-
-              modifier(
-                DropDownDetailsContainerViewModifier(
-                    state: state,
-                    detailsContent: {
-                        DropDownSelectionList(
-                            choices: choices,
-                            id: \Value.id,
-                            title: title,
-                            selection: selection
-                        )
-                    }
-                )
-              )
-          }
-
-    func dropDownSelectionListContainer<ID, Value, Choices>(
-        state: Binding<DropDownButtonState>,
-        choices: Choices,
-        title: KeyPath<Value, String>,
-        selection: Binding<Value?>
-    ) -> some View
-    where Value: Equatable & Identifiable,
-          Choices: RandomAccessCollection,
-          Choices.Element == Value {
-
-              modifier(
-                DropDownDetailsContainerViewModifier(
-                    state: state,
-                    detailsContent: {
-                        DropDownSelectionList(
-                            choices: choices,
-                            id: \Value.id,
-                            title: title,
-                            selection: selection
-                        )
-                    }
-                )
-              )
-          }
-}
-
 #if DEBUG
 
 #Preview {
@@ -325,6 +106,7 @@ public extension View {
                 choices: Weekday.allCases,
                 id: \.rawValue,
                 title: \.text,
+                isPresented: .constant(true),
                 selection: $selectedWeekday
             )
         }

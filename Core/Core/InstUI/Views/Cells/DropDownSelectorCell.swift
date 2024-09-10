@@ -20,20 +20,21 @@ import SwiftUI
 
 extension InstUI {
 
-    public struct DropDownCell<Label: View, DropDown: View>: View {
+    public struct DropDownSelectorCell<Label, ID, Value, Choices>: View
+    where Label: View,
+          ID: Hashable,
+          Value: Equatable,
+          Choices: RandomAccessCollection,
+          Choices.Element == Value {
+
+        public typealias DropDown = DropDownSelector<ID, Value, Choices>
+
         private let label: Label
+        private let selector: () -> DropDown
 
-        @ViewBuilder
-        private let dropDown: (Binding<DropDownButtonState>) -> DropDown
-
-        @Binding var state: DropDownButtonState
-
-        public init(label: Label,
-                    state: Binding<DropDownButtonState>,
-                    @ViewBuilder dropDown: @escaping (Binding<DropDownButtonState>) -> DropDown) {
+        public init(label: Label, selector: @escaping () -> DropDown) {
             self.label = label
-            self._state = state
-            self.dropDown = dropDown
+            self.selector = selector
         }
 
         public var body: some View {
@@ -41,7 +42,7 @@ extension InstUI {
                 HStack(spacing: 0) {
                     label.textStyle(.cellLabel)
                     Spacer()
-                    dropDown($state)
+                    selector()
                 }
                 .paddingStyle(set: .standardCell)
                 InstUI.Divider()
@@ -50,30 +51,13 @@ extension InstUI {
     }
 }
 
-extension InstUI.DropDownCell {
-
-    public init<Value>(
-        label: Label,
-        state: Binding<DropDownButtonState>,
-        @ViewBuilder value: @escaping () -> Value
-    ) where Value: View, DropDown == DropDownButton<Value> {
-
-        self.init(
-            label: label,
-            state: state,
-            dropDown: { stateBinding in
-                DropDownButton(state: stateBinding, label: value)
-            }
-        )
-    }
-}
-
 #if DEBUG
 
 #Preview {
-    InstUI.DropDownCell(label: Text(verbatim: "Repeats On"),
-                        state: .constant(DropDownButtonState()),
-                        value: { Text(verbatim: "Value") })
+    InstUI.DropDownSelectorCell(
+        label: Text(verbatim: "End")) {
+            DropDownSelector(choices: [1, 2, 3, 4], id: \.self, title: \.description, selection: .constant(3))
+        }
 }
 
 #endif

@@ -47,7 +47,7 @@ where ID: Hashable,
         self.isMultiSelectionOn = multiSelection
         self.id = id
         self.title = title
-        self.prompt = prompt ?? "Not selected"
+        self.prompt = prompt ?? .defaultSelectionPrompt
         self._selection = selection
     }
 
@@ -92,6 +92,8 @@ where ID: Hashable,
                 )
         }
         .transaction { transaction in
+            // Unfortunately, we can't have animation for this setup,
+            // this is to remove default animation fullScreenCover
             transaction.disablesAnimations = true
         }
     }
@@ -141,55 +143,9 @@ private struct RemovalBackground: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<RemovalBackground>) {}
 }
 
-// MARK: - 
-
-extension DropDownSelector {
-
-    public init(
-        choices: Choices,
-        id: KeyPath<Value, ID>,
-        title: KeyPath<Value, String>,
-        selection: Binding<Value>,
-        prompt: String? = nil
-    ) {
-        self.choices = choices
-        self.id = id
-        self.title = title
-        self.isMultiSelectionOn = false
-        self.prompt = prompt ?? "Not selected"
-
-        let defaultValue = selection.wrappedValue
-        self._selection = Binding(
-            get: {
-                return [selection.wrappedValue]
-            },
-            set: { newList in
-                selection.wrappedValue = newList.first ?? defaultValue
-            }
-        )
-    }
-
-    public init(
-        choices: Choices,
-        id: KeyPath<Value, ID>,
-        title: KeyPath<Value, String>,
-        selection: Binding<Value?>,
-        prompt: String? = nil
-    ) {
-        self.choices = choices
-        self.id = id
-        self.title = title
-        self.isMultiSelectionOn = false
-        self.prompt = prompt ?? "Not selected"
-
-        self._selection = Binding(
-            get: {
-                return selection.wrappedValue.flatMap { [$0] } ?? []
-            },
-            set: { newList in
-                selection.wrappedValue = newList.first
-            }
-        )
+extension String {
+    static var defaultSelectionPrompt: String {
+        String(localized: "Not selected", bundle: .core)
     }
 }
 
@@ -212,7 +168,7 @@ extension DropDownSelector {
                         title: \.text,
                         selection: $selectedWeekday
                     )
-                    //Spacer()
+                    // Spacer()
                 }
                 .padding()
                 Spacer()

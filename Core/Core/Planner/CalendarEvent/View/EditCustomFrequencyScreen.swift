@@ -83,21 +83,28 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                 }
             )
         )
-        .dropDownDetailsContainer(state: $weekDayDropDownState) {
-            WeekDaysSelectionListView(selection: $viewModel.daysOfTheWeek)
-        }
-        .occurrencesCountInputDialog(isPresented: $isOccurrencesDialogPresented,
-                                     value: $viewModel.occurrenceCount)
+        .dropDownSelectionListContainer(
+            state: $weekDayDropDownState,
+            choices: Weekday.allCases,
+            id: \.rawValue,
+            title: \.text,
+            selection: $viewModel.daysOfTheWeek
+        )
+        .occurrencesCountInputDialog(
+            isPresented: $isOccurrencesDialogPresented,
+            value: $viewModel.occurrenceCount
+        )
     }
 
     private var monthDaysCell: some View {
-        return InstUI.SelectionMenuCell(
-            label: Text("On", bundle: .core),
-            options: viewModel.dayOfMonthOptions(for: viewModel.proposedDate),
-            text: \.title,
-            defaultValue: viewModel.proposedDayOfMonth,
-            selection: $viewModel.dayOfMonth
-        )
+        InstUI.DropDownSelectorCell(
+            label: Text("On", bundle: .core)) {
+                DropDownSelector(
+                    choices: viewModel.dayOfMonthOptions(for: viewModel.proposedDate),
+                    title: \.title,
+                    selection: $viewModel.dayOfMonth
+                )
+            }
     }
 
     @ViewBuilder
@@ -109,51 +116,25 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     private var weekDaysCell: some View {
-//        InstUI.DropDownCell(
-//            label: Text("On", bundle: .core),
-//            state: $weekDayDropDownState) {
-//
-//                if viewModel.daysOfTheWeek.isEmpty {
-//                    WeekdaysDropDownPromptLabel()
-//                } else {
-//                    HStack(spacing: 8) {
-//                        ForEach(viewModel.selectedWeekdaysTexts, id: \.self) { day in
-//                            WeekdaysDropDownSelectedLabel(text: day)
-//                        }
-//                    }
-//                }
-//            }
+        InstUI.DropDownCell(
+            label: Text("On", bundle: .core),
+            state: $weekDayDropDownState) {
 
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                Text("On", bundle: .core).textStyle(.cellLabel)
-                Spacer()
-                DropDownSelector(
-                    choices: Weekday.allCases,
-                    id: \.rawValue,
-                    title: \.text,
-                    selection: $viewModel.daysOfTheWeek,
-                    prompt: "Choose days"
-                )
+                if viewModel.daysOfTheWeek.isEmpty {
+                    WeekdaysDropDownPromptLabel()
+                } else {
+                    HStack(spacing: 8) {
+                        ForEach(viewModel.selectedWeekdaysTexts, id: \.self) { day in
+                            WeekdaysDropDownSelectedLabel(text: day)
+                        }
+                    }
+                }
             }
-            .paddingStyle(set: .standardCell)
-            InstUI.Divider()
-        }
     }
 
     private var endModeCell: some View {
-//        InstUI.SelectionMenuCell(
-//            label: Text("Ends", bundle: .core),
-//            options: EndMode.allCases,
-//            id: \.self,
-//            text: \.title,
-//            selection: $viewModel.endMode
-//        )
-
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                Text("Ends", bundle: .core).textStyle(.cellLabel)
-                Spacer()
+        InstUI.DropDownSelectorCell(
+            label: Text("Ends", bundle: .core)) {
                 DropDownSelector(
                     choices: EndMode.allCases,
                     id: \.self,
@@ -161,9 +142,6 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                     selection: $viewModel.endMode
                 )
             }
-            .paddingStyle(set: .standardCell)
-            InstUI.Divider()
-        }
     }
 
     @ViewBuilder
