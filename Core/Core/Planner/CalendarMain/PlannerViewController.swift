@@ -208,6 +208,7 @@ public class PlannerViewController: UIViewController {
 
     @objc func selectToday() {
         let date = Clock.now.startOfDay()
+        selectedDate = date
         calendar.showDate(date)
         updateList(date)
     }
