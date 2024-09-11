@@ -63,8 +63,12 @@ public class StudioVideoPosterInteractorLive: StudioVideoPosterInteractor {
             try posterFactory(videoFile, posterLocation)
         } catch let error {
             if error.isSourceTrackMissing == false {
-                // report
-                analytics.logError(name: "asd")
+                // Because we swallow all errors they won't be caught and reported
+                // at a higher level so we have to manually report it here to analytics.
+                analytics.logError(
+                    name: "Studio Offline Sync Failed",
+                    reason: error.localizedDescription
+                )
             }
             return nil
         }
