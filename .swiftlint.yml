@@ -16,12 +16,11 @@ opt_in_rules: # some rules are only opt-in
 included: # paths to include during linting. `--path` is ignored if present.
   - Core
   - Student
-  - rn/Teacher/ios
+  - Horizon
   - Parent
   - TestsFoundation
   - scripts/swift
 excluded: # paths to ignore during linting. Takes precedence over `included`.
-  - Pods
   - Canvas # Student/Canvas
 
 line_length:
