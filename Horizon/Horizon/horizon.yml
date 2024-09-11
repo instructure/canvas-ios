@@ -1,0 +1,33 @@
+---
+targets:
+  Horizon:    
+    type: application
+    platform: iOS
+    transitivelyLinkDependencies: false
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: false
+      SWIFT_EMIT_LOC_STRINGS: true
+      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.horizon
+      INFOPLIST_FILE: Horizon/Resources/Info.plist
+      TARGETED_DEVICE_FAMILY: 1,2
+    sources:
+      - path: ./
+        excludes:
+          - ".swiftlint.yml"
+          - "horizon.yml"
+    dependencies:
+      - package: PSPDFKit
+      - package: Heap
+      - package: FirebaseCrashlytics
+      - package: FirebaseRemoteConfig
+      - package: FirebaseRemoteConfigSwift
+      - target: Core/Core
+    preBuildScripts:
+      - path: ../../scripts/swiftLint.sh
+        name: SwiftLint
+        basedOnDependencyAnalysis: false
+schemes:
+  Horizon:
+    build:
+      targets:
+        Horizon: all

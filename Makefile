@@ -10,8 +10,10 @@ sync: ## xproj file generation
 	@echo 🟡 Running xcodegen
 	@cd Core; xcodegen
 	@cd Student; xcodegen
+	@cd Horizon; xcodegen
 
 sync-ci: ## CI specific xproj file generation
 	@echo 🟡 Running xcodegen
 	@cd Core; xcodegen
 	@cd Student; xcodegen --spec "project-ci.yml"
+	@cd Horizon; xcodegen --spec "project-ci.yml"
