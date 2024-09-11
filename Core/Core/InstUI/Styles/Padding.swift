@@ -18,31 +18,55 @@
 
 import SwiftUI
 
-// MARK: - Values
+// MARK: - Padding
 
 extension InstUI.Styles {
 
-    public enum Padding: CGFloat {
-        case standard = 16
-
-        case cellTop = 12
-        case cellBottom = 14
-        /// The horizontal padding before a cell's leading icon
-        case cellIconLeading = 22
-        /// The horizontal padding between a cell's leading icon and its text
-        case cellIconText = 18
-
-        case paragraphTop = 24
-        case paragraphBottom = 28
-
-        /// When displaying multiple Text components below each other we use this spacing to separate them
-        case textVertical = 4
-
-        /// Correction to negate baked in TextEditor inset. Estimated value.
-        case textEditorVerticalCorrection = -7
-        /// Correction to negate baked in TextEditor inset. Estimated value.
-        case textEditorHorizontalCorrection = -5
+    public struct Padding {
+        public let rawValue: CGFloat
+        fileprivate init(_ value: CGFloat) {
+            self.rawValue = value
+        }
     }
+}
+
+// MARK: - Padding Values
+
+public extension InstUI.Styles.Padding {
+    private static func value(_ value: CGFloat) -> Self { Self(value) }
+
+    static let standard = value(16)
+
+    static let cellTop = value(12)
+    static let cellBottom = value(14)
+    /// The horizontal padding before a cell's leading icon
+    static let cellIconLeading = value(22)
+    /// The horizontal padding between a cell's leading icon and its text
+    static let cellIconText = value(18)
+
+    static let cellAccessoryPadding = value(12)
+
+    static let paragraphTop = value(24)
+    static let paragraphBottom = value(28)
+
+    /// When displaying multiple Text components below each other we use this spacing to separate them
+    static let textVertical = value(4)
+
+    /// Correction to negate baked in TextEditor inset. Estimated value.
+    static let textEditorVerticalCorrection = value(-7)
+    /// Correction to negate baked in TextEditor inset. Estimated value.
+    static let textEditorHorizontalCorrection = value(-5)
+
+    static let dropDownOption = value(12)
+
+    static let selectionLabelHorizontal = value(12)
+
+    static let selectionLabelVertical = value(6)
+}
+
+// MARK: - PaddingSet
+
+extension InstUI.Styles {
 
     public enum PaddingSet {
         /// Default paddings for cells
@@ -51,6 +75,10 @@ extension InstUI.Styles {
         case iconCell
         /// Paddings to negate TextEditor insets
         case textEditorCorrection
+
+        case dropDownOption
+
+        case selectionValueLabel
 
         var config: Config {
             switch self {
@@ -74,6 +102,21 @@ extension InstUI.Styles {
                     bottom: .textEditorVerticalCorrection,
                     leading: .textEditorHorizontalCorrection,
                     trailing: .textEditorHorizontalCorrection
+                )
+            case .dropDownOption:
+                Config(
+                    top: .cellTop,
+                    bottom: .cellBottom,
+                    leading: .standard,
+                    trailing: .standard
+                )
+
+            case .selectionValueLabel:
+                Config(
+                    top: .selectionLabelVertical,
+                    bottom: .selectionLabelVertical,
+                    leading: .selectionLabelHorizontal,
+                    trailing: .selectionLabelHorizontal
                 )
             }
         }

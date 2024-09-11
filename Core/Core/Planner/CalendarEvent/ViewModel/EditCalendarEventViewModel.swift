@@ -19,14 +19,6 @@
 import Combine
 import SwiftUI
 
-// TODO: replace with actual model during https://instructure.atlassian.net/browse/MBL-17525
-final class EventFrequency {
-    var name: String
-    init(name: String) {
-        self.name = name
-    }
-}
-
 final class EditCalendarEventViewModel: ObservableObject {
 
     private enum Mode {
@@ -46,7 +38,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     @Published var isAllDay: Bool = false
     @Published var startTime: Date?
     @Published var endTime: Date?
-    @Published private(set) var frequencyName: String?
+    @Published private(set) var frequency: FrequencySelection?
     @Published private(set) var calendarName: String?
     @Published var location: String = ""
     @Published var address: String = ""
@@ -77,6 +69,10 @@ final class EditCalendarEventViewModel: ObservableObject {
         }
     }()
 
+    var frequencySelectionText: String {
+        return frequency?.title ?? String(localized: "Does Not Repeat", bundle: .core)
+    }
+
     lazy var saveErrorAlert: ErrorAlertViewModel = {
         .init(
             title: {
@@ -105,10 +101,10 @@ final class EditCalendarEventViewModel: ObservableObject {
     // MARK: - Private
 
     private let mode: Mode
+    private let eventFrequencyPreset: FrequencyPreset?
     private let eventInteractor: CalendarEventInteractor
     private let calendarListProviderInteractor: CalendarFilterInteractor
     private let router: Router
-    /*TODO: */ private var selectedFrequency = CurrentValueSubject<EventFrequency?, Never>(nil)
     private var selectedCalendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
     /// Returns true if any of the fields had been modified once by the user. It doesn't compare values.
     private var isFieldsTouched: Bool = false
@@ -134,6 +130,7 @@ final class EditCalendarEventViewModel: ObservableObject {
         completion: @escaping (PlannerAssembly.Completion) -> Void
     ) {
         self.eventInteractor = eventInteractor
+        self.eventFrequencyPreset = event?.frequencyPreset
         self.calendarListProviderInteractor = calendarListProviderInteractor
         self.uploadParameters = uploadParameters
         self.router = router
@@ -154,6 +151,7 @@ final class EditCalendarEventViewModel: ObservableObject {
         subscribeIsFieldsTouched(to: $location)
         subscribeIsFieldsTouched(to: $address)
         subscribeIsFieldsTouched(to: $details)
+        subscribeIsFieldsTouched(to: $frequency)
 
         calendarListProviderInteractor
             .load(ignoreCache: false)
@@ -176,22 +174,19 @@ final class EditCalendarEventViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
 
+        $date
+            .compactMap { $0 }
+            .sink { [weak self] newDate in
+                self?.resetFrequencySelection(given: newDate)
+            }
+            .store(in: &subscriptions)
+
         $startTime
             .sink { [weak self] newStartTime in self?.updateEndTimeError(newStartTime, self?.endTime) }
             .store(in: &subscriptions)
 
         $endTime
             .sink { [weak self] newEndTime in self?.updateEndTimeError(self?.startTime, newEndTime) }
-            .store(in: &subscriptions)
-
-        selectedFrequency
-            .map { [weak self] in
-                if let oldfrequencyName = self?.frequencyName, oldfrequencyName != $0?.name {
-                    self?.isFieldsTouched = true
-                }
-                return $0?.name
-            }
-            .assign(to: \.frequencyName, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
         selectedCalendar
@@ -239,7 +234,6 @@ final class EditCalendarEventViewModel: ObservableObject {
 
     private func setupFields(event: CalendarEvent?) {
         title = event?.title ?? ""
-
         date = event?.startAt ?? Clock.now.startOfDay()
         isAllDay = event?.isAllDay ?? false
 
@@ -254,6 +248,7 @@ final class EditCalendarEventViewModel: ObservableObject {
         location = event?.locationName ?? ""
         address = event?.locationAddress ?? ""
         details = event?.details ?? ""
+        frequency = event?.frequencySelection
     }
 
     private var defaultStartTime: Date {
@@ -266,6 +261,36 @@ final class EditCalendarEventViewModel: ObservableObject {
         let startTime = startTime ?? defaultStartTime
         let hours = startTime.hours + 1
         return startTime.startOfDay().addHours(hours)
+    }
+
+    private func resetFrequencySelection(given newDate: Date) {
+        guard let selection = frequency else { return }
+
+        if case .custom(var rule) = selection.preset {
+
+            switch rule.frequency {
+            case .monthly:
+
+                if rule.daysOfTheWeek == nil {
+                    rule.daysOfTheMonth = [newDate.monthDay]
+                } else {
+                    rule.daysOfTheWeek = [newDate.monthWeekday]
+                }
+
+            case .yearly:
+
+                rule.monthsOfTheYear = [newDate.month]
+                rule.daysOfTheMonth = [newDate.monthDay]
+
+            default: return
+            }
+
+            self.frequency = FrequencySelection(rule, preset: .custom(rule))
+
+        } else if let newRule = selection.preset.rule(given: newDate) {
+
+            self.frequency = FrequencySelection(newRule, preset: selection.preset)
+        }
     }
 
     private func updateEndTimeError(_ startTime: Date?, _ endTime: Date?) {
@@ -286,8 +311,19 @@ final class EditCalendarEventViewModel: ObservableObject {
 
     private func showSelectFrequencyScreen(from source: WeakViewController) {
         let vc = CoreHostingController(
-            /*TODO: */ BaseScreenTesterScreen()
+            EditEventFrequencyScreen(
+                viewModel: EditEventFrequencyViewModel(
+                    eventDate: date ?? Clock.now,
+                    selectedFrequency: frequency,
+                    originalPreset: eventFrequencyPreset,
+                    router: router,
+                    completion: { [weak self] newSelection in
+                        self?.frequency = newSelection
+                    }
+                )
+            )
         )
+        vc.navigationItem.hidesBackButton = true
         router.show(vc, from: source, options: .push)
     }
 
@@ -314,7 +350,8 @@ final class EditCalendarEventViewModel: ObservableObject {
             contextCode: calendar.rawContextID,
             location: location.nilIfEmpty,
             address: address.nilIfEmpty,
-            details: details.nilIfEmpty
+            details: details.nilIfEmpty,
+            rrule: frequency?.value
         )
     }
 

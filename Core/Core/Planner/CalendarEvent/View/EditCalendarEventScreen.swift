@@ -78,7 +78,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
 
                         InstUI.LabelValueCell(
                             label: Text("Frequency", bundle: .core),
-                            value: viewModel.frequencyName,
+                            value: viewModel.frequencySelectionText,
                             action: {
                                 viewModel.showFrequencySelector.send(viewController)
                             }

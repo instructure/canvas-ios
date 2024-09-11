@@ -80,6 +80,11 @@ public class TestRouter: Router {
         popExpectation.fulfill()
     }
 
+    public override func popToRoot(from: UIViewController) {
+        popped = from
+        popExpectation.fulfill()
+    }
+
     public override func dismiss(_ view: UIViewController, completion: (() -> Void)? = nil) {
         dismissed = view
         if viewControllerCalls.last?.0 == view {
