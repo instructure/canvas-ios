@@ -84,6 +84,7 @@ public class TestRouter: Router {
         popped = from
         popExpectation.fulfill()
     }
+
     public var dismissExpectation = XCTestExpectation(description: "dismiss")
     public override func dismiss(_ view: UIViewController, completion: (() -> Void)? = nil) {
         dismissed = view
