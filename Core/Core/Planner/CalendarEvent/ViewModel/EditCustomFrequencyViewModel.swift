@@ -18,6 +18,7 @@
 
 import SwiftUI
 import Combine
+import CombineSchedulers
 
 final class EditCustomFrequencyViewModel: ObservableObject {
 
@@ -37,6 +38,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     // MARK: - Inputs / Outputs
 
     @Published private(set) var state: InstUI.ScreenState = .data
+    @Published var isOccurrencesDialogPresented: Bool = false
 
     @Published var frequency: RecurrenceFrequency = .daily
     @Published var interval = FrequencyInterval(value: 1)
@@ -75,6 +77,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     init(rule: RecurrenceRule?,
          proposedDate date: Date,
          router: Router,
+         scheduler: AnySchedulerOf<DispatchQueue> = .main,
          completion: @escaping (RecurrenceRule) -> Void) {
 
         let frequency = rule?.frequency ?? .daily
@@ -82,10 +85,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         self.interval = FrequencyInterval(value: rule?.interval ?? 1)
         self.router = router
 
-        if let end = rule?.recurrenceEnd {
-            self.endMode = .mode(of: end)
-        }
-
+        self.endMode = rule?.recurrenceEnd.flatMap({ .mode(of: $0) })
         self.endDate = rule?.recurrenceEnd?.asEndDate ?? Clock.now
         self.occurrenceCount = rule?.recurrenceEnd?.asOccurrenceCount ?? 0
 
@@ -113,6 +113,20 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         }
 
         self.proposedDate = date
+
+        self.$endMode
+            .dropFirst()
+            .compactMap({ $0 })
+            .filter({ [weak self] mode in
+                guard let self, self.occurrenceCount == 0 else { return false }
+                return mode == .afterOccurrences
+            })
+            .mapToVoid()
+            .receive(on: scheduler)
+            .sink { [weak self] in
+                self?.isOccurrencesDialogPresented = true
+            }
+            .store(in: &subscriptions)
 
         didTapDone
             .sink { [weak self] weakVC in

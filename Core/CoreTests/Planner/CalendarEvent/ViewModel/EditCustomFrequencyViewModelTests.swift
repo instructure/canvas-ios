@@ -178,6 +178,29 @@ final class EditCustomFrequencyViewModelTests: CoreTestCase {
         XCTAssertEqual(model.selectedWeekdayTexts, [allDaysText])
     }
 
+    func test_count_dialog_presentation() {
+        // Given
+        let model = makeViewModel(TestConstants.eventDate)
+        model.occurrenceCount = 0
+
+        // When
+        model.endMode = .afterOccurrences
+
+        // Then
+        XCTAssertEqual(model.isOccurrencesDialogPresented, true)
+
+        // Given
+        model.isOccurrencesDialogPresented = false
+        model.endMode = .onDate
+        model.occurrenceCount = 3
+
+        // When
+        model.endMode = .afterOccurrences
+
+        // Then
+        XCTAssertEqual(model.isOccurrencesDialogPresented, false)
+    }
+
     // MARK: - Helpers
 
     private func makeViewModel(_ eventDate: Date, selected: RecurrenceRule? = nil) -> EditCustomFrequencyViewModel {
@@ -185,6 +208,7 @@ final class EditCustomFrequencyViewModelTests: CoreTestCase {
             rule: selected,
             proposedDate: eventDate,
             router: router,
+            scheduler: .immediate,
             completion: { [weak self] newRule in
                 self?.completionValue = newRule
             }

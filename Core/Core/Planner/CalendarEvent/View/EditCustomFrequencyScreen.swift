@@ -29,7 +29,6 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
 
     @State private var weekDayDropDownState = DropDownButtonState()
-    @State private var isOccurrencesDialogPresented: Bool = false
 
     init(viewModel: EditCustomFrequencyViewModel) {
         self.viewModel = viewModel
@@ -53,7 +52,8 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                     },
                     selection2: $viewModel.frequency,
                     widths: [4, 6],
-                    alignments: [.trailing, .leading])
+                    alignments: [.trailing, .leading]
+                )
                 .frame(maxWidth: .infinity)
 
                 InstUI.Divider()
@@ -87,8 +87,10 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
         .dropDownDetailsContainer(state: $weekDayDropDownState) {
             WeekDaysSelectionListView(selection: $viewModel.daysOfTheWeek)
         }
-        .occurrencesCountInputDialog(isPresented: $isOccurrencesDialogPresented,
-                                     value: $viewModel.occurrenceCount)
+        .occurrencesCountInputDialog(
+            isPresented: $viewModel.isOccurrencesDialogPresented,
+            value: $viewModel.occurrenceCount
+        )
     }
 
     private var monthDaysCell: some View {
@@ -162,7 +164,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             label: Text("Number of Occurrences", bundle: .core),
             value: viewModel.occurrenceCount.formatted(.number)
         ) {
-            isOccurrencesDialogPresented = true
+            viewModel.isOccurrencesDialogPresented = true
         }
     }
 }

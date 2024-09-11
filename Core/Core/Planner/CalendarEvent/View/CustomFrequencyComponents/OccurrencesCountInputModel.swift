@@ -31,7 +31,7 @@ class OccurrencesCountInputModel: ObservableObject {
 
     var isValid: Bool {
         guard let value = text.integerValue else { return false }
-        return (0 ... 400).contains(value)
+        return (1 ... 400).contains(value)
     }
 
     func update() {
@@ -40,7 +40,7 @@ class OccurrencesCountInputModel: ObservableObject {
 
     func submit() {
         guard let value = text.integerValue else { return }
-        submittedCount.wrappedValue = min(max(value, 0), 400)
+        submittedCount.wrappedValue = min(max(value, 1), 400)
     }
 }
 
