@@ -364,7 +364,7 @@ final class EditCalendarEventViewModel: ObservableObject {
         case .add:
             return eventInteractor.createEvent(model: model)
         case .edit(let id):
-            return eventInteractor.updateEvent(id: id, model: model)
+            return eventInteractor.updateEvent(id: id, model: model, seriesModificationType: nil)
         }
     }
 }
