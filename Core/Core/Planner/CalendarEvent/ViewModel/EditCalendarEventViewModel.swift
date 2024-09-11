@@ -30,6 +30,7 @@ final class EditCalendarEventViewModel: ObservableObject {
 
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new")
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
+    let uploadParameters: RichContentEditorUploadParameters
 
     @Published private(set) var state: InstUI.ScreenState = .data
     @Published var title: String = ""
@@ -42,12 +43,14 @@ final class EditCalendarEventViewModel: ObservableObject {
     @Published var location: String = ""
     @Published var address: String = ""
     @Published var details: String = ""
+    @Published var isUploading: Bool = false
 
     @Published private(set) var endTimeErrorMessage: String?
     @Published var shouldShowSaveError: Bool = false
 
     var isSaveButtonEnabled: Bool {
         state == .data
+        && !isUploading
         && eventInteractor.isRequestModelValid(model)
         && isFieldsTouched
     }
@@ -122,12 +125,14 @@ final class EditCalendarEventViewModel: ObservableObject {
         event: CalendarEvent? = nil,
         eventInteractor: CalendarEventInteractor,
         calendarListProviderInteractor: CalendarFilterInteractor,
+        uploadParameters: RichContentEditorUploadParameters,
         router: Router,
         completion: @escaping (PlannerAssembly.Completion) -> Void
     ) {
         self.eventInteractor = eventInteractor
         self.eventFrequencyPreset = event?.frequencyPreset
         self.calendarListProviderInteractor = calendarListProviderInteractor
+        self.uploadParameters = uploadParameters
         self.router = router
 
         if let event {

@@ -141,4 +141,37 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         XCTAssertEqual(presentation?.1, controller)
         XCTAssertEqual(presentation?.2, .modal(.overFullScreen))
     }
+
+    func testUsesSubmissionInteractorForSubmissionPresentation() {
+        let submissionURLInteractorMock = ParentSubmissionURLInteractorMock()
+        let testee = AssignmentDetailsViewController.create(
+            studentID: "1",
+            courseID: "1",
+            assignmentID: "1",
+            userNotificationCenter: notificationCenter,
+            submissionURLInteractor: submissionURLInteractorMock
+        )
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(submissionURLInteractorMock.isSubmissionURLCalled, false)
+
+        // WHEN
+        testee.submissionAndRubricButtonPressed(self)
+
+        // THEN
+        XCTAssertEqual(submissionURLInteractorMock.isSubmissionURLCalled, true)
+    }
+}
+
+class ParentSubmissionURLInteractorMock: ParentSubmissionURLInteractor {
+    var isSubmissionURLCalled = false
+
+    func submissionURL(
+        assignmentHtmlURL: URL,
+        observedUserID: String,
+        isAssignmentEnhancementsEnabled: Bool
+    ) -> URL {
+        isSubmissionURLCalled = true
+        return .make("/submissionURL")
+    }
 }

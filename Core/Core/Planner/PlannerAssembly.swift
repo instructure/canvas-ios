@@ -36,6 +36,7 @@ public enum PlannerAssembly {
         let viewModel = EditCalendarEventViewModel(
             eventInteractor: CalendarEventInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            uploadParameters: makeUploadParameters(env: env),
             router: env.router,
             completion: completion
         )
@@ -54,6 +55,7 @@ public enum PlannerAssembly {
             event: event,
             eventInteractor: CalendarEventInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            uploadParameters: makeUploadParameters(env: env),
             router: env.router,
             completion: completion
         )
@@ -75,12 +77,20 @@ public enum PlannerAssembly {
         return host
     }
 
+    private static func makeUploadParameters(env: AppEnvironment) -> RichContentEditorUploadParameters {
+        .init(
+            context: .currentUser,
+            uploadTo: .makeForRCEUploads(app: env.app, context: .currentUser, session: env.currentSession)
+        )
+    }
+
 #if DEBUG
 
     public static func makeEditEventScreenPreview(env: AppEnvironment = .shared) -> some View {
         let viewModel = EditCalendarEventViewModel(
             eventInteractor: CalendarEventInteractorPreview(),
             calendarListProviderInteractor: CalendarFilterInteractorPreview(),
+            uploadParameters: .init(context: .course("1")),
             router: env.router,
             completion: { _ in }
         )
