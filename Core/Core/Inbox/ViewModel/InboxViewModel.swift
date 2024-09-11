@@ -119,6 +119,10 @@ public class InboxViewModel: ObservableObject {
         scopeDidChange
             .removeDuplicates()
             .map { interactor.setScope($0) }
+            .flatMap { _ in
+                interactor.refresh()
+                    .receive(on: DispatchQueue.main)
+            }
             .sink()
             .store(in: &subscriptions)
         refreshDidTrigger
@@ -149,6 +153,10 @@ public class InboxViewModel: ObservableObject {
         didTapStar
             .flatMap { [favouriteInteractor] starred, messageId in
                 favouriteInteractor.updateStarred(to: starred, messageId: messageId)
+            }
+            .flatMap { [messageInteractor] _ in
+                messageInteractor.refresh()
+                    .receive(on: DispatchQueue.main)
             }
             .sink()
             .store(in: &subscriptions)

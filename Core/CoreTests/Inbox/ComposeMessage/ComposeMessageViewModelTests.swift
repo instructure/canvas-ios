@@ -611,6 +611,18 @@ class ComposeMessageViewModelTests: CoreTestCase {
         // Then
         XCTAssertEqual(testee.searchedRecipients.count, 1)
     }
+
+    func test_clearSearchedRecipients() {
+        // Given
+        let viewController = WeakViewController(UIViewController())
+        let context = RecipientContext(course: Course.make())
+        testee.textRecipientSearch = "ios"
+        // When
+        testee.courseDidSelect(selectedContext: context, viewController: viewController)
+        testee.clearSearchedRecipients()
+        // Then
+        XCTAssertTrue(testee.searchedRecipients.isEmpty)
+    }
 }
 
 private class ComposeMessageInteractorMock: ComposeMessageInteractor {

@@ -144,7 +144,7 @@ final class ComposeMessageViewModel: ObservableObject {
     }
 
     private func bindSearchRecipients() {
-        Publishers.CombineLatest($textRecipientSearch, allRecipients)
+        Publishers.CombineLatest($textRecipientSearch.removeDuplicates(), allRecipients)
             .filter { (text, recipients) in
                 text.trimmingCharacters(in: .whitespaces).count >= 3 && !recipients.isEmpty
             }
@@ -162,6 +162,11 @@ final class ComposeMessageViewModel: ObservableObject {
                 self?.searchedRecipients = text.count >= 3 ? (self?.searchedRecipients ?? []) : []
             }
             .store(in: &subscriptions)
+    }
+
+    // This func to hide the filer list recipients when tap on any place
+    func clearSearchedRecipients() {
+        searchedRecipients = []
     }
 
     func courseSelectButtonDidTap(viewController: WeakViewController) {

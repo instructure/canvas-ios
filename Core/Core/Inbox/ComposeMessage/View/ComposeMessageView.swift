@@ -78,6 +78,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                             Rectangle()
                                 .fill(Color.clear)
                                 .frame(height: 150)
+                                .allowsHitTesting(false)
                         }
                         if model.showSearchRecipientsView {
                             RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
@@ -88,6 +89,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                             .accessibilityHidden(true)
                             .offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
                             .padding(.horizontal, 35)
+                            .fixedSize(horizontal: false, vertical: true)
                             .animation(.smooth, value: model.showSearchRecipientsView)
                         }
 
@@ -96,16 +98,10 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .font(.regular12)
                 .foregroundColor(.textDarkest)
                 .background(
-                    InstUI.TapArea()
-                        .onTapGesture {
-                            model.showSearchRecipientsView = false
-                            focusedInput = nil
-                        }
-                )
-                .background(
                     GeometryReader { reader in
                         return Color.backgroundLightest
                             .onTapGesture {
+                                model.clearSearchedRecipients()
                                 focusedInput = nil
                             }
                             .preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
@@ -150,10 +146,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 isPresented: $model.isShowingErrorDialog,
                 presenting: model.errorAlert
             )
-        }
-        .onTapGesture {
-            focusedInput = nil
-            model.showSearchRecipientsView = false
         }
     }
 
