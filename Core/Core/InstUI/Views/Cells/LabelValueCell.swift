@@ -25,9 +25,20 @@ extension InstUI {
 
         private let label: Label
         private let value: String?
-        private let action: () -> Void
+        private let action: (() -> Void)?
 
-        public init(label: Label, value: String?, action: @escaping () -> Void) {
+        /// Initializes a Label & View cell.
+        ///
+        /// - Parameters:
+        ///   - label: A view to show on the leading edge of the cell. Indicating the label of a value.
+        ///   - value: A text value to show on the trailing edge of the cell.
+        ///   - action: A closure to call when cell is tapped.
+        ///   
+        public init(
+            label: Label,
+            value: String?,
+            action: (() -> Void)? = nil
+        ) {
             self.label = label
             self.value = value
             self.action = action
@@ -35,24 +46,26 @@ extension InstUI {
 
         public var body: some View {
             VStack(spacing: 0) {
-                Button(action: action) {
+                Button(action: { action?() }) {
                     HStack(spacing: 0) {
                         label
                             .textStyle(.cellLabel)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .paddingStyle(.trailing, .standard)
+
+                        Spacer()
 
                         Text(value ?? "")
                             .textStyle(.cellValue)
                             .multilineTextAlignment(.trailing)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
 
-                        InstUI.DisclosureIndicator()
-                            .padding(.leading, InstUI.DisclosureIndicator.leadingPadding)
+                        if action != nil {
+                            InstUI.DisclosureIndicator()
+                                .paddingStyle(.leading, .cellAccessoryPadding)
+                        }
                     }
                     .paddingStyle(set: .standardCell)
                     .contentShape(Rectangle())
                 }
+                .disabled(action == nil)
 
                 InstUI.Divider()
             }

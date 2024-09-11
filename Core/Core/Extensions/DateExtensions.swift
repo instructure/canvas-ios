@@ -186,6 +186,18 @@ public extension Date {
         return formatter
     }()
 
+    private static let _defaultFormatter = DateFormatter()
+    private static func formatter(
+        withFormat format: String,
+        locale: Locale,
+        calendar: Calendar
+    ) -> DateFormatter {
+        _defaultFormatter.locale = locale
+        _defaultFormatter.calendar = calendar
+        _defaultFormatter.dateFormat = format
+        return _defaultFormatter
+    }
+
     // MARK: - Formatted strings
 
     var dateOnlyString: String {
@@ -194,6 +206,12 @@ public extension Date {
 
     var dateTimeString: String {
         DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .short)
+    }
+
+    func formatted(format: String, locale: Locale = .current, calendar: Calendar = Cal.currentCalendar) -> String {
+        return Date
+            .formatter(withFormat: format, locale: locale, calendar: calendar)
+            .string(from: self)
     }
 
     /**

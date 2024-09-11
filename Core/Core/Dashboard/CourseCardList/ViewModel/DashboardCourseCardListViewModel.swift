@@ -53,6 +53,8 @@ public class DashboardCourseCardListViewModel: ObservableObject {
         interactor.courseCardList
             .map { !$0.isEmpty }
             .assign(to: &$shouldShowSettingsButton)
+
+        invalidateCourseCardColorCacheOnColorChange()
     }
 
     public func refresh(onComplete: (() -> Void)? = nil) {
@@ -60,6 +62,17 @@ public class DashboardCourseCardListViewModel: ObservableObject {
             .refresh()
             .sink { _ in
                 onComplete?()
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func invalidateCourseCardColorCacheOnColorChange() {
+        let useCase = GetCustomColors()
+        ReactiveStore(useCase: useCase)
+            .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .sink { [weak self] _ in
+                self?.courseCardList.forEach { $0.refreshCachedColor() }
             }
             .store(in: &subscriptions)
     }

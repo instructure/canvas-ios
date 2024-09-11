@@ -17,6 +17,7 @@
 //
 
 import WebKit
+import Combine
 
 @IBDesignable
 open class CoreWebView: WKWebView {
@@ -506,7 +507,7 @@ extension CoreWebView {
                     cookieKeepAliveWebView.load(keepAliveRequest)
                 } }
             }
-            cookieKeepAliveTimer?.fire()
+            refreshKeepAliveCookies()
         }
     }
 
@@ -515,6 +516,21 @@ extension CoreWebView {
             cookieKeepAliveTimer?.invalidate()
             cookieKeepAliveTimer = nil
         }
+    }
+
+    /// Refreshes webview session cookies immediately outside of the scheduled renewal.
+    public static func refreshKeepAliveCookies() {
+        performUIUpdate {
+            cookieKeepAliveTimer?.fire()
+        }
+    }
+
+    public static func deleteAllCookies() -> AnyPublisher<Void, Never> {
+        cookieKeepAliveWebView
+            .configuration
+            .websiteDataStore
+            .httpCookieStore
+            .deleteAllCookies()
     }
 }
 

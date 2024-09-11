@@ -83,6 +83,14 @@ extension String {
         self.isEmpty ? nil : self
     }
 
+    public func trimmed() -> String {
+        return trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    public func asFormat(for arguments: any CVarArg...) -> String {
+        return String(format: self, arguments)
+    }
+
     /// Returns a range that covers the whole string.
     public var nsRange: NSRange {
         NSRange(location: 0, length: count)

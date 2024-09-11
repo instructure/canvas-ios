@@ -98,6 +98,8 @@
 		CF72EBE82C5930CB0056562A /* ParentSubmissionInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF72EBE72C5930CB0056562A /* ParentSubmissionInteractorTests.swift */; };
 		CF72EBEB2C5A1C590056562A /* ParentSubmissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF72EBEA2C5A1C590056562A /* ParentSubmissionViewModel.swift */; };
 		CF72EBEE2C5A23540056562A /* ParentSubmissionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF72EBED2C5A23540056562A /* ParentSubmissionViewModelTests.swift */; };
+		CF9A81E92C8A0261004B2C13 /* ParentSubmissionURLInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A81E82C8A0261004B2C13 /* ParentSubmissionURLInteractor.swift */; };
+		CF9A81EB2C8A0387004B2C13 /* ParentSubmissionURLInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A81EA2C8A0387004B2C13 /* ParentSubmissionURLInteractorTests.swift */; };
 		CFAA401D2AE26302002C7AAE /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFAA401C2AE26302002C7AAE /* PSPDFKit */; };
 		CFEE68D82B1A24ED00A04E43 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68D72B1A24ED00A04E43 /* InfoPlist.xcstrings */; };
 		CFEE68DB2B1A251C00A04E43 /* LaunchScreen.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */; };
@@ -244,6 +246,8 @@
 		CF72EBE72C5930CB0056562A /* ParentSubmissionInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSubmissionInteractorTests.swift; sourceTree = "<group>"; };
 		CF72EBEA2C5A1C590056562A /* ParentSubmissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSubmissionViewModel.swift; sourceTree = "<group>"; };
 		CF72EBED2C5A23540056562A /* ParentSubmissionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSubmissionViewModelTests.swift; sourceTree = "<group>"; };
+		CF9A81E82C8A0261004B2C13 /* ParentSubmissionURLInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSubmissionURLInteractor.swift; sourceTree = "<group>"; };
+		CF9A81EA2C8A0387004B2C13 /* ParentSubmissionURLInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSubmissionURLInteractorTests.swift; sourceTree = "<group>"; };
 		CFEE68D72B1A24ED00A04E43 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = LaunchScreen.xcstrings; sourceTree = "<group>"; };
 		CFEE68DA2B1A251C00A04E43 /* Localizable.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -752,6 +756,7 @@
 			isa = PBXGroup;
 			children = (
 				CF72EBD42C590A1D0056562A /* ParentSubmissionInteractor.swift */,
+				CF9A81E82C8A0261004B2C13 /* ParentSubmissionURLInteractor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -768,6 +773,7 @@
 			isa = PBXGroup;
 			children = (
 				CF72EBE72C5930CB0056562A /* ParentSubmissionInteractorTests.swift */,
+				CF9A81EA2C8A0387004B2C13 /* ParentSubmissionURLInteractorTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1062,6 +1068,7 @@
 				7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */,
 				CF34EC4A2C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift in Sources */,
 				CFFE286A27B3B8A90029A408 /* CourseListCellGradesTests.swift in Sources */,
+				CF9A81EB2C8A0387004B2C13 /* ParentSubmissionURLInteractorTests.swift in Sources */,
 				CF72EBE82C5930CB0056562A /* ParentSubmissionInteractorTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */,
 				CF72EBEE2C5A23540056562A /* ParentSubmissionViewModelTests.swift in Sources */,
@@ -1092,6 +1099,7 @@
 				7DB92CB424C62071004A6C16 /* CourseListViewController.swift in Sources */,
 				7DB92CA524C5FD26004A6C16 /* AccountNotificationDetailsViewController.swift in Sources */,
 				5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */,
+				CF9A81E92C8A0261004B2C13 /* ParentSubmissionURLInteractor.swift in Sources */,
 				7D1801B924C207B500A7F023 /* AssignmentDetailsViewController.swift in Sources */,
 				CF72EBD52C590A1D0056562A /* ParentSubmissionInteractor.swift in Sources */,
 				3BA9FF6D2332999900196A06 /* CourseDetailsViewController.swift in Sources */,

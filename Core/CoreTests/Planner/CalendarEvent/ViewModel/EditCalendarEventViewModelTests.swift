@@ -37,6 +37,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
             ("User 3", .user("3")),
             ("Group 6", .group("6"))
         ]
+        static let uploadContext: Context = .course("some upload target")
     }
 
     private var eventInteractor: CalendarEventInteractorPreview!
@@ -68,6 +69,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .data)
         XCTAssertEqual(testee.endTimeErrorMessage, nil)
         XCTAssertEqual(testee.shouldShowSaveError, false)
+        XCTAssertEqual(testee.uploadParameters.context, TestConstants.uploadContext)
 
         XCTAssertEqual(testee.title, "")
         XCTAssertEqual(testee.date, Date.make(year: 2024, month: 1, day: 1))
@@ -91,6 +93,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .data)
         XCTAssertEqual(testee.endTimeErrorMessage, nil)
         XCTAssertEqual(testee.shouldShowSaveError, false)
+        XCTAssertEqual(testee.uploadParameters.context, TestConstants.uploadContext)
 
         XCTAssertEqual(testee.title, TestConstants.title)
         XCTAssertEqual(testee.location, TestConstants.locationName)
@@ -165,6 +168,15 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
 
         // reset to enabled
         eventInteractor.isRequestModelValidResult = true
+        XCTAssertEqual(testee.isSaveButtonEnabled, true)
+
+        // start uploading details media
+        testee.isUploading = true
+        XCTAssertEqual(testee.isSaveButtonEnabled, false)
+
+        // reset to enabled (stop uploading)
+        testee.isUploading = false
+        XCTAssertEqual(testee.isSaveButtonEnabled, true)
 
         // trigger saving state
         eventInteractor.createEventResult = nil
@@ -550,6 +562,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
             event: event,
             eventInteractor: eventInteractor,
             calendarListProviderInteractor: calendarListProviderInteractor,
+            uploadParameters: .init(context: TestConstants.uploadContext),
             router: router,
             completion: { [weak self] in
                 self?.completionValue = $0
