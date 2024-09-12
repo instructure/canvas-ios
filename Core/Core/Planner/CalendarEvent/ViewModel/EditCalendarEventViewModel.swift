@@ -20,6 +20,7 @@ import Combine
 import SwiftUI
 
 final class EditCalendarEventViewModel: ObservableObject {
+    typealias SeriesModificationType = APICalendarEventSeriesModificationType
 
     private enum Mode {
         case add
@@ -45,6 +46,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     @Published var details: String = ""
     @Published var isUploading: Bool = false
 
+    @Published var shouldShowEditConfirmation: Bool = false
     @Published private(set) var endTimeErrorMessage: String?
     @Published var shouldShowSaveError: Bool = false
 
@@ -91,6 +93,8 @@ final class EditCalendarEventViewModel: ObservableObject {
         )
     }()
 
+    var editConfirmation: ConfirmationViewModel<SeriesModificationType> = .init()
+
     // MARK: - Input
 
     let didTapCancel = PassthroughSubject<Void, Never>()
@@ -108,6 +112,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     private var selectedCalendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
     /// Returns true if any of the fields had been modified once by the user. It doesn't compare values.
     private var isFieldsTouched: Bool = false
+    private let wasEventPartOfSeries: Bool
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -138,8 +143,11 @@ final class EditCalendarEventViewModel: ObservableObject {
 
         if let event {
             mode = .edit(id: event.id)
+            wasEventPartOfSeries = event.isPartOfSeries
+            editConfirmation = makeEditConfirmation(event: event)
         } else {
             mode = .add
+            wasEventPartOfSeries = false
         }
 
         setupFields(event: event, selectedDate: selectedDate ?? Clock.now)
@@ -204,23 +212,7 @@ final class EditCalendarEventViewModel: ObservableObject {
             .sink { completion(.didCancel) }
             .store(in: &subscriptions)
 
-        didTapSave
-            .map { [weak self] in
-                self?.state = .data(loadingOverlay: true)
-            }
-            .flatMap { [weak self] in
-                (self?.saveAction() ?? Empty().eraseToAnyPublisher())
-                    .catch { _ in
-                        self?.state = .data
-                        self?.shouldShowSaveError = true
-                        return Empty<Void, Never>().eraseToAnyPublisher()
-                    }
-                    .eraseToAnyPublisher()
-            }
-            .sink {
-                completion(.didUpdate)
-            }
-            .store(in: &subscriptions)
+        onSaveButtonTapSaveEventAfterConfirmation(completion: completion)
 
         showFrequencySelector
             .sink { [weak self] in self?.showSelectFrequencyScreen(from: $0) }
@@ -357,14 +349,73 @@ final class EditCalendarEventViewModel: ObservableObject {
         )
     }
 
-    private func saveAction() -> AnyPublisher<Void, Error>? {
+    private func makeEditConfirmation(event: CalendarEvent) -> ConfirmationViewModel<SeriesModificationType> {
+        guard event.isPartOfSeries else { return .init() }
+
+        return ConfirmationViewModel(
+            title: String(localized: "Confirm Changes", bundle: .core),
+            cancelButtonTitle: String(localized: "Cancel", bundle: .core),
+            confirmButtons: [
+                .init(
+                    title: String(localized: "Change this event", bundle: .core),
+                    option: .one
+                ),
+                .init(
+                    title: String(localized: "Change all events", bundle: .core),
+                    option: .all
+                ),
+                event.isSeriesHead ? nil : .init(
+                    title: String(localized: "Change this and all following events", bundle: .core),
+                    option: .following
+                )
+            ].compactMap { $0 }
+        )
+    }
+
+    private func onSaveButtonTapSaveEventAfterConfirmation(completion: @escaping (PlannerAssembly.Completion) -> Void) {
+        didTapSave
+            .map { [weak self] in
+                guard self?.wasEventPartOfSeries == true else { return }
+                self?.shouldShowEditConfirmation = true
+            }
+            .flatMap { [weak self] () -> AnyPublisher<SeriesModificationType?, Never> in
+                guard let self else {
+                    return Empty().eraseToAnyPublisher()
+                }
+                guard wasEventPartOfSeries else {
+                    return Just(nil).eraseToAnyPublisher()
+                }
+                return editConfirmation.userConfirmsOption()
+                    .map { $0 }
+                    .eraseToAnyPublisher()
+            }
+            .map { [weak self] in
+                self?.state = .data(loadingOverlay: true)
+                return $0
+            }
+            .flatMap { [weak self] in
+                (self?.saveAction(seriesModificationType: $0) ?? Empty().eraseToAnyPublisher())
+                    .catch { _ in
+                        self?.state = .data
+                        self?.shouldShowSaveError = true
+                        return Empty<Void, Never>().eraseToAnyPublisher()
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .sink {
+                completion(.didUpdate)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func saveAction(seriesModificationType: SeriesModificationType?) -> AnyPublisher<Void, Error>? {
         guard let model else { return nil }
 
         switch mode {
         case .add:
             return eventInteractor.createEvent(model: model)
         case .edit(let id):
-            return eventInteractor.updateEvent(id: id, model: model, seriesModificationType: nil)
+            return eventInteractor.updateEvent(id: id, model: model, seriesModificationType: seriesModificationType)
         }
     }
 }

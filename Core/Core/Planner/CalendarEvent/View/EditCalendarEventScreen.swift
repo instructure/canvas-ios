@@ -144,16 +144,20 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
         }
         .navigationTitle(viewModel.pageTitle)
         .navBarItems(
-            leading: .cancel {
+            leading: InstUI.NavigationBarButton.cancel {
                 viewModel.didTapCancel.send()
             },
-            trailing: .init(
+            trailing: InstUI.NavigationBarButton(
                 isEnabled: viewModel.isSaveButtonEnabled,
                 isAvailableOffline: false,
                 title: viewModel.saveButtonTitle,
                 action: {
                     viewModel.didTapSave.send()
                 }
+            )
+            .confirmation(
+                isPresented: $viewModel.shouldShowEditConfirmation,
+                presenting: viewModel.editConfirmation
             )
         )
         .errorAlert(isPresented: $viewModel.shouldShowSaveError, presenting: viewModel.saveErrorAlert)
