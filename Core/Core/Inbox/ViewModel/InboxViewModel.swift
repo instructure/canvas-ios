@@ -29,6 +29,7 @@ public class InboxViewModel: ObservableObject {
     @Published public private(set) var hasNextPage = false
     @Published public var isShowingScopeSelector = false
     @Published public var isShowingCourseSelector = false
+    public let snackBarViewModel = SnackBarViewModel()
     public let scopes = InboxMessageScope.allCases
     public let emptyState = (scene: SpacePanda() as PandaScene,
                              title: String(localized: "No Messages", bundle: .core),
@@ -47,15 +48,24 @@ public class InboxViewModel: ObservableObject {
     public let courseDidChange = CurrentValueSubject<InboxCourse?, Never>(nil)
     public let updateState = PassthroughSubject<(messageId: String, state: ConversationWorkflowState), Never>()
     public let contentDidScrollToBottom = PassthroughSubject<Void, Never>()
+    public let didTapStar = PassthroughSubject<(Bool, String), Never>()
 
     // MARK: - Private State
     private static let DefaultScope: InboxMessageScope = .inbox
-    private let interactor: InboxMessageInteractor
+    private let messageInteractor: InboxMessageInteractor
+    private let favouriteInteractor: InboxMessageFavouriteInteractor
     private var subscriptions = Set<AnyCancellable>()
     private var isLoadingNextPage = CurrentValueSubject<Bool, Never>(false)
+    private var didSendMailSuccessfully = PassthroughSubject<Void, Never>()
 
-    public init(interactor: InboxMessageInteractor, router: Router) {
-        self.interactor = interactor
+    // MARK: - Init
+    public init(
+        messageInteractor: InboxMessageInteractor,
+        favouriteInteractor: InboxMessageFavouriteInteractor,
+        router: Router
+    ) {
+        self.messageInteractor = messageInteractor
+        self.favouriteInteractor = favouriteInteractor
         bindInputsToDataSource()
         bindDataSourceOutputsToSelf()
         bindUserActionsToOutputs()
@@ -70,7 +80,7 @@ public class InboxViewModel: ObservableObject {
             .replaceNil(with: String(localized: "All Courses", bundle: .core))
             .assign(to: &$course)
 
-        let interactor = self.interactor
+        let interactor = self.messageInteractor
         let isLoadingNextPage = self.isLoadingNextPage
 
         contentDidScrollToBottom
@@ -83,23 +93,23 @@ public class InboxViewModel: ObservableObject {
     }
 
     private func bindDataSourceOutputsToSelf() {
-        interactor.state
+        messageInteractor.state
             .assign(to: &$state)
-        interactor.messages
+        messageInteractor.messages
             .map { messages in
                 messages.map {
                     InboxMessageListItemViewModel(message: $0)
                 }
             }
             .assign(to: &$messages)
-        interactor.courses
+        messageInteractor.courses
             .assign(to: &$courses)
-        interactor.hasNextPage
+        messageInteractor.hasNextPage
             .assign(to: &$hasNextPage)
     }
 
     private func bindInputsToDataSource() {
-        let interactor = self.interactor
+        let interactor = self.messageInteractor
         courseDidChange
             .map { $0?.context }
             .removeDuplicates()
@@ -109,6 +119,10 @@ public class InboxViewModel: ObservableObject {
         scopeDidChange
             .removeDuplicates()
             .map { interactor.setScope($0) }
+            .flatMap { _ in
+                interactor.refresh()
+                    .receive(on: DispatchQueue.main)
+            }
             .sink()
             .store(in: &subscriptions)
         refreshDidTrigger
@@ -135,6 +149,23 @@ public class InboxViewModel: ObservableObject {
             .map { interactor.updateState(message: $0.message, state: $0.state) }
             .sink()
             .store(in: &subscriptions)
+
+        didTapStar
+            .flatMap { [favouriteInteractor] starred, messageId in
+                favouriteInteractor.updateStarred(to: starred, messageId: messageId)
+            }
+            .flatMap { [messageInteractor] _ in
+                messageInteractor.refresh()
+                    .receive(on: DispatchQueue.main)
+            }
+            .sink()
+            .store(in: &subscriptions)
+
+        didSendMailSuccessfully
+            .sink { [weak self] in
+                self?.snackBarViewModel.showSnack(InboxMessageScope.sent.localizedName)
+            }
+            .store(in: &subscriptions)
     }
 
     private func subscribeToTapEvents(router: Router) {
@@ -144,18 +175,22 @@ public class InboxViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
         newMessageDidTap
-            .sink { [router] source in
-                router.route(to: "/conversations/compose", from: source, options: .modal(isDismissable: false, embedInNav: true))
+            .sink { [router, didSendMailSuccessfully] source in
+                router.show(
+                    ComposeMessageAssembly.makeComposeMessageViewController(sentMailEvent: didSendMailSuccessfully),
+                    from: source,
+                    options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
+                )
             }
             .store(in: &subscriptions)
         messageDidTap
             .flatMap { [weak self] (messageID, controller) in
-                let message = self?.interactor.messages.value.first {
+                let message = self?.messageInteractor.messages.value.first {
                     $0.messageId == messageID
                 }
                 guard let message, let self, message.state != .archived else { return Just((messageID, controller)).eraseToAnyPublisher() }
 
-                return self.interactor.updateState(message: message, state: .read).map {
+                return self.messageInteractor.updateState(message: message, state: .read).map {
                     (messageID, controller)
                 }.eraseToAnyPublisher()
             }

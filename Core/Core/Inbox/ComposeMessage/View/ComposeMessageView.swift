@@ -23,10 +23,13 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     @Environment(\.viewController) private var controller
     @ScaledMetric private var uiScale: CGFloat = 1
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
+    @State private var recipientViewHeight: CGFloat = .zero
+    @State private var searchTextFieldHeight: CGFloat = .zero
 
     private enum FocusedInput {
         case subject
         case message
+        case search
     }
     @FocusState private var focusedInput: FocusedInput?
     @State private var headerHeight = CGFloat.zero
@@ -43,7 +46,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        GeometryReader { geometry in
+        InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
             ScrollView {
                 VStack(spacing: 0) {
                     headerView
@@ -52,20 +55,44 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                                 Color.clear
                                     .onAppear {
                                         headerHeight = proxy.size.height
+                                        model.showSearchRecipientsView = false
+                                        focusedInput = nil
                                     }
                             }
                         )
                     separator
-                    VStack(spacing: 0) {
-                        propertiesView
-                    }
+                    courseView
                     separator
-                    VStack(spacing: 0) {
-                        bodyView(geometry: geometry)
-                        attachmentsView
-                        if !model.includedMessages.isEmpty {
-                            includedMessages
+                    ZStack(alignment: .topLeading) {
+                        VStack(spacing: 0) {
+                            propertiesView
+                            separator
+
+                            bodyView(geometry: geometry)
+                            attachmentsView
+                            if !model.includedMessages.isEmpty {
+                                includedMessages
+                            }
+                            // This Rectangle adds extra height to ensure smoother display of the list of recipients
+                            // without affecting the UI or any logic.
+                            Rectangle()
+                                .fill(Color.clear)
+                                .frame(height: 150)
+                                .allowsHitTesting(false)
                         }
+                        if model.showSearchRecipientsView {
+                            RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
+                                model.showSearchRecipientsView = false
+                                model.textRecipientSearch = ""
+                                model.didSelectRecipient.accept(selectedRecipient)
+                            }
+                            .accessibilityHidden(true)
+                            .offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
+                            .padding(.horizontal, 35)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .animation(.smooth, value: model.showSearchRecipientsView)
+                        }
+
                     }
                 }
                 .font(.regular12)
@@ -74,6 +101,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     GeometryReader { reader in
                         return Color.backgroundLightest
                             .onTapGesture {
+                                model.clearSearchedRecipients()
                                 focusedInput = nil
                             }
                             .preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
@@ -114,8 +142,11 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 isPresented: $model.isShowingCancelDialog,
                 presenting: model.confirmAlert
             )
+            .confirmationAlert(
+                isPresented: $model.isShowingErrorDialog,
+                presenting: model.errorAlert
+            )
         }
-
     }
 
     @ViewBuilder
@@ -143,6 +174,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         }
     }
 
+   @ViewBuilder
     private var sendButton: some View {
         Button {
             model.didTapSend.accept(controller)
@@ -153,7 +185,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         .disabled(!model.sendButtonActive)
         .frame(maxHeight: .infinity, alignment: .top)
         .accessibilityIdentifier("ComposeMessage.send")
-
     }
 
     private var sendButtonImage: some View {
@@ -196,8 +227,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     private var propertiesView: some View {
         VStack(spacing: 0) {
-            courseView
-            separator
             if model.selectedContext != nil || model.alwaysShowRecipients {
                 toView
                 separator
@@ -208,6 +237,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 individualView
             }
         }
+        .fixedSize(horizontal: false, vertical: true)
     }
 
     private var courseSelectorAccessibilityLabel: Text {
@@ -241,26 +271,46 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     private var toView: some View {
-        HStack {
-            Text("To", bundle: .core)
-                .font(.regular16, lineHeight: .condensed)
-                .foregroundColor(.textDark)
-                .padding(.vertical, 12)
-                .accessibilitySortPriority(3)
-                .accessibilityIdentifier("ComposeMessage.to")
-            if !model.recipients.isEmpty {
-                recipientsView
-                    .accessibilitySortPriority(1)
+        HStack(alignment: .top) {
+            toRecipientText
+            VStack {
+                if !model.recipients.isEmpty {
+                    recipientsView
+                        .accessibilitySortPriority(1)
+                }
+
+                TextField(String(localized: "Search", bundle: .core), text: $model.textRecipientSearch)
+                    .font(.regular16)
+                    .focused($focusedInput, equals: .search)
+                    .foregroundColor(.textDark)
+                    .frame(minHeight: 50)
+                    .frame(maxHeight: .infinity, alignment: .center)
+                    .padding(.leading, 5)
+                    .accessibilityHidden(true)
+                    .readingFrame { frame in
+                        searchTextFieldHeight = frame.height - 5
+                    }
             }
             Spacer()
 
             addRecipientButton
+                .frame(maxHeight: .infinity, alignment: .center)
                 .accessibilitySortPriority(2)
         }
+        .animation(.easeInOut, value: model.recipients.isEmpty)
         .accessibilityElement(children: .contain)
         .padding(.horizontal, defaultHorizontalPaddingValue)
         .disabled(model.isRecipientsDisabled)
         .opacity(model.isRecipientsDisabled ? 0.6 : 1)
+    }
+
+    private var toRecipientText: some View {
+        Text("To", bundle: .core)
+            .font(.regular16, lineHeight: .condensed)
+            .foregroundColor(.textDark)
+            .padding(.vertical, 12)
+            .accessibilitySortPriority(3)
+            .accessibilityIdentifier("ComposeMessage.to")
     }
 
     private var recipientsView: some View {
@@ -268,6 +318,9 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             RecipientPillView(recipient: recipient, removeDidTap: { recipient in
                 model.didRemoveRecipient.accept(recipient)
             })
+        }
+        .readingFrame { frame in
+            recipientViewHeight = frame.height
         }
     }
 
