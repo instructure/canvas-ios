@@ -22,17 +22,17 @@ import UIKit
 // MARK: - Text Colors
 
 public extension UIColor {
-    static let textDanger = UIColor(named: "textDanger", in: .core, compatibleWith: nil)!
-    static let textDark = UIColor(named: "textDark", in: .core, compatibleWith: nil)!
-    static let textDarkest = UIColor(named: "textDarkest", in: .core, compatibleWith: nil)!
-    static let textInfo = UIColor(named: "textInfo", in: .core, compatibleWith: nil)!
-    static let textLight = UIColor(named: "textLight", in: .core, compatibleWith: nil)!
-    static let textLightest = UIColor(named: "textLightest", in: .core, compatibleWith: nil)!
-    static let textLink = UIColor(named: "textLink", in: .core, compatibleWith: nil)!
-    static let textMasquerade = UIColor(named: "textMasquerade", in: .core, compatibleWith: nil)!
-    static let textPlaceholder = UIColor(named: "textPlaceholder", in: .core, compatibleWith: nil)!
-    static let textSuccess = UIColor(named: "textSuccess", in: .core, compatibleWith: nil)!
-    static let textWarning = UIColor(named: "textWarning", in: .core, compatibleWith: nil)!
+    static let textDanger = UIColor(resource: .textDanger)
+    static let textDark = UIColor(resource: .textDark)
+    static let textDarkest = UIColor(resource: .textDarkest)
+    static let textInfo = UIColor(resource: .textInfo)
+    static let textLight = UIColor(resource: .textLight)
+    static let textLightest = UIColor(resource: .textLightest)
+    static let textLink = UIColor(resource: .textLink)
+    static let textMasquerade = UIColor(resource: .textMasquerade)
+    static let textPlaceholder = UIColor(resource: .textPlaceholder)
+    static let textSuccess = UIColor(resource: .textSuccess)
+    static let textWarning = UIColor(resource: .textWarning)
 }
 
 public extension Color {
@@ -77,7 +77,6 @@ public extension UIColor {
     static let crimson = UIColor(named: "crimson", in: .core, compatibleWith: nil)!
     static let disabledGray = UIColor(named: "disabledGray", in: .core, compatibleWith: nil)!
     static let electric = UIColor(named: "electric", in: .core, compatibleWith: nil)!
-    static let electricHighContrast = UIColor(named: "electricHighContrast", in: .core, compatibleWith: nil)!
     static let fire = UIColor(named: "fire", in: .core, compatibleWith: nil)!
     static let licorice = UIColor(named: "licorice", in: .core, compatibleWith: nil)!
     static let oxford = UIColor(named: "oxford", in: .core, compatibleWith: nil)!
