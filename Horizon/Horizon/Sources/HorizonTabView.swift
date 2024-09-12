@@ -21,19 +21,19 @@ import SwiftUI
 struct HorizonTabView: View {
     var body: some View {
         TabView {
-            DashboardView()
+            DashboardAssembly.makeView()
                 .tabItem {
                     Label("Dashboard", systemImage: "house")
                 }
-            ProgramsView()
+            ProgramsAssembly.makeView()
                 .tabItem {
                     Label("Programs", systemImage: "books.vertical")
                 }
-            JourneyView()
+            JourneyAssembly.makeView()
                 .tabItem {
                     Label("Journey", systemImage: "graduationcap")
                 }
-            PortfolioView()
+            PortfolioAssembly.makeView()
                 .tabItem {
                     Label("Portfolio", systemImage: "newspaper")
                 }

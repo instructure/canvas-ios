@@ -17,25 +17,18 @@
 //
 
 import Core
-import SwiftUI
+import Foundation
 
-struct DashboardView: View {
-    @ObservedObject private var viewModel: DashboardViewModel
+final class DashboardViewModel: ObservableObject {
+    // MARK: - Outputs
 
-    init(viewModel: DashboardViewModel) {
-        self.viewModel = viewModel
-    }
+    @Published public private(set) var state: InstUI.ScreenState = .data(loadingOverlay: false)
+    @Published public private(set) var title: String = "Welcome back, Justine"
+    @Published public private(set) var progressionString: String = "75%"
+    @Published public private(set) var progression: Double = 0.75
+    @Published public private(set) var modules: [Module] = []
 
-    var body: some View {
-        InstUI.BaseScreen(
-            state: viewModel.state,
-            config: .init(refreshable: false)
-        ) { _ in
-            Text(viewModel.title)
-        }
-    }
-}
+    // MARK: - Init
 
-#Preview {
-    DashboardView(viewModel: .init())
+    init() {}
 }

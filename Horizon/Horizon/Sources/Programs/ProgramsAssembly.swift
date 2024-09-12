@@ -16,26 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import SwiftUI
+import Foundation
 
-struct DashboardView: View {
-    @ObservedObject private var viewModel: DashboardViewModel
-
-    init(viewModel: DashboardViewModel) {
-        self.viewModel = viewModel
+final class ProgramsAssembly {
+    static func makeView() -> ProgramsView {
+        ProgramsView()
     }
-
-    var body: some View {
-        InstUI.BaseScreen(
-            state: viewModel.state,
-            config: .init(refreshable: false)
-        ) { _ in
-            Text(viewModel.title)
-        }
-    }
-}
-
-#Preview {
-    DashboardView(viewModel: .init())
 }
