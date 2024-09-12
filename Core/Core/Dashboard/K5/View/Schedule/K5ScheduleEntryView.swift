@@ -79,7 +79,7 @@ public struct K5ScheduleEntryView: View {
         switch viewModel.leading {
         case .warning:
             Image.warningLine
-                .foregroundColor(.crimson)
+                .foregroundColor(.textDanger)
                 .padding(.leading, 18)
                 .padding(.trailing, 18)
                 .accessibility(hidden: true)

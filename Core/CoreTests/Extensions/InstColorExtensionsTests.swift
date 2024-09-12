@@ -135,8 +135,6 @@ class InstColorExtensionTests: XCTestCase {
 
     func testUIColor() {
         XCTAssertEqual(UIColor.ash, UIColor(named: "ash", in: .core, compatibleWith: nil))
-        XCTAssertEqual(UIColor.barney, UIColor(named: "barney", in: .core, compatibleWith: nil))
-        XCTAssertEqual(UIColor.crimson, UIColor(named: "crimson", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.disabledGray, UIColor(named: "disabledGray", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.electric, UIColor(named: "electric", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.fire, UIColor(named: "fire", in: .core, compatibleWith: nil))
@@ -144,15 +142,12 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(UIColor.oxford, UIColor(named: "oxford", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.placeholderGray, UIColor(named: "placeholderGray", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.porcelain, UIColor(named: "porcelain", in: .core, compatibleWith: nil))
-        XCTAssertEqual(UIColor.shamrock, UIColor(named: "shamrock", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.tabBarBackground, UIColor(named: "tabBarBackground", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.tiara, UIColor(named: "tiara", in: .core, compatibleWith: nil))
     }
 
     func testColor() {
         XCTAssertEqual(Color.ash, Color("ash", bundle: .core))
-        XCTAssertEqual(Color.barney, Color("barney", bundle: .core))
-        XCTAssertEqual(Color.crimson, Color("crimson", bundle: .core))
         XCTAssertEqual(Color.disabledGray, Color("disabledGray", bundle: .core))
         XCTAssertEqual(Color.electric, Color("electric", bundle: .core))
         XCTAssertEqual(Color.electricHighContrast, Color("electricHighContrast", bundle: .core))
@@ -161,7 +156,6 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(Color.oxford, Color("oxford", bundle: .core))
         XCTAssertEqual(Color.placeholderGray, Color("placeholderGray", bundle: .core))
         XCTAssertEqual(Color.porcelain, Color("porcelain", bundle: .core))
-        XCTAssertEqual(Color.shamrock, Color("shamrock", bundle: .core))
         XCTAssertEqual(Color.tabBarBackground, Color("tabBarBackground", bundle: .core))
         XCTAssertEqual(Color.tiara, Color("tiara", bundle: .core))
     }

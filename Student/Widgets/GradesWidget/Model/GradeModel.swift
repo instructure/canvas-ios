@@ -22,11 +22,11 @@ class GradeModel: WidgetModel {
     override class var publicPreview: GradeModel {
         GradeModel(assignmentGrades: [
             GradeItem(name: String(localized: "Essay #1: The Rocky Planets", comment: "Example exam name"), grade: "95 / 100", color: .electric),
-            GradeItem(name: String(localized: "American Literature IV", comment: "Example exam name"), grade: "9.2 / 10", color: .shamrock),
-            GradeItem(name: String(localized: "Biology Exam 2", comment: "Example exam name"), grade: "20 / 25", color: .barney)
+            GradeItem(name: String(localized: "American Literature IV", comment: "Example exam name"), grade: "9.2 / 10", color: .textSuccess),
+            GradeItem(name: String(localized: "Biology Exam 2", comment: "Example exam name"), grade: "20 / 25", color: .course3)
         ], courseGrades: [
             GradeItem(name: String(localized: "Introduction to the Solar System", comment: "Example course name"), grade: "A-", color: .electric),
-            GradeItem(name: String(localized: "American Literature IV: All the Books", comment: "Example course name"), grade: "B", color: .shamrock)
+            GradeItem(name: String(localized: "American Literature IV: All the Books", comment: "Example course name"), grade: "B", color: .textSuccess)
         ])
     }
 
@@ -54,7 +54,7 @@ class GradeModel: WidgetModel {
 extension GradeModel {
     public static func makeWithOneAssigmnent() -> GradeModel {
         GradeModel(assignmentGrades: [
-            GradeItem(name: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .barney)
+            GradeItem(name: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .course3)
         ], courseGrades: [
         ])
     }
@@ -68,11 +68,11 @@ extension GradeModel {
 
     public static func make() -> GradeModel {
         GradeModel(assignmentGrades: [
-            GradeItem(name: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .barney),
-            GradeItem(name: "Earth: The Pale Blue Dot on two lines or more since it's very long", grade: "20 / 25", color: .crimson),
+            GradeItem(name: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .course3),
+            GradeItem(name: "Earth: The Pale Blue Dot on two lines or more since it's very long", grade: "20 / 25", color: .textDanger),
             GradeItem(name: "American Literature IV", grade: "9.2 / 10", color: .fire)
         ], courseGrades: [
-            GradeItem(name: "Introduction to the Solar System", grade: "A-", color: .shamrock),
+            GradeItem(name: "Introduction to the Solar System", grade: "A-", color: .textSuccess),
             GradeItem(name: "American Literature IV: All the Books", grade: "B"),
             GradeItem(name: "Introduction to Neighboring Stars", grade: "A+", color: .licorice),
             GradeItem(name: "Biology 101", grade: "C+", color: .electric)

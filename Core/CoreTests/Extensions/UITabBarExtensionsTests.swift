@@ -40,7 +40,7 @@ class UITabBarExtensionsTests: XCTestCase {
         XCTAssertEqual((selected.titleTextAttributes[.foregroundColor] as! UIColor).hexString, Brand.shared.primary.hexString)
 
         XCTAssertEqual(tabBar.standardAppearance.backgroundColor, UIColor.tabBarBackground)
-        XCTAssertEqual(tabBar.items?.first?.badgeColor, UIColor.crimson)
+        XCTAssertEqual(tabBar.items?.first?.badgeColor, UIColor.backgroundDanger)
         XCTAssertEqual(tabBar.barStyle, .default)
 
         let shiny = Brand(response: APIBrandVariables.make(

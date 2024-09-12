@@ -77,7 +77,7 @@ private struct Badge: View {
             .font(.semibold12)
             .padding(EdgeInsets(top: 2.5, leading: 6.5, bottom: 3, trailing: 6.5))
             .foregroundColor(.white)
-            .background(Color.crimson)
+            .background(Color.backgroundDanger)
             .clipShape(Capsule())
     }
 

@@ -77,7 +77,7 @@ struct K5Preview {
                     subtitle: .init(text: "You've marked it as done", color: .ash, font: .regular12),
                     labels: [
                         .init(text: "REPLIES", color: .ash),
-                        .init(text: "REDO", color: .crimson)
+                        .init(text: "REDO", color: .textDanger)
                     ],
                     score: "5 pts",
                     dueText: "Due: 11:59 PM",

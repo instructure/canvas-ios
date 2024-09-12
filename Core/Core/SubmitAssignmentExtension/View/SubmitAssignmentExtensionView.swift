@@ -178,7 +178,7 @@ public struct SubmitAssignmentExtensionView: View {
     private var cancelButton: some View {
         Button(action: viewModel.cancelTapped) {
             Text("Cancel", bundle: .core)
-                .foregroundColor(.crimson)
+                .foregroundColor(.textDanger)
                 .font(.regular17)
         }
     }

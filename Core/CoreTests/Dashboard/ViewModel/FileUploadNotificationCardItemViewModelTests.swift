@@ -49,7 +49,7 @@ class FileUploadNotificationCardItemViewModelTests: CoreTestCase {
         // Then
         XCTAssertEqual(viewModel.state.text, "Submission Failed")
         XCTAssertEqual(viewModel.state.image, Image.warningBorderlessLine)
-        XCTAssertEqual(viewModel.state.color, Color.crimson)
+        XCTAssertEqual(viewModel.state.color, Color.textDanger)
     }
 
     func testHideButtonDismissesCard() {

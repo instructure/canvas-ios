@@ -50,7 +50,7 @@ struct SimilarityScore: View {
                     .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
                     .background(
                         score >= 75 ? Color.textDanger :
-                        score >= 50 ? Color.textAlert :
+                        score >= 50 ? Color.textMasquerade :
                         score >= 25 ? Color.textWarning :
                         score >= 1 ? Color.textSuccess :
                         Color.textInfo

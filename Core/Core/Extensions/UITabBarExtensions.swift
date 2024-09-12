@@ -25,7 +25,7 @@ extension UITabBar {
         isTranslucent = true
 
         items?.forEach {
-            $0.badgeColor = .crimson
+            $0.badgeColor = .backgroundDanger
             $0.setBadgeTextAttributes([.foregroundColor: UIColor.white], for: .normal)
         }
 

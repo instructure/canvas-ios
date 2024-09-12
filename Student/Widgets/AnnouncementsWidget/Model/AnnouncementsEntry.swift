@@ -36,14 +36,14 @@ class AnnouncementsEntry: WidgetModel {
                 url: url,
                 authorName: String(localized: "Susan Jorgenson", comment: "Example author name"),
                 courseName: String(localized: "Biology 201", comment: "Example course name"),
-                courseColor: .barney),
+                courseColor: .course3),
             AnnouncementItem(
                 title: String(localized: "Read Moby Dick by end of week.", comment: "Example announcement title"),
                 date: Date().addDays(-5),
                 url: url,
                 authorName: String(localized: "Janet Hammond", comment: "Example author name"),
                 courseName: String(localized: "American literature IV", comment: "Example course name"),
-                courseColor: .shamrock)
+                courseColor: .textSuccess)
         ])
     }
 
@@ -71,10 +71,10 @@ extension AnnouncementsEntry {
 
         return AnnouncementsEntry(announcementItems: [
             AnnouncementItem(title: "Finals are moving to next week.", date: Date(), url: url, authorName: "Thomas McKempis", courseName: "Introduction to the Solar System", courseColor: .electric),
-            AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .barney),
-            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .shamrock),
-            AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .barney),
-            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .shamrock)
+            AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .course3),
+            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .textSuccess),
+            AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .course3),
+            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .textSuccess)
         ])
     }
 }

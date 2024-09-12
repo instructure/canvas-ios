@@ -66,16 +66,16 @@ public extension APIPlannable {
             labels.append((text: String(localized: "Graded", bundle: .core), color: .ash))
         }
         if submissionStates.late == true {
-            labels.append((text: String(localized: "Late", bundle: .core), color: .crimson))
+            labels.append((text: String(localized: "Late", bundle: .core), color: .textDanger))
         }
         if submissionStates.has_feedback == true {
             labels.append((text: String(localized: "Feedback", bundle: .core), color: .ash))
         }
         if submissionStates.redo_request == true {
-            labels.append((text: String(localized: "Redo", bundle: .core), color: .crimson))
+            labels.append((text: String(localized: "Redo", bundle: .core), color: .textDanger))
         }
         if submissionStates.missing == true {
-            labels.append((text: String(localized: "Missing", bundle: .core), color: .crimson))
+            labels.append((text: String(localized: "Missing", bundle: .core), color: .textDanger))
         }
         if submissionStates.submitted == true && submissionStates.late == false {
             labels.append((text: String(localized: "Submitted", bundle: .core), color: .ash))

@@ -147,8 +147,6 @@ public extension Color {
 
 public extension UIColor {
     static let ash = UIColor(named: "ash", in: .core, compatibleWith: nil)!
-    static let barney = UIColor(named: "barney", in: .core, compatibleWith: nil)!
-    static let crimson = UIColor(named: "crimson", in: .core, compatibleWith: nil)!
     static let disabledGray = UIColor(named: "disabledGray", in: .core, compatibleWith: nil)!
     static let electric = UIColor(named: "electric", in: .core, compatibleWith: nil)!
     static let fire = UIColor(named: "fire", in: .core, compatibleWith: nil)!
@@ -156,15 +154,12 @@ public extension UIColor {
     static let oxford = UIColor(named: "oxford", in: .core, compatibleWith: nil)!
     static let placeholderGray = UIColor(named: "placeholderGray", in: .core, compatibleWith: nil)!
     static let porcelain = UIColor(named: "porcelain", in: .core, compatibleWith: nil)!
-    static let shamrock = UIColor(named: "shamrock", in: .core, compatibleWith: nil)!
     static let tabBarBackground = UIColor(named: "tabBarBackground", in: .core, compatibleWith: nil)!
     static let tiara = UIColor(named: "tiara", in: .core, compatibleWith: nil)!
 }
 
 public extension Color {
     static let ash = Color("ash", bundle: .core)
-    static let barney = Color("barney", bundle: .core)
-    static let crimson = Color("crimson", bundle: .core)
     static let disabledGray = Color("disabledGray", bundle: .core)
     static let electric = Color("electric", bundle: .core)
     static let electricHighContrast = Color("electricHighContrast", bundle: .core)
@@ -173,7 +168,6 @@ public extension Color {
     static let oxford = Color("oxford", bundle: .core)
     static let placeholderGray = Color("placeholderGray", bundle: .core)
     static let porcelain = Color("porcelain", bundle: .core)
-    static let shamrock = Color("shamrock", bundle: .core)
     static let tabBarBackground = Color("tabBarBackground", bundle: .core)
     static let tiara = Color("tiara", bundle: .core)
 }

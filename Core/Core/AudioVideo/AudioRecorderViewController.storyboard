@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hp-Ut-gdC" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="48" y="16" width="279" height="24"/>
+                                <rect key="frame" x="48" y="36" width="279" height="20.5"/>
                                 <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.timeLabel"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -29,8 +27,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular20Monodigit"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P04-42-aRA" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="327" y="8" width="40" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P04-42-aRA" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="327" y="28" width="40" height="40"/>
                                 <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.cancelButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="P9T-eT-hQJ"/>
@@ -49,7 +47,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azE-St-Zbf">
                                 <rect key="frame" x="147.5" y="80" width="80" height="80"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dva-oH-EXJ" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dva-oH-EXJ" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="8" y="8" width="64" height="64"/>
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.023529411764705882" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.recordButton"/>
@@ -61,13 +59,13 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="32"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="crimson"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="backgroundDanger"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="record:" destination="NAp-rK-X0s" eventType="primaryActionTriggered" id="Erc-ku-mhR"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05Z-o3-ZC0" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05Z-o3-ZC0" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="24" y="24" width="32" height="32"/>
                                         <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.stopButton"/>
                                         <constraints>
@@ -75,7 +73,7 @@
                                             <constraint firstAttribute="width" constant="32" id="wf9-u5-yB3"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="crimson"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="backgroundDanger"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="stop:" destination="NAp-rK-X0s" eventType="primaryActionTriggered" id="LMx-rv-FrT"/>
@@ -111,8 +109,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13i-Ay-AxK" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="180" width="163.5" height="44"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13i-Ay-AxK" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="16" y="182" width="163.5" height="42"/>
                                 <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.clearButton"/>
                                 <inset key="contentEdgeInsets" minX="38" minY="12" maxX="38" maxY="12"/>
                                 <state key="normal" title="Delete"/>
@@ -128,8 +126,8 @@
                                     <action selector="clear:" destination="NAp-rK-X0s" eventType="primaryActionTriggered" id="3mN-KB-S1s"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYf-Ke-XMw" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="195.5" y="180" width="163.5" height="44"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYf-Ke-XMw" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="195.5" y="182" width="163.5" height="42"/>
                                 <accessibility key="accessibilityConfiguration" identifier="AudioRecorder.sendButton"/>
                                 <inset key="contentEdgeInsets" minX="38" minY="12" maxX="38" maxY="12"/>
                                 <state key="normal" title="Send"/>
@@ -146,6 +144,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="vd2-8i-O1Q"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="azE-St-Zbf" firstAttribute="centerX" secondItem="mbJ-rF-8Pv" secondAttribute="centerX" id="32u-9x-Oml"/>
@@ -165,7 +164,6 @@
                             <constraint firstItem="7hp-Ut-gdC" firstAttribute="centerX" secondItem="mbJ-rF-8Pv" secondAttribute="centerX" id="tmZ-PV-W3u"/>
                             <constraint firstItem="7hp-Ut-gdC" firstAttribute="top" secondItem="vd2-8i-O1Q" secondAttribute="top" constant="16" id="yet-Di-Lua"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="vd2-8i-O1Q"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -187,4 +185,24 @@
             <point key="canvasLocation" x="20" y="-134.03298350824588"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="05Z-o3-ZC0">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+        <designable name="13i-Ay-AxK">
+            <size key="intrinsicContentSize" width="121" height="42"/>
+        </designable>
+        <designable name="7hp-Ut-gdC">
+            <size key="intrinsicContentSize" width="35.5" height="20.5"/>
+        </designable>
+        <designable name="HYf-Ke-XMw">
+            <size key="intrinsicContentSize" width="112" height="42"/>
+        </designable>
+        <designable name="P04-42-aRA">
+            <size key="intrinsicContentSize" width="62" height="34"/>
+        </designable>
+        <designable name="dva-oH-EXJ">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+    </designables>
 </document>
