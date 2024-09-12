@@ -102,6 +102,8 @@ public final class ConfirmationViewModel<Option: Hashable> {
         )
     }
 
+    /// To be used as a placeholder where storing the ViewModel as an optional is not feasible.
+    /// - Returns: A ViewModel for an empty dialog.
     public convenience init() {
         self.init(title: "", cancelButtonTitle: "", confirmButtons: [])
     }

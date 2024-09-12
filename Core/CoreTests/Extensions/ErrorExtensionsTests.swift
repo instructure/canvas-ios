@@ -44,4 +44,12 @@ class ErrorExtensionsTests: XCTestCase {
         )
         XCTAssertTrue(error.isNotFound)
     }
+
+    func testBadRequestError() {
+        let error: Error = NSError(
+            domain: NSError.Constants.domain,
+            code: HttpError.badRequest
+        )
+        XCTAssertTrue(error.isBadRequest)
+    }
 }
