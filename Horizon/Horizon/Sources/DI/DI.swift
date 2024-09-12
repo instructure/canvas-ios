@@ -16,27 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import Swinject
+import Foundation
 
-@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
+// swiftlint:disable:next type_name
+public enum DI {
+    fileprivate static var assembler: Assembler!
 
-    func application(
-        _: UIApplication,
-        didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
-    ) -> Bool {
-        DI.initialize([
-            DashboardAssembly(),
-            ProgramsAssembly(),
-            JourneyAssembly(),
-            PortfolioAssembly()
-        ])
+    public static func initialize(_ assemblies: [Assembly]) {
+        assembler = Assembler(assemblies)
+    }
+}
 
-        window = UIWindow()
-        window?.rootViewController = CoreHostingController(HorizonTabView())
-        window?.makeKeyAndVisible()
-        return true
+@propertyWrapper
+class InjectedObservableObject<T>: ObservableObject {
+    let wrappedValue: T
+    init() {
+        self.wrappedValue = DI.assembler.resolver.resolve(T.self)!
     }
 }

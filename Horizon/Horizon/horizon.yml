@@ -21,6 +21,8 @@ targets:
       - package: FirebaseCrashlytics
       - package: FirebaseRemoteConfig
       - package: FirebaseRemoteConfigSwift
+      - package: Swinject
+      - package: SwinjectAutoregistration
       - target: Core/Core
     preBuildScripts:
       - path: ../../scripts/swiftLint.sh

@@ -39,4 +39,10 @@ packages:
   FirebaseRemoteConfigSwift:
     url: https://github.com/firebase/firebase-ios-sdk.git
     exactVersion: 10.23.1
+  Swinject:
+    url: https://github.com/Swinject/Swinject.git
+    exactVersion: 2.9.1
+  SwinjectAutoregistration:
+    url: https://github.com/Swinject/SwinjectAutoregistration.git
+    exactVersion: 2.9.1
 

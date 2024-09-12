@@ -16,27 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import Foundation
+import Swinject
+import SwinjectAutoregistration
 
-@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
+public final class DashboardAssembly: Assembly {
+    public init() {}
 
-    func application(
-        _: UIApplication,
-        didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
-    ) -> Bool {
-        DI.initialize([
-            DashboardAssembly(),
-            ProgramsAssembly(),
-            JourneyAssembly(),
-            PortfolioAssembly()
-        ])
-
-        window = UIWindow()
-        window?.rootViewController = CoreHostingController(HorizonTabView())
-        window?.makeKeyAndVisible()
-        return true
+    public func assemble(container: Container) {
+        container.autoregister(
+            DashboardViewModel.self,
+            initializer: DashboardViewModelLive.init
+        )
     }
 }

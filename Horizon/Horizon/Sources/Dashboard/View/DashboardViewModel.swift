@@ -17,26 +17,26 @@
 //
 
 import Core
-import UIKit
+import Foundation
 
-@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
+protocol DashboardViewModel {
+    var state: InstUI.ScreenState { get }
+    var title: String { get }
+    var progressionString: String { get }
+    var progression: Double { get }
+    var modules: [Module] { get }
+}
 
-    func application(
-        _: UIApplication,
-        didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
-    ) -> Bool {
-        DI.initialize([
-            DashboardAssembly(),
-            ProgramsAssembly(),
-            JourneyAssembly(),
-            PortfolioAssembly()
-        ])
+public final class DashboardViewModelLive: DashboardViewModel, ObservableObject {
+    // MARK: - Outputs
 
-        window = UIWindow()
-        window?.rootViewController = CoreHostingController(HorizonTabView())
-        window?.makeKeyAndVisible()
-        return true
-    }
+    @Published public private(set) var state: InstUI.ScreenState = .empty
+    @Published public private(set) var title: String = "Welcome back, Justine"
+    @Published public private(set) var progressionString: String = "75%"
+    @Published public private(set) var progression: Double = 0.75
+    @Published public private(set) var modules: [Module] = []
+
+    // MARK: - Init
+
+    init() {}
 }

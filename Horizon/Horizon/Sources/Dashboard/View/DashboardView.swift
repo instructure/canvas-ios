@@ -16,11 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
+import Swinject
+import SwinjectAutoregistration
 
 struct DashboardView: View {
+    @InjectedObservableObject fileprivate var viewModel: DashboardViewModel
+
     var body: some View {
-        Text("Hello, Dashboard!")
+        InstUI.BaseScreen(
+            state: viewModel.state) { _ in
+                Text("Hello, Dashboard!")
+            }
     }
 }
 
