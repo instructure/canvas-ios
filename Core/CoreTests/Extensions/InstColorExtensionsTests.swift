@@ -105,6 +105,34 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(Color.borderWarning, Color(.borderWarning))
     }
 
+    func testCourseColors() {
+        XCTAssertEqual(UIColor.course1, UIColor(resource: .course1))
+        XCTAssertEqual(UIColor.course2, UIColor(resource: .course2))
+        XCTAssertEqual(UIColor.course3, UIColor(resource: .course3))
+        XCTAssertEqual(UIColor.course4, UIColor(resource: .course4))
+        XCTAssertEqual(UIColor.course5, UIColor(resource: .course5))
+        XCTAssertEqual(UIColor.course6, UIColor(resource: .course6))
+        XCTAssertEqual(UIColor.course7, UIColor(resource: .course7))
+        XCTAssertEqual(UIColor.course8, UIColor(resource: .course8))
+        XCTAssertEqual(UIColor.course9, UIColor(resource: .course9))
+        XCTAssertEqual(UIColor.course10, UIColor(resource: .course10))
+        XCTAssertEqual(UIColor.course11, UIColor(resource: .course11))
+        XCTAssertEqual(UIColor.course12, UIColor(resource: .course12))
+
+        XCTAssertEqual(Color.course1, Color(.course1))
+        XCTAssertEqual(Color.course2, Color(.course2))
+        XCTAssertEqual(Color.course3, Color(.course3))
+        XCTAssertEqual(Color.course4, Color(.course4))
+        XCTAssertEqual(Color.course5, Color(.course5))
+        XCTAssertEqual(Color.course6, Color(.course6))
+        XCTAssertEqual(Color.course7, Color(.course7))
+        XCTAssertEqual(Color.course8, Color(.course8))
+        XCTAssertEqual(Color.course9, Color(.course9))
+        XCTAssertEqual(Color.course10, Color(.course10))
+        XCTAssertEqual(Color.course11, Color(.course11))
+        XCTAssertEqual(Color.course12, Color(.course12))
+    }
+
     func testUIColor() {
         XCTAssertEqual(UIColor.ash, UIColor(named: "ash", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.barney, UIColor(named: "barney", in: .core, compatibleWith: nil))

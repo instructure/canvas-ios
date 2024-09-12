@@ -113,6 +113,38 @@ public extension Color {
     static let borderWarning = Color(.borderWarning)
 }
 
+// MARK: - Course Colors
+
+public extension UIColor {
+    static let course1 = UIColor(resource: .course1)
+    static let course2 = UIColor(resource: .course2)
+    static let course3 = UIColor(resource: .course3)
+    static let course4 = UIColor(resource: .course4)
+    static let course5 = UIColor(resource: .course5)
+    static let course6 = UIColor(resource: .course6)
+    static let course7 = UIColor(resource: .course7)
+    static let course8 = UIColor(resource: .course8)
+    static let course9 = UIColor(resource: .course9)
+    static let course10 = UIColor(resource: .course10)
+    static let course11 = UIColor(resource: .course11)
+    static let course12 = UIColor(resource: .course12)
+}
+
+public extension Color {
+    static let course1 = Color(.course1)
+    static let course2 = Color(.course2)
+    static let course3 = Color(.course3)
+    static let course4 = Color(.course4)
+    static let course5 = Color(.course5)
+    static let course6 = Color(.course6)
+    static let course7 = Color(.course7)
+    static let course8 = Color(.course8)
+    static let course9 = Color(.course9)
+    static let course10 = Color(.course10)
+    static let course11 = Color(.course11)
+    static let course12 = Color(.course12)
+}
+
 public extension UIColor {
     static let ash = UIColor(named: "ash", in: .core, compatibleWith: nil)!
     static let barney = UIColor(named: "barney", in: .core, compatibleWith: nil)!
