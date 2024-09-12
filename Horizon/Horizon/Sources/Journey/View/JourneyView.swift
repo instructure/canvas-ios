@@ -16,20 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import SwiftUI
 
-@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
-
-    func application(
-        _: UIApplication,
-        didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
-    ) -> Bool {
-        window = UIWindow()
-        window?.rootViewController = CoreHostingController(HorizonTabView())
-        window?.makeKeyAndVisible()
-        return true
+struct JourneyView: View {
+    var body: some View {
+        Text("Hello, Journey!")
     }
+}
+
+#Preview {
+    JourneyView()
 }

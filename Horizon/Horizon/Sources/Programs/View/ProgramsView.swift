@@ -17,13 +17,13 @@
 //
 
 import SwiftUI
-import Core
 
-public struct HomePageView: View {
-
-    public var body: some View {
-        Text("Welcome to Horizon")
-            .font(.bold24)
-            .padding()
+struct ProgramsView: View {
+    var body: some View {
+        Text("Hello, Programs!")
     }
+}
+
+#Preview {
+    ProgramsView()
 }

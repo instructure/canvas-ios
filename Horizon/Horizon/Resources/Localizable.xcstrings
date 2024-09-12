@@ -1,6 +1,30 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Dashboard" : {
+
+    },
+    "Hello, Dashboard!" : {
+
+    },
+    "Hello, Journey!" : {
+
+    },
+    "Hello, Portfolio!" : {
+
+    },
+    "Hello, Programs!" : {
+
+    },
+    "Journey" : {
+
+    },
+    "Portfolio" : {
+
+    },
+    "Programs" : {
+
+    },
     "Welcome to Horizon" : {
 
     }
