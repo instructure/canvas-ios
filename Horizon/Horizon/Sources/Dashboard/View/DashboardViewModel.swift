@@ -30,7 +30,7 @@ protocol DashboardViewModel {
 public final class DashboardViewModelLive: DashboardViewModel, ObservableObject {
     // MARK: - Outputs
 
-    @Published public private(set) var state: InstUI.ScreenState = .empty
+    @Published public private(set) var state: InstUI.ScreenState = .data(loadingOverlay: false)
     @Published public private(set) var title: String = "Welcome back, Justine"
     @Published public private(set) var progressionString: String = "75%"
     @Published public private(set) var progression: Double = 0.75
