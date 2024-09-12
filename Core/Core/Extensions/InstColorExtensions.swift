@@ -49,20 +49,42 @@ public extension Color {
     static let textWarning = Color(.textWarning)
 }
 
+// MARK: - Background Colors
+
+public extension UIColor {
+    static let backgroundDanger = UIColor(resource: .backgroundDanger)
+    static let backgroundDark = UIColor(resource: .backgroundDark)
+    static let backgroundDarkest = UIColor(resource: .backgroundDarkest)
+    static let backgroundGrouped = UIColor(resource: .backgroundGrouped)
+    static let backgroundGroupedCell = UIColor(resource: .backgroundGroupedCell)
+    static let backgroundInfo = UIColor(resource: .backgroundInfo)
+    static let backgroundLight = UIColor(resource: .backgroundLight)
+    static let backgroundLightest = UIColor(resource: .backgroundLightest)
+    static let backgroundLightestElevated = UIColor(resource: .backgroundLightestElevated)
+    static let backgroundMasquerade = UIColor(resource: .backgroundMasquerade)
+    static let backgroundMedium = UIColor(resource: .backgroundMedium)
+    static let backgroundSuccess = UIColor(resource: .backgroundSuccess)
+    static let backgroundWarning = UIColor(resource: .backgroundWarning)
+}
+
+public extension Color {
+    static let backgroundDanger = Color(.backgroundDanger)
+    static let backgroundDark = Color(.backgroundDark)
+    static let backgroundDarkest = Color(.backgroundDarkest)
+    static let backgroundGrouped = Color(.backgroundGrouped)
+    static let backgroundGroupedCell = Color(.backgroundGroupedCell)
+    static let backgroundInfo = Color(.backgroundInfo)
+    static let backgroundLight = Color(.backgroundLight)
+    static let backgroundLightest = Color(.backgroundLightest)
+    static let backgroundLightestElevated = Color(.backgroundLightestElevated)
+    static let backgroundMasquerade = Color(.backgroundMasquerade)
+    static let backgroundMedium = Color(.backgroundMedium)
+    static let backgroundSuccess = Color(.backgroundSuccess)
+    static let backgroundWarning = Color(.backgroundWarning)
+}
+
 public extension UIColor {
     static let ash = UIColor(named: "ash", in: .core, compatibleWith: nil)!
-    static let backgroundAlert = UIColor(named: "backgroundAlert", in: .core, compatibleWith: nil)!
-    static let backgroundDanger = UIColor(named: "backgroundDanger", in: .core, compatibleWith: nil)!
-    static let backgroundDark = UIColor(named: "backgroundDark", in: .core, compatibleWith: nil)!
-    static let backgroundDarkest = UIColor(named: "backgroundDarkest", in: .core, compatibleWith: nil)!
-    static let backgroundGrouped = UIColor(named: "backgroundGrouped", in: .core, compatibleWith: nil)!
-    static let backgroundGroupedCell = UIColor(named: "backgroundGroupedCell", in: .core, compatibleWith: nil)!
-    static let backgroundInfo = UIColor(named: "backgroundInfo", in: .core, compatibleWith: nil)!
-    static let backgroundLight = UIColor(named: "backgroundLight", in: .core, compatibleWith: nil)!
-    static let backgroundLightest = UIColor(named: "backgroundLightest", in: .core, compatibleWith: nil)!
-    static let backgroundMedium = UIColor(named: "backgroundMedium", in: .core, compatibleWith: nil)!
-    static let backgroundSuccess = UIColor(named: "backgroundSuccess", in: .core, compatibleWith: nil)!
-    static let backgroundWarning = UIColor(named: "backgroundWarning", in: .core, compatibleWith: nil)!
     static let barney = UIColor(named: "barney", in: .core, compatibleWith: nil)!
     static let borderAlert = UIColor(named: "borderAlert", in: .core, compatibleWith: nil)!
     static let borderDanger = UIColor(named: "borderDanger", in: .core, compatibleWith: nil)!
@@ -89,18 +111,6 @@ public extension UIColor {
 
 public extension Color {
     static let ash = Color("ash", bundle: .core)
-    static let backgroundAlert = Color("backgroundAlert", bundle: .core)
-    static let backgroundDanger = Color("backgroundDanger", bundle: .core)
-    static let backgroundDark = Color("backgroundDark", bundle: .core)
-    static let backgroundDarkest = Color("backgroundDarkest", bundle: .core)
-    static let backgroundGrouped = Color("backgroundGrouped", bundle: .core)
-    static let backgroundGroupedCell = Color("backgroundGroupedCell", bundle: .core)
-    static let backgroundInfo = Color("backgroundInfo", bundle: .core)
-    static let backgroundLight = Color("backgroundLight", bundle: .core)
-    static let backgroundLightest = Color("backgroundLightest", bundle: .core)
-    static let backgroundMedium = Color("backgroundMedium", bundle: .core)
-    static let backgroundSuccess = Color("backgroundSuccess", bundle: .core)
-    static let backgroundWarning = Color("backgroundWarning", bundle: .core)
     static let barney = Color("barney", bundle: .core)
     static let borderAlert = Color("borderAlert", bundle: .core)
     static let borderDanger = Color("borderDanger", bundle: .core)
