@@ -75,7 +75,7 @@ final class EditCalendarEventViewModel: ObservableObject {
         return frequency?.title ?? String(localized: "Does Not Repeat", bundle: .core)
     }
 
-    lazy var saveErrorAlert: ErrorAlertViewModel = {
+    var saveErrorAlert: ErrorAlertViewModel {
         .init(
             title: {
                 switch mode {
@@ -84,14 +84,17 @@ final class EditCalendarEventViewModel: ObservableObject {
                 }
             }(),
             message: {
-                switch mode {
+                if let saveErrorMessageFromApi {
+                    return saveErrorMessageFromApi
+                }
+                return switch mode {
                 case .add: String(localized: "We couldn't add your Event at this time. You can try it again.", bundle: .core)
                 case .edit: String(localized: "We couldn't save your Event at this time. You can try it again.", bundle: .core)
                 }
             }(),
             buttonTitle: String(localized: "OK", bundle: .core)
         )
-    }()
+    }
 
     var editConfirmation: ConfirmationViewModel<SeriesModificationType> = .init()
 
@@ -113,6 +116,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     /// Returns true if any of the fields had been modified once by the user. It doesn't compare values.
     private var isFieldsTouched: Bool = false
     private let wasEventPartOfSeries: Bool
+    private var saveErrorMessageFromApi: String?
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -395,7 +399,8 @@ final class EditCalendarEventViewModel: ObservableObject {
             }
             .flatMap { [weak self] in
                 (self?.saveAction(seriesModificationType: $0) ?? Empty().eraseToAnyPublisher())
-                    .catch { _ in
+                    .catch { error in
+                        self?.saveErrorMessageFromApi = error.isBadRequest ? error.localizedDescription : nil
                         self?.state = .data
                         self?.shouldShowSaveError = true
                         return Empty<Void, Never>().eraseToAnyPublisher()
