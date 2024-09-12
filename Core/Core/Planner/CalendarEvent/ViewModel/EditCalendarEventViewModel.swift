@@ -123,6 +123,7 @@ final class EditCalendarEventViewModel: ObservableObject {
 
     init(
         event: CalendarEvent? = nil,
+        selectedDate: Date? = nil,
         eventInteractor: CalendarEventInteractor,
         calendarListProviderInteractor: CalendarFilterInteractor,
         uploadParameters: RichContentEditorUploadParameters,
@@ -141,7 +142,7 @@ final class EditCalendarEventViewModel: ObservableObject {
             mode = .add
         }
 
-        setupFields(event: event)
+        setupFields(event: event, selectedDate: selectedDate ?? Clock.now)
 
         subscribeIsFieldsTouched(to: $title)
         subscribeIsFieldsTouched(to: $date)
@@ -232,9 +233,10 @@ final class EditCalendarEventViewModel: ObservableObject {
 
     // MARK: - Private methods
 
-    private func setupFields(event: CalendarEvent?) {
+    private func setupFields(event: CalendarEvent?, selectedDate: Date) {
         title = event?.title ?? ""
-        date = event?.startAt ?? Clock.now.startOfDay()
+
+        date = event?.startAt ?? selectedDate.startOfDay()
         isAllDay = event?.isAllDay ?? false
 
         if isAllDay {
