@@ -83,19 +83,39 @@ public extension Color {
     static let backgroundWarning = Color(.backgroundWarning)
 }
 
+// MARK: - Border Colors
+
+public extension UIColor {
+    static let borderDanger = UIColor(resource: .borderDanger)
+    static let borderDark = UIColor(resource: .borderDark)
+    static let borderDarkest = UIColor(resource: .borderDarkest)
+    static let borderDebug = UIColor(resource: .borderDebug)
+    static let borderInfo = UIColor(resource: .borderInfo)
+    static let borderLight = UIColor(resource: .borderLight)
+    static let borderLightest = UIColor(resource: .borderLightest)
+    static let borderMasquerade = UIColor(resource: .borderMasquerade)
+    static let borderMedium = UIColor(resource: .borderMedium)
+    static let borderSuccess = UIColor(resource: .borderSuccess)
+    static let borderWarning = UIColor(resource: .borderWarning)
+}
+
+public extension Color {
+    static let borderDanger = Color(.borderDanger)
+    static let borderDark = Color(.borderDark)
+    static let borderDarkest = Color(.borderDarkest)
+    static let borderDebug = Color(.borderDebug)
+    static let borderInfo = Color(.borderInfo)
+    static let borderLight = Color(.borderLight)
+    static let borderLightest = Color(.borderLightest)
+    static let borderMasquerade = Color(.borderMasquerade)
+    static let borderMedium = Color(.borderMedium)
+    static let borderSuccess = Color(.borderSuccess)
+    static let borderWarning = Color(.borderWarning)
+}
+
 public extension UIColor {
     static let ash = UIColor(named: "ash", in: .core, compatibleWith: nil)!
     static let barney = UIColor(named: "barney", in: .core, compatibleWith: nil)!
-    static let borderAlert = UIColor(named: "borderAlert", in: .core, compatibleWith: nil)!
-    static let borderDanger = UIColor(named: "borderDanger", in: .core, compatibleWith: nil)!
-    static let borderDark = UIColor(named: "borderDark", in: .core, compatibleWith: nil)!
-    static let borderDarkest = UIColor(named: "borderDarkest", in: .core, compatibleWith: nil)!
-    static let borderInfo = UIColor(named: "borderInfo", in: .core, compatibleWith: nil)!
-    static let borderLight = UIColor(named: "borderLight", in: .core, compatibleWith: nil)!
-    static let borderLightest = UIColor(named: "borderLightest", in: .core, compatibleWith: nil)!
-    static let borderMedium = UIColor(named: "borderMedium", in: .core, compatibleWith: nil)!
-    static let borderSuccess = UIColor(named: "borderSuccess", in: .core, compatibleWith: nil)!
-    static let borderWarning = UIColor(named: "borderWarning", in: .core, compatibleWith: nil)!
     static let crimson = UIColor(named: "crimson", in: .core, compatibleWith: nil)!
     static let disabledGray = UIColor(named: "disabledGray", in: .core, compatibleWith: nil)!
     static let electric = UIColor(named: "electric", in: .core, compatibleWith: nil)!
@@ -112,16 +132,6 @@ public extension UIColor {
 public extension Color {
     static let ash = Color("ash", bundle: .core)
     static let barney = Color("barney", bundle: .core)
-    static let borderAlert = Color("borderAlert", bundle: .core)
-    static let borderDanger = Color("borderDanger", bundle: .core)
-    static let borderDark = Color("borderDark", bundle: .core)
-    static let borderDarkest = Color("borderDarkest", bundle: .core)
-    static let borderInfo = Color("borderInfo", bundle: .core)
-    static let borderLight = Color("borderLight", bundle: .core)
-    static let borderLightest = Color("borderLightest", bundle: .core)
-    static let borderMedium = Color("borderMedium", bundle: .core)
-    static let borderSuccess = Color("borderSuccess", bundle: .core)
-    static let borderWarning = Color("borderWarning", bundle: .core)
     static let crimson = Color("crimson", bundle: .core)
     static let disabledGray = Color("disabledGray", bundle: .core)
     static let electric = Color("electric", bundle: .core)
