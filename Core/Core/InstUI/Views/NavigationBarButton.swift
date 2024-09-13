@@ -76,9 +76,9 @@ extension InstUI {
 
         private var color: Color {
             if isBackgroundContextColor {
-                isEnabled ? .textLightest : .disabledGray
+                isEnabled ? .textLightest : .textPlaceholder
             } else {
-                isEnabled ? .textDarkest : .disabledGray
+                isEnabled ? .textDarkest : .textPlaceholder
             }
         }
     }

@@ -134,12 +134,10 @@ class InstColorExtensionTests: XCTestCase {
     }
 
     func testUIColor() {
-        XCTAssertEqual(UIColor.disabledGray, UIColor(named: "disabledGray", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.oxford, UIColor(named: "oxford", in: .core, compatibleWith: nil))
     }
 
     func testColor() {
-        XCTAssertEqual(Color.disabledGray, Color("disabledGray", bundle: .core))
         XCTAssertEqual(Color.electricHighContrast, Color("electricHighContrast", bundle: .core))
         XCTAssertEqual(Color.oxford, Color("oxford", bundle: .core))
     }

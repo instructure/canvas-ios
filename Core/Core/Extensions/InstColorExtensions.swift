@@ -146,12 +146,10 @@ public extension Color {
 }
 
 public extension UIColor {
-    static let disabledGray = UIColor(named: "disabledGray", in: .core, compatibleWith: nil)!
     static let oxford = UIColor(named: "oxford", in: .core, compatibleWith: nil)!
 }
 
 public extension Color {
-    static let disabledGray = Color("disabledGray", bundle: .core)
     static let electricHighContrast = Color("electricHighContrast", bundle: .core)
     static let oxford = Color("oxford", bundle: .core)
 }
