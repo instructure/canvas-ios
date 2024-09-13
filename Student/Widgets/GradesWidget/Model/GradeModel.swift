@@ -70,7 +70,7 @@ extension GradeModel {
         GradeModel(assignmentGrades: [
             GradeItem(name: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .course3),
             GradeItem(name: "Earth: The Pale Blue Dot on two lines or more since it's very long", grade: "20 / 25", color: .textDanger),
-            GradeItem(name: "American Literature IV", grade: "9.2 / 10", color: .fire)
+            GradeItem(name: "American Literature IV", grade: "9.2 / 10", color: .textWarning)
         ], courseGrades: [
             GradeItem(name: "Introduction to the Solar System", grade: "A-", color: .textSuccess),
             GradeItem(name: "American Literature IV: All the Books", grade: "B"),

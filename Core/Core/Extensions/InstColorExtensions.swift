@@ -149,7 +149,6 @@ public extension UIColor {
     static let ash = UIColor(named: "ash", in: .core, compatibleWith: nil)!
     static let disabledGray = UIColor(named: "disabledGray", in: .core, compatibleWith: nil)!
     static let electric = UIColor(named: "electric", in: .core, compatibleWith: nil)!
-    static let fire = UIColor(named: "fire", in: .core, compatibleWith: nil)!
     static let licorice = UIColor(named: "licorice", in: .core, compatibleWith: nil)!
     static let oxford = UIColor(named: "oxford", in: .core, compatibleWith: nil)!
     static let placeholderGray = UIColor(named: "placeholderGray", in: .core, compatibleWith: nil)!
@@ -163,7 +162,6 @@ public extension Color {
     static let disabledGray = Color("disabledGray", bundle: .core)
     static let electric = Color("electric", bundle: .core)
     static let electricHighContrast = Color("electricHighContrast", bundle: .core)
-    static let fire = Color("fire", bundle: .core)
     static let licorice = Color("licorice", bundle: .core)
     static let oxford = Color("oxford", bundle: .core)
     static let placeholderGray = Color("placeholderGray", bundle: .core)
