@@ -32,16 +32,8 @@ struct DashboardView: View {
             config: .init(refreshable: false)
         ) { proxy in
             VStack(alignment: .leading, spacing: 0) {
-                Text(viewModel.title)
-                    .font(.bold28)
-                    .foregroundColor(.textDarkest)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 16)
-                Text("BIOLOGY CERTIFICATE #17491")
-                    .font(.regular12)
-                    .foregroundColor(.textDark)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 24)
+                LargeTitleView(title: viewModel.title)
+                SectionTitleView(title: "BIOLOGY CERTIFICATE #17491")
                 CertificateProgressBar(
                     maxWidth: proxy.size.width,
                     progress: viewModel.progress,
@@ -95,7 +87,7 @@ struct DashboardView: View {
     @ViewBuilder
     private func whatsNextModuleView(proxy: GeometryProxy) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("WHAT'S NEXT")
+            SectionTitleView(title: "What's next")
                 .font(.regular12)
                 .foregroundColor(.textDark)
                 .frame(maxWidth: .infinity, alignment: .leading)

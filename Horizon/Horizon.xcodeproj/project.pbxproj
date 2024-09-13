@@ -20,6 +20,8 @@
 		9FAF94301C5721716CC618F8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2872865BC52D4DC11EDEDDB7 /* FirebaseCrashlytics */; };
 		AC65D230D896B3CEEB8C7AE5 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 6C49041BE2282B9B33D84838 /* FirebaseRemoteConfig */; };
 		B44EF7582C9444ED001658B3 /* ProgramItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44EF7572C9444ED001658B3 /* ProgramItemView.swift */; };
+		B44EF7632C9450AB001658B3 /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44EF7622C9450AB001658B3 /* LargeTitleView.swift */; };
+		B44EF7652C9450E8001658B3 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44EF7642C9450E8001658B3 /* SectionTitleView.swift */; };
 		BC126521459D42362C5AD40C /* HorizonTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3129D45C0188393474998B5D /* HorizonTabView.swift */; };
 		CD1792D6B7B30BBA298B365E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */; };
 		CEF9056D292D329DB92392CD /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 22E1B76C3FAF2281B5810EC1 /* Localizable.xcstrings */; };
@@ -95,6 +97,8 @@
 		9D45892E09EF185F11CE558C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		A38E9F3B29EC10ADDB1B4044 /* JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyView.swift; sourceTree = "<group>"; };
 		B44EF7572C9444ED001658B3 /* ProgramItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramItemView.swift; sourceTree = "<group>"; };
+		B44EF7622C9450AB001658B3 /* LargeTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitleView.swift; sourceTree = "<group>"; };
+		B44EF7642C9450E8001658B3 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
 		DB3E81FF4E24CAB23DD52DD2 /* JourneyAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyAssembly.swift; sourceTree = "<group>"; };
 		E29E71BBEA69FD72D156BBB6 /* ProgramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsView.swift; sourceTree = "<group>"; };
 		E2B18595B23681D3B7C88280 /* ProgramsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsAssembly.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 			children = (
 				44A984653109DFC0BF452D97 /* CertificateProgressBar.swift */,
 				B44EF7572C9444ED001658B3 /* ProgramItemView.swift */,
+				B44EF7622C9450AB001658B3 /* LargeTitleView.swift */,
+				B44EF7642C9450E8001658B3 /* SectionTitleView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -422,8 +428,10 @@
 				B44EF7582C9444ED001658B3 /* ProgramItemView.swift in Sources */,
 				EA4FCD374CE3636C98D911CE /* DashboardAssembly.swift in Sources */,
 				1691500F67A901B2648558A4 /* DashboardView.swift in Sources */,
+				B44EF7632C9450AB001658B3 /* LargeTitleView.swift in Sources */,
 				F12518EB8EF6392555A32B32 /* DashboardViewModel.swift in Sources */,
 				BC126521459D42362C5AD40C /* HorizonTabView.swift in Sources */,
+				B44EF7652C9450E8001658B3 /* SectionTitleView.swift in Sources */,
 				DC37D94872F53A48BBB0C06F /* JourneyAssembly.swift in Sources */,
 				554CEC2BA05BDC7EA0F54C28 /* JourneyView.swift in Sources */,
 				F8C046CDEAF69D83094CE7B9 /* PortfolioAssembly.swift in Sources */,
