@@ -154,7 +154,6 @@ public extension UIColor {
     static let placeholderGray = UIColor(named: "placeholderGray", in: .core, compatibleWith: nil)!
     static let porcelain = UIColor(named: "porcelain", in: .core, compatibleWith: nil)!
     static let tabBarBackground = UIColor(named: "tabBarBackground", in: .core, compatibleWith: nil)!
-    static let tiara = UIColor(named: "tiara", in: .core, compatibleWith: nil)!
 }
 
 public extension Color {
@@ -167,5 +166,4 @@ public extension Color {
     static let placeholderGray = Color("placeholderGray", bundle: .core)
     static let porcelain = Color("porcelain", bundle: .core)
     static let tabBarBackground = Color("tabBarBackground", bundle: .core)
-    static let tiara = Color("tiara", bundle: .core)
 }

@@ -142,7 +142,6 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(UIColor.placeholderGray, UIColor(named: "placeholderGray", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.porcelain, UIColor(named: "porcelain", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.tabBarBackground, UIColor(named: "tabBarBackground", in: .core, compatibleWith: nil))
-        XCTAssertEqual(UIColor.tiara, UIColor(named: "tiara", in: .core, compatibleWith: nil))
     }
 
     func testColor() {
@@ -155,6 +154,5 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(Color.placeholderGray, Color("placeholderGray", bundle: .core))
         XCTAssertEqual(Color.porcelain, Color("porcelain", bundle: .core))
         XCTAssertEqual(Color.tabBarBackground, Color("tabBarBackground", bundle: .core))
-        XCTAssertEqual(Color.tiara, Color("tiara", bundle: .core))
     }
 }

@@ -115,7 +115,7 @@ struct ConversationAttachmentsCardView: View {
             }
         }
         .padding(.all, 0.5) // Align border
-        .background(RoundedRectangle(cornerRadius: 10).stroke(Color.tiara, lineWidth: 1))
+        .background(RoundedRectangle(cornerRadius: 10).stroke(Color.backgroundLight, lineWidth: 1))
         .padding(12)
     }
 
