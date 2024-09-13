@@ -36,7 +36,7 @@ extension UINavigationBar {
 
     public func useContextColor(_ color: UIColor?, isTranslucent: Bool = false) {
         guard let color = color else { return }
-        let foreground = UIColor.textLightest // always white, even in dark mode
+        let foreground = UIColor.white // always white, even in dark mode
         let background = color.resolvedColor(with: .light).darkenToEnsureContrast(against: foreground)
         titleTextAttributes = [.foregroundColor: foreground]
         tintColor = foreground

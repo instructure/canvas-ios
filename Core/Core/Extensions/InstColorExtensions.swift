@@ -144,7 +144,3 @@ public extension Color {
     static let course11 = Color(.course11)
     static let course12 = Color(.course12)
 }
-
-public extension Color {
-    static let electricHighContrast = Color("electricHighContrast", bundle: .core)
-}

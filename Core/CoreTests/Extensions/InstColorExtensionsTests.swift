@@ -132,8 +132,4 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(Color.course11, Color(.course11))
         XCTAssertEqual(Color.course12, Color(.course12))
     }
-
-    func testColor() {
-        XCTAssertEqual(Color.electricHighContrast, Color("electricHighContrast", bundle: .core))
-    }
 }

@@ -66,7 +66,7 @@ struct CourseInvitationCard: View {
     private var acceptButton: some View {
         Button(action: invitation.accept) {
             Text("Accept", bundle: .core)
-                .font(.semibold16).foregroundColor(.textLightest)
+                .font(.semibold16).foregroundColor(.white)
                 .frame(maxWidth: .infinity, minHeight: 40)
                 .frame(height: invitation.state == .active ? nil : 0)
                 .background(RoundedRectangle(cornerRadius: 4).fill(Color.backgroundSuccess))
