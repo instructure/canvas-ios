@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,7 @@
 		6857FA660906F8D64DEA7AF4 /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = 3353F2BA79620AE7174A5B05 /* Heap */; };
 		9FAF94301C5721716CC618F8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2872865BC52D4DC11EDEDDB7 /* FirebaseCrashlytics */; };
 		AC65D230D896B3CEEB8C7AE5 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 6C49041BE2282B9B33D84838 /* FirebaseRemoteConfig */; };
+		B44EF7582C9444ED001658B3 /* ProgramItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44EF7572C9444ED001658B3 /* ProgramItemView.swift */; };
 		BC126521459D42362C5AD40C /* HorizonTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3129D45C0188393474998B5D /* HorizonTabView.swift */; };
 		CD1792D6B7B30BBA298B365E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */; };
 		CEF9056D292D329DB92392CD /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 22E1B76C3FAF2281B5810EC1 /* Localizable.xcstrings */; };
@@ -46,6 +47,27 @@
 			remoteGlobalIDString = B90FCF66245CD7327BEE2CBF;
 			remoteInfo = Core;
 		};
+		B44EF75C2C9444EE001658B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
+			remoteInfo = CoreTester;
+		};
+		B44EF75E2C9444EE001658B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
+			remoteInfo = CoreTests;
+		};
+		B44EF7602C9444EE001658B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 0F2B4D06F2ACF62293B119C4;
+			remoteInfo = TestsFoundation;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -72,6 +94,7 @@
 		9BDA1DDCAA5D9E94487D061D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9D45892E09EF185F11CE558C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		A38E9F3B29EC10ADDB1B4044 /* JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyView.swift; sourceTree = "<group>"; };
+		B44EF7572C9444ED001658B3 /* ProgramItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramItemView.swift; sourceTree = "<group>"; };
 		DB3E81FF4E24CAB23DD52DD2 /* JourneyAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyAssembly.swift; sourceTree = "<group>"; };
 		E29E71BBEA69FD72D156BBB6 /* ProgramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsView.swift; sourceTree = "<group>"; };
 		E2B18595B23681D3B7C88280 /* ProgramsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsAssembly.swift; sourceTree = "<group>"; };
@@ -113,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				44A984653109DFC0BF452D97 /* CertificateProgressBar.swift */,
+				B44EF7572C9444ED001658B3 /* ProgramItemView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -214,6 +238,9 @@
 			isa = PBXGroup;
 			children = (
 				7DED7199B426F89179546237 /* Core.framework */,
+				B44EF75D2C9444EE001658B3 /* CoreTester.app */,
+				B44EF75F2C9444EE001658B3 /* CoreTests.xctest */,
+				B44EF7612C9444EE001658B3 /* TestsFoundation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -327,6 +354,27 @@
 			remoteRef = 287762C99D46AE8961068231 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		B44EF75D2C9444EE001658B3 /* CoreTester.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CoreTester.app;
+			remoteRef = B44EF75C2C9444EE001658B3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B44EF75F2C9444EE001658B3 /* CoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreTests.xctest;
+			remoteRef = B44EF75E2C9444EE001658B3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B44EF7612C9444EE001658B3 /* TestsFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TestsFoundation.framework;
+			remoteRef = B44EF7602C9444EE001658B3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -371,6 +419,7 @@
 			files = (
 				CD1792D6B7B30BBA298B365E /* AppDelegate.swift in Sources */,
 				42EFC488B30BA11F6C8712B2 /* CertificateProgressBar.swift in Sources */,
+				B44EF7582C9444ED001658B3 /* ProgramItemView.swift in Sources */,
 				EA4FCD374CE3636C98D911CE /* DashboardAssembly.swift in Sources */,
 				1691500F67A901B2648558A4 /* DashboardView.swift in Sources */,
 				F12518EB8EF6392555A32B32 /* DashboardViewModel.swift in Sources */,

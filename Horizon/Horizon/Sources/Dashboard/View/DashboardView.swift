@@ -101,60 +101,27 @@ struct DashboardView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 8) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Image(systemName: "doc")
-                            .frame(width: 18, height: 18)
-                        Text("Practice Quiz")
-                            .font(.regular16)
-                            .foregroundStyle(Color.textDarkest)
-                            .padding(.top, 4)
-                        Text("60 MINS")
-                            .font(.regular12)
-                            .foregroundStyle(Color.textDark)
-                        Text("BIOLOGY CERTIFICATE")
-                            .font(.regular12)
-                            .foregroundStyle(Color.textDarkest)
-                    }
-                    .padding(.all, 8)
-                    .frame(width: (proxy.size.width - 16 - 8) / 2 - 4)
-                    .frame(minHeight: 138, maxHeight: 138)
-                    .background(Color.backgroundLight)
-                    VStack(alignment: .leading, spacing: 4) {
-                        Image(systemName: "doc")
-                            .frame(width: 18, height: 18)
-                        Text("Video")
-                            .font(.regular16)
-                            .foregroundStyle(Color.textDarkest)
-                            .padding(.top, 4)
-                        Text("33 MINS")
-                            .font(.regular12)
-                            .foregroundStyle(Color.textDark)
-                        Text("HISTORY CERTIFICATE")
-                            .font(.regular12)
-                            .foregroundStyle(Color.textDarkest)
-                    }
-                    .padding(.all, 8)
-                    .frame(width: (proxy.size.width - 16 - 8) / 2 - 4)
-                    .frame(minHeight: 138, maxHeight: 138)
-                    .background(Color.backgroundLight)
-                    VStack(alignment: .leading, spacing: 4) {
-                        Image(systemName: "doc")
-                            .frame(width: 18, height: 18)
-                        Text("Video")
-                            .font(.regular16)
-                            .foregroundStyle(Color.textDarkest)
-                            .padding(.top, 4)
-                        Text("33 MINS")
-                            .font(.regular12)
-                            .foregroundStyle(Color.textDark)
-                        Text("HISTORY CERTIFICATE")
-                            .font(.regular12)
-                            .foregroundStyle(Color.textDarkest)
-                    }
-                    .padding(.all, 8)
-                    .frame(width: (proxy.size.width - 16 - 8) / 2 - 4)
-                    .frame(minHeight: 138, maxHeight: 138)
-                    .background(Color.backgroundLight)
+                    ProgramItemView(
+                        screenWidth: proxy.size.width,
+                        title: "Practice Quiz",
+                        icon: Image(systemName: "doc"),
+                        duration: "60 mins",
+                        certificate: "Biology certificate"
+                    )
+                    ProgramItemView(
+                        screenWidth: proxy.size.width,
+                        title: "Video",
+                        icon: Image(systemName: "doc"),
+                        duration: "20 mins",
+                        certificate: "Biology certificate"
+                    )
+                    ProgramItemView(
+                        screenWidth: proxy.size.width,
+                        title: "Video",
+                        icon: Image(systemName: "doc"),
+                        duration: "30 mins",
+                        certificate: "Biology certificate"
+                    )
                 }
             }
         }
