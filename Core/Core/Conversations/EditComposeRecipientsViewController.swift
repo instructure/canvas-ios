@@ -133,7 +133,7 @@ class RecipientCell: UITableViewCell {
     lazy var selectedView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.electric.withAlphaComponent(0.8)
+        view.backgroundColor = UIColor.backgroundInfo.withAlphaComponent(0.8)
         self.contentView.addSubview(view)
         let check = UIImageView(image: UIImage.checkLine)
         check.tintColor = UIColor.backgroundLightest

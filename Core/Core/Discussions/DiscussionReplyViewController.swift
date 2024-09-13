@@ -55,7 +55,7 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         ])
 
         let label = UILabel()
-        label.backgroundColor = .electric
+        label.backgroundColor = .backgroundInfo
         label.clipsToBounds = true
         label.layer.cornerRadius = 6
         label.font = .systemFont(ofSize: 10, weight: .semibold)

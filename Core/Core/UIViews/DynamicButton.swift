@@ -39,9 +39,9 @@ open class DynamicButton: UIButton {
     }
 
     @IBInspectable
-    public var textColorName: String = "electric" {
+    public var textColorName: String = "textInfo" {
         didSet {
-            tintColor = Brand.shared.color(textColorName) ?? .electric
+            tintColor = Brand.shared.color(textColorName) ?? .textInfo
             setTitleColor(tintColor, for: .normal)
         }
     }

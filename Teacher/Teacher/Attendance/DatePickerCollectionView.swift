@@ -28,7 +28,7 @@ class DatePickerDateCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .backgroundLightest
-        highlightView.backgroundColor = .electric
+        highlightView.backgroundColor = .backgroundInfo
         highlightView.layer.cornerRadius = 4.0
         highlightView.clipsToBounds = true
         highlightView.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +55,7 @@ class DatePickerDateCell: UICollectionViewCell {
             label.textColor = .white
         } else {
             highlightView.isHidden = true
-            label.textColor = isToday ? .electric : .textDarkest
+            label.textColor = isToday ? .textInfo : .textDarkest
         }
     }
 

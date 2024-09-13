@@ -32,7 +32,7 @@ class IconViewTests: XCTestCase {
         let view = IconView()
         let tinter = UIView() // tintColor gets adjusted, so apply same with this
         view.iconColorName = "not a color name"
-        tinter.tintColor = .electric
+        tinter.tintColor = .textInfo
         XCTAssertEqual(view.tintColor, tinter.tintColor)
         view.iconColorName = "primary"
         tinter.tintColor = Brand.shared.primary

@@ -42,7 +42,7 @@ final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifia
 
         var color: Color {
             switch self {
-            case .uploading: return .electric
+            case .uploading: return .backgroundInfo
             case .success: return .backgroundSuccess
             case .failure: return .backgroundDanger
             }

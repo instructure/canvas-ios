@@ -35,7 +35,7 @@ class PostGradesViewController: UIViewController {
     private var postPolicy: PostGradePolicy = .everyone
     var presenter: PostGradesPresenter!
     var viewModel: APIPostPolicyInfo?
-    var color: UIColor = .electric
+    var color: UIColor = .textInfo
 
     static func create(courseID: String, assignmentID: String) -> PostGradesViewController {
         let controller = loadFromStoryboard()

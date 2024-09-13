@@ -120,7 +120,7 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
                 self?.showReplyFor(indexPath, all: false)
                 success(true)
             }
-            reply.backgroundColor = .electric
+            reply.backgroundColor = .backgroundInfo
             reply.image = .replySolid
             actions.append(reply)
         }

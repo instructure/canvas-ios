@@ -29,7 +29,7 @@ class FileUploadNotificationCardItemViewModelTests: CoreTestCase {
         // Then
         XCTAssertEqual(viewModel.state.text, "Uploading Submission")
         XCTAssertEqual(viewModel.state.image, Image.share)
-        XCTAssertEqual(viewModel.state.color, Color.electric)
+        XCTAssertEqual(viewModel.state.color, Color.textInfo)
     }
 
     func testSuccessStateProperties() {

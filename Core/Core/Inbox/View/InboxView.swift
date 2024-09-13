@@ -159,7 +159,7 @@ public struct InboxView: View, ScreenViewTrackable {
             }
             .labelStyle(.iconOnly)
         }
-        .tint(.electric)
+        .tint(.textInfo)
     }
 
     private var loadingIndicator: some View {

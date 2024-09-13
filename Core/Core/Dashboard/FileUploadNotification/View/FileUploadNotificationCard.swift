@@ -112,7 +112,7 @@ struct FileUploadNotificationCard: View {
     private var progressView: some View {
         ProgressView()
             .progressViewStyle(
-                .indeterminateBar(color: .electric)
+                .indeterminateBar(color: .textInfo)
             )
             .padding(.top, 8)
     }
