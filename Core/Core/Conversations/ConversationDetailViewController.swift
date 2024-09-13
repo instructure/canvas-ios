@@ -130,7 +130,7 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
                 self?.showReplyFor(indexPath, all: true)
                 success(true)
             }
-            replyAll.backgroundColor = .oxford
+            replyAll.backgroundColor = .backgroundDarkest
             replyAll.image = .replyAllSolid
             actions.append(replyAll)
         }

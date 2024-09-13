@@ -35,7 +35,7 @@ public struct K5HomeroomSubjectCardViewModel {
             if let color {
                 return Color(color.ensureContrast(against: .backgroundLightest))
             } else {
-                return .oxford
+                return .textDarkest
             }
         }()
         self.infoLines = infoLines

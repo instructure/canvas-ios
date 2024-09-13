@@ -134,7 +134,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
             let shouldHideQuantitativeData = courseInfoByCourseIDs[assignment.course_id.rawValue]?.shouldHideQuantitativeData == true
             let score = APIPlannable.k5SchedulePoints(from: assignment.points_possible) ?? ""
             let dueText = assignment.due_at?.relativeShortDateOnlyString ?? ""
-            let courseColor: Color = courseInfoByCourseIDs[assignment.course_id.rawValue]?.color ?? .oxford
+            let courseColor: Color = courseInfoByCourseIDs[assignment.course_id.rawValue]?.color ?? .textDarkest
             return K5ScheduleEntryViewModel(leading: .warning,
                                             icon: .assignmentLine,
                                             title: assignment.name,

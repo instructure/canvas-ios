@@ -145,11 +145,6 @@ public extension Color {
     static let course12 = Color(.course12)
 }
 
-public extension UIColor {
-    static let oxford = UIColor(named: "oxford", in: .core, compatibleWith: nil)!
-}
-
 public extension Color {
     static let electricHighContrast = Color("electricHighContrast", bundle: .core)
-    static let oxford = Color("oxford", bundle: .core)
 }

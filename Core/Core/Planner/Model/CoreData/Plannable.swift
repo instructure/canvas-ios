@@ -119,7 +119,7 @@ extension Plannable {
             if let course: Course = managedObjectContext?.first(where: #keyPath(Course.id), equals: context.id) {
                 return course.color
             } else {
-                return .oxford
+                return .textDarkest
             }
         } else {
             if let color: ContextColor = managedObjectContext?.first(where: #keyPath(ContextColor.canvasContextID), equals: canvasContextID) {
