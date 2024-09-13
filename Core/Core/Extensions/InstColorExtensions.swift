@@ -151,7 +151,6 @@ public extension UIColor {
     static let electric = UIColor(named: "electric", in: .core, compatibleWith: nil)!
     static let licorice = UIColor(named: "licorice", in: .core, compatibleWith: nil)!
     static let oxford = UIColor(named: "oxford", in: .core, compatibleWith: nil)!
-    static let placeholderGray = UIColor(named: "placeholderGray", in: .core, compatibleWith: nil)!
     static let porcelain = UIColor(named: "porcelain", in: .core, compatibleWith: nil)!
     static let tabBarBackground = UIColor(named: "tabBarBackground", in: .core, compatibleWith: nil)!
 }
@@ -163,7 +162,6 @@ public extension Color {
     static let electricHighContrast = Color("electricHighContrast", bundle: .core)
     static let licorice = Color("licorice", bundle: .core)
     static let oxford = Color("oxford", bundle: .core)
-    static let placeholderGray = Color("placeholderGray", bundle: .core)
     static let porcelain = Color("porcelain", bundle: .core)
     static let tabBarBackground = Color("tabBarBackground", bundle: .core)
 }

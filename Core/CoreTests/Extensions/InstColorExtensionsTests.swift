@@ -139,7 +139,6 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(UIColor.electric, UIColor(named: "electric", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.licorice, UIColor(named: "licorice", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.oxford, UIColor(named: "oxford", in: .core, compatibleWith: nil))
-        XCTAssertEqual(UIColor.placeholderGray, UIColor(named: "placeholderGray", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.porcelain, UIColor(named: "porcelain", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.tabBarBackground, UIColor(named: "tabBarBackground", in: .core, compatibleWith: nil))
     }
@@ -151,7 +150,6 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(Color.electricHighContrast, Color("electricHighContrast", bundle: .core))
         XCTAssertEqual(Color.licorice, Color("licorice", bundle: .core))
         XCTAssertEqual(Color.oxford, Color("oxford", bundle: .core))
-        XCTAssertEqual(Color.placeholderGray, Color("placeholderGray", bundle: .core))
         XCTAssertEqual(Color.porcelain, Color("porcelain", bundle: .core))
         XCTAssertEqual(Color.tabBarBackground, Color("tabBarBackground", bundle: .core))
     }
