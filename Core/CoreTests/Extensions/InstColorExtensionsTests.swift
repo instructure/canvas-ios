@@ -134,7 +134,6 @@ class InstColorExtensionTests: XCTestCase {
     }
 
     func testUIColor() {
-        XCTAssertEqual(UIColor.ash, UIColor(named: "ash", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.disabledGray, UIColor(named: "disabledGray", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.electric, UIColor(named: "electric", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.licorice, UIColor(named: "licorice", in: .core, compatibleWith: nil))
@@ -142,7 +141,6 @@ class InstColorExtensionTests: XCTestCase {
     }
 
     func testColor() {
-        XCTAssertEqual(Color.ash, Color("ash", bundle: .core))
         XCTAssertEqual(Color.disabledGray, Color("disabledGray", bundle: .core))
         XCTAssertEqual(Color.electric, Color("electric", bundle: .core))
         XCTAssertEqual(Color.electricHighContrast, Color("electricHighContrast", bundle: .core))

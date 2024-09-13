@@ -113,7 +113,7 @@ public struct InboxView: View, ScreenViewTrackable {
                 }
                 .labelStyle(.iconOnly)
             }
-            .tint(.ash)
+            .tint(.textDark)
         } else {
             SwiftUI.EmptyView()
         }
@@ -134,7 +134,7 @@ public struct InboxView: View, ScreenViewTrackable {
                 }
                 .labelStyle(.iconOnly)
             }
-            .tint(.ash)
+            .tint(.textDark)
         } else {
             SwiftUI.EmptyView()
         }

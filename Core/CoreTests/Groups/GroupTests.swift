@@ -22,7 +22,7 @@ import XCTest
 
 class GroupTests: CoreTestCase {
     func testColorWithNoLinkOrCourse() {
-        XCTAssertEqual(Group.make().color, .ash)
+        XCTAssertEqual(Group.make().color, .textDark)
     }
 
     func testColor() {

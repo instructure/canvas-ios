@@ -46,7 +46,7 @@ public final class Group: NSManagedObject, WriteableModel {
         Context(.group, id: id).canvasContextID
     }
 
-    public var color: UIColor { contextColor?.color ?? .ash }
+    public var color: UIColor { contextColor?.color ?? .textDark }
     /// Ensurecontrast is slow to calculate at each SwiftUI render pass so we have to cache it
     public lazy var dashboardCardColor = Color(color.ensureContrast(against: .white))
 

@@ -44,7 +44,7 @@ class FilePickerCell: UITableViewCell {
             } else {
                 errorIcon.isHidden = true
                 subtitleLabel.text = file?.size.humanReadableFileSize
-                subtitleLabel.textColor = UIColor.ash
+                subtitleLabel.textColor = .textDark
             }
         }
     }

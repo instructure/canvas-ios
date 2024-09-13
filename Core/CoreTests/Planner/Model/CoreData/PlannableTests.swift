@@ -147,9 +147,9 @@ class PlannableTests: CoreTestCase {
 
         XCTAssertEqual(Plannable.make(from: .make(course_id: "2", context_type: "Course")).color, .blue)
         XCTAssertEqual(Plannable.make(from: .make(group_id: "7", context_type: "Group")).color, .red)
-        XCTAssertEqual(Plannable.make(from: .make(group_id: "8", context_type: "Group")).color, .ash)
+        XCTAssertEqual(Plannable.make(from: .make(group_id: "8", context_type: "Group")).color, .textDark)
         XCTAssertEqual(Plannable.make(from: .make(user_id: "3", context_type: "User")).color, .brown)
-        XCTAssertEqual(Plannable.make(from: .make(course_id: "0", context_type: "Course")).color, .ash)
+        XCTAssertEqual(Plannable.make(from: .make(course_id: "0", context_type: "Course")).color, .textDark)
     }
 
     func testK5Color() {
@@ -165,7 +165,7 @@ class PlannableTests: CoreTestCase {
 
         XCTAssertEqual(Plannable.make(from: .make(course_id: "2", context_type: "Course")).color.hexString, UIColor(hexString: "#0DEAD0")!.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(Plannable.make(from: .make(group_id: "7", context_type: "Group")).color, .red)
-        XCTAssertEqual(Plannable.make(from: .make(group_id: "8", context_type: "Group")).color, .ash)
+        XCTAssertEqual(Plannable.make(from: .make(group_id: "8", context_type: "Group")).color, .textDark)
         XCTAssertEqual(Plannable.make(from: .make(user_id: "3", context_type: "User")).color, .brown)
         XCTAssertEqual(Plannable.make(from: .make(course_id: "0", context_type: "Course")).color, .oxford) // default K5 `Course.color`
         XCTAssertEqual(Plannable.make(from: .make(course_id: "unsaved id", context_type: "Course")).color, .oxford)

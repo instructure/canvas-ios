@@ -51,8 +51,8 @@ class DynamicButtonTests: XCTestCase {
         view.textColorName = "not a color name"
         tinter.tintColor = .electric
         XCTAssertEqual(view.tintColor, tinter.tintColor)
-        view.textColorName = "ash"
-        tinter.tintColor = .ash
+        view.textColorName = "textDark"
+        tinter.tintColor = .textDark
         XCTAssertEqual(view.tintColor, tinter.tintColor)
     }
 

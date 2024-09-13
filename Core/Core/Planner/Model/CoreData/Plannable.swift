@@ -111,7 +111,7 @@ extension Plannable {
     }
 
     public var color: UIColor {
-        guard let canvasContextID = canvasContextIDRaw else { return .ash }
+        guard let canvasContextID = canvasContextIDRaw else { return .textDark }
 
         if AppEnvironment.shared.k5.isK5Enabled,
            let context = Context(canvasContextID: canvasContextID),
@@ -125,7 +125,7 @@ extension Plannable {
             if let color: ContextColor = managedObjectContext?.first(where: #keyPath(ContextColor.canvasContextID), equals: canvasContextID) {
                 return color.color
             } else {
-                return .ash
+                return .textDark
             }
         }
     }

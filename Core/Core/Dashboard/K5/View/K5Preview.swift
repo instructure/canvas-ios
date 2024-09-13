@@ -74,9 +74,9 @@ struct K5Preview {
                     leading: .checkbox(isChecked: true),
                     icon: .assignmentLine,
                     title: "Attributes of Polygons",
-                    subtitle: .init(text: "You've marked it as done", color: .ash, font: .regular12),
+                    subtitle: .init(text: "You've marked it as done", color: .textDark, font: .regular12),
                     labels: [
-                        .init(text: "REPLIES", color: .ash),
+                        .init(text: "REPLIES", color: .textDark),
                         .init(text: "REDO", color: .textDanger)
                     ],
                     score: "5 pts",
