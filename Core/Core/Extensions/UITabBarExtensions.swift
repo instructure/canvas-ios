@@ -55,7 +55,7 @@ private extension UITabBarAppearance {
 
     static func make(itemAppearance: UITabBarItemAppearance) -> UITabBarAppearance {
         let tabBarAppearance = UITabBarAppearance()
-        tabBarAppearance.backgroundColor = .tabBarBackground
+        tabBarAppearance.backgroundColor = .backgroundLightest
         tabBarAppearance.stackedLayoutAppearance = itemAppearance
         tabBarAppearance.inlineLayoutAppearance = itemAppearance
         tabBarAppearance.compactInlineLayoutAppearance = itemAppearance
