@@ -34,7 +34,7 @@ struct SideMenuToggleItem: View {
             }
         })
         .font(.regular16)
-        .foregroundColor(colorScheme == .dark ? .white : .licorice)
+        .foregroundColor(colorScheme == .dark ? .white : .textDarkest)
         .padding(20)
         .frame(height: 48)
         .contentShape(Rectangle())

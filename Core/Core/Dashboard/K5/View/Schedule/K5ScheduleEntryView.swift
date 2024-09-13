@@ -149,7 +149,7 @@ public struct K5ScheduleEntryView: View {
             if isChecked {
                 background.overlay(Image.filterCheckbox)
             } else {
-                let icon = RoundedRectangle(cornerRadius: 3).stroke(Color.licorice, lineWidth: 1).frame(width: 21, height: 21)
+                let icon = RoundedRectangle(cornerRadius: 3).stroke(Color.textDarkest, lineWidth: 1).frame(width: 21, height: 21)
                 background.overlay(icon)
             }
         })

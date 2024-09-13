@@ -62,7 +62,7 @@ extension GradeModel {
     public static func makeWithOneCourse() -> GradeModel {
         GradeModel(assignmentGrades: [
         ], courseGrades: [
-            GradeItem(name: "Introduction to Neighboring Stars", grade: "A+", color: .licorice)
+            GradeItem(name: "Introduction to Neighboring Stars", grade: "A+", color: .textDarkest)
         ])
     }
 
@@ -74,7 +74,7 @@ extension GradeModel {
         ], courseGrades: [
             GradeItem(name: "Introduction to the Solar System", grade: "A-", color: .textSuccess),
             GradeItem(name: "American Literature IV: All the Books", grade: "B"),
-            GradeItem(name: "Introduction to Neighboring Stars", grade: "A+", color: .licorice),
+            GradeItem(name: "Introduction to Neighboring Stars", grade: "A+", color: .textDarkest),
             GradeItem(name: "Biology 101", grade: "C+", color: .textInfo)
         ])
     }

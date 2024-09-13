@@ -23,10 +23,6 @@ struct CourseSyncDiskSpaceInfoView: View {
     let scrollOffset: CGFloat
     @State private var originalInfoHeight: CGFloat?
 
-    // TODO: Use real backgroundDarkest color when palette is updated.
-    private let backgroundDarkest = UIColor {
-        $0.isLightInterface ? .licorice : .white
-    }
     private var remainingDiskSpaceColor: UIColor {
         UIColor {
             let alpha = $0.isLightInterface ? 0.24 : 0.36
@@ -96,7 +92,7 @@ struct CourseSyncDiskSpaceInfoView: View {
             let width = geometry.size.width - 2 * spacing
             HStack(spacing: spacing) {
                 Rectangle()
-                    .foregroundColor(Color(backgroundDarkest))
+                    .foregroundColor(Color.backgroundDarkest)
                     .frame(width: viewModel.chart.other * width)
                 Rectangle()
                     .foregroundColor(Color(Brand.shared.primary))
@@ -112,7 +108,7 @@ struct CourseSyncDiskSpaceInfoView: View {
 
     private var legend: some View {
         HStack(spacing: 0) {
-            legendItem(label: Text("Other Apps", bundle: .core), color: backgroundDarkest)
+            legendItem(label: Text("Other Apps", bundle: .core), color: .backgroundDarkest)
             Spacer(minLength: 0)
             legendItem(label: Text(viewModel.appName), color: Brand.shared.primary)
             Spacer(minLength: 0)

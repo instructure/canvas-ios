@@ -33,7 +33,7 @@ open class FloatingButton: UIButton {
     func commonInit() {
         layer.cornerRadius = ceil( bounds.size.width / 2 )
         layer.shadowOffset = CGSize(width: 0, height: 4.0)
-        layer.shadowColor = UIColor.licorice.cgColor
+        layer.shadowColor = UIColor.backgroundDarkest.cgColor
         layer.shadowOpacity = 0.2
         layer.shadowRadius = 12
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath

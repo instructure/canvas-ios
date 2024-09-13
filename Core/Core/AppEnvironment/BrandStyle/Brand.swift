@@ -125,9 +125,9 @@ public struct Brand: Equatable {
 
         self.buttonPrimaryBackgroundLight = buttonPrimaryBackground ?? .backgroundInfo
         self.buttonPrimaryTextLight = buttonPrimaryText != nil ? buttonPrimaryText!.ensureContrast(against: self.buttonPrimaryBackgroundLight) : .white
-        self.buttonSecondaryBackgroundLight = buttonSecondaryBackground ?? .licorice
+        self.buttonSecondaryBackgroundLight = buttonSecondaryBackground ?? .backgroundDarkest
         self.buttonSecondaryTextLight = buttonSecondaryText != nil ? buttonSecondaryText!.ensureContrast(against: self.buttonSecondaryBackgroundLight) : .white
-        self.fontColorDarkLight = fontColorDark ?? .licorice
+        self.fontColorDarkLight = fontColorDark ?? .textDarkest
         self.headerImageBackgroundLight = headerImageBackground ?? .oxford
         self.linkColorLight = linkColor ?? .textInfo
         self.navBackgroundLight = navBackground ?? .oxford
@@ -141,9 +141,9 @@ public struct Brand: Equatable {
 
         self.buttonPrimaryBackgroundDark = buttonPrimaryBackground != nil ? buttonPrimaryBackground!.ensureContrast(against: .backgroundLightest) : .backgroundInfo
         self.buttonPrimaryTextDark = buttonPrimaryText != nil ? buttonPrimaryText!.ensureContrast(against: self.buttonPrimaryBackgroundDark) : .white
-        self.buttonSecondaryBackgroundDark = buttonSecondaryBackground != nil ? buttonSecondaryBackground!.ensureContrast(against: .backgroundLightest) : .licorice
+        self.buttonSecondaryBackgroundDark = buttonSecondaryBackground != nil ? buttonSecondaryBackground!.ensureContrast(against: .backgroundLightest) : .backgroundDarkest
         self.buttonSecondaryTextDark = buttonSecondaryText != nil ? buttonSecondaryText!.ensureContrast(against: self.buttonSecondaryBackgroundDark) : .white
-        self.fontColorDarkDark = fontColorDark != nil ? fontColorDark!.ensureContrast(against: .backgroundLightest) : .licorice
+        self.fontColorDarkDark = fontColorDark != nil ? fontColorDark!.ensureContrast(against: .backgroundLightest) : .textDarkest
         self.headerImageBackgroundDark = headerImageBackground ?? .oxford
         self.linkColorDark = linkColor != nil ? linkColor!.ensureContrast(against: .backgroundLightest) : .textInfo
         self.navBackgroundDark = navBackground ?? .oxford

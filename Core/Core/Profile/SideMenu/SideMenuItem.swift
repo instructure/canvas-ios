@@ -51,7 +51,7 @@ struct SideMenuItem: View {
             image
             title
                 .font(.regular16)
-                .foregroundColor(colorScheme == .dark ? .white : .licorice)
+                .foregroundColor(colorScheme == .dark ? .white : .textDarkest)
             Spacer()
 
             if badgeValue > 0 {
