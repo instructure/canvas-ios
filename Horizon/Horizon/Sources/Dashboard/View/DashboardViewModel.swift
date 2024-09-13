@@ -24,8 +24,8 @@ final class DashboardViewModel: ObservableObject {
 
     @Published public private(set) var state: InstUI.ScreenState = .data(loadingOverlay: false)
     @Published public private(set) var title: String = "Welcome back, Justine"
-    @Published public private(set) var progressionString: String = "75%"
-    @Published public private(set) var progression: Double = 0.75
+    @Published public private(set) var progressString: String = "75%"
+    @Published public private(set) var progress: Double = 0.75
     @Published public private(set) var modules: [Module] = []
 
     // MARK: - Init

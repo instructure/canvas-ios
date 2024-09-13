@@ -42,7 +42,11 @@ struct DashboardView: View {
                     .foregroundColor(.textDark)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top, 24)
-                progressBar(proxy: proxy)
+                CertificateProgressBar(
+                    maxWidth: proxy.size.width,
+                    progress: viewModel.progress,
+                    progressString: viewModel.progressString
+                )
                 currentModuleView
                 whatsNextModuleView(proxy: proxy)
             }
@@ -50,28 +54,6 @@ struct DashboardView: View {
         }
         .padding(.horizontal, 16)
         .background(Color.backgroundLightest)
-    }
-
-    @ViewBuilder
-    private func progressBar(proxy: GeometryProxy) -> some View {
-        Rectangle()
-            .fill(Color.backgroundMedium)
-            .frame(width: proxy.size.width, height: 25)
-            .overlay(alignment: .leading) {
-                Rectangle()
-                    .fill(Color.backgroundDarkest)
-                    .frame(
-                        width: viewModel.progression * proxy.size.width,
-                        height: 25
-                    )
-                    .overlay(alignment: .trailing) {
-                        Text(viewModel.progressionString)
-                            .font(.regular12)
-                            .foregroundStyle(Color.textLightest)
-                            .padding(.trailing, 6)
-                    }
-            }
-            .padding(.top, 16)
     }
 
     private var currentModuleView: some View {
