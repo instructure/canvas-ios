@@ -74,17 +74,17 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
         self.completion = completion
         self.deleteConfirmation = deleteSingleItemConfirmation
 
-        onEventSetUpdateDeleteConfirmationModel()
-        onEventSetUpdateMenuButtonVisibility(userId: userId)
+        updateDeleteConfirmationModel(onSet: event)
+        updateMenuButtonVisibility(onSet: event, userId: userId)
 
         loadData()
 
-        onEditButtonTapShowEditScreen()
-        onDeleteButtonTapDeleteEventAfterConfirmation()
+        showEditScreen(on: didTapEdit)
+        deleteEventAfterConfirmation(on: didTapDelete)
     }
 
-    private func onEventSetUpdateDeleteConfirmationModel() {
-        event
+    private func updateDeleteConfirmationModel(onSet subject: CurrentValueSubject<CalendarEvent?, Never>) {
+        subject
             .compactMap { $0 }
             .sink { [weak self] in
                 guard let self else { return }
@@ -93,8 +93,8 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func onEventSetUpdateMenuButtonVisibility(userId: String) {
-        event
+    private func updateMenuButtonVisibility(onSet subject: CurrentValueSubject<CalendarEvent?, Never>, userId: String) {
+        subject
             .compactMap { $0 }
             .flatMap { [weak self] in
                 return self?.canManageEvent(context: $0.context, userId: userId)
@@ -106,14 +106,14 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func onEditButtonTapShowEditScreen() {
-        didTapEdit
+    private func showEditScreen(on subject: PassthroughSubject<WeakViewController, Never>) {
+        subject
             .sink { [weak self] in self?.showEditScreen(from: $0) }
             .store(in: &subscriptions)
     }
 
-    private func onDeleteButtonTapDeleteEventAfterConfirmation() {
-        didTapDelete
+    private func deleteEventAfterConfirmation(on subject: PassthroughSubject<WeakViewController, Never>) {
+        subject
             .map { [weak self] in
                 self?.shouldShowDeleteConfirmation = true
                 return $0
@@ -122,7 +122,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
                 self?.deleteConfirmation.userConfirmsOption(passdownValue: $0)
                     ?? Empty().eraseToAnyPublisher()
             }
-            .sink { [weak self] in self?.deleteToDo(option: $0.0, from: $0.1) }
+            .sink { [weak self] (option, source) in self?.deleteEvent(option: option, from: source) }
             .store(in: &subscriptions)
     }
 
@@ -268,7 +268,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
         confirmValue: SeriesModificationType.one
     )
 
-    private func deleteToDo(option: SeriesModificationType, from source: WeakViewController) {
+    private func deleteEvent(option: SeriesModificationType, from source: WeakViewController) {
         state = .data(loadingOverlay: true)
 
         interactor.deleteEvent(id: eventId, seriesModificationType: option)

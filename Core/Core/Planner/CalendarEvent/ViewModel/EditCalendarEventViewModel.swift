@@ -216,7 +216,7 @@ final class EditCalendarEventViewModel: ObservableObject {
             .sink { completion(.didCancel) }
             .store(in: &subscriptions)
 
-        onSaveButtonTapSaveEventAfterConfirmation(completion: completion)
+        saveEventAfterConfirmation(on: didTapSave, completion: completion)
 
         showFrequencySelector
             .sink { [weak self] in self?.showSelectFrequencyScreen(from: $0) }
@@ -376,8 +376,11 @@ final class EditCalendarEventViewModel: ObservableObject {
         )
     }
 
-    private func onSaveButtonTapSaveEventAfterConfirmation(completion: @escaping (PlannerAssembly.Completion) -> Void) {
-        didTapSave
+    private func saveEventAfterConfirmation(
+        on subject: PassthroughSubject<Void, Never>,
+        completion: @escaping (PlannerAssembly.Completion) -> Void
+    ) {
+        subject
             .map { [weak self] in
                 guard self?.wasEventPartOfSeries == true else { return }
                 self?.shouldShowEditConfirmation = true
