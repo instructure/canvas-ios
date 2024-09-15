@@ -43,4 +43,13 @@ public enum GradListAssembly {
         viewController.defaultViewRoute = "/empty"
         return viewController
     }
+
+    public static func makeGradeFilterViewController(
+        dependency: GradeFilterViewModel.Dependency
+    ) -> UIViewController {
+        let viewModel = GradeFilterViewModel(dependency: dependency)
+        let view = GradeFilterView(viewModel: viewModel)
+        let viewController = CoreHostingController(view)
+        return viewController
+    }
 }

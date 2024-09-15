@@ -18,17 +18,21 @@
 
 import SwiftUI
 
-struct AssignmentSection<Label: View, Content: View>: View {
+struct AssignmentSection<Header: View, Content: View>: View {
     // MARK: - Properties
-    @State private var isExpanded: Bool = true
-    private let label: Label
+    @State private var isExpanded: Bool = false
+    private let header: Header
     private let content: Content
 
     // MARK: - Init
-    init(@ViewBuilder label: () -> Label, @ViewBuilder content: () -> Content) {
-        self.label = label()
+    init(
+        @ViewBuilder header: () -> Header,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.header = header()
         self.content = content()
     }
+
     // MARK: - Body
     var body: some View {
         Section {
@@ -36,38 +40,42 @@ struct AssignmentSection<Label: View, Content: View>: View {
                 content
             }
         } header: {
-            VStack {
-                headerView()
-                InstUI.Divider()
-                    .padding(.horizontal, -20)
-                    .accessibilityHidden(true)
+            Button {
+                withAnimation {
+                    isExpanded.toggle()
+                }
+            } label: {
+                VStack(spacing: 0) {
+                    headerView()
+                    InstUI.Divider()
+                        .padding(.horizontal, -20)
+                        .accessibilityHidden(true)
+                }
+                .background(
+                    Rectangle() // This background rectangle for removing the highlighted last section in list it's coming by default in the List
+                        .fill(Color.backgroundLightest)
+                        .padding(.horizontal, -20)
+                        .padding(.top, -10)
+                        .padding(.bottom, -4)
+                        .accessibilityHidden(true)
+                )
+                .accessibilityHint(isExpanded
+                                   ? String(localized: "Double Tap to collapse section", bundle: .core)
+                                   : String(localized: "Double Tap to expand section", bundle: .core)
+                )
             }
-        }
-        .padding(.vertical, -7) // To minimize the spacing between sections in the list
-        .background {
-            Rectangle()
-                .fill(Color.backgroundLightest)
-                .frame(maxWidth: .infinity)
-                .frame(height: 60)
-                .padding(.horizontal, -20)
         }
     }
 
     @ViewBuilder
     private func headerView() -> some View {
         HStack {
-            label
+            header
             Spacer()
             Image.arrowOpenUpLine
                 .size(16)
                 .rotationEffect(isExpanded ? .degrees(0) : .degrees(-180))
                 .accessibilityHidden(true)
-        }
-        .contentShape(Rectangle())
-        .onTapGesture {
-            withAnimation {
-                isExpanded.toggle()
-            }
         }
     }
 }

@@ -85,20 +85,6 @@ class GradeListViewModelTests: CoreTestCase {
         XCTAssertEqual(interactor.gradingPeriod, "999")
     }
 
-    func testSelectedGroupByOption() {
-        let interactor = GradeListInteractorMock()
-        let testee = GradeListViewModel(
-            interactor: interactor,
-            router: PreviewEnvironment.shared.router,
-            scheduler: .immediate
-        )
-        testee.selectedGroupByOption.accept(.dueDate)
-        XCTAssertEqual(interactor.arrangeBy, .dueDate)
-        testee.selectedGroupByOption.accept(.groupName)
-        XCTAssertEqual(interactor.arrangeBy, .groupName)
-        XCTAssertEqual(interactor.ignoreCache, false)
-    }
-
     func testPullToRefresh() {
         var completionCalled = false
         let completion: () -> Void = {
@@ -126,6 +112,23 @@ class GradeListViewModelTests: CoreTestCase {
         testee.didSelectAssignment.accept((WeakViewController(), Assignment.make()))
         XCTAssertEqual(router.calls[0].0, URLComponents(string: "/courses//assignments/1"))
         XCTAssertEqual(router.calls[0].2, RouteOptions.detail)
+    }
+
+    func test_navigateToFilter() {
+        // Given
+        let viewController = WeakViewController()
+        let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
+        let testee = GradeListViewModel(
+            interactor: interactor,
+            router: PreviewEnvironment.shared.router,
+            scheduler: .immediate
+        )
+
+        // When
+        testee.navigateToFilter(viewController: viewController)
+        wait(for: [router.showExpectation], timeout: 0.1)
+        // Then
+        XCTAssertTrue(router.presented is CoreHostingController<GradeFilterView>)
     }
 }
 

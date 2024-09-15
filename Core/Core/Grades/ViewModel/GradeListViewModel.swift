@@ -21,9 +21,18 @@ import CombineExt
 import CombineSchedulers
 import Foundation
 
-public enum GradeArrangementOptions {
+public enum GradeArrangementOptions: CaseIterable {
     case groupName
     case dueDate
+
+    var title: String {
+        switch self {
+        case .groupName:
+            return String(localized: "Group", bundle: .core)
+        case .dueDate:
+            return String(localized: "Due Date", bundle: .core)
+        }
+    }
 }
 
 public final class GradeListViewModel: ObservableObject {
@@ -43,7 +52,8 @@ public final class GradeListViewModel: ObservableObject {
     private let interactor: GradeListInteractor
 
     // MARK: - Output
-
+    @Published public var courseName: String?
+    @Published private(set) var gradeHeaderIsVisible = false
     @Published private(set) var state: ViewState = .initialLoading
     @Published public var isWhatIfScoreModeOn = false
     @Published public var isWhatIfScoreFlagEnabled = false
@@ -72,6 +82,7 @@ public final class GradeListViewModel: ObservableObject {
 
     private var lastKnownDataState: GradeListData?
     private var subscriptions = Set<AnyCancellable>()
+    private let router: Router
 
     // MARK: - Init
 
@@ -81,7 +92,7 @@ public final class GradeListViewModel: ObservableObject {
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
-
+        self.router = router
         let triggerRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion?)>()
 
         isWhatIfScoreFlagEnabled = interactor.isWhatIfScoreFlagEnabled()
@@ -96,12 +107,6 @@ public final class GradeListViewModel: ObservableObject {
             .sink {
                 interactor.updateGradingPeriod(id: $0?.id)
                 triggerRefresh.accept((true, nil))
-            }
-            .store(in: &subscriptions)
-
-        selectedGroupByOption
-            .sink { _ in
-                triggerRefresh.accept((false, nil))
             }
             .store(in: &subscriptions)
 
@@ -138,10 +143,11 @@ public final class GradeListViewModel: ObservableObject {
                         return Empty(completeImmediately: true).eraseToAnyPublisher()
                     }
                     lastKnownDataState = listData
-
+                    courseName = listData.courseName
                     if listData.assignmentSections.count == 0 {
                         return Just(ViewState.empty(listData)).eraseToAnyPublisher()
                     } else {
+                        self.gradeHeaderIsVisible = true
                         return Just(ViewState.data(listData)).eraseToAnyPublisher()
                     }
                 }
@@ -162,5 +168,27 @@ public final class GradeListViewModel: ObservableObject {
                 router.route(to: "/courses/\(interactor.courseID)/assignments/\(assignment.id)", from: vc, options: .detail)
             }
             .store(in: &subscriptions)
+    }
+
+    func navigateToFilter(viewController: WeakViewController) {
+        let isShowGradingPeriod = !(lastKnownDataState?.isGradingPeriodHidden ?? false)
+        let dependency = GradeFilterViewModel.Dependency(
+            router: router, 
+            isShowGradingPeriod: isShowGradingPeriod,
+            courseName: courseName,
+            selectedGradingPeriodPublisher: selectedGradingPeriod,
+            selectedSortByPublisher: selectedGroupByOption,
+            gradingPeriods: lastKnownDataState?.gradingPeriods,
+            selectedGradingPeriod: lastKnownDataState?.currentGradingPeriod,
+            selectedSortBy: selectedGroupByOption.value,
+            sortByOptions: GradeArrangementOptions.allCases
+        )
+
+        let filterView = GradListAssembly.makeGradeFilterViewController(dependency: dependency)
+        router.show(
+            filterView,
+            from: viewController,
+            options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
+        )
     }
 }
