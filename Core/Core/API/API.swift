@@ -58,6 +58,19 @@ public class API {
                     return
                 }
 
+                print(requestable.path)
+                print(requestable.queryItems.first(where: { $0.name == "type" }))
+
+                if requestable.path.contains("planner_notes") || requestable.path.contains("calendar_events") {
+
+                    if let json = data.flatMap({ try? JSONSerialization.jsonObject(with: $0, options: .fragmentsAllowed) }) {
+                        print(json)
+                    }
+
+                    print("--")
+
+                }
+
                 // If the request is rejected due to the rate limit being exhausted we retry and hope that the quota is restored in the meantime
                 if response?.exceededLimit(responseData: data) == true {
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
