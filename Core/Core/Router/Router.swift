@@ -256,6 +256,13 @@ open class Router {
         }
     }
 
+    open func popToRoot(from: UIViewController) {
+        guard let navController = from.navigationController else {
+            return
+        }
+        navController.popToRootViewController(animated: true)
+    }
+
     open func dismiss(_ view: UIViewController, completion: (() -> Void)? = nil) {
         if view.presentingViewController != nil {
             view.dismiss(animated: true, completion: completion)

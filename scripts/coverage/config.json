@@ -43,7 +43,10 @@
     "Student\/Widgets\/AnnouncementsWidget\/Controller\/AnnouncementsProvider.swift",
     "Student\/Widgets\/Common\/View\/CompatibleContentMargins.swift",
     "Core\/SnackBar\/View\/SwiftUI\/SnackBarViewModifier.swift",
-    "Core\/InstUI\/"
+    "Core\/InstUI\/",
+    "Core\/Extensions\/UISplitViewControllerExtensions.swift",
+    "Core\/Extensions\/UITabBarControllerExtensions.swift",
+    "Core\/Extensions\/UINavigationControllerExtensions.swift"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",

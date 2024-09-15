@@ -131,8 +131,13 @@ struct InboxFilterBar_Previews: PreviewProvider {
     static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        let interactor = InboxMessageInteractorPreview(environment: env, messages: .make(count: 5, in: context))
-        let viewModel = InboxViewModel(interactor: interactor, router: AppEnvironment.shared.router)
+        let messageInteractor = InboxMessageInteractorPreview(environment: env, messages: .make(count: 5, in: context))
+        let favouriteInteractor = InboxMessageFavouriteInteractorLive()
+        let viewModel = InboxViewModel(
+            messageInteractor: messageInteractor,
+            favouriteInteractor: favouriteInteractor,
+            router: AppEnvironment.shared.router
+        )
         InboxFilterBarView(model: viewModel)
             .previewLayout(.sizeThatFits)
     }

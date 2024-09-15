@@ -80,6 +80,13 @@ open class AppEnvironment {
 
         refreshWidgets()
         saveAccount(for: session)
+
+        CoreWebView
+            .deleteAllCookies()
+            .sink {
+                CoreWebView.refreshKeepAliveCookies()
+            }
+            .store(in: &subscriptions)
     }
 
     public func userDidLogout(session: LoginSession) {

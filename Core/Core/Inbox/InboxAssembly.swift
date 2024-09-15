@@ -22,10 +22,15 @@ public enum InboxAssembly {
 
     public static func makeInboxViewController() -> UIViewController {
         let env = AppEnvironment.shared
-        let interactor = InboxMessageInteractorLive(env: env,
+        let messageInteractor = InboxMessageInteractorLive(env: env,
                                                     tabBarCountUpdater: .init(),
                                                     messageListStateUpdater: .init())
-        let viewModel = InboxViewModel(interactor: interactor, router: env.router)
+        let favouriteInteractor = InboxMessageFavouriteInteractorLive()
+        let viewModel = InboxViewModel(
+            messageInteractor: messageInteractor,
+            favouriteInteractor: favouriteInteractor,
+            router: env.router
+        )
 
         let inboxVC = CoreHostingController(InboxView(model: viewModel))
         inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
@@ -40,8 +45,13 @@ public enum InboxAssembly {
     public static func makePreview(environment: AppEnvironment,
                                    messages: [InboxMessageListItem])
     -> InboxView {
-        let interactor = InboxMessageInteractorPreview(environment: environment, messages: messages)
-        let viewModel = InboxViewModel(interactor: interactor, router: environment.router)
+        let messageInteractor = InboxMessageInteractorPreview(environment: environment, messages: messages)
+        let favouriteInteractor = InboxMessageFavouriteInteractorLive()
+        let viewModel = InboxViewModel(
+            messageInteractor: messageInteractor,
+            favouriteInteractor: favouriteInteractor,
+            router: environment.router
+        )
         return InboxView(model: viewModel)
     }
 

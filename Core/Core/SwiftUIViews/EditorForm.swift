@@ -48,7 +48,6 @@ public struct EditorForm<Content: View>: View {
                     .background(Color.backgroundGrouped.opacity(0.5).edgesIgnoringSafeArea(.all))
             }
         }
-            .avoidKeyboardArea()
             .background(Color.backgroundGrouped.edgesIgnoringSafeArea(.all))
             .navigationBarStyle(.modal)
     }

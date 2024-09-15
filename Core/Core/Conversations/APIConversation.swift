@@ -46,6 +46,7 @@ public struct APIConversation: Codable, Equatable {
     let visible: Bool
     let context_name: String?
     let context_code: String?
+    let cannot_reply: Bool?
     let messages: [APIConversationMessage]?
 }
 
@@ -95,7 +96,8 @@ extension APIConversation {
         visible: Bool = true,
         context_name: String? = "Canvas 101",
         context_code: String? = "course_1",
-        messages: [APIConversationMessage]? = nil
+        messages: [APIConversationMessage]? = nil,
+        cannot_reply: Bool = false
     ) -> APIConversation {
         return APIConversation(
             id: ID(id),
@@ -116,6 +118,7 @@ extension APIConversation {
             visible: visible,
             context_name: context_name,
             context_code: context_code,
+            cannot_reply: cannot_reply,
             messages: messages
         )
     }

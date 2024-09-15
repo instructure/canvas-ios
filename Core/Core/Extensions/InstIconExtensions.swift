@@ -86,6 +86,8 @@ public extension UIImage {
     static var emptySolid: UIImage { UIImage(named: "emptySolid", in: .core, compatibleWith: nil)! }
     static var exitFullScreenLine: UIImage { UIImage(named: "exitFullScreenLine", in: .core, compatibleWith: nil)! }
     static var exitFullScreenSolid: UIImage { UIImage(named: "exitFullScreenSolid", in: .core, compatibleWith: nil)! }
+    static var expandItemsLine: UIImage { UIImage(named: "expandItemsLine", in: .core, compatibleWith: nil)! }
+    static var expandItemsSolid: UIImage { UIImage(named: "expandItemsSolid", in: .core, compatibleWith: nil)! }
     static var externalLinkLine: UIImage { UIImage(named: "externalLinkLine", in: .core, compatibleWith: nil)! }
     static var externalLinkSolid: UIImage { UIImage(named: "externalLinkSolid", in: .core, compatibleWith: nil)! }
     static var eyeLine: UIImage { UIImage(named: "eyeLine", in: .core, compatibleWith: nil)! }
@@ -214,7 +216,6 @@ public extension UIImage {
     static var warningBorderlessSolid: UIImage { UIImage(named: "warningBorderlessSolid", in: .core, compatibleWith: nil)! }
     static var xLine: UIImage { UIImage(named: "xLine", in: .core, compatibleWith: nil)! }
     static var xSolid: UIImage { UIImage(named: "xSolid", in: .core, compatibleWith: nil)! }
-
     static var addAudioLine: UIImage { UIImage(named: "addAudioLine", in: .core, compatibleWith: nil)! }
     static var addCameraLine: UIImage { UIImage(named: "addCameraLine", in: .core, compatibleWith: nil)! }
     static var addDocumentLine: UIImage { UIImage(named: "addDocumentLine", in: .core, compatibleWith: nil)! }
@@ -335,6 +336,8 @@ public extension Image {
     static var emptySolid: Image { Image("emptySolid", bundle: .core) }
     static var exitFullScreenLine: Image { Image("exitFullScreenLine", bundle: .core) }
     static var exitFullScreenSolid: Image { Image("exitFullScreenSolid", bundle: .core) }
+    static var expandItemsLine: Image { Image("expandItemsLine", bundle: .core) }
+    static var expandItemsSolid: Image { Image("expandItemsSolid", bundle: .core) }
     static var externalLinkLine: Image { Image("externalLinkLine", bundle: .core) }
     static var externalLinkSolid: Image { Image("externalLinkSolid", bundle: .core) }
     static var eyeLine: Image { Image("eyeLine", bundle: .core) }
@@ -463,7 +466,7 @@ public extension Image {
     static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
-    
+
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
     static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }

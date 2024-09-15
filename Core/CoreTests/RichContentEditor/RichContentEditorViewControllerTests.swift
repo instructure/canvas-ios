@@ -24,21 +24,26 @@ import CoreData
 import TestsFoundation
 
 class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDelegate {
-    let context = Context(.course, id: "1")
-    var controller: RichContentEditorViewController!
+    private let context = Context(.course, id: "1")
+    private var controller: RichContentEditorViewController!
 
-    var canSubmit = false
+    private var canSubmit: Bool?
     func rce(_ editor: RichContentEditorViewController, canSubmit: Bool) {
         self.canSubmit = canSubmit
         self.updated?.fulfill()
     }
 
-    var error: Error?
+    private var isUploading: Bool?
+    func rce(_ editor: RichContentEditorViewController, isUploading: Bool) {
+        self.isUploading = isUploading
+    }
+
+    private var error: Error?
     func rce(_ editor: RichContentEditorViewController, didError error: Error) {
         self.error = error
     }
 
-    var updated: XCTestExpectation?
+    private var updated: XCTestExpectation?
 
     override func setUp() {
         super.setUp()
@@ -50,14 +55,14 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
         controller.focus()
     }
 
-    func update(_ block: () -> Void) {
+    private func update(_ block: () -> Void) {
         updated = expectation(description: "updated")
         block()
         wait(for: [updated!], timeout: 10)
         updated = nil
     }
 
-    func getHTML() -> String {
+    private func getHTML() -> String {
         let updated = expectation(description: "updated")
         var html = ""
         controller.getHTML { value in
@@ -193,9 +198,23 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
             (self.databaseClient.fetch() as [File]).isEmpty // still empty due to error
         } ], timeout: 5)
     }
+
+    func testUpdateStateCallsDelegateMethods() {
+        controller.updateState(["isEmpty": false, "isUploading": true])
+        XCTAssertEqual(canSubmit, false)
+        XCTAssertEqual(isUploading, true)
+
+        controller.updateState(["isEmpty": false, "isUploading": false])
+        XCTAssertEqual(canSubmit, true)
+        XCTAssertEqual(isUploading, false)
+
+        controller.updateState(["isEmpty": true, "isUploading": false])
+        XCTAssertEqual(canSubmit, false)
+        XCTAssertEqual(isUploading, false)
+    }
 }
 
-class MockPicker: UIImagePickerController {
+private final class MockPicker: UIImagePickerController {
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         completion?()
     }

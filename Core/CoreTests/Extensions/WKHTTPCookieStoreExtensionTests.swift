@@ -22,15 +22,7 @@ import XCTest
 
 class WKHTTPCookieStoreExtensionTests: XCTestCase {
     private var webViewConfiguration: WKWebViewConfiguration!
-    private let cookie = HTTPCookie(
-        properties: [
-            .name: "testName",
-            .value: "testValue",
-            .path: "/login",
-            .domain: "instructure.com",
-            .version: 1
-        ]
-    )!
+    private let cookie = HTTPCookie.make()
 
     override func setUp() {
         super.setUp()
@@ -74,6 +66,25 @@ class WKHTTPCookieStoreExtensionTests: XCTestCase {
         XCTAssertSingleOutputEquals(
             cookieStore.getAllCookies(),
             [cookie],
+            timeout: 10
+        )
+    }
+
+    func testDeleteAllCookies() {
+        let webView = WKWebView(
+            frame: .zero,
+            configuration: webViewConfiguration
+        )
+        let cookieStore = webView.configuration.websiteDataStore.httpCookieStore
+        XCTAssertFinish(cookieStore.setCookie(cookie), timeout: 10)
+
+        // WHEN
+        XCTAssertFinish(cookieStore.deleteAllCookies())
+
+        // THEN
+        XCTAssertSingleOutputEquals(
+            cookieStore.getAllCookies(),
+            [],
             timeout: 10
         )
     }

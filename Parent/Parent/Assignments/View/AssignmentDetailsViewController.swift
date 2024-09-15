@@ -51,6 +51,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     private var maxDate = Clock.now
     private var userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
     private lazy var localNotifications = LocalNotificationsInteractor(notificationCenter: userNotificationCenter)
+    private var submissionURLInteractor: ParentSubmissionURLInteractor!
 
     lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.observed_users, .submission])) {  [weak self] in
         self?.update()
@@ -64,18 +65,22 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     lazy var teachers = env.subscribe(GetSearchRecipients(context: .course(courseID), qualifier: .teachers)) { [weak self] in
         self?.update()
     }
+    lazy var featuresStore = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID))) {
+    }
 
     static func create(
         studentID: String,
         courseID: String,
         assignmentID: String,
-        userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
+        userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current(),
+        submissionURLInteractor: ParentSubmissionURLInteractor = ParentSubmissionURLInteractorLive()
     ) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.courseID = courseID
         controller.studentID = studentID
         controller.userNotificationCenter = userNotificationCenter
+        controller.submissionURLInteractor = submissionURLInteractor
         return controller
     }
 
@@ -141,6 +146,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         course.refresh()
         student.refresh()
         teachers.refresh()
+        featuresStore.refresh()
         localNotifications.getReminder(assignmentID) { [weak self] request in performUIUpdate {
             guard let self = self else { return }
             let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
@@ -169,6 +175,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         course.refresh(force: true)
         student.refresh(force: true)
         teachers.refresh(force: true)
+        featuresStore.refresh(force: true)
     }
 
     func update() {
@@ -188,7 +195,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         statusIconView.tintColor = status.color
         statusLabel.isHidden = assignment.submissionStatusIsHidden
         statusLabel.textColor = status.color
-        statusLabel?.text = assignment.submission?.statusText
+        statusLabel?.text = assignment.submissions?.first(where: { $0.userID == studentID })?.statusText
         dateLabel.text = assignment.dueAt?.dateTimeString ?? String(localized: "No Due Date", bundle: .parent)
         reminderSwitch.isEnabled = true
         reminderDateButton.isEnabled = true
@@ -278,8 +285,14 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             return
         }
 
-        let interactor = ParentSubmissionInteractorLive(
+        let submissionURL = submissionURLInteractor.submissionURL(
             assignmentHtmlURL: assignmentHtmlURL,
+            observedUserID: studentID,
+            isAssignmentEnhancementsEnabled: featuresStore.isFeatureFlagEnabled(.assignmentEnhancements)
+        )
+
+        let interactor = ParentSubmissionInteractorLive(
+            assignmentHtmlURL: submissionURL,
             observedUserID: studentID
         )
         let viewModel = ParentSubmissionViewModel(interactor: interactor, router: router)

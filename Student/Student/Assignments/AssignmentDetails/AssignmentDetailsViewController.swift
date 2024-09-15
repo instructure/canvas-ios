@@ -112,7 +112,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             submissionRubricButton?.makeUnavailableInOfflineMode()
         }
     }
-    /** The view containing a separator and the rubruc button. */
+    /** The view containing a separator and the rubric button. */
     @IBOutlet weak var submissionRubricButtonSection: UIView?
 
     @IBOutlet weak var lockedIconContainerView: UIView!
