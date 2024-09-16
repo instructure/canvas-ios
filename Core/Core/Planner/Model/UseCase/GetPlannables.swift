@@ -143,7 +143,7 @@ public class GetPlannables: UseCase {
         self.contextCodes = contextCodes
         self.filter = filter
 
-        self.setupObserverEventsSubscription()
+        setupObserverEventsSubscription()
     }
 
     public var cacheKey: String? {
