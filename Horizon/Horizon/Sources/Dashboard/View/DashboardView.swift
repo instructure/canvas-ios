@@ -57,9 +57,7 @@ struct DashboardView: View {
                     .padding(16)
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Short form text")
-                            .font(.bold16)
-                            .foregroundStyle(Color.textDarkest)
+                        BodyTextView(title: "Short Form Text")
                         Text("20 MINS")
                             .font(.regular12)
                             .foregroundStyle(Color.textDark)
@@ -88,9 +86,6 @@ struct DashboardView: View {
     private func whatsNextModuleView(proxy: GeometryProxy) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             SectionTitleView(title: "What's next")
-                .font(.regular12)
-                .foregroundColor(.textDark)
-                .frame(maxWidth: .infinity, alignment: .leading)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 8) {
                     ProgramItemView(
