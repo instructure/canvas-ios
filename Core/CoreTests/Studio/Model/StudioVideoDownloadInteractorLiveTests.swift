@@ -51,7 +51,7 @@ class StudioVideoDownloadInteractorLiveTests: CoreTestCase {
     func testDownloadsVideoAndInvokesPosterGeneration() {
         let mockCacheInteractor = MockStudioVideoCacheInteractor(isVideoDownloadedResult: false)
         let mockCaptionsInteractor = MockStudioCaptionsInteractor()
-        let mockPosterInteractor = MockStudioVidePosterInteractor()
+        let mockPosterInteractor = MockStudioVideoPosterInteractor()
         let testee = StudioVideoDownloadInteractorLive(
             rootDirectory: workingDirectory,
             captionsInteractor: mockCaptionsInteractor,
@@ -92,7 +92,7 @@ class StudioVideoDownloadInteractorLiveTests: CoreTestCase {
             rootDirectory: workingDirectory,
             captionsInteractor: mockCaptionsInteractor,
             videoCacheInteractor: mockCacheInteractor,
-            posterInteractor: MockStudioVidePosterInteractor()
+            posterInteractor: MockStudioVideoPosterInteractor()
         )
         let expectedVideoURL = workingDirectory.appending(path: "\(TestData.mediaID.value)/\(TestData.mediaID.value).mp4")
 
@@ -141,7 +141,7 @@ class MockStudioVideoCacheInteractor: StudioVideoCacheInteractor {
     }
 }
 
-class MockStudioVidePosterInteractor: StudioVideoPosterInteractor {
+class MockStudioVideoPosterInteractor: StudioVideoPosterInteractor {
     public var posterLocationResult: URL?
 
     private(set) var receivedCachedFlag: Bool?

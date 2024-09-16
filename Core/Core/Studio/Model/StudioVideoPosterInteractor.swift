@@ -39,7 +39,7 @@ public class StudioVideoPosterInteractorLive: StudioVideoPosterInteractor {
     ///   - posterFactory: For testing purposes. Live implementation should have a default value for this parameter.
     public init(
         analytics: Analytics = .shared,
-        posterFactory: @escaping PosterFactory = posterFactory
+        posterFactory: @escaping PosterFactory = defaultPosterFactory
     ) {
         self.analytics = analytics
         self.posterFactory = posterFactory
@@ -76,7 +76,7 @@ public class StudioVideoPosterInteractorLive: StudioVideoPosterInteractor {
         return posterLocation
     }
 
-    public static func posterFactory(
+    public static func defaultPosterFactory(
         _ videoFile: URL,
         _ posterLocation: URL
     ) throws {
