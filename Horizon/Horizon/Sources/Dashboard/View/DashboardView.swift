@@ -27,25 +27,27 @@ struct DashboardView: View {
     }
 
     var body: some View {
-        InstUI.BaseScreen(
-            state: viewModel.state,
-            config: .init(refreshable: false)
-        ) { proxy in
-            VStack(alignment: .leading, spacing: 0) {
-                LargeTitleView(title: viewModel.title)
-                SectionTitleView(title: "BIOLOGY CERTIFICATE #17491")
-                CertificateProgressBar(
-                    maxWidth: proxy.size.width,
-                    progress: viewModel.progress,
-                    progressString: viewModel.progressString
-                )
-                currentModuleView
-                whatsNextModuleView(proxy: proxy)
+        BaseHorizonScreen {
+            InstUI.BaseScreen(
+                state: viewModel.state,
+                config: .init(refreshable: true)
+            ) { proxy in
+                VStack(alignment: .leading, spacing: 0) {
+                    LargeTitleView(title: viewModel.title)
+                    SectionTitleView(title: "BIOLOGY CERTIFICATE #17491")
+                    CertificateProgressBar(
+                        maxWidth: proxy.size.width,
+                        progress: viewModel.progress,
+                        progressString: viewModel.progressString
+                    )
+                    currentModuleView
+                    whatsNextModuleView(proxy: proxy)
+                }
+                .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 16)
+            .background(Color.backgroundLightest)
         }
-        .padding(.horizontal, 16)
-        .background(Color.backgroundLightest)
     }
 
     private var currentModuleView: some View {
