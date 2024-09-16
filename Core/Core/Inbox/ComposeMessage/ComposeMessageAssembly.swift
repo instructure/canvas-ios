@@ -17,10 +17,17 @@
 //
 
 import Foundation
+import Combine
+import AVKit
 
 public enum ComposeMessageAssembly {
 
-    public static func makeComposeMessageViewController(env: AppEnvironment = .shared, options: ComposeMessageOptions = ComposeMessageOptions()) -> UIViewController {
+    public static func makeComposeMessageViewController(
+        env: AppEnvironment = .shared,
+        options: ComposeMessageOptions = ComposeMessageOptions(),
+        sentMailEvent: PassthroughSubject<Void, Never>? = nil
+    ) -> UIViewController {
+
         let batchId = UUID.string
         let interactor = ComposeMessageInteractorLive(
             env: env,
@@ -30,7 +37,18 @@ public enum ComposeMessageAssembly {
             uploadManager: UploadManager(identifier: batchId),
             publisherProvider: URLSessionDataTaskPublisherProviderLive()
         )
-        let viewModel = ComposeMessageViewModel(router: env.router, options: options, interactor: interactor)
+        let recipientInteractor = RecipientInteractorLive()
+        let audioSession = AVAudioSession.sharedInstance()
+        let cameraPermissionService = AVCaptureDevice.self
+        let viewModel = ComposeMessageViewModel(
+            router: env.router,
+            options: options,
+            interactor: interactor,
+            recipientInteractor: recipientInteractor,
+            sentMailEvent: sentMailEvent,
+            audioSession: audioSession,
+            cameraPermissionService: cameraPermissionService
+        )
 
         let view = ComposeMessageView(model: viewModel)
         return CoreHostingController(view)
@@ -46,7 +64,15 @@ public enum ComposeMessageAssembly {
     -> ComposeMessageView {
         let interactor = ComposeMessageInteractorPreview()
         let options = ComposeMessageOptions()
-        let viewModel = ComposeMessageViewModel(router: env.router, options: options, interactor: interactor)
+        let viewModel = ComposeMessageViewModel(
+            router: env.router,
+            options: options,
+            interactor: interactor,
+            recipientInteractor: RecipientInteractorLive(),
+            sentMailEvent: nil,
+            audioSession: AVAudioSession.sharedInstance(),
+            cameraPermissionService: AVCaptureDevice.self
+        )
         return ComposeMessageView(model: viewModel)
     }
 

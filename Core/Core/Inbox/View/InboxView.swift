@@ -69,6 +69,7 @@ public struct InboxView: View, ScreenViewTrackable {
                 }
             }
         }
+        .snackBar(viewModel: model.snackBarViewModel)
         .background(Color.backgroundLightest)
         .navigationBarItems(leading: menuButton, trailing: newMessageButton)
     }
@@ -91,11 +92,27 @@ public struct InboxView: View, ScreenViewTrackable {
                 } else {
                     archiveButton(message: message)
                 }
+                starButton(messageId: message.id, isCurrentlyStarred: message.isStarred)
             }
             .swipeActions(edge: .leading) {
                 readStatusToggleButton(message: message)
             }
         }
+    }
+
+    private func starButton(messageId: String, isCurrentlyStarred: Bool) -> some View {
+        Button {
+            model.didTapStar.send((!isCurrentlyStarred, messageId))
+        } label: {
+            let image = isCurrentlyStarred ? Image.starSolid : Image.starLine
+            let accessibilityLabel = isCurrentlyStarred ? String(localized: "Mark as Unstarred", bundle: .core) : String(localized: "Mark as Starred", bundle: .core)
+             image
+                .size(30)
+                .foregroundColor(.textLightest)
+                .padding(.leading, 6)
+                .accessibilityLabel(accessibilityLabel)
+        }
+        .tint(.backgroundDark)
     }
 
     @ViewBuilder
@@ -113,7 +130,7 @@ public struct InboxView: View, ScreenViewTrackable {
                 }
                 .labelStyle(.iconOnly)
             }
-            .tint(.textDark)
+            .tint(.backgroundDark)
         } else {
             SwiftUI.EmptyView()
         }
@@ -134,7 +151,7 @@ public struct InboxView: View, ScreenViewTrackable {
                 }
                 .labelStyle(.iconOnly)
             }
-            .tint(.textDark)
+            .tint(.backgroundDark)
         } else {
             SwiftUI.EmptyView()
         }
@@ -159,7 +176,7 @@ public struct InboxView: View, ScreenViewTrackable {
             }
             .labelStyle(.iconOnly)
         }
-        .tint(.textInfo)
+        .tint(.backgroundInfo)
     }
 
     private var loadingIndicator: some View {

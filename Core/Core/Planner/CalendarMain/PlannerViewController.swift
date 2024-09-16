@@ -164,6 +164,7 @@ public class PlannerViewController: UIViewController {
     private func addToDo() {
         let weakVC = WeakViewController()
         let vc = PlannerAssembly.makeCreateToDoViewController(
+            selectedDate: selectedDate,
             calendarListProviderInteractor: calendarFilterInteractor,
             completion: { [weak self] _ in
                 self?.env.router.dismiss(weakVC)
@@ -182,6 +183,7 @@ public class PlannerViewController: UIViewController {
     private func addEvent() {
         let weakVC = WeakViewController()
         let vc = PlannerAssembly.makeCreateEventViewController(
+            selectedDate: selectedDate,
             calendarListProviderInteractor: calendarFilterInteractor,
             completion: { [weak self] in
                 if $0 == .didUpdate {
@@ -206,6 +208,7 @@ public class PlannerViewController: UIViewController {
 
     @objc func selectToday() {
         let date = Clock.now.startOfDay()
+        selectedDate = date
         calendar.showDate(date)
         updateList(date)
     }

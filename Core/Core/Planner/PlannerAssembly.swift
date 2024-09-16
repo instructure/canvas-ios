@@ -29,11 +29,13 @@ public enum PlannerAssembly {
     // MARK: - Event
 
     public static func makeCreateEventViewController(
+        selectedDate: Date,
         calendarListProviderInteractor: CalendarFilterInteractor? = nil,
         env: AppEnvironment = .shared,
         completion: @escaping (Completion) -> Void
     ) -> UIViewController {
         let viewModel = EditCalendarEventViewModel(
+            selectedDate: selectedDate,
             eventInteractor: CalendarEventInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
             uploadParameters: makeUploadParameters(env: env),
@@ -110,11 +112,13 @@ public enum PlannerAssembly {
     // MARK: - ToDo
 
     public static func makeCreateToDoViewController(
+        selectedDate: Date,
         calendarListProviderInteractor: CalendarFilterInteractor? = nil,
         env: AppEnvironment = .shared,
         completion: @escaping (Completion) -> Void
     ) -> UIViewController {
         let viewModel = EditCalendarToDoViewModel(
+            selectedDate: selectedDate,
             toDoInteractor: CalendarToDoInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
             router: env.router,

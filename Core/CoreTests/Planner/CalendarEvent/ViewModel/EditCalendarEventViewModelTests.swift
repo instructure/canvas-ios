@@ -82,6 +82,16 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.details, "")
     }
 
+    func testAddModeDefaultDate() {
+        var testee: EditCalendarEventViewModel
+
+        testee = makeAddViewModel()
+        XCTAssertEqual(testee.date, TestConstants.dateNow.startOfDay())
+
+        testee = makeAddViewModel(selectedDate: TestConstants.dateStart)
+        XCTAssertEqual(testee.date, TestConstants.dateStart.startOfDay())
+    }
+
     func testEditModeInitialValues() {
         let testee = makeEditViewModel(makeEvent(
             title: TestConstants.title,
@@ -553,13 +563,14 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
 
     // MARK: - Helpers
 
-    private func makeAddViewModel() -> EditCalendarEventViewModel {
-        makeEditViewModel(nil)
+    private func makeAddViewModel(selectedDate: Date? = nil) -> EditCalendarEventViewModel {
+        makeEditViewModel(nil, selectedDate: selectedDate)
     }
 
-    private func makeEditViewModel(_ event: CalendarEvent?) -> EditCalendarEventViewModel {
+    private func makeEditViewModel(_ event: CalendarEvent?, selectedDate: Date? = nil) -> EditCalendarEventViewModel {
         .init(
             event: event,
+            selectedDate: selectedDate,
             eventInteractor: eventInteractor,
             calendarListProviderInteractor: calendarListProviderInteractor,
             uploadParameters: .init(context: TestConstants.uploadContext),

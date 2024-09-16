@@ -52,6 +52,7 @@ public struct MessageDetailsView: View {
         .navigationTitle(model.title)
         .navigationBarStyle(.color(Brand.shared.navBackground))
         .navigationBarItems(trailing: moreButton)
+        .snackBar(viewModel: model.snackBarViewModel)
     }
 
     private var loadingIndicator: some View {
