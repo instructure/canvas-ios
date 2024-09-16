@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -55,6 +55,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = B90FCF66245CD7327BEE2CBF;
 			remoteInfo = Core;
+		};
+		B40C06E22C9864D40078187B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
+			remoteInfo = CoreTester;
+		};
+		B40C06E42C9864D40078187B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
+			remoteInfo = CoreTests;
+		};
+		B40C06E62C9864D40078187B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 0F2B4D06F2ACF62293B119C4;
+			remoteInfo = TestsFoundation;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -226,11 +247,8 @@
 		955860F5ABB09882D618C5FE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				B40C06DE2C9864D40078187B /* Screens */,
 				0799A36714119557806E6EBF /* Components */,
-				B05C2CC9048B10D422F10596 /* Dashboard */,
-				00BE12640B30472AB1C253F6 /* Journey */,
-				3350F8DD768D9A8EA6605A79 /* Portfolio */,
-				09314556199EB217DC2AD7EC /* Programs */,
 				948BA8695652021FBC4A0BB3 /* Util */,
 				F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */,
 				AB054A404352C7C8A77807BF /* HorizonTabBarController.swift */,
@@ -252,6 +270,9 @@
 			isa = PBXGroup;
 			children = (
 				7DED7199B426F89179546237 /* Core.framework */,
+				B40C06E32C9864D40078187B /* CoreTester.app */,
+				B40C06E52C9864D40078187B /* CoreTests.xctest */,
+				B40C06E72C9864D40078187B /* TestsFoundation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -263,6 +284,17 @@
 				0FDECB17FFD0307D036BC4B3 /* DashboardAssembly.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		B40C06DE2C9864D40078187B /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				B05C2CC9048B10D422F10596 /* Dashboard */,
+				00BE12640B30472AB1C253F6 /* Journey */,
+				3350F8DD768D9A8EA6605A79 /* Portfolio */,
+				09314556199EB217DC2AD7EC /* Programs */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		C8CADAD2C6DAB18118E9725D /* Projects */ = {
@@ -363,6 +395,27 @@
 			fileType = wrapper.framework;
 			path = Core.framework;
 			remoteRef = 287762C99D46AE8961068231 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B40C06E32C9864D40078187B /* CoreTester.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CoreTester.app;
+			remoteRef = B40C06E22C9864D40078187B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B40C06E52C9864D40078187B /* CoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreTests.xctest;
+			remoteRef = B40C06E42C9864D40078187B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B40C06E72C9864D40078187B /* TestsFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TestsFoundation.framework;
+			remoteRef = B40C06E62C9864D40078187B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
