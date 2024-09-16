@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
 struct HorizonTabView: View {
@@ -38,6 +39,7 @@ struct HorizonTabView: View {
                     Label("Portfolio", systemImage: "newspaper")
                 }
         }
+        .tint(.textDarkest)
     }
 }
 
