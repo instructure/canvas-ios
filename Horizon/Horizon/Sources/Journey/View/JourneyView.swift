@@ -20,7 +20,9 @@ import SwiftUI
 
 struct JourneyView: View {
     var body: some View {
-        Text("Hello, Journey!")
+        BaseHorizonScreen {
+            Text("Hello, Journey!")
+        }
     }
 }
 

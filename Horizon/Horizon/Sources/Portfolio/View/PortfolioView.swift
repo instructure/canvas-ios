@@ -20,7 +20,9 @@ import SwiftUI
 
 struct PortfolioView: View {
     var body: some View {
-        Text("Hello, Portfolio!")
+        BaseHorizonScreen {
+            Text("Hello, Portfolio!")
+        }
     }
 }
 

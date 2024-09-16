@@ -27,42 +27,44 @@ struct ProgramsView: View {
     }
 
     var body: some View {
-        InstUI.BaseScreen(
-            state: viewModel.state,
-            config: .init(refreshable: false)
-        ) { proxy in
-            VStack(alignment: .leading, spacing: 0) {
-                SectionTitleView(title: "your programs")
-                LargeTitleView(title: viewModel.title)
-                    .padding(.bottom, 4)
-                BodyTextView(title: viewModel.institutionName)
-                    .padding(.bottom, 4)
-                BodyTextView(title: viewModel.targetCompletion)
-                    .padding(.bottom, 12)
+        BaseHorizonScreen {
+            InstUI.BaseScreen(
+                state: viewModel.state,
+                config: .init(refreshable: false)
+            ) { proxy in
+                VStack(alignment: .leading, spacing: 0) {
+                    SectionTitleView(title: "your programs")
+                    LargeTitleView(title: viewModel.title)
+                        .padding(.bottom, 4)
+                    BodyTextView(title: viewModel.institutionName)
+                        .padding(.bottom, 4)
+                    BodyTextView(title: viewModel.targetCompletion)
+                        .padding(.bottom, 12)
 
-                Button {
-                    print("change pacing tapped")
-                } label: {
-                    Text("Change pacing")
-                        .font(.regular16)
-                        .padding(.horizontal, 8)
-                        .frame(minHeight: 38)
-                        .background(Color.backgroundLight)
-                        .foregroundColor(Color.textDarkest)
-                        .cornerRadius(3)
+                    Button {
+                        print("change pacing tapped")
+                    } label: {
+                        Text("Change pacing")
+                            .font(.regular16)
+                            .padding(.horizontal, 8)
+                            .frame(minHeight: 38)
+                            .background(Color.backgroundLight)
+                            .foregroundColor(Color.textDarkest)
+                            .cornerRadius(3)
+                    }
+                    CertificateProgressBar(
+                        maxWidth: proxy.size.width,
+                        progress: viewModel.progress,
+                        progressString: viewModel.progressString
+                    )
+                    whatsNextModuleView(proxy: proxy)
+                    weeksView
                 }
-                CertificateProgressBar(
-                    maxWidth: proxy.size.width,
-                    progress: viewModel.progress,
-                    progressString: viewModel.progressString
-                )
-                whatsNextModuleView(proxy: proxy)
-                weeksView
+                .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 16)
+            .background(Color.backgroundLightest)
         }
-        .padding(.horizontal, 16)
-        .background(Color.backgroundLightest)
     }
 
     @ViewBuilder
