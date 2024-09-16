@@ -25,6 +25,7 @@ class AttendanceViewControllerTests: TeacherTestCase {
     let context = Context(.course, id: "1")
     var controller: AttendanceViewController!
     var navigation: UINavigationController!
+    let courseColor = "#008EE2"
 
     override func setUp() {
         super.setUp()
@@ -38,7 +39,7 @@ class AttendanceViewControllerTests: TeacherTestCase {
         navigation = UINavigationController(rootViewController: controller)
 
         api.mock(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
-            context.canvasContextID: "#008EE2" // electric
+            context.canvasContextID: courseColor
         ]))
         api.mock(GetCourseRequest(courseID: context.id), value: .make())
         api.mock(GetCourseSectionsRequest(courseID: context.id, perPage: 100), value: [
@@ -66,7 +67,10 @@ class AttendanceViewControllerTests: TeacherTestCase {
 
     func testStatusDisplay() {
         loadView()
-        XCTAssertEqual(controller.navigationController?.navigationBar.barTintColor?.hexString, UIColor(hexString: "#008EE2")!.ensureContrast(against: .backgroundLightest).hexString)
+        XCTAssertEqual(
+            controller.navigationController?.navigationBar.barTintColor?.hexString,
+            UIColor(hexString: courseColor)!.resolvedColor(with: .light).darkenToEnsureContrast(against: .white).hexString
+        )
         XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
         RunLoop.main.run(until: Date() + 1)

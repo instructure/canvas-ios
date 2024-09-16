@@ -73,7 +73,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
                 env.router.route(to: url, from: controller, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             }
         } label: {
-            Image.settingsLine.foregroundColor(.textLightest)
+            Image.settingsLine.foregroundColor(.white)
         }
         .accessibility(label: Text("Edit course settings", bundle: .core))
     }

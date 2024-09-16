@@ -24,7 +24,7 @@ class DynamicButtonTests: XCTestCase {
         let view = DynamicButton()
         view.backgroundColorName = "not a color name"
         XCTAssertNil(view.backgroundColor)
-        view.backgroundColorName = "electric"
+        view.backgroundColorName = "backgroundInfo"
         XCTAssertEqual(view.backgroundColor, .backgroundInfo)
     }
 
@@ -32,8 +32,8 @@ class DynamicButtonTests: XCTestCase {
         let view = DynamicButton()
         view.borderColorName = "not a color name"
         XCTAssertEqual(view.layer.borderWidth, 0)
-        view.borderColorName = "electric"
-        XCTAssertEqual(view.layer.borderColor, UIColor.textInfo.cgColor)
+        view.borderColorName = "borderInfo"
+        XCTAssertEqual(view.layer.borderColor, UIColor.borderInfo.cgColor)
         XCTAssertEqual(view.layer.borderWidth, 0.5)
     }
 

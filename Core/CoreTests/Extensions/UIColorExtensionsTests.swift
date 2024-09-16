@@ -88,6 +88,6 @@ class UIColorExtensionsTests: XCTestCase {
         var sessionDefaults = SessionDefaults.fallback
         sessionDefaults.interfaceStyle = .dark
         AppEnvironment.shared.userDefaults = sessionDefaults
-        XCTAssertEqual(UIColor.backgroundLightest.hexString, "#121212")
+        XCTAssertEqual(UIColor.backgroundLightest.hexString, "#0f1a21")
     }
 }
