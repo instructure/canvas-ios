@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,16 +13,23 @@
 		0F148FA2282D9705F7B530D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2080A9B6DE0E54D41F56D23 /* Assets.xcassets */; };
 		12D2FC8105E779F28DCB53DC /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCE8E17C0CFC950BFFA0BA /* PortfolioView.swift */; };
 		1691500F67A901B2648558A4 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D45892E09EF185F11CE558C /* DashboardView.swift */; };
+		230F8C9955622F15628A451A /* BodyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433907CE398C941DC38F12D /* BodyTextView.swift */; };
+		256C0F2B20ADE76D83ADBF6A /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0AD9FDC99C9A599145CF29 /* BundleExtension.swift */; };
+		25BC7BF52877E4CEBD8C8D98 /* SmallBodyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F481A07061A75DB9DA71F2A /* SmallBodyTextView.swift */; };
+		41071F29A25B622A02D5FBF4 /* ExpandingWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285EE0218E337D7DE5E0EDE7 /* ExpandingWeekView.swift */; };
 		42EFC488B30BA11F6C8712B2 /* CertificateProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A984653109DFC0BF452D97 /* CertificateProgressBar.swift */; };
 		487BDFD35377EDDC66CD5760 /* ProgramsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B18595B23681D3B7C88280 /* ProgramsAssembly.swift */; };
+		4A4660B74E4152A1A15FC81B /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78D555464129381DDA56414 /* LargeTitleView.swift */; };
 		554CEC2BA05BDC7EA0F54C28 /* JourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38E9F3B29EC10ADDB1B4044 /* JourneyView.swift */; };
 		6857FA660906F8D64DEA7AF4 /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = 3353F2BA79620AE7174A5B05 /* Heap */; };
+		7A48964EDC4A99C5B240E741 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9024C8B8371FFD58CDB96BE3 /* SectionTitleView.swift */; };
 		9FAF94301C5721716CC618F8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2872865BC52D4DC11EDEDDB7 /* FirebaseCrashlytics */; };
+		A69C82262B5F34539FB4AA69 /* ProgramsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904D47EFFBE5AD6909747D50 /* ProgramsViewModel.swift */; };
 		AC65D230D896B3CEEB8C7AE5 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 6C49041BE2282B9B33D84838 /* FirebaseRemoteConfig */; };
-		B44EF7582C9444ED001658B3 /* ProgramItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44EF7572C9444ED001658B3 /* ProgramItemView.swift */; };
-		B44EF7632C9450AB001658B3 /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44EF7622C9450AB001658B3 /* LargeTitleView.swift */; };
-		B44EF7652C9450E8001658B3 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44EF7642C9450E8001658B3 /* SectionTitleView.swift */; };
+		B31A26946CE36BEE0E0061F2 /* HorizonTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB054A404352C7C8A77807BF /* HorizonTabBarController.swift */; };
+		B76808FFC214FDC3E3A75D3D /* ProgramItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112D24B4A689BAFEE83BEC49 /* ProgramItemView.swift */; };
 		BC126521459D42362C5AD40C /* HorizonTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3129D45C0188393474998B5D /* HorizonTabView.swift */; };
+		C6C76A133C4BD4D7C23F17D5 /* BaseHorizonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F81D2F52A13985AA85C9322 /* BaseHorizonScreen.swift */; };
 		CD1792D6B7B30BBA298B365E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */; };
 		CEF9056D292D329DB92392CD /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 22E1B76C3FAF2281B5810EC1 /* Localizable.xcstrings */; };
 		CF0EC766922A1228268E9FAE /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A0268156243339BBE44E1A8F /* FirebaseRemoteConfigSwift */; };
@@ -49,27 +56,6 @@
 			remoteGlobalIDString = B90FCF66245CD7327BEE2CBF;
 			remoteInfo = Core;
 		};
-		B44EF75C2C9444EE001658B3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F475EC6814456E8041E96A1A /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
-			remoteInfo = CoreTester;
-		};
-		B44EF75E2C9444EE001658B3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F475EC6814456E8041E96A1A /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
-			remoteInfo = CoreTests;
-		};
-		B44EF7602C9444EE001658B3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F475EC6814456E8041E96A1A /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = 0F2B4D06F2ACF62293B119C4;
-			remoteInfo = TestsFoundation;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -88,17 +74,24 @@
 
 /* Begin PBXFileReference section */
 		0FDECB17FFD0307D036BC4B3 /* DashboardAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardAssembly.swift; sourceTree = "<group>"; };
+		112D24B4A689BAFEE83BEC49 /* ProgramItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramItemView.swift; sourceTree = "<group>"; };
 		22E1B76C3FAF2281B5810EC1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		2433907CE398C941DC38F12D /* BodyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTextView.swift; sourceTree = "<group>"; };
+		285EE0218E337D7DE5E0EDE7 /* ExpandingWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingWeekView.swift; sourceTree = "<group>"; };
 		3129D45C0188393474998B5D /* HorizonTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonTabView.swift; sourceTree = "<group>"; };
+		3F81D2F52A13985AA85C9322 /* BaseHorizonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHorizonScreen.swift; sourceTree = "<group>"; };
 		44A984653109DFC0BF452D97 /* CertificateProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateProgressBar.swift; sourceTree = "<group>"; };
 		4620B03C4F5EAC1148E638B5 /* PortfolioAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioAssembly.swift; sourceTree = "<group>"; };
 		60A47E05ED8A779B909585C6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9024C8B8371FFD58CDB96BE3 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
+		904D47EFFBE5AD6909747D50 /* ProgramsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsViewModel.swift; sourceTree = "<group>"; };
 		9BDA1DDCAA5D9E94487D061D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9D45892E09EF185F11CE558C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		9F481A07061A75DB9DA71F2A /* SmallBodyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBodyTextView.swift; sourceTree = "<group>"; };
 		A38E9F3B29EC10ADDB1B4044 /* JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyView.swift; sourceTree = "<group>"; };
-		B44EF7572C9444ED001658B3 /* ProgramItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramItemView.swift; sourceTree = "<group>"; };
-		B44EF7622C9450AB001658B3 /* LargeTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitleView.swift; sourceTree = "<group>"; };
-		B44EF7642C9450E8001658B3 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
+		AB054A404352C7C8A77807BF /* HorizonTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonTabBarController.swift; sourceTree = "<group>"; };
+		B78D555464129381DDA56414 /* LargeTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitleView.swift; sourceTree = "<group>"; };
+		CD0AD9FDC99C9A599145CF29 /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		DB3E81FF4E24CAB23DD52DD2 /* JourneyAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyAssembly.swift; sourceTree = "<group>"; };
 		E29E71BBEA69FD72D156BBB6 /* ProgramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsView.swift; sourceTree = "<group>"; };
 		E2B18595B23681D3B7C88280 /* ProgramsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsAssembly.swift; sourceTree = "<group>"; };
@@ -139,10 +132,14 @@
 		0799A36714119557806E6EBF /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				3F81D2F52A13985AA85C9322 /* BaseHorizonScreen.swift */,
+				2433907CE398C941DC38F12D /* BodyTextView.swift */,
 				44A984653109DFC0BF452D97 /* CertificateProgressBar.swift */,
-				B44EF7572C9444ED001658B3 /* ProgramItemView.swift */,
-				B44EF7622C9450AB001658B3 /* LargeTitleView.swift */,
-				B44EF7642C9450E8001658B3 /* SectionTitleView.swift */,
+				285EE0218E337D7DE5E0EDE7 /* ExpandingWeekView.swift */,
+				B78D555464129381DDA56414 /* LargeTitleView.swift */,
+				112D24B4A689BAFEE83BEC49 /* ProgramItemView.swift */,
+				9024C8B8371FFD58CDB96BE3 /* SectionTitleView.swift */,
+				9F481A07061A75DB9DA71F2A /* SmallBodyTextView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -160,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				E29E71BBEA69FD72D156BBB6 /* ProgramsView.swift */,
+				904D47EFFBE5AD6909747D50 /* ProgramsViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -206,6 +204,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		948BA8695652021FBC4A0BB3 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				CD0AD9FDC99C9A599145CF29 /* BundleExtension.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		94A59E67C9F1BB6E313DBA26 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,7 +231,9 @@
 				00BE12640B30472AB1C253F6 /* Journey */,
 				3350F8DD768D9A8EA6605A79 /* Portfolio */,
 				09314556199EB217DC2AD7EC /* Programs */,
+				948BA8695652021FBC4A0BB3 /* Util */,
 				F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */,
+				AB054A404352C7C8A77807BF /* HorizonTabBarController.swift */,
 				3129D45C0188393474998B5D /* HorizonTabView.swift */,
 			);
 			path = Sources;
@@ -244,9 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				7DED7199B426F89179546237 /* Core.framework */,
-				B44EF75D2C9444EE001658B3 /* CoreTester.app */,
-				B44EF75F2C9444EE001658B3 /* CoreTests.xctest */,
-				B44EF7612C9444EE001658B3 /* TestsFoundation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -360,27 +365,6 @@
 			remoteRef = 287762C99D46AE8961068231 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B44EF75D2C9444EE001658B3 /* CoreTester.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = CoreTester.app;
-			remoteRef = B44EF75C2C9444EE001658B3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B44EF75F2C9444EE001658B3 /* CoreTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CoreTests.xctest;
-			remoteRef = B44EF75E2C9444EE001658B3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B44EF7612C9444EE001658B3 /* TestsFoundation.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = TestsFoundation.framework;
-			remoteRef = B44EF7602C9444EE001658B3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -424,20 +408,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD1792D6B7B30BBA298B365E /* AppDelegate.swift in Sources */,
+				C6C76A133C4BD4D7C23F17D5 /* BaseHorizonScreen.swift in Sources */,
+				230F8C9955622F15628A451A /* BodyTextView.swift in Sources */,
+				256C0F2B20ADE76D83ADBF6A /* BundleExtension.swift in Sources */,
 				42EFC488B30BA11F6C8712B2 /* CertificateProgressBar.swift in Sources */,
-				B44EF7582C9444ED001658B3 /* ProgramItemView.swift in Sources */,
 				EA4FCD374CE3636C98D911CE /* DashboardAssembly.swift in Sources */,
 				1691500F67A901B2648558A4 /* DashboardView.swift in Sources */,
-				B44EF7632C9450AB001658B3 /* LargeTitleView.swift in Sources */,
 				F12518EB8EF6392555A32B32 /* DashboardViewModel.swift in Sources */,
+				41071F29A25B622A02D5FBF4 /* ExpandingWeekView.swift in Sources */,
+				B31A26946CE36BEE0E0061F2 /* HorizonTabBarController.swift in Sources */,
 				BC126521459D42362C5AD40C /* HorizonTabView.swift in Sources */,
-				B44EF7652C9450E8001658B3 /* SectionTitleView.swift in Sources */,
 				DC37D94872F53A48BBB0C06F /* JourneyAssembly.swift in Sources */,
 				554CEC2BA05BDC7EA0F54C28 /* JourneyView.swift in Sources */,
+				4A4660B74E4152A1A15FC81B /* LargeTitleView.swift in Sources */,
 				F8C046CDEAF69D83094CE7B9 /* PortfolioAssembly.swift in Sources */,
 				12D2FC8105E779F28DCB53DC /* PortfolioView.swift in Sources */,
+				B76808FFC214FDC3E3A75D3D /* ProgramItemView.swift in Sources */,
 				487BDFD35377EDDC66CD5760 /* ProgramsAssembly.swift in Sources */,
 				00EC5A00AAB615464F3A6B69 /* ProgramsView.swift in Sources */,
+				A69C82262B5F34539FB4AA69 /* ProgramsViewModel.swift in Sources */,
+				7A48964EDC4A99C5B240E741 /* SectionTitleView.swift in Sources */,
+				25BC7BF52877E4CEBD8C8D98 /* SmallBodyTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

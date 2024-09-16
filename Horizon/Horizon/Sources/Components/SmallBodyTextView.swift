@@ -17,9 +17,3 @@
 //
 
 import Foundation
-
-final class ProgramsAssembly {
-    static func makeView() -> ProgramsView {
-        ProgramsView(viewModel: .init())
-    }
-}

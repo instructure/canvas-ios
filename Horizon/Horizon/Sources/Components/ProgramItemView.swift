@@ -30,10 +30,8 @@ struct ProgramItemView: View {
         VStack(alignment: .leading, spacing: 4) {
             icon
                 .frame(width: 18, height: 18)
-            Text(title)
-                .font(.regular16)
+            BodyTextView(title: title)
                 .lineLimit(2)
-                .foregroundStyle(Color.textDarkest)
                 .padding(.top, 4)
             Text(duration.uppercased())
                 .font(.regular12)

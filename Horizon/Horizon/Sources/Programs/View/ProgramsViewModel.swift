@@ -16,10 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import Foundation
 
-final class ProgramsAssembly {
-    static func makeView() -> ProgramsView {
-        ProgramsView(viewModel: .init())
-    }
+final class ProgramsViewModel: ObservableObject {
+    // MARK: - Outputs
+
+    @Published private(set) var state: InstUI.ScreenState = .data(loadingOverlay: false)
+    @Published private(set) var title: String = "Biology certificate"
+    @Published private(set) var progressString: String = "75%"
+    @Published private(set) var progress: Double = 0.75
+    @Published private(set) var institutionName: String = "Community College"
+    @Published private(set) var targetCompletion: String = "Target Completion: 2024/11/27"
+
+    @Published private(set) var modules: [Module] = []
+    
+    // MARK: - Init
+
+    init() {}
 }

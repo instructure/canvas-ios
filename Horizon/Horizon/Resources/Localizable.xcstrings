@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "20 MINS" : {
+
+    },
+    "Change pacing" : {
+
+    },
     "Dashboard" : {
 
     },
@@ -10,16 +16,25 @@
     "Hello, Portfolio!" : {
 
     },
-    "Hello, Programs!" : {
+    "Journey" : {
 
     },
-    "Journey" : {
+    "One" : {
 
     },
     "Portfolio" : {
 
     },
     "Programs" : {
+
+    },
+    "Start" : {
+
+    },
+    "Three" : {
+
+    },
+    "Two" : {
 
     }
   },
