@@ -26,14 +26,20 @@ struct ExpandingWeekView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            HStack(alignment: .bottom) {
-                SectionTitleView(title: title.uppercased())
-                Spacer()
-                Image(systemName: "chevron.down")
-                    .frame(width: 18, height: 18)
-                    .rotationEffect(isExpanded ? .degrees(-180) : .degrees(0))
+            Button {
+                isExpanded.toggle()
+            } label: {
+                HStack(alignment: .bottom) {
+                    SectionTitleView(title: title.uppercased())
+                    Spacer()
+                    Image(systemName: "chevron.down")
+                        .tint(Color.textDark)
+                        .frame(width: 18, height: 18)
+                        .rotationEffect(isExpanded ? .degrees(-180) : .degrees(0))
 
+                }
             }
+
             if isExpanded {
                 HStack {
                     Text("One")
@@ -42,7 +48,7 @@ struct ExpandingWeekView: View {
                 }
             }
         }
-        .padding(.horizontal, 16)
+        .animation(.easeOut, value: isExpanded)
     }
 }
 
