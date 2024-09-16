@@ -23,7 +23,6 @@ struct DashboardCourseCardView: View {
     let hideColorOverlay: Bool
     let showGrade: Bool
     let width: CGFloat
-    let contextColor: UIColor
     /** Wide layout puts the course image to the left of the cell while the course name and code will be next to it on the right. */
     let isWideLayout: Bool
     @Binding var isAvailable: Bool
@@ -40,7 +39,7 @@ struct DashboardCourseCardView: View {
 
     var body: some View {
         PrimaryButton(isAvailable: $isAvailable) {
-            env.router.route(to: "/courses/\(courseCard.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
+            env.router.route(to: "/courses/\(courseCard.id)?contextColor=\(courseCard.color.hexString.dropFirst())", from: controller)
         } label: {
             ZStack(alignment: .topLeading) {
                 if isWideLayout {
@@ -155,7 +154,7 @@ struct DashboardCourseCardView: View {
 
     private var kebabIcon: some View {
         Image.moreSolid
-            .foregroundColor(Color(contextColor))
+            .foregroundColor(Color(courseCard.color))
             .background(
                 Circle()
                     .fill(Color.backgroundLightest)
@@ -174,7 +173,7 @@ struct DashboardCourseCardView: View {
                     Text(course.displayGrade).font(.semibold14)
                 }
             }
-            .foregroundColor(Color(contextColor))
+            .foregroundColor(Color(courseCard.color))
             .padding(.horizontal, 6).frame(height: 20)
             .background(RoundedRectangle(cornerRadius: 10).fill(Color.backgroundLightest))
             .frame(maxWidth: 120, alignment: .leading)
@@ -222,7 +221,6 @@ struct CourseCard_Previews: PreviewProvider {
                        hideColorOverlay: false,
                        showGrade: true,
                        width: 200,
-                       contextColor: .electric,
                        isWideLayout: false,
                                     isAvailable: .constant(true))
             .frame(width: 200, height: 160)
@@ -233,7 +231,6 @@ struct CourseCard_Previews: PreviewProvider {
                        hideColorOverlay: false,
                        showGrade: true,
                        width: 400,
-                       contextColor: .electric,
                        isWideLayout: false,
                        isAvailable: .constant(true))
             .frame(width: 400, height: 160)
@@ -244,7 +241,6 @@ struct CourseCard_Previews: PreviewProvider {
                        hideColorOverlay: false,
                        showGrade: true,
                        width: 900,
-                       contextColor: .electric,
                        isWideLayout: true,
                        isAvailable: .constant(true))
             .frame(width: 900, height: 100)

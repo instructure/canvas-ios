@@ -47,6 +47,7 @@ public final class Group: NSManagedObject, WriteableModel {
     }
 
     public var color: UIColor { contextColor?.color ?? .ash }
+    /// Ensurecontrast is slow to calculate at each SwiftUI render pass so we have to cache it
     public lazy var dashboardCardColor = Color(color.ensureContrast(against: .white))
 
     public var isActive: Bool {

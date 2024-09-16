@@ -17,19 +17,22 @@
 //
 
 import SwiftUI
+import Combine
 
 struct RichContentEditor: UIViewControllerRepresentable {
-    let placeholder: String
-    let a11yLabel: String
-    @Binding var html: String
-    let context: Context
-    let uploadTo: FileUploadContext
-    @Binding var height: CGFloat
-    @Binding var canSubmit: Bool
-    @Binding var error: Error?
+    private let placeholder: String
+    private let a11yLabel: String
+    @Binding private var html: String
+    private let uploadParameters: RichContentEditorUploadParameters
+    @Binding private var height: CGFloat
+    @Binding private var canSubmit: Bool
+    @Binding private var isUploading: Bool
+    @Binding private var error: Error?
+    private let onFocus: (() -> Void)?
+    private let focusTrigger: AnyPublisher<Void, Never>?
 
-    class Coordinator: RichContentEditorDelegate, CoreWebViewSizeDelegate {
-        let view: RichContentEditor
+    final class Coordinator: RichContentEditorDelegate, CoreWebViewSizeDelegate {
+        private let view: RichContentEditor
         var lastHTML: String = ""
 
         init(_ view: RichContentEditor) {
@@ -44,8 +47,16 @@ struct RichContentEditor: UIViewControllerRepresentable {
             }
         }
 
+        func rce(_ editor: RichContentEditorViewController, isUploading: Bool) {
+            view.isUploading = isUploading
+        }
+
         func rce(_ editor: RichContentEditorViewController, didError error: Error) {
             view.error = error
+        }
+
+        func rceDidFocus(_ editor: RichContentEditorViewController) {
+            view.onFocus?()
         }
 
         func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat) {
@@ -53,27 +64,62 @@ struct RichContentEditor: UIViewControllerRepresentable {
         }
     }
 
+    init(
+        placeholder: String,
+        a11yLabel: String,
+        html: Binding<String>,
+        uploadParameters: RichContentEditorUploadParameters,
+        height: Binding<CGFloat>,
+        canSubmit: Binding<Bool> = .constant(true),
+        isUploading: Binding<Bool> = .constant(false),
+        error: Binding<Error?>,
+        onFocus: (() -> Void)? = nil,
+        focusTrigger: AnyPublisher<Void, Never>? = nil
+    ) {
+        self.placeholder = placeholder
+        self.a11yLabel = a11yLabel
+        self._html = html
+        self.uploadParameters = uploadParameters
+        self._height = height
+        self._canSubmit = canSubmit
+        self._isUploading = isUploading
+        self._error = error
+        self.onFocus = onFocus
+        self.focusTrigger = focusTrigger
+    }
+
     func makeCoordinator() -> Coordinator {
         return Coordinator(self)
     }
 
     func makeUIViewController(context: Self.Context) -> RichContentEditorViewController {
-        let uiViewController = RichContentEditorViewController.create(context: self.context, uploadTo: uploadTo)
+        let uiViewController = RichContentEditorViewController.create(
+            context: uploadParameters.context,
+            uploadTo: uploadParameters.uploadTo
+        )
+        uiViewController.fileUploadBaseURL = uploadParameters.baseUrl
         uiViewController.webView.autoresizesHeight = true
+        uiViewController.delegate = context.coordinator
+        uiViewController.webView.sizeDelegate = context.coordinator
+
         // Prevent bad adjustedContentInset from adding unnecessary scrollbars
         NotificationCenter.default.removeObserver(uiViewController.webView, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(uiViewController.webView, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.removeObserver(uiViewController.webView, name: UIResponder.keyboardWillHideNotification, object: nil)
+
         return uiViewController
     }
 
     func updateUIViewController(_ uiViewController: RichContentEditorViewController, context: Self.Context) {
-        uiViewController.delegate = context.coordinator
-        uiViewController.webView.sizeDelegate = context.coordinator
         uiViewController.placeholder = placeholder
         uiViewController.a11yLabel = a11yLabel
+
         if context.coordinator.lastHTML != html {
             uiViewController.setHTML(html)
+        }
+
+        if let focusTrigger {
+            uiViewController.subscribeToFocusTrigger(focusTrigger)
         }
     }
 }
@@ -84,16 +130,17 @@ struct RichContentEditorView_Previews: PreviewProvider {
         @State var html: String = "Edit Me!"
         @State var height: CGFloat = 200
         @State var canSubmit: Bool = false
+        @State var isUploading: Bool = false
         @State var error: Error?
         var body: some View {
             RichContentEditor(
                 placeholder: "Placeholder",
                 a11yLabel: "Editor",
                 html: $html,
-                context: .course("1"),
-                uploadTo: .myFiles,
+                uploadParameters: .init(context: .course("1")),
                 height: $height,
                 canSubmit: $canSubmit,
+                isUploading: $isUploading,
                 error: $error
             ).frame(minHeight: 60, idealHeight: max(60, height))
         }

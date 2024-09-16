@@ -244,6 +244,7 @@ const editor = window.editor = {
         selection.removeAllRanges()
         selection.addRange(range)
         content.focus()
+        webkit.messageHandlers.focused.postMessage('')
     },
 
     getSelectionBoundingRect () {

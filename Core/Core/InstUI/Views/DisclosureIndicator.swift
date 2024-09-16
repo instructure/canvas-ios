@@ -21,8 +21,6 @@ import SwiftUI
 extension InstUI {
 
     public struct DisclosureIndicator: View {
-        static let leadingPadding: CGFloat = 12
-
         @ScaledMetric private var uiScale: CGFloat = 1
 
         public var body: some View {
@@ -63,7 +61,7 @@ private struct Cell<Content: View>: View {
                 Text(verbatim: "Some value").textStyle(.cellValue)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 disclosure
-                    .padding(.leading, InstUI.DisclosureIndicator.leadingPadding)
+                    .paddingStyle(.leading, .cellAccessoryPadding)
             }
             .paddingStyle(set: .standardCell)
 
