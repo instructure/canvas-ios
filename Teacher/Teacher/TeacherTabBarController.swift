@@ -55,6 +55,12 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
+    /// When the app was started in light mode and turned to dark the selected color was not updated so we do a force refresh.
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        tabBar.useGlobalNavStyle()
+    }
+
     func coursesTab() -> UIViewController {
         let cardView = CoreHostingController(DashboardContainerView(shouldShowGroupList: false,
                                                                showOnlyTeacherEnrollment: true))

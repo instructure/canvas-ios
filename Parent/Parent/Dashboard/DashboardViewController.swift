@@ -79,7 +79,6 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         studentListHiddenHeight.isActive = true
 
         tabsController.tabBar.useGlobalNavStyle()
-        tabsController.tabBar.isTranslucent = false
         tabsController.delegate = self
         embed(tabsController, in: tabsContainer)
 
@@ -95,6 +94,12 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         if env.userDefaults?.interfaceStyle == nil {
             env.userDefaults?.interfaceStyle = .light
         }
+    }
+
+    /// When the app was started in light mode and turned to dark the selected color was not updated so we do a force refresh.
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        tabsController.tabBar.useGlobalNavStyle()
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -109,13 +109,13 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 ReactiveStore(useCase: GetBrandVariables())
                     .getEntities()
                     .receive(on: RunLoop.main)
-                    .sink(receiveCompletion: { _ in }) { brandVars in
+                    .replaceError(with: [])
+                    .sink { [weak self] brandVars in
                         brandVars.first?.applyBrandTheme()
+                        self?.setTabBarController()
                     }
                     .store(in: &self.subscriptions)
             }
-
-            self.setTabBarController()
         }}
     }
 

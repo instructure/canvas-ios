@@ -25,7 +25,7 @@ struct CourseInvitationCard: View {
     var body: some View {
         HStack(spacing: 0) {
             VStack {
-                Image.invitationLine.foregroundColor(.white)
+                Image.invitationLine.foregroundColor(.textLightest)
                     .padding(.horizontal, 8).padding(.top, 10)
                     .accessibility(hidden: true)
                 Spacer()
@@ -66,7 +66,7 @@ struct CourseInvitationCard: View {
     private var acceptButton: some View {
         Button(action: invitation.accept) {
             Text("Accept", bundle: .core)
-                .font(.semibold16).foregroundColor(.white)
+                .font(.semibold16).foregroundColor(.textLightest)
                 .frame(maxWidth: .infinity, minHeight: 40)
                 .frame(height: invitation.state == .active ? nil : 0)
                 .background(RoundedRectangle(cornerRadius: 4).fill(Color.backgroundSuccess))

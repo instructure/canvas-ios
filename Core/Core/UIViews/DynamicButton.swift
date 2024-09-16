@@ -80,4 +80,18 @@ open class DynamicButton: UIButton {
             tintColor = titleColor(for: state)
         }
     }
+
+    /// Border is set by using `cgColor` which doesn't change when
+    /// the light/dark theme changes so we have to manually force an update.
+    override open func traitCollectionDidChange(
+        _ previousTraitCollection: UITraitCollection?
+    ) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        /// Setting an invalid color will spam "CUICatalog: Invalid asset name supplied: ''" error to the console
+        if borderColorName != "" {
+            let borderColorName = borderColorName
+            self.borderColorName = borderColorName
+        }
+    }
 }
