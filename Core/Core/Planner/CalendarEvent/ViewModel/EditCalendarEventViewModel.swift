@@ -96,7 +96,7 @@ final class EditCalendarEventViewModel: ObservableObject {
         )
     }
 
-    var editConfirmation: ConfirmationViewModel<SeriesModificationType> = .init()
+    var editConfirmation = ConfirmationViewModel<SeriesModificationType>()
 
     // MARK: - Input
 
