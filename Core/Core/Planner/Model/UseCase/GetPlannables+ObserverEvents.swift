@@ -96,15 +96,14 @@ extension GetPlannables {
                     return
                 }
 
-                var codes: [String] = []
+                var contexts: [Context] = []
                 for course in courses {
                     let enrollments = course.enrollments ?? []
                     for enrollment in enrollments where enrollment.associated_user_id?.value == userID {
-                        codes.append(Context(.course, id: course.id.value).canvasContextID)
+                        contexts.append(Context(.course, id: course.id.value))
                     }
                 }
 
-                let contexts = codes.compactMap({ Context(canvasContextID: $0) })
                 promise(.success(contexts))
             }
         }
@@ -164,47 +163,50 @@ extension GetPlannables {
 
 // MARK: - Models
 
-enum ObserverEvent {
-    case calendarEvent(APICalendarEvent)
-    case plannerNote(APIPlannerNote)
+extension GetPlannables {
 
-    var event: APICalendarEvent? {
-        if case .calendarEvent(let event) = self { return event }
-        return nil
+    enum ObserverEvent {
+        case calendarEvent(APICalendarEvent)
+        case plannerNote(APIPlannerNote)
+
+        var event: APICalendarEvent? {
+            if case .calendarEvent(let event) = self { return event }
+            return nil
+        }
+
+        var note: APIPlannerNote? {
+            if case .plannerNote(let note) = self { return note }
+            return nil
+        }
     }
 
-    var note: APIPlannerNote? {
-        if case .plannerNote(let note) = self { return note }
-        return nil
-    }
-}
+    struct EventsRequest {
+        typealias Callback = ([ObserverEvent]?, URLResponse?, Error?) -> Void
 
-struct EventsRequest {
-    typealias Callback = ([ObserverEvent]?, URLResponse?, Error?) -> Void
-
-    let env: AppEnvironment
-    let callback: Callback
-}
-
-private struct EventsResponse {
-    static let empty = EventsResponse(events: nil, response: nil, error: nil)
-
-    var events: [ObserverEvent]?
-    let response: URLResponse?
-    let error: Error?
-}
-
-struct EventsFailure: Error {
-    struct NoData: Error { }
-
-    let response: URLResponse?
-    let error: Error
-
-    static func noData(given response: URLResponse?) -> EventsFailure {
-        return EventsFailure(response: response, error: NoData())
+        let env: AppEnvironment
+        let callback: Callback
     }
 
-    static func error(_ error: Error, response: URLResponse?) -> EventsFailure {
-        return EventsFailure(response: response, error: error)
+     private struct EventsResponse {
+        static let empty = EventsResponse(events: nil, response: nil, error: nil)
+
+        var events: [ObserverEvent]?
+        let response: URLResponse?
+        let error: Error?
+    }
+
+     private struct EventsFailure: Error {
+        struct NoData: Error { }
+
+        let response: URLResponse?
+        let error: Error
+
+        static func noData(given response: URLResponse?) -> EventsFailure {
+            return EventsFailure(response: response, error: NoData())
+        }
+
+        static func error(_ error: Error, response: URLResponse?) -> EventsFailure {
+            return EventsFailure(response: response, error: error)
+        }
     }
 }

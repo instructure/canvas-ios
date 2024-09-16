@@ -95,13 +95,7 @@ extension APIPlannerNote: PlannableItem {
     public var htmlURL: URL? { nil }
 
     public var context: Context? {
-        if let courseID = course_id {
-            return Context(.course, id: courseID)
-        }
-        if let userId = user_id {
-            return Context(.user, id: userId)
-        }
-        return nil
+        Context(.course, id: course_id) ?? Context(.user, id: user_id)
     }
 
     public var contextName: String? { nil }
@@ -113,18 +107,13 @@ extension APIPlannerNote: PlannableItem {
 
 public class GetPlannables: UseCase {
     public typealias Model = Plannable
+
     public struct Response: Codable, Equatable {
         static let empty = Response(plannables: [], calendarEvents: [], plannerNotes: [])
-        static func make(
-            plannables: [APIPlannable]? = nil,
-            calendarEvents: [APICalendarEvent]? = nil,
-            plannerNotes: [APIPlannerNote]? = nil) -> Self {
-            return Response(plannables: plannables, calendarEvents: calendarEvents, plannerNotes: plannerNotes)
-        }
 
-        let plannables: [APIPlannable]?
-        let calendarEvents: [APICalendarEvent]?
-        let plannerNotes: [APIPlannerNote]?
+        var plannables: [APIPlannable]?
+        var calendarEvents: [APICalendarEvent]?
+        var plannerNotes: [APIPlannerNote]?
     }
 
     var userID: String?
@@ -133,8 +122,8 @@ public class GetPlannables: UseCase {
     var contextCodes: [String]?
     var filter: String = ""
 
-    private(set) var observerEvents = PassthroughSubject<EventsRequest, Never>()
-    var subscriptions = [AnyCancellable]()
+    let observerEvents = PassthroughSubject<EventsRequest, Never>()
+    var subscriptions = Set<AnyCancellable>()
 
     public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String]? = nil, filter: String = "") {
         self.userID = userID
@@ -187,10 +176,10 @@ public class GetPlannables: UseCase {
             getObserverEvents(env: environment) { response, urlResponse, error in
                 let events = response?.compactMap({ $0.event })
                 let notes = response?.compactMap({ $0.note })
-                completionHandler(.make(calendarEvents: events, plannerNotes: notes), urlResponse, error)
+                completionHandler(.init(calendarEvents: events, plannerNotes: notes), urlResponse, error)
             }
 
-        default:
+        case .student:
             let request = GetPlannablesRequest(
                 userID: userID,
                 startDate: startDate,
@@ -199,8 +188,10 @@ public class GetPlannables: UseCase {
                 filter: filter
             )
             environment.api.exhaust(request) { response, urlResponse, error in
-                completionHandler(.make(plannables: response), urlResponse, error)
+                completionHandler(.init(plannables: response), urlResponse, error)
             }
+        case .none:
+            break
         }
     }
 

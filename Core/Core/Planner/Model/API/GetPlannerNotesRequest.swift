@@ -19,44 +19,38 @@
 import Foundation
 
 /// https://canvas.instructure.com/doc/api/planner.html#method.planner_notes.index
-public struct GetPlannerNotesRequest: APIRequestable {
+struct GetPlannerNotesRequest: APIRequestable {
     public typealias Response = [APIPlannerNote]
 
     public var path: String { "planner_notes" }
 
-    public let contexts: [Context]?
-    public let startDate: Date?
-    public let endDate: Date?
-    public let perPage: Int
+    let contexts: [Context]?
+    let startDate: Date?
+    let endDate: Date?
+    let perPage: Int
+    let calendar: Calendar
 
     public var useExtendedPercentEncoding: Bool { true }
-    private static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        return formatter
-    }()
 
     public init(
         contexts: [Context]? = nil,
-        startDate: Date = Clock.now.addYears(-2),
-        endDate: Date = Clock.now.addYears(1),
+        startDate: Date,
+        endDate: Date,
         perPage: Int = 100,
-        calendar: Calendar = .current,
-        timeZone: TimeZone = .current
+        calendar: Calendar = Cal.currentCalendar
     ) {
         self.contexts = contexts
         self.startDate = startDate
         self.endDate = endDate
-        Self.dateFormatter.calendar = calendar
-        Self.dateFormatter.timeZone = timeZone
         self.perPage = perPage
+        self.calendar = calendar
     }
 
     public var query: [APIQueryItem] {
         var query: [APIQueryItem] = [
             .perPage(perPage),
-            .optionalValue("start_date", createDateString(from: startDate)),
-            .optionalValue("end_date", createDateString(from: endDate))
+            .optionalValue("start_date", formatString(from: startDate)),
+            .optionalValue("end_date", formatString(from: endDate))
         ]
 
         if let contexts = contexts {
@@ -66,11 +60,25 @@ public struct GetPlannerNotesRequest: APIRequestable {
         return query
     }
 
-    private func createDateString(from date: Date?) -> String {
-        if let date = date {
-            return Self.dateFormatter.string(from: date)
-        } else {
-            return ""
-        }
+    private func formatString(from date: Date?) -> String {
+        date?.queryParamFormatted(calendar: calendar) ?? ""
+    }
+}
+
+// MARK: - Helpers
+
+private extension Date {
+
+    private static let requestQueryFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        return formatter
+    }()
+
+    func queryParamFormatted(calendar: Calendar) -> String {
+        let formatter = Self.requestQueryFormatter
+        formatter.calendar = calendar
+        formatter.timeZone = calendar.timeZone
+        return formatter.string(from: self)
     }
 }
