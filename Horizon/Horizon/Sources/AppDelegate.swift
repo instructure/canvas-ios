@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         window = UIWindow()
-        window?.rootViewController = CoreHostingController(HorizonTabView())
+        window?.rootViewController = HorizonTabBarController()
         window?.makeKeyAndVisible()
         return true
     }

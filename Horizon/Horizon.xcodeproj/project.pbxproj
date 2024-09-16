@@ -28,7 +28,6 @@
 		AC65D230D896B3CEEB8C7AE5 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 6C49041BE2282B9B33D84838 /* FirebaseRemoteConfig */; };
 		B31A26946CE36BEE0E0061F2 /* HorizonTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB054A404352C7C8A77807BF /* HorizonTabBarController.swift */; };
 		B76808FFC214FDC3E3A75D3D /* ProgramItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112D24B4A689BAFEE83BEC49 /* ProgramItemView.swift */; };
-		BC126521459D42362C5AD40C /* HorizonTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3129D45C0188393474998B5D /* HorizonTabView.swift */; };
 		C6C76A133C4BD4D7C23F17D5 /* BaseHorizonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F81D2F52A13985AA85C9322 /* BaseHorizonScreen.swift */; };
 		CD1792D6B7B30BBA298B365E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */; };
 		CEF9056D292D329DB92392CD /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 22E1B76C3FAF2281B5810EC1 /* Localizable.xcstrings */; };
@@ -99,7 +98,6 @@
 		22E1B76C3FAF2281B5810EC1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2433907CE398C941DC38F12D /* BodyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTextView.swift; sourceTree = "<group>"; };
 		285EE0218E337D7DE5E0EDE7 /* ExpandingWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingWeekView.swift; sourceTree = "<group>"; };
-		3129D45C0188393474998B5D /* HorizonTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonTabView.swift; sourceTree = "<group>"; };
 		3F81D2F52A13985AA85C9322 /* BaseHorizonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHorizonScreen.swift; sourceTree = "<group>"; };
 		44A984653109DFC0BF452D97 /* CertificateProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateProgressBar.swift; sourceTree = "<group>"; };
 		4620B03C4F5EAC1148E638B5 /* PortfolioAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioAssembly.swift; sourceTree = "<group>"; };
@@ -252,7 +250,6 @@
 				948BA8695652021FBC4A0BB3 /* Util */,
 				F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */,
 				AB054A404352C7C8A77807BF /* HorizonTabBarController.swift */,
-				3129D45C0188393474998B5D /* HorizonTabView.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -470,7 +467,6 @@
 				F12518EB8EF6392555A32B32 /* DashboardViewModel.swift in Sources */,
 				41071F29A25B622A02D5FBF4 /* ExpandingWeekView.swift in Sources */,
 				B31A26946CE36BEE0E0061F2 /* HorizonTabBarController.swift in Sources */,
-				BC126521459D42362C5AD40C /* HorizonTabView.swift in Sources */,
 				DC37D94872F53A48BBB0C06F /* JourneyAssembly.swift in Sources */,
 				554CEC2BA05BDC7EA0F54C28 /* JourneyView.swift in Sources */,
 				4A4660B74E4152A1A15FC81B /* LargeTitleView.swift in Sources */,
