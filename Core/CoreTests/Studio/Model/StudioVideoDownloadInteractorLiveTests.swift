@@ -48,19 +48,21 @@ class StudioVideoDownloadInteractorLiveTests: CoreTestCase {
         API.resetMocks(useMocks: false)
     }
 
-    func testDownloadsVideoAndGeneratesPoster() {
+    func testDownloadsVideoAndInvokesPosterGeneration() {
         let mockCacheInteractor = MockStudioVideoCacheInteractor(isVideoDownloadedResult: false)
         let mockCaptionsInteractor = MockStudioCaptionsInteractor()
+        let mockPosterInteractor = MockStudioVideoPosterInteractor()
         let testee = StudioVideoDownloadInteractorLive(
             rootDirectory: workingDirectory,
             captionsInteractor: mockCaptionsInteractor,
-            videoCacheInteractor: mockCacheInteractor
+            videoCacheInteractor: mockCacheInteractor,
+            posterInteractor: mockPosterInteractor
         )
 
         let expectedVideoURL = workingDirectory.appending(path: "\(TestData.mediaID.value)/\(TestData.mediaID.value).mp4")
         XCTAssertEqual(FileManager.default.fileExists(atPath: expectedVideoURL.path()), false)
         let expectedPosterURL = workingDirectory.appending(path: "\(TestData.mediaID.value)/poster.png")
-        XCTAssertEqual(FileManager.default.fileExists(atPath: expectedPosterURL.path()), false)
+        mockPosterInteractor.posterLocationResult = expectedPosterURL
         let expectedCaptionURL = workingDirectory.appending(path: "\(TestData.mediaID.value)/\(TestData.caption.srclang).vtt")
         mockCaptionsInteractor.mockedCaptionURL = expectedCaptionURL
 
@@ -78,7 +80,9 @@ class StudioVideoDownloadInteractorLiveTests: CoreTestCase {
         // THEN
         XCTAssertEqual(mockCaptionsInteractor.receivedCaptionsToWrite, [TestData.caption])
         XCTAssertEqual(FileManager.default.fileExists(atPath: expectedVideoURL.path()), true)
-        XCTAssertEqual(FileManager.default.fileExists(atPath: expectedPosterURL.path()), true)
+        XCTAssertEqual(mockPosterInteractor.receivedCachedFlag, false)
+        XCTAssertEqual(mockPosterInteractor.receivedVideoFile, expectedVideoURL)
+        XCTAssertEqual(mockPosterInteractor.receivedMediaFolder, workingDirectory.appending(path: "\(TestData.mediaID.value)/"))
     }
 
     func testSkipsDownloadWhenVideoIsAlreadyCached() {
@@ -87,7 +91,8 @@ class StudioVideoDownloadInteractorLiveTests: CoreTestCase {
         let testee = StudioVideoDownloadInteractorLive(
             rootDirectory: workingDirectory,
             captionsInteractor: mockCaptionsInteractor,
-            videoCacheInteractor: mockCacheInteractor
+            videoCacheInteractor: mockCacheInteractor,
+            posterInteractor: MockStudioVideoPosterInteractor()
         )
         let expectedVideoURL = workingDirectory.appending(path: "\(TestData.mediaID.value)/\(TestData.mediaID.value).mp4")
 
@@ -133,5 +138,24 @@ class MockStudioVideoCacheInteractor: StudioVideoCacheInteractor {
         receivedVideoLocation = videoLocation
         receivedExpectedSize = expectedSize
         return isVideoDownloadedResult
+    }
+}
+
+class MockStudioVideoPosterInteractor: StudioVideoPosterInteractor {
+    public var posterLocationResult: URL?
+
+    private(set) var receivedCachedFlag: Bool?
+    private(set) var receivedMediaFolder: URL?
+    private(set) var receivedVideoFile: URL?
+
+    func createVideoPosterIfNeeded(
+        isVideoCached: Bool,
+        mediaFolder: URL,
+        videoFile: URL
+    ) -> URL? {
+        receivedCachedFlag = isVideoCached
+        receivedMediaFolder = mediaFolder
+        receivedVideoFile = videoFile
+        return posterLocationResult
     }
 }
