@@ -55,11 +55,9 @@ public final class GradeListViewModel: ObservableObject {
     @Published public var courseName: String?
     @Published public var totalGradeText: String?
     @Published private(set) var gradeHeaderIsVisible = false
-    @Published private(set) var toggleViewIsVisible = true
     @Published private(set) var state: ViewState = .initialLoading
     @Published public var isWhatIfScoreModeOn = false
     @Published public var isWhatIfScoreFlagEnabled = false
-
     public var courseID: String { interactor.courseID }
 
     // MARK: - Input
@@ -172,14 +170,6 @@ public final class GradeListViewModel: ObservableObject {
                 router.route(to: "/courses/\(interactor.courseID)/assignments/\(assignment.id)", from: vc, options: .detail)
             }
             .store(in: &subscriptions)
-
-        offsetPublisher
-            .debounce(for: 0.13, scheduler: DispatchQueue.global(qos: .userInitiated))
-            .map { abs(Int($0)) }
-            .removeDuplicates()
-            .map { $0 >= 140 }
-            .receive(on: DispatchQueue.main)
-            .assign(to: &$toggleViewIsVisible)
     }
 
     func navigateToFilter(viewController: WeakViewController) {

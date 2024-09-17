@@ -28,8 +28,11 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     @ObservedObject private var viewModel: GradeListViewModel
     @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.viewController) private var viewController
-
+    @State private var originalHeaderHeight: CGFloat?
+    @State private var isRefreshTriggered = false
+    @State private var toggleViewIsVisible = true
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     // MARK: - Private properties
@@ -55,72 +58,72 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     public var body: some View {
         GeometryReader { geometry in
-            VStack(spacing: 0) {
-                List {
-                    switch viewModel.state {
-                    case .initialLoading:
-                        loadingView()
+            ZStack(alignment: .top) {
+                VStack(spacing: 0) {
+                    List {
+                        switch viewModel.state {
+                        case .initialLoading:
+                            loadingView()
+                                .listRowSeparator(.hidden)
+                                .frame(height: geometry.size.height)
+                        case let .refreshing(data):
+                            dataView(
+                                data,
+                                isRefreshing: true,
+                                isEmpty: false,
+                                geometry: geometry
+                            )
                             .listRowSeparator(.hidden)
-                            .frame(height: geometry.size.height)
-                    case let .refreshing(data):
-                        dataView(
-                            data,
-                            isRefreshing: true,
-                            isEmpty: false,
-                            geometry: geometry
-                        )
-                        .listRowSeparator(.hidden)
-                    case let .data(data):
-                        dataView(
-                            data,
-                            isRefreshing: false,
-                            isEmpty: false,
-                            geometry: geometry
-                        )
-                        .listRowSeparator(.hidden)
-                    case let .empty(data):
-                        dataView(
-                            data,
-                            isRefreshing: false,
-                            isEmpty: true,
-                            geometry: geometry
-                        )
-                        .listRowSeparator(.hidden)
-                    case .error:
-                        errorView()
+                        case let .data(data):
+                            dataView(
+                                data,
+                                isRefreshing: false,
+                                isEmpty: false,
+                                geometry: geometry
+                            )
                             .listRowSeparator(.hidden)
-                    }
-                }
-                .padding(.top, -10)
-                .background(Color.backgroundLightest)
-                .scrollContentBackground(.hidden)
-                .scrollIndicators(.hidden)
-                .listStyle(.plain)
-                .listSectionSeparatorTint(Color.clear)
-                .listRowSeparator(.hidden)
-                .environment(\.defaultMinListRowHeight, 1)
-                .refreshable {
-                    await withCheckedContinuation { continuation in
-                        viewModel.pullToRefreshDidTrigger.accept {
-                            continuation.resume()
+                        case let .empty(data):
+                            dataView(
+                                data,
+                                isRefreshing: false,
+                                isEmpty: true,
+                                geometry: geometry
+                            )
+                            .listRowSeparator(.hidden)
+                        case .error:
+                            errorView()
+                                .listRowSeparator(.hidden)
                         }
                     }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .background(Color.backgroundLightest)
+                    .scrollContentBackground(.hidden)
+                    .scrollIndicators(.hidden)
+                    .listStyle(.plain)
+                    .listSectionSeparatorTint(Color.clear)
+                    .listRowSeparator(.hidden)
+                    .environment(\.defaultMinListRowHeight, 1)
+                    .padding(.top, isRefreshTriggered ? originalHeaderHeight: 0)
+                    .refreshable {
+                        isRefreshTriggered = true
+                        await withCheckedContinuation { continuation in
+                            viewModel.pullToRefreshDidTrigger.accept {
+                                continuation.resume()
+                                isRefreshTriggered = false
+                            }
+                        }
+                    }
+                    .accessibilityHidden(isScoreEditorPresented)
+                    .background(Color.backgroundLightest)
+                    whatIfScoreEditorView()
+                    Spacer()
                 }
-                .accessibilityHidden(isScoreEditorPresented)
-                .background(Color.backgroundLightest)
-                whatIfScoreEditorView()
-                Spacer()
+                if viewModel.gradeHeaderIsVisible {
+                    courseSummaryView(viewModel.totalGradeText)
+                }
             }
             .background(Color.backgroundLightest)
             .animation(.smooth, value: isScoreEditorPresented)
-        }
-        .safeAreaInset(edge: .top) {
-            if viewModel.gradeHeaderIsVisible {
-                VStack(spacing: 0) {
-                    courseSummaryView(viewModel.totalGradeText)
-                    InstUI.Divider()
-                }
-            }
         }
         .navigationTitle(String(localized: "Grades", bundle: .core))
         .toolbar {
@@ -205,20 +208,26 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func courseSummaryView(_ totalGrade: String?) -> some View {
-        let hasBottomPadding = (totalGrade == nil || !viewModel.toggleViewIsVisible)
+        let hasBottomPadding = (totalGrade == nil || !toggleViewIsVisible)
         VStack(spacing: 0) {
             gradeDetailsView(totalGrade)
                 .padding(.bottom, hasBottomPadding ? 10 : 0)
 
             if totalGrade != nil {
-                if viewModel.toggleViewIsVisible {
+                if toggleViewIsVisible {
                     togglesView()
                 }
             }
+            InstUI.Divider()
         }
         .background(Color.backgroundLight)
         .fixedSize(horizontal: false, vertical: true)
-        .animation(.easeInOut, value: viewModel.toggleViewIsVisible)
+        .animation(.smooth, value: toggleViewIsVisible)
+        .readingFrame { frame in
+            if originalHeaderHeight  == nil {
+                originalHeaderHeight = frame.height
+            }
+        }
     }
 
     @ViewBuilder
@@ -248,7 +257,7 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func totalLabelText() -> some View {
-        let isShowGradeAssignment = !viewModel.toggleViewIsVisible && viewModel.baseOnGradedAssignment
+        let isShowGradeAssignment = !toggleViewIsVisible && viewModel.baseOnGradedAssignment
         let totalText = String(localized: "Total", bundle: .core)
         let gradedAssignmentsText = String(localized: "Based on graded assignments", bundle: .core)
         Text(isShowGradeAssignment ? gradedAssignmentsText : totalText)
@@ -331,24 +340,19 @@ public struct GradeListView: View, ScreenViewTrackable {
             }
             .listSectionSeparator(.hidden)
         }
-
-        /// Set more space to make the ui work more smooth
-        Rectangle()
-            .fill(Color.backgroundLightest)
-            .frame(height: 20)
-            .listRowSeparator(.hidden)
-            .listRowBackground(Color.backgroundLightest)
-            .accessibilityHidden(true)
     }
 
+    @ViewBuilder
     private var topView: some View { /// For reading frames while scrolling top and down
+        /// This is convenient values for sizes classes so can hide and show toggle view
+        let threshold: CGFloat = verticalSizeClass == .compact ? 30 : 60
         Color.clear
-            .frame(height: 0)
+            .frame(height: isRefreshTriggered ? 0 : originalHeaderHeight)
             .listRowSeparator(.hidden)
             .listRowBackground(Color.backgroundLightest)
             .listRowInsets(.init())
             .readingFrame { frame in
-                viewModel.offsetPublisher.accept(frame.maxY)
+                toggleViewIsVisible = frame.minY > threshold
             }
     }
 
