@@ -28,7 +28,7 @@ public class RemoteConfigManager {
 
     public func saveRemoteConfig(key: String, value: String?) {
         if key == "five9_config_id" {
-            five9ConfigID = value ?? "GS | Support_Main_Flow_Xpert"
+            five9ConfigID = value ?? "Degree | Support_Main_Flow_Xpert"
         } else if key == "chat_segment_key" {
             segmentKey = value ?? "7BKIV04l1A90BkuAlqLMkPiNAUhgbatW"
         } else if key == "xpert_key" {
