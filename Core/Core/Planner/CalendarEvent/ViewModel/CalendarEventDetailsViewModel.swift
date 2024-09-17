@@ -74,8 +74,8 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
         self.completion = completion
         self.deleteConfirmation = deleteSingleItemConfirmation
 
-        updateDeleteConfirmationModel(onSet: event)
-        updateMenuButtonVisibility(onSet: event, userId: userId)
+        updateDeleteConfirmationModel(onChangeOf: event)
+        updateMenuButtonVisibility(onChangeOf: event, userId: userId)
 
         loadData()
 
@@ -83,7 +83,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
         deleteEventAfterConfirmation(on: didTapDelete)
     }
 
-    private func updateDeleteConfirmationModel(onSet subject: CurrentValueSubject<CalendarEvent?, Never>) {
+    private func updateDeleteConfirmationModel(onChangeOf subject: CurrentValueSubject<CalendarEvent?, Never>) {
         subject
             .compactMap { $0 }
             .sink { [weak self] in
@@ -93,7 +93,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func updateMenuButtonVisibility(onSet subject: CurrentValueSubject<CalendarEvent?, Never>, userId: String) {
+    private func updateMenuButtonVisibility(onChangeOf subject: CurrentValueSubject<CalendarEvent?, Never>, userId: String) {
         subject
             .compactMap { $0 }
             .flatMap { [weak self] in

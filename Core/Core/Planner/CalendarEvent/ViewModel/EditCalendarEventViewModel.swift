@@ -115,7 +115,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     private var selectedCalendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
     /// Returns true if any of the fields had been modified once by the user. It doesn't compare values.
     private var isFieldsTouched: Bool = false
-    private let wasEventPartOfSeries: Bool
+    private let isInitialEventPartOfSeries: Bool
     private var saveErrorMessageFromApi: String?
 
     private var subscriptions = Set<AnyCancellable>()
@@ -147,11 +147,11 @@ final class EditCalendarEventViewModel: ObservableObject {
 
         if let event {
             mode = .edit(id: event.id)
-            wasEventPartOfSeries = event.isPartOfSeries
+            isInitialEventPartOfSeries = event.isPartOfSeries
             editConfirmation = makeEditConfirmation(event: event)
         } else {
             mode = .add
-            wasEventPartOfSeries = false
+            isInitialEventPartOfSeries = false
         }
 
         setupFields(event: event, selectedDate: selectedDate ?? Clock.now)
@@ -382,14 +382,14 @@ final class EditCalendarEventViewModel: ObservableObject {
     ) {
         subject
             .map { [weak self] in
-                guard self?.wasEventPartOfSeries == true else { return }
+                guard self?.isInitialEventPartOfSeries == true else { return }
                 self?.shouldShowEditConfirmation = true
             }
             .flatMap { [weak self] () -> AnyPublisher<SeriesModificationType?, Never> in
                 guard let self else {
                     return Empty().eraseToAnyPublisher()
                 }
-                guard wasEventPartOfSeries else {
+                guard isInitialEventPartOfSeries else {
                     return Just(nil).eraseToAnyPublisher()
                 }
                 return editConfirmation.userConfirmsOption()
