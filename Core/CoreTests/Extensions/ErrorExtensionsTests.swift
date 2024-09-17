@@ -18,6 +18,7 @@
 
 import Core
 import XCTest
+import AVFoundation
 
 class ErrorExtensionsTests: XCTestCase {
 
@@ -51,5 +52,13 @@ class ErrorExtensionsTests: XCTestCase {
             code: HttpError.badRequest
         )
         XCTAssertTrue(error.isBadRequest)
+    }
+
+    func testSourceTrackMissingError() {
+        let error: Error = NSError(
+            domain: AVFoundationErrorDomain,
+            code: AVError.Code.noSourceTrack.rawValue
+        )
+        XCTAssertTrue(error.isSourceTrackMissing)
     }
 }
