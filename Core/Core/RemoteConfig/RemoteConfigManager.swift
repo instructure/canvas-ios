@@ -36,7 +36,7 @@ public class RemoteConfigManager {
         } else if key == "five9_formdata_label" {
             formadataLabel = value ?? "unknown"
         } else if key == "placement_portal_path" {
-            placementPortalPath = value ?? "/accounts/1/external_tools/1570"
+            placementPortalPath = value ?? "/accounts/1/external_tools/433"
         }
     }
 }
