@@ -21,9 +21,9 @@ import CombineExt
 import CombineSchedulers
 import Foundation
 
-public enum GradeArrangementOptions: CaseIterable {
-    case groupName
-    case dueDate
+public enum GradeArrangementOptions: Int, CaseIterable {
+    case groupName = 1
+    case dueDate = 2
 
     var title: String {
         switch self {
@@ -53,16 +53,19 @@ public final class GradeListViewModel: ObservableObject {
 
     // MARK: - Output
     @Published public var courseName: String?
+    @Published public var totalGradeText: String?
     @Published private(set) var gradeHeaderIsVisible = false
+    @Published private(set) var toggleViewIsVisible = true
     @Published private(set) var state: ViewState = .initialLoading
     @Published public var isWhatIfScoreModeOn = false
     @Published public var isWhatIfScoreFlagEnabled = false
+
     public var courseID: String { interactor.courseID }
 
     // MARK: - Input
-
     let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
     let didSelectAssignment = PassthroughRelay<(WeakViewController, Assignment)>()
+    let offsetPublisher = PassthroughRelay<CGFloat>()
     let confirmRevertAlertViewModel = ConfirmationAlertViewModel(
         title: String(localized: "Revert to Official Score?", bundle: .core),
         message: String(localized: "This will revert all your what-if scores in this course to the official score.", bundle: .core),
@@ -144,6 +147,7 @@ public final class GradeListViewModel: ObservableObject {
                     }
                     lastKnownDataState = listData
                     courseName = listData.courseName
+                    totalGradeText = listData.totalGradeText
                     if listData.assignmentSections.count == 0 {
                         return Just(ViewState.empty(listData)).eraseToAnyPublisher()
                     } else {
@@ -168,12 +172,20 @@ public final class GradeListViewModel: ObservableObject {
                 router.route(to: "/courses/\(interactor.courseID)/assignments/\(assignment.id)", from: vc, options: .detail)
             }
             .store(in: &subscriptions)
+
+        offsetPublisher
+            .debounce(for: 0.13, scheduler: DispatchQueue.global(qos: .userInitiated))
+            .map { abs(Int($0)) }
+            .removeDuplicates()
+            .map { $0 >= 140 }
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$toggleViewIsVisible)
     }
 
     func navigateToFilter(viewController: WeakViewController) {
         let isShowGradingPeriod = !(lastKnownDataState?.isGradingPeriodHidden ?? false)
         let dependency = GradeFilterViewModel.Dependency(
-            router: router, 
+            router: router,
             isShowGradingPeriod: isShowGradingPeriod,
             courseName: courseName,
             selectedGradingPeriodPublisher: selectedGradingPeriod,
@@ -192,3 +204,4 @@ public final class GradeListViewModel: ObservableObject {
         )
     }
 }
+

@@ -176,7 +176,6 @@ final class GradeFilterViewModelTests: CoreTestCase {
         let sut = GradeFilterViewModel(dependency: dependency)
         sut.selectedSortByOption = .groupName
         sut.selectedGradingPeriod = nil
-        
         selectedGradingPeriodPublisher.sink { _ in
             isSelectedGradingPeriodPublisherFired = true
         }

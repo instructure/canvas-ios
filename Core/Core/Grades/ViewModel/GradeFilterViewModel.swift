@@ -44,10 +44,10 @@ public final class GradeFilterViewModel: ObservableObject {
 
     // MARK: - Functions
     private func setupOutputBindings() {
+        isShowGradingPeriodsView = dependency.isShowGradingPeriod
+        courseName = dependency.courseName
         mapGradingPeriod()
         mapSortByOptions()
-        courseName = dependency.courseName
-        isShowGradingPeriodsView = dependency.isShowGradingPeriod
         initialFilterValue = FilterValue(
             selectedGradingPeriod: selectedGradingPeriod,
             selectedSortBy: selectedSortByOption
@@ -55,7 +55,10 @@ public final class GradeFilterViewModel: ObservableObject {
     }
 
     private func mapGradingPeriod() {
-        guard dependency.isShowGradingPeriod else {
+        guard dependency.isShowGradingPeriod,
+              let gradingPeriodList = dependency.gradingPeriods,
+              !gradingPeriodList.isEmpty else {
+            isShowGradingPeriodsView = false
             return
         }
         let defaultGradingPeriod = GradeFilterViewModel.GradePeriod(title: String(localized: "All", bundle: .core))
@@ -68,7 +71,7 @@ public final class GradeFilterViewModel: ObservableObject {
         selectedGradingPeriod = dependency.selectedGradingPeriod == nil ? defaultGradingPeriod : currentGradingPeriod
 
         gradingPeriods.append(defaultGradingPeriod)
-        let gradePeriods: [GradeFilterViewModel.GradePeriod] = (dependency.gradingPeriods ?? []).map { .init(title: $0.title, value: $0) }
+        let gradePeriods: [GradeFilterViewModel.GradePeriod] = gradingPeriodList.map { .init(title: $0.title, value: $0) }
         gradingPeriods.append(contentsOf: gradePeriods)
     }
 
@@ -95,6 +98,8 @@ public final class GradeFilterViewModel: ObservableObject {
     func saveButtonTapped(viewController: WeakViewController) {
         dependency.selectedGradingPeriodPublisher.accept(selectedGradingPeriod?.value)
         dependency.selectedSortByPublisher.accept(selectedSortByOption ?? .groupName)
+        AppEnvironment.shared.userDefaults?.selectedGradingPeriodId = selectedGradingPeriod?.value?.id
+        AppEnvironment.shared.userDefaults?.selectedSortByOptionId = selectedSortByOption?.rawValue
         dimiss(viewController: viewController)
     }
 

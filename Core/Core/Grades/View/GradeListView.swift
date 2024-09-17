@@ -33,7 +33,6 @@ public struct GradeListView: View, ScreenViewTrackable {
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     // MARK: - Private properties
-    @State private var isShowToggleView = true
     @State private var offsets = CGSize.zero
     @State private var isScoreEditorPresented = false
     @AccessibilityFocusState private var accessibilityFocus: AccessibilityFocusArea?
@@ -112,12 +111,13 @@ public struct GradeListView: View, ScreenViewTrackable {
                 whatIfScoreEditorView()
                 Spacer()
             }
+            .background(Color.backgroundLightest)
             .animation(.smooth, value: isScoreEditorPresented)
         }
         .safeAreaInset(edge: .top) {
             if viewModel.gradeHeaderIsVisible {
                 VStack(spacing: 0) {
-                    courseSummaryView("2222")
+                    courseSummaryView(viewModel.totalGradeText)
                     InstUI.Divider()
                 }
             }
@@ -130,7 +130,6 @@ public struct GradeListView: View, ScreenViewTrackable {
             ToolbarItem(placement: .primaryAction) {
                 Button(action: {
                     viewModel.navigateToFilter(viewController: viewController)
-                    isShowToggleView = true
                 }) {
                     Image.filterSolid
                         .foregroundStyle(Color.textLightest)
@@ -206,20 +205,20 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func courseSummaryView(_ totalGrade: String?) -> some View {
-        let hasBottomPadding = (totalGrade == nil || !isShowToggleView)
+        let hasBottomPadding = (totalGrade == nil || !viewModel.toggleViewIsVisible)
         VStack(spacing: 0) {
             gradeDetailsView(totalGrade)
                 .padding(.bottom, hasBottomPadding ? 10 : 0)
 
             if totalGrade != nil {
-                if isShowToggleView {
+                if viewModel.toggleViewIsVisible {
                     togglesView()
                 }
             }
         }
         .background(Color.backgroundLight)
         .fixedSize(horizontal: false, vertical: true)
-        .animation(.easeInOut, value: isShowToggleView)
+        .animation(.easeInOut, value: viewModel.toggleViewIsVisible)
     }
 
     @ViewBuilder
@@ -249,10 +248,14 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func totalLabelText() -> some View {
-        Text("Total", bundle: .core)
+        let isShowGradeAssignment = !viewModel.toggleViewIsVisible && viewModel.baseOnGradedAssignment
+        let totalText = String(localized: "Total", bundle: .core)
+        let gradedAssignmentsText = String(localized: "Based on graded assignments", bundle: .core)
+        Text(isShowGradeAssignment ? gradedAssignmentsText : totalText)
             .foregroundStyle(Color.textDark)
             .font(.regular14)
             .accessibilityHidden(true)
+            .animation(.smooth, value: isShowGradeAssignment)
     }
 
     @ViewBuilder
@@ -327,26 +330,25 @@ public struct GradeListView: View, ScreenViewTrackable {
                 }
             }
             .listSectionSeparator(.hidden)
-            .listSectionSeparatorTint(Color.clear)
-            .listRowBackground(Color.clear)
         }
 
-        // set more space to make the ui work more smooth
+        /// Set more space to make the ui work more smooth
         Rectangle()
-            .fill(Color.clear)
-            .frame(height: 100)
+            .fill(Color.backgroundLightest)
+            .frame(height: 20)
             .listRowSeparator(.hidden)
+            .listRowBackground(Color.backgroundLightest)
             .accessibilityHidden(true)
     }
 
-    private var topView: some View { // For reading frames while scrolling top and down
-        Color.clear // To get
+    private var topView: some View { /// For reading frames while scrolling top and down
+        Color.clear
             .frame(height: 0)
             .listRowSeparator(.hidden)
             .listRowBackground(Color.backgroundLightest)
             .listRowInsets(.init())
             .readingFrame { frame in
-                isShowToggleView = frame.maxY > 190
+                viewModel.offsetPublisher.accept(frame.maxY)
             }
     }
 

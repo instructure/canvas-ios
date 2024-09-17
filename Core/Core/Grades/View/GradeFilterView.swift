@@ -31,7 +31,7 @@ public struct GradeFilterView: View {
 
     // MARK: - Body
     public var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
                 if viewModel.isShowGradingPeriodsView {
                     gradingPeriodSection
@@ -108,13 +108,15 @@ public struct GradeFilterView: View {
 
 #if DEBUG
 #Preview {
-    var dependency: GradeFilterViewModel.Dependency = .init(
-        router: AppEnvironment.shared.router,
-        isShowGradingPeriod: false,
-        selectedSortBy: GradeArrangementOptions.dueDate,
-        sortByOptions: GradeArrangementOptions.allCases
+    GradeFilterView(
+        viewModel: GradeFilterViewModel(
+            dependency: .init(
+                router: AppEnvironment.shared.router,
+                isShowGradingPeriod: false,
+                selectedSortBy: GradeArrangementOptions.dueDate,
+                sortByOptions: GradeArrangementOptions.allCases
+            )
+        )
     )
-    let viewModel = GradeFilterViewModel(dependency: dependency)
-    return GradeFilterView(viewModel: viewModel)
 }
 #endif
