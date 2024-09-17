@@ -25,6 +25,12 @@ extension URLResponse {
             HttpHeader.contentType: "application/json"
         ])!
     }
+
+    public static func httpFailure(statusCode: Int = 400) -> URLResponse {
+        return HTTPURLResponse(url: .make(), statusCode: statusCode, httpVersion: "HTTP/1.1", headerFields: [
+            HttpHeader.contentType: "application/json"
+        ])!
+    }
 }
 
 extension HTTPURLResponse {

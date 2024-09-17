@@ -216,6 +216,74 @@ class GetPlannablesTests: CoreTestCase {
         wait(for: [expectation2], timeout: 1)
     }
 
+    func testMakeFailingRequestTeacherApp() {
+        // Given - Teacher
+        environment.app = .teacher
+        contextCodes = ["course_1"]
+
+        /// Courses
+        api.mock(GetCoursesRequest(
+            enrollmentState: .active,
+            enrollmentType: .observer,
+            state: [.available],
+            perPage: 100
+        ), value: [.make(id: "1", enrollments: [.make(id: "1", associated_user_id: "1")])])
+
+        /// Calendar Events
+        api.mock(GetCalendarEventsRequest(
+            contexts: [Context(.course, id: "1")],
+            startDate: start,
+            endDate: end,
+            type: .event,
+            include: [.submission],
+            allEvents: false,
+            userID: userID
+        ), value: [.make(id: "1", type: .event)])
+
+        /// Mocking failure in the middle
+        api.mock(
+            GetCalendarEventsRequest(
+                contexts: [Context(.course, id: "1")],
+                startDate: start,
+                endDate: end,
+                type: .assignment,
+                include: [.submission],
+                allEvents: false,
+                userID: userID
+            ),
+            response: .httpFailure(statusCode: 400),
+            error: URLError(.badServerResponse)
+        )
+
+        /// Planner Notes
+        api.mock(GetPlannerNotesRequest(
+            contexts: [Context(.course, id: "1")],
+            startDate: start,
+            endDate: end
+        ), value: [.make(id: "33", title: "Planner Note", details: "Details")])
+
+        // When
+        let expectation = XCTestExpectation(description: "callback")
+        useCase.makeRequest(environment: environment) { value, response, error in
+
+            // Then
+            XCTAssertNil(value?.plannables)
+            XCTAssertNil(value?.calendarEvents)
+            XCTAssertNil(value?.plannerNotes)
+
+            let httpResponse = response as? HTTPURLResponse
+            let urlError = error as! URLError
+
+            XCTAssertNotNil(httpResponse)
+            XCTAssertEqual(httpResponse?.statusCode, 400)
+            XCTAssertEqual(urlError, URLError(.badServerResponse))
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1)
+    }
+
     func testWriteCalendarEvents() {
         let response = GetPlannables.Response(calendarEvents: [
             .make(id: "1", start_at: start, hidden: false),
