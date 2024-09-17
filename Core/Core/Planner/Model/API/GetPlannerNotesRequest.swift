@@ -20,9 +20,9 @@ import Foundation
 
 /// https://canvas.instructure.com/doc/api/planner.html#method.planner_notes.index
 struct GetPlannerNotesRequest: APIRequestable {
-    public typealias Response = [APIPlannerNote]
+    typealias Response = [APIPlannerNote]
 
-    public var path: String { "planner_notes" }
+    var path: String { "planner_notes" }
 
     let contexts: [Context]?
     let startDate: Date?
@@ -30,9 +30,9 @@ struct GetPlannerNotesRequest: APIRequestable {
     let perPage: Int
     let calendar: Calendar
 
-    public var useExtendedPercentEncoding: Bool { true }
+    var useExtendedPercentEncoding: Bool { true }
 
-    public init(
+    init(
         contexts: [Context]? = nil,
         startDate: Date,
         endDate: Date,
@@ -46,7 +46,7 @@ struct GetPlannerNotesRequest: APIRequestable {
         self.calendar = calendar
     }
 
-    public var query: [APIQueryItem] {
+    var query: [APIQueryItem] {
         var query: [APIQueryItem] = [
             .perPage(perPage),
             .optionalValue("start_date", formatString(from: startDate)),

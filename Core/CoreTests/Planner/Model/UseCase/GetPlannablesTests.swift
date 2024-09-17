@@ -217,7 +217,7 @@ class GetPlannablesTests: CoreTestCase {
     }
 
     func testWriteCalendarEvents() {
-        let response = GetPlannables.Response.init(calendarEvents: [
+        let response = GetPlannables.Response(calendarEvents: [
             .make(id: "1", start_at: start, hidden: false),
             .make(id: "2", start_at: start, hidden: true)
         ])
@@ -228,7 +228,7 @@ class GetPlannablesTests: CoreTestCase {
     }
 
     func testWritePlannerNotes() {
-        let response = GetPlannables.Response.init(plannerNotes: [
+        let response = GetPlannables.Response(plannerNotes: [
             .make(id: "44", todo_date: start),
             .make(id: "76", todo_date: start.addHours(3))
         ])
