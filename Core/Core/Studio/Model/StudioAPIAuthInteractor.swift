@@ -20,12 +20,16 @@ import Combine
 import CombineExt
 import WebKit
 
-public enum StudioAPIAuthError: Error {
+public enum StudioAPIAuthError: String, Error {
     case failedToGetLTIs
     case failedToGetTokenFromWebView
     case failedToGetAPIBaseURL
     case studioLTINotFound
     case failedToGetLaunchURL
+
+    var localizedDescription: String {
+        "\(Self.self).\(self)"
+    }
 }
 
 public protocol StudioAPIAuthInteractor {

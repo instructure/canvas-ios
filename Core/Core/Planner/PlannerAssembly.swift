@@ -29,13 +29,16 @@ public enum PlannerAssembly {
     // MARK: - Event
 
     public static func makeCreateEventViewController(
+        selectedDate: Date,
         calendarListProviderInteractor: CalendarFilterInteractor? = nil,
         env: AppEnvironment = .shared,
         completion: @escaping (Completion) -> Void
     ) -> UIViewController {
         let viewModel = EditCalendarEventViewModel(
+            selectedDate: selectedDate,
             eventInteractor: CalendarEventInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            uploadParameters: makeUploadParameters(env: env),
             router: env.router,
             completion: completion
         )
@@ -54,6 +57,7 @@ public enum PlannerAssembly {
             event: event,
             eventInteractor: CalendarEventInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            uploadParameters: makeUploadParameters(env: env),
             router: env.router,
             completion: completion
         )
@@ -75,12 +79,20 @@ public enum PlannerAssembly {
         return host
     }
 
+    private static func makeUploadParameters(env: AppEnvironment) -> RichContentEditorUploadParameters {
+        .init(
+            context: .currentUser,
+            uploadTo: .makeForRCEUploads(app: env.app, context: .currentUser, session: env.currentSession)
+        )
+    }
+
 #if DEBUG
 
     public static func makeEditEventScreenPreview(env: AppEnvironment = .shared) -> some View {
         let viewModel = EditCalendarEventViewModel(
             eventInteractor: CalendarEventInteractorPreview(),
             calendarListProviderInteractor: CalendarFilterInteractorPreview(),
+            uploadParameters: .init(context: .course("1")),
             router: env.router,
             completion: { _ in }
         )
@@ -100,11 +112,13 @@ public enum PlannerAssembly {
     // MARK: - ToDo
 
     public static func makeCreateToDoViewController(
+        selectedDate: Date,
         calendarListProviderInteractor: CalendarFilterInteractor? = nil,
         env: AppEnvironment = .shared,
         completion: @escaping (Completion) -> Void
     ) -> UIViewController {
         let viewModel = EditCalendarToDoViewModel(
+            selectedDate: selectedDate,
             toDoInteractor: CalendarToDoInteractorLive(),
             calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
             router: env.router,

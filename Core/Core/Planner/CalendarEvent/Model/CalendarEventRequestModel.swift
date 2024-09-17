@@ -28,6 +28,7 @@ public struct CalendarEventRequestModel {
     let location: String?
     let address: String?
     let details: String?
+    let rrule: RecurrenceRule?
 }
 
 extension CalendarEventRequestModel {
@@ -72,7 +73,8 @@ extension CalendarEventRequestModel {
         contextCode: String = "",
         location: String? = nil,
         address: String? = nil,
-        details: String? = nil
+        details: String? = nil,
+        rrule: RecurrenceRule? = nil
     ) -> CalendarEventRequestModel {
         .init(
             title: title,
@@ -83,7 +85,8 @@ extension CalendarEventRequestModel {
             contextCode: contextCode,
             location: location,
             address: address,
-            details: details
+            details: details,
+            rrule: rrule
         )
     }
 }

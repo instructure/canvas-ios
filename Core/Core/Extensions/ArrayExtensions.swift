@@ -33,12 +33,27 @@ public extension Array {
         }
         return self[index]
     }
+
+    var nilIfEmpty: Self? { isEmpty ? nil : self }
 }
 
 extension Array where Element: UIBarButtonItem {
     func removeDuplicates() -> [Element] {
         return reduce([]) { result, element in
             result.contains { $0.action == element.action } ? result : result + [element]
+        }
+    }
+}
+
+public extension Array where Element: Equatable {
+
+    /// Appends element if not included in the array, otherwise it will remove
+    /// all occurrences of it.
+    mutating func appendOrRemove(_ element: Element) {
+        if contains(element) {
+            removeAll(where: { $0 == element })
+        } else {
+            append(element)
         }
     }
 }

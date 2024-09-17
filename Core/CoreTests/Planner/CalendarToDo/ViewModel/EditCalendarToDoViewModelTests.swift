@@ -72,6 +72,16 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.details, "")
     }
 
+    func testAddModeDefaultDate() {
+        var testee: EditCalendarToDoViewModel
+
+        testee = makeAddViewModel()
+        XCTAssertEqual(testee.date, TestConstants.dateNow.endOfDay())
+
+        testee = makeAddViewModel(selectedDate: TestConstants.dateEarlier)
+        XCTAssertEqual(testee.date, TestConstants.dateEarlier.endOfDay())
+    }
+
     func testEditModeInitialValues() {
         let testee = makeEditViewModel(makePlannable(
             title: TestConstants.title,
@@ -413,13 +423,14 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
 
     // MARK: - Helpers
 
-    private func makeAddViewModel() -> EditCalendarToDoViewModel {
-        makeEditViewModel(nil)
+    private func makeAddViewModel(selectedDate: Date? = nil) -> EditCalendarToDoViewModel {
+        makeEditViewModel(nil, selectedDate: selectedDate)
     }
 
-    private func makeEditViewModel(_ plannable: Plannable?) -> EditCalendarToDoViewModel {
+    private func makeEditViewModel(_ plannable: Plannable?, selectedDate: Date? = nil) -> EditCalendarToDoViewModel {
         .init(
             plannable: plannable,
+            selectedDate: selectedDate,
             toDoInteractor: toDoInteractor,
             calendarListProviderInteractor: calendarListProviderInteractor,
             router: router,

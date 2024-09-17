@@ -86,6 +86,8 @@ public extension UIImage {
     static var emptySolid: UIImage { UIImage(named: "emptySolid", in: .core, compatibleWith: nil)! }
     static var exitFullScreenLine: UIImage { UIImage(named: "exitFullScreenLine", in: .core, compatibleWith: nil)! }
     static var exitFullScreenSolid: UIImage { UIImage(named: "exitFullScreenSolid", in: .core, compatibleWith: nil)! }
+    static var expandItemsLine: UIImage { UIImage(named: "expandItemsLine", in: .core, compatibleWith: nil)! }
+    static var expandItemsSolid: UIImage { UIImage(named: "expandItemsSolid", in: .core, compatibleWith: nil)! }
     static var externalLinkLine: UIImage { UIImage(named: "externalLinkLine", in: .core, compatibleWith: nil)! }
     static var externalLinkSolid: UIImage { UIImage(named: "externalLinkSolid", in: .core, compatibleWith: nil)! }
     static var eyeLine: UIImage { UIImage(named: "eyeLine", in: .core, compatibleWith: nil)! }
@@ -332,6 +334,8 @@ public extension Image {
     static var emptySolid: Image { Image("emptySolid", bundle: .core) }
     static var exitFullScreenLine: Image { Image("exitFullScreenLine", bundle: .core) }
     static var exitFullScreenSolid: Image { Image("exitFullScreenSolid", bundle: .core) }
+    static var expandItemsLine: Image { Image("expandItemsLine", bundle: .core) }
+    static var expandItemsSolid: Image { Image("expandItemsSolid", bundle: .core) }
     static var externalLinkLine: Image { Image("externalLinkLine", bundle: .core) }
     static var externalLinkSolid: Image { Image("externalLinkSolid", bundle: .core) }
     static var eyeLine: Image { Image("eyeLine", bundle: .core) }

@@ -26,6 +26,7 @@ class MessageDetailsViewModel: ObservableObject {
     @Published public private(set) var conversations: [Conversation] = []
     @Published public private(set) var starred: Bool = false
     @Published public private(set) var isReplyButtonVisible: Bool = false
+    public let snackBarViewModel = SnackBarViewModel()
 
     public let title = String(localized: "Message Details", bundle: .core)
 
@@ -46,6 +47,7 @@ class MessageDetailsViewModel: ObservableObject {
     public let updateState = PassthroughSubject<ConversationWorkflowState, Never>()
 
     // MARK: - Private
+    private var didSendMailSuccessfully = PassthroughSubject<Void, Never>()
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: MessageDetailsInteractor
     private let router: Router
@@ -186,17 +188,26 @@ class MessageDetailsViewModel: ObservableObject {
     public func forwardTapped(message: ConversationMessage? = nil, viewController: WeakViewController) {
         if let conversation = conversations.first {
             router.show(
-                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .forward(conversation: conversation, message: message))),
+                ComposeMessageAssembly.makeComposeMessageViewController(
+                    options: .init(
+                        fromType: .forward(conversation: conversation, message: message)),
+                    sentMailEvent: didSendMailSuccessfully
+                ),
                 from: viewController,
-                options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
-            )
+                options: .modal(
+                    .automatic,
+                    isDismissable: false,
+                    embedInNav: true,
+                    addDoneButton: false,
+                    animated: true
+                ))
         }
     }
 
     public func replyTapped(message: ConversationMessage?, viewController: WeakViewController) {
         if let conversation = conversations.first {
             router.show(
-                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .reply(conversation: conversation, message: message))),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .reply(conversation: conversation, message: message)), sentMailEvent: didSendMailSuccessfully),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
@@ -206,7 +217,7 @@ class MessageDetailsViewModel: ObservableObject {
     public func replyAllTapped(message: ConversationMessage?, viewController: WeakViewController) {
         if let conversation = conversations.first {
             router.show(
-                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .replyAll(conversation: conversation, message: message))),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .replyAll(conversation: conversation, message: message)), sentMailEvent: didSendMailSuccessfully),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
@@ -301,6 +312,12 @@ class MessageDetailsViewModel: ObservableObject {
                     self?.router.dismiss(viewController)
                 }
                 self?.refreshDidTrigger.send({ })
+            }
+            .store(in: &subscriptions)
+
+        didSendMailSuccessfully
+            .sink { [weak self] in
+                self?.snackBarViewModel.showSnack(InboxMessageScope.sent.localizedName)
             }
             .store(in: &subscriptions)
     }

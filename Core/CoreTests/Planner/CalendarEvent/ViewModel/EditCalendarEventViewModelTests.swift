@@ -37,6 +37,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
             ("User 3", .user("3")),
             ("Group 6", .group("6"))
         ]
+        static let uploadContext: Context = .course("some upload target")
     }
 
     private var eventInteractor: CalendarEventInteractorPreview!
@@ -68,6 +69,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .data)
         XCTAssertEqual(testee.endTimeErrorMessage, nil)
         XCTAssertEqual(testee.shouldShowSaveError, false)
+        XCTAssertEqual(testee.uploadParameters.context, TestConstants.uploadContext)
 
         XCTAssertEqual(testee.title, "")
         XCTAssertEqual(testee.date, Date.make(year: 2024, month: 1, day: 1))
@@ -78,6 +80,16 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.location, "")
         XCTAssertEqual(testee.address, "")
         XCTAssertEqual(testee.details, "")
+    }
+
+    func testAddModeDefaultDate() {
+        var testee: EditCalendarEventViewModel
+
+        testee = makeAddViewModel()
+        XCTAssertEqual(testee.date, TestConstants.dateNow.startOfDay())
+
+        testee = makeAddViewModel(selectedDate: TestConstants.dateStart)
+        XCTAssertEqual(testee.date, TestConstants.dateStart.startOfDay())
     }
 
     func testEditModeInitialValues() {
@@ -91,6 +103,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .data)
         XCTAssertEqual(testee.endTimeErrorMessage, nil)
         XCTAssertEqual(testee.shouldShowSaveError, false)
+        XCTAssertEqual(testee.uploadParameters.context, TestConstants.uploadContext)
 
         XCTAssertEqual(testee.title, TestConstants.title)
         XCTAssertEqual(testee.location, TestConstants.locationName)
@@ -165,6 +178,15 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
 
         // reset to enabled
         eventInteractor.isRequestModelValidResult = true
+        XCTAssertEqual(testee.isSaveButtonEnabled, true)
+
+        // start uploading details media
+        testee.isUploading = true
+        XCTAssertEqual(testee.isSaveButtonEnabled, false)
+
+        // reset to enabled (stop uploading)
+        testee.isUploading = false
+        XCTAssertEqual(testee.isSaveButtonEnabled, true)
 
         // trigger saving state
         eventInteractor.createEventResult = nil
@@ -541,15 +563,17 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
 
     // MARK: - Helpers
 
-    private func makeAddViewModel() -> EditCalendarEventViewModel {
-        makeEditViewModel(nil)
+    private func makeAddViewModel(selectedDate: Date? = nil) -> EditCalendarEventViewModel {
+        makeEditViewModel(nil, selectedDate: selectedDate)
     }
 
-    private func makeEditViewModel(_ event: CalendarEvent?) -> EditCalendarEventViewModel {
+    private func makeEditViewModel(_ event: CalendarEvent?, selectedDate: Date? = nil) -> EditCalendarEventViewModel {
         .init(
             event: event,
+            selectedDate: selectedDate,
             eventInteractor: eventInteractor,
             calendarListProviderInteractor: calendarListProviderInteractor,
+            uploadParameters: .init(context: TestConstants.uploadContext),
             router: router,
             completion: { [weak self] in
                 self?.completionValue = $0
