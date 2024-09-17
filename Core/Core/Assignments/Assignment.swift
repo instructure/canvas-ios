@@ -440,10 +440,10 @@ public final class AssignmentOverride: NSManagedObject, WriteableModel {
 }
 
 public final class ScoreStatistics: NSManagedObject {
-    @NSManaged internal (set) public var mean: Double
-    @NSManaged internal (set) public var min: Double
-    @NSManaged internal (set) public var max: Double
-    @NSManaged internal (set) public var assignment: Assignment
+    @NSManaged internal(set) public var mean: Double
+    @NSManaged internal(set) public var min: Double
+    @NSManaged internal(set) public var max: Double
+    @NSManaged internal(set) public var assignment: Assignment
 
     public func update(fromApiModel item: APIAssignmentScoreStatistics, in client: NSManagedObjectContext) {
         mean = item.mean
