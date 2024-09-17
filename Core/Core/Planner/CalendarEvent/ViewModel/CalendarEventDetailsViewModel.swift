@@ -57,7 +57,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
     private let completion: ((PlannerAssembly.Completion) -> Void)?
     private var subscriptions = Set<AnyCancellable>()
 
-    private var event = CurrentValueSubject<CalendarEvent?, Never>(nil)
+    private var calendarEvent = CurrentValueSubject<CalendarEvent?, Never>(nil)
 
     // MARK: - Init
 
@@ -74,8 +74,8 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
         self.completion = completion
         self.deleteConfirmation = deleteSingleItemConfirmation
 
-        updateDeleteConfirmationModel(onChangeOf: event)
-        updateMenuButtonVisibility(onChangeOf: event, userId: userId)
+        updateDeleteConfirmationModel(onChangeOf: calendarEvent)
+        updateMenuButtonVisibility(onChangeOf: calendarEvent, userId: userId)
 
         loadData()
 
@@ -151,7 +151,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
             } receiveValue: { [weak self] (event, contextColor) in
                 guard let self else { return }
 
-                self.event.value = event
+                self.calendarEvent.value = event
                 self.contextColor = contextColor
                 title = event.title
                 pageSubtitle = event.contextName
@@ -216,7 +216,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
     // MARK: - Private methods
 
     private func showEditScreen(from source: WeakViewController) {
-        guard let event = event.value else { return }
+        guard let event = calendarEvent.value else { return }
 
         let weakVC = WeakViewController()
         let vc = PlannerAssembly.makeEditEventViewController(event: event) { [weak self] output in
