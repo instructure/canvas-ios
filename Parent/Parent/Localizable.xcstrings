@@ -5999,7 +5999,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diúltaigh"
+            "value" : "Ruaig"
           }
         },
         "hi" : {
@@ -16223,7 +16223,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tá an mac léinn a bhfuil tú ag iarraidh a chur leis ar institiúid Canvas eile.\nSínigh isteach nó cruthaigh cuntas leis an institiúid sin chun an mac léinn seo a chur leis."
+            "value" : "Tá an mac léinn a bhfuil tú ag iarraidh a chur leis in institiúid Canvas eile.\nSínigh isteach nó cruthaigh cuntas leis an institiúid sin chun an mac léinn seo a chur leis."
           }
         },
         "hi" : {
@@ -18009,7 +18009,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unread"
+            "value" : "Neamhléite"
           }
         },
         "hi" : {
