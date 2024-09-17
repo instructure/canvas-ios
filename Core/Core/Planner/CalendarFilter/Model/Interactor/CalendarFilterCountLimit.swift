@@ -27,7 +27,7 @@ public extension Optional where Wrapped == AppEnvironment.App {
     var isCalendarFilterLimitEnabled: Bool {
         switch self {
         case .teacher: return true
-        case .none, .parent, .student: return false
+        case .none, .parent, .student, .horizon: return false
         }
     }
 }

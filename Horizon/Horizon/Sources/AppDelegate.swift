@@ -20,8 +20,16 @@ import Core
 import UIKit
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate, LoginDelegate {
     var window: UIWindow?
+    lazy var environment: AppEnvironment = {
+        let env = AppEnvironment.shared
+        env.loginDelegate = self
+        env.router = Router(routes: HorizonRouter.routes)
+        env.app = .horizon
+        env.window = window
+        return env
+    }()
 
     func application(
         _: UIApplication,
@@ -32,4 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         return true
     }
+}
+
+extension AppDelegate {
+    func openExternalURL(_: URL) {}
+
+    func userDidLogin(session _: Core.LoginSession) {}
+
+    func userDidLogout(session _: Core.LoginSession) {}
 }

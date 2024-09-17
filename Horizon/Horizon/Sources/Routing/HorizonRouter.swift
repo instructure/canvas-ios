@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-extension Optional where Wrapped == AppEnvironment.App {
+import Core
+import Foundation
+import SwiftUI
 
-    var isOfflineModeEnabled: Bool {
-        switch self {
-        case .parent: return false
-        case .student: return true
-        case .teacher: return false
-        case .horizon: return false
-        case .none: return false
+enum HorizonRouter {
+    private(set) static var routes: [RouteHandler] = [
+        RouteHandler("/courses/:courseID") { _, params, _ in
+            guard let courseID = params["courseID"] else { return nil }
+            return CoreHostingController(CoursedDetails(id: courseID))
+        }
+    ]
+
+    private struct CoursedDetails: View {
+        let id: String
+        var body: some View {
+            Text("Course: \(id)")
         }
     }
 }
