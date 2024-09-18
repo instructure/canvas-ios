@@ -38,7 +38,11 @@ public enum GradListAssembly {
             courseID: courseID,
             userID: userID
         )
-        let viewModel = GradeListViewModel(interactor: interactor, router: env.router)
+        let viewModel = GradeListViewModel(
+            interactor: interactor,
+            appEnvironment: .shared,
+            router: env.router
+        )
         let viewController = CoreHostingController(GradeListView(viewModel: viewModel))
         viewController.defaultViewRoute = "/empty"
         return viewController
@@ -47,7 +51,10 @@ public enum GradListAssembly {
     public static func makeGradeFilterViewController(
         dependency: GradeFilterViewModel.Dependency
     ) -> UIViewController {
-        let viewModel = GradeFilterViewModel(dependency: dependency)
+        let viewModel = GradeFilterViewModel(
+            dependency: dependency,
+            appEnvironment: .shared
+        )
         let view = GradeFilterView(viewModel: viewModel)
         let viewController = CoreHostingController(view)
         return viewController

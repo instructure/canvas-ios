@@ -24,7 +24,7 @@ public final class GradeFilterViewModel: ObservableObject {
 
     // MARK: - Outputs
     @Published private(set) var saveButtonIsEnabled = false
-    @Published private(set) var isShowGradingPeriodsView = false
+    @Published private(set) var isShowGradingPeriodsView = true
     @Published private(set) var courseName: String?
     @Published private(set) var gradingPeriods: [GradePeriod] = []
     @Published private(set) var sortByOptions: [GradeArrangementOptions] = []
@@ -33,18 +33,22 @@ public final class GradeFilterViewModel: ObservableObject {
 
     // MARK: - Private Properties
     private let dependency: Dependency
+    private let appEnvironment: AppEnvironment
     private var initialFilterValue = FilterValue()
 
     // MARK: - Init
-    init(dependency: Dependency) {
+    init(
+        dependency: Dependency,
+        appEnvironment: AppEnvironment
+    ) {
         self.dependency = dependency
+        self.appEnvironment = appEnvironment
         setupOutputBindings()
         bindSaveButtonStates()
     }
 
     // MARK: - Functions
     private func setupOutputBindings() {
-        isShowGradingPeriodsView = dependency.isShowGradingPeriod
         courseName = dependency.courseName
         mapGradingPeriod()
         mapSortByOptions()
@@ -61,14 +65,16 @@ public final class GradeFilterViewModel: ObservableObject {
             isShowGradingPeriodsView = false
             return
         }
+
+        // Selected Grading Period
         let defaultGradingPeriod = GradeFilterViewModel.GradePeriod(title: String(localized: "All", bundle: .core))
-
+        let selectedGradingId = appEnvironment.userDefaults?.selectedGradingPeriodId
+        let selectedGrading = gradingPeriodList.first(where: {$0.id ==  selectedGradingId})
         let currentGradingPeriod = GradeFilterViewModel.GradePeriod(
-            title: dependency.selectedGradingPeriod?.title,
-            value: dependency.selectedGradingPeriod
+            title: selectedGrading?.title,
+            value: selectedGrading
         )
-
-        selectedGradingPeriod = dependency.selectedGradingPeriod == nil ? defaultGradingPeriod : currentGradingPeriod
+        selectedGradingPeriod = selectedGrading == nil ? defaultGradingPeriod : currentGradingPeriod
 
         gradingPeriods.append(defaultGradingPeriod)
         let gradePeriods: [GradeFilterViewModel.GradePeriod] = gradingPeriodList.map { .init(title: $0.title, value: $0) }
@@ -76,8 +82,9 @@ public final class GradeFilterViewModel: ObservableObject {
     }
 
     private func mapSortByOptions() {
+        let selectedSortById = appEnvironment.userDefaults?.selectedSortByOptionId
+        selectedSortByOption = GradeArrangementOptions(rawValue: selectedSortById ?? 0) ?? .groupName
         sortByOptions = dependency.sortByOptions
-        selectedSortByOption = dependency.selectedSortBy
     }
 
     private func bindSaveButtonStates() {
@@ -101,6 +108,8 @@ public final class GradeFilterViewModel: ObservableObject {
         AppEnvironment.shared.userDefaults?.selectedGradingPeriodId = selectedGradingPeriod?.value?.id
         AppEnvironment.shared.userDefaults?.selectedSortByOptionId = selectedSortByOption?.rawValue
         dimiss(viewController: viewController)
+
+//        dependency.selectedFilter(selectedGradingPeriod?.value, selectedSortByOption ?? .groupName)
     }
 
     func dimiss(viewController: WeakViewController) {
@@ -121,6 +130,11 @@ extension GradeFilterViewModel {
         var selectedSortBy: GradeArrangementOptions
         var sortByOptions: [GradeArrangementOptions]
     }
+
+//    var selectedFilter: (
+//        _ grade: GradingPeriod?,
+//        _ sortBy: GradeArrangementOptions
+//    ) -> Void = { _, _ in}
 
     struct GradePeriod: Equatable, Hashable {
         let title: String?

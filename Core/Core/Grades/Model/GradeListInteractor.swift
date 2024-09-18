@@ -87,6 +87,10 @@ public final class GradeListInteractorLive: GradeListInteractor {
             useCase: GetGradingPeriods(courseID: courseID)
         )
     }
+    
+    private var selectedGradingPeriodId: String? {
+        AppEnvironment.shared.userDefaults?.selectedGradingPeriodId
+    }
 
     public func getGrades(
         arrangeBy: GradeArrangementOptions,
@@ -127,10 +131,9 @@ public final class GradeListInteractorLive: GradeListInteractor {
             let enrollments = params.2
             let courseEnrollment = course.enrollmentForGrades(userId: userID)
             let isGradingPeriodHidden = courseEnrollment?.multipleGradingPeriodsEnabled == false
-
             if !isInitialGradingPeriodSet {
                 isInitialGradingPeriodSet = true
-                updateGradingPeriod(id: courseEnrollment?.currentGradingPeriodID)
+                updateGradingPeriod(id: selectedGradingPeriodId)
                 return getGrades(
                     arrangeBy: arrangeBy,
                     baseOnGradedAssignment: baseOnGradedAssignment,

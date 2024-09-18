@@ -115,7 +115,8 @@ public struct GradeFilterView: View {
                 isShowGradingPeriod: false,
                 selectedSortBy: GradeArrangementOptions.dueDate,
                 sortByOptions: GradeArrangementOptions.allCases
-            )
+            ),
+            appEnvironment: .shared
         )
     )
 }

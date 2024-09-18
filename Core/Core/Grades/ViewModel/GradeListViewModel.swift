@@ -52,8 +52,8 @@ public final class GradeListViewModel: ObservableObject {
     private let interactor: GradeListInteractor
 
     // MARK: - Output
-    @Published public var courseName: String?
-    @Published public var totalGradeText: String?
+    @Published private(set) var courseName: String?
+    @Published private(set) var totalGradeText: String?
     @Published private(set) var gradeHeaderIsVisible = false
     @Published private(set) var state: ViewState = .initialLoading
     @Published public var isWhatIfScoreModeOn = false
@@ -73,7 +73,6 @@ public final class GradeListViewModel: ObservableObject {
     )
 
     // MARK: - Input / Output
-
     @Published var baseOnGradedAssignment = true
     @Published var isShowingRevertDialog = false
     let selectedGradingPeriod = PassthroughRelay<GradingPeriod?>()
@@ -84,16 +83,19 @@ public final class GradeListViewModel: ObservableObject {
     private var lastKnownDataState: GradeListData?
     private var subscriptions = Set<AnyCancellable>()
     private let router: Router
+    private let appEnvironment: AppEnvironment
 
     // MARK: - Init
 
     public init(
         interactor: GradeListInteractor,
+        appEnvironment: AppEnvironment,
         router: Router,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
         self.router = router
+        self.appEnvironment = appEnvironment
         let triggerRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion?)>()
 
         isWhatIfScoreFlagEnabled = interactor.isWhatIfScoreFlagEnabled()
@@ -146,10 +148,10 @@ public final class GradeListViewModel: ObservableObject {
                     lastKnownDataState = listData
                     courseName = listData.courseName
                     totalGradeText = listData.totalGradeText
+                    gradeHeaderIsVisible = true
                     if listData.assignmentSections.count == 0 {
                         return Just(ViewState.empty(listData)).eraseToAnyPublisher()
                     } else {
-                        self.gradeHeaderIsVisible = true
                         return Just(ViewState.data(listData)).eraseToAnyPublisher()
                     }
                 }
@@ -170,6 +172,14 @@ public final class GradeListViewModel: ObservableObject {
                 router.route(to: "/courses/\(interactor.courseID)/assignments/\(assignment.id)", from: vc, options: .detail)
             }
             .store(in: &subscriptions)
+
+        loadSortPreferences()
+    }
+
+   private func loadSortPreferences() {
+        let selectedSortById = appEnvironment.userDefaults?.selectedSortByOptionId
+        let selectedSortByOption = GradeArrangementOptions(rawValue: selectedSortById ?? 0) ?? .groupName
+        selectedGroupByOption.accept(selectedSortByOption)
     }
 
     func navigateToFilter(viewController: WeakViewController) {
@@ -194,4 +204,3 @@ public final class GradeListViewModel: ObservableObject {
         )
     }
 }
-
