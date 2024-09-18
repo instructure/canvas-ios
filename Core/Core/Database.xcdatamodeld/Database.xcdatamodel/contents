@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23G80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23G93" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -161,6 +161,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="observedUserId" optional="YES" attributeType="String"/>
         <attribute name="rawContextID" attributeType="String"/>
+        <attribute name="rawPurpose" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="CDCourseSyncDownloadProgress" representedClassName="Core.CDCourseSyncDownloadProgress" syncable="YES">
         <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
