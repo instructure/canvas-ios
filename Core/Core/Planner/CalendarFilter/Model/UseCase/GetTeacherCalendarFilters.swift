@@ -146,7 +146,7 @@ private extension GetTeacherCalendarFilters {
     func currentCoursesFetch(env: AppEnvironment) -> AnyPublisher<[APICourse], Error> {
         let coursesRequest = GetCurrentUserCoursesRequest(
             enrollmentState: .active,
-            state: [.available],
+            state: [],
             includes: []
         )
 
@@ -160,10 +160,9 @@ private extension GetTeacherCalendarFilters {
         let coursesRequest = GetCoursesRequest(
             enrollmentState: .active,
             enrollmentType: .teacher,
-            state: [.available],
+            state: [],
             perPage: 100
         )
-
         return env.api
             .exhaust(coursesRequest)
             .map { $0.body }
