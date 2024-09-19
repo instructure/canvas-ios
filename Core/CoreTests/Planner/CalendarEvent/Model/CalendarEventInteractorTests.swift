@@ -30,6 +30,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
         static let locationName = "some locationName"
         static let locationAddress = "some locationAddress"
         static let timeZone = TimeZone(identifier: "Australia/Sydney")!
+        static let recurrenceRule = RecurrenceRule(recurrenceWith: .monthly, interval: 2)
     }
 
     var testee: CalendarEventInteractorLive!
@@ -131,7 +132,8 @@ final class CalendarEventInteractorTests: CoreTestCase {
                 contextCode: TestConstants.contextCode,
                 location: TestConstants.locationName,
                 address: TestConstants.locationAddress,
-                details: TestConstants.description
+                details: TestConstants.description,
+                rrule: TestConstants.recurrenceRule
             )
         ) { body in
             XCTAssertEqual(body.calendar_event.context_code, TestConstants.contextCode)
@@ -142,6 +144,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
             XCTAssertEqual(body.calendar_event.location_name, TestConstants.locationName)
             XCTAssertEqual(body.calendar_event.location_address, TestConstants.locationAddress)
             XCTAssertEqual(body.calendar_event.time_zone_edited, TestConstants.timeZone.identifier)
+            XCTAssertEqual(body.calendar_event.rrule, TestConstants.recurrenceRule)
         }
     }
 
@@ -175,7 +178,8 @@ final class CalendarEventInteractorTests: CoreTestCase {
                 contextCode: TestConstants.contextCode,
                 location: TestConstants.locationName,
                 address: TestConstants.locationAddress,
-                details: TestConstants.description
+                details: TestConstants.description,
+                rrule: TestConstants.recurrenceRule
             )
         ) { body in
             XCTAssertEqual(body.calendar_event.context_code, TestConstants.contextCode)
@@ -186,6 +190,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
             XCTAssertEqual(body.calendar_event.location_name, TestConstants.locationName)
             XCTAssertEqual(body.calendar_event.location_address, TestConstants.locationAddress)
             XCTAssertEqual(body.calendar_event.time_zone_edited, TestConstants.timeZone.identifier)
+            XCTAssertEqual(body.calendar_event.rrule, TestConstants.recurrenceRule)
         }
     }
 
@@ -200,7 +205,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
             expectation.fulfill()
         }
 
-        let publisher = testee.updateEvent(id: "42", model: model)
+        let publisher = testee.updateEvent(id: "42", model: model, seriesModificationType: nil)
         XCTAssertFinish(publisher)
 
         wait(for: [expectation], timeout: 1)

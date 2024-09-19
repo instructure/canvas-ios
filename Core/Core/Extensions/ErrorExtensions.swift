@@ -33,6 +33,10 @@ public extension Error {
         nsError.domain == NSError.Constants.domain && nsError.code == HttpError.notFound
     }
 
+    var isBadRequest: Bool {
+        nsError.domain == NSError.Constants.domain && nsError.code == HttpError.badRequest
+    }
+
     /// The media file doesn't contain the necessary audio/video track.
     var isSourceTrackMissing: Bool {
         nsError.domain == AVFoundationErrorDomain && nsError.code == AVError.Code.noSourceTrack.rawValue
