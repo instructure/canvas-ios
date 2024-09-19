@@ -69,7 +69,9 @@ class StatusCell: UITableViewCell {
                 accessoryView?.tintColor = attendance.tintColor
                 i18nLabel += " — \(attendance.label)"
             } else {
-                accessoryView = nil
+                accessoryView = UIImageView(image: .noLine)
+                accessoryView?.tintColor = .backgroundDark
+                i18nLabel += " — \(String(localized: "Unmarked", bundle: .teacher))"
             }
             accessibilityLabel = i18nLabel
         }
