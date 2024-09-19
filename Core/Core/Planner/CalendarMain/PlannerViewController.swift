@@ -19,19 +19,11 @@
 import Combine
 import UIKit
 
-private extension PlannerViewController {
-    var useAddMenu: Bool { ExperimentalFeature.modifyCalendarEvent.isEnabled }
-
-    @objc func addToDoSelector() {
-        addToDo()
-    }
-}
-
 public class PlannerViewController: UIViewController {
     lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
     lazy var addButton = UIBarButtonItem(image: .addSolid)
     lazy var todayButton = UIBarButtonItem(image: .calendarTodayLine, style: .plain, target: self, action: #selector(selectToday))
-    lazy var addMenu = UIMenu(options: .displayInline, children: [
+    private lazy var addMenu = UIMenu(options: .displayInline, children: [
         UIAction(title: String(localized: "Add To Do", bundle: .core), image: .noteLine) { [weak self] _ in
             self?.addToDo()
         },
@@ -74,12 +66,10 @@ public class PlannerViewController: UIViewController {
         profileButton.accessibilityLabel = String(localized: "Profile Menu", bundle: .core)
 
         addButton.target = self
-        addButton.action = useAddMenu ? nil : #selector(addToDoSelector)
-        addButton.menu = useAddMenu ? addMenu : nil
+        addButton.action = nil
+        addButton.menu = addMenu
         addButton.accessibilityIdentifier = "PlannerCalendar.addButton"
-        addButton.accessibilityLabel = useAddMenu
-            ? String(localized: "Add Menu", bundle: .core)
-            : String(localized: "Add To Do", bundle: .core)
+        addButton.accessibilityLabel = String(localized: "Add Menu", bundle: .core)
 
         todayButton.accessibilityIdentifier = "PlannerCalendar.todayButton"
         todayButton.accessibilityLabel = String(localized: "Go to today", bundle: .core)
@@ -141,12 +131,8 @@ public class PlannerViewController: UIViewController {
             .observeIsOfflineMode()
             .sink { [weak self] isOffline in
                 guard let self else { return }
-                if useAddMenu {
-                    addButton.action = isOffline ? #selector(showOfflineAlert) : nil
-                    addButton.menu = isOffline ? nil : addMenu
-                } else {
-                    addButton.action = isOffline ? #selector(showOfflineAlert) : #selector(addToDoSelector)
-                }
+                addButton.action = isOffline ? #selector(showOfflineAlert) : nil
+                addButton.menu = isOffline ? nil : addMenu
                 addButton.tintColor = isOffline ? .disabledGray : .textLightest
             }
             .store(in: &subscriptions)
