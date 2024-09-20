@@ -42,6 +42,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
 
     private var eventInteractor: CalendarEventInteractorPreview!
     private var calendarListProviderInteractor: CalendarFilterInteractorPreview!
+    private var testee: EditCalendarEventViewModel!
 
     private var completionCallsCount: Int = 0
     private var completionValue: PlannerAssembly.Completion?
@@ -58,6 +59,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         Clock.reset()
         eventInteractor = nil
         calendarListProviderInteractor = nil
+        testee = nil
         super.tearDown()
     }
 
@@ -83,8 +85,6 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testAddModeDefaultDate() {
-        var testee: EditCalendarEventViewModel
-
         testee = makeAddViewModel()
         XCTAssertEqual(testee.date, TestConstants.dateNow.startOfDay())
 
@@ -93,7 +93,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testEditModeInitialValues() {
-        let testee = makeEditViewModel(makeEvent(
+        testee = makeEditViewModel(makeEvent(
             title: TestConstants.title,
             locationName: TestConstants.locationName,
             locationAddress: TestConstants.locationAddress,
@@ -112,8 +112,6 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testEditModeInitialDates() {
-        var testee: EditCalendarEventViewModel
-
         testee = makeEditViewModel(makeEvent(
             isAllDay: true,
             startAt: TestConstants.dateStart,
@@ -138,8 +136,6 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testEditModeInitialCalendar() {
-        var testee: EditCalendarEventViewModel
-
         // existing course context
         testee = makeEditViewModel(makeEvent(context: .course("4")))
         XCTAssertEqual(testee.calendarName, "Course 4")
@@ -156,7 +152,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     // MARK: - Save button enabling
 
     func testAddModeIsSaveButtonEnabled() {
-        let testee = makeAddViewModel()
+        testee = makeAddViewModel()
 
         // initial state, valid model (should not happen)
         eventInteractor.isRequestModelValidResult = true
@@ -195,7 +191,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testEditModeIsSaveButtonEnabledWhenTitleChanges() {
-        let testee = makeEditViewModel(makeEvent(title: TestConstants.title))
+        testee = makeEditViewModel(makeEvent(title: TestConstants.title))
         eventInteractor.isRequestModelValidResult = true
 
         // initial state
@@ -215,7 +211,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testEditModeIsSaveButtonEnabledWhenDateChanges() {
-        let testee = makeEditViewModel(makeEvent(startAt: TestConstants.dateNow))
+        testee = makeEditViewModel(makeEvent(startAt: TestConstants.dateNow))
         eventInteractor.isRequestModelValidResult = true
 
         // initial state
@@ -235,7 +231,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testEditModeIsSaveButtonEnabledWhenStartTimeChanges() {
-        let testee = makeEditViewModel(makeEvent(isAllDay: false, startAt: TestConstants.dateNow))
+        testee = makeEditViewModel(makeEvent(isAllDay: false, startAt: TestConstants.dateNow))
         eventInteractor.isRequestModelValidResult = true
 
         // initial state
@@ -255,7 +251,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testEditModeIsSaveButtonEnabledWhenEndTimeChanges() {
-        let testee = makeEditViewModel(makeEvent(isAllDay: false, endAt: TestConstants.dateNow))
+        testee = makeEditViewModel(makeEvent(isAllDay: false, endAt: TestConstants.dateNow))
         eventInteractor.isRequestModelValidResult = true
 
         // initial state
@@ -275,7 +271,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testEditModeIsSaveButtonEnabledWhenLocationChanges() {
-        let testee = makeEditViewModel(makeEvent(locationName: TestConstants.locationName))
+        testee = makeEditViewModel(makeEvent(locationName: TestConstants.locationName))
         eventInteractor.isRequestModelValidResult = true
 
         // initial state
@@ -295,7 +291,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testEditModeIsSaveButtonEnabledWhenAddressChanges() {
-        let testee = makeEditViewModel(makeEvent(locationAddress: TestConstants.locationAddress))
+        testee = makeEditViewModel(makeEvent(locationAddress: TestConstants.locationAddress))
         eventInteractor.isRequestModelValidResult = true
 
         // initial state
@@ -315,7 +311,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testEditModeIsSaveButtonEnabledWhenDetailChanges() {
-        let testee = makeEditViewModel(makeEvent(details: TestConstants.details))
+        testee = makeEditViewModel(makeEvent(details: TestConstants.details))
         eventInteractor.isRequestModelValidResult = true
 
         // initial state
@@ -335,31 +331,29 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testEditModeIsSaveButtonEnabledWhenCalendarChanges() {
-        let testee = makeEditViewModel(makeEvent(context: TestConstants.calendars[0].context))
+        testee = makeEditViewModel(makeEvent(context: TestConstants.calendars[0].context))
         eventInteractor.isRequestModelValidResult = true
-        // store calendars after viewModel loads the interactor
-        let calendars = calendarListProviderInteractor.filters.value
 
         // initial state
         XCTAssertEqual(testee.isSaveButtonEnabled, false)
 
         // set the same value
-        testee.selectCalendarViewModel.selectedCalendar = calendars[0]
+        triggerCalendarSelection(at: 0)
         XCTAssertEqual(testee.isSaveButtonEnabled, false)
 
         // set another value
-        testee.selectCalendarViewModel.selectedCalendar = calendars[1]
+        triggerCalendarSelection(at: 1)
         XCTAssertEqual(testee.isSaveButtonEnabled, true)
 
         // reset to initial value
-        testee.selectCalendarViewModel.selectedCalendar = calendars[0]
+        triggerCalendarSelection(at: 0)
         XCTAssertEqual(testee.isSaveButtonEnabled, true)
     }
 
     // MARK: - Strings
 
     func testAddModeStrings() {
-        let testee = makeAddViewModel()
+        testee = makeAddViewModel()
 
         XCTAssertEqual(testee.pageTitle, String(localized: "New Event", bundle: .core))
         XCTAssertEqual(testee.saveButtonTitle, String(localized: "Add", bundle: .core))
@@ -369,7 +363,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testEditModeStrings() {
-        let testee = makeEditViewModel(makeEvent())
+        testee = makeEditViewModel(makeEvent())
 
         XCTAssertEqual(testee.pageTitle, String(localized: "Edit Event", bundle: .core))
         XCTAssertEqual(testee.saveButtonTitle, String(localized: "Save", bundle: .core))
@@ -378,10 +372,38 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.saveErrorAlert.buttonTitle, String(localized: "OK", bundle: .core))
     }
 
+    func testErrorMessage() {
+        testee = makeAddViewModel()
+        let defaultMessage = String(localized: "We couldn't add your Event at this time. You can try it again.", bundle: .core)
+
+        // initial state
+        XCTAssertEqual(testee.saveErrorAlert.message, defaultMessage)
+
+        // after save fails with bad request
+        eventInteractor.createEventResult = .failure(NSError.instructureError("some error", code: HttpError.badRequest))
+        testee.didTapSave.send()
+        XCTAssertEqual(testee.saveErrorAlert.message, "some error")
+
+        // after save fails with other recognized HttpError
+        eventInteractor.createEventResult = .failure(NSError.instructureError("another error", code: HttpError.notFound))
+        testee.didTapSave.send()
+        XCTAssertEqual(testee.saveErrorAlert.message, defaultMessage)
+
+        // after save fails with other error
+        eventInteractor.createEventResult = .failure(MockError())
+        testee.didTapSave.send()
+        XCTAssertEqual(testee.saveErrorAlert.message, defaultMessage)
+
+        // after save succeeds
+        eventInteractor.createEventResult = .success
+        testee.didTapSave.send()
+        XCTAssertEqual(testee.saveErrorAlert.message, defaultMessage)
+    }
+
     // MARK: - Did Tap Cancel
 
     func testDidTapCancel() {
-        let testee = makeAddViewModel()
+        testee = makeAddViewModel()
 
         testee.didTapCancel.send()
 
@@ -392,7 +414,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     // MARK: - Did Tap Save (Add mode)
 
     func testAddModeDidTapAddCallsCreateEvent() {
-        let testee = makeAddViewModel()
+        testee = makeAddViewModel()
         testee.title = TestConstants.title
         testee.date = TestConstants.dateNow
         testee.isAllDay = true
@@ -401,9 +423,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         testee.location = TestConstants.locationName
         testee.address = TestConstants.locationAddress
         testee.details = TestConstants.details
-
-        let selectedCalendar = calendarListProviderInteractor.filters.value[1]
-        testee.selectCalendarViewModel.selectedCalendar = selectedCalendar
+        let selectedCalendar = triggerCalendarSelection()
 
         testee.didTapSave.send()
 
@@ -423,8 +443,8 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
 
     // MARK: - Did Tap Save (Edit mode)
 
-    func testEditModeDidTapSaveCallsUpdateToDo() {
-        let testee = makeEditViewModel(makeEvent(
+    func testEditModeDidTapSaveCallsUpdateEvent() {
+        testee = makeEditViewModel(makeEvent(
             id: TestConstants.id,
             title: TestConstants.title,
             isAllDay: false,
@@ -434,15 +454,13 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
             locationAddress: TestConstants.locationAddress,
             details: TestConstants.details
         ))
-
-        let selectedCalendar = calendarListProviderInteractor.filters.value[1]
-        testee.selectCalendarViewModel.selectedCalendar = selectedCalendar
+        let selectedCalendar = triggerCalendarSelection()
 
         testee.didTapSave.send()
 
         XCTAssertEqual(eventInteractor.createEventCallsCount, 0)
         XCTAssertEqual(eventInteractor.updateEventCallsCount, 1)
-        let (id, model) = eventInteractor.updateEventInput ?? ("", .make())
+        let (id, model, _) = eventInteractor.updateEventInput ?? ("", .make(), nil)
         XCTAssertEqual(id, TestConstants.id)
         XCTAssertEqual(model.title, TestConstants.title)
         XCTAssertEqual(model.date, TestConstants.dateStart)
@@ -455,10 +473,21 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertEqual(model.details, TestConstants.details)
     }
 
+    func testEditModeDidTapSaveCallsUpdateEventWithSelectedConfirmationOption() {
+        testee = makeEditViewModel(makeEvent(repetitionRule: "some", seriesInNaturalLanguage: "thing"))
+        triggerCalendarSelection()
+
+        testee.didTapSave.send()
+        testee.editConfirmation.notifyCompletion(option: .following)
+
+        let (_, _, seriesModificationType) = eventInteractor.updateEventInput ?? ("", .make(), nil)
+        XCTAssertEqual(seriesModificationType, .following)
+    }
+
     // MARK: - Did Tap Save (common)
 
     func testDidTapSaveShowsLoadingOverlayWhileLoading() {
-        let testee = makeAddViewModel()
+        testee = makeAddViewModel()
         eventInteractor.createEventResult = nil
 
         testee.didTapSave.send()
@@ -467,7 +496,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testDidTapSaveOnSuccess() {
-        let testee = makeAddViewModel()
+        testee = makeAddViewModel()
         eventInteractor.createEventResult = .success
 
         testee.didTapSave.send()
@@ -477,7 +506,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testDidTapSaveOnFailure() {
-        let testee = makeAddViewModel()
+        testee = makeAddViewModel()
         eventInteractor.createEventResult = .failure(MockError())
 
         testee.didTapSave.send()
@@ -488,7 +517,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testRetryAfterFailure() {
-        let testee = makeAddViewModel()
+        testee = makeAddViewModel()
         eventInteractor.createEventResult = .failure(MockError())
         testee.didTapSave.send()
 
@@ -498,10 +527,104 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertEqual(completionCallsCount, 1)
     }
 
+    // MARK: - Edit Confirmation
+
+    func testShouldShowEditConfirmationInAddMode() {
+        testee = makeAddViewModel()
+
+        XCTAssertEqual(testee.shouldShowEditConfirmation, false)
+
+        testee.didTapSave.send()
+        XCTAssertEqual(testee.shouldShowEditConfirmation, false)
+        XCTAssertEqual(testee.state, .data(loadingOverlay: true))
+    }
+
+    func testShouldShowEditConfirmationInEditModeForSingleEvent() {
+        testee = makeEditViewModel(makeEvent())
+
+        XCTAssertEqual(testee.shouldShowEditConfirmation, false)
+
+        testee.didTapSave.send()
+        XCTAssertEqual(testee.shouldShowEditConfirmation, false)
+        XCTAssertEqual(testee.state, .data(loadingOverlay: true))
+    }
+
+    func testShouldShowEditConfirmationInEditModeForRecurringEvent() {
+        testee = makeEditViewModel(makeEvent(repetitionRule: "some", seriesInNaturalLanguage: "thing"))
+
+        XCTAssertEqual(testee.shouldShowEditConfirmation, false)
+
+        testee.didTapSave.send()
+        XCTAssertEqual(testee.shouldShowEditConfirmation, true)
+        XCTAssertEqual(testee.state, .data(loadingOverlay: false))
+
+        testee.editConfirmation.notifyCompletion(option: .one)
+        XCTAssertEqual(testee.state, .data(loadingOverlay: true))
+    }
+
+    func testEditConfirmationOptionsWhenEventIsSeriesHead() {
+        testee = makeEditViewModel(makeEvent(
+            repetitionRule: "some",
+            isSeriesHead: true,
+            seriesInNaturalLanguage: "thing"
+        ))
+
+        guard testee.editConfirmation.confirmButtons.count == 2 else {
+            XCTFail("Invalid count")
+            return
+        }
+
+        XCTAssertEqual(testee.editConfirmation.confirmButtons[0].option, .one)
+        XCTAssertEqual(testee.editConfirmation.confirmButtons[1].option, .all)
+    }
+
+    func testEditConfirmationOptionsWhenEventIsNotSeriesHead() {
+        testee = makeEditViewModel(makeEvent(
+            repetitionRule: "some",
+            isSeriesHead: false,
+            seriesInNaturalLanguage: "thing"
+        ))
+
+        guard testee.editConfirmation.confirmButtons.count == 3 else {
+            XCTFail("Invalid count")
+            return
+        }
+
+        XCTAssertEqual(testee.editConfirmation.confirmButtons[0].option, .one)
+        XCTAssertEqual(testee.editConfirmation.confirmButtons[1].option, .all)
+        XCTAssertEqual(testee.editConfirmation.confirmButtons[2].option, .following)
+    }
+
+    // MARK: - EndTime Error
+
+    func testEndTimeError() {
+        testee = makeAddViewModel()
+
+        testee.startTime = TestConstants.dateStart
+        testee.endTime = nil
+        XCTAssertNil(testee.endTimeErrorMessage)
+
+        testee.startTime = nil
+        testee.endTime = TestConstants.dateStart
+        XCTAssertNil(testee.endTimeErrorMessage)
+
+        testee.startTime = TestConstants.dateStart
+        testee.endTime = TestConstants.dateStart
+        XCTAssertNil(testee.endTimeErrorMessage)
+
+        testee.startTime = TestConstants.dateStart
+        testee.endTime = TestConstants.dateStart.addHours(1)
+        XCTAssertNil(testee.endTimeErrorMessage)
+
+        testee.startTime = TestConstants.dateStart
+        testee.endTime = TestConstants.dateStart.addHours(-1)
+        XCTAssertNotNil(testee.endTimeErrorMessage)
+    }
+
     // MARK: - Select Calendar
 
     func testSelectCalendarViewModelReusesSameInteractor() {
-        let testee = makeAddViewModel()
+        testee = makeAddViewModel()
         let vm = testee.selectCalendarViewModel
 
         let hasSpecificCalendar = {
@@ -519,7 +642,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testSelectCalendarViewModelHasOnlyUserAndGroupCalendars() {
-        let testee = makeAddViewModel()
+        testee = makeAddViewModel()
         let vm = testee.selectCalendarViewModel
 
         let hasUserCalendars = vm.sections.contains {
@@ -539,7 +662,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
 
     func testShowCalendarScreen() {
         let sourceVC = UIViewController()
-        let testee = makeAddViewModel()
+        testee = makeAddViewModel()
         testee.showCalendarSelector.send(WeakViewController(sourceVC))
 
         guard let lastPresentation = router.viewControllerCalls.last else {
@@ -551,12 +674,11 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     }
 
     func testSelectCalendarViewModelSelectsCalendar() {
-        let testee = makeAddViewModel()
+        testee = makeAddViewModel()
 
         XCTAssertEqual(testee.calendarName, TestConstants.calendars[3].name)
 
-        let selectedCalendar = calendarListProviderInteractor.filters.value[1]
-        testee.selectCalendarViewModel.selectedCalendar = selectedCalendar
+        triggerCalendarSelection(at: 1)
 
         XCTAssertEqual(testee.calendarName, TestConstants.calendars[1].name)
     }
@@ -591,6 +713,9 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         locationName: String? = nil,
         locationAddress: String? = nil,
         details: String? = nil,
+        repetitionRule: String? = nil,
+        isSeriesHead: Bool? = nil,
+        seriesInNaturalLanguage: String? = nil,
         context: Context = .account("")
     ) -> CalendarEvent {
         let event = CalendarEvent.save(
@@ -602,12 +727,22 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
                 all_day: isAllDay,
                 description: details,
                 location_name: locationName,
-                location_address: locationAddress
+                location_address: locationAddress,
+                rrule: repetitionRule,
+                series_head: isSeriesHead,
+                series_natural_language: seriesInNaturalLanguage
             ),
             in: databaseClient
         )
         event.context = context
         return event
+    }
+
+    @discardableResult
+    private func triggerCalendarSelection(at index: Int = 1) -> CDCalendarFilterEntry {
+        let selectedCalendar = calendarListProviderInteractor.filters.value[index]
+        testee.selectCalendarViewModel.selectedCalendar = selectedCalendar
+        return selectedCalendar
     }
 }
 

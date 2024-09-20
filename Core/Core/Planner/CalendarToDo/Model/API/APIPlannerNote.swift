@@ -22,15 +22,15 @@ import Foundation
 // Used only when creating or updating a PlannerNote (aka. Calendar ToDo),
 // not when fetching ToDos together with other plannables.
 public struct APIPlannerNote: Codable, Equatable {
-    let id: String
-    let title: String
-    let details: String?
-    let todo_date: Date
-    let user_id: String?
-    let course_id: String?
-    let workflow_state: String?
-    let created_at: Date?
-    let updated_at: Date?
+    public let id: String
+    public let title: String
+    public let details: String?
+    public let todo_date: Date
+    public let user_id: String?
+    public let course_id: String?
+    public let workflow_state: String?
+    public let created_at: Date?
+    public let updated_at: Date?
 }
 
 #if DEBUG

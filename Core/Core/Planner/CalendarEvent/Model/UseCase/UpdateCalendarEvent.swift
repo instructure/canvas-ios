@@ -36,7 +36,8 @@ final class UpdateCalendarEvent: APIUseCase {
         location_name: String?,
         location_address: String?,
         time_zone_edited: String?,
-        rrule: RecurrenceRule?
+        rrule: RecurrenceRule?,
+        seriesModificationType: APICalendarEventSeriesModificationType?
     ) {
         self.request = PutCalendarEventRequest(
             id: id,
@@ -51,7 +52,8 @@ final class UpdateCalendarEvent: APIUseCase {
                     location_address: location_address,
                     time_zone_edited: time_zone_edited,
                     rrule: rrule
-                )
+                ),
+                which: seriesModificationType
             )
         )
     }

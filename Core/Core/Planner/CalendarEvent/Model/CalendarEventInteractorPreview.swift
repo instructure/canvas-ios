@@ -87,12 +87,16 @@ final class CalendarEventInteractorPreview: CalendarEventInteractor {
     // MARK: - updateEvent
 
     var updateEventCallsCount: Int = 0
-    var updateEventInput: (id: String, model: CalendarEventRequestModel)?
+    var updateEventInput: (id: String, model: CalendarEventRequestModel, seriesModificationType: SeriesModificationType?)?
     var updateEventResult: Result<Void, Error>? = .success
 
-    func updateEvent(id: String, model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
+    func updateEvent(
+        id: String,
+        model: CalendarEventRequestModel,
+        seriesModificationType: SeriesModificationType?
+    ) -> AnyPublisher<Void, Error> {
         updateEventCallsCount += 1
-        updateEventInput = (id: id, model: model)
+        updateEventInput = (id: id, model: model, seriesModificationType: seriesModificationType)
 
         if let updateEventResult {
             return updateEventResult.publisher.eraseToAnyPublisher()

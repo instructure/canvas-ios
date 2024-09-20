@@ -55,6 +55,7 @@ struct APICalendarEventRequestBody: Codable, Equatable {
     }
 
     let calendar_event: CalendarEvent
+    let which: APICalendarEventSeriesModificationType?
 }
 
 #if DEBUG
@@ -68,7 +69,8 @@ extension APICalendarEventRequestBody {
         location_name: String? = nil,
         location_address: String? = nil,
         time_zone_edited: String? = nil,
-        rrule: RecurrenceRule? = nil
+        rrule: RecurrenceRule? = nil,
+        which: APICalendarEventSeriesModificationType? = nil
     ) -> PostCalendarEventRequest.Body {
         .init(
             calendar_event: .init(
@@ -81,7 +83,8 @@ extension APICalendarEventRequestBody {
                 location_address: location_address,
                 time_zone_edited: time_zone_edited,
                 rrule: rrule
-            )
+            ),
+            which: which
         )
     }
 }

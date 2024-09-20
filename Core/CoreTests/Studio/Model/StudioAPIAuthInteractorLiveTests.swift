@@ -54,6 +54,10 @@ class StudioAPIAuthInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(mockWebView.receivedQueryForToken, true)
     }
 
+    func testErrorDescription() {
+        XCTAssertEqual(StudioAPIAuthError.failedToGetLTIs.localizedDescription, "StudioAPIAuthError.failedToGetLTIs")
+    }
+
     private func mockStudioLTIData() {
         api.mock(
             GetGlobalNavExternalToolsPlacements(

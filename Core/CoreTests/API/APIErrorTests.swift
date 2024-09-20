@@ -88,6 +88,14 @@ class APIErrorTests: XCTestCase {
         XCTAssertEqual(apiError.localizedDescription, "Benutzer ist zu dieser Aktion nicht berechtigt.")
     }
 
+    func testBadRequest() {
+        let response = HTTPURLResponse(url: .make(), statusCode: 400, httpVersion: nil, headerFields: nil)
+        let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
+
+        let nsError = error as NSError
+        XCTAssertEqual(nsError.code, HttpError.badRequest)
+    }
+
     func testUnauthorized() {
         let response = HTTPURLResponse(url: .make(), statusCode: 401, httpVersion: nil, headerFields: nil)
         let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))

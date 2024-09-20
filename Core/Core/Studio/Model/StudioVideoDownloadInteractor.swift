@@ -22,7 +22,7 @@ public struct StudioOfflineVideo: Equatable {
     public let ltiLaunchID: String
     public let videoLocation: URL
     /// The png file of the first frame of the video.
-    public let videoPosterLocation: URL
+    public let videoPosterLocation: URL?
     public let videoMimeType: String
     public let captionLocations: [URL]
 }
@@ -36,15 +36,18 @@ public class StudioVideoDownloadInteractorLive: StudioVideoDownloadInteractor {
     private let rootDirectory: URL
     private let captionsInteractor: StudioCaptionsInteractor
     private let videoCacheInteractor: StudioVideoCacheInteractor
+    private let posterInteractor: StudioVideoPosterInteractor
 
     public init(
         rootDirectory: URL,
         captionsInteractor: StudioCaptionsInteractor,
-        videoCacheInteractor: StudioVideoCacheInteractor
+        videoCacheInteractor: StudioVideoCacheInteractor,
+        posterInteractor: StudioVideoPosterInteractor
     ) {
         self.rootDirectory = rootDirectory
         self.captionsInteractor = captionsInteractor
         self.videoCacheInteractor = videoCacheInteractor
+        self.posterInteractor = posterInteractor
     }
 
     public func download(_ item: APIStudioMediaItem) -> AnyPublisher<StudioOfflineVideo, Error> {
@@ -83,12 +86,12 @@ public class StudioVideoDownloadInteractorLive: StudioVideoDownloadInteractor {
                 )
                 .map { (isVideoCached, $0) }
             }
-            .tryMap { (isVideoCached: Bool, captionURLs: [URL]) in
-                let posterLocation = mediaFolder.appendingPathComponent("poster.png", isDirectory: false)
-
-                if isVideoCached == false {
-                    try videoFileLocation.writeVideoPreview(to: posterLocation)
-                }
+            .map { [posterInteractor] (isVideoCached: Bool, captionURLs: [URL]) -> ([URL], URL?) in
+                let posterLocation = posterInteractor.createVideoPosterIfNeeded(
+                    isVideoCached: isVideoCached,
+                    mediaFolder: mediaFolder,
+                    videoFile: videoFileLocation
+                )
 
                 return (captionURLs, posterLocation)
             }

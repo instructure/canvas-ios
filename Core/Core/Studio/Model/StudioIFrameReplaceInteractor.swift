@@ -26,7 +26,7 @@ public enum StudioIFrameReplaceError: LocalizedError {
     case failedToSaveUpdatedHtml
 
     public var errorDescription: String? {
-        // ReplaceError.failedToConvertDataToString
+        // StudioIFrameReplaceError.failedToConvertDataToString
         "\(Self.self).\(self)"
     }
 }
@@ -97,8 +97,15 @@ public class StudioIFrameReplaceInteractorLive: StudioIFrameReplaceInteractor {
             captionTags.append("  <track kind=\"captions\" src=\"\(caption.path)\" srclang=\"\(languageCode)\" />\n")
         }
 
+        let posterProperty: String = {
+            guard let posterLocation = studioVideo.videoPosterLocation else {
+                return ""
+            }
+            return " poster=\"\(posterLocation.path)\""
+        }()
+
         let videoTag = """
-        <video controls playsinline preload="auto" poster="\(studioVideo.videoPosterLocation.path)">
+        <video controls playsinline preload="auto"\(posterProperty)>
           <source src="\(studioVideo.videoLocation.path)" type="\(studioVideo.videoMimeType)\" />
         \(captionTags)</video>
         """
