@@ -242,13 +242,15 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func totalLabelText() -> some View {
-            let isShowGradeAssignment = !toggleViewIsVisible &&
-                                    viewModel.baseOnGradedAssignment &&
-                                    viewModel.totalGradeText != nil
+        let isShowGradeAssignment = !toggleViewIsVisible &&
+        viewModel.baseOnGradedAssignment &&
+        viewModel.totalGradeText != nil
 
         let totalText = String(localized: "Total", bundle: .core)
+        let restrictedText = String(localized: "Total grades are restricted", bundle: .core)
         let gradedAssignmentsText = String(localized: "Based on graded assignments", bundle: .core)
-        Text(isShowGradeAssignment ? gradedAssignmentsText : totalText)
+        let text = isShowGradeAssignment ? gradedAssignmentsText : totalText
+        Text(viewModel.totalGradeText == nil ? restrictedText : text)
             .foregroundStyle(Color.textDark)
             .font(.regular14)
             .accessibilityHidden(true)
