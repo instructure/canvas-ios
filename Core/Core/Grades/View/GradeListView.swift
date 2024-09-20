@@ -87,7 +87,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             }
         }
         .background(Color.backgroundLightest)
-        .navigationTitle(String(localized: "Grades", bundle: .core))
+        .navigationTitle(String(localized: "Grades", bundle: .core), subtitle: viewModel.courseName)
         .toolbar {
             RevertWhatIfScoreButton(isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn) {
                 viewModel.isShowingRevertDialog = true
@@ -96,7 +96,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 Button(action: {
                     viewModel.navigateToFilter(viewController: viewController)
                 }) {
-                    Image.filterSolid
+                    Image.filterLine
                         .foregroundStyle(Color.textLightest)
                 }
                 .accessibilityLabel(Text("Filter", bundle: .core))
