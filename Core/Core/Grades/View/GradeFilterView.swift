@@ -38,8 +38,19 @@ public struct GradeFilterView: View {
                 }
                 sortBySection
             }
+            .navigationTitleStyled(navBarTitleView)
             .navigationBarItems(leading: cancelButton, trailing: sendButton)
-            .navigationTitle(String(localized: "Grade Preferences", bundle: .core), subtitle: viewModel.courseName)
+        }
+    }
+
+    private var navBarTitleView: some View {
+        VStack {
+            Text(String(localized: "Grade Preferences", bundle: .core))
+                .foregroundStyle(Color.textDarkest)
+                .font(.semibold16)
+            Text(viewModel.courseName ?? "")
+                .foregroundStyle(Color.textDark)
+                .font(.regular12)
         }
     }
 
@@ -100,9 +111,9 @@ public struct GradeFilterView: View {
             viewModel.dimiss(viewController: viewController)
         } label: {
             Image.xLine
-                .accessibilityHidden(true)
-                .accessibilityLabel(Text("Hide", bundle: .core))
         }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(Text("Hide", bundle: .core))
     }
 }
 
@@ -113,7 +124,6 @@ public struct GradeFilterView: View {
             dependency: .init(
                 router: AppEnvironment.shared.router,
                 isShowGradingPeriod: false,
-                selectedSortBy: GradeArrangementOptions.dueDate,
                 sortByOptions: GradeArrangementOptions.allCases
             ),
             appEnvironment: .shared

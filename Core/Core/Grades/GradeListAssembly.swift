@@ -25,7 +25,8 @@ public enum GradListAssembly {
     ) -> GradeListInteractor {
         GradeListInteractorLive(
             courseID: courseID,
-            userID: userID
+            userID: userID,
+            appEnvironment: .shared
         )
     }
 

@@ -33,10 +33,12 @@ final class GradeFilterViewModelTests: CoreTestCase {
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: true,
-            selectedSortBy: GradeArrangementOptions.dueDate,
             sortByOptions: GradeArrangementOptions.allCases
         )
-        sut = GradeFilterViewModel(dependency: dependency)
+        sut = GradeFilterViewModel(
+            dependency: dependency,
+            appEnvironment: .shared
+        )
     }
 
     override func tearDownWithError() throws {
@@ -50,12 +52,11 @@ final class GradeFilterViewModelTests: CoreTestCase {
             router: router,
             isShowGradingPeriod: true,
             gradingPeriods: listGradingPeriods,
-            selectedGradingPeriod: nil,
-            selectedSortBy: GradeArrangementOptions.dueDate,
             sortByOptions: GradeArrangementOptions.allCases
         )
         // When
-        let sut = GradeFilterViewModel(dependency: dependency)
+        environment.userDefaults?.selectedGradingPeriodId = nil
+        let sut = GradeFilterViewModel(dependency: dependency, appEnvironment: environment)
         // Then
         XCTAssertEqual(sut.gradingPeriods.first?.title, "All")
         XCTAssertEqual(sut.gradingPeriods.count, 5)
@@ -66,16 +67,18 @@ final class GradeFilterViewModelTests: CoreTestCase {
     func test_mapGradingPeriod_hasSelectedGradingPeriods() {
         // Given
         let listGradingPeriods = getListGradingPeriods()
+        environment.userDefaults?.selectedGradingPeriodId = "4"
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: true,
             gradingPeriods: listGradingPeriods,
-            selectedGradingPeriod: listGradingPeriods.last,
-            selectedSortBy: GradeArrangementOptions.dueDate,
             sortByOptions: GradeArrangementOptions.allCases
         )
         // When
-        let sut = GradeFilterViewModel(dependency: dependency)
+        let sut = GradeFilterViewModel(
+            dependency: dependency,
+            appEnvironment: environment
+        )
         // Then
         XCTAssertEqual(sut.gradingPeriods.count, 5)
         XCTAssertTrue(sut.isShowGradingPeriodsView)
@@ -88,12 +91,13 @@ final class GradeFilterViewModelTests: CoreTestCase {
             router: router,
             isShowGradingPeriod: false,
             gradingPeriods: nil,
-            selectedGradingPeriod: nil,
-            selectedSortBy: GradeArrangementOptions.dueDate,
             sortByOptions: GradeArrangementOptions.allCases
         )
         // When
-        let sut = GradeFilterViewModel(dependency: dependency)
+        let sut = GradeFilterViewModel(
+            dependency: dependency,
+            appEnvironment: environment
+        )
         // Then
         XCTAssertTrue(sut.gradingPeriods.isEmpty)
         XCTAssertFalse(sut.isShowGradingPeriodsView)
@@ -103,16 +107,18 @@ final class GradeFilterViewModelTests: CoreTestCase {
         // Given
         let sortByOptions = GradeArrangementOptions.allCases
         let selectedSortBy = GradeArrangementOptions.dueDate
+        environment.userDefaults?.selectedSortByOptionId = 2
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: false,
             gradingPeriods: nil,
-            selectedGradingPeriod: nil,
-            selectedSortBy: selectedSortBy,
             sortByOptions: sortByOptions
         )
         // Then
-        let sut = GradeFilterViewModel(dependency: dependency)
+        let sut = GradeFilterViewModel(
+            dependency: dependency,
+            appEnvironment: environment
+        )
         XCTAssertEqual(sut.sortByOptions.count, 2)
         XCTAssertEqual(sut.selectedSortByOption, selectedSortBy)
     }
@@ -124,30 +130,32 @@ final class GradeFilterViewModelTests: CoreTestCase {
             router: router,
             isShowGradingPeriod: true,
             gradingPeriods: listGradingPeriods,
-            selectedGradingPeriod: listGradingPeriods.last,
-            selectedSortBy: GradeArrangementOptions.dueDate,
             sortByOptions: GradeArrangementOptions.allCases
         )
         // When
-        let sut = GradeFilterViewModel(dependency: dependency)
+        let sut = GradeFilterViewModel(
+            dependency: dependency,
+            appEnvironment: environment
+        )
         // Then
         XCTAssertFalse(sut.saveButtonIsEnabled)
-
     }
 
     func test_bindSaveButtonStates_statsIsChanged_saveButtonIsEnabled() {
         // Given
         let listGradingPeriods = getListGradingPeriods()
+        environment.userDefaults?.selectedSortByOptionId = 2
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: true,
             gradingPeriods: listGradingPeriods,
-            selectedGradingPeriod: listGradingPeriods.last,
-            selectedSortBy: GradeArrangementOptions.dueDate,
             sortByOptions: GradeArrangementOptions.allCases
         )
         // When
-        let sut = GradeFilterViewModel(dependency: dependency)
+        let sut = GradeFilterViewModel(
+            dependency: dependency,
+            appEnvironment: environment
+        )
         sut.selectedSortByOption = .groupName
         // Then
         XCTAssertTrue(sut.saveButtonIsEnabled)
@@ -155,8 +163,8 @@ final class GradeFilterViewModelTests: CoreTestCase {
 
     func test_saveButtonTapped() {
         // Given
-        var selectedGradingPeriodPublisher = PassthroughRelay<GradingPeriod?>()
-        var selectedSortByPublisher = CurrentValueRelay<GradeArrangementOptions>(.groupName)
+        let selectedGradingPeriodPublisher = PassthroughRelay<GradingPeriod?>()
+        let selectedSortByPublisher = CurrentValueRelay<GradeArrangementOptions>(.groupName)
         let listGradingPeriods = getListGradingPeriods()
         let viewController = WeakViewController()
         var isSelectedGradingPeriodPublisherFired = false
@@ -168,12 +176,13 @@ final class GradeFilterViewModelTests: CoreTestCase {
             selectedGradingPeriodPublisher: selectedGradingPeriodPublisher,
             selectedSortByPublisher: selectedSortByPublisher,
             gradingPeriods: listGradingPeriods,
-            selectedGradingPeriod: listGradingPeriods.last,
-            selectedSortBy: GradeArrangementOptions.dueDate,
             sortByOptions: GradeArrangementOptions.allCases
         )
         // When
-        let sut = GradeFilterViewModel(dependency: dependency)
+        let sut = GradeFilterViewModel(
+            dependency: dependency,
+            appEnvironment: environment
+        )
         sut.selectedSortByOption = .groupName
         sut.selectedGradingPeriod = nil
         selectedGradingPeriodPublisher.sink { _ in
@@ -194,10 +203,10 @@ final class GradeFilterViewModelTests: CoreTestCase {
 
     private func getListGradingPeriods() -> [GradingPeriod] {
         [
-            .save(.make(title: "Spring"), courseID: "1", in: database.viewContext),
-            .save(.make(title: "Summer"), courseID: "2", in: database.viewContext),
-            .save(.make(title: "Autumn"), courseID: "3", in: database.viewContext),
-            .save(.make(title: "Winter"), courseID: "4", in: database.viewContext)
+            .save(.make(id: "1", title: "Spring"), courseID: "1", in: database.viewContext),
+            .save(.make(id: "2", title: "Summer"), courseID: "2", in: database.viewContext),
+            .save(.make(id: "3", title: "Autumn"), courseID: "3", in: database.viewContext),
+            .save(.make(id: "4", title: "Winter"), courseID: "4", in: database.viewContext)
         ]
     }
 }

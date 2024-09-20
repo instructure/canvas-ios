@@ -108,8 +108,6 @@ public final class GradeFilterViewModel: ObservableObject {
         AppEnvironment.shared.userDefaults?.selectedGradingPeriodId = selectedGradingPeriod?.value?.id
         AppEnvironment.shared.userDefaults?.selectedSortByOptionId = selectedSortByOption?.rawValue
         dimiss(viewController: viewController)
-
-//        dependency.selectedFilter(selectedGradingPeriod?.value, selectedSortByOption ?? .groupName)
     }
 
     func dimiss(viewController: WeakViewController) {
@@ -126,15 +124,8 @@ extension GradeFilterViewModel {
         var selectedGradingPeriodPublisher = PassthroughRelay<GradingPeriod?>()
         var selectedSortByPublisher = CurrentValueRelay<GradeArrangementOptions>(.groupName)
         var gradingPeriods: [GradingPeriod]?
-        var selectedGradingPeriod: GradingPeriod?
-        var selectedSortBy: GradeArrangementOptions
         var sortByOptions: [GradeArrangementOptions]
     }
-
-//    var selectedFilter: (
-//        _ grade: GradingPeriod?,
-//        _ sortBy: GradeArrangementOptions
-//    ) -> Void = { _, _ in}
 
     struct GradePeriod: Equatable, Hashable {
         let title: String?
@@ -144,7 +135,7 @@ extension GradeFilterViewModel {
 
 // MARK: - Helpers
 extension GradeFilterViewModel {
-    /// Using this type to match between the initial values and the changes values to
+    /// Using this type to match between the initial values and the changed values to
     /// make the save button is enabled or disabled
     fileprivate struct FilterValue: Equatable {
         var selectedGradingPeriod: GradePeriod?

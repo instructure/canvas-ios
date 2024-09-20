@@ -47,15 +47,18 @@ public final class GradeListInteractorLive: GradeListInteractor {
     private let gradingPeriodListStore: ReactiveStore<GetGradingPeriods>
     private var gradingPeriodID: String?
     private var isInitialGradingPeriodSet = false
+    private let appEnvironment: AppEnvironment
 
     // MARK: - Init
 
     public init(
         courseID: String,
-        userID: String?
+        userID: String?,
+        appEnvironment: AppEnvironment
     ) {
         self.courseID = courseID
         self.userID = userID
+        self.appEnvironment = appEnvironment
 
         assignmentListStore = ReactiveStore(
             useCase: GetAssignmentsByGroup(
@@ -87,9 +90,9 @@ public final class GradeListInteractorLive: GradeListInteractor {
             useCase: GetGradingPeriods(courseID: courseID)
         )
     }
-    
+
     private var selectedGradingPeriodId: String? {
-        AppEnvironment.shared.userDefaults?.selectedGradingPeriodId
+        appEnvironment.userDefaults?.selectedGradingPeriodId
     }
 
     public func getGrades(

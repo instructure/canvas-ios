@@ -41,7 +41,6 @@ public final class GradeListViewModel: ObservableObject {
 
     enum ViewState: Equatable {
         case initialLoading
-        case refreshing(GradeListData)
         case data(GradeListData)
         case empty(GradeListData)
         case error
@@ -52,6 +51,7 @@ public final class GradeListViewModel: ObservableObject {
     private let interactor: GradeListInteractor
 
     // MARK: - Output
+    @Published private(set) var isLoaderVisible = false
     @Published private(set) var courseName: String?
     @Published private(set) var totalGradeText: String?
     @Published private(set) var gradeHeaderIsVisible = false
@@ -63,7 +63,6 @@ public final class GradeListViewModel: ObservableObject {
     // MARK: - Input
     let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
     let didSelectAssignment = PassthroughRelay<(WeakViewController, Assignment)>()
-    let offsetPublisher = PassthroughRelay<CGFloat>()
     let confirmRevertAlertViewModel = ConfirmationAlertViewModel(
         title: String(localized: "Revert to Official Score?", bundle: .core),
         message: String(localized: "This will revert all your what-if scores in this course to the official score.", bundle: .core),
@@ -130,8 +129,10 @@ public final class GradeListViewModel: ObservableObject {
 
                 // Changing the grading period fires an API request that takes time,
                 // so we need to show a loading indicator.
-                if let lastKnownDataState, refreshCompletion == nil, ignoreCache {
-                    state = .refreshing(lastKnownDataState)
+                if lastKnownDataState != nil, refreshCompletion == nil, ignoreCache {
+                    isLoaderVisible = true
+                    // Empty list of assignments so can't get the normal size of scrollView
+                    state = .data(.init())
                 }
 
                 return interactor.getGrades(
@@ -149,6 +150,7 @@ public final class GradeListViewModel: ObservableObject {
                     courseName = listData.courseName
                     totalGradeText = listData.totalGradeText
                     gradeHeaderIsVisible = true
+                    isLoaderVisible = false
                     if listData.assignmentSections.count == 0 {
                         return Just(ViewState.empty(listData)).eraseToAnyPublisher()
                     } else {
@@ -191,8 +193,6 @@ public final class GradeListViewModel: ObservableObject {
             selectedGradingPeriodPublisher: selectedGradingPeriod,
             selectedSortByPublisher: selectedGroupByOption,
             gradingPeriods: lastKnownDataState?.gradingPeriods,
-            selectedGradingPeriod: lastKnownDataState?.currentGradingPeriod,
-            selectedSortBy: selectedGroupByOption.value,
             sortByOptions: GradeArrangementOptions.allCases
         )
 

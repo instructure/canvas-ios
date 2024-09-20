@@ -25,6 +25,7 @@ class GradeListViewModelTests: CoreTestCase {
     func testErrorState() {
         let testee = GradeListViewModel(
             interactor: GradeListInteractorErrorMock(),
+            appEnvironment: environment,
             router: PreviewEnvironment.shared.router,
             scheduler: .immediate
         )
@@ -34,6 +35,7 @@ class GradeListViewModelTests: CoreTestCase {
     func testEmptyState() {
         let testee = GradeListViewModel(
             interactor: GradeListInteractorEmptySectionsMock(),
+            appEnvironment: environment,
             router: PreviewEnvironment.shared.router,
             scheduler: .immediate
         )
@@ -46,6 +48,7 @@ class GradeListViewModelTests: CoreTestCase {
         let expectation = expectation(description: "Publisher sends value.")
         let testee = GradeListViewModel(
             interactor: interactor,
+            appEnvironment: environment,
             router: PreviewEnvironment.shared.router,
             scheduler: .immediate
         )
@@ -55,14 +58,13 @@ class GradeListViewModelTests: CoreTestCase {
 
             } receiveValue: { state in
                 states.append(state)
-                if states.count == 3 {
+                if states.count == 2 {
                     expectation.fulfill()
                 }
             }
 
         testee.pullToRefreshDidTrigger.accept((nil))
-        XCTAssertEqual(states[1], .refreshing(gradeListData))
-        XCTAssertEqual(states[2], .data(gradeListData))
+        XCTAssertEqual(states[1], .data(.init()))
         waitForExpectations(timeout: 0.1)
         subscription.cancel()
     }
@@ -71,6 +73,7 @@ class GradeListViewModelTests: CoreTestCase {
         let interactor = GradeListInteractorMock()
         let testee = GradeListViewModel(
             interactor: interactor,
+            appEnvironment: environment,
             router: PreviewEnvironment.shared.router,
             scheduler: .immediate
         )
@@ -93,6 +96,7 @@ class GradeListViewModelTests: CoreTestCase {
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
         let testee = GradeListViewModel(
             interactor: interactor,
+            appEnvironment: environment,
             router: PreviewEnvironment.shared.router,
             scheduler: .immediate
         )
@@ -106,6 +110,7 @@ class GradeListViewModelTests: CoreTestCase {
         let router = TestRouter()
         let testee = GradeListViewModel(
             interactor: GradeListInteractorMock(),
+            appEnvironment: environment,
             router: router,
             scheduler: .immediate
         )
@@ -120,6 +125,7 @@ class GradeListViewModelTests: CoreTestCase {
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
         let testee = GradeListViewModel(
             interactor: interactor,
+            appEnvironment: environment,
             router: PreviewEnvironment.shared.router,
             scheduler: .immediate
         )

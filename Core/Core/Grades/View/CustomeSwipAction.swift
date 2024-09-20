@@ -31,33 +31,33 @@ public extension View {
 public struct SlidableModifier: ViewModifier, Animatable {
 
     public enum SlideAxis {
-        case left2Right
-        case right2Left
+        case leftToRight
+        case rightToLeft
     }
 
     private var contentOffset: CGSize {
         switch self.slideAxis {
-        case .left2Right:
+        case .leftToRight:
             return .init(width: self.currentSlotsWidth, height: 0)
-        case .right2Left:
+        case .rightToLeft:
             return .init(width: -self.currentSlotsWidth, height: 0)
         }
     }
 
     private var slotOffset: CGSize {
         switch self.slideAxis {
-        case .left2Right:
+        case .leftToRight:
             return .init(width: self.currentSlotsWidth - self.totalSlotWidth, height: 0)
-        case .right2Left:
+        case .rightToLeft:
             return .init(width: self.totalSlotWidth - self.currentSlotsWidth, height: 0)
         }
     }
 
     private var zStackAlignment: Alignment {
         switch self.slideAxis {
-        case .left2Right:
+        case .leftToRight:
             return .leading
-        case .right2Left:
+        case .rightToLeft:
             return .trailing
         }
     }
@@ -80,14 +80,17 @@ public struct SlidableModifier: ViewModifier, Animatable {
     }
 
     private var slots: [Slot] {
-        slideAxis == .left2Right ? leadingSlots : trailingSlots
+        slideAxis == .leftToRight ? leadingSlots : trailingSlots
     }
 
-    @State private var slideAxis: SlideAxis = SlideAxis.left2Right
+    @State private var slideAxis: SlideAxis = SlideAxis.leftToRight
     private var leadingSlots: [Slot]
     private var trailingSlots: [Slot]
 
-    public init(leading: [Slot], trailing: [Slot]) {
+    public init(
+        leading: [Slot],
+        trailing: [Slot]
+    ) {
         self.leadingSlots = leading
         self.trailingSlots = trailing
     }
@@ -118,7 +121,6 @@ public struct SlidableModifier: ViewModifier, Animatable {
 
         }
         .gesture(gesture)
-
     }
 
     // MARK: Slot Container
@@ -129,6 +131,7 @@ public struct SlidableModifier: ViewModifier, Animatable {
                 VStack(spacing: 4) {
                     Spacer()
                     slot.image()
+                        .foregroundStyle(slot.style.foregroundColor)
 
                     Spacer()
                 }
@@ -149,9 +152,9 @@ public struct SlidableModifier: ViewModifier, Animatable {
                 let amount = value.translation.width
 
                 if amount < 0 {
-                    self.slideAxis = .right2Left
+                    self.slideAxis = .rightToLeft
                 } else {
-                    self.slideAxis = .left2Right
+                    self.slideAxis = .leftToRight
                 }
 
                 self.currentSlotsWidth = self.optWidth(value: amount)
@@ -166,9 +169,7 @@ public struct SlidableModifier: ViewModifier, Animatable {
                 }
             }
     }
-
 }
-
 
 public struct Slot: Identifiable {
     /// Id
@@ -182,9 +183,9 @@ public struct Slot: Identifiable {
 
     public init(
         id: String,
-        image : @escaping () -> Image,
+        image: @escaping () -> Image,
         action: @escaping () -> Void,
-        style : SlotStyle
+        style: SlotStyle
     ) {
         self.id = id
         self.image = image
@@ -196,15 +197,20 @@ public struct Slot: Identifiable {
 public struct SlotStyle {
     /// Background color of slot.
     public let background: Color
+
+    /// Foreground color color of slot.
+    public let foregroundColor: Color
+
     /// Individual slot width
     public let slotWidth: CGFloat
 
     public init(
         background: Color,
+        foregroundColor: Color = Color.textLightest,
         slotWidth: CGFloat = 60
     ) {
         self.background = background
-
+        self.foregroundColor = foregroundColor
         self.slotWidth = slotWidth
     }
 }

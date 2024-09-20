@@ -29,7 +29,6 @@ public struct GradeListView: View, ScreenViewTrackable {
     @ObservedObject private var viewModel: GradeListViewModel
     @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
     @Environment(\.viewController) private var viewController
-    @State private var gradeHeaderHeight: CGFloat?
     @State private var toggleViewIsVisible = true
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
@@ -58,39 +57,11 @@ public struct GradeListView: View, ScreenViewTrackable {
         GeometryReader { geometry in
             ZStack {
                 ScrollView(showsIndicators: false) {
-                    VStack(spacing: 0) {
-                        switch viewModel.state {
-                        case .initialLoading:
-                            loadingView()
-                        case let .refreshing(data):
-                            dataView(
-                                data,
-                                isRefreshing: true,
-                                isEmpty: false
-                            )
-                            .padding(.bottom, gradeHeaderHeight)
-                        case let .data(data):
-                            dataView(
-                                data,
-                                isRefreshing: false,
-                                isEmpty: false
-                            )
-                        case let .empty(data):
-                            dataView(
-                                data,
-                                isRefreshing: false,
-                                isEmpty: true
-                            )
-                            .padding(.bottom, gradeHeaderHeight)
-                        case .error:
-                            errorView()
-                                .padding(.bottom, gradeHeaderHeight)
-                        }
-                        Spacer()
-                    }
-                    .frame(width: geometry.size.width)
-                    .frame(minHeight: geometry.size.height)
+                    contentView(geometry: geometry)
                 }
+                .background(Color.backgroundLightest)
+                .accessibilityHidden(isScoreEditorPresented)
+                .background(Color.backgroundLightest)
                 .refreshable {
                     await withCheckedContinuation { continuation in
                         viewModel.pullToRefreshDidTrigger.accept {
@@ -98,17 +69,24 @@ public struct GradeListView: View, ScreenViewTrackable {
                         }
                     }
                 }
-                .accessibilityHidden(isScoreEditorPresented)
-                .background(Color.backgroundLightest)
-                .safeAreaInset(edge: .top) {
-                    if viewModel.gradeHeaderIsVisible {
-                        courseSummaryView(viewModel.totalGradeText)
-                    }
-                }
                 whatIfScoreEditorView()
+
+                if viewModel.isLoaderVisible {
+                    ProgressView()
+                        .progressViewStyle(.indeterminateCircle())
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.backgroundLightest)
+
+                }
             }
             .animation(.smooth, value: isScoreEditorPresented)
+            .safeAreaInset(edge: .top, spacing: 0) {
+                if viewModel.gradeHeaderIsVisible {
+                    courseSummaryView(viewModel.totalGradeText)
+                }
+            }
         }
+        .background(Color.backgroundLightest)
         .navigationTitle(String(localized: "Grades", bundle: .core))
         .toolbar {
             RevertWhatIfScoreButton(isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn) {
@@ -122,7 +100,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                         .foregroundStyle(Color.textLightest)
                 }
                 .accessibilityLabel(Text("Filter", bundle: .core))
-                .accessibilityHint(Text("Double tap to open filter grades screen.", bundle: .core))
+                .accessibilityHint(Text("Filter grades options", bundle: .core))
             }
         }
         .confirmationAlert(
@@ -131,37 +109,62 @@ public struct GradeListView: View, ScreenViewTrackable {
         )
     }
 
-    private func loadingView() -> some View {
+    private func contentView(geometry: GeometryProxy) -> some View {
+        VStack(spacing: 0) {
+            switch viewModel.state {
+            case .initialLoading:
+                loadingView(geometry: geometry)
+            case let .data(data):
+                dataView(
+                    data,
+                    isRefreshing: false,
+                    isEmpty: false,
+                    geometry: geometry
+                )
+            case let .empty(data):
+                dataView(
+                    data,
+                    isRefreshing: false,
+                    isEmpty: true,
+                    geometry: geometry
+                )
+            case .error:
+                errorView()
+                    .paddingStyle(.top, .standard)
+            }
+            Spacer()
+        }
+        .background(Color.backgroundLightest)
+    }
+
+    private func loadingView(geometry: GeometryProxy) -> some View {
         ZStack(alignment: .center) {
             ProgressView()
                 .progressViewStyle(.indeterminateCircle())
-                .listRowSeparator(.hidden)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(width: geometry.size.width, height: geometry.size.height)
     }
 
     @ViewBuilder
     private func dataView(
         _ gradeListData: GradeListData,
         isRefreshing: Bool,
-        isEmpty: Bool
+        isEmpty: Bool,
+        geometry: GeometryProxy
     ) -> some View {
-        if isRefreshing {
-            GeometryReader { proxy in
-                loadingView()
-                    .padding(.vertical, 16)
-                    .frame(width: proxy.size.width)
-                    .frame(minHeight: proxy.size.height)
+        if isEmpty {
+            VStack {
+                emptyView()
+                    .paddingStyle(.vertical, .standard)
+                Spacer()
             }
-        } else if isEmpty {
-            emptyView()
-                .padding(.vertical, 16)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(width: geometry.size.width, height: geometry.size.height)
+
         } else {
             assignmentListView(
                 courseColor: gradeListData.courseColor,
                 assignmentSections: gradeListData.assignmentSections,
-                userID: gradeListData.userID
+                userID: gradeListData.userID ?? ""
             )
             .accessibilityFocused($accessibilityFocus, equals: .list)
         }
@@ -176,6 +179,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             } else {
                 Image(uiImage: .lockLine)
                     .size(16)
+                    .accessibilityHidden(true)
                     .accessibilityIdentifier("lockIcon")
             }
         }
@@ -200,18 +204,15 @@ public struct GradeListView: View, ScreenViewTrackable {
             if totalGrade != nil {
                 if toggleViewIsVisible {
                     togglesView()
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                        .zIndex(-1)
                 }
             }
             InstUI.Divider()
         }
         .background(Color.backgroundLight)
         .fixedSize(horizontal: false, vertical: true)
-        .animation(.smooth, value: toggleViewIsVisible)
-        .readingFrame { frame in
-            if gradeHeaderHeight == nil {
-                gradeHeaderHeight = frame.height
-            }
-        }
+        .animation(.linear, value: toggleViewIsVisible)
     }
 
     @ViewBuilder
@@ -301,44 +302,44 @@ public struct GradeListView: View, ScreenViewTrackable {
     ) -> some View {
 
         topView // For reading frame
-        ForEach(assignmentSections, id: \.title) { section in
-            DisclosureGroup {
-                ForEach(section.assignments, id: \.self) { assignment in
-                    VStack(alignment: .leading, spacing: 0) {
-                        listRowView(
-                            assignment: assignment,
-                            userID: userID,
-                            courseColor: courseColor
-                        )
 
-                        if assignment.id != section.assignments.last?.id {
-                            InstUI.Divider()
-                                .padding(.horizontal, 16)
-                                .accessibilityHidden(true)
-                        }
+        LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
+            ForEach(assignmentSections, id: \.id) { section in
+                AssignmentSection {
+                    VStack(spacing: 0) {
+                        listSectionView(title: section.title)
+                            .frame(height: 60)
+                            .paddingStyle(.horizontal, .standard)
+                    }
+                    .accessibilityLabel(section.title ?? "")
+
+                } content: {
+                    ForEach(section.assignments, id: \.id) { assignment in
+                        VStack(alignment: .leading, spacing: 0) {
+                            listRowView(
+                                assignment: assignment,
+                                userID: userID,
+                                courseColor: courseColor
+                            )
+
+                            if assignment.id != section.assignments.last?.id {
+                                InstUI.Divider()
+                                    .paddingStyle(.horizontal, .standard)
+                                    .accessibilityHidden(true)
+                            }
+                        }.id(assignment.id)
                     }
                 }
-            } label: {
-                VStack(spacing: 0) {
-                    listSectionView(title: section.title)
-                        .frame(height: 60)
-                        .paddingStyle(.horizontal, .standard)
-                    InstUI.Divider()
-                        .frame(maxWidth: .infinity)
-                        .padding(.trailing, -40)
-                        .accessibilityHidden(true)
-                }
             }
-            .disclosureGroupStyle(CollapsibleDisclosureStyle())
         }
 
         Rectangle()
             .fill(Color.backgroundLightest)
-            .frame(height: 50)
+            .frame(height: 30)
 
     }
 
-    @ViewBuilder /// For reading frames while scrolling top and down
+    /// For reading frames while scrolling top and down
     private var topView: some View {
         Color.clear
             .frame(height: 0)
