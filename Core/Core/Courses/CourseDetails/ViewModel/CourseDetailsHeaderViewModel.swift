@@ -29,6 +29,10 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
     @Published public private(set) var termName = ""
     @Published public private(set) var imageURL: URL?
 
+    public let courseTitleShadow = (
+        color: Color(UIColor.getColor(dark: .white, light: .black).withAlphaComponent(0.40)),
+        radius: 4 as CGFloat
+    )
     public let height: CGFloat = 235
 
     private let env = AppEnvironment.shared

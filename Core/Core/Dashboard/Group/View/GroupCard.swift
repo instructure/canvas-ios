@@ -31,14 +31,14 @@ struct GroupCard: View {
             env.router.route(to: "/groups/\(group.id)", from: controller)
         }, label: {
             HStack(spacing: 0) {
-                Rectangle().fill(group.dashboardCardColor).frame(width: 4)
+                Rectangle().fill(Color(group.color)).frame(width: 4)
                 VStack(alignment: .leading, spacing: 0) {
                     HStack { Spacer() }
                     Text(group.name)
                         .font(.semibold18).foregroundColor(.textDarkest)
                         .lineLimit(2).fixedSize(horizontal: false, vertical: true)
                     Text(course?.name ?? String(localized: "Account Group", bundle: .core))
-                        .font(.semibold16).foregroundColor(group.dashboardCardColor)
+                        .font(.semibold16).foregroundColor(Color(group.color))
                         .lineLimit(2).fixedSize(horizontal: false, vertical: true)
                     course?.termName.map { Text($0.localizedUppercase) }
                         .font(.semibold12).foregroundColor(.textDark)

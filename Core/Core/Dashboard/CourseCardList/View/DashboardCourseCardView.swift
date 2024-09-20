@@ -187,8 +187,15 @@ struct DashboardCourseCardView: View {
         }
 
         guard let course = courseCard.course else { return }
+        let viewModel = CustomizeCourseViewModel(
+            courseId: course.id,
+            courseImage: course.imageDownloadURL,
+            courseColor: course.color,
+            courseName: course.name ?? "",
+            hideColorOverlay: hideColorOverlay
+        )
         env.router.show(
-            CoreHostingController(CustomizeCourseView(course: course, hideColorOverlay: hideColorOverlay)),
+            CoreHostingController(CustomizeCourseView(viewModel: viewModel)),
             from: controller,
             options: .modal(.formSheet, isDismissable: false, embedInNav: true),
             analyticsRoute: "/dashboard/customize_course"

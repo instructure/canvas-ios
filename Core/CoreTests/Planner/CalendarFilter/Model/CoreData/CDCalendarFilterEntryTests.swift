@@ -61,10 +61,9 @@ class CDCalendarFilterEntryTests: CoreTestCase {
     func testColorFetch() {
         let testee: CDCalendarFilterEntry = databaseClient.insert()
         testee.context = .course("42")
+        testee.name = ""
 
-        let color: ContextColor = databaseClient.insert()
-        color.canvasContextID = "course_42"
-        color.colorRaw = UIColor.red.intValue
+        ContextColor.make(canvasContextID: "course_42", color: .red, in: databaseClient)
 
         XCTAssertEqual(UIColor(testee.color).hexString, UIColor.red.hexString)
     }

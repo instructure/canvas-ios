@@ -94,6 +94,6 @@ public final class DashboardCard: NSManagedObject {
     }
 
     private func calculateColor() -> UIColor {
-        contextColor?.color.ensureContrast(against: .backgroundLightest) ?? .textDark
+        contextColor?.color ?? .textMasquerade
     }
 }

@@ -30,9 +30,11 @@ class AssignmentListViewModelTests: CoreTestCase {
     }
 
     func testCoursePropertiesUpdate() {
-        let contextColor = ContextColor(context: databaseClient)
-        contextColor.canvasContextID = "course_1"
-        contextColor.color = .red
+        ContextColor.make(
+            canvasContextID: "course_1",
+            color: .red,
+            in: databaseClient
+        )
         api.mock(GetCourse(courseID: "1"), value: .make(name: "Test Course"))
         let testee = AssignmentListViewModel(context: .course("1"))
 

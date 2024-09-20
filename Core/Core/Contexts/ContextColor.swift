@@ -22,27 +22,39 @@ import UIKit
 
 public final class ContextColor: NSManagedObject {
     @NSManaged public var canvasContextID: String
-    @NSManaged var card: DashboardCard?
-    @NSManaged public var colorRaw: UInt32
-    @NSManaged public var course: Course?
+    @NSManaged public private(set) var colorRaw: UInt32
 
     // This is a Set because we need to allow for multiple Groups to reference
     // the same course color in the case where a student is in multiple groups in the same course.
     @NSManaged public var groups: Set<Group>
+    @NSManaged public var course: Course?
+    @NSManaged public var card: DashboardCard?
 
-    public var color: UIColor {
-        get { return UIColor(intValue: colorRaw) }
-        set { colorRaw = newValue.intValue }
+    public private(set) var color: UIColor = .textMasquerade
+
+    public override func awakeFromFetch() {
+        super.awakeFromFetch()
+        setupColor()
+    }
+
+    public override func willSave() {
+        super.willSave()
+        setupColor()
     }
 
     @discardableResult
-    public static func save(_ item: APICustomColors, in context: NSManagedObjectContext) -> [ContextColor] {
+    public static func save(
+        _ item: APICustomColors,
+        in context: NSManagedObjectContext
+    ) -> [ContextColor] {
         return item.custom_colors.compactMap { record in
             guard let color = UIColor(hexString: record.value) else { return nil }
+
             let predicate = NSPredicate(format: "%K == %@", #keyPath(ContextColor.canvasContextID), record.key)
             let model: ContextColor = context.fetch(predicate).first ?? context.insert()
             model.canvasContextID = record.key
-            model.color = color
+            model.colorRaw = color.intValue
+
             if let canvasContext = Context(canvasContextID: record.key) {
                 switch canvasContext.contextType {
                 case .course:
@@ -62,5 +74,11 @@ public final class ContextColor: NSManagedObject {
             }
             return model
         }
+    }
+
+    private func setupColor() {
+        let dbColor = UIColor(intValue: colorRaw)
+        let colorInteractor = CourseColorsInteractorLive()
+        color = colorInteractor.courseColorFromAPIColor(dbColor.hexString)
     }
 }

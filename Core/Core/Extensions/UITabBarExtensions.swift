@@ -21,11 +21,6 @@ import UIKit
 extension UITabBar {
     /// Styles the `UITabBar` to use some elements of the organizations branding colors
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
-        items?.forEach {
-            $0.badgeColor = .backgroundDanger
-            $0.setBadgeTextAttributes([.foregroundColor: UIColor.white], for: .normal)
-        }
-
         let itemAppearance = UITabBarItemAppearance.make(highlightColor: brand.tabBarHighlightColor)
         let tabBarAppearance = UITabBarAppearance.make(itemAppearance: itemAppearance)
         standardAppearance = tabBarAppearance
@@ -37,12 +32,13 @@ private extension UITabBarItemAppearance {
 
     static func make(highlightColor: UIColor) -> UITabBarItemAppearance {
         let itemAppearance = UITabBarItemAppearance()
-
         itemAppearance.normal.iconColor = .textDark
         itemAppearance.normal.titleTextAttributes = [
             .foregroundColor: UIColor.textDark,
             .font: UIFont.scaledNamedFont(.semibold12)
         ]
+        itemAppearance.normal.badgeBackgroundColor = .backgroundDanger
+        itemAppearance.normal.badgeTextAttributes = [.foregroundColor: UIColor.textLightest]
 
         itemAppearance.selected.iconColor = highlightColor
         itemAppearance.selected.titleTextAttributes = [

@@ -51,10 +51,6 @@ public class CoreNavigationController: UINavigationController {
     public override var childForStatusBarStyle: UIViewController? {
         topViewController?.preferredStatusBarStyle != .default ? topViewController : nil
     }
-
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
-    }
 }
 
 extension CoreNavigationController: UIGestureRecognizerDelegate {

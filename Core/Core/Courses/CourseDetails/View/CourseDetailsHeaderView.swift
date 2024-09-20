@@ -29,7 +29,8 @@ struct CourseDetailsHeaderView: View {
 
     public var body: some View {
         ZStack {
-            Color(viewModel.courseColor.resolvedColor(with: .light).darkenToEnsureContrast(against: .white)).frame(width: width, height: viewModel.height)
+            Color(viewModel.courseColor)
+                .frame(width: width, height: viewModel.height)
             if let url = viewModel.imageURL {
                 RemoteImage(url, width: width, height: viewModel.height, shouldHandleAnimatedGif: true)
                     .opacity(viewModel.imageOpacity)
@@ -39,13 +40,21 @@ struct CourseDetailsHeaderView: View {
                 Text(viewModel.courseName)
                     .font(.semibold23)
                     .accessibility(identifier: "course-details.title-lbl")
+                    .shadow(
+                        color: viewModel.courseTitleShadow.color,
+                        radius: viewModel.courseTitleShadow.radius
+                    )
                 Text(viewModel.termName)
                     .font(.semibold14)
                     .accessibility(identifier: "course-details.subtitle-lbl")
+                    .shadow(
+                        color: viewModel.courseTitleShadow.color,
+                        radius: viewModel.courseTitleShadow.radius
+                    )
             }
             .padding()
             .multilineTextAlignment(.center)
-            .foregroundColor(.white)
+            .foregroundColor(.textLightest)
             .opacity(viewModel.titleOpacity)
         }
         .frame(height: viewModel.height)
