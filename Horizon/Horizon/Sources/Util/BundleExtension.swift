@@ -18,8 +18,6 @@
 
 import Foundation
 
-import Foundation
-
 private class Placeholder {}
 
 public extension Bundle {
