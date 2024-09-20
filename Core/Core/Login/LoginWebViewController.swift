@@ -284,8 +284,15 @@ extension LoginWebViewController: WKNavigationDelegate {
                     clientID: mobileVerify.client_id,
                     clientSecret: mobileVerify.client_secret
                 )
-                self.env.router.show(LoadingViewController.create(), from: self)
-                self.loginDelegate?.userDidLogin(session: session)
+
+                if AppEnvironment.shared.app == .horizon {
+                    self.loginDelegate?.userDidLogin(session: session)
+                    self.env.router.route(to: "/splash", from: self)
+                } else {
+                    self.env.router.show(LoadingViewController.create(), from: self)
+                    self.loginDelegate?.userDidLogin(session: session)
+                }
+
             } }
             return decisionHandler(.cancel)
         } else if queryItems?.first(where: { $0.name == "error" })?.value == "access_denied" {

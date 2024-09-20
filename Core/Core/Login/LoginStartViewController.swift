@@ -46,7 +46,8 @@ class LoginStartViewController: UIViewController {
     private var offlineModeInteractor: OfflineModeInteractor?
 
     let env = AppEnvironment.shared
-    weak var loginDelegate: LoginDelegate?
+    // TODO: Check weak var situation
+    var loginDelegate: LoginDelegate?
     var mdmObservation: NSKeyValueObservation?
     var method = AuthenticationMethod.normalLogin
     var sessions: [LoginSession] = []
@@ -96,7 +97,9 @@ class LoginStartViewController: UIViewController {
         wordmarkLabel.attributedText = NSAttributedString.init(string: (
             Bundle.main.isParentApp ? "PARENT"
             : Bundle.main.isTeacherApp ? "TEACHER"
-            : "STUDENT"
+            : Bundle.main.isStudentApp ? "STUDENT"
+            : Bundle.main.isHorizonApp ? "HORIZON"
+            : ""
         ), attributes: [.kern: 2])
         wordmarkLabel.textColor = .textDarkest
         logoView.superview?.accessibilityLabel = "Canvas " + (wordmarkLabel.text ?? "")
