@@ -145,7 +145,7 @@ extension Publisher where Output == ([APICourse], (body: [APIGroup], urlResponse
             let validCourseIDs = courses.map { $0.id }
             /// If a course's end date has passed and "Restrict students from viewing course after course end date" is checked
             /// then fetching events for a group in this course will give 403 unauthorized.
-            /// To be on the safe side we drop all courses without a valid course.
+            /// To be on the safe side we drop all groups without a valid course.
             let filteredGroups = groups.body.dropCourseGroupsWithoutValidCourses(validCourseIDs: validCourseIDs)
             return (courses, filteredGroups)
         }
