@@ -71,7 +71,7 @@ struct CustomizeCourseView: View {
                     ) { itemIndex in
                         let item = viewModel.colors[itemIndex]
                         let uiColor = item.key
-                        let isSelected = viewModel.isColorSelected(uiColor)
+                        let isSelected = viewModel.shouldShowCheckmark(for: uiColor)
                         Button(action: { viewModel.color = uiColor }, label: {
                             Circle()
                                 .fill(Color(uiColor))

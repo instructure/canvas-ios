@@ -20,7 +20,7 @@ import Combine
 import SwiftUI
 
 class CustomizeCourseViewModel: ObservableObject {
-    public struct AlertMessage: Identifiable {
+    public struct AlertMessage: Identifiable, Equatable {
         public var id: String { message }
         public let message: String
     }
@@ -65,7 +65,7 @@ class CustomizeCourseViewModel: ObservableObject {
         saveCourseData(on: didTapDone)
     }
 
-    func isColorSelected(_ color: UIColor) -> Bool {
+    func shouldShowCheckmark(for color: UIColor) -> Bool {
         self.color == color
     }
 

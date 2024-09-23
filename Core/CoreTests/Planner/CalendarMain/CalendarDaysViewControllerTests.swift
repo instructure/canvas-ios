@@ -123,7 +123,7 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
         button.activityDotCount = 2
 
         XCTAssertEqual(button.circleView.backgroundColor, button.tintColor)
-        XCTAssertEqual(button.label.textColor, .white)
+        XCTAssertEqual(button.label.textColor, .textLightest)
         XCTAssertEqual(button.dotContainer.isHidden, true)
     }
 
@@ -135,7 +135,7 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
         button.activityDotCount = 2
 
         XCTAssertEqual(button.circleView.backgroundColor, button.tintColor)
-        XCTAssertEqual(button.label.textColor, .white)
+        XCTAssertEqual(button.label.textColor, .textLightest)
         XCTAssertEqual(button.dotContainer.isHidden, true)
     }
 }

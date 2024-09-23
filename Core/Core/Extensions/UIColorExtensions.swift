@@ -23,7 +23,7 @@ extension UIColor {
     // MARK: Hex ARGB Handling
 
     public convenience init?(hexString: String?) {
-        guard let hexString = hexString, hexString.hasPrefix("#"), let num = UInt(hexString.dropFirst(), radix: 16) else { return nil }
+        guard let hexString, hexString.hasPrefix("#"), let num = UInt(hexString.dropFirst(), radix: 16) else { return nil }
         var r: UInt = 0, g: UInt = 0, b: UInt = 0, a: UInt = 255
         switch hexString.count - 1 {
         case 8:

@@ -19,6 +19,7 @@
 import Foundation
 
 public protocol CourseColorsInteractor {
+    /// These are the pre-defined course colors the user can choose from. The values are the color names for accessibility.
     var colors: KeyValuePairs<UIColor, String> { get }
 
     /// - parameters:
@@ -54,7 +55,9 @@ public class CourseColorsInteractorLive: CourseColorsInteractor {
             return predefinedColor
         }
 
-        let apiColor = UIColor(hexString: colorHex) ?? .textDarkest
+        guard let apiColor = UIColor(hexString: colorHex) else {
+            return .textDarkest
+        }
 
         let lightVariant: UIColor = {
             apiColor.darkenToEnsureContrast(against: .backgroundLightest.lightVariant)
