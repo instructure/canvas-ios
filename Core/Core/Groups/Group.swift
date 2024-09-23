@@ -46,7 +46,7 @@ public final class Group: NSManagedObject, WriteableModel {
         Context(.group, id: id).canvasContextID
     }
 
-    public var color: UIColor { contextColor?.color ?? .textMasquerade }
+    public var color: UIColor { contextColor?.color ?? .textDark }
 
     public var isActive: Bool {
         if courseID == nil { return true }

@@ -47,22 +47,26 @@ public class CourseColorsInteractorLive: CourseColorsInteractor {
 
     public func courseColorFromAPIColor(_ colorHex: String) -> UIColor {
         let predefinedColor = colors.first { (color, _) in
-            color.resolvedColor(with: .light).hexString == colorHex
+            color.lightVariant.hexString == colorHex
         }?.key
 
         if let predefinedColor {
             return predefinedColor
         }
 
-        let apiColor = UIColor(hexString: colorHex) ?? .textMasquerade
+        let apiColor = UIColor(hexString: colorHex) ?? .textDarkest
 
         let lightVariant: UIColor = {
-            apiColor.darkenToEnsureContrast(against: .backgroundLightest.resolvedColor(with: .light))
+            apiColor.darkenToEnsureContrast(against: .backgroundLightest.lightVariant)
         }()
         let darkVariant: UIColor = {
-            apiColor.ensureContrast(against: .backgroundLightest.resolvedColor(with: .dark))
+            apiColor.ensureContrast(against: .backgroundLightest.darkVariant)
         }()
 
         return UIColor.getColor(dark: darkVariant, light: lightVariant)
+    }
+
+    public func courseColorFromAPIColor(_ color: UIColor) -> UIColor {
+        courseColorFromAPIColor(color.hexString)
     }
 }

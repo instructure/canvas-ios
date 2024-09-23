@@ -21,7 +21,7 @@ import CoreData
 import UIKit
 
 public final class ContextColor: NSManagedObject {
-    @NSManaged public var canvasContextID: String
+    @NSManaged public private(set) var canvasContextID: String
     @NSManaged public private(set) var colorRaw: UInt32
 
     // This is a Set because we need to allow for multiple Groups to reference
@@ -30,17 +30,7 @@ public final class ContextColor: NSManagedObject {
     @NSManaged public var course: Course?
     @NSManaged public var card: DashboardCard?
 
-    public private(set) var color: UIColor = .textMasquerade
-
-    public override func awakeFromFetch() {
-        super.awakeFromFetch()
-        setupColor()
-    }
-
-    public override func willSave() {
-        super.willSave()
-        setupColor()
-    }
+    public private(set) lazy var color: UIColor = calculateColor()
 
     @discardableResult
     public static func save(
@@ -76,9 +66,9 @@ public final class ContextColor: NSManagedObject {
         }
     }
 
-    private func setupColor() {
+    private func calculateColor() -> UIColor {
         let dbColor = UIColor(intValue: colorRaw)
         let colorInteractor = CourseColorsInteractorLive()
-        color = colorInteractor.courseColorFromAPIColor(dbColor.hexString)
+        return colorInteractor.courseColorFromAPIColor(dbColor.hexString)
     }
 }

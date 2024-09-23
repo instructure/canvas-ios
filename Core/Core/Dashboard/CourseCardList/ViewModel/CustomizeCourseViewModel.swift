@@ -131,7 +131,7 @@ class CustomizeCourseViewModel: ObservableObject {
 
         let useCase = UpdateCustomColor(
             context: .course(courseId),
-            color: color.resolvedColor(with: .light).hexString
+            color: color.lightVariant.hexString
         )
         return ReactiveStore(useCase: useCase)
             .getEntities()

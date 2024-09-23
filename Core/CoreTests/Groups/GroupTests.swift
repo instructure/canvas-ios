@@ -29,15 +29,14 @@ class GroupTests: CoreTestCase {
         ContextColor.make(canvasContextID: "course_1", color: .blue)
         ContextColor.make(canvasContextID: "group_1", color: .red)
         let group = Group.make(from: .make(id: "1", course_id: "1"))
-
-        XCTAssertEqual(group.color, .red)
+        XCTAssertEqual(group.color.hexString, CourseColorsInteractorLive().courseColorFromAPIColor(.red).hexString)
     }
 
     func testColorWithCourseID() {
         ContextColor.make(canvasContextID: "course_1", color: .red)
         let group = Group.make(from: .make(course_id: "1"))
 
-        XCTAssertEqual(group.color, .red)
+        XCTAssertEqual(group.color.hexString, CourseColorsInteractorLive().courseColorFromAPIColor(.red).hexString)
     }
 
     func testIsActive() {

@@ -144,9 +144,9 @@ public struct Brand: Equatable {
         self.buttonSecondaryBackgroundDark = buttonSecondaryBackground != nil ? buttonSecondaryBackground!.ensureContrast(against: .backgroundLightest) : .backgroundDarkest
         self.buttonSecondaryTextDark = buttonSecondaryText != nil ? buttonSecondaryText!.ensureContrast(against: self.buttonSecondaryBackgroundDark) : .white
         self.fontColorDarkDark = fontColorDark != nil ? fontColorDark!.ensureContrast(against: .backgroundLightest) : .textDarkest
-        self.headerImageBackgroundDark = headerImageBackground ?? .backgroundDarkest.resolvedColor(with: .light)
+        self.headerImageBackgroundDark = headerImageBackground ?? .backgroundDarkest.lightVariant
         self.linkColorDark = linkColor != nil ? linkColor!.ensureContrast(against: .backgroundLightest) : .textInfo
-        self.navBackgroundDark = navBackground ?? .backgroundDarkest.resolvedColor(with: .light)
+        self.navBackgroundDark = navBackground ?? .backgroundDarkest.lightVariant
         self.navBadgeBackgroundDark = navBadgeBackground != nil ? navBadgeBackground!.ensureContrast(against: self.navBackgroundDark) : .backgroundInfo
         self.navBadgeTextDark = navBadgeText != nil ? navBadgeText!.ensureContrast(against: self.navBadgeBackgroundDark) : .white
         self.navIconFillDark = navIconFill != nil ? navIconFill!.ensureContrast(against: self.navBackgroundDark) : .white

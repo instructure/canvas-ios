@@ -48,6 +48,9 @@ extension UIColor {
 
     public var hexString: String { hexString(userInterfaceStyle: .current) }
     public var intValue: UInt32 { intValue(userInterfaceStyle: .current) }
+    public var lightVariant: UIColor { resolvedColor(with: .light) }
+    public var darkVariant: UIColor { resolvedColor(with: .dark) }
+
     /** Returns the color for the current app appearance. */
     private var interfaceStyleColor: UIColor { resolvedColor(with: .init(userInterfaceStyle: .current)) }
 
@@ -142,8 +145,8 @@ extension UIColor {
     }
 
     public func darkenToEnsureContrast(against: UIColor) -> UIColor {
-        return UIColor.getColor(dark: darkenToEnsureStyleContrast(against: against.resolvedColor(with: .dark)),
-                                light: darkenToEnsureStyleContrast(against: against.resolvedColor(with: .light)))
+        return UIColor.getColor(dark: darkenToEnsureStyleContrast(against: against.darkVariant),
+                                light: darkenToEnsureStyleContrast(against: against.lightVariant))
     }
 
     /// Ensures contrast against the given parameter by darkening the source color even if the parameter color is lighter.
@@ -170,8 +173,8 @@ extension UIColor {
     ///
     /// This ensures that the corresponding interface style color is being used as an against color.
     public func ensureContrast(against: UIColor) -> UIColor {
-        return UIColor.getColor(dark: ensureStyleContrast(against: against.resolvedColor(with: .dark)),
-                                light: ensureStyleContrast(against: against.resolvedColor(with: .light)))
+        return UIColor.getColor(dark: ensureStyleContrast(against: against.darkVariant),
+                                light: ensureStyleContrast(against: against.lightVariant))
     }
 
     /// Get a sufficiently contrasting color based on the current color.

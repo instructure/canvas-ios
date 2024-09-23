@@ -65,7 +65,7 @@ class CDCalendarFilterEntryTests: CoreTestCase {
 
         ContextColor.make(canvasContextID: "course_42", color: .red, in: databaseClient)
 
-        XCTAssertEqual(UIColor(testee.color).hexString, UIColor.red.hexString)
+        XCTAssertEqual(testee.color.hexString, CourseColorsInteractorLive().courseColorFromAPIColor(.red).hexString)
     }
 
     func testCourseName() {
