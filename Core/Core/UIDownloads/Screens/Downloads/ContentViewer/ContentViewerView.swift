@@ -2,6 +2,7 @@ import Combine
 import SwiftUI
 import mobile_offline_downloader_ios
 import PDFKit
+@_spi(Advanced) import SwiftUIIntrospect
 
 public struct ContentViewerView: View, Navigatable {
 
@@ -55,7 +56,7 @@ public struct ContentViewerView: View, Navigatable {
                         SwiftUI.EmptyView()
                     }.hidden()
                 )
-                .introspect(.viewController, on: .iOS(.v13, .v14, .v15, .v16, .v17)) {
+                .introspect(.viewController, on: .iOS(.v13...)) {
                     $0.navigationController?.navigationBar.prefersLargeTitles = false
                     $0.navigationController?.navigationBar.tintColor = .white
                 }

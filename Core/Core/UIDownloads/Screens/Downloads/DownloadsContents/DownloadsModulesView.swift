@@ -18,6 +18,7 @@
 
 import SwiftUI
 import mobile_offline_downloader_ios
+@_spi(Advanced) import SwiftUIIntrospect
 
 struct DownloadsModulesView: View, Navigatable {
 
@@ -60,7 +61,7 @@ struct DownloadsModulesView: View, Navigatable {
                 .ignoresSafeArea()
             if UIDevice.current.userInterfaceIdiom == .pad {
                 content
-                    .introspect(.viewController, on: .iOS(.v13, .v14, .v15, .v16, .v17)) { viewController in
+                    .introspect(.viewController, on: .iOS(.v13...)) { viewController in
                         DispatchQueue.main.async {
                             viewController.navigationController?.navigationBar.useContextColor(viewModel.color)
                             viewController.navigationController?.navigationBar.prefersLargeTitles = false

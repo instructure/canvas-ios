@@ -18,7 +18,7 @@
 
 import SwiftUI
 import RealmSwift
-import SwiftUIIntrospect
+@_spi(Advanced) import SwiftUIIntrospect
 
 struct DownloadsCourseDetailView: View, Navigatable {
 
@@ -53,11 +53,12 @@ struct DownloadsCourseDetailView: View, Navigatable {
     // MARK: - Views -
 
     var body: some View {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            padBody
-        } else {
+        // TODO: return splitController when will fixed on Instructure side for iOS18
+//        if UIDevice.current.userInterfaceIdiom == .pad {
+//            padBody
+//        } else {
             phoneBody
-        }
+//        }
     }
 
     private var padBody: some View {
@@ -90,7 +91,7 @@ struct DownloadsCourseDetailView: View, Navigatable {
         }
         .introspect(
             .navigationView(style: .columns),
-            on: .iOS(.v13, .v14, .v15, .v16, .v17)
+            on: .iOS(.v13...)
         ) { splitViewController in
             DispatchQueue.main.async {
                 splitViewController.preferredDisplayMode = .oneBesideSecondary
@@ -99,7 +100,7 @@ struct DownloadsCourseDetailView: View, Navigatable {
          }
         .introspect(
             .navigationView(style: .stack),
-            on: .iOS(.v13, .v14, .v15, .v16, .v17)
+            on: .iOS(.v13...)
         ) { navigationController in
             DispatchQueue.main.async {
                 navigationController.navigationBar.prefersLargeTitles = false
@@ -108,7 +109,7 @@ struct DownloadsCourseDetailView: View, Navigatable {
         }
         .introspect(
             .viewController,
-            on: .iOS(.v13, .v14, .v15, .v16, .v17)
+            on: .iOS(.v13...)
         ) { viewController in
             DispatchQueue.main.async {
                 viewController.navigationController?.navigationBar.prefersLargeTitles = false
