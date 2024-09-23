@@ -22,16 +22,8 @@ import SwiftUI
 
 enum HorizonRouter {
     private(set) static var routes: [RouteHandler] = [
-        RouteHandler("/courses/:courseID") { _, params, _ in
-            guard let courseID = params["courseID"] else { return nil }
-            return CoreHostingController(CoursedDetails(id: courseID))
+        RouteHandler("/splash") { _, _, _ in
+            SplashAssembly.makeViewController()
         }
     ]
-
-    private struct CoursedDetails: View {
-        let id: String
-        var body: some View {
-            Text("Course: \(id)")
-        }
-    }
 }

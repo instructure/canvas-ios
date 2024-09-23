@@ -187,6 +187,15 @@ open class Router {
 
     // MARK: - View Controller Presentation
 
+    open func setRootViewController(isLoginTransition: Bool, viewController: UIViewController) {
+        guard let window = AppEnvironment.shared.window else { return }
+        UIView.transition(with: window, duration: 0.5, options: isLoginTransition ? .transitionFlipFromRight : .transitionFlipFromLeft) {
+            window.rootViewController = viewController
+            // TODO: root vc analytics
+//            Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)
+        }
+    }
+
     /**
      - parameters:
         - analyticsRoute: The route to be reported as screen\_view analytics event. If nil, no route is reported but this is only for internal usage to avoid both the `route` and `show` functions reporting the same event.

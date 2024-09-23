@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,29 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Core
+import Foundation
+import UIKit
 
-public extension View {
-    func onFirstAppear(perform action: (() -> Void)? = nil) -> some View {
-        modifier(FirstAppearViewModifier(action: action))
-    }
-}
-
-struct FirstAppearViewModifier: ViewModifier {
-    @State private var didAppearOnce = false
-    private let action: (() -> Void)?
-
-    init(action: (() -> Void)? = nil) {
-        self.action = action
-    }
-
-    func body(content: Content) -> some View {
-        content.onAppear {
-            guard !didAppearOnce else {
-                return
-            }
-            didAppearOnce = true
-            action?()
-        }
+final class SplashAssembly {
+    static func makeViewController() -> UIViewController {
+        let interactor = SessionInteractor()
+        let viewModel = SplashViewModel(
+            interactor: interactor,
+            router: AppEnvironment.shared.router
+        )
+        let view = SplashView(viewModel: viewModel)
+        return CoreHostingController(view)
     }
 }

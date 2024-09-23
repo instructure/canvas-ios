@@ -16,16 +16,39 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
 struct SplashView: View {
     @ObservedObject private var viewModel: SplashViewModel
+    @State private var rotationDegree: Double = 0
 
     init(viewModel: SplashViewModel) {
         self.viewModel = viewModel
     }
-    
+
     var body: some View {
-        Text("Loading...")
+        Image.instructureSolid
+            .resizable()
+            .frame(width: 64, height: 64)
+            .foregroundColor(.orange)
+            .rotationEffect(.degrees(rotationDegree))
+            .onAppear {
+                withAnimation(.linear(duration: 1).speed(0.1).repeatForever(autoreverses: false)) {
+                    rotationDegree = 360
+                }
+            }
+            .onFirstAppear {
+                viewModel.viewDidAppear.send(())
+            }
     }
+}
+
+#Preview {
+    SplashView(
+        viewModel: .init(
+            interactor: .init(),
+            router: AppEnvironment.shared.router
+        )
+    )
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04FBC8E441EE6A2FE17BAD78 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED7199B426F89179546237 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		084B9F7A0AD356B21CF8DAAB /* SessionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871887072222D50C781206A8 /* SessionInteractor.swift */; };
 		0DD34C5B7893FAEB1CB71B32 /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = 139B6C6DC3CBFF9C5B35C383 /* PSPDFKit */; };
 		0F148FA2282D9705F7B530D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2080A9B6DE0E54D41F56D23 /* Assets.xcassets */; };
 		18774A2E30FEB03E3EDF610D /* JourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6118EC4D5F665F18ED0FBD8E /* JourneyView.swift */; };
@@ -22,6 +23,7 @@
 		4A4660B74E4152A1A15FC81B /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78D555464129381DDA56414 /* LargeTitleView.swift */; };
 		639C508E95699A661169A4EC /* DashboardAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19587F434AF9B776A086CF8 /* DashboardAssembly.swift */; };
 		6857FA660906F8D64DEA7AF4 /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = 3353F2BA79620AE7174A5B05 /* Heap */; };
+		72187564F45AAFB0F7E5BE23 /* SplashAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FE829E3CB3A59A2596D8A3 /* SplashAssembly.swift */; };
 		7A48964EDC4A99C5B240E741 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9024C8B8371FFD58CDB96BE3 /* SectionTitleView.swift */; };
 		7F1E089C895C93BCED693C76 /* HorizonRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEBFC2CDCDF50123C2FF2EA /* HorizonRouter.swift */; };
 		8B0CD4A3FC397A04A30D3801 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064068A9FC7172EB1308EB2E /* PortfolioView.swift */; };
@@ -88,8 +90,10 @@
 		57C0F883C5400FD869DD7566 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		60A47E05ED8A779B909585C6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6118EC4D5F665F18ED0FBD8E /* JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyView.swift; sourceTree = "<group>"; };
+		69FE829E3CB3A59A2596D8A3 /* SplashAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAssembly.swift; sourceTree = "<group>"; };
 		6AC375C1ED2A3CBE04720285 /* ProgramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsView.swift; sourceTree = "<group>"; };
 		78DAC0E6F3B82E12B914FF12 /* ProgramsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsAssembly.swift; sourceTree = "<group>"; };
+		871887072222D50C781206A8 /* SessionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInteractor.swift; sourceTree = "<group>"; };
 		8C2CFA638DEA6DCF7BDD635C /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		9024C8B8371FFD58CDB96BE3 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
 		9BDA1DDCAA5D9E94487D061D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -154,6 +158,14 @@
 				FBF1F69CE21552A5A5B633B4 /* SplashViewModel.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3333D5F284DCD4528AE3D90E /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				871887072222D50C781206A8 /* SessionInteractor.swift */,
+			);
+			path = Session;
 			sourceTree = "<group>";
 		};
 		55FC6F72DEDDC0F025E4BF68 = {
@@ -255,6 +267,7 @@
 				7A2542D1BA0995DDBEE81FC3 /* Journey */,
 				717DF9B449F36C7A9DFFE4EC /* Portfolio */,
 				E88E3D4CCD886F7357301493 /* Programs */,
+				3333D5F284DCD4528AE3D90E /* Session */,
 				D433C90121C6EF73EB7689E6 /* Splash */,
 			);
 			path = Screens;
@@ -289,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				2EF5EE407054E2CD9940D36C /* View */,
+				69FE829E3CB3A59A2596D8A3 /* SplashAssembly.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -466,7 +480,9 @@
 				4264A16638CF78899BD3DD81 /* ProgramsView.swift in Sources */,
 				AA1EBCB6F851AB71427082ED /* ProgramsViewModel.swift in Sources */,
 				7A48964EDC4A99C5B240E741 /* SectionTitleView.swift in Sources */,
+				084B9F7A0AD356B21CF8DAAB /* SessionInteractor.swift in Sources */,
 				25BC7BF52877E4CEBD8C8D98 /* SmallBodyTextView.swift in Sources */,
+				72187564F45AAFB0F7E5BE23 /* SplashAssembly.swift in Sources */,
 				B3EF9861345AD7A51E6D7A4A /* SplashView.swift in Sources */,
 				D64ABEF30F7B293F940B7EDF /* SplashViewModel.swift in Sources */,
 			);

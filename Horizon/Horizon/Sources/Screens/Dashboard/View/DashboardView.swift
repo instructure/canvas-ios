@@ -47,6 +47,15 @@ struct DashboardView: View {
             }
             .padding(.horizontal, 16)
             .background(Color.backgroundLightest)
+            .navigationBarItems(trailing: logoutButton)
+        }
+    }
+
+    private var logoutButton: some View {
+        Button {
+            SessionInteractor().logout()
+        } label: {
+            Image.logout.tint(Color.textLightest)
         }
     }
 

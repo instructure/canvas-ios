@@ -36,7 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate, L
         didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         window = UIWindow()
-        window?.rootViewController = HorizonTabBarController()
+        _ = environment
+        window?.rootViewController = SplashAssembly.makeViewController()
         window?.makeKeyAndVisible()
         return true
     }

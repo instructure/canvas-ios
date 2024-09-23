@@ -30,7 +30,7 @@ final class ProgramsViewModel: ObservableObject {
     @Published private(set) var targetCompletion: String = "Target Completion: 2024/11/27"
 
     @Published private(set) var modules: [Module] = []
-    
+
     // MARK: - Init
 
     init() {}

@@ -16,9 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Foundation
 
-public class LocalizationManager {
+public enum LocalizationManager {
     private static let instUserLocale = "InstUserLocale"
     static var suspend = #selector(NSXPCConnection.suspend)
 
@@ -76,5 +77,27 @@ public class LocalizationManager {
         } else {
             env.router.show(alert, from: root, options: .modal())
         }
+    }
+
+    public static func localizeForApp(
+        _ app: UIApplication,
+        locale: String?
+    ) -> AnyPublisher<UIAlertController?, Never> {
+        setCurrentLocale(locale)
+        let env = AppEnvironment.shared
+        guard
+            needsRestart,
+            env.window?.rootViewController != nil else {
+            return Just(nil).eraseToAnyPublisher()
+        }
+        let alert = UIAlertController(
+            title: String(localized: "Updated Language Settings", bundle: .core),
+            message: String(localized: "The app needs to restart to use the new language settings. Please relaunch the app.", bundle: .core),
+            preferredStyle: .alert
+        )
+        alert.addAction(AlertAction(String(localized: "Close App", bundle: .core), style: .default) { _ in
+            UIControl().sendAction(suspend, to: app, for: nil)
+        })
+        return Just(alert).eraseToAnyPublisher()
     }
 }
