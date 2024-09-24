@@ -30,7 +30,11 @@ public protocol CalendarEventInteractor: AnyObject {
 
     func createEvent(model: CalendarEventRequestModel) -> AnyPublisher<Void, Error>
 
-    func updateEvent(id: String, model: CalendarEventRequestModel) -> AnyPublisher<Void, Error>
+    func updateEvent(
+        id: String,
+        model: CalendarEventRequestModel,
+        seriesModificationType: SeriesModificationType?
+    ) -> AnyPublisher<Void, Error>
 
     func deleteEvent(id: String, seriesModificationType: SeriesModificationType?) -> AnyPublisher<Void, Error>
 
@@ -99,7 +103,11 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
             .eraseToAnyPublisher()
     }
 
-    func updateEvent(id: String, model: CalendarEventRequestModel) -> AnyPublisher<Void, Error> {
+    func updateEvent(
+        id: String,
+        model: CalendarEventRequestModel,
+        seriesModificationType: SeriesModificationType?
+    ) -> AnyPublisher<Void, Error> {
         let useCase = UpdateCalendarEvent(
             id: id,
             context_code: model.contextCode,
@@ -110,7 +118,8 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
             location_name: model.location,
             location_address: model.address,
             time_zone_edited: model.timeZone,
-            rrule: model.rrule
+            rrule: model.rrule,
+            seriesModificationType: seriesModificationType
         )
         return ReactiveStore(useCase: useCase)
             .getEntities()

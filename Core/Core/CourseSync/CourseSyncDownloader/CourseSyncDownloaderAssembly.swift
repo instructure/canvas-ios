@@ -100,7 +100,8 @@ public enum CourseSyncDownloaderAssembly {
         let studioDownloadInteractor = StudioVideoDownloadInteractorLive(
             rootDirectory: studioDirectory,
             captionsInteractor: StudioCaptionsInteractorLive(),
-            videoCacheInteractor: StudioVideoCacheInteractorLive()
+            videoCacheInteractor: StudioVideoCacheInteractorLive(),
+            posterInteractor: StudioVideoPosterInteractorLive()
         )
         return CourseSyncStudioMediaInteractorLive(
             offlineDirectory: offlineFolder,

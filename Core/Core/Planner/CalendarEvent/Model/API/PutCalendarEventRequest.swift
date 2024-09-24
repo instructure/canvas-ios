@@ -20,11 +20,21 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/calendar_events.html#method.calendar_events_api.update
 struct PutCalendarEventRequest: APIRequestable {
-    typealias Response = APICalendarEvent
+    typealias Response = [APICalendarEvent]
 
     let method: APIMethod = .put
     var path: String { "calendar_events/\(id)" }
 
     let id: String
     let body: APICalendarEventRequestBody?
+
+    // API can return either a single object or an array of objects, depending on whether the event repeats or not.
+    public func decode(_ data: Data) throws -> [APICalendarEvent] {
+        do {
+            let event = try APIJSONDecoder().decode(APICalendarEvent.self, from: data)
+            return [event]
+        } catch {
+            return try APIJSONDecoder().decode([APICalendarEvent].self, from: data)
+        }
+    }
 }

@@ -260,6 +260,10 @@ public extension URL {
         guard let imageData = previewImage.pngData() else {
             throw "Failed to convert preview data to png."
         }
+        try FileManager.default.createDirectory(
+            at: url.deletingLastPathComponent(),
+            withIntermediateDirectories: true
+        )
         try imageData.write(to: url)
     }
 }

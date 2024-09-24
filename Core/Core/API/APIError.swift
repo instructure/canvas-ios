@@ -22,6 +22,7 @@ public enum HttpError {
     public static let unauthorized = 1000
     public static let forbidden = 1001
     public static let notFound = 1002
+    public static let badRequest = 1003
     public static let unexpected = 2000
 }
 

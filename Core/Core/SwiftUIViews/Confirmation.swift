@@ -39,7 +39,7 @@ public final class ConfirmationViewModel<Option: Hashable> {
     }
 
     public let title: String
-    public var message: String?
+    public let message: String?
     public let cancelButtonTitle: String
     public let confirmButtons: [ButtonModel]
     public let viewType: ViewType
@@ -100,6 +100,12 @@ public final class ConfirmationViewModel<Option: Hashable> {
             isDestructive: isDestructive,
             confirmValue: true
         )
+    }
+
+    /// To be used as a placeholder where storing the ViewModel as an optional is not feasible.
+    /// - Returns: A ViewModel for an empty dialog.
+    public convenience init() {
+        self.init(title: "", cancelButtonTitle: "", confirmButtons: [])
     }
 
     /**

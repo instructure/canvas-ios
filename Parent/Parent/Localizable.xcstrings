@@ -5999,7 +5999,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diúltaigh"
+            "value" : "Ruaig"
           }
         },
         "hi" : {
@@ -14702,6 +14702,12 @@
             "value" : "Une erreur est survenue"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chuaigh rud eigin mícheart"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14952,6 +14958,12 @@
             "value" : "Envoi"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uaslódáil"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15200,6 +15212,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoi et rubrique"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uaslódáil & Rúibric"
           }
         },
         "hi" : {
@@ -16223,7 +16241,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tá an mac léinn a bhfuil tú ag iarraidh a chur leis ar institiúid Canvas eile.\nSínigh isteach nó cruthaigh cuntas leis an institiúid sin chun an mac léinn seo a chur leis."
+            "value" : "Tá an mac léinn a bhfuil tú ag iarraidh a chur leis in institiúid Canvas eile.\nSínigh isteach nó cruthaigh cuntas leis an institiúid sin chun an mac léinn seo a chur leis."
           }
         },
         "hi" : {
@@ -17500,6 +17518,12 @@
             "value" : "Une erreur est survenue pendant la communication avec le serveur."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tharla earráid agus cumarsáid a dhéanamh leis an bhfreastálaí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18009,7 +18033,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unread"
+            "value" : "Neamhléite"
           }
         },
         "hi" : {

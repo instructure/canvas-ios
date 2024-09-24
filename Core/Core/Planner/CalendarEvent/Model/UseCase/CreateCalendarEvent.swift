@@ -49,7 +49,8 @@ final class CreateCalendarEvent: APIUseCase {
                     location_address: location_address,
                     time_zone_edited: time_zone_edited,
                     rrule: rrule
-                )
+                ),
+                which: nil
             )
         )
     }

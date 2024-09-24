@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import AVFoundation
 import Foundation
 
 public extension Error {
@@ -30,6 +31,15 @@ public extension Error {
 
     var isNotFound: Bool {
         nsError.domain == NSError.Constants.domain && nsError.code == HttpError.notFound
+    }
+
+    var isBadRequest: Bool {
+        nsError.domain == NSError.Constants.domain && nsError.code == HttpError.badRequest
+    }
+
+    /// The media file doesn't contain the necessary audio/video track.
+    var isSourceTrackMissing: Bool {
+        nsError.domain == AVFoundationErrorDomain && nsError.code == AVError.Code.noSourceTrack.rawValue
     }
 
     private var nsError: NSError {
