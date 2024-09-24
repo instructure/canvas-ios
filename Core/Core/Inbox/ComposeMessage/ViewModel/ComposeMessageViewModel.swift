@@ -87,6 +87,8 @@ final class ComposeMessageViewModel: ObservableObject {
     let router: Router
 
     // MARK: - Private
+    private var initialMessageValue = ComposeMessageValue()
+    private var changedMessageValue = ComposeMessageValue()
     private var didSentMailSuccessfully: PassthroughSubject<Void, Never>?
     public let didTapRetry = PassthroughRelay<WeakViewController>()
     private var viewController  = WeakViewController()
@@ -345,6 +347,11 @@ final class ComposeMessageViewModel: ObservableObject {
         self.autoTeacherSelect = extras.autoTeacherSelect
         self.alwaysShowRecipients = extras.alwaysShowRecipients
         self.teacherOnly = extras.teacherOnly
+        // Set initial Message Values so can check if there are any changes or not
+        initialMessageValue.courseName = selectedContext?.name
+        initialMessageValue.recipients = fieldContents.selectedRecipients
+        initialMessageValue.message = bodyText
+        initialMessageValue.subject = subject
 
         if autoTeacherSelect {
             selectedRecipients.send([.init(ids: [], name: String(localized: "Teachers"), avatarURL: nil)])
@@ -416,8 +423,15 @@ final class ComposeMessageViewModel: ObservableObject {
 
     private func setupInputBindings(router: Router) {
         didTapCancel
-            .handleEvents(receiveOutput: { [weak self] _ in
-                self?.isShowingCancelDialog = true
+            .handleEvents(receiveOutput: { [weak self] viewController in
+                guard let self else {
+                    return
+                }
+                if self.didApplyChanges() {
+                    self.isShowingCancelDialog = true
+                } else {
+                    self.router.dismiss(viewController)
+                }
             })
             .flatMap { [confirmAlert] value in
                 confirmAlert.userConfirmation().map { value }
@@ -500,5 +514,27 @@ final class ComposeMessageViewModel: ObservableObject {
     private func didFailSendingMessage() {
         Logger.shared.error("ComposeMessageView message failure")
         didTapRetry.accept(viewController)
+    }
+
+    private func didApplyChanges() -> Bool {
+        changedMessageValue.subject = subject
+        changedMessageValue.message = bodyText
+        changedMessageValue.files = attachments
+        changedMessageValue.courseName = selectedContext?.name
+        changedMessageValue.recipients = selectedRecipients.value
+        return changedMessageValue != initialMessageValue
+    }
+}
+
+// MARK: - Helpers
+extension ComposeMessageViewModel {
+    /// Using this type to match between the initial values and the changed values to
+    /// show confirmation alert or not
+    fileprivate struct ComposeMessageValue: Equatable {
+        var subject = ""
+        var courseName: String?
+        var message = ""
+        var files: [File] = []
+        var recipients: [Recipient] = []
     }
 }
