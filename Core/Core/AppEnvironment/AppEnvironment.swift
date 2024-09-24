@@ -81,8 +81,9 @@ open class AppEnvironment {
         refreshWidgets()
         saveAccount(for: session)
 
-        CoreWebView
-            .deleteAllCookies()
+        Just(())
+            .receive(on: RunLoop.main)
+            .flatMap { CoreWebView.deleteAllCookies() }
             .sink {
                 CoreWebView.refreshKeepAliveCookies()
             }
