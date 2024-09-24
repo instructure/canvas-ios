@@ -22,7 +22,7 @@ import UIKit
 
 public final class ContextColor: NSManagedObject {
     @NSManaged public private(set) var canvasContextID: String
-    @NSManaged public private(set) var colorRaw: UInt32
+    @NSManaged public private(set) var color: UIColor
 
     // This is a Set because we need to allow for multiple Groups to reference
     // the same course color in the case where a student is in multiple groups in the same course.
@@ -30,20 +30,17 @@ public final class ContextColor: NSManagedObject {
     @NSManaged public var course: Course?
     @NSManaged public var card: DashboardCard?
 
-    public private(set) lazy var color: UIColor = calculateColor()
-
     @discardableResult
     public static func save(
         _ item: APICustomColors,
         in context: NSManagedObjectContext
     ) -> [ContextColor] {
+        let colorInteractor = CourseColorsInteractorLive()
         return item.custom_colors.compactMap { record in
-            guard let color = UIColor(hexString: record.value) else { return nil }
-
             let predicate = NSPredicate(format: "%K == %@", #keyPath(ContextColor.canvasContextID), record.key)
             let model: ContextColor = context.fetch(predicate).first ?? context.insert()
             model.canvasContextID = record.key
-            model.colorRaw = color.intValue
+            model.color = colorInteractor.courseColorFromAPIColor(record.value)
 
             if let canvasContext = Context(canvasContextID: record.key) {
                 switch canvasContext.contextType {
@@ -64,11 +61,5 @@ public final class ContextColor: NSManagedObject {
             }
             return model
         }
-    }
-
-    private func calculateColor() -> UIColor {
-        let dbColor = UIColor(intValue: colorRaw)
-        let colorInteractor = CourseColorsInteractorLive()
-        return colorInteractor.courseColorFromAPIColor(dbColor.hexString)
     }
 }
