@@ -27,4 +27,32 @@ final class PutCalendarEventRequestTests: XCTestCase {
         XCTAssertEqual(testee.method, .put)
         XCTAssertEqual(testee.path, "calendar_events/42")
     }
+
+    func testDecodingSingleEvent() throws {
+        let testee = PutCalendarEventRequest(id: "", body: .make())
+        let event = APICalendarEvent.make(id: "id 1", created_at: Date(fromISOString: "2018-05-18T06:00:00Z")!, updated_at: Date(fromISOString: "2018-05-18T06:00:00Z")!)
+        let data = try APIJSONEncoder().encode(event)
+
+        let response = try testee.decode(data)
+        XCTAssertEqual(response, [event])
+    }
+
+    func testDecodingSingleEventInArray() throws {
+        let testee = PutCalendarEventRequest(id: "", body: .make())
+        let event = APICalendarEvent.make(id: "id 1")
+        let data = try APIJSONEncoder().encode([event])
+
+        let response = try testee.decode(data)
+        XCTAssertEqual(response, [event])
+    }
+
+    func testDecodingEventArray() throws {
+        let testee = PutCalendarEventRequest(id: "", body: .make())
+        let event1 = APICalendarEvent.make(id: "id 1")
+        let event2 = APICalendarEvent.make(id: "id 2")
+        let data = try APIJSONEncoder().encode([event1, event2])
+
+        let response = try testee.decode(data)
+        XCTAssertEqual(response, [event1, event2])
+    }
 }

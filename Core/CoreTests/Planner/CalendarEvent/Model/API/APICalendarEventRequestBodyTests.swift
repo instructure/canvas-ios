@@ -30,6 +30,8 @@ final class APICalendarEventRequestBodyTests: XCTestCase {
         static let locationName = "some locationName"
         static let locationAddress = "some locationAddress"
         static let timeZone = "some timeZone"
+        static let rrule = RecurrenceRule(recurrenceWith: .monthly, interval: 1)
+        static let which: APICalendarEventSeriesModificationType = .following
     }
 
     func testEncoding() throws {
@@ -41,7 +43,9 @@ final class APICalendarEventRequestBodyTests: XCTestCase {
             end_at: TestConstants.endAt,
             location_name: TestConstants.locationName,
             location_address: TestConstants.locationAddress,
-            time_zone_edited: TestConstants.timeZone
+            time_zone_edited: TestConstants.timeZone,
+            rrule: TestConstants.rrule,
+            which: TestConstants.which
         )
 
         let json = try testee.encodeToJson()
@@ -54,6 +58,8 @@ final class APICalendarEventRequestBodyTests: XCTestCase {
         XCTAssertEqual(json.contains(jsonKey: "location_name", value: TestConstants.locationName), true)
         XCTAssertEqual(json.contains(jsonKey: "location_address", value: TestConstants.locationAddress), true)
         XCTAssertEqual(json.contains(jsonKey: "time_zone_edited", value: TestConstants.timeZone), true)
+        XCTAssertEqual(json.contains(jsonKey: "rrule", value: TestConstants.rrule.rruleDescription), true)
+        XCTAssertEqual(json.contains(jsonKey: "which", value: TestConstants.which.rawValue), true)
     }
 
     func testEncodingShouldNotSkipNils() throws {
@@ -61,7 +67,8 @@ final class APICalendarEventRequestBodyTests: XCTestCase {
             description: nil,
             location_name: nil,
             location_address: nil,
-            time_zone_edited: nil
+            time_zone_edited: nil,
+            rrule: nil
         )
 
         let json = try testee.encodeToJson()
@@ -70,5 +77,6 @@ final class APICalendarEventRequestBodyTests: XCTestCase {
         XCTAssertEqual(json.contains(jsonKey: "location_name", value: nil), true)
         XCTAssertEqual(json.contains(jsonKey: "location_address", value: nil), true)
         XCTAssertEqual(json.contains(jsonKey: "time_zone_edited", value: nil), true)
+        XCTAssertEqual(json.contains(jsonKey: "rrule", value: nil), true)
     }
 }

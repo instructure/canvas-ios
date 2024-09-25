@@ -57,7 +57,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
     private let completion: ((PlannerAssembly.Completion) -> Void)?
     private var subscriptions = Set<AnyCancellable>()
 
-    private var event = CurrentValueSubject<CalendarEvent?, Never>(nil)
+    private var calendarEvent = CurrentValueSubject<CalendarEvent?, Never>(nil)
 
     // MARK: - Init
 
@@ -74,17 +74,17 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
         self.completion = completion
         self.deleteConfirmation = deleteSingleItemConfirmation
 
-        onEventSetUpdateDeleteConfirmationModel()
-        onEventSetUpdateMenuButtonVisibility(userId: userId)
+        updateDeleteConfirmationModel(onChangeOf: calendarEvent)
+        updateMenuButtonVisibility(onChangeOf: calendarEvent, userId: userId)
 
         loadData()
 
-        onEditButtonTapShowEditScreen()
-        onDeleteButtonTapDeleteEventAfterConfirmation()
+        showEditScreen(on: didTapEdit)
+        deleteEventAfterConfirmation(on: didTapDelete)
     }
 
-    private func onEventSetUpdateDeleteConfirmationModel() {
-        event
+    private func updateDeleteConfirmationModel(onChangeOf subject: CurrentValueSubject<CalendarEvent?, Never>) {
+        subject
             .compactMap { $0 }
             .sink { [weak self] in
                 guard let self else { return }
@@ -93,8 +93,8 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func onEventSetUpdateMenuButtonVisibility(userId: String) {
-        event
+    private func updateMenuButtonVisibility(onChangeOf subject: CurrentValueSubject<CalendarEvent?, Never>, userId: String) {
+        subject
             .compactMap { $0 }
             .flatMap { [weak self] in
                 return self?.canManageEvent(context: $0.context, userId: userId)
@@ -106,14 +106,14 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func onEditButtonTapShowEditScreen() {
-        didTapEdit
+    private func showEditScreen(on subject: PassthroughSubject<WeakViewController, Never>) {
+        subject
             .sink { [weak self] in self?.showEditScreen(from: $0) }
             .store(in: &subscriptions)
     }
 
-    private func onDeleteButtonTapDeleteEventAfterConfirmation() {
-        didTapDelete
+    private func deleteEventAfterConfirmation(on subject: PassthroughSubject<WeakViewController, Never>) {
+        subject
             .map { [weak self] in
                 self?.shouldShowDeleteConfirmation = true
                 return $0
@@ -122,7 +122,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
                 self?.deleteConfirmation.userConfirmsOption(passdownValue: $0)
                     ?? Empty().eraseToAnyPublisher()
             }
-            .sink { [weak self] in self?.deleteToDo(option: $0.0, from: $0.1) }
+            .sink { [weak self] (option, source) in self?.deleteEvent(option: option, from: source) }
             .store(in: &subscriptions)
     }
 
@@ -151,7 +151,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
             } receiveValue: { [weak self] (event, contextColor) in
                 guard let self else { return }
 
-                self.event.value = event
+                self.calendarEvent.value = event
                 self.contextColor = contextColor
                 title = event.title
                 pageSubtitle = event.contextName
@@ -216,7 +216,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
     // MARK: - Private methods
 
     private func showEditScreen(from source: WeakViewController) {
-        guard let event = event.value else { return }
+        guard let event = calendarEvent.value else { return }
 
         let weakVC = WeakViewController()
         let vc = PlannerAssembly.makeEditEventViewController(event: event) { [weak self] output in
@@ -268,7 +268,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
         confirmValue: SeriesModificationType.one
     )
 
-    private func deleteToDo(option: SeriesModificationType, from source: WeakViewController) {
+    private func deleteEvent(option: SeriesModificationType, from source: WeakViewController) {
         state = .data(loadingOverlay: true)
 
         interactor.deleteEvent(id: eventId, seriesModificationType: option)

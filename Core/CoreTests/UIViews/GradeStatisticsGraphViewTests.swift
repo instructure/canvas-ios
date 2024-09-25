@@ -36,8 +36,11 @@ class GradeStatisticsGraphViewTests: XCTestCase {
         XCTAssertFalse(view.isHidden, "GradeStatisticGraphView should not be hidden")
 
         // Check order of markers
-        let x1 = view.minPossibleBar.frame.midX, x2 = view.minBarView.frame.midX, x3 = view.meanBarView.frame.midX, x4 = view.maxBarView.frame.midX, x5 = view.maxPossibleBar.frame.midX
-        // FIXME: always fails locally, always works on CI
+        let x1 = view.minPossibleBar.frame.midX,
+            x2 = view.minBarView.frame.midX.rounded(),
+            x3 = view.meanBarView.frame.midX.rounded(),
+            x4 = view.maxBarView.frame.midX.rounded(),
+            x5 = view.maxPossibleBar.frame.midX
         XCTAssertTrue(x1 <= x2 && x2 <= x3 && x3 <= x4 && x4 <= x5, "Graph view text labels were not correctly ordered")
 
         let minX = view.minPossibleBar.frame.midX
@@ -51,7 +54,6 @@ class GradeStatisticsGraphViewTests: XCTestCase {
         XCTAssertLessThan((x3 - expected[2]).magnitude, allowedError, "Avg label was too far from it's expected location")
         XCTAssertLessThan((x4 - expected[3]).magnitude, allowedError, "Max label was too far from it's expected location")
         XCTAssertLessThan((x5 - expected[4]).magnitude, allowedError, "Max possible label was too far from it's expected location")
-
     }
 
     // Helper func to call update on the view and then re-layout as if being displayed
