@@ -48,7 +48,7 @@ class HelpTests: E2ETestCase {
         conferenceGuidesButton.hit()
         HelpHelper.openInSafariButton.hit()
         browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Contingency-Resources/Web-Conferencing-Resources"))
+        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-LMS-Blog/Web-Conferencing-Resources"))
 
         // MARK: Check "Report a Problem" button
         HelpHelper.returnToHelpPage(teacher: true)
