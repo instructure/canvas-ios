@@ -25,7 +25,7 @@ import TestsFoundation
 
 final class GradeFilterViewModelTests: CoreTestCase {
 
-    private var sut: GradeFilterViewModel!
+    private var testee: GradeFilterViewModel!
     private var subscriptions = Set<AnyCancellable>()
 
     override func setUp() {
@@ -35,14 +35,14 @@ final class GradeFilterViewModelTests: CoreTestCase {
             isShowGradingPeriod: true,
             sortByOptions: GradeArrangementOptions.allCases
         )
-        sut = GradeFilterViewModel(
+        testee = GradeFilterViewModel(
             dependency: dependency,
             appEnvironment: .shared
         )
     }
 
     override func tearDownWithError() throws {
-        sut = nil
+        testee = nil
     }
 
     func test_mapGradingPeriod_hasFiveItemsAndAddAllItem() {
@@ -56,12 +56,12 @@ final class GradeFilterViewModelTests: CoreTestCase {
         )
         // When
         environment.userDefaults?.selectedGradingPeriodId = nil
-        let sut = GradeFilterViewModel(dependency: dependency, appEnvironment: environment)
+        let testee = GradeFilterViewModel(dependency: dependency, appEnvironment: environment)
         // Then
-        XCTAssertEqual(sut.gradingPeriods.first?.title, "All")
-        XCTAssertEqual(sut.gradingPeriods.count, 5)
-        XCTAssertTrue(sut.isShowGradingPeriodsView)
-        XCTAssertEqual(sut.selectedGradingPeriod?.title, "All")
+        XCTAssertEqual(testee.gradingPeriods.first?.title, "All")
+        XCTAssertEqual(testee.gradingPeriods.count, 5)
+        XCTAssertTrue(testee.isShowGradingPeriodsView)
+        XCTAssertEqual(testee.selectedGradingPeriod?.title, "All")
     }
 
     func test_mapGradingPeriod_hasSelectedGradingPeriods() {
@@ -75,14 +75,14 @@ final class GradeFilterViewModelTests: CoreTestCase {
             sortByOptions: GradeArrangementOptions.allCases
         )
         // When
-        let sut = GradeFilterViewModel(
+        let testee = GradeFilterViewModel(
             dependency: dependency,
             appEnvironment: environment
         )
         // Then
-        XCTAssertEqual(sut.gradingPeriods.count, 5)
-        XCTAssertTrue(sut.isShowGradingPeriodsView)
-        XCTAssertEqual(sut.selectedGradingPeriod?.title, listGradingPeriods.last?.title)
+        XCTAssertEqual(testee.gradingPeriods.count, 5)
+        XCTAssertTrue(testee.isShowGradingPeriodsView)
+        XCTAssertEqual(testee.selectedGradingPeriod?.title, listGradingPeriods.last?.title)
     }
 
     func test_mapGradingPeriod_notHasGradingPeriods_hideGradingPeriodSection() {
@@ -94,13 +94,13 @@ final class GradeFilterViewModelTests: CoreTestCase {
             sortByOptions: GradeArrangementOptions.allCases
         )
         // When
-        let sut = GradeFilterViewModel(
+        let testee = GradeFilterViewModel(
             dependency: dependency,
             appEnvironment: environment
         )
         // Then
-        XCTAssertTrue(sut.gradingPeriods.isEmpty)
-        XCTAssertFalse(sut.isShowGradingPeriodsView)
+        XCTAssertTrue(testee.gradingPeriods.isEmpty)
+        XCTAssertFalse(testee.isShowGradingPeriodsView)
     }
 
     func test_mapSortByOptions() {
@@ -115,12 +115,12 @@ final class GradeFilterViewModelTests: CoreTestCase {
             sortByOptions: sortByOptions
         )
         // Then
-        let sut = GradeFilterViewModel(
+        let testee = GradeFilterViewModel(
             dependency: dependency,
             appEnvironment: environment
         )
-        XCTAssertEqual(sut.sortByOptions.count, 2)
-        XCTAssertEqual(sut.selectedSortByOption, selectedSortBy)
+        XCTAssertEqual(testee.sortByOptions.count, 2)
+        XCTAssertEqual(testee.selectedSortByOption, selectedSortBy)
     }
 
     func test_bindSaveButtonStates_statesNotChanged_saveButtonIsDisabled() {
@@ -133,12 +133,12 @@ final class GradeFilterViewModelTests: CoreTestCase {
             sortByOptions: GradeArrangementOptions.allCases
         )
         // When
-        let sut = GradeFilterViewModel(
+        let testee = GradeFilterViewModel(
             dependency: dependency,
             appEnvironment: environment
         )
         // Then
-        XCTAssertFalse(sut.saveButtonIsEnabled)
+        XCTAssertFalse(testee.saveButtonIsEnabled)
     }
 
     func test_bindSaveButtonStates_statsIsChanged_saveButtonIsEnabled() {
@@ -152,13 +152,13 @@ final class GradeFilterViewModelTests: CoreTestCase {
             sortByOptions: GradeArrangementOptions.allCases
         )
         // When
-        let sut = GradeFilterViewModel(
+        let testee = GradeFilterViewModel(
             dependency: dependency,
             appEnvironment: environment
         )
-        sut.selectedSortByOption = .groupName
+        testee.selectedSortByOption = .groupName
         // Then
-        XCTAssertTrue(sut.saveButtonIsEnabled)
+        XCTAssertTrue(testee.saveButtonIsEnabled)
     }
 
     func test_saveButtonTapped() {
@@ -179,12 +179,12 @@ final class GradeFilterViewModelTests: CoreTestCase {
             sortByOptions: GradeArrangementOptions.allCases
         )
         // When
-        let sut = GradeFilterViewModel(
+        let testee = GradeFilterViewModel(
             dependency: dependency,
             appEnvironment: environment
         )
-        sut.selectedSortByOption = .groupName
-        sut.selectedGradingPeriod = nil
+        testee.selectedSortByOption = .groupName
+        testee.selectedGradingPeriod = nil
         selectedGradingPeriodPublisher.sink { _ in
             isSelectedGradingPeriodPublisherFired = true
         }
@@ -194,7 +194,7 @@ final class GradeFilterViewModelTests: CoreTestCase {
             isSelectedSortByPublisherFired = true
         }
         .store(in: &subscriptions)
-        sut.saveButtonTapped(viewController: viewController)
+        testee.saveButtonTapped(viewController: viewController)
         wait(for: [router.dismissExpectation], timeout: 1)
         // Then
         XCTAssertTrue(isSelectedGradingPeriodPublisherFired)

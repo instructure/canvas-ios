@@ -21,7 +21,7 @@ import SwiftUI
 struct AssignmentSection<Header: View, Content: View>: View {
 
     // MARK: - Properties
-    @State private var isExpanded: Bool = false
+    @State private var isExpanded: Bool = true
     private let header: Header
     private let content: Content
 
@@ -73,12 +73,11 @@ struct AssignmentSection<Header: View, Content: View>: View {
                 .size(16)
                 .rotationEffect(isExpanded ? .degrees(0) : .degrees(-180))
                 .accessibilityHidden(true)
+                .animation(.smooth, value: isExpanded)
         }
         .contentShape(Rectangle())
         .onTapGesture {
-            withAnimation {
-                isExpanded.toggle()
-            }
+            isExpanded.toggle()
         }
     }
 }

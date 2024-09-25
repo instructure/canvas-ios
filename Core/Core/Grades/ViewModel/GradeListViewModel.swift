@@ -53,6 +53,7 @@ public final class GradeListViewModel: ObservableObject {
     // MARK: - Output
     @Published private(set) var isLoaderVisible = false
     @Published private(set) var courseName: String?
+    @Published private(set) var courseColor: UIColor?
     @Published private(set) var totalGradeText: String?
     @Published private(set) var gradeHeaderIsVisible = false
     @Published private(set) var state: ViewState = .initialLoading
@@ -148,6 +149,7 @@ public final class GradeListViewModel: ObservableObject {
                     }
                     lastKnownDataState = listData
                     courseName = listData.courseName
+                    courseColor = listData.courseColor
                     totalGradeText = listData.totalGradeText
                     gradeHeaderIsVisible = true
                     isLoaderVisible = false

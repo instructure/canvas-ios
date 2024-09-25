@@ -60,7 +60,6 @@ public struct GradeListView: View, ScreenViewTrackable {
                 }
                 .background(Color.backgroundLightest)
                 .accessibilityHidden(isScoreEditorPresented)
-                .background(Color.backgroundLightest)
                 .refreshable {
                     await withCheckedContinuation { continuation in
                         viewModel.pullToRefreshDidTrigger.accept {
@@ -79,10 +78,10 @@ public struct GradeListView: View, ScreenViewTrackable {
                 }
             }
             .animation(.smooth, value: isScoreEditorPresented)
-            .safeAreaInset(edge: .top, spacing: 0) {
-                if viewModel.gradeHeaderIsVisible {
-                    courseSummaryView(viewModel.totalGradeText)
-                }
+        }
+        .safeAreaInset(edge: .top, spacing: 0) {
+            if viewModel.gradeHeaderIsVisible {
+                courseSummaryView(viewModel.totalGradeText)
             }
         }
         .background(Color.backgroundLightest)
@@ -128,8 +127,10 @@ public struct GradeListView: View, ScreenViewTrackable {
                     geometry: geometry
                 )
             case .error:
-                errorView()
-                    .paddingStyle(.top, .standard)
+                ZStack(alignment: .center) {
+                    errorView()
+                }
+                .frame(width: geometry.size.width, height: geometry.size.height)
             }
             Spacer()
         }
@@ -152,13 +153,8 @@ public struct GradeListView: View, ScreenViewTrackable {
         geometry: GeometryProxy
     ) -> some View {
         if isEmpty {
-            VStack {
-                emptyView()
-                    .paddingStyle(.vertical, .standard)
-                Spacer()
-            }
-            .frame(width: geometry.size.width, height: geometry.size.height)
-
+            emptyView()
+                .frame(width: geometry.size.width, height: geometry.size.height)
         } else {
             assignmentListView(
                 courseColor: gradeListData.courseColor,
@@ -309,7 +305,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 AssignmentSection {
                     VStack(spacing: 0) {
                         listSectionView(title: section.title)
-                            .frame(height: 60)
+                            .frame(height: 40)
                             .paddingStyle(.horizontal, .standard)
                     }
                     .accessibilityLabel(section.title ?? "")
@@ -354,7 +350,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         Text(title ?? "")
             .foregroundStyle(Color.textDark)
             .font(.semibold14)
-            .frame(maxWidth: .infinity, minHeight: 55, alignment: .leading)
+            .frame(maxWidth: .infinity, minHeight: 40, alignment: .leading)
     }
 
     @ViewBuilder
@@ -374,7 +370,10 @@ public struct GradeListView: View, ScreenViewTrackable {
                 isScoreEditorPresented.toggle()
             }
             .onSwipe(trailing: revertWhatIfScoreSwipeButton(id: assignment.id))
+            .contentShape(Rectangle())
         }
+        .background(Color.backgroundLightest)
+        .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
         .accessibilityAction(named: Text("Edit What-if score", bundle: .core)) {
             isScoreEditorPresented.toggle()
         }
