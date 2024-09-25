@@ -123,7 +123,13 @@ final class EditCalendarEventViewModel: ObservableObject {
     internal lazy var selectCalendarViewModel: SelectCalendarViewModel = {
         return .init(
             calendarListProviderInteractor: calendarListProviderInteractor,
-            calendarTypes: [.user, .group],
+            calendarTypes: {
+                if case .teacher = AppEnvironment.shared.app {
+                    return [.user, .course, .group]
+                } else {
+                    return [.user, .group]
+                }
+            }(),
             selectedCalendar: selectedCalendar
         )
     }()

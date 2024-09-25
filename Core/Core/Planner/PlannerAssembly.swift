@@ -37,7 +37,8 @@ public enum PlannerAssembly {
         let viewModel = EditCalendarEventViewModel(
             selectedDate: selectedDate,
             eventInteractor: CalendarEventInteractorLive(),
-            calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            calendarListProviderInteractor: calendarListProviderInteractor
+                ?? makeFilterInteractor(observedUserId: nil, forCreating: true),
             uploadParameters: makeUploadParameters(env: env),
             router: env.router,
             completion: completion
@@ -56,7 +57,8 @@ public enum PlannerAssembly {
         let viewModel = EditCalendarEventViewModel(
             event: event,
             eventInteractor: CalendarEventInteractorLive(),
-            calendarListProviderInteractor: calendarListProviderInteractor ?? makeFilterInteractor(observedUserId: nil),
+            calendarListProviderInteractor: calendarListProviderInteractor
+                ?? makeFilterInteractor(observedUserId: nil, forCreating: true),
             uploadParameters: makeUploadParameters(env: env),
             router: env.router,
             completion: completion
@@ -202,15 +204,16 @@ public enum PlannerAssembly {
         return host
     }
 
-    public static func makeFilterInteractor(observedUserId: String?) -> CalendarFilterInteractor {
+    public static func makeFilterInteractor(observedUserId: String?, forCreating: Bool = false) -> CalendarFilterInteractor {
         CalendarFilterInteractorLive(
             observedUserId: observedUserId,
-            filterProvider: makeFilterProvider(observedUserId: observedUserId)
+            filterProvider: makeFilterProvider(observedUserId: observedUserId, forCreating: forCreating)
         )
     }
 
     public static func makeFilterProvider(
         observedUserId: String?,
+        forCreating: Bool = false,
         app: AppEnvironment.App? = AppEnvironment.shared.app
     ) -> CalendarFilterEntryProvider {
         switch app {
@@ -219,7 +222,7 @@ public enum PlannerAssembly {
         case .student, .none:
             return CalendarFilterEntryProviderStudent()
         case .teacher:
-            return CalendarFilterEntryProviderTeacher()
+            return CalendarFilterEntryProviderTeacher(purpose: forCreating ? .creating : .viewing)
         }
     }
 

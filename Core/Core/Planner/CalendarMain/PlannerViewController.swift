@@ -51,7 +51,12 @@ public class PlannerViewController: UIViewController {
     public var selectedDate: Date = Clock.now
     var studentID: String?
 
-    lazy var calendarFilterInteractor: CalendarFilterInteractor = PlannerAssembly.makeFilterInteractor(observedUserId: studentID)
+    lazy var calendarFilterInteractor: CalendarFilterInteractor = PlannerAssembly
+        .makeFilterInteractor(observedUserId: studentID)
+
+    lazy var calendarFilterInteractorForCreation: CalendarFilterInteractor = PlannerAssembly
+        .makeFilterInteractor(observedUserId: studentID, forCreating: true)
+
     lazy var offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     private var subscriptions = Set<AnyCancellable>()
 
@@ -86,7 +91,7 @@ public class PlannerViewController: UIViewController {
         updateTodayButton()
 
         navigationItem.leftBarButtonItem = profileButton
-        navigationItem.rightBarButtonItems = ExperimentalFeature.teacherCalendar.isEnabled ? [todayButton] : [addButton, todayButton]
+        navigationItem.rightBarButtonItems = [addButton, todayButton]
 
         addChild(calendar)
         view.addSubview(calendar.view)
@@ -184,7 +189,7 @@ public class PlannerViewController: UIViewController {
         let weakVC = WeakViewController()
         let vc = PlannerAssembly.makeCreateEventViewController(
             selectedDate: selectedDate,
-            calendarListProviderInteractor: calendarFilterInteractor,
+            calendarListProviderInteractor: calendarFilterInteractorForCreation,
             completion: { [weak self] in
                 if $0 == .didUpdate {
                     self?.plannerListWillRefresh()
