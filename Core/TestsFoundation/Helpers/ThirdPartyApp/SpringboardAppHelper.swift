@@ -20,7 +20,7 @@ import Foundation
 
 public class SpringboardAppHelper: BaseHelper {
     public static let app = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-    
+
     public static var successNotification: XCUIElement {
         SpringboardAppHelper.app.find(labelContaining: "Offline Content Sync Success")
     }
