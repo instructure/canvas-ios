@@ -87,8 +87,8 @@ final class ComposeMessageViewModel: ObservableObject {
     let router: Router
 
     // MARK: - Private
-    private var initialMessageValue = ComposeMessageValue()
-    private var changedMessageValue = ComposeMessageValue()
+    private var initialMessageProperties = ComposeMessageProperties()
+    private var changedMessageProperties = ComposeMessageProperties()
     private var didSentMailSuccessfully: PassthroughSubject<Void, Never>?
     public let didTapRetry = PassthroughRelay<WeakViewController>()
     private var viewController  = WeakViewController()
@@ -348,10 +348,10 @@ final class ComposeMessageViewModel: ObservableObject {
         self.alwaysShowRecipients = extras.alwaysShowRecipients
         self.teacherOnly = extras.teacherOnly
         // Set initial Message Values so can check if there are any changes or not
-        initialMessageValue.courseName = selectedContext?.name
-        initialMessageValue.recipients = fieldContents.selectedRecipients
-        initialMessageValue.message = bodyText
-        initialMessageValue.subject = subject
+        initialMessageProperties.courseName = selectedContext?.name
+        initialMessageProperties.recipients = fieldContents.selectedRecipients
+        initialMessageProperties.message = bodyText
+        initialMessageProperties.subject = subject
 
         if autoTeacherSelect {
             selectedRecipients.send([.init(ids: [], name: String(localized: "Teachers"), avatarURL: nil)])
@@ -517,12 +517,12 @@ final class ComposeMessageViewModel: ObservableObject {
     }
 
     private func didApplyChanges() -> Bool {
-        changedMessageValue.subject = subject
-        changedMessageValue.message = bodyText
-        changedMessageValue.files = attachments
-        changedMessageValue.courseName = selectedContext?.name
-        changedMessageValue.recipients = selectedRecipients.value
-        return changedMessageValue != initialMessageValue
+        changedMessageProperties.subject = subject
+        changedMessageProperties.message = bodyText
+        changedMessageProperties.files = attachments
+        changedMessageProperties.courseName = selectedContext?.name
+        changedMessageProperties.recipients = selectedRecipients.value
+        return changedMessageProperties != initialMessageProperties
     }
 }
 
@@ -530,7 +530,7 @@ final class ComposeMessageViewModel: ObservableObject {
 extension ComposeMessageViewModel {
     /// Using this type to match between the initial values and the changed values to
     /// show confirmation alert or not
-    fileprivate struct ComposeMessageValue: Equatable {
+    fileprivate struct ComposeMessageProperties: Equatable {
         var subject = ""
         var courseName: String?
         var message = ""
