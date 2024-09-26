@@ -105,8 +105,10 @@ public final class GradeFilterViewModel: ObservableObject {
     func saveButtonTapped(viewController: WeakViewController) {
         dependency.selectedGradingPeriodPublisher.accept(selectedGradingPeriod?.value)
         dependency.selectedSortByPublisher.accept(selectedSortByOption ?? .groupName)
-        AppEnvironment.shared.userDefaults?.selectedGradingPeriodId = selectedGradingPeriod?.value?.id
-        AppEnvironment.shared.userDefaults?.selectedSortByOptionId = selectedSortByOption?.rawValue
+        let selectedGradingPeriodId = selectedGradingPeriod?.value?.id
+        // -1 is dummy id so can present `All` grading period
+        appEnvironment.userDefaults?.selectedGradingPeriodId = selectedGradingPeriodId == nil ? "-1" : selectedGradingPeriodId
+        appEnvironment.userDefaults?.selectedSortByOptionId = selectedSortByOption?.rawValue
         dimiss(viewController: viewController)
     }
 
