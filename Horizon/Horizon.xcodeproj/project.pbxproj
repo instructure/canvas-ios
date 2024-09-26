@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -60,6 +60,27 @@
 			remoteGlobalIDString = B90FCF66245CD7327BEE2CBF;
 			remoteInfo = Core;
 		};
+		B475EE2B2CA58F53002303EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
+			remoteInfo = CoreTester;
+		};
+		B475EE2D2CA58F53002303EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
+			remoteInfo = CoreTests;
+		};
+		B475EE2F2CA58F53002303EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 0F2B4D06F2ACF62293B119C4;
+			remoteInfo = TestsFoundation;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -107,7 +128,7 @@
 		F3018AB6A54CFAEFFF18A67B /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		F475EC6814456E8041E96A1A /* Core */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
 		F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F8E7191B980D0E8899E8C175 /* Horizon.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Horizon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8E7191B980D0E8899E8C175 /* Horizon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Horizon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC16FDFB815642C82768097E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -322,6 +343,9 @@
 			isa = PBXGroup;
 			children = (
 				7DED7199B426F89179546237 /* Core.framework */,
+				B475EE2C2CA58F53002303EA /* CoreTester.app */,
+				B475EE2E2CA58F53002303EA /* CoreTests.xctest */,
+				B475EE302CA58F53002303EA /* TestsFoundation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -417,6 +441,27 @@
 			remoteRef = 287762C99D46AE8961068231 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		B475EE2C2CA58F53002303EA /* CoreTester.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CoreTester.app;
+			remoteRef = B475EE2B2CA58F53002303EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B475EE2E2CA58F53002303EA /* CoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreTests.xctest;
+			remoteRef = B475EE2D2CA58F53002303EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B475EE302CA58F53002303EA /* TestsFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TestsFoundation.framework;
+			remoteRef = B475EE2F2CA58F53002303EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -506,6 +551,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Horizon/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -524,6 +570,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Horizon/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

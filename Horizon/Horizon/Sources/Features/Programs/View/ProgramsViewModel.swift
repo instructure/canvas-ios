@@ -23,7 +23,7 @@ import Foundation
 final class ProgramsViewModel: ObservableObject {
     // MARK: - Outputs
 
-    @Published private(set) var state: InstUI.ScreenState = .data(loadingOverlay: false)
+    @Published private(set) var state: InstUI.ScreenState = .loading
     @Published private(set) var title: String = "Biology certificate"
     @Published private(set) var progressString: String = "75%"
     @Published private(set) var progress: Double = 0.75
@@ -54,7 +54,10 @@ final class ProgramsViewModel: ObservableObject {
                     .collect()
             }
             .replaceError(with: [])
-            .sink(receiveValue: { unownedSelf.programs = $0 })
+            .sink(receiveValue: {
+                unownedSelf.programs = $0
+                unownedSelf.state = .data
+            })
             .store(in: &subscriptions)
     }
 }

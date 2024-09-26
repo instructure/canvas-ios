@@ -23,7 +23,7 @@ import Foundation
 final class DashboardViewModel: ObservableObject {
     // MARK: - Outputs
 
-    @Published public private(set) var state: InstUI.ScreenState = .data(loadingOverlay: false)
+    @Published public private(set) var state: InstUI.ScreenState = .loading
     @Published public private(set) var title: String = "Welcome back, Justine"
     @Published public private(set) var programName: String = ""
     @Published public private(set) var progressString: String = "75%"
@@ -62,6 +62,7 @@ final class DashboardViewModel: ObservableObject {
                     unownedSelf.currentModule = currentModule
                     unownedSelf.upcomingModules = modules
                 }
+                unownedSelf.state = .data
             })
             .store(in: &subscriptions)
     }
