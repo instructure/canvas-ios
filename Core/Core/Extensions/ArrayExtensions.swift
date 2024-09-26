@@ -57,3 +57,20 @@ public extension Array where Element: Equatable {
         }
     }
 }
+
+/// This property wrapper stores an array of objects as weak references.
+@propertyWrapper
+public struct WeakArray<Element> where Element: AnyObject {
+    public var wrappedValue: [Element] {
+        get {
+            weakObjects.compactMap { $0.value }
+        }
+        set {
+            weakObjects = newValue.map { WeakObject($0) }
+        }
+    }
+
+    private var weakObjects: [WeakObject<Element>] = []
+
+    public init() {}
+}

@@ -32,9 +32,14 @@ extension CoreWebView {
         /// These are the constraints the webview had before entered fullscreen mode
         private var originalConstraints: [NSLayoutConstraint]
         private var originalWebViewBackgroundColor: UIColor?
+        private var pipInteractor: CoreWebVideoPictureInPictureInteractor
 
-        public init(webView: WKWebView) {
+        public init(
+            webView: WKWebView,
+            pipInteractor: CoreWebVideoPictureInPictureInteractor = .shared
+        ) {
             originalConstraints = (webView.superview?.constraintsAffecting(view: webView) ?? []) + webView.constraints
+            self.pipInteractor = pipInteractor
             fullScreenObservation = webView.observe(\.fullscreenState, options: []) { [weak self] webView, _  in
                 guard let self else { return }
 
@@ -48,6 +53,7 @@ extension CoreWebView {
                     restoreOriginalConstraints(webView)
                     restoreBackground(webView)
                     self.webView = nil
+                    pipInteractor.webViewDidCloseFullscreenVideoPlayer(webView)
                 default: break
                 }
             }
@@ -57,7 +63,12 @@ extension CoreWebView {
             originalConstraints.forEach { $0.isActive = false }
             webView.translatesAutoresizingMaskIntoConstraints = true
             webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            webView.frame = webView.superview?.frame ?? .zero
+
+            /// Resizing of the fullscreen webview and even its window in unreliable so we do it manually
+            if let appFrame = AppEnvironment.shared.window?.frame {
+                webView.frame = appFrame
+                webView.window?.frame = appFrame
+            }
         }
 
         private func hideA11yElementsBelowFullscreenWindow(_ webView: WKWebView) {
