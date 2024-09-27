@@ -126,7 +126,10 @@ public struct GradeFilterView: View {
                 isShowGradingPeriod: false,
                 sortByOptions: GradeArrangementOptions.allCases
             ),
-            appEnvironment: .shared
+            gradeFilterInteractor: GradeFilterInteractorLive(
+                appEnvironment: .shared,
+                courseId: "12"
+            )
         )
     )
 }

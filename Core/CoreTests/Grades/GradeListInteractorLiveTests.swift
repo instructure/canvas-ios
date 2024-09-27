@@ -123,9 +123,10 @@ class GradeListInteractorLiveTests: CoreTestCase {
             ]
         )
     }
-
+    private var gradeFilterInteractor: GradeFilterInteractorMock!
     override func setUp() {
         super.setUp()
+        gradeFilterInteractor = GradeFilterInteractorMock()
         var assignmentsRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: nil,
@@ -193,7 +194,8 @@ class GradeListInteractorLiveTests: CoreTestCase {
             perPage: 100
         )
         api.mock(assignmentsRequest, value: assignmentGroups)
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, appEnvironment: environment)
+        gradeFilterInteractor.currentGradingId = nil
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .dueDate, baseOnGradedAssignment: true, ignoreCache: true)
             .sink(
@@ -230,7 +232,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             perPage: 100
         )
         api.mock(assignmentsRequest, value: assignmentGroups)
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, appEnvironment: environment)
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
             .sink(
@@ -265,7 +267,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             hide_final_grades: true)
         )
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, appEnvironment: environment)
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
             .sink(
@@ -293,8 +295,8 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 )
             ])
         )
-        environment.userDefaults?.selectedGradingPeriodId = nil
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, appEnvironment: environment)
+        gradeFilterInteractor.currentGradingId = "-1"
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
             .sink(
@@ -324,7 +326,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             settings: .make(restrict_quantitative_data: true))
         )
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, appEnvironment: environment)
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
             .sink(
@@ -369,8 +371,8 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 )
             ]
         )
-        environment.userDefaults?.selectedGradingPeriodId = "1"
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, appEnvironment: environment)
+        gradeFilterInteractor.currentGradingId = "1"
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
             .sink(
@@ -415,8 +417,8 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 )
             ]
         )
-        environment.userDefaults?.selectedGradingPeriodId = "1"
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, appEnvironment: environment)
+
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, ignoreCache: false)
             .sink(
@@ -461,8 +463,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 )
             ]
         )
-        environment.userDefaults?.selectedGradingPeriodId = nil
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, appEnvironment: environment)
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
         testee.updateGradingPeriod(id: nil)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, ignoreCache: false)
@@ -509,8 +510,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 )
             ]
         )
-        environment.userDefaults?.selectedGradingPeriodId = "1"
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, appEnvironment: environment)
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
             .sink(

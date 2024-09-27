@@ -230,13 +230,13 @@ public struct SessionDefaults {
     }
 
     // MARK: - Student Grades
-    public var selectedGradingPeriodId: String? {
-        get { self["selectedGradingPeriodId"] as? String }
-        set { self["selectedGradingPeriodId"] = newValue }
+    public var selectedGradingPeriodIds: [String: String]? {
+        get { self["selectedGradingPeriodIds"] as? [String: String] }
+        set { self["selectedGradingPeriodIds"] = newValue }
     }
 
-    public var selectedSortByOptionId: Int? {
-        get { self["selectedSortByOptionId"] as? Int }
-        set { self["selectedSortByOptionId"] = newValue }
+    public var selectedSortByOptionIds: [String: Int]? {
+        get { self["selectedSortByOptionIds"] as? [String: Int] }
+        set { self["selectedSortByOptionIds"] = newValue }
     }
 }

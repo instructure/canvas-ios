@@ -47,18 +47,18 @@ public final class GradeListInteractorLive: GradeListInteractor {
     private let gradingPeriodListStore: ReactiveStore<GetGradingPeriods>
     private var gradingPeriodID: String?
     private var isInitialGradingPeriodSet = false
-    private let appEnvironment: AppEnvironment
+    private let gradeFilterInteractor: GradeFilterInteractor
 
     // MARK: - Init
 
     public init(
         courseID: String,
         userID: String?,
-        appEnvironment: AppEnvironment
+        gradeFilterInteractor: GradeFilterInteractor
     ) {
         self.courseID = courseID
         self.userID = userID
-        self.appEnvironment = appEnvironment
+        self.gradeFilterInteractor = gradeFilterInteractor
 
         assignmentListStore = ReactiveStore(
             useCase: GetAssignmentsByGroup(
@@ -92,12 +92,11 @@ public final class GradeListInteractorLive: GradeListInteractor {
     }
 
     private func getSelectedGradingPeriodId(currentGradingPeriodID: String?) -> String? {
-        let currentId = appEnvironment.userDefaults?.selectedGradingPeriodId
+        let currentId = gradeFilterInteractor.selectedGradingId
         if let currentId {
-            // -1 is dummy id so can present `All` grading period
-            return currentId == "-1" ? nil : currentId
+            return currentId == gradeFilterInteractor.gradingShowAllId ? nil : currentId
         }
-        appEnvironment.userDefaults?.selectedGradingPeriodId = currentGradingPeriodID
+        gradeFilterInteractor.saveGrading(id: currentGradingPeriodID)
         return currentGradingPeriodID
     }
 

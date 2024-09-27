@@ -83,19 +83,19 @@ public final class GradeListViewModel: ObservableObject {
     private var lastKnownDataState: GradeListData?
     private var subscriptions = Set<AnyCancellable>()
     private let router: Router
-    private let appEnvironment: AppEnvironment
+    private let gradeFilterInteractor: GradeFilterInteractor
 
     // MARK: - Init
 
     public init(
         interactor: GradeListInteractor,
-        appEnvironment: AppEnvironment,
+        gradeFilterInteractor: GradeFilterInteractor,
         router: Router,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
         self.router = router
-        self.appEnvironment = appEnvironment
+        self.gradeFilterInteractor = gradeFilterInteractor
         let triggerRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion?)>()
 
         isWhatIfScoreFlagEnabled = interactor.isWhatIfScoreFlagEnabled()
@@ -181,7 +181,7 @@ public final class GradeListViewModel: ObservableObject {
     }
 
    private func loadSortPreferences() {
-        let selectedSortById = appEnvironment.userDefaults?.selectedSortByOptionId
+        let selectedSortById = gradeFilterInteractor.selectedSortById
         let selectedSortByOption = GradeArrangementOptions(rawValue: selectedSortById ?? 0) ?? .groupName
         selectedGroupByOption.accept(selectedSortByOption)
     }
@@ -198,7 +198,10 @@ public final class GradeListViewModel: ObservableObject {
             sortByOptions: GradeArrangementOptions.allCases
         )
 
-        let filterView = GradListAssembly.makeGradeFilterViewController(dependency: dependency)
+        let filterView = GradListAssembly.makeGradeFilterViewController(
+            dependency: dependency,
+            gradeFilterInteractor: gradeFilterInteractor
+        )
         router.show(
             filterView,
             from: viewController,

@@ -442,7 +442,10 @@ struct GradeListViewPreview: PreviewProvider {
         GradeListView(
             viewModel: .init(
                 interactor: GradeListInteractorPreview(),
-                appEnvironment: .shared,
+                gradeFilterInteractor: GradeFilterInteractorLive(
+                    appEnvironment: .shared,
+                    courseId: "courseId"
+                ),
                 router: PreviewEnvironment.shared.router
             )
         )

@@ -33,16 +33,16 @@ public final class GradeFilterViewModel: ObservableObject {
 
     // MARK: - Private Properties
     private let dependency: Dependency
-    private let appEnvironment: AppEnvironment
+    private let gradeFilterInteractor: GradeFilterInteractor
     private var initialFilterValue = FilterValue()
 
     // MARK: - Init
     init(
         dependency: Dependency,
-        appEnvironment: AppEnvironment
+        gradeFilterInteractor: GradeFilterInteractor
     ) {
         self.dependency = dependency
-        self.appEnvironment = appEnvironment
+        self.gradeFilterInteractor = gradeFilterInteractor
         setupOutputBindings()
         bindSaveButtonStates()
     }
@@ -68,7 +68,7 @@ public final class GradeFilterViewModel: ObservableObject {
 
         // Selected Grading Period
         let defaultGradingPeriod = GradeFilterViewModel.GradePeriod(title: String(localized: "All", bundle: .core))
-        let selectedGradingId = appEnvironment.userDefaults?.selectedGradingPeriodId
+        let selectedGradingId = gradeFilterInteractor.selectedGradingId
         let selectedGrading = gradingPeriodList.first(where: {$0.id ==  selectedGradingId})
         let currentGradingPeriod = GradeFilterViewModel.GradePeriod(
             title: selectedGrading?.title,
@@ -82,7 +82,7 @@ public final class GradeFilterViewModel: ObservableObject {
     }
 
     private func mapSortByOptions() {
-        let selectedSortById = appEnvironment.userDefaults?.selectedSortByOptionId
+        let selectedSortById = gradeFilterInteractor.selectedSortById
         selectedSortByOption = GradeArrangementOptions(rawValue: selectedSortById ?? 0) ?? .groupName
         sortByOptions = dependency.sortByOptions
     }
@@ -106,9 +106,8 @@ public final class GradeFilterViewModel: ObservableObject {
         dependency.selectedGradingPeriodPublisher.accept(selectedGradingPeriod?.value)
         dependency.selectedSortByPublisher.accept(selectedSortByOption ?? .groupName)
         let selectedGradingPeriodId = selectedGradingPeriod?.value?.id
-        // -1 is dummy id so can present `All` grading period
-        appEnvironment.userDefaults?.selectedGradingPeriodId = selectedGradingPeriodId == nil ? "-1" : selectedGradingPeriodId
-        appEnvironment.userDefaults?.selectedSortByOptionId = selectedSortByOption?.rawValue
+        gradeFilterInteractor.saveGrading(id: selectedGradingPeriodId)
+        gradeFilterInteractor.saveSortByOption(id: selectedSortByOption?.rawValue)
         dimiss(viewController: viewController)
     }
 
