@@ -26,6 +26,7 @@ final class GradeFilterInteractorLiveTests: CoreTestCase {
     private var testee: GradeFilterInteractorLive!
     private let courseId = "10"
 
+    // MARK: - Life Cycle
     override func setUp() {
         super.setUp()
         testee = GradeFilterInteractorLive(
