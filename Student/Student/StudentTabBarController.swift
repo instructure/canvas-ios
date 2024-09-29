@@ -28,7 +28,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         delegate = self
         viewControllers = [
             dashboardTab(),
-            calendarTab(),
+            calendarTab(newPlanner: true),
             todoTab(),
             notificationsTab()
         ]
@@ -92,10 +92,18 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         return result
     }
 
-    func calendarTab() -> UIViewController {
+    func calendarTab(newPlanner: Bool = false) -> UIViewController {
         let split = CoreSplitViewController()
+
+        let planner: UIViewController
+        if newPlanner {
+            planner = PlannerAssembly.makeNewPlannerViewController()
+        } else {
+            planner = CoreNavigationController(rootViewController: PlannerViewController.create())
+        }
+
         split.viewControllers = [
-            CoreNavigationController(rootViewController: PlannerViewController.create()),
+            planner,
             CoreNavigationController(rootViewController: EmptyViewController())
         ]
         split.view.tintColor = Brand.shared.primary

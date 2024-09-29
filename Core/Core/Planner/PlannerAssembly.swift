@@ -26,6 +26,21 @@ public enum PlannerAssembly {
         case didDelete
     }
 
+    // MARK: - Calendar
+
+    public static func makeNewPlannerViewController(studentID: String? = nil,
+                                                    date: Date = Clock.now,
+                                                    env: AppEnvironment = .shared) -> UIViewController {
+        let model = PlannerViewModel(studentID: studentID, date: date, router: env.router)
+        let plannerVC = CoreHostingController(PlannerScreen(viewModel: model))
+        let plannerNavigation = CoreNavigationController(
+            rootViewController: plannerVC
+        )
+        plannerVC.navigationItem.titleView = Brand.shared.headerImageView()
+        plannerNavigation.navigationBar.useGlobalNavStyle()
+        return plannerNavigation
+    }
+
     // MARK: - Event
 
     public static func makeCreateEventViewController(
