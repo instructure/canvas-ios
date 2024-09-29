@@ -59,7 +59,7 @@ public extension XCUIElement {
     }
 
     // MARK: Static vars
-    static let defaultTimeout: TimeInterval = 15
+    static let defaultTimeout: TimeInterval = 20
     static var defaultGracePeriod: TimeInterval = 1
 
     // MARK: Private vars

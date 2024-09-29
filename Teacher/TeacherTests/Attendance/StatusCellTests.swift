@@ -26,13 +26,16 @@ class StatusCellTests: TeacherTestCase {
         XCTAssertNil(cell.nameLabel.text)
 
         cell.status = .make(attendance: nil)
-        XCTAssertNil(cell.accessoryView)
         XCTAssertNotNil(cell.nameLabel.text)
+        XCTAssertEqual((cell.accessoryView as? UIImageView)?.image, UIImage.noLine)
 
         cell.status = .make(attendance: .present)
         XCTAssertEqual((cell.accessoryView as? UIImageView)?.image, Attendance.present.icon)
 
         cell.status = .make(student: nil, attendance: .present)
         XCTAssertEqual(cell.accessibilityLabel, " — Present")
+
+        cell.status = .make(student: nil, attendance: nil)
+        XCTAssertEqual(cell.accessibilityLabel, " — Unmarked")
     }
 }

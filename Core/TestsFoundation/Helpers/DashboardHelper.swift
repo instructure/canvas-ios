@@ -88,9 +88,6 @@ public class DashboardHelper: BaseHelper {
             public static var alertSyncOfflineContentLabel: XCUIElement { app.find(label: "Sync Offline Content?", type: .staticText) }
             public static var notAvailableOfflineLabel: XCUIElement { app.find(labelContaining: "not available offline", type: .staticText) }
 
-            // Syncing offline content
-            public static var syncingOfflineContentLabel: XCUIElement { app.find(label: "Syncing Offline Content") }
-
             // Course content selection
             public static var discussionsButton: XCUIElement { app.find(label: "Discussions", type: .staticText) }
             public static var gradesButton: XCUIElement { app.find(label: "Grades", type: .staticText) }

@@ -18,9 +18,8 @@
 
 import CoreData
 import Combine
-import SwiftUI
 
-class GetCalendarFilters: UseCase {
+class GetTeacherCalendarFilters: UseCase {
     struct APIResponse: Codable {
         let courses: [APICourse]
         let groups: [APIGroup]
@@ -28,63 +27,64 @@ class GetCalendarFilters: UseCase {
     typealias Model = CDCalendarFilterEntry
     typealias Response = APIResponse
 
-    let cacheKey: String? = "calendar/filters"
-    let scope: Scope = {
-        let unknownPurpose = CDCalendarFilterPurpose.unknown.rawValue
+    enum Purpose {
+        case viewing, creating
+
+        fileprivate var filterPurpose: CDCalendarFilterPurpose {
+            switch self {
+            case .viewing: return .viewing
+            case .creating: return .creating
+            }
+        }
+    }
+
+    var cacheKey: String? { "calendar/filters/teacher/\(purpose.filterPurpose.cacheToken)" }
+    var scope: Scope {
         return .init(
             predicate: NSCompoundPredicate(
                 andPredicateWithSubpredicates: [
-                    .init(key: (\CDCalendarFilterEntry.observedUserId).string, equals: nil),
-                    .init(key: (\CDCalendarFilterEntry.rawPurpose).string, equals: unknownPurpose)
+                    NSPredicate(key: (\CDCalendarFilterEntry.observedUserId).string, equals: nil),
+                    NSPredicate(key: (\CDCalendarFilterEntry.rawPurpose).string,
+                                equals: purpose.filterPurpose.rawValue)
                 ]
             ),
             order: [
                 NSSortDescriptor(key: (\CDCalendarFilterEntry.name).string, ascending: true)
             ]
         )
-    }()
+    }
 
     private var subscriptions = Set<AnyCancellable>()
     private let userName: String
     private let userId: String
-    private let states: [GetCoursesRequest.State]
-    private let filterUnpublishedCourses: Bool
+    private let purpose: Purpose
 
     init(
         currentUserName: String,
         currentUserId: String,
-        states: [GetCoursesRequest.State],
-        filterUnpublishedCourses: Bool
+        purpose: Purpose
     ) {
         userName = currentUserName
         userId = currentUserId
-        self.states = states
-        self.filterUnpublishedCourses = filterUnpublishedCourses
+        self.purpose = purpose
     }
 
     func makeRequest(
         environment: AppEnvironment,
         completionHandler: @escaping RequestCallback
     ) {
-        let coursesRequest = GetCurrentUserCoursesRequest(
-            enrollmentState: .active,
-            state: states,
-            includes: []
-        )
-        let coursesFetch = environment.api
-            .exhaust(coursesRequest)
-            .map { [filterUnpublishedCourses] in
-                let courses = $0.body
-
-                if filterUnpublishedCourses {
-                    return courses.filter { $0.workflow_state != .unpublished }
-                } else {
-                    return courses
-                }
-            }
 
         let groupsRequest = GetGroupsRequest(context: .currentUser)
         let groupsFetch = environment.api.exhaust(groupsRequest)
+
+        let coursesFetch: AnyPublisher<[APICourse], Error>
+
+        switch purpose {
+        case .creating:
+            coursesFetch = coursesAsTeacherFetch(env: environment)
+        case .viewing:
+            coursesFetch = currentCoursesFetch(env: environment)
+        }
 
         Publishers
             .CombineLatest(coursesFetch, groupsFetch)
@@ -117,17 +117,20 @@ class GetCalendarFilters: UseCase {
         let filter: CDCalendarFilterEntry = client.insert()
         filter.context = .user(userId)
         filter.name = userName
+        filter.purpose = purpose.filterPurpose
 
         courses.forEach { course in
             let filter: CDCalendarFilterEntry = client.insert()
             filter.context = .course(course.id.rawValue)
             filter.name = course.name ?? ""
+            filter.purpose = purpose.filterPurpose
         }
 
         groups.forEach { group in
             let filter: CDCalendarFilterEntry = client.insert()
             filter.context = .group(group.id.rawValue)
             filter.name = group.name
+            filter.purpose = purpose.filterPurpose
         }
     }
 
@@ -136,32 +139,33 @@ class GetCalendarFilters: UseCase {
     }
 }
 
-// MARK: - Groups Validation
+// MARK: - Fetch Publishers
 
-extension Publisher where Output == ([APICourse], (body: [APIGroup], urlResponse: HTTPURLResponse?)) {
+private extension GetTeacherCalendarFilters {
 
-    func validateGroups() -> Publishers.Map<Self, ([APICourse], [APIGroup])> {
-        map { (courses, groups) in
-            let validCourseIDs = courses.map { $0.id }
-            /// If a course's end date has passed and "Restrict students from viewing course after course end date" is checked
-            /// then fetching events for a group in this course will give 403 unauthorized.
-            /// To be on the safe side we drop all groups without a valid course.
-            let filteredGroups = groups.body.dropCourseGroupsWithoutValidCourses(validCourseIDs: validCourseIDs)
-            return (courses, filteredGroups)
-        }
+    func currentCoursesFetch(env: AppEnvironment) -> AnyPublisher<[APICourse], Error> {
+        let coursesRequest = GetCurrentUserCoursesRequest(
+            enrollmentState: .active,
+            state: [],
+            includes: []
+        )
+
+        return env.api
+            .exhaust(coursesRequest)
+            .map { $0.body }
+            .eraseToAnyPublisher()
     }
-}
 
-private extension Array where Element == APIGroup {
-
-    func dropCourseGroupsWithoutValidCourses(validCourseIDs: [ID]) -> [Element] {
-        filter { group in
-            switch group.groupType {
-            case .account:
-                return true
-            case .course(let courseId):
-                return validCourseIDs.contains(courseId)
-            }
-        }
+    func coursesAsTeacherFetch(env: AppEnvironment) -> AnyPublisher<[APICourse], Error> {
+        let coursesRequest = GetCoursesRequest(
+            enrollmentState: .active,
+            enrollmentType: .teacher,
+            state: [],
+            perPage: 100
+        )
+        return env.api
+            .exhaust(coursesRequest)
+            .map { $0.body }
+            .eraseToAnyPublisher()
     }
 }

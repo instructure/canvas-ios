@@ -21,13 +21,16 @@ import Combine
 struct CalendarFilterEntryProviderTeacher: CalendarFilterEntryProvider {
     private let userName: String?
     private let userId: String?
+    private let purpose: GetTeacherCalendarFilters.Purpose
 
     init(
+        purpose: GetTeacherCalendarFilters.Purpose,
         userName: String? = AppEnvironment.shared.currentSession?.userName,
         userId: String? = AppEnvironment.shared.currentSession?.userID
     ) {
         self.userName = userName
         self.userId = userId
+        self.purpose = purpose
     }
 
     func make(ignoreCache: Bool) -> AnyPublisher<[CDCalendarFilterEntry], Error>? {
@@ -35,10 +38,12 @@ struct CalendarFilterEntryProviderTeacher: CalendarFilterEntryProvider {
             return nil
         }
 
-        let useCase = GetCalendarFilters(currentUserName: userName,
-                                         currentUserId: userId,
-                                         states: [],
-                                         filterUnpublishedCourses: false)
+        let useCase = GetTeacherCalendarFilters(
+            currentUserName: userName,
+            currentUserId: userId,
+            purpose: purpose
+        )
+
         return ReactiveStore(useCase: useCase).getEntities(ignoreCache: ignoreCache)
     }
 }

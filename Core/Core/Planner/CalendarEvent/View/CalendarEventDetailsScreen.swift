@@ -37,7 +37,7 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
         }
         .navigationTitle(viewModel.pageTitle, subtitle: viewModel.pageSubtitle)
         .navBarItems(
-            trailing: ExperimentalFeature.modifyCalendarEvent.isEnabled && viewModel.shouldShowMenuButton
+            trailing: viewModel.shouldShowMenuButton
             ? InstUI.NavigationBarButton.moreIcon(
                 isBackgroundContextColor: true,
                 isEnabled: viewModel.isMoreButtonEnabled,

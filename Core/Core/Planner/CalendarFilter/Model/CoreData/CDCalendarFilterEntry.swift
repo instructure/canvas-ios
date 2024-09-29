@@ -19,11 +19,26 @@
 import CoreData
 import SwiftUI
 
+public enum CDCalendarFilterPurpose: Int16 {
+    case viewing = 1
+    case creating = 2
+    case unknown = 0
+
+    var cacheToken: String {
+        switch self {
+        case .viewing: return "viewing"
+        case .creating: return "creating"
+        case .unknown: return "unknown"
+        }
+    }
+}
+
 public class CDCalendarFilterEntry: NSManagedObject {
     @NSManaged public var name: String
     /// For the observer role we have a separate list of filters for each observed student
     @NSManaged public var observedUserId: String?
     @NSManaged public private(set) var rawContextID: String
+    @NSManaged public var rawPurpose: Int16
 
     public var context: Context {
         get {
@@ -31,6 +46,15 @@ public class CDCalendarFilterEntry: NSManagedObject {
         }
         set {
             rawContextID = newValue.canvasContextID
+        }
+    }
+
+    public var purpose: CDCalendarFilterPurpose {
+        get {
+            CDCalendarFilterPurpose(rawValue: rawPurpose) ?? .unknown
+        }
+        set {
+            rawPurpose = newValue.rawValue
         }
     }
 
