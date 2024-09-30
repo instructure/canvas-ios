@@ -33,12 +33,12 @@ public enum PlannerAssembly {
                                                     env: AppEnvironment = .shared) -> UIViewController {
         let model = PlannerViewModel(studentID: studentID, date: date, router: env.router)
         let plannerVC = CoreHostingController(PlannerScreen(viewModel: model))
-        let plannerNavigation = CoreNavigationController(
+        plannerVC.navigationBarStyle = .global
+        plannerVC.navigationItem.titleView = Brand.shared.headerImageView()
+        
+        return CoreNavigationController(
             rootViewController: plannerVC
         )
-        plannerVC.navigationItem.titleView = Brand.shared.headerImageView()
-        plannerNavigation.navigationBar.useGlobalNavStyle()
-        return plannerNavigation
     }
 
     // MARK: - Event

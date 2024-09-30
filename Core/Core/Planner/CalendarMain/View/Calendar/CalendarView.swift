@@ -22,6 +22,7 @@ struct CalendarView: View {
 
     @Binding var isCollapsed: Bool
     @Binding var selectedDay: CalendarDay
+    var calendarsTapped: () -> Void
 
     private var year: String {
         return selectedDay.date.formatted(
@@ -39,19 +40,25 @@ struct CalendarView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            VStack(alignment: .leading, spacing: 5) {
-                Text(year).font(.subheadline).bold().foregroundStyle(.secondary)
-                Button {
-                    withAnimation {
-                        isCollapsed.toggle()
+            HStack {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(year).font(.regular12).foregroundStyle(.secondary)
+                    Button {
+                        withAnimation {
+                            isCollapsed.toggle()
+                        }
+                    } label: {
+                        HStack {
+                            Text(month).font(.semibold22)
+                            Image(systemName: "chevron.down")
+                                .bold()
+                                .rotationEffect(.degrees(isCollapsed ? 0 : 180))
+                        }
                     }
-                } label: {
-                    HStack {
-                        Text(month).font(.title2.bold())
-                        Image(systemName: "chevron.down")
-                            .bold()
-                            .rotationEffect(.degrees(isCollapsed ? 0 : 180))
-                    }
+                }
+                Spacer()
+                Button(action: calendarsTapped) {
+                    Text("Calendars", bundle: .core).font(.regular16)
                 }
             }
             .padding(.horizontal)
@@ -72,6 +79,9 @@ struct CalendarView: View {
         }
         .padding(.top, 10)
         .background(Color.backgroundLight)
+        .overlay(alignment: .bottom) {
+            Divider()
+        }
     }
 }
 
@@ -105,11 +115,15 @@ struct CalendarCardView: View {
     private let spaceID = Foundation.UUID()
 
     private func nextDay() -> CalendarDay {
-        return isCollapsed ? selectedDay.nextWeek() : selectedDay.nextMonth()
+        return isCollapsed
+        ? selectedDay.sameDayNextWeek()
+        : selectedDay.sameDayNextMonth()
     }
 
     private func prevDay() -> CalendarDay {
-        return isCollapsed ? selectedDay.prevWeek() : selectedDay.prevMonth()
+        return isCollapsed
+        ? selectedDay.sameDayPrevWeek()
+        : selectedDay.sameDayPrevMonth()
     }
 
     var body: some View {
@@ -127,7 +141,7 @@ struct CalendarCardView: View {
             .coordinateSpace(name: spaceID)
         }
         .frame(maxHeight: height)
-        .background(Color(uiColor: .secondarySystemBackground))
+        .background(Color.backgroundLight)
         .gesture(dragGesture)
     }
 
@@ -217,7 +231,13 @@ struct CalendarCardView: View {
                 switch mode {
                 case .draggingHorizontal:
 
-                    let shouldSwitch = abs(translation.width) / currentFullSize.width > 0.4 || abs(value.velocity.width) > 30
+                    var shouldSwitch = abs(translation.width) / currentFullSize.width > 0.4
+                                    || abs(value.velocity.width) > 30
+
+                    if value.velocity.width.sign != translation.width.sign {
+                        shouldSwitch = false
+                    }
+
                     let increment: Mode = isTranslationForward ? .completionNext : .completionPrev
 
                     withAnimation(duration: 0.4) {
@@ -247,10 +267,12 @@ struct CalendarCardView: View {
                     } completion: {
                         guard shouldCollapse else { return }
 
-                        isCollapsed = increment == .collapsing ? true : false
-                        mode = .stable
-                        translation = .zero
-                        expansion = nil
+                        withAnimation(.easeOut(duration: 0.2)) {
+                            isCollapsed = increment == .collapsing ? true : false
+                            mode = .stable
+                            translation = .zero
+                            expansion = nil
+                        }
                     }
 
                 default: break
@@ -288,7 +310,7 @@ extension CGSize {
 
         var body: some View {
             VStack {
-                CalendarView(isCollapsed: $isCollapsed, selectedDay: $selectedDay)
+                CalendarView(isCollapsed: $isCollapsed, selectedDay: $selectedDay, calendarsTapped: {})
                 Spacer()
             }
         }

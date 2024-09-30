@@ -41,6 +41,13 @@ public class PlannablesInteractorLive: PlannablesInteractor {
     }
 
     public func setup(startDate: Date, endDate: Date, contextCodes: [String]) {
+        if let prevUseCase = store?.useCase,
+           prevUseCase.startDate == startDate,
+           prevUseCase.endDate == endDate,
+           prevUseCase.contextCodes == contextCodes {
+            return
+        }
+
         let useCase = GetPlannables(
             startDate: startDate,
             endDate: endDate,

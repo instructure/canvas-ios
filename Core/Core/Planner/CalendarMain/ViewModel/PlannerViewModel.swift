@@ -17,6 +17,7 @@
 //
 
 import Combine
+import SwiftUI
 
 public class PlannerViewModel: ObservableObject {
 
@@ -32,6 +33,8 @@ public class PlannerViewModel: ObservableObject {
     let showProfile = PassthroughSubject<WeakViewController, Never>()
     let showTodoForm = PassthroughSubject<WeakViewController, Never>()
     let showEventForm = PassthroughSubject<WeakViewController, Never>()
+    let showCalendars = PassthroughSubject<WeakViewController, Never>()
+    let showPlannableDetails = PassthroughSubject<(event: Plannable, screen: WeakViewController), Never>()
 
     lazy var calendarFilterInteractor: CalendarFilterInteractor = PlannerAssembly
         .makeFilterInteractor(observedUserId: studentID)
@@ -77,55 +80,60 @@ public class PlannerViewModel: ObservableObject {
             .sink { [weak self] in self?.showEventForm(from: $0) }
             .store(in: &subscriptions)
 
+        showCalendars
+            .sink { [weak self] in self?.showCalendarsView(from: $0) }
+            .store(in: &subscriptions)
+
+        showPlannableDetails
+            .sink { [weak self] (event, screen) in
+                self?.showDetails(for: event, from: screen)
+            }
+            .store(in: &subscriptions)
+
         plannablesInteractor
             .state
             .assign(to: &$state)
 
         plannablesInteractor
             .events
-            .map({ [weak self] newList in
-                guard let selectedDay = self?.selectedDay else { return [] }
-                return newList.filter { item in
-                    guard let pdate = item.date else { return false }
-                    return selectedDay.calendar.isDate(pdate, inSameDayAs: selectedDay.date)
-                }
-            })
-            .assign(to: &$dayPlannables)
+            .assign(to: &$plannables)
 
         plannablesInteractor
             .events
-            .assign(to: &$plannables)
+            .sink(receiveValue: { [weak self] newList in
+                self?.updateDayPlannables(from: newList)
+            })
+            .store(in: &subscriptions)
 
         $selectedDay
             .sink(receiveValue: { [weak self] day in
                 self?.refreshPlannerList(day: day)
-            })
-            .store(in: &subscriptions)
-
-        $isCollapsed
-            .sink(receiveValue: { [weak self] collapsed in
-                self?.refreshPlannerList(collapsed: collapsed)
+                self?.updateDayPlannables(day: day)
             })
             .store(in: &subscriptions)
     }
 
-    private func refreshPlannerList(day: CalendarDay? = nil, collapsed: Bool? = nil) {
+    private func updateDayPlannables(day: CalendarDay? = nil, from list: [Plannable]? = nil) {
+        let targetDay = day ?? selectedDay
+        let calendar = targetDay.calendar
+        let newList = list ?? plannables
+        dayPlannables = newList.filter { item in
+            guard let pdate = item.date else { return false }
+            return calendar.isDate(pdate, inSameDayAs: targetDay.date)
+        }
+    }
+
+    private func refreshPlannerList(day: CalendarDay? = nil) {
         let targetDay = day ?? selectedDay
         let contextCodes = calendarFilterInteractor
             .contextsForAPIFiltering()
             .map(\.canvasContextID)
 
-        let period: CalendarPeriod
-        if collapsed ?? isCollapsed {
-            period = targetDay.week
-        } else {
-            period = targetDay.month
-        }
-
-        let interval = period.dateInterval
+        let startDate = targetDay.sameDayPrevMonth().month.startDate
+        let endDate = targetDay.sameDayNextMonth().month.endDate
         plannablesInteractor.setup(
-            startDate: interval.start,
-            endDate: interval.end,
+            startDate: startDate,
+            endDate: endDate,
             contextCodes: contextCodes
         )
     }
@@ -173,5 +181,65 @@ public class PlannerViewModel: ObservableObject {
             options: .modal(isDismissable: false, embedInNav: true),
             analyticsRoute: "/calendar/new"
         )
+    }
+
+    private func showCalendarsView(from screen: WeakViewController) {
+        let filter = PlannerAssembly.makeFilterViewController(observedUserId: studentID) { [weak self] in
+            self?.refreshPlannerList()
+        }
+        router.show(
+            filter,
+            from: screen,
+            options: .modal(.formSheet, isDismissable: false, embedInNav: true),
+            analyticsRoute: "/calendar/filter"
+        )
+    }
+
+    private func showDetails(for plannable: Plannable, from screen: WeakViewController) {
+        switch plannable.plannableType {
+        case .planner_note:
+            let vc = PlannerAssembly.makeToDoDetailsViewController(plannable: plannable)
+            router.show(vc, from: screen, options: .detail)
+        case .calendar_event:
+            let vc = PlannerAssembly.makeEventDetailsViewController(eventId: plannable.id) { [weak self] output in
+                switch output {
+                case .didUpdate, .didDelete:
+                    self?.refreshPlannerList()
+                case .didCancel:
+                    break
+                }
+            }
+            router.show(vc, from: screen, options: .detail)
+        default:
+            if let url = plannable.htmlURL {
+                let to = url.appendingQueryItems(URLQueryItem(name: "origin", value: "calendar"))
+                router.route(to: to, from: screen, options: .detail)
+            }
+        }
+    }
+}
+
+// MARK: - PlannerModel Environment
+
+public struct PlannerViewModelEnvironmentWrapper {
+    let model: PlannerViewModel?
+}
+
+extension PlannerViewModel: EnvironmentKey {
+    public static var defaultValue: PlannerViewModelEnvironmentWrapper {
+        PlannerViewModelEnvironmentWrapper(model: nil)
+    }
+}
+
+extension EnvironmentValues {
+    public var plannerViewModel: PlannerViewModelEnvironmentWrapper {
+        get { self[PlannerViewModel.self] }
+        set { self[PlannerViewModel.self] = newValue }
+    }
+}
+
+extension PlannerViewModel {
+    func wrapped() -> PlannerViewModelEnvironmentWrapper {
+        return PlannerViewModelEnvironmentWrapper(model: self)
     }
 }

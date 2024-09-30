@@ -17,86 +17,86 @@
 //
 
 import SwiftUI
+import Combine
 
 struct CalendarWeekView: View {
+    @Environment(\.plannerViewModel) var plannerModel
+
+    @State fileprivate var dates: [Date] = []
     @Binding var calendarDay: CalendarDay
 
+    fileprivate var week: CalendarWeek {calendarDay.week }
+
     var body: some View {
-        let calendarWeek = calendarDay.week
-        let weekdays = calendarDay.calendar.orderedWeekdays
         Grid(horizontalSpacing: 0) {
             GridRow {
-                ForEach(weekdays, id: \.self) { day in
-                    let selected = calendarDay.weekday == day
-                    CalendarWeekDayView(weekday: day, week: calendarWeek, selected: selected)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            calendarDay = calendarDay.week.day(ofWeekday: day)
-                        }
+                ForEach(week.weekdays) { weekDay in
+                    CalendarMonthDayView(
+                        day: weekDay,
+                        dots: eventsCount(for: weekDay),
+                        selected: calendarDay == weekDay.calendarDay
+                    )
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        calendarDay = weekDay.calendarDay
+                    }
                 }
             }
+        }
+        .onReceive(eventDatesPublisher) { newList in
+            self.dates = newList
         }
     }
 }
 
 struct CalendarStaticWeekView: View {
+    @Environment(\.plannerViewModel) var plannerModel
+    @State fileprivate var dates: [Date] = []
+
     let week: CalendarWeek
 
     var body: some View {
-        let weekdays = week.calendar.orderedWeekdays
         Grid(horizontalSpacing: 0) {
             GridRow {
-                ForEach(weekdays, id: \.self) { day in
-                    CalendarWeekDayView(weekday: day, week: week)
+                ForEach(week.weekdays) { weekDay in
+                    CalendarMonthDayView(day: weekDay, dots: eventsCount(for: weekDay))
                 }
             }
+        }
+        .onReceive(eventDatesPublisher) { newList in
+            self.dates = newList
         }
     }
 }
 
-private struct CalendarWeekDayView: View {
-    @EnvironmentObject var viewModel: PlannerViewModel
+// MARK: - Dots Fetching
 
-    @State private var eventsCount: Int = 0
+private protocol CalendarWeekViewProtocol: View {
+    var plannerModel: PlannerViewModelEnvironmentWrapper { get }
+    var week: CalendarWeek { get }
+    var dates: [Date] { get }
+}
 
-    let weekday: Int
-    let week: CalendarWeek
-    var selected: Bool = false
+extension CalendarWeekViewProtocol {
 
-    var body: some View {
-        let title = week.title(forWeekday: weekday)
+    func eventsCount(for day: CalendarWeekday) -> Int {
+        return dates.filter({ day.containsDate($0) }).prefix(3).count
+    }
 
-        HStack {
-            Spacer()
-            Text(title)
-                .font(.regular16)
-                .foregroundStyle(selected ? Color.white : .primary)
-                .padding(.vertical, 10)
-                .background(alignment: .bottom) {
-                    if !selected, eventsCount > 0 {
-                        HStack(spacing: 3) {
-                            ForEach(0 ..< eventsCount, id: \.self) { _ in
-                                Circle().fill(Color.blue).frame(width: 5, height: 5)
-                            }
-                        }
-                    }
-                }
-            Spacer()
+    var eventDatesPublisher: AnyPublisher<[Date], Never> {
+        guard let model = plannerModel.model else {
+            return Just([]).eraseToAnyPublisher()
         }
-        .padding(.vertical, 5)
-        .background {
-            if selected {
-                Circle().inset(by: 5).fill(Color.blue)
-            }
-        }
-        .onReceive(viewModel.$plannables) { newList in
-            let date = week.date(ofWeekday: weekday)
-            let newCount = newList
-                .compactMap({ $0.date })
-                .filter({ week.calendar.isDate($0, inSameDayAs: date) })
-                .prefix(3)
-                .count
-            eventsCount = newCount
-        }
+        return model
+            .$plannables
+            .map({ newList in
+                return newList
+                    .compactMap({ $0.date })
+                    .filter({ week.containsDate($0) })
+            })
+            .eraseToAnyPublisher()
     }
 }
+
+extension CalendarWeekView: CalendarWeekViewProtocol {}
+extension CalendarStaticWeekView: CalendarWeekViewProtocol {}

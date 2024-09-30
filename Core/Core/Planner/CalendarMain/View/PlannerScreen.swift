@@ -33,6 +33,9 @@ public struct PlannerScreen: View {
             Section {
                 ForEach(viewModel.dayPlannables, id: \.id) { item in
                     PlannerListRowView(item: item)
+                        .onTapGesture {
+                            viewModel.showPlannableDetails.send((item, viewController))
+                        }
                 }
             } header: {
                 Text(
@@ -51,12 +54,17 @@ public struct PlannerScreen: View {
         }
         .listStyle(.plain)
         .safeAreaInset(edge: .top) {
-            CalendarView(isCollapsed: $viewModel.isCollapsed,
-                         selectedDay: $viewModel.selectedDay)
-                .overlay(alignment: .bottom) {
-                    Color.white.frame(height: 10).offset(y: 10)
+            CalendarView(
+                isCollapsed: $viewModel.isCollapsed,
+                selectedDay: $viewModel.selectedDay,
+                calendarsTapped: {
+                    viewModel.showCalendars.send(viewController)
                 }
-                .environmentObject(viewModel)
+            )
+            .environment(\.plannerViewModel, viewModel.wrapped())
+            .overlay(alignment: .bottom) {
+                Color(uiColor: .systemBackground).frame(height: 10).offset(y: 10)
+            }
         }
         .toolbar(content: { toolbarContent })
     }
