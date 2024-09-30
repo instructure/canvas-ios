@@ -37,7 +37,6 @@ public enum PlannerAssembly {
         let plannerVC = CoreHostingController(PlannerScreen(viewModel: model))
         plannerVC.navigationBarStyle = .global
         plannerVC.navigationItem.titleView = Brand.shared.headerImageView()
-
         return CoreNavigationController(
             rootViewController: plannerVC
         )
