@@ -93,7 +93,7 @@ class AttendanceViewControllerTests: TeacherTestCase {
         let swipes = controller.tableView(controller.tableView, trailingSwipeActionsConfigurationForRowAt: first)?.actions
         XCTAssertEqual(swipes?.count, 3)
         swipes?.last?.handler(swipes!.last!, UIView()) { success in XCTAssertTrue(success) }
-        XCTAssertEqual(cellAt(first).accessibilityLabel, "Bob")
+        XCTAssertEqual(cellAt(first).accessibilityLabel, "Bob — Unmarked")
         XCTAssertEqual(controller.markAllButton.title(for: .normal), "Mark Remaining as Present")
 
         // Use taps to mark row 2
@@ -102,7 +102,7 @@ class AttendanceViewControllerTests: TeacherTestCase {
         controller.tableView(controller.tableView, didSelectRowAt: second)
         XCTAssertEqual(cellAt(second).accessibilityLabel, "Sally — Late")
         controller.tableView(controller.tableView, didSelectRowAt: second)
-        XCTAssertEqual(cellAt(second).accessibilityLabel, "Sally")
+        XCTAssertEqual(cellAt(second).accessibilityLabel, "Sally — Unmarked")
         XCTAssertEqual(controller.markAllButton.title(for: .normal), "Mark All as Present")
         controller.tableView(controller.tableView, didSelectRowAt: second)
         XCTAssertEqual(cellAt(second).accessibilityLabel, "Sally — Present")

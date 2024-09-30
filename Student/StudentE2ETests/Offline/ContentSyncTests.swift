@@ -74,11 +74,8 @@ class OfflineContentSyncTests: OfflineE2ETest {
         XCTAssertTrue(alertSyncButton.isVisible)
 
         alertSyncButton.hit()
-        let syncingOfflineContentLabel = Offline.syncingOfflineContentLabel.waitUntil(.visible)
-        XCTAssertTrue(syncingOfflineContentLabel.isVisible)
-
-        syncingOfflineContentLabel.waitUntil(.vanish)
-        XCTAssertTrue(syncingOfflineContentLabel.isVanished)
+        let successNotification = SpringboardAppHelper.successNotification.waitUntil(.visible, timeout: 30)
+        XCTAssertTrue(successNotification.isVisible)
 
         // MARK: Go offline, check the discussion
         let isOffline = setNetworkStateOffline()
@@ -169,11 +166,8 @@ class OfflineContentSyncTests: OfflineE2ETest {
         XCTAssertTrue(alertSyncButton.isVisible)
 
         alertSyncButton.hit()
-        let syncingOfflineContentLabel = Offline.syncingOfflineContentLabel.waitUntil(.visible)
-        XCTAssertTrue(syncingOfflineContentLabel.isVisible)
-
-        syncingOfflineContentLabel.waitUntil(.vanish)
-        XCTAssertTrue(syncingOfflineContentLabel.isVanished)
+        let successNotification = SpringboardAppHelper.successNotification.waitUntil(.visible, timeout: 30)
+        XCTAssertTrue(successNotification.isVisible)
 
         // MARK: Go offline, check the discussion
         let isOffline = setNetworkStateOffline()
@@ -251,11 +245,8 @@ class OfflineContentSyncTests: OfflineE2ETest {
         XCTAssertTrue(alertSyncButton.isVisible)
 
         alertSyncButton.hit()
-        let syncingOfflineContentLabel = Offline.syncingOfflineContentLabel.waitUntil(.visible)
-        XCTAssertTrue(syncingOfflineContentLabel.isVisible)
-
-        syncingOfflineContentLabel.waitUntil(.vanish)
-        XCTAssertTrue(syncingOfflineContentLabel.isVanished)
+        let successNotification = SpringboardAppHelper.successNotification.waitUntil(.visible, timeout: 30)
+        XCTAssertTrue(successNotification.isVisible)
 
         // MARK: Go offline, check the grade
         let isOffline = setNetworkStateOffline()
@@ -333,11 +324,8 @@ class OfflineContentSyncTests: OfflineE2ETest {
         XCTAssertTrue(alertSyncButton.isVisible)
 
         alertSyncButton.hit()
-        let syncingOfflineContentLabel = Offline.syncingOfflineContentLabel.waitUntil(.visible)
-        XCTAssertTrue(syncingOfflineContentLabel.isVisible)
-
-        syncingOfflineContentLabel.waitUntil(.vanish)
-        XCTAssertTrue(syncingOfflineContentLabel.isVanished)
+        let successNotification = SpringboardAppHelper.successNotification.waitUntil(.visible, timeout: 30)
+        XCTAssertTrue(successNotification.isVisible)
 
         // MARK: Go offline, check the grade
         let isOffline = setNetworkStateOffline()
@@ -416,11 +404,8 @@ class OfflineContentSyncTests: OfflineE2ETest {
         XCTAssertTrue(alertSyncButton.isVisible)
 
         alertSyncButton.hit()
-        let syncingOfflineContentLabel = Offline.syncingOfflineContentLabel.waitUntil(.visible)
-        XCTAssertTrue(syncingOfflineContentLabel.isVisible)
-
-        syncingOfflineContentLabel.waitUntil(.vanish)
-        XCTAssertTrue(syncingOfflineContentLabel.isVanished)
+        let successNotification = SpringboardAppHelper.successNotification.waitUntil(.visible, timeout: 30)
+        XCTAssertTrue(successNotification.isVisible)
 
         // MARK: Go offline, check the syllabus
         let isOffline = setNetworkStateOffline()

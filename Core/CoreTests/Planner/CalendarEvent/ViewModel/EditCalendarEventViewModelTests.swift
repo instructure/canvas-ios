@@ -660,6 +660,30 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertEqual(hasGroupCalendars, true)
     }
 
+    func testSelectCalendarViewModel_Teachers() {
+        // Given
+        environment.app = .teacher
+
+        // When
+        let testee = makeAddViewModel()
+        let vm = testee.selectCalendarViewModel
+
+        let hasUserCalendars = vm.sections.contains {
+            $0.items.contains { calendar in calendar.context.contextType == .user }
+        }
+        let hasCourseCalendars = vm.sections.contains {
+            $0.items.contains { calendar in calendar.context.contextType == .course }
+        }
+        let hasGroupCalendars = vm.sections.contains {
+            $0.items.contains { calendar in calendar.context.contextType == .group }
+        }
+
+        // Then
+        XCTAssertEqual(hasUserCalendars, true)
+        XCTAssertEqual(hasCourseCalendars, true)
+        XCTAssertEqual(hasGroupCalendars, true)
+    }
+
     func testShowCalendarScreen() {
         let sourceVC = UIViewController()
         testee = makeAddViewModel()

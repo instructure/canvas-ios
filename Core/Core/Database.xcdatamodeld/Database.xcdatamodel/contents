@@ -161,6 +161,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="observedUserId" optional="YES" attributeType="String"/>
         <attribute name="rawContextID" attributeType="String"/>
+        <attribute name="rawPurpose" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="CDCourseSyncDownloadProgress" representedClassName="Core.CDCourseSyncDownloadProgress" syncable="YES">
         <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

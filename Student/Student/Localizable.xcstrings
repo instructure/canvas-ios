@@ -38099,7 +38099,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Angepasst"
+            "value" : "Benutzerdefiniert"
           }
         },
         "en-AU" : {
@@ -133466,25 +133466,25 @@
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "hasta %@"
+            "value" : "hasta el %@"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "asti %@"
+            "value" : "%@ asti"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "jusqu’à %@"
+            "value" : "jusqu'au %@"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "jusqu'à/au %@"
+            "value" : "jusqu’à %@"
           }
         },
         "ga" : {
@@ -133496,7 +133496,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इस समय तक: %@"
+            "value" : "%@ तक"
           }
         },
         "ht" : {
@@ -133514,7 +133514,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "fram til %@"
+            "value" : "til %@"
           }
         },
         "it" : {
@@ -133526,7 +133526,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "まで%@"
+            "value" : "%@まで"
           }
         },
         "mi" : {
@@ -133580,7 +133580,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "до тех пор %@"
+            "value" : "до %@"
           }
         },
         "sl" : {
@@ -133592,7 +133592,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "tills %@"
+            "value" : "till %@"
           }
         },
         "sv-instk12" : {
@@ -133616,25 +133616,25 @@
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直到%@"
+            "value" : "结束日期 %@"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直到%@"
+            "value" : "结束日期 %@"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直到%@"
+            "value" : "直到 %@"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直到%@"
+            "value" : "直到 %@"
           }
         }
       }
