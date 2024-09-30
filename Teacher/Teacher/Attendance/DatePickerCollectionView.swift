@@ -52,7 +52,7 @@ class DatePickerDateCell: UICollectionViewCell {
     func setIsHighlighted(_ highlighted: Bool) {
         if highlighted {
             highlightView.isHidden = false
-            label.textColor = .white
+            label.textColor = .textLightest.variantForLightMode
         } else {
             highlightView.isHidden = true
             label.textColor = isToday ? .textInfo : .textDarkest

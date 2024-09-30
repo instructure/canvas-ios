@@ -51,7 +51,7 @@ open class FloatingButton: UIButton {
     @IBInspectable
     public var iconColorName: String = "white" {
         didSet {
-            tintColor = Brand.shared.color(iconColorName) ?? .white
+            tintColor = Brand.shared.color(iconColorName) ?? .textLightest.variantForLightMode
         }
     }
 

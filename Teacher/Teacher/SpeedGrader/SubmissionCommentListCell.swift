@@ -62,7 +62,7 @@ struct SubmissionCommentListCell: View {
             } else {
                 Spacer().frame(height: 4)
                 Text(comment.comment)
-                    .font(.regular14).foregroundColor(isAuthor ? .white : .textDarkest)
+                    .font(.regular14).foregroundColor(isAuthor ? .textLightest.variantForLightMode : .textDarkest)
                     .padding(.horizontal, 12).padding(.vertical, 8)
                     .background(CommentBackground()
                         .fill(isAuthor ? Color.backgroundInfo : Color.backgroundLight)

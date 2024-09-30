@@ -22,7 +22,7 @@ public class CalendarDayIconView: UIView {
     @IBOutlet var dayLabel: UILabel!
     @IBOutlet var iconView: UIImageView!
 
-    public static func create(date: Date = Date(), tintColor: UIColor = .white) -> CalendarDayIconView {
+    public static func create(date: Date = Date(), tintColor: UIColor = .textLightest.variantForLightMode) -> CalendarDayIconView {
         let view = loadFromXib()
         view.setDate(date)
         view.tintColor = tintColor

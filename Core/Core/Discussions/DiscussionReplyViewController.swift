@@ -60,7 +60,7 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         label.layer.cornerRadius = 6
         label.font = .systemFont(ofSize: 10, weight: .semibold)
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = .textLightest.variantForLightMode
         label.text = NumberFormatter.localizedString(from: 1, number: .none)
         attachBadge.addSubview(label)
         label.pin(inside: attachBadge, leading: 2, trailing: 2, top: 2, bottom: 2)

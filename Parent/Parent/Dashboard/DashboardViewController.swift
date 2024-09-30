@@ -253,7 +253,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         alerts.tabBarItem.selectedImage = .alertsTabActive
         alerts.tabBarItem.accessibilityIdentifier = "TabBar.alertsTab"
         alerts.tabBarItem.badgeColor = currentColor
-        alerts.tabBarItem.setBadgeTextAttributes([ .foregroundColor: UIColor.white ], for: .normal)
+        alerts.tabBarItem.setBadgeTextAttributes([ .foregroundColor: UIColor.textLightest.variantForLightMode ], for: .normal)
         alerts.loadViewIfNeeded() // Make sure it starts loading data for badge
 
         tabsController.viewControllers = [ courses, calendar, alerts ]
@@ -341,7 +341,7 @@ class AddStudentButton: UIButton {
         titleLabel?.numberOfLines = 1
 
         let circle = UIView()
-        circle.backgroundColor = .white
+        circle.backgroundColor = .textLightest.variantForLightMode
         circle.layer.addDropShadow()
         circle.layer.cornerRadius = 24
         circle.layer.borderColor = UIColor.borderMedium.cgColor

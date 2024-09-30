@@ -37,7 +37,7 @@ class StudentDetailsViewControllerTests: ParentTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.darkenToEnsureContrast(against: .white).hexString)
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
         XCTAssertEqual(controller.nameLabel.text, "Legion (They/Them)")
 
         for (index, type) in AlertThresholdType.allCases.enumerated() {
