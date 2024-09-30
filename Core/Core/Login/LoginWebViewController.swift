@@ -89,7 +89,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .textLightest.lightVariant
         setupNavigateBackInWebViewToolbar()
         setupWebView()
         setupProgressView()
@@ -130,7 +130,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         webView.accessibilityIdentifier = "LoginWeb.webView"
-        webView.backgroundColor = .white
+        webView.backgroundColor = .textLightest.lightVariant
         webView.customUserAgent = UserAgent.safari.description
         webView.navigationDelegate = self
         webView.uiDelegate = self

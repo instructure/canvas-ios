@@ -75,7 +75,7 @@ struct CustomizeCourseView: View {
                         Button(action: { viewModel.color = uiColor }, label: {
                             Circle()
                                 .fill(Color(uiColor))
-                                .overlay(isSelected ? Image.checkSolid.foregroundColor(.white) : nil)
+                                .overlay(isSelected ? Image.checkSolid.foregroundColor(.textLightest) : nil)
                                 .animation(.default, value: viewModel.color)
                         })
                         .accessibility(addTraits: isSelected ? .isSelected : [])

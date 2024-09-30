@@ -20,6 +20,8 @@ import SwiftUI
 
 public extension Color {
     var hexString: String { UIColor(self).hexString }
+    var lightVariant: Color { Color(UIColor(self).resolvedColor(with: .light)) }
+    var darkVariant: Color { Color(UIColor(self).resolvedColor(with: .dark)) }
 
     init?(hexString: String?) {
         if let color = UIColor(hexString: hexString) {

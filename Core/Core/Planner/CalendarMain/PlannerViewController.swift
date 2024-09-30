@@ -147,7 +147,7 @@ public class PlannerViewController: UIViewController {
                 } else {
                     addButton.action = isOffline ? #selector(showOfflineAlert) : #selector(addToDoSelector)
                 }
-                addButton.tintColor = isOffline ? .textPlaceholder : .white
+                addButton.tintColor = isOffline ? .textPlaceholder : .textLightest.lightVariant
             }
             .store(in: &subscriptions)
     }
