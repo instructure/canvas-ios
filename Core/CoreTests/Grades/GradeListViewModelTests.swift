@@ -44,7 +44,7 @@ class GradeListViewModelTests: CoreTestCase {
 
     func test_loadSortPreferences() {
         let gradeFilterInteractor = GradeFilterInteractorMock()
-        let _ = GradeListViewModel(
+        _ = GradeListViewModel(
             interactor: GradeListInteractorEmptySectionsMock(),
             gradeFilterInteractor: gradeFilterInteractor,
             router: PreviewEnvironment.shared.router,

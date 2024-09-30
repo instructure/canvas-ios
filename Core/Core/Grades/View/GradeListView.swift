@@ -91,20 +91,27 @@ public struct GradeListView: View, ScreenViewTrackable {
                 viewModel.isShowingRevertDialog = true
             }
             ToolbarItem(placement: .primaryAction) {
-                Button(action: {
-                    viewModel.navigateToFilter(viewController: viewController)
-                }) {
-                    Image.filterLine
-                        .foregroundStyle(Color.textLightest)
-                }
-                .accessibilityLabel(Text("Filter", bundle: .core))
-                .accessibilityHint(Text("Filter grades options", bundle: .core))
+                filterButton
             }
         }
         .confirmationAlert(
             isPresented: $viewModel.isShowingRevertDialog,
             presenting: viewModel.confirmRevertAlertViewModel
         )
+    }
+
+    private var filterButton: some View {
+        Button(action: {
+            viewModel.navigateToFilter(viewController: viewController)
+        }) {
+            Image.filterLine
+                .foregroundStyle(viewModel.isParentApp
+                                 ? Color(Brand.shared.primary)
+                                 : .textLightest)
+
+        }
+        .accessibilityLabel(Text("Filter", bundle: .core))
+        .accessibilityHint(Text("Filter grades options", bundle: .core))
     }
 
     private func contentView(geometry: GeometryProxy) -> some View {
@@ -185,16 +192,22 @@ public struct GradeListView: View, ScreenViewTrackable {
                 .cornerRadius(6)
         )
         .shadow(color: Color.textDark.opacity(0.2), radius: 5, x: 0, y: 0)
-        .padding([.horizontal, .top], 16)
-        .padding(.bottom, 5)
     }
 
     @ViewBuilder
     private func courseSummaryView(_ totalGrade: String?) -> some View {
         let hasBottomPadding = (totalGrade == nil || !toggleViewIsVisible)
         VStack(spacing: 0) {
-            gradeDetailsView(totalGrade)
-                .padding(.bottom, hasBottomPadding ? 10 : 0)
+            HStack(alignment: .center) {
+                gradeDetailsView(totalGrade)
+                if viewModel.isParentApp {
+                    filterButton
+                        .paddingStyle(.leading, .standard)
+                }
+            }
+            .padding([.horizontal, .top], 16)
+            .padding(.bottom, 5)
+            .padding(.bottom, hasBottomPadding ? 10 : 0)
 
             if totalGrade != nil {
                 if toggleViewIsVisible {

@@ -20,6 +20,7 @@ import Foundation
 @testable import Core
 
 final class GradeFilterInteractorMock: GradeFilterInteractor {
+    var isParentApp: Bool = true
     var currentGradingId: String?
     var currentSortById: Int?
     var selectedSortByIdIsCalled = false

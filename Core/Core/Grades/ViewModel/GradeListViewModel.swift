@@ -77,10 +77,11 @@ public final class GradeListViewModel: ObservableObject {
     @Published var isShowingRevertDialog = false
     let selectedGradingPeriod = PassthroughRelay<String?>()
     let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.groupName)
-    var isInitialGradingPeriodSet = false
+    var isParentApp: Bool {
+        gradeFilterInteractor.isParentApp
+    }
 
     // MARK: - Private properties
-
     private var lastKnownDataState: GradeListData? {
         didSet {
             if !isInitialGradingPeriodSet {
@@ -98,7 +99,7 @@ public final class GradeListViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private let router: Router
     private let gradeFilterInteractor: GradeFilterInteractor
-
+    private var isInitialGradingPeriodSet = false
     // MARK: - Init
 
     public init(

@@ -22,6 +22,7 @@ public protocol GradeFilterInteractor {
     var gradingShowAllId: String { get }
     var selectedGradingId: String? { get }
     var selectedSortById: Int? { get }
+    var isParentApp: Bool { get }
     func saveGrading(id: String?)
     func saveSortByOption(type: GradeArrangementOptions)
 }
@@ -46,6 +47,10 @@ extension GradeFilterInteractorLive: GradeFilterInteractor {
     /// -1 is dummy id so can present `All` grading period
     public var gradingShowAllId: String {
         "-1"
+    }
+
+    public var isParentApp: Bool {
+        appEnvironment.app == .parent
     }
 
     public var selectedGradingId: String? {

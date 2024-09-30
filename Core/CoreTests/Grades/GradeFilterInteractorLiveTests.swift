@@ -95,4 +95,11 @@ final class GradeFilterInteractorLiveTests: CoreTestCase {
         // Then
         XCTAssertEqual(testee.selectedSortById, newId)
     }
+
+    func test_isParentApp() {
+        // Given
+        environment.app = .parent
+        // Then
+        XCTAssertTrue(testee.isParentApp)
+    }
 }
