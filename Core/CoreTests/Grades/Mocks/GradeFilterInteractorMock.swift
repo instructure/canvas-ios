@@ -23,6 +23,8 @@ final class GradeFilterInteractorMock: GradeFilterInteractor {
     var currentGradingId: String?
     var currentSortById: Int?
     var selectedSortByIdIsCalled = false
+    var saveGradingIsCalled = false
+    var saveSortByOptionIsCalled = false
 
     var gradingShowAllId: String {
         return "-1"
@@ -38,10 +40,10 @@ final class GradeFilterInteractorMock: GradeFilterInteractor {
     }
 
     func saveGrading(id: String?) {
-
+        saveGradingIsCalled = true
     }
 
-    func saveSortByOption(id: Int?) {
-
+    func saveSortByOption(type: GradeArrangementOptions) {
+        saveSortByOptionIsCalled = true
     }
 }

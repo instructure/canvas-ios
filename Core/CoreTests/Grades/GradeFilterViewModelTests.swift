@@ -59,7 +59,7 @@ final class GradeFilterViewModelTests: CoreTestCase {
             sortByOptions: GradeArrangementOptions.allCases
         )
         // When
-        environment.userDefaults?.selectedGradingPeriodIds = nil
+        environment.userDefaults?.selectedGradingPeriodIdsByCourseIDs = nil
         let testee = GradeFilterViewModel(
             dependency: dependency,
             gradeFilterInteractor: gradeFilterInteractor
@@ -170,7 +170,7 @@ final class GradeFilterViewModelTests: CoreTestCase {
 
     func test_saveButtonTapped() {
         // Given
-        let selectedGradingPeriodPublisher = PassthroughRelay<GradingPeriod?>()
+        let selectedGradingPeriodPublisher = PassthroughRelay<String?>()
         let selectedSortByPublisher = CurrentValueRelay<GradeArrangementOptions>(.groupName)
         let listGradingPeriods = getListGradingPeriods()
         let viewController = WeakViewController()

@@ -28,9 +28,10 @@ public struct GradeListData: Identifiable, Equatable {
    var gradingPeriods: [GradingPeriod] = []
    var currentGradingPeriod: GradingPeriod?
    var totalGradeText: String?
+   var currentGradingPeriodID: String?
 
     struct AssignmentSections: Identifiable, Equatable {
-        let id: String
+        var id: String
         let title: String?
         var assignments: [Assignment]
     }

@@ -123,10 +123,9 @@ class GradeListInteractorLiveTests: CoreTestCase {
             ]
         )
     }
-    private var gradeFilterInteractor: GradeFilterInteractorMock!
+
     override func setUp() {
         super.setUp()
-        gradeFilterInteractor = GradeFilterInteractorMock()
         var assignmentsRequest = GetAssignmentGroupsRequest(
             courseID: "1",
             gradingPeriodID: nil,
@@ -194,8 +193,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             perPage: 100
         )
         api.mock(assignmentsRequest, value: assignmentGroups)
-        gradeFilterInteractor.currentGradingId = nil
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .dueDate, baseOnGradedAssignment: true, ignoreCache: true)
             .sink(
@@ -232,7 +230,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             perPage: 100
         )
         api.mock(assignmentsRequest, value: assignmentGroups)
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
             .sink(
@@ -267,7 +265,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             hide_final_grades: true)
         )
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
             .sink(
@@ -295,8 +293,8 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 )
             ])
         )
-        gradeFilterInteractor.currentGradingId = "-1"
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
+
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
             .sink(
@@ -326,104 +324,12 @@ class GradeListInteractorLiveTests: CoreTestCase {
             settings: .make(restrict_quantitative_data: true))
         )
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, nil)
-                    expectation.fulfill()
-            }
-        drainMainQueue()
-        waitForExpectations(timeout: 0.1)
-        subscription.cancel()
-    }
-
-    func testShowGradeLetter() {
-        api.mock(
-            GetCourse(courseID: "1"),
-            value: .make(enrollments: [
-                .make(
-                    id: nil,
-                    course_id: "1",
-                    enrollment_state: .active,
-                    user_id: currentSession.userID,
-                    current_grading_period_id: "1"
-                )
-            ])
-        )
-        api.mock(
-            GetEnrollments(
-                context: .course("1"),
-                userID: currentSession.userID,
-                gradingPeriodID: "1",
-                types: ["StudentEnrollment"],
-                states: [.active]
-            ),
-            value: [
-                .make(
-                    id: "1",
-                    course_id: "1",
-                    enrollment_state: .active,
-                    type: "StudentEnrollment",
-                    user_id: currentSession.userID,
-                    grades: .make(current_grade: "C", current_score: 42)
-                )
-            ]
-        )
-        gradeFilterInteractor.currentGradingId = "1"
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "42% (C)")
-                    expectation.fulfill()
-            }
-        drainMainQueue()
-        waitForExpectations(timeout: 0.1)
-        subscription.cancel()
-    }
-
-    func testShowGradeLetterForGradingPeriodNotBasedOnGradedAssignment() {
-        api.mock(
-            GetCourse(courseID: "1"),
-            value: .make(enrollments: [
-                .make(
-                    id: nil,
-                    course_id: "1",
-                    enrollment_state: .active,
-                    user_id: currentSession.userID,
-                    current_grading_period_id: "1"
-                )
-            ])
-        )
-        api.mock(
-            GetEnrollments(
-                context: .course("1"),
-                userID: currentSession.userID,
-                gradingPeriodID: "1",
-                types: ["StudentEnrollment"],
-                states: [.active]
-            ),
-            value: [
-                .make(
-                    id: "1",
-                    course_id: "1",
-                    enrollment_state: .active,
-                    type: "StudentEnrollment",
-                    user_id: currentSession.userID,
-                    grades: .make(current_grade: "C", current_score: 42, final_score: 21)
-                )
-            ]
-        )
-
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, ignoreCache: false)
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "21%")
                     expectation.fulfill()
             }
         drainMainQueue()
@@ -463,59 +369,14 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 )
             ]
         )
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
+
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         testee.updateGradingPeriod(id: nil)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, ignoreCache: false)
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, "21%")
-                    expectation.fulfill()
-            }
-        drainMainQueue()
-        waitForExpectations(timeout: 0.1)
-        subscription.cancel()
-    }
-
-    func testShowGradeLetterWhenQuantitativeDataEnabled() {
-        api.mock(
-            GetCourse(courseID: "1"),
-            value: .make(enrollments: [
-                .make(
-                    id: nil,
-                    course_id: "1",
-                    enrollment_state: .active,
-                    user_id: currentSession.userID,
-                    current_grading_period_id: "1"
-                )
-            ],
-            settings: .make(restrict_quantitative_data: true))
-        )
-        api.mock(
-            GetEnrollments(
-                context: .course("1"),
-                userID: currentSession.userID,
-                gradingPeriodID: "1",
-                types: ["StudentEnrollment"],
-                states: [.active]
-            ),
-            value: [
-                .make(
-                    id: "1",
-                    course_id: "1",
-                    enrollment_state: .active,
-                    type: "StudentEnrollment",
-                    user_id: currentSession.userID,
-                    grades: .make(current_grade: "C", current_score: 42)
-                )
-            ]
-        )
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, gradeFilterInteractor: gradeFilterInteractor)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "C")
                     expectation.fulfill()
             }
         drainMainQueue()

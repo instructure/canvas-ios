@@ -103,11 +103,11 @@ public final class GradeFilterViewModel: ObservableObject {
     }
 
     func saveButtonTapped(viewController: WeakViewController) {
-        dependency.selectedGradingPeriodPublisher.accept(selectedGradingPeriod?.value)
+        dependency.selectedGradingPeriodPublisher.accept(selectedGradingPeriod?.value?.id)
         dependency.selectedSortByPublisher.accept(selectedSortByOption ?? .groupName)
         let selectedGradingPeriodId = selectedGradingPeriod?.value?.id
         gradeFilterInteractor.saveGrading(id: selectedGradingPeriodId)
-        gradeFilterInteractor.saveSortByOption(id: selectedSortByOption?.rawValue)
+        gradeFilterInteractor.saveSortByOption(type: selectedSortByOption ?? .groupName)
         dimiss(viewController: viewController)
     }
 
@@ -122,7 +122,7 @@ extension GradeFilterViewModel {
         var router: Router
         var isShowGradingPeriod: Bool
         var courseName: String?
-        var selectedGradingPeriodPublisher = PassthroughRelay<GradingPeriod?>()
+        var selectedGradingPeriodPublisher = PassthroughRelay<String?>()
         var selectedSortByPublisher = CurrentValueRelay<GradeArrangementOptions>(.groupName)
         var gradingPeriods: [GradingPeriod]?
         var sortByOptions: [GradeArrangementOptions]

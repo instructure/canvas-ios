@@ -46,7 +46,7 @@ final class GradeFilterInteractorLiveTests: CoreTestCase {
     func test_saveGradingForFistTime() {
         // Given
         let id = "10"
-        environment.userDefaults?.selectedGradingPeriodIds = nil
+        environment.userDefaults?.selectedGradingPeriodIdsByCourseIDs = nil
         // When
         testee.saveGrading(id: id)
         // Then
@@ -57,7 +57,7 @@ final class GradeFilterInteractorLiveTests: CoreTestCase {
         // Given
         let oldValue = "10"
         let newValue = "20"
-        environment.userDefaults?.selectedGradingPeriodIds = [courseId: oldValue]
+        environment.userDefaults?.selectedGradingPeriodIdsByCourseIDs = [courseId: oldValue]
         // When
         testee.saveGrading(id: newValue)
         // Then
@@ -68,7 +68,7 @@ final class GradeFilterInteractorLiveTests: CoreTestCase {
         // Given
         let oldValue = "10"
         let newValue: String? = nil
-        environment.userDefaults?.selectedGradingPeriodIds = [courseId: oldValue]
+        environment.userDefaults?.selectedGradingPeriodIdsByCourseIDs = [courseId: oldValue]
         // When
         testee.saveGrading(id: newValue)
         // Then
@@ -78,9 +78,9 @@ final class GradeFilterInteractorLiveTests: CoreTestCase {
     func test_saveSortByOptionForFistTime() {
         // Given
         let id = 1
-        environment.userDefaults?.selectedSortByOptionIds = nil
+        environment.userDefaults?.selectedSortByOptionIDs = nil
         // When
-        testee.saveSortByOption(id: id)
+        testee.saveSortByOption(type: .groupName)
         // Then
         XCTAssertEqual(testee.selectedSortById, id)
     }
@@ -89,20 +89,9 @@ final class GradeFilterInteractorLiveTests: CoreTestCase {
         // Given
         let oldId = 1
         let newId = 2
-        environment.userDefaults?.selectedSortByOptionIds = [courseId: oldId]
+        environment.userDefaults?.selectedSortByOptionIDs = [courseId: oldId]
         // When
-        testee.saveSortByOption(id: newId)
-        // Then
-        XCTAssertEqual(testee.selectedSortById, newId)
-    }
-
-    func test_saveSortByOptionSetNil_showGroupBy() {
-        // Given
-        let id = 2
-        let newId = 1
-        environment.userDefaults?.selectedSortByOptionIds = [courseId: id]
-        // When
-        testee.saveSortByOption(id: nil)
+        testee.saveSortByOption(type: .dueDate)
         // Then
         XCTAssertEqual(testee.selectedSortById, newId)
     }

@@ -44,7 +44,7 @@ class GradeListViewModelTests: CoreTestCase {
 
     func test_loadSortPreferences() {
         let gradeFilterInteractor = GradeFilterInteractorMock()
-        let testee = GradeListViewModel(
+        let _ = GradeListViewModel(
             interactor: GradeListInteractorEmptySectionsMock(),
             gradeFilterInteractor: gradeFilterInteractor,
             router: PreviewEnvironment.shared.router,
@@ -80,6 +80,97 @@ class GradeListViewModelTests: CoreTestCase {
         subscription.cancel()
     }
 
+    func test_getSelectedGradingPeriodId() {
+        var states: [GradeListViewModel.ViewState] = []
+        let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
+        let expectation = expectation(description: "Publisher sends value.")
+        let gradeFilterInteractor = GradeFilterInteractorMock()
+        gradeFilterInteractor.currentGradingId = "1"
+        let testee = GradeListViewModel(
+            interactor: interactor,
+            gradeFilterInteractor: gradeFilterInteractor,
+            router: PreviewEnvironment.shared.router,
+            scheduler: .immediate
+        )
+
+        let subscription = testee.$state
+            .sink { _ in
+
+            } receiveValue: { state in
+                states.append(state)
+                if states.count == 2 {
+                    expectation.fulfill()
+                }
+            }
+
+        testee.pullToRefreshDidTrigger.accept((nil))
+        XCTAssertEqual(states[1], .data(.init()))
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+    }
+
+    func test_getSelectedGradingPeriodId_withNewIdSelected() {
+        var states: [GradeListViewModel.ViewState] = []
+        let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
+        let expectation = expectation(description: "Publisher sends value.")
+        let gradeFilterInteractor = GradeFilterInteractorMock()
+        gradeFilterInteractor.currentGradingId = "10"
+        let testee = GradeListViewModel(
+            interactor: interactor,
+            gradeFilterInteractor: gradeFilterInteractor,
+            router: PreviewEnvironment.shared.router,
+            scheduler: .immediate
+        )
+
+        let subscription = testee.$state
+            .sink { _ in
+
+            } receiveValue: { state in
+                states.append(state)
+                if states.count == 2 {
+                    expectation.fulfill()
+                }
+            }
+
+        testee.pullToRefreshDidTrigger.accept((nil))
+        XCTAssertEqual(states[1], .data(.init()))
+        waitForExpectations(timeout: 0.1)
+        XCTAssertTrue(gradeFilterInteractor.saveGradingIsCalled)
+        XCTAssertTrue(gradeFilterInteractor.saveSortByOptionIsCalled)
+        subscription.cancel()
+    }
+
+    func test_getSelectedGradingPeriodId_withShowAllSelected() {
+        var states: [GradeListViewModel.ViewState] = []
+        let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
+        let expectation = expectation(description: "Publisher sends value.")
+        let gradeFilterInteractor = GradeFilterInteractorMock()
+        gradeFilterInteractor.currentGradingId = "-1"
+        let testee = GradeListViewModel(
+            interactor: interactor,
+            gradeFilterInteractor: gradeFilterInteractor,
+            router: PreviewEnvironment.shared.router,
+            scheduler: .immediate
+        )
+
+        let subscription = testee.$state
+            .sink { _ in
+
+            } receiveValue: { state in
+                states.append(state)
+                if states.count == 2 {
+                    expectation.fulfill()
+                }
+            }
+
+        testee.pullToRefreshDidTrigger.accept((nil))
+        XCTAssertEqual(states[1], .data(.init()))
+        waitForExpectations(timeout: 0.1)
+        XCTAssertFalse(gradeFilterInteractor.saveGradingIsCalled)
+        XCTAssertFalse(gradeFilterInteractor.saveSortByOptionIsCalled)
+        subscription.cancel()
+    }
+
     func testSelectedGradingPeriod() {
         let interactor = GradeListInteractorMock()
         let testee = GradeListViewModel(
@@ -88,13 +179,7 @@ class GradeListViewModelTests: CoreTestCase {
             router: PreviewEnvironment.shared.router,
             scheduler: .immediate
         )
-        testee.selectedGradingPeriod.accept(
-            .save(
-                .make(id: "999"),
-                courseID: "1",
-                in: PreviewEnvironment.shared.database.viewContext
-            )
-        )
+        testee.selectedGradingPeriod.accept("999")
         XCTAssertEqual(interactor.ignoreCache, true)
         XCTAssertEqual(interactor.gradingPeriod, "999")
     }
@@ -241,7 +326,7 @@ private let gradeListData = GradeListData(
         GradeListData.AssignmentSections(id: "3", title: "Third group", assignments: [.make()])
     ],
     isGradingPeriodHidden: false,
-    gradingPeriods: [],
+    gradingPeriods: [.make()],
     currentGradingPeriod: nil,
     totalGradeText: nil
 )

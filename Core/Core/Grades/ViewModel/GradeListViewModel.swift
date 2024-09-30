@@ -75,12 +75,26 @@ public final class GradeListViewModel: ObservableObject {
     // MARK: - Input / Output
     @Published var baseOnGradedAssignment = true
     @Published var isShowingRevertDialog = false
-    let selectedGradingPeriod = PassthroughRelay<GradingPeriod?>()
+    let selectedGradingPeriod = PassthroughRelay<String?>()
     let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.groupName)
+    var isInitialGradingPeriodSet = false
 
     // MARK: - Private properties
 
-    private var lastKnownDataState: GradeListData?
+    private var lastKnownDataState: GradeListData? {
+        didSet {
+            if !isInitialGradingPeriodSet {
+                isInitialGradingPeriodSet = true
+                gradeHeaderIsVisible = false
+                state = .initialLoading
+                let id = getSelectedGradingPeriodId(
+                    currentGradingPeriodID: lastKnownDataState?.currentGradingPeriodID,
+                    gradingPeriods: lastKnownDataState?.gradingPeriods ?? []
+                )
+                selectedGradingPeriod.accept(id)
+            }
+        }
+    }
     private var subscriptions = Set<AnyCancellable>()
     private let router: Router
     private let gradeFilterInteractor: GradeFilterInteractor
@@ -108,7 +122,7 @@ public final class GradeListViewModel: ObservableObject {
 
         selectedGradingPeriod
             .sink {
-                interactor.updateGradingPeriod(id: $0?.id)
+                interactor.updateGradingPeriod(id: $0)
                 triggerRefresh.accept((true, nil))
             }
             .store(in: &subscriptions)
@@ -147,11 +161,11 @@ public final class GradeListViewModel: ObservableObject {
                     guard let self else {
                         return Empty(completeImmediately: true).eraseToAnyPublisher()
                     }
+                    gradeHeaderIsVisible = isInitialGradingPeriodSet
                     lastKnownDataState = listData
                     courseName = listData.courseName
                     courseColor = listData.courseColor
                     totalGradeText = listData.totalGradeText
-                    gradeHeaderIsVisible = true
                     isLoaderVisible = false
                     if listData.assignmentSections.count == 0 {
                         return Just(ViewState.empty(listData)).eraseToAnyPublisher()
@@ -184,6 +198,31 @@ public final class GradeListViewModel: ObservableObject {
         let selectedSortById = gradeFilterInteractor.selectedSortById
         let selectedSortByOption = GradeArrangementOptions(rawValue: selectedSortById ?? 0) ?? .groupName
         selectedGroupByOption.accept(selectedSortByOption)
+    }
+
+    private func getSelectedGradingPeriodId(
+        currentGradingPeriodID: String?,
+        gradingPeriods: [GradingPeriod]
+    ) -> String? {
+        let currentId = gradeFilterInteractor.selectedGradingId
+        guard !gradingPeriods.isEmpty else {
+            gradeFilterInteractor.saveGrading(id: currentGradingPeriodID)
+            return currentGradingPeriodID
+        }
+
+        if let currentId {
+            if currentId == gradeFilterInteractor.gradingShowAllId {
+                return nil
+            } else if gradingPeriods.contains(where: { $0.id == currentId }) {
+                return currentId
+            } else {
+                gradeFilterInteractor.saveGrading(id: gradingPeriods.first?.id)
+                gradeFilterInteractor.saveSortByOption(type: .groupName)
+                return gradingPeriods.first?.id
+            }
+        }
+        gradeFilterInteractor.saveGrading(id: currentGradingPeriodID)
+        return currentGradingPeriodID
     }
 
     func navigateToFilter(viewController: WeakViewController) {

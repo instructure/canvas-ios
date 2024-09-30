@@ -23,7 +23,7 @@ public protocol GradeFilterInteractor {
     var selectedGradingId: String? { get }
     var selectedSortById: Int? { get }
     func saveGrading(id: String?)
-    func saveSortByOption(id: Int?)
+    func saveSortByOption(type: GradeArrangementOptions)
 }
 
 public final class GradeFilterInteractorLive {
@@ -49,28 +49,28 @@ extension GradeFilterInteractorLive: GradeFilterInteractor {
     }
 
     public var selectedGradingId: String? {
-        appEnvironment.userDefaults?.selectedGradingPeriodIds?[courseId]
+        appEnvironment.userDefaults?.selectedGradingPeriodIdsByCourseIDs?[courseId]
     }
 
     public var selectedSortById: Int? {
-        appEnvironment.userDefaults?.selectedSortByOptionIds?[courseId]
+        appEnvironment.userDefaults?.selectedSortByOptionIDs?[courseId]
     }
 
     public func saveGrading(id: String?) {
         let gradingId = id ?? gradingShowAllId
-        if appEnvironment.userDefaults?.selectedGradingPeriodIds == nil {
-            appEnvironment.userDefaults?.selectedGradingPeriodIds = [courseId: gradingId]
+        if appEnvironment.userDefaults?.selectedGradingPeriodIdsByCourseIDs == nil {
+            appEnvironment.userDefaults?.selectedGradingPeriodIdsByCourseIDs = [courseId: gradingId]
         } else {
-            appEnvironment.userDefaults?.selectedGradingPeriodIds?[courseId] = gradingId
+            appEnvironment.userDefaults?.selectedGradingPeriodIdsByCourseIDs?[courseId] = gradingId
         }
     }
 
-    public func saveSortByOption(id: Int?) {
-        let sortById = id ?? GradeArrangementOptions.groupName.rawValue
-        if appEnvironment.userDefaults?.selectedSortByOptionIds == nil {
-            appEnvironment.userDefaults?.selectedSortByOptionIds = [courseId: sortById]
+    public func saveSortByOption(type: GradeArrangementOptions) {
+        let sortById = type.rawValue
+        if appEnvironment.userDefaults?.selectedSortByOptionIDs == nil {
+            appEnvironment.userDefaults?.selectedSortByOptionIDs = [courseId: sortById]
         } else {
-            appEnvironment.userDefaults?.selectedSortByOptionIds?[courseId] = sortById
+            appEnvironment.userDefaults?.selectedSortByOptionIDs?[courseId] = sortById
         }
     }
 }

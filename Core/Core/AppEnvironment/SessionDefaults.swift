@@ -229,14 +229,14 @@ public struct SessionDefaults {
         set { userDefaults.set(newValue, forKey: sessionID) }
     }
 
-    // MARK: - Student Grades
-    public var selectedGradingPeriodIds: [String: String]? {
-        get { self["selectedGradingPeriodIds"] as? [String: String] }
-        set { self["selectedGradingPeriodIds"] = newValue }
+    // MARK: - Grades
+    public var selectedGradingPeriodIdsByCourseIDs: [String: String]? {
+        get { self["selectedGradingPeriodIdsByCourseIDs"] as? [String: String] }
+        set { self["selectedGradingPeriodIdsByCourseIDs"] = newValue }
     }
 
-    public var selectedSortByOptionIds: [String: Int]? {
-        get { self["selectedSortByOptionIds"] as? [String: Int] }
-        set { self["selectedSortByOptionIds"] = newValue }
+    public var selectedSortByOptionIDs: [String: Int]? {
+        get { self["selectedSortByOptionIDs"] as? [String: Int] }
+        set { self["selectedSortByOptionIDs"] = newValue }
     }
 }

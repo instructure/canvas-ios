@@ -47,18 +47,14 @@ public final class GradeListInteractorLive: GradeListInteractor {
     private let gradingPeriodListStore: ReactiveStore<GetGradingPeriods>
     private var gradingPeriodID: String?
     private var isInitialGradingPeriodSet = false
-    private let gradeFilterInteractor: GradeFilterInteractor
-
     // MARK: - Init
 
     public init(
         courseID: String,
-        userID: String?,
-        gradeFilterInteractor: GradeFilterInteractor
+        userID: String?
     ) {
         self.courseID = courseID
         self.userID = userID
-        self.gradeFilterInteractor = gradeFilterInteractor
 
         assignmentListStore = ReactiveStore(
             useCase: GetAssignmentsByGroup(
@@ -89,15 +85,6 @@ public final class GradeListInteractorLive: GradeListInteractor {
         gradingPeriodListStore = ReactiveStore(
             useCase: GetGradingPeriods(courseID: courseID)
         )
-    }
-
-    private func getSelectedGradingPeriodId(currentGradingPeriodID: String?) -> String? {
-        let currentId = gradeFilterInteractor.selectedGradingId
-        if let currentId {
-            return currentId == gradeFilterInteractor.gradingShowAllId ? nil : currentId
-        }
-        gradeFilterInteractor.saveGrading(id: currentGradingPeriodID)
-        return currentGradingPeriodID
     }
 
     public func getGrades(
@@ -141,8 +128,6 @@ public final class GradeListInteractorLive: GradeListInteractor {
             let isGradingPeriodHidden = courseEnrollment?.multipleGradingPeriodsEnabled == false
             if !isInitialGradingPeriodSet {
                 isInitialGradingPeriodSet = true
-                let currentGradingPeriodID = getSelectedGradingPeriodId(currentGradingPeriodID: courseEnrollment?.currentGradingPeriodID)
-                updateGradingPeriod(id: currentGradingPeriodID)
                 return getGrades(
                     arrangeBy: arrangeBy,
                     baseOnGradedAssignment: baseOnGradedAssignment,
@@ -182,7 +167,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
                     isGradingPeriodHidden: isGradingPeriodHidden,
                     gradingPeriods: gradingPeriods,
                     currentGradingPeriod: getGradingPeriod(id: gradingPeriodID, gradingPeriods: gradingPeriods),
-                    totalGradeText: totalGradeText
+                    totalGradeText: totalGradeText,
+                    currentGradingPeriodID: courseEnrollment?.currentGradingPeriodID
                 ))
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
@@ -276,21 +262,28 @@ public final class GradeListInteractorLive: GradeListInteractor {
         let now = Clock.now
 
         orderedAssignments.forEach { assignment in
+            let sectionId = assignment.assignmentGroupID ?? UUID.string
             if let dueAt = assignment.dueAtSortNilsAtBottom {
                 if let lockAt = assignment.lockAt {
                     if lockAt >= now, dueAt <= now {
+                        overdueAssignments.id = sectionId
                         overdueAssignments.assignments.append(assignment)
                     } else if lockAt > now, dueAt > now {
+                        upcomingAssignments.id = sectionId
                         upcomingAssignments.assignments.append(assignment)
                     } else {
+                        pastAssignments.id = sectionId
                         pastAssignments.assignments.append(assignment)
                     }
                 } else if dueAt <= now {
+                    overdueAssignments.id = sectionId
                     overdueAssignments.assignments.append(assignment)
                 } else if dueAt > now {
+                    upcomingAssignments.id = sectionId
                     upcomingAssignments.assignments.append(assignment)
                 }
             } else {
+                pastAssignments.id = sectionId
                 upcomingAssignments.assignments.append(assignment)
             }
         }
