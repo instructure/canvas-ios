@@ -27,15 +27,8 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
         super.viewDidLoad()
 
         delegate = self
-        let paths: [String]
-
-        if ExperimentalFeature.teacherCalendar.isEnabled {
-            viewControllers = [coursesTab(), calendarTab(), toDoTab(), inboxTab()]
-            paths = [ "/", "/calendar", "/to-do", "/conversations" ]
-        } else {
-            viewControllers = [coursesTab(), toDoTab(), inboxTab()]
-            paths = [ "/", "/to-do", "/conversations" ]
-        }
+        viewControllers = [coursesTab(), calendarTab(), toDoTab(), inboxTab()]
+        let paths = [ "/", "/calendar", "/to-do", "/conversations" ]
         selectedIndex = AppEnvironment.shared.userDefaults?.landingPath.flatMap {
             paths.firstIndex(of: $0)
         } ?? 0
@@ -113,14 +106,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
     }
 
     private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {
-        let map: [String]
-
-        if ExperimentalFeature.teacherCalendar.isEnabled {
-            map = ["dashboard", "calendar", "todo", "conversations"]
-        } else {
-            map = ["dashboard", "todo", "conversations"]
-        }
-
+        let map = ["dashboard", "calendar", "todo", "conversations"]
         let event = map[tabIndex]
         Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
     }
