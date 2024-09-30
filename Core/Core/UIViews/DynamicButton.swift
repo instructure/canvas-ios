@@ -66,12 +66,7 @@ open class DynamicButton: UIButton {
     @IBInspectable
     public var borderColorName: String = "" {
         didSet {
-            guard let color = Brand.shared.color(borderColorName) else {
-                layer.borderWidth = 0
-                return
-            }
-            layer.borderWidth = 0.5
-            layer.borderColor = color.cgColor
+            didSetBorderColorName()
         }
     }
 
@@ -90,8 +85,16 @@ open class DynamicButton: UIButton {
 
         /// Setting an invalid color will spam "CUICatalog: Invalid asset name supplied: ''" error to the console
         if borderColorName != "" {
-            let borderColorName = borderColorName
-            self.borderColorName = borderColorName
+            didSetBorderColorName()
         }
+    }
+
+    private func didSetBorderColorName() {
+        guard let color = Brand.shared.color(borderColorName) else {
+            layer.borderWidth = 0
+            return
+        }
+        layer.borderWidth = 0.5
+        layer.borderColor = color.cgColor
     }
 }

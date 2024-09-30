@@ -34,10 +34,6 @@ class UIColorExtensionsTests: XCTestCase {
         XCTAssertNil(UIColor(hexString: "#nothex"))
     }
 
-    func testIntValue() {
-        XCTAssertEqual(UIColor(intValue: 0x12345678).intValue, 0x12345678)
-    }
-
     func testLuminance() {
         XCTAssertEqual(UIColor.white.luminance, 1.0)
         XCTAssertEqual(UIColor.black.luminance, 0.0)

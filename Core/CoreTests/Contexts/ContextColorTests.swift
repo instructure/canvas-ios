@@ -24,22 +24,25 @@ import XCTest
 class ContextColorTests: CoreTestCase {
 
     func testSave() {
-        let blackColor = UIColor(hexString: "#000")!
-        let whiteColor = UIColor(hexString: "#fff")!
-        let response = APICustomColors(custom_colors: ["course_1": blackColor.hexString, "group_1": whiteColor.hexString])
+        let color1 = UIColor(hexString: "#123")!
+        let color2 = UIColor(hexString: "#321")!
+        let response = APICustomColors(custom_colors: [
+            "course_1": color1.hexString,
+            "group_1": color2.hexString
+        ])
         let result = ContextColor.save(response, in: databaseClient)
         XCTAssertEqual(result.count, 2)
 
         let course = result.first { $0.canvasContextID == "course_1" }!
         XCTAssertEqual(
             course.color.hexString,
-            CourseColorsInteractorLive().courseColorFromAPIColor(blackColor.hexString).hexString
+            CourseColorsInteractorLive().courseColorFromAPIColor(color1).hexString
         )
 
         let group = result.first { $0.canvasContextID == "group_1" }!
         XCTAssertEqual(
             group.color.hexString,
-            CourseColorsInteractorLive().courseColorFromAPIColor(whiteColor.hexString).hexString
+            CourseColorsInteractorLive().courseColorFromAPIColor(color2).hexString
         )
     }
 }

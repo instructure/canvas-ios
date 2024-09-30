@@ -47,7 +47,6 @@ extension UIColor {
     }
 
     public var hexString: String { hexString(userInterfaceStyle: .current) }
-    public var intValue: UInt32 { intValue(userInterfaceStyle: .current) }
     public var variantForLightMode: UIColor { resolvedColor(with: .light) }
     public var variantForDarkMode: UIColor { resolvedColor(with: .dark) }
 
