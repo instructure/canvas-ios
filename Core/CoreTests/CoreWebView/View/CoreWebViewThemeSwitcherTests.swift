@@ -121,10 +121,10 @@ final class CoreWebViewThemeSwitcherTests: CoreTestCase {
 
     func testUpdateStyleShouldUpdateParentBackgroundColor() {
         testee.updateUserInterfaceStyle(with: .light)
-        XCTAssertEqual(parent.backgroundColor, .backgroundLightest.lightVariant)
+        XCTAssertEqual(parent.backgroundColor, .backgroundLightest.variantForLightMode)
 
         testee.updateUserInterfaceStyle(with: .dark)
-        XCTAssertEqual(parent.backgroundColor, .backgroundLightest.darkVariant)
+        XCTAssertEqual(parent.backgroundColor, .backgroundLightest.variantForDarkMode)
     }
 
     func testUpdateStyleToDarkShouldApplyInvertedState() {

@@ -178,7 +178,7 @@ class CustomizeCourseViewModelTests: CoreTestCase {
         api.mock(
             UpdateCustomColor(
                 context: .course("1"),
-                color: UIColor.course2.lightVariant.hexString
+                color: UIColor.course2.variantForLightMode.hexString
             ).request) { _ in
                 courseColorSentToAPI.fulfill()
                 return (nil, nil, nil)

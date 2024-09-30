@@ -34,14 +34,14 @@ class CourseColorsInteractorLiveTests: XCTestCase {
 
     func testColorsSupportDarkMode() {
         for (color, _) in testee.colors {
-            XCTAssertNotEqual(color.lightVariant, color.darkVariant)
+            XCTAssertNotEqual(color.variantForLightMode, color.variantForDarkMode)
         }
 
         XCTAssertEqual(testee.colors.count, 12)
     }
 
     func testPredefinedColorMapping() {
-        let plumColorHex = UIColor(hexString: UIColor.course1.lightVariant.hexString)!
+        let plumColorHex = UIColor(hexString: UIColor.course1.variantForLightMode.hexString)!
 
         let result = testee.courseColorFromAPIColor(plumColorHex)
 
@@ -51,14 +51,14 @@ class CourseColorsInteractorLiveTests: XCTestCase {
     func testCustomColorMapping() {
         let customColor = UIColor(hexString: "#123456")!
         let expected = UIColor.getColor(
-            dark: customColor.ensureContrast(against: .backgroundLightest.darkVariant),
-            light: customColor.darkenToEnsureContrast(against: .backgroundLightest.lightVariant)
+            dark: customColor.ensureContrast(against: .backgroundLightest.variantForDarkMode),
+            light: customColor.darkenToEnsureContrast(against: .backgroundLightest.variantForLightMode)
         )
 
         let result = testee.courseColorFromAPIColor(customColor)
 
-        XCTAssertEqual(result.lightVariant, expected.lightVariant)
-        XCTAssertEqual(result.darkVariant, expected.darkVariant)
+        XCTAssertEqual(result.variantForLightMode, expected.variantForLightMode)
+        XCTAssertEqual(result.variantForDarkMode, expected.variantForDarkMode)
     }
 
     func testFallbackColorOnInvalidAPIColor() {

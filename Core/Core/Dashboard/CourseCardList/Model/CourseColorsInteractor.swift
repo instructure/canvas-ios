@@ -48,7 +48,7 @@ public class CourseColorsInteractorLive: CourseColorsInteractor {
 
     public func courseColorFromAPIColor(_ colorHex: String) -> UIColor {
         let predefinedColor = colors.first { (color, _) in
-            color.lightVariant.hexString == colorHex
+            color.variantForLightMode.hexString == colorHex
         }?.key
 
         if let predefinedColor {
@@ -60,10 +60,10 @@ public class CourseColorsInteractorLive: CourseColorsInteractor {
         }
 
         let lightVariant: UIColor = {
-            apiColor.darkenToEnsureContrast(against: .backgroundLightest.lightVariant)
+            apiColor.darkenToEnsureContrast(against: .backgroundLightest.variantForLightMode)
         }()
         let darkVariant: UIColor = {
-            apiColor.ensureContrast(against: .backgroundLightest.darkVariant)
+            apiColor.ensureContrast(against: .backgroundLightest.variantForDarkMode)
         }()
 
         return UIColor.getColor(dark: darkVariant, light: lightVariant)

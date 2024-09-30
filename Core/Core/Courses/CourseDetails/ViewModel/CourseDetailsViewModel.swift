@@ -167,7 +167,7 @@ public class CourseDetailsViewModel: ObservableObject {
         // Even if there's no home view for the course we still want to reset the split detail view when moving back/to the course details
         if !showHome {
             // We need to drop the # from color otherwise it will be treated as the fragment of the url and not the value of contextColor
-            homeRoute = URL(string: "/empty?contextColor=\(courseColor.lightVariant.darkenToEnsureContrast(against: .textLightest).hexString.dropFirst())")
+            homeRoute = URL(string: "/empty?contextColor=\(courseColor.hexString.dropFirst())")
             return
         }
 
