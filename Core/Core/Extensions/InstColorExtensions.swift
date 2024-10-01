@@ -144,3 +144,13 @@ public extension Color {
     static let course11 = Color(.course11)
     static let course12 = Color(.course12)
 }
+
+// MARK: - iOS Specific Colors
+
+public extension UIColor {
+    static let disabledGray = UIColor(resource: .disabledGray)
+}
+
+public extension Color {
+    static let disabledGray = Color(.disabledGray)
+}

@@ -132,4 +132,9 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(Color.course11, Color(.course11))
         XCTAssertEqual(Color.course12, Color(.course12))
     }
+
+    func testIOSSpecificColors() {
+        XCTAssertEqual(UIColor.disabledGray, UIColor(resource: .disabledGray))
+        XCTAssertEqual(Color.disabledGray, Color(.disabledGray))
+    }
 }
