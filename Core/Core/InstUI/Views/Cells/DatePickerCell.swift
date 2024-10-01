@@ -51,7 +51,7 @@ extension InstUI {
             isClearable: Bool
         ) {
             self.label = label
-            self._date = date.animation()
+            self._date = date
             self.mode = mode
             self.defaultDate = defaultDate
             self.validFrom = validFrom
