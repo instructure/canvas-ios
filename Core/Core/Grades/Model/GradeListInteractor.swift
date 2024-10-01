@@ -88,6 +88,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
         )
     }
 
+    /// `ShouldUpdateGradingPeriod`parameters  refers to you call updateGradingPeriod function.
+    /// `updateGradingPeriod` is function take and selected grading period id, so can fetch assignments depend on it.
     public func getGrades(
         arrangeBy: GradeArrangementOptions,
         baseOnGradedAssignment: Bool,
