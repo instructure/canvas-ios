@@ -40,8 +40,7 @@ public final class DashboardCard: NSManagedObject {
     @NSManaged public var term: String?
 
     public var context: Context { Context(.course, id: id) }
-    /// Ensurecontrast is slow to calculate at each SwiftUI render pass so we have to cache it
-    public lazy var color: UIColor = calculateColor()
+    public var color: UIColor { contextColor?.color ?? .textDark }
 
     public var isTeacherEnrollment: Bool {
         let teacherRoles = ["teacher", "ta"]
@@ -87,13 +86,5 @@ public final class DashboardCard: NSManagedObject {
         }
 
         return model
-    }
-
-    public func refreshCachedColor() {
-        color = calculateColor()
-    }
-
-    private func calculateColor() -> UIColor {
-        contextColor?.color.ensureContrast(against: .backgroundLightest) ?? .ash
     }
 }

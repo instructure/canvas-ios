@@ -27,7 +27,7 @@ public struct AudioPickerView: View {
     @State private var playbackScrollTimer: Timer?
 
     let backgroundColor: Color = .init(hexString: "#111213") ?? Color.black
-    let textColor: Color = .init(hexString: "#F5F5F5") ?? Color.white
+    let textColor: Color = .init(hexString: "#F5F5F5") ?? Color.textLightest.variantForLightMode
 
     init(viewModel: AudioPickerViewModel) {
         self.viewModel = viewModel

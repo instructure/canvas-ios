@@ -38,7 +38,7 @@ public class TokenView: UILabel {
     @objc func setup() {
         clipsToBounds = true
         font = UIFont.scaledNamedFont(.bold11)
-        textColor = UIColor.white
+        textColor = .textLightest.variantForLightMode
 
         setContentCompressionResistancePriority(UILayoutPriority.required, for: .vertical)
     }

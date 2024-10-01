@@ -35,7 +35,7 @@ class LoginWebViewControllerTests: CoreTestCase {
     func testLayout() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
+        XCTAssertEqual(controller.view.backgroundColor, .textLightest.variantForLightMode)
         XCTAssertEqual(controller.webView.url, URL(string: "https://localhost/login/oauth2/auth?client_id=1&response_type=code&redirect_uri=https://canvas/login&mobile=1"))
     }
 

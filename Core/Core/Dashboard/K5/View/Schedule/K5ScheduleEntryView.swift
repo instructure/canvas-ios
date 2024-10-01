@@ -79,7 +79,7 @@ public struct K5ScheduleEntryView: View {
         switch viewModel.leading {
         case .warning:
             Image.warningLine
-                .foregroundColor(.crimson)
+                .foregroundColor(.textDanger)
                 .padding(.leading, 18)
                 .padding(.trailing, 18)
                 .accessibility(hidden: true)
@@ -149,7 +149,7 @@ public struct K5ScheduleEntryView: View {
             if isChecked {
                 background.overlay(Image.filterCheckbox)
             } else {
-                let icon = RoundedRectangle(cornerRadius: 3).stroke(Color.licorice, lineWidth: 1).frame(width: 21, height: 21)
+                let icon = RoundedRectangle(cornerRadius: 3).stroke(Color.textDarkest, lineWidth: 1).frame(width: 21, height: 21)
                 background.overlay(icon)
             }
         })

@@ -277,7 +277,7 @@ private func previewsFactory(isContextBackground: Bool) -> some View {
         VStack {
             Text(verbatim: "Context Nav Bar Background")
             previewsFactory(isContextBackground: true)
-                .background(Color(UIColor.electric.darkenToEnsureContrast(against: .textLightest)))
+                .background(Color(UIColor.backgroundInfo.darkenToEnsureContrast(against: .textLightest)))
         }
         .padding()
         .border(Color.backgroundDarkest)

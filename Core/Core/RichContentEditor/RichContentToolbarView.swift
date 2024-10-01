@@ -141,7 +141,7 @@ public class RichContentToolbarView: UIView {
         }
 
         textColorView?.backgroundColor = foreColor
-        if foreColorHex == UIColor.white.hexString {
+        if foreColorHex == UIColor.textLightest.variantForLightMode.hexString {
             textColorView?.layer.borderColor = UIColor.borderMedium.cgColor
         } else {
             textColorView?.layer.borderColor = foreColor.cgColor

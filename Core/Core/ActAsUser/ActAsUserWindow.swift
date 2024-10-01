@@ -91,7 +91,7 @@ class ActAsUserOverlay: UIView {
         self.loginDelegate = loginDelegate
 
         backgroundColor = .clear
-        layer.borderColor = UIColor.borderAlert.cgColor
+        layer.borderColor = UIColor.borderMasquerade.cgColor
         layer.borderWidth = 2
         addSubview(buttonContainer)
     }
@@ -109,7 +109,7 @@ class ActAsUserOverlay: UIView {
     lazy var buttonContainer: UIView = {
         let container = UIView()
         container.backgroundColor = UIColor.backgroundLightest
-        container.layer.borderColor = UIColor.borderAlert.cgColor
+        container.layer.borderColor = UIColor.borderMasquerade.cgColor
         container.layer.borderWidth = 4
         container.layer.cornerRadius = 48 / 2
         container.frame = CGRect(x: bounds.width - 58, y: bounds.height - 58, width: 48, height: 48)

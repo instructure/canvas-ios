@@ -98,7 +98,7 @@ extension InstUI {
         }
 
         private var textField: some View {
-            TextField("", text: $text, prompt: Text(placeholder).foregroundColor(Color.placeholderGray))
+            TextField("", text: $text, prompt: Text(placeholder).foregroundColor(Color.textPlaceholder))
                 .focused($isFocused)
                 .multilineTextAlignment(.leading)
                 .font(label == nil ? .semibold16 : .regular16, lineHeight: .fit)

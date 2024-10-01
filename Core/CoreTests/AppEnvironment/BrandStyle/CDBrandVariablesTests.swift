@@ -42,7 +42,7 @@ class CDBrandVariablesTests: CoreTestCase {
             in: databaseClient
         )
         let defaultImage = UIImage(named: "defaultHeaderImage", in: .core, compatibleWith: nil)
-        XCTAssertEqual(Brand.shared.primary.hexString, UIColor.electric.hexString)
+        XCTAssertEqual(Brand.shared.primary.hexString, UIColor.textInfo.hexString)
         XCTAssertEqual(Brand.shared.headerImage, defaultImage)
 
         // WHEN

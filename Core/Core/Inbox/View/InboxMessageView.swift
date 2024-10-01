@@ -128,7 +128,7 @@ public struct InboxMessageView: View {
             ZStack(alignment: .topLeading) {
                 Circle()
                     .frame(width: 7, height: 7)
-                    .foregroundColor(.electric)
+                    .foregroundColor(.backgroundInfo)
                     .padding(.leading, 8)
                     .padding(.top, 13)
             }

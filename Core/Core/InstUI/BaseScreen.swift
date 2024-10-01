@@ -254,7 +254,7 @@ public extension InstUI {
     InstUI.BaseScreen(state: .data) { geometry in
         VStack(spacing: 0) {
             Color.red.frame(height: geometry.size.height / 3)
-            Color.white.frame(height: geometry.size.height / 3)
+            Color.textLightest.variantForLightMode.frame(height: geometry.size.height / 3)
             Color.green.frame(height: geometry.size.height / 3)
         }
     }

@@ -503,7 +503,7 @@ private struct RevertWhatIfScoreButton: ToolbarContent {
                 }) {
                     Image(uiImage: .replyLine)
                         .resizable()
-                        .foregroundColor(Color.white)
+                        .foregroundColor(.textLightest.variantForLightMode)
                 }
                 .frame(alignment: .leading)
                 .accessibilityLabel(Text("Revert", bundle: .core))

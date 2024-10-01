@@ -98,7 +98,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         scrollView.refreshControl = refreshControl
 
         composeButton.accessibilityLabel = String(localized: "Compose message to teachers", bundle: .parent)
-        composeButton.backgroundColor = ColorScheme.observee(studentID).color.darkenToEnsureContrast(against: .white)
+        composeButton.backgroundColor = ColorScheme.observee(studentID).color.darkenToEnsureContrast(against: .textLightest.variantForLightMode)
         composeButton.isHidden = true
 
         dateHeadingLabel.text = String(localized: "Due", bundle: .parent)

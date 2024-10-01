@@ -74,7 +74,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
         viewController.updateNavBar(subtitle: "hello", backgroundColor: .red)
         XCTAssertEqual(viewController.titleSubtitleView.subtitle, "hello")
-        XCTAssertEqual(viewController.navigationController?.navigationBar.barTintColor?.hexString, UIColor.red.darkenToEnsureContrast(against: .white).hexString)
+        XCTAssertEqual(viewController.navigationController?.navigationBar.barTintColor?.hexString, UIColor.red.hexString)
     }
 
     func testShowSubmitAssignmentButton() {

@@ -111,7 +111,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
                 ReactiveStore(useCase: GetBrandVariables())
                     .getEntities()
                     .receive(on: RunLoop.main)
-                    .sink(receiveCompletion: { _ in }) { [weak self] brandVars in
+                    .replaceError(with: [])
+                    .sink { [weak self] brandVars in
                         brandVars.first?.applyBrandTheme()
                         self?.showRootView()
                     }

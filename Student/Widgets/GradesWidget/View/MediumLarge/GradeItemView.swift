@@ -40,7 +40,7 @@ struct GradeItemView: View {
 #if DEBUG
 struct GradeItemViewPreview: PreviewProvider {
     static var previews: some View {
-        GradeItemView(item: GradeItem(name: "Long Test Assignment Name To Test Line Break", grade: "80 / 100", color: .electric)).previewContext(WidgetPreviewContext(family: .systemMedium))
+        GradeItemView(item: GradeItem(name: "Long Test Assignment Name To Test Line Break", grade: "80 / 100", color: .textInfo)).previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
 #endif

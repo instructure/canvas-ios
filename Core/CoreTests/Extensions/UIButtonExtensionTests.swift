@@ -31,7 +31,7 @@ class UIButtonExtensionTests: XCTestCase {
         let value: String? = textLayer?.string as? String
         XCTAssertEqual(value, "3")
         let shape = b.layer.sublayers?.first as? CAShapeLayer
-        XCTAssertEqual(shape?.fillColor, UIColor.white.cgColor)
+        XCTAssertEqual(shape?.fillColor, UIColor.textLightest.variantForLightMode.cgColor)
         XCTAssertEqual(shape?.strokeColor, UIColor.red.cgColor)
     }
 }

@@ -50,7 +50,7 @@ public struct SegmentedPicker<Element, Content>: View where Content: View {
         ) {
             if let selectedIndex = selectedIndex {
                 Rectangle()
-                    .foregroundColor(.electric)
+                    .foregroundColor(.textInfo)
                     .frame(width: frames[selectedIndex].width, height: 1.5)
                     .alignmentGuide(.horizontalCenterAlignment) { dimensions in
                         dimensions[HorizontalAlignment.center]

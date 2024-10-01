@@ -26,7 +26,7 @@ class StudioViewControllerTests: XCTestCase {
 
         XCTAssertEqual(testee.preferredStatusBarStyle, .darkContent)
         XCTAssertEqual(testee.modalPresentationCapturesStatusBarAppearance, true)
-        let lightBackground = UIColor.backgroundLightest.resolvedColor(with: .light)
+        let lightBackground = UIColor.backgroundLightest.variantForLightMode
         XCTAssertEqual(testee.view.backgroundColor, lightBackground)
     }
 }

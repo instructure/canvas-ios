@@ -32,7 +32,7 @@ class CourseSettingsViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.state, .ready)
         XCTAssertEqual(testee.errorText, nil)
-        XCTAssertEqual(testee.courseColor, .ash)
+        XCTAssertEqual(testee.courseColor, .textDark)
         XCTAssertEqual(testee.courseName, "Course One")
         XCTAssertEqual(testee.imageURL, nil)
         XCTAssertEqual(testee.hideColorOverlay, true)

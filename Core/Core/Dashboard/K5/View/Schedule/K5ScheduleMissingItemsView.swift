@@ -41,7 +41,7 @@ public struct K5ScheduleMissingItemsView: View {
             }, label: {
                 HStack(spacing: 12) {
                     Image.warningLine
-                        .foregroundColor(.crimson)
+                        .foregroundColor(.textDanger)
                         .padding(.leading, 18)
                     Image.arrowOpenDownLine
                         .foregroundColor(Color(Brand.shared.primary))

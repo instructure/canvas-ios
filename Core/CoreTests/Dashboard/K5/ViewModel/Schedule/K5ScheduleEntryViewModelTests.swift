@@ -126,7 +126,7 @@ class K5ScheduleEntryViewModelTests: CoreTestCase {
         testee.checkboxTapped()
         XCTAssertEqual(testee.leading, .checkbox(isChecked: true))
         XCTAssertEqual(testee.subtitle?.text, "You've marked it as done.")
-        XCTAssertEqual(testee.subtitle?.color, .ash)
+        XCTAssertEqual(testee.subtitle?.color, .textDark)
         XCTAssertEqual(testee.subtitle?.font, .regular12)
 
         wait(for: [refreshTriggeredExpectation], timeout: 0.1)

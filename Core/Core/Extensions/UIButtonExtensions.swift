@@ -28,7 +28,7 @@ public extension UIButton {
         }
     }
 
-    func addBadge(number: UInt, withOffset offset: CGPoint = CGPoint.zero, color: UIColor = UIColor.electric) {
+    func addBadge(number: UInt, withOffset offset: CGPoint = CGPoint.zero, color: UIColor = UIColor.textInfo) {
         badgeLayer?.removeFromSuperlayer()
 
         if number == 0 { return }
@@ -38,7 +38,7 @@ public extension UIButton {
         let radiusOffset: CGFloat = 1.2
         let location = CGPoint(x: frame.width - ((radius * radiusOffset) + offset.x), y: ((radius * radiusOffset) + offset.y))
 
-        badge.fillColor = UIColor.white.cgColor
+        badge.fillColor = UIColor.textLightest.variantForLightMode.cgColor
         badge.strokeColor = color.cgColor
         let badgeOrigin = CGPoint(x: location.x - radius, y: location.y - radius)
         let badgeRect = CGRect(origin: badgeOrigin, size: CGSize(width: radius * 2, height: radius * 2))
