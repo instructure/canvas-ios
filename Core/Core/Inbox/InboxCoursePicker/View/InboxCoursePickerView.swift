@@ -41,6 +41,7 @@ public struct InboxCoursePickerView: View {
         .foregroundColor(.textDarkest)
         .frame(maxWidth: .infinity)
         .navigationBarStyle(.modal)
+        .background(Color.backgroundLightest)
     }
 
     @ViewBuilder
@@ -77,7 +78,7 @@ public struct InboxCoursePickerView: View {
                     Text("Courses", bundle: .core)
                         .font(.regular14)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundStyle(Color.textDark)
+                        .foregroundStyle(Color.textDarkest)
                         .padding(.horizontal, 12)
                         .padding(.vertical, 16)
                         .background(Color.backgroundLight)
@@ -101,7 +102,7 @@ public struct InboxCoursePickerView: View {
                     Text("Groups", bundle: .core)
                         .font(.regular14)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundStyle(Color.textDark)
+                        .foregroundStyle(Color.textDarkest)
                         .padding(.horizontal, 12)
                         .padding(.vertical, 16)
                         .background(Color.backgroundLight)
@@ -151,7 +152,6 @@ public struct InboxCoursePickerView: View {
                 .foregroundStyle(Color.textDarkest)
             }
             .padding(.vertical, 16)
-            .background(.background)
             .accessibilityLabel(accessibilityLabel)
             .accessibilityIdentifier("Inbox.course.\(course.id)")
 
@@ -182,7 +182,6 @@ public struct InboxCoursePickerView: View {
                 .foregroundStyle(Color.textDarkest)
             }
             .padding(.vertical, 16)
-            .background(.background)
             .accessibilityLabel(accessibilityLabel)
             .accessibilityIdentifier("Inbox.group.\(group.id)")
 
