@@ -111,6 +111,7 @@ public struct GradeFilterView: View {
             viewModel.dimiss(viewController: viewController)
         } label: {
             Image.xLine
+                .padding(5)
         }
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(Text("Hide", bundle: .core))

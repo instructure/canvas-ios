@@ -106,6 +106,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         }) {
             Image.filterLine
                 .size(24)
+                .padding(5)
                 .foregroundStyle(viewModel.isParentApp
                                  ? Color(Brand.shared.primary)
                                  : .textLightest)

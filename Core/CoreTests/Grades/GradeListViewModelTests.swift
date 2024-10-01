@@ -249,7 +249,8 @@ private extension GradeListViewModelTests {
         func getGrades(
             arrangeBy _: Core.GradeArrangementOptions,
             baseOnGradedAssignment _: Bool,
-            ignoreCache _: Bool
+            ignoreCache _: Bool,
+            shouldUpdateGradingPeriod: Bool
         ) -> AnyPublisher<Core.GradeListData, Error> {
             Fail(error: NSError.instructureError("")).eraseToAnyPublisher()
         }
@@ -263,7 +264,8 @@ private extension GradeListViewModelTests {
         func getGrades(
             arrangeBy _: Core.GradeArrangementOptions,
             baseOnGradedAssignment _: Bool,
-            ignoreCache _: Bool
+            ignoreCache _: Bool,
+            shouldUpdateGradingPeriod: Bool
         ) -> AnyPublisher<Core.GradeListData, Error> {
             Just(emptySections)
                 .setFailureType(to: Error.self)
@@ -288,7 +290,8 @@ private extension GradeListViewModelTests {
         func getGrades(
             arrangeBy: Core.GradeArrangementOptions,
             baseOnGradedAssignment _: Bool,
-            ignoreCache: Bool
+            ignoreCache: Bool,
+            shouldUpdateGradingPeriod: Bool
         ) -> AnyPublisher<Core.GradeListData, Error> {
             self.ignoreCache = ignoreCache
             self.arrangeBy = arrangeBy

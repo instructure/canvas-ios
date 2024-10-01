@@ -195,7 +195,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         api.mock(assignmentsRequest, value: assignmentGroups)
         let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .dueDate, baseOnGradedAssignment: true, ignoreCache: true)
+        let subscription = testee.getGrades(arrangeBy: .dueDate, baseOnGradedAssignment: true, ignoreCache: true, shouldUpdateGradingPeriod: true)
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.assignmentSections.count, 3)
@@ -232,7 +232,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         api.mock(assignmentsRequest, value: assignmentGroups)
         let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
+        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false, shouldUpdateGradingPeriod: true)
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.assignmentSections.count, 3)
@@ -267,7 +267,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
 
         let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
+        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false, shouldUpdateGradingPeriod: true)
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, nil)
@@ -296,7 +296,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
 
         let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
+        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false, shouldUpdateGradingPeriod: true)
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, nil)
@@ -326,7 +326,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
 
         let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
+        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false, shouldUpdateGradingPeriod: true)
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, nil)
@@ -373,7 +373,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         testee.updateGradingPeriod(id: "1")
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
+        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false, shouldUpdateGradingPeriod: true)
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, "42% (C)")
@@ -419,7 +419,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         testee.updateGradingPeriod(id: nil)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, ignoreCache: false)
+        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, ignoreCache: false, shouldUpdateGradingPeriod: true)
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, "21%")
@@ -466,7 +466,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         testee.updateGradingPeriod(id: "1")
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, ignoreCache: false)
+        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, ignoreCache: false, shouldUpdateGradingPeriod: true)
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, "21%")
@@ -514,7 +514,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
         testee.updateGradingPeriod(id: "1")
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false)
+        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, ignoreCache: false, shouldUpdateGradingPeriod: true)
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, "C")

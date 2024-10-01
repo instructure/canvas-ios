@@ -26,7 +26,8 @@ public protocol GradeListInteractor {
     func getGrades(
         arrangeBy: GradeArrangementOptions,
         baseOnGradedAssignment: Bool,
-        ignoreCache: Bool
+        ignoreCache: Bool,
+        shouldUpdateGradingPeriod: Bool
     ) -> AnyPublisher<GradeListData, Error>
     func updateGradingPeriod(id: String?)
     func isWhatIfScoreFlagEnabled() -> Bool
@@ -90,7 +91,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
     public func getGrades(
         arrangeBy: GradeArrangementOptions,
         baseOnGradedAssignment: Bool,
-        ignoreCache: Bool
+        ignoreCache: Bool,
+        shouldUpdateGradingPeriod: Bool
     ) -> AnyPublisher<GradeListData, Error> {
         Publishers.Zip3(
             colorListStore.getEntities(
@@ -128,10 +130,14 @@ public final class GradeListInteractorLive: GradeListInteractor {
             let isGradingPeriodHidden = courseEnrollment?.multipleGradingPeriodsEnabled == false
             if !isInitialGradingPeriodSet {
                 isInitialGradingPeriodSet = true
+                if shouldUpdateGradingPeriod {
+                    updateGradingPeriod(id: courseEnrollment?.currentGradingPeriodID)
+                }
                 return getGrades(
                     arrangeBy: arrangeBy,
                     baseOnGradedAssignment: baseOnGradedAssignment,
-                    ignoreCache: true
+                    ignoreCache: true,
+                    shouldUpdateGradingPeriod: shouldUpdateGradingPeriod
                 ).eraseToAnyPublisher()
             }
 

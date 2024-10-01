@@ -154,7 +154,8 @@ public final class GradeListViewModel: ObservableObject {
                 return interactor.getGrades(
                     arrangeBy: selectedGroupByOption.value,
                     baseOnGradedAssignment: baseOnGradedAssignment,
-                    ignoreCache: ignoreCache
+                    ignoreCache: ignoreCache,
+                    shouldUpdateGradingPeriod: false
                 )
                 .first()
                 .receive(on: scheduler)
