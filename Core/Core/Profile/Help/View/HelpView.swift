@@ -24,7 +24,7 @@ struct HelpView: View, ScreenViewTrackable {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                ForEach(helpLinks, id: \.self) {
+                ForEach(helpLinks.filter { $0.text != nil && $0.url != nil }, id: \.self) {
                     HelpItemView(model: $0, tapAction: tapAction)
                     Divider()
                 }
