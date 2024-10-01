@@ -88,8 +88,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
         )
     }
 
-    /// `ShouldUpdateGradingPeriod`parameters  refers to you call updateGradingPeriod function.
-    /// `updateGradingPeriod` is function take and selected grading period id, so can fetch assignments depend on it.
+    /// `shouldUpdateGradingPeriod`: Setting this parameter to **true** will refresh the current enrollments and assignments based on the course enrollment after the initial batch of API requests finish. This sometimes causes problems with cached values so the caller site needs to decide if the update is needed.
     public func getGrades(
         arrangeBy: GradeArrangementOptions,
         baseOnGradedAssignment: Bool,
