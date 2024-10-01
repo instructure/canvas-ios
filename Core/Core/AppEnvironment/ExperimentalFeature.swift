@@ -28,7 +28,6 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case favoriteGroups = "favorite_groups"
     case K5Dashboard = "enable_K5_dashboard"
     case whatIfScore = "what_if_score"
-    case teacherCalendar = "teacher_calendar"
 
     public var isEnabled: Bool {
         get {
