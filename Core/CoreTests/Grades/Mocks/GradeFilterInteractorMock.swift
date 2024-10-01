@@ -40,7 +40,7 @@ final class GradeFilterInteractorMock: GradeFilterInteractor {
        return currentSortById
     }
 
-    func saveGrading(id: String?) {
+    func saveSelectedGradingPeriod(id: String?) {
         saveGradingIsCalled = true
     }
 

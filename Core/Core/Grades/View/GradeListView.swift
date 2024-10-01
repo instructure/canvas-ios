@@ -105,6 +105,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             viewModel.navigateToFilter(viewController: viewController)
         }) {
             Image.filterLine
+                .size(24)
                 .foregroundStyle(viewModel.isParentApp
                                  ? Color(Brand.shared.primary)
                                  : .textLightest)
@@ -414,8 +415,8 @@ public struct GradeListView: View, ScreenViewTrackable {
         }
     }
 
-    private func revertWhatIfScoreSwipeButton(id: String) -> [Slot] {
-        let slot = Slot(id: id,
+    private func revertWhatIfScoreSwipeButton(id: String) -> [SwipeModel] {
+        let slot = SwipeModel(id: id,
                         image: { Image(uiImage: .replyLine)},
                         action: { viewModel.isShowingRevertDialog = true },
                         style: .init(background: Color.backgroundDark))

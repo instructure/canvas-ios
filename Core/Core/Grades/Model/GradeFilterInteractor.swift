@@ -23,7 +23,7 @@ public protocol GradeFilterInteractor {
     var selectedGradingId: String? { get }
     var selectedSortById: Int? { get }
     var isParentApp: Bool { get }
-    func saveGrading(id: String?)
+    func saveSelectedGradingPeriod(id: String?)
     func saveSortByOption(type: GradeArrangementOptions)
 }
 
@@ -61,7 +61,7 @@ extension GradeFilterInteractorLive: GradeFilterInteractor {
         appEnvironment.userDefaults?.selectedSortByOptionIDs?[courseId]
     }
 
-    public func saveGrading(id: String?) {
+    public func saveSelectedGradingPeriod(id: String?) {
         let gradingId = id ?? gradingShowAllId
         if appEnvironment.userDefaults?.selectedGradingPeriodIdsByCourseIDs == nil {
             appEnvironment.userDefaults?.selectedGradingPeriodIdsByCourseIDs = [courseId: gradingId]

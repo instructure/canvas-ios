@@ -83,7 +83,7 @@ public final class GradeFilterViewModel: ObservableObject {
 
     private func mapSortByOptions() {
         let selectedSortById = gradeFilterInteractor.selectedSortById
-        selectedSortByOption = GradeArrangementOptions(rawValue: selectedSortById ?? 0) ?? .groupName
+        selectedSortByOption = GradeArrangementOptions(rawValue: selectedSortById ?? 0) ?? .dueDate
         sortByOptions = dependency.sortByOptions
     }
 
@@ -104,10 +104,10 @@ public final class GradeFilterViewModel: ObservableObject {
 
     func saveButtonTapped(viewController: WeakViewController) {
         dependency.selectedGradingPeriodPublisher.accept(selectedGradingPeriod?.value?.id)
-        dependency.selectedSortByPublisher.accept(selectedSortByOption ?? .groupName)
+        dependency.selectedSortByPublisher.accept(selectedSortByOption ?? .dueDate)
         let selectedGradingPeriodId = selectedGradingPeriod?.value?.id
-        gradeFilterInteractor.saveGrading(id: selectedGradingPeriodId)
-        gradeFilterInteractor.saveSortByOption(type: selectedSortByOption ?? .groupName)
+        gradeFilterInteractor.saveSelectedGradingPeriod(id: selectedGradingPeriodId)
+        gradeFilterInteractor.saveSortByOption(type: selectedSortByOption ?? .dueDate)
         dimiss(viewController: viewController)
     }
 
@@ -119,11 +119,11 @@ public final class GradeFilterViewModel: ObservableObject {
 // MARK: - Dependency
 extension GradeFilterViewModel {
     public struct Dependency {
-        var router: Router
-        var isShowGradingPeriod: Bool
+        let router: Router
+        let isShowGradingPeriod: Bool
         var courseName: String?
         var selectedGradingPeriodPublisher = PassthroughRelay<String?>()
-        var selectedSortByPublisher = CurrentValueRelay<GradeArrangementOptions>(.groupName)
+        var selectedSortByPublisher = CurrentValueRelay<GradeArrangementOptions>(.dueDate)
         var gradingPeriods: [GradingPeriod]?
         var sortByOptions: [GradeArrangementOptions]
     }

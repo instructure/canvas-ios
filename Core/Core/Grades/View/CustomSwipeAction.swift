@@ -21,8 +21,8 @@ import SwiftUI
 /// onSwipe a way for using swipe actions on scrollView
 public extension View {
     func onSwipe(
-        leading: [Slot] = [],
-        trailing: [Slot] = []
+        leading: [SwipeModel] = [],
+        trailing: [SwipeModel] = []
     ) -> some View {
         return self.modifier(SlidableModifier(leading: leading, trailing: trailing))
     }
@@ -79,17 +79,17 @@ public struct SlidableModifier: ViewModifier, Animatable {
         return slots.map { $0.style.slotWidth }.reduce(0, +)
     }
 
-    private var slots: [Slot] {
+    private var slots: [SwipeModel] {
         slideAxis == .leftToRight ? leadingSlots : trailingSlots
     }
 
     @State private var slideAxis: SlideAxis = SlideAxis.leftToRight
-    private var leadingSlots: [Slot]
-    private var trailingSlots: [Slot]
+    private var leadingSlots: [SwipeModel]
+    private var trailingSlots: [SwipeModel]
 
     public init(
-        leading: [Slot],
-        trailing: [Slot]
+        leading: [SwipeModel],
+        trailing: [SwipeModel]
     ) {
         self.leadingSlots = leading
         self.trailingSlots = trailing
@@ -171,7 +171,7 @@ public struct SlidableModifier: ViewModifier, Animatable {
     }
 }
 
-public struct Slot: Identifiable {
+public struct SwipeModel: Identifiable {
     /// Id
     public let id: String
     /// The image will be displayed.
@@ -179,13 +179,13 @@ public struct Slot: Identifiable {
     /// Tap Action
     public let action: () -> Void
     /// Style
-    public let style: SlotStyle
+    public let style: SwipeStyle
 
     public init(
         id: String,
         image: @escaping () -> Image,
         action: @escaping () -> Void,
-        style: SlotStyle
+        style: SwipeStyle
     ) {
         self.id = id
         self.image = image
@@ -194,7 +194,7 @@ public struct Slot: Identifiable {
     }
 }
 
-public struct SlotStyle {
+public struct SwipeStyle {
     /// Background color of slot.
     public let background: Color
 

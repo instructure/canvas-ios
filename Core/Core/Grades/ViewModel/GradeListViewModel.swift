@@ -76,7 +76,7 @@ public final class GradeListViewModel: ObservableObject {
     @Published var baseOnGradedAssignment = true
     @Published var isShowingRevertDialog = false
     let selectedGradingPeriod = PassthroughRelay<String?>()
-    let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.groupName)
+    let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.dueDate)
     var isParentApp: Bool {
         gradeFilterInteractor.isParentApp
     }
@@ -197,7 +197,7 @@ public final class GradeListViewModel: ObservableObject {
 
    private func loadSortPreferences() {
         let selectedSortById = gradeFilterInteractor.selectedSortById
-        let selectedSortByOption = GradeArrangementOptions(rawValue: selectedSortById ?? 0) ?? .groupName
+        let selectedSortByOption = GradeArrangementOptions(rawValue: selectedSortById ?? 0) ?? .dueDate
         selectedGroupByOption.accept(selectedSortByOption)
     }
 
@@ -207,7 +207,7 @@ public final class GradeListViewModel: ObservableObject {
     ) -> String? {
         let currentId = gradeFilterInteractor.selectedGradingId
         guard !gradingPeriods.isEmpty else {
-            gradeFilterInteractor.saveGrading(id: currentGradingPeriodID)
+            gradeFilterInteractor.saveSelectedGradingPeriod(id: currentGradingPeriodID)
             return currentGradingPeriodID
         }
 
@@ -217,12 +217,12 @@ public final class GradeListViewModel: ObservableObject {
             } else if gradingPeriods.contains(where: { $0.id == currentId }) {
                 return currentId
             } else {
-                gradeFilterInteractor.saveGrading(id: gradingPeriods.first?.id)
-                gradeFilterInteractor.saveSortByOption(type: .groupName)
+                gradeFilterInteractor.saveSelectedGradingPeriod(id: gradingPeriods.first?.id)
+                gradeFilterInteractor.saveSortByOption(type: .dueDate)
                 return gradingPeriods.first?.id
             }
         }
-        gradeFilterInteractor.saveGrading(id: currentGradingPeriodID)
+        gradeFilterInteractor.saveSelectedGradingPeriod(id: currentGradingPeriodID)
         return currentGradingPeriodID
     }
 

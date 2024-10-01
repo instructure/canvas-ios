@@ -48,7 +48,7 @@ final class GradeFilterInteractorLiveTests: CoreTestCase {
         let id = "10"
         environment.userDefaults?.selectedGradingPeriodIdsByCourseIDs = nil
         // When
-        testee.saveGrading(id: id)
+        testee.saveSelectedGradingPeriod(id: id)
         // Then
         XCTAssertEqual(testee.selectedGradingId, id)
     }
@@ -59,7 +59,7 @@ final class GradeFilterInteractorLiveTests: CoreTestCase {
         let newValue = "20"
         environment.userDefaults?.selectedGradingPeriodIdsByCourseIDs = [courseId: oldValue]
         // When
-        testee.saveGrading(id: newValue)
+        testee.saveSelectedGradingPeriod(id: newValue)
         // Then
         XCTAssertEqual(testee.selectedGradingId, newValue)
     }
@@ -70,7 +70,7 @@ final class GradeFilterInteractorLiveTests: CoreTestCase {
         let newValue: String? = nil
         environment.userDefaults?.selectedGradingPeriodIdsByCourseIDs = [courseId: oldValue]
         // When
-        testee.saveGrading(id: newValue)
+        testee.saveSelectedGradingPeriod(id: newValue)
         // Then
         XCTAssertEqual(testee.selectedGradingId, "-1")
     }

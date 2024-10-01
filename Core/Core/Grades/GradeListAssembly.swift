@@ -51,7 +51,7 @@ public enum GradListAssembly {
         let viewModel = GradeListViewModel(
             interactor: interactor,
             gradeFilterInteractor: makeGradeFilterInteractor(
-                appEnvironment: .shared,
+                appEnvironment: env,
                 courseId: courseID
             ),
             router: env.router
