@@ -28,6 +28,8 @@ class AnalyticsHelpersTests: CoreTestCase {
         super.tearDown()
     }
 
+    // MARK: - LogReceiveValue
+
     func test_logReceiveValue_valueReportedToAnalytics() {
         // GIVEN
         let publisher = PassthroughSubject<Void, Never>()
@@ -74,5 +76,70 @@ class AnalyticsHelpersTests: CoreTestCase {
         // THEN
         XCTAssertEqual(analytics.totalEventCount, 0)
         XCTAssertEqual(analytics.lastEvent, nil)
+    }
+
+    // MARK: - LogReceiveValue With Dynamic Name
+
+    func test_logReceiveValueDynamicName_valueReportedToAnalytics() {
+        // GIVEN
+        let publisher = PassthroughSubject<Int, Never>()
+        publisher.logReceiveValue(
+            { value in
+                XCTAssertEqual(value, 1)
+                return "test_event"
+            },
+            storeIn: &subscriptions
+        )
+
+        // WHEN
+        publisher.send(1)
+
+        // THEN
+        XCTAssertEqual(analytics.totalEventCount, 1)
+        XCTAssertEqual(analytics.lastEvent, "test_event")
+    }
+
+    func test_logReceiveValueDynamicName_completionNotReportedToAnalytics() {
+        // GIVEN
+        let nameNotQueried = expectation(description: "Log name not queried")
+        nameNotQueried.isInverted = true
+        let publisher = PassthroughSubject<Int, Never>()
+        publisher.logReceiveValue(
+            { _ in
+                nameNotQueried.fulfill()
+                return "test event"
+            },
+            storeIn: &subscriptions
+        )
+
+        // WHEN
+        publisher.send(completion: .finished)
+
+        // THEN
+        XCTAssertEqual(analytics.totalEventCount, 0)
+        XCTAssertEqual(analytics.lastEvent, nil)
+        waitForExpectations(timeout: 1)
+    }
+
+    func test_logReceiveValueDynamicName_errorNotReportedToAnalytics() {
+        // GIVEN
+        let nameNotQueried = expectation(description: "Log name not queried")
+        nameNotQueried.isInverted = true
+        let publisher = PassthroughSubject<Int, Error>()
+        publisher.logReceiveValue(
+            { _ in
+                nameNotQueried.fulfill()
+                return "test event"
+            },
+            storeIn: &subscriptions
+        )
+
+        // WHEN
+        publisher.send(completion: .failure(NSError.internalError()))
+
+        // THEN
+        XCTAssertEqual(analytics.totalEventCount, 0)
+        XCTAssertEqual(analytics.lastEvent, nil)
+        waitForExpectations(timeout: 1)
     }
 }
