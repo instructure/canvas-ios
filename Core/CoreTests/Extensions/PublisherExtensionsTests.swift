@@ -29,6 +29,24 @@ class PublisherExtensionsTests: XCTestCase {
         super.tearDown()
     }
 
+    func testSinkValue() {
+        // MARK: - GIVEN
+        let valueReceived = expectation(description: "Value Received")
+        let publisher = PassthroughSubject<Int, Error>()
+        publisher
+            .sinkValue { value in
+                valueReceived.fulfill()
+                XCTAssertEqual(value, 6)
+            }
+            .store(in: &subscriptions)
+
+        // MARK: - WHEN
+        publisher.send(6)
+
+        // MARK: - THEN
+        waitForExpectations(timeout: 1)
+    }
+
     func testBindProgressReportsLoadingStateOnSubscription() {
         // MARK: - GIVEN
         let publisher = PassthroughSubject<Void, Never>()
@@ -98,7 +116,6 @@ class PublisherExtensionsTests: XCTestCase {
                 XCTAssertTrue(parser.parseCalled)
             })
             .store(in: &subscriptions)
-
     }
 
     func testOptionalStringParsing() {
@@ -120,17 +137,12 @@ class PublisherExtensionsTests: XCTestCase {
                 XCTAssertTrue(parser.parseCalled)
             })
             .store(in: &subscriptions)
-
     }
 
     class HTMLParserMock: HTMLParser {
-
         var sessionId: String = "testSession"
-
         var prefix: String = "testPrefix"
-
         var sectionName: String = "testSection"
-
         var parseCalled = false
         var attachmentParseCalled = false
 

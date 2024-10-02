@@ -30,9 +30,14 @@ protocol CourseSyncSettingsInteractor {
 
 class CourseSyncSettingsInteractorLive: CourseSyncSettingsInteractor {
     private var storage: SessionDefaults
+    private let analytics: Analytics
 
-    public init(storage: SessionDefaults) {
+    public init(
+        storage: SessionDefaults,
+        analytics: Analytics = .shared
+    ) {
         self.storage = storage
+        self.analytics = analytics
     }
 
     public func getOfflineSyncSettingsLabel() -> String {
@@ -58,6 +63,7 @@ class CourseSyncSettingsInteractorLive: CourseSyncSettingsInteractor {
                                      : nil
             storage.offlineSyncNextDate = nextSync
 
+            analytics.logEvent(isEnabled ? "offline_auto_sync_turned_on" : "offline_auto_sync_turned_off")
             promise(.success(isEnabled))
         }
         .eraseToAnyPublisher()

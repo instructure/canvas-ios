@@ -148,4 +148,24 @@ class CourseSyncSettingsInteractorLiveTests: XCTestCase {
         // THEN
         XCTAssertNil(defaults.offlineSyncNextDate)
     }
+
+    func testLogsAutoSyncAutoSyncToggle() {
+        let mockAnalytics = MockAnalyticsHandler()
+        Analytics.shared.handler = mockAnalytics
+        let testee = CourseSyncSettingsInteractorLive(storage: defaults)
+
+        // WHEN
+        XCTAssertFinish(testee.setAutoSyncEnabled(true))
+
+        // THEN
+        XCTAssertEqual(mockAnalytics.lastEvent, "offline_auto_sync_turned_on")
+        XCTAssertEqual(mockAnalytics.totalEventCount, 1)
+
+        // WHEN
+        XCTAssertFinish(testee.setAutoSyncEnabled(false))
+
+        // THEN
+        XCTAssertEqual(mockAnalytics.lastEvent, "offline_auto_sync_turned_off")
+        XCTAssertEqual(mockAnalytics.totalEventCount, 2)
+    }
 }
