@@ -109,10 +109,13 @@ public struct MessageView: View {
 
     private var bodyView: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(model.body.toAttributedStringWithLinks())
-                .font(.regular16)
-                .textSelection(.enabled)
-                .accessibilityIdentifier("MessageDetails.body")
+            SelectableText(
+                text: model.body.toAttributedStringWithLinks(),
+                font: .regular16,
+                textColor: .textDarkest
+            )
+            .accessibilityIdentifier("MessageDetails.body")
+
             if model.showAttachments {
                 AttachmentsView(attachments: model.attachments, didSelectAttachment: model.handleFileNavigation)
             }
