@@ -264,15 +264,17 @@ struct CalendarCardView: View {
                     } completion: {
                         guard shouldSwitch else { return }
 
-                        if case .completionNext = increment {
-                            selectedDay = nextDay()
-                        } else if case .completionPrev = increment {
-                            selectedDay = prevDay()
+                        withAnimation {
+                            if case .completionNext = increment {
+                                selectedDay = nextDay()
+                            } else if case .completionPrev = increment {
+                                selectedDay = prevDay()
+                            }
+                            
+                            mode = .stable
+                            translation = .zero
+                            expansion = nil
                         }
-
-                        mode = .stable
-                        translation = .zero
-                        expansion = nil
                     }
 
                 case .draggingVertical:
