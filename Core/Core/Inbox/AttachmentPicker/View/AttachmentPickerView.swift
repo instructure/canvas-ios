@@ -118,7 +118,7 @@ public struct AttachmentPickerView: View {
                                     )
                                 Text(file.uploadError!).multilineTextAlignment(.leading)
                             }
-                            .font(.regular14).foregroundStyle(Color.textAlert)
+                            .font(.regular14).foregroundStyle(Color.textDanger)
                         }
                     }
 

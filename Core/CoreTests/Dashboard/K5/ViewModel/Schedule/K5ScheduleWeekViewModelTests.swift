@@ -53,7 +53,7 @@ class K5ScheduleWeekViewModelTests: CoreTestCase {
         case .data(let subjectModels):
             XCTAssertEqual(subjectModels[0].subject.name, "Assignment Grades")
             XCTAssertEqual(subjectModels[0].subject.route, URL(string: "courses/1")!)
-            XCTAssertEqual(subjectModels[0].subject.color, Color(UIColor.ash))
+            XCTAssertEqual(subjectModels[0].subject.color, Color(UIColor.textDark))
             XCTAssertEqual(subjectModels[0].subject.image, URL(string: "a.com")!)
 
             XCTAssertTrue(subjectModels[0].entries[0].dueText.hasPrefix("Due: "))

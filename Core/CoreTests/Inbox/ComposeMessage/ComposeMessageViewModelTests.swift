@@ -612,6 +612,24 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.searchedRecipients.count, 1)
     }
 
+    func test_didTapCancel_didNotApplyChanges_dimissView() {
+        // Given
+        let viewController = WeakViewController(UIViewController())
+        // When
+        testee.didTapCancel.accept(viewController)
+        // Then
+        wait(for: [router.dismissExpectation], timeout: 0.1)
+    }
+    func test_didTapCancel_didApplyChanges_showConfirmationAlert() {
+        // Given
+        let viewController = WeakViewController(UIViewController())
+        // When
+        testee.bodyText = "New Body is here"
+        testee.didTapCancel.accept(viewController)
+        // Then
+        XCTAssertTrue(testee.isShowingCancelDialog)
+    }
+
     func test_clearSearchedRecipients() {
         // Given
         let viewController = WeakViewController(UIViewController())

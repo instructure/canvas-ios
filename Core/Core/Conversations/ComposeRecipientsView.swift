@@ -74,7 +74,7 @@ class ComposeRecipientsView: UIView {
         placeholder = UILabel()
         placeholder.translatesAutoresizingMaskIntoConstraints = false
         placeholder.text = String(localized: "To", bundle: .core)
-        placeholder.textColor = .ash
+        placeholder.textColor = .textDark
         placeholder.font = .scaledNamedFont(.medium16)
         addSubview(placeholder)
         NSLayoutConstraint.activate([

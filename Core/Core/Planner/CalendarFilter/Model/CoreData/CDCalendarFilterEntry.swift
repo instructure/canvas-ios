@@ -59,7 +59,7 @@ public class CDCalendarFilterEntry: NSManagedObject {
     }
 
     public var color: Color {
-        let defaultColor = Color.ash
+        let defaultColor = Color.textDark
         let colorScope: Scope = .where(
             #keyPath(ContextColor.canvasContextID),
             equals: context.canvasContextID

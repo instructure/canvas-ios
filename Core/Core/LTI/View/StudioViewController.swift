@@ -35,7 +35,7 @@ class StudioViewController: UINavigationController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .backgroundLightest.resolvedColor(with: .light)
+        view.backgroundColor = .backgroundLightest.variantForLightMode
     }
 
     public required init?(coder aDecoder: NSCoder) {

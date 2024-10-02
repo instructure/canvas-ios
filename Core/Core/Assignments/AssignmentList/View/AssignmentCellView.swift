@@ -59,7 +59,7 @@ public struct AssignmentCellView: View {
     private var icon: some View {
         AccessIcon(image: viewModel.icon, published: viewModel.published)
             .frame(width: 20, height: 20)
-            .foregroundColor(Color(viewModel.courseColor ?? .ash))
+            .foregroundColor(Color(viewModel.courseColor ?? .textDark))
             .padding(.top, 10)
             .padding(.leading, 18)
             .frame(maxHeight: .infinity, alignment: .top)

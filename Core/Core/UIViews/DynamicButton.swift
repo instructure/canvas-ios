@@ -39,9 +39,9 @@ open class DynamicButton: UIButton {
     }
 
     @IBInspectable
-    public var textColorName: String = "electric" {
+    public var textColorName: String = "textInfo" {
         didSet {
-            tintColor = Brand.shared.color(textColorName) ?? .electric
+            tintColor = Brand.shared.color(textColorName) ?? .textInfo
             setTitleColor(tintColor, for: .normal)
         }
     }
@@ -66,12 +66,7 @@ open class DynamicButton: UIButton {
     @IBInspectable
     public var borderColorName: String = "" {
         didSet {
-            guard let color = Brand.shared.color(borderColorName) else {
-                layer.borderWidth = 0
-                return
-            }
-            layer.borderWidth = 0.5
-            layer.borderColor = color.cgColor
+            didSetBorderColorName()
         }
     }
 
@@ -79,5 +74,27 @@ open class DynamicButton: UIButton {
         didSet {
             tintColor = titleColor(for: state)
         }
+    }
+
+    /// Border is set by using `cgColor` which doesn't change when
+    /// the light/dark theme changes so we have to manually force an update.
+    override open func traitCollectionDidChange(
+        _ previousTraitCollection: UITraitCollection?
+    ) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        /// Setting an invalid color will spam "CUICatalog: Invalid asset name supplied: ''" error to the console
+        if borderColorName != "" {
+            didSetBorderColorName()
+        }
+    }
+
+    private func didSetBorderColorName() {
+        guard let color = Brand.shared.color(borderColorName) else {
+            layer.borderWidth = 0
+            return
+        }
+        layer.borderWidth = 0.5
+        layer.borderColor = color.cgColor
     }
 }

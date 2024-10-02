@@ -69,7 +69,7 @@ struct AnnouncementItemView_Previews: PreviewProvider {
             url: URL(string: "https://www.instructure.com/")!,
             authorName: "Thomas McKempis",
             courseName: "Introduction to the solar system",
-            courseColor: .electric)
+            courseColor: .textInfo)
         AnnouncementItemView(announcementItem: item).previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }

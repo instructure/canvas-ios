@@ -44,13 +44,13 @@ class LoginFindSchoolViewController: UIViewController {
             .foregroundColor: UIColor.textDark,
             .font: UIFont.scaledNamedFont(.regular14)
         ])
-        attributedText.addAttribute(.foregroundColor, value: UIColor.electric, range: (combined as NSString).range(of: link))
+        attributedText.addAttribute(.foregroundColor, value: UIColor.textInfo, range: (combined as NSString).range(of: link))
         return attributedText
     }()
 
     var helpAttributedText = NSAttributedString(
         string: String(localized: "How do I find my school?", bundle: .core),
-        attributes: [.foregroundColor: UIColor.electric]
+        attributes: [.foregroundColor: UIColor.textInfo]
     )
 
     static func create(loginDelegate: LoginDelegate?, method: AuthenticationMethod) -> LoginFindSchoolViewController {

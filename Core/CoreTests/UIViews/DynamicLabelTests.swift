@@ -24,8 +24,8 @@ class DynamicLabelTests: XCTestCase {
         let view = DynamicLabel(frame: .zero)
         view.textColorName = "not a color name"
         XCTAssertEqual(view.textColor, UIColor.textDarkest)
-        view.textColorName = "electric"
-        XCTAssertEqual(view.textColor, UIColor.electric)
+        view.textColorName = "textInfo"
+        XCTAssertEqual(view.textColor, UIColor.textInfo)
     }
 
     func testTextStyle() {

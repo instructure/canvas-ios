@@ -29,7 +29,7 @@ struct NotificationCard: View {
     var body: some View {
         HStack(spacing: 0) {
             VStack {
-                icon.foregroundColor(.white)
+                icon.foregroundColor(.textLightest)
                     .padding(.horizontal, 8).padding(.top, 10)
                     .accessibility(hidden: true)
                 Spacer()

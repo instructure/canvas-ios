@@ -34,7 +34,7 @@ public struct K5GradeCellViewModel {
         self.imageURL = imageURL
         self.grade = grade
         self.score = score
-        self.color = ((color != nil) ? Color(color!) : .oxford)
+        self.color = ((color != nil) ? Color(color!) : .textDarkest)
         self.a11yId = "K5GradeCell.\(courseID)"
         self.route = "/courses/\(courseID)#grades"
         self.hideGradeBar = hideGradeBar

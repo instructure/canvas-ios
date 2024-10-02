@@ -24,7 +24,7 @@ class K5GradeCellViewModelTests: CoreTestCase {
 
     func testDefaultK5Color() {
         let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: nil, score: 55, color: nil, courseID: "", hideGradeBar: false)
-        XCTAssertEqual(testee.color, .oxford)
+        XCTAssertEqual(testee.color, .textDarkest)
     }
 
     func testGradePercentage() {

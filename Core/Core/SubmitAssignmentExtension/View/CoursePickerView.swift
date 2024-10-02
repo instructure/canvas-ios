@@ -72,7 +72,7 @@ public struct CoursePickerView: View {
                             if viewModel.selectedCourse == course {
                                 Image.checkSolid
                                     .frame(width: 50, height: 50)
-                                    .foregroundColor(.electric)
+                                    .foregroundColor(.textInfo)
                             }
                         }
                         .padding(.leading, 16)

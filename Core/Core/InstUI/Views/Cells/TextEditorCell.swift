@@ -120,7 +120,7 @@ extension InstUI {
         private var placeholderView: some View {
             if let placeholder, text.isEmpty {
                 Text(placeholder)
-                    .foregroundColor(.placeholderGray)
+                    .foregroundColor(.textPlaceholder)
                     .frame(maxHeight: .infinity, alignment: .top)
                     .allowsHitTesting(false)
                     .accessibility(hidden: true)

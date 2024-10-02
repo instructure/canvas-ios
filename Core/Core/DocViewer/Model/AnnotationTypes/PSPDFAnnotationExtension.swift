@@ -81,7 +81,7 @@ extension Annotation {
             freeText.fontName = "Lato-Regular"
             freeText.fontSize = CGFloat(Float(fontSizeStr) ?? 14) * fontSizeTransform
             freeText.fillColor = apiAnnotation.bgColor == "transparent" ? .clear
-                : UIColor(hexString: apiAnnotation.bgColor) ?? .white
+                : UIColor(hexString: apiAnnotation.bgColor) ?? .textLightest.variantForLightMode
             annotation = freeText
         case .text: // legacy name for point
             let point = DocViewerPointAnnotation()

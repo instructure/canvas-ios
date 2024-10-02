@@ -34,12 +34,10 @@ struct SnackBarView: View {
             .frame(minWidth: 300, maxWidth: maxWidth, alignment: .leading)
             .font(.regular14, lineHeight: .fit)
             .padding(padding)
-            // Use textLightest unconditionally when palette is updated
-            .foregroundColor(colorScheme == .light ? .textLightest : .licorice)
+            .foregroundColor(.textLightest)
             .background {
                 RoundedRectangle(cornerSize: CGSize(width: 6, height: 6))
-                    // Use backgroundDarkest unconditionally when palette is updated
-                    .foregroundColor(colorScheme == .dark ? .white : .backgroundDarkest)
+                    .foregroundColor(.backgroundDarkest)
             }
             .padding(.horizontal, padding)
             .frame(minHeight: 48)

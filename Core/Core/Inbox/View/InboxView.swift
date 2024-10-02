@@ -108,11 +108,11 @@ public struct InboxView: View, ScreenViewTrackable {
             let accessibilityLabel = isCurrentlyStarred ? String(localized: "Mark as Unstarred", bundle: .core) : String(localized: "Mark as Starred", bundle: .core)
              image
                 .size(30)
-                .foregroundColor(.textDark)
+                .foregroundColor(.textLightest)
                 .padding(.leading, 6)
                 .accessibilityLabel(accessibilityLabel)
         }
-        .tint(.ash)
+        .tint(.backgroundDark)
     }
 
     @ViewBuilder
@@ -130,7 +130,7 @@ public struct InboxView: View, ScreenViewTrackable {
                 }
                 .labelStyle(.iconOnly)
             }
-            .tint(.ash)
+            .tint(.backgroundDark)
         } else {
             SwiftUI.EmptyView()
         }
@@ -151,7 +151,7 @@ public struct InboxView: View, ScreenViewTrackable {
                 }
                 .labelStyle(.iconOnly)
             }
-            .tint(.ash)
+            .tint(.backgroundDark)
         } else {
             SwiftUI.EmptyView()
         }
@@ -176,7 +176,7 @@ public struct InboxView: View, ScreenViewTrackable {
             }
             .labelStyle(.iconOnly)
         }
-        .tint(.electric)
+        .tint(.backgroundInfo)
     }
 
     private var loadingIndicator: some View {

@@ -40,7 +40,7 @@ class FloatingButtonTests: XCTestCase {
         let view = FloatingButton()
         let tinter = UIView() // tintColor gets adjusted, so apply same with this
         view.iconColorName = "not a color name"
-        tinter.tintColor = .white
+        tinter.tintColor = .textLightest.variantForLightMode
         XCTAssertEqual(view.tintColor, tinter.tintColor)
         view.iconColorName = "buttonSecondaryText"
         tinter.tintColor = Brand.shared.buttonSecondaryText

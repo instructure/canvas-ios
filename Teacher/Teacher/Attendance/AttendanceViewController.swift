@@ -309,7 +309,7 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
                 self?.updateMarkAllButton()
                 done(true)
             }
-            action.backgroundColor = value?.tintColor ?? .oxford
+            action.backgroundColor = value?.tintColor ?? .backgroundDarkest
             return action
         })
     }

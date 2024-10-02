@@ -53,7 +53,7 @@ class TodoListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.contextLabel.textColor.hexString, UIColor(hexString: "#f00")!.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(cell?.contextLabel.text, "Course One")
         cell = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TodoListCell
-        XCTAssertEqual(cell?.contextLabel.textColor, UIColor(hexString: "#0f0"))
+        XCTAssertEqual(cell?.contextLabel.textColor.hexString, CourseColorsInteractorLive().courseColorFromAPIColor("#0f0").hexString)
         XCTAssertEqual(cell?.contextLabel.text, "Group One")
     }
 

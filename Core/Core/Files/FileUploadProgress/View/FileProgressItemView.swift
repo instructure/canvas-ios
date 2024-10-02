@@ -40,7 +40,7 @@ struct FileProgressItemView: View {
         SwiftUI.Group {
             if case .error = viewModel.state {
                 Image.warningLine
-                    .foregroundColor(.crimson)
+                    .foregroundColor(.textDanger)
             } else {
                 viewModel.icon
                     .foregroundColor(.textDarkest)
@@ -74,7 +74,7 @@ struct FileProgressItemView: View {
         SwiftUI.Group {
             switch viewModel.state {
             case .uploaded:
-                Image.checkLine.foregroundColor(.shamrock)
+                Image.checkLine.foregroundColor(.textSuccess)
                     .frame(maxHeight: .infinity)
                     .transition(.opacity)
                     .accessibility(hidden: true)

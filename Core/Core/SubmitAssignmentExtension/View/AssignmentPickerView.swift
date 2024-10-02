@@ -77,7 +77,7 @@ public struct AssignmentPickerView: View {
                             if viewModel.selectedAssignment == item {
                                 Image.checkSolid
                                     .frame(width: 50, height: 50)
-                                    .foregroundColor(.electric)
+                                    .foregroundColor(.textInfo)
                             } else if item.notAvailableReason != nil {
                                 Image.noLine
                                     .frame(width: 50, height: 50)

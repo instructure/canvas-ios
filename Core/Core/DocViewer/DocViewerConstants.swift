@@ -88,7 +88,7 @@ public func stylePSPDFKit() {
 
     let highlightPresets = DocViewerHighlightColor.allCases.map { return ColorPreset(color: $0.color) }
     let inkPresets = DocViewerAnnotationColor.allCases.map { return ColorPreset(color: $0.color) }
-    let textColorPresets = DocViewerAnnotationColor.allCases.map { return ColorPreset(color: $0.color, fill: .white, alpha: 1) }
+    let textColorPresets = DocViewerAnnotationColor.allCases.map { return ColorPreset(color: $0.color, fill: .textLightest.variantForLightMode, alpha: 1) }
     let textFillPresets = DocViewerAnnotationColor.allCases.map { return ColorPreset(color: $0.color, fill: .clear, alpha: 1) }
     let textPresets = textColorPresets + textFillPresets
     styleManager.setPresets(highlightPresets, forKey: Annotation.ToolVariantID(rawValue: Annotation.Tool.highlight.rawValue), type: .colorPreset)

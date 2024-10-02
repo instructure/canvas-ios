@@ -347,14 +347,14 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         switch state {
         case .reSubmissionFailed:
             submittedLabel?.text = String(localized: "Resubmission Failed", bundle: .student)
-            submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
+            submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .textLightest.variantForLightMode)
             submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(String(localized: "Tap to view details", bundle: .student), for: .normal)
             changeSubmittedIconVisibility(to: false)
             return
         case .failed:
             submittedLabel?.text = String(localized: "Submission Failed", bundle: .student)
-            submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
+            submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .textLightest.variantForLightMode)
             submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(String(localized: "Tap to view details", bundle: .student), for: .normal)
             changeSubmittedIconVisibility(to: false)

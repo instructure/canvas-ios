@@ -34,7 +34,7 @@ public class PublishedIconView: UIImageView {
                 tintColor = UIColor.backgroundSuccess
             case .some(false):
                 image = .noSolid
-                tintColor = UIColor.ash
+                tintColor = UIColor.textDark
             case .none:
                 image = nil
             }

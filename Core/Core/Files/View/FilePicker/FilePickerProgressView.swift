@@ -65,10 +65,10 @@ class FilePickerProgressView: UIView {
         progressView.pinToLeftAndRightOfSuperview()
         progressView.addConstraintsWithVFL("V:[header]-(pad)-[view]", views: ["header": header], metrics: metrics)
 
-        progressView.tintColor = .electric
+        progressView.tintColor = .textInfo
         header.font = .scaledNamedFont(.medium16)
         header.textAlignment = .center
-        header.textColor = .electric
+        header.textColor = .textInfo
 
         header.text = String(localized: "Uploading...", bundle: .core)
         progressView.backgroundColor = .backgroundLight

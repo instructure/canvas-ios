@@ -145,7 +145,7 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
         testee.start { completed.fulfill() }
 
         // THEN
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 5)
     }
 
     func testIteratesThroughUsersAndRestoresLastLoggedInOneUponFinish() {

@@ -28,7 +28,7 @@ struct ConferenceCard: View {
     var body: some View {
         HStack(spacing: 0) {
             VStack {
-                Image.infoSolid.foregroundColor(.white)
+                Image.infoLine.foregroundColor(.textLightest)
                     .padding(.horizontal, 8).padding(.top, 10)
                 Spacer()
             }
