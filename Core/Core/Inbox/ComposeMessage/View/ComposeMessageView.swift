@@ -47,7 +47,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     public var body: some View {
         InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
-            ScrollView {
                 VStack(spacing: 0) {
                     headerView
                         .background(
@@ -146,7 +145,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 isPresented: $model.isShowingErrorDialog,
                 presenting: model.errorAlert
             )
-        }
     }
 
     @ViewBuilder
