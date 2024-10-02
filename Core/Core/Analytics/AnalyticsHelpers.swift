@@ -32,4 +32,15 @@ extension Publisher {
         }
         .store(in: &set)
     }
+
+    public func logReceiveValue(
+        _ dynamicName: @escaping (Output) -> String,
+        to analytics: Analytics = .shared,
+        storeIn set: inout Set<AnyCancellable>
+    ) {
+        sinkValue { value in
+            analytics.logEvent(dynamicName(value))
+        }
+        .store(in: &set)
+    }
 }
