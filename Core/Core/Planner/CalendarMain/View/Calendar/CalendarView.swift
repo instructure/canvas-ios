@@ -38,6 +38,12 @@ struct CalendarView: View {
         )
     }
 
+    @State private var movingAngle: Angle?
+
+    private var stateAngle: Angle {
+        .degrees(isCollapsed ? 0 : 180)
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
@@ -52,7 +58,7 @@ struct CalendarView: View {
                             Text(month).font(.semibold22)
                             Image(systemName: "chevron.down")
                                 .bold()
-                                .rotationEffect(.degrees(isCollapsed ? 0 : 180))
+                                .rotationEffect(movingAngle ?? stateAngle)
                         }
                     }
                 }
@@ -75,7 +81,15 @@ struct CalendarView: View {
             }
             .padding(.horizontal, 5)
             Spacer().frame(height: 5)
-            CalendarCardView(isCollapsed: $isCollapsed, selectedDay: $selectedDay)
+            CalendarCardView(
+                isCollapsed: $isCollapsed,
+                selectedDay: $selectedDay,
+                onHeightChange: { expansion in
+                    movingAngle = expansion.flatMap { value in
+                        return .degrees(value * 180)
+                    }
+                }
+            )
         }
         .padding(.top, 10)
         .background(Color.backgroundLight)
@@ -112,6 +126,8 @@ struct CalendarCardView: View {
     @Binding var isCollapsed: Bool
     @Binding var selectedDay: CalendarDay
 
+    var onHeightChange: ((CGFloat?) -> Void)?
+
     private let spaceID = Foundation.UUID()
 
     private func nextDay() -> CalendarDay {
@@ -143,6 +159,9 @@ struct CalendarCardView: View {
         .frame(maxHeight: height)
         .background(Color.backgroundLight)
         .gesture(dragGesture)
+        .onChange(of: expansion) { newValue in
+            onHeightChange?(newValue)
+        }
     }
 
     private var prevPeriodView: some View {
@@ -267,12 +286,10 @@ struct CalendarCardView: View {
                     } completion: {
                         guard shouldCollapse else { return }
 
-                        withAnimation(.easeOut(duration: 0.2)) {
-                            isCollapsed = increment == .collapsing ? true : false
-                            mode = .stable
-                            translation = .zero
-                            expansion = nil
-                        }
+                        isCollapsed = increment == .collapsing ? true : false
+                        mode = .stable
+                        translation = .zero
+                        expansion = nil
                     }
 
                 default: break

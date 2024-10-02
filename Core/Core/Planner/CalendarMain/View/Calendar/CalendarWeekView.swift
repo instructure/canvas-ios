@@ -25,7 +25,7 @@ struct CalendarWeekView: View {
     @State fileprivate var dates: [Date] = []
     @Binding var calendarDay: CalendarDay
 
-    fileprivate var week: CalendarWeek {calendarDay.week }
+    fileprivate var week: CalendarWeek { calendarDay.week }
 
     var body: some View {
         Grid(horizontalSpacing: 0) {
@@ -38,7 +38,13 @@ struct CalendarWeekView: View {
                     )
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        calendarDay = weekDay.calendarDay
+                        if weekDay.isValid {
+                            calendarDay = weekDay.calendarDay
+                        } else {
+                            withAnimation {
+                                calendarDay = weekDay.calendarDay
+                            }
+                        }
                     }
                 }
             }
