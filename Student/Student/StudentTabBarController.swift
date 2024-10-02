@@ -28,7 +28,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         delegate = self
         viewControllers = [
             dashboardTab(),
-            calendarTab(newPlanner: true),
+            calendarTab(),
             todoTab(),
             notificationsTab()
         ]
@@ -92,11 +92,11 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         return result
     }
 
-    func calendarTab(newPlanner: Bool = false) -> UIViewController {
+    func calendarTab() -> UIViewController {
         let split = CoreSplitViewController()
 
         let planner: UIViewController
-        if newPlanner {
+        if ExperimentalFeature.newCalendar.isEnabled {
             planner = PlannerAssembly.makeNewPlannerViewController()
         } else {
             planner = CoreNavigationController(rootViewController: PlannerViewController.create())

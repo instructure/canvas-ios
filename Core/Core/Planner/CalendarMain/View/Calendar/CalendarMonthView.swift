@@ -108,21 +108,28 @@ struct CalendarStaticMonthView: View {
 struct CalendarMonthDayView: View {
     let day: CalendarWeekday
     let dots: Int
+    var dimsInvalidDays: Bool = true
     var selected: Bool = false
 
+    private var textColor: Color {
+        if selected { return .white }
+        guard dimsInvalidDays else { return .primary }
+        return day.isValid ? .primary : .secondary
+    }
+
     var body: some View {
-        let color = selected ? Color.white : .primary
+
         HStack {
             Spacer()
             Text(day.title)
                 .font(.regular16)
-                .foregroundStyle(day.isValid ? color : Color.secondary)
+                .foregroundStyle(textColor)
                 .padding(.vertical, 10)
                 .overlay(alignment: .bottom) {
                     if showsDots {
                         HStack(spacing: 3) {
                             ForEach(0 ..< dots, id: \.self) { _ in
-                                Circle().fill(Color.blue).frame(width: 5, height: 5).transition(.opacity)
+                                Circle().fill(Color.blue).frame(width: 4, height: 4).transition(.opacity)
                             }
                         }
                     }
@@ -175,7 +182,7 @@ extension CalendarMonthViewProtocol {
             .map({ newList in
                 return newList
                     .compactMap({ $0.date })
-                    .filter({ month.containsDate($0) })
+                    .filter({ month.containsDateInWeeks($0) })
             })
             .eraseToAnyPublisher()
     }

@@ -37,20 +37,8 @@ public struct PlannerScreen: View {
                             viewModel.showPlannableDetails.send((item, viewController))
                         }
                 }
-            } header: {
-                Text(
-                    viewModel.selectedDay.date.formatted(
-                        date: .abbreviated,
-                        time: .omitted,
-                        calendar: viewModel.calendar
-                    )
-                )
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                .padding(.horizontal)
-                .padding(.vertical, 5)
-                .background(Color(uiColor: .systemBackground))
             }
+            .listSectionSeparator(.hidden)
         }
         .listStyle(.plain)
         .safeAreaInset(edge: .top) {
@@ -62,9 +50,6 @@ public struct PlannerScreen: View {
                 }
             )
             .environment(\.plannerViewModel, viewModel.wrapped())
-            .overlay(alignment: .bottom) {
-                Color(uiColor: .systemBackground).frame(height: 10).offset(y: 10)
-            }
         }
         .toolbar(content: { toolbarContent })
     }

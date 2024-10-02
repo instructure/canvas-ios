@@ -61,6 +61,14 @@ struct CalendarMonth: Equatable {
         return calendar.date(byAdding: .month, value: 1, to: startDate) ?? startDate
     }
 
+    func containsDateInWeeks(_ edate: Date) -> Bool {
+        guard let start = weeks.first?.dateInterval.start,
+              let end = weeks.last?.dateInterval.end
+        else { return false }
+        let interval = DateInterval(start: start, end: end)
+        return interval.contains(edate)
+    }
+
     func containsDate(_ edate: Date) -> Bool {
         return dateInterval.contains(edate)
     }

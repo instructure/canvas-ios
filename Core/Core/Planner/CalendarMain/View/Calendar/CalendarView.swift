@@ -38,11 +38,16 @@ struct CalendarView: View {
         )
     }
 
-    @State private var movingAngle: Angle?
+    @State private var expansionRatio: CGFloat?
 
     private var stateAngle: Angle {
-        .degrees(isCollapsed ? 0 : 180)
+        if let ratio = expansionRatio {
+            return .degrees(ratio * 180)
+        }
+        return .degrees(isCollapsed ? 0 : 180)
     }
+
+    private let chevronDown = Image.chevronDown
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -56,11 +61,10 @@ struct CalendarView: View {
                     } label: {
                         HStack {
                             Text(month).font(.semibold22)
-                            Image(systemName: "chevron.down")
-                                .bold()
-                                .rotationEffect(movingAngle ?? stateAngle)
+                            Image.chevronDown.rotationEffect(stateAngle)
                         }
                     }
+                    .foregroundStyle(Color.textDarkest)
                 }
                 Spacer()
                 Button(action: calendarsTapped) {
@@ -84,15 +88,11 @@ struct CalendarView: View {
             CalendarCardView(
                 isCollapsed: $isCollapsed,
                 selectedDay: $selectedDay,
-                onHeightChange: { expansion in
-                    movingAngle = expansion.flatMap { value in
-                        return .degrees(value * 180)
-                    }
-                }
+                expansion: $expansionRatio
             )
         }
-        .padding(.top, 10)
-        .background(Color.backgroundLight)
+        .padding(.vertical, 10)
+        .background(Color.backgroundLightest)
         .overlay(alignment: .bottom) {
             Divider()
         }
@@ -119,14 +119,11 @@ struct CalendarCardView: View {
     @State private var prevFullSize: CGSize = .small
     @State private var currentFullSize: CGSize = .small
     @State private var nextFullSize: CGSize = .small
-
     @State private var collapsedSize: CGSize = .small
-    @State private var expansion: CGFloat?
 
     @Binding var isCollapsed: Bool
     @Binding var selectedDay: CalendarDay
-
-    var onHeightChange: ((CGFloat?) -> Void)?
+    @Binding var expansion: CGFloat?
 
     private let spaceID = Foundation.UUID()
 
@@ -157,11 +154,8 @@ struct CalendarCardView: View {
             .coordinateSpace(name: spaceID)
         }
         .frame(maxHeight: height)
-        .background(Color.backgroundLight)
+        .background(Color.backgroundLightest)
         .gesture(dragGesture)
-        .onChange(of: expansion) { newValue in
-            onHeightChange?(newValue)
-        }
     }
 
     private var prevPeriodView: some View {
@@ -270,7 +264,6 @@ struct CalendarCardView: View {
                             } else if case .completionPrev = increment {
                                 selectedDay = prevDay()
                             }
-                            
                             mode = .stable
                             translation = .zero
                             expansion = nil
@@ -279,7 +272,12 @@ struct CalendarCardView: View {
 
                 case .draggingVertical:
 
-                    let shouldCollapse = abs(translation.height) / currentFullSize.height > 0.4 || abs(value.velocity.height) > 30
+                    var shouldCollapse = abs(translation.height) / currentFullSize.height > 0.4 || abs(value.velocity.height) > 30
+
+                    if value.velocity.height.sign != translation.height.sign {
+                        shouldCollapse = false
+                    }
+
                     let increment: Mode = translation.height < 0 ? .collapsing : .expanding
 
                     withAnimation(duration: 0.4) {

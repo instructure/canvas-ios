@@ -34,6 +34,7 @@ struct CalendarWeekView: View {
                     CalendarMonthDayView(
                         day: weekDay,
                         dots: eventsCount(for: weekDay),
+                        dimsInvalidDays: false,
                         selected: calendarDay == weekDay.calendarDay
                     )
                     .contentShape(Rectangle())
