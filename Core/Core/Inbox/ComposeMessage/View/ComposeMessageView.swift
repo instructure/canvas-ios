@@ -109,42 +109,42 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
             .navigationBarStyle(.modal)
         }
-            .onPreferenceChange(ViewSizeKey.self) { offset in
-                model.showExtraSendButton = offset > headerHeight
+        .onPreferenceChange(ViewSizeKey.self) { offset in
+            model.showExtraSendButton = offset > headerHeight
+        }
+        .coordinateSpace(name: "scroll")
+        .background(Color.backgroundLightest)
+        .fileImporter(
+            isPresented: $model.isFilePickerVisible,
+            allowedContentTypes: [.item],
+            allowsMultipleSelection: false
+        ) { result in
+            switch result {
+            case .success(let urls):
+                model.addFiles(urls: urls)
+            case .failure:
+                break
             }
-            .coordinateSpace(name: "scroll")
-            .background(Color.backgroundLightest)
-            .fileImporter(
-                isPresented: $model.isFilePickerVisible,
-                allowedContentTypes: [.item],
-                allowsMultipleSelection: false
-            ) { result in
-                switch result {
-                case .success(let urls):
-                    model.addFiles(urls: urls)
-                case .failure:
-                    break
-                }
-            }
-            .sheet(isPresented: $model.isImagePickerVisible) {
-                ImagePickerViewController(sourceType: .photoLibrary, imageHandler: model.addFile)
-            }
-            .sheet(isPresented: $model.isTakePhotoVisible) {
-                ImagePickerViewController(sourceType: .camera, imageHandler: model.addFile)
-                    .interactiveDismissDisabled()
-            }
-            .sheet(isPresented: $model.isAudioRecordVisible) {
-                AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: model.router, onSelect: model.addFile)
-                    .interactiveDismissDisabled()
-            }
-            .confirmationAlert(
-                isPresented: $model.isShowingCancelDialog,
-                presenting: model.confirmAlert
-            )
-            .confirmationAlert(
-                isPresented: $model.isShowingErrorDialog,
-                presenting: model.errorAlert
-            )
+        }
+        .sheet(isPresented: $model.isImagePickerVisible) {
+            ImagePickerViewController(sourceType: .photoLibrary, imageHandler: model.addFile)
+        }
+        .sheet(isPresented: $model.isTakePhotoVisible) {
+            ImagePickerViewController(sourceType: .camera, imageHandler: model.addFile)
+                .interactiveDismissDisabled()
+        }
+        .sheet(isPresented: $model.isAudioRecordVisible) {
+            AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: model.router, onSelect: model.addFile)
+                .interactiveDismissDisabled()
+        }
+        .confirmationAlert(
+            isPresented: $model.isShowingCancelDialog,
+            presenting: model.confirmAlert
+        )
+        .confirmationAlert(
+            isPresented: $model.isShowingErrorDialog,
+            presenting: model.errorAlert
+        )
     }
 
     @ViewBuilder
