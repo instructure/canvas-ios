@@ -61,7 +61,6 @@ public class Analytics: NSObject {
 
     /**
      This method is mainly used to track user and application actions for usage statistics.
-     Currently, events sent using this method aren't forwarded anywhere.
      */
     @objc
     public func logEvent(_ name: String, parameters: [String: Any]? = nil) {

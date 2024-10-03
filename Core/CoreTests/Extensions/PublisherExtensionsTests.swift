@@ -98,7 +98,6 @@ class PublisherExtensionsTests: XCTestCase {
                 XCTAssertTrue(parser.parseCalled)
             })
             .store(in: &subscriptions)
-
     }
 
     func testOptionalStringParsing() {
@@ -120,17 +119,12 @@ class PublisherExtensionsTests: XCTestCase {
                 XCTAssertTrue(parser.parseCalled)
             })
             .store(in: &subscriptions)
-
     }
 
     class HTMLParserMock: HTMLParser {
-
         var sessionId: String = "testSession"
-
         var prefix: String = "testPrefix"
-
         var sectionName: String = "testSection"
-
         var parseCalled = false
         var attachmentParseCalled = false
 
