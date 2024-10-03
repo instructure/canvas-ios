@@ -29,6 +29,16 @@ public enum GradListAssembly {
         )
     }
 
+    public static func makeGradeFilterInteractor(
+        appEnvironment: AppEnvironment,
+        courseId: String
+    ) -> GradeFilterInteractor {
+        GradeFilterInteractorLive(
+            appEnvironment: appEnvironment,
+            courseId: courseId
+        )
+    }
+
     public static func makeGradeListViewController(
         env: AppEnvironment,
         courseID: String,
@@ -38,9 +48,29 @@ public enum GradListAssembly {
             courseID: courseID,
             userID: userID
         )
-        let viewModel = GradeListViewModel(interactor: interactor, router: env.router)
+        let viewModel = GradeListViewModel(
+            interactor: interactor,
+            gradeFilterInteractor: makeGradeFilterInteractor(
+                appEnvironment: env,
+                courseId: courseID
+            ),
+            router: env.router
+        )
         let viewController = CoreHostingController(GradeListView(viewModel: viewModel))
         viewController.defaultViewRoute = "/empty"
+        return viewController
+    }
+
+    public static func makeGradeFilterViewController(
+        dependency: GradeFilterViewModel.Dependency,
+        gradeFilterInteractor: GradeFilterInteractor
+    ) -> UIViewController {
+        let viewModel = GradeFilterViewModel(
+            dependency: dependency,
+            gradeFilterInteractor: gradeFilterInteractor
+        )
+        let view = GradeFilterView(viewModel: viewModel)
+        let viewController = CoreHostingController(view)
         return viewController
     }
 }
