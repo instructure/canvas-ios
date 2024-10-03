@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineExt
 
 extension Publisher {
 
@@ -27,10 +28,11 @@ extension Publisher {
         to analytics: Analytics = .shared,
         storeIn set: inout Set<AnyCancellable>
     ) {
-        sinkValue { _ in
-            analytics.logEvent(name)
-        }
-        .store(in: &set)
+        ignoreFailure()
+            .sink { _ in
+                analytics.logEvent(name)
+            }
+            .store(in: &set)
     }
 
     public func logReceiveValue(
@@ -38,9 +40,10 @@ extension Publisher {
         to analytics: Analytics = .shared,
         storeIn set: inout Set<AnyCancellable>
     ) {
-        sinkValue { value in
-            analytics.logEvent(dynamicName(value))
-        }
-        .store(in: &set)
+        ignoreFailure()
+            .sink { value in
+                analytics.logEvent(dynamicName(value))
+            }
+            .store(in: &set)
     }
 }

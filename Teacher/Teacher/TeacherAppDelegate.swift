@@ -260,7 +260,7 @@ extension TeacherAppDelegate: AnalyticsHandler {
         Heap.track(name, withProperties: parameters)
         PageViewEventController.instance.logPageView(
             name,
-            attributes: parameters as? [String: String] ?? [:] // if there's a type mismatch attributes will be lost
+            attributes: parameters
         )
     }
 

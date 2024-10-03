@@ -28,16 +28,6 @@ extension Publisher {
         sink { _ in } receiveValue: { _ in }
     }
 
-    /// Sinks the publisher and ignores completion events.
-    public func sinkValue(
-        _ receiveValue: @escaping (Output) -> Void
-    ) -> AnyCancellable {
-        sink(
-            receiveCompletion: { _ in },
-            receiveValue: receiveValue
-        )
-    }
-
     public func bindProgress(_ isLoading: PassthroughRelay<Bool>) -> AnyPublisher<Output, Failure> {
         handleEvents(
             receiveSubscription: { _ in

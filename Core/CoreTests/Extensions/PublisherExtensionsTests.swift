@@ -29,24 +29,6 @@ class PublisherExtensionsTests: XCTestCase {
         super.tearDown()
     }
 
-    func testSinkValue() {
-        // MARK: - GIVEN
-        let valueReceived = expectation(description: "Value Received")
-        let publisher = PassthroughSubject<Int, Error>()
-        publisher
-            .sinkValue { value in
-                valueReceived.fulfill()
-                XCTAssertEqual(value, 6)
-            }
-            .store(in: &subscriptions)
-
-        // MARK: - WHEN
-        publisher.send(6)
-
-        // MARK: - THEN
-        waitForExpectations(timeout: 1)
-    }
-
     func testBindProgressReportsLoadingStateOnSubscription() {
         // MARK: - GIVEN
         let publisher = PassthroughSubject<Void, Never>()
