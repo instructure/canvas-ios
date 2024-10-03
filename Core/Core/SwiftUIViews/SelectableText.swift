@@ -18,40 +18,91 @@
 
 import SwiftUI
 
-public struct SelectableText: View {
+public struct SelectableText: UIViewRepresentable {
     // MARK: - Properties
-    @State private var height: CGFloat = 0.0
-    private let text: AttributedString
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    private let text: String?
+    private let attributedText: AttributedString?
     private let font: UIFont.Name
     private let textColor: Color
 
-    // MARK: - Init
+    // MARK: - Inits
     public init(
-        text: AttributedString,
+        text: String,
         font: UIFont.Name,
         textColor: Color
     ) {
         self.text = text
         self.font = font
         self.textColor = textColor
+        self.attributedText = nil
     }
 
-    public var body: some View {
-        Text(text)
-            .font(Font(UIFont.scaledNamedFont(font)))
-            .foregroundStyle(Color.clear)
-            .readingFrame(coordinateSpace: .local) { frame in
-                height = frame.height + 5 // Adding 5 to make it more fit.
-            }
-            .overlay(alignment: .topLeading) {
-                SelectableTextViewWrapper(
-                    textType: .attributedText(
-                        value: text
-                    ),
-                    font: font,
-                    textColor: textColor
-                )
-                .frame(height: height)
-            }
+    public init(
+        attributedText: AttributedString,
+        font: UIFont.Name,
+        textColor: Color
+    ) {
+        self.attributedText = attributedText
+        self.font = font
+        self.textColor = textColor
+        self.text = nil
+    }
+
+    public func makeUIView(context: Self.Context) -> UITextView {
+        let textView = UITextView()
+        textView.font = UIFont.scaledNamedFont(font)
+        textView.backgroundColor = .clear
+        textView.isSelectable = true
+        textView.textContainerInset = .zero
+        textView.isEditable = false
+        textView.textContainer.lineFragmentPadding = 0
+        textView.isScrollEnabled = false
+        return textView
+    }
+
+    public func updateUIView(_ textView: UITextView, context: Self.Context) {
+        if let attributedText {
+            textView.attributedText = NSAttributedString(attributedText)
+        } else {
+            textView.text = text
+        }
+        textView.textColor = UIColor(textColor)
+        textView.font = UIFont.scaledNamedFont(font)
+    }
+
+    public func sizeThatFits(
+        _ proposal: ProposedViewSize,
+        uiView: UITextView,
+        context: Self.Context
+    ) -> CGSize? {
+        let dimensions = proposal.replacingUnspecifiedDimensions(
+            by: .init(
+                width: 0,
+                height: CGFloat.greatestFiniteMagnitude
+            )
+        )
+
+        let calculatedHeight = calculateTextViewHeight(
+            containerSize: dimensions,
+            attributedString: uiView.attributedText
+        )
+
+        return .init(
+            width: dimensions.width,
+            height: calculatedHeight
+        )
+    }
+
+    private func calculateTextViewHeight(
+        containerSize: CGSize,
+        attributedString: NSAttributedString
+    ) -> CGFloat {
+        let boundingRect = attributedString.boundingRect(
+            with: .init(width: containerSize.width, height: .greatestFiniteMagnitude),
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
+            context: nil
+        )
+        return boundingRect.height
     }
 }

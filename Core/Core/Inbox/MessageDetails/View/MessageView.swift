@@ -110,7 +110,7 @@ public struct MessageView: View {
     private var bodyView: some View {
         VStack(alignment: .leading, spacing: 16) {
             SelectableText(
-                text: model.body.toAttributedStringWithLinks(),
+                attributedText: model.body.toAttributedStringWithLinks(),
                 font: .regular16,
                 textColor: .textDarkest
             )
