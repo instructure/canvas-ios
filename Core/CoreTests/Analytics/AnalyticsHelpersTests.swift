@@ -28,9 +28,9 @@ class AnalyticsHelpersTests: CoreTestCase {
         super.tearDown()
     }
 
-    // MARK: - LogReceiveValue
+    // MARK: - LogReceiveOutput
 
-    func test_logReceiveValue_valueReportedToAnalytics() {
+    func test_logReceiveOutput_valueReportedToAnalytics() {
         // GIVEN
         let publisher = PassthroughSubject<Void, Never>()
         publisher.logReceiveOutput(
@@ -46,7 +46,7 @@ class AnalyticsHelpersTests: CoreTestCase {
         XCTAssertEqual(analytics.lastEvent, "test_event")
     }
 
-    func test_logReceiveValue_completionNotReportedToAnalytics() {
+    func test_logReceiveOutput_completionNotReportedToAnalytics() {
         // GIVEN
         let publisher = PassthroughSubject<Void, Never>()
         publisher.logReceiveOutput(
@@ -62,7 +62,7 @@ class AnalyticsHelpersTests: CoreTestCase {
         XCTAssertEqual(analytics.lastEvent, nil)
     }
 
-    func test_logReceiveValue_errorNotReportedToAnalytics() {
+    func test_logReceiveOutput_errorNotReportedToAnalytics() {
         // GIVEN
         let publisher = PassthroughSubject<Void, Error>()
         publisher.logReceiveOutput(
@@ -78,9 +78,9 @@ class AnalyticsHelpersTests: CoreTestCase {
         XCTAssertEqual(analytics.lastEvent, nil)
     }
 
-    // MARK: - LogReceiveValue With Dynamic Name
+    // MARK: - LogReceiveOutput With Dynamic Name
 
-    func test_logReceiveValueDynamicName_valueReportedToAnalytics() {
+    func test_logReceiveOutputDynamicName_valueReportedToAnalytics() {
         // GIVEN
         let publisher = PassthroughSubject<Int, Never>()
         publisher.logReceiveOutput(
@@ -99,7 +99,7 @@ class AnalyticsHelpersTests: CoreTestCase {
         XCTAssertEqual(analytics.lastEvent, "test_event")
     }
 
-    func test_logReceiveValueDynamicName_completionNotReportedToAnalytics() {
+    func test_logReceiveOutputDynamicName_completionNotReportedToAnalytics() {
         // GIVEN
         let nameNotQueried = expectation(description: "Log name not queried")
         nameNotQueried.isInverted = true
@@ -121,7 +121,7 @@ class AnalyticsHelpersTests: CoreTestCase {
         waitForExpectations(timeout: 1)
     }
 
-    func test_logReceiveValueDynamicName_errorNotReportedToAnalytics() {
+    func test_logReceiveOutputDynamicName_errorNotReportedToAnalytics() {
         // GIVEN
         let nameNotQueried = expectation(description: "Log name not queried")
         nameNotQueried.isInverted = true

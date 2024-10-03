@@ -34,7 +34,10 @@ extension Publisher {
             }
             .store(in: &set)
     }
-
+    /// Reports an analytics event when this publisher receives an output.
+    /// The value itself  won't be sent to analytics, only the parameter called `name`.
+    /// - parameters:
+    ///   - dynamicName: You can use this block to provide a name based on the output's value.
     public func logReceiveOutput(
         _ dynamicName: @escaping (Output) -> String,
         to analytics: Analytics = .shared,
