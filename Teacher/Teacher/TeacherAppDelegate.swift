@@ -257,7 +257,10 @@ extension TeacherAppDelegate: AnalyticsHandler {
     }
 
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        Heap.track(name, withProperties: parameters)
+        if Heap.isTrackingEnabled() {
+            Heap.track(name, withProperties: parameters)
+        }
+
         PageViewEventController.instance.logPageView(
             name,
             attributes: parameters
