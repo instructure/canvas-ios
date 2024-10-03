@@ -21,9 +21,9 @@ import CombineExt
 
 extension Publisher {
 
-    /// Reports an analytics event when this publisher receives a value.
-    /// The value received won't be sent to analytics, only the parameter called `name`.
-    public func logReceiveValue(
+    /// Reports an analytics event when this publisher receives an output.
+    /// The value itself  won't be sent to analytics, only the parameter called `name`.
+    public func logReceiveOutput(
         _ name: String,
         to analytics: Analytics = .shared,
         storeIn set: inout Set<AnyCancellable>
@@ -35,7 +35,7 @@ extension Publisher {
             .store(in: &set)
     }
 
-    public func logReceiveValue(
+    public func logReceiveOutput(
         _ dynamicName: @escaping (Output) -> String,
         to analytics: Analytics = .shared,
         storeIn set: inout Set<AnyCancellable>

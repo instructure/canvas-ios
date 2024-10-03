@@ -108,7 +108,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
             syncConfirmAlert: syncConfirmAlert
         )
 
-        syncButtonDidTap.logReceiveValue(
+        syncButtonDidTap.logReceiveOutput(
             "offline_sync_button_tapped",
             storeIn: &subscriptions
         )

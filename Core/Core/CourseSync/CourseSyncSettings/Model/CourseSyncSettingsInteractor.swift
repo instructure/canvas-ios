@@ -31,9 +31,7 @@ protocol CourseSyncSettingsInteractor {
 class CourseSyncSettingsInteractorLive: CourseSyncSettingsInteractor {
     private var storage: SessionDefaults
 
-    public init(
-        storage: SessionDefaults
-    ) {
+    public init(storage: SessionDefaults) {
         self.storage = storage
     }
 

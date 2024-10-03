@@ -33,7 +33,7 @@ class AnalyticsHelpersTests: CoreTestCase {
     func test_logReceiveValue_valueReportedToAnalytics() {
         // GIVEN
         let publisher = PassthroughSubject<Void, Never>()
-        publisher.logReceiveValue(
+        publisher.logReceiveOutput(
             "test_event",
             storeIn: &subscriptions
         )
@@ -49,7 +49,7 @@ class AnalyticsHelpersTests: CoreTestCase {
     func test_logReceiveValue_completionNotReportedToAnalytics() {
         // GIVEN
         let publisher = PassthroughSubject<Void, Never>()
-        publisher.logReceiveValue(
+        publisher.logReceiveOutput(
             "test event",
             storeIn: &subscriptions
         )
@@ -65,7 +65,7 @@ class AnalyticsHelpersTests: CoreTestCase {
     func test_logReceiveValue_errorNotReportedToAnalytics() {
         // GIVEN
         let publisher = PassthroughSubject<Void, Error>()
-        publisher.logReceiveValue(
+        publisher.logReceiveOutput(
             "test event",
             storeIn: &subscriptions
         )
@@ -83,7 +83,7 @@ class AnalyticsHelpersTests: CoreTestCase {
     func test_logReceiveValueDynamicName_valueReportedToAnalytics() {
         // GIVEN
         let publisher = PassthroughSubject<Int, Never>()
-        publisher.logReceiveValue(
+        publisher.logReceiveOutput(
             { value in
                 XCTAssertEqual(value, 1)
                 return "test_event"
@@ -104,7 +104,7 @@ class AnalyticsHelpersTests: CoreTestCase {
         let nameNotQueried = expectation(description: "Log name not queried")
         nameNotQueried.isInverted = true
         let publisher = PassthroughSubject<Int, Never>()
-        publisher.logReceiveValue(
+        publisher.logReceiveOutput(
             { _ in
                 nameNotQueried.fulfill()
                 return "test event"
@@ -126,7 +126,7 @@ class AnalyticsHelpersTests: CoreTestCase {
         let nameNotQueried = expectation(description: "Log name not queried")
         nameNotQueried.isInverted = true
         let publisher = PassthroughSubject<Int, Error>()
-        publisher.logReceiveValue(
+        publisher.logReceiveOutput(
             { _ in
                 nameNotQueried.fulfill()
                 return "test event"
