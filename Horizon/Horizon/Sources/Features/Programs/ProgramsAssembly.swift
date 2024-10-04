@@ -19,7 +19,11 @@
 import Foundation
 
 final class ProgramsAssembly {
+    static func createGetProgramsInteractor() -> GetProgramsInteractor {
+        GetProgramsInteractor()
+    }
+
     static func makeView() -> ProgramsView {
-        ProgramsView(viewModel: .init())
+        ProgramsView(viewModel: .init(interactor: createGetProgramsInteractor()))
     }
 }

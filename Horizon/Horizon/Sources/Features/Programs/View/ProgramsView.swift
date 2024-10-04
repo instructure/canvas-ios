@@ -34,15 +34,13 @@ struct ProgramsView: View {
             ) { proxy in
                 VStack(alignment: .leading, spacing: 0) {
                     SectionTitleView(title: "your programs")
-
                     ForEach(viewModel.programs) { program in
-                        LargeTitleView(title: viewModel.title)
+                        LargeTitleView(title: program.name)
                             .padding(.bottom, 4)
-                        BodyTextView(title: viewModel.institutionName)
+                        BodyTextView(title: program.institutionName)
                             .padding(.bottom, 4)
-                        BodyTextView(title: viewModel.targetCompletion)
+                        BodyTextView(title: program.targetCompletion)
                             .padding(.bottom, 12)
-
                         Button {
                             print("change pacing tapped")
                         } label: {
@@ -56,13 +54,12 @@ struct ProgramsView: View {
                         }
                         CertificateProgressBar(
                             maxWidth: proxy.size.width,
-                            progress: viewModel.progress,
-                            progressString: viewModel.progressString
+                            progress: program.progress,
+                            progressString: program.progressString
                         )
                         whatsNextModuleView(proxy: proxy)
                         modulesView(program.modules)
                     }
-
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -105,7 +102,7 @@ struct ProgramsView: View {
     }
 
     @ViewBuilder
-    private func modulesView(_ modules: [Module]) -> some View {
+    private func modulesView(_ modules: [HModule]) -> some View {
         VStack(spacing: 0) {
             ForEach(modules) { module in
                 ExpandingModuleView(
@@ -118,5 +115,5 @@ struct ProgramsView: View {
 }
 
 #Preview {
-    ProgramsView(viewModel: .init())
+    ProgramsView(viewModel: .init(interactor: GetProgramsInteractor()))
 }

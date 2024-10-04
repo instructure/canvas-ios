@@ -34,15 +34,27 @@ struct DashboardView: View {
                 config: .init(refreshable: true)
             ) { proxy in
                 VStack(alignment: .leading, spacing: 0) {
-                    LargeTitleView(title: viewModel.title)
-                    SectionTitleView(title: viewModel.programName)
-                    CertificateProgressBar(
-                        maxWidth: proxy.size.width,
-                        progress: viewModel.progress,
-                        progressString: viewModel.progressString
-                    )
-                    currentModuleView()
-                    whatsNextModuleView(proxy: proxy)
+                    if let program = viewModel.program {
+                        LargeTitleView(title: viewModel.title)
+                        SectionTitleView(title: program.name)
+                        CertificateProgressBar(
+                            maxWidth: proxy.size.width,
+                            progress: program.progress,
+                            progressString: program.progressString
+                        )
+                        currentModuleView(moduleItem: program.currentModuleItem)
+                        whatsNextModuleView(
+                            proxy: proxy,
+                            programName: program.name,
+                            moduleItems: program.upcomingModuleItems
+                        )
+                    } else {
+                        EmptyPanda(
+                            .NoResults,
+                            title: Text("No Results", bundle: .core),
+                            message: Text("We couldn't find any program that you are enrolled in.", bundle: .core)
+                        )
+                    }
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -61,8 +73,8 @@ struct DashboardView: View {
     }
 
     @ViewBuilder
-    private func currentModuleView() -> some View {
-        if let currentModule = viewModel.currentModule {
+    private func currentModuleView(moduleItem: HModuleItem?) -> some View {
+        if let currentModuleItem = moduleItem {
             ZStack {
                 VStack {
                     Rectangle()
@@ -71,7 +83,7 @@ struct DashboardView: View {
                         .padding(16)
                     HStack {
                         VStack(alignment: .leading) {
-                            BodyTextView(title: currentModule.name)
+                            BodyTextView(title: currentModuleItem.title)
                             Text("20 MINS")
                                 .font(.regular12)
                                 .foregroundStyle(Color.textDark)
@@ -98,18 +110,22 @@ struct DashboardView: View {
     }
 
     @ViewBuilder
-    private func whatsNextModuleView(proxy: GeometryProxy) -> some View {
+    private func whatsNextModuleView(
+        proxy: GeometryProxy,
+        programName: String,
+        moduleItems: [HModuleItem]
+    ) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             SectionTitleView(title: "What's next")
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 8) {
-                    ForEach(viewModel.upcomingModules) { module in
+                    ForEach(moduleItems) { moduleItem in
                         ProgramItemView(
                             screenWidth: proxy.size.width,
-                            title: module.name,
+                            title: moduleItem.title,
                             icon: Image(systemName: "doc"),
                             duration: "60 mins",
-                            certificate: viewModel.programName
+                            certificate: programName
                         )
                     }
                 }
@@ -120,5 +136,5 @@ struct DashboardView: View {
 }
 
 #Preview {
-    DashboardView(viewModel: .init())
+    DashboardView(viewModel: .init(interactor: GetProgramsInteractor()))
 }

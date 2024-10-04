@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,33 +12,38 @@
 		0A8A4904B7D52C0A312710E7 /* PortfolioAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDEE3C9B0FD71A1B82674 /* PortfolioAssembly.swift */; };
 		0DD34C5B7893FAEB1CB71B32 /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = 139B6C6DC3CBFF9C5B35C383 /* PSPDFKit */; };
 		0F148FA2282D9705F7B530D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2080A9B6DE0E54D41F56D23 /* Assets.xcassets */; };
-		230F8C9955622F15628A451A /* BodyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433907CE398C941DC38F12D /* BodyTextView.swift */; };
+		1A7194AA245058A4306ECECB /* HorizonTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7869B63B08EFFB68FC40D74E /* HorizonTabBarController.swift */; };
 		256C0F2B20ADE76D83ADBF6A /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0AD9FDC99C9A599145CF29 /* BundleExtension.swift */; };
-		25BC7BF52877E4CEBD8C8D98 /* SmallBodyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F481A07061A75DB9DA71F2A /* SmallBodyTextView.swift */; };
+		341E151F9FE8B0C4F113C01A /* GetProgramsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F019A2E1914235682B5AF6B9 /* GetProgramsInteractor.swift */; };
+		3F82EB862BB02A4FE1D74F16 /* HModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E18B1A6BFF4E19E32C50E3 /* HModule.swift */; };
 		410AE96224CF3327A4027C6E /* ProgramsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B17BF83CEED78105ADED77 /* ProgramsView.swift */; };
-		42EFC488B30BA11F6C8712B2 /* CertificateProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A984653109DFC0BF452D97 /* CertificateProgressBar.swift */; };
+		41EFDB92980DFE03C0483F21 /* ExpandingModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581C446A807F61D5C4A430CB /* ExpandingModuleView.swift */; };
+		44DBA58302439467D77480A3 /* HProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475018934291ABE32049E593 /* HProgram.swift */; };
 		49653178BD2DA09C9B25CABC /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722F3AC23432C71FFB27E59D /* PortfolioView.swift */; };
-		4A4660B74E4152A1A15FC81B /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78D555464129381DDA56414 /* LargeTitleView.swift */; };
+		4BD1843CFE6151E09D0189F4 /* HModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DB2FB9D49D1B61A6754FF1 /* HModuleItem.swift */; };
+		52B0E6B6D0BC6FF04FCD9DA8 /* SmallBodyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C329C8CB575A570C5C715B4 /* SmallBodyTextView.swift */; };
+		55B13C0958819E4A2DE314DC /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DB60237B7E39AE3B5D2C96 /* SectionTitleView.swift */; };
 		6857FA660906F8D64DEA7AF4 /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = 3353F2BA79620AE7174A5B05 /* Heap */; };
 		6CEC39DA59A5049CE5BE075C /* JourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9D6C5D255D53E84764F95 /* JourneyView.swift */; };
-		7A48964EDC4A99C5B240E741 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9024C8B8371FFD58CDB96BE3 /* SectionTitleView.swift */; };
+		7011B831189B9DF0777465AE /* ProgramItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64E4DC2DF371ED601149398 /* ProgramItemView.swift */; };
 		7D55A90806A34664576046CD /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC16FDFB815642C82768097E /* DashboardView.swift */; };
 		7F1E089C895C93BCED693C76 /* HorizonRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEBFC2CDCDF50123C2FF2EA /* HorizonRouter.swift */; };
 		7FF9727E6AAB2C83F9239548 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E0CF6B14E0331072707C9 /* SplashView.swift */; };
 		84C518D0F43318BD14E15031 /* ProgramsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA155FF18B2AAB3C61415DF /* ProgramsViewModel.swift */; };
+		8DC21827F8DFA5E183547E1B /* BodyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72E8DB0F0A1D55D017076B1 /* BodyTextView.swift */; };
 		8F5B3D11D772C4E75DE6C430 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3018AB6A54CFAEFFF18A67B /* SplashViewModel.swift */; };
 		9FAF94301C5721716CC618F8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2872865BC52D4DC11EDEDDB7 /* FirebaseCrashlytics */; };
+		A51387187690E8DA93F7A8D0 /* BaseHorizonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36C84BF05EC6AC10C0ADCF /* BaseHorizonScreen.swift */; };
+		A937E6B102EA8A9A6E237925 /* LargeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63862BE83A2B49506A1E66B6 /* LargeTitleView.swift */; };
 		AC65D230D896B3CEEB8C7AE5 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 6C49041BE2282B9B33D84838 /* FirebaseRemoteConfig */; };
-		B31A26946CE36BEE0E0061F2 /* HorizonTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB054A404352C7C8A77807BF /* HorizonTabBarController.swift */; };
-		B76808FFC214FDC3E3A75D3D /* ProgramItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112D24B4A689BAFEE83BEC49 /* ProgramItemView.swift */; };
 		BCCEE877AD932FFFB7EF2226 /* ProgramsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6564F7EA04D5D54B6DD4CEEC /* ProgramsAssembly.swift */; };
+		C25ABAF2A3AA7BAA36558525 /* HCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE7EA661A88674D3221B5E /* HCourse.swift */; };
 		C2B449676582D8604C120987 /* SessionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A0CFCDCB519AC3CB745B8 /* SessionInteractor.swift */; };
-		C6C76A133C4BD4D7C23F17D5 /* BaseHorizonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F81D2F52A13985AA85C9322 /* BaseHorizonScreen.swift */; };
 		CD1792D6B7B30BBA298B365E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */; };
 		CEF9056D292D329DB92392CD /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 22E1B76C3FAF2281B5810EC1 /* Localizable.xcstrings */; };
 		CF0EC766922A1228268E9FAE /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A0268156243339BBE44E1A8F /* FirebaseRemoteConfigSwift */; };
 		CF45970478F391CB56DDB744 /* SplashAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF9390E19F72268D52E4723 /* SplashAssembly.swift */; };
-		EAC60D615B4F20E5FE63F260 /* ExpandingModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D62061E20CAD022D13826 /* ExpandingModuleView.swift */; };
+		E43A4ECD7F431763B904F25B /* CertificateProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DD459C300CD1347648998F /* CertificateProgressBar.swift */; };
 		F1A353523BAE2C458A6D205F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED7199B426F89179546237 /* Core.framework */; };
 		F20BD1D6F5B7FDE2940C5E95 /* DashboardAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E568BE2530AFAB502E3367DA /* DashboardAssembly.swift */; };
 		F97CACE305281B388A9505E3 /* JourneyAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB18B349EFFD80257532CA /* JourneyAssembly.swift */; };
@@ -59,27 +64,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = B90FCF66245CD7327BEE2CBF;
 			remoteInfo = Core;
-		};
-		B475EE2B2CA58F53002303EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F475EC6814456E8041E96A1A /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
-			remoteInfo = CoreTester;
-		};
-		B475EE2D2CA58F53002303EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F475EC6814456E8041E96A1A /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
-			remoteInfo = CoreTests;
-		};
-		B475EE2F2CA58F53002303EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F475EC6814456E8041E96A1A /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = 0F2B4D06F2ACF62293B119C4;
-			remoteInfo = TestsFoundation;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -102,33 +86,36 @@
 		07B17BF83CEED78105ADED77 /* ProgramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsView.swift; sourceTree = "<group>"; };
 		0B8A0CFCDCB519AC3CB745B8 /* SessionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInteractor.swift; sourceTree = "<group>"; };
 		0EEBFC2CDCDF50123C2FF2EA /* HorizonRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonRouter.swift; sourceTree = "<group>"; };
-		112D24B4A689BAFEE83BEC49 /* ProgramItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramItemView.swift; sourceTree = "<group>"; };
+		19E18B1A6BFF4E19E32C50E3 /* HModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HModule.swift; sourceTree = "<group>"; };
 		22E1B76C3FAF2281B5810EC1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		2433907CE398C941DC38F12D /* BodyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTextView.swift; sourceTree = "<group>"; };
-		277D62061E20CAD022D13826 /* ExpandingModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingModuleView.swift; sourceTree = "<group>"; };
-		3F81D2F52A13985AA85C9322 /* BaseHorizonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHorizonScreen.swift; sourceTree = "<group>"; };
-		44A984653109DFC0BF452D97 /* CertificateProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateProgressBar.swift; sourceTree = "<group>"; };
+		475018934291ABE32049E593 /* HProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HProgram.swift; sourceTree = "<group>"; };
+		4C329C8CB575A570C5C715B4 /* SmallBodyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBodyTextView.swift; sourceTree = "<group>"; };
+		56DB2FB9D49D1B61A6754FF1 /* HModuleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HModuleItem.swift; sourceTree = "<group>"; };
+		581C446A807F61D5C4A430CB /* ExpandingModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingModuleView.swift; sourceTree = "<group>"; };
+		5DDE7EA661A88674D3221B5E /* HCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCourse.swift; sourceTree = "<group>"; };
 		5EA9D6C5D255D53E84764F95 /* JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyView.swift; sourceTree = "<group>"; };
 		60A47E05ED8A779B909585C6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		63862BE83A2B49506A1E66B6 /* LargeTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitleView.swift; sourceTree = "<group>"; };
 		6564F7EA04D5D54B6DD4CEEC /* ProgramsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsAssembly.swift; sourceTree = "<group>"; };
+		71DB60237B7E39AE3B5D2C96 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
 		722F3AC23432C71FFB27E59D /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		8FF9390E19F72268D52E4723 /* SplashAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAssembly.swift; sourceTree = "<group>"; };
-		9024C8B8371FFD58CDB96BE3 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
 		9BDA1DDCAA5D9E94487D061D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		9F481A07061A75DB9DA71F2A /* SmallBodyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBodyTextView.swift; sourceTree = "<group>"; };
 		A56E0CF6B14E0331072707C9 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		AB054A404352C7C8A77807BF /* HorizonTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonTabBarController.swift; sourceTree = "<group>"; };
-		B78D555464129381DDA56414 /* LargeTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitleView.swift; sourceTree = "<group>"; };
 		BCA155FF18B2AAB3C61415DF /* ProgramsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsViewModel.swift; sourceTree = "<group>"; };
+		BF36C84BF05EC6AC10C0ADCF /* BaseHorizonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHorizonScreen.swift; sourceTree = "<group>"; };
 		CD0AD9FDC99C9A599145CF29 /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		E1CFDEE3C9B0FD71A1B82674 /* PortfolioAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioAssembly.swift; sourceTree = "<group>"; };
 		E568BE2530AFAB502E3367DA /* DashboardAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardAssembly.swift; sourceTree = "<group>"; };
+		E64E4DC2DF371ED601149398 /* ProgramItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramItemView.swift; sourceTree = "<group>"; };
 		E6ADB5EDE85D2FF9CC5DEF68 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		E72E8DB0F0A1D55D017076B1 /* BodyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTextView.swift; sourceTree = "<group>"; };
+		F019A2E1914235682B5AF6B9 /* GetProgramsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProgramsInteractor.swift; sourceTree = "<group>"; };
 		F2080A9B6DE0E54D41F56D23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3018AB6A54CFAEFFF18A67B /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		F475EC6814456E8041E96A1A /* Core */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
 		F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F8E7191B980D0E8899E8C175 /* Horizon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Horizon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8E7191B980D0E8899E8C175 /* Horizon.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Horizon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC16FDFB815642C82768097E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,21 +152,6 @@
 			path = Session;
 			sourceTree = "<group>";
 		};
-		0799A36714119557806E6EBF /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				3F81D2F52A13985AA85C9322 /* BaseHorizonScreen.swift */,
-				2433907CE398C941DC38F12D /* BodyTextView.swift */,
-				44A984653109DFC0BF452D97 /* CertificateProgressBar.swift */,
-				277D62061E20CAD022D13826 /* ExpandingModuleView.swift */,
-				B78D555464129381DDA56414 /* LargeTitleView.swift */,
-				112D24B4A689BAFEE83BEC49 /* ProgramItemView.swift */,
-				9024C8B8371FFD58CDB96BE3 /* SectionTitleView.swift */,
-				9F481A07061A75DB9DA71F2A /* SmallBodyTextView.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		08D377A366413F7006F8CBAA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +159,17 @@
 				E6ADB5EDE85D2FF9CC5DEF68 /* DashboardViewModel.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0B29C92AB6137CCA5A6CB132 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5DDE7EA661A88674D3221B5E /* HCourse.swift */,
+				19E18B1A6BFF4E19E32C50E3 /* HModule.swift */,
+				56DB2FB9D49D1B61A6754FF1 /* HModuleItem.swift */,
+				475018934291ABE32049E593 /* HProgram.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		25754E29C175F8CAF85E176B /* View */ = {
@@ -222,6 +205,21 @@
 				6564F7EA04D5D54B6DD4CEEC /* ProgramsAssembly.swift */,
 			);
 			path = Programs;
+			sourceTree = "<group>";
+		};
+		519C2B90692EC9597180822D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BF36C84BF05EC6AC10C0ADCF /* BaseHorizonScreen.swift */,
+				E72E8DB0F0A1D55D017076B1 /* BodyTextView.swift */,
+				82DD459C300CD1347648998F /* CertificateProgressBar.swift */,
+				581C446A807F61D5C4A430CB /* ExpandingModuleView.swift */,
+				63862BE83A2B49506A1E66B6 /* LargeTitleView.swift */,
+				E64E4DC2DF371ED601149398 /* ProgramItemView.swift */,
+				71DB60237B7E39AE3B5D2C96 /* SectionTitleView.swift */,
+				4C329C8CB575A570C5C715B4 /* SmallBodyTextView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		55FC6F72DEDDC0F025E4BF68 = {
@@ -267,6 +265,7 @@
 				48FD945D50DD340DFF6C6C6F /* Programs */,
 				06CA6389536F085DAEF476BF /* Session */,
 				9BCEBC0023162DBDF3EFE350 /* Splash */,
+				7869B63B08EFFB68FC40D74E /* HorizonTabBarController.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -287,6 +286,14 @@
 				01CB18B349EFFD80257532CA /* JourneyAssembly.swift */,
 			);
 			path = Journey;
+			sourceTree = "<group>";
+		};
+		8DC2F60393E9B938434AD3CE /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				F019A2E1914235682B5AF6B9 /* GetProgramsInteractor.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		948BA8695652021FBC4A0BB3 /* Util */ = {
@@ -311,12 +318,11 @@
 		955860F5ABB09882D618C5FE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				0799A36714119557806E6EBF /* Components */,
+				F2D8F03B3730346EDD8D998A /* Common */,
 				7390577B05038C0CD1F93EA2 /* Features */,
 				05DDBD2571AE67CD98344C43 /* Routing */,
 				948BA8695652021FBC4A0BB3 /* Util */,
 				F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */,
-				AB054A404352C7C8A77807BF /* HorizonTabBarController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -343,9 +349,6 @@
 			isa = PBXGroup;
 			children = (
 				7DED7199B426F89179546237 /* Core.framework */,
-				B475EE2C2CA58F53002303EA /* CoreTester.app */,
-				B475EE2E2CA58F53002303EA /* CoreTests.xctest */,
-				B475EE302CA58F53002303EA /* TestsFoundation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -441,27 +444,6 @@
 			remoteRef = 287762C99D46AE8961068231 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B475EE2C2CA58F53002303EA /* CoreTester.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = CoreTester.app;
-			remoteRef = B475EE2B2CA58F53002303EA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B475EE2E2CA58F53002303EA /* CoreTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CoreTests.xctest;
-			remoteRef = B475EE2D2CA58F53002303EA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B475EE302CA58F53002303EA /* TestsFoundation.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = TestsFoundation.framework;
-			remoteRef = B475EE2F2CA58F53002303EA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -505,28 +487,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD1792D6B7B30BBA298B365E /* AppDelegate.swift in Sources */,
-				C6C76A133C4BD4D7C23F17D5 /* BaseHorizonScreen.swift in Sources */,
-				230F8C9955622F15628A451A /* BodyTextView.swift in Sources */,
+				A51387187690E8DA93F7A8D0 /* BaseHorizonScreen.swift in Sources */,
+				8DC21827F8DFA5E183547E1B /* BodyTextView.swift in Sources */,
 				256C0F2B20ADE76D83ADBF6A /* BundleExtension.swift in Sources */,
 				42EFC488B30BA11F6C8712B2 /* CertificateProgressBar.swift in Sources */,
 				F20BD1D6F5B7FDE2940C5E95 /* DashboardAssembly.swift in Sources */,
 				7D55A90806A34664576046CD /* DashboardView.swift in Sources */,
 				06DE8BCB00A3AFA9D063B50E /* DashboardViewModel.swift in Sources */,
-				EAC60D615B4F20E5FE63F260 /* ExpandingModuleView.swift in Sources */,
+				41EFDB92980DFE03C0483F21 /* ExpandingModuleView.swift in Sources */,
+				341E151F9FE8B0C4F113C01A /* GetProgramsInteractor.swift in Sources */,
+				C25ABAF2A3AA7BAA36558525 /* HCourse.swift in Sources */,
+				3F82EB862BB02A4FE1D74F16 /* HModule.swift in Sources */,
+				4BD1843CFE6151E09D0189F4 /* HModuleItem.swift in Sources */,
+				44DBA58302439467D77480A3 /* HProgram.swift in Sources */,
 				7F1E089C895C93BCED693C76 /* HorizonRouter.swift in Sources */,
-				B31A26946CE36BEE0E0061F2 /* HorizonTabBarController.swift in Sources */,
+				1A7194AA245058A4306ECECB /* HorizonTabBarController.swift in Sources */,
 				F97CACE305281B388A9505E3 /* JourneyAssembly.swift in Sources */,
 				6CEC39DA59A5049CE5BE075C /* JourneyView.swift in Sources */,
-				4A4660B74E4152A1A15FC81B /* LargeTitleView.swift in Sources */,
+				A937E6B102EA8A9A6E237925 /* LargeTitleView.swift in Sources */,
 				0A8A4904B7D52C0A312710E7 /* PortfolioAssembly.swift in Sources */,
 				49653178BD2DA09C9B25CABC /* PortfolioView.swift in Sources */,
-				B76808FFC214FDC3E3A75D3D /* ProgramItemView.swift in Sources */,
+				7011B831189B9DF0777465AE /* ProgramItemView.swift in Sources */,
 				BCCEE877AD932FFFB7EF2226 /* ProgramsAssembly.swift in Sources */,
 				410AE96224CF3327A4027C6E /* ProgramsView.swift in Sources */,
 				84C518D0F43318BD14E15031 /* ProgramsViewModel.swift in Sources */,
-				7A48964EDC4A99C5B240E741 /* SectionTitleView.swift in Sources */,
+				55B13C0958819E4A2DE314DC /* SectionTitleView.swift in Sources */,
 				C2B449676582D8604C120987 /* SessionInteractor.swift in Sources */,
-				25BC7BF52877E4CEBD8C8D98 /* SmallBodyTextView.swift in Sources */,
+				52B0E6B6D0BC6FF04FCD9DA8 /* SmallBodyTextView.swift in Sources */,
 				CF45970478F391CB56DDB744 /* SplashAssembly.swift in Sources */,
 				7FF9727E6AAB2C83F9239548 /* SplashView.swift in Sources */,
 				8F5B3D11D772C4E75DE6C430 /* SplashViewModel.swift in Sources */,
@@ -551,7 +538,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Horizon/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -570,7 +556,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Horizon/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -637,7 +622,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 0.0.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -701,7 +686,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 0.0.1;
 				MTL_ENABLE_DEBUG_INFO = NO;

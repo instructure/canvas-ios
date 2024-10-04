@@ -16,13 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
 
-final class DashboardAssembly {
-    static func createGetProgramsInteractor() -> GetProgramsInteractor {
-        GetProgramsInteractor()
+struct HModuleItem {
+    let id: String
+    let title: String
+
+    init(id: String, title: String) {
+        self.id = id
+        self.title = title
     }
-    static func makeView() -> DashboardView {
-        DashboardView(viewModel: .init(interactor: createGetProgramsInteractor()))
+
+    init(from entity: ModuleItem) {
+        self.id = entity.id
+        self.title = entity.title
     }
 }
+
+extension HModuleItem: Identifiable {}

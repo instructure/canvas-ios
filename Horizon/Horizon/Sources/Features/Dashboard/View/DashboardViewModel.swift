@@ -23,14 +23,9 @@ import Foundation
 final class DashboardViewModel: ObservableObject {
     // MARK: - Outputs
 
-    @Published public private(set) var state: InstUI.ScreenState = .loading
-    @Published public private(set) var title: String = "Welcome back, Justine"
-    @Published public private(set) var programName: String = ""
-    @Published public private(set) var progressString: String = "75%"
-    @Published public private(set) var progress: Double = 0.75
-
-    @Published public private(set) var currentModule: Module?
-    @Published public private(set) var upcomingModules: [Module] = []
+    @Published private(set) var state: InstUI.ScreenState = .loading
+    @Published private(set) var title: String = "Welcome back, Justine"
+    @Published private(set) var program: HProgram?
 
     // MARK: - Private variables
 
@@ -38,34 +33,15 @@ final class DashboardViewModel: ObservableObject {
 
     // MARK: - Init
 
-    init() {
+    init(interactor: GetProgramsInteractor) {
         unowned let unownedSelf = self
 
-        ReactiveStore(useCase: GetCourses())
-            .getEntities()
-            .replaceError(with: [])
+        interactor.getPrograms()
             .compactMap { $0.first }
-            .flatMap { course in
-                ReactiveStore(
-                    useCase: GetModules(courseID: course.id)
-                )
-                .getEntities()
-                .replaceError(with: [])
-                .map { (course, $0) }
-            }
-            .sink(receiveValue: { (course, modules) in
-                unownedSelf.programName = course.name ?? ""
-                var modules = modules
-
-                if !modules.isEmpty {
-                    let currentModule = modules.removeFirst()
-                    unownedSelf.currentModule = currentModule
-                    unownedSelf.upcomingModules = modules
-                }
+            .sink { program in
+                unownedSelf.program = program
                 unownedSelf.state = .data
-            })
+            }
             .store(in: &subscriptions)
     }
 }
-
-extension Module: @retroactive Identifiable {}
