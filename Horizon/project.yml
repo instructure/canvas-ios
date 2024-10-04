@@ -4,7 +4,7 @@ options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure.horizon
   deploymentTarget:
-    iOS: 18.0
+    iOS: 16.0
   createIntermediateGroups: true
 settings:
   CODE_SIGN_STYLE: Automatic ## This line is removed in the project-ci.yml file so Bitrise can manage code sign. 
@@ -29,7 +29,7 @@ packages:
     exactVersion: 9.1.0
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
-    exactVersion: 13.9.1
+    exactVersion: 13.0.1
   FirebaseCrashlytics:
     url: https://github.com/firebase/firebase-ios-sdk.git
     exactVersion: 10.23.1
