@@ -154,6 +154,8 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
             }
         case .parent, .none:
             routeToPlannableDetailsAtUrl(plannable.htmlURL)
+        case .horizon:
+            break
         }
     }
 
