@@ -24,6 +24,9 @@ enum HorizonRouter {
     private(set) static var routes: [RouteHandler] = [
         RouteHandler("/splash") { _, _, _ in
             SplashAssembly.makeViewController()
+        },
+        RouteHandler("/contentDetails") { _, _, _ in
+            ContentDetailsAssembly.makeViewController()
         }
     ]
 }

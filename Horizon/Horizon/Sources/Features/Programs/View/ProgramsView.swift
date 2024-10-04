@@ -34,31 +34,35 @@ struct ProgramsView: View {
             ) { proxy in
                 VStack(alignment: .leading, spacing: 0) {
                     SectionTitleView(title: "your programs")
-                    LargeTitleView(title: viewModel.title)
-                        .padding(.bottom, 4)
-                    BodyTextView(title: viewModel.institutionName)
-                        .padding(.bottom, 4)
-                    BodyTextView(title: viewModel.targetCompletion)
-                        .padding(.bottom, 12)
 
-                    Button {
-                        print("change pacing tapped")
-                    } label: {
-                        Text("Change pacing")
-                            .font(.regular16)
-                            .padding(.horizontal, 8)
-                            .frame(minHeight: 38)
-                            .background(Color.backgroundLight)
-                            .foregroundColor(Color.textDarkest)
-                            .cornerRadius(3)
+                    ForEach(viewModel.programs) { program in
+                        LargeTitleView(title: viewModel.title)
+                            .padding(.bottom, 4)
+                        BodyTextView(title: viewModel.institutionName)
+                            .padding(.bottom, 4)
+                        BodyTextView(title: viewModel.targetCompletion)
+                            .padding(.bottom, 12)
+
+                        Button {
+                            print("change pacing tapped")
+                        } label: {
+                            Text("Change pacing")
+                                .font(.regular16)
+                                .padding(.horizontal, 8)
+                                .frame(minHeight: 38)
+                                .background(Color.backgroundLight)
+                                .foregroundColor(Color.textDarkest)
+                                .cornerRadius(3)
+                        }
+                        CertificateProgressBar(
+                            maxWidth: proxy.size.width,
+                            progress: viewModel.progress,
+                            progressString: viewModel.progressString
+                        )
+                        whatsNextModuleView(proxy: proxy)
+                        modulesView(program.modules)
                     }
-                    CertificateProgressBar(
-                        maxWidth: proxy.size.width,
-                        progress: viewModel.progress,
-                        progressString: viewModel.progressString
-                    )
-                    whatsNextModuleView(proxy: proxy)
-                    weeksView
+
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -100,15 +104,15 @@ struct ProgramsView: View {
         .padding(.top, 16)
     }
 
-    @State private var week1Expanded = false
-    @State private var week2Expanded = false
-    @State private var week3Expanded = false
-
-    private var weeksView: some View {
+    @ViewBuilder
+    private func modulesView(_ modules: [Module]) -> some View {
         VStack(spacing: 0) {
-            ExpandingWeekView(title: "week 1", items: [], isExpanded: $week1Expanded)
-            ExpandingWeekView(title: "week 2", items: [], isExpanded: $week2Expanded)
-            ExpandingWeekView(title: "week 3", items: [], isExpanded: $week3Expanded)
+            ForEach(modules) { module in
+                ExpandingModuleView(
+                    title: module.name,
+                    items: module.items.map { ExpandingModuleTitle(title: $0.title) }
+                )
+            }
         }
     }
 }

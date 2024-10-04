@@ -15,7 +15,6 @@
 		230F8C9955622F15628A451A /* BodyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433907CE398C941DC38F12D /* BodyTextView.swift */; };
 		256C0F2B20ADE76D83ADBF6A /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0AD9FDC99C9A599145CF29 /* BundleExtension.swift */; };
 		25BC7BF52877E4CEBD8C8D98 /* SmallBodyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F481A07061A75DB9DA71F2A /* SmallBodyTextView.swift */; };
-		41071F29A25B622A02D5FBF4 /* ExpandingWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285EE0218E337D7DE5E0EDE7 /* ExpandingWeekView.swift */; };
 		410AE96224CF3327A4027C6E /* ProgramsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B17BF83CEED78105ADED77 /* ProgramsView.swift */; };
 		42EFC488B30BA11F6C8712B2 /* CertificateProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A984653109DFC0BF452D97 /* CertificateProgressBar.swift */; };
 		49653178BD2DA09C9B25CABC /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722F3AC23432C71FFB27E59D /* PortfolioView.swift */; };
@@ -39,6 +38,7 @@
 		CEF9056D292D329DB92392CD /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 22E1B76C3FAF2281B5810EC1 /* Localizable.xcstrings */; };
 		CF0EC766922A1228268E9FAE /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A0268156243339BBE44E1A8F /* FirebaseRemoteConfigSwift */; };
 		CF45970478F391CB56DDB744 /* SplashAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF9390E19F72268D52E4723 /* SplashAssembly.swift */; };
+		EAC60D615B4F20E5FE63F260 /* ExpandingModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D62061E20CAD022D13826 /* ExpandingModuleView.swift */; };
 		F1A353523BAE2C458A6D205F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED7199B426F89179546237 /* Core.framework */; };
 		F20BD1D6F5B7FDE2940C5E95 /* DashboardAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E568BE2530AFAB502E3367DA /* DashboardAssembly.swift */; };
 		F97CACE305281B388A9505E3 /* JourneyAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB18B349EFFD80257532CA /* JourneyAssembly.swift */; };
@@ -84,7 +84,7 @@
 		112D24B4A689BAFEE83BEC49 /* ProgramItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramItemView.swift; sourceTree = "<group>"; };
 		22E1B76C3FAF2281B5810EC1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2433907CE398C941DC38F12D /* BodyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyTextView.swift; sourceTree = "<group>"; };
-		285EE0218E337D7DE5E0EDE7 /* ExpandingWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingWeekView.swift; sourceTree = "<group>"; };
+		277D62061E20CAD022D13826 /* ExpandingModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingModuleView.swift; sourceTree = "<group>"; };
 		3F81D2F52A13985AA85C9322 /* BaseHorizonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHorizonScreen.swift; sourceTree = "<group>"; };
 		44A984653109DFC0BF452D97 /* CertificateProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateProgressBar.swift; sourceTree = "<group>"; };
 		5EA9D6C5D255D53E84764F95 /* JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyView.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 				3F81D2F52A13985AA85C9322 /* BaseHorizonScreen.swift */,
 				2433907CE398C941DC38F12D /* BodyTextView.swift */,
 				44A984653109DFC0BF452D97 /* CertificateProgressBar.swift */,
-				285EE0218E337D7DE5E0EDE7 /* ExpandingWeekView.swift */,
+				277D62061E20CAD022D13826 /* ExpandingModuleView.swift */,
 				B78D555464129381DDA56414 /* LargeTitleView.swift */,
 				112D24B4A689BAFEE83BEC49 /* ProgramItemView.swift */,
 				9024C8B8371FFD58CDB96BE3 /* SectionTitleView.swift */,
@@ -467,7 +467,7 @@
 				F20BD1D6F5B7FDE2940C5E95 /* DashboardAssembly.swift in Sources */,
 				7D55A90806A34664576046CD /* DashboardView.swift in Sources */,
 				06DE8BCB00A3AFA9D063B50E /* DashboardViewModel.swift in Sources */,
-				41071F29A25B622A02D5FBF4 /* ExpandingWeekView.swift in Sources */,
+				EAC60D615B4F20E5FE63F260 /* ExpandingModuleView.swift in Sources */,
 				7F1E089C895C93BCED693C76 /* HorizonRouter.swift in Sources */,
 				B31A26946CE36BEE0E0061F2 /* HorizonTabBarController.swift in Sources */,
 				F97CACE305281B388A9505E3 /* JourneyAssembly.swift in Sources */,
@@ -729,7 +729,7 @@
 			repositoryURL = "https://github.com/PSPDFKit/PSPDFKit-SP";
 			requirement = {
 				kind = exactVersion;
-				version = 13.0.1;
+				version = 13.9.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

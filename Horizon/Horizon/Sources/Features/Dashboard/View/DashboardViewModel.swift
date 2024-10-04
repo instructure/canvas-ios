@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import Foundation
 
@@ -24,11 +25,46 @@ final class DashboardViewModel: ObservableObject {
 
     @Published public private(set) var state: InstUI.ScreenState = .data(loadingOverlay: false)
     @Published public private(set) var title: String = "Welcome back, Justine"
+    @Published public private(set) var programName: String = ""
     @Published public private(set) var progressString: String = "75%"
     @Published public private(set) var progress: Double = 0.75
-    @Published public private(set) var modules: [Module] = []
+
+    @Published public private(set) var currentModule: Module?
+    @Published public private(set) var upcomingModules: [Module] = []
+
+    // MARK: - Private variables
+
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
-    init() {}
+    init() {
+        unowned let unownedSelf = self
+
+        ReactiveStore(useCase: GetCourses())
+            .getEntities()
+            .replaceError(with: [])
+            .compactMap { $0.first }
+            .flatMap { course in
+                ReactiveStore(
+                    useCase: GetModules(courseID: course.id)
+                )
+                .getEntities()
+                .replaceError(with: [])
+                .map { (course, $0) }
+            }
+            .sink(receiveValue: { (course, modules) in
+                unownedSelf.programName = course.name ?? ""
+                var modules = modules
+
+                if !modules.isEmpty {
+                    let currentModule = modules.removeFirst()
+                    unownedSelf.currentModule = currentModule
+                    unownedSelf.upcomingModules = modules
+                }
+            })
+            .store(in: &subscriptions)
+    }
 }
+
+extension Module: @retroactive Identifiable {}

@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import Foundation
 
@@ -28,10 +29,44 @@ final class ProgramsViewModel: ObservableObject {
     @Published private(set) var progress: Double = 0.75
     @Published private(set) var institutionName: String = "Community College"
     @Published private(set) var targetCompletion: String = "Target Completion: 2024/11/27"
+    @Published private(set) var programs: [CourseWithModules] = []
 
-    @Published private(set) var modules: [Module] = []
+    // MARK: - Private
+
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
-    init() {}
+    init() {
+        unowned let unownedSelf = self
+
+        ReactiveStore(useCase: GetCourses())
+            .getEntities()
+            .flatMap { courses in
+                courses.publisher
+                    .flatMap { course in
+                        ReactiveStore(
+                            useCase: GetModules(courseID: course.id)
+                        )
+                        .getEntities()
+                        .map { CourseWithModules(course: course, modules: $0) }
+                    }
+                    .collect()
+            }
+            .replaceError(with: [])
+            .sink(receiveValue: { unownedSelf.programs = $0 })
+            .store(in: &subscriptions)
+    }
 }
+
+class CourseWithModules: Identifiable {
+    let course: Course
+    let modules: [Module]
+
+    init(course: Course, modules: [Module]) {
+        self.course = course
+        self.modules = modules
+    }
+}
+
+extension Course: @retroactive Identifiable {}

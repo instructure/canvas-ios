@@ -21,6 +21,7 @@ import SwiftUI
 
 struct DashboardView: View {
     @ObservedObject private var viewModel: DashboardViewModel
+    @Environment(\.viewController) private var viewController
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
@@ -34,13 +35,13 @@ struct DashboardView: View {
             ) { proxy in
                 VStack(alignment: .leading, spacing: 0) {
                     LargeTitleView(title: viewModel.title)
-                    SectionTitleView(title: "BIOLOGY CERTIFICATE #17491")
+                    SectionTitleView(title: viewModel.programName)
                     CertificateProgressBar(
                         maxWidth: proxy.size.width,
                         progress: viewModel.progress,
                         progressString: viewModel.progressString
                     )
-                    currentModuleView
+                    currentModuleView()
                     whatsNextModuleView(proxy: proxy)
                 }
                 .frame(maxWidth: .infinity)
@@ -53,44 +54,47 @@ struct DashboardView: View {
 
     private var logoutButton: some View {
         Button {
-            SessionInteractor().logout()
+            AppEnvironment.shared.router.route(to: URL(string: "/contentDetails")!, from: viewController)
         } label: {
             Image.logout.tint(Color.textLightest)
         }
     }
 
-    private var currentModuleView: some View {
-        ZStack {
-            VStack {
-                Rectangle()
-                    .fill(Color.backgroundLightest)
-                    .frame(height: 200)
-                    .padding(16)
-                HStack {
-                    VStack(alignment: .leading) {
-                        BodyTextView(title: "Short Form Text")
-                        Text("20 MINS")
-                            .font(.regular12)
-                            .foregroundStyle(Color.textDark)
+    @ViewBuilder
+    private func currentModuleView() -> some View {
+        if let currentModule = viewModel.currentModule {
+            ZStack {
+                VStack {
+                    Rectangle()
+                        .fill(Color.backgroundLightest)
+                        .frame(height: 200)
+                        .padding(16)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            BodyTextView(title: currentModule.name)
+                            Text("20 MINS")
+                                .font(.regular12)
+                                .foregroundStyle(Color.textDark)
+                        }
+                        Spacer()
+                        Button {
+                            print("tapped")
+                        } label: {
+                            Text("Start")
+                                .font(.regular16)
+                                .padding(.all, 8)
+                                .background(Color.backgroundDarkest)
+                                .foregroundColor(Color.textLightest)
+                                .cornerRadius(3)
+                        }
                     }
-                    Spacer()
-                    Button {
-                        print("tapped")
-                    } label: {
-                        Text("Start")
-                            .font(.regular16)
-                            .padding(.all, 8)
-                            .background(Color.backgroundDarkest)
-                            .foregroundColor(Color.textLightest)
-                            .cornerRadius(3)
-                    }
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 16)
                 }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 16)
             }
+            .background(Color.backgroundLight)
+            .padding(.top, 16)
         }
-        .background(Color.backgroundLight)
-        .padding(.top, 16)
     }
 
     @ViewBuilder
@@ -99,27 +103,15 @@ struct DashboardView: View {
             SectionTitleView(title: "What's next")
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 8) {
-                    ProgramItemView(
-                        screenWidth: proxy.size.width,
-                        title: "Practice Quiz",
-                        icon: Image(systemName: "doc"),
-                        duration: "60 mins",
-                        certificate: "Biology certificate"
-                    )
-                    ProgramItemView(
-                        screenWidth: proxy.size.width,
-                        title: "Video",
-                        icon: Image(systemName: "doc"),
-                        duration: "20 mins",
-                        certificate: "Biology certificate"
-                    )
-                    ProgramItemView(
-                        screenWidth: proxy.size.width,
-                        title: "Video",
-                        icon: Image(systemName: "doc"),
-                        duration: "30 mins",
-                        certificate: "Biology certificate"
-                    )
+                    ForEach(viewModel.upcomingModules) { module in
+                        ProgramItemView(
+                            screenWidth: proxy.size.width,
+                            title: module.name,
+                            icon: Image(systemName: "doc"),
+                            duration: "60 mins",
+                            certificate: viewModel.programName
+                        )
+                    }
                 }
             }
         }
