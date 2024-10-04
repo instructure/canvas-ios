@@ -251,17 +251,17 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
         var assignmentSections: [GradeListData.AssignmentSections] = []
         var overdueAssignments = GradeListData.AssignmentSections(
-            id: UUID.string,
+            id: "overdueAssignments",
             title: String(localized: "Overdue Assignments", bundle: .core),
             assignments: []
         )
         var upcomingAssignments = GradeListData.AssignmentSections(
-            id: UUID.string,
+            id: "upcomingAssignments",
             title: String(localized: "Upcoming Assignments", bundle: .core),
             assignments: []
         )
         var pastAssignments = GradeListData.AssignmentSections(
-            id: UUID.string,
+            id: "pastAssignments",
             title: String(localized: "Past Assignments", bundle: .core),
             assignments: []
         )
@@ -269,28 +269,21 @@ public final class GradeListInteractorLive: GradeListInteractor {
         let now = Clock.now
 
         orderedAssignments.forEach { assignment in
-            let sectionId = assignment.assignmentGroupID ?? UUID.string
             if let dueAt = assignment.dueAtSortNilsAtBottom {
                 if let lockAt = assignment.lockAt {
                     if lockAt >= now, dueAt <= now {
-                        overdueAssignments.id = sectionId
                         overdueAssignments.assignments.append(assignment)
                     } else if lockAt > now, dueAt > now {
-                        upcomingAssignments.id = sectionId
                         upcomingAssignments.assignments.append(assignment)
                     } else {
-                        pastAssignments.id = sectionId
                         pastAssignments.assignments.append(assignment)
                     }
                 } else if dueAt <= now {
-                    overdueAssignments.id = sectionId
                     overdueAssignments.assignments.append(assignment)
                 } else if dueAt > now {
-                    upcomingAssignments.id = sectionId
                     upcomingAssignments.assignments.append(assignment)
                 }
             } else {
-                pastAssignments.id = sectionId
                 upcomingAssignments.assignments.append(assignment)
             }
         }
