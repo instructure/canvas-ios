@@ -372,7 +372,11 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 if courseEnrollment?.multipleGradingPeriodsEnabled == true, courseEnrollment?.totalsForAllGradingPeriodsOption == false {
                     letterGrade = nil
                 } else {
-                    letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedFinalGrade ?? courseEnrollment?.computedCurrentLetterGrade
+                    if baseOnGradedAssignments {
+                        letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedCurrentLetterGrade
+                    } else {
+                        letterGrade = courseEnrollment?.computedFinalGrade ?? courseEnrollment?.computedCurrentLetterGrade
+                    }
                 }
             }
 
