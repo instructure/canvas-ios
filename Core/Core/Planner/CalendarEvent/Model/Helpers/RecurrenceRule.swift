@@ -404,12 +404,19 @@ private extension Date {
         return dateFormatter
     }()
 
+    private static let rruleFormatterDateOnly: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        return dateFormatter
+    }()
+
     func rruleFormatted() -> String {
         return Self.rruleFormatter.string(from: self)
     }
 
     static func parse(rruleDescription: String) -> Date? {
-        return Self.rruleFormatter.date(from: rruleDescription)
+        return rruleFormatter.date(from: rruleDescription)
+            ?? rruleFormatterDateOnly.date(from: rruleDescription)
     }
 }
 
