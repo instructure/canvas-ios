@@ -21,15 +21,18 @@ import Core
 struct HModuleItem {
     let id: String
     let title: String
+    let url: URL?
 
-    init(id: String, title: String) {
+    init(id: String, title: String, url: URL?) {
         self.id = id
         self.title = title
+        self.url = url
     }
 
     init(from entity: ModuleItem) {
         self.id = entity.id
         self.title = entity.title
+        self.url = entity.url
     }
 }
 

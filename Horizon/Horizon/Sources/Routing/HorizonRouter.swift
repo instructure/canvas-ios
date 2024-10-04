@@ -27,6 +27,33 @@ enum HorizonRouter {
         },
         RouteHandler("/contentDetails") { _, _, _ in
             ContentDetailsAssembly.makeViewController()
-        }
+        },
+        RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _ in
+            guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
+            return ModuleItemSequenceViewController.create(
+                courseID: courseID,
+                assetType: .moduleItem,
+                assetID: itemID,
+                url: url
+            )
+        },
+        RouteHandler("/:context/:contextID/pages") { url, _, _ in
+            guard let context = Context(path: url.path) else { return nil }
+            return PageListViewController.create(context: context, app: .student)
+        },
+        RouteHandler("/:context/:contextID/pages/:url", factory: pageViewController)
     ]
+}
+
+private func pageViewController(url: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
+    guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
+    if !url.originIsModuleItemDetails, context.contextType == .course {
+        return ModuleItemSequenceViewController.create(
+            courseID: context.id,
+            assetType: .page,
+            assetID: pageURL,
+            url: url
+        )
+    }
+    return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
 }

@@ -33,40 +33,39 @@ struct DashboardView: View {
                 state: viewModel.state,
                 config: .init(refreshable: true)
             ) { proxy in
-                VStack(alignment: .leading, spacing: 0) {
-                    if let program = viewModel.program {
-                        LargeTitleView(title: viewModel.title)
-                        SectionTitleView(title: program.name)
-                        CertificateProgressBar(
-                            maxWidth: proxy.size.width,
-                            progress: program.progress,
-                            progressString: program.progressString
-                        )
-                        currentModuleView(moduleItem: program.currentModuleItem)
-                        whatsNextModuleView(
-                            proxy: proxy,
-                            programName: program.name,
-                            moduleItems: program.upcomingModuleItems
-                        )
-                    } else {
-                        EmptyPanda(
-                            .NoResults,
-                            title: Text("No Results", bundle: .core),
-                            message: Text("We couldn't find any program that you are enrolled in.", bundle: .core)
-                        )
+                VStack(spacing: 0) {
+                    LargeTitleView(title: viewModel.title)
+                    ForEach(viewModel.programs) { program in
+                        if program.currentModuleItem != nil, !program.upcomingModuleItems.isEmpty {
+                            VStack(alignment: .leading, spacing: 0) {
+                                SectionTitleView(title: program.name)
+                                CertificateProgressBar(
+                                    maxWidth: proxy.size.width,
+                                    progress: program.progress,
+                                    progressString: program.progressString
+                                )
+                                currentModuleView(moduleItem: program.currentModuleItem)
+                                whatsNextModuleView(
+                                    proxy: proxy,
+                                    programName: program.name,
+                                    moduleItems: program.upcomingModuleItems
+                                )
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
                     }
                 }
-                .frame(maxWidth: .infinity)
             }
             .padding(.horizontal, 16)
             .background(Color.backgroundLightest)
             .navigationBarItems(trailing: logoutButton)
+            .scrollIndicators(.hidden, axes: .vertical)
         }
     }
 
     private var logoutButton: some View {
         Button {
-            AppEnvironment.shared.router.route(to: URL(string: "/contentDetails")!, from: viewController)
+            SessionInteractor().logout()
         } label: {
             Image.logout.tint(Color.textLightest)
         }
@@ -90,7 +89,11 @@ struct DashboardView: View {
                         }
                         Spacer()
                         Button {
-                            print("tapped")
+                            print(currentModuleItem)
+                            if let url = currentModuleItem.url {
+                                AppEnvironment.shared.router.route(to: url, from: viewController)
+                            }
+
                         } label: {
                             Text("Start")
                                 .font(.regular16)

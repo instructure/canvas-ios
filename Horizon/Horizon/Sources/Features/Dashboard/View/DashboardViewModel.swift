@@ -25,7 +25,7 @@ final class DashboardViewModel: ObservableObject {
 
     @Published private(set) var state: InstUI.ScreenState = .loading
     @Published private(set) var title: String = "Welcome back, Justine"
-    @Published private(set) var program: HProgram?
+    @Published private(set) var programs: [HProgram] = []
 
     // MARK: - Private variables
 
@@ -37,9 +37,8 @@ final class DashboardViewModel: ObservableObject {
         unowned let unownedSelf = self
 
         interactor.getPrograms()
-            .compactMap { $0.first }
-            .sink { program in
-                unownedSelf.program = program
+            .sink { programs in
+                unownedSelf.programs = programs
                 unownedSelf.state = .data
             }
             .store(in: &subscriptions)

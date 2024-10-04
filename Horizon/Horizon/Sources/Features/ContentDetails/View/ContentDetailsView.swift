@@ -16,86 +16,55 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
-import Translation
 
 struct ContentDetailsView: View {
-    // swiftlint:disable:next line_length
-    @State private var text = """
-    The content translation tool assists users in translating existing Wikipedia articles from one language to another. Users select an article in any language, then select another language, and the interface provides machine translation which the human user can then use as inspiration to make readable text in another language.
-
-    Users should be familiar with the target language. Also, they should not publish the machine translation as is, but should proofread the translation, which usually contains strange wording and errors.
-    """
-    @State private var isTranslationAlertPresented = false
-    @State private var configuration: TranslationSession.Configuration?
-
     var body: some View {
-        VStack {
-            Text(text).textSelection(.enabled).padding()
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(spacing: 4) {
+                Image(systemName: "document")
+                    .resizable()
+                    .renderingMode(.template)
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundStyle(Color.textDarkest)
+                    .frame(width: 14, height: 14)
+                Text(verbatim: "Reading Material")
+                    .foregroundColor(.textDarkest)
+                    .font(.regular12)
+                Spacer()
+                Image(systemName: "timer")
+                    .resizable()
+                    .renderingMode(.template)
+                    .foregroundStyle(Color.textDarkest)
+                    .frame(width: 14, height: 14)
+                Text(verbatim: "20 mins")
+                    .foregroundColor(.textDarkest)
+                    .font(.regular12)
+            }
+            Text(verbatim: "Biology Certificate")
+                .foregroundColor(.textDark)
+                .font(.regular12)
+                .padding(.top, 2)
+            ContentProgressBar(
+                progress: 0.30
+            )
+            .padding(.top, 12)
+
+            HStack(spacing: 0) {
+                Text(verbatim: "Not Started")
+                Spacer()
+                Text(verbatim: "Due 12/01/2024")
+            }
             Spacer()
         }
+        .padding(.horizontal, 16)
         .frame(maxHeight: .infinity)
-        .navigationBarItems(trailing: translateButton)
         .navigationTitle("Content Details")
         .toolbarBackground(.visible, for: .navigationBar)
-        .translationPresentation(
-            isPresented: $isTranslationAlertPresented,
-            text: text
-        )
-        .translationTask(configuration) { session in
-            do {
-               let translatedText =  try await session.translate(text)
-                print(translatedText)
-            } catch let error {
-                print(error)
-            }
-        }
     }
-
-    private var translateButton: some View {
-        Button {
-            if configuration == nil {
-                self.configuration = TranslationSession.Configuration(source: nil, target: Locale.Language(identifier: "de-DE"))
-            } else {
-                self.configuration?.invalidate()
-            }
-        } label: {
-            Image(systemName: "translate").foregroundColor(/*@START_MENU_TOKEN@*/ .blue/*@END_MENU_TOKEN@*/)
-        }
-    }
-
 }
 
-// v1
-/*
- // swiftlint:disable:next line_length
- @State private var text = """
- The content translation tool assists users in translating existing Wikipedia articles from one language to another. Users select an article in any language, then select another language, and the interface provides machine translation which the human user can then use as inspiration to make readable text in another language.
-
- Users should be familiar with the target language. Also, they should not publish the machine translation as is, but should proofread the translation, which usually contains strange wording and errors.
- """
- @State private var isTranslationAlertPresented = false
-
- var body: some View {
-     VStack {
-         Text(text).padding()
-         Spacer()
-     }
-     .frame(maxHeight: .infinity)
-     .navigationBarItems(trailing: translateButton)
-     .navigationTitle("Content Details")
-     .toolbarBackground(.visible, for: .navigationBar)
-     .translationPresentation(
-         isPresented: $isTranslationAlertPresented,
-         text: text
-     )
- }
-
- private var translateButton: some View {
-     Button {
-         isTranslationAlertPresented = true
-     } label: {
-         Image(systemName: "translate").foregroundColor(.blue)
-     }
- }
- */
+#Preview {
+    ContentDetailsView()
+}
