@@ -443,7 +443,6 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     computed_final_grade: finalGrade,
                     current_grading_period_id: nil
                 )]
-
             )
         )
         api.mock(
