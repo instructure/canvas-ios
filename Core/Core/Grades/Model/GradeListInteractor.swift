@@ -317,73 +317,124 @@ public final class GradeListInteractorLive: GradeListInteractor {
         let courseEnrollment = course.enrollmentForGrades(userId: userID)
         let gradeEnrollment = enrollments.first {
             $0.id != nil &&
-                $0.state == .active &&
-                $0.userID == userID &&
-                $0.type.lowercased().contains("student")
+            $0.state == .active &&
+            $0.userID == userID &&
+            $0.type.lowercased().contains("student")
         }
         let hideQuantitativeData = course.hideQuantitativeData == true
 
         // When these conditions are met we don't show any grade, instead we display a lock icon.
         if (courseEnrollment?.multipleGradingPeriodsEnabled == true &&
-           courseEnrollment?.totalsForAllGradingPeriodsOption == false &&
+            courseEnrollment?.totalsForAllGradingPeriodsOption == false &&
             gradingPeriodID == nil) || course.hideFinalGrades {
             return Just(nil).eraseToAnyPublisher()
         } else if hideQuantitativeData {
-            if let gradingPeriodID = gradingPeriodID {
-                if let letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID) ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID) {
-                    return Just(letterGrade).eraseToAnyPublisher()
-                } else {
-                    return Just(gradeEnrollment?.convertedLetterGrade(
-                        gradingPeriodID: gradingPeriodID,
-                        gradingScheme: course.gradingScheme
-                    )
-                    ).eraseToAnyPublisher()
-                }
-            } else {
-                if courseEnrollment?.multipleGradingPeriodsEnabled == true, courseEnrollment?.totalsForAllGradingPeriodsOption == false {
-                    return Just(nil).eraseToAnyPublisher()
-                } else if let letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedFinalGrade ?? courseEnrollment?.computedCurrentLetterGrade {
-                    return Just(letterGrade).eraseToAnyPublisher()
-                } else {
-                    return Just(courseEnrollment?.convertedLetterGrade(
-                        gradingPeriodID: nil,
-                        gradingScheme: course.gradingScheme
-                    )
-                    ).eraseToAnyPublisher()
-                }
-            }
+            return getGradeForHideQuantitativeData(
+                baseOnGradedAssignments: baseOnGradedAssignments,
+                courseEnrollment: courseEnrollment,
+                gradeEnrollment: gradeEnrollment,
+                course: course
+            )
         } else {
-            var letterGrade: String?
-            var localGrade: String?
-            if let gradingPeriodID = gradingPeriodID {
-                if baseOnGradedAssignments {
-                    localGrade = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
-                    letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID)
-                } else {
-                    localGrade = gradeEnrollment?.formattedFinalScore(gradingPeriodID: gradingPeriodID)
-                    letterGrade = gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
-                }
-            } else {
-                if baseOnGradedAssignments {
-                    localGrade = courseEnrollment?.formattedCurrentScore(gradingPeriodID: nil)
-                } else {
-                    localGrade = gradeEnrollment?.formattedFinalScore(gradingPeriodID: nil)
-                }
-                if courseEnrollment?.multipleGradingPeriodsEnabled == true, courseEnrollment?.totalsForAllGradingPeriodsOption == false {
-                    letterGrade = nil
-                } else {
-                    if baseOnGradedAssignments {
-                        letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedCurrentLetterGrade
-                    } else {
-                        letterGrade = courseEnrollment?.computedFinalGrade ?? courseEnrollment?.computedCurrentLetterGrade
-                    }
-                }
-            }
+            return getGradeForShowQuantitativeData(
+                baseOnGradedAssignments: baseOnGradedAssignments,
+                courseEnrollment: courseEnrollment,
+                gradeEnrollment: gradeEnrollment
+            )
+        }
+    }
 
-            if let scoreText = localGrade, let letterGrade = letterGrade {
-                return Just(scoreText + " (\(letterGrade))").eraseToAnyPublisher()
+    private func getGradeForHideQuantitativeData(
+        baseOnGradedAssignments: Bool,
+        courseEnrollment: Enrollment?,
+        gradeEnrollment: Enrollment?,
+        course: Course
+    ) -> AnyPublisher<String?, Never> {
+        if let gradingPeriodID = gradingPeriodID {
+            return getGradeForGradingPeriod(gradingPeriodID: gradingPeriodID)
+        } else {
+            return getGradeForNoGradingPeriod()
+        }
+
+        func getGradeForGradingPeriod(gradingPeriodID: String) -> AnyPublisher<String?, Never> {
+            let letterGrade = baseOnGradedAssignments
+                ? gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID)
+                : gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
+
+            if let letterGrade = letterGrade {
+                return Just(letterGrade).eraseToAnyPublisher()
             } else {
-                return Just(localGrade).eraseToAnyPublisher()
+                return Just(gradeEnrollment?.convertedLetterGrade(
+                    gradingPeriodID: gradingPeriodID,
+                    gradingScheme: course.gradingScheme
+                )).eraseToAnyPublisher()
+            }
+        }
+
+        func getGradeForNoGradingPeriod() -> AnyPublisher<String?, Never> {
+            let letterGrade = (
+                baseOnGradedAssignments
+                ? courseEnrollment?.computedCurrentGrade
+                : courseEnrollment?.computedFinalGrade
+            ) ?? courseEnrollment?.computedCurrentLetterGrade
+
+            if courseEnrollment?.multipleGradingPeriodsEnabled == true,
+               courseEnrollment?.totalsForAllGradingPeriodsOption == false {
+                return Just(nil).eraseToAnyPublisher()
+            } else if let letterGrade {
+                return Just(letterGrade).eraseToAnyPublisher()
+            } else {
+                return Just(courseEnrollment?.convertedLetterGrade(
+                    gradingPeriodID: nil,
+                    gradingScheme: course.gradingScheme
+                )).eraseToAnyPublisher()
+            }
+        }
+    }
+
+    private func getGradeForShowQuantitativeData(
+        baseOnGradedAssignments: Bool,
+        courseEnrollment: Enrollment?,
+        gradeEnrollment: Enrollment?
+    ) -> AnyPublisher<String?, Never> {
+        var letterGrade: String?
+        var localGrade: String?
+        if let gradingPeriodID = gradingPeriodID {
+            getGradeForGradingPeriod(gradingPeriodID: gradingPeriodID)
+        } else {
+            getGradeForNoGradingPeriod()
+        }
+
+        if let scoreText = localGrade, let letterGrade = letterGrade {
+            return Just(scoreText + " (\(letterGrade))").eraseToAnyPublisher()
+        } else {
+            return Just(localGrade).eraseToAnyPublisher()
+        }
+
+        func getGradeForGradingPeriod(gradingPeriodID: String) {
+            if baseOnGradedAssignments {
+                localGrade = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+                letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID)
+            } else {
+                localGrade = gradeEnrollment?.formattedFinalScore(gradingPeriodID: gradingPeriodID)
+                letterGrade = gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
+            }
+        }
+
+        func getGradeForNoGradingPeriod() {
+            if baseOnGradedAssignments {
+                localGrade = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: nil)
+            } else {
+                localGrade = gradeEnrollment?.formattedFinalScore(gradingPeriodID: nil)
+            }
+            if courseEnrollment?.multipleGradingPeriodsEnabled == true, courseEnrollment?.totalsForAllGradingPeriodsOption == false {
+                letterGrade = nil
+            } else {
+                if baseOnGradedAssignments {
+                    letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedCurrentLetterGrade
+                } else {
+                    letterGrade = courseEnrollment?.computedFinalGrade ?? courseEnrollment?.computedCurrentLetterGrade
+                }
             }
         }
     }
