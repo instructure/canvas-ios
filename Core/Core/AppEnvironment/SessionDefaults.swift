@@ -228,4 +228,15 @@ public struct SessionDefaults {
         get { return userDefaults.dictionary(forKey: sessionID) }
         set { userDefaults.set(newValue, forKey: sessionID) }
     }
+
+    // MARK: - Grades
+    public var selectedGradingPeriodIdsByCourseIDs: [String: String]? {
+        get { self["selectedGradingPeriodIdsByCourseIDs"] as? [String: String] }
+        set { self["selectedGradingPeriodIdsByCourseIDs"] = newValue }
+    }
+
+    public var selectedSortByOptionIDs: [String: Int]? {
+        get { self["selectedSortByOptionIDs"] as? [String: Int] }
+        set { self["selectedSortByOptionIDs"] = newValue }
+    }
 }

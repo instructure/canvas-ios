@@ -33,11 +33,11 @@ struct HelpView: View, ScreenViewTrackable {
         .accessibilityIdentifier("helpItems")
     }
 
-    private var helpLinks: [HelpLink]
+    private let helpLinks: [HelpLink]
     private let tapAction: (HelpLink) -> Void
 
     init(helpLinks: [HelpLink], tapAction: @escaping (HelpLink) -> Void) {
-        self.helpLinks = helpLinks
+        self.helpLinks = helpLinks.filter { $0.text != nil && $0.url != nil }
         self.tapAction = tapAction
     }
 }

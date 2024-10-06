@@ -53,7 +53,23 @@ public class PageViewEventController: NSObject {
         requestManager.backgroundAppHelper = backgroundAppHelper
     }
 
-    @objc func logPageView(_ eventNameOrPath: String, attributes: [String: String] = [:], eventDurationInSeconds: TimeInterval = 0) {
+    public func logPageView(
+        _ eventNameOrPath: String,
+        attributes: [String: Any]? = [:],
+        eventDurationInSeconds: TimeInterval = 0
+    ) {
+        logPageView(
+            eventNameOrPath,
+            attributes: attributes as? [String: String] ?? [:], // if there's a type mismatch attributes will be lost
+            eventDurationInSeconds: eventDurationInSeconds
+        )
+    }
+
+    @objc public func logPageView(
+        _ eventNameOrPath: String,
+        attributes: [String: String] = [:],
+        eventDurationInSeconds: TimeInterval = 0
+    ) {
         if(!appCanLogEvents()) { return }
         guard
             requestManager.backgroundAppHelper != nil,

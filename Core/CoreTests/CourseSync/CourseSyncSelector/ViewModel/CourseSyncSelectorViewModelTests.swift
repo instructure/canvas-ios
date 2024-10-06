@@ -142,6 +142,18 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         testee.cancelConfirmAlert.notifyCompletion(isConfirmed: true)
         XCTAssertEqual(router.dismissed, controller)
     }
+
+    func testLogsSyncButtonTap() {
+        let mockAnalytics = MockAnalyticsHandler()
+        Analytics.shared.handler = mockAnalytics
+
+        // WHEN
+        testee.syncButtonDidTap.accept(.init(UIViewController()))
+
+        // THEN
+        XCTAssertEqual(mockAnalytics.lastEvent, "offline_sync_button_tapped")
+        XCTAssertEqual(mockAnalytics.totalEventCount, 1)
+    }
 }
 
 class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
