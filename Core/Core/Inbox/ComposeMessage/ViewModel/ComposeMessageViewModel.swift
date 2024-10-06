@@ -34,6 +34,7 @@ final class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var isSubjectDisabled: Bool = false
     @Published public private(set) var isMessageDisabled: Bool = false
     @Published public private(set) var isIndividualDisabled: Bool = false
+    @Published public private(set) var isDisableToggle: Bool = false
     @Published public var isShowingErrorDialog = false
     @Published private(set) var searchedRecipients: [Recipient] = []
     @Published public private(set) var expandedIncludedMessageIds = [String]()
@@ -103,6 +104,8 @@ final class ComposeMessageViewModel: ObservableObject {
     private var hiddenMessage: String = ""
     private var autoTeacherSelect: Bool = false
     private var teacherOnly: Bool = false
+    private var sendIndividualToggleTemp: Bool = false
+    private let maxRecipientCount = 100
 
     // MARK: Public interface
     public init(
@@ -325,6 +328,24 @@ final class ComposeMessageViewModel: ObservableObject {
 
         interactor.attachments
             .assign(to: &$attachments)
+
+        $recipients
+            .map { [maxRecipientCount] in
+                $0.flatMap { $0.ids }.count > maxRecipientCount
+            }
+            .sink { [weak self] isExceedRecipientLimit in
+                guard let self else {
+                    return
+                }
+                self.isDisableToggle = isExceedRecipientLimit
+                if isExceedRecipientLimit {
+                    self.sendIndividualToggleTemp = self.sendIndividual
+                    self.sendIndividual = true
+                } else {
+                    self.sendIndividual = sendIndividualToggleTemp
+                }
+            }
+            .store(in: &subscriptions)
     }
 
     private func setOptionItems(options: ComposeMessageOptions) {
@@ -408,7 +429,8 @@ final class ComposeMessageViewModel: ObservableObject {
         if subject.isEmpty {
             subject = title
         }
-
+        let isExceedLimitRecipients = recipientIDs.count > maxRecipientCount
+        let groupConversation = isExceedLimitRecipients ? true : !sendIndividual
         return MessageParameters(
             subject: subject,
             body: body,
@@ -416,7 +438,8 @@ final class ComposeMessageViewModel: ObservableObject {
             attachmentIDs: attachments.compactMap { $0.id },
             context: context.context,
             conversationID: conversation?.id,
-            groupConversation: !sendIndividual,
+            groupConversation: groupConversation,
+            bulkMessage: isExceedLimitRecipients,
             includedMessages: includedMessages.map { $0.id }
         )
     }

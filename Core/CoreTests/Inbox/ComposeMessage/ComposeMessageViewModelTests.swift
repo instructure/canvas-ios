@@ -641,6 +641,15 @@ class ComposeMessageViewModelTests: CoreTestCase {
         // Then
         XCTAssertTrue(testee.searchedRecipients.isEmpty)
     }
+
+    func test_selectedRecipients_disableToggle() {
+        // Given
+        let recipient = ReceiptStub.getRecipientExceedMaxLimit()
+        // When
+        testee.selectedRecipients.send(recipient)
+        // Then
+        XCTAssertTrue(testee.isDisableToggle)
+    }
 }
 
 private class ComposeMessageInteractorMock: ComposeMessageInteractor {
