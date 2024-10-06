@@ -25,7 +25,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
     @State private var recipientViewHeight: CGFloat = .zero
     @State private var searchTextFieldHeight: CGFloat = .zero
-
+    private let attachmentsViewId = "attachmentsView"
     private enum FocusedInput {
         case subject
         case message
@@ -47,51 +47,58 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     public var body: some View {
         InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
-            VStack(spacing: 0) {
-                headerView
-                    .background(
-                        GeometryReader { proxy in
-                            Color.clear
-                                .onAppear {
-                                    headerHeight = proxy.size.height
-                                    model.showSearchRecipientsView = false
-                                    focusedInput = nil
+            ScrollViewReader { proxy in
+                VStack(spacing: 0) {
+                    headerView
+                        .background(
+                            GeometryReader { proxy in
+                                Color.clear
+                                    .onAppear {
+                                        headerHeight = proxy.size.height
+                                        model.showSearchRecipientsView = false
+                                        focusedInput = nil
+                                    }
+                            }
+                        )
+                    separator
+                    courseView
+                    separator
+                    ZStack(alignment: .topLeading) {
+                        VStack(spacing: 0) {
+                            propertiesView
+                            separator
+
+                            bodyView(geometry: geometry) {
+                                withAnimation {
+                                    proxy.scrollTo(attachmentsViewId)
                                 }
+                            }
+                            attachmentsView
+                                .id(attachmentsViewId)
+                            if !model.includedMessages.isEmpty {
+                                includedMessages
+                            }
+                            // This Rectangle adds extra height to ensure smoother display of the list of recipients
+                            // without affecting the UI or any logic.
+                            Rectangle()
+                                .fill(Color.clear)
+                                .frame(height: 150)
+                                .allowsHitTesting(false)
                         }
-                    )
-                separator
-                courseView
-                separator
-                ZStack(alignment: .topLeading) {
-                    VStack(spacing: 0) {
-                        propertiesView
-                        separator
+                        if model.showSearchRecipientsView {
+                            RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
+                                model.showSearchRecipientsView = false
+                                model.textRecipientSearch = ""
+                                model.didSelectRecipient.accept(selectedRecipient)
+                            }
+                            .accessibilityHidden(true)
+                            .offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
+                            .padding(.horizontal, 35)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .animation(.smooth, value: model.showSearchRecipientsView)
+                        }
 
-                        bodyView(geometry: geometry)
-                        attachmentsView
-                        if !model.includedMessages.isEmpty {
-                            includedMessages
-                        }
-                        // This Rectangle adds extra height to ensure smoother display of the list of recipients
-                        // without affecting the UI or any logic.
-                        Rectangle()
-                            .fill(Color.clear)
-                            .frame(height: 150)
-                            .allowsHitTesting(false)
                     }
-                    if model.showSearchRecipientsView {
-                        RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
-                            model.showSearchRecipientsView = false
-                            model.textRecipientSearch = ""
-                            model.didSelectRecipient.accept(selectedRecipient)
-                        }
-                        .accessibilityHidden(true)
-                        .offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
-                        .padding(.horizontal, 35)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .animation(.smooth, value: model.showSearchRecipientsView)
-                    }
-
                 }
             }
             .font(.regular12)
@@ -361,7 +368,10 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private func bodyView(geometry: GeometryProxy) -> some View {
+    private func bodyView(
+        geometry: GeometryProxy,
+        onPaste: @escaping () -> Void
+    ) -> some View {
         VStack(spacing: 0) {
             HStack {
                 Text("Message", bundle: .core)
@@ -388,7 +398,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .padding(.leading, defaultHorizontalPaddingValue)
             .padding(.top, defaultVerticalPaddingValue)
 
-            UITextViewWrapper(text: $model.bodyText) {
+            UITextViewWrapper(text: $model.bodyText, onPaste: onPaste) {
                 let tv = UITextView()
                 tv.isScrollEnabled = false
                 tv.textContainer.widthTracksTextView = true

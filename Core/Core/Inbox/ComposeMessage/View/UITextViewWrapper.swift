@@ -21,6 +21,7 @@ import SwiftUI
 
 struct UITextViewWrapper: UIViewRepresentable {
     @Binding var text: String
+    var onPaste: () -> Void = {}
     let textViewBuilder: () -> UITextView
 
     func makeUIView(context: UIViewRepresentableContext<UITextViewWrapper>) -> UITextView {
@@ -41,14 +42,26 @@ struct UITextViewWrapper: UIViewRepresentable {
 
     class Coordinator: NSObject, UITextViewDelegate {
 
-      var parent: UITextViewWrapper
+        var parent: UITextViewWrapper
 
-      init(_ textField: UITextViewWrapper) {
-        self.parent = textField
-      }
+        init(_ textField: UITextViewWrapper) {
+            self.parent = textField
+        }
 
-      func textViewDidChange(_ textView: UITextView) {
-        self.parent.text = textView.text
-      }
+        func textViewDidChange(_ textView: UITextView) {
+            self.parent.text = textView.text
+        }
+
+        func textView(
+            _ textView: UITextView,
+            shouldChangeTextIn range: NSRange,
+            replacementText text: String
+        ) -> Bool {
+            // Detect when pasted content comes from the pasteboard
+            if let pasteboard = UIPasteboard.general.string, text == pasteboard {
+                parent.onPaste() // Trigger the onPaste callback
+            }
+            return true
+        }
     }
 }
