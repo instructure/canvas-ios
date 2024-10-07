@@ -575,8 +575,7 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
     let regularCourseDetails: () -> UIViewController = {
         let viewModel = CourseDetailsViewModel(context: context, offlineModeInteractor: OfflineModeAssembly.make())
         let viewController = SmartSearchHostingController(
-            context: context,
-            color: url.contextColor,
+            context: SmartSearchContext(context: context, color: url.contextColor, mode: .intro),
             router: AppEnvironment.shared.router,
             content: CourseDetailsView(viewModel: viewModel)
         )

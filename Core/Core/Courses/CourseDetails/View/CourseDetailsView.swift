@@ -67,13 +67,17 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
         .onPreferenceChange(ViewBoundsKey.self, perform: headerViewModel.scrollPositionChanged)
         .onReceive(viewModel.$homeRoute, perform: setupDefaultSplitDetailView)
         .onReceive(searchContext.didSubmit) { value in
+            guard case .intro = searchContext.mode else { return }
+
             let loadingVc = SmartSearchHostingController(
-                context: searchContext.context,
-                color: searchContext.color,
+                context: SmartSearchContext(context: searchContext.context, color: searchContext.color, mode: .loading),
                 router: env.router,
-                content: SmartSearchLoadingView()
+                content: SmartSearchResultsView()
             )
-            loadingVc.searchContext.searchTerm.send(value)
+            loadingVc.searchContext.searchTerm = value
+            //loadingVc.navigationItem.hidesBackButton = true
+            loadingVc.navigationItem.backButtonTitle = nil
+
             env.router.show(loadingVc, from: controller)
         }
     }

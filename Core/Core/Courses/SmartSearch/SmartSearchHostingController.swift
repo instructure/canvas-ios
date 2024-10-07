@@ -23,41 +23,106 @@ import Combine
 public enum SmartSearchMode {
     case intro
     case loading
+    case noMatch
+    case results
+
+    var closable: Bool {
+        switch self {
+        case .intro:
+            return true
+        case .loading, .noMatch, .results:
+            return false
+        }
+    }
+
+    var backable: Bool {
+        switch self {
+        case .intro:
+            return false
+        case .loading, .noMatch, .results:
+            return true
+        }
+    }
+
+    var autoFocus: Bool {
+        return self == .intro
+    }
 }
 
-public class SmartSearchHostingController<Content: View>: CoreHostingController<SearchHostingBaseView<Content>>, UITextFieldDelegate {
+public protocol SmartSearchController: UIViewController, UITextFieldDelegate {
+    func showInitialState()
+}
+
+public class SmartSearchHostingController<Content: View>: CoreHostingController<SearchHostingBaseView<Content>>, SmartSearchController {
     @MainActor required dynamic init?(coder aDecoder: NSCoder) { nil }
 
     let searchContext: SmartSearchContext
     let router: Router
 
     private var leftItems: [UIBarButtonItem]?
+    private var closed: Bool = true
 
-    public init(context: Context, color: UIColor?, mode: SmartSearchMode, router: Router, content: Content) {
-        self.searchContext = SmartSearchContext(context: context, color: color)
+    public init(context: SmartSearchContext, router: Router, content: Content) {
+        self.searchContext = context
         self.router = router
         super.init(SearchHostingBaseView(content: content, searchContext: searchContext))
+        self.searchContext.controller = self
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
 
         leftItems = navigationItem.leftBarButtonItems
-        dismissSearchItems()
+
+        self.navigationItem.leftBarButtonItems = []
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.backBarButtonItem = nil
+        self.navigationItem.backButtonTitle = nil
+
+        print("did load")
     }
 
-    func dismissSearchItems() {
+    // Resolving issue of search field to extend over left items
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        closed = true
+        showInitialState()
+    }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        closed = true
+        showInitialState(loose: true)
+    }
+
+    public func showInitialState() {
+        showInitialState(loose: false)
+    }
+
+    private func showInitialState(loose: Bool = false) {
+        if searchContext.mode.closable, closed {
+            showClosedState()
+        } else {
+            showOpenedState(loose: loose)
+        }
+    }
+
+    func showClosedState() {
         navigationItem.titleView = nil
         navigationItem.hidesBackButton = false
         navigationItem.leftBarButtonItems = leftItems
         navigationItem.rightBarButtonItems = [
-
+            searchBarItem()
         ]
 
         applyNavBarTransition(.fadeOut)
+        searchContext.searchTerm = ""
+        closed = true
     }
 
-    func resetSearchItems() {
+    
+
+    func showOpenedState(loose: Bool = false) {
         let searchView = SearchField(
             frame: CGRect(
                 origin: .zero,
@@ -65,19 +130,46 @@ public class SmartSearchHostingController<Content: View>: CoreHostingController<
             )
         )
 
-        searchView.field.text = searchContext.searchTerm.value
+        searchView.field.text = searchContext.searchTerm
         searchView.field.delegate = self
 
+        if !loose {
+            navigationItem.leftBarButtonItems = searchContext.mode.backable ? leftItems : []
+            navigationItem.hidesBackButton = searchContext.mode.backable == false
+        }
 
-        navigationItem.leftBarButtonItems = []
-        navigationItem.hidesBackButton = true
         navigationItem.titleView = searchView
-        navigationItem.rightBarButtonItems = [
-            closeBarItem(),
-            helpBarItem()
-        ]
+        navigationItem.setRightBarButtonItems(trailingItems(), animated: true)
 
-        applyNavBarTransition(.fadeIn)
+        if !loose { applyNavBarTransition(.fadeIn) }
+        closed = false
+
+        if searchContext.mode.autoFocus, !loose {
+            searchView.field.becomeFirstResponder()
+        }
+    }
+
+    private var symbolConfig: UIImage.SymbolConfiguration {
+        return UIImage.SymbolConfiguration(textStyle: .subheadline)
+    }
+
+    func trailingItems() -> [UIBarButtonItem] {
+        switch searchContext.mode {
+        case .intro:
+            return [
+                closeBarItem(),
+                helpBarItem()
+            ]
+        case .loading:
+            return [
+                helpBarItem()
+            ]
+        case .results, .noMatch:
+            return [
+                helpBarItem(),
+                filterBarItem()
+            ]
+        }
     }
 
     func searchBarItem() -> UIBarButtonItem {
@@ -85,14 +177,10 @@ public class SmartSearchHostingController<Content: View>: CoreHostingController<
             systemItem: .search,
             primaryAction: UIAction(
                 handler: { [weak self] _ in
-                    self?.resetSearchItems()
+                    self?.showOpenedState()
                 }
             )
         )
-    }
-
-    private var symbolConfig: UIImage.SymbolConfiguration {
-        return UIImage.SymbolConfiguration(textStyle: .subheadline)
     }
 
     func filterBarItem() -> UIBarButtonItem {
@@ -100,7 +188,7 @@ public class SmartSearchHostingController<Content: View>: CoreHostingController<
             image: UIImage(systemName: "line.3.horizontal.decrease.circle", withConfiguration: symbolConfig),
             primaryAction: UIAction(
                 handler: { [weak self] _ in
-                    self?.showFiltersView()
+                    self?.showFiltersSheet()
                 }
             )
         )
@@ -112,7 +200,7 @@ public class SmartSearchHostingController<Content: View>: CoreHostingController<
             image: UIImage(systemName: "xmark", withConfiguration: symbolConfig),
             primaryAction: UIAction(
                 handler: { [weak self] _ in
-                    self?.dismissSearchItems()
+                    self?.showClosedState()
                 }
             )
         )
@@ -131,17 +219,8 @@ public class SmartSearchHostingController<Content: View>: CoreHostingController<
         .with({ $0.tintColor = .white })
     }
 
-    // Resolving issue of search field to extend over left items
-    private var didAppear: Bool = false
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        guard didAppear == false else { return }
-        dismissSearchItems()
-        didAppear = true
-    }
-
     private func showFiltersSheet() {
-
+        print("show filters sheet")
     }
 
     private func showHelpSheet() {
@@ -162,19 +241,19 @@ public class SmartSearchHostingController<Content: View>: CoreHostingController<
     // MARK: Delegate Methods
 
     public func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        searchContext.searchTerm.send("")
+        searchContext.searchTerm = ""
         return true
     }
 
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        searchContext.searchTerm.send(textField.text ?? "")
+        searchContext.searchTerm = textField.text ?? ""
     }
 
     public  func textField(_ textField: UITextField,
                            shouldChangeCharactersIn range: NSRange,
                            replacementString string: String) -> Bool {
         let newValue = NSString(string: textField.text ?? "").replacingCharacters(in: range, with: string)
-        searchContext.searchTerm.send(newValue)
+        searchContext.searchTerm = newValue
         return true
     }
 
@@ -197,19 +276,30 @@ public struct SearchHostingBaseView<Content: View>: View {
     }
 }
 
-public class SmartSearchContext: EnvironmentKey {
+public class SmartSearchContext: EnvironmentKey, ObservableObject {
     let context: Context
     let color: UIColor?
 
-    var searchTerm = CurrentValueSubject<String, Never>("")
-    var didSubmit = PassthroughSubject<String, Never>()
-
-    public init(context: Context, color: UIColor?) {
-        self.context = context
-        self.color = color
+    var mode: SmartSearchMode = .intro {
+        didSet {
+            self.controller?.showInitialState()
+        }
     }
 
-    public static var defaultValue = SmartSearchContext(context: .currentUser, color: nil)
+    @Published var searchTerm: String = ""
+
+    var didSubmit = PassthroughSubject<String, Never>()
+
+    private var store = Set<AnyCancellable>()
+    fileprivate weak var controller: SmartSearchController?
+
+    public init(context: Context, color: UIColor?, mode: SmartSearchMode) {
+        self.context = context
+        self.color = color
+        self.mode = mode
+    }
+
+    public static var defaultValue = SmartSearchContext(context: .currentUser, color: nil, mode: .intro)
 }
 
 extension EnvironmentValues {
@@ -248,7 +338,6 @@ private class SearchField: UIView {
         let container = RoundedView()
         container.translatesAutoresizingMaskIntoConstraints = false
         container.backgroundColor = .systemBackground
-        container.alpha = 0
         addSubview(container)
 
         NSLayoutConstraint.activate([
@@ -293,12 +382,6 @@ private class SearchField: UIView {
             stack.topAnchor.constraint(equalTo: container.topAnchor, constant: 7.5),
             stack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -7.5)
         ])
-
-        field.becomeFirstResponder()
-
-        UIView.animate(withDuration: 0.3) {
-            container.alpha = 1
-        }
     }
 }
 
