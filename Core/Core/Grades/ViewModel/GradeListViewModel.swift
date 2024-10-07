@@ -21,9 +21,18 @@ import CombineExt
 import CombineSchedulers
 import Foundation
 
-public enum GradeArrangementOptions {
-    case groupName
-    case dueDate
+public enum GradeArrangementOptions: Int, CaseIterable {
+    case groupName = 1
+    case dueDate = 2
+
+    var title: String {
+        switch self {
+        case .groupName:
+            return String(localized: "Group", bundle: .core)
+        case .dueDate:
+            return String(localized: "Due Date", bundle: .core)
+        }
+    }
 }
 
 public final class GradeListViewModel: ObservableObject {
@@ -32,7 +41,6 @@ public final class GradeListViewModel: ObservableObject {
 
     enum ViewState: Equatable {
         case initialLoading
-        case refreshing(GradeListData)
         case data(GradeListData)
         case empty(GradeListData)
         case error
@@ -43,14 +51,17 @@ public final class GradeListViewModel: ObservableObject {
     private let interactor: GradeListInteractor
 
     // MARK: - Output
-
+    @Published private(set) var isLoaderVisible = false
+    @Published private(set) var courseName: String?
+    @Published private(set) var courseColor: UIColor?
+    @Published private(set) var totalGradeText: String?
+    @Published private(set) var gradeHeaderIsVisible = false
     @Published private(set) var state: ViewState = .initialLoading
     @Published public var isWhatIfScoreModeOn = false
     @Published public var isWhatIfScoreFlagEnabled = false
     public var courseID: String { interactor.courseID }
 
     // MARK: - Input
-
     let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
     let didSelectAssignment = PassthroughRelay<(WeakViewController, Assignment)>()
     let confirmRevertAlertViewModel = ConfirmationAlertViewModel(
@@ -62,26 +73,44 @@ public final class GradeListViewModel: ObservableObject {
     )
 
     // MARK: - Input / Output
-
     @Published var baseOnGradedAssignment = true
     @Published var isShowingRevertDialog = false
-    let selectedGradingPeriod = PassthroughRelay<GradingPeriod?>()
-    let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.groupName)
+    let selectedGradingPeriod = PassthroughRelay<String?>()
+    let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.dueDate)
+    var isParentApp: Bool {
+        gradeFilterInteractor.isParentApp
+    }
 
     // MARK: - Private properties
-
-    private var lastKnownDataState: GradeListData?
+    private var lastKnownDataState: GradeListData? {
+        didSet {
+            if !isInitialGradingPeriodSet {
+                isInitialGradingPeriodSet = true
+                gradeHeaderIsVisible = false
+                state = .initialLoading
+                let id = getSelectedGradingPeriodId(
+                    currentGradingPeriodID: lastKnownDataState?.currentGradingPeriodID,
+                    gradingPeriods: lastKnownDataState?.gradingPeriods ?? []
+                )
+                selectedGradingPeriod.accept(id)
+            }
+        }
+    }
     private var subscriptions = Set<AnyCancellable>()
-
+    private let router: Router
+    private let gradeFilterInteractor: GradeFilterInteractor
+    private var isInitialGradingPeriodSet = false
     // MARK: - Init
 
     public init(
         interactor: GradeListInteractor,
+        gradeFilterInteractor: GradeFilterInteractor,
         router: Router,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
-
+        self.router = router
+        self.gradeFilterInteractor = gradeFilterInteractor
         let triggerRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion?)>()
 
         isWhatIfScoreFlagEnabled = interactor.isWhatIfScoreFlagEnabled()
@@ -94,14 +123,8 @@ public final class GradeListViewModel: ObservableObject {
 
         selectedGradingPeriod
             .sink {
-                interactor.updateGradingPeriod(id: $0?.id)
+                interactor.updateGradingPeriod(id: $0)
                 triggerRefresh.accept((true, nil))
-            }
-            .store(in: &subscriptions)
-
-        selectedGroupByOption
-            .sink { _ in
-                triggerRefresh.accept((false, nil))
             }
             .store(in: &subscriptions)
 
@@ -122,14 +145,17 @@ public final class GradeListViewModel: ObservableObject {
 
                 // Changing the grading period fires an API request that takes time,
                 // so we need to show a loading indicator.
-                if let lastKnownDataState, refreshCompletion == nil, ignoreCache {
-                    state = .refreshing(lastKnownDataState)
+                if lastKnownDataState != nil, refreshCompletion == nil, ignoreCache {
+                    isLoaderVisible = true
+                    // Empty list of assignments so can't get the normal size of scrollView
+                    state = .data(.init())
                 }
 
                 return interactor.getGrades(
                     arrangeBy: selectedGroupByOption.value,
                     baseOnGradedAssignment: baseOnGradedAssignment,
-                    ignoreCache: ignoreCache
+                    ignoreCache: ignoreCache,
+                    shouldUpdateGradingPeriod: false
                 )
                 .first()
                 .receive(on: scheduler)
@@ -137,8 +163,12 @@ public final class GradeListViewModel: ObservableObject {
                     guard let self else {
                         return Empty(completeImmediately: true).eraseToAnyPublisher()
                     }
+                    gradeHeaderIsVisible = isInitialGradingPeriodSet
                     lastKnownDataState = listData
-
+                    courseName = listData.courseName
+                    courseColor = listData.courseColor
+                    totalGradeText = listData.totalGradeText
+                    isLoaderVisible = false
                     if listData.assignmentSections.count == 0 {
                         return Just(ViewState.empty(listData)).eraseToAnyPublisher()
                     } else {
@@ -162,5 +192,61 @@ public final class GradeListViewModel: ObservableObject {
                 router.route(to: "/courses/\(interactor.courseID)/assignments/\(assignment.id)", from: vc, options: .detail)
             }
             .store(in: &subscriptions)
+
+        loadSortPreferences()
+    }
+
+   private func loadSortPreferences() {
+        let selectedSortById = gradeFilterInteractor.selectedSortById
+        let selectedSortByOption = GradeArrangementOptions(rawValue: selectedSortById ?? 0) ?? .dueDate
+        selectedGroupByOption.accept(selectedSortByOption)
+    }
+
+    private func getSelectedGradingPeriodId(
+        currentGradingPeriodID: String?,
+        gradingPeriods: [GradingPeriod]
+    ) -> String? {
+        let currentId = gradeFilterInteractor.selectedGradingId
+        guard !gradingPeriods.isEmpty else {
+            gradeFilterInteractor.saveSelectedGradingPeriod(id: currentGradingPeriodID)
+            return currentGradingPeriodID
+        }
+
+        if let currentId {
+            if currentId == gradeFilterInteractor.gradingShowAllId {
+                return nil
+            } else if gradingPeriods.contains(where: { $0.id == currentId }) {
+                return currentId
+            } else {
+                gradeFilterInteractor.saveSelectedGradingPeriod(id: gradingPeriods.first?.id)
+                gradeFilterInteractor.saveSortByOption(type: .dueDate)
+                return gradingPeriods.first?.id
+            }
+        }
+        gradeFilterInteractor.saveSelectedGradingPeriod(id: currentGradingPeriodID)
+        return currentGradingPeriodID
+    }
+
+    func navigateToFilter(viewController: WeakViewController) {
+        let isShowGradingPeriod = !(lastKnownDataState?.isGradingPeriodHidden ?? false)
+        let dependency = GradeFilterViewModel.Dependency(
+            router: router,
+            isShowGradingPeriod: isShowGradingPeriod,
+            courseName: courseName,
+            selectedGradingPeriodPublisher: selectedGradingPeriod,
+            selectedSortByPublisher: selectedGroupByOption,
+            gradingPeriods: lastKnownDataState?.gradingPeriods,
+            sortByOptions: GradeArrangementOptions.allCases
+        )
+
+        let filterView = GradListAssembly.makeGradeFilterViewController(
+            dependency: dependency,
+            gradeFilterInteractor: gradeFilterInteractor
+        )
+        router.show(
+            filterView,
+            from: viewController,
+            options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
+        )
     }
 }

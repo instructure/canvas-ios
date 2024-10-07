@@ -86847,7 +86847,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hoppla!"
+            "value" : "Ups!"
           }
         },
         "en" : {
@@ -86877,19 +86877,19 @@
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whoops!"
+            "value" : "Oops!"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whoops!"
+            "value" : "Oops!"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whoops!"
+            "value" : "Oops!"
           }
         },
         "es" : {
@@ -86913,13 +86913,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oups !"
+            "value" : "Oups !"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oups!"
+            "value" : "Oops!"
           }
         },
         "ga" : {
@@ -86949,7 +86949,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Úbbs!"
+            "value" : "Úps!"
           }
         },
         "it" : {
@@ -86961,7 +86961,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "しまった！"
+            "value" : "おっと！"
           }
         },
         "mi" : {
@@ -86985,7 +86985,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oops!"
+            "value" : "Obs!"
           }
         },
         "nl" : {
@@ -87009,7 +87009,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oops!"
+            "value" : "Ops!"
           }
         },
         "ru" : {
@@ -87021,19 +87021,19 @@
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opa!"
+            "value" : "Ojoj!"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oj då!"
+            "value" : "Hoppsan!"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oooj!"
+            "value" : "Hoppsan!"
           }
         },
         "th" : {

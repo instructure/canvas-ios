@@ -100,7 +100,7 @@ extension EditCustomFrequencyViewModel {
 
         static func mode(of end: RecurrenceEnd) -> EndMode {
             switch end {
-            case .endDate:
+            case .endDate, .endDateWithoutTime:
                 return .onDate
             case .occurrenceCount:
                 return .afterOccurrences

@@ -25,11 +25,14 @@ class HelpViewTests: CoreTestCase {
         let item0: HelpLink = databaseClient.insert()
         item0.text = "Search the Canvas Guides"
         item0.subtext = "Find answers to common questions"
+        item0.url = URL(string: "https://community.canvaslms.com/t5/Canvas/ct-p/canvas")
         let item1: HelpLink = databaseClient.insert()
         item1.text = "Ask Your Instructor a Question"
+        item1.url = URL(string: "#teacher_feedback")
         let item2: HelpLink = databaseClient.insert()
         item2.text = "Report a Problem"
         item2.subtext = "If Canvas misbehaves, tell us about it"
+        item2.url = URL(string: "#create_ticket")
         return [item0, item1, item2]
     }()
     private lazy var controller: CoreHostingController<HelpView> = {

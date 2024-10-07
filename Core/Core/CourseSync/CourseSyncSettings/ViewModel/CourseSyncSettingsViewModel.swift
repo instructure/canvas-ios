@@ -69,6 +69,16 @@ class CourseSyncSettingsViewModel: ObservableObject {
         readInitialStateFromInteractor()
         forwardSwitchStateChangesToInteractor()
         showConfirmationDialogWhenWifiSyncTurnedOff()
+        setupAnalytics()
+    }
+
+    private func setupAnalytics() {
+        isAutoContentSyncEnabled
+            .dropFirst() // We only want to report the change but not the initial value
+            .logReceiveOutput(
+                { $0 ? "offline_auto_sync_turned_on" : "offline_auto_sync_turned_off" },
+                storeIn: &subscriptions
+            )
     }
 
     private func readInitialStateFromInteractor() {

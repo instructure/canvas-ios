@@ -107,6 +107,11 @@ class CourseSyncSelectorViewModel: ObservableObject {
             selectorInteractor: selectorInteractor,
             syncConfirmAlert: syncConfirmAlert
         )
+
+        syncButtonDidTap.logReceiveOutput(
+            "offline_sync_button_tapped",
+            storeIn: &subscriptions
+        )
     }
 
     private func handleCancelButtonTap(cancelConfirmAlert: ConfirmationAlertViewModel) {

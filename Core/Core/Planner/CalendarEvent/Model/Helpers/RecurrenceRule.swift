@@ -39,15 +39,37 @@ extension LosslessStringConvertible where Self: RRuleCodable {
 }
 
 extension Int: RRuleCodable {}
+
 extension String: RRuleCodable {}
+
 extension Date: RRuleCodable {
+    private static let rruleFormatter: DateFormatter = {
+        DateFormatter("yyyyMMdd'T'HHmmss'Z'")
+    }()
 
     init?(rruleString: String) {
-        guard let date = Date.parse(rruleDescription: rruleString) else { return nil }
+        guard let date = Date.rruleFormatter.date(from: rruleString) else { return nil }
         self = date
     }
 
-    var rruleString: String { rruleFormatted() }
+    var rruleString: String {
+        Date.rruleFormatter.string(from: self)
+    }
+}
+
+private extension Date {
+    private static let rruleFormatterWithoutTime: DateFormatter = {
+        DateFormatter("yyyyMMdd")
+    }()
+
+    init?(rruleStringWithoutTime: String) {
+        guard let date = Date.rruleFormatterWithoutTime.date(from: rruleStringWithoutTime) else { return nil }
+        self = date
+    }
+
+    var rruleStringWithoutTime: String {
+        Date.rruleFormatterWithoutTime.string(from: self)
+    }
 }
 
 extension Array: RRuleCodable where Element: RRuleCodable {
@@ -70,9 +92,13 @@ extension Array: RRuleCodable where Element: RRuleCodable {
 private enum RRuleKey {
 
     protocol Key {
-        static var string: String { get }
         associatedtype Value: RRuleCodable
+
+        static var string: String { get }
+
         static func validate(_ value: Value) -> Bool
+        static func parse(rruleValue: String) -> Value?
+        static func rruleString(for value: Value?) -> String?
     }
 
     enum Frequency: Key {
@@ -85,9 +111,28 @@ private enum RRuleKey {
         static func validate(_ value: Int) -> Bool { value > 0 }
     }
 
+    // This EndDate variant supports the intended format.
+    // Example: "UNTIL=20241020T000000Z"
     enum EndDate: Key {
         static let string = "UNTIL"
         static func validate(_ value: Date) -> Bool { true }
+    }
+
+    // This EndDate variant supports the format which was used by Android for a while.
+    // Example: "UNTIL=20241020"
+    enum EndDateWithoutTime: Key {
+        static let string = "UNTIL"
+        static func validate(_ value: Date) -> Bool { true }
+
+        static func parse(rruleValue: String) -> Date? {
+            guard let value = Date(rruleStringWithoutTime: rruleValue), validate(value) else { return nil }
+            return value
+        }
+
+        static func rruleString(for value: Value?) -> String? {
+            guard let value, validate(value) else { return nil }
+            return "\(string)=\(value.rruleStringWithoutTime)"
+        }
     }
 
     enum OccurrenceCount: Key {
@@ -144,16 +189,13 @@ private extension RRuleKey.Key {
     }
 
     static func parse(rruleValue: String) -> Value? {
-        guard let val = Value(rruleString: rruleValue) else { return nil }
-        if validate(val) { return val }
-        return nil
+        guard let value = Value(rruleString: rruleValue), validate(value) else { return nil }
+        return value
     }
 
     static func rruleString(for value: Value?) -> String? {
-        guard let val = value, validate(val) else {
-            return nil
-        }
-        return "\(string)=\(val.rruleString)"
+        guard let value, validate(value) else { return nil }
+        return "\(string)=\(value.rruleString)"
     }
 }
 
@@ -168,16 +210,21 @@ enum RecurrenceFrequency: String, RRuleCodable, CaseIterable {
 
 enum RecurrenceEnd: Equatable {
     case endDate(Date)
+    case endDateWithoutTime(Date)
     case occurrenceCount(Int)
 
     var asEndDate: Date? {
-        if case .endDate(let date) = self { return date }
-        return nil
+        switch self {
+        case .endDate(let date), .endDateWithoutTime(let date): date
+        case .occurrenceCount: nil
+        }
     }
 
     var asOccurrenceCount: Int? {
-        if case .occurrenceCount(let count) = self { return count }
-        return nil
+        switch self {
+        case .endDate, .endDateWithoutTime: nil
+        case .occurrenceCount(let count): count
+        }
     }
 }
 
@@ -330,6 +377,7 @@ extension RecurrenceRule {
 
         self.setPositions = RRK.SetPositions.value(in: rules)
         self.recurrenceEnd = RRK.EndDate.value(in: rules).flatMap { .endDate($0) }
+            ?? RRK.EndDateWithoutTime.value(in: rules).flatMap { .endDateWithoutTime($0) }
             ?? RRK.OccurrenceCount.value(in: rules).flatMap { .occurrenceCount($0) }
     }
 
@@ -360,11 +408,19 @@ extension RecurrenceRule {
             )
         }
 
-        subRules.append(contentsOf: [
-            RRK.SetPositions.rruleString(for: setPositions),
-            RRK.EndDate.rruleString(for: recurrenceEnd?.asEndDate),
-            RRK.OccurrenceCount.rruleString(for: recurrenceEnd?.asOccurrenceCount)
-        ])
+        subRules.append(
+            RRK.SetPositions.rruleString(for: setPositions)
+        )
+
+        let endString: String? = {
+            switch recurrenceEnd {
+            case .endDate(let date): RRK.EndDate.rruleString(for: date)
+            case .endDateWithoutTime(let date): RRK.EndDateWithoutTime.rruleString(for: date)
+            case .occurrenceCount(let count): RRK.OccurrenceCount.rruleString(for: count)
+            case .none: nil
+            }
+        }()
+        subRules.append(endString)
 
         return "RRULE:" + subRules.compactMap({ $0 }).joined(separator: ";")
     }
@@ -395,23 +451,6 @@ extension RecurrenceRule: Codable {
 }
 
 // MARK: - Helpers
-
-private extension Date {
-
-    private static let rruleFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyyMMdd'T'HHmmss'Z'"
-        return dateFormatter
-    }()
-
-    func rruleFormatted() -> String {
-        return Self.rruleFormatter.string(from: self)
-    }
-
-    static func parse(rruleDescription: String) -> Date? {
-        return Self.rruleFormatter.date(from: rruleDescription)
-    }
-}
 
 private extension String {
 

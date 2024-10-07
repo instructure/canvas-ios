@@ -19,18 +19,19 @@
 import Foundation
 
 public struct GradeListData: Identifiable, Equatable {
-    public let id: String
-    let userID: String
-    let courseName: String?
-    let courseColor: UIColor?
-    let assignmentSections: [AssignmentSections]
-    let isGradingPeriodHidden: Bool
-    let gradingPeriods: [GradingPeriod]
-    let currentGradingPeriod: GradingPeriod?
-    let totalGradeText: String?
+   public var id: String?
+   var userID: String?
+   var courseName: String?
+   var courseColor: UIColor?
+   var assignmentSections: [AssignmentSections] = []
+   var isGradingPeriodHidden: Bool = true
+   var gradingPeriods: [GradingPeriod] = []
+   var currentGradingPeriod: GradingPeriod?
+   var totalGradeText: String?
+   var currentGradingPeriodID: String?
 
     struct AssignmentSections: Identifiable, Equatable {
-        let id: String
+        var id: String
         let title: String?
         var assignments: [Assignment]
     }
