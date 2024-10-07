@@ -22,6 +22,8 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
+    @Environment(\.smartSearchContext) private var searchContext
+
     @ObservedObject private var viewModel: CourseDetailsViewModel
     @ObservedObject private var headerViewModel: CourseDetailsHeaderViewModel
     @ObservedObject private var selectionViewModel: ListSelectionViewModel
@@ -64,6 +66,16 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
         }
         .onPreferenceChange(ViewBoundsKey.self, perform: headerViewModel.scrollPositionChanged)
         .onReceive(viewModel.$homeRoute, perform: setupDefaultSplitDetailView)
+        .onReceive(searchContext.didSubmit) { value in
+            let loadingVc = SmartSearchHostingController(
+                context: searchContext.context,
+                color: searchContext.color,
+                router: env.router,
+                content: SmartSearchLoadingView()
+            )
+            loadingVc.searchContext.searchTerm.send(value)
+            env.router.show(loadingVc, from: controller)
+        }
     }
 
     @ViewBuilder
