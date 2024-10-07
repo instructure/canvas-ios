@@ -1,13 +1,13 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "20 MINS" : {
-
-    },
     "Change pacing" : {
 
     },
     "Content Details" : {
+
+    },
+    "Continue learning" : {
 
     },
     "Dashboard" : {
@@ -26,9 +26,6 @@
 
     },
     "Programs" : {
-
-    },
-    "Start" : {
 
     }
   },

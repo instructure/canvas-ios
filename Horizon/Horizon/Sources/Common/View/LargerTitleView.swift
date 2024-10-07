@@ -19,17 +19,17 @@
 import Core
 import SwiftUI
 
-struct LargeTitleView: View {
+struct LargerTitleView: View {
     let title: String
 
     var body: some View {
         Text(title.capitalized)
-            .font(.bold24)
+            .font(.regular24)
             .foregroundColor(.textDarkest)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
 #Preview {
-    LargeTitleView(title: "Welcome back, Justine!")
+    LargeTitleView(title: "Module Name")
 }
