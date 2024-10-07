@@ -44,7 +44,8 @@ public class GetAssignmentsByGroup: UseCase {
     public init(
         courseID: String,
         gradingPeriodID: String? = nil,
-        gradedOnly: Bool = false
+        gradedOnly: Bool = false,
+        orderBy: Order? = .none
     ) {
         self.courseID = courseID
         self.gradingPeriodID = gradingPeriodID
@@ -64,15 +65,25 @@ public class GetAssignmentsByGroup: UseCase {
             return predicate
         }()
 
-        scope = Scope(
-            predicate: predicate,
-            order: [
+        var order: [NSSortDescriptor] = [
                 .init(key: #keyPath(Assignment.assignmentGroup.position), ascending: true),
                 .init(key: #keyPath(Assignment.assignmentGroup.name), ascending: true, naturally: true),
-                .init(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true),
                 .init(key: #keyPath(Assignment.position), ascending: true),
                 .init(key: #keyPath(Assignment.name), ascending: true, naturally: true)
-            ],
+        ]
+
+        switch orderBy {
+        case .dueAscending:
+            order.insert(NSSortDescriptor.init(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true), at: 0)
+        case .dueDescending:
+            order.insert(NSSortDescriptor.init(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: false), at: 0)
+        case .none:
+            order.insert(NSSortDescriptor.init(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true), at: 2)
+        }
+
+        scope = Scope(
+            predicate: predicate,
+            order: order,
             sectionNameKeyPath: #keyPath(Assignment.assignmentGroup.position)
         )
     }

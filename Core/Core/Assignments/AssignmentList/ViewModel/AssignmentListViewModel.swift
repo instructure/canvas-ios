@@ -18,6 +18,11 @@
 
 import SwiftUI
 
+public enum Order: String {
+    case dueAscending
+    case dueDescending
+}
+
 public class AssignmentListViewModel: ObservableObject {
     public enum ViewModelState<T: Equatable>: Equatable {
         case loading
@@ -41,6 +46,8 @@ public class AssignmentListViewModel: ObservableObject {
             self?.gradingPeriodsDidUpdate()
         }
     }()
+
+    public var selectedOrder: Order?
 
     private let env = AppEnvironment.shared
     let courseID: String
@@ -81,6 +88,19 @@ public class AssignmentListViewModel: ObservableObject {
         selectedGradingPeriod = gradingPeriod
 
         assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriod?.id)) { [weak self] in
+            self?.assignmentGroupsDidUpdate()
+        }
+        assignmentGroups.refresh()
+    }
+
+    public func orderCleared() {
+        orderSelected(nil)
+    }
+
+    public func orderSelected(_ order: Order?) {
+        selectedOrder = order
+
+        assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id, orderBy: order)) { [weak self] in
             self?.assignmentGroupsDidUpdate()
         }
         assignmentGroups.refresh()
