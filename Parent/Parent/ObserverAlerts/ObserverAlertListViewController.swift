@@ -39,7 +39,7 @@ class ObserverAlertListViewController: UIViewController {
     }
     private var alerts: [ObserverAlert] = []
     private var thresholds: [AlertThreshold] = []
-    private lazy var observerAlertsInteractor = ObserverAlertsInteractor(studentID: studentID)
+    private lazy var interactor = ObserverAlertsInteractor(studentID: studentID)
     private var subscriptions = Set<AnyCancellable>()
 
     static func create(studentID: String) -> ObserverAlertListViewController {
@@ -95,7 +95,7 @@ class ObserverAlertListViewController: UIViewController {
     }
 
     private func internalRefresh(ignoreCache: Bool) {
-        observerAlertsInteractor
+        interactor
             .refresh(ignoreCache: ignoreCache)
             .sink { [weak self] completion in
                 guard let self else { return }
@@ -161,13 +161,31 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let id = alerts[indexPath.row].id
+        let dismissTitle = String(localized: "Dismiss", bundle: .parent)
         return UISwipeActionsConfiguration(actions: [
-            UIContextualAction(style: .destructive, title: String(localized: "Dismiss", bundle: .parent)) { (_, _, completed) in
-                DismissObserverAlert(alertID: id).fetch { (_, _, error) in
-                    completed(error == nil)
-                }
+            UIContextualAction(style: .destructive, title: dismissTitle) { [weak self] (_, _, completion) in
+                self?.dismissAlert(id: id, completion: completion)
             }
         ])
+    }
+
+    private func dismissAlert(id: String, completion: @escaping (Bool) -> Void) {
+        interactor.dismissAlert(id: id)
+            .sink(
+                receiveCompletion: {
+                    switch $0 {
+                    case .finished: completion(true)
+                    case .failure: completion(false)
+                    }
+                },
+                receiveValue: { [weak self] in
+                    guard let self, let index = alerts.firstIndex(where: { $0.id == id }) else { return }
+
+                    alerts.remove(at: index)
+                    tableView.deleteRows(at: [.init(row: index, section: 0)], with: .automatic)
+                }
+            )
+            .store(in: &subscriptions)
     }
 }
 

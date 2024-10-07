@@ -18,8 +18,9 @@
 
 import Core
 import Combine
+import CombineExt
 
-class ObserverAlertsInteractor {
+final class ObserverAlertsInteractor {
     private let studentID: String
     private var courseSettingsInteractor: CourseSettingsInteractor
 
@@ -31,7 +32,7 @@ class ObserverAlertsInteractor {
         self.courseSettingsInteractor = courseSettingsInteractor
     }
 
-    public func refresh(
+    func refresh(
         ignoreCache: Bool = false
     ) -> AnyPublisher<(alerts: [ObserverAlert], thresholds: [AlertThreshold]), Error> {
         let alerts = ReactiveStore(useCase: GetObserverAlerts(studentID: studentID))
@@ -62,6 +63,14 @@ class ObserverAlertsInteractor {
         return Publishers
             .CombineLatest(alerts, thresholds)
             .map { (alerts: $0.0, thresholds: $0.1) }
+            .eraseToAnyPublisher()
+    }
+
+    func dismissAlert(id: String) -> AnyPublisher<Void, Error> {
+        let useCase = DismissObserverAlert(alertID: id)
+        return ReactiveStore(useCase: useCase)
+            .getEntities()
+            .mapToVoid()
             .eraseToAnyPublisher()
     }
 }

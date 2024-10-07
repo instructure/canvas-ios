@@ -54,15 +54,17 @@ public class MarkObserverAlertRead: APIUseCase {
     public var scope: Scope { .where(#keyPath(ObserverAlert.id), equals: alertID) }
 }
 
-public class DismissObserverAlert: APIUseCase {
+public class DismissObserverAlert: DeleteUseCase {
     public typealias Model = ObserverAlert
 
-    public let alertID: String
+    public let request: DismissObserverAlertRequest
+    public let cacheKey: String? = nil
+    public var scope: Scope { .where(#keyPath(ObserverAlert.id), equals: alertID) }
+
+    private let alertID: String
+
     public init(alertID: String) {
         self.alertID = alertID
+        self.request = DismissObserverAlertRequest(alertID: alertID)
     }
-
-    public var cacheKey: String? { nil }
-    public var request: DismissObserverAlertRequest { DismissObserverAlertRequest(alertID: alertID) }
-    public var scope: Scope { .where(#keyPath(ObserverAlert.id), equals: alertID) }
 }
