@@ -901,7 +901,6 @@ class GradeListInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-
     func testShowGradeLetterWhenQuantitativeDataEnabledNOGradingPeriodWithEmptyGrade() {
         api.mock(
             GetCourse(courseID: "1"),
@@ -957,7 +956,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         waitForExpectations(timeout: 0.1)
         subscription.cancel()
     }
-    
+
     func testShowGradeLetterWhenQuantitativeDataEnabledWithGradingPeriodWithGradingScheme() {
         api.mock(
             GetCourse(courseID: "1"),
