@@ -901,60 +901,6 @@ class GradeListInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testShowGradeLetterWhenQuantitativeDataEnabledWithGradingPeriodWithGradingScheme() {
-        api.mock(
-            GetCourse(courseID: "1"),
-            value: .make(enrollments: [
-                .make(
-                    id: nil,
-                    course_id: "1",
-                    enrollment_state: .active,
-                    user_id: currentSession.userID,
-                    computed_current_grade: nil,
-                    computed_current_letter_grade: nil,
-                    current_grading_period_id: "1"
-                )
-            ],
-           settings: .make(restrict_quantitative_data: true))
-        )
-        api.mock(
-            GetEnrollments(
-                context: .course("1"),
-                userID: currentSession.userID,
-                gradingPeriodID: "1",
-                types: ["StudentEnrollment"],
-                states: [.active]
-            ),
-            value: [
-                .make(
-                    id: "1",
-                    course_id: "1",
-                    enrollment_state: .active,
-                    type: "StudentEnrollment",
-                    user_id: currentSession.userID,
-                    grades: .make(current_score: 42)
-                )
-            ]
-        )
-
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
-        testee.updateGradingPeriod(id: "1")
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(
-            arrangeBy: .groupName,
-            baseOnGradedAssignment: true,
-            ignoreCache: false,
-            shouldUpdateGradingPeriod: true
-        )
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "N/A")
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 0.1)
-        subscription.cancel()
-    }
 
     func testShowGradeLetterWhenQuantitativeDataEnabledNOGradingPeriodWithEmptyGrade() {
         api.mock(
@@ -1005,6 +951,61 @@ class GradeListInteractorLiveTests: CoreTestCase {
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertNil(data.totalGradeText)
+                    expectation.fulfill()
+                }
+        drainMainQueue()
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+    }
+    
+    func testShowGradeLetterWhenQuantitativeDataEnabledWithGradingPeriodWithGradingScheme() {
+        api.mock(
+            GetCourse(courseID: "1"),
+            value: .make(enrollments: [
+                .make(
+                    id: nil,
+                    course_id: "1",
+                    enrollment_state: .active,
+                    user_id: currentSession.userID,
+                    computed_current_grade: nil,
+                    computed_current_letter_grade: nil,
+                    current_grading_period_id: "1"
+                )
+            ],
+           settings: .make(restrict_quantitative_data: true))
+        )
+        api.mock(
+            GetEnrollments(
+                context: .course("1"),
+                userID: currentSession.userID,
+                gradingPeriodID: "1",
+                types: ["StudentEnrollment"],
+                states: [.active]
+            ),
+            value: [
+                .make(
+                    id: "1",
+                    course_id: "1",
+                    enrollment_state: .active,
+                    type: "StudentEnrollment",
+                    user_id: currentSession.userID,
+                    grades: .make(current_score: 42)
+                )
+            ]
+        )
+
+        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID)
+        testee.updateGradingPeriod(id: "1")
+        let expectation = expectation(description: "Publisher sends value")
+        let subscription = testee.getGrades(
+            arrangeBy: .groupName,
+            baseOnGradedAssignment: true,
+            ignoreCache: false,
+            shouldUpdateGradingPeriod: true
+        )
+            .sink(
+                receiveCompletion: { _ in }) { data in
+                    XCTAssertEqual(data.totalGradeText, "N/A")
                     expectation.fulfill()
                 }
         drainMainQueue()
