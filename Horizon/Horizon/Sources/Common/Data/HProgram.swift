@@ -41,6 +41,10 @@ struct HProgram {
         "Target Completion: 2024/11/27"
     }
 
+    var currentModule: HModule? {
+        modules.first
+    }
+
     var currentModuleItem: HModuleItem? {
         if let firstModule = modules.first,
            let currentModuleItem = firstModule.items.first {

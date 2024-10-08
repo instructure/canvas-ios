@@ -24,10 +24,9 @@ struct LargeTitleView: View {
 
     var body: some View {
         Text(title.capitalized)
-            .font(.bold28)
+            .font(.bold24)
             .foregroundColor(.textDarkest)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 16)
     }
 }
 

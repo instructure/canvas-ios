@@ -21,14 +21,17 @@ import Core
 struct HCourse {
     let id: String
     let name: String
+    let imageURL: URL?
 
-    init(id: String, name: String) {
+    init(id: String, name: String, imageURL: URL?) {
         self.id = id
         self.name = name
+        self.imageURL = imageURL
     }
 
     init(from entity: Course) {
         self.id = entity.id
         self.name = entity.name ?? ""
+        self.imageURL = entity.imageDownloadURL
     }
 }

@@ -16,14 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
+import SwiftUI
 
-final class ProgramsAssembly {
-    static func makeGetProgramsInteractor() -> GetProgramsInteractor {
-        GetProgramsInteractor()
-    }
+struct LargerTitleView: View {
+    let title: String
 
-    static func makeView() -> ProgramsView {
-        ProgramsView(viewModel: .init(interactor: makeGetProgramsInteractor()))
+    var body: some View {
+        Text(title.capitalized)
+            .font(.regular24)
+            .foregroundColor(.textDarkest)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
+}
+
+#Preview {
+    LargeTitleView(title: "Module Name")
 }

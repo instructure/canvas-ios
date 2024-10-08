@@ -34,30 +34,25 @@ struct DashboardView: View {
                 config: .init(refreshable: true)
             ) { proxy in
                 VStack(spacing: 0) {
-                    LargeTitleView(title: viewModel.title)
                     ForEach(viewModel.programs) { program in
                         if program.currentModuleItem != nil, !program.upcomingModuleItems.isEmpty {
                             VStack(alignment: .leading, spacing: 0) {
-                                SectionTitleView(title: program.name)
+                                LargeTitleView(title: program.name)
+                                    .padding(.top, 16)
                                 CertificateProgressBar(
-                                    maxWidth: proxy.size.width,
+                                    maxWidth: proxy.size.width - 2 * 16,
                                     progress: program.progress,
                                     progressString: program.progressString
                                 )
-                                currentModuleView(moduleItem: program.currentModuleItem)
-                                whatsNextModuleView(
-                                    proxy: proxy,
-                                    programName: program.name,
-                                    moduleItems: program.upcomingModuleItems
-                                )
+                                moduleView(program: program)
                             }
-                            .frame(maxWidth: .infinity)
+                            .padding(.horizontal, 16)
+                            .background(Color.backgroundLight)
+                            .padding(.bottom, 32)
                         }
                     }
                 }
             }
-            .padding(.horizontal, 16)
-            .background(Color.backgroundLightest)
             .navigationBarItems(trailing: logoutButton)
             .scrollIndicators(.hidden, axes: .vertical)
         }
@@ -72,43 +67,61 @@ struct DashboardView: View {
     }
 
     @ViewBuilder
-    private func currentModuleView(moduleItem: HModuleItem?) -> some View {
-        if let currentModuleItem = moduleItem {
-            ZStack {
-                VStack {
-                    Rectangle()
-                        .fill(Color.backgroundLightest)
-                        .frame(height: 200)
-                        .padding(16)
-                    HStack {
-                        VStack(alignment: .leading) {
-                            BodyTextView(title: currentModuleItem.title)
-                            Text("20 MINS")
-                                .font(.regular12)
-                                .foregroundStyle(Color.textDark)
-                        }
-                        Spacer()
-                        Button {
-                            print(currentModuleItem)
-                            if let url = currentModuleItem.url {
-                                AppEnvironment.shared.router.route(to: url, from: viewController)
-                            }
-
-                        } label: {
-                            Text("Start")
-                                .font(.regular16)
-                                .padding(.all, 8)
-                                .background(Color.backgroundDarkest)
-                                .foregroundColor(Color.textLightest)
-                                .cornerRadius(3)
-                        }
+    private func moduleView(program: HProgram) -> some View {
+        if let module = program.currentModule, let moduleItem = program.currentModuleItem {
+            VStack(spacing: 0) {
+                GeometryReader { proxy in
+                    AsyncImage(url: program.course.imageURL) { image in
+                        image.image?.resizable().scaledToFill()
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 16)
+                    .frame(width: proxy.size.width)
+                    .cornerRadius(8)
+                }
+                .frame(height: 200)
+                .padding(.vertical, 24)
+
+                LargerTitleView(title: module.name)
+                    .padding(.bottom, 8)
+                HStack(spacing: 0) {
+                    HStack(spacing: 4) {
+                        Image(systemName: "document")
+                            .resizable()
+                            .renderingMode(.template)
+                            .aspectRatio(contentMode: .fit)
+                            .foregroundStyle(Color.textDark)
+                            .frame(width: 18, height: 18)
+                        BodyTextView(title: moduleItem.title)
+                            .lineLimit(2)
+                    }
+                    Spacer()
+                    HStack(spacing: 4) {
+                        Image(systemName: "timer")
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundStyle(Color.textDark)
+                            .frame(width: 14, height: 14)
+                        BodyTextView(title: "20 Mins")
+                    }
+                }
+                Button {
+                    if let url = moduleItem.url {
+                        AppEnvironment.shared.router.route(to: url, from: viewController)
+                    }
+                } label: {
+                    Text("Continue learning")
+                        .font(.regular14)
+                        .frame(height: 36)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.backgroundLight)
+                        .foregroundColor(Color.textDark)
+                        .cornerRadius(8)
+                        .padding(.vertical, 16)
                 }
             }
-            .background(Color.backgroundLight)
-            .padding(.top, 16)
+            .padding(.horizontal, 16)
+            .background(Color.backgroundLightest)
+            .cornerRadius(8)
+            .padding(.vertical, 16)
         }
     }
 

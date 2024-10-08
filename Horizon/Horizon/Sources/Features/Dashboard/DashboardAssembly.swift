@@ -23,6 +23,6 @@ final class DashboardAssembly {
         GetProgramsInteractor()
     }
     static func makeView() -> DashboardView {
-        DashboardView(viewModel: .init(interactor: createGetProgramsInteractor()))
+        DashboardView(viewModel: .init(interactor: makeGetProgramsInteractor()))
     }
 }

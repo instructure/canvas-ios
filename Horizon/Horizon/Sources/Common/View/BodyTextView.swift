@@ -24,8 +24,8 @@ struct BodyTextView: View {
 
     var body: some View {
         Text(title)
-            .font(.regular16)
-            .foregroundStyle(Color.textDarkest)
+            .font(.regular12)
+            .foregroundStyle(Color.textDark)
     }
 }
 
