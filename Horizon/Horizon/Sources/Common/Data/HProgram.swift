@@ -42,11 +42,7 @@ struct HProgram {
     }
 
     var currentModule: HModule? {
-        if let firstModule = modules.first {
-            return firstModule
-        } else {
-            return nil
-        }
+        modules.first
     }
 
     var currentModuleItem: HModuleItem? {
