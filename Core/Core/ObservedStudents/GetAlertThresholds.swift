@@ -35,6 +35,7 @@ extension AlertThreshold: WriteableModel {
 
 public class GetAlertThresholds: CollectionUseCase {
     public typealias Model = AlertThreshold
+    public typealias Response = Request.Response
     public let studentID: String
 
     public init(studentID: String) {

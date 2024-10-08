@@ -202,6 +202,7 @@ class UseCaseTests: CoreTestCase {
 class CollectionUseCaseTests: CoreTestCase {
     class TestCollectionUseCase: CollectionUseCase {
         typealias Model = Course
+        typealias Response = Request.Response
 
         var request: GetCoursesRequest {
             return GetCoursesRequest()

@@ -60,6 +60,7 @@ class GetAnnouncements: CollectionUseCase {
 
 class GetDiscussionTopics: CollectionUseCase {
     typealias Model = DiscussionTopic
+    typealias Response = Request.Response
 
     let context: Context
     init(context: Context) {

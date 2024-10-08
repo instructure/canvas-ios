@@ -34,7 +34,8 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
             html = string
             return nil
         }
-        open override func evaluateJavaScript(_ javaScriptString: String, completionHandler: ((Any?, Error?) -> Void)? = nil) {
+
+        open override func evaluateJavaScript(_ javaScriptString: String, completionHandler: (@MainActor (Any?, (any Error)?) -> Void)? = nil) {
             completionHandler?(nil, nil)
         }
     }
