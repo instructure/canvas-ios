@@ -24,6 +24,6 @@ final class ProgramsAssembly {
     }
 
     static func makeView() -> ProgramsView {
-        ProgramsView(viewModel: .init(interactor: createGetProgramsInteractor()))
+        ProgramsView(viewModel: .init(interactor: makeGetProgramsInteractor()))
     }
 }
