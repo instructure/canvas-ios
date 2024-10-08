@@ -251,9 +251,11 @@ private extension EditCustomFrequencyViewModelTests {
         static let dateNow = Date()
         static let eventDate = Date.make(year: 2024, month: 3, day: 1, hour: 14, minute: 0)
 
+        // MARK: - readingUseCases
+
         static var readingUseCases: [RRuleUseCase] {
             return [
-                dailyUseCase, weeklyUseCase, monthlyUseCase, monthly2UseCase, yearlyUseCase
+                dailyUseCase, weeklyUseCase, monthlyUseCase, monthly2UseCase, yearlyUseCase, endDateWithoutTimeUseCase
             ]
         }
 
@@ -353,6 +355,25 @@ private extension EditCustomFrequencyViewModelTests {
             )
         )
 
+        static let endDateWithoutTimeUseCase = RRuleUseCase(
+            rule: RecurrenceRule(
+                recurrenceWith: .daily,
+                interval: 1,
+                end: .endDateWithoutTime(eventDate.addDays(30))
+            ),
+            expected: RRuleExpectedModel(
+                frequency: .daily,
+                interval: .init(value: 1),
+                endMode: .onDate,
+                endDate: eventDate.addDays(30),
+                daysOfTheWeek: [eventDate.weekday],
+                dayOfMonth: .proposed(by: eventDate),
+                dayOfYear: .proposed(by: eventDate)
+            )
+        )
+
+        // MARK: - translatingUseCases
+
         static var translatingUseCases: [RRuleUseCase] {
             return [
                 weeklyTranslatingUseCase, monthlyTranslatingUseCase, yearlyTranslatingUseCase
@@ -415,6 +436,8 @@ private extension EditCustomFrequencyViewModelTests {
         )
     }
 }
+
+// MARK: - Helpers
 
 private extension EditCustomFrequencyViewModel.DayOfMonth {
     static func proposed(by date: Date) -> Self { .day(date.monthDay) }

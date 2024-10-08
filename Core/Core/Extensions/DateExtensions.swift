@@ -270,6 +270,13 @@ public extension Date {
     }
 }
 
+extension DateFormatter {
+    public convenience init(_ dateFormat: String) {
+        self.init()
+        self.dateFormat = dateFormat
+    }
+}
+
 #if DEBUG
 public extension Date {
     static func make(calendar: Calendar = .current, year: Int, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> Date {
