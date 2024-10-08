@@ -89,7 +89,7 @@ class ObserverAlertListViewController: UIViewController {
     }
 
     private func updateTabBarBadgeCount() {
-        let unreadCount = alerts.filter { $0.workflowState == .unread } .count
+        let unreadCount = alerts.filter { $0.isUnread } .count
         tabBarItem.badgeValue = unreadCount <= 0 ? nil :
             NumberFormatter.localizedString(from: NSNumber(value: unreadCount), number: .none)
     }
@@ -142,7 +142,7 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alert = alerts[indexPath.row]
 
-        if alert.workflowState == .unread {
+        if alert.isUnread {
             markAlertAsRead(id: alert.id)
         }
 
