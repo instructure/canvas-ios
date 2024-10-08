@@ -142,7 +142,9 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alert = alerts[indexPath.row]
 
-        MarkObserverAlertRead(alertID: alert.id).fetch()
+        if alert.workflowState == .unread {
+            markAlertAsRead(id: alert.id)
+        }
 
         guard alert.lockedForUser == false else {
             showItemLockedMessage()
@@ -167,6 +169,18 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
                 self?.dismissAlert(id: id, completion: completion)
             }
         ])
+    }
+
+    private func markAlertAsRead(id: String) {
+        interactor.markAlertAsRead(id: id)
+            .ignoreFailure()
+            .sink { [weak self] in
+                guard let self, let index = alerts.firstIndex(where: { $0.id == id }) else { return }
+
+                tableView.reloadRows(at: [.init(row: index, section: 0)], with: .automatic)
+                // If in the future this will be used in a SplitView, make sure the row is reselected.
+            }
+            .store(in: &subscriptions)
     }
 
     private func dismissAlert(id: String, completion: @escaping (Bool) -> Void) {

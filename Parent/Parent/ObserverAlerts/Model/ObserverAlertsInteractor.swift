@@ -66,6 +66,14 @@ final class ObserverAlertsInteractor {
             .eraseToAnyPublisher()
     }
 
+    func markAlertAsRead(id: String) -> AnyPublisher<Void, Error> {
+        let useCase = MarkObserverAlertRead(alertID: id)
+        return ReactiveStore(useCase: useCase)
+            .getEntities()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
     func dismissAlert(id: String) -> AnyPublisher<Void, Error> {
         let useCase = DismissObserverAlert(alertID: id)
         return ReactiveStore(useCase: useCase)
