@@ -19,7 +19,10 @@
 import Foundation
 
 final class DashboardAssembly {
+    static func makeGetProgramsInteractor() -> GetProgramsInteractor {
+        GetProgramsInteractor()
+    }
     static func makeView() -> DashboardView {
-        DashboardView(viewModel: .init())
+        DashboardView(viewModel: .init(interactor: createGetProgramsInteractor()))
     }
 }

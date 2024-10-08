@@ -16,13 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
-struct ExpandingWeekView: View {
-
+struct ExpandingModuleTitle: Identifiable {
+    let id = UUID().uuidString
     let title: String
-    let items: [String]
-    @Binding private(set) var isExpanded: Bool
+}
+
+struct ExpandingModuleView: View {
+    let title: String
+    let items: [ExpandingModuleTitle]
+    @State private var isExpanded = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -36,16 +41,21 @@ struct ExpandingWeekView: View {
                         .tint(Color.textDark)
                         .frame(width: 18, height: 18)
                         .rotationEffect(isExpanded ? .degrees(-180) : .degrees(0))
-
                 }
             }
 
             if isExpanded {
-                HStack {
-                    Text("One")
-                    Text("Two")
-                    Text("Three")
+                VStack(alignment: .leading) {
+                    ForEach(items) { item in
+                        Text(item.title)
+                            .font(.regular14)
+                            .foregroundColor(.textDark)
+                            .padding()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.backgroundLight)
                 }
+                .padding()
             }
         }
         .animation(.easeOut, value: isExpanded)
@@ -53,11 +63,8 @@ struct ExpandingWeekView: View {
 }
 
 #Preview {
-    @State var value: Bool = true
-
-    return ExpandingWeekView(
+    ExpandingModuleView(
         title: "week 1",
-        items: ["One, Two, Three"],
-        isExpanded: $value
+        items: [ExpandingModuleTitle(title: "Quiz"), ExpandingModuleTitle(title: "Assignment")]
     )
 }

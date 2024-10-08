@@ -21,6 +21,7 @@ import SwiftUI
 
 struct DashboardView: View {
     @ObservedObject private var viewModel: DashboardViewModel
+    @Environment(\.viewController) private var viewController
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
@@ -32,22 +33,33 @@ struct DashboardView: View {
                 state: viewModel.state,
                 config: .init(refreshable: true)
             ) { proxy in
-                VStack(alignment: .leading, spacing: 0) {
+                VStack(spacing: 0) {
                     LargeTitleView(title: viewModel.title)
-                    SectionTitleView(title: "BIOLOGY CERTIFICATE #17491")
-                    CertificateProgressBar(
-                        maxWidth: proxy.size.width,
-                        progress: viewModel.progress,
-                        progressString: viewModel.progressString
-                    )
-                    currentModuleView
-                    whatsNextModuleView(proxy: proxy)
+                    ForEach(viewModel.programs) { program in
+                        if program.currentModuleItem != nil, !program.upcomingModuleItems.isEmpty {
+                            VStack(alignment: .leading, spacing: 0) {
+                                SectionTitleView(title: program.name)
+                                CertificateProgressBar(
+                                    maxWidth: proxy.size.width,
+                                    progress: program.progress,
+                                    progressString: program.progressString
+                                )
+                                currentModuleView(moduleItem: program.currentModuleItem)
+                                whatsNextModuleView(
+                                    proxy: proxy,
+                                    programName: program.name,
+                                    moduleItems: program.upcomingModuleItems
+                                )
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                    }
                 }
-                .frame(maxWidth: .infinity)
             }
             .padding(.horizontal, 16)
             .background(Color.backgroundLightest)
             .navigationBarItems(trailing: logoutButton)
+            .scrollIndicators(.hidden, axes: .vertical)
         }
     }
 
@@ -59,67 +71,66 @@ struct DashboardView: View {
         }
     }
 
-    private var currentModuleView: some View {
-        ZStack {
-            VStack {
-                Rectangle()
-                    .fill(Color.backgroundLightest)
-                    .frame(height: 200)
-                    .padding(16)
-                HStack {
-                    VStack(alignment: .leading) {
-                        BodyTextView(title: "Short Form Text")
-                        Text("20 MINS")
-                            .font(.regular12)
-                            .foregroundStyle(Color.textDark)
+    @ViewBuilder
+    private func currentModuleView(moduleItem: HModuleItem?) -> some View {
+        if let currentModuleItem = moduleItem {
+            ZStack {
+                VStack {
+                    Rectangle()
+                        .fill(Color.backgroundLightest)
+                        .frame(height: 200)
+                        .padding(16)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            BodyTextView(title: currentModuleItem.title)
+                            Text("20 MINS")
+                                .font(.regular12)
+                                .foregroundStyle(Color.textDark)
+                        }
+                        Spacer()
+                        Button {
+                            print(currentModuleItem)
+                            if let url = currentModuleItem.url {
+                                AppEnvironment.shared.router.route(to: url, from: viewController)
+                            }
+
+                        } label: {
+                            Text("Start")
+                                .font(.regular16)
+                                .padding(.all, 8)
+                                .background(Color.backgroundDarkest)
+                                .foregroundColor(Color.textLightest)
+                                .cornerRadius(3)
+                        }
                     }
-                    Spacer()
-                    Button {
-                        print("tapped")
-                    } label: {
-                        Text("Start")
-                            .font(.regular16)
-                            .padding(.all, 8)
-                            .background(Color.backgroundDarkest)
-                            .foregroundColor(Color.textLightest)
-                            .cornerRadius(3)
-                    }
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 16)
                 }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 16)
             }
+            .background(Color.backgroundLight)
+            .padding(.top, 16)
         }
-        .background(Color.backgroundLight)
-        .padding(.top, 16)
     }
 
     @ViewBuilder
-    private func whatsNextModuleView(proxy: GeometryProxy) -> some View {
+    private func whatsNextModuleView(
+        proxy: GeometryProxy,
+        programName: String,
+        moduleItems: [HModuleItem]
+    ) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             SectionTitleView(title: "What's next")
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 8) {
-                    ProgramItemView(
-                        screenWidth: proxy.size.width,
-                        title: "Practice Quiz",
-                        icon: Image(systemName: "doc"),
-                        duration: "60 mins",
-                        certificate: "Biology certificate"
-                    )
-                    ProgramItemView(
-                        screenWidth: proxy.size.width,
-                        title: "Video",
-                        icon: Image(systemName: "doc"),
-                        duration: "20 mins",
-                        certificate: "Biology certificate"
-                    )
-                    ProgramItemView(
-                        screenWidth: proxy.size.width,
-                        title: "Video",
-                        icon: Image(systemName: "doc"),
-                        duration: "30 mins",
-                        certificate: "Biology certificate"
-                    )
+                    ForEach(moduleItems) { moduleItem in
+                        ProgramItemView(
+                            screenWidth: proxy.size.width,
+                            title: moduleItem.title,
+                            icon: Image(systemName: "doc"),
+                            duration: "60 mins",
+                            certificate: programName
+                        )
+                    }
                 }
             }
         }
@@ -128,5 +139,5 @@ struct DashboardView: View {
 }
 
 #Preview {
-    DashboardView(viewModel: .init())
+    DashboardView(viewModel: .init(interactor: GetProgramsInteractor()))
 }

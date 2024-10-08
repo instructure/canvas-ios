@@ -16,19 +16,31 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import Foundation
 
 final class DashboardViewModel: ObservableObject {
     // MARK: - Outputs
 
-    @Published public private(set) var state: InstUI.ScreenState = .data(loadingOverlay: false)
-    @Published public private(set) var title: String = "Welcome back, Justine"
-    @Published public private(set) var progressString: String = "75%"
-    @Published public private(set) var progress: Double = 0.75
-    @Published public private(set) var modules: [Module] = []
+    @Published private(set) var state: InstUI.ScreenState = .loading
+    @Published private(set) var title: String = "Welcome back, Justine"
+    @Published private(set) var programs: [HProgram] = []
+
+    // MARK: - Private variables
+
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
-    init() {}
+    init(interactor: GetProgramsInteractor) {
+        unowned let unownedSelf = self
+
+        interactor.getPrograms()
+            .sink { programs in
+                unownedSelf.programs = programs
+                unownedSelf.state = .data
+            }
+            .store(in: &subscriptions)
+    }
 }

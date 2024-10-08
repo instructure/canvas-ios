@@ -17,13 +17,10 @@
 //
 
 import Foundation
+import Core
 
-final class ProgramsAssembly {
-    static func makeGetProgramsInteractor() -> GetProgramsInteractor {
-        GetProgramsInteractor()
-    }
-
-    static func makeView() -> ProgramsView {
-        ProgramsView(viewModel: .init(interactor: createGetProgramsInteractor()))
+final class ContentDetailsAssembly {
+    static func makeViewController() -> UIViewController {
+        CoreHostingController(ContentDetailsView())
     }
 }

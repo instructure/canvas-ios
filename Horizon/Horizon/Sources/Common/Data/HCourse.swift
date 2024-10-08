@@ -16,14 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
 
-final class ProgramsAssembly {
-    static func makeGetProgramsInteractor() -> GetProgramsInteractor {
-        GetProgramsInteractor()
+struct HCourse {
+    let id: String
+    let name: String
+
+    init(id: String, name: String) {
+        self.id = id
+        self.name = name
     }
 
-    static func makeView() -> ProgramsView {
-        ProgramsView(viewModel: .init(interactor: createGetProgramsInteractor()))
+    init(from entity: Course) {
+        self.id = entity.id
+        self.name = entity.name ?? ""
     }
 }
