@@ -16,9 +16,9 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-if [ "${CONFIGURATION}" = "Release" ]; then
-	echo "Uploading dSYMs to Firebase."
-	${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run
+if [ -v UPLOAD_DSYM ]; then
+    echo "Uploading dSYMs to Firebase."
+    ${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run
 else
-	echo "Skipping dSYM upload for non release builds."
+    echo "Skipping dSYM upload because the UPLOAD_DSYM variable is not set."
 fi
