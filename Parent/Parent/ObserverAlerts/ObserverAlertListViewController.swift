@@ -177,8 +177,13 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
             .sink { [weak self] in
                 guard let self, let index = alerts.firstIndex(where: { $0.id == id }) else { return }
 
+                // making sure `read` state is set before UI updates
+                alerts[index].workflowState = .read
+
                 tableView.reloadRows(at: [.init(row: index, section: 0)], with: .automatic)
                 // If in the future this will be used in a SplitView, make sure the row is reselected.
+
+                updateTabBarBadgeCount()
             }
             .store(in: &subscriptions)
     }
@@ -197,6 +202,7 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
 
                     alerts.remove(at: index)
                     tableView.deleteRows(at: [.init(row: index, section: 0)], with: .automatic)
+                    updateTabBarBadgeCount()
                 }
             )
             .store(in: &subscriptions)
