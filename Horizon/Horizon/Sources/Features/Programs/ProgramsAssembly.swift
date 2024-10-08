@@ -19,7 +19,7 @@
 import Foundation
 
 final class ProgramsAssembly {
-    static func createGetProgramsInteractor() -> GetProgramsInteractor {
+    static func makeGetProgramsInteractor() -> GetProgramsInteractor {
         GetProgramsInteractor()
     }
 

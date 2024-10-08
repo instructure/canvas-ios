@@ -19,7 +19,7 @@
 import Foundation
 
 final class DashboardAssembly {
-    static func createGetProgramsInteractor() -> GetProgramsInteractor {
+    static func makeGetProgramsInteractor() -> GetProgramsInteractor {
         GetProgramsInteractor()
     }
     static func makeView() -> DashboardView {
