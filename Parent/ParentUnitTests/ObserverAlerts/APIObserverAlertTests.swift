@@ -30,13 +30,13 @@ class APIObserverAlertTests: ParentTestCase {
     }
 
     func testMarkObserverAlertReadRequest() {
-        let req = MarkObserverAlertReadRequest(alertID: "7")
+        let req = PutObserverAlertReadRequest(alertID: "7")
         XCTAssertEqual(req.method, .put)
         XCTAssertEqual(req.path, "users/self/observer_alerts/7/read")
     }
 
     func testDismissObserverAlertRequest() {
-        let req = DismissObserverAlertRequest(alertID: "4")
+        let req = PutObserverAlertDismissedRequest(alertID: "4")
         XCTAssertEqual(req.method, .put)
         XCTAssertEqual(req.path, "users/self/observer_alerts/4/dismissed")
     }

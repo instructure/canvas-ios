@@ -40,14 +40,14 @@ class GetObserverAlertsTests: ParentTestCase {
     }
 
     func testMarkObserverAlertRead() {
-        let useCase = MarkObserverAlertRead(alertID: "5")
+        let useCase = MarkObserverAlertAsRead(id: "5")
         XCTAssertEqual(useCase.cacheKey, nil)
         XCTAssertEqual(useCase.request.alertID, "5")
         XCTAssertEqual(useCase.scope, .where(#keyPath(ObserverAlert.id), equals: "5"))
     }
 
     func testDismissObserverAlert() {
-        let useCase = DismissObserverAlert(alertID: "8")
+        let useCase = DismissObserverAlert(id: "8")
         XCTAssertEqual(useCase.cacheKey, nil)
         XCTAssertEqual(useCase.request.alertID, "8")
         XCTAssertEqual(useCase.scope, .where(#keyPath(ObserverAlert.id), equals: "8"))
