@@ -38,10 +38,6 @@ public struct AssignmentListView: View, ScreenViewTrackable {
             HStack(alignment: .firstTextBaseline) {
                 gradingPeriodTitle
                 Spacer(minLength: 8)
-                orderButton
-                if viewModel.shouldShowFilterButton {
-                    gradingPeriodButton
-                }
             }
             .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
 
@@ -57,6 +53,7 @@ public struct AssignmentListView: View, ScreenViewTrackable {
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarStyle(.color(viewModel.courseColor))
         .navigationTitle(String(localized: "Assignments", bundle: .core), subtitle: viewModel.courseName)
+        .navBarItems(trailing: .filterIcon { filterButton })
         .navigationBarGenericBackButton()
         .onAppear(perform: viewModel.viewDidAppear)
         .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
@@ -106,39 +103,8 @@ public struct AssignmentListView: View, ScreenViewTrackable {
         return buttons
     }
 
-    @ViewBuilder
-    private var orderButton: some View {
-        if viewModel.selectedOrder == nil {
-            Button {
-                isShowingOrderPicker = true
-            } label: {
-                Text("Order", bundle: .core)
-                    .font(.semibold16)
-                    .foregroundColor(Color(Brand.shared.linkColor))
-            }.actionSheet(isPresented: $isShowingOrderPicker) {
-                ActionSheet(title: Text("Order by", bundle: .core), buttons: orderButtons)
-            }
-        } else {
-            Button(action: viewModel.orderCleared) {
-                Text("Default", bundle: .core)
-                    .font(.semibold16)
-                    .foregroundColor(Color(Brand.shared.linkColor))
-            }
-        }
-    }
-
-    private var orderButtons: [ActionSheet.Button] {
-        var buttons: [ActionSheet.Button] = {
-            [
-                ActionSheet.Button.default(Text("Due Ascending")) {
-                    viewModel.orderSelected(.dueAscending)
-                },
-                ActionSheet.Button.default(Text("Due Descending")) {
-                    viewModel.orderSelected(.dueDescending)
-                }
-            ]}()
-        buttons.append(.cancel(Text("Cancel", bundle: .core)))
-        return buttons
+    private var filterButton: some View {
+        Button(action: { viewModel.navigateToFilter(viewController: controller) }) { Text("Filter") }
     }
 
     @ViewBuilder

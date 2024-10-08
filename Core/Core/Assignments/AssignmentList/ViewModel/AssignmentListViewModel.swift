@@ -16,26 +16,50 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Combine
+import CombineExt
+import CombineSchedulers
+import Foundation
 
 public enum Order: String {
     case dueAscending
     case dueDescending
 }
 
-public class AssignmentListViewModel: ObservableObject {
-    public enum ViewModelState<T: Equatable>: Equatable {
+public enum AssignmentArrangementOptions: Int, CaseIterable {
+    case groupName = 1
+    case dueDate = 2
+
+    var title: String {
+        switch self {
+        case .groupName:
+            return String(localized: "Group", bundle: .core)
+        case .dueDate:
+            return String(localized: "Due Date", bundle: .core)
+        }
+    }
+}
+
+public final class AssignmentListViewModel: ObservableObject {
+    typealias RefreshCompletion = () -> Void
+    typealias IgnoreCache = Bool
+
+    public enum ViewModelState: Equatable {
         case loading
-        case empty
-        case data(T)
+        case data(AssignmentListData)
+        case empty(AssignmentListData)
+        case error
     }
 
-    @Published public private(set) var state: ViewModelState<[AssignmentGroupViewModel]> = .loading
+    // MARK: - Dependencies
+
+    private let interactor: AssignmentListInteractor
+
+    @Published public private(set) var state: ViewModelState = .loading
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var courseName: String?
     @Published public private(set) var shouldShowFilterButton = false
     @Published public private(set) var defaultDetailViewRoute = "/empty"
-    public var selectedGradingPeriod: GradingPeriod?
     public private(set) lazy var gradingPeriods: Store<LocalUseCase<GradingPeriod>> = {
         let scope: Scope = .where(
             #keyPath(GradingPeriod.courseID),
@@ -50,7 +74,36 @@ public class AssignmentListViewModel: ObservableObject {
     public var selectedOrder: Order?
 
     private let env = AppEnvironment.shared
-    let courseID: String
+    var courseID: String { interactor.courseID }
+
+    // MARK: - Input
+    let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
+    let didSelectAssignment = PassthroughRelay<(WeakViewController, Assignment)>()
+    let selectedGradingPeriod = PassthroughRelay<String?>()
+    let selectedGroupByOption = CurrentValueRelay<AssignmentArrangementOptions>(.dueDate)
+    var isParentApp: Bool {
+        assignmentFilterInteractor.isParentApp
+    }
+
+    // MARK: - Private properties
+    private var lastKnownDataState: AssignmentListData? {
+        didSet {
+            if !isInitialGradingPeriodSet {
+                isInitialGradingPeriodSet = true
+                state = .loading
+                let id = getSelectedGradingPeriodId(
+                    currentGradingPeriodID: lastKnownDataState?.currentGradingPeriodID,
+                    gradingPeriods: lastKnownDataState?.gradingPeriods ?? []
+                )
+                selectedGradingPeriod.accept(id)
+            }
+        }
+    }
+    private var subscriptions = Set<AnyCancellable>()
+    private let router: Router
+    private let assignmentFilterInteractor: AssignmentFilterInteractor
+    private var isInitialGradingPeriodSet = false
+
     private lazy var assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
         self?.assignmentGroupsDidUpdate()
     }
@@ -61,49 +114,139 @@ public class AssignmentListViewModel: ObservableObject {
     /** This is required for the router to help decide if the hybrid discussion details or the native one should be launched. */
     private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID)))
 
-    public init(context: Context) {
-        self.courseID = context.id
+    public init(
+        interactor: AssignmentListInteractor,
+        assignmentFilterInteractor: AssignmentFilterInteractor,
+        router: Router,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
+        self.interactor = interactor
+        self.router = router
+        self.assignmentFilterInteractor = assignmentFilterInteractor
+        let triggerRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion?)>()
 
-        featureFlags.refresh()
+        pullToRefreshDidTrigger
+            .sink {
+                triggerRefresh.accept((true, $0))
+            }
+            .store(in: &subscriptions)
+
+        selectedGradingPeriod
+            .sink {
+                interactor.updateGradingPeriod(id: $0)
+                triggerRefresh.accept((true, nil))
+            }
+            .store(in: &subscriptions)
+
+        triggerRefresh.prepend((false, nil))
+            .receive(on: scheduler)
+            .flatMapLatest { [weak self] params -> AnyPublisher<ViewModelState, Never> in
+                guard let self else {
+                    return Empty(completeImmediately: true).eraseToAnyPublisher()
+                }
+                let ignoreCache = params.0
+                let refreshCompletion = params.1
+
+                // Changing the grading period fires an API request that takes time,
+                // so we need to show a loading indicator.
+                if lastKnownDataState != nil, refreshCompletion == nil, ignoreCache {
+                    // Empty list of assignments so can't get the normal size of scrollView
+                    state = .data(.init())
+                }
+
+                return interactor.getAssignments(
+                    arrangeBy: selectedGroupByOption.value,
+                    ignoreCache: ignoreCache,
+                    shouldUpdateGradingPeriod: false
+                )
+                .first()
+                .receive(on: scheduler)
+                .flatMap { [weak self] listData -> AnyPublisher<ViewModelState, Never> in
+                    guard let self else {
+                        return Empty(completeImmediately: true).eraseToAnyPublisher()
+                    }
+                    lastKnownDataState = listData
+                    courseName = listData.courseName
+                    courseColor = listData.courseColor
+                    if listData.assignmentSections.count == 0 {
+                        return Just(ViewModelState.empty(listData)).eraseToAnyPublisher()
+                    } else {
+                        return Just(ViewModelState.data(listData)).eraseToAnyPublisher()
+                    }
+                }
+                .replaceError(with: .error)
+                .map {
+                    refreshCompletion?()
+                    return $0
+                }
+                .first()
+                .eraseToAnyPublisher()
+            }
+            .receive(on: scheduler)
+            .assign(to: &$state)
+
+        didSelectAssignment
+            .receive(on: scheduler)
+            .sink { vc, assignment in
+                router.route(to: "/courses/\(interactor.courseID)/assignments/\(assignment.id)", from: vc, options: .detail)
+            }
+            .store(in: &subscriptions)
+
+        loadSortPreferences()
     }
 
-    // MARK: - Preview Support
-
-#if DEBUG
-
-    init(state: ViewModelState<[AssignmentGroupViewModel]>) {
-        self.courseID = ""
-        self.state = state
+   private func loadSortPreferences() {
+        let selectedSortById = assignmentFilterInteractor.selectedSortById
+        let selectedSortByOption = AssignmentArrangementOptions(rawValue: selectedSortById ?? 0) ?? .dueDate
+        selectedGroupByOption.accept(selectedSortByOption)
     }
 
-#endif
-
-    // MARK: Preview Support -
-
-    public func gradingPeriodFilterCleared() {
-        gradingPeriodSelected(nil)
-    }
-
-    public func gradingPeriodSelected(_ gradingPeriod: GradingPeriod?) {
-        selectedGradingPeriod = gradingPeriod
-
-        assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriod?.id)) { [weak self] in
-            self?.assignmentGroupsDidUpdate()
+    private func getSelectedGradingPeriodId(
+        currentGradingPeriodID: String?,
+        gradingPeriods: [GradingPeriod]
+    ) -> String? {
+        let currentId = assignmentFilterInteractor.selectedGradingId
+        guard !gradingPeriods.isEmpty else {
+            assignmentFilterInteractor.saveSelectedGradingPeriod(id: currentGradingPeriodID)
+            return currentGradingPeriodID
         }
-        assignmentGroups.refresh()
-    }
 
-    public func orderCleared() {
-        orderSelected(nil)
-    }
-
-    public func orderSelected(_ order: Order?) {
-        selectedOrder = order
-
-        assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id, orderBy: order)) { [weak self] in
-            self?.assignmentGroupsDidUpdate()
+        if let currentId {
+            if currentId == assignmentFilterInteractor.gradingShowAllId {
+                return nil
+            } else if gradingPeriods.contains(where: { $0.id == currentId }) {
+                return currentId
+            } else {
+                assignmentFilterInteractor.saveSelectedGradingPeriod(id: gradingPeriods.first?.id)
+                assignmentFilterInteractor.saveSortByOption(type: .dueDate)
+                return gradingPeriods.first?.id
+            }
         }
-        assignmentGroups.refresh()
+        assignmentFilterInteractor.saveSelectedGradingPeriod(id: currentGradingPeriodID)
+        return currentGradingPeriodID
+    }
+
+    func navigateToFilter(viewController: WeakViewController) {
+        let isShowGradingPeriod = !(lastKnownDataState?.isGradingPeriodHidden ?? false)
+        let dependency = AssignmentFilterViewModel.Dependency(
+            router: router,
+            isShowGradingPeriod: isShowGradingPeriod,
+            courseName: courseName,
+            selectedGradingPeriodPublisher: selectedGradingPeriod,
+            selectedSortByPublisher: selectedGroupByOption,
+            gradingPeriods: lastKnownDataState?.gradingPeriods,
+            sortByOptions: AssignmentArrangementOptions.allCases
+        )
+
+        let filterView = AssignmentListAssembly.makeAssignmentFilterViewController(
+            dependency: dependency,
+            assignmentFilterInteractor: assignmentFilterInteractor
+        )
+        router.show(
+            filterView,
+            from: viewController,
+            options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
+        )
     }
 
     public func viewDidAppear() {

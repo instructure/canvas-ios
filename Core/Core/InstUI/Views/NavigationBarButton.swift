@@ -239,6 +239,22 @@ extension InstUI.NavigationBarButton {
             menuContent: menuContent
         )
     }
+
+    public static func filterIcon<MenuContent: View>(
+        isBackgroundContextColor: Bool = false,
+        isEnabled isEnabledOverride: Bool? = nil,
+        isAvailableOffline: Bool = true,
+        @ViewBuilder menuContent: () -> MenuContent
+    ) -> Self {
+        .init(
+            isBackgroundContextColor: isBackgroundContextColor,
+            isEnabled: isEnabledOverride,
+            isAvailableOffline: isAvailableOffline,
+            image: .filterLine,
+            accessibilityLabel: String(localized: "Filter", bundle: .core),
+            menuContent: menuContent
+        )
+    }
 }
 
 #if DEBUG
