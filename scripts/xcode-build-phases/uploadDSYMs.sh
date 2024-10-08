@@ -16,9 +16,9 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-if [ -v UPLOAD_DSYM ]; then
+if [ -z ${UPLOAD_DSYM+x} ]; then
+    echo "Skipping dSYM upload because the UPLOAD_DSYM variable is not set."
+else
     echo "Uploading dSYMs to Firebase."
     ${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run
-else
-    echo "Skipping dSYM upload because the UPLOAD_DSYM variable is not set."
 fi
