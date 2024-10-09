@@ -116,7 +116,7 @@ class ComposeViewControllerTests: CoreTestCase {
             media_comment_id: nil,
             media_comment_type: nil,
             attachment_ids: [],
-            group_conversation: true, 
+            group_conversation: true,
             bulk_message: false
         )), error: NSError.instructureError("Error")
         )
