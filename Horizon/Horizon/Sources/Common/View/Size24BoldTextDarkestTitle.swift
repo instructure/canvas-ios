@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-struct LargeTitleView: View {
+struct Size24BoldTextDarkestTitle: View {
     let title: String
 
     var body: some View {
@@ -31,5 +31,5 @@ struct LargeTitleView: View {
 }
 
 #Preview {
-    LargeTitleView(title: "Welcome back, Justine!")
+    Size24BoldTextDarkestTitle(title: "Welcome back, Justine!")
 }

@@ -162,7 +162,7 @@ public extension InstUI {
                     .frame(width: geometry.size.width, height: geometry.size.height)
                 }
             }
-            .background(Color.backgroundLightest)
+//            .background(Color.backgroundLightest)
         }
     }
 }

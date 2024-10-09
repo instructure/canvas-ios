@@ -37,7 +37,7 @@ struct DashboardView: View {
                     ForEach(viewModel.programs) { program in
                         if program.currentModuleItem != nil, !program.upcomingModuleItems.isEmpty {
                             VStack(alignment: .leading, spacing: 0) {
-                                LargeTitleView(title: program.name)
+                                Size24BoldTextDarkestTitle(title: program.name)
                                     .padding(.top, 16)
                                 CertificateProgressBar(
                                     maxWidth: proxy.size.width - 2 * 16,
@@ -80,7 +80,7 @@ struct DashboardView: View {
                 .frame(height: 200)
                 .padding(.vertical, 24)
 
-                LargerTitleView(title: module.name)
+                Size24RegularTextDarkestTitle(title: module.name)
                     .padding(.bottom, 8)
                 HStack(spacing: 0) {
                     HStack(spacing: 4) {
@@ -90,7 +90,7 @@ struct DashboardView: View {
                             .aspectRatio(contentMode: .fit)
                             .foregroundStyle(Color.textDark)
                             .frame(width: 18, height: 18)
-                        BodyTextView(title: moduleItem.title)
+                        Size12RegularTextDarkTitle(title: moduleItem.title)
                             .lineLimit(2)
                     }
                     Spacer()
@@ -100,7 +100,7 @@ struct DashboardView: View {
                             .renderingMode(.template)
                             .foregroundStyle(Color.textDark)
                             .frame(width: 14, height: 14)
-                        BodyTextView(title: "20 Mins")
+                        Size12RegularTextDarkTitle(title: "20 Mins")
                     }
                 }
                 Button {
@@ -123,31 +123,6 @@ struct DashboardView: View {
             .cornerRadius(8)
             .padding(.vertical, 16)
         }
-    }
-
-    @ViewBuilder
-    private func whatsNextModuleView(
-        proxy: GeometryProxy,
-        programName: String,
-        moduleItems: [HModuleItem]
-    ) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            SectionTitleView(title: "What's next")
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 8) {
-                    ForEach(moduleItems) { moduleItem in
-                        ProgramItemView(
-                            screenWidth: proxy.size.width,
-                            title: moduleItem.title,
-                            icon: Image(systemName: "doc"),
-                            duration: "60 mins",
-                            certificate: programName
-                        )
-                    }
-                }
-            }
-        }
-        .padding(.top, 16)
     }
 }
 

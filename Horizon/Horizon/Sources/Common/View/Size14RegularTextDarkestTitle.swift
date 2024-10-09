@@ -19,16 +19,17 @@
 import Core
 import SwiftUI
 
-struct BodyTextView: View {
+struct Size14RegularTextDarkestTitle: View {
     let title: String
 
     var body: some View {
-        Text(title)
-            .font(.regular12)
-            .foregroundStyle(Color.textDark)
+        Text(title.capitalized)
+            .font(.regular14)
+            .foregroundColor(.textDarkest)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
 #Preview {
-    BodyTextView(title: "Biology certificate #17531")
+    Size14RegularTextDarkestTitle(title: "Module Name")
 }

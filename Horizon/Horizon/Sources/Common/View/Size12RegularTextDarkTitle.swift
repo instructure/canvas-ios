@@ -16,4 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
+import SwiftUI
+
+struct Size12RegularTextDarkTitle: View {
+    let title: String
+
+    var body: some View {
+        Text(title)
+            .font(.regular12)
+            .foregroundStyle(Color.textDark)
+    }
+}
+
+#Preview {
+    Size12RegularTextDarkTitle(title: "Biology certificate #17531")
+}
