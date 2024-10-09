@@ -78,4 +78,3 @@ public struct SearchSupportSheet<Content: View>: SearchSupportAction {
         )
     }
 }
-

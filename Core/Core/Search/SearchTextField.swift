@@ -50,6 +50,7 @@ struct SearchTextField: View {
             TextField("Search in this course", text: $text)
                 .focused($isFocused)
                 .font(.subheadline)
+                .foregroundStyle(Color.textDarkest)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 8)
                 .onSubmit {
@@ -70,7 +71,7 @@ struct SearchTextField: View {
         }
         .padding(.leading, 10)
         .padding(.trailing, text.isEmpty ? 10 : 3)
-        .background(Color.white)
+        .background(Color.backgroundLightest)
         .clipShape(Capsule())
         .shadow(radius: 2, y: 2)
         .frame(idealWidth: minWidth.value, maxWidth: .infinity)

@@ -69,7 +69,7 @@ extension CGSize {
     var isZero: Bool { width == 0 && height == 0 }
 }
 
-// MARK: -
+// MARK: - Deferred Value
 
 struct DeferredValue<Value: Equatable>: Equatable {
     static func == (lhs: Self, rhs: Self) -> Bool {
@@ -97,5 +97,17 @@ struct DeferredValue<Value: Equatable>: Equatable {
 
     mutating func update() {
         value = box.value
+    }
+}
+
+// MARK: - Helpers
+
+protocol Customizable: AnyObject { }
+extension NSObject: Customizable { }
+
+extension Customizable {
+    func with(_ block: (Self) -> Void) -> Self {
+        block(self)
+        return self
     }
 }

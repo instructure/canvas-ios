@@ -41,7 +41,7 @@ class UISearchField: UIView {
 
         let container = RoundedView()
         container.translatesAutoresizingMaskIntoConstraints = false
-        container.backgroundColor = .systemBackground
+        container.backgroundColor = UIColor.backgroundLightest
         addSubview(container)
 
         NSLayoutConstraint.activate([
@@ -66,7 +66,8 @@ class UISearchField: UIView {
         field.clearButtonMode = .always
         field.font = .preferredFont(forTextStyle: .subheadline)
         field.returnKeyType = .search
-        field.tintColor = .blue // caret color
+        field.tintColor = .systemBlue // caret color
+        field.textColor = UIColor.textDarkest
 
         let stack = UIStackView(arrangedSubviews: [icon, field])
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +77,7 @@ class UISearchField: UIView {
 
         container.addSubview(stack)
         container.layer.shadowColor = UIColor.black.cgColor
-        container.layer.shadowOpacity = 0.2
+        container.layer.shadowOpacity = 0.16
         container.layer.shadowRadius = 2
         container.layer.shadowOffset = CGSize(width: 0, height: 2)
 

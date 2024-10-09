@@ -240,9 +240,22 @@ public enum SearchPhase {
     case loading
     case noMatch
     case results
+    case filteredResults
 }
 
-public typealias CoreSearchDisplayProvider<Display: View> = (Binding<SearchPhase>, Binding<Bool>) -> Display
+public struct FiltersState {
+    public static var empty = FiltersState(isPresented: false, isActive: false)
+
+    public var isPresented: Bool
+    public var isActive: Bool
+
+    public init(isPresented: Bool, isActive: Bool) {
+        self.isPresented = isPresented
+        self.isActive = isActive
+    }
+}
+
+public typealias CoreSearchDisplayProvider<Display: View> = (Binding<SearchPhase>, Binding<FiltersState>) -> Display
 public struct SearchableContainerView<Display: View, Action: SearchSupportAction>: View {
 
     @Environment(\.appEnvironment) private var env
@@ -251,7 +264,7 @@ public struct SearchableContainerView<Display: View, Action: SearchSupportAction
 
     @State var searchText: String
     @State var phase: SearchPhase = .start
-    @State var isFilterPresented: Bool = false
+    @State var filters: FiltersState = .empty
 
     let displayContent: CoreSearchDisplayProvider<Display>
     let support: SearchSupportOption<Action>?
@@ -263,7 +276,7 @@ public struct SearchableContainerView<Display: View, Action: SearchSupportAction
     }
 
     public var body: some View {
-        displayContent($phase, $isFilterPresented)
+        displayContent($phase, $filters)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Results")
             .toolbar {
@@ -278,9 +291,13 @@ public struct SearchableContainerView<Display: View, Action: SearchSupportAction
                 if phase != .loading {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            isFilterPresented = true
+                            filters.isPresented = true
                         } label: {
-                            Image(systemName: "camera.filters")
+                            if filters.isActive {
+                                Image.filterSolid
+                            } else {
+                                Image.filterLine
+                            }
                         }
                         .tint(.white)
                     }
@@ -333,17 +350,5 @@ private enum NavBarTransition: String {
             fade.type = .fade
             return fade
         }
-    }
-}
-
-// MARK: - Helpers
-
-protocol Customizable: AnyObject { }
-extension NSObject: Customizable { }
-
-extension Customizable {
-    func with(_ block: (Self) -> Void) -> Self  {
-        block(self)
-        return self
     }
 }
