@@ -34,7 +34,7 @@ final class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var isSubjectDisabled: Bool = false
     @Published public private(set) var isMessageDisabled: Bool = false
     @Published public private(set) var isIndividualDisabled: Bool = false
-    @Published public private(set) var isDisableToggle: Bool = false
+    @Published public private(set) var isSendIndividualToggleDisabled: Bool = false
     @Published public var isShowingErrorDialog = false
     @Published private(set) var searchedRecipients: [Recipient] = []
     @Published public private(set) var expandedIncludedMessageIds = [String]()
@@ -337,7 +337,7 @@ final class ComposeMessageViewModel: ObservableObject {
                 guard let self else {
                     return
                 }
-                self.isDisableToggle = isExceedRecipientLimit
+                self.isSendIndividualToggleDisabled = isExceedRecipientLimit
                 if isExceedRecipientLimit {
                     self.sendIndividualToggleTemp = self.sendIndividual
                     self.sendIndividual = true

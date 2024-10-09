@@ -648,7 +648,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         // When
         testee.selectedRecipients.send(recipient)
         // Then
-        XCTAssertTrue(testee.isDisableToggle)
+        XCTAssertTrue(testee.isSendIndividualToggleDisabled)
     }
 }
 
