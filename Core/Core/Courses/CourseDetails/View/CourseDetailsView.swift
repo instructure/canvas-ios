@@ -22,7 +22,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
-    @Environment(\.smartSearchContext) private var searchContext
+    @Environment(\.searchContext) private var searchContext
 
     @ObservedObject private var viewModel: CourseDetailsViewModel
     @ObservedObject private var headerViewModel: CourseDetailsHeaderViewModel

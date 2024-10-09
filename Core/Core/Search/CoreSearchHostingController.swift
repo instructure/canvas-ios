@@ -20,31 +20,16 @@ import SwiftUI
 import UIKit
 import Combine
 
-public struct SupportAction {
-    let action: (Router, SmartSearchController) -> Void
-    let icon: () -> UIImage?
-
-    public init(action: @escaping (Router, SmartSearchController) -> Void,
-                icon: @escaping () -> UIImage?) {
-        self.action = action
-        self.icon = icon
-    }
-}
-
-public protocol SmartSearchController: UIViewController, UITextFieldDelegate {
-    func showSearchField()
-    func hideSearchField()
-}
-
-public class SmartSearchHostingController<Content: View, SearchDisplay: View>:
+public protocol CoreSearchController: UIViewController, UITextFieldDelegate {}
+public class CoreSearchHostingController<Content: View, SearchDisplay: View, Support: SearchSupportAction>:
     CoreHostingController<SearchHostingBaseView<Content>>,
-    SmartSearchController {
+    CoreSearchController {
     @MainActor required dynamic init?(coder aDecoder: NSCoder) { nil }
 
-    let searchContext: SmartSearchContext
+    let searchContext: CoreSearchContext
     let router: Router
-    let support: SupportAction?
-    let display: () -> SearchDisplay
+    let support: SearchSupportOption<Support>?
+    let display: CoreSearchDisplayProvider<SearchDisplay>
 
     private var leftItems: [UIBarButtonItem]?
 
@@ -52,11 +37,11 @@ public class SmartSearchHostingController<Content: View, SearchDisplay: View>:
         router: Router = AppEnvironment.shared.router,
         context: Context,
         color: UIColor?,
-        support: SupportAction? = nil,
+        support: SearchSupportOption<Support>?,
         content: Content,
-        display: @escaping () -> SearchDisplay
+        display: @escaping CoreSearchDisplayProvider<SearchDisplay>
     ) {
-        self.searchContext = SmartSearchContext(context: context, color: color)
+        self.searchContext = CoreSearchContext(context: context, color: color)
         self.router = router
         self.support = support
         self.display = display
@@ -90,7 +75,7 @@ public class SmartSearchHostingController<Content: View, SearchDisplay: View>:
     }
 
     public func showSearchField() {
-        let searchView = SearchField(
+        let searchView = UISearchField(
             frame: CGRect(
                 origin: .zero,
                 size: CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
@@ -104,8 +89,8 @@ public class SmartSearchHostingController<Content: View, SearchDisplay: View>:
         navigationItem.hidesBackButton = true
         navigationItem.titleView = searchView
         navigationItem.rightBarButtonItems = [
-            supportBarItem(),
-            closeBarItem()
+            closeBarItem(),
+            supportBarItem()
         ].compactMap({ $0 })
 
         applyNavBarTransition(.fadeIn)
@@ -142,11 +127,11 @@ public class SmartSearchHostingController<Content: View, SearchDisplay: View>:
     func supportBarItem() -> UIBarButtonItem? {
         guard let support else { return nil }
         return UIBarButtonItem(
-            image: support.icon(),
+            image: support.icon.uiImage(),
             primaryAction: UIAction(
                 handler: { [weak self] _ in
                     guard let self else { return }
-                    support.action(self.router, self)
+                    support.action.triggered(with: self.router, from: self)
                 }
             )
         )
@@ -188,9 +173,10 @@ public class SmartSearchHostingController<Content: View, SearchDisplay: View>:
         let coverVC = CoreHostingController(
             SearchableContainerView(
                 searchText: searchTerm,
-                details: display
+                support: support,
+                display: display
             )
-            .environment(\.smartSearchContext, searchContext)
+            .environment(\.searchContext, searchContext)
         )
 
         if let contextColor = searchContext.color {
@@ -216,139 +202,68 @@ public class SmartSearchHostingController<Content: View, SearchDisplay: View>:
     }
 }
 
+extension CoreSearchHostingController where Support == NoSearchSupportAction {
+    public convenience init(
+        router: Router = AppEnvironment.shared.router,
+        context: Context,
+        color: UIColor?,
+        content: Content,
+        display: @escaping CoreSearchDisplayProvider<SearchDisplay>
+    ) {
+        self.init(
+            router: router,
+            context: context,
+            color: color,
+            support: nil,
+            content: content,
+            display: display
+        )
+    }
+}
+
 // MARK: - Environment
 
 public struct SearchHostingBaseView<Content: View>: View {
     public var content: Content
-    let searchContext: SmartSearchContext
+    let searchContext: CoreSearchContext
 
     public var body: some View {
         content
-            .environment(\.smartSearchContext, searchContext)
+            .environment(\.searchContext, searchContext)
     }
 }
 
-public class SmartSearchContext: EnvironmentKey, ObservableObject {
-    let context: Context
-    let color: UIColor?
+// MARK: - Container
 
-    var didSubmit = PassthroughSubject<String, Never>()
-    var searchTerm = CurrentValueSubject<String, Never>("")
-
-    private var store = Set<AnyCancellable>()
-    weak var controller: SmartSearchController?
-
-    public init(context: Context, color: UIColor?) {
-        self.context = context
-        self.color = color
-    }
-
-    public static var defaultValue = SmartSearchContext(context: .currentUser, color: nil)
+public enum SearchPhase {
+    case start
+    case loading
+    case noMatch
+    case results
 }
 
-extension EnvironmentValues {
-
-    var smartSearchContext: SmartSearchContext {
-        get { self[SmartSearchContext.self] }
-        set {
-            self[SmartSearchContext.self] = newValue
-        }
-    }
-}
-
-// MARK: - Subviews
-
-class RoundedView: UIView {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        layer.cornerRadius = min(frame.height, frame.width) * 0.5
-    }
-}
-
-private class SearchField: UIView {
-    required init?(coder: NSCoder) { nil }
-
-    let field = UITextField()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setContentHuggingPriority(.defaultLow, for: .horizontal)
-    }
-
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        guard subviews.isEmpty else { return }
-
-        let container = RoundedView()
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.backgroundColor = .systemBackground
-        addSubview(container)
-
-        NSLayoutConstraint.activate([
-            container.leadingAnchor.constraint(equalTo: leadingAnchor),
-            container.trailingAnchor.constraint(equalTo: trailingAnchor),
-            container.centerYAnchor.constraint(equalTo: centerYAnchor).with({ $0.priority = .defaultHigh }),
-            container.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
-            container.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor)
-        ])
-
-        let config = UIImage.SymbolConfiguration(textStyle: .caption1)
-        let icon = UIImageView(
-            image: UIImage(systemName: "magnifyingglass")?.applyingSymbolConfiguration(config)
-        )
-        icon.tintColor = .secondaryLabel
-        icon.contentMode = .center
-        icon.setContentHuggingPriority(.required, for: .horizontal)
-
-        field.placeholder = "Enter text here"
-        field.translatesAutoresizingMaskIntoConstraints = false
-        field.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        field.clearButtonMode = .always
-        field.font = .preferredFont(forTextStyle: .subheadline)
-        field.returnKeyType = .search
-        field.tintColor = .blue // caret color
-
-        let stack = UIStackView(arrangedSubviews: [icon, field])
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .horizontal
-        stack.alignment = .fill
-        stack.spacing = 10
-
-        container.addSubview(stack)
-        container.layer.shadowColor = UIColor.black.cgColor
-        container.layer.shadowOpacity = 0.2
-        container.layer.shadowRadius = 2
-        container.layer.shadowOffset = CGSize(width: 0, height: 2)
-
-        NSLayoutConstraint.activate([
-            stack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
-            stack.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
-            stack.topAnchor.constraint(equalTo: container.topAnchor, constant: 7.5),
-            stack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -7.5)
-        ])
-    }
-}
-
-// MARK: -
-
-struct SearchableContainerView<Details: View>: View {
+public typealias CoreSearchDisplayProvider<Display: View> = (Binding<SearchPhase>, Binding<Bool>) -> Display
+public struct SearchableContainerView<Display: View, Action: SearchSupportAction>: View {
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
-    @Environment(\.smartSearchContext) private var searchContext
+    @Environment(\.searchContext) private var searchContext
 
     @State var searchText: String
+    @State var phase: SearchPhase = .start
+    @State var isFilterPresented: Bool = false
 
-    let detailsContent: () -> Details
+    let displayContent: CoreSearchDisplayProvider<Display>
+    let support: SearchSupportOption<Action>?
 
-    init(searchText: String, details: @escaping () -> Details) {
-        self.detailsContent = details
+    init(searchText: String, support: SearchSupportOption<Action>?, display: @escaping CoreSearchDisplayProvider<Display>) {
+        self.displayContent = display
+        self.support = support
         self._searchText = State(initialValue: searchText)
     }
 
-    var body: some View {
-        detailsContent()
-            .environment(\.smartSearchContext, searchContext)
+    public var body: some View {
+        displayContent($phase, $isFilterPresented)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Results")
             .toolbar {
@@ -357,6 +272,28 @@ struct SearchableContainerView<Details: View>: View {
                     SearchTextField(text: $searchText) {
                         print("search submit")
                         searchContext.didSubmit.send(searchText)
+                    }
+                }
+
+                if phase != .loading {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            isFilterPresented = true
+                        } label: {
+                            Image(systemName: "camera.filters")
+                        }
+                        .tint(.white)
+                    }
+                }
+
+                if let support {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            support.action.triggered(with: env.router, from: controller.value)
+                        } label: {
+                            support.icon.image()
+                        }
+                        .tint(.white)
                     }
                 }
 
@@ -369,69 +306,6 @@ struct SearchableContainerView<Details: View>: View {
                     .tint(.white)
                 }
             }
-    }
-}
-
-struct SearchTextField: View {
-
-    @FocusState var isFocused: Bool
-    @Binding var text: String
-
-    let onSubmit: () -> Void
-
-    init(text: Binding<String>, isFocused: FocusState<Bool>? = nil, onSubmit: @escaping () -> Void) {
-        self._text = text
-        self.onSubmit = onSubmit
-
-        if let state = isFocused {
-            self._isFocused = state
-        }
-    }
-
-    @State var minWidth = DeferredValue<CGFloat?>(value: nil)
-
-    var body: some View {
-        HStack(spacing: 0) {
-            Image(systemName: "magnifyingglass")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .fixedSize()
-
-            Spacer(minLength: 5)
-
-            TextField("Search in this course", text: $text)
-                .focused($isFocused)
-                .font(.subheadline)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 8)
-                .onSubmit {
-                    minWidth.update()
-                    onSubmit()
-                }
-            
-            if text.isEmpty == false {
-                Button {
-                    text = ""
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.caption)
-                        .foregroundStyle(Color.pink)
-                }
-                .fixedSize()
-            }
-        }
-        .padding(.horizontal, 10)
-        .background(Color.white)
-        .clipShape(Capsule())
-        .shadow(radius: 2, y: 2)
-        .frame(idealWidth: minWidth.value, maxWidth: .infinity)
-        .measuringSize { size in
-            minWidth.deferred = size.width
-        }
-        .onDisappear {
-            // This is to resolve issue of field size when pushing to result details
-            minWidth.update()
-        }
     }
 }
 

@@ -1,0 +1,90 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2024-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Foundation
+
+class RoundedView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = min(frame.height, frame.width) * 0.5
+    }
+}
+
+class UISearchField: UIView {
+    required init?(coder: NSCoder) { nil }
+
+    let field = UITextField()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setContentHuggingPriority(.defaultLow, for: .horizontal)
+    }
+
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        guard subviews.isEmpty else { return }
+
+        let container = RoundedView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.backgroundColor = .systemBackground
+        addSubview(container)
+
+        NSLayoutConstraint.activate([
+            container.leadingAnchor.constraint(equalTo: leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: trailingAnchor),
+            container.centerYAnchor.constraint(equalTo: centerYAnchor).with({ $0.priority = .defaultHigh }),
+            container.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
+            container.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor)
+        ])
+
+        let config = UIImage.SymbolConfiguration(textStyle: .caption1)
+        let icon = UIImageView(
+            image: UIImage(systemName: "magnifyingglass")?.applyingSymbolConfiguration(config)
+        )
+        icon.tintColor = .secondaryLabel
+        icon.contentMode = .center
+        icon.setContentHuggingPriority(.required, for: .horizontal)
+
+        field.placeholder = "Enter text here"
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        field.clearButtonMode = .always
+        field.font = .preferredFont(forTextStyle: .subheadline)
+        field.returnKeyType = .search
+        field.tintColor = .blue // caret color
+
+        let stack = UIStackView(arrangedSubviews: [icon, field])
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.alignment = .fill
+        stack.spacing = 10
+
+        container.addSubview(stack)
+        container.layer.shadowColor = UIColor.black.cgColor
+        container.layer.shadowOpacity = 0.2
+        container.layer.shadowRadius = 2
+        container.layer.shadowOffset = CGSize(width: 0, height: 2)
+
+        NSLayoutConstraint.activate([
+            stack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
+            stack.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
+            stack.topAnchor.constraint(equalTo: container.topAnchor, constant: 7.5),
+            stack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -7.5)
+        ])
+    }
+}

@@ -18,33 +18,28 @@
 
 import SwiftUI
 
-public struct SmartSearchDisplayView: View {
-    public init() {}
-
-    enum Phase {
-        case start
-        case loading
-        case noMatch
-        case results
-    }
+public struct CourseSmartSearchDisplayView: View {
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
-    @Environment(\.smartSearchContext) private var searchContext
+    @Environment(\.searchContext) private var searchContext
 
-    @State private var phase: Phase = .start
-    @State private var isHelpPresented: Bool = false
-    @State private var isFilterPresented: Bool = false
+    @Binding public var phase: SearchPhase
+    @Binding public var isFiltersPresented: Bool
+
+    public init(phase: Binding<SearchPhase>, filters: Binding<Bool>) {
+        self._phase = phase
+        self._isFiltersPresented = filters
+    }
 
     public var body: some View {
         ZStack {
             switch phase {
             case .loading, .start:
-                LoadingView()
+                SearchLoadingView()
             case .noMatch:
-                NoMatchView()
+                SearchNoMatchView()
             case .results:
-
                 List {
                     ForEach(1 ... 12, id: \.self) { i in
                         Button {
@@ -59,32 +54,9 @@ public struct SmartSearchDisplayView: View {
                 }
             }
         }
-        .toolbar {
-
-            if phase != .loading {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        isFilterPresented = true
-                    } label: {
-                        Image(systemName: "camera.filters")
-                    }
-                    .tint(.white)
-                }
-            }
-
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    isHelpPresented = true
-                } label: {
-                    Image(systemName: "questionmark.circle")
-                }
-                .tint(.white)
-            }
-        }
-        .sheet(isPresented: $isHelpPresented, content: {
-            SmartSearchHelpView()
-        })
-        .sheet(isPresented: $isFilterPresented, content: {
+        .ignoresSafeArea()
+        .background(Color.backgroundLight)
+        .sheet(isPresented: $isFiltersPresented, content: {
             SmartSearchFiltersView()
         })
         .onAppear {
@@ -107,31 +79,9 @@ public struct SmartSearchDisplayView: View {
     }
 }
 
-struct LoadingView: View {
-    var body: some View {
-        VStack {
-            Spacer()
-            ProgressView()
-            VStack {
-                Text("Hang Tight, We're Fetching Your Results!").lineLimit(2)
-                Text("We’re working hard to find the best matches for your search. This won't take long! Thank you for your patience.").lineLimit(0)
-            }
-            Spacer()
-        }
-        .padding()
-    }
-}
-
-struct NoMatchView: View {
-    var body: some View {
-        VStack {
-            Spacer()
-            VStack {
-                Text("No Perfect Match").lineLimit(2)
-                Text("We didn’t find exactly what you’re looking for. Maybe try searching for something else?").lineLimit(0)
-            }
-            Spacer()
-        }
-        .padding()
-    }
+#Preview {
+    CourseSmartSearchDisplayView(
+        phase: .constant(.results),
+        filters: .constant(false)
+    )
 }

@@ -99,23 +99,3 @@ struct DeferredValue<Value: Equatable>: Equatable {
         value = box.value
     }
 }
-
-/*
-extension UIApplication {
-
-    var mainWindow: UIWindow? {
-        let allScenes = connectedScenes.compactMap({ $0 as? UIWindowScene })
-        return allScenes.compactMap({ $0.keyWindow }).first
-    }
-
-    var topController: UIViewController? {
-        if var topController = mainWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
-            return topController
-        }
-        return nil
-    }
-}
-*/
