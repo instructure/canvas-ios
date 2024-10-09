@@ -18,6 +18,20 @@
 
 import SwiftUI
 
+public enum AssignmentArrangementOptions: Int, CaseIterable {
+    case groupName = 1
+    case dueDate = 2
+
+    var title: String {
+        switch self {
+        case .groupName:
+            return String(localized: "Group", bundle: .core)
+        case .dueDate:
+            return String(localized: "Due Date", bundle: .core)
+        }
+    }
+}
+
 public class AssignmentListViewModel: ObservableObject {
     public enum ViewModelState<T: Equatable>: Equatable {
         case loading
@@ -129,6 +143,22 @@ public class AssignmentListViewModel: ObservableObject {
     private func gradingPeriodsDidUpdate() {
         if gradingPeriods.requested, gradingPeriods.pending { return }
         shouldShowFilterButton = gradingPeriods.all.count > 1
+    }
+
+    func navigateToFilter(viewController: WeakViewController) {
+        let viewModel = AssignmentFilterViewModel()
+        let controller = CoreHostingController(AssignmentFilterScreen(viewModel: viewModel))
+        env.router.show(
+            controller,
+            from: viewController,
+            options: .modal(
+                .automatic,
+                isDismissable: false,
+                embedInNav: true,
+                addDoneButton: false,
+                animated: true
+            )
+        )
     }
 }
 
