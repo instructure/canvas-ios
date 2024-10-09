@@ -581,8 +581,8 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
                 action: SearchSupportSheet(content: SmartSearchHelpView())
             ),
             content: CourseDetailsView(viewModel: viewModel),
-            display: { (phase, filters) in
-                CourseSmartSearchDisplayView(phase: phase, filters: filters)
+            display: { state in
+                CourseSmartSearchDisplayView(display: state)
             }
         )
 

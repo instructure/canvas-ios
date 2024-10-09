@@ -20,18 +20,26 @@ import SwiftUI
 
 public struct CourseSmartSearchDisplayView: View {
 
+    public enum Phase {
+        case start
+        case loading
+        case noMatch
+        case results
+        case groupedResults
+    }
+
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @Environment(\.searchContext) private var searchContext
 
-    @Binding public var phase: SearchPhase
-    @Binding public var filters: FiltersState
+    @State public var phase: Phase = .start
+    @Binding public var display: SearchDisplayState
 
+    @State var filter: SearchResultFilter?
     @State var results: [SearchResult] = []
 
-    public init(phase: Binding<SearchPhase>, filters: Binding<FiltersState>) {
-        self._phase = phase
-        self._filters = filters
+    public init(display: Binding<SearchDisplayState>) {
+        self._display = display
     }
 
     public var body: some View {
@@ -43,14 +51,17 @@ public struct CourseSmartSearchDisplayView: View {
                 SearchNoMatchView()
             case .results:
                 CourseSmarSearchResultsView(results: $results)
-            case .filteredResults:
-                CourseSmartSearchFilteredResultsView(resultSections: sectionedResults)
+            case .groupedResults:
+                CourseSmartSearchGroupedResultsView(resultSections: sectionedResults)
             }
         }
         .ignoresSafeArea()
         .background(Color.backgroundLight)
-        .sheet(isPresented: $filters.isPresented, content: {
-            SmartSearchFiltersView()
+        .sheet(isPresented: $display.isFiltersPresented, content: {
+            SmartSearchFiltersView(filter: filter) { newFilter in
+                filter = newFilter
+                startLoading()
+            }
         })
         .onAppear {
             guard case .start = phase else { return }
@@ -59,11 +70,23 @@ public struct CourseSmartSearchDisplayView: View {
         .onReceive(searchContext.didSubmit, perform: { newTerm in
             startLoading(with: newTerm)
         })
+        .onChange(of: phase) { newPhase in
+            display.isLoading = newPhase == .loading
+        }
     }
 
     var sectionedResults: [SearchResultsSection] {
-        var list = Dictionary(grouping: results, by: { $0.content_type })
-            .map({ SearchResultsSection(type: $0, results: $1) })
+        let filtered = filter.flatMap { filter in
+            return results.filter(filter.predicate)
+        } ?? results
+
+        var list = Dictionary(grouping: filtered, by: { $0.content_type })
+            .map({
+                SearchResultsSection(
+                    type: $0,
+                    results: $1
+                )
+            })
             .sorted(by: { $0.type.sortOrder < $1.type.sortOrder})
 
         if var first = list.first {
@@ -82,16 +105,32 @@ public struct CourseSmartSearchDisplayView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             // TODO: Fetch results through API
             results = SearchResult.simpleExample.sorted(by: { $0.distanceDots > $1.distanceDots })
-            phase = .results
-            //filters.isActive = true
+            applyFilters()
         }
+    }
+
+    func applyFilters() {
+        guard let filter else {
+            phase = .results
+            display.isFiltersActive = false
+            return
+        }
+
+        switch filter.sortMode {
+        case .relevance:
+            results = results.filter(filter.predicate)
+            phase = .results
+        case .type:
+            phase = .groupedResults
+        }
+
+        display.isFiltersActive = true
     }
 }
 
 #Preview {
     CourseSmartSearchDisplayView(
-        phase: .constant(.results),
-        filters: .constant(.empty)
+        display: .constant(.empty)
     )
 }
 
@@ -110,7 +149,7 @@ struct CourseSmarSearchResultsView: View {
                             transform: { anchor in
                                 return g[anchor].y
                             })
-                    LazyVStack {
+                    LazyVStack(spacing: 0) {
                         ForEach(results) { result in
                             let last = results.last?.id == result.id
                             SearchResultRow(result: result, last: last)
@@ -143,7 +182,7 @@ struct OffsetKey: PreferenceKey {
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {}
 }
 
-struct CourseSmartSearchFilteredResultsView: View {
+struct CourseSmartSearchGroupedResultsView: View {
 
     @State private var resultSections: [SearchResultsSection]
 

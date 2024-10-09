@@ -235,27 +235,21 @@ public struct SearchHostingBaseView<Content: View>: View {
 
 // MARK: - Container
 
-public enum SearchPhase {
-    case start
-    case loading
-    case noMatch
-    case results
-    case filteredResults
-}
+public struct SearchDisplayState {
+    public static var empty = SearchDisplayState(isLoading: false, isPresented: false, isActive: false)
 
-public struct FiltersState {
-    public static var empty = FiltersState(isPresented: false, isActive: false)
+    public var isLoading: Bool
+    public var isFiltersPresented: Bool
+    public var isFiltersActive: Bool
 
-    public var isPresented: Bool
-    public var isActive: Bool
-
-    public init(isPresented: Bool, isActive: Bool) {
-        self.isPresented = isPresented
-        self.isActive = isActive
+    public init(isLoading: Bool, isPresented: Bool, isActive: Bool) {
+        self.isLoading = isPresented
+        self.isFiltersPresented = isPresented
+        self.isFiltersActive = isActive
     }
 }
 
-public typealias CoreSearchDisplayProvider<Display: View> = (Binding<SearchPhase>, Binding<FiltersState>) -> Display
+public typealias CoreSearchDisplayProvider<Display: View> = (Binding<SearchDisplayState>) -> Display
 public struct SearchableContainerView<Display: View, Action: SearchSupportAction>: View {
 
     @Environment(\.appEnvironment) private var env
@@ -263,8 +257,7 @@ public struct SearchableContainerView<Display: View, Action: SearchSupportAction
     @Environment(\.searchContext) private var searchContext
 
     @State var searchText: String
-    @State var phase: SearchPhase = .start
-    @State var filters: FiltersState = .empty
+    @State var displayState: SearchDisplayState = .empty
 
     let displayContent: CoreSearchDisplayProvider<Display>
     let support: SearchSupportOption<Action>?
@@ -276,7 +269,7 @@ public struct SearchableContainerView<Display: View, Action: SearchSupportAction
     }
 
     public var body: some View {
-        displayContent($phase, $filters)
+        displayContent($displayState)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Results")
             .toolbar {
@@ -288,12 +281,12 @@ public struct SearchableContainerView<Display: View, Action: SearchSupportAction
                     }
                 }
 
-                if phase != .loading {
+                if displayState.isLoading == false {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            filters.isPresented = true
+                            displayState.isFiltersPresented = true
                         } label: {
-                            if filters.isActive {
+                            if displayState.isFiltersActive {
                                 Image.filterSolid
                             } else {
                                 Image.filterLine
