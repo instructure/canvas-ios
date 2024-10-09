@@ -16,9 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+
 import SwiftUI
 
-public struct SmartSearchHelpView: View {
+public struct SmartSearchFiltersView: View {
 
     @Environment(\.dismiss) var dismiss
 
@@ -27,9 +28,9 @@ public struct SmartSearchHelpView: View {
     public var body: some View {
         NavigationView {
             VStack {
-                Text("Help Content ..")
+                Text("Filters Content ..")
             }
-            .navigationTitle("How it works")
+            .navigationTitle("Narrow Your Search")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

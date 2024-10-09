@@ -575,9 +575,19 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
     let regularCourseDetails: () -> UIViewController = {
         let viewModel = CourseDetailsViewModel(context: context, offlineModeInteractor: OfflineModeAssembly.make())
         let viewController = SmartSearchHostingController(
-            context: SmartSearchContext(context: context, color: url.contextColor, mode: .intro),
-            router: AppEnvironment.shared.router,
-            content: CourseDetailsView(viewModel: viewModel)
+            context: context,
+            color: url.contextColor,
+            support: SupportAction(
+                action: { (router, controller) in
+                    router.show(CoreHostingController(SmartSearchHelpView()),
+                                from: controller,
+                                options: .modal(.formSheet))
+
+                },
+                icon: { UIImage(systemName: "questionmark.circle") }
+            ),
+            content: CourseDetailsView(viewModel: viewModel),
+            display: { SmartSearchDisplayView() }
         )
 
         if let contextColor = url.contextColor {
