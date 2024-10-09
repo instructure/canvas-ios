@@ -44,7 +44,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
             attachmentIDs: attachments
         ).request
 
-        let parameters = MessageParameters(subject: subject, body: body, recipientIDs: recipients, context: Context.course(canvasContext))
+        let parameters = MessageParameters(subject: subject, body: body, recipientIDs: recipients, context: Context.course(canvasContext), bulkMessage: false)
         api.mock(createConversationRequest, value: nil, response: nil, error: NSError.instructureError("Failure"))
 
         XCTAssertFailure(testee.createConversation(parameters: parameters))
@@ -64,7 +64,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
             attachmentIDs: attachments
         ).request
         let value = [APIConversation.make(id: "1")]
-        let parameters = MessageParameters(subject: subject, body: body, recipientIDs: recipients, context: Context.course(canvasContext))
+        let parameters = MessageParameters(subject: subject, body: body, recipientIDs: recipients, context: Context.course(canvasContext), bulkMessage: false)
         api.mock(createConversationRequest, value: value)
 
         XCTAssertFinish(testee.createConversation(parameters: parameters))
@@ -93,6 +93,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
             recipientIDs: recipients,
             context: Context.course(canvasContext),
             conversationID: conversation,
+            bulkMessage: false,
             includedMessages: includedMessages
         )
         api.mock(addConversationMessageRequest, value: nil, response: nil, error: NSError.instructureError("Failure"))
@@ -122,6 +123,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
             recipientIDs: recipients,
             context: Context.course(canvasContext),
             conversationID: conversation,
+            bulkMessage: false,
             includedMessages: includedMessages
         )
         api.mock(addConversationMessageRequest, value: value)

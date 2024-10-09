@@ -307,6 +307,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .font(.regular16, lineHeight: .condensed)
             .foregroundColor(.textDark)
             .padding(.vertical, 12)
+            .frame(maxHeight: .infinity, alignment: .center)
             .accessibilitySortPriority(3)
             .accessibilityIdentifier("ComposeMessage.to")
     }
@@ -351,9 +352,10 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         Toggle(isOn: $model.sendIndividual) {
             Text("Send individual message to each recipient", bundle: .core)
                 .font(.regular16, lineHeight: .condensed)
-                .foregroundColor(.textDarkest)
+                .foregroundColor(.textDarkest.opacity(model.isSendIndividualToggleDisabled ? 0.5 : 1))
         }
         .tint(.accentColor)
+        .disabled(model.isSendIndividualToggleDisabled)
         .padding(.horizontal, defaultHorizontalPaddingValue)
         .padding(.vertical, defaultVerticalPaddingValue)
         .contentShape(Rectangle())
