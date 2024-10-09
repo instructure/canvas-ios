@@ -31,6 +31,11 @@
 		5B5742422CB577C5000FB627 /* PutObserverAlertDismissedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5742412CB577C5000FB627 /* PutObserverAlertDismissedRequest.swift */; };
 		5B5742442CB578C5000FB627 /* MarkObserverAlertAsRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5742432CB578C5000FB627 /* MarkObserverAlertAsRead.swift */; };
 		5B5742462CB5792A000FB627 /* DismissObserverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5742452CB5792A000FB627 /* DismissObserverAlert.swift */; };
+		5B5742492CB58740000FB627 /* GetObserverAlertsRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5742482CB58740000FB627 /* GetObserverAlertsRequestTests.swift */; };
+		5B57424B2CB58789000FB627 /* PutObserverAlertReadRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B57424A2CB58789000FB627 /* PutObserverAlertReadRequestTests.swift */; };
+		5B57424D2CB587B6000FB627 /* PutObserverAlertDismissedRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B57424C2CB587B6000FB627 /* PutObserverAlertDismissedRequestTests.swift */; };
+		5B5742572CB6B33D000FB627 /* MarkObserverAlertAsReadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5742562CB6B33D000FB627 /* MarkObserverAlertAsReadTests.swift */; };
+		5B5742592CB6B3E3000FB627 /* DismissObserverAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5742582CB6B3E3000FB627 /* DismissObserverAlertTests.swift */; };
 		5E0F9A731C739E6A00BB7707 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */; };
 		5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E20501C927EB100E7D709 /* ColorScheme.swift */; };
 		5E6441921C3EE2E0003D7397 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6441911C3EE2E0003D7397 /* Assets.xcassets */; };
@@ -64,7 +69,6 @@
 		7DC4A0B924BE4B72007A7EAD /* CalendarEventDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A0B824BE4B72007A7EAD /* CalendarEventDetailsViewControllerTests.swift */; };
 		7DC7046524AA96C500CD1C46 /* ObserverAlertListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7046424AA96C500CD1C46 /* ObserverAlertListViewController.swift */; };
 		7DC7046724AA9F0F00CD1C46 /* ObserverAlertListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC7046624AA9F0F00CD1C46 /* ObserverAlertListViewController.storyboard */; };
-		7DC7046D24ABBB0400CD1C46 /* APIObserverAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7046C24ABBB0400CD1C46 /* APIObserverAlertTests.swift */; };
 		7DC7046F24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7046E24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift */; };
 		7DC7047124ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047024ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift */; };
 		7DC804D22444D01C001AB80C /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC804D12444D01C001AB80C /* DashboardViewController.storyboard */; };
@@ -185,6 +189,11 @@
 		5B5742412CB577C5000FB627 /* PutObserverAlertDismissedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutObserverAlertDismissedRequest.swift; sourceTree = "<group>"; };
 		5B5742432CB578C5000FB627 /* MarkObserverAlertAsRead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkObserverAlertAsRead.swift; sourceTree = "<group>"; };
 		5B5742452CB5792A000FB627 /* DismissObserverAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissObserverAlert.swift; sourceTree = "<group>"; };
+		5B5742482CB58740000FB627 /* GetObserverAlertsRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObserverAlertsRequestTests.swift; sourceTree = "<group>"; };
+		5B57424A2CB58789000FB627 /* PutObserverAlertReadRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutObserverAlertReadRequestTests.swift; sourceTree = "<group>"; };
+		5B57424C2CB587B6000FB627 /* PutObserverAlertDismissedRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutObserverAlertDismissedRequestTests.swift; sourceTree = "<group>"; };
+		5B5742562CB6B33D000FB627 /* MarkObserverAlertAsReadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkObserverAlertAsReadTests.swift; sourceTree = "<group>"; };
+		5B5742582CB6B3E3000FB627 /* DismissObserverAlertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissObserverAlertTests.swift; sourceTree = "<group>"; };
 		5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		5E4E20501C927EB100E7D709 /* ColorScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		5E6441871C3EE2E0003D7397 /* Parent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parent.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,7 +231,6 @@
 		7DC4A0B824BE4B72007A7EAD /* CalendarEventDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		7DC7046424AA96C500CD1C46 /* ObserverAlertListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertListViewController.swift; sourceTree = "<group>"; };
 		7DC7046624AA9F0F00CD1C46 /* ObserverAlertListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ObserverAlertListViewController.storyboard; sourceTree = "<group>"; };
-		7DC7046C24ABBB0400CD1C46 /* APIObserverAlertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIObserverAlertTests.swift; sourceTree = "<group>"; };
 		7DC7046E24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObserverAlertsTests.swift; sourceTree = "<group>"; };
 		7DC7047024ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertListViewControllerTests.swift; sourceTree = "<group>"; };
 		7DC804D12444D01C001AB80C /* DashboardViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
@@ -376,6 +384,26 @@
 				5B57423B2CB57429000FB627 /* GetObserverAlerts.swift */,
 				5B5742432CB578C5000FB627 /* MarkObserverAlertAsRead.swift */,
 				5B5742452CB5792A000FB627 /* DismissObserverAlert.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		5B5742472CB58738000FB627 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5B5742482CB58740000FB627 /* GetObserverAlertsRequestTests.swift */,
+				5B57424C2CB587B6000FB627 /* PutObserverAlertDismissedRequestTests.swift */,
+				5B57424A2CB58789000FB627 /* PutObserverAlertReadRequestTests.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		5B5742552CB66F90000FB627 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				7DC7046E24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift */,
+				5B5742562CB6B33D000FB627 /* MarkObserverAlertAsReadTests.swift */,
+				5B5742582CB6B3E3000FB627 /* DismissObserverAlertTests.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -580,8 +608,6 @@
 			isa = PBXGroup;
 			children = (
 				CF34EC482C08C9C90085EA33 /* Model */,
-				7DC7046C24ABBB0400CD1C46 /* APIObserverAlertTests.swift */,
-				7DC7046E24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift */,
 				7DC7047024ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift */,
 			);
 			path = ObserverAlerts;
@@ -771,6 +797,8 @@
 		CF34EC482C08C9C90085EA33 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5B5742472CB58738000FB627 /* API */,
+				5B5742552CB66F90000FB627 /* UseCase */,
 				CF34EC492C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift */,
 			);
 			path = Model;
@@ -1092,9 +1120,9 @@
 			files = (
 				97F69BA723F1D232009622E3 /* AddStudentControllerTests.swift in Sources */,
 				7DC7047124ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift in Sources */,
+				5B5742572CB6B33D000FB627 /* MarkObserverAlertAsReadTests.swift in Sources */,
 				97523A8723C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift in Sources */,
 				7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */,
-				7DC7046D24ABBB0400CD1C46 /* APIObserverAlertTests.swift in Sources */,
 				3B36A2ED2322C2A000599A1E /* APIAlertThresholdTests.swift in Sources */,
 				7DB92CB224C61A2B004A6C16 /* DiscussionDetailsViewControllerTests.swift in Sources */,
 				7DB92CB824C64D35004A6C16 /* CourseListViewControllerTests.swift in Sources */,
@@ -1106,11 +1134,15 @@
 				CF72EBE82C5930CB0056562A /* ParentSubmissionInteractorTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */,
 				CF72EBEE2C5A23540056562A /* ParentSubmissionViewModelTests.swift in Sources */,
+				5B57424D2CB587B6000FB627 /* PutObserverAlertDismissedRequestTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
 				97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */,
+				5B5742592CB6B3E3000FB627 /* DismissObserverAlertTests.swift in Sources */,
+				5B5742492CB58740000FB627 /* GetObserverAlertsRequestTests.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
 				7D00F34624574A9900C370D5 /* GetObservedStudentsTests.swift in Sources */,
 				7DC7046F24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift in Sources */,
+				5B57424B2CB58789000FB627 /* PutObserverAlertReadRequestTests.swift in Sources */,
 				7D00F34A2458A83900C370D5 /* GetAlertThresholdsTests.swift in Sources */,
 				7D00F34C2458AEC500C370D5 /* StudentDetailsViewControllerTests.swift in Sources */,
 				97F0817423C43E20002B9F68 /* CourseDetailsViewControllerTests.swift in Sources */,

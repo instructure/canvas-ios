@@ -34,7 +34,8 @@ final class GetObserverAlerts: CollectionUseCase {
                     ObserverAlertWorkflowState.dismissed.rawValue
                 )
             ]),
-            orderBy: #keyPath(ObserverAlert.actionDate), ascending: false
+            orderBy: #keyPath(ObserverAlert.actionDate),
+            ascending: false
         )
     }
 

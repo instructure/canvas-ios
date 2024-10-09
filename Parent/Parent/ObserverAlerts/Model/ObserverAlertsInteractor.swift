@@ -22,7 +22,7 @@ import CombineExt
 
 final class ObserverAlertsInteractor {
     private let studentID: String
-    private var courseSettingsInteractor: CourseSettingsInteractor
+    private let courseSettingsInteractor: CourseSettingsInteractor
 
     init(
         studentID: String,
