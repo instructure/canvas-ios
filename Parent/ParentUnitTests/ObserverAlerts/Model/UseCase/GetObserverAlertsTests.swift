@@ -26,7 +26,7 @@ class GetObserverAlertsTests: ParentTestCase {
         let useCase = GetObserverAlerts(studentID: "3")
 
         XCTAssertEqual(useCase.cacheKey, "users/self/observer_alerts/3")
-        
+
         XCTAssertEqual(useCase.request.studentID, "3")
 
         XCTAssertEqual(useCase.scope, Scope(
