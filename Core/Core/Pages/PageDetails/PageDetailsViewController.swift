@@ -130,20 +130,19 @@ public final class PageDetailsViewController: DownloadableViewController, Colore
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
 
         // Offline with separate html file
-        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+        let offlinePath = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: env.currentSession?.uniqueID ?? "",
             courseId: courses.first?.id ?? "",
             sectionName: OfflineFolderPrefix.pages.rawValue,
             resourceId: page.id
-        )
-        let offlinePath = rootURL.appendingPathComponent("body.html")
+        ).appendingPathComponent("body.html")
 
         webView.loadContent(
             isOffline: offlineModeInteractor?.isNetworkOffline(),
             filePath: offlinePath,
             content: page.body,
             originalBaseURL: page.htmlURL,
-            offlineBaseURL: rootURL
+            offlineBaseURL: URL.Paths.Offline.rootURL(sessionID: env.currentSession?.uniqueID ?? "")
         )
         if let course = courses.first {
             updated?(page, course)

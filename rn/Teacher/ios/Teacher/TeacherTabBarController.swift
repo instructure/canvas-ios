@@ -59,7 +59,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
     func coursesTab() -> UIViewController {
         let cardView = CoreHostingController(DashboardContainerView(shouldShowGroupList: false,
                                                                showOnlyTeacherEnrollment: true))
-        let dashboard = DashboardContainerViewController(rootViewController: cardView) { HelmSplitViewController() }
+        let dashboard = DashboardContainerViewController(rootViewController: cardView) { CoreSplitViewController() }
         dashboard.tabBarItem.title = String(localized: "Courses", bundle: .teacher)
         dashboard.tabBarItem.image = .coursesTab
         dashboard.tabBarItem.selectedImage = .coursesTabActive
@@ -68,10 +68,10 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
     }
 
     func calendarTab() -> UIViewController {
-        let split = HelmSplitViewController()
+        let split = CoreSplitViewController()
         split.viewControllers = [
-            HelmNavigationController(rootViewController: PlannerViewController.create()),
-            HelmNavigationController(rootViewController: EmptyViewController()),
+            CoreNavigationController(rootViewController: PlannerViewController.create()),
+            CoreNavigationController(rootViewController: EmptyViewController())
         ]
         split.view.tintColor = Brand.shared.primary
         split.tabBarItem.title = String(localized: "Calendar", bundle: .teacher, comment: "Calendar page title")
@@ -84,7 +84,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
     }
 
     func toDoTab() -> UIViewController {
-        let todo = HelmNavigationController(rootViewController: TodoListViewController.create())
+        let todo = CoreNavigationController(rootViewController: TodoListViewController.create())
         todo.tabBarItem.title = String(localized: "To Do", bundle: .teacher)
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
@@ -96,19 +96,11 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
 
     func inboxTab() -> UIViewController {
         let inboxController: UIViewController
-        let inboxSplit = HelmSplitViewController()
+        let inboxSplit = CoreSplitViewController()
 
-        if ExperimentalFeature.nativeTeacherInbox.isEnabled {
-            inboxController = InboxAssembly.makeInboxViewController()
-        } else {
-            let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
-            inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
-            let inboxNav = HelmNavigationController(rootViewController: inboxVC)
-            inboxNav.navigationBar.useGlobalNavStyle()
-            inboxController = inboxNav
-        }
+        inboxController = InboxAssembly.makeInboxViewController()
 
-        let empty = HelmNavigationController()
+        let empty = CoreNavigationController()
         empty.navigationBar.useGlobalNavStyle()
 
         inboxSplit.viewControllers = [inboxController, empty]

@@ -20,7 +20,6 @@ import SwiftUI
 
 struct EditCalendarToDoScreen: View, ScreenViewTrackable {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var viewController
 
     @ObservedObject private var viewModel: EditCalendarToDoViewModel
@@ -42,7 +41,7 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
             VStack(alignment: .leading, spacing: 0) {
                 VStack(spacing: 0) {
                     InstUI.TextFieldCell(
-                        customAccessibilityLabel: Text("Title", bundle: .core),
+                        label: Text("Title", bundle: .core),
                         placeholder: String(localized: "Add title", bundle: .core),
                         text: $viewModel.title
                     )
@@ -56,13 +55,11 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
 
                     InstUI.LabelValueCell(
                         label: Text("Calendar", bundle: .core),
-                        value: viewModel.calendarName
-                    ) {
-                        let vc = CoreHostingController(
-                            SelectCalendarScreen(viewModel: viewModel.selectCalendarViewModel)
-                        )
-                        env.router.show(vc, from: viewController, options: .push)
-                    }
+                        value: viewModel.calendarName,
+                        action: {
+                            viewModel.showCalendarSelector.send(viewController)
+                        }
+                    )
 
                     InstUI.TextEditorCell(
                         label: Text("Details", bundle: .core),
@@ -91,29 +88,23 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
             leading: .cancel {
                 viewModel.didTapCancel.send()
             },
-            trailing: .add(isEnabled: viewModel.isAddButtonEnabled) {
-                viewModel.didTapAdd.send()
-            }
-        )
-        .alert(
-            Text("Unsuccessful Creation!", bundle: .core),
-            isPresented: $viewModel.shouldShowAlert,
-            actions: {
-                Button(String(localized: "OK", bundle: .core)) {
-                    viewModel.shouldShowAlert = false
+            trailing: .init(
+                isEnabled: viewModel.isSaveButtonEnabled,
+                isAvailableOffline: false,
+                title: viewModel.saveButtonTitle,
+                action: {
+                    viewModel.didTapSave.send()
                 }
-            },
-            message: {
-                Text("Your To Do was not added, you can try it again.", bundle: .core)
-            }
+            )
         )
+        .errorAlert(isPresented: $viewModel.shouldShowSaveError, presenting: viewModel.saveErrorAlert)
     }
 }
 
 #if DEBUG
 
 #Preview {
-    PlannerAssembly.makeCreateToDoScreenPreview()
+    PlannerAssembly.makeEditToDoScreenPreview()
 }
 
 #endif

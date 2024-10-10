@@ -22,7 +22,26 @@ import XCTest
 class ErrorExtensionsTests: XCTestCase {
 
     func testFrameLoadInterruptedError() {
-        let error: Error = NSError(domain: "WebKitErrorDomain", code: 102)
+        let error: Error = NSError(
+            domain: "WebKitErrorDomain",
+            code: 102
+        )
         XCTAssertTrue(error.isFrameLoadInterrupted)
+    }
+
+    func testForbiddenError() {
+        let error: Error = NSError(
+            domain: NSError.Constants.domain,
+            code: HttpError.forbidden
+        )
+        XCTAssertTrue(error.isForbidden)
+    }
+
+    func testNotFoundError() {
+        let error: Error = NSError(
+            domain: NSError.Constants.domain,
+            code: HttpError.notFound
+        )
+        XCTAssertTrue(error.isNotFound)
     }
 }

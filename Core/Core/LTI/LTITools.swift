@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Foundation
 import SafariServices
 import WebKit
@@ -167,7 +168,10 @@ public class LTITools: NSObject {
                 self?.markModuleItemRead()
                 completionHandler?(success)
             }
-            let url = response.url.appendingQueryItems(URLQueryItem(name: "platform", value: "mobile"))
+            var url = response.url.appendingQueryItems(URLQueryItem(name: "platform", value: "mobile"))
+            if url.absoluteString.contains(RemoteConfigManager.shared.placementPortalPath) {
+                url = url.appendingQueryItems(URLQueryItem(name: "launch_type", value: "global_navigation"))
+            }
             if response.name == "Google Apps" {
                 let controller = GoogleCloudAssignmentViewController(url: url)
                 self.env.router.show(controller, from: view, options: .modal(.overFullScreen, embedInNav: true, addDoneButton: true)) {
@@ -210,6 +214,18 @@ public class LTITools: NSObject {
 
     public func getSessionlessLaunchURL(completionBlock: @escaping (URL?) -> Void) {
         getSessionlessLaunch { completionBlock($0?.url) }
+    }
+
+    public func getSessionlessLaunchURL() -> AnyPublisher<URL, Error> {
+        Future { promise in
+            self.getSessionlessLaunchURL { url in
+                guard let url else {
+                    return promise(.failure(NSError.internalError()))
+                }
+                promise(.success(url))
+            }
+        }
+        .eraseToAnyPublisher()
     }
 
     private func markModuleItemRead() {

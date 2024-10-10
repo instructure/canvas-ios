@@ -113,10 +113,16 @@
             "value" : "Degrees edX"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Degrees edX"
           }
         },
         "ht" : {
@@ -275,9 +281,261 @@
       "comment" : "Accessibility Bundle Name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "Degrees edX"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees edX"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "Degrees edX"
           }
         }
@@ -393,6 +651,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail grianghraif agus físeáin le teachtaireachtaí agus postálacha fóraim nó cuir isteach iad mar uaslódálacha taisc."
           }
         },
         "hi" : {
@@ -653,6 +917,12 @@
             "value" : "Aidez-nous à trouver des écoles près de chez vous."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cabhraigh linn scoileanna in aice leat a aimsiú."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -909,6 +1179,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Joindre des enregistrements audio aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail taifeadtaí fuaime le teachtaireachtaí agus postálacha fóraim nó cuir isteach iad mar uaslódálacha taisc."
           }
         },
         "hi" : {
@@ -1169,6 +1445,12 @@
             "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail grianghraif agus físeáin le teachtaireachtaí agus postálacha fóraim nó cuir isteach iad mar uaslódálacha taisc."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1425,6 +1707,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangail grianghraif agus físeáin le teachtaireachtaí agus postálacha fóraim nó cuir isteach iad mar uaslódálacha taisc."
           }
         },
         "hi" : {

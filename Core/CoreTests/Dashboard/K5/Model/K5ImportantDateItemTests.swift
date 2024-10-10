@@ -44,7 +44,7 @@ class K5ImportantDateItemTests: CoreTestCase {
             context_name: "Test event name"
         )
         calendarEvents = [.make(from: assignment, in: databaseClient),
-                          .make(from: event, in: databaseClient), ]
+                          .make(from: event, in: databaseClient) ]
         importantDate = K5ImportantDate(with: calendarEvents[0], color: .red)
     }
 

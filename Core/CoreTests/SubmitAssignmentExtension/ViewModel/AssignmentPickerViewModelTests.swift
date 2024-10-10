@@ -41,20 +41,32 @@ class AssignmentPickerViewModelTests: CoreTestCase {
 
     func testAssignmentFetchSuccessful() {
         mockService.mockResult = .success([
-            .init(id: "A2", name: "online upload", allowedExtensions: []),
+            .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ])
         testee.courseID = "successID"
         drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A2", name: "online upload"),
+            .init(id: "A2", name: "online upload")
+        ]))
+    }
+
+    func testGroupAssignmentFetchSuccessful() {
+        mockService.mockResult = .success([
+            .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: true)
+        ])
+        testee.courseID = "successID"
+        drainMainQueue()
+        XCTAssertNil(testee.selectedAssignment)
+        XCTAssertEqual(testee.state, .data([
+            .init(id: "A2", name: "online upload", gradeAsGroup: true)
         ]))
     }
 
     func testAssignmentFetchSuccessfulButSharedFilesArentReady() {
         testee.sharedFileExtensions.send(nil)
         mockService.mockResult = .success([
-            .init(id: "A2", name: "online upload", allowedExtensions: []),
+            .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ])
         testee.courseID = "successID"
         drainMainQueue()
@@ -64,13 +76,13 @@ class AssignmentPickerViewModelTests: CoreTestCase {
 
     func testSameCourseIdDoesntTriggerRefresh() {
         mockService.mockResult = .success([
-            .init(id: "A1", name: "online upload", allowedExtensions: []),
+            .init(id: "A1", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ])
         testee.courseID = "successID"
         drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A1", name: "online upload"),
+            .init(id: "A1", name: "online upload")
         ]))
 
         mockService.mockResult = .failure("Custom error")
@@ -78,20 +90,20 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A1", name: "online upload"),
+            .init(id: "A1", name: "online upload")
         ]))
     }
 
     func testDefaultAssignmentSelection() {
         environment.userDefaults?.submitAssignmentID = "A2"
         mockService.mockResult = .success([
-            .init(id: "A2", name: "online upload", allowedExtensions: []),
+            .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ])
         testee.courseID = "successID"
         drainMainQueue()
         XCTAssertEqual(testee.selectedAssignment, .init(id: "A2", name: "online upload"))
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A2", name: "online upload"),
+            .init(id: "A2", name: "online upload")
         ]))
         // Keep the assignment ID so if the user submits another attempt without starting the app we'll pre-select
         XCTAssertNotNil(environment.userDefaults?.submitAssignmentID)
@@ -99,23 +111,23 @@ class AssignmentPickerViewModelTests: CoreTestCase {
 
     func testCourseChangeRefreshesState() {
         mockService.mockResult = .success([
-            .init(id: "A1", name: "online upload", allowedExtensions: []),
+            .init(id: "A1", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ])
         testee.courseID = "successID"
         drainMainQueue()
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A1", name: "online upload"),
+            .init(id: "A1", name: "online upload")
         ]))
 
         testee.assignmentSelected(.init(id: "A1", name: "online upload"))
         mockService.mockResult = .success([
-            .init(id: "A2", name: "online upload", allowedExtensions: []),
+            .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ])
         testee.courseID = "successID2"
         drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
         XCTAssertEqual(testee.state, .data([
-            .init(id: "A2", name: "online upload"),
+            .init(id: "A2", name: "online upload")
         ]))
     }
 

@@ -81,7 +81,7 @@ public struct CourseSyncEntry: Equatable {
     }
 
     var isCollapsed: Bool = true
-    var selectionState: ListCellView.SelectionState = .deselected {
+    var selectionState: OfflineListCellView.SelectionState = .deselected {
         didSet {
             if isFullContentSync, let index = tabs.firstIndex(where: { $0.type == .additionalContent}) {
                 tabs[index].selectionState = .selected
@@ -200,13 +200,13 @@ public struct CourseSyncEntry: Equatable {
     typealias IsDownloadSuccessful = Bool
     private(set) var additionalContentDownloadResults: [IsDownloadSuccessful] = []
 
-    mutating func selectCourse(selectionState: ListCellView.SelectionState) {
+    mutating func selectCourse(selectionState: OfflineListCellView.SelectionState) {
         tabs.indices.forEach { tabs[$0].selectionState = selectionState }
         files.indices.forEach { files[$0].selectionState = selectionState }
         self.selectionState = selectionState
     }
 
-    mutating func selectTab(id: String, selectionState: ListCellView.SelectionState) {
+    mutating func selectTab(id: String, selectionState: OfflineListCellView.SelectionState) {
         tabs[id: id]?.selectionState = selectionState
 
         if tabs[id: id]?.type == .files {
@@ -222,7 +222,7 @@ public struct CourseSyncEntry: Equatable {
         }
     }
 
-    mutating func selectFile(id: String, selectionState: ListCellView.SelectionState) {
+    mutating func selectFile(id: String, selectionState: OfflineListCellView.SelectionState) {
         files[id: id]?.selectionState = selectionState == .selected ? .selected : .deselected
 
         guard let fileTabId = tabs.first(where: { $0.type == TabName.files })?.id else {
@@ -300,7 +300,7 @@ extension CourseSyncEntry.File {
         updatedAt: Date? = nil,
         bytesToDownload: Int = 0,
         state: CourseSyncEntry.State = .loading(nil),
-        selectionState: ListCellView.SelectionState = .deselected
+        selectionState: OfflineListCellView.SelectionState = .deselected
     ) -> CourseSyncEntry.File {
         .init(
             id: id,

@@ -51,6 +51,7 @@ public struct FilePickerView: View {
                 ProgressView()
             }
         }
+        .background(Color.backgroundLightest)
     }
 
     var emptyView: some View {

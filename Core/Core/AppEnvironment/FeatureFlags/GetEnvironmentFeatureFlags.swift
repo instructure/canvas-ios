@@ -22,7 +22,6 @@ import Foundation
 public enum EnvironmentFeatureFlags: String {
     case send_usage_metrics
     case mobile_offline_mode
-    case react_discussions_post
 }
 
 public class GetEnvironmentFeatureFlags: CollectionUseCase {
@@ -35,7 +34,7 @@ public class GetEnvironmentFeatureFlags: CollectionUseCase {
         let predicate = NSCompoundPredicate(
             andPredicateWithSubpredicates: [
                 contextPredicate,
-                environmentFlagPredicate,
+                environmentFlagPredicate
             ]
         )
         return Scope(predicate: predicate, order: [NSSortDescriptor(key: #keyPath(FeatureFlag.name), ascending: true)])

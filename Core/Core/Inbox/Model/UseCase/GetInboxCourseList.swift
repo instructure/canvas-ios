@@ -20,6 +20,7 @@ import Foundation
 
 public class GetInboxCourseList: CollectionUseCase {
     public typealias Model = InboxCourse
+    public typealias Response = [APICourse]
 
     public var cacheKey: String? { "inboxCourseList" }
     public var request: GetCurrentUserCoursesRequest {
@@ -27,7 +28,7 @@ public class GetInboxCourseList: CollectionUseCase {
     }
     public var scope: Scope {
         let order = [
-            NSSortDescriptor(key: #keyPath(InboxCourse.name), ascending: true),
+            NSSortDescriptor(key: #keyPath(InboxCourse.name), ascending: true)
         ]
         return Scope(predicate: .all, order: order)
     }

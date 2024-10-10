@@ -20,29 +20,44 @@ import Combine
 
 public class AddressbookInteractorLive: AddressbookInteractor {
     // MARK: - Outputs
-    public var state = CurrentValueSubject<StoreState, Never>(.loading)
 
+    public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var recipients = CurrentValueSubject<[SearchRecipient], Never>([])
+    public var canSelectAllRecipient = CurrentValueSubject<Bool, Never>(false)
 
     // MARK: - Private
+
     private var subscriptions = Set<AnyCancellable>()
     private let recipientStore: Store<GetSearchRecipients>
+    private let permissionStore: Store<GetContextPermissions>
 
     public init(env: AppEnvironment, recipientContext: RecipientContext, teacherOnly: Bool = false) {
         self.recipientStore = env.subscribe(
             GetSearchRecipients(context: recipientContext.context, qualifier: teacherOnly ? .teachers : nil)
         )
+        self.permissionStore = env.subscribe(GetContextPermissions(context: recipientContext.context, permissions: [.sendMessagesAll]))
 
-        recipientStore
-            .statePublisher
-            .subscribe(state)
-            .store(in: &subscriptions)
+        StoreState.combineLatest(
+            recipientStore.statePublisher,
+            permissionStore.statePublisher
+        )
+        .subscribe(state)
+        .store(in: &subscriptions)
 
         recipientStore
             .allObjects
             .subscribe(recipients)
             .store(in: &subscriptions)
+
+        permissionStore
+            .allObjects
+            .compactMap { $0.first }
+            .map { $0.sendMessagesAll }
+            .subscribe(canSelectAllRecipient)
+            .store(in: &subscriptions)
+
         recipientStore.exhaust()
+        permissionStore.exhaust()
     }
 
     public func refresh() -> Future<Void, Never> {

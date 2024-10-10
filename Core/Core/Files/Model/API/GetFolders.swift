@@ -48,7 +48,7 @@ public class GetFolderByPath: CollectionUseCase {
     public var scope: Scope { Scope(
         predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Folder.canvasContextID), equals: scopeContextID),
-            NSPredicate(key: #keyPath(Folder.path), equals: path),
+            NSPredicate(key: #keyPath(Folder.path), equals: path)
         ]),
         orderBy: #keyPath(Folder.id)
     ) }
@@ -81,6 +81,7 @@ public class GetFolder: APIUseCase {
 
 public class GetFolders: CollectionUseCase {
     public typealias Model = Folder
+    public typealias Response = [APIFolder]
 
     let context: Context
 

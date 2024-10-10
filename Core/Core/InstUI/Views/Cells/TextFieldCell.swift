@@ -74,15 +74,14 @@ extension InstUI {
             VStack(spacing: 0) {
                 SwiftUI.Group {
                     if let label {
-                        HStack(spacing: 0) {
+                        HStack(alignment: .center, spacing: 0) {
                             labelTransform(label)
                                 .textStyle(.cellLabel)
-                                .frame(maxWidth: .infinity, alignment: .leading)
                                 .paddingStyle(.trailing, .standard)
                                 .accessibility(hidden: true)
 
                             textField
-                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     } else {
                         textField
@@ -101,7 +100,7 @@ extension InstUI {
         private var textField: some View {
             TextField("", text: $text, prompt: Text(placeholder).foregroundColor(Color.placeholderGray))
                 .focused($isFocused)
-                .multilineTextAlignment(label == nil ? .leading : .trailing)
+                .multilineTextAlignment(.leading)
                 .font(label == nil ? .semibold16 : .regular16, lineHeight: .fit)
                 .foregroundStyle(Color.textDarkest)
                 .submitLabel(.done)
@@ -118,6 +117,7 @@ extension InstUI {
         InstUI.Divider()
         InstUI.TextFieldCell(placeholder: "Add text here", text: .constant(""))
         InstUI.TextFieldCell(label: Text(verbatim: "Label"), placeholder: "Add text here", text: .constant(""))
+        InstUI.TextFieldCell(label: Text(verbatim: "Label"), placeholder: "Add text here", text: .constant(InstUI.PreviewData.loremIpsumMedium))
         InstUI.TextFieldCell(
             label: Text(verbatim: "Styled Label"),
             labelTransform: {

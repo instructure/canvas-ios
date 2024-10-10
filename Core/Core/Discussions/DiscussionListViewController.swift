@@ -53,10 +53,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     lazy var topics = env.subscribe(GetDiscussionTopics(context: context)) { [weak self] in
         self?.update()
     }
-    /** This is required for the router to help decide if the hybrid discussion details or the native one should be launched. */
-    private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context)) { [weak self] in
-        self?.update()
-    }
+
     private var offlineModeInteractor: OfflineModeInteractor?
 
     public static func create(context: Context, offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> DiscussionListViewController {
@@ -91,14 +88,8 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
         colors.refresh()
         // We must force refresh because the GetCourses call deletes all existing Courses from the CoreData cache and since GetCourses response includes no permissions we lose that information.
         course?.refresh(force: true)
-        group?.refresh { [context, weak group, weak env] _ in
-            guard context.contextType == .group, let courseID = group?.first?.courseID else { return }
-            _ = env?.subscribe(GetEnabledFeatureFlags(context: Context.course(courseID))).refresh()
-        }
+        group?.refresh(force: true)
         topics.exhaust()
-        if context.contextType != .group {
-            featureFlags.refresh()
-        }
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -165,7 +156,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     func togglePinned(at indexPath: IndexPath, completionHandler: @escaping (Bool) -> Void) {
         guard let topic = topics[indexPath] else { return completionHandler(false) }
         let useCase = UpdateDiscussionTopic(context: context, topicID: topic.id, form: [
-            .pinned: .bool(!topic.pinned),
+            .pinned: .bool(!topic.pinned)
         ])
         useCase.fetch { [weak self] result, _, error in performUIUpdate {
             if let error = error { self?.showError(error) }
@@ -176,7 +167,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     func toggleLocked(at indexPath: IndexPath, completionHandler: @escaping (Bool) -> Void) {
         guard let topic = topics[indexPath] else { return completionHandler(false) }
         let useCase = UpdateDiscussionTopic(context: context, topicID: topic.id, form: [
-            .locked: .bool(!topic.locked),
+            .locked: .bool(!topic.locked)
         ])
         useCase.fetch { [weak self] result, _, error in performUIUpdate {
             if let error = error { self?.showError(error) }
@@ -229,7 +220,7 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
         let cell: DiscussionListCell = tableView.dequeue(for: indexPath)
         let topic = topics[indexPath]
         cell.update(topic: topic, isTeacher: course?.first?.hasTeacherEnrollment == true, color: color)
-        if topic?.anonymousState != nil && !featureFlags.isFeatureFlagEnabled(.discussionRedesign) {
+        if topic?.anonymousState != nil && offlineModeInteractor?.isOfflineModeEnabled() == true {
             cell.selectionStyle = .none
             cell.contentView.alpha = 0.5
             cell.statusLabel.text = String(localized: "Not supported", bundle: .core)

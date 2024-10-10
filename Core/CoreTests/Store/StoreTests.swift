@@ -437,7 +437,7 @@ class StoreTests: CoreTestCase {
         let curr = "https://test.edu/api/v1/date"
         let next = "https://test.edu/api/v1/date?page=2"
         let headers = [
-            "Link": "<\(curr)>; rel=\"current\",<>;, <\(next)>; rel=\"next\"; count=1",
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(next)>; rel=\"next\"; count=1"
         ]
         let response = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
         let useCase = TestUseCase(courses: [], urlResponse: response)
@@ -566,7 +566,7 @@ class StoreTests: CoreTestCase {
         let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
         let next = "https://cgnuonline-eniversity.edu/api/v1/date?page=3"
         let headers = [
-            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1"
         ]
         let response = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
         let secondPage = XCTestExpectation(description: "second page of courses")
@@ -684,7 +684,7 @@ class StoreTests: CoreTestCase {
             .updateRow(IndexPath(row: 2, section: 3)),
             .deleteRow(IndexPath(row: 3, section: 4)),
             .deleteRow(IndexPath(row: 4, section: 5)),
-            .insertRow(IndexPath(row: 5, section: 6)),
+            .insertRow(IndexPath(row: 5, section: 6))
         ])
     }
 
@@ -693,7 +693,7 @@ class StoreTests: CoreTestCase {
         let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
         let next = "https://cgnuonline-eniversity.edu/api/v1/date?page=3"
         let headers = [
-            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1"
         ]
         let urlResponse = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
         let page1 = [APICourse.make(id: "1")]
@@ -716,7 +716,7 @@ class StoreTests: CoreTestCase {
         let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
         let next = "https://cgnuonline-eniversity.edu/api/v1/date?page=3"
         let headers = [
-            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1"
         ]
         let urlResponse = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
         let page1 = [APICourse.make(id: "1")]
@@ -745,7 +745,7 @@ class StoreTests: CoreTestCase {
         let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
         let next = "https://cgnuonline-eniversity.edu/api/v1/date?page=3"
         let headers = [
-            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1"
         ]
         let urlResponse = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
         let page1 = [APICourse.make(id: "1")]
@@ -770,7 +770,7 @@ class StoreTests: CoreTestCase {
         let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
         let next = "https://cgnuonline-eniversity.edu/api/v1/date?page=3"
         let headers = [
-            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1"
         ]
         let urlResponse = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
         let page1 = [APICourse.make(id: "1")]

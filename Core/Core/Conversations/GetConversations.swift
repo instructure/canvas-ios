@@ -21,6 +21,7 @@ import CoreData
 
 public class GetConversations: CollectionUseCase {
     public typealias Model = Conversation
+    public typealias Response = [APIConversation]
     let include: [GetConversationsRequest.Include] = [.participant_avatars]
     let perPage: Int = 100
     let requestScope: GetConversationsRequest.Scope?
@@ -38,7 +39,7 @@ public class GetConversations: CollectionUseCase {
         if let filter = filter {
             return Scope(
                 predicate: NSPredicate(format: "%K == %@", #keyPath(Conversation.contextCode), filter),
-                order: [NSSortDescriptor(key: #keyPath(Conversation.lastMessageAt), ascending: false), ]
+                order: [NSSortDescriptor(key: #keyPath(Conversation.lastMessageAt), ascending: false) ]
             )
         } else {
             return Scope.all(orderBy: #keyPath(Conversation.lastMessageAt), ascending: false)

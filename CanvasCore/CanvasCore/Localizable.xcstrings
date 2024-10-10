@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Back" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -103,6 +104,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retour"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ar ais"
           }
         },
         "hi" : {
@@ -252,6 +259,7 @@
       }
     },
     "Back on detailed view" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -353,6 +361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retour à la vue détaillée"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ar ais ar an t-amharc mionsonraithe"
           }
         },
         "hi" : {
@@ -502,6 +516,7 @@
       }
     },
     "Collapse detail view" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -603,6 +618,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réduire la vue détaillée"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leacaigh an t-amharc mionsonraí"
           }
         },
         "hi" : {
@@ -752,6 +773,7 @@
       }
     },
     "Done" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -853,6 +875,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terminé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déanta"
           }
         },
         "hi" : {
@@ -1002,6 +1030,7 @@
       }
     },
     "Expand detail view" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1103,6 +1132,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Développer la vue détaillée"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leathnaigh an t-amharc mionsonraithe"
           }
         },
         "hi" : {
@@ -1355,6 +1390,12 @@
             "value" : "Impossible de trouver l'image au chemin d'accès"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar an íomhá a aimsiú ag an gcosán"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1605,6 +1646,12 @@
             "value" : "Impossible d’écrire l’image"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar an íomhá a scríobh"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1853,6 +1900,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Obtenir les notes pour"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faigh Marcanna le haghaidh"
           }
         },
         "hi" : {

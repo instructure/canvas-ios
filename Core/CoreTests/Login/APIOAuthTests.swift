@@ -23,7 +23,7 @@ class APIOAuthTests: XCTestCase {
     func testGetMobileVerifyRequest() {
         XCTAssertEqual(GetMobileVerifyRequest(domain: "cgnu").path, "https://canvas.instructure.com/api/v1/mobile_verify.json")
         XCTAssertEqual(GetMobileVerifyRequest(domain: "cgnu").queryItems, [
-            URLQueryItem(name: "domain", value: "cgnu"),
+            URLQueryItem(name: "domain", value: "cgnu")
         ])
     }
 
@@ -65,7 +65,7 @@ class APIOAuthTests: XCTestCase {
         XCTAssertEqual(GetWebSessionRequest(to: nil).path, "/login/session_token")
         XCTAssertEqual(GetWebSessionRequest(to: nil).queryItems, [])
         XCTAssertEqual(GetWebSessionRequest(to: URL(string: "/")).queryItems, [
-            URLQueryItem(name: "return_to", value: "/?display=borderless"),
+            URLQueryItem(name: "return_to", value: "/?display=borderless")
         ])
     }
 }

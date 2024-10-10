@@ -155,7 +155,7 @@ final public class ModuleItem: NSManagedObject {
                             in context: NSManagedObjectContext) -> ModuleItem {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(ModuleItem.courseID), equals: courseID),
-            NSPredicate(key: #keyPath(ModuleItem.id), equals: item.id.value),
+            NSPredicate(key: #keyPath(ModuleItem.id), equals: item.id.value)
         ])
         let model: ModuleItem = context.fetch(predicate).first ?? context.insert()
         model.id = item.id.value

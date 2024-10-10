@@ -36,7 +36,7 @@ public class Keychain {
         var query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: serviceName,
-            kSecAttrAccount: key,
+            kSecAttrAccount: key
         ]
         if accessGroup?.isEmpty == false {
             query[kSecAttrAccessGroup] = accessGroup
@@ -65,7 +65,7 @@ public class Keychain {
             kSecAttrService: serviceName,
             kSecAttrAccount: key,
             kSecReturnData: kCFBooleanTrue as Any,
-            kSecMatchLimit: kSecMatchLimitOne,
+            kSecMatchLimit: kSecMatchLimitOne
         ]
 
         if accessGroup?.isEmpty == false {
@@ -89,7 +89,7 @@ public class Keychain {
         var query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: serviceName,
-            kSecAttrAccount: key,
+            kSecAttrAccount: key
         ]
 
         if accessGroup?.isEmpty == false {

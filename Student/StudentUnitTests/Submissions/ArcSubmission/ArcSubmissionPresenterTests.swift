@@ -52,6 +52,7 @@ class ArcSubmissionPresenterTests: StudentTestCase {
             assignmentID: "1",
             body: .init(submission: .init(
                 text_comment: nil,
+                group_comment: nil,
                 submission_type: .basic_lti_launch,
                 body: nil,
                 url: URL(string: "https://arc.com/media/1")!,
@@ -62,7 +63,7 @@ class ArcSubmissionPresenterTests: StudentTestCase {
         )
         api.mock(request, value: nil, response: nil, error: nil)
         let form: [String: Any] = [
-            "content_items": "{ \"@graph\": [ {\"url\": \"https://arc.com/media/1\"} ] }",
+            "content_items": "{ \"@graph\": [ {\"url\": \"https://arc.com/media/1\"} ] }"
         ]
         let expectation = XCTestExpectation(description: "submit form")
         presenter.submit(form: form) { error in
@@ -78,6 +79,7 @@ class ArcSubmissionPresenterTests: StudentTestCase {
             assignmentID: "2",
             body: .init(submission: .init(
                 text_comment: nil,
+                group_comment: nil,
                 submission_type: .basic_lti_launch,
                 body: nil,
                 url: URL(string: "https://arc.com/media/1")!,
@@ -88,7 +90,7 @@ class ArcSubmissionPresenterTests: StudentTestCase {
         )
         api.mock(request, value: nil, response: nil, error: NSError.instructureError("doh"))
         let form: [String: Any] = [
-            "content_items": "{ \"@graph\": [ {\"url\": \"https://arc.com/media/1\"} ] }",
+            "content_items": "{ \"@graph\": [ {\"url\": \"https://arc.com/media/1\"} ] }"
         ]
         let expectation = XCTestExpectation(description: "submit form")
         presenter.submit(form: form) { error in
@@ -104,6 +106,7 @@ class ArcSubmissionPresenterTests: StudentTestCase {
             assignmentID: "2",
             body: .init(submission: .init(
                 text_comment: nil,
+                group_comment: nil,
                 submission_type: .basic_lti_launch,
                 body: nil,
                 url: URL(string: "https://arc.com/media/1")!,
@@ -115,7 +118,7 @@ class ArcSubmissionPresenterTests: StudentTestCase {
         api.mock(request, value: nil, response: nil, error: NSError.instructureError("doh"))
         let form: [String: Any] = [
             "hello": "i am a submit body that can be ignored",
-            "content_items": "{ \"@graph\": [ {\"oops\": \"https://arc.com/media/1\"} ] }",
+            "content_items": "{ \"@graph\": [ {\"oops\": \"https://arc.com/media/1\"} ] }"
         ]
         let expectation = XCTestExpectation(description: "submit form callback should not be called if form body is unrecognized")
         expectation.isInverted = true

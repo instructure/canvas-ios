@@ -25,13 +25,13 @@ class URLResponseExtensionsTests: XCTestCase {
         let curr = "https://cgnuonline-eniversity.edu/api/v1/courses?page=2"
         let next = "https://cgnuonline-eniversity.edu/api/v1/courses?page=3"
         let headers = [
-            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1"
         ]
         let response = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)
         XCTAssertEqual(response?.links, [
             "current": URL(string: curr)!,
             "prev": URL(string: prev)!,
-            "next": URL(string: next)!,
+            "next": URL(string: next)!
         ])
     }
 
@@ -40,10 +40,38 @@ class URLResponseExtensionsTests: XCTestCase {
         XCTAssertNil(response.links)
     }
 
-    func testUnauthenticated() {
-        XCTAssertTrue(HTTPURLResponse(url: URL(string: "/")!, statusCode: 401, httpVersion: nil, headerFields: nil)!.isUnauthorized)
-        XCTAssertFalse(HTTPURLResponse(url: URL(string: "/")!, statusCode: 201, httpVersion: nil, headerFields: nil)!.isUnauthorized)
-        XCTAssertFalse(URLResponse(url: URL(string: "/")!, mimeType: nil, expectedContentLength: 0, textEncodingName: nil).isUnauthorized)
+    func testUnauthorized() {
+        let unautorizedResponse = HTTPURLResponse(
+            url: .make(),
+            statusCode: 401,
+            httpVersion: nil,
+            headerFields: nil
+        )!
+        XCTAssertTrue(unautorizedResponse.isUnauthorized)
+
+        let forbiddenResponse = HTTPURLResponse(
+            url: .make(),
+            statusCode: 403,
+            httpVersion: nil,
+            headerFields: nil
+        )!
+        XCTAssertFalse(forbiddenResponse.isUnauthorized)
+
+        let createdResponse = HTTPURLResponse(
+            url: .make(),
+            statusCode: 201,
+            httpVersion: nil,
+            headerFields: nil
+        )!
+        XCTAssertFalse(createdResponse.isUnauthorized)
+
+        let nonHttpURLResponse = URLResponse(
+            url: .make(),
+            mimeType: nil,
+            expectedContentLength: 0,
+            textEncodingName: nil
+        )
+        XCTAssertFalse(nonHttpURLResponse.isUnauthorized)
     }
 
     func testExceededLimit() {

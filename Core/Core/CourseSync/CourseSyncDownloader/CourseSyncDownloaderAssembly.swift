@@ -44,21 +44,32 @@ public enum CourseSyncDownloaderAssembly {
             CourseSyncConferencesInteractorLive(),
             CourseSyncAnnouncementsInteractorLive(htmlParser: announcementHtmlParser),
             CourseSyncQuizzesInteractorLive(htmlParser: quizHtmlParser),
-            CourseSyncDiscussionsInteractorLive(discussionHtmlParser: discussionHtmlParser),
+            CourseSyncDiscussionsInteractorLive(discussionHtmlParser: discussionHtmlParser)
         ]
         let progressInteractor = CourseSyncProgressObserverInteractorLive()
         let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, activityName: "Offline Sync")
 
-        return CourseSyncInteractorLive(brandThemeInteractor: BrandThemeDownloaderInteractor(),
-                                        contentInteractors: contentInteractors,
-                                        filesInteractor: CourseSyncFilesInteractorLive(),
-                                        modulesInteractor: CourseSyncModulesInteractorLive(pageHtmlParser: pageHtmlParser, quizHtmlParser: quizHtmlParser),
-                                        progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-                                        notificationInteractor: CourseSyncNotificationInteractor(progressInteractor: progressInteractor),
-                                        courseListInteractor: AllCoursesAssembly.makeCourseListInteractor(),
-                                        backgroundActivity: backgroundActivity,
-                                        scheduler: scheduler,
-                                        env: env)
+        return CourseSyncInteractorLive(
+            brandThemeInteractor: BrandThemeDownloaderInteractor(),
+            contentInteractors: contentInteractors,
+            filesInteractor: CourseSyncFilesInteractorLive(),
+            modulesInteractor: CourseSyncModulesInteractorLive(
+                pageHtmlParser: pageHtmlParser,
+                quizHtmlParser: quizHtmlParser
+            ),
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
+            notificationInteractor: CourseSyncNotificationInteractor(
+                progressInteractor: progressInteractor
+            ),
+            courseListInteractor: AllCoursesAssembly.makeCourseListInteractor(),
+            studioMediaInteractor: makeStudioDownloader(
+                loginSession: loginSession,
+                scheduler: scheduler
+            ),
+            backgroundActivity: backgroundActivity,
+            scheduler: scheduler,
+            env: env
+        )
     }
 
     private static func makeHTMLParser(
@@ -77,6 +88,31 @@ public enum CourseSyncDownloaderAssembly {
         return HTMLParserLive(
             sessionId: sessionId,
             downloadInteractor: interactor
+        )
+    }
+
+    private static func makeStudioDownloader(
+        loginSession: LoginSession?,
+        scheduler: AnySchedulerOf<DispatchQueue>
+    ) -> CourseSyncStudioMediaInteractor {
+        let offlineFolder = URL.Paths.Offline.rootURL(sessionID: loginSession?.uniqueID ?? "")
+        let studioDirectory = offlineFolder.appendingPathComponent("studio", isDirectory: true)
+        let studioDownloadInteractor = StudioVideoDownloadInteractorLive(
+            rootDirectory: studioDirectory,
+            captionsInteractor: StudioCaptionsInteractorLive(),
+            videoCacheInteractor: StudioVideoCacheInteractorLive()
+        )
+        return CourseSyncStudioMediaInteractorLive(
+            offlineDirectory: offlineFolder,
+            authInteractor: StudioAPIAuthInteractorLive(),
+            iFrameReplaceInteractor: StudioIFrameReplaceInteractorLive(),
+            iFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractorLive(
+                studioHtmlParser: StudioHTMLParserInteractorLive()
+            ),
+            cleanupInteractor: StudioVideoCleanupInteractorLive(offlineStudioDirectory: studioDirectory),
+            metadataDownloadInteractor: StudioMetadataDownloadInteractorLive(),
+            downloadInteractor: studioDownloadInteractor,
+            scheduler: scheduler
         )
     }
 }

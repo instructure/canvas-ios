@@ -66,7 +66,7 @@ extension PushNotificationsInteractor {
                 "invitation",
                 "student_appointment_signups",
                 "submission_comment",
-                "discussion_mention",
+                "discussion_mention"
             ]
             if error == nil && response != nil,
                let notif_pref_immediately = response?.notification_preferences.filter({ allowedTypes.contains($0.category ?? "") }).filter({ $0.frequency == .immediately }) {
@@ -90,7 +90,7 @@ extension PushNotificationsInteractor {
             request.invocationType = .requestResponse
             let params: [String: Any] = [
                 "userid": session.userID,
-                "domain": session.clearDomain,
+                "domain": session.clearDomain
             ]
             if let payload = try? JSONSerialization.data(withJSONObject: params, options: []) {
                 request.payload = payload
@@ -130,7 +130,7 @@ extension PushNotificationsInteractor {
                 "domain": session.clearDomain,
                 "osType": "ios",
                 "deviceToken": deviceTokenString ?? token.hexString,
-                "isRelease": isReleaseString,
+                "isRelease": isReleaseString
             ]
             if let payload = try? JSONSerialization.data(withJSONObject: params, options: []) {
                 request.payload = payload
@@ -147,7 +147,7 @@ extension PushNotificationsInteractor {
             let params: [String: Any] = [
                 "userid": session.userID,
                 "domain": session.clearDomain,
-                "deviceToken": deviceToken,
+                "deviceToken": deviceToken
             ]
             if let payload = try? JSONSerialization.data(withJSONObject: params, options: []) {
                 request.payload = payload

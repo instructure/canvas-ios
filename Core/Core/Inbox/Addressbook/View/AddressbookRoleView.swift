@@ -83,6 +83,7 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
             Text("Done", bundle: .core)
                 .font(.regular16)
                 .foregroundColor(.accentColor)
+                .accessibilityIdentifier("Inbox.addRecipient.done")
         }
     }
 
@@ -123,7 +124,6 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
 
     private var rolesView: some View {
         VStack(alignment: .leading, spacing: 0) {
-            separator
             if viewModel.isAllRecipientButtonVisible { allRecipient }
             ForEach(viewModel.roles, id: \.self) { role in
                 roleRowView(role)
@@ -143,6 +143,7 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
                             .font(.regular16)
                             .foregroundColor(.textDarkest)
                             .lineLimit(1)
+                            .accessibilityIdentifier("Inbox.addRecipient.all\(role)")
                         Text("\(viewModel.roleRecipients[role]?.count ?? 0) People", bundle: .core)
                             .font(.regular14)
                             .foregroundColor(.textDark)
@@ -179,6 +180,7 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
                             .font(.regular16)
                             .foregroundColor(.textDarkest)
                             .lineLimit(1)
+                            .accessibilityIdentifier("Inbox.addRecipient.allIn.\(viewModel.recipientContext.context.id)")
                         Text("\(viewModel.recipients.count) People", bundle: .core)
                             .font(.regular14)
                             .foregroundColor(.textDark)

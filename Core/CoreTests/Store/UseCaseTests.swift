@@ -62,7 +62,7 @@ class UseCaseTests: CoreTestCase {
 
     func testGetNext() {
         let useCase = TestUseCase()
-        let urlResponse = URLResponse(url: URL(string: "/")!, mimeType: nil, expectedContentLength: 2, textEncodingName: nil)
+        let urlResponse = URLResponse(url: .make(), mimeType: nil, expectedContentLength: 2, textEncodingName: nil)
         XCTAssertNil(useCase.getNext(from: urlResponse))
     }
 
@@ -151,7 +151,7 @@ class UseCaseTests: CoreTestCase {
             error = e
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
         XCTAssertNotNil(error)
     }
 
@@ -174,7 +174,7 @@ class UseCaseTests: CoreTestCase {
                     }
                 } receiveValue: { _ in }
         }
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription?.cancel()
     }
 
@@ -195,7 +195,7 @@ class UseCaseTests: CoreTestCase {
                 }
             }
         }
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
     }
 }
 
@@ -223,7 +223,7 @@ class CollectionUseCaseTests: CoreTestCase {
             expectation.fulfill()
         }
 
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
         databaseClient.refresh()
         XCTAssertEqual((databaseClient.fetch() as [Course]).count, 0)
     }
@@ -274,7 +274,7 @@ class APIUseCaseTests: CoreTestCase {
         let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
         let next = "https://cgnuonline-eniversity.edu/api/v1/date?page=3"
         let headers = [
-            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1"
         ]
         let response = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
         XCTAssertEqual(useCase.getNext(from: response)?.path, next)

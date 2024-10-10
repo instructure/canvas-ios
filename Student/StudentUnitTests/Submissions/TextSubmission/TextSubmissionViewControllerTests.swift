@@ -26,8 +26,9 @@ class TextSubmissionViewControllerTests: StudentTestCase {
     var navigation: UINavigationController!
 
     let request = CreateSubmissionRequest(context: .course("1"), assignmentID: "1", body: .init(submission: .init(
-            submission_type: .online_text_entry,
-            body: "<b>submission</b>"
+        group_comment: nil,
+        submission_type: .online_text_entry,
+        body: "<b>submission</b>"
     )))
 
     class MockEditor: RichContentEditorViewController {

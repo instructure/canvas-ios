@@ -50,11 +50,7 @@ class GetEnvironmentFeatureFlagsTests: CoreTestCase {
 
     func testWriteCreates() {
         let context = Context(.course, id: "1")
-        let response = [
-            "send_usage_metrics": true,
-            "new_discussions": false,
-            "react_discussions_post": true,
-        ]
+        let response = ["send_usage_metrics": true]
 
         // UseCase
         let useCase = GetEnvironmentFeatureFlags(context: context)
@@ -64,7 +60,7 @@ class GetEnvironmentFeatureFlagsTests: CoreTestCase {
             to: databaseClient
         )
         let all: [FeatureFlag] = databaseClient.fetch()
-        XCTAssertEqual(all.count, 3)
+        XCTAssertEqual(all.count, 1)
 
         // send_usage_metrics
         let sendUsageMetrics: FeatureFlag? = databaseClient.first(
@@ -84,56 +80,17 @@ class GetEnvironmentFeatureFlagsTests: CoreTestCase {
             sendUsageMetrics?.context?.canvasContextID,
             context.canvasContextID
         )
-
-        // new_discussions
-        let newDiscussions: FeatureFlag? = databaseClient.first(
-            where: #keyPath(FeatureFlag.name),
-            equals: "new_discussions"
-        )
-        XCTAssertNotNil(newDiscussions)
-        XCTAssertEqual(
-            newDiscussions?.name,
-            "new_discussions"
-        )
-        XCTAssertEqual(
-            newDiscussions?.enabled,
-            false
-        )
-        XCTAssertEqual(
-            newDiscussions?.context?.canvasContextID,
-            context.canvasContextID
-        )
-
-        // react_discussion
-        let reactDiscussionsPost: FeatureFlag? = databaseClient.first(
-            where: #keyPath(FeatureFlag.name),
-            equals: "react_discussions_post"
-        )
-        XCTAssertNotNil(reactDiscussionsPost)
-        XCTAssertEqual(
-            reactDiscussionsPost?.name,
-            "react_discussions_post"
-        )
-        XCTAssertEqual(
-            reactDiscussionsPost?.enabled,
-            true
-        )
-        XCTAssertEqual(
-            reactDiscussionsPost?.context?.canvasContextID,
-            context.canvasContextID
-        )
     }
 
     func testWriteUpdates() {
         let context = Context(.course, id: "1")
         let existing = FeatureFlag.make(
             context: context,
-            name: "new_discussions",
+            name: "send_usage_metrics",
             enabled: false
         )
         let response = [
-            "send_usage_metrics": false,
-            "new_discussions": true,
+            "send_usage_metrics": true
         ]
         let useCase = GetEnvironmentFeatureFlags(context: context)
         useCase.write(
@@ -146,29 +103,5 @@ class GetEnvironmentFeatureFlagsTests: CoreTestCase {
             mergeChanges: true
         )
         XCTAssertTrue(existing.enabled)
-    }
-
-    func testWriteExclusivity() {
-        let context = Context(.course, id: "1")
-        let other = FeatureFlag.make(
-            context: .course("2"),
-            name: "send_usage_metrics",
-            enabled: false
-        )
-        let response = [
-            "send_usage_metrics": true,
-            "new_discussions": false,
-        ]
-        let useCase = GetEnvironmentFeatureFlags(context: context)
-        useCase.write(
-            response: response,
-            urlResponse: nil,
-            to: databaseClient
-        )
-        databaseClient.refresh(
-            other,
-            mergeChanges: true
-        )
-        XCTAssertFalse(other.enabled)
     }
 }

@@ -27,6 +27,7 @@ public struct AssignmentPickerListResponse: Codable, Equatable {
         let submissionTypes: [SubmissionType]
         let allowedExtensions: [String]?
         let lockInfo: LockInfo
+        let gradeAsGroup: Bool
 
         public var isLocked: Bool { lockInfo.isLocked }
     }

@@ -143,7 +143,7 @@ extension UIViewController {
         navigationItem.leftBarButtonItems = (viewController.navigationItem.leftBarButtonItems ?? []) + left
         navigationItem.leftItemsSupplementBackButton = viewController.navigationItem.leftItemsSupplementBackButton || leftItemsSupplementBackButton
 
-        var observations = [
+        let observations = [
             viewController.observe(\.title) { [weak self] item, _ in
                 self?.title = item.title
             },
@@ -162,16 +162,13 @@ extension UIViewController {
             viewController.navigationItem.observe(\.leftItemsSupplementBackButton) { [weak self] item, _ in
                 self?.navigationItem.leftItemsSupplementBackButton = item.leftItemsSupplementBackButton || leftItemsSupplementBackButton
             },
-        ]
-
-        if #available(iOSApplicationExtension 16.0, *) {
-            observations.append(viewController.navigationItem.observe(\.trailingItemGroups) { [weak self] item, _ in
+            viewController.navigationItem.observe(\.trailingItemGroups) { [weak self] item, _ in
                 let groupButtons = item.trailingItemGroups.flatMap { itemGroup in
                     itemGroup.barButtonItems
                 }
                 self?.navigationItem.rightBarButtonItems = groupButtons + right
-            })
-        }
+            }
+        ]
 
         return observations
     }

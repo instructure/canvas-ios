@@ -34,19 +34,19 @@ class GetFolderTests: CoreTestCase {
         XCTAssertEqual(useCase.scope, Scope(
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(Folder.canvasContextID), equals: "course_1"),
-                NSPredicate(key: #keyPath(Folder.path), equals: "sub"),
+                NSPredicate(key: #keyPath(Folder.path), equals: "sub")
             ]),
             orderBy: #keyPath(Folder.id)
         ))
         XCTAssertEqual(GetFolderByPath(context: .currentUser).scope, Scope(
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(Folder.canvasContextID), equals: "user_1"),
-                NSPredicate(key: #keyPath(Folder.path), equals: ""),
+                NSPredicate(key: #keyPath(Folder.path), equals: "")
             ]),
             orderBy: #keyPath(Folder.id)
         ))
         api.mock(useCase, value: [
-            .make(context_type: "Course", context_id: "1", full_name: "m/sub", id: 2, name: "sub", parent_folder_id: 1),
+            .make(context_type: "Course", context_id: "1", full_name: "m/sub", id: 2, name: "sub", parent_folder_id: 1)
         ])
         XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
         useCase.fetch()

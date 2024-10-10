@@ -39,12 +39,13 @@ public class CalendarHelper: BaseHelper {
     // MARK: UI Elements
     public static var navBar: XCUIElement { app.find(id: "Core.PlannerView") }
     public static var todayButton: XCUIElement { app.find(id: "PlannerCalendar.todayButton") }
-    public static var addNoteButton: XCUIElement { app.find(id: "PlannerCalendar.addNoteButton") }
+    public static var addButton: XCUIElement { app.find(id: "PlannerCalendar.addButton") }
     public static var yearLabel: XCUIElement { app.find(id: "PlannerCalendar.yearLabel") }
     public static var monthButton: XCUIElement { app.find(id: "PlannerCalendar.monthButton") }
     public static var monthLabel: XCUIElement { app.find(id: "PlannerCalendar.monthButton").find(type: .staticText) }
     public static var filterButton: XCUIElement { app.find(id: "PlannerCalendar.filterButton") }
     public static var firstDayButtonOfView: XCUIElement { app.find(idStartingWith: "PlannerCalendar.dayButton.") }
+    public static var emptyTitle: XCUIElement { app.find(id: "PlannerList.emptyTitle") }
 
     public static func dayButton(event: DSCalendarEvent) -> XCUIElement {
         let dateString = formatDateForDayButton(event: event)
@@ -135,6 +136,8 @@ public class CalendarHelper: BaseHelper {
     }
 
     public struct Details {
+        public static var kebabButton: XCUIElement { app.find(id: "More") }
+
         public static func titleLabel(event: DSCalendarEvent) -> XCUIElement {
             return app.find(label: event.title, type: .staticText)
         }
@@ -167,6 +170,17 @@ public class CalendarHelper: BaseHelper {
             let formattedDate = dateFormatter.string(from: event.start_at)
             return formattedDate
         }
+
+        public struct More {
+            public static var editButton: XCUIElement { app.find(label: "Edit", type: .button) }
+            public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }
+
+            public struct Delete {
+                public static var deleteTodoText: XCUIElement { app.find(label: "Delete To Do?", type: .staticText) }
+                public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
+                public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }
+            }
+        }
     }
 
     public struct Filter {
@@ -183,7 +197,8 @@ public class CalendarHelper: BaseHelper {
     public struct Todo {
         public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
         public static var addButton: XCUIElement { app.find(label: "Add", type: .button) }
-        public static var titleInput: XCUIElement { app.find(label: "Title", type: .textField) }
+        public static var saveButton: XCUIElement { app.find(label: "Save", type: .button) }
+        public static var titleInput: XCUIElement { app.find(label: "Title", type: .textView) }
         public static var calendarSelector: XCUIElement { app.find(labelContaining: "Calendar,", type: .button) }
         public static var dateButton: XCUIElement { app.find(label: "Date and Time Picker") }
         public static var datePicker: XCUIElement { dateButton.findAll(type: .button)[0] }
@@ -282,5 +297,25 @@ public class CalendarHelper: BaseHelper {
                 duplicate: duplicate)
         let requestBody = CreateDSCalendarEventRequest.Body(calendar_event: calendarEvent)
         return seeder.createCalendarEvent(requestBody: requestBody)
+    }
+
+    @discardableResult
+    public static func createCalendarToDoItem(
+            user: DSUser,
+            title: String = "Sample Calendar ToDo Item",
+            details: String = "Don't forget to remember!",
+            todoDate: Date = Date.now
+    ) -> DSPlannerNote {
+        let type = "planner_note"
+        let contextCode = "user_\(user.id)"
+        let body = CreateDSPlannerNotesRequest.Body(
+            title: title,
+            details: details,
+            type: type,
+            todoDate: todoDate,
+            contextCode: contextCode,
+            userId: user.id
+        )
+        return seeder.createPlannerNote(requestBody: body)
     }
 }

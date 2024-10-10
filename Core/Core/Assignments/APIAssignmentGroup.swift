@@ -76,7 +76,7 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
         [
             .include(include.map { $0.rawValue }),
             .perPage(perPage),
-            .optionalValue("grading_period_id", gradingPeriodID),
+            .optionalValue("grading_period_id", gradingPeriodID)
         ]
     }
 }

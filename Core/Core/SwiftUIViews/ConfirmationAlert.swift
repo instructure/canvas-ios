@@ -50,6 +50,16 @@ public class ConfirmationAlertViewModel {
         return subject.eraseToAnyPublisher()
     }
 
+    /**
+     - returns: A Publisher that finishes when either of the confirmation dialog's button is pressed.
+     If the user confirmed the action the publisher will send a value before completing.
+     */
+    public func userConfirmation<T>(value: T) -> AnyPublisher<T, Never> {
+        userConfirmation()
+            .map { value }
+            .eraseToAnyPublisher()
+    }
+
     // Don't use this function outside of this class. Internal access level is required because of tests.
     internal func notifyCompletion(isConfirmed: Bool) {
         for subscriber in subscribers {
@@ -67,12 +77,6 @@ public class ConfirmationAlertViewModel {
 
 public extension View {
     func confirmationAlert(isPresented: Binding<Bool>,
-                           presenting viewModel: ConfirmationAlertViewModel)
-    -> some View {
-        alertConfirmation(isPresented: isPresented, presenting: viewModel)
-    }
-
-    func alertConfirmation(isPresented: Binding<Bool>,
                            presenting viewModel: ConfirmationAlertViewModel)
     -> some View {
         alert(
@@ -131,7 +135,7 @@ struct ConfirmationAlertPreview: PreviewProvider {
                     } label: {
                         Text("Show dialog", bundle: .core)
                     }
-                    .alertConfirmation(isPresented: $viewModel.isShowingConfirmationDialog,
+                    .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
                                        presenting: viewModel.confirmDialog)
                     Spacer()
                 }

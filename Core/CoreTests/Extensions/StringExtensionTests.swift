@@ -61,4 +61,18 @@ class StringExtensionTests: XCTestCase {
         XCTAssertEqual("".nilIfEmpty, nil)
         XCTAssertEqual("test".nilIfEmpty, "test")
     }
+
+    func testNSRange() {
+        XCTAssertEqual("test".nsRange, NSRange(location: 0, length: 4))
+    }
+
+    func testExtractsIFrames() {
+        let testHTML = "<iframe param=1>content</iframe><iframe></iframe>"
+
+        let results = testHTML.extractiFrames()
+
+        XCTAssertEqual(results.count, 2)
+        XCTAssertEqual(results.first, "<iframe param=1>content</iframe>")
+        XCTAssertEqual(results.last, "<iframe></iframe>")
+    }
 }

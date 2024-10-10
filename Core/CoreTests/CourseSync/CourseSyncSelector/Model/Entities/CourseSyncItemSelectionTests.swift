@@ -35,15 +35,15 @@ class CourseSyncItemSelectionTests: XCTestCase {
                             hasFrontPage: false,
                             tabs: [
                                 .init(id: "3", name: "", type: .files),
-                                .init(id: "4", name: "", type: .files),
+                                .init(id: "4", name: "", type: .files)
                             ],
                             files: [
                                 .make(id: "5", displayName: ""),
-                                .make(id: "6", displayName: ""),
+                                .make(id: "6", displayName: "")
                             ],
                             isCollapsed: false,
                             selectionState: .deselected,
-                            state: .loading(nil)),
+                            state: .loading(nil))
         ]
 
         let courseSelection = "2"
@@ -67,7 +67,7 @@ class CourseSyncItemSelectionTests: XCTestCase {
                                      ],
                                      files: [
                                          .init(id: "file-1", displayName: "", fileName: "",
-                                               url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0),
+                                               url: .make(), mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0)
                                      ],
                                      selectionState: .selected)
         XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["course-1"])
@@ -78,11 +78,11 @@ class CourseSyncItemSelectionTests: XCTestCase {
                                      id: "course-1",
                                      hasFrontPage: false,
                                      tabs: [
-                                         .init(id: "tab-files", name: "", type: .files, selectionState: .selected),
+                                         .init(id: "tab-files", name: "", type: .files, selectionState: .selected)
                                      ],
                                      files: [
                                          .init(id: "file-1", displayName: "", fileName: "",
-                                               url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0),
+                                               url: .make(), mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0)
                                      ],
                                      selectionState: .partiallySelected)
         XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["tab-files"])
@@ -94,7 +94,7 @@ class CourseSyncItemSelectionTests: XCTestCase {
                                      hasFrontPage: false,
                                      tabs: [
                                          .init(id: "tab-files-1", name: "", type: .files, selectionState: .selected),
-                                         .init(id: "tab-files-2", name: "", type: .files, selectionState: .deselected),
+                                         .init(id: "tab-files-2", name: "", type: .files, selectionState: .deselected)
                                      ],
                                      files: [],
                                      selectionState: .partiallySelected)
@@ -106,13 +106,13 @@ class CourseSyncItemSelectionTests: XCTestCase {
                                      id: "course-1",
                                      hasFrontPage: false,
                                      tabs: [
-                                         .init(id: "tab-files", name: "", type: .files, selectionState: .partiallySelected),
+                                         .init(id: "tab-files", name: "", type: .files, selectionState: .partiallySelected)
                                      ],
                                      files: [
                                          .init(id: "file-1", displayName: "", fileName: "",
-                                               url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .deselected, bytesToDownload: 0),
+                                               url: .make(), mimeClass: "", updatedAt: nil, selectionState: .deselected, bytesToDownload: 0),
                                          .init(id: "file-2", displayName: "", fileName: "",
-                                               url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0),
+                                               url: .make(), mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0)
                                      ],
                                      selectionState: .partiallySelected)
         XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["file-2"])

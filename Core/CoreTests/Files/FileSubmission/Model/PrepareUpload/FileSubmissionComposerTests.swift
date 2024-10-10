@@ -38,9 +38,10 @@ class FileSubmissionComposerTests: CoreTestCase {
                                                     assignmentId: "testAssignmentID",
                                                     assignmentName: "testName",
                                                     comment: "testComment",
+                                                    isGroupComment: nil,
                                                     files: [
                                                         tempFileURL,
-                                                        tempFileURL,
+                                                        tempFileURL
                                                     ])
         guard let submission = try? databaseClient.existingObject(with: submissionID) as? FileSubmission else {
             XCTFail("Submission not found")
@@ -71,8 +72,9 @@ class FileSubmissionComposerTests: CoreTestCase {
                                                     assignmentId: "testAssignmentID",
                                                     assignmentName: "testName",
                                                     comment: "testComment",
+                                                    isGroupComment: nil,
                                                     files: [
-                                                        URL(string: "/test")!,
+                                                        URL(string: "/test")!
                                                     ])
 
         guard let submission = try? databaseClient.existingObject(with: submissionID) as? FileSubmission else {
@@ -94,8 +96,9 @@ class FileSubmissionComposerTests: CoreTestCase {
                                                     assignmentId: "testAssignmentID",
                                                     assignmentName: "testName",
                                                     comment: "testComment",
+                                                    isGroupComment: nil,
                                                     files: [
-                                                        URL(string: "/test")!,
+                                                        URL(string: "/test")!
                                                     ])
         testee.deleteSubmission(submissionID: submissionID)
         drainMainQueue()

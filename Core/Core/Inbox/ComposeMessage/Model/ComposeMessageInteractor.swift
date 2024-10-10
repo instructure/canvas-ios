@@ -19,11 +19,21 @@
 import Combine
 
 public protocol ComposeMessageInteractor {
+    // MARK: - Outputs
+    var attachments: CurrentValueSubject<[File], Never> { get }
 
     // MARK: - Inputs
     func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error>
 
     func addConversationMessage(parameters: MessageParameters) -> Future<URLResponse?, Error>
 
-    func deleteFile(file: File) -> AnyPublisher<Void, Never>
+    func addFile(url: URL)
+
+    func addFile(file: File)
+
+    func retry()
+
+    func cancel()
+
+    func removeFile(file: File)
 }

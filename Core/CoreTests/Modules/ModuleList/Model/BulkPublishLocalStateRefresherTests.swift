@@ -49,7 +49,7 @@ class BulkPublishLocalStateRefresherTests: CoreTestCase {
                 moduleID: "m1",
                 include: [
                     .content_details,
-                    .mastery_paths,
+                    .mastery_paths
                 ]
             ),
             value: [
@@ -57,7 +57,7 @@ class BulkPublishLocalStateRefresherTests: CoreTestCase {
                 .make(id: "mi2", content: .discussion("d1"), published: false),
                 .make(id: "mi3", content: .page("p1"), published: false),
                 .make(id: "mi4", content: .quiz("q1"), published: false),
-                .make(id: "mi5", content: .file("f1"), published: false),
+                .make(id: "mi5", content: .file("f1"), published: false)
             ]
         )
         api.mock(
@@ -81,7 +81,7 @@ class BulkPublishLocalStateRefresherTests: CoreTestCase {
         XCTAssertTrue(file.availability == .published)
 
         // MARK: WHEN
-        XCTAssertFinish(testee.refreshStates())
+        XCTAssertFinish(testee.refreshStates(), timeout: 1.0)
 
         // MARK: THEN
         XCTAssertFalse(assignment.published)

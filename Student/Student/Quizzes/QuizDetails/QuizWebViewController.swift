@@ -83,7 +83,7 @@ class QuizWebViewController: UIViewController {
 
     func refreshQuiz() {
         NotificationCenter.default.post(name: .quizRefresh, object: nil, userInfo: [
-            "quizID": quizID,
+            "quizID": quizID
         ])
     }
 }

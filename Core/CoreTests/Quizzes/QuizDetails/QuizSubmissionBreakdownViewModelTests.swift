@@ -52,7 +52,7 @@ class QuizSubmissionBreakdownViewModelTests: CoreTestCase {
         let useCase = GetAllQuizSubmissions(courseID: courseID, quizID: quizID)
         let quizSubmissions: [APIQuizSubmission] = [
             .make(id: "1", quiz_id: ID(quizID), user_id: "1", workflow_state: .complete),
-            .make(id: "2", quiz_id: ID(quizID), user_id: "2", workflow_state: .complete),
+            .make(id: "2", quiz_id: ID(quizID), user_id: "2", workflow_state: .complete)
         ]
         api.mock(useCase, value: GetAllQuizSubmissionsRequest.Response(quiz_submissions: quizSubmissions, submissions: nil))
     }
@@ -64,7 +64,7 @@ class QuizSubmissionBreakdownViewModelTests: CoreTestCase {
             .make(id: "2", course_id: courseID),
             .make(id: "3", course_id: courseID),
             .make(id: "4", course_id: courseID),
-            .make(id: "5", course_id: courseID),
+            .make(id: "5", course_id: courseID)
         ]
         api.mock(usecase, value: enrollments)
     }

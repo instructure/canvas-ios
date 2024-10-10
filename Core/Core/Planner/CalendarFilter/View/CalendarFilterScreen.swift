@@ -102,7 +102,7 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
     private var userFilter: some View {
         if let filter = viewModel.userFilter {
             InstUI.CheckboxCell(
-                name: filter.name,
+                title: filter.name,
                 isSelected: selectionBinding(context: filter.context),
                 color: filter.color
             )
@@ -115,13 +115,13 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
             Section {
                 ForEach(viewModel.courseFilters) { filter in
                     InstUI.CheckboxCell(
-                        name: filter.name,
+                        title: filter.name,
                         isSelected: selectionBinding(context: filter.context),
                         color: filter.color
                     )
                 }
             } header: {
-                InstUI.ListSectionHeader(name: String(localized: "Courses", bundle: .core))
+                InstUI.ListSectionHeader(title: String(localized: "Courses", bundle: .core))
             }
         }
     }
@@ -132,13 +132,13 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
             Section {
                 ForEach(viewModel.groupFilters) { filter in
                     InstUI.CheckboxCell(
-                        name: filter.name,
+                        title: filter.name,
                         isSelected: selectionBinding(context: filter.context),
                         color: filter.color
                     )
                 }
             } header: {
-                InstUI.ListSectionHeader(name: String(localized: "Groups", bundle: .core))
+                InstUI.ListSectionHeader(title: String(localized: "Groups", bundle: .core))
             }
         }
     }

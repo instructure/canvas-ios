@@ -29,28 +29,34 @@ public struct RecipientPillView: View {
     }
 
     public var body: some View {
-        HStack(spacing: 0) {
-            Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 26)
-                .padding(.trailing, 10)
-            Text(recipient.displayName)
-                .font(.regular14)
-                .foregroundColor(.textDark)
-                .padding(.trailing, 10)
-                .truncationMode(.tail)
-                .lineLimit(1)
-            removeButton
-                .padding(.trailing, 10)
+        Button {
+            // Pill component's remove button combined with the Wrapping Hstack works only with this extra button
+        } label: {
+            HStack(spacing: 0) {
+                Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 26)
+                    .padding(.trailing, 10)
+                Text(recipient.displayName)
+                    .font(.regular14)
+                    .foregroundColor(.textDark)
+                    .padding(.trailing, 10)
+                    .truncationMode(.tail)
+                    .lineLimit(1)
+                    .accessibilityIdentifier("ComposeMessage.recipientPill.\(recipient.ids.first ?? "all\(recipient.displayName)")")
+                removeButton
+                    .padding(.trailing, 10)
+            }
+            .padding(5)
+            .overlay(
+                RoundedRectangle(cornerRadius: 100)
+                    .stroke(Color.textDark, lineWidth: 0.5)
+            )
         }
-        .padding(5)
-        .overlay(
-            RoundedRectangle(cornerRadius: 100)
-                .stroke(Color.textDark, lineWidth: 0.5)
-        )
         .font(.regular12)
         .foregroundColor(.textDarkest)
         .accessibilityElement(children: .ignore)
         .accessibility(label: Text(recipient.displayName))
-        .accessibilityAction(named: Text("Remove recipient", bundle: .core)) {
+        .accessibility(hint: Text("Double tap to remove", bundle: .core))
+        .accessibilityAction {
             removeDidTap(recipient)
         }
     }

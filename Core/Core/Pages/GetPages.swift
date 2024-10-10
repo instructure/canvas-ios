@@ -39,7 +39,7 @@ public struct GetPages: CollectionUseCase {
     public var scope: Scope {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Page.contextID), equals: context.canvasContextID),
-            NSPredicate(format: "%K == false", #keyPath(Page.isFrontPage)),
+            NSPredicate(format: "%K == false", #keyPath(Page.isFrontPage))
         ])
         return Scope(predicate: predicate, orderBy: #keyPath(Page.title), naturally: true)
     }

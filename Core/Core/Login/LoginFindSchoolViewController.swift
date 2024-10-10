@@ -42,7 +42,7 @@ class LoginFindSchoolViewController: UIViewController {
         let combined = "\(text) \(link)"
         let attributedText = NSMutableAttributedString(string: combined, attributes: [
             .foregroundColor: UIColor.textDark,
-            .font: UIFont.scaledNamedFont(.regular14),
+            .font: UIFont.scaledNamedFont(.regular14)
         ])
         attributedText.addAttribute(.foregroundColor, value: UIColor.electric, range: (combined as NSString).range(of: link))
         return attributedText

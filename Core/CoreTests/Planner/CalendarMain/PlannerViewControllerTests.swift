@@ -38,7 +38,7 @@ class PlannerViewControllerTests: CoreTestCase {
         _ = controller.profileButton.target?.perform(controller.profileButton.action)
         XCTAssert(router.lastRoutedTo("/profile", withOptions: .modal()))
 
-        _ = controller.addNoteButton.target?.perform(controller.addNoteButton.action)
+        _ = controller.addButton.target?.perform(controller.addButton.action)
         let presentedEventName = (router.presented as? CoreHostingController<EditCalendarToDoScreen>)?
             .rootView.content.screenViewTrackingParameters.eventName
         XCTAssertEqual(presentedEventName, "/calendar/new")
@@ -61,7 +61,7 @@ class PlannerViewControllerTests: CoreTestCase {
         // hide first calendar
         api.mock(GetCoursesRequest(enrollmentState: .active, state: [.available], perPage: 100, studentID: "1"), value: [
             .make(id: "1", name: "BIO 101", enrollments: [.make(associated_user_id: "1")]),
-            .make(id: "2", name: "BIO 102", enrollments: [.make(associated_user_id: "1")]),
+            .make(id: "2", name: "BIO 102", enrollments: [.make(associated_user_id: "1")])
         ])
         XCTAssertEqual(controller.list.plannables?.useCase.contextCodes, [])
         XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars")

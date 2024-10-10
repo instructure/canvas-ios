@@ -402,7 +402,7 @@ public struct GetAllQuizSubmissionsRequest: APIRequestable {
     public var query: [APIQueryItem] {
         [
             .include(includes.map { $0.rawValue }),
-            .perPage(perPage),
+            .perPage(perPage)
         ]
     }
 }

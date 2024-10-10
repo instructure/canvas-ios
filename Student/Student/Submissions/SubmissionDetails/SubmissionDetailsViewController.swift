@@ -152,9 +152,8 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
             result.trailing = 0
             return result
         }()
-        if #available(iOS 16.0, *) {
-            buttonConfig.indicator = .none
-        }
+        buttonConfig.indicator = .none
+
         buttonConfig.titleTextAttributesTransformer = .init { attributes in
             var result = attributes
             result.font = UIFont.scaledNamedFont(.regular14)
@@ -282,12 +281,12 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
         if dateRange.location != NSNotFound, attemptRange.location != NSNotFound {
             text.addAttributes([
                                 .font: UIFont.scaledNamedFont(.regular20),
-                                .foregroundColor: UIColor.textDarkest,
+                                .foregroundColor: UIColor.textDarkest
                                ],
                                range: dateRange)
             text.addAttributes([
                                 .font: UIFont.scaledNamedFont(.regular17),
-                                .foregroundColor: UIColor.textDarkest,
+                                .foregroundColor: UIColor.textDarkest
                                 ],
                                range: attemptRange)
         }

@@ -90,6 +90,7 @@ class AddressbookRoleViewModelTests: CoreTestCase {
 
     func testAllRecipientButtonVisible() {
         testee.searchText.value = ""
+        mockInteractor.canSelectAllRecipient.value = true
         XCTAssertTrue(testee.isAllRecipientButtonVisible)
 
         testee.searchText.value = "Test"
@@ -100,6 +101,7 @@ class AddressbookRoleViewModelTests: CoreTestCase {
 private class AddressbookInteractorMock: AddressbookInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.data)
     public var recipients: CurrentValueSubject<[SearchRecipient], Never>
+    public var canSelectAllRecipient = CurrentValueSubject<Bool, Never>(false)
     public private(set) var isRefreshCalled = false
 
     public init(env: AppEnvironment) {
@@ -108,7 +110,7 @@ private class AddressbookInteractorMock: AddressbookInteractor {
             .save(.make(id: "2", name: "Recipient 2", common_courses: ["Course 1": ["StudentEnrollment"]]), filter: "", in: env.database.viewContext),
             .save(.make(id: "3", name: "Recipient 3", common_courses: ["Course 1": ["ObserverEnrollment"]]), filter: "", in: env.database.viewContext),
             .save(.make(id: "4", name: "Recipient 4", common_courses: ["Course 1": ["TaEnrollment", "DesignerEnrollment"]]), filter: "", in: env.database.viewContext),
-            .save(.make(id: "5", name: "Recipient 5", common_courses: ["Course 1": ["TaEnrollment"]]), filter: "", in: env.database.viewContext),
+            .save(.make(id: "5", name: "Recipient 5", common_courses: ["Course 1": ["TaEnrollment"]]), filter: "", in: env.database.viewContext)
         ])
     }
 

@@ -24,6 +24,21 @@ final class CalendarToDoInteractorPreview: CalendarToDoInteractor {
 
     init() { }
 
+    var getToDoCallsCount: Int = 0
+    var getToDoInput: String?
+    var getToDoResult: Result<Plannable, Error>?
+
+    func getToDo(id: String) -> AnyPublisher<Plannable, Error> {
+        getToDoCallsCount += 1
+        getToDoInput = id
+
+        if let getToDoResult {
+            return getToDoResult.publisher.eraseToAnyPublisher()
+        } else {
+            return Empty().eraseToAnyPublisher()
+        }
+    }
+
     var createToDoCallsCount: Int = 0
     var createToDoInput: (title: String, date: Date, calendar: CDCalendarFilterEntry?, details: String?)?
     var createToDoResult: Result<Void, Error>? = .success
@@ -40,7 +55,44 @@ final class CalendarToDoInteractorPreview: CalendarToDoInteractor {
         if let createToDoResult {
             return createToDoResult.publisher.eraseToAnyPublisher()
         } else {
-            return Empty<Void, Error>().eraseToAnyPublisher()
+            return Empty().eraseToAnyPublisher()
+        }
+    }
+
+    var updateToDoCallsCount: Int = 0
+    // swiftlint:disable:next large_tuple
+    var updateToDoInput: (id: String, title: String, date: Date, calendar: CDCalendarFilterEntry?, details: String?)?
+    var updateToDoResult: Result<Void, Error>? = .success
+
+    func updateToDo(
+        id: String,
+        title: String,
+        date: Date,
+        calendar: CDCalendarFilterEntry?,
+        details: String?
+    ) -> AnyPublisher<Void, Error> {
+        updateToDoCallsCount += 1
+        updateToDoInput = (id: id, title: title, date: date, calendar: calendar, details: details)
+
+        if let updateToDoResult {
+            return updateToDoResult.publisher.eraseToAnyPublisher()
+        } else {
+            return Empty().eraseToAnyPublisher()
+        }
+    }
+
+    var deleteToDoCallsCount: Int = 0
+    var deleteToDoInput: String?
+    var deleteToDoResult: Result<Void, Error>? = .success
+
+    func deleteToDo(id: String) -> AnyPublisher<Void, Error> {
+        deleteToDoCallsCount += 1
+        deleteToDoInput = id
+
+        if let deleteToDoResult {
+            return deleteToDoResult.publisher.eraseToAnyPublisher()
+        } else {
+            return Empty().eraseToAnyPublisher()
         }
     }
 }

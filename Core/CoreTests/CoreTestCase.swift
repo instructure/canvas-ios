@@ -48,11 +48,25 @@ class CoreTestCase: XCTestCase {
         let bundle = Bundle(for: type(of: self))
         return bundle.url(forResource: "fileupload", withExtension: "txt")!
     }()
+    /// This directory can be used to store temporary files. It's cleared after each test case.
+    public let workingDirectory = URL.Directories.temporary.appendingPathComponent(
+        "CoreTestCase",
+        isDirectory: true
+    )
 
     let window = UIWindow()
 
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        try FileManager.default.createDirectory(
+            at: workingDirectory,
+            withIntermediateDirectories: true
+        )
+    }
+
     override func setUp() {
         super.setUp()
+        OfflineModeAssembly.mock(OfflineModeInteractorMock(mockIsFeatureFlagEnabled: false))
         Clock.reset()
         API.resetMocks()
         LoginSession.clearAll()
@@ -81,6 +95,21 @@ class CoreTestCase: XCTestCase {
         super.tearDown()
         LoginSession.clearAll()
         window.rootViewController = mainViewController
+    }
+
+    override func tearDownWithError() throws {
+        do {
+            try FileManager.default.removeItem(at: workingDirectory)
+        } catch (let error) {
+            let nsError = error as NSError
+
+            // Swallow no such file or directory error, the folder is already removed.
+            guard nsError.domain == NSCocoaErrorDomain, nsError.code == 4 else {
+                throw error
+            }
+        }
+
+        try super.tearDownWithError()
     }
 
     func waitForMainAsync() {

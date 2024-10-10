@@ -34,7 +34,7 @@ class GetAnnouncements: CollectionUseCase {
     var scope: Scope { Scope(
         predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(DiscussionTopic.isAnnouncement), equals: true),
-            NSPredicate(key: #keyPath(DiscussionTopic.canvasContextID), equals: context.canvasContextID),
+            NSPredicate(key: #keyPath(DiscussionTopic.canvasContextID), equals: context.canvasContextID)
         ]),
         orderBy: #keyPath(DiscussionTopic.position), ascending: true
     ) }
@@ -60,6 +60,7 @@ class GetAnnouncements: CollectionUseCase {
 
 class GetDiscussionTopics: CollectionUseCase {
     typealias Model = DiscussionTopic
+    typealias Response = [APIDiscussionTopic]
 
     let context: Context
     init(context: Context) {
@@ -73,12 +74,12 @@ class GetDiscussionTopics: CollectionUseCase {
     var scope: Scope { Scope(
         predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(DiscussionTopic.isAnnouncement), equals: false),
-            NSPredicate(key: #keyPath(DiscussionTopic.canvasContextID), equals: context.canvasContextID),
+            NSPredicate(key: #keyPath(DiscussionTopic.canvasContextID), equals: context.canvasContextID)
         ]),
         order: [
             NSSortDescriptor(key: #keyPath(DiscussionTopic.orderSection), ascending: true),
             NSSortDescriptor(key: #keyPath(DiscussionTopic.position), ascending: true),
-            NSSortDescriptor(key: #keyPath(DiscussionTopic.order), ascending: false, naturally: true),
+            NSSortDescriptor(key: #keyPath(DiscussionTopic.order), ascending: false, naturally: true)
         ],
         sectionNameKeyPath: #keyPath(DiscussionTopic.orderSection)
     ) }
@@ -147,7 +148,7 @@ class GetDiscussionView: CollectionUseCase {
             equals: topicID,
             sortDescriptors: [
                 NSSortDescriptor(key: #keyPath(DiscussionEntry.createdAt), ascending: true, naturally: false),
-                NSSortDescriptor(key: #keyPath(DiscussionEntry.id), ascending: true),
+                NSSortDescriptor(key: #keyPath(DiscussionEntry.id), ascending: true)
             ]
         )
     }

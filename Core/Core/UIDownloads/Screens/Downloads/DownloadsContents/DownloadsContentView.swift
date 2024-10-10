@@ -18,6 +18,7 @@
 
 import SwiftUI
 import mobile_offline_downloader_ios
+@_spi(Advanced) import SwiftUIIntrospect
 
 struct DownloadsContentView: View, Navigatable {
 
@@ -56,15 +57,17 @@ struct DownloadsContentView: View, Navigatable {
         ZStack {
             Color.backgroundLight
                 .ignoresSafeArea()
-            content
-                .if(UIDevice.current.userInterfaceIdiom == .pad) { view in
-                    view.introspect(.viewController, on: .iOS(.v13, .v14, .v15, .v16, .v17)) { view in
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                content
+                    .introspect(.viewController, on: .iOS(.v13...)) { view in
                         DispatchQueue.main.async {
                             view.navigationController?.navigationBar.useContextColor(viewModel.color)
                             view.navigationController?.navigationBar.prefersLargeTitles = false
                         }
                     }
-                }
+            } else {
+                content
+            }
             if viewModel.deleting {
                 LoadingDarkView()
             }

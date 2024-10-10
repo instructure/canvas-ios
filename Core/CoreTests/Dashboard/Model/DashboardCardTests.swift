@@ -30,7 +30,7 @@ class DashboardCardTests: CoreTestCase {
             id: "1",
             isK5Subject: true,
             shortName: "Course One"
-        ), ])
+        ) ])
         useCase.fetch()
         let card: DashboardCard? = databaseClient.fetch(scope: useCase.scope).first
         XCTAssertEqual(card?.color.hexString, UIColor.red.ensureContrast(against: .backgroundLightest).hexString)
@@ -44,7 +44,7 @@ class DashboardCardTests: CoreTestCase {
         api.mock(useCase, value: [
             .make(),
             .make(enrollmentType: "TeacherEnrollment", id: "2"),
-            .make(enrollmentType: "TAEnrollment", id: "3"),
+            .make(enrollmentType: "TAEnrollment", id: "3")
         ])
 
         useCase.fetch()
@@ -70,7 +70,7 @@ class DashboardCardTests: CoreTestCase {
         try! databaseClient.save()
         let useCase = GetDashboardCards()
         api.mock(useCase, value: [
-            .make(id: "1", longName: "updated name"),
+            .make(id: "1", longName: "updated name")
         ])
 
         XCTAssertFalse(card1.isFault)

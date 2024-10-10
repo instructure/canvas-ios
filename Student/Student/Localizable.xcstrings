@@ -113,6 +113,12 @@
             "value" : "« %@ » est maintenant prêt à envoyer les tâches attribuées"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "'%@' is now ready to submit to assignments"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -371,6 +377,12 @@
             "value" : "« %1$@ » est verrouillé en tant que « %2$@ »"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "&quot;%1$@&quot; faoi ghlas mar chuid de &quot;%2$@&quot;"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -620,6 +632,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ avant"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ roimh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ पहले"
           }
         },
         "ht" : {
@@ -872,6 +896,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ arrive très prochainement!"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ag teacht go luath!"
           }
         },
         "hi" : {
@@ -1132,6 +1162,12 @@
             "value" : "%@ est verrouillé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ faoi ghlas"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1390,6 +1426,12 @@
             "value" : "%@ n'est pas un hôte valide"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ní óstach bailí é"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1645,6 +1687,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ n'est pas une URL valide"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ní URL bailí é"
           }
         },
         "hi" : {
@@ -1905,6 +1953,12 @@
             "value" : "%@ n'est pas actuellement pris en charge."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ní thacaítear leis faoi láthair."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2161,6 +2215,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ mentions « J'aime »"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Is maith liom"
           }
         },
         "hi" : {
@@ -2421,6 +2481,12 @@
             "value" : "%@ requiert une notation"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ marcáil de dhíth"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2679,6 +2745,18 @@
             "value" : "%@..."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@..."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@..."
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2929,6 +3007,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%0.2f Go"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%0.2f GB"
           }
         },
         "hi" : {
@@ -3189,6 +3273,12 @@
             "value" : "%0.2f Ko"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%0.2f KB"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3447,6 +3537,12 @@
             "value" : "%0.2f Mo"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%0.2f MB"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3700,6 +3796,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (%2$d)"
+          }
+        },
+        "ga" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ (%2$d)"
@@ -3963,6 +4065,12 @@
             "value" : "%1$@ (%2$g sur %3$@)"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (%2$g as %3$@)"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4219,6 +4327,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ à %2$@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ ag %2$@"
           }
         },
         "hi" : {
@@ -4479,6 +4593,12 @@
             "value" : "%1$@ attendu dans %2$@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ dlite i %2$@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4735,6 +4855,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ sur %2$@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ out of %2$@"
           }
         },
         "hi" : {
@@ -4995,6 +5121,12 @@
             "value" : "%1$@. %2$@. Type : %3$@."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@. %2$@. Cineál: %3$@."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5251,6 +5383,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@. %2$@. Type : %3$@. Statut : %4$@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@. %2$@. Cineál: %3$@. Stádas: %4$@"
           }
         },
         "hi" : {
@@ -5511,6 +5649,12 @@
             "value" : "%1$@%% (%2$g de %3$@)"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@%% (%2$g as %3$@)"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5764,6 +5908,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$d %2$@"
+          }
+        },
+        "ga" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$d %2$@"
@@ -6027,6 +6177,12 @@
             "value" : "%1$g sur %2$@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$g out of %2$@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6283,6 +6439,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d jours avant"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d Laethanta ó shin"
           }
         },
         "hi" : {
@@ -6543,6 +6705,12 @@
             "value" : "%d heures avant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d uair an chloig ó shin"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6799,6 +6967,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d éléments"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d míreanna"
           }
         },
         "hi" : {
@@ -7059,6 +7233,12 @@
             "value" : "%d minutes avant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d nóiméad ó shin"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7315,6 +7495,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d mois avant"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d míonna ó shin"
           }
         },
         "hi" : {
@@ -7575,6 +7761,12 @@
             "value" : "%d plus"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d níos mó"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7831,6 +8023,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d réponses"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d freagraí"
           }
         },
         "hi" : {
@@ -8091,6 +8289,12 @@
             "value" : "%d non lu"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d neamhléite"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8347,6 +8551,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d ans avant"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d bliain ó shin"
           }
         },
         "hi" : {
@@ -8607,6 +8817,12 @@
             "value" : "%qu octets"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%qu beart"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8863,6 +9079,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%tu jour"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%tu lá"
           }
         },
         "hi" : {
@@ -9123,6 +9345,12 @@
             "value" : "%tu jours"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%tu laethanta"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9379,6 +9607,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%tu heure"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%tu uair"
           }
         },
         "hi" : {
@@ -9639,6 +9873,12 @@
             "value" : "%tu heures"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%tu uair"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9895,6 +10135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%tu minute"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%tu nóiméad"
           }
         },
         "hi" : {
@@ -10155,6 +10401,12 @@
             "value" : "%tu minutes"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%tu nóiméid"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10410,6 +10662,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%u Pièces jointes"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%u Ceangaltáin"
           }
         },
         "hi" : {
@@ -10670,6 +10928,12 @@
             "value" : "%u fichiers"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%u comhaid"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10925,6 +11189,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 pièce jointe"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 Attachment"
           }
         },
         "hi" : {
@@ -11185,6 +11455,12 @@
             "value" : "1 jour"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 day"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11441,6 +11717,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il y a 1 jour"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 day ago"
           }
         },
         "hi" : {
@@ -11701,6 +11983,12 @@
             "value" : "1 heure"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 hour"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11957,6 +12245,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il y a 1 heure"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 hour ago"
           }
         },
         "hi" : {
@@ -12217,6 +12511,12 @@
             "value" : "1 élément"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 item"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12473,6 +12773,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 « j'aime »"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 like"
           }
         },
         "hi" : {
@@ -12733,6 +13039,12 @@
             "value" : "Il y a 1 minute"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 minute ago"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12989,6 +13301,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il y a 1 mois"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 month ago"
           }
         },
         "hi" : {
@@ -13249,6 +13567,12 @@
             "value" : "1 doit être noté"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 needs grading"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13505,6 +13829,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il y a 1 an"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 year ago"
           }
         },
         "hi" : {
@@ -13765,6 +14095,12 @@
             "value" : "3 jours"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 days"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14018,6 +14354,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5 minutes"
+          }
+        },
+        "ga" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "5 minutes"
@@ -14281,6 +14623,12 @@
             "value" : "À propos"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faoi"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14537,6 +14885,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Accès refusé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Access Denied"
           }
         },
         "hi" : {
@@ -14797,6 +15151,12 @@
             "value" : "Accès refusé. Veuillez vérifier vos autorisations pour l'action que vous essayez d'accomplir."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rochtain diúltaithe. Seiceáil do cheadanna don ghníomh atá tú ag iarraidh a chur i gcrích."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15047,6 +15407,18 @@
             "value" : "Activer pour supprimer"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gníomhachtaigh chun é a scriosadh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मिटाने के लिए सक्रिय करें"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15289,6 +15661,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter un commentaire ou une réponse aux commentaires précédents"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir ráiteas nó freagra ar ráitis roimhe seo"
           }
         },
         "hi" : {
@@ -15546,6 +15924,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter un dossier"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a folder"
           }
         },
         "hi" : {
@@ -15806,6 +16190,12 @@
             "value" : "Ajouter une pièce jointe"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add attachment"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16064,6 +16454,12 @@
             "value" : "Ajouter une pièce jointe"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir Ceangaltán leis"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16319,6 +16715,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter un commentaire"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add comment"
           }
         },
         "hi" : {
@@ -16579,6 +16981,12 @@
             "value" : "Ajouter un commentaire"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir Trácht leis"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16836,6 +17244,12 @@
             "value" : "Ajouter une photo de couverture"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Cover Photo"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17084,6 +17498,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter des notifications de rappel de date d’échéance concernant cette tâche sur cet appareil."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir fógraí meabhrúcháin dáta dlite faoin tasc seo leis ar an ngléas seo."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस डिवाइस पर इस असाइनमेंट के बारे में नियत तिथि अनुस्मारक सूचनाएं जोड़ें।"
           }
         },
         "ht" : {
@@ -17336,6 +17762,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter un dossier"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add folder"
           }
         },
         "hi" : {
@@ -17596,6 +18028,12 @@
             "value" : "Ajouter du média imbriqué"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add inline media"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17844,6 +18282,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter une pièce jointe de support média"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir ceangaltán meáin leis"
           }
         },
         "hi" : {
@@ -18104,6 +18548,12 @@
             "value" : "Ajouter des destinataires"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add recipients"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18362,6 +18812,12 @@
             "value" : "Tous les membres"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All members"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18610,6 +19066,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tentatives autorisées :"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iarrachtaí Ceadaithe:"
           }
         },
         "hi" : {
@@ -18870,6 +19332,12 @@
             "value" : "Une erreur inconnue s'est produite"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An unknown error occurred"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19118,6 +19586,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Une erreur inconnue s’est produite."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tharla earráid anaithnid."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अज्ञात त्रुटि हुई।"
           }
         },
         "ht" : {
@@ -19370,6 +19850,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annonce"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fógra"
           }
         },
         "hi" : {
@@ -19630,6 +20116,12 @@
             "value" : "Annonces"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fógraí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19886,6 +20378,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Archiver"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cartlann"
           }
         },
         "hi" : {
@@ -20146,6 +20644,12 @@
             "value" : "Archiver tous les messages sélectionnés"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archive all selected messages"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20404,6 +20908,12 @@
             "value" : "Bouton d'archivage des messages sélectionnés"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archive Selected Messages Button"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20659,6 +21169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Archivé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cartlannaithe"
           }
         },
         "hi" : {
@@ -20919,6 +21435,12 @@
             "value" : "Êtes-vous prêt à vous déconnecter?"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you ready to logout?"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21167,6 +21689,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voulez-vous vraiment quitter ce questionnaire?"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An bhfuil tú cinnte gur mhaith leat an quiz seo a fhágáil?"
           }
         },
         "hi" : {
@@ -21419,6 +21947,18 @@
             "value" : "Voulez-vous vraiment supprimer ce rappel?"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An bhfuil tú cinnte gur mhaith leat an meabhrúchán seo a scriosadh?"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्या आप वाकई इस अनुस्मारक को मिटाना चाहते हैं?"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21668,6 +22208,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Me le demander plus tard"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ask me later"
           }
         },
         "hi" : {
@@ -21928,6 +22474,12 @@
             "value" : "Tâche"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assignment"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22178,6 +22730,12 @@
             "value" : "Détails de la tâche"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonraí Tasc"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22426,6 +22984,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tâche verrouillée"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasc faoi Ghlas"
           }
         },
         "hi" : {
@@ -22686,6 +23250,12 @@
             "value" : "Tâches"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tascanna"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22942,6 +23512,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pièce jointe"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attachment"
           }
         },
         "hi" : {
@@ -23202,6 +23778,12 @@
             "value" : "Pièce jointe %d"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attachment %d"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23460,6 +24042,12 @@
             "value" : "Pièce jointe %i"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attachment %i"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23709,6 +24297,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pièces jointes"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceangaltáin"
           }
         },
         "hi" : {
@@ -23961,6 +24555,12 @@
             "value" : "Tentative %d"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iarracht %d"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24209,6 +24809,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tentatives"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iarrachtaí"
           }
         },
         "hi" : {
@@ -24461,6 +25067,12 @@
             "value" : "Tentatives autorisées :"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iarrachtaí Ceadaithe:"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24709,6 +25321,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tentatives utilisées :"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iarrachtaí a Úsáideadh:"
           }
         },
         "hi" : {
@@ -24969,6 +25587,12 @@
             "value" : "Participation"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attendance"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25227,6 +25851,12 @@
             "value" : "Audio"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuaim"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25482,6 +26112,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le matériel d'entrée audio n'est pas disponible"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Audio input hardware not available"
           }
         },
         "hi" : {
@@ -25742,6 +26378,12 @@
             "value" : "Erreur d'authentification"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Authentication error"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25998,6 +26640,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Construire un avatar"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Build Avatar"
           }
         },
         "hi" : {
@@ -26257,6 +26905,12 @@
             "value" : "Mémoire cache vidée"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cache cleared"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26506,6 +27160,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Calendrier"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féilire"
           }
         },
         "hi" : {
@@ -26766,6 +27426,12 @@
             "value" : "Chargement de l'outil impossible"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't load tool"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27024,6 +27690,12 @@
             "value" : "Envoi du média impossible"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't submit media"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27273,6 +27945,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annuler"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cealaigh"
           }
         },
         "hi" : {
@@ -27533,6 +28211,12 @@
             "value" : "Annuler le message"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel Message"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27781,6 +28465,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annuler l'envoi"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cealaigh Uaslódáil"
           }
         },
         "hi" : {
@@ -28040,6 +28730,12 @@
             "value" : "Canvas apparait comme étant indisponible. Veuillez essayer de nouveau plus tard."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Is cosúil nach bhfuil Canvas ar fáil. Bain triail eile as ar ball."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28296,6 +28992,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Canvas n'a retourné aucun destinataire correspondant à votre recherche actuelle. Veuillez essayer de nouveau plus tard."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar Canvas faighteoirí a aimsiú don chuardach atá agat faoi láthair. Bain triail eile as ar ball."
           }
         },
         "hi" : {
@@ -28807,6 +29509,12 @@
             "value" : "Changer d’utilisateur"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Athraigh Úsáideoir"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29062,6 +29770,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choisir un nom pour le nouveau dossier"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a name for the new folder"
           }
         },
         "hi" : {
@@ -29322,6 +30036,12 @@
             "value" : "Choisir un nom pour le nouveau dossier."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a name for the new folder."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29579,6 +30299,12 @@
             "value" : "Choisir un type de soumission"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a submission type"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29827,6 +30553,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choisir un fichier"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghnaigh Comhad"
           }
         },
         "hi" : {
@@ -30087,6 +30819,12 @@
             "value" : "Choisir depuis la bibliothèque..."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose from Library..."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30345,6 +31083,12 @@
             "value" : "Choisir une photo"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghnaigh Grianghraf"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30600,6 +31344,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choisir une photo de profil"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghnaigh Pictiúr Próifíle"
           }
         },
         "hi" : {
@@ -30860,6 +31610,12 @@
             "value" : "Choisir une vidéo"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose video"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31118,6 +31874,12 @@
             "value" : "Choisir une vidéo"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose Video"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31366,6 +32128,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fermer"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dún"
           }
         },
         "hi" : {
@@ -31623,6 +32391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "N’accepte plus de commentaires"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dúnta le haghaidh Ráitis"
           }
         },
         "hi" : {
@@ -31883,6 +32657,12 @@
             "value" : "Collaborations"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Collaborations"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32132,6 +32912,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commentaire"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ráiteas"
           }
         },
         "hi" : {
@@ -32392,6 +33178,12 @@
             "value" : "Commenter l'erreur"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comment Error"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32641,6 +33433,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commentaires"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ráitis"
           }
         },
         "hi" : {
@@ -32898,6 +33696,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les commentaires sont désactivés"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comments are disabled"
           }
         },
         "hi" : {
@@ -33158,6 +33962,12 @@
             "value" : "Terminé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Críochnaithe"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33413,6 +34223,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terminé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed"
           }
         },
         "hi" : {
@@ -33673,6 +34489,12 @@
             "value" : "Composer un message"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compose a message"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33929,6 +34751,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bouton de composition de message"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compose Message Button"
           }
         },
         "hi" : {
@@ -34189,6 +35017,12 @@
             "value" : "Conférences"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comhdhálacha"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34445,6 +35279,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Confirmer la suppression"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm deletion"
           }
         },
         "hi" : {
@@ -34705,6 +35545,12 @@
             "value" : "Continuer"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34962,6 +35808,12 @@
             "value" : "Impossible d’authentifier avec le serveur"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not authenticate with server"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35210,6 +36062,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossible d'enregistrer le commentaire"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níorbh fhéidir an ráiteas a shábháil"
           }
         },
         "hi" : {
@@ -35470,6 +36328,12 @@
             "value" : "Impossible de trouver des destinataires"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't find recipients"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35726,6 +36590,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossible de charger la soumission"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't Load Submission"
           }
         },
         "hi" : {
@@ -35986,6 +36856,12 @@
             "value" : "Plan de cours"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siollabas an Chúrsa"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36242,6 +37118,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cours"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cúrsaí"
           }
         },
         "hi" : {
@@ -36502,6 +37384,12 @@
             "value" : "Créer un dossier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Folder"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36758,6 +37646,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoi actuel"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current Submission"
           }
         },
         "hi" : {
@@ -37018,6 +37912,12 @@
             "value" : "L'aide aux questionnaires est actuellement limitée sur plateforme mobile"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Currently there is limited quiz support on mobile"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37268,6 +38168,18 @@
             "value" : "Personnalisé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saincheaptha"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कस्टम"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37511,6 +38423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Note personnalisée"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marc Saincheaptha"
           }
         },
         "hi" : {
@@ -37771,6 +38689,12 @@
             "value" : "Personnaliser"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Customize"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38020,6 +38944,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tableau de bord"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deais"
           }
         },
         "hi" : {
@@ -38272,6 +39202,18 @@
             "value" : "Jours avant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laethanta Roimh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दिन पहले"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38522,6 +39464,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supprimer"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
           }
         },
         "hi" : {
@@ -38782,6 +39730,12 @@
             "value" : "Supprimer (%d)"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete (%d)"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39030,6 +39984,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supprimer le rappel"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scrios Meabhrúchán"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुस्मारक मिटाएं"
           }
         },
         "ht" : {
@@ -39282,6 +40248,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supprimer cette réponse?"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete this reply?"
           }
         },
         "hi" : {
@@ -39542,6 +40514,12 @@
             "value" : "Fichier supprimé : « %@ »"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comhad scriosta: &quot;%@&quot;"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39790,6 +40768,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Description"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cur síos"
           }
         },
         "hi" : {
@@ -40047,6 +41031,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Détail"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detail"
           }
         },
         "hi" : {
@@ -40307,6 +41297,12 @@
             "value" : "Détails"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonraí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40465,7 +41461,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rebutja"
+            "value" : "Rebutja-ho"
           }
         },
         "cy" : {
@@ -40477,7 +41473,7 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kasser"
+            "value" : "Kassér"
           }
         },
         "da-instk12" : {
@@ -40564,6 +41560,12 @@
             "value" : "Abandonner"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discard"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40639,7 +41641,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignorar"
+            "value" : "Descartar"
           }
         },
         "pt-BR" : {
@@ -40663,13 +41665,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avbryt"
+            "value" : "Avvisa"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kasta"
+            "value" : "Avbryt"
           }
         },
         "th" : {
@@ -40699,13 +41701,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "丟棄"
+            "value" : "放棄"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "丟棄"
+            "value" : "放棄"
           }
         }
       }
@@ -40819,6 +41821,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abandonner cette saisie?"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discard this entry?"
           }
         },
         "hi" : {
@@ -41079,6 +42087,12 @@
             "value" : "Discussion"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plé"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41335,6 +42349,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saisie de discussion"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discussion Entry"
           }
         },
         "hi" : {
@@ -41595,6 +42615,12 @@
             "value" : "Sujets de discussion"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discussion Topics"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41851,6 +42877,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Discussions"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fóraim"
           }
         },
         "hi" : {
@@ -42111,6 +43143,12 @@
             "value" : "Rejeter"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diúltaigh"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42367,6 +43405,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Désirez-vous vous faire passer pour cet utilisateur?"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you want to masquerade as this user?"
           }
         },
         "hi" : {
@@ -42627,6 +43671,12 @@
             "value" : "Domaine"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domain"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42882,6 +43932,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ne plus me le demander"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't ask me again"
           }
         },
         "hi" : {
@@ -43142,6 +44198,12 @@
             "value" : "Ne pas supprimer"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't delete"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43397,6 +44459,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terminé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déanta"
           }
         },
         "hi" : {
@@ -43657,6 +44725,12 @@
             "value" : "Téléchargement annulé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download Canceled"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43915,6 +44989,12 @@
             "value" : "Téléchargement en cours..."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloading..."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44163,6 +45243,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tiroir fermé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarraiceán dúnta"
           }
         },
         "hi" : {
@@ -44415,6 +45501,12 @@
             "value" : "Tiroir complètement ouvert"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarraiceán oscailte go hiomlán"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44663,6 +45755,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tiroir partiellement ouvert"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarraiceán oscailte go páirteach"
           }
         },
         "hi" : {
@@ -44915,6 +46013,12 @@
             "value" : "Échéance"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dlite"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45163,6 +46267,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rappel de la date d’échéance"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meabhrúchán Dáta Dlite"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नियत तिथि अनुस्मारक"
           }
         },
         "ht" : {
@@ -45415,6 +46531,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "dû le %1$@ à %2$@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dlite ar %1$@ ag %2$@"
           }
         },
         "hi" : {
@@ -45675,6 +46797,12 @@
             "value" : "Échéance :"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dlite:"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45931,6 +47059,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Échéance : %1$@ à %2$@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dlite: %1$@ ag %2$@"
           }
         },
         "hi" : {
@@ -46191,6 +47325,12 @@
             "value" : "Modifier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir in eagar"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46447,6 +47587,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modifier la liste des cours"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Course List"
           }
         },
         "hi" : {
@@ -46707,6 +47853,12 @@
             "value" : "Modifier la liste des groupes"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Group List"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46963,6 +48115,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modifier les éléments"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit items"
           }
         },
         "hi" : {
@@ -47223,6 +48381,12 @@
             "value" : "Modifier la réponse avant %1$@, %2$@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Freagra ag %1$@ a chur in eagar. %2$@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47479,6 +48643,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adresse électronique"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ríomhphost"
           }
         },
         "hi" : {
@@ -47739,6 +48909,12 @@
             "value" : "Activer les notifications Push"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cumasaigh Brúfhógraí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47995,6 +49171,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saisir la soumission"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter submission"
           }
         },
         "hi" : {
@@ -48255,6 +49437,12 @@
             "value" : "Saisir l'identifiant utilisateur et le domaine."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter User ID and Domain."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48511,6 +49699,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saisie publiée"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entry posted"
           }
         },
         "hi" : {
@@ -48771,6 +49965,12 @@
             "value" : "Erreur"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earráid"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -49027,6 +50227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erreur lors de l'ajout de destinataires"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error adding recipeints"
           }
         },
         "hi" : {
@@ -49287,6 +50493,12 @@
             "value" : "Erreur lors de la suppression du fichier « %@ »"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earráid agus an comhad á scriosadh &quot;%@&quot;"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -49545,6 +50757,12 @@
             "value" : "Erreur lors de la suppression du dossier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error deleting folder"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -49798,6 +51016,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EULA"
+          }
+        },
+        "ga" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "EULA"
@@ -50061,6 +51285,12 @@
             "value" : "Événement"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Event"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -50312,10 +51542,16 @@
             "value" : "Détails de l’événement"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonraí Imeachta"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "घटना विवरण"
+            "value" : "घटना का विवरण"
           }
         },
         "ht" : {
@@ -50569,6 +51805,12 @@
             "value" : "Pièces jointes existantes..."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Existing Attachments..."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -50818,6 +52060,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Quitter"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scoir"
           }
         },
         "hi" : {
@@ -51078,6 +52326,12 @@
             "value" : "Outil externe"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uirlis Sheachtrach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51335,6 +52589,12 @@
             "value" : "URL externe"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL seachtrach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51590,6 +52850,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fichier"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comhad"
           }
         },
         "hi" : {
@@ -51850,6 +53116,12 @@
             "value" : "Extension de fichier non autorisée : %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ní cheadaítear iarmhír comhaid: %@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52106,6 +53378,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensions de fichier permises pour cette tâche :"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Síneadh comhaid ceadaithe don tasc seo:"
           }
         },
         "hi" : {
@@ -52365,6 +53643,12 @@
             "value" : "Fichier reçu"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File received"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52613,6 +53897,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Types de fichiers"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cineálacha Comhad"
           }
         },
         "hi" : {
@@ -52873,6 +54163,12 @@
             "value" : "Fichier indisponible"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File unavailable"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -53129,6 +54425,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Téléversement de fichier"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File upload"
           }
         },
         "hi" : {
@@ -53389,6 +54691,12 @@
             "value" : "Le téléversement du fichier a échoué."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File upload failed."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -53640,6 +54948,12 @@
             "value" : "Fichiers"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comhaid"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -53888,6 +55202,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fichiers (%d)"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comhaid (%d)"
           }
         },
         "hi" : {
@@ -54148,6 +55468,12 @@
             "value" : "Téléchargement terminé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finished downloading"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -54404,6 +55730,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Page de couverture"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leathanach Tosaigh"
           }
         },
         "hi" : {
@@ -54663,6 +55995,12 @@
             "value" : "Futur"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Future"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -54908,6 +56246,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "g_points"
+          }
+        },
+        "ga" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "g_points"
@@ -55171,6 +56515,12 @@
             "value" : "Se rendre sur l'App Store"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to App Store"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55426,6 +56776,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Se rendre à la discussion"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to discussion"
           }
         },
         "hi" : {
@@ -55686,6 +57042,12 @@
             "value" : "Se rendre à la discussion"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go To Discussion"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55944,6 +57306,12 @@
             "value" : "Se rendre au questionnaire"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to Quiz"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -56192,6 +57560,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Note"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marc"
           }
         },
         "hi" : {
@@ -56452,6 +57826,12 @@
             "value" : "Note %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marc %@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -56708,6 +58088,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noter dans SpeedGrader"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcáil i SpeedGrader"
           }
         },
         "hi" : {
@@ -56967,6 +58353,12 @@
             "value" : "Note : %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marc: %@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -57222,6 +58614,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Note : %1$i / %2$g"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marc: %1$i / %2$g"
           }
         },
         "hi" : {
@@ -57482,6 +58880,12 @@
             "value" : "Discussion notée"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fóram Marcáilte"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -57738,6 +59142,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Discussion notée."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Graded discussion."
           }
         },
         "hi" : {
@@ -57998,6 +59408,12 @@
             "value" : "Discussion notée. %g points possibles."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Graded discussion. %g pointí féideartha."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -58254,6 +59670,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notes"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcanna"
           }
         },
         "hi" : {
@@ -58514,6 +59936,12 @@
             "value" : "Conversation de groupe"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Group conversation"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -58772,6 +60200,12 @@
             "value" : "Groupes"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grúpaí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -59020,6 +60454,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous avez des questions à propos de votre tâche?\nEnvoyez un message à votre instructeur."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An bhfuil ceisteanna agat faoi do thasc?\nSeol teachtaireacht chuig do theagascóir."
           }
         },
         "hi" : {
@@ -59280,6 +60720,12 @@
             "value" : "Aide"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Help"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -59538,6 +60984,12 @@
             "value" : "Masquer les notes"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folaigh Marcanna"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -59787,6 +61239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Classe titulaire"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seomra baile"
           }
         },
         "hi" : {
@@ -60039,6 +61497,18 @@
             "value" : "Heures avant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uaireanta Roimh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "घंटे पहले"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -60288,6 +61758,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comment appréciez-vous Canvas?"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How do you like Canvas?"
           }
         },
         "hi" : {
@@ -60548,6 +62024,12 @@
             "value" : "Je libère votre temps, utilisez-le judicieusement."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I give you back your time, use it wisely."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -60804,6 +62286,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Image"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Íomhá"
           }
         },
         "hi" : {
@@ -61063,6 +62551,12 @@
             "value" : "Importer de la caméra"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import from camera"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -61320,6 +62814,12 @@
             "value" : "Importer depuis Dropbox"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import from Dropbox"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -61569,6 +63069,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Boîte de réception"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bosca Isteach"
           }
         },
         "hi" : {
@@ -61829,6 +63335,12 @@
             "value" : "Incomplet"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neamhiomlán"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -62087,6 +63599,12 @@
             "value" : "Messages individuels"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Individual messages"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -62337,6 +63855,12 @@
             "value" : "Instructions"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Treoracha"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -62585,6 +64109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL non valide"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL neamhbhailí"
           }
         },
         "hi" : {
@@ -62844,6 +64374,12 @@
             "value" : "URL non valide"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid URL"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -63099,6 +64635,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il comporte des problèmes"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It has problems"
           }
         },
         "hi" : {
@@ -63359,6 +64901,12 @@
             "value" : "C'est vide, que faites-vous encore ici."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It’s empty, what are you still doing here."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -63614,6 +65162,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Élément %1$d de %2$d"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mír %1$d de %2$d"
           }
         },
         "hi" : {
@@ -63873,6 +65427,12 @@
             "value" : "Se rendre directement au jour présent sur le calendrier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumps to current day on calendar"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -64128,6 +65688,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Conserver"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep"
           }
         },
         "hi" : {
@@ -64388,6 +65954,12 @@
             "value" : "Page de renvoi"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leathanach Tuirlingthe"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -64644,6 +66216,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fichier volumineux"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Large file"
           }
         },
         "hi" : {
@@ -64904,6 +66482,12 @@
             "value" : "Plus tard"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Later"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -65155,6 +66739,12 @@
             "value" : "Lancer l'outil externe"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seol Uirlis Sheachtrach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -65404,6 +66994,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Quitter"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fág"
           }
         },
         "hi" : {
@@ -65664,6 +67260,12 @@
             "value" : "Légal"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dlíthiúil"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -65922,6 +67524,12 @@
             "value" : "En cours de chargement..."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading..."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -66173,6 +67781,12 @@
             "value" : "Emplacement"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suíomh"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -66421,6 +68035,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verrouillé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faoi ghlas"
           }
         },
         "hi" : {
@@ -66678,6 +68298,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verrouillé jusqu'à %@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faoi ghlas go dtí %@"
           }
         },
         "hi" : {
@@ -66938,6 +68564,12 @@
             "value" : "Identifiant de connexion"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID logáil isteach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -67194,6 +68826,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Problème de connexion"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login Problem"
           }
         },
         "hi" : {
@@ -67454,6 +69092,12 @@
             "value" : "Déconnexion"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logout"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -67709,6 +69353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "J'adore!"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Love it!"
           }
         },
         "hi" : {
@@ -67969,6 +69619,12 @@
             "value" : "Marquer comme terminé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcáil mar Déanta"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -68227,6 +69883,12 @@
             "value" : "Personnification d’identité"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masquerade"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -68482,6 +70144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Moi"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Me"
           }
         },
         "hi" : {
@@ -68742,6 +70410,12 @@
             "value" : "Commentaire du média"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Media comment"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -68997,6 +70671,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commentaire du média"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Media Comment"
           }
         },
         "hi" : {
@@ -69257,6 +70937,12 @@
             "value" : "Enregistrement du média"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Media recording"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -69513,6 +71199,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoi du média"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Media Submission"
           }
         },
         "hi" : {
@@ -69773,6 +71465,12 @@
             "value" : "Sélecteur de type de média. %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghnóir cineál meáin. %@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -70028,6 +71726,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoyer un message séparé à chacun, ou ajouter tout le monde à une discussion de groupe?"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Message everyone separately, or add everyone to a group conversation?"
           }
         },
         "hi" : {
@@ -70288,6 +71992,12 @@
             "value" : "Envoyer un message à l’instructeur"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teagascóir Teachtaireachta"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -70544,6 +72254,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Message envoyé."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Message Sent."
           }
         },
         "hi" : {
@@ -70804,6 +72520,12 @@
             "value" : "Messages"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Messages"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -71052,6 +72774,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Minutes avant"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nóiméid Roimh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मिनट पहले"
           }
         },
         "ht" : {
@@ -71304,6 +73038,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Avertissement du questionnaire sur plateforme mobile"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mobile Quiz Warning"
           }
         },
         "hi" : {
@@ -71559,6 +73299,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modules"
+          }
+        },
+        "ga" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modules"
@@ -71822,6 +73568,12 @@
             "value" : "il y a juste un moment"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "moments ago"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -72078,6 +73830,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Davantage d'informations"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More Info"
           }
         },
         "hi" : {
@@ -72338,6 +74096,12 @@
             "value" : "Dates limites multiples"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dátaí Dlite Iolracha"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -72594,6 +74358,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Doit contribuer"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Must contribute"
           }
         },
         "hi" : {
@@ -72854,6 +74624,12 @@
             "value" : "Doit marquer comme étant terminé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Must mark as done"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -73110,6 +74886,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Doit obtenir %@ au minimum"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Must score %@ or higher"
           }
         },
         "hi" : {
@@ -73370,6 +75152,12 @@
             "value" : "Doit soumettre"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Must submit"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -73626,6 +75414,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Doit voir"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Must view"
           }
         },
         "hi" : {
@@ -73886,6 +75680,12 @@
             "value" : "Mes fichiers"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Files"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -74142,6 +75942,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nom"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ainm"
           }
         },
         "hi" : {
@@ -74402,6 +76208,12 @@
             "value" : "Nécessite SpeedGrader pour iPad"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Need SpeedGrader for iPad"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -74658,6 +76470,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erreur de réseau"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earráid Ghréasáin"
           }
         },
         "hi" : {
@@ -74918,6 +76736,12 @@
             "value" : "Nouveau dossier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Folder"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -75166,6 +76990,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nouveau message"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teachtaireacht Nua"
           }
         },
         "hi" : {
@@ -75425,6 +77255,12 @@
             "value" : "Les 7 prochains jours"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next 7 Days"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -75682,6 +77518,12 @@
             "value" : "Élément suivant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next item"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -75937,6 +77779,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl"
           }
         },
         "hi" : {
@@ -76197,6 +78045,12 @@
             "value" : "Aucune action possible pour ce fichier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No actions available for this file"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -76455,6 +78309,12 @@
             "value" : "Aucun fichier audio n'a été enregistré."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No audio was recorded."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -76703,6 +78563,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pas de contenu"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gan Ábhar"
           }
         },
         "hi" : {
@@ -76960,6 +78826,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pas de date"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Date"
           }
         },
         "hi" : {
@@ -77220,6 +79092,12 @@
             "value" : "Aucune date d'échéance"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No due date"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -77469,6 +79347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucune date d'échéance"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon Dáta Dlite"
           }
         },
         "hi" : {
@@ -77729,6 +79613,12 @@
             "value" : "Aucune application déjà installée ne permet d'ouvrir ce fichier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No installed apps support opening this file"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -77977,6 +79867,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucune notification"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon Fhógraí"
           }
         },
         "hi" : {
@@ -78234,6 +80130,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucun destinataire"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No recipients"
           }
         },
         "hi" : {
@@ -78494,6 +80396,12 @@
             "value" : "Pas d'enregistrement audio"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Recorded Audio"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -78752,6 +80660,12 @@
             "value" : "Aucun résultat trouvé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No results found"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -79003,6 +80917,12 @@
             "value" : "Aucune soumission"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon Uaslódáil"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -79251,6 +81171,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucune date d’envoi"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl Dáta Uaslódála"
           }
         },
         "hi" : {
@@ -79508,6 +81434,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non merci"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Thanks"
           }
         },
         "hi" : {
@@ -79768,6 +81700,12 @@
             "value" : "Non autorisé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not Authorized"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -80024,6 +81962,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non disponible"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not available"
           }
         },
         "hi" : {
@@ -80284,6 +82228,12 @@
             "value" : "Non terminé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not Complete"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -80540,6 +82490,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non noté"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not graded"
           }
         },
         "hi" : {
@@ -80800,6 +82756,12 @@
             "value" : "Non noté (0 sur %@)"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not graded (0 out of %@)"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -81048,6 +83010,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non soumis"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl sé Curtha isteach"
           }
         },
         "hi" : {
@@ -81305,6 +83273,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remarque : Les fichiers de média sont seulement rendus disponibles à la lecture qu'après avoir été traités sur le serveur."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nóta: Níl comhaid meáin ar fáil láithreach lena athsheinm agus iad á bpróiseáil ar an bhfreastalaí."
           }
         },
         "hi" : {
@@ -81565,6 +83539,12 @@
             "value" : "Rien à faire ici, allez donc jouer dehors!"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon rud le déanamh, téigh ag súgradh taobh amuigh!"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -81823,6 +83803,12 @@
             "value" : "Rien à voir ici."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon rud le feiceáil anseo."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -82078,6 +84064,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notification"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fógra"
           }
         },
         "hi" : {
@@ -82338,6 +84330,12 @@
             "value" : "Préférences de notification"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sainroghanna Fógraí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -82587,6 +84585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notifications"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fógraí"
           }
         },
         "hi" : {
@@ -82847,6 +84851,12 @@
             "value" : "Observateur"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Observer"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -83104,6 +85114,12 @@
             "value" : "Ok"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ok"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -83352,6 +85368,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CGL"
           }
         },
         "hi" : {
@@ -83604,6 +85626,12 @@
             "value" : "Le %@ %@ a commenté « %@ »"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ar %@ %@ rinneadh ráiteas \"%@\""
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -83852,6 +85880,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le %@ %@ a laissé un commentaire vidéo"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ar %@ %@ fágadh ráiteas físe"
           }
         },
         "hi" : {
@@ -84104,6 +86138,12 @@
             "value" : "Le %@ %@ a laissé un commentaire audio"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ar %@ %@ fágadh ráiteas fuaime"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -84352,6 +86392,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le %@ %@ a envoyé ce qui suit"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ar %@ %@ cuiredh na méid seo a leanas isteach"
           }
         },
         "hi" : {
@@ -84612,6 +86658,12 @@
             "value" : "URL en ligne"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Online URL"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -84868,6 +86920,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Oups!"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops!"
           }
         },
         "hi" : {
@@ -85128,6 +87186,12 @@
             "value" : "Ouvrir avec Safari"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in Safari"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -85384,6 +87448,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ouvrir dans SpeedGrader"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oscail i SpeedGrader"
           }
         },
         "hi" : {
@@ -85644,6 +87714,12 @@
             "value" : "Ouvrir avec..."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oscail i..."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -85899,6 +87975,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Autre"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other"
           }
         },
         "hi" : {
@@ -86159,6 +88241,12 @@
             "value" : "Les autres réponses sont masquées jusqu'à ce que vous répondiez"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other replies hidden until you reply"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -86415,6 +88503,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "sur"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "as"
           }
         },
         "hi" : {
@@ -86675,6 +88769,12 @@
             "value" : "sur %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out of %@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -86930,6 +89030,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "de %@ points"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out of %@ points"
           }
         },
         "hi" : {
@@ -87190,6 +89296,12 @@
             "value" : "Acquis"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outcomes"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -87447,6 +89559,12 @@
             "value" : "Page"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leathanach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -87702,6 +89820,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "En retard"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Past"
           }
         },
         "hi" : {
@@ -87962,6 +90086,12 @@
             "value" : "Personnes"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "People"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -88215,6 +90345,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "photo"
+          }
+        },
+        "ga" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "photo"
@@ -88477,6 +90613,12 @@
             "value" : "Discussions épinglées"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fóraim Pionnáilte"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -88733,6 +90875,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lecture"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imir"
           }
         },
         "hi" : {
@@ -88993,6 +91141,12 @@
             "value" : "Veuillez vérifier votre connexion au réseau et réessayer."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please check your network connection and try again."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -89241,6 +91395,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Veuillez choisir une heure ultérieure pour votre rappel!"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghnaigh am amach anseo le haghaidh do mheabhrúchán!"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कृपया अपने अनुस्मारक के लिए आगामी समय चुनें!"
           }
         },
         "ht" : {
@@ -89493,6 +91659,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Publier"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Post"
           }
         },
         "hi" : {
@@ -89752,6 +91924,12 @@
             "value" : "Publier un commentaire"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Post comment"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -90007,6 +92185,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Publier un commentaire"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Post Comment"
           }
         },
         "hi" : {
@@ -90267,6 +92451,12 @@
             "value" : "Publication en cours..."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posting…"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -90524,6 +92714,12 @@
             "value" : "Publie votre commentaire"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posts your comment"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -90779,6 +92975,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Élément précédent"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previous item"
           }
         },
         "hi" : {
@@ -91039,6 +93241,12 @@
             "value" : "Politique de confidentialité"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Polasaí Príobháideachais"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -91297,6 +93505,12 @@
             "value" : "Profil"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -91545,6 +93759,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Questions :"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceisteanna:"
           }
         },
         "hi" : {
@@ -91805,6 +94025,12 @@
             "value" : "Questionnaire"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quiz"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -92063,6 +94289,12 @@
             "value" : "Alerte du questionnaire"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quiz Alert"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -92313,6 +94545,12 @@
             "value" : "Détails sur le questionnaire"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonraí Quiz"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -92561,6 +94799,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Questionnaire verrouillé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quiz faoi ghlas"
           }
         },
         "hi" : {
@@ -92821,6 +95065,12 @@
             "value" : "Questionnaires"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quizeanna"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -93076,6 +95326,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Évaluer sur l'App Store"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rate on App Store"
           }
         },
         "hi" : {
@@ -93336,6 +95592,12 @@
             "value" : "Classement pour %1$@, score : %2$g"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rátáil le haghaidh %1$@, Scór: %2$g"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -93592,6 +95854,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Re-soumettre le tâche"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir isteach an Tasc arís"
           }
         },
         "hi" : {
@@ -93852,6 +96120,12 @@
             "value" : "Destinataires"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faighteoirí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -94108,6 +96382,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrer"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Record"
           }
         },
         "hi" : {
@@ -94367,6 +96647,12 @@
             "value" : "Enregistrer de l’audio"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taifead fuaim"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -94616,6 +96902,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrer le son"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taifead Fuaim"
           }
         },
         "hi" : {
@@ -94876,6 +97168,12 @@
             "value" : "Enregistrement audio..."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Record Audio..."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -95133,6 +97431,12 @@
             "value" : "Enregistrer de la vidéo"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Record video"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -95382,6 +97686,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrer la vidéo"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taifead Físeán"
           }
         },
         "hi" : {
@@ -95641,6 +97951,12 @@
             "value" : "Bouton d'actualisation"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh Button"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -95896,6 +98212,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Actualiser le contenu du calendrier"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refreshes the calendar content"
           }
         },
         "hi" : {
@@ -96156,6 +98478,12 @@
             "value" : "Actualisation des événements du calendrier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refreshing Calendar Events"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -96406,6 +98734,18 @@
             "value" : "Rappel"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meabhrúchán"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुस्मारक"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -96650,6 +98990,18 @@
             "value" : "La création du rappel a échoué"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar Chruthú Meabhrúcháin"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुस्मारक नहीं बनाया जा सका"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -96892,6 +99244,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rappel supprimé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meabhrúchán Scriosta"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुस्मारक मिटाया गया"
           }
         },
         "ht" : {
@@ -97144,6 +99508,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retirer"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bain"
           }
         },
         "hi" : {
@@ -97404,6 +99774,12 @@
             "value" : "Supprimer ce fichier?"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove this file?"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -97660,6 +100036,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Signaler un problème"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Report a problem"
           }
         },
         "hi" : {
@@ -97920,6 +100302,12 @@
             "value" : "Demander l'ajout d'une fonctionnalité"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Request a feature"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98168,6 +100556,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Échec du nouvel envoi"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar Aischur"
           }
         },
         "hi" : {
@@ -98420,6 +100814,12 @@
             "value" : "Envoyer la tâche de nouveau"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir Tasc isteach arís"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98668,6 +101068,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Continuer le questionnaire"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atosaigh Quiz"
           }
         },
         "hi" : {
@@ -98920,6 +101326,12 @@
             "value" : "Recommencer le questionnaire"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déan an Quiz Arís"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99168,6 +101580,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réessayer"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bain triail eile as"
           }
         },
         "hi" : {
@@ -99419,6 +101837,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rubrique"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rúibric"
           }
         },
         "hi" : {
@@ -99676,6 +102100,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrer"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
           }
         },
         "hi" : {
@@ -99936,6 +102366,12 @@
             "value" : "Programmer une notification"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schedule Notification"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -100192,6 +102628,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rechercher des destinataires"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search for recipients"
           }
         },
         "hi" : {
@@ -100452,6 +102894,12 @@
             "value" : "Sélectionner un ou plusieurs fichier(s)"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select file(s)"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -100707,6 +103155,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionner ou désélectionner"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select or deselect"
           }
         },
         "hi" : {
@@ -100966,6 +103420,12 @@
             "value" : "Sélectionné"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghnaithe"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -101214,6 +103674,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoyer"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seol"
           }
         },
         "hi" : {
@@ -101474,6 +103940,12 @@
             "value" : "Envoyer un message à %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send %@ a message"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -101722,6 +104194,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoyer le commentaire"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seol ráiteas"
           }
         },
         "hi" : {
@@ -101981,6 +104459,12 @@
             "value" : "Envoyer un message"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send Message"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -102238,6 +104722,12 @@
             "value" : "Envoyé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seolta"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -102487,6 +104977,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Paramètres"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Socruithe"
           }
         },
         "hi" : {
@@ -102747,6 +105243,12 @@
             "value" : "Afficher le fichier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show file"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -103003,6 +105505,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afficher les notes"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taispeáin Marcanna"
           }
         },
         "hi" : {
@@ -103263,6 +105771,12 @@
             "value" : "Afficher le questionnaire"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Quiz"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -103519,6 +106033,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afficher les destinataires"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show recipients"
           }
         },
         "hi" : {
@@ -103779,6 +106299,12 @@
             "value" : "Certains éléments n'ont pas pu être supprimés"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some items could not be deleted"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -104035,6 +106561,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Certains des dossiers sélectionnés ne sont pas vides. Êtes-vous certain de vouloir les supprimer?"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl roinnt fillteáin roghnaithe folamh. An bhfuil tú cinnte gur mhaith leat iad a scriosadh?"
           }
         },
         "hi" : {
@@ -104295,6 +106827,12 @@
             "value" : "Désolé, impossible de trouver la tâche. Cette tâche semble avoir été supprimée."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ár leithscéal, níorbh fhéidir linn an tasc a aimsiú. Seans gur scriosadh an tasc seo."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -104551,6 +107089,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commencer la lecture de votre enregistrement"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tosaíonn sé do thaifeadadh a sheinm"
           }
         },
         "hi" : {
@@ -104811,6 +107355,12 @@
             "value" : "Commencer l'enregistrement d'un commentaire de média"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starts recording a media comment"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -105060,6 +107610,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rester"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fan"
           }
         },
         "hi" : {
@@ -105320,6 +107876,12 @@
             "value" : "Rester connecté"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stay Logged In"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -105576,6 +108138,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arrêt"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop"
           }
         },
         "hi" : {
@@ -105836,6 +108404,12 @@
             "value" : "Arrêter la personnification d’identité"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop Masquerading"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -106092,6 +108666,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arrête la lecture de votre enregistrement"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stops playing your recording"
           }
         },
         "hi" : {
@@ -106352,6 +108932,12 @@
             "value" : "Arrête l'enregistrement d'un commentaire de média"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stops recording a media comment"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -106610,6 +109196,12 @@
             "value" : "Étudiant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac léinn"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -106860,6 +109452,12 @@
             "value" : "Annotation de l’étudiant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nótaí Mínithe Mac Léinn"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -107105,6 +109703,12 @@
           }
         },
         "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Studio"
+          }
+        },
+        "ga" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Studio"
@@ -107367,6 +109971,12 @@
             "value" : "Sous-en-tête"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sub Header"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -107616,6 +110226,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoi"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uaslódáil"
           }
         },
         "hi" : {
@@ -107868,6 +110484,12 @@
             "value" : "Envoi et rubrique"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uaslódáil & Rúibric"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -107985,7 +110607,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bài Nộp Và Bảng Đánh Giá Theo Tiêu Chí"
+            "value" : "Bài Nộp và Bảng Đánh Giá Theo Tiêu Chí"
           }
         },
         "zh" : {
@@ -108123,6 +110745,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoi terminé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submission complete"
           }
         },
         "hi" : {
@@ -108383,6 +111011,12 @@
             "value" : "Erreur d’envoi"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submission Error"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -108633,6 +111267,12 @@
             "value" : "Échec de l’envoi"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar an Uaslódáil"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -108881,6 +111521,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoi en cours..."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uaslódáil ar Siúl..."
           }
         },
         "hi" : {
@@ -109134,6 +111780,12 @@
             "value" : "Texte de dépôt"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téacs uaslódála"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -109384,6 +112036,12 @@
             "value" : "Types d’envoi"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cineálacha Uaslódála"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -109632,6 +112290,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Téléversement des envois en cours..."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uaslódáil á uaslódáil..."
           }
         },
         "hi" : {
@@ -109885,6 +112549,12 @@
             "value" : "Envoyer"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir isteach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110133,6 +112803,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoyer la tâche"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir Tasc Isteach"
           }
         },
         "hi" : {
@@ -110386,6 +113062,12 @@
             "value" : "Envoyé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Curtha isteach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110637,6 +113319,12 @@
             "value" : "Envoyé %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Curtha isteach %@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110885,6 +113573,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoi en cours..."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Á chur isteach..."
           }
         },
         "hi" : {
@@ -111145,6 +113839,12 @@
             "value" : "Souscrire au flux du calendrier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscribe to calendar feed"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111403,6 +114103,12 @@
             "value" : "Succès!"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rath!"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111651,6 +114357,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoyé avec succès!"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Curtha isteach go rathúil!"
           }
         },
         "hi" : {
@@ -111908,6 +114620,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bien sûr!"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sure!"
           }
         },
         "hi" : {
@@ -112168,6 +114886,12 @@
             "value" : "Bascule l'entrée de média entre audio et vidéo. Actuellement réglé à %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Malartaíonn sé ionchur meáin idir fuaim agus físeán. Faoi láthair socraithe go %@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -112425,6 +115149,12 @@
             "value" : "Bascule sur le mode de commentaire de média"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switches to media comment mode"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -112680,6 +115410,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bascule sur le mode de commentaire de texte"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switches to text comment mode"
           }
         },
         "hi" : {
@@ -112940,6 +115676,12 @@
             "value" : "Programme"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siollabas"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -113196,6 +115938,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Instructeur-assistant"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CT"
           }
         },
         "hi" : {
@@ -113456,6 +116204,12 @@
             "value" : "Prendre une photo..."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take a Photo..."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -113712,6 +116466,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prendre une vidéo..."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take a Video..."
           }
         },
         "hi" : {
@@ -113972,6 +116732,12 @@
             "value" : "Prendre une photo"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glac Pictiúr"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -114230,6 +116996,12 @@
             "value" : "Prendre une photo ou une vidéo..."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take Photo or Video..."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -114478,6 +117250,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Répondre au questionnaire"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tóg Quiz"
           }
         },
         "hi" : {
@@ -114738,6 +117516,12 @@
             "value" : "Tapoter pour réessayer"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to try again"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -114988,6 +117772,12 @@
             "value" : "Tapoter pour voir les détails"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapáil chun sonraí a fheiceáil"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115236,6 +118026,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tapoter pour voir la progression"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapáil chun dul chun cinn a fheiceáil"
           }
         },
         "hi" : {
@@ -115493,6 +118289,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Instructeurs-assistants"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TAs"
           }
         },
         "hi" : {
@@ -115753,6 +118555,12 @@
             "value" : "Enseignant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Múinteoir"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -116010,6 +118818,12 @@
             "value" : "Enseignants"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Múinteoirí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -116265,6 +119079,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dites-nous ce qui ne va pas"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tell us what's wrong"
           }
         },
         "hi" : {
@@ -116525,6 +119345,12 @@
             "value" : "Conditions d'utilisation"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téarmaí Úsáide"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -116780,6 +119606,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commentaire de texte"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text Comment"
           }
         },
         "hi" : {
@@ -117040,6 +119872,12 @@
             "value" : "Saisie de texte"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text entry"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117288,6 +120126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saisie de texte"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iontráil Téacs"
           }
         },
         "hi" : {
@@ -117548,6 +120392,12 @@
             "value" : "Envoi de texte"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text Submission"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117804,6 +120654,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossible d’ajouter les destinataires. Veuillez réessayer. (%@)"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níorbh fhéidir na faighteoirí a chur leis. Bain triail as arís, le do thoil. (%@)"
           }
         },
         "hi" : {
@@ -118064,6 +120920,12 @@
             "value" : "Le serveur n'a pas pu être joint"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níorbh fhéidir an freastalaí a bhaint amach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -118321,6 +121183,12 @@
             "value" : "Le serveur que vous avez saisi n'est pas autorisé pour cette application."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The server you entered is not authorized for this app."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -118576,6 +121444,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "L'agent utilisateur de cette application n'est pas autorisé."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The user agent for this app is unauthorized."
           }
         },
         "hi" : {
@@ -118836,6 +121710,12 @@
             "value" : "Il n'y a aucune action pour cet élément"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no actions for this item"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -119084,6 +121964,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il n'y a aucun fichier pour cette tâche."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon chomhaid ann don tasc seo."
           }
         },
         "hi" : {
@@ -119343,6 +122229,12 @@
             "value" : "Il n'y a aucun élément à afficher"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no items to display"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -119591,6 +122483,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il n'y a aucune rubrique pour cette tâche."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon rúibric ann don tasc seo"
           }
         },
         "hi" : {
@@ -119851,6 +122749,12 @@
             "value" : "Une erreur de réseau est survenue lors de la publication de votre commentaire."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There was a network error posting your comment."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -120107,6 +123011,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Un problème de réseau est survenu lors de la tentative de téléversement de votre soumission"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There was a network problem while attempting to upload your submission"
           }
         },
         "hi" : {
@@ -120618,6 +123528,12 @@
             "value" : "Un problème est survenu lors du lancement de Safari"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There was a problem launching Safari"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -120874,6 +123790,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Une erreur est survenue lors du chargement du document."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There was an error loading the document."
           }
         },
         "hi" : {
@@ -121133,6 +124055,12 @@
             "value" : "Une erreur est survenue lors du chargement de votre contenu. Si le téléversement était celui d’un fichier audio ou vidéo, il se pourrait qu'il soit toujours en cours d'exécution."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tharla earráid agus d'ábhar á lódáil. Más uaslódáil fuaime nó físe é d'fhéadfadh sé a bheith fós á phróiseáil."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121381,6 +124309,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il n'y a encore rien à signaler."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon rud le cur in iúl go fóill."
           }
         },
         "hi" : {
@@ -121638,6 +124572,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cette application n'est pas autorisée à l'utilisation."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This app is not authorized for use."
           }
         },
         "hi" : {
@@ -121898,6 +124838,12 @@
             "value" : "Cette tâche ne semble pas être un outil externe valide ou est mal configurée."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This assignment doesn't appear to be a valid external tool or is misconfigured."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -122156,6 +125102,12 @@
             "value" : "Cette tâche ne possède aucun détail."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This assignment has no details."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -122407,6 +125359,18 @@
             "value" : "Cette tâche est dû dans %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá an tasc seo dlite i %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह असाइनमेंट इतने समय में नियत है: %@"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -122649,6 +125613,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cette tâche est verrouillée jusqu’au %@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá an tasc seo faoi ghlas go dtí %@"
           }
         },
         "hi" : {
@@ -122899,6 +125869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cette tâche était verrouillée %@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuireadh an tasc seo faoi ghlas %@"
           }
         },
         "hi" : {
@@ -123156,6 +126132,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cette saisie a été supprimée"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This entry has been deleted"
           }
         },
         "hi" : {
@@ -123416,6 +126398,12 @@
             "value" : "Ce fichier ne peut être affiché sur cet appareil."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This file cannot be displayed on this device."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -123672,6 +126660,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ce fichier est verrouillé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This file is locked"
           }
         },
         "hi" : {
@@ -123932,6 +126926,12 @@
             "value" : "Ce dossier est verrouillé"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This folder is locked"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -124187,6 +127187,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ceci est un message de média."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a media message."
           }
         },
         "hi" : {
@@ -124447,6 +127453,12 @@
             "value" : "C'est un moment opportun pour effectuer des tâches facultatives."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This would be a great time to do some extra credit."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -124695,6 +127707,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Limite de temps :"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teorainn ama:"
           }
         },
         "hi" : {
@@ -124946,6 +127964,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "À faire"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le Déanamh"
           }
         },
         "hi" : {
@@ -125205,6 +128229,12 @@
             "value" : "À :"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To:"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -125460,6 +128490,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aujourd’hui"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today"
           }
         },
         "hi" : {
@@ -125719,6 +128755,12 @@
             "value" : "Bouton « Aujourd'hui »"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today Button"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -125976,6 +129018,12 @@
             "value" : "Inverse la sélection de l'élément actuel"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toggles selection of current item"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -126231,6 +129279,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inverse la sélection de l'élément"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toggles selection of item"
           }
         },
         "hi" : {
@@ -126491,6 +129545,12 @@
             "value" : "Rendre"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn In"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -126747,6 +129807,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rendre %@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir isteach %@"
           }
         },
         "hi" : {
@@ -127007,6 +130073,12 @@
             "value" : "Rendre à nouveau"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn In Again"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -127263,6 +130335,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Oh oh! Aucune connexion Internet"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uh-ó! Gan Nasc Idirlín"
           }
         },
         "hi" : {
@@ -127523,6 +130601,12 @@
             "value" : "Chargement impossible"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ní féidir lódáil"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -127779,6 +130863,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossible de publier. Veuillez réessayer plus tard"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ní féidir postáil. Bain triail eile as ar ball"
           }
         },
         "hi" : {
@@ -128039,6 +131129,12 @@
             "value" : "Téléversement sur le serveur impossible"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ní féidir a uaslódáil chuig an bhfreastalaí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -128295,6 +131391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Indisponible"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unavailable"
           }
         },
         "hi" : {
@@ -128555,6 +131657,12 @@
             "value" : "Non noté"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ungraded"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -128811,6 +131919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "inconnu"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "unknown"
           }
         },
         "hi" : {
@@ -129071,6 +132185,12 @@
             "value" : "Inconnu"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anaithnid"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -129321,6 +132441,12 @@
             "value" : "Erreur inconnue"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earráid Anaithnid"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -129569,6 +132695,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Illimité"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gan teorainn"
           }
         },
         "hi" : {
@@ -129828,6 +132960,12 @@
             "value" : "Non lu"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unread"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -130083,6 +133221,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réponse non sauvegardée"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unsaved Reply"
           }
         },
         "hi" : {
@@ -130343,6 +133487,12 @@
             "value" : "jusqu'à/au %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "go dtí %@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -130601,6 +133751,12 @@
             "value" : "Téléversement"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uaslódáil"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -130856,6 +134012,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Téléverser un fichier"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload a file"
           }
         },
         "hi" : {
@@ -131116,6 +134278,12 @@
             "value" : "Erreur de téléversement"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload Error"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -131372,6 +134540,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le téléversement a échoué Raison : (%@)"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar an uaslódáil. Cúis: (%@)"
           }
         },
         "hi" : {
@@ -131632,6 +134806,12 @@
             "value" : "Téléverser un fichier"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uaslódáil comhad"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -131888,6 +135068,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le téléversement à la tâche « %@ » a échoué"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar an aslódáil chuig an tasc &quot;%@&quot;"
           }
         },
         "hi" : {
@@ -132148,6 +135334,12 @@
             "value" : "Le téléversement au dossier « %@ » a échoué"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar an uaslódáil go fillteán &quot;%@&quot;"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -132311,7 +135503,7 @@
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Llwytho i fyny"
+            "value" : "Wrthi’n llwytho i fyny"
           }
         },
         "da" : {
@@ -132389,13 +135581,19 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Envoi"
+            "value" : "En cours de chargement"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Téléversement"
+            "value" : "Téléversement en cours"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ag uaslódáil"
           }
         },
         "hi" : {
@@ -132419,7 +135617,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hlaða upp"
+            "value" : "Hleður upp"
           }
         },
         "it" : {
@@ -132473,7 +135671,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A realizar carregamento"
+            "value" : "Carregamento"
           }
         },
         "pt-BR" : {
@@ -132515,7 +135713,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Đang Tải Lên"
+            "value" : "Đang tải lên"
           }
         },
         "zh" : {
@@ -132654,6 +135852,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Utiliser"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use"
           }
         },
         "hi" : {
@@ -132911,6 +136115,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ID utilisateur"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aitheantas Úsáideora"
           }
         },
         "hi" : {
@@ -133171,6 +136381,12 @@
             "value" : "Informations de l'utilisateur"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "User Info"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -133427,6 +136643,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vidéo"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Físeán"
           }
         },
         "hi" : {
@@ -133686,6 +136908,12 @@
             "value" : "Erreur du fichier vidéo"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video error"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -133943,6 +137171,12 @@
             "value" : "Voir"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -134191,6 +137425,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voir la discussion"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féach ar Fhóram"
           }
         },
         "hi" : {
@@ -134443,6 +137683,12 @@
             "value" : "Voir le fichier %@ %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féach ar chomhad %@ %@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -134693,6 +137939,12 @@
             "value" : "Afficher les résultats"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féach ar Thorthaí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -134941,6 +138193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voir la tentative d’envoi %d. %@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Féach ar iarracht uaslódála %d. %@"
           }
         },
         "hi" : {
@@ -135198,6 +138456,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Avertissement"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rabhadh"
           }
         },
         "hi" : {
@@ -135458,6 +138722,12 @@
             "value" : "Un problème est survenu lors du chargement de l’envoi. Veuillez essayer de nouveau plus tard."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bhí fadhb againn leis an uaslódáil a lódáil. Bain triail eile as ar ball."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -135715,6 +138985,12 @@
             "value" : "Nous n'avons pas pu vérifier le serveur pour son utilisation avec cette application."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níorbh fhéidir linn an freastalaí a fhíorú lena úsáid leis an aip seo."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -135963,6 +139239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adresse du site Web"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seoladh Gréasáin"
           }
         },
         "hi" : {
@@ -136215,6 +139497,18 @@
             "value" : "Semaines avant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seachtainí Roimh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सप्ताह पहले"
+          }
+        },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
@@ -136465,6 +139759,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Oups!"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Úps!"
           }
         },
         "hi" : {
@@ -136725,6 +140025,12 @@
             "value" : "Déverrouillera %@."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Will unlock %@."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -136981,6 +140287,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Désirez-vous créer un nouveau message?"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Would you like to create a new message?"
           }
         },
         "hi" : {
@@ -137240,6 +140552,12 @@
             "value" : "Pourriez-vous nous laisser une évaluation sur l'App Store?"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Would you mind giving us a rating on the app store?"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -137497,6 +140815,12 @@
             "value" : "Pourriez-vous nous faire connaitre les problèmes que vous auriez rencontrés avec l'application?"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Would you mind letting us know the problems you have been having with the app?"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -137746,6 +141070,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Écrire..."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scríobh..."
           }
         },
         "hi" : {
@@ -138003,6 +141333,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Oui"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá"
           }
         },
         "hi" : {
@@ -138263,6 +141599,12 @@
             "value" : "Vous personnifiez actuellement %@"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá tú ag glacadh le haitheantas anois mar %@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -138519,6 +141861,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous personnifiez actuellement  %@. Pour arrêter la personnification, allez sur votre profil."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá tú ag glacadh le haitheantas mar %@ Chun Stop a chur le Glacadh le hAitheantas eile téigh chuig do Phróifíl."
           }
         },
         "hi" : {
@@ -138779,6 +142127,12 @@
             "value" : "Vous n'avez pas accès à ce contenu. Le cours ou le groupe peut ne pas avoir commencé, ou peut avoir été terminé."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl rochtain agat ar an ábhar seo. Seans nár cuireadh tús leis an gCúrsa nó leis an nGrúpa, nó b’fhéidir gur cuireadh i gcrích é."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139035,6 +142389,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous n'avez pas la permission de supprimer cette réponse"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl cead agat an freagra seo a scriosadh"
           }
         },
         "hi" : {
@@ -139295,6 +142655,12 @@
             "value" : "Vous n'avez pas SpeedGrader pour iPad. Vous pouvez le télécharger gratuitement depuis l'App Store."
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl SpeedGrader agat le haghaidh iPad. Is féidir leat é a íoslódáil saor in aisce ón App Store."
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139553,6 +142919,12 @@
             "value" : "Vous n'avez pas la permission de vous faire passer pour cet utilisateur, ou il n'existe aucun utilisateur avec cet identifiant"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have permission to masquerade as this user or there is no user with that ID"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139801,6 +143173,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous avez déjà défini un rappel pour cette heure."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá meabhrúchán socraithe agat don am seo cheana féin."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपने पहले ही इस समय के लिए अनुस्मारक निर्धारित कर दिया है।"
           }
         },
         "ht" : {
@@ -140052,6 +143436,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous avez une réponse non enregistrée. Vous aimeriez rejeter cette réponse?"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá freagra nach bhfuil sabháilte agat. Ar mhaith leat an freagra sin a scriosadh?"
           }
         },
         "hi" : {
@@ -140312,6 +143702,12 @@
             "value" : "Vous devez d’abord compléter :"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caithfidh tú an méid seo a leanas a chríochnú ar dtús:"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -140568,6 +143964,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous avez besoin d'un titre et d'une description pour pouvoir publier"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You need a title and a description to post"
           }
         },
         "hi" : {
@@ -140828,6 +144230,12 @@
             "value" : "Vous devriez aller noter Canvas sur l'App Store!"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You should go rate Canvas on the App Store!"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -141084,6 +144492,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vos fichiers n'ont pu être trouvés"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your files could not be found"
           }
         },
         "hi" : {
@@ -141344,6 +144758,12 @@
             "value" : "La configuration de votre école ne permet pas le type d’envoi sélectionné pour cette tâche"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your school's configuration does not allow the type of submission selected for this assignment"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -141592,6 +145012,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Votre envoi est maintenant en attente d'être noté."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tá d'uaslódáil ag fanacht anois le marcáil."
           }
         },
         "hi" : {

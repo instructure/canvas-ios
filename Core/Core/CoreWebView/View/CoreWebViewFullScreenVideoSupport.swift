@@ -35,11 +35,6 @@ extension CoreWebView {
 
         public init(webView: WKWebView) {
             originalConstraints = (webView.superview?.constraintsAffecting(view: webView) ?? []) + webView.constraints
-
-            guard #available(iOS 16.0, *) else {
-                return
-            }
-
             fullScreenObservation = webView.observe(\.fullscreenState, options: []) { [weak self] webView, _  in
                 guard let self else { return }
 
@@ -75,6 +70,25 @@ extension CoreWebView {
         }
 
         private func restoreOriginalConstraints(_ webView: WKWebView) {
+            /// Sometimes the webview exits full screen before being placed back into its original superview.
+            /// In this case the theme switcher and the webview will have different super views and
+            /// if we want to activate a constraint affecting both views it will crash the app.
+            let isWebViewAndThemeSwitcherInDifferentViews = originalConstraints.contains { constraint in
+                guard let button = constraint.firstItem as? CoreWebViewThemeSwitcherButton else {
+                    return false
+                }
+
+                if button.superview != webView.superview {
+                    return true
+                }
+
+                return false
+            }
+
+            if isWebViewAndThemeSwitcherInDifferentViews {
+                return
+            }
+
             webView.translatesAutoresizingMaskIntoConstraints = false
             originalConstraints.forEach { $0.isActive = true }
             webView.superview?.layoutIfNeeded()

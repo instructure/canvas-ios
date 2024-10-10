@@ -52,7 +52,7 @@ struct AnnouncementWidgetViewPreviews: PreviewProvider {
     private static let data = [
         AnnouncementsEntry(isLoggedIn: false),
         AnnouncementsEntry(announcementItems: []),
-        .make(),
+        .make()
     ]
 
     static var previews: some View {

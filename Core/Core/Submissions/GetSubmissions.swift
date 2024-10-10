@@ -51,6 +51,7 @@ public class CreateSubmission: APIUseCase {
         userID: String,
         submissionType: SubmissionType,
         textComment: String? = nil,
+        isGroupComment: Bool? = nil,
         body: String? = nil,
         url: URL? = nil,
         fileIDs: [String]? = nil,
@@ -65,6 +66,7 @@ public class CreateSubmission: APIUseCase {
         let submission = CreateSubmissionRequest.Body.Submission(
             annotatable_attachment_id: annotatableAttachmentID,
             text_comment: textComment,
+            group_comment: isGroupComment,
             submission_type: submissionType,
             body: body,
             url: url,
@@ -110,7 +112,7 @@ public class CreateSubmission: APIUseCase {
         Submission.save(item, in: client)
         if item.late != true {
             NotificationCenter.default.post(name: .celebrateSubmission, object: nil, userInfo: [
-                "assignmentID": assignmentID,
+                "assignmentID": assignmentID
             ])
         }
     }
@@ -160,6 +162,7 @@ public class GetSubmission: APIUseCase {
 
 public class GetSubmissionsForStudent: CollectionUseCase {
     public typealias Model = Submission
+    public typealias Response = [APISubmission]
 
     public let cacheKey: String?
     public let request: GetSubmissionsForStudentRequest
@@ -171,10 +174,10 @@ public class GetSubmissionsForStudent: CollectionUseCase {
         scope = Scope(
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(Submission.userID), equals: studentID),
-                NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+                NSPredicate(key: #keyPath(Submission.isLatest), equals: true)
             ]),
             order: [
-                NSSortDescriptor(key: #keyPath(Submission.gradedAt), ascending: false, selector: #selector(NSDate.compare(_:))),
+                NSSortDescriptor(key: #keyPath(Submission.gradedAt), ascending: false, selector: #selector(NSDate.compare(_:)))
             ]
         )
     }
@@ -182,6 +185,7 @@ public class GetSubmissionsForStudent: CollectionUseCase {
 
 public class GetSubmissions: CollectionUseCase {
     public typealias Model = Submission
+    public typealias Response = [APISubmission]
 
     public let context: Context
     public let assignmentID: String
@@ -209,9 +213,9 @@ public class GetSubmissions: CollectionUseCase {
             NSPredicate(format: "NONE %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["inactive", "invited"]),
             NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["active"]),
-                NSPredicate(format: "ANY %K != nil", #keyPath(Submission.enrollments.courseSectionID)),
-            ]),
-        ]),
+                NSPredicate(format: "ANY %K != nil", #keyPath(Submission.enrollments.courseSectionID))
+            ])
+        ])
     ]}
 
     public var scope: Scope { Scope(
@@ -223,8 +227,8 @@ public class GetSubmissions: CollectionUseCase {
         predicate: NSCompoundPredicate(andPredicateWithSubpredicates: commonScopePredicates +
                                         [NSCompoundPredicate(orPredicateWithSubpredicates: [
                                             NSCompoundPredicate(andPredicateWithSubpredicates: filter.map { $0.predicate }),
-                                            NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), ids),
-                                        ]),
+                                            NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), ids)
+                                        ])
                                         ]),
         order: order)
     }
@@ -237,7 +241,7 @@ public class GetSubmissions: CollectionUseCase {
         return [
             NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true), // In case of a group submission this is the name of the group
             NSSortDescriptor(key: #keyPath(Submission.user.sortableName), naturally: true),
-            NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true),
+            NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true)
         ]
     }
 

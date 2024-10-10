@@ -18,7 +18,6 @@
 
 import Combine
 import SwiftUI
-import SwiftUIIntrospect
 
 extension NSNotification.Name {
     public static var DownloadContentOpened = NSNotification.Name("DownloadContentOpened")

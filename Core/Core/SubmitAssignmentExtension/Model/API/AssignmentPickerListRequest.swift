@@ -30,6 +30,7 @@ public struct AssignmentPickerListRequest: APIGraphQLRequestable {
                 _id
                 allowedExtensions
                 submissionTypes
+                gradeAsGroup
                 lockInfo {
                   isLocked
                 }

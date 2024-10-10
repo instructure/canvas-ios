@@ -144,7 +144,7 @@ class ModuleItemCell: UITableViewCell {
     private func updateA11yLabel(_ item: ModuleItem, isPublishing: Bool) {
         var a11yLabels: [String?] = [
             item.type?.label,
-            item.title,
+            item.title
         ]
 
         if shouldShowPublishControl {
@@ -165,7 +165,7 @@ class ModuleItemCell: UITableViewCell {
         } else {
             a11yLabels.append(contentsOf: [
                 dueLabel.text,
-                item.isLocked ? String(localized: "locked", bundle: .core) : nil,
+                item.isLocked ? String(localized: "locked", bundle: .core) : nil
             ])
         }
 
@@ -234,7 +234,7 @@ class ModuleItemCell: UITableViewCell {
                     name: String(localized: "Edit permissions", bundle: .core),
                     target: self,
                     selector: #selector(presentFilePermissionEditorDialog)
-                ),
+                )
             ]
         default:
             if item.shouldEnablePublishControl {

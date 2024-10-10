@@ -20,6 +20,7 @@ import Foundation
 
 public enum ActivityType: String, Codable {
     case discussion = "DiscussionTopic"
+    case discussionEntry = "DiscussionEntry"
     case announcement = "Announcement"
     case conversation = "Conversation"
     case message = "Message"
@@ -33,7 +34,7 @@ public struct APIActivity: Codable {
     let id: ID
     let title: String?
     let message: String?
-    let html_url: URL
+    let html_url: URL?
     let created_at: Date
     let updated_at: Date
     let type: ActivityType
@@ -87,6 +88,6 @@ public struct GetActivitiesRequest: APIRequestable {
 
     public var query: [APIQueryItem] {[
         .value("only_active_courses", "true"),
-        .perPage(perPage),
+        .perPage(perPage)
     ]}
 }

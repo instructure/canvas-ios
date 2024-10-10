@@ -23,7 +23,7 @@ import TestsFoundation
 class DocViewerSessionTests: CoreTestCase {
     func testCancel() {
         let session = DocViewerSession {}
-        let task = MockAPITask(api, request: URLRequest(url: URL(string: "/")!))
+        let task = MockAPITask(api, request: URLRequest(url: .make()))
         session.task = task
         session.cancel()
         XCTAssertEqual(task.state, .canceling)
@@ -31,9 +31,9 @@ class DocViewerSessionTests: CoreTestCase {
 
     func testLoad() {
         let session = DocViewerSession {}
-        let url = URL(string: "/")!
-        let response = HTTPURLResponse(url: URL(string: "/")!, statusCode: 301, httpVersion: nil, headerFields: [
-            "Location": "https://doc.viewer/1/session1/view?query",
+        let url = URL.make()
+        let response = HTTPURLResponse(url: .make(), statusCode: 301, httpVersion: nil, headerFields: [
+            "Location": "https://doc.viewer/1/session1/view?query"
         ])
         let loginSession = LoginSession.make()
         api.mock(url: url, response: response)
@@ -43,10 +43,10 @@ class DocViewerSessionTests: CoreTestCase {
 
     func testLoadFailure() {
         let session = DocViewerSession {}
-        let url = URL(string: "/")!
+        let url = URL.make()
         let loginSession = LoginSession.make()
         api.mock(url: url, error: APIDocViewerError.noData)
-        session.load(url: URL(string: "/")!, session: loginSession)
+        session.load(url: .make(), session: loginSession)
         XCTAssertNotNil(session.error)
         XCTAssertNil(session.sessionURL)
     }
@@ -84,7 +84,7 @@ class DocViewerSessionTests: CoreTestCase {
         session.metadata = .make()
         api.mock(GetDocViewerAnnotationsRequest(sessionID: ""), value: APIDocViewerAnnotations(data: [
             .make(id: "1", created_at: Date(timeIntervalSince1970: 1)),
-            .make(id: "2", created_at: Date(timeIntervalSince1970: 0)),
+            .make(id: "2", created_at: Date(timeIntervalSince1970: 0))
         ]))
         session.loadAnnotations()
         XCTAssertEqual(session.annotations?.count, 2)

@@ -23,7 +23,7 @@ class CalendarFilterEntryProviderTeacherTests: CoreTestCase {
 
     func testFetch() {
         AppEnvironment.shared.currentSession = .init(
-            baseURL: URL(string: "/")!,
+            baseURL: .make(),
             userID: "testTeacherId",
             userName: "testTeacher"
         )
@@ -35,7 +35,7 @@ class CalendarFilterEntryProviderTeacherTests: CoreTestCase {
         let groupsRequest = GetGroupsRequest(context: .currentUser)
 
         api.mock(coursesRequest, value: [
-                .make(id: "c1", workflow_state: .unpublished),
+                .make(id: "c1", workflow_state: .unpublished)
             ]
         )
         api.mock(groupsRequest, value: [.make(id: "g1")])

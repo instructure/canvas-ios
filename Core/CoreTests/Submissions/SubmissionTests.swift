@@ -58,7 +58,7 @@ class SubmissionTests: CoreTestCase {
 
         submission.discussionEntries = [
             DiscussionEntry.make(from: .make(id: "2")),
-            DiscussionEntry.make(from: .make(id: "1")),
+            DiscussionEntry.make(from: .make(id: "1"))
         ]
         XCTAssertEqual(submission.discussionEntriesOrdered.first?.id, "1")
 
@@ -85,7 +85,7 @@ class SubmissionTests: CoreTestCase {
             .online_quiz: .quizLine,
             .online_text_entry: .textLine,
             .online_url: .linkLine,
-            .student_annotation: .annotateLine,
+            .student_annotation: .annotateLine
         ]
         for (type, icon) in map {
             submission.type = type
@@ -122,7 +122,7 @@ class SubmissionTests: CoreTestCase {
             .discussion_topic: "reply",
             .online_quiz: "Attempt 1",
             .online_text_entry: "Text",
-            .online_url: "https://instructure.com",
+            .online_url: "https://instructure.com"
         ]
         for (type, subtitle) in map {
             submission.type = type
@@ -147,7 +147,7 @@ class SubmissionTests: CoreTestCase {
     func testRubricAssessments() {
         let submission = Submission.make(from: .make(rubric_assessment: [
             "A": .make(),
-            "B": .make(),
+            "B": .make()
         ]))
         let assessA = RubricAssessment.make(id: "A")
         let assessB = RubricAssessment.make(id: "B")
@@ -172,9 +172,9 @@ class SubmissionTests: CoreTestCase {
                 APISubmissionComment.make(
                     attachments: [
                         APIFile.make(id: "1"),
-                        APIFile.make(id: "2"),
+                        APIFile.make(id: "2")
                     ]
-                ),
+                )
             ]
         )
         Submission.save(item, in: databaseClient)
@@ -348,7 +348,7 @@ class SubmissionTypeTests: XCTestCase {
     func testAllowedUTIsMultipleSubmissionTypes() {
         let submissionTypes: [SubmissionType] = [
             .online_upload,
-            .online_text_entry,
+            .online_text_entry
         ]
         let allowedExtensions = ["jpeg"]
         let result = submissionTypes.allowedUTIs(allowedExtensions: allowedExtensions)
@@ -356,4 +356,51 @@ class SubmissionTypeTests: XCTestCase {
         XCTAssertTrue(result.contains { $0.isImage })
         XCTAssertTrue(result.contains(.text))
     }
+
+    func testStudioSubmissionTypes() {
+        // The strange format is to make sure all cases are tested
+        for submissionType in SubmissionType.allCases {
+            switch submissionType {
+            case .discussion_topic,
+                 .none,
+                 .not_graded,
+                 .online_quiz,
+                 .online_text_entry,
+                 .on_paper,
+                 .wiki_page,
+                 .student_annotation,
+                 .online_url,
+                 .media_recording,
+                 .basic_lti_launch,
+                 .external_tool:
+                let result = [submissionType].isStudioAccepted(allowedExtensions: [])
+                XCTAssertEqual(result, false)
+            case .online_upload:
+                let acceptedFileExtensions = ["mp4", "mov", "avi"]
+
+                for acceptedFileExtension in acceptedFileExtensions {
+                    let result = [submissionType].isStudioAccepted(
+                        allowedExtensions: [acceptedFileExtension]
+                    )
+                    XCTAssertEqual(result, true)
+                }
+
+                let notAcceptedFileExtensions = ["pdf", "docx", "txt"]
+
+                for notAcceptedFileExtension in notAcceptedFileExtensions {
+                    let result = [submissionType].isStudioAccepted(
+                        allowedExtensions: [notAcceptedFileExtension]
+                    )
+                    XCTAssertEqual(result, false)
+                }
+
+                let noFileExtensionRestriction: [String] = []
+                let result = [submissionType].isStudioAccepted(
+                    allowedExtensions: noFileExtensionRestriction
+                )
+                XCTAssertEqual(result, true)
+            }
+        }
+    }
+
 }

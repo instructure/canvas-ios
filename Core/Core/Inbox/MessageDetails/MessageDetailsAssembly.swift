@@ -20,10 +20,18 @@ import Foundation
 
 public enum MessageDetailsAssembly {
 
-    public static func makeViewController(env: AppEnvironment,
-                                          conversationID: String) -> UIViewController {
+    public static func makeViewController(
+        env: AppEnvironment,
+        conversationID: String,
+        allowArchive: Bool
+    ) -> UIViewController {
         let interactor = MessageDetailsInteractorLive(env: env, conversationID: conversationID)
-        let viewModel = MessageDetailsViewModel(router: env.router, interactor: interactor, myID: env.currentSession?.userID ?? "")
+        let viewModel = MessageDetailsViewModel(
+            router: env.router,
+            interactor: interactor,
+            myID: env.currentSession?.userID ?? "",
+            allowArchive: allowArchive
+        )
         let view = MessageDetailsView(model: viewModel)
         return CoreHostingController(view)
     }
@@ -35,7 +43,12 @@ public enum MessageDetailsAssembly {
                                    messages: [ConversationMessage])
     -> MessageDetailsView {
         let interactor = MessageDetailsInteractorPreview(env: env, subject: subject, messages: messages)
-        let viewModel = MessageDetailsViewModel(router: env.router, interactor: interactor, myID: env.currentSession?.userID ?? "")
+        let viewModel = MessageDetailsViewModel(
+            router: env.router,
+            interactor: interactor,
+            myID: env.currentSession?.userID ?? "",
+            allowArchive: true
+        )
         return MessageDetailsView(model: viewModel)
     }
 

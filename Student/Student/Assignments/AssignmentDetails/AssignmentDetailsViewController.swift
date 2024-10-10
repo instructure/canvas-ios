@@ -222,7 +222,9 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         let tapGradedView = UITapGestureRecognizer(target: self, action: #selector(didTapSubmission(_:)))
         gradedView?.addGestureRecognizer(tapGradedView)
 
-        submitAssignmentButton.makeUnavailableInOfflineMode()
+        if presenter?.assignment?.isDiscussion != true {
+            submitAssignmentButton.makeUnavailableInOfflineMode()
+        }
         fileSubmissionButton?.makeUnavailableInOfflineMode()
         submissionButton?.makeUnavailableInOfflineMode()
 
@@ -409,19 +411,18 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             ? String(localized: "Description", bundle: .student)
             : String(localized: "Instructions", bundle: .student)
 
-        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+        let offlinePath = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: env.currentSession?.uniqueID ?? "",
             courseId: courseID,
             sectionName: OfflineFolderPrefix.assignments.rawValue,
             resourceId: assignmentID
-        )
-        let offlinePath = rootURL.appendingPathComponent("body.html")
+        ).appendingPathComponent("body.html")
         webView.loadContent(
             isOffline: offlineModeInteractor?.isNetworkOffline(),
             filePath: offlinePath,
             content: presenter?.assignmentDescription(),
             originalBaseURL: baseURL,
-            offlineBaseURL: rootURL
+            offlineBaseURL: URL.Paths.Offline.rootURL(sessionID: env.currentSession?.uniqueID ?? "")
         )
 
         updateGradeCell(assignment, submission: submission)
@@ -498,9 +499,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             buttonConfig.image = .arrowOpenDownSolid
                 .scaleTo(.init(width: 14, height: 14))
                 .withRenderingMode(.alwaysTemplate)
-            if #available(iOS 16.0, *) {
-                buttonConfig.indicator = .none
-            }
+            buttonConfig.indicator = .none
 
             attemptDateButton.changesSelectionAsPrimaryAction = true
             attemptDateButton.showsMenuAsPrimaryAction = true
@@ -550,7 +549,14 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             submitAssignmentButton.alpha = 0
         } else {
             scrollViewBottom.constant = -submitAssignmentButton.bounds.size.height
-            submitAssignmentButton.alpha = OfflineModeAssembly.make().isOfflineModeEnabled() ? UIButton.DisabledInOfflineAlpha : 1.0
+
+            if presenter?.assignment?.isDiscussion != true {
+                submitAssignmentButton.alpha = OfflineModeAssembly.make().isOfflineModeEnabled()
+                    ? UIButton.DisabledInOfflineAlpha
+                    : 1.0
+            } else {
+                submitAssignmentButton.alpha = 1
+            }
         }
     }
 
@@ -567,7 +573,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         parentStackView.insertArrangedSubview(reminderSection.view, at: dueSectionIndex + 1)
         NSLayoutConstraint.activate([
             reminderSection.view.leadingAnchor.constraint(equalTo: parentStackView.leadingAnchor),
-            reminderSection.view.trailingAnchor.constraint(equalTo: parentStackView.trailingAnchor),
+            reminderSection.view.trailingAnchor.constraint(equalTo: parentStackView.trailingAnchor)
         ])
         reminderSection.didMove(toParent: self)
     }

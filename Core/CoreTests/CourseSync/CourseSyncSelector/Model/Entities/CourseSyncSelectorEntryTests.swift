@@ -33,7 +33,7 @@ class CourseSyncEntryTests: XCTestCase {
         let testee = CourseSyncEntry.File(id: "courses/3/files/2",
                                           displayName: "",
                                           fileName: "",
-                                          url: URL(string: "/")!,
+                                          url: .make(),
                                           mimeClass: "",
                                           updatedAt: nil,
                                           bytesToDownload: 0)
@@ -47,7 +47,7 @@ class CourseSyncEntryTests: XCTestCase {
             hasFrontPage: false,
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
-                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files)
             ],
             files: []
         )
@@ -70,7 +70,7 @@ class CourseSyncEntryTests: XCTestCase {
             hasFrontPage: false,
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
-                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files)
             ],
             files: []
         )
@@ -96,11 +96,11 @@ class CourseSyncEntryTests: XCTestCase {
             hasFrontPage: false,
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
-                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files)
             ],
             files: [
                 CourseSyncEntry.File.make(id: "file1", displayName: "file1"),
-                CourseSyncEntry.File.make(id: "file2", displayName: "file2"),
+                CourseSyncEntry.File.make(id: "file2", displayName: "file2")
             ]
         )
         XCTAssertEqual(entry.selectionState, .deselected)
@@ -123,11 +123,11 @@ class CourseSyncEntryTests: XCTestCase {
             hasFrontPage: false,
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
-                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files)
             ],
             files: [
                 CourseSyncEntry.File.make(id: "file1", displayName: "file1"),
-                CourseSyncEntry.File.make(id: "file2", displayName: "file2"),
+                CourseSyncEntry.File.make(id: "file2", displayName: "file2")
             ]
         )
         XCTAssertEqual(entry.isFullContentSync, false)
@@ -159,11 +159,11 @@ class CourseSyncEntryTests: XCTestCase {
             hasFrontPage: false,
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
-                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files)
             ],
             files: [
                 CourseSyncEntry.File.make(id: "file1", displayName: "file1"),
-                CourseSyncEntry.File.make(id: "file2", displayName: "file2"),
+                CourseSyncEntry.File.make(id: "file2", displayName: "file2")
             ]
         )
 
@@ -189,11 +189,11 @@ class CourseSyncEntryTests: XCTestCase {
             tabs: [
                 CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
                 CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
-                CourseSyncEntry.Tab(id: "tab3", name: "tab3", type: .additionalContent),
+                CourseSyncEntry.Tab(id: "tab3", name: "tab3", type: .additionalContent)
             ],
             files: [
                 CourseSyncEntry.File.make(id: "file1", displayName: "file1"),
-                CourseSyncEntry.File.make(id: "file2", displayName: "file2"),
+                CourseSyncEntry.File.make(id: "file2", displayName: "file2")
             ]
         )
         entry.tabs[0].selectionState = .selected

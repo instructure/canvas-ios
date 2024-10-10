@@ -60,13 +60,13 @@ class APIErrorTests: XCTestCase {
             "2": [ "b", "z" ],
             "3": [ "message": "c" ],
             "4": [ [ "message": "d" ], [ "message": "y" ] ],
-            "5": 5,
-            ], ]).split(separator: "\n").sorted().joined(separator: "\n"),
+            "5": 5
+            ] ]).split(separator: "\n").sorted().joined(separator: "\n"),
             "a\nb\nc\nd"
         )
         XCTAssertEqual(from(dict: [:]), "default")
-        XCTAssertEqual(from(response: HTTPURLResponse(url: URL(string: "/")!, statusCode: 200, httpVersion: nil, headerFields: nil)), "There was an unexpected error. Please try again.")
-        XCTAssertEqual(from(response: HTTPURLResponse(url: URL(string: "/")!, statusCode: 400, httpVersion: nil, headerFields: nil)), "There was an unexpected error. Please try again.")
+        XCTAssertEqual(from(response: HTTPURLResponse(url: .make(), statusCode: 200, httpVersion: nil, headerFields: nil)), "There was an unexpected error. Please try again.")
+        XCTAssertEqual(from(response: HTTPURLResponse(url: .make(), statusCode: 400, httpVersion: nil, headerFields: nil)), "There was an unexpected error. Please try again.")
     }
 
     func testUnauthorizedAPIError() {
@@ -79,7 +79,7 @@ class APIErrorTests: XCTestCase {
         }
         """
         let data = stringData.data(using: .utf8)
-        let response = HTTPURLResponse(url: URL(string: "/")!, statusCode: 401, httpVersion: nil, headerFields: nil)
+        let response = HTTPURLResponse(url: .make(), statusCode: 401, httpVersion: nil, headerFields: nil)
 
         let error = APIError.from(data: data, response: response, error: NSError.instructureError("default"))
 
@@ -89,7 +89,7 @@ class APIErrorTests: XCTestCase {
     }
 
     func testUnauthorized() {
-        let response = HTTPURLResponse(url: URL(string: "/")!, statusCode: 401, httpVersion: nil, headerFields: nil)
+        let response = HTTPURLResponse(url: .make(), statusCode: 401, httpVersion: nil, headerFields: nil)
         let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
 
         let nsError = error as NSError
@@ -97,7 +97,7 @@ class APIErrorTests: XCTestCase {
     }
 
     func testForbidden() {
-        let response = HTTPURLResponse(url: URL(string: "/")!, statusCode: 403, httpVersion: nil, headerFields: nil)
+        let response = HTTPURLResponse(url: .make(), statusCode: 403, httpVersion: nil, headerFields: nil)
         let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
 
         let nsError = error as NSError
@@ -105,7 +105,7 @@ class APIErrorTests: XCTestCase {
     }
 
     func testNotFound() {
-        let response = HTTPURLResponse(url: URL(string: "/")!, statusCode: 404, httpVersion: nil, headerFields: nil)
+        let response = HTTPURLResponse(url: .make(), statusCode: 404, httpVersion: nil, headerFields: nil)
         let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
 
         let nsError = error as NSError
@@ -113,7 +113,7 @@ class APIErrorTests: XCTestCase {
     }
 
     func testUnexpected() {
-        let response = HTTPURLResponse(url: URL(string: "/")!, statusCode: 500, httpVersion: nil, headerFields: nil)
+        let response = HTTPURLResponse(url: .make(), statusCode: 500, httpVersion: nil, headerFields: nil)
         let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
 
         let nsError = error as NSError

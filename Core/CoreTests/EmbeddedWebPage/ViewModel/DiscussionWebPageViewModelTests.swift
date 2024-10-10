@@ -26,7 +26,7 @@ class DiscussionWebPageViewModelTests: CoreTestCase {
     func testURLWithoutSession() {
         AppEnvironment.shared.currentSession = nil
         let testee = EmbeddedWebPageViewModelLive(context: .course("1"), webPageType: .discussion(id: "123"))
-        XCTAssertEqual(testee.url, URL(string: "/")!)
+        XCTAssertEqual(testee.url, .make())
     }
 
     func testCourseURL() {
@@ -63,32 +63,5 @@ class DiscussionWebPageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.navTitle, "Discussion Details")
         XCTAssertEqual(testee.subTitle, "Test Group Name")
         XCTAssertEqual(testee.contextColor, UIColor(hexString: "#BEEF00"))
-    }
-
-    func testEnabledRedesignFeatureFlag() {
-        let flag = FeatureFlag(context: databaseClient)
-        flag.name = "react_discussions_post"
-        flag.enabled = true
-        flag.context = .course("1")
-
-        XCTAssertTrue(EmbeddedWebPageViewModelLive.isRedesignEnabled(in: .course("1")))
-    }
-
-    func testDisabledRedesignFeatureFlag() {
-        let flag = FeatureFlag(context: databaseClient)
-        flag.name = "react_discussions_post"
-        flag.enabled = false
-        flag.context = .course("1")
-
-        XCTAssertFalse(EmbeddedWebPageViewModelLive.isRedesignEnabled(in: .course("1")))
-    }
-
-    func testMissingRedesignFeatureFlag() {
-        let flag = FeatureFlag(context: databaseClient)
-        flag.name = "react_discussions_post_2"
-        flag.enabled = true
-        flag.context = .course("1")
-
-        XCTAssertFalse(EmbeddedWebPageViewModelLive.isRedesignEnabled(in: .course("1")))
     }
 }

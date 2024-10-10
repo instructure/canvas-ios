@@ -59,12 +59,26 @@ class AssignmentPickerListServiceTests: CoreTestCase {
             mockAssignment(id: "A1", name: "unknown submission type"),
             mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
             mockAssignment(id: "A3", isLocked: true, name: "online upload, locked", submission_types: [.online_upload]),
-            mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool]),
+            mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool])
         ]))
         testee.courseID = "successID"
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(receivedResult, .success([
-            .init(id: "A2", name: "online upload", allowedExtensions: []),
+            .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
+        ]))
+    }
+
+    func testGroupGradedAssignmentFetchSuccessful() {
+        api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
+            mockAssignment(id: "A1", name: "unknown submission type"),
+            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload], gradeAsGroup: true),
+            mockAssignment(id: "A3", isLocked: true, name: "online upload, locked", submission_types: [.online_upload]),
+            mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool])
+        ]))
+        testee.courseID = "successID"
+        waitForExpectations(timeout: 0.1)
+        XCTAssertEqual(receivedResult, .success([
+            .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: true)
         ]))
     }
 
@@ -74,7 +88,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
 
         api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
             mockAssignment(id: "A1", name: "online upload", submission_types: [.online_upload]),
-            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
+            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload])
         ]))
         testee.courseID = "successID"
         waitForExpectations(timeout: 0.1)
@@ -101,7 +115,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         return AssignmentPickerListRequest.Response(data: .init(course: .init(assignmentsConnection: .init(nodes: assignments))))
     }
 
-    private func mockAssignment(id: String, isLocked: Bool = false, name: String, submission_types: [SubmissionType] = []) -> AssignmentPickerListResponse.Assignment {
-        .init(name: name, _id: id, submissionTypes: submission_types, allowedExtensions: [], lockInfo: .init(isLocked: isLocked))
+    private func mockAssignment(id: String, isLocked: Bool = false, name: String, submission_types: [SubmissionType] = [], gradeAsGroup: Bool = false) -> AssignmentPickerListResponse.Assignment {
+        .init(name: name, _id: id, submissionTypes: submission_types, allowedExtensions: [], lockInfo: .init(isLocked: isLocked), gradeAsGroup: gradeAsGroup)
     }
 }

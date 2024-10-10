@@ -301,6 +301,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
             .frame(minHeight: 51)
             .padding(.horizontal, 16)
+            .accessibilityIdentifier("BasedOnGradedToggle")
 
             if viewModel.isWhatIfScoreFlagEnabled {
                 Divider()
@@ -412,7 +413,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             }
         }
         .background(Color.backgroundLightest)
-        .iOS16HideListScrollContentBackground()
+        .scrollContentBackground(.hidden)
         .listStyle(.plain)
     }
 
@@ -444,7 +445,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             }
         }
         .listRowInsets(EdgeInsets())
-        .iOS16RemoveListRowSeparatorLeadingInset()
+        .removeListRowSeparatorLeadingInset()
         .swipeActions(edge: .trailing) { revertWhatIfScoreSwipeButton() }
         .accessibilityAction(named: Text("Edit What-if score", bundle: .core)) {
             isScoreEditorPresented.toggle()

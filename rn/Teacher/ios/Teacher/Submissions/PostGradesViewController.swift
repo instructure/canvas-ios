@@ -140,7 +140,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
                 title: String(localized: "Post to...", bundle: .teacher),
                 sections: [ ItemPickerSection(items: PostGradePolicy.allCases.map {
                     ItemPickerItem(title: $0.title, subtitle: $0.subtitle, accessibilityIdentifier: "PostToSelection.\($0.rawValue)")
-                }), ],
+                }) ],
                 selected: PostGradePolicy.allCases.firstIndex(of: postPolicy).flatMap {
                     IndexPath(row: $0, section: 0)
                 },

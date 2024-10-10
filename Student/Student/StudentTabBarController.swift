@@ -37,12 +37,19 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if #available(iOS 18, *), UIDevice.current.userInterfaceIdiom == .pad {
+            // Setting the horizontal size class will force the tab bar
+            // to be displayed at the bottom.
+            traitOverrides.horizontalSizeClass = .compact
+        }
+
         delegate = self
         viewControllers = [
             dashboardTab(),
             calendarTab(),
             todoTab(),
-            notificationsTab(),
+            notificationsTab()
         ]
         if AppEnvironment.shared.currentSession?.isFakeStudent == false {
             viewControllers?.append(inboxTab())
@@ -81,8 +88,8 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         let tabBarImageSelected: UIImage?
 
         if AppEnvironment.shared.k5.isK5Enabled {
-            let dashboard = HelmNavigationController(rootViewController: CoreHostingController(K5DashboardView()))
-            // This causes issues with hosted SwiftUI views. If appears at multiple places maybe worth disabling globally in HelmNavigationController.
+            let dashboard = CoreNavigationController(rootViewController: CoreHostingController(K5DashboardView()))
+            // This causes issues with hosted SwiftUI views. If appears at multiple places maybe worth disabling globally in CoreNavigationController.
             dashboard.interactivePopGestureRecognizer?.isEnabled = false
             result = dashboard
 
@@ -92,7 +99,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         } else {
             let dashboard = CoreHostingController(DashboardContainerView(shouldShowGroupList: true,
                                                                     showOnlyTeacherEnrollment: false))
-            result = DashboardContainerViewController(rootViewController: dashboard) { HelmSplitViewController() }
+            result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
 
             tabBarTitle = String(localized: "Dashboard", bundle: .student, comment: "dashboard page title")
             tabBarImage = .dashboardTab
@@ -108,10 +115,10 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     }
 
     func calendarTab() -> UIViewController {
-        let split = HelmSplitViewController()
+        let split = CoreSplitViewController()
         split.viewControllers = [
-            HelmNavigationController(rootViewController: PlannerViewController.create()),
-            HelmNavigationController(rootViewController: EmptyViewController()),
+            CoreNavigationController(rootViewController: PlannerViewController.create()),
+            CoreNavigationController(rootViewController: EmptyViewController())
         ]
         split.view.tintColor = Brand.shared.primary
         split.tabBarItem.title = String(localized: "Calendar", bundle: .student, comment: "Calendar page title")
@@ -124,11 +131,11 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     }
 
     func todoTab() -> UIViewController {
-        let todo = HelmSplitViewController()
+        let todo = CoreSplitViewController()
         let todoController = TodoListViewController.create()
         todo.viewControllers = [
-            HelmNavigationController(rootViewController: todoController),
-            HelmNavigationController(rootViewController: EmptyViewController()),
+            CoreNavigationController(rootViewController: todoController),
+            CoreNavigationController(rootViewController: EmptyViewController())
         ]
         todo.tabBarItem.title = String(localized: "To Do", bundle: .student, comment: "Title of the Todo screen")
         todo.tabBarItem.image = .todoTab
@@ -142,10 +149,10 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     }
 
     func notificationsTab() -> UIViewController {
-        let split = HelmSplitViewController()
+        let split = CoreSplitViewController()
         split.viewControllers = [
-            HelmNavigationController(rootViewController: ActivityStreamViewController.create()),
-            HelmNavigationController(rootViewController: EmptyViewController()),
+            CoreNavigationController(rootViewController: ActivityStreamViewController.create()),
+            CoreNavigationController(rootViewController: EmptyViewController())
         ]
         split.tabBarItem.title = String(localized: "Notifications", bundle: .student, comment: "Notifications tab title")
         split.tabBarItem.image = .alertsTab
@@ -158,19 +165,11 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 
     func inboxTab() -> UIViewController {
         let inboxController: UIViewController
-        let inboxSplit = HelmSplitViewController()
+        let inboxSplit = CoreSplitViewController()
 
-        if ExperimentalFeature.nativeStudentInbox.isEnabled {
-            inboxController = InboxAssembly.makeInboxViewController()
-        } else {
-            let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
-            inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
-            let inboxNav = HelmNavigationController(rootViewController: inboxVC)
-            inboxNav.navigationBar.useGlobalNavStyle()
-            inboxController = inboxNav
-        }
+        inboxController = InboxAssembly.makeInboxViewController()
 
-        let empty = HelmNavigationController()
+        let empty = CoreNavigationController()
         empty.navigationBar.useGlobalNavStyle()
 
         inboxSplit.viewControllers = [inboxController, empty]

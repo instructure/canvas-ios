@@ -79,6 +79,7 @@ public struct MessageDetailsView: View {
         HStack {
             Text(model.subject)
                 .font(.semibold22)
+                .accessibilityIdentifier("MessageDetails.subject")
             Spacer()
             starButton
         }
@@ -94,26 +95,34 @@ public struct MessageDetailsView: View {
                 .moreLine
                 .foregroundColor(Color(Brand.shared.navTextColor))
         })
-        .identifier("MessageDetails.moreButton")
+        .accessibilityIdentifier("MessageDetails.more")
         .accessibility(label: Text("More options", bundle: .core))
     }
 
     private var starButton: some View {
-        Button(action: {
-            model.starDidTap.send(!model.starred)
-        }, label: {
-            var star = Image.starLine
-            var a11yLabel = String(localized: "Un-starred", bundle: .core)
-            if model.starred {
-                star = Image.starSolid
-                a11yLabel = String(localized: "Starred", bundle: .core)
+        if model.starred {
+            Button {
+                model.starDidTap.send(!model.starred)
+            } label: {
+                return Image.starSolid
+                    .size(30)
+                    .foregroundColor(.textDark)
+                    .padding(.leading, 6)
+                    .accessibilityLabel(String(localized: "Mark as Unstarred", bundle: .core))
+                    .accessibilityIdentifier("MessageDetails.unstar")
             }
-            return star
-                .size(30)
-                .foregroundColor(.textDark)
-                .padding(.leading, 6)
-                .accessibilityLabel(a11yLabel)
-        })
+        } else {
+            Button {
+                model.starDidTap.send(!model.starred)
+            } label: {
+                return Image.starLine
+                    .size(30)
+                    .foregroundColor(.textDark)
+                    .padding(.leading, 6)
+                    .accessibilityLabel(String(localized: "Mark as Starred", bundle: .core))
+                    .accessibilityIdentifier("MessageDetails.star")
+            }
+        }
     }
 
     private var messageList: some View {
@@ -121,7 +130,7 @@ public struct MessageDetailsView: View {
             VStack(spacing: 0) {
                 Color.borderMedium
                     .frame(height: 0.5)
-                    .padding(.horizontal, 8)
+
                 MessageView(model: message,
                             replyDidTap: { model.replyTapped(message: message.conversationMessage, viewController: controller) },
                             moreDidTap: { model.messageMoreTapped(message: message.conversationMessage, viewController: controller) })

@@ -20,28 +20,11 @@ import XCTest
 @testable import Core
 
 final class PostPlannerNoteRequestTests: XCTestCase {
-    var req: PostPlannerNoteRequest!
-    var date: Date = Clock.now
 
-    override func setUp() {
-        super.setUp()
-        req = PostPlannerNoteRequest(body: PostPlannerNoteRequest.Body(title: "title", details: "details", todo_date: date, course_id: "1", linked_object_type: .planner_note, linked_object_id: "1"))
-    }
+    func testProperties() {
+        let testee = PostPlannerNoteRequest(body: .make())
 
-    func testMethod() {
-        XCTAssertEqual(req.method, .post)
-    }
-
-    func testPath() {
-        XCTAssertEqual(req.path, "planner_notes")
-    }
-
-    func testBody() {
-        XCTAssertEqual(req.body?.title, "title")
-        XCTAssertEqual(req.body?.details, "details")
-        XCTAssertEqual(req.body?.todo_date, date)
-        XCTAssertEqual(req.body?.course_id, "1")
-        XCTAssertEqual(req.body?.linked_object_type, .planner_note)
-        XCTAssertEqual(req.body?.linked_object_id, "1")
+        XCTAssertEqual(testee.method, .post)
+        XCTAssertEqual(testee.path, "planner_notes")
     }
 }

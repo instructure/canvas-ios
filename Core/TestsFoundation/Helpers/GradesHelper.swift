@@ -22,6 +22,7 @@ public class GradesHelper: BaseHelper {
     public static var totalGrade: XCUIElement { app.find(id: "CourseTotalGrade") }
     public static var filterButton: XCUIElement { app.find(type: .popUpButton) }
     public static var lockIcon: XCUIElement { app.find(id: "lockIcon") }
+    public static var basedOnGradedSwitch: XCUIElement { app.find(id: "BasedOnGradedToggle").find(type: .switch) }
 
     public static func labelOfAG(assignmentGroup: DSAssignmentGroup) -> XCUIElement {
         return app.find(label: assignmentGroup.name, type: .staticText)
@@ -31,8 +32,12 @@ public class GradesHelper: BaseHelper {
         return app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
     }
 
+    public static func gradedLabel(assignmentCell: XCUIElement) -> XCUIElement {
+        return assignmentCell.find(label: "Graded", type: .staticText)
+    }
+
     public static func gradeLabel(assignmentCell: XCUIElement) -> XCUIElement {
-        return assignmentCell.find(labelContaining: "Grade")
+        return assignmentCell.find(labelContaining: "Grade, ", type: .staticText)
     }
 
     public static func gradeOutOf(assignment: DSAssignment? = nil,

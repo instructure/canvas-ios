@@ -73,11 +73,11 @@ class EditComposeRecipientsViewController: UIViewController {
             let tieBreaker = $0.fullName.localizedCompare($0.fullName) == .orderedAscending
             let lhs = [
                 $0.hasRole(.teacher, in: context) ? 2 : 0,
-                $0.hasRole(.ta, in: context) ? 1 : 0,
+                $0.hasRole(.ta, in: context) ? 1 : 0
             ].reduce(0, +)
             let rhs = [
                 $1.hasRole(.teacher, in: context) ? 2 : 0,
-                $1.hasRole(.ta, in: context) ? 1 : 0,
+                $1.hasRole(.ta, in: context) ? 1 : 0
             ].reduce(0, +)
             if lhs == rhs {
                 return tieBreaker
@@ -145,7 +145,7 @@ class RecipientCell: UITableViewCell {
             view.heightAnchor.constraint(equalTo: avatarView.heightAnchor),
             view.widthAnchor.constraint(equalTo: avatarView.widthAnchor),
             check.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            check.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            check.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         return view
     }()

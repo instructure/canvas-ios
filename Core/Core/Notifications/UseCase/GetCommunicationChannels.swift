@@ -20,6 +20,7 @@ import Foundation
 
 public struct GetCommunicationChannels: CollectionUseCase {
     public typealias Model = CommunicationChannel
+    public typealias Response = [APICommunicationChannel]
 
     public let cacheKey: String? = "get-user-self-communication-channels"
 
@@ -27,6 +28,6 @@ public struct GetCommunicationChannels: CollectionUseCase {
 
     public let scope = Scope(predicate: .all, order: [
         NSSortDescriptor(key: #keyPath(CommunicationChannel.typeRaw), ascending: true),
-        NSSortDescriptor(key: #keyPath(CommunicationChannel.position), ascending: true),
+        NSSortDescriptor(key: #keyPath(CommunicationChannel.position), ascending: true)
     ])
 }

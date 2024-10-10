@@ -29,7 +29,7 @@ public protocol CourseSyncSelectorInteractor: AnyObject {
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func observeSelectedSize() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
-    func setSelected(selection: CourseEntrySelection, selectionState: ListCellView.SelectionState)
+    func setSelected(selection: CourseEntrySelection, selectionState: OfflineListCellView.SelectionState)
     func saveSelection()
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func toggleAllCoursesSelection(isSelected: Bool)
@@ -98,7 +98,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .eraseToAnyPublisher()
     }
 
-    func setSelected(selection: CourseEntrySelection, selectionState: ListCellView.SelectionState) {
+    func setSelected(selection: CourseEntrySelection, selectionState: OfflineListCellView.SelectionState) {
         var entries = courseSyncEntries.value
 
         switch selection {

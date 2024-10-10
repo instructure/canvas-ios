@@ -22,21 +22,22 @@ import Combine
 import Foundation
 
 class AddressbookInteractorPreview: AddressbookInteractor {
-    var state: CurrentValueSubject<StoreState, Never> = CurrentValueSubject<StoreState, Never>(.loading)
+    var canSelectAllRecipient = CurrentValueSubject<Bool, Never>(true)
+
+    var state: CurrentValueSubject<StoreState, Never> = .init(.loading)
 
     var recipients: CurrentValueSubject<[SearchRecipient], Never>
 
     init(env: AppEnvironment) {
         self.recipients = CurrentValueSubject<[SearchRecipient], Never>([
             .make(id: "1", name: "Test user 1", in: env.database.viewContext),
-            .make(id: "2", name: "Test user 2", in: env.database.viewContext),
+            .make(id: "2", name: "Test user 2", in: env.database.viewContext)
         ])
     }
 
     func refresh() -> Future<Void, Never> {
         Future<Void, Never> {_ in }
     }
-
 }
 
 #endif

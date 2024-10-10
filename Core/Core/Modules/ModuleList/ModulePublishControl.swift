@@ -86,18 +86,18 @@ final class ModulePublishControl: UIView {
         NSLayoutConstraint.activate([
             publishedView.widthAnchor.constraint(equalToConstant: Size.iconWidth),
             publishButton.widthAnchor.constraint(equalToConstant: Size.iconWidth),
-            publishButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            publishButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
         ])
 
         addSubview(stackView)
         topBottomStackViewConstraints = [
             stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ]
         NSLayoutConstraint.activate(topBottomStackViewConstraints)
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Size.paddingTrailing),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Size.paddingTrailing)
         ])
 
         clearButton = ClearButton()
@@ -109,7 +109,7 @@ final class ModulePublishControl: UIView {
             clearButton.topAnchor.constraint(equalTo: topAnchor),
             clearButton.bottomAnchor.constraint(equalTo: bottomAnchor),
             clearButton.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor),
-            clearButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            clearButton.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
 
         publishedView.accessibilityElementsHidden = true

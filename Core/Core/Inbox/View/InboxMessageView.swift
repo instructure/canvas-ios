@@ -35,6 +35,7 @@ public struct InboxMessageView: View {
         }
         .buttonStyle(PlainButtonStyle())
         .accessibilityLabel(model.a11yLabel)
+        .accessibilityIdentifier("Conversation.\(model.id)")
     }
 
     private var cellContent: some View {
@@ -46,21 +47,25 @@ public struct InboxMessageView: View {
                         .font(.semibold16)
                         .foregroundColor(.textDarkest)
                         .lineLimit(1)
+                        .accessibilityIdentifier("Conversation.\(model.id).participantName")
                     Spacer()
                     Text(model.date)
                         .foregroundColor(.textDark)
                         .font(.regular12)
+                        .accessibilityIdentifier("Conversation.\(model.id).date")
                 }
                 Text(verbatim: model.title)
                     .font(.regular14)
                     .foregroundColor(.textDarkest)
                     .lineLimit(1)
+                    .accessibilityIdentifier("Conversation.\(model.id).title")
                 HStack(alignment: .bottom, spacing: 0) {
                     Text(verbatim: model.message)
                         .font(.regular14)
                         .foregroundColor(.textDark)
                         .lineLimit(1)
                         .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityIdentifier("Conversation.\(model.id).message")
                     Spacer(minLength: 0)
                     attachmentIndicator
                     starredIndicator

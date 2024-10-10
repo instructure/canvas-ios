@@ -30,12 +30,8 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
         }
     }
 
-    /**
-     - parameters:
-        - invertColorsInDarkMode: If this parameter is true, then the webview will inject a script that inverts colors on the loaded website. Useful if we load 3rd party content without dark mode support.
-     */
-    public init(invertColorsInDarkMode: Bool = false) {
-        webView = CoreWebView(features: invertColorsInDarkMode ? [.invertColorsInDarkMode] : [])
+    public init(features: [CoreWebViewFeature] = []) {
+        webView = CoreWebView(features: features)
         super.init(nibName: nil, bundle: nil)
         webView.linkDelegate = self
     }
@@ -69,7 +65,7 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
             n.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             n.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             n.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            n.heightAnchor.constraint(greaterThanOrEqualToConstant: 78),
+            n.heightAnchor.constraint(greaterThanOrEqualToConstant: 78)
         ])
         limitedInteractionView = n
     }

@@ -27,7 +27,6 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
                                                    TestTreeHolder,
                                                    DefaultViewProvider {
     // MARK: - UIViewController Overrides
-    public override var shouldAutorotate: Bool { shouldAutorotateValue ?? super.shouldAutorotate }
     public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         supportedInterfaceOrientationsValue ?? super.supportedInterfaceOrientations
     }
@@ -40,8 +39,6 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     }
 
     // MARK: - Support Variables For Overrides
-    /** The value to be returned by the `shouldAutorotate` property. Nil reverts to the default behaviour of the UIViewController regarding that property. */
-    public var shouldAutorotateValue: Bool?
     /** The value to be returned by the `supportedInterfaceOrientations` property. Nil reverts to the default behaviour of the UIViewController regarding that property. */
     public var supportedInterfaceOrientationsValue: UIInterfaceOrientationMask?
     /** This block can be used to add custom logic to decide what to return from the `preferredStatusBarStyle` property. */
