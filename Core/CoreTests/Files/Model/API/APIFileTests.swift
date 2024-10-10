@@ -23,6 +23,7 @@ private let decoder = APIJSONDecoder()
 private let encoder = APIJSONEncoder()
 
 class APIFileTests: XCTestCase {
+
     func testAPIFileDecode() throws {
         var fixture = validFixture
         var data = try serialize(json: fixture)
@@ -37,6 +38,18 @@ class APIFileTests: XCTestCase {
         data = try serialize(json: fixture)
         file = try decoder.decode(APIFile.self, from: data)
         XCTAssertNil(file.thumbnail_url)
+    }
+
+    func testAPIFileDecodeWithNullFileName() throws {
+        var fixture = validFixture
+        fixture["filename"] = nil
+        let data = try serialize(json: fixture)
+
+        // WHEN
+        let testee = try decoder.decode(APIFile.self, from: data)
+
+        // THEN
+        XCTAssertEqual(testee.filename, testee.display_name)
     }
 
     func testAPIFolderItem() throws {
