@@ -57,7 +57,7 @@ public struct AssignmentListView: View, ScreenViewTrackable {
         .navigationTitle(String(localized: "Assignments", bundle: .core), subtitle: viewModel.courseName)
         .navigationBarGenericBackButton()
         .navBarItems(
-            trailing: .filterIcon {
+            trailing: .filterIcon(isBackgroundContextColor: true, isEnabled: viewModel.shouldShowFilterButton) {
                 viewModel.navigateToFilter(viewController: controller)
             }
         )

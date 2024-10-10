@@ -45,6 +45,7 @@ public class AssignmentListViewModel: ObservableObject {
     @Published public private(set) var shouldShowFilterButton = false
     @Published public private(set) var defaultDetailViewRoute = "/empty"
     public var selectedGradingPeriod: GradingPeriod?
+    public var selectedSortOption: AssignmentArrangementOptions?
     public private(set) lazy var gradingPeriods: Store<LocalUseCase<GradingPeriod>> = {
         let scope: Scope = .where(
             #keyPath(GradingPeriod.courseID),
@@ -146,8 +147,20 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     func navigateToFilter(viewController: WeakViewController) {
-        let viewModel = AssignmentFilterViewModel()
+        let weakVC = WeakViewController()
+        let viewModel = AssignmentFilterViewModel(gradingPeriods: gradingPeriods.all, completion: { [weak self] gradingPeriod, sortOption in
+            if let gradingPeriod {
+                self?.gradingPeriodSelected(gradingPeriod)
+                print(gradingPeriod.title ?? "")
+            }
+            if let sortOption {
+                self?.selectedSortOption = sortOption
+                print(sortOption.title)
+            }
+            self?.env.router.dismiss(weakVC)
+        })
         let controller = CoreHostingController(AssignmentFilterScreen(viewModel: viewModel))
+        weakVC.setValue(controller)
         env.router.show(
             controller,
             from: viewController,

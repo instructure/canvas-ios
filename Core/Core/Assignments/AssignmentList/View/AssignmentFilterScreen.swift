@@ -64,7 +64,7 @@ public struct AssignmentFilterScreen: View {
         }
     }
 
-    private func gradingPeriodItem(with item: AssignmentFilterViewModel.GradePeriod) -> some View {
+    private func gradingPeriodItem(with item: GradingPeriod) -> some View {
         InstUI.RadioButtonCell(
             title: item.title ?? String(localized: "All", bundle: .core),
             value: item,
@@ -94,7 +94,7 @@ public struct AssignmentFilterScreen: View {
 
     private var sendButton: some View {
         Button {
-//            viewModel.saveButtonTapped(viewController: viewController)
+            viewModel.saveButtonTapped(viewController: viewController)
         } label: {
             Text(String(localized: "Save", bundle: .core))
                 .font(.semibold16)
@@ -118,10 +118,15 @@ public struct AssignmentFilterScreen: View {
     }
 }
 
-#if DEBUG
-#Preview {
-    AssignmentFilterScreen(
-        viewModel: AssignmentFilterViewModel()
-    )
-}
-#endif
+//#if DEBUG
+//#Preview {
+//    AssignmentFilterScreen(
+//        viewModel: AssignmentFilterViewModel { gp, so in
+//            if let gp, let so {
+//                print(gp.title ?? "")
+//                print(so.title)
+//            }
+//        }
+//    )
+//}
+//#endif
