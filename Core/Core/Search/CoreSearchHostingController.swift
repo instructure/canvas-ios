@@ -82,6 +82,7 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
             )
         )
 
+        searchView.field.clearButtonColor = searchContext.color ?? .secondaryLabel
         searchView.field.text = searchContext.searchTerm.value
         searchView.field.delegate = self
 

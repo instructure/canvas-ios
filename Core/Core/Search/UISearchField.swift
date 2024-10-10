@@ -18,17 +18,10 @@
 
 import Foundation
 
-class RoundedView: UIView {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        layer.cornerRadius = min(frame.height, frame.width) * 0.5
-    }
-}
-
 class UISearchField: UIView {
     required init?(coder: NSCoder) { nil }
 
-    let field = UITextField()
+    let field = CoreTextField()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,7 +32,7 @@ class UISearchField: UIView {
         super.didMoveToSuperview()
         guard subviews.isEmpty else { return }
 
-        let container = RoundedView()
+        let container = CapsuleView()
         container.translatesAutoresizingMaskIntoConstraints = false
         container.backgroundColor = UIColor.backgroundLightest
         addSubview(container)
@@ -87,5 +80,46 @@ class UISearchField: UIView {
             stack.topAnchor.constraint(equalTo: container.topAnchor, constant: 7.5),
             stack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -7.5)
         ])
+    }
+}
+
+class CoreTextField: UITextField {
+
+    var clearButtonColor: UIColor = .tertiaryLabel {
+        didSet {
+            clearButton?.tintColor = clearButtonColor
+        }
+    }
+
+    private var clearButton: UIButton?
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        tweakClearButton()
+    }
+
+    func tweakClearButton() {
+        guard clearButton == nil else { return }
+
+        for view in subviews {
+            if let button = view as? UIButton {
+                button.setImage(
+                    button
+                        .image(for: .normal)?
+                        .withRenderingMode(.alwaysTemplate),
+                    for: .normal
+                )
+                clearButton = button
+                clearButton?.tintColor = clearButtonColor
+            }
+        }
+    }
+}
+
+private class CapsuleView: UIView {
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = min(frame.height, frame.width) * 0.5
     }
 }

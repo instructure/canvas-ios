@@ -73,6 +73,14 @@ public struct CourseSmartSearchDisplayView: View {
         .onChange(of: phase) { newPhase in
             display.isLoading = newPhase == .loading
         }
+        .refreshable {
+
+            await withCheckedContinuation { cont in
+                startLoading {
+                    cont.resume()
+                }
+            }
+        }
     }
 
     var sectionedResults: [SearchResultsSection] {
@@ -97,15 +105,16 @@ public struct CourseSmartSearchDisplayView: View {
         return list
     }
 
-    func startLoading(with term: String? = nil) {
+    func startLoading(with term: String? = nil, completion: (() -> Void)? = nil) {
         let searchTerm = term ?? searchContext.searchTerm.value
-        phase = .loading
+        if completion == nil { phase = .loading }
 
         print("Searching `\(searchTerm)` ..")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             // TODO: Fetch results through API
             results = SearchResult.simpleExample.sorted(by: { $0.distanceDots > $1.distanceDots })
             applyFilters()
+            completion?()
         }
     }
 

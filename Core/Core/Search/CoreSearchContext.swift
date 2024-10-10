@@ -27,6 +27,7 @@ public class CoreSearchContext: EnvironmentKey {
 
     var didSubmit = PassthroughSubject<String, Never>()
     var searchTerm = CurrentValueSubject<String, Never>("")
+    var history = CurrentValueSubject<[String], Never>([])
 
     weak var controller: CoreSearchController?
 
