@@ -292,7 +292,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             Spacer()
 
             addRecipientButton
-                .frame(maxHeight: .infinity, alignment: .center)
+                .frame(maxHeight: .infinity, alignment: .top)
                 .accessibilitySortPriority(2)
         }
         .animation(.easeInOut, value: model.recipients.isEmpty)
@@ -307,7 +307,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .font(.regular16, lineHeight: .condensed)
             .foregroundColor(.textDark)
             .padding(.vertical, 12)
-            .frame(maxHeight: .infinity, alignment: .center)
             .accessibilitySortPriority(3)
             .accessibilityIdentifier("ComposeMessage.to")
     }
