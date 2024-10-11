@@ -649,6 +649,21 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.selectedRecipients.send(recipient)
         // Then
         XCTAssertTrue(testee.isSendIndividualToggleDisabled)
+        XCTAssertTrue(testee.sendIndividual)
+    }
+
+    func test_selectedRecipients_setSendIndividualToPreviousState() {
+        // Given
+        testee.sendIndividual = false
+        let recipientNotExceedMaxLimit = ReceiptStub.recipients
+        let recipientExceedMaxLimit  = ReceiptStub.getRecipientExceedMaxLimit()
+
+        testee.selectedRecipients.send(recipientExceedMaxLimit)
+        XCTAssertTrue(testee.sendIndividual)
+
+        // SendIndividual back to the pervious state
+        testee.selectedRecipients.send(recipientNotExceedMaxLimit)
+        XCTAssertFalse(testee.sendIndividual)
     }
 }
 

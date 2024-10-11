@@ -350,9 +350,18 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     private var individualView: some View {
         Toggle(isOn: $model.sendIndividual) {
-            Text("Send individual message to each recipient", bundle: .core)
-                .font(.regular16, lineHeight: .condensed)
-                .foregroundColor(.textDarkest.opacity(model.isSendIndividualToggleDisabled ? 0.5 : 1))
+            VStack(alignment: .leading, spacing: .zero) {
+                Text("Send individual message to each recipient", bundle: .core)
+                    .font(.regular16, lineHeight: .condensed)
+                    .foregroundColor(model.isSendIndividualToggleDisabled ? .disabledGray : .textDarkest)
+
+               if model.isSendIndividualToggleDisabled {
+                   Text("You can only send individual messages over 100 recipients.", bundle: .core)
+                       .font(.regular14)
+                       .foregroundColor(.textDark)
+               }
+            }
+
         }
         .tint(.accentColor)
         .disabled(model.isSendIndividualToggleDisabled)
