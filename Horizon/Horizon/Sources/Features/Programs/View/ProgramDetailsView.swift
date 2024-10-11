@@ -49,7 +49,6 @@ struct ProgramDetailsViewView: View {
                     learningContentView(modules: program.modules)
                 }
             }
-            .background(Color.backgroundLight)
         }
         .padding(.top, 16)
         .padding(.horizontal, 16)
@@ -66,6 +65,7 @@ struct ProgramDetailsViewView: View {
             moduleListView(modules: modules)
             Spacer()
         }
+        .background(Color.backgroundLight)
 //        .containerRelativeFrame(.vertical)
     }
 

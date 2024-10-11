@@ -36,7 +36,7 @@ struct DashboardView: View {
                 VStack(spacing: 0) {
                     ForEach(viewModel.programs) { program in
                         if program.currentModuleItem != nil, !program.upcomingModuleItems.isEmpty {
-                            VStack(alignment: .leading, spacing: 0) {
+                            VStack(alignment: .leading, spacing: 12) {
                                 Size24BoldTextDarkestTitle(title: program.name)
                                     .padding(.top, 16)
                                 CertificateProgressBar(
@@ -48,7 +48,6 @@ struct DashboardView: View {
                             }
                             .padding(.horizontal, 16)
                             .background(Color.backgroundLight)
-                            .padding(.bottom, 32)
                         }
                     }
                 }
@@ -56,6 +55,7 @@ struct DashboardView: View {
             .navigationBarItems(trailing: logoutButton)
             .scrollIndicators(.hidden, axes: .vertical)
         }
+        .background(Color.backgroundLight)
     }
 
     private var logoutButton: some View {

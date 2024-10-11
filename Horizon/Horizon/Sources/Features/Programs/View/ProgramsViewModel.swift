@@ -52,7 +52,7 @@ final class ProgramsViewModel: ObservableObject {
 
         programDidSelect
             .sink { program, vc in
-                router.route(to: "/programs/\(program.id)", userInfo: ["program" : program], from: vc)
+                router.route(to: "/programs/\(program.id)", userInfo: ["program": program], from: vc)
             }
             .store(in: &subscriptions)
     }
