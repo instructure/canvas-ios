@@ -35,9 +35,9 @@ struct UITextViewWrapper: UIViewRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-      let coordinator = Coordinator(self)
+        let coordinator = Coordinator(self)
 
-      return coordinator
+        return coordinator
     }
 
     class Coordinator: NSObject, UITextViewDelegate {
@@ -60,8 +60,15 @@ struct UITextViewWrapper: UIViewRepresentable {
             // Detect when pasted content comes from the pasteboard
             if let pasteboard = UIPasteboard.general.string, text == pasteboard {
                 parent.onPaste() // Trigger the onPaste callback
+                textView.moveCourserToEnd()
             }
             return true
         }
+    }
+}
+
+extension UITextView {
+    public func moveCourserToEnd() {
+        selectedTextRange = textRange(from: endOfDocument, to: endOfDocument)
     }
 }
