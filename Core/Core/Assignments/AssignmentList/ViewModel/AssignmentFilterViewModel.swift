@@ -19,34 +19,56 @@
 public final class AssignmentFilterViewModel: ObservableObject {
 
     // MARK: - Outputs
-    @Published private(set) var saveButtonIsEnabled = true
-    @Published private(set) var isShowGradingPeriodsView = true
+    @Published private(set) var saveButtonIsEnabled = false
+    @Published private(set) var isShowGradingPeriodsView = false
     @Published private(set) var courseName: String?
     @Published private(set) var gradingPeriods: [GradingPeriod] = []
-//    @Published private(set) var sortByOptions: [AssignmentArrangementOptions] = []
-    @Published private(set) var sortByOptions: [AssignmentArrangementOptions] = AssignmentArrangementOptions.allCases
-    @Published var selectedGradingPeriod: GradingPeriod?
-    @Published var selectedSortByOption: AssignmentArrangementOptions?
+    @Published private(set) var sortingOptions: [AssignmentArrangementOptions] = []
+    @Published var selectedGradingPeriod: GradingPeriod? {
+        didSet {
+            checkChanges()
+        }
+    }
+    @Published var selectedSortingOption: AssignmentArrangementOptions? {
+        didSet {
+            checkChanges()
+        }
+    }
+    private var currentGradingPeriod: GradingPeriod?
+    private var currentSortingOption: AssignmentArrangementOptions
     private let completion: (GradingPeriod?, AssignmentArrangementOptions?) -> Void
 
     // MARK: - Init
     init(
         gradingPeriods: [GradingPeriod],
+        currentGradingPeriod: GradingPeriod?,
+        sortingOptions: [AssignmentArrangementOptions],
+        currentSortingOption: AssignmentArrangementOptions,
         completion: @escaping (GradingPeriod?, AssignmentArrangementOptions?) -> Void
     ) {
         self.gradingPeriods = gradingPeriods
+        self.selectedGradingPeriod = currentGradingPeriod
+        self.currentGradingPeriod = currentGradingPeriod
+        self.sortingOptions = sortingOptions
+        self.selectedSortingOption = currentSortingOption
+        self.currentSortingOption = currentSortingOption
         self.completion = completion
-        print(gradingPeriods)
+
+        if gradingPeriods.count > 1 { isShowGradingPeriodsView = true }
     }
 
     // MARK: - Functions
 
+    func checkChanges() {
+        saveButtonIsEnabled = selectedGradingPeriod != currentGradingPeriod || selectedSortingOption != currentSortingOption
+    }
+
     func saveButtonTapped(viewController: WeakViewController) {
-        completion(selectedGradingPeriod, selectedSortByOption)
+        completion(selectedGradingPeriod, selectedSortingOption)
     }
 
     func dimiss(viewController: WeakViewController) {
-        completion(nil, nil)
+        completion(nil, selectedSortingOption)
     }
 }
 

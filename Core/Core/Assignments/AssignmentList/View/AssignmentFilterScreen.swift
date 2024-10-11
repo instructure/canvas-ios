@@ -56,6 +56,7 @@ public struct AssignmentFilterScreen: View {
 
     private var gradingPeriodSection: some View {
         Section {
+            InstUI.RadioButtonCell(title: "All", value: nil, selectedValue: $viewModel.selectedGradingPeriod, color: Color(Brand.shared.primary))
             ForEach(viewModel.gradingPeriods, id: \.hashValue) { item in
                 gradingPeriodItem(with: item)
             }
@@ -66,7 +67,7 @@ public struct AssignmentFilterScreen: View {
 
     private func gradingPeriodItem(with item: GradingPeriod) -> some View {
         InstUI.RadioButtonCell(
-            title: item.title ?? String(localized: "All", bundle: .core),
+            title: item.title ?? "",
             value: item,
             selectedValue: $viewModel.selectedGradingPeriod,
             color: Color(Brand.shared.primary)
@@ -75,7 +76,7 @@ public struct AssignmentFilterScreen: View {
 
     private var sortBySection: some View {
         Section {
-            ForEach(viewModel.sortByOptions, id: \.self) { item in
+            ForEach(viewModel.sortingOptions, id: \.self) { item in
                 sortByItem(with: item)
             }
         } header: {
@@ -87,7 +88,7 @@ public struct AssignmentFilterScreen: View {
         InstUI.RadioButtonCell(
             title: item.title,
             value: item,
-            selectedValue: $viewModel.selectedSortByOption,
+            selectedValue: $viewModel.selectedSortingOption,
             color: Color(Brand.shared.primary)
         )
     }
@@ -117,16 +118,3 @@ public struct AssignmentFilterScreen: View {
         .accessibilityLabel(Text("Hide", bundle: .core))
     }
 }
-
-//#if DEBUG
-//#Preview {
-//    AssignmentFilterScreen(
-//        viewModel: AssignmentFilterViewModel { gp, so in
-//            if let gp, let so {
-//                print(gp.title ?? "")
-//                print(so.title)
-//            }
-//        }
-//    )
-//}
-//#endif

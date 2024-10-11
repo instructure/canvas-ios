@@ -37,9 +37,6 @@ public struct AssignmentListView: View, ScreenViewTrackable {
             HStack(alignment: .firstTextBaseline) {
                 gradingPeriodTitle
                 Spacer(minLength: 8)
-                if viewModel.shouldShowFilterButton {
-                    gradingPeriodButton
-                }
             }
             .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
 
@@ -57,7 +54,7 @@ public struct AssignmentListView: View, ScreenViewTrackable {
         .navigationTitle(String(localized: "Assignments", bundle: .core), subtitle: viewModel.courseName)
         .navigationBarGenericBackButton()
         .navBarItems(
-            trailing: .filterIcon(isBackgroundContextColor: true, isEnabled: viewModel.shouldShowFilterButton) {
+            trailing: .filterIcon(isBackgroundContextColor: true) {
                 viewModel.navigateToFilter(viewController: controller)
             }
         )

@@ -42,19 +42,17 @@ public class AssignmentListViewModel: ObservableObject {
     @Published public private(set) var state: ViewModelState<[AssignmentGroupViewModel]> = .loading
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var courseName: String?
-    @Published public private(set) var shouldShowFilterButton = false
     @Published public private(set) var defaultDetailViewRoute = "/empty"
+    public var selectedSortingOption: AssignmentArrangementOptions = .groupName
     public var selectedGradingPeriod: GradingPeriod?
-    public var selectedSortOption: AssignmentArrangementOptions?
+    private var sortingOptions = AssignmentArrangementOptions.allCases
     public private(set) lazy var gradingPeriods: Store<LocalUseCase<GradingPeriod>> = {
         let scope: Scope = .where(
             #keyPath(GradingPeriod.courseID),
             equals: courseID,
             orderBy: #keyPath(GradingPeriod.startDate)
         )
-        return env.subscribe(LocalUseCase(scope: scope)) { [weak self] in
-            self?.gradingPeriodsDidUpdate()
-        }
+        return env.subscribe(LocalUseCase(scope: scope)) { }
     }()
 
     private let env = AppEnvironment.shared
@@ -101,10 +99,19 @@ public class AssignmentListViewModel: ObservableObject {
         assignmentGroups.refresh()
     }
 
+    public func sortingOptionSelected(_ sortingOption: AssignmentArrangementOptions?) {
+        selectedSortingOption = sortingOption ?? .groupName
+
+        assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id)) { [weak self] in
+            self?.assignmentGroupsDidUpdate()
+        }
+        assignmentGroups.refresh()
+    }
+
     public func viewDidAppear() {
         gradingPeriods.refresh()
         course.refresh()
-        assignmentGroups.refresh()
+        assignmentGroups.refresh(force: true)
     }
 
     private func assignmentGroupsDidUpdate() {
@@ -141,24 +148,18 @@ public class AssignmentListViewModel: ObservableObject {
         }()
     }
 
-    private func gradingPeriodsDidUpdate() {
-        if gradingPeriods.requested, gradingPeriods.pending { return }
-        shouldShowFilterButton = gradingPeriods.all.count > 1
-    }
-
     func navigateToFilter(viewController: WeakViewController) {
         let weakVC = WeakViewController()
-        let viewModel = AssignmentFilterViewModel(gradingPeriods: gradingPeriods.all, completion: { [weak self] gradingPeriod, sortOption in
-            if let gradingPeriod {
+        let viewModel = AssignmentFilterViewModel(
+            gradingPeriods: gradingPeriods.all,
+            currentGradingPeriod: selectedGradingPeriod,
+            sortingOptions: sortingOptions,
+            currentSortingOption: selectedSortingOption,
+            completion: { [weak self] gradingPeriod, sortingOption in
                 self?.gradingPeriodSelected(gradingPeriod)
-                print(gradingPeriod.title ?? "")
-            }
-            if let sortOption {
-                self?.selectedSortOption = sortOption
-                print(sortOption.title)
-            }
-            self?.env.router.dismiss(weakVC)
-        })
+                self?.sortingOptionSelected(sortingOption)
+                self?.env.router.dismiss(weakVC)
+            })
         let controller = CoreHostingController(AssignmentFilterScreen(viewModel: viewModel))
         weakVC.setValue(controller)
         env.router.show(
