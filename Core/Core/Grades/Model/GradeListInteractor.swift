@@ -322,18 +322,20 @@ public final class GradeListInteractorLive: GradeListInteractor {
             gradingPeriodID == nil) || course.hideFinalGrades {
             return Just(nil).eraseToAnyPublisher()
         } else if hideQuantitativeData {
-            return getGradeForHideQuantitativeData(
+            return Just(getGradeForHideQuantitativeData(
                 baseOnGradedAssignments: baseOnGradedAssignments,
                 courseEnrollment: courseEnrollment,
                 gradeEnrollment: gradeEnrollment,
                 course: course
-            )
+            ))
+            .eraseToAnyPublisher()
         } else {
-            return getGradeForShowQuantitativeData(
+            return Just(getGradeForShowQuantitativeData(
                 baseOnGradedAssignments: baseOnGradedAssignments,
                 courseEnrollment: courseEnrollment,
                 gradeEnrollment: gradeEnrollment
-            )
+            ))
+            .eraseToAnyPublisher()
         }
     }
 
@@ -342,29 +344,29 @@ public final class GradeListInteractorLive: GradeListInteractor {
         courseEnrollment: Enrollment?,
         gradeEnrollment: Enrollment?,
         course: Course
-    ) -> AnyPublisher<String?, Never> {
-        if let gradingPeriodID = gradingPeriodID {
+    ) -> String? {
+        if let gradingPeriodID {
             return getGradeForGradingPeriod(gradingPeriodID: gradingPeriodID)
         } else {
             return getGradeForNoGradingPeriod()
         }
 
-        func getGradeForGradingPeriod(gradingPeriodID: String) -> AnyPublisher<String?, Never> {
+        func getGradeForGradingPeriod(gradingPeriodID: String) -> String? {
             let letterGrade = baseOnGradedAssignments
                 ? gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID)
                 : gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
 
-            if let letterGrade = letterGrade {
-                return Just(letterGrade).eraseToAnyPublisher()
+            if let letterGrade {
+                return letterGrade
             } else {
-                return Just(gradeEnrollment?.convertedLetterGrade(
+                return gradeEnrollment?.convertedLetterGrade(
                     gradingPeriodID: gradingPeriodID,
                     gradingScheme: course.gradingScheme
-                )).eraseToAnyPublisher()
+                )
             }
         }
 
-        func getGradeForNoGradingPeriod() -> AnyPublisher<String?, Never> {
+        func getGradeForNoGradingPeriod() -> String? {
             let letterGrade = (
                 baseOnGradedAssignments
                 ? courseEnrollment?.computedCurrentGrade
@@ -373,14 +375,14 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
             if courseEnrollment?.multipleGradingPeriodsEnabled == true,
                courseEnrollment?.totalsForAllGradingPeriodsOption == false {
-                return Just(nil).eraseToAnyPublisher()
+                return nil
             } else if let letterGrade {
-                return Just(letterGrade).eraseToAnyPublisher()
+                return letterGrade
             } else {
-                return Just(courseEnrollment?.convertedLetterGrade(
+                return courseEnrollment?.convertedLetterGrade(
                     gradingPeriodID: nil,
                     gradingScheme: course.gradingScheme
-                )).eraseToAnyPublisher()
+                )
             }
         }
     }
@@ -389,19 +391,19 @@ public final class GradeListInteractorLive: GradeListInteractor {
         baseOnGradedAssignments: Bool,
         courseEnrollment: Enrollment?,
         gradeEnrollment: Enrollment?
-    ) -> AnyPublisher<String?, Never> {
+    ) -> String? {
         var letterGrade: String?
         var localGrade: String?
-        if let gradingPeriodID = gradingPeriodID {
+        if let gradingPeriodID {
             getGradeForGradingPeriod(gradingPeriodID: gradingPeriodID)
         } else {
             getGradeForNoGradingPeriod()
         }
 
-        if let scoreText = localGrade, let letterGrade = letterGrade {
-            return Just(scoreText + " (\(letterGrade))").eraseToAnyPublisher()
+        if let scoreText = localGrade, let letterGrade {
+            return scoreText + " (\(letterGrade))"
         } else {
-            return Just(localGrade).eraseToAnyPublisher()
+            return localGrade
         }
 
         func getGradeForGradingPeriod(gradingPeriodID: String) {
