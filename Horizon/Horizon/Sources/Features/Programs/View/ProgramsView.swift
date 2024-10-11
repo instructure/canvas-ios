@@ -21,11 +21,10 @@ import SwiftUI
 
 struct ProgramsView: View {
     @ObservedObject private var viewModel: ProgramsViewModel
-    @State private var scrollPos: Int?
+    @Environment(\.viewController) private var viewController
 
     init(viewModel: ProgramsViewModel) {
         self.viewModel = viewModel
-        scrollPos = 0
     }
 
     var body: some View {
@@ -33,108 +32,37 @@ struct ProgramsView: View {
             InstUI.BaseScreen(
                 state: viewModel.state,
                 config: .init(refreshable: false)
-            ) { proxy in
-                VStack(alignment: .leading, spacing: 0) {
-                    if let program = viewModel.programs.first(where: { !$0.modules.isEmpty }) {
-                        Size24BoldTextDarkestTitle(title: program.name)
-                            .padding(.bottom, 4)
-                        Size12RegularTextDarkTitle(title: program.institutionName)
-                            .padding(.bottom, 4)
-                        Size12RegularTextDarkTitle(title: program.targetCompletion)
-                        CertificateProgressBar(
-                            maxWidth: proxy.size.width,
-                            progress: program.progress,
-                            progressString: program.progressString
-                        )
-                        .padding(.bottom, 16)
-                        learningContentView(modules: program.modules)
-                    }
-                }
-                .background(Color.backgroundLight)
-            }
-            .padding(.top, 16)
-            .padding(.horizontal, 16)
-        }
-        .background(Color.backgroundLight)
-        .onFirstAppear {
-            scrollPos = 0
-        }
-    }
-
-    @ViewBuilder
-    private func learningContentView(modules: [HModule]) -> some View {
-        VStack {
-            courseSelectorView
-            moduleListView(modules: modules)
-            Spacer()
-        }
-//        .containerRelativeFrame(.vertical)
-    }
-
-    private var courseSelectorView: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
-                ForEach(0 ..< 6) { index in
-                    Button {
-                        scrollPos = index
-                    } label: {
-                        VStack {
-                            Size14RegularTextDarkestTitle(title: "Course: \(index)")
-                            if index == scrollPos {
-                                Rectangle()
-                                    .foregroundColor(Color.red)
-                                    .frame(height: 2)
+            ) { _ in
+                ForEach(viewModel.programs) { program in
+                    VStack(spacing: 16) {
+                        Button {
+                            viewModel.programDidSelect.accept((program, viewController))
+                        } label: {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Size12RegularTextDarkestTitle(title: program.institutionName)
+                                Size16RegularTextDarkestTitle(title: program.name)
+                                ContentProgressBar(progress: program.progress)
+                                HStack(spacing: 0) {
+                                    Size12RegularTextDarkTitle(title: program.progressString)
+                                    Spacer()
+                                    Size12RegularTextDarkTitle(title: ProgressState.allCases.randomElement()?.rawValue ?? "")
+                                }
                             }
+                            .padding(.all, 24)
                         }
-                        .frame(maxHeight: 44)
+                        .background(Color.backgroundLight)
+                        .cornerRadius(8)
+                        .padding([.leading, .top, .trailing], 16)
                     }
-                    .id(index)
                 }
             }
         }
-        .scrollTargetLayout()
-        .scrollTargetBehavior(.viewAligned(limitBehavior: .always))
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollPosition(id: $scrollPos, anchor: .center)
-        .animation(.smooth, value: scrollPos)
+        .navigationTitle("Your Programs")
     }
 
-    @ViewBuilder
-    private func moduleListView(modules: [HModule]) -> some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
-                ForEach(0 ..< 6) { index in
-                    ScrollView(.vertical, showsIndicators: false) {
-                        VStack(spacing: 16) {
-                            ForEach(modules) { module in
-                                ExpandingModuleView(
-                                    title: module.name,
-                                    items: module.items
-                                )
-                                .frame(minHeight: 44)
-                                .background(Color.backgroundLightest)
-                                .cornerRadius(8)
-                                .id(index)
-                            }
-                        }
-                    }
-                    .containerRelativeFrame(.horizontal)
-                    .id(index)
-                    .scrollTransition(.interactive) { content, phase in
-                        content
-                            .opacity(phase.isIdentity ? 1 : 0)
-                            .offset(
-                                x: phase.isIdentity ? 0 : -16,
-                                y: phase.isIdentity ? 0 : -100
-                            )
-                    }
-                }
-            }
-        }
-        .scrollTargetLayout()
-        .scrollTargetBehavior(.viewAligned)
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollPosition(id: $scrollPos, anchor: .center)
-        .animation(.smooth, value: scrollPos)
+    private enum ProgressState: String, CaseIterable {
+        case onTrack = "On Track"
+        case overdue = "Overdue"
+        case targetDate = "XX/XX"
     }
 }

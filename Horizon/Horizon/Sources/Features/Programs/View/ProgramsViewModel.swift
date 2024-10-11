@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineExt
 import Core
 import Foundation
 
@@ -24,8 +25,11 @@ final class ProgramsViewModel: ObservableObject {
     // MARK: - Outputs
 
     @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var title: String = "Biology certificate"
     @Published private(set) var programs: [HProgram] = []
+
+    // MARK: - Inputs
+
+    let programDidSelect = PassthroughRelay<(HProgram, WeakViewController)>()
 
     // MARK: - Private
 
@@ -33,13 +37,22 @@ final class ProgramsViewModel: ObservableObject {
 
     // MARK: - Init
 
-    init(interactor: GetProgramsInteractor) {
+    init(
+        router: Router,
+        interactor: GetProgramsInteractor
+    ) {
         unowned let unownedSelf = self
 
         interactor.getPrograms()
             .sink { programs in
                 unownedSelf.programs = programs
                 unownedSelf.state = .data
+            }
+            .store(in: &subscriptions)
+
+        programDidSelect
+            .sink { program, vc in
+                router.route(to: "/programs/\(program.id)", userInfo: ["program" : program], from: vc)
             }
             .store(in: &subscriptions)
     }

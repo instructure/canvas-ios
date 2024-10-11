@@ -16,26 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
-import SwiftUI
+import Foundation
 
-struct BaseHorizonScreen<Content: View>: View {
-    @Environment(\.colorScheme) var colorScheme
-    let content: () -> Content
+final class ProgramDetailsViewModel: ObservableObject {
+    // MARK: - Outputs
 
-    var body: some View {
-        content()
-            .navigationBarItems(leading: profileMenuButton)
-            .toolbarBackground(colorScheme == .dark ? Color.backgroundDarkest : Color.backgroundLightest, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
-    }
+    @Published private(set) var state: InstUI.ScreenState = .loading
+    @Published private(set) var title: String = "Biology certificate"
+    @Published private(set) var program: HProgram?
 
-    private var profileMenuButton: some View {
-        Button {
-            print("route to profile")
-        } label: {
-            Image.hamburgerSolid.tint(Color.textDarkest)
-        }
-        .frame(width: 44, height: 44).padding(.leading, -6)
+    // MARK: - Private
+
+    private var subscriptions = Set<AnyCancellable>()
+
+    // MARK: - Init
+
+    init(program: HProgram) {
+        self.program = program
+        self.state = .data
     }
 }

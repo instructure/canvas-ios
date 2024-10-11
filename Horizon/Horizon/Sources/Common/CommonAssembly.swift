@@ -17,25 +17,9 @@
 //
 
 import Core
-import SwiftUI
 
-struct BaseHorizonScreen<Content: View>: View {
-    @Environment(\.colorScheme) var colorScheme
-    let content: () -> Content
-
-    var body: some View {
-        content()
-            .navigationBarItems(leading: profileMenuButton)
-            .toolbarBackground(colorScheme == .dark ? Color.backgroundDarkest : Color.backgroundLightest, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
-    }
-
-    private var profileMenuButton: some View {
-        Button {
-            print("route to profile")
-        } label: {
-            Image.hamburgerSolid.tint(Color.textDarkest)
-        }
-        .frame(width: 44, height: 44).padding(.leading, -6)
+final class CommonAssembly {
+    static func makeRouter() -> Router {
+        AppEnvironment.shared.router
     }
 }

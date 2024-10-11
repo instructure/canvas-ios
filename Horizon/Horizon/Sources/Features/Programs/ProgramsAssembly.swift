@@ -16,14 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
 
 final class ProgramsAssembly {
     static func makeGetProgramsInteractor() -> GetProgramsInteractor {
         GetProgramsInteractor()
     }
 
-    static func makeView() -> ProgramsView {
-        ProgramsView(viewModel: .init(interactor: makeGetProgramsInteractor()))
+    static func makeProgramsView() -> ProgramsView {
+        ProgramsView(
+            viewModel: .init(
+                router: CommonAssembly.makeRouter(),
+                interactor: makeGetProgramsInteractor()
+            )
+        )
+    }
+
+    static func makeProgramDetailsViewController(program: HProgram) -> UIViewController {
+        CoreHostingController(
+            ProgramDetailsViewView(viewModel: .init(program: program))
+        )
     }
 }

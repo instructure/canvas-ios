@@ -62,7 +62,7 @@ struct DashboardView: View {
         Button {
             SessionInteractor().logout()
         } label: {
-            Image.logout.tint(Color.textLightest)
+            Image.logout.tint(Color.textDarkest)
         }
     }
 
