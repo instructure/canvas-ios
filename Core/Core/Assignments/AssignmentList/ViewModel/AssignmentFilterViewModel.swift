@@ -19,26 +19,23 @@
 public final class AssignmentFilterViewModel: ObservableObject {
 
     // MARK: - Outputs
+
     @Published private(set) var saveButtonIsEnabled = false
     @Published private(set) var isShowGradingPeriodsView = false
     @Published private(set) var courseName: String?
     @Published private(set) var gradingPeriods: [GradingPeriod] = []
     @Published private(set) var sortingOptions: [AssignmentArrangementOptions] = []
-    @Published var selectedGradingPeriod: GradingPeriod? {
-        didSet {
-            checkChanges()
-        }
-    }
-    @Published var selectedSortingOption: AssignmentArrangementOptions? {
-        didSet {
-            checkChanges()
-        }
-    }
+    @Published var selectedGradingPeriod: GradingPeriod? { didSet { checkChanges() } }
+    @Published var selectedSortingOption: AssignmentArrangementOptions? { didSet { checkChanges() } }
+
+    // MARK: - Private variables
+
     private var currentGradingPeriod: GradingPeriod?
     private var currentSortingOption: AssignmentArrangementOptions
     private let completion: (GradingPeriod?, AssignmentArrangementOptions?) -> Void
 
     // MARK: - Init
+
     init(
         gradingPeriods: [GradingPeriod],
         currentGradingPeriod: GradingPeriod?,
@@ -68,25 +65,6 @@ public final class AssignmentFilterViewModel: ObservableObject {
     }
 
     func dimiss(viewController: WeakViewController) {
-        completion(nil, selectedSortingOption)
-    }
-}
-
-// MARK: - Dependency
-extension AssignmentFilterViewModel {
-
-    struct GradePeriod: Equatable, Hashable {
-        let title: String?
-        var value: GradingPeriod?
-    }
-}
-
-// MARK: - Helpers
-extension AssignmentFilterViewModel {
-    /// Using this type to match between the initial values and the changed values to
-    /// make the save button is enabled or disabled
-    fileprivate struct FilterValue: Equatable {
-        var selectedGradingPeriod: GradePeriod?
-        var selectedSortBy: AssignmentArrangementOptions?
+        completion(currentGradingPeriod, currentSortingOption)
     }
 }

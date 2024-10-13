@@ -98,7 +98,7 @@ public struct AssignmentListView: View, ScreenViewTrackable {
     private var gradingPeriodButtons: [ActionSheet.Button] {
         var buttons: [ActionSheet.Button] = viewModel.gradingPeriods.all.map { gradingPeriod in
             ActionSheet.Button.default(Text(gradingPeriod.title ?? "")) {
-                viewModel.gradingPeriodSelected(gradingPeriod)
+                viewModel.filterOptionSelected(gradingPeriod)
                 isShowingGradingPeriodPicker = false
             }
         }

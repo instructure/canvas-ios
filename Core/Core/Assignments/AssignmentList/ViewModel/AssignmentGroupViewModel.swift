@@ -34,6 +34,10 @@ public class AssignmentGroupViewModel: ObservableObject {
     public convenience init(assignmentGroup: AssignmentGroup, assignments: [Assignment], courseColor: UIColor?) {
         self.init(name: assignmentGroup.name, id: assignmentGroup.id, assignments: assignments, courseColor: courseColor)
     }
+
+    public convenience init(assignmentDateGroup: AssignmentDateGroup, courseColor: UIColor?) {
+        self.init(name: assignmentDateGroup.name, id: assignmentDateGroup.name, assignments: assignmentDateGroup.assignments, courseColor: courseColor)
+    }
 }
 
 extension AssignmentGroupViewModel: Equatable {
