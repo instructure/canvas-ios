@@ -74,18 +74,29 @@ public struct SmartSearchFiltersView: View {
 
     public var body: some View {
         NavigationView {
-            List {
+            ScrollView {
+                LazyVStack(spacing: 0) {
 
-                Section {
+                    InstUI.Divider()
+
+                    HStack {
+                        Text("Sort By").font(.semibold14).foregroundStyle(Color.textDark)
+                        Spacer()
+                    }
+                    .padding(16)
+                    .background(Color.borderLight)
+
+                    InstUI.Divider()
 
                     InstUI.RadioButtonCell(
                         title: "Relevance",
                         value: .relevance,
                         selectedValue: $sortMode,
-                        color: color
+                        color: color,
+                        seperator: false
                     )
-                    .listRowInsets(.filterRow)
-                    .listRowSeparator(.hidden)
+
+                    InstUI.Divider().padding(.horizontal, 16)
 
                     InstUI.RadioButtonCell(
                         title: "Type",
@@ -93,29 +104,9 @@ public struct SmartSearchFiltersView: View {
                         selectedValue: $sortMode,
                         color: color
                     )
-                    .listRowInsets(.filterRow)
-                    .listRowSeparator(.hidden)
-                } header: {
-                    Text("Sort By").font(.semibold14)
-                }
 
-                Section {
-                    ForEach($resultTypes, id: \.contentType) { type in
-                        HStack {
-                            InstUI.CheckboxCell(
-                                title: type.wrappedValue.contentType.title,
-                                isSelected: type.checked,
-                                color: color
-                            )
-                            Spacer()
-                            type.wrappedValue.contentType.icon.foregroundStyle(color)
-                        }
-                        .listRowInsets(.filterRow)
-                        .listRowSeparator(.hidden)
-                    }
-                } header: {
                     HStack {
-                        Text("Result type").font(.semibold14)
+                        Text("Result type").font(.semibold14).foregroundStyle(Color.textDark)
                         Spacer()
                         Button(allSelected ? "Deselect all" : "Select all") {
                             if allSelected {
@@ -130,9 +121,31 @@ public struct SmartSearchFiltersView: View {
                         }
                         .font(.semibold14)
                     }
+                    .padding(16)
+                    .background(Color.borderLight)
+
+                    InstUI.Divider()
+
+                    ForEach($resultTypes, id: \.contentType) { type in
+                        InstUI.CheckboxCell(
+                            title: type.wrappedValue.contentType.title,
+                            isSelected: type.checked,
+                            color: color,
+                            seperator: false,
+                            icon: {
+                                type.wrappedValue.contentType.icon.foregroundStyle(color)
+                            }
+                        )
+
+                        if type.wrappedValue.contentType != resultTypes.last?.contentType {
+                            InstUI.Divider().padding(.horizontal, 16)
+                        }
+                    }
+
+                    InstUI.Divider()
                 }
             }
-            .listStyle(.grouped)
+            .listStyle(.plain)
             .navigationTitle("Search Preferences")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
