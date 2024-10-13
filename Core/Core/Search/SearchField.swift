@@ -48,6 +48,7 @@ struct SearchTextField: View {
             Spacer(minLength: 5)
 
             TextField("Search in this course", text: $text)
+                .submitLabel(.search)
                 .focused($isFocused)
                 .font(.subheadline)
                 .foregroundStyle(Color.textDarkest)
