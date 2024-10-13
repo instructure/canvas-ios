@@ -51,7 +51,7 @@ struct SideMenuItem: View {
             image
             title
                 .font(.regular16)
-                .foregroundColor(colorScheme == .dark ? .white : .licorice)
+                .foregroundColor(.textDarkest)
             Spacer()
 
             if badgeValue > 0 {
@@ -76,8 +76,8 @@ private struct Badge: View {
         clampedValueText()
             .font(.semibold12)
             .padding(EdgeInsets(top: 2.5, leading: 6.5, bottom: 3, trailing: 6.5))
-            .foregroundColor(.white)
-            .background(Color.crimson)
+            .foregroundColor(.textLightest)
+            .background(Color.backgroundDanger)
             .clipShape(Capsule())
     }
 

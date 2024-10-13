@@ -62,6 +62,9 @@ class DiscussionWebPageViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.navTitle, "Discussion Details")
         XCTAssertEqual(testee.subTitle, "Test Group Name")
-        XCTAssertEqual(testee.contextColor, UIColor(hexString: "#BEEF00"))
+        XCTAssertEqual(
+            testee.contextColor!.hexString,
+            CourseColorsInteractorLive().courseColorFromAPIColor("#BEEF00").hexString
+        )
     }
 }

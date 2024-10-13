@@ -86,7 +86,7 @@ public class K5ScheduleEntryViewModel: ObservableObject, Identifiable {
 
     private func updateSubtitle() {
         guard case .checkbox(let isChecked) = leading else { return }
-        subtitle = isChecked ? SubtitleViewModel(text: String(localized: "You've marked it as done.", bundle: .core), color: .ash, font: .regular12) : nil
+        subtitle = isChecked ? SubtitleViewModel(text: String(localized: "You've marked it as done.", bundle: .core), color: .textDark, font: .regular12) : nil
     }
 }
 

@@ -31,7 +31,7 @@ class HideGradesViewController: UIViewController {
     @IBOutlet weak var allHiddenSubHeader: DynamicLabel!
     var presenter: PostGradesPresenter!
     var viewModel: APIPostPolicyInfo?
-    var color: UIColor = .electric
+    var color: UIColor = .textInfo
 
     static func create(courseID: String, assignmentID: String) -> HideGradesViewController {
         let controller = loadFromStoryboard()

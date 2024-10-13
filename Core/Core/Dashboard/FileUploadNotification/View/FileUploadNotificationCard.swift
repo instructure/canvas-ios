@@ -73,7 +73,7 @@ struct FileUploadNotificationCard: View {
         viewModel.state.color
             .overlay(
                 viewModel.state.image
-                    .foregroundColor(.white)
+                    .foregroundColor(.textLightest.variantForLightMode)
                     .frame(width: 24, height: 24, alignment: .center)
             )
             .frame(width: 40, alignment: .center)
@@ -112,7 +112,7 @@ struct FileUploadNotificationCard: View {
     private var progressView: some View {
         ProgressView()
             .progressViewStyle(
-                .indeterminateBar(color: .electric)
+                .indeterminateBar(color: .textInfo)
             )
             .padding(.top, 8)
     }

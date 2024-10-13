@@ -84,7 +84,7 @@ public class DocViewerViewController: UIViewController {
         pdf.view.isHidden = true
         pdf.updateConfiguration(builder: docViewerConfigurationBuilder)
 
-        syncAnnotationsButton.setTitleColor(.white, for: .normal)
+        syncAnnotationsButton.setTitleColor(.textLightest.variantForLightMode, for: .normal)
         syncAnnotationsButton.setTitleColor(.textDark, for: .disabled)
         annotationSaveStateChanges(saving: false)
 

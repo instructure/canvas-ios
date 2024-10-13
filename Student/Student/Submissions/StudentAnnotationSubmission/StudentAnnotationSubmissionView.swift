@@ -43,7 +43,7 @@ public struct StudentAnnotationSubmissionView: View {
     private var closeButton: some View {
         Button(action: viewModel.closeTapped, label: {
             Text(viewModel.navBar.closeButtonTitle)
-                .foregroundColor(.white)
+                .foregroundColor(.textLightest.variantForLightMode)
         })
     }
 
@@ -56,7 +56,7 @@ public struct StudentAnnotationSubmissionView: View {
                 Image.assignmentLine.frame(width: 0, height: 0).clipped() // We don't want this image to be visible
                 Text(viewModel.doneButton.title)
                     .fontWeight(.semibold)
-                    .foregroundColor(.white)
+                    .foregroundColor(.textLightest.variantForLightMode)
                     .opacity(viewModel.doneButton.opacity)
             }
         }).disabled(viewModel.doneButton.isDisabled)

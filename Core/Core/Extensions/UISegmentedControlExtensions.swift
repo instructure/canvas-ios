@@ -77,7 +77,7 @@ public extension UISegmentedControl {
         let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
         let underline = UIView(frame: underlineFrame)
         underline.translatesAutoresizingMaskIntoConstraints = false
-        underline.backgroundColor = .electric
+        underline.backgroundColor = .backgroundInfo
         underline.tag = 1
         addSubview(underline)
     }

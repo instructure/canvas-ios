@@ -72,9 +72,7 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
             filter.name = name
             filter.context = context
 
-            let color: ContextColor = env.database.viewContext.insert()
-            color.canvasContextID = filter.rawContextID
-            color.color = .random
+            ContextColor.save(.init(custom_colors: [filter.rawContextID: UIColor.random.hexString]), in: env.database.viewContext)
 
             return filter
         }

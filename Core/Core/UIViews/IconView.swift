@@ -21,9 +21,9 @@ import UIKit
 @IBDesignable
 open class IconView: UIImageView {
     @IBInspectable
-    public var iconColorName: String = "electric" {
+    public var iconColorName: String = "textInfo" {
         didSet {
-            tintColor = Brand.shared.color(iconColorName) ?? .electric
+            tintColor = Brand.shared.color(iconColorName) ?? .textInfo
         }
     }
 

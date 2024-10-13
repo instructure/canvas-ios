@@ -395,9 +395,9 @@ class LoginStartViewController: UIViewController {
 
     private func alternateFindSchoolButton() {
         findSchoolButton.setTitle(String(localized: "Find another school", bundle: .core), for: .normal)
-        findSchoolButton.backgroundColorName = "white"
-        findSchoolButton.textColorName = "oxford"
-        findSchoolButton.borderColorName = "oxford"
+        findSchoolButton.backgroundColorName = "backgroundLightest"
+        findSchoolButton.textColorName = "textDarkest"
+        findSchoolButton.borderColorName = "borderDarkest"
     }
 
     private func animatePreviousLoginsHeightChange(numberOfItems: Int) {

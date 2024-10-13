@@ -103,6 +103,26 @@ class CourseSyncSettingsViewModelTests: XCTestCase {
         XCTAssertFalse(testee.isWifiOnlySyncEnabled.value)
     }
 
+    func testLogsAutoSyncSwitchToggles() {
+        let mockAnalytics = MockAnalyticsHandler()
+        Analytics.shared.handler = mockAnalytics
+        let testee = CourseSyncSettingsViewModel(interactor: makeInteractor())
+
+        // WHEN
+        testee.isAutoContentSyncEnabled.accept(true)
+
+        // THEN
+        XCTAssertEqual(mockAnalytics.lastEvent, "offline_auto_sync_turned_on")
+        XCTAssertEqual(mockAnalytics.totalEventCount, 1)
+
+        // WHEN
+        testee.isAutoContentSyncEnabled.accept(false)
+
+        // THEN
+        XCTAssertEqual(mockAnalytics.lastEvent, "offline_auto_sync_turned_off")
+        XCTAssertEqual(mockAnalytics.totalEventCount, 2)
+    }
+
     private func makeInteractor() -> CourseSyncSettingsInteractor {
         return CourseSyncSettingsInteractorLive(storage: .fallback)
     }

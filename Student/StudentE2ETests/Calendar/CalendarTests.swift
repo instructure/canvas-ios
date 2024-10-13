@@ -280,6 +280,12 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Tap on "Add" button, check UI elements
         addButton.hit()
+        let addToDo = Helper.addToDo.waitUntil(.visible)
+        let addEvent = Helper.addEvent.waitUntil(.visible)
+        XCTAssertTrue(addToDo.isVisible)
+        XCTAssertTrue(addEvent.isVisible)
+
+        addToDo.hit()
         let cancelButton = Helper.Todo.cancelButton.waitUntil(.visible)
         let addButton2 = Helper.Todo.addButton.waitUntil(.visible)
         let titleInput = Helper.Todo.titleInput.waitUntil(.visible)
@@ -363,6 +369,12 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Tap on "Add" button, check UI elements
         addButton.hit()
+        let addToDo = Helper.addToDo.waitUntil(.visible)
+        let addEvent = Helper.addEvent.waitUntil(.visible)
+        XCTAssertTrue(addToDo.isVisible)
+        XCTAssertTrue(addEvent.isVisible)
+
+        addToDo.hit()
         let cancelButton = Helper.Todo.cancelButton.waitUntil(.visible)
         let addButton2 = Helper.Todo.addButton.waitUntil(.visible)
         let titleInput = Helper.Todo.titleInput.waitUntil(.visible)
@@ -447,6 +459,12 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Create Calendar Todo Item
         addButton.hit()
+        let addToDo = Helper.addToDo.waitUntil(.visible)
+        let addEvent = Helper.addEvent.waitUntil(.visible)
+        XCTAssertTrue(addToDo.isVisible)
+        XCTAssertTrue(addEvent.isVisible)
+
+        addToDo.hit()
         let cancelButton = Helper.Todo.cancelButton.waitUntil(.visible)
         let addButton2 = Helper.Todo.addButton.waitUntil(.visible)
         let titleInput = Helper.Todo.titleInput.waitUntil(.visible)
@@ -564,6 +582,12 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Create Calendar Todo Item
         addButton.hit()
+        let addToDo = Helper.addToDo.waitUntil(.visible)
+        let addEvent = Helper.addEvent.waitUntil(.visible)
+        XCTAssertTrue(addToDo.isVisible)
+        XCTAssertTrue(addEvent.isVisible)
+
+        addToDo.hit()
         let cancelButton = Helper.Todo.cancelButton.waitUntil(.visible)
         let addButton2 = Helper.Todo.addButton.waitUntil(.visible)
         let titleInput = Helper.Todo.titleInput.waitUntil(.visible)

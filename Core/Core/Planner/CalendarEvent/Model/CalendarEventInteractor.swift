@@ -67,7 +67,7 @@ final class CalendarEventInteractorLive: CalendarEventInteractor {
             guard let event = events.first else {
                 throw StoreError.emptyResponse
             }
-            let color = colors.first { $0.canvasContextID == event.contextRaw }?.color ?? .ash
+            let color = colors.first { $0.canvasContextID == event.contextRaw }?.color ?? .textDark
             return (event, color)
         }
     }

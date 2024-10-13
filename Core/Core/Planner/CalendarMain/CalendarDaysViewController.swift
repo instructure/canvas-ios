@@ -284,7 +284,7 @@ class CalendarDayButton: UIButton {
         circleView.layer.borderColor = UIColor.clear.cgColor
         circleView.backgroundColor = isSelected ? tintColor : nil
         label.textColor = (
-            isSelected ? UIColor.white :
+            isSelected ? UIColor.textLightest :
             isToday ? tintColor :
             isWeekend || isOtherMonth ? UIColor.textDark :
             UIColor.textDarkest

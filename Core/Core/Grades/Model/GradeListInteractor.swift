@@ -26,7 +26,8 @@ public protocol GradeListInteractor {
     func getGrades(
         arrangeBy: GradeArrangementOptions,
         baseOnGradedAssignment: Bool,
-        ignoreCache: Bool
+        ignoreCache: Bool,
+        shouldUpdateGradingPeriod: Bool
     ) -> AnyPublisher<GradeListData, Error>
     func updateGradingPeriod(id: String?)
     func isWhatIfScoreFlagEnabled() -> Bool
@@ -47,7 +48,6 @@ public final class GradeListInteractorLive: GradeListInteractor {
     private let gradingPeriodListStore: ReactiveStore<GetGradingPeriods>
     private var gradingPeriodID: String?
     private var isInitialGradingPeriodSet = false
-
     // MARK: - Init
 
     public init(
@@ -88,10 +88,12 @@ public final class GradeListInteractorLive: GradeListInteractor {
         )
     }
 
+    /// `shouldUpdateGradingPeriod`: Setting this parameter to **true** will refresh the current enrollments and assignments based on the course enrollment after the initial batch of API requests finish. This sometimes causes problems with cached values so the caller site needs to decide if the update is needed.
     public func getGrades(
         arrangeBy: GradeArrangementOptions,
         baseOnGradedAssignment: Bool,
-        ignoreCache: Bool
+        ignoreCache: Bool,
+        shouldUpdateGradingPeriod: Bool
     ) -> AnyPublisher<GradeListData, Error> {
         Publishers.Zip3(
             colorListStore.getEntities(
@@ -127,14 +129,16 @@ public final class GradeListInteractorLive: GradeListInteractor {
             let enrollments = params.2
             let courseEnrollment = course.enrollmentForGrades(userId: userID)
             let isGradingPeriodHidden = courseEnrollment?.multipleGradingPeriodsEnabled == false
-
             if !isInitialGradingPeriodSet {
                 isInitialGradingPeriodSet = true
-                updateGradingPeriod(id: courseEnrollment?.currentGradingPeriodID)
+                if shouldUpdateGradingPeriod {
+                    updateGradingPeriod(id: courseEnrollment?.currentGradingPeriodID)
+                }
                 return getGrades(
                     arrangeBy: arrangeBy,
                     baseOnGradedAssignment: baseOnGradedAssignment,
-                    ignoreCache: true
+                    ignoreCache: true,
+                    shouldUpdateGradingPeriod: shouldUpdateGradingPeriod
                 ).eraseToAnyPublisher()
             }
 
@@ -170,7 +174,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
                     isGradingPeriodHidden: isGradingPeriodHidden,
                     gradingPeriods: gradingPeriods,
                     currentGradingPeriod: getGradingPeriod(id: gradingPeriodID, gradingPeriods: gradingPeriods),
-                    totalGradeText: totalGradeText
+                    totalGradeText: totalGradeText,
+                    currentGradingPeriodID: courseEnrollment?.currentGradingPeriodID
                 ))
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
@@ -246,17 +251,17 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
         var assignmentSections: [GradeListData.AssignmentSections] = []
         var overdueAssignments = GradeListData.AssignmentSections(
-            id: UUID.string,
+            id: "overdueAssignments",
             title: String(localized: "Overdue Assignments", bundle: .core),
             assignments: []
         )
         var upcomingAssignments = GradeListData.AssignmentSections(
-            id: UUID.string,
+            id: "upcomingAssignments",
             title: String(localized: "Upcoming Assignments", bundle: .core),
             assignments: []
         )
         var pastAssignments = GradeListData.AssignmentSections(
-            id: UUID.string,
+            id: "pastAssignments",
             title: String(localized: "Past Assignments", bundle: .core),
             assignments: []
         )

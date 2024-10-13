@@ -79,7 +79,6 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         studentListHiddenHeight.isActive = true
 
         tabsController.tabBar.useGlobalNavStyle()
-        tabsController.tabBar.isTranslucent = false
         tabsController.delegate = self
         embed(tabsController, in: tabsContainer)
 
@@ -95,6 +94,12 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         if env.userDefaults?.interfaceStyle == nil {
             env.userDefaults?.interfaceStyle = .light
         }
+    }
+
+    /// When the app was started in light mode and turned to dark the selected color was not updated so we do a force refresh.
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        tabsController.tabBar.useGlobalNavStyle()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -161,7 +166,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     }
 
     func updateHeader() {
-        headerView.backgroundColor = currentColor.darkenToEnsureContrast(against: .white)
+        headerView.backgroundColor = currentColor
         profileButton.addBadge(number: badgeCount, color: currentColor)
         addStudentView.isHidden = false // provides shadow even when avatar covers it
 
@@ -248,7 +253,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         alerts.tabBarItem.selectedImage = .alertsTabActive
         alerts.tabBarItem.accessibilityIdentifier = "TabBar.alertsTab"
         alerts.tabBarItem.badgeColor = currentColor
-        alerts.tabBarItem.setBadgeTextAttributes([ .foregroundColor: UIColor.white ], for: .normal)
+        alerts.tabBarItem.setBadgeTextAttributes([ .foregroundColor: UIColor.textLightest.variantForLightMode ], for: .normal)
         alerts.loadViewIfNeeded() // Make sure it starts loading data for badge
 
         tabsController.viewControllers = [ courses, calendar, alerts ]
@@ -336,7 +341,7 @@ class AddStudentButton: UIButton {
         titleLabel?.numberOfLines = 1
 
         let circle = UIView()
-        circle.backgroundColor = .white
+        circle.backgroundColor = .textLightest.variantForLightMode
         circle.layer.addDropShadow()
         circle.layer.cornerRadius = 24
         circle.layer.borderColor = UIColor.borderMedium.cgColor

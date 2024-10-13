@@ -73,7 +73,7 @@ class ModuleItemPublishIndicatorView: UIView {
             tintColor = UIColor.backgroundSuccess
         case .unpublished:
             image = .noSolid
-            tintColor = UIColor.ash
+            tintColor = UIColor.textDark
         case .hidden:
             image = .offLine
             tintColor = UIColor.textWarning

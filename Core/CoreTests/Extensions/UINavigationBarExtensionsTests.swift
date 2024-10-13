@@ -23,10 +23,10 @@ import UIKit
 class UINavigationBarExtensionsTests: XCTestCase {
     func testUseContextColor() {
         let bar = UINavigationBar(frame: .zero)
-        bar.useContextColor(.licorice)
-        XCTAssertEqual((bar.titleTextAttributes?[.foregroundColor] as? UIColor)?.hexString, UIColor.white.hexString)
-        XCTAssertEqual(bar.tintColor.hexString, UIColor.white.hexString)
-        XCTAssertEqual(bar.barTintColor?.hexString, UIColor.licorice.hexString)
+        bar.useContextColor(.backgroundDarkest)
+        XCTAssertEqual((bar.titleTextAttributes?[.foregroundColor] as? UIColor)?.hexString, UIColor.textLightest.variantForLightMode.hexString)
+        XCTAssertEqual(bar.tintColor.hexString, UIColor.textLightest.variantForLightMode.hexString)
+        XCTAssertEqual(bar.barTintColor?.hexString, UIColor.backgroundDarkest.hexString)
         XCTAssertEqual(bar.barStyle, .black)
         XCTAssertFalse(bar.isTranslucent)
     }
@@ -41,22 +41,22 @@ class UINavigationBarExtensionsTests: XCTestCase {
         XCTAssertFalse(bar.isTranslucent)
 
         let shiny = Brand(
-            buttonPrimaryBackground: .white,
-            buttonPrimaryText: .white,
-            buttonSecondaryBackground: .white,
-            buttonSecondaryText: .white,
-            fontColorDark: .white,
-            headerImageBackground: .white,
+            buttonPrimaryBackground: .textLightest.variantForLightMode,
+            buttonPrimaryText: .textLightest.variantForLightMode,
+            buttonSecondaryBackground: .textLightest.variantForLightMode,
+            buttonSecondaryText: .textLightest.variantForLightMode,
+            fontColorDark: .textLightest.variantForLightMode,
+            headerImageBackground: .textLightest.variantForLightMode,
             headerImage: nil,
-            linkColor: .white,
-            navBackground: .white,
-            navBadgeBackground: .white,
-            navBadgeText: .white,
-            navIconFill: .white,
-            navIconFillActive: .white,
-            navTextColor: .white,
-            navTextColorActive: .white,
-            primary: .white
+            linkColor: .textLightest.variantForLightMode,
+            navBackground: .textLightest.variantForLightMode,
+            navBadgeBackground: .textLightest.variantForLightMode,
+            navBadgeText: .textLightest.variantForLightMode,
+            navIconFill: .textLightest.variantForLightMode,
+            navIconFillActive: .textLightest.variantForLightMode,
+            navTextColor: .textLightest.variantForLightMode,
+            navTextColorActive: .textLightest.variantForLightMode,
+            primary: .textLightest.variantForLightMode
         )
         bar.useGlobalNavStyle(brand: shiny)
         XCTAssertEqual(bar.barStyle, .default)

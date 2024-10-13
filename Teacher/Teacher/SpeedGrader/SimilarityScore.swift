@@ -46,11 +46,11 @@ struct SimilarityScore: View {
             switch status {
             case "scored":
                 Text(NumberFormatter.localizedString(from: NSNumber(value: score / 100), number: .percent))
-                    .font(.semibold16).foregroundColor(.white)
+                    .font(.semibold16).foregroundColor(.textLightest.variantForLightMode)
                     .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
                     .background(
                         score >= 75 ? Color.textDanger :
-                        score >= 50 ? Color.textAlert :
+                        score >= 50 ? Color.textMasquerade :
                         score >= 25 ? Color.textWarning :
                         score >= 1 ? Color.textSuccess :
                         Color.textInfo
@@ -58,12 +58,12 @@ struct SimilarityScore: View {
                     .cornerRadius(4)
             case "pending":
                 Image.clockLine
-                    .size(18).foregroundColor(.white)
+                    .size(18).foregroundColor(.textLightest.variantForLightMode)
                     .padding(4).background(Color.backgroundDark).cornerRadius(4)
                     .accessibility(label: Text("Pending", bundle: .teacher))
             default:
                 Image.warningLine
-                    .size(18).foregroundColor(.white)
+                    .size(18).foregroundColor(.textLightest.variantForLightMode)
                     .padding(4).background(Color.backgroundDanger).cornerRadius(4)
                     .accessibility(label: Text("Error", bundle: .teacher))
             }

@@ -28,9 +28,8 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case favoriteGroups = "favorite_groups"
     case K5Dashboard = "enable_K5_dashboard"
     case whatIfScore = "what_if_score"
-    case teacherCalendar = "teacher_calendar"
     case newCalendar = "new_calendar"
-
+    
     public var isEnabled: Bool {
         get {
             // If there are no saved values for K5 mode we return true by default. Debug builds without Firebase feature flag fetch will have this enabled.

@@ -24,16 +24,16 @@ class DynamicButtonTests: XCTestCase {
         let view = DynamicButton()
         view.backgroundColorName = "not a color name"
         XCTAssertNil(view.backgroundColor)
-        view.backgroundColorName = "electric"
-        XCTAssertEqual(view.backgroundColor, .electric)
+        view.backgroundColorName = "backgroundInfo"
+        XCTAssertEqual(view.backgroundColor, .backgroundInfo)
     }
 
     func testBorderColorName() {
         let view = DynamicButton()
         view.borderColorName = "not a color name"
         XCTAssertEqual(view.layer.borderWidth, 0)
-        view.borderColorName = "electric"
-        XCTAssertEqual(view.layer.borderColor, UIColor.electric.cgColor)
+        view.borderColorName = "borderInfo"
+        XCTAssertEqual(view.layer.borderColor, UIColor.borderInfo.cgColor)
         XCTAssertEqual(view.layer.borderWidth, 0.5)
     }
 
@@ -49,10 +49,10 @@ class DynamicButtonTests: XCTestCase {
         let view = DynamicButton()
         let tinter = UIView() // tintColor gets adjusted, so apply same with this
         view.textColorName = "not a color name"
-        tinter.tintColor = .electric
+        tinter.tintColor = .textInfo
         XCTAssertEqual(view.tintColor, tinter.tintColor)
-        view.textColorName = "ash"
-        tinter.tintColor = .ash
+        view.textColorName = "textDark"
+        tinter.tintColor = .textDark
         XCTAssertEqual(view.tintColor, tinter.tintColor)
     }
 

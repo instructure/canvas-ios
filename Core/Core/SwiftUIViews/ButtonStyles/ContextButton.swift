@@ -22,7 +22,7 @@ import SwiftUI
  This button style adds a narrow vertical line to the left of the button using the given context color while changing the button's background to light gray in a pressed down state.
  */
 public struct ContextButton: ButtonStyle {
-    private let selectionBackgroundColor: UIColor = .porcelain
+    private let selectionBackgroundColor: UIColor = .backgroundLight
     private let contextColor: UIColor
     private let forceHighlight: Bool
 

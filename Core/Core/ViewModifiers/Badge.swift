@@ -25,7 +25,7 @@ struct BadgeModifier<Content: View>: View {
     var body: some View {
         content.overlay(GeometryReader { geometry in
             Text(NumberFormatter.localizedString(from: NSNumber(value: value), number: .none))
-                .font(.system(size: 10, weight: .semibold)).foregroundColor(.white)
+                .font(.system(size: 10, weight: .semibold)).foregroundColor(.textLightest.variantForLightMode)
                 .frame(minWidth: 14, maxHeight: 14)
                 .background(RoundedRectangle(cornerRadius: 7).stroke(Color.backgroundLightest, lineWidth: 2))
                 .background(RoundedRectangle(cornerRadius: 7).fill(Color.backgroundInfo))

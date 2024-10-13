@@ -110,7 +110,7 @@ struct HorizontalPager_Previews: PreviewProvider {
             ZStack {
                 colors[pageIndex]
                 Text(verbatim: "\(pageIndex)")
-                    .foregroundColor(.white)
+                    .foregroundColor(.textLightest.variantForLightMode)
             }
         }
         .previewDevice(PreviewDevice(stringLiteral: "iPhone 12"))

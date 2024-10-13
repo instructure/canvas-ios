@@ -19,139 +19,118 @@
 import SwiftUI
 
 struct CustomizeCourseView: View {
-    let course: Course
-    let hideColorOverlay: Bool
-    let imageDownloadURL: URL?
-
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
+    @ObservedObject private var viewModel: CustomizeCourseViewModel
 
-    @State var color: UIColor
-    @State var error: AlertError?
-    @State var isSaving = false
-    @State var name: String
-
-    static let colors: KeyValuePairs<UIColor, Text> = [
-        UIColor(hexString: "#BD3C14")!.ensureContrast(against: .backgroundLightest): Text("Brick", bundle: .core),
-        UIColor(hexString: "#FF2717")!.ensureContrast(against: .backgroundLightest): Text("Red", bundle: .core),
-        UIColor(hexString: "#E71F63")!.ensureContrast(against: .backgroundLightest): Text("Magenta", bundle: .core),
-        UIColor(hexString: "#8F3E97")!.ensureContrast(against: .backgroundLightest): Text("Purple", bundle: .core),
-        UIColor(hexString: "#65499D")!.ensureContrast(against: .backgroundLightest): Text("Deep Purple", bundle: .core),
-        UIColor(hexString: "#4554A4")!.ensureContrast(against: .backgroundLightest): Text("Indigo", bundle: .core),
-        UIColor(hexString: "#1770AB")!.ensureContrast(against: .backgroundLightest): Text("Blue", bundle: .core),
-        UIColor(hexString: "#0B9BE3")!.ensureContrast(against: .backgroundLightest): Text("Light Blue", bundle: .core),
-        UIColor(hexString: "#06A3B7")!.ensureContrast(against: .backgroundLightest): Text("Cyan", bundle: .core),
-        UIColor(hexString: "#009688")!.ensureContrast(against: .backgroundLightest): Text("Teal", bundle: .core),
-        UIColor(hexString: "#009606")!.ensureContrast(against: .backgroundLightest): Text("Green", bundle: .core),
-        UIColor(hexString: "#8D9900")!.ensureContrast(against: .backgroundLightest): Text("Olive", bundle: .core),
-        UIColor(hexString: "#D97900")!.ensureContrast(against: .backgroundLightest): Text("Pumpkin", bundle: .core),
-        UIColor(hexString: "#FD5D10")!.ensureContrast(against: .backgroundLightest): Text("Orange", bundle: .core),
-        UIColor(hexString: "#F06291")!.ensureContrast(against: .backgroundLightest): Text("Pink", bundle: .core)
-    ]
-
-    init(course: Course, hideColorOverlay: Bool) {
-        self.course = course
-        self.hideColorOverlay = hideColorOverlay
-        imageDownloadURL = course.imageDownloadURL
-        _color = State(initialValue: course.color)
-        _name = State(initialValue: course.name ?? "")
+    init(
+        viewModel: CustomizeCourseViewModel
+    ) {
+        self.viewModel = viewModel
     }
 
     var body: some View { GeometryReader { geometry in
         let width = geometry.size.width
-        EditorForm(isSpinning: isSaving) {
+
+        EditorForm(isSpinning: viewModel.isLoading) {
             let height: CGFloat = 235
             ZStack {
-                Color(color).frame(width: width, height: height)
-                if let url = imageDownloadURL {
+                Color(viewModel.color)
+                    .frame(width: width, height: height)
+                    .animation(.default, value: viewModel.color)
+
+                if let url = viewModel.courseImage {
                     RemoteImage(url, width: width, height: height, shouldHandleAnimatedGif: true)
-                        .opacity(hideColorOverlay ? 1 : 0.4)
+                        .opacity(viewModel.hideColorOverlay ? 1 : 0.4)
+                        // Fix big course image consuming tap events.
+                        .contentShape(Path(CGRect(x: 0, y: 0, width: width, height: height)))
                 }
             }
-                .frame(height: height)
-                .clipped()
+            .frame(height: height)
+            .clipped()
+
             TextFieldRow(
                 label: Text("Nickname", bundle: .core),
                 placeholder: String(localized: "Add Course Nickname", bundle: .core),
-                text: $name
+                text: $viewModel.courseName
             )
-            Divider()
-            EditorRow { VStack(alignment: .leading, spacing: 0) {
-                HStack {
+            InstUI.Divider()
+            EditorRow {
+                VStack(alignment: .leading, spacing: 0) {
                     Text("Color", bundle: .core)
-                    Spacer()
-                }
-                    .padding(.bottom, 2)
-                Text("This is your personal color setting. Only you will see this color for the course.", bundle: .core)
-                    .font(.medium14).foregroundColor(.textDark)
-                    .fixedSize(horizontal: false, vertical: true)
+                        .padding(.bottom, 8)
+                    Text("This is your personal color setting. Only you will see this color for the course.", bundle: .core)
+                        .font(.medium14).foregroundColor(.textDark)
+                        .fixedSize(horizontal: false, vertical: true)
 
-                JustifiedGrid(
-                    itemCount: Self.colors.count,
-                    itemSize: CGSize(width: 48, height: 48), spacing: 8,
-                    width: width - 32 // account for padding
-                ) { itemIndex in
-                    let item = Self.colors[itemIndex]
-                    let uiColor = item.key
-                    let isSelected = uiColor.difference(to: color) < 0.02
-                    Button(action: { color = uiColor }, label: {
-                        Circle().fill(Color(uiColor))
-                            .overlay(isSelected ? Image.checkSolid.foregroundColor(.white) : nil)
-                    })
-                        .buttonStyle(ScaleButtonStyle(scale: 0.9))
+                    JustifiedGrid(
+                        itemCount: viewModel.colors.count,
+                        itemSize: CGSize(width: 48, height: 48),
+                        spacing: 8,
+                        width: width - 32 // account for padding coming from EditorRow
+                    ) { itemIndex in
+                        let item = viewModel.colors[itemIndex]
+                        let uiColor = item.key
+                        let isSelected = viewModel.shouldShowCheckmark(for: uiColor)
+                        Button(action: { viewModel.color = uiColor }, label: {
+                            Circle()
+                                .fill(Color(uiColor))
+                                .overlay(isSelected ? Image.checkSolid.foregroundColor(.textLightest) : nil)
+                                .animation(.default, value: viewModel.color)
+                        })
                         .accessibility(addTraits: isSelected ? .isSelected : [])
-                        .accessibility(label: item.value)
-                }
+                        .accessibility(label: Text(item.value))
+                    }
                     .padding(.vertical, 12)
-            } }
-            Divider()
-        }
-            .navigationTitle(String(localized: "Customize Course", bundle: .core), subtitle: name)
-            .navigationBarItems(
-                leading: Button(action: cancel, label: {
-                    Text("Cancel", bundle: .core).fontWeight(.regular)
-                }),
-                trailing: Button(action: save, label: {
-                    Text("Done", bundle: .core).bold()
-                })
-            )
-
-            .alert(item: $error) { error in
-                Alert(title: Text(error.error.localizedDescription))
+                }
             }
+            InstUI.Divider()
+        }
+        .navigationTitleStyled(navBarTitleView)
+        .navigationBarItems(leading: cancelNavBarButton, trailing: doneNavBarButton)
+        .navigationBarStyle(.modal)
+        .onReceive(viewModel.dismissView) { _ in
+            env.router.dismiss(controller)
+        }
+        .alert(item: $viewModel.errorMessage) { item in
+            Alert(
+                title: Text("Something went wrong", bundle: .core),
+                message: Text(item.message),
+                dismissButton: .default(Text("OK", bundle: .core))
+            )
+        }
     } }
+
+    private var navBarTitleView: some View {
+        VStack(spacing: 1) {
+            Text("Customize Course", bundle: .core)
+                .font(.semibold16)
+                .foregroundColor(.textDarkest)
+            Text(viewModel.courseName)
+                .font(.regular12)
+                .foregroundColor(.textDark)
+        }
+    }
+
+    private var cancelNavBarButton: some View {
+        Button(action: cancel, label: {
+            Text("Cancel", bundle: .core).fontWeight(.regular)
+        })
+    }
+
+    private var doneNavBarButton: some View {
+        Button(action: {
+            controller.view.endEditing(true) // dismiss keyboard
+            viewModel.didTapDone.send(())
+        }, label: {
+            Text("Done", bundle: .core).bold()
+        })
+        .disabled(viewModel.isLoading)
+    }
 
     struct AlertError: Identifiable {
         let error: Error
         var id: String { error.localizedDescription }
-    }
-
-    func save() {
-        controller.view.endEditing(true) // dismiss keyboard
-        isSaving = true
-        guard name != course.name else { return saveColor() }
-        UpdateCourseNickname(courseID: course.id, nickname: name).fetch { result, _, fetchError in performUIUpdate {
-            error = fetchError.map { AlertError(error: $0) }
-            if result != nil {
-                saveColor()
-            } else {
-                isSaving = false
-            }
-        } }
-    }
-
-    func saveColor() {
-        guard color.difference(to: course.color) >= 0.02 else {
-            isSaving = false
-            return env.router.dismiss(controller)
-        }
-        UpdateCustomColor(context: .course(course.id), color: color.hexString).fetch { result, _, fetchError in performUIUpdate {
-            error = fetchError.map { AlertError(error: $0) }
-            isSaving = false
-            if result != nil {
-                env.router.dismiss(controller)
-            }
-        } }
     }
 
     func cancel() {
@@ -159,3 +138,19 @@ struct CustomizeCourseView: View {
         env.router.dismiss(controller)
     }
 }
+
+#if DEBUG
+
+#Preview {
+    CustomizeCourseView(
+        viewModel: CustomizeCourseViewModel(
+            courseId: "1",
+            courseImage: nil,
+            courseColor: .course1,
+            courseName: "Test Course",
+            hideColorOverlay: false
+        )
+    )
+}
+
+#endif

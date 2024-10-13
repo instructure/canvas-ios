@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build-colors": "./scripts/build-colors.js",
     "build-icons": "./scripts/build-icons.js",
     "build-secrets": "./scripts/build-secrets.js",
     "coverage": "./scripts/coverage/coverage.js",

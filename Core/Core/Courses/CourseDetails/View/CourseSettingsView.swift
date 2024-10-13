@@ -68,7 +68,7 @@ public struct CourseSettingsView: View, ScreenViewTrackable {
         EditorForm(isSpinning: viewModel.state == .saving) {
             let height: CGFloat = 235
             ZStack {
-                Color(viewModel.courseColor ?? .ash).frame(width: width, height: height)
+                Color(viewModel.courseColor ?? .textDark).frame(width: width, height: height)
                 if let url = viewModel.imageURL {
                     RemoteImage(url, width: width, height: height, shouldHandleAnimatedGif: true)
                         .opacity(viewModel.hideColorOverlay == true ? 1 : 0.4)

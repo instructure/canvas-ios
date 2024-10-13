@@ -54,7 +54,7 @@ struct SmallGradeViewPreviews: PreviewProvider {
     static var previews: some View {
         SmallGradeView(gradeItem: GradeItem(name: "Earth: The Pale Blue Dot on two lines or more since it's very long",
                                             grade: "95.50 / 100",
-                                            color: .crimson))
+                                            color: .textDanger))
         .compatibleContainerBackground()
         .previewContext(WidgetPreviewContext(family: .systemSmall))
     }

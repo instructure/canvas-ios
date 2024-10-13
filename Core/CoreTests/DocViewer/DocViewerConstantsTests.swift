@@ -57,7 +57,7 @@ class DocViewerConstantsTests: XCTestCase {
         XCTAssertNotNil(textPresets)
         XCTAssertEqual(textPresets?.count, DocViewerAnnotationColor.allCases.count * 2)
         for annotationColor in DocViewerAnnotationColor.allCases {
-            XCTAssertTrue(textPresets?.contains { $0.color == annotationColor.color && $0.fillColor?.hexString == UIColor.white.hexString } == true)
+            XCTAssertTrue(textPresets?.contains { $0.color == annotationColor.color && $0.fillColor?.hexString == UIColor.textLightest.variantForLightMode.hexString } == true)
             XCTAssertTrue(textPresets?.contains { $0.color == annotationColor.color && $0.fillColor == nil } == true)
         }
     }

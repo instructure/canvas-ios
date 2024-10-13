@@ -58,7 +58,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
                  value: mockAPIEvent)
 
         XCTAssertFirstValueAndCompletion(testee.getCalendarEvent(id: mockAPIEvent.id.rawValue)) { (event, color) in
-            XCTAssertEqual(color, UIColor(hexString: mockAPIColor))
+            XCTAssertEqual(color.hexString, CourseColorsInteractorLive().courseColorFromAPIColor(mockAPIColor).hexString)
             XCTAssertEqual(event.id, mockAPIEvent.id.rawValue)
         }
     }
@@ -82,7 +82,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
                  value: mockAPIEvent)
 
         XCTAssertFirstValueAndCompletion(testee.getCalendarEvent(id: mockAPIEvent.id.rawValue)) { (event, color) in
-            XCTAssertEqual(color, UIColor.ash)
+            XCTAssertEqual(color, UIColor.textDark)
             XCTAssertEqual(event.id, mockAPIEvent.id.rawValue)
         }
     }
