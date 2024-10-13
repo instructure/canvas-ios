@@ -18,8 +18,6 @@
 
 import SwiftUI
 
-
-
 struct SearchResult: Codable, Identifiable {
     var id: ID { content_id }
 
@@ -70,6 +68,28 @@ struct SearchResultsSection {
     let type: SearchResult.ContentType
     var expanded: Bool = false
     let results: [SearchResult]
+}
+
+// MARK: - Route Path
+
+extension SearchResult {
+
+    var pathComponent: String {
+
+        let instanceType: String
+        switch content_type {
+        case .assignment:
+            instanceType = "assignments"
+        case .page:
+            instanceType = "wiki"
+        case .announcement:
+            instanceType = "announcements"
+        case .discussion:
+            instanceType = "discussion_topics"
+        }
+        
+        return "\(instanceType)/\(content_id.value)"
+    }
 }
 
 // MARK: - UI Helpers

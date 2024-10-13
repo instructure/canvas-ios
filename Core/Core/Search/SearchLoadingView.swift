@@ -33,7 +33,7 @@ struct SearchLoadingView: View {
             ProgressView()
             Spacer()
         }
-        .frame(maxWidth: 400)
+        .frame(maxWidth: 250)
     }
 }
 

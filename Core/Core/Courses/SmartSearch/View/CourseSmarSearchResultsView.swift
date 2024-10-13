@@ -19,6 +19,7 @@
 import SwiftUI
 
 struct CourseSmartSearchResultsView: View {
+    @State private var selected: ID?
 
     let results: [SearchResult]
 
@@ -36,7 +37,7 @@ struct CourseSmartSearchResultsView: View {
                     LazyVStack(spacing: 0) {
                         ForEach(results) { result in
                             let last = results.last?.id == result.id
-                            CourseSearchResultRow(result: result, last: last)
+                            CourseSearchResultRowView(selected: $selected, result: result, last: last)
                         }
                     }
                     .safeAreaInset(edge: .bottom, content: {
@@ -60,6 +61,7 @@ struct CourseSmartSearchResultsView: View {
 struct CourseSmartSearchGroupedResultsView: View {
 
     @State private var resultSections: [SearchResultsSection]
+    @State private var selected: ID?
 
     init(resultSections: [SearchResultsSection]) {
         self._resultSections = State(initialValue: resultSections)
@@ -84,7 +86,8 @@ struct CourseSmartSearchGroupedResultsView: View {
                             DisclosureGroup(title, isExpanded: sec.expanded) {
                                 ForEach(section.results) { result in
                                     let last = section.results.last?.id == result.id
-                                    CourseSearchResultRow(
+                                    CourseSearchResultRowView(
+                                        selected: $selected,
                                         result: result,
                                         showType: false,
                                         last: last

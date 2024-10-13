@@ -71,10 +71,11 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
         navigationItem.rightBarButtonItems = [searchBarItem()]
 
         applyNavBarTransition(.fadeOut)
-        searchContext.searchTerm.send("")
     }
 
     public func showSearchField() {
+        searchContext.reset()
+
         let searchView = UISearchField(
             frame: CGRect(
                 origin: .zero,
@@ -171,6 +172,17 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
         let searchTerm = textField.text ?? ""
         searchContext.didSubmit.send(textField.text ?? "")
 
+        startSearchExperience(with: searchTerm) { [weak self] in
+            self?.hideSearchField()
+        }
+
+        return true
+    }
+
+    // MARK: Search Experience
+
+    private func startSearchExperience(with searchTerm: String, completion: @escaping () -> Void) {
+
         let coverVC = CoreHostingController(
             SearchableContainerView(
                 searchText: searchTerm,
@@ -185,6 +197,7 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
         }
 
         let splitView = CoreSplitViewController()
+
         splitView.viewControllers = [
             CoreNavigationController(rootViewController: coverVC),
             CoreNavigationController(rootViewController: EmptyViewController())
@@ -195,11 +208,9 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
         router.show(
             splitView,
             from: self,
-            options: .modal(.overFullScreen, animated: true)) { [weak self] in
-                self?.hideSearchField()
-            }
-
-        return true
+            options: .modal(.overFullScreen, animated: true),
+            completion: completion
+        )
     }
 }
 
@@ -276,7 +287,10 @@ public struct SearchableContainerView<Display: View, Action: SearchSupportAction
             .toolbar {
 
                 ToolbarItem(placement: .principal) {
-                    SearchTextField(text: $searchText) {
+                    SearchTextField(
+                        text: $searchText,
+                        clearButtonColor: clearButtonColor
+                    ) {
                         print("search submit")
                         searchContext.didSubmit.send(searchText)
                     }
@@ -317,6 +331,13 @@ public struct SearchableContainerView<Display: View, Action: SearchSupportAction
                     .tint(.white)
                 }
             }
+            .onChange(of: searchText) { newValue in
+                searchContext.searchTerm.send(newValue)
+            }
+    }
+
+    private var clearButtonColor: Color {
+        return searchContext.color.flatMap({ Color(uiColor: $0) }) ?? .secondary
     }
 }
 

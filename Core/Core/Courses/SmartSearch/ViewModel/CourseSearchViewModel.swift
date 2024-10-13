@@ -60,9 +60,11 @@ class CourseSearchViewModel: ObservableObject {
         return list
     }
 
-    func startSearch(of searchTerm: String,
-                     in context: CoreSearchContext,
-                     using env: AppEnvironment) {
+    func startSearch(
+        of searchTerm: String,
+        in context: CoreSearchContext,
+        using env: AppEnvironment
+    ) {
         guard let courseId = context.context.courseId else { return }
         phase = .loading
 
@@ -76,13 +78,7 @@ class CourseSearchViewModel: ObservableObject {
                     searchText: searchTerm,
                     filter: filter?.includedTypes.map({ $0.filterValue })
                 ),
-                callback: { results, response, error in
-
-                    print("Finished search:")
-                    print(error)
-                    print(response)
-                    print(results)
-
+                callback: { results, _, _ in
                     DispatchQueue.main.async { [weak self] in
                         self?.updateResults(results?.results)
                     }
@@ -96,18 +92,25 @@ class CourseSearchViewModel: ObservableObject {
     }
 
     func applyFilters() {
-        guard let filter else {
-            phase = .results
-            display.isFiltersActive = false
+        display.isFiltersActive = filter != nil
+
+        // No match
+        if self.results.isEmpty {
+            phase = .noMatch
             return
         }
 
+        guard let filter else {
+            // No filter
+            phase = .results
+            return
+        }
+
+        // Filterd results
         if case .type = filter.sortMode {
             phase = .groupedResults
         } else {
             phase = .results
         }
-
-        display.isFiltersActive = true
     }
 }

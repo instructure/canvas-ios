@@ -32,7 +32,7 @@ struct SearchNoMatchView: View {
                 .multilineTextAlignment(.center)
             Spacer()
         }
-        .frame(maxWidth: 400)
+        .frame(maxWidth: 250)
     }
 }
 

@@ -18,14 +18,13 @@
 
 import SwiftUI
 
-struct CourseSearchResultRow: View {
+struct CourseSearchResultRowView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
     @Environment(\.searchContext) var searchContext
+    @State private var isVisited: Bool = false
 
-    var color: Color {
-        Color(uiColor: searchContext.color ?? .gray)
-    }
+    @Binding var selected: ID?
 
     let result: SearchResult
     var showType: Bool = true
@@ -33,28 +32,24 @@ struct CourseSearchResultRow: View {
 
     var body: some View {
         Button {
-            let content = CoreHostingController(
-                VStack(alignment: .leading) {
-                    Text(result.title)
-                    Text(result.readable_type)
-                    Text(result.body)
-                }
-                    .padding()
-            )
-            env.router.show(content, from: controller, options: .detail)
+            env.router.route(to: routePath, from: controller, options: .detail)
+            searchContext.markVisited(result.content_id)
+            selected = result.content_id
         } label: {
             HStack(alignment: .top, spacing: 16) {
-                result.content_type.icon.tint(color)
+                result.content_type.icon.foregroundStyle(color)
                 VStack(alignment: .leading, spacing: 5) {
                     Text(result.title).font(.semibold16).foregroundStyle(color)
                     if showType {
                         Text(result.readable_type).font(.regular14).foregroundStyle(color)
                     }
-                    Text(result.body)
-                        .font(.regular14)
-                        .foregroundStyle(Color.textDark)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(3)
+                    if result.body.isNotEmpty {
+                        Text(result.body)
+                            .font(.regular14)
+                            .foregroundStyle(Color.textDark)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(3)
+                    }
                 }
                 Spacer()
                 VStack {
@@ -76,9 +71,31 @@ struct CourseSearchResultRow: View {
             .padding(.horizontal, 16)
             .padding(.top, 12)
             .padding(.bottom, 14)
+            .contentShape(Rectangle())
             .overlay(alignment: .bottom) {
                 SearchDivider(inset: last == false)
             }
         }
+        .buttonStyle(ContextButton(color: searchContext.color, state: buttonState))
+        .onReceive(searchContext.historyPublisher) { history in
+            isVisited = history.contains(result.content_id)
+        }
+    }
+
+    private var buttonState: ContextButtonState {
+        if selected == result.id { return .selected }
+        if isVisited { return .highlighted }
+        return .normal
+    }
+
+    private var routePath: String {
+        return "/" + [
+            searchContext.context.pathComponent,
+            result.pathComponent
+        ].joined(separator: "/")
+    }
+
+    private var color: Color {
+        Color(uiColor: searchContext.color ?? .gray)
     }
 }

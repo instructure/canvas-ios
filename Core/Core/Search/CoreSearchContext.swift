@@ -27,7 +27,22 @@ public class CoreSearchContext: EnvironmentKey {
 
     var didSubmit = PassthroughSubject<String, Never>()
     var searchTerm = CurrentValueSubject<String, Never>("")
-    var history = CurrentValueSubject<[String], Never>([])
+    private var history = CurrentValueSubject<Set<ID>, Never>([])
+
+    var historyPublisher: AnyPublisher<Set<ID>, Never> {
+        history.eraseToAnyPublisher()
+    }
+
+    func markVisited(_ id: ID) {
+        var list = history.value
+        list.insert(id)
+        history.send(list)
+    }
+
+    func reset() {
+        history.value = []
+        searchTerm.value = ""
+    }
 
     weak var controller: CoreSearchController?
 

@@ -18,13 +18,19 @@
 
 import SwiftUI
 
+public enum ContextButtonState {
+    case normal
+    case selected
+    case highlighted
+}
+
 /**
  This button style adds a narrow vertical line to the left of the button using the given context color while changing the button's background to light gray in a pressed down state.
  */
 public struct ContextButton: ButtonStyle {
     private let selectionBackgroundColor: UIColor = .backgroundLight
     private let contextColor: UIColor
-    private let forceHighlight: Bool
+    private let state: ContextButtonState
 
     /**
      - parameters:
@@ -32,21 +38,28 @@ public struct ContextButton: ButtonStyle {
      */
     public init(contextColor: UIColor?, isHighlighted: Bool = false) {
         self.contextColor = contextColor?.ensureContrast(against: .backgroundLightest) ?? selectionBackgroundColor
-        self.forceHighlight = isHighlighted
+        self.state = isHighlighted ? .selected : .normal
+    }
+
+    public init(color: UIColor?, state: ContextButtonState = .normal) {
+        self.contextColor = color?.ensureContrast(against: .backgroundLightest) ?? selectionBackgroundColor
+        self.state = state
     }
 
     public func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .background(selectionIndicator(configuration.isPressed || forceHighlight))
+        configuration.label.background(selectionIndicator(given: configuration))
     }
 
-    private func selectionIndicator(_ isSelected: Bool) -> some View {
-        HStack(spacing: 0) {
-            Color(contextColor)
-                .frame(width: 3)
+    private func selectionIndicator(given configuration: Configuration) -> some View {
+        let visible = configuration.isPressed || state != .normal
+        return HStack(spacing: 0) {
+            if configuration.isPressed || state == .selected {
+                Color(contextColor)
+                    .frame(width: 3)
+            }
             Color(selectionBackgroundColor)
         }
-        .opacity(isSelected ? 1 : 0)
+        .opacity(visible ? 1 : 0)
     }
 }
 

@@ -26,10 +26,18 @@ struct SearchTextField: View {
     @Binding var text: String
 
     let onSubmit: () -> Void
+    let clearButtonColor: Color
 
-    init(text: Binding<String>, isFocused: FocusState<Bool>? = nil, onSubmit: @escaping () -> Void) {
+    init(
+        text: Binding<String>,
+        isFocused: FocusState<Bool>? = nil,
+        clearButtonColor clearColor: Color = .secondary,
+        onSubmit: @escaping () -> Void
+    ) {
+
         self._text = text
         self.onSubmit = onSubmit
+        self.clearButtonColor = clearColor
 
         if let state = isFocused {
             self._isFocused = state
@@ -65,7 +73,7 @@ struct SearchTextField: View {
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .font(.caption)
-                        .foregroundStyle(Color(uiColor: searchContext.color ?? .secondaryLabel))
+                        .foregroundStyle(clearButtonColor)
                 }
                 .fixedSize()
             }
