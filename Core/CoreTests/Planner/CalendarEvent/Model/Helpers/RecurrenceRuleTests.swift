@@ -182,6 +182,17 @@ private enum TestConstants {
                 end: .occurrenceCount(5)
             ),
             text: "Every other year on November, Day 3, Day 5, Day 6, Day 9, 5 times"
+        ),
+
+        // UNTIL format without time
+        UseCase(
+            raw: "RRULE:FREQ=DAILY;INTERVAL=1;UNTIL=20240927",
+            rule: RecurrenceRule(
+                recurrenceWith: .daily,
+                interval: 1,
+                end: .endDateWithoutTime(.make(year: 2024, month: 9, day: 27))
+            ),
+            text: "Daily, until Sep 27, 2024"
         )
     ]
 }

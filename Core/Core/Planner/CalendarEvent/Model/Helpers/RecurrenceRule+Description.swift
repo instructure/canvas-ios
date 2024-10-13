@@ -249,7 +249,7 @@ private extension RecurrenceEnd {
 
     var text: String {
         switch self {
-        case .endDate(let date):
+        case .endDate(let date), .endDateWithoutTime(let date):
             let format = String(localized: "until %@", bundle: .core)
             return String(format: format, date.formatted(date: .abbreviated, time: .omitted))
         case .occurrenceCount(let count):
