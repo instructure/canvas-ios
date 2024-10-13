@@ -79,6 +79,7 @@ struct CourseSmartSearchGroupedResultsView: View {
                                 return g[anchor].y
                             })
                     LazyVStack(spacing: 0) {
+
                         ForEach($resultSections, id: \.type) { sec in
                             let section = sec.wrappedValue
                             let title = "\(section.type.title) (\(section.results.count))"
@@ -130,32 +131,30 @@ private struct CourseSearchSectionDisclosureStyle: DisclosureGroupStyle {
     @ScaledMetric private var uiScale: CGFloat = 1
 
     func makeBody(configuration: Configuration) -> some View {
-        VStack {
-            Button {
-                withAnimation {
-                    configuration.isExpanded.toggle()
-                }
-            } label: {
-                HStack(alignment: .center) {
-                    configuration
-                        .label
-                        .font(.semibold14)
-                        .foregroundStyle(Color.textDark)
-                    Spacer()
-                    Image
-                        .chevronDown
-                        .size(uiScale.iconScale * 18)
-                        .rotationEffect(.degrees(configuration.isExpanded ? 180 : 0))
-                }
-                .padding(.vertical, 8)
-                .padding(.horizontal, 16)
-                .overlay(alignment: .bottom, content: { SearchDivider(inset: false) })
-                .contentShape(Rectangle())
+        Button {
+            withAnimation {
+                configuration.isExpanded.toggle()
             }
-            .buttonStyle(.plain)
-            if configuration.isExpanded {
-                configuration.content
+        } label: {
+            HStack(alignment: .center) {
+                configuration
+                    .label
+                    .font(.semibold14)
+                    .foregroundStyle(Color.textDark)
+                Spacer()
+                Image
+                    .chevronDown
+                    .size(uiScale.iconScale * 18)
+                    .rotationEffect(.degrees(configuration.isExpanded ? 180 : 0))
             }
+            .padding(.vertical, 8)
+            .padding(.horizontal, 16)
+            .overlay(alignment: .bottom, content: { SearchDivider(inset: false) })
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        if configuration.isExpanded {
+            configuration.content
         }
     }
 }

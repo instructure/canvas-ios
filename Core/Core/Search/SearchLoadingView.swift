@@ -20,20 +20,25 @@ import SwiftUI
 
 struct SearchLoadingView: View {
     var body: some View {
-        VStack {
+        HStack {
             Spacer()
-            Image("searching-panda", bundle: .core)
-            Text("Hang Tight, We're Fetching Your Results!")
-                .textStyle(.heading)
-                .multilineTextAlignment(.center)
-                .lineLimit(2)
-            Text("We’re working hard to find the best matches for your search. This won't take long! Thank you for your patience.")
-                .font(.regular16, lineHeight: .normal)
-                .multilineTextAlignment(.center)
-            ProgressView()
+            VStack {
+                Spacer()
+                Image("searching-panda", bundle: .core)
+                Text("Hang Tight, We're Fetching Your Results!")
+                    .textStyle(.heading)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                Text("We’re working hard to find the best matches for your search. This won't take long! Thank you for your patience.")
+                    .font(.regular16, lineHeight: .normal)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: 300)
+                ProgressView()
+                Spacer()
+            }
             Spacer()
         }
-        .frame(maxWidth: 250)
+        .padding(.horizontal, 20)
     }
 }
 

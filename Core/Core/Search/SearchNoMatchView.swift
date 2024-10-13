@@ -20,19 +20,24 @@ import SwiftUI
 
 struct SearchNoMatchView: View {
     var body: some View {
-        VStack {
+        HStack {
             Spacer()
-            Image("no-match-panda", bundle: .core)
-            Text("No Perfect Match")
-                .textStyle(.heading)
-                .multilineTextAlignment(.center)
-                .lineLimit(2)
-            Text("We didn’t find exactly what you’re looking for. Maybe try searching for something else?")
-                .font(.regular16, lineHeight: .normal)
-                .multilineTextAlignment(.center)
+            VStack {
+                Spacer()
+                Image("no-match-panda", bundle: .core)
+                Text("No Perfect Match")
+                    .textStyle(.heading)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                Text("We didn’t find exactly what you’re looking for. Maybe try searching for something else?")
+                    .font(.regular16, lineHeight: .normal)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: 300)
+                Spacer()
+            }
             Spacer()
         }
-        .frame(maxWidth: 250)
+        .padding(.horizontal, 20)
     }
 }
 
