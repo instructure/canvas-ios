@@ -87,7 +87,6 @@ extension SearchResult {
         case .discussion:
             instanceType = "discussion_topics"
         }
-        
         return "\(instanceType)/\(content_id.value)"
     }
 }
@@ -133,63 +132,5 @@ extension SearchResult {
 
     var strengthColor: Color {
         return distanceDots >= 3 ? Color.borderSuccess : Color.borderWarning
-    }
-}
-
-// MARK: - Mocks
-
-extension SearchResult {
-
-    static func make(_ type: ContentType, title: String, body: String) -> SearchResult {
-        return SearchResult(
-            content_id: ID(integerLiteral: Int.random(in: 1000 ... 9999)),
-            content_type: type,
-            readable_type: type.title,
-            title: title,
-            body: body,
-            html_url: URL(string: "https://www.instructure.com"),
-            distance: Double.random(in: 0.1 ... 1.0),
-            relevance: Int.random(in: 1 ... 40)
-        )
-    }
-
-    static var simpleExample: [SearchResult] {
-        return [
-            .make(
-                .announcement,
-                title: "Student Challenge",
-                body: "We’re thrilled to announce the Swift Student Challenge 2025. The Challenge provides the next generation of student developers the opportunity to showcase their creativity and coding skills by building app playgrounds with Swift."
-            ),
-            .make(
-                .assignment,
-                title: "Entrepreneur Camp",
-                body: "Apple Entrepreneur Camp supports underrepresented founders and developers, and encourages the pipeline and longevity of these entrepreneurs in technology. Attendees benefit from one-on-one code-level guidance, receive unprecedented access to Apple engineers and experts, and become part of the extended global network of Apple Entrepreneur Camp alumni."
-            ),
-            .make(
-                .page,
-                title: "Petra",
-                body: "Petra is a famous archaeological site in Jordan's southwestern desert. Dating to around 300 B.C., it was the capital of the Nabatean Kingdom. Accessed via a narrow canyon called Al Siq, it contains tombs and temples carved into pink sandstone cliffs, earning its nickname, the \"Rose City.\" Perhaps its most famous structure is 45m-high Al Khazneh, a temple with an ornate, Greek-style facade, and known as The Treasury. "
-            ),
-            .make(
-                .announcement,
-                title: "Student Challenge",
-                body: "We’re thrilled to announce the Swift Student Challenge 2025. The Challenge provides the next generation of student developers the opportunity to showcase their creativity and coding skills by building app playgrounds with Swift."
-            ),
-            .make(
-                .page,
-                title: "Petra",
-                body: "Petra is a famous archaeological site in Jordan's southwestern desert. Dating to around 300 B.C., it was the capital of the Nabatean Kingdom. Accessed via a narrow canyon called Al Siq, it contains tombs and temples carved into pink sandstone cliffs, earning its nickname, the \"Rose City.\" Perhaps its most famous structure is 45m-high Al Khazneh, a temple with an ornate, Greek-style facade, and known as The Treasury. "
-            ),
-            .make(
-                .announcement,
-                title: "Student Challenge",
-                body: "We’re thrilled to announce the Swift Student Challenge 2025. The Challenge provides the next generation of student developers the opportunity to showcase their creativity and coding skills by building app playgrounds with Swift."
-            ),
-            .make(
-                .assignment,
-                title: "Entrepreneur Camp",
-                body: "Apple Entrepreneur Camp supports underrepresented founders and developers, and encourages the pipeline and longevity of these entrepreneurs in technology. Attendees benefit from one-on-one code-level guidance, receive unprecedented access to Apple engineers and experts, and become part of the extended global network of Apple Entrepreneur Camp alumni."
-            )
-        ]
     }
 }
