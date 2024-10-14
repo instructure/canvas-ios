@@ -571,10 +571,19 @@ private func groupContextCard(url _: URLComponents, params: [String: String], us
 
 private func courseDetails(url: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
     guard let context = Context(path: url.path) else { return nil }
-
     let regularCourseDetails: () -> UIViewController = {
         let viewModel = CourseDetailsViewModel(context: context, offlineModeInteractor: OfflineModeAssembly.make())
-        let viewController = CoreHostingController(CourseDetailsView(viewModel: viewModel))
+        let viewController = CoreSearchHostingController(
+            context: context,
+            color: url.contextColor,
+            support: SearchSupportOption(
+                action: SearchSupportSheet(content: SmartSearchHelpView())
+            ),
+            content: CourseDetailsView(viewModel: viewModel),
+            display: { state in
+                CourseSmartSearchDisplayView(displayState: state)
+            }
+        )
 
         if let contextColor = url.contextColor {
             viewController.navigationBarStyle = .color(contextColor)
