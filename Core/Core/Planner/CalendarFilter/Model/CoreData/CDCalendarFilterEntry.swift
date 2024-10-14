@@ -49,6 +49,10 @@ public class CDCalendarFilterEntry: NSManagedObject {
         }
     }
 
+    public var wrappedContext: Context? {
+        Context(canvasContextID: rawContextID)
+    }
+
     public var purpose: CDCalendarFilterPurpose {
         get {
             CDCalendarFilterPurpose(rawValue: rawPurpose) ?? .unknown

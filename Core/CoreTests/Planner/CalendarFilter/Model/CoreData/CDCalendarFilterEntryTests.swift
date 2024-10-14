@@ -26,10 +26,13 @@ class CDCalendarFilterEntryTests: CoreTestCase {
         let testee: CDCalendarFilterEntry = databaseClient.insert()
         let testContext = Context(.group, id: "g1")
 
+        XCTAssertEqual(testee.wrappedContext, nil)
+
         testee.context = testContext
 
         XCTAssertEqual(testee.rawContextID, testContext.canvasContextID)
         XCTAssertEqual(testee.context, testContext)
+        XCTAssertEqual(testee.wrappedContext, testContext)
     }
 
     func testSort() {
