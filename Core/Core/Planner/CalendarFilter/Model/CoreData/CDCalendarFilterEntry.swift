@@ -42,7 +42,7 @@ public class CDCalendarFilterEntry: NSManagedObject {
 
     public var context: Context {
         get {
-            Context(canvasContextID: rawContextID)!
+            return Context(canvasContextID: "someinvalidcontextid")!
         }
         set {
             rawContextID = newValue.canvasContextID
