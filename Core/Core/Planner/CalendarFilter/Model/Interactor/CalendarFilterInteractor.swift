@@ -163,7 +163,7 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
 private extension Set where Element == Context {
 
     func removeUnavailableFilters(filters: [CDCalendarFilterEntry]) -> Set<Element> {
-        let availableContexts = filters.map { $0.context }
+        let availableContexts = filters.compactMap { $0.wrappedContext }
         return intersection(availableContexts)
     }
 }
@@ -171,7 +171,7 @@ private extension Set where Element == Context {
 private extension Array where Element == CDCalendarFilterEntry {
 
     func defaultFilters(limit: CalendarFilterCountLimit) -> Set<Context> {
-        let contexts = sorted().map { $0.context }
+        let contexts = sorted().compactMap { $0.wrappedContext }
         return Set(contexts.prefix(limit.rawValue))
     }
 }
