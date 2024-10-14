@@ -173,6 +173,7 @@ public final class GradeListViewModel: ObservableObject {
             isInitialGradingPeriodSet = true
             gradeListUIModel.gradeHeaderIsVisible = false
             gradeListUIModel.state = .initialLoading
+            
             let id = getSelectedGradingPeriodId(
                 currentGradingPeriodID: grades.currentGradingPeriodID,
                 gradingPeriods: grades.gradingPeriods
