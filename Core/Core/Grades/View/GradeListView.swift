@@ -69,7 +69,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 }
                 whatIfScoreEditorView()
 
-                if viewModel.isLoaderVisible {
+                if viewModel.gradeListUIModel.isLoaderVisible {
                     ProgressView()
                         .progressViewStyle(.indeterminateCircle())
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -80,12 +80,12 @@ public struct GradeListView: View, ScreenViewTrackable {
             .animation(.smooth, value: isScoreEditorPresented)
         }
         .safeAreaInset(edge: .top, spacing: 0) {
-            if viewModel.gradeHeaderIsVisible {
-                courseSummaryView(viewModel.totalGradeText)
+            if viewModel.gradeListUIModel.gradeHeaderIsVisible {
+                courseSummaryView(viewModel.gradeListUIModel.totalGradeText)
             }
         }
         .background(Color.backgroundLightest)
-        .navigationTitle(String(localized: "Grades", bundle: .core), subtitle: viewModel.courseName)
+        .navigationTitle(String(localized: "Grades", bundle: .core), subtitle: viewModel.gradeListUIModel.courseName)
         .toolbar {
             RevertWhatIfScoreButton(isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn) {
                 viewModel.isShowingRevertDialog = true
@@ -118,7 +118,7 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     private func contentView(geometry: GeometryProxy) -> some View {
         VStack(spacing: 0) {
-            switch viewModel.state {
+            switch viewModel.gradeListUIModel.state {
             case .initialLoading:
                 loadingView(geometry: geometry)
             case let .data(data):
@@ -254,13 +254,13 @@ public struct GradeListView: View, ScreenViewTrackable {
     private func totalLabelText() -> some View {
         let isShowGradeAssignment = !toggleViewIsVisible &&
         viewModel.baseOnGradedAssignment &&
-        viewModel.totalGradeText != nil
+        viewModel.gradeListUIModel.totalGradeText != nil
 
         let totalText = String(localized: "Total", bundle: .core)
         let restrictedText = String(localized: "Total grades are restricted", bundle: .core)
         let gradedAssignmentsText = String(localized: "Based on graded assignments", bundle: .core)
         let text = isShowGradeAssignment ? gradedAssignmentsText : totalText
-        Text(viewModel.totalGradeText == nil ? restrictedText : text)
+        Text(viewModel.gradeListUIModel.totalGradeText == nil ? restrictedText : text)
             .foregroundStyle(Color.textDark)
             .font(.regular14)
             .accessibilityHidden(true)
@@ -388,7 +388,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             .contentShape(Rectangle())
         }
         .background(Color.backgroundLightest)
-        .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
+        .buttonStyle(ContextButton(contextColor: viewModel.gradeListUIModel.courseColor))
         .accessibilityAction(named: Text("Edit What-if score", bundle: .core)) {
             isScoreEditorPresented.toggle()
         }

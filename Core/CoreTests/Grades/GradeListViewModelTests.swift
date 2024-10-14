@@ -29,7 +29,7 @@ class GradeListViewModelTests: CoreTestCase {
             router: PreviewEnvironment.shared.router,
             scheduler: .immediate
         )
-        XCTAssertEqual(testee.state, .error)
+        XCTAssertEqual(testee.gradeListUIModel.state, .error)
     }
 
     func testEmptyState() {
@@ -39,7 +39,7 @@ class GradeListViewModelTests: CoreTestCase {
             router: PreviewEnvironment.shared.router,
             scheduler: .immediate
         )
-        XCTAssertEqual(testee.state, .empty(emptySections))
+        XCTAssertEqual(testee.gradeListUIModel.state, .empty(emptySections))
     }
 
     func test_loadSortPreferences() {
@@ -54,7 +54,7 @@ class GradeListViewModelTests: CoreTestCase {
     }
 
     func testRefreshState() {
-        var states: [GradeListViewModel.ViewState] = []
+        var states: [GradeListUIModel.ViewState] = []
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
         let expectation = expectation(description: "Publisher sends value.")
         let testee = GradeListViewModel(
@@ -64,24 +64,24 @@ class GradeListViewModelTests: CoreTestCase {
             scheduler: .immediate
         )
 
-        let subscription = testee.$state
+        let subscription = testee.$gradeListUIModel
             .sink { _ in
 
-            } receiveValue: { state in
-                states.append(state)
-                if states.count == 2 {
+            } receiveValue: { gradeListUIModel in
+                states.append(gradeListUIModel.state)
+                if states.count == 3 {
                     expectation.fulfill()
                 }
             }
 
         testee.pullToRefreshDidTrigger.accept((nil))
-        XCTAssertEqual(states[1], .data(.init()))
+        XCTAssertEqual(states[2], .data(.init()))
         waitForExpectations(timeout: 0.1)
         subscription.cancel()
     }
 
     func test_getSelectedGradingPeriodId() {
-        var states: [GradeListViewModel.ViewState] = []
+        var states: [GradeListUIModel.ViewState] = []
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
         let expectation = expectation(description: "Publisher sends value.")
         let gradeFilterInteractor = GradeFilterInteractorMock()
@@ -93,24 +93,24 @@ class GradeListViewModelTests: CoreTestCase {
             scheduler: .immediate
         )
 
-        let subscription = testee.$state
+        let subscription = testee.$gradeListUIModel
             .sink { _ in
 
-            } receiveValue: { state in
-                states.append(state)
-                if states.count == 2 {
+            } receiveValue: { gradeListUIModel in
+                states.append(gradeListUIModel.state)
+                if states.count == 3 {
                     expectation.fulfill()
                 }
             }
 
         testee.pullToRefreshDidTrigger.accept((nil))
-        XCTAssertEqual(states[1], .data(.init()))
+        XCTAssertEqual(states[2], .data(.init()))
         waitForExpectations(timeout: 0.1)
         subscription.cancel()
     }
 
     func test_getSelectedGradingPeriodId_withNewIdSelected() {
-        var states: [GradeListViewModel.ViewState] = []
+        var states: [GradeListUIModel.ViewState] = []
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
         let expectation = expectation(description: "Publisher sends value.")
         let gradeFilterInteractor = GradeFilterInteractorMock()
@@ -122,18 +122,18 @@ class GradeListViewModelTests: CoreTestCase {
             scheduler: .immediate
         )
 
-        let subscription = testee.$state
+        let subscription = testee.$gradeListUIModel
             .sink { _ in
 
-            } receiveValue: { state in
-                states.append(state)
-                if states.count == 2 {
+            } receiveValue: { gradeListUIModel in
+                states.append(gradeListUIModel.state)
+                if states.count == 3 {
                     expectation.fulfill()
                 }
             }
 
         testee.pullToRefreshDidTrigger.accept((nil))
-        XCTAssertEqual(states[1], .data(.init()))
+        XCTAssertEqual(states[2], .data(.init()))
         waitForExpectations(timeout: 0.1)
         XCTAssertTrue(gradeFilterInteractor.saveGradingIsCalled)
         XCTAssertTrue(gradeFilterInteractor.saveSortByOptionIsCalled)
@@ -141,7 +141,7 @@ class GradeListViewModelTests: CoreTestCase {
     }
 
     func test_getSelectedGradingPeriodId_withShowAllSelected() {
-        var states: [GradeListViewModel.ViewState] = []
+        var states: [GradeListUIModel.ViewState] = []
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
         let expectation = expectation(description: "Publisher sends value.")
         let gradeFilterInteractor = GradeFilterInteractorMock()
@@ -153,18 +153,18 @@ class GradeListViewModelTests: CoreTestCase {
             scheduler: .immediate
         )
 
-        let subscription = testee.$state
+        let subscription = testee.$gradeListUIModel
             .sink { _ in
 
-            } receiveValue: { state in
-                states.append(state)
-                if states.count == 2 {
+            } receiveValue: { gradeListUIModel in
+                states.append(gradeListUIModel.state)
+                if states.count == 3 {
                     expectation.fulfill()
                 }
             }
 
         testee.pullToRefreshDidTrigger.accept((nil))
-        XCTAssertEqual(states[1], .data(.init()))
+        XCTAssertEqual(states[2], .data(.init()))
         waitForExpectations(timeout: 0.1)
         XCTAssertFalse(gradeFilterInteractor.saveGradingIsCalled)
         XCTAssertFalse(gradeFilterInteractor.saveSortByOptionIsCalled)
@@ -199,7 +199,7 @@ class GradeListViewModelTests: CoreTestCase {
         testee.pullToRefreshDidTrigger.accept(completion)
         XCTAssertEqual(completionCalled, true)
         XCTAssertEqual(interactor.ignoreCache, true)
-        XCTAssertEqual(testee.state, .data(gradeListData))
+        XCTAssertEqual(testee.gradeListUIModel.state, .data(gradeListData))
     }
 
     func testDidSelectAssignment() {
