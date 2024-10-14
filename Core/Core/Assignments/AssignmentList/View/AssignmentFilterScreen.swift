@@ -20,7 +20,6 @@ import SwiftUI
 
 public struct AssignmentFilterScreen: View {
     // MARK: - Properties
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
     @ObservedObject private var viewModel: AssignmentFilterViewModel
 
@@ -118,3 +117,34 @@ public struct AssignmentFilterScreen: View {
         .accessibilityLabel(Text("Hide", bundle: .core))
     }
 }
+
+#if DEBUG
+
+struct AssignmentFilterScreen_Previews: PreviewProvider {
+    private static let env = PreviewEnvironment()
+    private static let context = env.globalDatabase.viewContext
+    private static func createGradingPeriods() -> [GradingPeriod] {
+        let gradingPeriods = [
+            APIGradingPeriod.make(id: "1", title: "Period X"),
+            APIGradingPeriod.make(id: "2", title: "Period Y")
+        ]
+        return gradingPeriods.map {
+            GradingPeriod.save($0, courseID: "1", in: context)
+        }
+    }
+
+    static var previews: some View {
+        // swiftlint:disable:next redundant_discardable_let
+        let _ = UITableView.setupDefaultSectionHeaderTopPadding()
+
+        let gradingPeriods = createGradingPeriods()
+        let viewModel = AssignmentFilterViewModel(
+            gradingPeriods: gradingPeriods,
+            currentGradingPeriod: nil,
+            currentSortingOption: AssignmentArrangementOptions.groupName,
+            completion: { _ in })
+        AssignmentFilterScreen(viewModel: viewModel)
+    }
+}
+
+#endif

@@ -16,6 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+public struct FilterOptions {
+    let gradingPeriod: GradingPeriod?
+    let sortingOption: AssignmentArrangementOptions?
+}
+
 public final class AssignmentFilterViewModel: ObservableObject {
 
     // MARK: - Outputs
@@ -32,21 +37,21 @@ public final class AssignmentFilterViewModel: ObservableObject {
 
     private var currentGradingPeriod: GradingPeriod?
     private var currentSortingOption: AssignmentArrangementOptions
-    private let completion: (GradingPeriod?, AssignmentArrangementOptions?) -> Void
+    private let completion: (FilterOptions) -> Void
 
     // MARK: - Init
 
     init(
         gradingPeriods: [GradingPeriod],
         currentGradingPeriod: GradingPeriod?,
-        sortingOptions: [AssignmentArrangementOptions],
+        sortingOptions: [AssignmentArrangementOptions]? = nil,
         currentSortingOption: AssignmentArrangementOptions,
-        completion: @escaping (GradingPeriod?, AssignmentArrangementOptions?) -> Void
+        completion: @escaping (FilterOptions) -> Void
     ) {
         self.gradingPeriods = gradingPeriods
         self.selectedGradingPeriod = currentGradingPeriod
         self.currentGradingPeriod = currentGradingPeriod
-        self.sortingOptions = sortingOptions
+        self.sortingOptions = sortingOptions ?? AssignmentArrangementOptions.allCases
         self.selectedSortingOption = currentSortingOption
         self.currentSortingOption = currentSortingOption
         self.completion = completion
@@ -61,10 +66,10 @@ public final class AssignmentFilterViewModel: ObservableObject {
     }
 
     func saveButtonTapped(viewController: WeakViewController) {
-        completion(selectedGradingPeriod, selectedSortingOption)
+        completion(FilterOptions(gradingPeriod: selectedGradingPeriod, sortingOption: selectedSortingOption))
     }
 
     func dimiss(viewController: WeakViewController) {
-        completion(currentGradingPeriod, currentSortingOption)
+        completion(FilterOptions(gradingPeriod: currentGradingPeriod, sortingOption: currentSortingOption))
     }
 }

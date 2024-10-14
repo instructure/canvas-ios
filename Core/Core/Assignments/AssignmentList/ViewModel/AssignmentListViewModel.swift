@@ -50,6 +50,7 @@ public class AssignmentListViewModel: ObservableObject {
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var courseName: String?
     @Published public private(set) var defaultDetailViewRoute = "/empty"
+    @Published public private(set) var isShowingGradingPeriods: Bool = false
 
     // MARK: - Variables
 
@@ -110,6 +111,7 @@ public class AssignmentListViewModel: ObservableObject {
     private func assignmentGroupsDidUpdate() {
         if !assignmentGroups.requested || assignmentGroups.pending { return }
 
+        isShowingGradingPeriods = assignmentGroups.count > 1
         var assignmentGroups: [AssignmentGroupViewModel] = []
 
         switch selectedSortingOption {
@@ -163,8 +165,8 @@ public class AssignmentListViewModel: ObservableObject {
             currentGradingPeriod: selectedGradingPeriod,
             sortingOptions: sortingOptions,
             currentSortingOption: selectedSortingOption,
-            completion: { [weak self] gradingPeriod, sortingOption in
-                self?.filterOptionSelected(gradingPeriod, sortingOption)
+            completion: { [weak self] filterOptions in
+                self?.filterOptionSelected(filterOptions.gradingPeriod, filterOptions.sortingOption)
                 self?.env.router.dismiss(weakVC)
             })
         let controller = CoreHostingController(AssignmentFilterScreen(viewModel: viewModel))

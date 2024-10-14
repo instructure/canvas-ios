@@ -26,7 +26,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .loading)
         XCTAssertNil(testee.courseName)
         XCTAssertNil(testee.courseColor)
-        XCTAssertFalse(testee.shouldShowFilterButton)
+        XCTAssertEqual(testee.gradingPeriods.count, 1)
     }
 
     func testCoursePropertiesUpdate() {
@@ -66,7 +66,7 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         testee.viewDidAppear()
 
-        XCTAssertTrue(testee.shouldShowFilterButton)
+        XCTAssertTrue(testee.gradingPeriods.count > 1)
     }
 
     func testAssignmentsPopulate() {
@@ -142,7 +142,7 @@ class AssignmentListViewModelTests: CoreTestCase {
             .make(id: "AG1", name: "AGroup1", position: 1, assignments: [.make(assignment_group_id: "AG1", id: "1", name: "Assignment1")])
         ])
 
-        testee.gradingPeriodSelected(testee.gradingPeriods[1])
+        testee.filterOptionSelected(testee.gradingPeriods[1])
 
         guard case .data(let groupViewModels) = testee.state else {
             XCTFail("State doesn't contain any view models.")
