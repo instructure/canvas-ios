@@ -429,6 +429,7 @@ final class ComposeMessageViewModel: ObservableObject {
         if subject.isEmpty {
             subject = title
         }
+        
         let isExceedsRecipientsLimit = recipientIDs.count > maxRecipientCount
         let groupConversation = isExceedsRecipientsLimit ? true : sendIndividual
         return MessageParameters(
