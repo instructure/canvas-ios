@@ -20,7 +20,7 @@ import SwiftUI
 import UIKit
 import Combine
 
-public protocol CoreSearchController: UIViewController, UITextFieldDelegate {}
+public protocol CoreSearchController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {}
 public class CoreSearchHostingController<Content: View, SearchDisplay: View, Support: SearchSupportAction>:
     CoreHostingController<SearchHostingBaseView<Content>>,
     CoreSearchController {
@@ -182,6 +182,7 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
     // MARK: Search Experience
 
     private func startSearchExperience(with searchTerm: String, completion: @escaping () -> Void) {
+        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
 
         let coverVC = CoreHostingController(
             SearchableContainerView(
@@ -197,9 +198,11 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
         }
 
         let splitView = CoreSplitViewController()
+        let containeNav = CoreNavigationController(rootViewController: coverVC)
+        containeNav.delegate = self
 
         splitView.viewControllers = [
-            CoreNavigationController(rootViewController: coverVC),
+            containeNav,
             CoreNavigationController(rootViewController: EmptyViewController())
         ]
 
@@ -211,6 +214,15 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
             options: .modal(.overFullScreen, animated: true),
             completion: completion
         )
+    }
+
+    public func navigationController(
+        _ navigationController: UINavigationController,
+        willShow viewController: UIViewController,
+        animated: Bool
+    ) {
+        let backItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+        viewController.navigationItem.backBarButtonItem = backItem
     }
 }
 
@@ -283,7 +295,6 @@ public struct SearchableContainerView<Display: View, Action: SearchSupportAction
     public var body: some View {
         displayContent($displayState)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Results")
             .toolbar {
 
                 ToolbarItem(placement: .principal) {
