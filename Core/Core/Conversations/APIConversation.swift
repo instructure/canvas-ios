@@ -312,7 +312,7 @@ public struct PostConversationRequest: APIRequestable {
         public let media_comment_id: String?
         public let media_comment_type: MediaCommentType?
         public let attachment_ids: [String]?
-        public let group_conversation: Bool?
+        public let group_conversation: Bool = true
         public let force_new: Bool? = nil // Setting this seems to cause the api to ignore group_conversation
         public let bulk_message: Bool
     }
