@@ -26,6 +26,7 @@ extension InstUI {
         private let title: String
         private let value: Value
         private let color: Color
+        private let seperator: Bool
 
         /// - parameters:
         ///   - value: The value represented by this cell that will be passed to the `selectedValue` binding upon tap.
@@ -34,12 +35,14 @@ extension InstUI {
             title: String,
             value: Value,
             selectedValue: Binding<Value?>,
-            color: Color
+            color: Color,
+            seperator: Bool = true
         ) {
             self.title = title
             self.value = value
             self._selectedValue = selectedValue
             self.color = color
+            self.seperator = seperator
         }
 
         public var body: some View {
@@ -63,7 +66,7 @@ extension InstUI {
                     .paddingStyle(set: .iconCell)
 
                 }
-                InstUI.Divider()
+                if seperator { InstUI.Divider() }
             }
             .accessibilityRepresentation {
                 let binding = Binding {
