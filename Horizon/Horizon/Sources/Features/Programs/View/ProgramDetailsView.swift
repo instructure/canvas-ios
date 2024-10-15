@@ -21,11 +21,12 @@ import SwiftUI
 
 struct ProgramDetailsViewView: View {
     @ObservedObject private var viewModel: ProgramDetailsViewModel
-    @State private var scrollPos: Int?
+    @State private var selectedCourseIndex: Int?
+    @State private var selectedCourseDetailsIndex = 0
 
     init(viewModel: ProgramDetailsViewModel) {
         self.viewModel = viewModel
-        self.scrollPos = 0
+        self.selectedCourseIndex = 0
     }
 
     var body: some View {
@@ -54,7 +55,7 @@ struct ProgramDetailsViewView: View {
         .padding(.horizontal, 16)
         .background(Color.backgroundLight)
         .onFirstAppear {
-            scrollPos = 0
+            selectedCourseIndex = 0
         }
     }
 
@@ -63,10 +64,10 @@ struct ProgramDetailsViewView: View {
         VStack {
             courseSelectorView
             moduleListView(modules: modules)
-            Spacer()
+//            Spacer()
         }
-        .background(Color.backgroundLight)
-//        .containerRelativeFrame(.vertical)
+        .frame(height: 525)
+        .background(Color.green)
     }
 
     private var courseSelectorView: some View {
@@ -74,11 +75,12 @@ struct ProgramDetailsViewView: View {
             HStack(spacing: 16) {
                 ForEach(0 ..< 6) { index in
                     Button {
-                        scrollPos = index
+                        selectedCourseIndex = index
+                        selectedCourseDetailsIndex = index
                     } label: {
                         VStack {
                             Size14RegularTextDarkestTitle(title: "Course: \(index)")
-                            if index == scrollPos {
+                            if index == selectedCourseIndex {
                                 Rectangle()
                                     .foregroundColor(Color.red)
                                     .frame(height: 2)
@@ -91,48 +93,62 @@ struct ProgramDetailsViewView: View {
             }
         }
         .scrollTargetLayout()
-        .scrollTargetBehavior(.viewAligned(limitBehavior: .always))
+        .scrollTargetBehavior(.viewAligned)
         .scrollBounceBehavior(.basedOnSize)
-        .scrollPosition(id: $scrollPos, anchor: .center)
-        .animation(.smooth, value: scrollPos)
+        .scrollPosition(id: $selectedCourseIndex, anchor: .center)
+        .animation(.smooth, value: selectedCourseIndex)
     }
 
     @ViewBuilder
     private func moduleListView(modules: [HModule]) -> some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
-                ForEach(0 ..< 6) { index in
-                    ScrollView(.vertical, showsIndicators: false) {
-                        VStack(spacing: 16) {
-                            ForEach(modules) { module in
-                                ExpandingModuleView(
-                                    title: module.name,
-                                    items: module.items
-                                )
-                                .frame(minHeight: 44)
-                                .background(Color.backgroundLightest)
-                                .cornerRadius(8)
-                                .id(index)
-                            }
-                        }
-                    }
-                    .containerRelativeFrame(.horizontal)
-                    .id(index)
-                    .scrollTransition(.interactive) { content, phase in
-                        content
-                            .opacity(phase.isIdentity ? 1 : 0)
-                            .offset(
-                                x: phase.isIdentity ? 0 : -16,
-                                y: phase.isIdentity ? 0 : -100
+        TabView(selection: $selectedCourseDetailsIndex) {
+            ForEach(0 ..< 6) { index in
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 16) {
+                        ForEach(modules) { module in
+                            ExpandingModuleView(
+                                title: module.name,
+                                items: module.items
                             )
+                            .frame(minHeight: 44)
+                            .background(Color.backgroundLightest)
+                            .cornerRadius(8)
+                            .id(index)
+                        }
                     }
                 }
             }
         }
-        .scrollTargetLayout()
-        .scrollTargetBehavior(.viewAligned)
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollPosition(id: $scrollPos, anchor: .center)
-        .animation(.smooth, value: scrollPos)
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .onChange(of: selectedCourseDetailsIndex) {
+            selectedCourseIndex = selectedCourseDetailsIndex
+            print("🟪 ", selectedCourseDetailsIndex)
+        }
+        .animation(.smooth, value: selectedCourseDetailsIndex)
+    }
+}
+
+// MARK: Extensions
+struct SizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
+        value = nextValue()
+    }
+}
+
+extension View {
+    func getSizeOfView(_ getSize: @escaping ((CGSize) -> Void)) -> some View {
+        return self
+            .background {
+                GeometryReader { geometry in
+                    Color.clear.preference(
+                        key: SizePreferenceKey.self,
+                        value: geometry.size
+                    )
+                    .onPreferenceChange(SizePreferenceKey.self) { value in
+                        getSize(value)
+                    }
+                }
+            }
     }
 }
