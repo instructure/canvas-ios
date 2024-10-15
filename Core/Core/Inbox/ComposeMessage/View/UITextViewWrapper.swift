@@ -57,6 +57,17 @@ struct UITextViewWrapper: UIViewRepresentable {
             shouldChangeTextIn range: NSRange,
             replacementText text: String
         ) -> Bool {
+            if text == "\n" { // When hit `Return` button "New Line"
+                let currentCursorPosition = textView.selectedRange.location + 1
+                let textLength = textView.text.count
+                let textPosition = textView.position(from: textView.beginningOfDocument, offset: currentCursorPosition)
+                
+                if let textPosition, textLength > currentCursorPosition {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        textView.moveCourserTo(position: textPosition)
+                    }
+                }
+            }
             // Detect when pasted content comes from the pasteboard
             if let pasteboard = UIPasteboard.general.string, text == pasteboard {
                 parent.onPaste() // Trigger the onPaste callback
@@ -70,5 +81,9 @@ struct UITextViewWrapper: UIViewRepresentable {
 extension UITextView {
     public func moveCourserToEnd() {
         selectedTextRange = textRange(from: endOfDocument, to: endOfDocument)
+    }
+
+    public func moveCourserTo(position: UITextPosition) {
+        selectedTextRange = textRange(from: position, to: position)
     }
 }
