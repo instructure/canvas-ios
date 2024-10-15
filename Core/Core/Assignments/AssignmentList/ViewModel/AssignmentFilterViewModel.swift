@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 public final class AssignmentFilterViewModel: ObservableObject {
 
     struct FilterOptions {
@@ -32,11 +34,15 @@ public final class AssignmentFilterViewModel: ObservableObject {
     let courseName: String?
 
     @Published var selectedGradingPeriod: GradingPeriod? {
-        didSet { updateSaveButton() }
+        didSet {
+            updateSaveButton()
+        }
     }
 
     @Published var selectedSortingOption: AssignmentArrangementOptions? {
-        didSet { updateSaveButton() }
+        didSet {
+            updateSaveButton()
+        }
     }
 
     // MARK: - Private variables
@@ -64,7 +70,9 @@ public final class AssignmentFilterViewModel: ObservableObject {
         self.courseName = courseName
         self.completion = completion
 
-        if gradingPeriods.count > 1 { isGradingPeriodsSectionVisible = true }
+        if gradingPeriods.count > 1 {
+            isGradingPeriodsSectionVisible = true
+        }
     }
 
     // MARK: - Functions
