@@ -61,8 +61,8 @@ struct UITextViewWrapper: UIViewRepresentable {
                 let currentCursorPosition = textView.selectedRange.location + 1
                 let textLength = textView.text.count
                 let textPosition = textView.position(from: textView.beginningOfDocument, offset: currentCursorPosition)
-                
                 if let textPosition, textLength > currentCursorPosition {
+                    // Wait a bit so can move the courser to the exact position
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         textView.moveCourserTo(position: textPosition)
                     }
