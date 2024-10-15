@@ -20,8 +20,8 @@ import Core
 import Foundation
 import SwiftUI
 
-enum HorizonRouter {
-    private(set) static var routes: [RouteHandler] = [
+enum HorizonRoutes {
+    private(set) static var routeHandlers: [RouteHandler] = [
         RouteHandler("/splash") { _, _, _ in
             SplashAssembly.makeViewController()
         },
@@ -68,6 +68,8 @@ enum HorizonRouter {
         RouteHandler("/:context/:contextID/files/:fileID/preview", factory: fileDetails),
         RouteHandler("/:context/:contextID/files/:fileID/edit", factory: fileEditor)
     ]
+
+    // MARK: - Helper functions
 
     private static func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
         guard url.queryItems?.contains(where: { $0.name == "preview" }) != true else {

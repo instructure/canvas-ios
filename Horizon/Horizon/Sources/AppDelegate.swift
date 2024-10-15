@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate, L
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
         env.loginDelegate = self
-        env.router = Router(routes: HorizonRouter.routes)
+        env.router = Router(routes: HorizonRoutes.routeHandlers)
         env.app = .horizon
         env.window = window
         return env
