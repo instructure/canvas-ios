@@ -25,7 +25,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
     @State private var recipientViewHeight: CGFloat = .zero
     @State private var searchTextFieldHeight: CGFloat = .zero
-    private let attachmentsViewId = "attachmentsView"
     private enum FocusedInput {
         case subject
         case message
@@ -47,7 +46,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     public var body: some View {
         InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
-            ScrollViewReader { proxy in
                 VStack(spacing: 0) {
                     headerView
                         .background(
@@ -68,13 +66,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                             propertiesView
                             separator
 
-                            bodyView(geometry: geometry) {
-                                withAnimation {
-                                    proxy.scrollTo(attachmentsViewId)
-                                }
-                            }
+                            bodyView(geometry: geometry)
                             attachmentsView
-                                .id(attachmentsViewId)
                             if !model.includedMessages.isEmpty {
                                 includedMessages
                             }
@@ -97,9 +90,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                             .fixedSize(horizontal: false, vertical: true)
                             .animation(.smooth, value: model.showSearchRecipientsView)
                         }
-
                     }
-                }
             }
             .font(.regular12)
             .foregroundColor(.textDarkest)
@@ -368,10 +359,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private func bodyView(
-        geometry: GeometryProxy,
-        onPaste: @escaping () -> Void
-    ) -> some View {
+    private func bodyView(geometry: GeometryProxy) -> some View {
         VStack(spacing: 0) {
             HStack {
                 Text("Message", bundle: .core)
@@ -397,26 +385,16 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             }
             .padding(.leading, defaultHorizontalPaddingValue)
             .padding(.top, defaultVerticalPaddingValue)
-
-            UITextViewWrapper(text: $model.bodyText, onPaste: onPaste) {
-                let tv = UITextView()
-                tv.isScrollEnabled = false
-                tv.textContainer.widthTracksTextView = true
-                tv.textContainer.lineBreakMode = .byWordWrapping
-                tv.font = UIFont.scaledNamedFont(.regular16)
-                tv.translatesAutoresizingMaskIntoConstraints = false
-                tv.widthAnchor.constraint(equalToConstant: geometry.frame(in: .global).width - (2 * defaultHorizontalPaddingValue)).isActive = true
-                tv.backgroundColor = .backgroundLightest
-                return tv
-            }
-            .font(.regular16, lineHeight: .condensed)
-            .textInputAutocapitalization(.sentences)
-            .focused($focusedInput, equals: .message)
-            .foregroundColor(.textDarkest)
-            .padding(.horizontal, defaultHorizontalPaddingValue)
-            .frame(minHeight: 60)
-            .accessibility(label: Text("Message", bundle: .core))
-            .accessibilityIdentifier("ComposeMessage.body")
+            TextEditor(text: $model.bodyText)
+                .foregroundColor(.textDarkest)
+                .font(.regular16, lineHeight: .condensed)
+                .focused($focusedInput, equals: .message)
+                .paddingStyle(.horizontal, .standard)
+                .scrollDisabled(true)
+                .textInputAutocapitalization(.sentences)
+                .frame(minHeight: 60)
+                .accessibility(label: Text("Message", bundle: .core))
+                .accessibilityIdentifier("ComposeMessage.body")
         }
         .disabled(model.isMessageDisabled)
         .opacity(model.isMessageDisabled ? 0.6 : 1)
