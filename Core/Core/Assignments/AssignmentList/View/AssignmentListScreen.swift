@@ -34,14 +34,6 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
 
     public var body: some View {
         VStack(spacing: 0) {
-            if viewModel.isShowingGradingPeriods {
-                HStack(alignment: .firstTextBaseline) {
-                    gradingPeriodTitle
-                    Spacer(minLength: 8)
-                }
-                .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
-            }
-
             switch viewModel.state {
             case .empty:
                 emptyPanda
@@ -56,7 +48,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
         .navigationTitle(String(localized: "Assignments", bundle: .core), subtitle: viewModel.courseName)
         .navigationBarGenericBackButton()
         .navBarItems(
-            trailing: .filterIcon(isBackgroundContextColor: true) {
+            trailing: .filterIcon(isBackgroundContextColor: true, isFilled: viewModel.isFilterIconFilled) {
                 viewModel.navigateToFilter(viewController: controller)
             }
         )
@@ -110,6 +102,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             LazyVStack(pinnedViews: .sectionHeaders) {
                 ForEach(groups, id: \.id) { assignmentGroup in
                     AssignmentGroupView(viewModel: assignmentGroup)
+                        .accessibilityIdentifier("AssignmentList.assignmentGroups.\(assignmentGroup.id)")
                 }
             }
         }

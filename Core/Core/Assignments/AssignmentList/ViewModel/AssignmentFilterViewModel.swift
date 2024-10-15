@@ -16,60 +16,68 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct FilterOptions {
-    let gradingPeriod: GradingPeriod?
-    let sortingOption: AssignmentArrangementOptions?
-}
-
 public final class AssignmentFilterViewModel: ObservableObject {
+
+    struct FilterOptions {
+        let gradingPeriod: GradingPeriod?
+        let sortingOption: AssignmentArrangementOptions?
+    }
 
     // MARK: - Outputs
 
-    @Published private(set) var saveButtonIsEnabled = false
-    @Published private(set) var isShowGradingPeriodsView = false
-    @Published private(set) var courseName: String?
+    @Published private(set) var isSaveButtonEnabled = false
+    @Published private(set) var isGradingPeriodsSectionVisible = false
     @Published private(set) var gradingPeriods: [GradingPeriod] = []
     @Published private(set) var sortingOptions: [AssignmentArrangementOptions] = []
-    @Published var selectedGradingPeriod: GradingPeriod? { didSet { checkChanges() } }
-    @Published var selectedSortingOption: AssignmentArrangementOptions? { didSet { checkChanges() } }
+    let courseName: String?
+
+    @Published var selectedGradingPeriod: GradingPeriod? {
+        didSet { updateSaveButton() }
+    }
+
+    @Published var selectedSortingOption: AssignmentArrangementOptions? {
+        didSet { updateSaveButton() }
+    }
 
     // MARK: - Private variables
 
-    private var currentGradingPeriod: GradingPeriod?
-    private var currentSortingOption: AssignmentArrangementOptions
-    private let completion: (FilterOptions) -> Void
+    private let initialGradingPeriod: GradingPeriod?
+    private let initialSortingOption: AssignmentArrangementOptions
+    private let completion: (FilterOptions?) -> Void
 
     // MARK: - Init
 
     init(
         gradingPeriods: [GradingPeriod],
-        currentGradingPeriod: GradingPeriod?,
-        sortingOptions: [AssignmentArrangementOptions]? = nil,
-        currentSortingOption: AssignmentArrangementOptions,
-        completion: @escaping (FilterOptions) -> Void
+        initialGradingPeriod: GradingPeriod?,
+        sortingOptions: [AssignmentArrangementOptions],
+        initialSortingOption: AssignmentArrangementOptions,
+        courseName: String?,
+        completion: @escaping (FilterOptions?) -> Void
     ) {
         self.gradingPeriods = gradingPeriods
-        self.selectedGradingPeriod = currentGradingPeriod
-        self.currentGradingPeriod = currentGradingPeriod
-        self.sortingOptions = sortingOptions ?? AssignmentArrangementOptions.allCases
-        self.selectedSortingOption = currentSortingOption
-        self.currentSortingOption = currentSortingOption
+        self.selectedGradingPeriod = initialGradingPeriod
+        self.initialGradingPeriod = initialGradingPeriod
+        self.sortingOptions = sortingOptions
+        self.selectedSortingOption = initialSortingOption
+        self.initialSortingOption = initialSortingOption
+        self.courseName = courseName
         self.completion = completion
 
-        if gradingPeriods.count > 1 { isShowGradingPeriodsView = true }
+        if gradingPeriods.count > 1 { isGradingPeriodsSectionVisible = true }
     }
 
     // MARK: - Functions
 
-    func checkChanges() {
-        saveButtonIsEnabled = selectedGradingPeriod != currentGradingPeriod || selectedSortingOption != currentSortingOption
+    func updateSaveButton() {
+        isSaveButtonEnabled = selectedGradingPeriod != initialGradingPeriod || selectedSortingOption != initialSortingOption
     }
 
     func saveButtonTapped(viewController: WeakViewController) {
         completion(FilterOptions(gradingPeriod: selectedGradingPeriod, sortingOption: selectedSortingOption))
     }
 
-    func dimiss(viewController: WeakViewController) {
-        completion(FilterOptions(gradingPeriod: currentGradingPeriod, sortingOption: currentSortingOption))
+    func dismiss(viewController: WeakViewController) {
+        completion(nil)
     }
 }

@@ -32,13 +32,13 @@ public struct AssignmentFilterScreen: View {
     public var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
-                if viewModel.isShowGradingPeriodsView {
-                    gradingPeriodSection
+                if viewModel.isGradingPeriodsSectionVisible {
+                    gradingPeriodsSection
                 }
                 sortBySection
             }
             .navigationTitleStyled(navBarTitleView)
-            .navigationBarItems(leading: cancelButton, trailing: sendButton)
+            .navigationBarItems(leading: cancelButton, trailing: saveButton)
         }
     }
 
@@ -53,7 +53,7 @@ public struct AssignmentFilterScreen: View {
         }
     }
 
-    private var gradingPeriodSection: some View {
+    private var gradingPeriodsSection: some View {
         Section {
             InstUI.RadioButtonCell(title: "All", value: nil, selectedValue: $viewModel.selectedGradingPeriod, color: Color(Brand.shared.primary))
             ForEach(viewModel.gradingPeriods, id: \.hashValue) { item in
@@ -71,6 +71,7 @@ public struct AssignmentFilterScreen: View {
             selectedValue: $viewModel.selectedGradingPeriod,
             color: Color(Brand.shared.primary)
         )
+        .accessibilityIdentifier("AssignmentFilter.gradingPeriodItems.\(item.id ?? "0")")
     }
 
     private var sortBySection: some View {
@@ -90,25 +91,44 @@ public struct AssignmentFilterScreen: View {
             selectedValue: $viewModel.selectedSortingOption,
             color: Color(Brand.shared.primary)
         )
+        .accessibilityIdentifier("AssignmentFilter.sortByItems.\(item.rawValue)")
     }
 
-    private var sendButton: some View {
+    private var saveButton: some View {
+        InstUI.NavigationBarButton.save(isEnabled: viewModel.isSaveButtonEnabled) {
+            viewModel.saveButtonTapped(viewController: viewController)
+        }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(Text("Save", bundle: .core))
+        .accessibilityIdentifier("AssignmentFilter.saveButton")
+    }
+
+    private var saveButton2: some View {
         Button {
             viewModel.saveButtonTapped(viewController: viewController)
         } label: {
             Text(String(localized: "Save", bundle: .core))
                 .font(.semibold16)
-                .foregroundColor(viewModel.saveButtonIsEnabled
+                .foregroundColor(viewModel.isSaveButtonEnabled
                                  ? .textDarkest
                                  : .disabledGray)
 
         }
-        .disabled(!viewModel.saveButtonIsEnabled)
+        .disabled(!viewModel.isSaveButtonEnabled)
     }
 
     private var cancelButton: some View {
+        InstUI.NavigationBarButton.cancel {
+            viewModel.dismiss(viewController: viewController)
+        }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(Text("Cancel", bundle: .core))
+        .accessibilityIdentifier("AssignmentFilter.cancelButton")
+    }
+
+    private var cancelButton2: some View {
         Button {
-            viewModel.dimiss(viewController: viewController)
+            viewModel.dismiss(viewController: viewController)
         } label: {
             Image.xLine
                 .padding(5)
@@ -140,8 +160,10 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
         let gradingPeriods = createGradingPeriods()
         let viewModel = AssignmentFilterViewModel(
             gradingPeriods: gradingPeriods,
-            currentGradingPeriod: nil,
-            currentSortingOption: AssignmentArrangementOptions.groupName,
+            initialGradingPeriod: nil,
+            sortingOptions: AssignmentArrangementOptions.allCases,
+            initialSortingOption: AssignmentArrangementOptions.groupName,
+            courseName: "Sample Course Name",
             completion: { _ in })
         AssignmentFilterScreen(viewModel: viewModel)
     }

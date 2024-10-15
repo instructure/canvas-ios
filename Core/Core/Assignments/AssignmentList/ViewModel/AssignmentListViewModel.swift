@@ -18,9 +18,9 @@
 
 import SwiftUI
 
-public enum AssignmentArrangementOptions: Int, CaseIterable {
-    case groupName = 1
-    case dueDate = 2
+public enum AssignmentArrangementOptions: String, CaseIterable {
+    case groupName
+    case dueDate
 
     var title: String {
         switch self {
@@ -33,6 +33,7 @@ public enum AssignmentArrangementOptions: Int, CaseIterable {
 }
 
 public struct AssignmentDateGroup {
+    public let id: String
     public let name: String
     public let assignments: [Assignment]
 }
@@ -54,8 +55,11 @@ public class AssignmentListViewModel: ObservableObject {
 
     // MARK: - Variables
 
-    public var selectedSortingOption: AssignmentArrangementOptions = .groupName
+    public var isFilterIconFilled: Bool = false
+    public let defaultGradingPeriod: GradingPeriod? = nil
+    public let defaultSortingOption: AssignmentArrangementOptions = .groupName
     public var selectedGradingPeriod: GradingPeriod?
+    public var selectedSortingOption: AssignmentArrangementOptions = .groupName
     private var sortingOptions = AssignmentArrangementOptions.allCases
     private let env = AppEnvironment.shared
     let courseID: String
@@ -88,13 +92,11 @@ public class AssignmentListViewModel: ObservableObject {
 
     // MARK: - Functions
 
-    public func gradingPeriodFilterCleared() {
-        filterOptionSelected(nil)
-    }
-
-    public func filterOptionSelected(_ gradingPeriod: GradingPeriod?, _ sortingOption: AssignmentArrangementOptions? = nil) {
+    public func filterOptionsDidUpdate(_ gradingPeriod: GradingPeriod?, _ sortingOption: AssignmentArrangementOptions? = nil) {
         selectedGradingPeriod = gradingPeriod
         selectedSortingOption = sortingOption ?? .groupName
+
+        isFilterIconFilled = gradingPeriod != defaultGradingPeriod || sortingOption != defaultSortingOption
 
         assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriod?.id)) { [weak self] in
             self?.assignmentGroupsDidUpdate()
@@ -128,15 +130,20 @@ public class AssignmentListViewModel: ObservableObject {
             }
         case .dueDate:
             let all = self.assignmentGroups.compactMap { $0 }
-            let missed = all.filter { $0.dueAt ?? Date.distantFuture < Date.now }
-            if !missed.isEmpty {
-                let missedGroup = AssignmentDateGroup(name: "Overdue", assignments: missed)
-                assignmentGroups.append(AssignmentGroupViewModel(assignmentDateGroup: missedGroup, courseColor: courseColor))
+            let overdue = all.filter { $0.dueAt ?? Date.distantFuture < Date.now }
+            if !overdue.isEmpty {
+                let overdueGroup = AssignmentDateGroup(id: "overdue", name: "Overdue Assignments", assignments: overdue)
+                assignmentGroups.append(AssignmentGroupViewModel(assignmentDateGroup: overdueGroup, courseColor: courseColor))
             }
-            let upcoming = all.filter { $0.dueAt ?? Date.distantFuture > Date.now }
+            let upcoming = all.filter { $0.dueAt ?? Date.distantPast > Date.now }
             if !upcoming.isEmpty {
-                let upcomingGroup = AssignmentDateGroup(name: "Upcoming", assignments: upcoming)
+                let upcomingGroup = AssignmentDateGroup(id: "upcoming", name: "Upcoming Assignments", assignments: upcoming)
                 assignmentGroups.append(AssignmentGroupViewModel(assignmentDateGroup: upcomingGroup, courseColor: courseColor))
+            }
+            let undated = all.filter { $0.dueAt == nil }
+            if !undated.isEmpty {
+                let undatedGroup = AssignmentDateGroup(id: "undated", name: "Undated Assignments", assignments: undated)
+                assignmentGroups.append(AssignmentGroupViewModel(assignmentDateGroup: undatedGroup, courseColor: courseColor))
             }
         }
 
@@ -162,11 +169,12 @@ public class AssignmentListViewModel: ObservableObject {
         let weakVC = WeakViewController()
         let viewModel = AssignmentFilterViewModel(
             gradingPeriods: gradingPeriods.all,
-            currentGradingPeriod: selectedGradingPeriod,
+            initialGradingPeriod: selectedGradingPeriod,
             sortingOptions: sortingOptions,
-            currentSortingOption: selectedSortingOption,
+            initialSortingOption: selectedSortingOption,
+            courseName: courseName,
             completion: { [weak self] filterOptions in
-                self?.filterOptionSelected(filterOptions.gradingPeriod, filterOptions.sortingOption)
+                self?.filterOptionsDidUpdate(filterOptions?.gradingPeriod, filterOptions?.sortingOption)
                 self?.env.router.dismiss(weakVC)
             })
         let controller = CoreHostingController(AssignmentFilterScreen(viewModel: viewModel))
