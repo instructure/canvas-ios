@@ -50,7 +50,10 @@ struct ProgramDetailsViewView: View {
                     learningContentView(modules: program.modules)
                 }
             }
+            .containerRelativeFrame(.vertical)
         }
+        .containerRelativeFrame(.vertical)
+        .safeAreaPadding(.bottom, 16)
         .padding(.top, 16)
         .padding(.horizontal, 16)
         .background(Color.backgroundLight)
@@ -64,10 +67,8 @@ struct ProgramDetailsViewView: View {
         VStack {
             courseSelectorView
             moduleListView(modules: modules)
-//            Spacer()
         }
-        .frame(height: 525)
-        .background(Color.green)
+        .background(Color.backgroundLight)
     }
 
     private var courseSelectorView: some View {
