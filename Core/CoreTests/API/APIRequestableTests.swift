@@ -178,22 +178,22 @@ class APIRequestableTests: XCTestCase {
     }
 
     func testUrlRequestQuery() {
-        let expected = expectedUrlRequest(path: "api/v1/?query")
+        let expected = expectedUrlRequest(path: "api/v1/?query&no_verifiers=1")
         XCTAssertEqual(try GetQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil), expected)
     }
 
     func testActAsUserIDWithRegularQueryItems() {
-        let expected = expectedUrlRequest(path: "api/v1/?query&as_user_id=78")
+        let expected = expectedUrlRequest(path: "api/v1/?query&as_user_id=78&no_verifiers=1")
         XCTAssertEqual(try GetQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: "78"), expected)
     }
 
     func testActAsUserIDWithEmptyQueryItems() {
-        let expected = expectedUrlRequest(path: "api/v1/data?as_user_id=78")
+        let expected = expectedUrlRequest(path: "api/v1/data?as_user_id=78&no_verifiers=1")
         XCTAssertEqual(try GetEmptyQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: "78"), expected)
     }
 
     func testActAsUserIDWithPercentEncodedQueryItems() {
-        let expected = expectedUrlRequest(path: "api/v1/calendar?startDate=2024-01-01T10%3A39%3A00.000%2B00%3A00&as_user_id=78")
+        let expected = expectedUrlRequest(path: "api/v1/calendar?startDate=2024-01-01T10%3A39%3A00.000%2B00%3A00&as_user_id=78&no_verifiers=1")
         XCTAssertEqual(try GetPercentEncodedQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: "78"), expected)
     }
 

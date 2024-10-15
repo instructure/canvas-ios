@@ -219,13 +219,14 @@ extension APIRequestable {
                 return []
             }
         }()
+        let noFileVerifierQueryItem = [URLQueryItem(name: "no_verifiers", value: "1")]
 
         if useExtendedPercentEncoding, !percentEncodedQueryItems.isEmpty {
-            components.percentEncodedQueryItems = percentEncodedQueryItems + actAsUserQueryItem
+            components.percentEncodedQueryItems = percentEncodedQueryItems + actAsUserQueryItem + noFileVerifierQueryItem
         } else if !queryItems.isEmpty {
-            components.queryItems = (components.queryItems ?? []) + self.queryItems + actAsUserQueryItem
+            components.queryItems = (components.queryItems ?? []) + self.queryItems + actAsUserQueryItem + noFileVerifierQueryItem
         } else if !actAsUserQueryItem.isEmpty {
-            components.queryItems = (components.queryItems ?? []) + actAsUserQueryItem
+            components.queryItems = (components.queryItems ?? []) + actAsUserQueryItem + noFileVerifierQueryItem
         }
 
         // The conditional path prefixing *should* have made this impossible to fail
