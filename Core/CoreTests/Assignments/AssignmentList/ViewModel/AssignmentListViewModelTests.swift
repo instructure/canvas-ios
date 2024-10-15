@@ -26,7 +26,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .loading)
         XCTAssertNil(testee.courseName)
         XCTAssertNil(testee.courseColor)
-        XCTAssertEqual(testee.gradingPeriods.count, 1)
+        XCTAssertEqual(testee.gradingPeriods.count, 0)
     }
 
     func testCoursePropertiesUpdate() {
