@@ -41,23 +41,78 @@ enum HorizonRouter {
             guard let context = Context(path: url.path) else { return nil }
             return PageListViewController.create(context: context, app: .student)
         },
-        RouteHandler("/:context/:contextID/pages/:url", factory: pageViewController),
+        RouteHandler("/:context/:contextID/pages/:url") { url, params, _ in
+            Self.pageViewController(url: url, params: params)
+        },
         RouteHandler("/programs/:programID") { _, _, userInfo in
             guard let program = userInfo?["program"] as? HProgram else { return nil }
             return ProgramsAssembly.makeProgramDetailsViewController(program: program)
-        }
-    ]
-}
+        },
 
-private func pageViewController(url: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
-    guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
-    if !url.originIsModuleItemDetails, context.contextType == .course {
-        return ModuleItemSequenceViewController.create(
-            courseID: context.id,
-            assetType: .page,
-            assetID: pageURL,
-            url: url
+        // MARK: - Files
+
+        RouteHandler("/files", factory: fileList),
+        RouteHandler("/:context/:contextID/files", factory: fileList),
+        RouteHandler("/files/folder/*subFolder", factory: fileList),
+        RouteHandler("/:context/:contextID/files/folder/*subFolder", factory: fileList),
+        RouteHandler("/folders/:folderID/edit") { _, params, _ in
+            guard let folderID = params["folderID"] else { return nil }
+            return CoreHostingController(FileEditorView(folderID: folderID))
+        },
+        RouteHandler("/files/:fileID", factory: fileDetails),
+        RouteHandler("/files/:fileID/download", factory: fileDetails),
+        RouteHandler("/files/:fileID/preview", factory: fileDetails),
+        RouteHandler("/files/:fileID/edit", factory: fileEditor),
+        RouteHandler("/:context/:contextID/files/:fileID", factory: fileDetails),
+        RouteHandler("/:context/:contextID/files/:fileID/download", factory: fileDetails),
+        RouteHandler("/:context/:contextID/files/:fileID/preview", factory: fileDetails),
+        RouteHandler("/:context/:contextID/files/:fileID/edit", factory: fileEditor)
+    ]
+
+    private static func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+        guard url.queryItems?.contains(where: { $0.name == "preview" }) != true else {
+            return fileDetails(url: url, params: params, userInfo: userInfo)
+        }
+        return FileListViewController.create(
+            context: Context(path: url.path) ?? .currentUser,
+            path: params["subFolder"]
         )
     }
-    return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
+
+    private static func fileDetails(url: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
+        guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
+        var context = Context(path: url.path)
+        if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
+            context = Context(.course, id: courseID)
+        }
+        let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
+        if !url.originIsModuleItemDetails, !url.skipModuleItemSequence, let context = context, context.contextType == .course {
+            return ModuleItemSequenceViewController.create(
+                courseID: context.id,
+                assetType: .file,
+                assetID: fileID,
+                url: url
+            )
+        }
+        return FileDetailsViewController.create(context: context, fileID: fileID, originURL: url, assignmentID: assignmentID)
+    }
+
+    private static func fileEditor(url: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
+        guard let fileID = params["fileID"] else { return nil }
+        return CoreHostingController(FileEditorView(context: Context(path: url.path), fileID: fileID))
+    }
+
+    private static func pageViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
+        guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
+        if !url.originIsModuleItemDetails, context.contextType == .course {
+            return ModuleItemSequenceViewController.create(
+                courseID: context.id,
+                assetType: .page,
+                assetID: pageURL,
+                url: url
+            )
+        }
+        return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
+    }
+
 }
