@@ -108,26 +108,31 @@ class GetCalendarFilters: UseCase {
         urlResponse: URLResponse?,
         to client: NSManagedObjectContext
     ) {
-        guard let courses = response?.courses,
-              let groups = response?.groups
-        else {
-            return
+        guard let response else { return }
+
+        // save user filter
+        CDCalendarFilterEntry.save(
+            context: .user(userId),
+            name: userName,
+            in: client
+        )
+
+        // save course filters
+        response.courses.forEach { course in
+            CDCalendarFilterEntry.save(
+                context: .course(course.id.value),
+                name: course.name ?? "",
+                in: client
+            )
         }
 
-        let filter: CDCalendarFilterEntry = client.insert()
-        filter.context = .user(userId)
-        filter.name = userName
-
-        courses.forEach { course in
-            let filter: CDCalendarFilterEntry = client.insert()
-            filter.context = .course(course.id.rawValue)
-            filter.name = course.name ?? ""
-        }
-
-        groups.forEach { group in
-            let filter: CDCalendarFilterEntry = client.insert()
-            filter.context = .group(group.id.rawValue)
-            filter.name = group.name
+        // save group filters
+        response.groups.forEach { group in
+            CDCalendarFilterEntry.save(
+                context: .group(group.id.value),
+                name: group.name,
+                in: client
+            )
         }
     }
 

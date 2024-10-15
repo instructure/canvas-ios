@@ -37,7 +37,7 @@ public class CDCalendarFilterEntry: NSManagedObject {
     @NSManaged public var name: String
     /// For the observer role we have a separate list of filters for each observed student
     @NSManaged public var observedUserId: String?
-    @NSManaged public private(set) var rawContextID: String
+    @NSManaged public private(set) var rawContextID: String // example: "course_42"
     @NSManaged public var rawPurpose: Int16
 
     public var context: Context {
@@ -83,6 +83,29 @@ public class CDCalendarFilterEntry: NSManagedObject {
 
     public var courseName: String? {
         context.contextType == .course ? name : nil
+    }
+
+    @discardableResult
+    public static func save(
+        context: Context,
+        observedUserId: String? = nil,
+        name: String,
+        purpose: CDCalendarFilterPurpose = .unknown,
+        in moContext: NSManagedObjectContext
+    ) -> CDCalendarFilterEntry? {
+        guard context.isValid else { return nil }
+
+        let canvasContextID = context.canvasContextID
+
+        let predicate = NSPredicate(key: (\CDCalendarFilterEntry.rawContextID).string, equals: canvasContextID)
+            .and(NSPredicate(key: (\CDCalendarFilterEntry.observedUserId).string, equals: observedUserId))
+
+        let model: CDCalendarFilterEntry = moContext.fetch(predicate).first ?? moContext.insert()
+        model.rawContextID = canvasContextID
+        model.observedUserId = observedUserId
+        model.name = name
+        model.purpose = purpose
+        return model
     }
 }
 
