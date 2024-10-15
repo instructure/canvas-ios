@@ -46,51 +46,51 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     public var body: some View {
         InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
-                VStack(spacing: 0) {
-                    headerView
-                        .background(
-                            GeometryReader { proxy in
-                                Color.clear
-                                    .onAppear {
-                                        headerHeight = proxy.size.height
-                                        model.showSearchRecipientsView = false
-                                        focusedInput = nil
-                                    }
-                            }
-                        )
-                    separator
-                    courseView
-                    separator
-                    ZStack(alignment: .topLeading) {
-                        VStack(spacing: 0) {
-                            propertiesView
-                            separator
+            VStack(spacing: 0) {
+                headerView
+                    .background(
+                        GeometryReader { proxy in
+                            Color.clear
+                                .onAppear {
+                                    headerHeight = proxy.size.height
+                                    model.showSearchRecipientsView = false
+                                    focusedInput = nil
+                                }
+                        }
+                    )
+                separator
+                courseView
+                separator
+                ZStack(alignment: .topLeading) {
+                    VStack(spacing: 0) {
+                        propertiesView
+                        separator
 
-                            bodyView(geometry: geometry)
-                            attachmentsView
-                            if !model.includedMessages.isEmpty {
-                                includedMessages
-                            }
-                            // This Rectangle adds extra height to ensure smoother display of the list of recipients
-                            // without affecting the UI or any logic.
-                            Rectangle()
-                                .fill(Color.clear)
-                                .frame(height: 150)
-                                .allowsHitTesting(false)
+                        bodyView(geometry: geometry)
+                        attachmentsView
+                        if !model.includedMessages.isEmpty {
+                            includedMessages
                         }
-                        if model.showSearchRecipientsView {
-                            RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
-                                model.showSearchRecipientsView = false
-                                model.textRecipientSearch = ""
-                                model.didSelectRecipient.accept(selectedRecipient)
-                            }
-                            .accessibilityHidden(true)
-                            .offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
-                            .padding(.horizontal, 35)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .animation(.smooth, value: model.showSearchRecipientsView)
-                        }
+                        // This Rectangle adds extra height to ensure smoother display of the list of recipients
+                        // without affecting the UI or any logic.
+                        Rectangle()
+                            .fill(Color.clear)
+                            .frame(height: 150)
+                            .allowsHitTesting(false)
                     }
+                    if model.showSearchRecipientsView {
+                        RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
+                            model.showSearchRecipientsView = false
+                            model.textRecipientSearch = ""
+                            model.didSelectRecipient.accept(selectedRecipient)
+                        }
+                        .accessibilityHidden(true)
+                        .offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
+                        .padding(.horizontal, 35)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .animation(.smooth, value: model.showSearchRecipientsView)
+                    }
+                }
             }
             .font(.regular12)
             .foregroundColor(.textDarkest)
