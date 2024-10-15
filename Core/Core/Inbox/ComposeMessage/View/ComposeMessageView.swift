@@ -390,7 +390,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .font(.regular16, lineHeight: .condensed)
                 .focused($focusedInput, equals: .message)
                 .paddingStyle(.horizontal, .standard)
-                .scrollDisabled(true)
                 .textInputAutocapitalization(.sentences)
                 .frame(minHeight: 60)
                 .accessibility(label: Text("Message", bundle: .core))
