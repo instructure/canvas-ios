@@ -5,3 +5,6 @@
 
 # These owners will be the default owners for everything in the repo.
 * @vargaat @szabinst @rh12
+
+# Horizon
+/Horizon/ @szabinst @ktheory @JacksonHowe
