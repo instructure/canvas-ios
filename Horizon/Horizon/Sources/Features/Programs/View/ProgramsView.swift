@@ -21,6 +21,7 @@ import SwiftUI
 
 struct ProgramsView: View {
     @ObservedObject private var viewModel: ProgramsViewModel
+    @Environment(\.viewController) private var viewController
 
     init(viewModel: ProgramsViewModel) {
         self.viewModel = viewModel
@@ -31,89 +32,37 @@ struct ProgramsView: View {
             InstUI.BaseScreen(
                 state: viewModel.state,
                 config: .init(refreshable: false)
-            ) { proxy in
-                VStack(alignment: .leading, spacing: 0) {
-                    SectionTitleView(title: "your programs")
-                    ForEach(viewModel.programs) { program in
-                        LargeTitleView(title: program.name)
-                            .padding(.bottom, 4)
-                        BodyTextView(title: program.institutionName)
-                            .padding(.bottom, 4)
-                        BodyTextView(title: program.targetCompletion)
-                            .padding(.bottom, 12)
+            ) { _ in
+                ForEach(viewModel.programs) { program in
+                    VStack(spacing: 16) {
                         Button {
-                            print("change pacing tapped")
+                            viewModel.programDidSelect.accept((program, viewController))
                         } label: {
-                            Text("Change pacing")
-                                .font(.regular16)
-                                .padding(.horizontal, 8)
-                                .frame(minHeight: 38)
-                                .background(Color.backgroundLight)
-                                .foregroundColor(Color.textDarkest)
-                                .cornerRadius(3)
+                            VStack(alignment: .leading, spacing: 12) {
+                                Size12RegularTextDarkestTitle(title: program.institutionName)
+                                Size16RegularTextDarkestTitle(title: program.name)
+                                ContentProgressBar(progress: program.progress)
+                                HStack(spacing: 0) {
+                                    Size12RegularTextDarkTitle(title: program.progressString)
+                                    Spacer()
+                                    Size12RegularTextDarkTitle(title: ProgressState.allCases.randomElement()?.rawValue ?? "")
+                                }
+                            }
+                            .padding(.all, 24)
                         }
-                        CertificateProgressBar(
-                            maxWidth: proxy.size.width,
-                            progress: program.progress,
-                            progressString: program.progressString
-                        )
-                        whatsNextModuleView(proxy: proxy)
-                        modulesView(program.modules)
+                        .background(Color.backgroundLight)
+                        .cornerRadius(8)
+                        .padding([.leading, .top, .trailing], 16)
                     }
                 }
-                .frame(maxWidth: .infinity)
-            }
-            .padding(.horizontal, 16)
-            .background(Color.backgroundLightest)
-        }
-    }
-
-    @ViewBuilder
-    private func whatsNextModuleView(proxy: GeometryProxy) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            SectionTitleView(title: "What's next")
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 8) {
-                    ProgramItemView(
-                        screenWidth: proxy.size.width,
-                        title: "Practice Quiz",
-                        icon: Image(systemName: "doc"),
-                        duration: "60 mins",
-                        certificate: nil
-                    )
-                    ProgramItemView(
-                        screenWidth: proxy.size.width,
-                        title: "Video",
-                        icon: Image(systemName: "doc"),
-                        duration: "20 mins",
-                        certificate: nil
-                    )
-                    ProgramItemView(
-                        screenWidth: proxy.size.width,
-                        title: "Video",
-                        icon: Image(systemName: "doc"),
-                        duration: "30 mins",
-                        certificate: nil
-                    )
-                }
             }
         }
-        .padding(.top, 16)
+        .navigationTitle("Your Programs")
     }
 
-    @ViewBuilder
-    private func modulesView(_ modules: [HModule]) -> some View {
-        VStack(spacing: 0) {
-            ForEach(modules) { module in
-                ExpandingModuleView(
-                    title: module.name,
-                    items: module.items.map { ExpandingModuleTitle(title: $0.title) }
-                )
-            }
-        }
+    private enum ProgressState: String, CaseIterable {
+        case onTrack = "On Track"
+        case overdue = "Overdue"
+        case targetDate = "XX/XX"
     }
-}
-
-#Preview {
-    ProgramsView(viewModel: .init(interactor: GetProgramsInteractor()))
 }

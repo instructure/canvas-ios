@@ -19,23 +19,16 @@
 import Core
 import SwiftUI
 
-struct BaseHorizonScreen<Content: View>: View {
-    @Environment(\.colorScheme) var colorScheme
-    let content: () -> Content
+struct Size12RegularTextDarkTitle: View {
+    let title: String
 
     var body: some View {
-        content()
-            .navigationBarItems(leading: profileMenuButton)
-            .toolbarBackground(colorScheme == .dark ? Color.backgroundDarkest : Color.backgroundLightest, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
+        Text(title)
+            .font(.regular12)
+            .foregroundStyle(Color.textDark)
     }
+}
 
-    private var profileMenuButton: some View {
-        Button {
-            print("route to profile")
-        } label: {
-            Image.hamburgerSolid.tint(Color.textDarkest)
-        }
-        .frame(width: 44, height: 44).padding(.leading, -6)
-    }
+#Preview {
+    Size12RegularTextDarkTitle(title: "Biology certificate #17531")
 }

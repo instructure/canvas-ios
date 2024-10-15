@@ -41,7 +41,11 @@ enum HorizonRouter {
             guard let context = Context(path: url.path) else { return nil }
             return PageListViewController.create(context: context, app: .student)
         },
-        RouteHandler("/:context/:contextID/pages/:url", factory: pageViewController)
+        RouteHandler("/:context/:contextID/pages/:url", factory: pageViewController),
+        RouteHandler("/programs/:programID") { _, _, userInfo in
+            guard let program = userInfo?["program"] as? HProgram else { return nil }
+            return ProgramsAssembly.makeProgramDetailsViewController(program: program)
+        }
     ]
 }
 

@@ -19,14 +19,9 @@
 import Core
 import SwiftUI
 
-struct ExpandingModuleTitle: Identifiable {
-    let id = UUID().uuidString
-    let title: String
-}
-
 struct ExpandingModuleView: View {
     let title: String
-    let items: [ExpandingModuleTitle]
+    let items: [HModuleItem]
     @State private var isExpanded = false
 
     var body: some View {
@@ -34,37 +29,45 @@ struct ExpandingModuleView: View {
             Button {
                 isExpanded.toggle()
             } label: {
-                HStack(alignment: .bottom) {
-                    SectionTitleView(title: title.uppercased())
+                HStack(alignment: .center) {
+                    Size14RegularTextDarkestTitle(title: title.uppercased())
                     Spacer()
                     Image(systemName: "chevron.down")
                         .tint(Color.textDark)
                         .frame(width: 18, height: 18)
                         .rotationEffect(isExpanded ? .degrees(-180) : .degrees(0))
                 }
+                .padding(.vertical, 16)
             }
 
             if isExpanded {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 16) {
                     ForEach(items) { item in
-                        Text(item.title)
-                            .font(.regular14)
-                            .foregroundColor(.textDark)
-                            .padding()
+                        ProgramItemView(
+                            title: item.title,
+                            subtitle: "Placeholder Text",
+                            duration: "20 mins"
+                        )
+                        .padding(.all, 12)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(Color.backgroundLight)
+                    .padding(.leading, 32)
                 }
-                .padding()
+                .padding(.bottom, 24)
             }
         }
+        .padding(.horizontal, 16)
         .animation(.easeOut, value: isExpanded)
     }
 }
 
 #Preview {
     ExpandingModuleView(
-        title: "week 1",
-        items: [ExpandingModuleTitle(title: "Quiz"), ExpandingModuleTitle(title: "Assignment")]
+        title: "Intro Module",
+        items: [
+            .init(id: "1", title: "Intro to biology", url: nil),
+            .init(id: "2", title: "Intro to sports", url: nil)
+        ]
     )
 }

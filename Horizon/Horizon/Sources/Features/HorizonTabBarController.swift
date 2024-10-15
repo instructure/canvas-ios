@@ -30,6 +30,7 @@ class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
             portfolioTab()
         ]
         tabBar.tintColor = .textDark
+        UINavigationBar.appearance().tintColor = .textDarkest
     }
 
     private func dashboardTab() -> UIViewController {
@@ -43,7 +44,7 @@ class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     private func programsTab() -> UIViewController {
         let vc = CoreNavigationController(
-            rootViewController: CoreHostingController(ProgramsAssembly.makeView())
+            rootViewController: CoreHostingController(ProgramsAssembly.makeProgramsView())
         )
         vc.tabBarItem.title = String(localized: "Programs", bundle: .horizon)
         vc.tabBarItem.image = UIImage(systemName: "books.vertical")
