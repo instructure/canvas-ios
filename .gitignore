@@ -25,6 +25,7 @@ xctestrun/
 **/IDEWorkspaceChecks.plist
 Core/Core.xcodeproj/
 Student/Student.xcodeproj/
+Horizon/Horizon.xcodeproj/
 
 # AppCode
 .idea
