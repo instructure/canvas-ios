@@ -107,6 +107,52 @@ public class CDCalendarFilterEntry: NSManagedObject {
         model.purpose = purpose
         return model
     }
+
+    @discardableResult
+    public static func save(
+        userId: String,
+        userName: String,
+        courses: [APICourse],
+        groups: [APIGroup],
+        observedUserId: String? = nil,
+        purpose: CDCalendarFilterPurpose = .unknown,
+        in moContext: NSManagedObjectContext
+    ) -> [CDCalendarFilterEntry] {
+        // save user filter
+        let userFilters = [
+            CDCalendarFilterEntry.save(
+                context: .user(userId),
+                observedUserId: observedUserId,
+                name: userName,
+                purpose: purpose,
+                in: moContext
+            )
+        ].compactMap { $0 }
+
+        // save course filters
+        let courseFilters = courses.compactMap { course in
+            CDCalendarFilterEntry.save(
+                context: .course(course.id.value),
+                observedUserId: observedUserId,
+                name: course.name ?? "",
+                purpose: purpose,
+                in: moContext
+            )
+        }
+
+        // save group filters
+        let groupFilters = groups.compactMap { group in
+            CDCalendarFilterEntry.save(
+                context: .group(group.id.value),
+                observedUserId: observedUserId,
+                name: group.name,
+                purpose: purpose,
+                in: moContext
+            )
+        }
+
+        return userFilters + courseFilters + groupFilters
+    }
 }
 
 extension CDCalendarFilterEntry: Comparable {

@@ -86,40 +86,17 @@ class GetParentCalendarFilters: UseCase {
             .store(in: &subscriptions)
     }
 
-    func write(
-        response: APIResponse?,
-        urlResponse: URLResponse?,
-        to client: NSManagedObjectContext
-    ) {
+    func write(response: APIResponse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response else { return }
 
-        // save user filter
         CDCalendarFilterEntry.save(
-            context: .user(userId),
+            userId: userId,
+            userName: userName,
+            courses: response.courses,
+            groups: response.groups,
             observedUserId: observedUserId,
-            name: userName,
             in: client
         )
-
-        // save course filters
-        response.courses.forEach { course in
-            CDCalendarFilterEntry.save(
-                context: .course(course.id.value),
-                observedUserId: observedUserId,
-                name: course.name ?? "",
-                in: client
-            )
-        }
-
-        // save group filters
-        response.groups.forEach { group in
-            CDCalendarFilterEntry.save(
-                context: .group(group.id.value),
-                observedUserId: observedUserId,
-                name: group.name,
-                in: client
-            )
-        }
     }
 
     func reset(context: NSManagedObjectContext) {
