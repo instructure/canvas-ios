@@ -19,7 +19,7 @@
 import Combine
 import SwiftUI
 
-public protocol QuizEditorViewModelProtocol: ObservableObject {
+public protocol TeacherQuizEditorViewModel: ObservableObject {
     var state: QuizEditorViewModelState { get }
     var assignment: Assignment? { get }
     var courseID: String { get }

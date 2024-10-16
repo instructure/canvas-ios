@@ -21588,6 +21588,7 @@
       }
     },
     "Are you sure you want to leave this quiz?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -51959,6 +51960,7 @@
     },
     "Exit" : {
       "comment" : "Exit button to leave the quiz",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -66893,6 +66895,7 @@
     },
     "Leave" : {
       "comment" : "Leave the quiz",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -67934,6 +67937,7 @@
       }
     },
     "Locked" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -82909,6 +82913,7 @@
       }
     },
     "Not Submitted" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -94442,6 +94447,7 @@
       }
     },
     "Quiz Details" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -107509,6 +107515,7 @@
     },
     "Stay" : {
       "comment" : "Stay on the quiz view",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -112959,6 +112966,7 @@
     },
     "Submitted" : {
       "comment" : "Submitted grouping",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -113216,6 +113224,7 @@
     },
     "Submitted %@" : {
       "comment" : "Submitted date",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -137836,6 +137845,7 @@
       }
     },
     "View Results" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

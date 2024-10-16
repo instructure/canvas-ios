@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
+public struct TeacherQuizEditorView<ViewModel: TeacherQuizEditorViewModel>: View {
 
     @Environment(\.appEnvironment.router) var router
     @Environment(\.viewController) var controller
@@ -292,7 +292,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
 
 struct QuizEditor_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = QuizEditorViewModelPreview(
+        let viewModel = TeacherQuizEditorViewModelPreview(
             state: .ready,
             courseID: "1",
             title: "Preview Quiz",
@@ -310,10 +310,10 @@ struct QuizEditor_Previews: PreviewProvider {
             requireAccessCode: true,
             accessCode: "Code"
         )
-        QuizEditorView(viewModel: viewModel)
+        TeacherQuizEditorView(viewModel: viewModel)
             .previewLayout(.sizeThatFits)
 
-        QuizEditorView(viewModel: QuizEditorViewModelPreview(state: .error("Error")))
+        TeacherQuizEditorView(viewModel: TeacherQuizEditorViewModelPreview(state: .error("Error")))
             .previewLayout(.sizeThatFits)
     }
 }
