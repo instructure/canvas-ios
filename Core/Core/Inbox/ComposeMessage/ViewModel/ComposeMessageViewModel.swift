@@ -108,6 +108,7 @@ final class ComposeMessageViewModel: ObservableObject {
     private let maxRecipientCount = 100
 
     // MARK: Public interface
+   
     public init(
         router: Router,
         options: ComposeMessageOptions,
