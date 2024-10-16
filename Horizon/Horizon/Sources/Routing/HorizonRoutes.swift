@@ -103,6 +103,28 @@ enum HorizonRoutes {
             RouteHandler("/:context/:contextID/files/:fileID/edit", factory: fileEditor)
         ]
     }
+
+    private static var quizRoutes: [RouteHandler] {
+        [
+            RouteHandler("/courses/:courseID/quizzes") { _, params, _ in
+                guard let courseID = params["courseID"] else { return nil }
+                return QuizListViewController.create(courseID: ID.expandTildeID(courseID))
+            },
+
+            RouteHandler("/courses/:courseID/quizzes/:quizID") { url, params, _ in
+                guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+                if !url.originIsModuleItemDetails {
+                    return ModuleItemSequenceViewController.create(
+                        courseID: courseID,
+                        assetType: .quiz,
+                        assetID: quizID,
+                        url: url
+                    )
+                }
+                return QuizDetailsViewController.create(courseID: courseID, quizID: quizID)
+            }
+        ]
+    }
 }
 
 // MARK: - Helper functions
