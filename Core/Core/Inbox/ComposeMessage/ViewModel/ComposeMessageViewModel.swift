@@ -104,7 +104,7 @@ final class ComposeMessageViewModel: ObservableObject {
     private var hiddenMessage: String = ""
     private var autoTeacherSelect: Bool = false
     private var teacherOnly: Bool = false
-    private var sendIndividualToggleTemp: Bool = false
+    private var sendIndividualToggleLastValue: Bool = false
     private let maxRecipientCount = 100
 
     // MARK: Public interface
@@ -339,10 +339,10 @@ final class ComposeMessageViewModel: ObservableObject {
                 }
                 self.isSendIndividualToggleDisabled = isExceedRecipientLimit
                 if isExceedRecipientLimit {
-                    self.sendIndividualToggleTemp = self.sendIndividual
+                    self.sendIndividualToggleLastValue = self.sendIndividual
                     self.sendIndividual = true
                 } else {
-                    self.sendIndividual = sendIndividualToggleTemp
+                    self.sendIndividual = sendIndividualToggleLastValue
                 }
             }
             .store(in: &subscriptions)
