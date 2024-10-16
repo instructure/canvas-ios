@@ -26,7 +26,7 @@ class QuizSubmissionBreakdownViewModelTests: CoreTestCase {
     func testProperties() {
         mockSubmissions()
         mockEnrollments()
-        let testee = TeacherQuizSubmissionBreakdownViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID)
         testee.viewDidAppear()
 
         XCTAssertEqual(testee.graded, 2)

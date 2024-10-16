@@ -50,7 +50,7 @@ class QuizEditorViewModelTests: CoreTestCase {
         api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases), value: .make())
         api.mock(GetAssignmentGroups(courseID: courseID), value: [.make()])
 
-        let testee = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         drainMainQueue()
 
         XCTAssertEqual(testee.title, "test quiz")
@@ -73,7 +73,7 @@ class QuizEditorViewModelTests: CoreTestCase {
     func testFetchQuizError() {
         api.mock(GetQuizRequest(courseID: courseID, quizID: quizID), value: nil, error: NSError.internalError())
 
-        let testee = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         drainMainQueue()
         XCTAssertEqual(testee.state, .error("Internal Error"))
     }
@@ -81,21 +81,21 @@ class QuizEditorViewModelTests: CoreTestCase {
     func testFetchAssignmentError() {
         api.mock(GetQuizRequest(courseID: courseID, quizID: quizID), value: .make(assignment_id: ID(assignmentID), id: ID(quizID)))
         api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases), value: nil, error: NSError.internalError())
-        let testee = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         drainMainQueue()
         XCTAssertEqual(testee.state, .error("Internal Error"))
     }
 
     func testFetchAssignmentGroupError() {
         api.mock(GetAssignmentGroups(courseID: courseID), value: nil, error: NSError.internalError())
-        let testee = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         drainMainQueue()
         XCTAssertEqual(testee.state, .error("Internal Error"))
     }
 
     func testValidate() {
         mockData()
-        let testee = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         drainMainQueue()
         XCTAssertTrue(testee.validate())
         testee.title = ""
@@ -128,7 +128,7 @@ class QuizEditorViewModelTests: CoreTestCase {
             title: "New Title"
         ))
         let apiExpectation = expectation(description: "Quiz Updated")
-        let testee = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let testee: any TeacherQuizEditorViewModel = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         drainMainQueue()
 
         testee.accessCode = "NewAccesCode"
@@ -163,7 +163,7 @@ class QuizEditorViewModelTests: CoreTestCase {
 
     func testQuizUpdateError() {
         mockData()
-        let testee = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         let request = PutQuizRequest(courseID: courseID, quizID: quizID, body: nil)
         api.mock(request, value: nil, error: NSError.internalError())
         drainMainQueue()
@@ -197,7 +197,7 @@ class QuizEditorViewModelTests: CoreTestCase {
         ))
         let apiExpectation = expectation(description: "Assignment Updated")
 
-        let testee = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         drainMainQueue()
         testee.description = "New Description"
         testee.published = true
@@ -219,7 +219,7 @@ class QuizEditorViewModelTests: CoreTestCase {
 
     func testAssignmentUpdateError() {
         mockData()
-        let testee = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         let request = PutAssignmentRequest(courseID: courseID, assignmentID: assignmentID, body: nil)
         api.mock(request, value: nil, error: NSError.internalError())
         testee.assignment = Assignment.make()
@@ -232,7 +232,7 @@ class QuizEditorViewModelTests: CoreTestCase {
     }
 
     func testQuizTypeTapped() {
-        let testee = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         testee.quizTypeTapped(router: router, viewController: WeakViewController(UIViewController()))
 
         XCTAssertEqual((router.lastViewController as? ItemPickerViewController)?.title, "Quiz Type")
@@ -241,7 +241,7 @@ class QuizEditorViewModelTests: CoreTestCase {
     }
 
     func testAssignmentGroupTapped() {
-        let testee = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         testee.assignmentGroup = .make()
         testee.assignmentGroupTapped(router: router, viewController: WeakViewController(UIViewController()))
 
@@ -251,7 +251,7 @@ class QuizEditorViewModelTests: CoreTestCase {
     }
 
     func testScoreToKeepTapped() {
-        let testee = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         testee.scoreToKeepTapped(router: router, viewController: WeakViewController(UIViewController()))
 
         XCTAssertEqual((router.lastViewController as? ItemPickerViewController)?.title, "Quiz Score to Keep")
@@ -276,7 +276,7 @@ class QuizEditorViewModelTests: CoreTestCase {
             title: "test quiz"
         ))
         let apiExpectation = expectation(description: "Quiz Updated")
-        let testee = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         drainMainQueue()
 
         testee.allowMultipleAttempts = false

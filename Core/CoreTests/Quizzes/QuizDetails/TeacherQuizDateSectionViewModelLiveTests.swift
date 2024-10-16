@@ -27,7 +27,7 @@ class QuizDateSectionViewModelTests: CoreTestCase {
 
         let apiQuiz = APIQuiz.make(due_at: dueAt, lock_at: lockAt, unlock_at: unlockAt)
         let quiz = Quiz.make(from: apiQuiz)
-        let testee = TeacherQuizDateSectionViewModel(quiz: quiz)
+        let testee = TeacherQuizDateSectionViewModelLive(quiz: quiz)
 
         XCTAssertFalse(testee.isButton)
         XCTAssertEqual(testee.hasMultipleDueDates, false)
@@ -45,7 +45,7 @@ class QuizDateSectionViewModelTests: CoreTestCase {
         let dates = [APIAssignmentDate.make(base: false, title: title, due_at: dueAt, unlock_at: unlockAt, lock_at: lockAt)]
         let apiQuiz = APIQuiz.make(all_dates: dates)
         let quiz = Quiz.make(from: apiQuiz)
-        let testee = TeacherQuizDateSectionViewModel(quiz: quiz)
+        let testee = TeacherQuizDateSectionViewModelLive(quiz: quiz)
 
         XCTAssertEqual(testee.dueAt, dueAt)
         XCTAssertEqual(testee.lockAt, lockAt)
@@ -64,7 +64,7 @@ class QuizDateSectionViewModelTests: CoreTestCase {
         let quizUnlockAt = Date(timeIntervalSinceNow: 400)
         let apiQuiz = APIQuiz.make(all_dates: dates, due_at: quizDueAt, lock_at: quizLockAt, unlock_at: quizUnlockAt)
         let quiz = Quiz.make(from: apiQuiz)
-        let testee = TeacherQuizDateSectionViewModel(quiz: quiz)
+        let testee = TeacherQuizDateSectionViewModelLive(quiz: quiz)
 
         XCTAssertEqual(testee.dueAt, quizDueAt)
         XCTAssertEqual(testee.lockAt, lockAt)
@@ -76,14 +76,14 @@ class QuizDateSectionViewModelTests: CoreTestCase {
         let dates = [APIAssignmentDate.make(base: true)]
         let apiQuiz = APIQuiz.make(all_dates: dates)
         let quiz = Quiz.make(from: apiQuiz)
-        let testee = TeacherQuizDateSectionViewModel(quiz: quiz)
+        let testee = TeacherQuizDateSectionViewModelLive(quiz: quiz)
 
         XCTAssertNotNil(testee.forText, "Everyone")
     }
 
     func testRoute() {
         let quiz = Quiz.make()
-        let testee = TeacherQuizDateSectionViewModel(quiz: quiz)
+        let testee = TeacherQuizDateSectionViewModelLive(quiz: quiz)
 
         testee.buttonTapped(router: router, viewController: WeakViewController(UIViewController()))
         XCTAssertTrue(router.calls.isEmpty)
