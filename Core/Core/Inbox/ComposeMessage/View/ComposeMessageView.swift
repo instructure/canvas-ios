@@ -385,7 +385,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             }
             .padding(.leading, defaultHorizontalPaddingValue)
             .padding(.top, defaultVerticalPaddingValue)
-            
             UITextViewWrapper(text: $model.bodyText) {
                 let tv = UITextView()
                 tv.isScrollEnabled = false
