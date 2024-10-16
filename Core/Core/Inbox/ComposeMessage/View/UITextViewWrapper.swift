@@ -49,7 +49,7 @@ struct UITextViewWrapper: UIViewRepresentable {
         }
 
         func textViewDidChange(_ textView: UITextView) {
-            self.parent.text = textView.text
+            parent.text = textView.text
         }
     }
 }
