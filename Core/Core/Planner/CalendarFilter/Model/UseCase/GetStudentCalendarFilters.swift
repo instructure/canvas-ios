@@ -20,7 +20,7 @@ import CoreData
 import Combine
 import SwiftUI
 
-class GetCalendarFilters: UseCase {
+class GetStudentCalendarFilters: UseCase {
     struct APIResponse: Codable {
         let courses: [APICourse]
         let groups: [APIGroup]
