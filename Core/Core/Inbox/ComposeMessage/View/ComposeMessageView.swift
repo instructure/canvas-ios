@@ -385,22 +385,14 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             }
             .padding(.leading, defaultHorizontalPaddingValue)
             .padding(.top, defaultVerticalPaddingValue)
-            UITextViewWrapper(text: $model.bodyText) {
-                let tv = UITextView()
-                tv.isScrollEnabled = false
-                tv.textContainer.widthTracksTextView = true
-                tv.textContainer.lineBreakMode = .byWordWrapping
-                tv.font = UIFont.scaledNamedFont(.regular16)
-                tv.translatesAutoresizingMaskIntoConstraints = false
-                tv.widthAnchor.constraint(equalToConstant: geometry.frame(in: .global).width - (2 * defaultHorizontalPaddingValue)).isActive = true
-                tv.backgroundColor = .backgroundLightest
-                return tv
-            }
+            InstUI.TextEditorCell(
+                placeholder: "",
+                text: $model.bodyText
+            )
             .font(.regular16, lineHeight: .condensed)
             .textInputAutocapitalization(.sentences)
             .focused($focusedInput, equals: .message)
             .foregroundColor(.textDarkest)
-            .padding(.horizontal, defaultHorizontalPaddingValue)
             .frame(minHeight: 60)
             .accessibility(label: Text("Message", bundle: .core))
             .accessibilityIdentifier("ComposeMessage.body")
