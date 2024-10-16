@@ -37,7 +37,6 @@ struct UITextViewWrapper: UIViewRepresentable {
 
     func makeCoordinator() -> Coordinator {
         let coordinator = Coordinator(self)
-
         return coordinator
     }
 
