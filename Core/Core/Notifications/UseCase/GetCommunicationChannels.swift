@@ -20,6 +20,7 @@ import Foundation
 
 public struct GetCommunicationChannels: CollectionUseCase {
     public typealias Model = CommunicationChannel
+    public typealias Response = Request.Response
 
     public let cacheKey: String? = "get-user-self-communication-channels"
 

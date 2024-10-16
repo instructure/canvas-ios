@@ -160,6 +160,7 @@ public final class Todo: NSManagedObject, WriteableModel {
 
 class GetTodos: CollectionUseCase {
     typealias Model = Todo
+    typealias Response = Request.Response
 
     let type: TodoType?
     var cacheKey: String? { nil }
