@@ -90,6 +90,7 @@ public struct GradeFilterView: View {
             selectedValue: $viewModel.selectedSortByOption,
             color: Color(Brand.shared.primary)
         )
+        .accessibilityIdentifier("GradeFilter.sortBy.\(item)")
     }
 
     private var sendButton: some View {
@@ -104,6 +105,7 @@ public struct GradeFilterView: View {
 
         }
         .disabled(!viewModel.saveButtonIsEnabled)
+        .accessibilityIdentifier("GradeFilter.saveButton")
     }
 
     private var cancelButton: some View {

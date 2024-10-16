@@ -134,21 +134,18 @@ public class DashboardHelper: BaseHelper {
 
         public struct CustomizeCourse {
             public enum CourseColor: String, CaseIterable {
-                case brick = "Brick"
-                case red = "Red"
-                case magenta = "Magenta"
-                case purple = "Purple"
-                case deepPurple = "Deep Purple"
-                case indigo = "Indigo"
-                case blue = "Blue"
-                case lightBlue = "Light Blue"
-                case cyan = "Cyan"
-                case teal = "Teal"
-                case green = "Green"
-                case olive = "Olive"
-                case pumpkin = "Pumpkin"
-                case orange = "Orange"
-                case pink = "Pink"
+                case plum = "Plum"
+                case fuchsia = "Fuchsia"
+                case violet = "Violet"
+                case ocean = "Ocean"
+                case sky = "Sky"
+                case sea = "Sea"
+                case aurora = "Aurora"
+                case forest = "Forest"
+                case honey = "Honey"
+                case copper = "Copper"
+                case rose = "Rose"
+                case stone = "Stone"
             }
 
             public static var nicknameTextField: XCUIElement { app.find(label: "Nickname", type: .textField) }

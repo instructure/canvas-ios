@@ -302,6 +302,25 @@ class GradesTests: E2ETestCase {
         XCTAssertTrue(totalGradeLabel.isVisible)
         XCTAssertTrue(totalGradeLabel.hasLabel(label: "Total grade is \(expectedTotalGrade)"))
 
+        let filterButton = GradesHelper.filterButton.waitUntil(.visible)
+        let upcomingAssignmentsLabel = GradesHelper.upcomingAssignmentsLabel.waitUntil(.visible)
+        XCTAssertTrue(filterButton.isVisible)
+        XCTAssertTrue(upcomingAssignmentsLabel.isVisible)
+
+        filterButton.hit()
+        let sortByGroupSwitch = GradesHelper.Filter.sortByGroupSwitch.waitUntil(.visible)
+        let sortByDateSwitch = GradesHelper.Filter.sortByDateSwitch.waitUntil(.visible)
+        let saveButton = GradesHelper.Filter.saveButton.waitUntil(.visible)
+        XCTAssertTrue(sortByGroupSwitch.isVisible)
+        XCTAssertTrue(sortByDateSwitch.isVisible)
+        XCTAssertTrue(saveButton.isVisible)
+        XCTAssertTrue(saveButton.isDisabled)
+
+        sortByGroupSwitch.hit()
+        XCTAssertTrue(saveButton.waitUntil(.enabled).isEnabled)
+
+        saveButton.hit()
+
         let labelOfAG1 = GradesHelper.labelOfAG(assignmentGroup: testAG1).waitUntil(.visible)
         let labelOfAG2 = GradesHelper.labelOfAG(assignmentGroup: testAG2).waitUntil(.visible)
         XCTAssertTrue(labelOfAG1.isVisible)
