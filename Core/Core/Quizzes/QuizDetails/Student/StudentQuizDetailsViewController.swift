@@ -18,9 +18,8 @@
 
 import Foundation
 import UIKit
-import Core
 
-class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
+public class StudentQuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
     @IBOutlet weak var attemptsLabel: UILabel!
     @IBOutlet weak var attemptsValueLabel: UILabel!
     @IBOutlet weak var dueHeadingLabel: UILabel!
@@ -41,10 +40,10 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
     @IBOutlet weak var timeLimitLabel: UILabel!
     @IBOutlet weak var timeLimitValueLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    let titleSubtitleView = TitleSubtitleView.create()
+    public let titleSubtitleView = TitleSubtitleView.create()
     var offlineModeInteractor: OfflineModeInteractor?
 
-    var color: UIColor?
+    public var color: UIColor?
     var courseID = ""
     let env = AppEnvironment.shared
     var quizID = ""
@@ -62,10 +61,10 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
         self?.update()
     }
 
-    static func create(
+    static public func create(
         courseID: String,
         quizID: String,
-        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> QuizDetailsViewController {
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> StudentQuizDetailsViewController {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
         controller.quizID = quizID
@@ -73,17 +72,17 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
         return controller
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: String(localized: "Quiz Details", bundle: .student))
+        setupTitleViewInNavbar(title: String(localized: "Quiz Details", bundle: .core))
 
-        attemptsLabel.text = String(localized: "Allowed Attempts:", bundle: .student)
-        dueHeadingLabel.text = String(localized: "Due", bundle: .student)
-        instructionsHeadingLabel.text = String(localized: "Instructions", bundle: .student)
-        questionsLabel.text = String(localized: "Questions:", bundle: .student)
-        settingsHeadingLabel.text = String(localized: "Settings", bundle: .student)
-        timeLimitLabel.text = String(localized: "Time Limit:", bundle: .student)
+        attemptsLabel.text = String(localized: "Allowed Attempts:", bundle: .core)
+        dueHeadingLabel.text = String(localized: "Due", bundle: .core)
+        instructionsHeadingLabel.text = String(localized: "Instructions", bundle: .core)
+        questionsLabel.text = String(localized: "Questions:", bundle: .core)
+        settingsHeadingLabel.text = String(localized: "Settings", bundle: .core)
+        timeLimitLabel.text = String(localized: "Time Limit:", bundle: .core)
 
         instructionsContainer.addSubview(instructionsWebView)
         instructionsWebView.pinWithThemeSwitchButton(inside: instructionsContainer)
@@ -109,7 +108,7 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
         quizzes.refresh(force: true)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useContextColor(color)
     }
@@ -139,29 +138,29 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
             statusIconView.tintColor = .textSuccess
             statusLabel.textColor = .textSuccess
             statusLabel.text = String.localizedStringWithFormat(
-                String(localized: "Submitted %@", bundle: .student, comment: "Submitted date"),
+                String(localized: "Submitted %@", bundle: .core, comment: "Submitted date"),
                 finishedAt.dateTimeString
             )
         } else if submission?.attempt ?? 0 > 1 {
             statusIconView.image = .completeSolid
             statusIconView.tintColor = .textSuccess
             statusLabel.textColor = .textSuccess
-            statusLabel.text = String(localized: "Submitted", bundle: .student)
+            statusLabel.text = String(localized: "Submitted", bundle: .core)
         } else {
             statusIconView.image = .noSolid
             statusIconView.tintColor = .textDark
             statusLabel.textColor = .textDark
-            statusLabel.text = String(localized: "Not Submitted", bundle: .student)
+            statusLabel.text = String(localized: "Not Submitted", bundle: .core)
         }
         dueLabel.text = quiz?.dueText
         attemptsValueLabel.text = quiz?.allowedAttemptsText
         questionsValueLabel.text = quiz?.questionCountText
         timeLimitValueLabel.text = quiz?.timeLimitText
         instructionsHeadingLabel.text = quiz?.lockedForUser == true
-            ? String(localized: "Locked", bundle: .student)
-            : String(localized: "Instructions", bundle: .student)
+            ? String(localized: "Locked", bundle: .core)
+            : String(localized: "Instructions", bundle: .core)
         var html = quiz?.lockExplanation ?? quiz?.details ?? ""
-        if html.isEmpty { html = String(localized: "No Content", bundle: .student) }
+        if html.isEmpty { html = String(localized: "No Content", bundle: .core) }
 
         let offlinePath = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: env.currentSession?.uniqueID ?? "",
@@ -192,16 +191,16 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
         guard let quiz = quizzes.first, !quizzes.pending else { return nil }
         if quiz.canTake {
             guard let submission = quiz.submission else {
-                return String(localized: "Take Quiz", bundle: .student)
+                return String(localized: "Take Quiz", bundle: .core)
             }
             if submission.canResume {
-                return String(localized: "Resume Quiz", bundle: .student)
+                return String(localized: "Resume Quiz", bundle: .core)
             }
             return submission.finishedAt != nil || submission.attempt > 1
-                ? String(localized: "Retake Quiz", bundle: .student)
-                : String(localized: "Take Quiz", bundle: .student)
+                ? String(localized: "Retake Quiz", bundle: .core)
+                : String(localized: "Take Quiz", bundle: .core)
         } else if quiz.resultsURL != nil {
-            return String(localized: "View Results", bundle: .student)
+            return String(localized: "View Results", bundle: .core)
         }
         return nil
     }
@@ -209,7 +208,7 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
     @IBAction func take() {
         guard let quiz = quizzes.first else { return }
         if quiz.canTake {
-            env.router.show(QuizWebViewController.create(
+            env.router.show(StudentQuizWebViewController.create(
                 courseID: courseID,
                 quizID: quizID
             ), from: self, options: .modal(.fullScreen, isDismissable: false, embedInNav: true))

@@ -18,35 +18,34 @@
 
 import UIKit
 import WebKit
-import Core
 
-class QuizWebViewController: UIViewController {
+public class StudentQuizWebViewController: UIViewController {
     var courseID = ""
     var quizID = ""
 
     let env = AppEnvironment.shared
     let webView = CoreWebView(features: [.invertColorsInDarkMode, .skipJSInjection(CoreWebView.mathJaxJS)])
 
-    static func create(courseID: String, quizID: String) -> QuizWebViewController {
-        let controller = QuizWebViewController()
+    public static func create(courseID: String, quizID: String) -> StudentQuizWebViewController {
+        let controller = StudentQuizWebViewController()
         controller.courseID = courseID
         controller.quizID = quizID
         return controller
     }
 
-    override func loadView() {
+    public override func loadView() {
         view = webView
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         webView.linkDelegate = self
         webView.uiDelegate = self
 
-        title = String(localized: "Take Quiz", bundle: .student)
+        title = String(localized: "Take Quiz", bundle: .core)
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: String(localized: "Exit", bundle: .student, comment: "Exit button to leave the quiz"),
+            title: String(localized: "Exit", bundle: .core, comment: "Exit button to leave the quiz"),
             style: .plain, target: self, action: #selector(exitQuiz)
         )
 
@@ -64,9 +63,9 @@ class QuizWebViewController: UIViewController {
 
     @objc func exitQuiz() {
         if webView.url?.path.contains("/take") == true {
-            let areYouSure = String(localized: "Are you sure you want to leave this quiz?", bundle: .student)
-            let stay = String(localized: "Stay", bundle: .student, comment: "Stay on the quiz view")
-            let leave = String(localized: "Leave", bundle: .student, comment: "Leave the quiz")
+            let areYouSure = String(localized: "Are you sure you want to leave this quiz?", bundle: .core)
+            let stay = String(localized: "Stay", bundle: .core, comment: "Stay on the quiz view")
+            let leave = String(localized: "Leave", bundle: .core, comment: "Leave the quiz")
 
             let alert = UIAlertController(title: nil, message: areYouSure, preferredStyle: .alert)
             alert.addAction(AlertAction(stay, style: .cancel))
@@ -88,20 +87,20 @@ class QuizWebViewController: UIViewController {
     }
 }
 
-extension QuizWebViewController: WKUIDelegate {
-    func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+extension StudentQuizWebViewController: WKUIDelegate {
+    public func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .student), style: .cancel) { _ in
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel) { _ in
             completionHandler(false)
         })
-        alert.addAction(AlertAction(String(localized: "OK", bundle: .student), style: .default) { _ in
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
             completionHandler(true)
         })
         env.router.show(alert, from: self, options: .modal())
     }
 }
 
-extension QuizWebViewController: CoreWebViewLinkDelegate {
+extension StudentQuizWebViewController: CoreWebViewLinkDelegate {
     public func handleLink(_ url: URL) -> Bool {
         if let take = env.currentSession?.baseURL
             .appendingPathComponent("courses/\(courseID)/quizzes/\(quizID)/take"),
