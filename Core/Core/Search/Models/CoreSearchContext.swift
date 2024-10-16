@@ -19,20 +19,33 @@
 import SwiftUI
 import Combine
 
-public class CoreSearchContext: EnvironmentKey {
-    public static var defaultValue = CoreSearchContext(context: .currentUser, color: nil)
+public protocol SearchContextInfo {
+    typealias EnvironmentKey = SearchEnvironmentKey<Self>
+    typealias EnvironmentKeyPath = WritableKeyPath<EnvironmentValues, CoreSearchContext<Self>>
 
-    let context: Context
-    let color: UIColor?
+    static var environmentKeyPath: EnvironmentKeyPath { get }
+    static var defaultInfo: Self { get }
 
+    var searchPrompt: String { get }
+    var navBarColor: UIColor? { get }
+    var clearButtonColor: UIColor? { get }
+}
+
+extension SearchContextInfo {
+    var navBarColor: UIColor? { nil }
+    var clearButtonColor: UIColor? { nil }
+}
+
+public class CoreSearchContext<Info: SearchContextInfo> {
+    let info: Info
     var didSubmit = PassthroughSubject<String, Never>()
     var searchText = CurrentValueSubject<String, Never>("")
+
     private var visitedRecord = CurrentValueSubject<Set<ID>, Never>([])
     weak var controller: CoreSearchController?
 
-    public init(context: Context, color: UIColor?) {
-        self.context = context
-        self.color = color
+    public init(info: Info) {
+        self.info = info
     }
 
     var visitedRecordPublisher: AnyPublisher<Set<ID>, Never> {
@@ -49,15 +62,16 @@ public class CoreSearchContext: EnvironmentKey {
         visitedRecord.value = []
         searchText.value = ""
     }
+
+    var navBarColor: UIColor? { info.navBarColor }
+    var clearButtonColor: UIColor? { info.clearButtonColor }
+    var searchPrompt: String { info.searchPrompt }
 }
 
 // MARK: - Environment Property
 
-extension EnvironmentValues {
-    public var searchContext: CoreSearchContext {
-        get { self[CoreSearchContext.self] }
-        set {
-            self[CoreSearchContext.self] = newValue
-        }
+public struct SearchEnvironmentKey<Info: SearchContextInfo>: EnvironmentKey {
+    public static var defaultValue: CoreSearchContext<Info> {
+        return CoreSearchContext<Info>(info: .defaultInfo)
     }
 }

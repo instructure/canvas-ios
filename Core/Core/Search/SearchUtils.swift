@@ -80,6 +80,12 @@ public struct DeferredValue<Value: Equatable>: Equatable {
 
 // MARK: - Helpers
 
+extension String {
+    var isSearchValid: Bool {
+        return count >= 2
+    }
+}
+
 protocol Customizable: AnyObject { }
 extension NSObject: Customizable { }
 

@@ -21,7 +21,7 @@ import SwiftUI
 struct CourseSearchResultRowView: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
-    @Environment(\.searchContext) private var searchContext
+    @Environment(\.courseSmartSearchContext) private var searchContext
 
     @State private var isVisited: Bool = false
 
@@ -73,7 +73,7 @@ struct CourseSearchResultRowView: View {
             .padding(.bottom, 14)
             .contentShape(Rectangle())
         }
-        .buttonStyle(.contextButton(color: searchContext.color, state: buttonState))
+        .buttonStyle(.contextButton(color: searchContext.info.color, state: buttonState))
         .onReceive(searchContext.visitedRecordPublisher) { history in
             isVisited = history.contains(result.content_id)
         }
@@ -87,12 +87,12 @@ struct CourseSearchResultRowView: View {
 
     private var routePath: String {
         return "/" + [
-            searchContext.context.pathComponent,
+            searchContext.info.context.pathComponent,
             result.pathComponent
         ].joined(separator: "/")
     }
 
     private var color: Color {
-        Color(uiColor: searchContext.color ?? .gray)
+        Color(uiColor: searchContext.info.color ?? .gray)
     }
 }

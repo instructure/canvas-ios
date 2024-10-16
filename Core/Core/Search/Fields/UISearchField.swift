@@ -84,7 +84,7 @@ class UISearchField: UIView {
 
 class CoreTextField: UITextField {
 
-    var clearButtonColor: UIColor = .tertiaryLabel {
+    var clearButtonColor: UIColor = .secondaryLabel {
         didSet {
             clearButton?.tintColor = clearButtonColor
         }

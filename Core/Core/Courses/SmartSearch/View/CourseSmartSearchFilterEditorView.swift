@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct SmartSearchFiltersView: View {
+public struct CourseSmartSearchFilterEditorView: View {
     private typealias ContentType = SearchResult.ContentType
 
     private struct ResultType {
@@ -27,14 +27,14 @@ struct SmartSearchFiltersView: View {
     }
 
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.searchContext) private var searchContext
+    @Environment(\.courseSmartSearchContext) private var searchContext
 
     @State private var sortMode: SearchResultSortMode? = .relevance
     @State private var resultTypes: [ResultType]
 
     let onSubmit: (SearchResultFilter?) -> Void
 
-    init(filter: SearchResultFilter?, onSubmit: @escaping (SearchResultFilter?) -> Void) {
+    public init(filter: SearchResultFilter?, onSubmit: @escaping (SearchResultFilter?) -> Void) {
         self.onSubmit = onSubmit
         self._sortMode = State(initialValue: filter?.sortMode ?? .relevance)
 
@@ -155,7 +155,7 @@ struct SmartSearchFiltersView: View {
     }
 
     private var contextColor: Color {
-        return Color(uiColor: searchContext.color ?? .textDarkest)
+        return Color(uiColor: searchContext.info.color ?? .textDarkest)
     }
 }
 
@@ -166,17 +166,17 @@ enum SearchResultSortMode {
     case type
 }
 
-struct SearchResultFilter {
+public struct SearchResultFilter: Equatable {
     let sortMode: SearchResultSortMode
     let includedTypes: [SearchResult.ContentType]
-    let predicate: (SearchResult) -> Bool
 
     init(sortMode: SearchResultSortMode = .relevance, includedTypes: [SearchResult.ContentType]) {
         self.sortMode = sortMode
         self.includedTypes = includedTypes
-        self.predicate = { result in
-            return includedTypes.contains(result.content_type)
-        }
+    }
+
+    func apply(to result: SearchResult) -> Bool {
+        return includedTypes.contains(result.content_type)
     }
 }
 

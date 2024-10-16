@@ -20,17 +20,16 @@ import SwiftUI
 
 struct SearchTextField: View {
 
-    @Environment(\.searchContext) private var searchContext
     @State private var minWidth = DeferredValue<CGFloat?>(value: nil)
-
     @Binding private var text: String
-    private let prompt: Text
+    
+    private let prompt: String
     private let clearButtonColor: Color
     private let onSubmit: () -> Void
 
     init(
         text: Binding<String>,
-        prompt: Text,
+        prompt: String,
         clearButtonColor clearColor: Color = .secondary,
         onSubmit: @escaping () -> Void
     ) {
@@ -49,7 +48,7 @@ struct SearchTextField: View {
 
             Spacer(minLength: 5)
 
-            TextField("", text: $text, prompt: prompt)
+            TextField("", text: $text, prompt: Text(prompt))
                 .labelsHidden()
                 .submitLabel(.search)
                 .font(.subheadline)
@@ -89,5 +88,5 @@ struct SearchTextField: View {
 }
 
 #Preview {
-    SearchTextField(text: .constant(""), prompt: Text("Search"), onSubmit: { })
+    SearchTextField(text: .constant(""), prompt: "Search", onSubmit: { })
 }

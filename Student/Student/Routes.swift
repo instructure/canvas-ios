@@ -574,14 +574,21 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
     let regularCourseDetails: () -> UIViewController = {
         let viewModel = CourseDetailsViewModel(context: context, offlineModeInteractor: OfflineModeAssembly.make())
         let viewController = CoreSearchHostingController(
-            context: context,
-            color: url.contextColor,
+            info: CourseSmartSearch(context: context, color: url.contextColor),
             support: SearchSupportOption(
-                action: SearchSupportSheet(content: SmartSearchHelpView())
+                action: SearchSupportSheet(content: CourseSmartSearchHelpView())
             ),
             content: CourseDetailsView(viewModel: viewModel),
-            display: { state in
-                CourseSmartSearchDisplayView(displayState: state)
+            filterEditor: { filter in
+                CourseSmartSearchFilterEditorView(
+                    filter: filter.wrappedValue,
+                    onSubmit: { newSelection in
+                        filter.wrappedValue = newSelection
+                    }
+                )
+            },
+            display: { filter in
+                CourseSmartSearchDisplayView(filter: filter)
             }
         )
 

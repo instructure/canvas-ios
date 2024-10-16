@@ -18,71 +18,66 @@
 
 import SwiftUI
 
-public struct SearchDisplayState {
-    public static var empty = SearchDisplayState(isLoading: false, isPresented: false, isActive: false)
+public typealias SearchDisplayProvider<Filter, Display: View> = (Binding<Filter?>) -> Display
+public typealias SearchFilterEditorProvider<Filter, FilterEditor: View> = (Binding<Filter?>) -> FilterEditor
 
-    public var isLoading: Bool
-    public var isFiltersPresented: Bool
-    public var isFiltersActive: Bool
-
-    public init(isLoading: Bool, isPresented: Bool, isActive: Bool) {
-        self.isLoading = isPresented
-        self.isFiltersPresented = isPresented
-        self.isFiltersActive = isActive
-    }
-}
-
-public typealias CoreSearchDisplayProvider<Display: View> = (Binding<SearchDisplayState>) -> Display
-public struct SearchDisplayContainerView<Display: View, Action: SearchSupportAction>: View {
+public struct SearchDisplayContainerView<Info: SearchContextInfo, Display: View, Filter, FilterEditor: View, Action: SearchSupportAction>: View {
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
-    @Environment(\.searchContext) private var searchContext
+    @Environment(Info.environmentKeyPath) private var searchContext
 
     @State var searchText: String
-    @State var displayState: SearchDisplayState = .empty
+    @State var filter: Filter?
 
-    let displayContent: CoreSearchDisplayProvider<Display>
+    @State private var isFilterEditorPresented: Bool = false
+
+    let displayContent: SearchDisplayProvider<Filter, Display>
+    let filterEditor: SearchFilterEditorProvider<Filter, FilterEditor>
     let support: SearchSupportOption<Action>?
 
     init(
+        of type: Info.Type,
         searchText: String,
         support: SearchSupportOption<Action>?,
-        display: @escaping CoreSearchDisplayProvider<Display>
+        filter: Filter?,
+        filterEditor: @escaping SearchFilterEditorProvider<Filter, FilterEditor>,
+        display: @escaping SearchDisplayProvider<Filter, Display>
     ) {
-        self.displayContent = display
         self.support = support
+        self.displayContent = display
+        self.filterEditor = filterEditor
+
+        self._filter = State(initialValue: filter)
         self._searchText = State(initialValue: searchText)
     }
 
     public var body: some View {
-        displayContent($displayState)
+        displayContent($filter)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
 
                 ToolbarItem(placement: .principal) {
                     SearchTextField(
                         text: $searchText,
-                        prompt: Text("Search in this course"),
+                        prompt: searchContext.searchPrompt,
                         clearButtonColor: clearButtonColor
                     ) {
                         searchContext.didSubmit.send(searchText)
                     }
                 }
 
-                if displayState.isLoading == false {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            displayState.isFiltersPresented = true
-                        } label: {
-                            if displayState.isFiltersActive {
-                                Image.filterSolid
-                            } else {
-                                Image.filterLine
-                            }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        isFilterEditorPresented = true
+                    } label: {
+                        if filter != nil {
+                            Image.filterSolid
+                        } else {
+                            Image.filterLine
                         }
-                        .tint(.white)
                     }
+                    .tint(Color.textLightest)
                 }
 
                 if let support {
@@ -92,7 +87,7 @@ public struct SearchDisplayContainerView<Display: View, Action: SearchSupportAct
                         } label: {
                             support.icon.image()
                         }
-                        .tint(.white)
+                        .tint(Color.textLightest)
                     }
                 }
 
@@ -102,15 +97,18 @@ public struct SearchDisplayContainerView<Display: View, Action: SearchSupportAct
                     } label: {
                         Image(systemName: "chevron.backward")
                     }
-                    .tint(.white)
+                    .tint(Color.textLightest)
                 }
             }
             .onChange(of: searchText) { newValue in
                 searchContext.searchText.send(newValue)
             }
+            .sheet(isPresented: $isFilterEditorPresented, content: {
+                filterEditor($filter)
+            })
     }
 
     private var clearButtonColor: Color {
-        return searchContext.color.flatMap({ Color(uiColor: $0) }) ?? .secondary
+        return searchContext.clearButtonColor.flatMap({ Color(uiColor: $0) }) ?? .secondary
     }
 }

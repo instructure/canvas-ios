@@ -20,7 +20,7 @@ import SwiftUI
 
 struct CourseSearchResultsHeaderView: View {
     @Environment(\.appEnvironment) private var env
-    @Environment(\.searchContext) private var searchContext
+    @Environment(\.courseSmartSearchContext) private var searchContext
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -51,7 +51,7 @@ struct CourseSearchResultsHeaderView: View {
         if let course: Course = env
             .database
             .viewContext
-            .fetch(scope: .where(#keyPath(Course.id), equals: searchContext.context.id))
+            .fetch(scope: .where(#keyPath(Course.id), equals: searchContext.info.context.id))
             .first {
             return course
         }

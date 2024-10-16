@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct SmartSearchHelpView: View {
+public struct CourseSmartSearchHelpView: View {
 
     @Environment(\.dismiss) private var dismiss
 
