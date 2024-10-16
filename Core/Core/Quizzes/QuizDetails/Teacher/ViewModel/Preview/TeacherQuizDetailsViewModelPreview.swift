@@ -20,7 +20,7 @@
 /**
 Use only for SwiftUI previews.
 */
-public class QuizDetailsViewModelPreview: QuizDetailsViewModelProtocol {
+public class TeacherQuizDetailsViewModelPreview: TeacherQuizDetailsViewModel {
     public var state: QuizDetailsViewModelState
     public var courseColor: UIColor?
     public var title: String
@@ -31,9 +31,9 @@ public class QuizDetailsViewModelPreview: QuizDetailsViewModelProtocol {
     public var published: Bool
     public var quizDetailsHTML: String?
     public var assignmentSubmissionBreakdownViewModel: AssignmentSubmissionBreakdownViewModel?
-    public var quizSubmissionBreakdownViewModel: QuizSubmissionBreakdownViewModel?
+    public var quizSubmissionBreakdownViewModel: TeacherQuizSubmissionBreakdownViewModel?
     public var assignmentDateSectionViewModel: AssignmentDateSectionViewModel?
-    public var quizDateSectionViewModel: QuizDateSectionViewModel?
+    public var quizDateSectionViewModel: TeacherQuizDateSectionViewModel?
     public var attributes: [QuizAttribute]
 
     public init(

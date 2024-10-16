@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProtocol {
+public class TeacherQuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProtocol {
 
     @Published public var isReady: Bool = false
     @Published public var graded: Int = 0

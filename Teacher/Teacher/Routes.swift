@@ -290,8 +290,8 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/quizzes/:quizID") { _, params, _ in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        let viewModel = QuizDetailsViewModel(courseID: courseID, quizID: quizID)
-        return CoreHostingController(QuizDetailsView(viewModel: viewModel))
+        let viewModel = TeacherQuizDetailsViewModelLive(courseID: courseID, quizID: quizID)
+        return CoreHostingController(TeacherQuizDetailsView(viewModel: viewModel))
     },
     RouteHandler("/courses/:courseID/quizzes/:quizID/preview") { _, params, _ in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
@@ -299,8 +299,8 @@ let router = Router(routes: [
     },
     RouteHandler("/courses/:courseID/quizzes/:quizID/edit") { _, params, _ in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        let viewModel = QuizEditorViewModel(courseID: courseID, quizID: quizID)
-        return CoreHostingController(QuizEditorView(viewModel: viewModel))
+        let viewModel = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        return CoreHostingController(TeacherQuizEditorView(viewModel: viewModel))
     },
     RouteHandler("/courses/:courseID/quizzes/:quizID/submissions") { url, params, _ in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }

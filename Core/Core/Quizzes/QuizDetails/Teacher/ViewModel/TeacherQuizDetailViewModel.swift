@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public protocol QuizDetailsViewModelProtocol: ObservableObject, Refreshable {
+public protocol TeacherQuizDetailsViewModel: ObservableObject, Refreshable {
     var state: QuizDetailsViewModelState { get }
     var courseColor: UIColor? { get }
     var title: String { get }
