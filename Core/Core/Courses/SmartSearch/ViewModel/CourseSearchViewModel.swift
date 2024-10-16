@@ -28,13 +28,24 @@ class CourseSearchViewModel: ObservableObject {
         case groupedResults
     }
 
-    @Published private(set) var phase: Phase = .start
+    private var feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+
+    @Published private(set) var phase: Phase = .start {
+        didSet {
+            switch phase {
+            case .results, .groupedResults:
+                feedbackGenerator.impactOccurred()
+            default: break
+            }
+        }
+    }
+
     @Published private(set) var results: [SearchResult] = []
     @Published var filter: SearchResultFilter?
-
+    
     var sectionedResults: [SearchResultsSection] {
         let filtered = filter.flatMap { filter in
-            return results.filter(filter.predicate)
+            return results.filter(filter.apply(to:))
         } ?? results
 
         var list = Dictionary(grouping: filtered, by: { $0.content_type })
@@ -56,10 +67,10 @@ class CourseSearchViewModel: ObservableObject {
 
     func startSearch(
         of searchTerm: String,
-        in context: CoreSearchContext,
+        in context: CoreSearchContext<CourseSmartSearch>,
         using env: AppEnvironment
     ) {
-        guard let courseId = context.context.courseId else { return }
+        guard let courseId = context.info.context.courseId else { return }
 
         phase = .loading
 

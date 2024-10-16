@@ -22,13 +22,13 @@ public struct CourseSmartSearchDisplayView: View {
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
-    @Environment(\.searchContext) private var searchContext
+    @Environment(\.courseSmartSearchContext) private var searchContext
 
     @StateObject private var viewModel = CourseSearchViewModel()
-    @Binding private var displayState: SearchDisplayState
+    @Binding private var filter: SearchResultFilter?
 
-    public init(displayState: Binding<SearchDisplayState>) {
-        self._displayState = displayState
+    public init(filter: Binding<SearchResultFilter?>) {
+        self._filter = filter
     }
 
     public var body: some View {
@@ -46,22 +46,17 @@ public struct CourseSmartSearchDisplayView: View {
         }
         .ignoresSafeArea()
         .background(Color.backgroundLight)
-        .sheet(isPresented: $displayState.isFiltersPresented, content: {
-            SmartSearchFiltersView(filter: viewModel.filter) { newFilter in
-                viewModel.filter = newFilter
-                startLoading()
-            }
-        })
         .onAppear {
             guard case .start = viewModel.phase else { return }
+            viewModel.filter = filter
             startLoading()
         }
         .onReceive(searchContext.didSubmit, perform: { newTerm in
             startLoading(with: newTerm)
         })
-        .onChange(of: viewModel.phase) { newPhase in
-            displayState.isLoading = newPhase == .loading
-            displayState.isFiltersActive = viewModel.filter != nil
+        .onChange(of: filter) { newFilter in
+            viewModel.filter = newFilter
+            startLoading()
         }
     }
 
@@ -72,7 +67,5 @@ public struct CourseSmartSearchDisplayView: View {
 }
 
 #Preview {
-    CourseSmartSearchDisplayView(
-        displayState: .constant(.empty)
-    )
+    CourseSmartSearchDisplayView(filter: .constant(nil))
 }

@@ -127,7 +127,7 @@ extension SearchResult {
 
     var distanceDots: Int {
         let strength = 1 - distance
-        return Int(ceil(strength * 4))
+        return Int(round(strength * 4))
     }
 
     var strengthColor: Color {

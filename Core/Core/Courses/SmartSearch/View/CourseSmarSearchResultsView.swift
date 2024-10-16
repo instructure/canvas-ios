@@ -141,7 +141,7 @@ private struct CourseSearchSectionDisclosureStyle: DisclosureGroupStyle {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        InstUI.Divider()
+        RowDivider()
         if configuration.isExpanded {
             configuration.content
         }
@@ -155,7 +155,13 @@ private extension DisclosureGroupStyle where Self == CourseSearchSectionDisclosu
 private struct RowDivider: View {
     var withPadding: Bool = false
     var body: some View {
-        InstUI.Divider().padding(.horizontal, withPadding ? 16 : 0)
+        SwiftUI
+            .Divider()
+            .overlay {
+                // This to fix an issue on collapse/expanding of disclosure group
+                Color.borderMedium.frame(maxHeight: 0.5)
+            }
+            .padding(.horizontal, withPadding ? 16 : 0)
     }
 }
 

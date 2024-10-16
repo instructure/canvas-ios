@@ -20,29 +20,32 @@ import SwiftUI
 import UIKit
 
 public protocol CoreSearchController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {}
-public class CoreSearchHostingController<Content: View, SearchDisplay: View, Support: SearchSupportAction>:
-    CoreHostingController<SearchHostingBaseView<Content>>,
-    CoreSearchController {
+public class CoreSearchHostingController<
+    Info: SearchContextInfo, Filter, Content: View, Display: View, FilterEditor: View, Support: SearchSupportAction
+>: CoreHostingController<SearchHostingBaseView<Info, Content>>,
+   CoreSearchController {
     @MainActor required dynamic init?(coder aDecoder: NSCoder) { nil }
 
-    private let searchContext: CoreSearchContext
+    private let searchContext: CoreSearchContext<Info>
     private let router: Router
     private let support: SearchSupportOption<Support>?
-    private let display: CoreSearchDisplayProvider<SearchDisplay>
+    private let display: SearchDisplayProvider<Filter, Display>
+    private let filterEditor: SearchFilterEditorProvider<Filter, FilterEditor>
+
     private var leftItems: [UIBarButtonItem]?
-    private lazy var feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
 
     public init(
         router: Router = AppEnvironment.shared.router,
-        context: Context,
-        color: UIColor?,
+        info: Info,
         support: SearchSupportOption<Support>?,
         content: Content,
-        display: @escaping CoreSearchDisplayProvider<SearchDisplay>
+        filterEditor: @escaping SearchFilterEditorProvider<Filter, FilterEditor>,
+        display: @escaping SearchDisplayProvider<Filter, Display>
     ) {
-        self.searchContext = CoreSearchContext(context: context, color: color)
+        self.searchContext = CoreSearchContext(info: info)
         self.router = router
         self.support = support
+        self.filterEditor = filterEditor
         self.display = display
         super.init(SearchHostingBaseView(content: content, searchContext: searchContext))
         self.searchContext.controller = self
@@ -63,12 +66,14 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
         navigationItem.titleView = nil
         navigationItem.hidesBackButton = false
         navigationItem.leftBarButtonItems = leftItems
-        navigationItem.rightBarButtonItems = [searchBarItem()]
+        navigationItem.rightBarButtonItems = [searchBarItem]
 
         applyNavBarTransition(.fadeOut)
     }
 
     public func showSearchField() {
+        selectedFilter = nil
+        filterBarItem.image = .filterLine
         searchContext.reset()
 
         let searchView = UISearchField(
@@ -78,47 +83,56 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
             )
         )
 
-        searchView.field.placeholder = String(localized: "Search in this course", bundle: .core)
-        searchView.field.clearButtonColor = searchContext.color ?? .secondaryLabel
+        searchView.field.placeholder = searchContext.searchPrompt
         searchView.field.text = searchContext.searchText.value
         searchView.field.delegate = self
 
-        navigationItem.leftBarButtonItems = []
+        if let clearColor = searchContext.clearButtonColor {
+            searchView.field.clearButtonColor = clearColor
+        }
+
+        navigationItem.leftBarButtonItems = [closeBarItem]
         navigationItem.hidesBackButton = true
         navigationItem.titleView = searchView
         navigationItem.rightBarButtonItems = [
-            closeBarItem(),
-            supportBarItem()
+            supportBarItem,
+            filterBarItem
         ].compactMap({ $0 })
 
         applyNavBarTransition(.fadeIn)
         searchView.field.becomeFirstResponder()
     }
 
-    func searchBarItem() -> UIBarButtonItem {
-        UIBarButtonItem(
-            systemItem: .search,
-            primaryAction: UIAction(
-                handler: { [weak self] _ in
-                    self?.showSearchField()
-                }
-            )
-        )
-    }
+    // MARK: Bar Button Items
 
-    func closeBarItem() -> UIBarButtonItem {
-        UIBarButtonItem(
-            image: .xLine,
-            primaryAction: UIAction(
-                handler: { [weak self] _ in
-                    self?.hideSearchField()
-                }
-            )
+    private lazy var searchBarItem = UIBarButtonItem(
+        systemItem: .search,
+        primaryAction: UIAction(
+            handler: { [weak self] _ in
+                self?.showSearchField()
+            }
         )
-        .with({ $0.tintColor = .white })
-    }
+    )
 
-    func supportBarItem() -> UIBarButtonItem? {
+    private lazy var closeBarItem = UIBarButtonItem(
+        image: .xLine,
+        primaryAction: UIAction(
+            handler: { [weak self] _ in
+                self?.hideSearchField()
+            }
+        )
+    ).with({ $0.tintColor = .textLightest })
+
+    private lazy var filterBarItem = UIBarButtonItem(
+        image: .filterLine,
+        primaryAction: UIAction(
+            handler: { [weak self] _ in
+                self?.showFilterEditor()
+            }
+        )
+    ).with({ $0.tintColor = .textLightest })
+
+    private lazy var supportBarItem: UIBarButtonItem? = {
         guard let support else { return nil }
         return UIBarButtonItem(
             image: support.icon.uiImage(),
@@ -129,8 +143,8 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
                 }
             )
         )
-        .with({ $0.tintColor = .white })
-    }
+        .with({ $0.tintColor = .textLightest })
+    }()
 
     private func applyNavBarTransition(_ transition: NavBarTransition) {
         navigationController?
@@ -162,30 +176,29 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
         textField.resignFirstResponder()
 
         let searchTerm = textField.text ?? ""
-        searchContext.didSubmit.send(textField.text ?? "")
+        guard searchTerm.isSearchValid else { return false }
 
-        startSearchExperience(with: searchTerm) { [weak self] in
-            self?.hideSearchField()
-        }
-
+        searchContext.didSubmit.send(searchTerm)
+        startSearchExperience(with: searchTerm)
         return true
     }
 
     // MARK: Search Experience
 
-    private func startSearchExperience(with searchTerm: String, completion: @escaping () -> Void) {
-        feedbackGenerator.impactOccurred()
-
+    private func startSearchExperience(with searchTerm: String) {
         let coverVC = CoreHostingController(
             SearchDisplayContainerView(
+                of: Info.self,
                 searchText: searchTerm,
                 support: support,
+                filter: selectedFilter,
+                filterEditor: filterEditor,
                 display: display
             )
-            .environment(\.searchContext, searchContext)
+            .environment(Info.environmentKeyPath, searchContext)
         )
 
-        if let contextColor = searchContext.color {
+        if let contextColor = searchContext.navBarColor {
             coverVC.navigationBarStyle = .color(contextColor)
         }
 
@@ -204,7 +217,9 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
             splitView,
             from: self,
             options: .modal(.overFullScreen, animated: true),
-            completion: completion
+            completion: { [weak self] in
+                self?.hideSearchField()
+            }
         )
     }
 
@@ -216,6 +231,25 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
         let backItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
         viewController.navigationItem.backBarButtonItem = backItem
     }
+
+    private var selectedFilter: Filter?
+
+    private func showFilterEditor() {
+
+        let filter: Binding<Filter?> = Binding { [ weak self] in
+            self?.selectedFilter
+        } set: { [weak self] newFilter in
+            guard let self else { return }
+            selectedFilter = newFilter
+            filterBarItem.image = newFilter != nil ? .filterSolid : .filterLine
+        }
+
+        let filterEditorVC = CoreHostingController(
+            filterEditor(filter).environment(Info.environmentKeyPath, searchContext)
+        )
+
+        router.show(filterEditorVC, from: self, options: .modal(.formSheet, animated: true))
+    }
 }
 
 // MARK: - Convenience Initializer
@@ -223,17 +257,17 @@ public class CoreSearchHostingController<Content: View, SearchDisplay: View, Sup
 extension CoreSearchHostingController where Support == NoSearchSupportAction {
     public convenience init(
         router: Router = AppEnvironment.shared.router,
-        context: Context,
-        color: UIColor?,
+        info: Info,
         content: Content,
-        display: @escaping CoreSearchDisplayProvider<SearchDisplay>
+        filterEditor: @escaping SearchDisplayProvider<Filter, FilterEditor>,
+        display: @escaping SearchDisplayProvider<Filter, Display>
     ) {
         self.init(
             router: router,
-            context: context,
-            color: color,
+            info: info,
             support: nil,
             content: content,
+            filterEditor: filterEditor,
             display: display
         )
     }
@@ -241,12 +275,12 @@ extension CoreSearchHostingController where Support == NoSearchSupportAction {
 
 // MARK: - Base View
 
-public struct SearchHostingBaseView<Content: View>: View {
+public struct SearchHostingBaseView<Info: SearchContextInfo, Content: View>: View {
     public var content: Content
-    let searchContext: CoreSearchContext
+    let searchContext: CoreSearchContext<Info>
 
     public var body: some View {
-        content.environment(\.searchContext, searchContext)
+        content.environment(Info.environmentKeyPath, searchContext)
     }
 }
 
