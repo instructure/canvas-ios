@@ -26,9 +26,9 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
     public var subtitle: String { courseUseCase.first?.name ?? "" }
     public var showSubmissions: Bool { courseUseCase.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true }
     public private(set) var assignmentSubmissionBreakdownViewModel: AssignmentSubmissionBreakdownViewModel?
-    public private(set) var quizSubmissionBreakdownViewModel: TeacherQuizSubmissionBreakdownViewModel?
+    public private(set) var quizSubmissionBreakdownViewModel: TeacherQuizSubmissionBreakdownViewModelLive?
     public private(set) var assignmentDateSectionViewModel: AssignmentDateSectionViewModel?
-    public private(set) var quizDateSectionViewModel: TeacherQuizDateSectionViewModel?
+    public private(set) var quizDateSectionViewModel: TeacherQuizDateSectionViewModelLive?
 
     public var quizTitle: String { quiz?.title ?? "" }
     public var pointsPossibleText: String {
@@ -127,8 +127,8 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
                 assignmentDateSectionViewModel = AssignmentDateSectionViewModel(assignment: assignment)
                 assignmentSubmissionBreakdownViewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
             } else {
-                quizSubmissionBreakdownViewModel = TeacherQuizSubmissionBreakdownViewModel(courseID: courseID, quizID: quizID)
-                quizDateSectionViewModel = TeacherQuizDateSectionViewModel(quiz: quiz)
+                quizSubmissionBreakdownViewModel = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID)
+                quizDateSectionViewModel = TeacherQuizDateSectionViewModelLive(quiz: quiz)
             }
             state = .ready
         } else {

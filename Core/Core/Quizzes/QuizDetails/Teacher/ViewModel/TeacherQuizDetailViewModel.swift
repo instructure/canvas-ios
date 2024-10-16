@@ -29,9 +29,9 @@ public protocol TeacherQuizDetailsViewModel: ObservableObject, Refreshable {
     var quizDetailsHTML: String? { get }
     var showSubmissions: Bool { get }
     var assignmentSubmissionBreakdownViewModel: AssignmentSubmissionBreakdownViewModel? { get }
-    var quizSubmissionBreakdownViewModel: QuizSubmissionBreakdownViewModel? { get }
+    var quizSubmissionBreakdownViewModel: TeacherQuizSubmissionBreakdownViewModelLive? { get }
     var assignmentDateSectionViewModel: AssignmentDateSectionViewModel? { get }
-    var quizDateSectionViewModel: QuizDateSectionViewModel? { get }
+    var quizDateSectionViewModel: TeacherQuizDateSectionViewModelLive? { get }
     var attributes: [QuizAttribute] { get }
 
     func viewDidAppear()

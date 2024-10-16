@@ -31,9 +31,9 @@ public class TeacherQuizDetailsViewModelPreview: TeacherQuizDetailsViewModel {
     public var published: Bool
     public var quizDetailsHTML: String?
     public var assignmentSubmissionBreakdownViewModel: AssignmentSubmissionBreakdownViewModel?
-    public var quizSubmissionBreakdownViewModel: TeacherQuizSubmissionBreakdownViewModel?
+    public var quizSubmissionBreakdownViewModel: TeacherQuizSubmissionBreakdownViewModelLive?
     public var assignmentDateSectionViewModel: AssignmentDateSectionViewModel?
-    public var quizDateSectionViewModel: TeacherQuizDateSectionViewModel?
+    public var quizDateSectionViewModel: TeacherQuizDateSectionViewModelLive?
     public var attributes: [QuizAttribute]
 
     public init(
