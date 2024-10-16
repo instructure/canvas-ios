@@ -93,7 +93,13 @@ public class CDCalendarFilterEntry: NSManagedObject {
         purpose: CDCalendarFilterPurpose = .unknown,
         in moContext: NSManagedObjectContext
     ) -> CDCalendarFilterEntry? {
-        guard context.isValid else { return nil }
+        guard context.isValid else {
+            Analytics.shared.logError(
+                name: "CDCalendarFilterEntry save failed with invalid contextId",
+                reason: "contextType: \(context.contextType.rawValue), contextId: \"\(context.id)\", baseUrl: \(Analytics.analyticsBaseUrl)"
+            )
+            return nil
+        }
 
         let canvasContextID = context.canvasContextID
 

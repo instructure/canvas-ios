@@ -37,6 +37,13 @@ public struct Context: Codable, Equatable, Hashable {
     public var pathComponent: String { "\(contextType.pathComponent)/\(id)" }
 
     public init(_ contextType: ContextType, id: String) {
+        if id.isEmpty {
+            Analytics.shared.logError(
+                name: "Context created with invalid contextId",
+                reason: "contextType: \(contextType.rawValue), contextId: \"\(id)\", baseUrl: \(Analytics.analyticsBaseUrl)"
+            )
+        }
+
         self.contextType = contextType
         self.id = ID.expandTildeID(id)
     }
