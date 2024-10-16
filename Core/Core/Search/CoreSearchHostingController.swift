@@ -32,76 +32,8 @@ public class CoreSearchHostingController<
     private let display: SearchDisplayProvider<Filter, Display>
     private let filterEditor: SearchFilterEditorProvider<Filter, FilterEditor>
 
+    private var selectedFilter: Filter?
     private var leftItems: [UIBarButtonItem]?
-
-    public init(
-        router: Router = AppEnvironment.shared.router,
-        info: Info,
-        support: SearchSupportOption<Support>?,
-        content: Content,
-        filterEditor: @escaping SearchFilterEditorProvider<Filter, FilterEditor>,
-        display: @escaping SearchDisplayProvider<Filter, Display>
-    ) {
-        self.searchContext = CoreSearchContext(info: info)
-        self.router = router
-        self.support = support
-        self.filterEditor = filterEditor
-        self.display = display
-        super.init(SearchHostingBaseView(content: content, searchContext: searchContext))
-        self.searchContext.controller = self
-    }
-
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        leftItems = navigationItem.leftBarButtonItems
-        hideSearchField()
-    }
-
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        hideSearchField()
-    }
-
-    public func hideSearchField() {
-        navigationItem.titleView = nil
-        navigationItem.hidesBackButton = false
-        navigationItem.leftBarButtonItems = leftItems
-        navigationItem.rightBarButtonItems = [searchBarItem]
-
-        applyNavBarTransition(.fadeOut)
-    }
-
-    public func showSearchField() {
-        selectedFilter = nil
-        filterBarItem.image = .filterLine
-        searchContext.reset()
-
-        let searchView = UISearchField(
-            frame: CGRect(
-                origin: .zero,
-                size: CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
-            )
-        )
-
-        searchView.field.placeholder = searchContext.searchPrompt
-        searchView.field.text = searchContext.searchText.value
-        searchView.field.delegate = self
-
-        if let clearColor = searchContext.clearButtonColor {
-            searchView.field.clearButtonColor = clearColor
-        }
-
-        navigationItem.leftBarButtonItems = [closeBarItem]
-        navigationItem.hidesBackButton = true
-        navigationItem.titleView = searchView
-        navigationItem.rightBarButtonItems = [
-            supportBarItem,
-            filterBarItem
-        ].compactMap({ $0 })
-
-        applyNavBarTransition(.fadeIn)
-        searchView.field.becomeFirstResponder()
-    }
 
     // MARK: Bar Button Items
 
@@ -153,34 +85,94 @@ public class CoreSearchHostingController<
             .add(transition.caTransition, forKey: transition.rawValue)
     }
 
-    // MARK: Delegate Methods
+    // MARK: Initialization
 
-    public func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        searchContext.searchText.send("")
-        return true
+    public init(
+        router: Router = AppEnvironment.shared.router,
+        info: Info,
+        support: SearchSupportOption<Support>?,
+        content: Content,
+        filterEditor: @escaping SearchFilterEditorProvider<Filter, FilterEditor>,
+        display: @escaping SearchDisplayProvider<Filter, Display>
+    ) {
+        self.searchContext = CoreSearchContext(info: info)
+        self.router = router
+        self.support = support
+        self.filterEditor = filterEditor
+        self.display = display
+        super.init(SearchHostingBaseView(content: content, searchContext: searchContext))
+        self.searchContext.controller = self
     }
 
-    public func textFieldDidEndEditing(_ textField: UITextField) {
-        searchContext.searchText.send(textField.text ?? "")
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        leftItems = navigationItem.leftBarButtonItems
+        hideSearchField()
     }
 
-    public  func textField(_ textField: UITextField,
-                           shouldChangeCharactersIn range: NSRange,
-                           replacementString string: String) -> Bool {
-        let newValue = NSString(string: textField.text ?? "").replacingCharacters(in: range, with: string)
-        searchContext.searchText.send(newValue)
-        return true
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        hideSearchField()
     }
 
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+    // MARK: Show/Hide Search Bar
 
-        let searchTerm = textField.text ?? ""
-        guard searchTerm.isSearchValid else { return false }
+    private func showSearchField() {
+        selectedFilter = nil
+        filterBarItem.image = .filterLine
+        searchContext.reset()
 
-        searchContext.didSubmit.send(searchTerm)
-        startSearchExperience(with: searchTerm)
-        return true
+        let searchView = UISearchField(
+            frame: CGRect(
+                origin: .zero,
+                size: CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
+            )
+        )
+
+        searchView.field.placeholder = searchContext.searchPrompt
+        searchView.field.text = searchContext.searchText.value
+        searchView.field.delegate = self
+
+        if let clearColor = searchContext.clearButtonColor {
+            searchView.field.clearButtonColor = clearColor
+        }
+
+        navigationItem.leftBarButtonItems = [closeBarItem]
+        navigationItem.hidesBackButton = true
+        navigationItem.titleView = searchView
+        navigationItem.rightBarButtonItems = [
+            supportBarItem,
+            filterBarItem
+        ].compactMap({ $0 })
+
+        applyNavBarTransition(.fadeIn)
+        searchView.field.becomeFirstResponder()
+    }
+
+    private func hideSearchField() {
+        navigationItem.titleView = nil
+        navigationItem.hidesBackButton = false
+        navigationItem.leftBarButtonItems = leftItems
+        navigationItem.rightBarButtonItems = [searchBarItem]
+
+        applyNavBarTransition(.fadeOut)
+    }
+
+    private func showFilterEditor() {
+
+        let filter: Binding<Filter?> = Binding { [ weak self] in
+            self?.selectedFilter
+        } set: { [weak self] newFilter in
+            guard let self else { return }
+            selectedFilter = newFilter
+            filterBarItem.image = newFilter != nil ? .filterSolid : .filterLine
+        }
+
+        let filterEditorVC = CoreHostingController(
+            filterEditor(filter).environment(Info.environmentKeyPath, searchContext)
+        )
+
+        router.show(filterEditorVC, from: self, options: .modal(.formSheet, animated: true))
     }
 
     // MARK: Search Experience
@@ -223,6 +215,36 @@ public class CoreSearchHostingController<
         )
     }
 
+    // MARK: Delegate Methods
+
+    public func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        searchContext.searchText.send("")
+        return true
+    }
+
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        searchContext.searchText.send(textField.text ?? "")
+    }
+
+    public  func textField(_ textField: UITextField,
+                           shouldChangeCharactersIn range: NSRange,
+                           replacementString string: String) -> Bool {
+        let newValue = NSString(string: textField.text ?? "").replacingCharacters(in: range, with: string)
+        searchContext.searchText.send(newValue)
+        return true
+    }
+
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+
+        let searchTerm = textField.text ?? ""
+        guard searchTerm.isSearchValid else { return false }
+
+        searchContext.didSubmit.send(searchTerm)
+        startSearchExperience(with: searchTerm)
+        return true
+    }
+
     public func navigationController(
         _ navigationController: UINavigationController,
         willShow viewController: UIViewController,
@@ -230,25 +252,6 @@ public class CoreSearchHostingController<
     ) {
         let backItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
         viewController.navigationItem.backBarButtonItem = backItem
-    }
-
-    private var selectedFilter: Filter?
-
-    private func showFilterEditor() {
-
-        let filter: Binding<Filter?> = Binding { [ weak self] in
-            self?.selectedFilter
-        } set: { [weak self] newFilter in
-            guard let self else { return }
-            selectedFilter = newFilter
-            filterBarItem.image = newFilter != nil ? .filterSolid : .filterLine
-        }
-
-        let filterEditorVC = CoreHostingController(
-            filterEditor(filter).environment(Info.environmentKeyPath, searchContext)
-        )
-
-        router.show(filterEditorVC, from: self, options: .modal(.formSheet, animated: true))
     }
 }
 
