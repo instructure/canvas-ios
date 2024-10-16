@@ -31,7 +31,8 @@ enum HorizonRoutes {
         moduleRoutes,
         pageRoutes,
         programRoutes,
-        fileRoutes
+        fileRoutes,
+        quizRoutes
     ]
 
     private static var splashRoutes: [RouteHandler] {
@@ -121,7 +122,7 @@ enum HorizonRoutes {
                         url: url
                     )
                 }
-                return QuizDetailsViewController.create(courseID: courseID, quizID: quizID)
+                return StudentQuizDetailsViewController.create(courseID: courseID, quizID: quizID)
             }
         ]
     }
