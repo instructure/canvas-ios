@@ -76,7 +76,7 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/1/quizzes") is QuizListViewController)
         XCTAssert(router.match("/courses/1/quizzes/2") is CoreHostingController<TeacherQuizDetailsView<TeacherQuizDetailsViewModelLive>>)
         XCTAssert(router.match("/courses/1/quizzes/2/preview") is CoreHostingController<QuizPreviewView>)
-        XCTAssert(router.match("/courses/1/quizzes/2/edit") is CoreHostingController<TeacherQuizEditorView<TeacherQuizEditorViewModel>>)
+        XCTAssert(router.match("/courses/1/quizzes/2/edit") is CoreHostingController<TeacherQuizEditorView<TeacherQuizEditorViewModelLive>>)
         XCTAssert(router.match("/courses/1/quizzes/2/submissions") is CoreHostingController<QuizSubmissionListView>)
         XCTAssert(router.match("/files") is FileListViewController)
         XCTAssert(router.match("/users/self/files") is FileListViewController)
