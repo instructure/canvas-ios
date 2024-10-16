@@ -36,7 +36,7 @@ class QuizSubmissionBreakdownViewModelTests: CoreTestCase {
     }
 
     func testRouting() {
-        let testee = TeacherQuizSubmissionBreakdownViewModel(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID)
 
         testee.routeToAll(router: router, viewController: WeakViewController(UIViewController()))
         XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/quizzes/2/submissions")!))

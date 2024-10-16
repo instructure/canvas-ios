@@ -299,7 +299,7 @@ let router = Router(routes: [
     },
     RouteHandler("/courses/:courseID/quizzes/:quizID/edit") { _, params, _ in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        let viewModel = TeacherQuizEditorViewModel(courseID: courseID, quizID: quizID)
+        let viewModel = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
         return CoreHostingController(TeacherQuizEditorView(viewModel: viewModel))
     },
     RouteHandler("/courses/:courseID/quizzes/:quizID/submissions") { url, params, _ in
