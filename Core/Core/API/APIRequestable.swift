@@ -212,20 +212,12 @@ extension APIRequestable {
             components.path = "/api/v1/" + components.path
         }
 
-        let actAsUserQueryItem: [URLQueryItem] = { [actAsUserID] in
-            if let actAsUserID {
-                return [URLQueryItem(name: "as_user_id", value: actAsUserID)]
-            } else {
-                return []
-            }
-        }()
+        let extraQueryItems = extraQueryItems(actAsUserID: actAsUserID)
 
         if useExtendedPercentEncoding, !percentEncodedQueryItems.isEmpty {
-            components.percentEncodedQueryItems = percentEncodedQueryItems + actAsUserQueryItem
-        } else if !queryItems.isEmpty {
-            components.queryItems = (components.queryItems ?? []) + self.queryItems + actAsUserQueryItem
-        } else if !actAsUserQueryItem.isEmpty {
-            components.queryItems = (components.queryItems ?? []) + actAsUserQueryItem
+            components.percentEncodedQueryItems = percentEncodedQueryItems + extraQueryItems
+        } else if (!queryItems.isEmpty || !extraQueryItems.isEmpty) {
+            components.queryItems = (components.queryItems ?? []) + queryItems + extraQueryItems
         }
 
         // The conditional path prefixing *should* have made this impossible to fail
@@ -277,6 +269,32 @@ extension APIRequestable {
 
     public func encode(response: Response) throws -> Data {
         try APIJSONEncoder().encode(response)
+    }
+
+    private func extraQueryItems(actAsUserID: String?) -> [URLQueryItem] {
+        var extraQueryItems: [URLQueryItem] = []
+
+        if let actAsUserID {
+            extraQueryItems.append(URLQueryItem(name: "as_user_id", value: actAsUserID))
+        }
+
+        let ignoreNoVerifierQueryRequests: [any APIRequestable.Type] = [
+            LoginWebRequest.self,
+            GetMobileVerifyRequest.self,
+            PostAccountUserRequest.self
+        ]
+        let shouldAddNoVerifierQuery: Bool = {
+            !ignoreNoVerifierQueryRequests.contains { ignorableType in
+                (type(of: self) == ignorableType)
+            }
+        }()
+
+        if shouldAddNoVerifierQuery {
+            /// This will make the API to omit the file verifier parameter when linking course files.
+            extraQueryItems.append(URLQueryItem(name: "no_verifiers", value: "1"))
+        }
+
+        return extraQueryItems
     }
 }
 

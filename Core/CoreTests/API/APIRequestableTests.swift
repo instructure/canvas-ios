@@ -169,7 +169,7 @@ class APIRequestableTests: XCTestCase {
     }
 
     func testUrlRequestPath() {
-        let expected = expectedUrlRequest(path: "api/v1/date")
+        let expected = expectedUrlRequest(path: "api/v1/date?no_verifiers=1")
         XCTAssertEqual(try GetDate().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil), expected)
     }
 
@@ -178,27 +178,27 @@ class APIRequestableTests: XCTestCase {
     }
 
     func testUrlRequestQuery() {
-        let expected = expectedUrlRequest(path: "api/v1/?query")
+        let expected = expectedUrlRequest(path: "api/v1/?query&no_verifiers=1")
         XCTAssertEqual(try GetQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil), expected)
     }
 
     func testActAsUserIDWithRegularQueryItems() {
-        let expected = expectedUrlRequest(path: "api/v1/?query&as_user_id=78")
+        let expected = expectedUrlRequest(path: "api/v1/?query&as_user_id=78&no_verifiers=1")
         XCTAssertEqual(try GetQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: "78"), expected)
     }
 
     func testActAsUserIDWithEmptyQueryItems() {
-        let expected = expectedUrlRequest(path: "api/v1/data?as_user_id=78")
+        let expected = expectedUrlRequest(path: "api/v1/data?as_user_id=78&no_verifiers=1")
         XCTAssertEqual(try GetEmptyQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: "78"), expected)
     }
 
     func testActAsUserIDWithPercentEncodedQueryItems() {
-        let expected = expectedUrlRequest(path: "api/v1/calendar?startDate=2024-01-01T10%3A39%3A00.000%2B00%3A00&as_user_id=78")
+        let expected = expectedUrlRequest(path: "api/v1/calendar?startDate=2024-01-01T10%3A39%3A00.000%2B00%3A00&as_user_id=78&no_verifiers=1")
         XCTAssertEqual(try GetPercentEncodedQueryItems().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: "78"), expected)
     }
 
     func testUrlRequest() {
-        var expected = expectedUrlRequest(path: "api/v1/post")
+        var expected = expectedUrlRequest(path: "api/v1/post?no_verifiers=1")
         expected.httpMethod = "POST"
         expected.setValue("application/json", forHTTPHeaderField: "Content-Type")
         expected.httpBody = "{\"date\":\"1970-01-01T00:00:00Z\"}".data(using: .utf8)
@@ -206,12 +206,21 @@ class APIRequestableTests: XCTestCase {
     }
 
     func testUrlRequestNoToken() {
-        var expected = expectedUrlRequest(path: "api/v1/post")
+        var expected = expectedUrlRequest(path: "api/v1/post?no_verifiers=1")
         expected.httpMethod = "POST"
         expected.setValue("application/json", forHTTPHeaderField: "Content-Type")
         expected.setValue(nil, forHTTPHeaderField: HttpHeader.authorization)
         expected.httpBody = "{\"date\":\"1970-01-01T00:00:00Z\"}".data(using: .utf8)
         XCTAssertEqual(try PostBody().urlRequest(relativeTo: baseURL, accessToken: nil, actAsUserID: nil), expected)
+    }
+
+    func testUrlRequestIgnoresNoVerifierParameterForExcludedRequest() throws {
+        let noVerifierRequest = LoginWebRequest(authMethod: .siteAdminLogin, clientID: "", provider: "")
+
+        let request = try noVerifierRequest.urlRequest(relativeTo: baseURL, accessToken: "token", actAsUserID: "123")
+
+        XCTAssertEqual(request.url?.query(percentEncoded: true)?.contains("as_user_id=123"), true)
+        XCTAssertEqual(request.url?.query(percentEncoded: true)?.contains("no_verifier"), false)
     }
 
     func testGetNext() {
