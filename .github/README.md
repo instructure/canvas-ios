@@ -108,6 +108,8 @@ Writing code in a testable way is paramount for long term success. These apps ar
 
 We make and keep strong [conventions](./guidelines/CONVENTIONS.md) in order to reduce mental overhead.
 
+We adhere to our [Swift Style Guide](./guidelines/swift-style-guide.md).
+
 ### No Tricky Stuff
 
 We do things the Apple prescribed way because it offers the best long term predictability with minimal maintenance.
