@@ -473,7 +473,11 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         }
                     }
                     if isExpanded && (!message.attachments.isEmpty || message.mediaComment != nil) {
-                        AttachmentsView(attachments: message.attachments, mediaComment: message.mediaComment, didSelectAttachment: { model.didSelectFile.accept(($1, $0))})
+                        AttachmentsView(attachments: message.attachments,
+                                        mediaComment: message.mediaComment,
+                                        didSelectAttachment: {
+                            model.didSelectFile.accept(($1, $0))
+                        })
                             .padding(.top, defaultVerticalPaddingValue)
                     }
                 }

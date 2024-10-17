@@ -128,7 +128,10 @@ private struct ViewHeightKey: PreferenceKey {
 
 struct AttachmentsView_Previews: PreviewProvider {
     static var previews: some View {
-        AttachmentsView(attachments: [], mediaComment: nil)
+        AttachmentsView(
+            attachments: [],
+            mediaComment: nil
+        )
     }
 }
 

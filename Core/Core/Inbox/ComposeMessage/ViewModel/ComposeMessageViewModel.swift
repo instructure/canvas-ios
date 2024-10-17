@@ -481,8 +481,11 @@ final class ComposeMessageViewModel: ObservableObject {
             .store(in: &subscriptions)
         didSelectFile.sink(receiveCompletion: { _ in }, receiveValue: { (controller, url) in
             guard let url else { return }
-            router.route(to: url.appendingQueryItems(.init(name: "canEdit", value: "false")), from: controller, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
-
+            router.route(
+                to: url.appendingQueryItems(.init(name: "canEdit", value: "false")),
+                from: controller,
+                options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
+            )
         })
         .store(in: &subscriptions)
 
