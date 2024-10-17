@@ -430,7 +430,7 @@ final class ComposeMessageViewModel: ObservableObject {
             subject = title
         }
         let isExceedsRecipientsLimit = recipientIDs.count > maxRecipientCount
-        let groupConversation = isExceedsRecipientsLimit ? true : sendIndividual
+        let bulkMessage = isExceedsRecipientsLimit ? true : sendIndividual
         return MessageParameters(
             subject: subject,
             body: body,
@@ -438,7 +438,7 @@ final class ComposeMessageViewModel: ObservableObject {
             attachmentIDs: attachments.compactMap { $0.id },
             context: context.context,
             conversationID: conversation?.id,
-            bulkMessage: groupConversation,
+            bulkMessage: bulkMessage,
             includedMessages: includedMessages.map { $0.id }
         )
     }
