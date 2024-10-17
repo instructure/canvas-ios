@@ -24,10 +24,10 @@ public struct CourseSmartSearchDisplayView: View {
     @Environment(\.viewController) private var controller
     @Environment(\.courseSmartSearchContext) private var searchContext
 
-    @StateObject private var viewModel = CourseSearchViewModel()
-    @Binding private var filter: SearchResultFilter?
+    @StateObject private var viewModel = CourseSmartSearchViewModel()
+    @Binding private var filter: CourseSmartSearchFilter?
 
-    public init(filter: Binding<SearchResultFilter?>) {
+    public init(filter: Binding<CourseSmartSearchFilter?>) {
         self._filter = filter
     }
 

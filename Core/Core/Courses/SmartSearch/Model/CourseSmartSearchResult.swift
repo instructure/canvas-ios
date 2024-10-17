@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct SearchResult: Codable, Identifiable {
+struct CourseSmartSearchResult: Codable, Identifiable {
     var id: ID { content_id }
 
     enum ContentType: String, Codable {
@@ -51,15 +51,15 @@ struct SearchResult: Codable, Identifiable {
     let relevance: Int
 }
 
-struct SearchResultsSection {
-    let type: SearchResult.ContentType
+struct CourseSmartSearchResultsSection {
+    let type: CourseSmartSearchResultType
     var expanded: Bool = false
-    let results: [SearchResult]
+    let results: [CourseSmartSearchResult]
 }
 
 // MARK: - Route Path
 
-extension SearchResult {
+extension CourseSmartSearchResult {
 
     var pathComponent: String {
 
@@ -80,8 +80,8 @@ extension SearchResult {
 
 // MARK: - UI Helpers
 
-typealias SearchResultType = SearchResult.ContentType
-extension SearchResultType {
+typealias CourseSmartSearchResultType = CourseSmartSearchResult.ContentType
+extension CourseSmartSearchResultType {
 
     var title: String {
         switch self {
@@ -123,7 +123,7 @@ extension SearchResultType {
     }
 }
 
-extension SearchResult {
+extension CourseSmartSearchResult {
 
     var distanceDots: Int {
         let strength = 1 - distance

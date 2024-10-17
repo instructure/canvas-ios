@@ -18,28 +18,27 @@
 
 import Foundation
 
-struct CourseSmartSearchRequest: APIRequestable {
-    typealias Response = APICourseSmartSearch
-
-    let courseId: String
-    let searchText: String
-    let filter: [String]?
-
-    var path: String {
-        "/api/v1/courses/\(courseId)/smartsearch"
+public struct CourseSmartSearchFilter: Equatable {
+    public enum SortMode {
+        case relevance
+        case type
     }
 
-    var query: [APIQueryItem] {
-        return [
-            .value("q", searchText),
-            filter.flatMap { .array("filter", $0) }
-        ]
-        .compactMap({ $0 })
+    let sortMode: SortMode
+    let includedTypes: [CourseSmartSearchResultType]
+
+    init(sortMode: SortMode = .relevance, includedTypes: [CourseSmartSearchResultType]) {
+        self.sortMode = sortMode
+        self.includedTypes = includedTypes
+    }
+
+    func apply(to result: CourseSmartSearchResult) -> Bool {
+        return includedTypes.contains(result.content_type)
     }
 }
 
-struct APICourseSmartSearch: Codable {
-    let results: [CourseSmartSearchResult]
-    let status: String?
-    let indexing_progress: Double?
+extension CourseSmartSearchResultType {
+    static var filterableTypes: [CourseSmartSearchResultType] {
+        return [.assignment, .page, .announcement, .discussion]
+    }
 }

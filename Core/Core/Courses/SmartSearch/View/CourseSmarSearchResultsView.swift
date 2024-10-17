@@ -21,7 +21,7 @@ import SwiftUI
 struct CourseSmartSearchResultsView: View {
     @State private var selected: ID?
 
-    let results: [SearchResult]
+    let results: [CourseSmartSearchResult]
 
     var body: some View {
         GeometryReader { g in
@@ -60,10 +60,10 @@ struct CourseSmartSearchResultsView: View {
 
 struct CourseSmartSearchGroupedResultsView: View {
 
-    @State private var resultSections: [SearchResultsSection]
+    @State private var resultSections: [CourseSmartSearchResultsSection]
     @State private var selected: ID?
 
-    init(resultSections: [SearchResultsSection]) {
+    init(resultSections: [CourseSmartSearchResultsSection]) {
         self._resultSections = State(initialValue: resultSections)
     }
 

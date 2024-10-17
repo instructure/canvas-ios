@@ -18,42 +18,36 @@
 
 import SwiftUI
 
-public typealias SearchDisplayProvider<Filter, Display: View> = (Binding<Filter?>) -> Display
-public typealias SearchFilterEditorProvider<Filter, FilterEditor: View> = (Binding<Filter?>) -> FilterEditor
+//public typealias SearchDisplayProvider<Filter, Display: View> = (Binding<Filter?>) -> Display
+//public typealias SearchFilterEditorProvider<Filter, FilterEditor: View> = (Binding<Filter?>) -> FilterEditor
 
-public struct SearchDisplayContainerView<Info: SearchContextInfo, Display: View, Filter, FilterEditor: View, Action: SearchSupportAction>: View {
+struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDescriptor>: View {
 
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @Environment(Info.environmentKeyPath) private var searchContext
 
     @State var searchText: String
-    @State var filter: Filter?
+    @State var filter: Descriptor.Filter?
 
     @State private var isFilterEditorPresented: Bool = false
 
-    let displayContent: SearchDisplayProvider<Filter, Display>
-    let filterEditor: SearchFilterEditorProvider<Filter, FilterEditor>
-    let support: SearchSupportOption<Action>?
+    private let searchDescriptor: Descriptor
 
     init(
-        of type: Info.Type,
+        ofInfoType type: Info.Type,
+        descriptor: Descriptor,
         searchText: String,
-        support: SearchSupportOption<Action>?,
-        filter: Filter?,
-        filterEditor: @escaping SearchFilterEditorProvider<Filter, FilterEditor>,
-        display: @escaping SearchDisplayProvider<Filter, Display>
+        filter: Descriptor.Filter?
     ) {
-        self.support = support
-        self.displayContent = display
-        self.filterEditor = filterEditor
-
+        self.searchDescriptor = descriptor
         self._filter = State(initialValue: filter)
         self._searchText = State(initialValue: searchText)
     }
 
     public var body: some View {
-        displayContent($filter)
+        searchDescriptor
+            .searchDisplayView($filter)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
 
@@ -80,7 +74,7 @@ public struct SearchDisplayContainerView<Info: SearchContextInfo, Display: View,
                     .tint(Color.textLightest)
                 }
 
-                if let support {
+                if let support = searchDescriptor.support {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
                             support.action.triggered(with: env.router, from: controller.value)
@@ -104,7 +98,7 @@ public struct SearchDisplayContainerView<Info: SearchContextInfo, Display: View,
                 searchContext.searchText.send(newValue)
             }
             .sheet(isPresented: $isFilterEditorPresented, content: {
-                filterEditor($filter)
+                searchDescriptor.filterEditorView($filter)
             })
     }
 
