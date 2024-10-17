@@ -20,12 +20,18 @@ import SwiftUI
 
 public struct AttachmentsView: View {
     private let attachments: [File]
-    private let didSelectAttachment: ((File, WeakViewController) -> Void)?
+    private let mediaComment: MediaComment?
+    private let didSelectAttachment: ((URL?, WeakViewController) -> Void)?
     @State private var isAttachmentDeleted = false
     @Environment(\.viewController) private var controller
 
-    public init(attachments: [File], didSelectAttachment: ((File, WeakViewController) -> Void)? = nil) {
+    public init(
+        attachments: [File],
+        mediaComment: MediaComment?,
+        didSelectAttachment: ((URL?, WeakViewController) -> Void)? = nil
+    ) {
         self.attachments = attachments
+        self.mediaComment = mediaComment
         self.didSelectAttachment = didSelectAttachment
     }
 
@@ -35,13 +41,16 @@ public struct AttachmentsView: View {
                 ForEach(attachments, id: \.self) { file in
                     attachmentView(for: file)
                 }
+                if let mediaComment {
+                    mediaCommentView(media: mediaComment)
+                }
             }
         }
     }
 
     private func attachmentView(for file: File) -> some View {
         Button {
-            didSelectAttachment?(file, controller)
+            didSelectAttachment?(file.url, controller)
         } label: {
             VStack(spacing: 0) {
                 if let thumbnailURL = file.thumbnailURL, !isAttachmentDeleted {
@@ -81,6 +90,28 @@ public struct AttachmentsView: View {
                 .foregroundStyle(Color.textDark)
         }
     }
+
+   private func mediaCommentView(media: MediaComment) -> some View {
+        Button {
+            didSelectAttachment?(media.url, controller)
+        } label: {
+            VStack(spacing: 0) {
+                Image(uiImage: media.mediaType == .video ? .videoLine : .audioLine)
+                    .padding(.bottom, 8)
+                Text(media.displayName ?? "")
+                    .font(.regular14)
+                    .truncationMode(.middle)
+                    .lineLimit(2)
+                    .foregroundStyle(Color.textDark)
+            }
+            .padding(.all, 8)
+            .frame(width: 104, height: 104)
+            .background(Color.backgroundLight)
+            .border(Color.backgroundLight)
+            .accessibilityLabel(Text(media.displayName ?? ""))
+        }
+        .cornerRadius(5)
+    }
 }
 
 private struct ViewHeightKey: PreferenceKey {
@@ -97,7 +128,7 @@ private struct ViewHeightKey: PreferenceKey {
 
 struct AttachmentsView_Previews: PreviewProvider {
     static var previews: some View {
-        AttachmentsView(attachments: [])
+        AttachmentsView(attachments: [], mediaComment: nil)
     }
 }
 

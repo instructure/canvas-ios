@@ -104,7 +104,9 @@ public final class InboxMessageListItem: NSManagedObject {
         dbEntity.isSent = isSent
         dbEntity.contextFilter = contextFilter?.canvasContextID
         dbEntity.scopeFilter = scopeFilter.rawValue
-        dbEntity.hasAttachment = apiEntity.properties?.contains(.attachments) ?? false
+        let hasAttachment = apiEntity.properties?.contains(.attachments) ?? false
+        let hasMediaObjects = apiEntity.properties?.contains(.media_objects) ?? false
+        dbEntity.hasAttachment = (hasAttachment || hasMediaObjects)
 
         if case .individual(let name, let profileImageURL) = avatar {
             dbEntity.avatarNameRaw = name
