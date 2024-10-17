@@ -75,7 +75,7 @@ class ObserverAlertsInteractorTests: ParentTestCase {
         api.mock(useCase, expectation: expectation)
 
         let publisher = testee.markAlertAsRead(id: TestConstants.alertID)
-        XCTAssertFinish(publisher)
+        XCTAssertFinish(publisher, timeout: 1)
 
         wait(for: [expectation], timeout: 1)
     }
@@ -86,7 +86,7 @@ class ObserverAlertsInteractorTests: ParentTestCase {
         api.mock(useCase, expectation: expectation)
 
         let publisher = testee.dismissAlert(id: TestConstants.alertID)
-        XCTAssertFinish(publisher)
+        XCTAssertFinish(publisher, timeout: 1)
 
         wait(for: [expectation], timeout: 1)
     }
