@@ -62,7 +62,5 @@ struct FrequencyChoice: Identifiable {
 }
 
 extension FrequencyPreset {
-    static var choicesPresets: [FrequencyPreset] {
-        return [.noRepeat] + calculativePresets
-    }
+    static let choicesPresets: [FrequencyPreset] = [.noRepeat] + calculativePresets
 }

@@ -38,13 +38,12 @@ struct FrequencySelection: Equatable {
 extension CalendarEvent {
 
     var frequencySelection: FrequencySelection? {
-        guard let rrule = repetitionRule
-            .flatMap({ RecurrenceRule(rruleDescription: $0) })
-        else { return nil }
+        guard let recurrenceRule else { return nil }
 
         return FrequencySelection(
-            rrule,
+            recurrenceRule,
             title: seriesInNaturalLanguage,
-            preset: frequencyPreset)
+            preset: frequencyPreset
+        )
     }
 }

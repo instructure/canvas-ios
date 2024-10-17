@@ -276,15 +276,15 @@ final class EditCalendarEventViewModel: ObservableObject {
             case .monthly:
 
                 if rule.daysOfTheWeek == nil {
-                    rule.daysOfTheMonth = [newDate.monthDay]
+                    rule.daysOfTheMonth = [newDate.daysOfMonth]
                 } else {
                     rule.daysOfTheWeek = [newDate.monthWeekday]
                 }
 
             case .yearly:
 
-                rule.monthsOfTheYear = [newDate.month]
-                rule.daysOfTheMonth = [newDate.monthDay]
+                rule.monthsOfTheYear = [newDate.months]
+                rule.daysOfTheMonth = [newDate.daysOfMonth]
 
             default: return
             }

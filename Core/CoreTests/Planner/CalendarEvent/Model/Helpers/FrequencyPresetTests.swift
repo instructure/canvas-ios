@@ -147,12 +147,12 @@ private enum TestConstants {
         ),
         UseCase(
             preset: .yearlyOnThatMonth,
-            raw: "FREQ=YEARLY;INTERVAL=1;BYMONTH=\(date.month);BYMONTHDAY=\(date.monthDay);COUNT=5",
+            raw: "FREQ=YEARLY;INTERVAL=1;BYMONTH=\(date.months);BYMONTHDAY=\(date.daysOfMonth);COUNT=5",
             expected: RecurrenceRule(
                 recurrenceWith: .yearly,
                 interval: 1,
-                daysOfTheMonth: [date.monthDay],
-                monthsOfTheYear: [date.month],
+                daysOfTheMonth: [date.daysOfMonth],
+                monthsOfTheYear: [date.months],
                 end: .occurrenceCount(5)
             )
         ),

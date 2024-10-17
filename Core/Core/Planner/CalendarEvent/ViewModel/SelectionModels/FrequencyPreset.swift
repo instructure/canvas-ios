@@ -20,6 +20,7 @@ import Foundation
 
 enum FrequencyPreset: Equatable {
     case noRepeat
+
     case daily
     case weeklyOnThatDay
     case monthlyOnThatWeekday
@@ -28,6 +29,14 @@ enum FrequencyPreset: Equatable {
 
     case selected(title: String?, rule: RecurrenceRule)
     case custom(RecurrenceRule)
+
+    static let calculativePresets: [FrequencyPreset] = [
+        .daily,
+        .weeklyOnThatDay,
+        .monthlyOnThatWeekday,
+        .yearlyOnThatMonth,
+        .everyWeekday
+    ]
 
     var isCustom: Bool {
         if case .custom = self { return true }
@@ -63,8 +72,8 @@ enum FrequencyPreset: Equatable {
             return RecurrenceRule(
                 recurrenceWith: .yearly,
                 interval: 1,
-                daysOfTheMonth: [date.monthDay],
-                monthsOfTheYear: [date.month],
+                daysOfTheMonth: [date.daysOfMonth],
+                monthsOfTheYear: [date.months],
                 end: .occurrenceCount(5)
             )
         case .everyWeekday:
@@ -79,24 +88,14 @@ enum FrequencyPreset: Equatable {
         }
     }
 
+    static func calculativePreset(matching rule: RecurrenceRule, with date: Date) -> Self? {
+        calculativePresets.first { $0.rule(given: date) == rule }
+    }
+
     static func preset(given rule: RecurrenceRule?, date: Date) -> Self {
         guard let rule else { return .noRepeat }
 
-        guard let preset = calculativePresets
-            .first(where: { $0.rule(given: date) == rule })
-        else {
-            return .custom(rule)
-        }
-
-        return preset
-    }
-
-    // MARK: Choices Presets
-
-    static var calculativePresets: [FrequencyPreset] {
-        return [
-            .daily, .weeklyOnThatDay, .monthlyOnThatWeekday, .yearlyOnThatMonth, .everyWeekday
-        ]
+        return calculativePreset(matching: rule, with: date) ?? .custom(rule)
     }
 }
 
@@ -105,56 +104,13 @@ enum FrequencyPreset: Equatable {
 extension CalendarEvent {
 
     var frequencyPreset: FrequencyPreset {
-        guard let rrule = repetitionRule
-            .flatMap({ RecurrenceRule(rruleDescription: $0) })
-        else { return .noRepeat }
+        guard let recurrenceRule else { return .noRepeat }
 
-        guard let date = startAt,
-              let preset = FrequencyPreset
-            .calculativePresets
-            .first(where: { $0.rule(given: date) == rrule })
-        else {
-            return .selected(title: seriesInNaturalLanguage, rule: rrule)
+        if let date = startAt,
+           let calculativePreset = FrequencyPreset.calculativePreset(matching: recurrenceRule, with: date) {
+            return calculativePreset
+        } else {
+            return .selected(title: seriesInNaturalLanguage, rule: recurrenceRule)
         }
-
-        return preset
-    }
-}
-
-// MARK: - Utils
-
-extension Date {
-
-    var weekday: Weekday {
-        let comp = Cal.currentCalendar.component(.weekday, from: self)
-        return Weekday(component: comp) ?? .sunday
-    }
-
-    var monthDay: Int {
-        return Cal.currentCalendar.component(.day, from: self)
-    }
-
-    var month: Int {
-        return Cal.currentCalendar.component(.month, from: self)
-    }
-
-    var dayOfYear: Int {
-        let calendar = Cal.currentCalendar
-        let lapsedDays = calendar.dateComponents([.day],
-                                                 from: startOfYear(),
-                                                 to: calendar.startOfDay(for: self)).day ?? 0
-        return lapsedDays + 1
-    }
-
-    var monthWeekday: RecurrenceRule.DayOfWeek {
-        let weekdayOrdinal = Cal.currentCalendar.component(.weekdayOrdinal, from: self)
-        return RecurrenceRule.DayOfWeek(weekday, weekNumber: weekdayOrdinal)
-    }
-
-    func startOfYear() -> Date {
-        var comps = Cal.currentCalendar.dateComponents([.calendar, .year, .month, .day], from: self)
-        comps.month = 1
-        comps.day = 1
-        return comps.date ?? self
     }
 }
