@@ -20,17 +20,21 @@ import SwiftUI
 
 extension InstUI {
 
-    public struct CheckboxCell: View {
+    public struct CheckboxCell<Icon: View>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let title: String
         @Binding private var isSelected: Bool
         private let color: Color
+        private let seperator: Bool
+        private let icon: (() -> Icon)?
 
-        public init(title: String, isSelected: Binding<Bool>, color: Color) {
+        public init(title: String, isSelected: Binding<Bool>, color: Color, seperator: Bool = true, icon: (() -> Icon)?) {
             self.title = title
             self._isSelected = isSelected
             self.color = color
+            self.seperator = seperator
+            self.icon = icon
         }
 
         public var body: some View {
@@ -50,10 +54,14 @@ extension InstUI {
                             .foregroundStyle(Color.textDarkest)
                             .frame(maxWidth: .infinity,
                                    alignment: .leading)
+                        if let icon {
+                            Spacer()
+                            icon()
+                        }
                     }
                     .paddingStyle(set: .iconCell)
                 }
-                InstUI.Divider()
+                if seperator { InstUI.Divider() }
             }
             .accessibilityRepresentation {
                 Toggle(isOn: $isSelected) {
@@ -61,6 +69,12 @@ extension InstUI {
                 }
             }
         }
+    }
+}
+
+extension InstUI.CheckboxCell where Icon == SwiftUI.EmptyView {
+    public init(title: String, isSelected: Binding<Bool>, color: Color, seperator: Bool = true) {
+        self.init(title: title, isSelected: isSelected, color: color, seperator: seperator, icon: nil)
     }
 }
 
