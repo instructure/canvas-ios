@@ -290,6 +290,7 @@ extension APIRequestable {
         }()
 
         if shouldAddNoVerifierQuery {
+            /// This will make the API to omit the file verifier parameter when linking course files.
             extraQueryItems.append(URLQueryItem(name: "no_verifiers", value: "1"))
         }
 
