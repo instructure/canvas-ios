@@ -117,7 +117,11 @@ public struct MessageView: View {
             .accessibilityIdentifier("MessageDetails.body")
 
             if model.showAttachments {
-                AttachmentsView(attachments: model.attachments, didSelectAttachment: model.handleFileNavigation)
+                AttachmentsView(
+                    attachments: model.attachments,
+                    mediaComment: model.mediaComment,
+                    didSelectAttachment: model.handleFileNavigation
+                )
             }
         }
         .onAppear {
