@@ -30,7 +30,7 @@ public final class GradeListViewModel: ObservableObject {
     private let interactor: GradeListInteractor
 
     // MARK: - Output
-    @Published private(set) var gradeListUIModel: GradeListUIModel = .init()
+    @Published private(set) var config: GradeListViewModelConfig = .init()
     @Published public var isWhatIfScoreModeOn = false
     @Published public var isWhatIfScoreFlagEnabled = false
     public var courseID: String { interactor.courseID }
@@ -97,7 +97,7 @@ public final class GradeListViewModel: ObservableObject {
 
         triggerRefresh.prepend((false, nil))
             .receive(on: scheduler)
-            .flatMapLatest { [weak self] params -> AnyPublisher<GradeListUIModel, Never> in
+            .flatMapLatest { [weak self] params -> AnyPublisher<GradeListViewModelConfig, Never> in
                 guard let self else {
                     return Empty(completeImmediately: true).eraseToAnyPublisher()
                 }
@@ -107,8 +107,8 @@ public final class GradeListViewModel: ObservableObject {
                 // Changing the grading period fires an API request that takes time,
                 // so we need to show a loading indicator.
                 if lastKnownDataState != nil, refreshCompletion == nil, ignoreCache {
-                    gradeListUIModel.isLoaderVisible = true
-                    gradeListUIModel.state = .data(.init())
+                    config.isLoaderVisible = true
+                    config.state = .data(.init())
                 }
 
                 return interactor.getGrades(
@@ -119,15 +119,15 @@ public final class GradeListViewModel: ObservableObject {
                 )
                 .first()
                 .map { [weak self] listData in
-                    self?.getAssignmentsForSelectedGradingPeriod(grades: listData)
+                    self?.setupGradingPeriodIfNeeded(grades: listData)
                     return listData
                 }
                 .receive(on: scheduler)
-                .flatMap { [weak self] listData -> AnyPublisher<GradeListUIModel, Never> in
+                .flatMap { [weak self] listData -> AnyPublisher<GradeListViewModelConfig, Never> in
                     guard let self else {
                         return Empty(completeImmediately: true).eraseToAnyPublisher()
                     }
-                    var model = GradeListUIModel()
+                    var model = GradeListViewModelConfig()
                     model.gradeHeaderIsVisible = isInitialGradingPeriodSet
                     lastKnownDataState = listData
                     model.courseName = listData.courseName
@@ -150,7 +150,7 @@ public final class GradeListViewModel: ObservableObject {
                 .eraseToAnyPublisher()
             }
             .receive(on: scheduler)
-            .assign(to: &$gradeListUIModel)
+            .assign(to: &$config)
 
         didSelectAssignment
             .receive(on: scheduler)
@@ -168,11 +168,11 @@ public final class GradeListViewModel: ObservableObject {
         selectedGroupByOption.accept(selectedSortByOption)
     }
 
-   private func getAssignmentsForSelectedGradingPeriod(grades: GradeListData) {
+   private func setupGradingPeriodIfNeeded(grades: GradeListData) {
         if !isInitialGradingPeriodSet {
             isInitialGradingPeriodSet = true
-            gradeListUIModel.gradeHeaderIsVisible = false
-            gradeListUIModel.state = .initialLoading
+            config.gradeHeaderIsVisible = false
+            config.state = .initialLoading
             let id = getSelectedGradingPeriodId(
                 currentGradingPeriodID: grades.currentGradingPeriodID,
                 gradingPeriods: grades.gradingPeriods

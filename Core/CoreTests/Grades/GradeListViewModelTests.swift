@@ -29,7 +29,7 @@ class GradeListViewModelTests: CoreTestCase {
             router: PreviewEnvironment.shared.router,
             scheduler: .immediate
         )
-        XCTAssertEqual(testee.gradeListUIModel.state, .error)
+        XCTAssertEqual(testee.config.state, .error)
     }
 
     func testEmptyState() {
@@ -39,7 +39,7 @@ class GradeListViewModelTests: CoreTestCase {
             router: PreviewEnvironment.shared.router,
             scheduler: .immediate
         )
-        XCTAssertEqual(testee.gradeListUIModel.state, .empty(emptySections))
+        XCTAssertEqual(testee.config.state, .empty(emptySections))
     }
 
     func test_loadSortPreferences() {
@@ -54,7 +54,7 @@ class GradeListViewModelTests: CoreTestCase {
     }
 
     func testRefreshState() {
-        var states: [GradeListUIModel.ViewState] = []
+        var states: [GradeListViewModelConfig.ViewState] = []
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
         let expectation = expectation(description: "Publisher sends value.")
         let testee = GradeListViewModel(
@@ -64,11 +64,11 @@ class GradeListViewModelTests: CoreTestCase {
             scheduler: .immediate
         )
 
-        let subscription = testee.$gradeListUIModel
+        let subscription = testee.$config
             .sink { _ in
 
-            } receiveValue: { gradeListUIModel in
-                states.append(gradeListUIModel.state)
+            } receiveValue: { config in
+                states.append(config.state)
                 if states.count == 3 {
                     expectation.fulfill()
                 }
@@ -81,7 +81,7 @@ class GradeListViewModelTests: CoreTestCase {
     }
 
     func test_getSelectedGradingPeriodId() {
-        var states: [GradeListUIModel.ViewState] = []
+        var states: [GradeListViewModelConfig.ViewState] = []
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
         let expectation = expectation(description: "Publisher sends value.")
         let gradeFilterInteractor = GradeFilterInteractorMock()
@@ -93,11 +93,11 @@ class GradeListViewModelTests: CoreTestCase {
             scheduler: .immediate
         )
 
-        let subscription = testee.$gradeListUIModel
+        let subscription = testee.$config
             .sink { _ in
 
-            } receiveValue: { gradeListUIModel in
-                states.append(gradeListUIModel.state)
+            } receiveValue: { config in
+                states.append(config.state)
                 if states.count == 3 {
                     expectation.fulfill()
                 }
@@ -110,7 +110,7 @@ class GradeListViewModelTests: CoreTestCase {
     }
 
     func test_getSelectedGradingPeriodId_withNewIdSelected() {
-        var states: [GradeListUIModel.ViewState] = []
+        var states: [GradeListViewModelConfig.ViewState] = []
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
         let expectation = expectation(description: "Publisher sends value.")
         let gradeFilterInteractor = GradeFilterInteractorMock()
@@ -122,11 +122,11 @@ class GradeListViewModelTests: CoreTestCase {
             scheduler: .immediate
         )
 
-        let subscription = testee.$gradeListUIModel
+        let subscription = testee.$config
             .sink { _ in
 
-            } receiveValue: { gradeListUIModel in
-                states.append(gradeListUIModel.state)
+            } receiveValue: { config in
+                states.append(config.state)
                 if states.count == 3 {
                     expectation.fulfill()
                 }
@@ -141,7 +141,7 @@ class GradeListViewModelTests: CoreTestCase {
     }
 
     func test_getSelectedGradingPeriodId_withShowAllSelected() {
-        var states: [GradeListUIModel.ViewState] = []
+        var states: [GradeListViewModelConfig.ViewState] = []
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
         let expectation = expectation(description: "Publisher sends value.")
         let gradeFilterInteractor = GradeFilterInteractorMock()
@@ -153,11 +153,11 @@ class GradeListViewModelTests: CoreTestCase {
             scheduler: .immediate
         )
 
-        let subscription = testee.$gradeListUIModel
+        let subscription = testee.$config
             .sink { _ in
 
-            } receiveValue: { gradeListUIModel in
-                states.append(gradeListUIModel.state)
+            } receiveValue: { config in
+                states.append(config.state)
                 if states.count == 3 {
                     expectation.fulfill()
                 }
@@ -199,7 +199,7 @@ class GradeListViewModelTests: CoreTestCase {
         testee.pullToRefreshDidTrigger.accept(completion)
         XCTAssertEqual(completionCalled, true)
         XCTAssertEqual(interactor.ignoreCache, true)
-        XCTAssertEqual(testee.gradeListUIModel.state, .data(gradeListData))
+        XCTAssertEqual(testee.config.state, .data(gradeListData))
     }
 
     func testDidSelectAssignment() {
