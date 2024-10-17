@@ -16,30 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
+import Combine
 
-struct CourseSmartSearchRequest: APIRequestable {
-    typealias Response = APICourseSmartSearch
+public protocol SearchDescriptor {
+    associatedtype Filter
+    associatedtype FilterEditor: View
+    associatedtype Support: SearchSupportAction
+    associatedtype Display: View
 
-    let courseId: String
-    let searchText: String
-    let filter: [String]?
+    var support: SearchSupportOption<Support>? { get }
+    var enabledPublished: AnyPublisher<Bool, Never> { get }
 
-    var path: String {
-        "/api/v1/courses/\(courseId)/smartsearch"
-    }
-
-    var query: [APIQueryItem] {
-        return [
-            .value("q", searchText),
-            filter.flatMap { .array("filter", $0) }
-        ]
-        .compactMap({ $0 })
-    }
-}
-
-struct APICourseSmartSearch: Codable {
-    let results: [CourseSmartSearchResult]
-    let status: String?
-    let indexing_progress: Double?
+    func searchDisplayView(_ filter: Binding<Filter?>) -> Display
+    func filterEditorView(_ filter: Binding<Filter?>) -> FilterEditor
 }

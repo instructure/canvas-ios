@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-class CourseSearchViewModel: ObservableObject {
+class CourseSmartSearchViewModel: ObservableObject {
 
     enum Phase {
         case start
@@ -40,17 +40,17 @@ class CourseSearchViewModel: ObservableObject {
         }
     }
 
-    @Published private(set) var results: [SearchResult] = []
-    @Published var filter: SearchResultFilter?
-    
-    var sectionedResults: [SearchResultsSection] {
+    @Published private(set) var results: [CourseSmartSearchResult] = []
+    @Published var filter: CourseSmartSearchFilter?
+
+    var sectionedResults: [CourseSmartSearchResultsSection] {
         let filtered = filter.flatMap { filter in
             return results.filter(filter.apply(to:))
         } ?? results
 
         var list = Dictionary(grouping: filtered, by: { $0.content_type })
             .map({
-                SearchResultsSection(
+                CourseSmartSearchResultsSection(
                     type: $0,
                     results: $1
                 )
@@ -90,7 +90,7 @@ class CourseSearchViewModel: ObservableObject {
             )
     }
 
-    func updateResults(_ results: [SearchResult]?) {
+    func updateResults(_ results: [CourseSmartSearchResult]?) {
         self.results = results ?? []
         applyFilters()
     }

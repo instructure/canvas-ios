@@ -575,21 +575,8 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
         let viewModel = CourseDetailsViewModel(context: context, offlineModeInteractor: OfflineModeAssembly.make())
         let viewController = CoreSearchHostingController(
             info: CourseSmartSearch(context: context, color: url.contextColor),
-            support: SearchSupportOption(
-                action: SearchSupportSheet(content: CourseSmartSearchHelpView())
-            ),
-            content: CourseDetailsView(viewModel: viewModel),
-            filterEditor: { filter in
-                CourseSmartSearchFilterEditorView(
-                    filter: filter.wrappedValue,
-                    onSubmit: { newSelection in
-                        filter.wrappedValue = newSelection
-                    }
-                )
-            },
-            display: { filter in
-                CourseSmartSearchDisplayView(filter: filter)
-            }
+            descriptor: CourseSmartSearchDescriptor(env: .shared, context: context),
+            content: CourseDetailsView(viewModel: viewModel)
         )
 
         if let contextColor = url.contextColor {

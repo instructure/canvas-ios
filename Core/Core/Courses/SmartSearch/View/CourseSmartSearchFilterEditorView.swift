@@ -19,7 +19,7 @@
 import SwiftUI
 
 public struct CourseSmartSearchFilterEditorView: View {
-    private typealias ContentType = SearchResult.ContentType
+    private typealias ContentType = CourseSmartSearchResult.ContentType
 
     private struct ResultType {
         let contentType: ContentType
@@ -29,12 +29,12 @@ public struct CourseSmartSearchFilterEditorView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.courseSmartSearchContext) private var searchContext
 
-    @State private var sortMode: SearchResultSortMode? = .relevance
+    @State private var sortMode: CourseSmartSearchFilter.SortMode? = .relevance
     @State private var resultTypes: [ResultType]
 
-    let onSubmit: (SearchResultFilter?) -> Void
+    let onSubmit: (CourseSmartSearchFilter?) -> Void
 
-    public init(filter: SearchResultFilter?, onSubmit: @escaping (SearchResultFilter?) -> Void) {
+    public init(filter: CourseSmartSearchFilter?, onSubmit: @escaping (CourseSmartSearchFilter?) -> Void) {
         self.onSubmit = onSubmit
         self._sortMode = State(initialValue: filter?.sortMode ?? .relevance)
 
@@ -135,14 +135,14 @@ public struct CourseSmartSearchFilterEditorView: View {
         .tint(contextColor)
     }
 
-    private var filter: SearchResultFilter? {
+    private var filter: CourseSmartSearchFilter? {
         let allChecked = resultTypes.allSatisfy({ $0.checked })
         let allUnchecked = resultTypes.allSatisfy({ $0.checked == false })
 
         if (sortMode ?? .relevance) == .relevance,
             allChecked || allUnchecked { return nil } // This is invalid case
 
-        return SearchResultFilter(
+        return CourseSmartSearchFilter(
             sortMode: sortMode ?? .relevance,
             includedTypes: resultTypes
                 .filter({ $0.checked })
@@ -156,33 +156,6 @@ public struct CourseSmartSearchFilterEditorView: View {
 
     private var contextColor: Color {
         return Color(uiColor: searchContext.info.color ?? .textDarkest)
-    }
-}
-
-// MARK: - Models
-
-enum SearchResultSortMode {
-    case relevance
-    case type
-}
-
-public struct SearchResultFilter: Equatable {
-    let sortMode: SearchResultSortMode
-    let includedTypes: [SearchResult.ContentType]
-
-    init(sortMode: SearchResultSortMode = .relevance, includedTypes: [SearchResult.ContentType]) {
-        self.sortMode = sortMode
-        self.includedTypes = includedTypes
-    }
-
-    func apply(to result: SearchResult) -> Bool {
-        return includedTypes.contains(result.content_type)
-    }
-}
-
-extension SearchResult.ContentType {
-    static var filterableTypes: [SearchResult.ContentType] {
-        return [.assignment, .page, .announcement, .discussion]
     }
 }
 

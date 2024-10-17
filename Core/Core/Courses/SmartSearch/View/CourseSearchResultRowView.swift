@@ -27,7 +27,7 @@ struct CourseSearchResultRowView: View {
 
     @Binding var selected: ID?
 
-    let result: SearchResult
+    let result: CourseSmartSearchResult
     var showsType: Bool = true
 
     var body: some View {
