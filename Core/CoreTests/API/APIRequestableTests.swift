@@ -214,6 +214,15 @@ class APIRequestableTests: XCTestCase {
         XCTAssertEqual(try PostBody().urlRequest(relativeTo: baseURL, accessToken: nil, actAsUserID: nil), expected)
     }
 
+    func testUrlRequestIgnoresNoVerifierParameterForExcludedRequest() throws {
+        let noVerifierRequest = LoginWebRequest(authMethod: .siteAdminLogin, clientID: "", provider: "")
+
+        let request = try noVerifierRequest.urlRequest(relativeTo: baseURL, accessToken: "token", actAsUserID: "123")
+
+        XCTAssertEqual(request.url?.query(percentEncoded: true)?.contains("as_user_id=123"), true)
+        XCTAssertEqual(request.url?.query(percentEncoded: true)?.contains("no_verifier"), false)
+    }
+
     func testGetNext() {
         let prev = "https://cgnuonline-eniversity.edu/api/v1/date"
         let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
