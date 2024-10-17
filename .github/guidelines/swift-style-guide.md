@@ -459,7 +459,7 @@ Marking classes or members as `final` is preferred but not required.
 
 Give the closure parameters descriptive names. Use shorthand syntax (`$0`, `$1`) only when the purpose of the parameter is clear.
 
-Do not put parentheses around closure parameters, unless they are a tupple.
+Do not put parentheses around closure parameters, unless they are a tuple.
 
 ### Trailing Closure Syntax
 
@@ -697,7 +697,7 @@ if let textContainer { ... }
 
 ### Checking for nil
 
-Conditional statements that test that an Optional is non-`nil` but do not access the wrapped value, should be written as comparisons to `nil`.
+Conditional statements that test whether an Optional is non-`nil` but do not access the wrapped value, should be written as comparisons to `nil`.
 
 - **Preferred**:
 ```swift
