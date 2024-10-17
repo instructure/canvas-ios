@@ -128,7 +128,6 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
             recipientIDs: parameters.recipientIDs,
             canvasContextID: parameters.context.canvasContextID,
             attachmentIDs: parameters.attachmentIDs,
-            groupConversation: parameters.groupConversation,
             bulkMessage: parameters.bulkMessage
         )
         .fetchWithFuture()
