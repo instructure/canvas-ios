@@ -169,7 +169,7 @@ class APIRequestableTests: XCTestCase {
     }
 
     func testUrlRequestPath() {
-        let expected = expectedUrlRequest(path: "api/v1/date")
+        let expected = expectedUrlRequest(path: "api/v1/date?no_verifiers=1")
         XCTAssertEqual(try GetDate().urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil), expected)
     }
 
@@ -198,7 +198,7 @@ class APIRequestableTests: XCTestCase {
     }
 
     func testUrlRequest() {
-        var expected = expectedUrlRequest(path: "api/v1/post")
+        var expected = expectedUrlRequest(path: "api/v1/post?no_verifiers=1")
         expected.httpMethod = "POST"
         expected.setValue("application/json", forHTTPHeaderField: "Content-Type")
         expected.httpBody = "{\"date\":\"1970-01-01T00:00:00Z\"}".data(using: .utf8)
@@ -206,7 +206,7 @@ class APIRequestableTests: XCTestCase {
     }
 
     func testUrlRequestNoToken() {
-        var expected = expectedUrlRequest(path: "api/v1/post")
+        var expected = expectedUrlRequest(path: "api/v1/post?no_verifiers=1")
         expected.httpMethod = "POST"
         expected.setValue("application/json", forHTTPHeaderField: "Content-Type")
         expected.setValue(nil, forHTTPHeaderField: HttpHeader.authorization)
