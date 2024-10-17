@@ -327,7 +327,6 @@ final class EditCalendarEventViewModel: ObservableObject {
                 )
             )
         )
-        vc.navigationItem.hidesBackButton = true
         router.show(vc, from: source, options: .push)
     }
 
