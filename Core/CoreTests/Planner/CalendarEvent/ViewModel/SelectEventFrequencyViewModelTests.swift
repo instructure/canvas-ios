@@ -19,7 +19,7 @@
 import XCTest
 @testable import Core
 
-final class EditEventFrequencyViewModelTests: CoreTestCase {
+final class SelectEventFrequencyViewModelTests: CoreTestCase {
     typealias DayOfWeek = RecurrenceRule.DayOfWeek
 
     private enum TestConstants {
@@ -139,11 +139,12 @@ final class EditEventFrequencyViewModelTests: CoreTestCase {
 
     // MARK: - Helpers
 
-    private func makeViewModel(_ eventDate: Date,
-                               selected: FrequencySelection? = nil,
-                               originalPreset: FrequencyPreset? = nil) -> EditEventFrequencyViewModel {
-
-        return EditEventFrequencyViewModel(
+    private func makeViewModel(
+        _ eventDate: Date,
+        selected: FrequencySelection? = nil,
+        originalPreset: FrequencyPreset? = nil
+    ) -> SelectEventFrequencyViewModel {
+        return SelectEventFrequencyViewModel(
             eventDate: eventDate,
             selectedFrequency: selected,
             originalPreset: originalPreset,

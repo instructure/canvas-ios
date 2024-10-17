@@ -315,8 +315,8 @@ final class EditCalendarEventViewModel: ObservableObject {
 
     private func showSelectFrequencyScreen(from source: WeakViewController) {
         let vc = CoreHostingController(
-            EditEventFrequencyScreen(
-                viewModel: EditEventFrequencyViewModel(
+            SelectEventFrequencyScreen(
+                viewModel: SelectEventFrequencyViewModel(
                     eventDate: date ?? Clock.now,
                     selectedFrequency: frequency,
                     originalPreset: eventFrequencyPreset,

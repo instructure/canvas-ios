@@ -18,15 +18,15 @@
 
 import SwiftUI
 
-struct EditEventFrequencyScreen: View, ScreenViewTrackable {
+struct SelectEventFrequencyScreen: View, ScreenViewTrackable {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
 
-    @ObservedObject private var viewModel: EditEventFrequencyViewModel
+    @ObservedObject private var viewModel: SelectEventFrequencyViewModel
 
     var screenViewTrackingParameters: ScreenViewTrackingParameters { viewModel.pageViewEvent }
 
-    init(viewModel: EditEventFrequencyViewModel) {
+    init(viewModel: SelectEventFrequencyViewModel) {
         self.viewModel = viewModel
     }
 
@@ -92,8 +92,8 @@ struct ChoiceButton: View {
 #if DEBUG
 
 #Preview {
-    EditEventFrequencyScreen(
-        viewModel: EditEventFrequencyViewModel(
+    SelectEventFrequencyScreen(
+        viewModel: SelectEventFrequencyViewModel(
             eventDate: Date(),
             selectedFrequency: nil,
             originalPreset: nil,

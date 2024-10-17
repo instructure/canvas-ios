@@ -19,7 +19,7 @@
 import SwiftUI
 import Combine
 
-final class EditEventFrequencyViewModel: ObservableObject {
+final class SelectEventFrequencyViewModel: ObservableObject {
 
     // MARK: - Page Setup
 
