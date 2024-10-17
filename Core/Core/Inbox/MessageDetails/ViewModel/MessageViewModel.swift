@@ -68,7 +68,7 @@ public class MessageViewModel: Identifiable {
                 .init(name: "canEdit", value: "false")
             ),
             from: controller,
-            options: .modal(embedInNav: true,addDoneButton: true)
+            options: .modal(embedInNav: true, addDoneButton: true)
         )
     }
 }
