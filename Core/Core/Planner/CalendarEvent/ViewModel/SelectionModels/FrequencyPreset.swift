@@ -38,6 +38,18 @@ enum FrequencyPreset: Equatable {
         .everyWeekday
     ]
 
+    static let predefinedPresets: [FrequencyPreset] = [.noRepeat] + calculativePresets
+
+    static func preset(given rule: RecurrenceRule?, date: Date) -> Self {
+        guard let rule else { return .noRepeat }
+
+        return calculativePreset(matching: rule, with: date) ?? .custom(rule)
+    }
+
+    static func calculativePreset(matching rule: RecurrenceRule, with date: Date) -> Self? {
+        calculativePresets.first { $0.rule(given: date) == rule }
+    }
+
     var isCustom: Bool {
         if case .custom = self { return true }
         return false
@@ -86,16 +98,6 @@ enum FrequencyPreset: Equatable {
         case .custom(let rule), .selected(_, let rule):
             return rule
         }
-    }
-
-    static func calculativePreset(matching rule: RecurrenceRule, with date: Date) -> Self? {
-        calculativePresets.first { $0.rule(given: date) == rule }
-    }
-
-    static func preset(given rule: RecurrenceRule?, date: Date) -> Self {
-        guard let rule else { return .noRepeat }
-
-        return calculativePreset(matching: rule, with: date) ?? .custom(rule)
     }
 }
 

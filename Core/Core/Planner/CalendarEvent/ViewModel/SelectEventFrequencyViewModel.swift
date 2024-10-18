@@ -21,47 +21,51 @@ import Combine
 
 final class SelectEventFrequencyViewModel: ObservableObject {
 
-    // MARK: - Page Setup
+    // MARK: Output
 
     let pageTitle = String(localized: "Frequency", bundle: .core)
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new/frequency")
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
-    // MARK: - Data
+    let presetViewModels: [FrequencyPresetViewModel]
+    @Published private(set) var state: InstUI.ScreenState = .data
+    @Published var selectedPreset: FrequencyPreset
 
-    let eventDate: Date
-    private let originalPreset: FrequencyPreset?
-
-    var frequencyChoices: [FrequencyChoice] {
-        var presets = FrequencyChoice.allCases(given: eventDate)
-        if let preset = originalPreset, case .selected = preset {
-            presets.append(FrequencyChoice(date: eventDate, preset: preset))
-        }
-        return presets
-    }
-
-    // MARK: - Actions & Utils
+    // MARK: - Input
 
     let didTapBack = PassthroughSubject<Void, Never>()
     let didSelectCustomFrequency = PassthroughSubject<WeakViewController, Never>()
 
+    // MARK: - Private
+
+    internal let eventDate: Date
+    private let originalPreset: FrequencyPreset?
+
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
-    // MARK: - Inputs / Outputs
-    @Published private(set) var state: InstUI.ScreenState = .data
-    @Published var selection: FrequencyPreset
+    // MARK: - Init
 
-    init(eventDate: Date,
-         selectedFrequency: FrequencySelection?,
-         originalPreset: FrequencyPreset?,
-         router: Router,
-         completion: @escaping (FrequencySelection?) -> Void) {
-
-        self.router = router
+    init(
+        eventDate: Date,
+        selectedFrequency: FrequencySelection?,
+        originalPreset: FrequencyPreset?,
+        router: Router,
+        completion: @escaping (FrequencySelection?) -> Void
+    ) {
         self.eventDate = eventDate
+        self.selectedPreset = selectedFrequency?.preset ?? .noRepeat
         self.originalPreset = originalPreset
-        self.selection = selectedFrequency?.preset ?? .preset(given: selectedFrequency?.value, date: eventDate)
+        self.router = router
+
+        self.presetViewModels = {
+            var presetViewModels = FrequencyPreset.predefinedPresets
+                .map { FrequencyPresetViewModel(date: eventDate, preset: $0) }
+            if let originalPreset, case .selected = originalPreset {
+                presetViewModels.append(FrequencyPresetViewModel(date: eventDate, preset: originalPreset))
+            }
+            return presetViewModels
+        }()
 
         didSelectCustomFrequency
             .sink { [weak self] weakVC in
@@ -72,21 +76,22 @@ final class SelectEventFrequencyViewModel: ObservableObject {
         didTapBack
             .sink { [weak self] in
                 guard let self,
-                      let rule = self.selection.rule(given: eventDate)
+                      let rule = self.selectedPreset.rule(given: eventDate)
                 else { return completion(nil) }
-                let frequency = FrequencySelection(rule, preset: selection)
+                let frequency = FrequencySelection(rule, preset: selectedPreset)
                 completion(frequency)
             }
             .store(in: &subscriptions)
     }
 
-    private func showCustomFrequencyScreen(from source: WeakViewController,
-                                           completion: @escaping (FrequencySelection?) -> Void) {
-
+    private func showCustomFrequencyScreen(
+        from source: WeakViewController,
+        completion: @escaping (FrequencySelection?) -> Void
+    ) {
         let vc = CoreHostingController(
             EditCustomFrequencyScreen(
                 viewModel: EditCustomFrequencyViewModel(
-                    rule: selection.isCustom ? selection.rule(given: eventDate) : nil,
+                    rule: selectedPreset.isCustom ? selectedPreset.rule(given: eventDate) : nil,
                     proposedDate: eventDate,
                     router: router,
                     completion: { newRule in

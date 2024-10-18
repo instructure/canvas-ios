@@ -18,13 +18,7 @@
 
 import Foundation
 
-struct FrequencyChoice: Identifiable {
-
-    static func allCases(given date: Date) -> [FrequencyChoice] {
-        return FrequencyPreset
-            .choicesPresets
-            .map { FrequencyChoice(date: date, preset: $0) }
-    }
+struct FrequencyPresetViewModel: Identifiable {
 
     let id = Foundation.UUID()
     let date: Date
@@ -59,8 +53,4 @@ struct FrequencyChoice: Identifiable {
             return String(localized: "Custom", bundle: .core) // Should not fall to this case
         }
     }
-}
-
-extension FrequencyPreset {
-    static let choicesPresets: [FrequencyPreset] = [.noRepeat] + calculativePresets
 }

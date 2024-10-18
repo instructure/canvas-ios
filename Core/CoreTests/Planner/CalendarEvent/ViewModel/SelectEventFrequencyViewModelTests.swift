@@ -61,13 +61,13 @@ final class SelectEventFrequencyViewModelTests: CoreTestCase {
             originalPreset: .weeklyOnThatDay)
 
         XCTAssertEqual(model.eventDate, TestConstants.eventDate)
-        XCTAssertEqual(model.selection, frequency.preset)
+        XCTAssertEqual(model.selectedPreset, frequency.preset)
     }
 
     func testNoRepeatPresetSelected_NoPreSelection() {
         let model = makeViewModel(TestConstants.eventDate)
 
-        model.selection = .noRepeat
+        model.selectedPreset = .noRepeat
         XCTAssertNil(completionValue)
 
         model.didTapBack.send()
@@ -80,41 +80,40 @@ final class SelectEventFrequencyViewModelTests: CoreTestCase {
             selected: TestConstants.dailyFrequency
         )
 
-        XCTAssertEqual(model.selection, TestConstants.dailyFrequency.preset)
+        XCTAssertEqual(model.selectedPreset, TestConstants.dailyFrequency.preset)
 
-        model.selection = .noRepeat
+        model.selectedPreset = .noRepeat
         model.didTapBack.send()
 
         XCTAssertNil(completionValue)
     }
 
-    func testPresetChoicesGivenNoCustomPreSelection() {
+    func testPresetListGivenNoCustomPreSelection() {
         var model = makeViewModel(TestConstants.eventDate)
-        XCTAssertEqual(model.frequencyChoices.map({ $0.preset }), FrequencyPreset.choicesPresets)
+        XCTAssertEqual(model.presetViewModels.map({ $0.preset }), FrequencyPreset.predefinedPresets)
 
         model = makeViewModel(TestConstants.eventDate, selected: TestConstants.dailyFrequency)
-        XCTAssertEqual(model.frequencyChoices.map({ $0.preset }), FrequencyPreset.choicesPresets)
+        XCTAssertEqual(model.presetViewModels.map({ $0.preset }), FrequencyPreset.predefinedPresets)
     }
 
-    func testPresetChoicesGivenWithCustomPreSelection() {
+    func testPresetListGivenWithCustomPreSelection() {
         let model = makeViewModel(
             TestConstants.eventDate,
             selected: TestConstants.selectedFrequency,
             originalPreset: TestConstants.selectedFrequency.preset
         )
 
-        let modifiedChoicePresets = model.frequencyChoices.map({ $0.preset })
-        let expectedPresetsList = FrequencyPreset.choicesPresets + [
+        let expectedPresetList = FrequencyPreset.predefinedPresets + [
             TestConstants.selectedFrequency.preset
         ]
 
-        XCTAssertEqual(modifiedChoicePresets, expectedPresetsList)
-        XCTAssertEqual(model.frequencyChoices.last?.title, TestConstants.selectedFrequency.preset.selectedTitle)
+        XCTAssertEqual(model.presetViewModels.map({ $0.preset }), expectedPresetList)
+        XCTAssertEqual(model.presetViewModels.last?.title, TestConstants.selectedFrequency.preset.selectedTitle)
     }
 
     func testCalculativePresetSelected() {
         let model = makeViewModel(TestConstants.eventDate)
-        model.selection = TestConstants.dailyFrequency.preset
+        model.selectedPreset = TestConstants.dailyFrequency.preset
 
         XCTAssertNil(completionValue)
 

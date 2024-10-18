@@ -33,21 +33,19 @@ struct SelectEventFrequencyScreen: View, ScreenViewTrackable {
     var body: some View {
         InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { geometry in
             VStack(alignment: .leading, spacing: 0) {
-                ForEach(viewModel.frequencyChoices) { choice in
-                    ChoiceButton(
-                        title: choice.title,
-                        selected: viewModel.selection == choice.preset) {
-                            viewModel.selection = choice.preset
+                ForEach(viewModel.presetViewModels) { presetVM in
+                    FrequencyPresetCell(
+                        title: presetVM.title,
+                        isSelected: viewModel.selectedPreset == presetVM.preset) {
+                            viewModel.selectedPreset = presetVM.preset
                         }
-                    InstUI.Divider()
                 }
 
-                ChoiceButton(
+                FrequencyPresetCell(
                     title: String(localized: "Custom", bundle: .core),
-                    selected: viewModel.selection.isCustom) {
+                    isSelected: viewModel.selectedPreset.isCustom) {
                         viewModel.didSelectCustomFrequency.send(viewController)
                     }
-                InstUI.Divider()
 
                 Spacer()
             }
@@ -60,32 +58,37 @@ struct SelectEventFrequencyScreen: View, ScreenViewTrackable {
     }
 }
 
-struct ChoiceButton: View {
+private struct FrequencyPresetCell: View {
     let title: String
-    let selected: Bool
+    let isSelected: Bool
     let action: () -> Void
 
     var body: some View {
-        Button(
-            action: action,
-            label: {
-                HStack {
-                    Text(title)
-                        .font(.regular14, lineHeight: .fit)
-                        .foregroundStyle(Color.textDarkest)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Spacer()
-                    InstUI.Icons.Checkmark()
-                        .foregroundStyle(Color.textDarkest)
-                        .layoutPriority(1)
-                        .opacity(selected ? 1 : 0)
+        VStack(spacing: 0) {
+            Button(
+                action: action,
+                label: {
+                    HStack {
+                        Text(title)
+                            .font(.regular14, lineHeight: .fit)
+                            .foregroundStyle(Color.textDarkest)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Spacer()
+                        InstUI.Icons.Checkmark()
+                            .foregroundStyle(Color.textDarkest)
+                            .layoutPriority(1)
+                            .opacity(isSelected ? 1 : 0)
+                    }
+                    .paddingStyle(set: .standardCell)
+                    .contentShape(Rectangle())
                 }
-                .paddingStyle(set: .standardCell)
-                .contentShape(Rectangle())
-            })
-        .buttonStyle(.plain)
-        .contentShape(Rectangle())
-        .accessibilityAddTraits(selected ? .isSelected : [])
+            )
+            .buttonStyle(.plain)
+            .contentShape(Rectangle())
+            .accessibilityAddTraits(isSelected ? .isSelected : [])
+
+            InstUI.Divider()
+        }
     }
 }
 
