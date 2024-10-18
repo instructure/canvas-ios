@@ -103,35 +103,17 @@ class GetTeacherCalendarFilters: UseCase {
             .store(in: &subscriptions)
     }
 
-    func write(
-        response: APIResponse?,
-        urlResponse: URLResponse?,
-        to client: NSManagedObjectContext
-    ) {
-        guard let courses = response?.courses,
-              let groups = response?.groups
-        else {
-            return
-        }
+    func write(response: APIResponse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response else { return }
 
-        let filter: CDCalendarFilterEntry = client.insert()
-        filter.context = .user(userId)
-        filter.name = userName
-        filter.purpose = purpose.filterPurpose
-
-        courses.forEach { course in
-            let filter: CDCalendarFilterEntry = client.insert()
-            filter.context = .course(course.id.rawValue)
-            filter.name = course.name ?? ""
-            filter.purpose = purpose.filterPurpose
-        }
-
-        groups.forEach { group in
-            let filter: CDCalendarFilterEntry = client.insert()
-            filter.context = .group(group.id.rawValue)
-            filter.name = group.name
-            filter.purpose = purpose.filterPurpose
-        }
+        CDCalendarFilterEntry.save(
+            userId: userId,
+            userName: userName,
+            courses: response.courses,
+            groups: response.groups,
+            purpose: purpose.filterPurpose,
+            in: client
+        )
     }
 
     func reset(context: NSManagedObjectContext) {

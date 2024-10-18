@@ -101,4 +101,21 @@ class ContextTests: XCTestCase {
         XCTAssertEqual(context.groupId, nil)
         XCTAssertEqual(context.userId, id)
     }
+
+    func testIsValid() {
+        var context = Context.course("42")
+        XCTAssertEqual(context.isValid, true)
+
+        context = Context.course("some text")
+        XCTAssertEqual(context.isValid, true)
+
+        context = Context.course("")
+        XCTAssertEqual(context.isValid, false)
+
+        context = Context.course("_")
+        XCTAssertEqual(context.isValid, true)
+
+        context = Context.course(" ")
+        XCTAssertEqual(context.isValid, true)
+    }
 }
