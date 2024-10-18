@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct QuizAttribute: Identifiable {
+public struct TeacherQuizAttribute: Identifiable {
     public var id: String
     public var value: String
 
@@ -28,21 +28,21 @@ public struct QuizAttribute: Identifiable {
     }
 }
 
-public struct QuizAttributes {
+public struct TeacherQuizAttributes {
 
-    public var attributes: [QuizAttribute]
+    public var attributes: [TeacherQuizAttribute]
 
     public init(quiz: Quiz, assignment: Assignment?) {
-        attributes = [QuizAttribute]()
+        attributes = [TeacherQuizAttribute]()
 
         let quizType = quiz.quizType.name
-        attributes.append(QuizAttribute(
+        attributes.append(TeacherQuizAttribute(
             String(localized: "Quiz Type:", bundle: .core),
             quizType
         ))
 
         if let assignmentGroupName = assignment?.assignmentGroup?.name {
-            attributes.append(QuizAttribute(
+            attributes.append(TeacherQuizAttribute(
                 String(localized: "Assignment Group:", bundle: .core),
                 assignmentGroupName
             ))
@@ -51,7 +51,7 @@ public struct QuizAttributes {
         let shuffleAnswers = quiz.shuffleAnswers ?
             String(localized: "Yes", bundle: .core) :
             String(localized: "No", bundle: .core)
-        attributes.append(QuizAttribute(
+        attributes.append(TeacherQuizAttribute(
             String(localized: "Shuffle Answers:", bundle: .core),
             shuffleAnswers
         ))
@@ -62,12 +62,12 @@ public struct QuizAttributes {
             timeLimitText = String.localizedStringWithFormat(timeLimitTemplate, Int(timeLimit))
         }
 
-        attributes.append(QuizAttribute(
+        attributes.append(TeacherQuizAttribute(
             String(localized: "Time Limit:", bundle: .core),
             timeLimitText
         ))
 
-        attributes.append(QuizAttribute(
+        attributes.append(TeacherQuizAttribute(
             String(localized: "Allowed Attempts:", bundle: .core),
             quiz.allowedAttemptsText
         ))
@@ -76,13 +76,13 @@ public struct QuizAttributes {
         if let hideResults = quiz.hideResults {
             hideResultsText = hideResults.text
         }
-        attributes.append(QuizAttribute(
+        attributes.append(TeacherQuizAttribute(
             String(localized: "View Responses:", bundle: .core),
             hideResultsText
         ))
 
         if let showCorrectAnswers = showCorrectAnswers(quiz: quiz) {
-            attributes.append(QuizAttribute(
+            attributes.append(TeacherQuizAttribute(
                 String(localized: "Show Correct Answers:", bundle: .core),
                 showCorrectAnswers
             ))
@@ -91,7 +91,7 @@ public struct QuizAttributes {
         let oneQuestionAtATime = quiz.oneQuestionAtATime ?
             String(localized: "Yes", bundle: .core) :
             String(localized: "No", bundle: .core)
-        attributes.append(QuizAttribute(
+        attributes.append(TeacherQuizAttribute(
             String(localized: "One Question at a Time:", bundle: .core),
             oneQuestionAtATime
         ))
@@ -100,21 +100,21 @@ public struct QuizAttributes {
             let lockQuestionsAfterAnswering = quiz.cantGoBack ?
                 String(localized: "Yes", bundle: .core) :
                 String(localized: "No", bundle: .core)
-            attributes.append(QuizAttribute(
+            attributes.append(TeacherQuizAttribute(
                 String(localized: "Lock Questions After Answering:", bundle: .core),
                 lockQuestionsAfterAnswering
             ))
         }
 
         if let scoringPolicy = quiz.scoringPolicy {
-            attributes.append(QuizAttribute(
+            attributes.append(TeacherQuizAttribute(
                 String(localized: "Score to Keep:", bundle: .core),
                 scoringPolicy.text
             ))
         }
 
         if let accessCode = quiz.accessCode {
-            attributes.append(QuizAttribute(
+            attributes.append(TeacherQuizAttribute(
                 String(localized: "Access Code:", bundle: .core),
                 accessCode
             ))

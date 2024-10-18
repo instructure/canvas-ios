@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
+public struct TeacherQuizDetailsView<ViewModel: TeacherQuizDetailsViewModel>: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
@@ -214,11 +214,11 @@ struct QuizDetailsSection<Label: View, Content: View>: View {
 
 struct QuizDetails_Previews: PreviewProvider {
     static var previews: some View {
-        let quizAttributes: [QuizAttribute] = [
-            QuizAttribute("Quiz Type:", "Graded Quiz"),
-            QuizAttribute("Time Limit:", "30 minutes")
+        let quizAttributes: [TeacherQuizAttribute] = [
+            TeacherQuizAttribute("Quiz Type:", "Graded Quiz"),
+            TeacherQuizAttribute("Time Limit:", "30 minutes")
         ]
-        let viewModel = QuizDetailsViewModelPreview(
+        let viewModel = TeacherQuizDetailsViewModelPreview(
             state: .ready,
             courseColor: .red,
             title: "Title",
@@ -229,10 +229,10 @@ struct QuizDetails_Previews: PreviewProvider {
             quizDetailsHTML: "This is the description",
             attributes: quizAttributes
         )
-        QuizDetailsView(viewModel: viewModel)
+        TeacherQuizDetailsView(viewModel: viewModel)
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
-        QuizDetailsView(viewModel: viewModel)
+        TeacherQuizDetailsView(viewModel: viewModel)
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
     }

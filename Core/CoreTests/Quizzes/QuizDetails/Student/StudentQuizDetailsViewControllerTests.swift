@@ -18,11 +18,10 @@
 
 import XCTest
 @testable import Core
-@testable import Student
 import TestsFoundation
 
-class QuizDetailsViewControllerTests: StudentTestCase {
-    lazy var controller = QuizDetailsViewController.create(courseID: "1", quizID: "1")
+class StudentQuizDetailsViewControllerTests: CoreTestCase {
+    lazy var controller = StudentQuizDetailsViewController.create(courseID: "1", quizID: "1")
 
     override func setUp() {
         super.setUp()
@@ -58,7 +57,7 @@ class QuizDetailsViewControllerTests: StudentTestCase {
         XCTAssertEqual(controller.statusLabel.text, "Not Submitted")
         XCTAssertEqual(controller.takeButton.title(for: .normal), "Take Quiz")
         controller.takeButton.sendActions(for: .primaryActionTriggered)
-        XCTAssert(router.presented is QuizWebViewController)
+        XCTAssert(router.presented is StudentQuizWebViewController)
 
         api.mock(GetQuizSubmissionRequest(courseID: "1", quizID: "1"), value: .init(quiz_submissions: [
             .make(attempt: 2, attempts_left: 0, started_at: date)
@@ -67,7 +66,7 @@ class QuizDetailsViewControllerTests: StudentTestCase {
         XCTAssertEqual(controller.statusLabel.text, "Submitted")
         XCTAssertEqual(controller.takeButton.title(for: .normal), "Resume Quiz")
         controller.takeButton.sendActions(for: .primaryActionTriggered)
-        XCTAssert(router.presented is QuizWebViewController)
+        XCTAssert(router.presented is StudentQuizWebViewController)
 
         api.mock(GetQuizSubmissionRequest(courseID: "1", quizID: "1"), value: .init(quiz_submissions: [
             .make(attempt: 1, attempts_left: 1, finished_at: date, workflow_state: .complete)
@@ -76,7 +75,7 @@ class QuizDetailsViewControllerTests: StudentTestCase {
         XCTAssertEqual(controller.statusLabel.text, "Submitted " + date.dateTimeString)
         XCTAssertEqual(controller.takeButton.title(for: .normal), "Retake Quiz")
         controller.takeButton.sendActions(for: .primaryActionTriggered)
-        XCTAssert(router.presented is QuizWebViewController)
+        XCTAssert(router.presented is StudentQuizWebViewController)
 
         api.mock(GetQuizSubmissionRequest(courseID: "1", quizID: "1"), value: .init(quiz_submissions: [
             .make(attempt: 2, attempts_left: 0, finished_at: date, workflow_state: .complete)
@@ -111,7 +110,7 @@ class QuizDetailsViewControllerTests: StudentTestCase {
     func testPointsTextWhenQuantitativeDataEnabled() {
         // MARK: GIVEN
         mockDataForQuantitativeDataTests(restrict_quantitative_data: true)
-        let testee = QuizDetailsViewController.create(courseID: "1", quizID: "123")
+        let testee = StudentQuizDetailsViewController.create(courseID: "1", quizID: "123")
 
         // MARK: WHEN
         testee.loadViewIfNeeded()
@@ -123,7 +122,7 @@ class QuizDetailsViewControllerTests: StudentTestCase {
     func testPointsTextWhenQuantitativeDataDisabled() {
         // MARK: GIVEN
         mockDataForQuantitativeDataTests(restrict_quantitative_data: false)
-        let testee = QuizDetailsViewController.create(courseID: "1", quizID: "123")
+        let testee = StudentQuizDetailsViewController.create(courseID: "1", quizID: "123")
 
         // MARK: WHEN
         testee.loadViewIfNeeded()
@@ -135,7 +134,7 @@ class QuizDetailsViewControllerTests: StudentTestCase {
     func testPointsTextWhenQuantitativeDataNotSpecified() {
         // MARK: GIVEN
         mockDataForQuantitativeDataTests(restrict_quantitative_data: nil)
-        let testee = QuizDetailsViewController.create(courseID: "1", quizID: "123")
+        let testee = StudentQuizDetailsViewController.create(courseID: "1", quizID: "123")
 
         // MARK: WHEN
         testee.loadViewIfNeeded()

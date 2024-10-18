@@ -20,7 +20,7 @@
 /**
 Use only for SwiftUI previews.
 */
-public class QuizDetailsViewModelPreview: QuizDetailsViewModelProtocol {
+public class TeacherQuizDetailsViewModelPreview: TeacherQuizDetailsViewModel {
     public var state: QuizDetailsViewModelState
     public var courseColor: UIColor?
     public var title: String
@@ -31,10 +31,10 @@ public class QuizDetailsViewModelPreview: QuizDetailsViewModelProtocol {
     public var published: Bool
     public var quizDetailsHTML: String?
     public var assignmentSubmissionBreakdownViewModel: AssignmentSubmissionBreakdownViewModel?
-    public var quizSubmissionBreakdownViewModel: QuizSubmissionBreakdownViewModel?
+    public var quizSubmissionBreakdownViewModel: TeacherQuizSubmissionBreakdownViewModelLive?
     public var assignmentDateSectionViewModel: AssignmentDateSectionViewModel?
-    public var quizDateSectionViewModel: QuizDateSectionViewModel?
-    public var attributes: [QuizAttribute]
+    public var quizDateSectionViewModel: TeacherQuizDateSectionViewModelLive?
+    public var attributes: [TeacherQuizAttribute]
 
     public init(
         state: QuizDetailsViewModelState,
@@ -45,7 +45,7 @@ public class QuizDetailsViewModelPreview: QuizDetailsViewModelProtocol {
         pointsPossibleText: String,
         published: Bool,
         quizDetailsHTML: String,
-        attributes: [QuizAttribute]
+        attributes: [TeacherQuizAttribute]
     ) {
         self.state = state
         self.courseColor = courseColor

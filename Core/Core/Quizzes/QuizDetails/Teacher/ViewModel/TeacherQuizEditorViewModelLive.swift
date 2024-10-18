@@ -19,7 +19,7 @@
 import Combine
 import SwiftUI
 
-public class QuizEditorViewModel: QuizEditorViewModelProtocol {
+public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
     @Published public private(set) var state: QuizEditorViewModelState = .loading
 
     public var assignment: Assignment?

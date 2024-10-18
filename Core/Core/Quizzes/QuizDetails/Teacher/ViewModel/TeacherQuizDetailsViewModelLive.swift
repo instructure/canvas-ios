@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
+public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
     @Published public private(set) var state: QuizDetailsViewModelState = .loading
 
     public private(set) var courseColor: UIColor?
@@ -26,9 +26,9 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
     public var subtitle: String { courseUseCase.first?.name ?? "" }
     public var showSubmissions: Bool { courseUseCase.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true }
     public private(set) var assignmentSubmissionBreakdownViewModel: AssignmentSubmissionBreakdownViewModel?
-    public private(set) var quizSubmissionBreakdownViewModel: QuizSubmissionBreakdownViewModel?
+    public private(set) var quizSubmissionBreakdownViewModel: TeacherQuizSubmissionBreakdownViewModelLive?
     public private(set) var assignmentDateSectionViewModel: AssignmentDateSectionViewModel?
-    public private(set) var quizDateSectionViewModel: QuizDateSectionViewModel?
+    public private(set) var quizDateSectionViewModel: TeacherQuizDateSectionViewModelLive?
 
     public var quizTitle: String { quiz?.title ?? "" }
     public var pointsPossibleText: String {
@@ -37,9 +37,9 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
     }
     public var published: Bool { quiz?.published ?? false }
     public var quizDetailsHTML: String? { quiz?.details }
-    public var attributes: [QuizAttribute] {
+    public var attributes: [TeacherQuizAttribute] {
         guard let quiz = quiz else { return [] }
-        return QuizAttributes(quiz: quiz, assignment: assignment).attributes
+        return TeacherQuizAttributes(quiz: quiz, assignment: assignment).attributes
     }
 
     @Published private var quiz: Quiz?
@@ -127,8 +127,8 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
                 assignmentDateSectionViewModel = AssignmentDateSectionViewModel(assignment: assignment)
                 assignmentSubmissionBreakdownViewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
             } else {
-                quizSubmissionBreakdownViewModel = QuizSubmissionBreakdownViewModel(courseID: courseID, quizID: quizID)
-                quizDateSectionViewModel = QuizDateSectionViewModel(quiz: quiz)
+                quizSubmissionBreakdownViewModel = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID)
+                quizDateSectionViewModel = TeacherQuizDateSectionViewModelLive(quiz: quiz)
             }
             state = .ready
         } else {

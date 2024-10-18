@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public protocol QuizDetailsViewModelProtocol: ObservableObject, Refreshable {
+public protocol TeacherQuizDetailsViewModel: ObservableObject, Refreshable {
     var state: QuizDetailsViewModelState { get }
     var courseColor: UIColor? { get }
     var title: String { get }
@@ -29,10 +29,10 @@ public protocol QuizDetailsViewModelProtocol: ObservableObject, Refreshable {
     var quizDetailsHTML: String? { get }
     var showSubmissions: Bool { get }
     var assignmentSubmissionBreakdownViewModel: AssignmentSubmissionBreakdownViewModel? { get }
-    var quizSubmissionBreakdownViewModel: QuizSubmissionBreakdownViewModel? { get }
+    var quizSubmissionBreakdownViewModel: TeacherQuizSubmissionBreakdownViewModelLive? { get }
     var assignmentDateSectionViewModel: AssignmentDateSectionViewModel? { get }
-    var quizDateSectionViewModel: QuizDateSectionViewModel? { get }
-    var attributes: [QuizAttribute] { get }
+    var quizDateSectionViewModel: TeacherQuizDateSectionViewModelLive? { get }
+    var attributes: [TeacherQuizAttribute] { get }
 
     func viewDidAppear()
     func editTapped(router: Router, viewController: WeakViewController)
