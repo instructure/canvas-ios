@@ -29,103 +29,112 @@ final class SelectEventFrequencyViewModelTests: CoreTestCase {
             let dailyRule = RecurrenceRule(
                 recurrenceWith: .daily,
                 interval: 1,
-                end: .occurrenceCount(365))
+                end: .occurrenceCount(365)
+            )
             return FrequencySelection(dailyRule, preset: .daily)
         }()
 
-        static let selectedFrequency: FrequencySelection = {
-            let rule = RecurrenceRule(recurrenceWith: .weekly,
-                                      interval: 2,
-                                      daysOfTheWeek: [DayOfWeek(.sunday), DayOfWeek(.monday)],
-                                      end: .occurrenceCount(10))
-            let seriesNaturalLanguage = "Weekly on Each Sunday, 10 times"
-            return FrequencySelection(rule,
-                                      title: seriesNaturalLanguage,
-                                      preset: .selected(title: seriesNaturalLanguage, rule: rule))
+        static let selectedPreset: FrequencyPreset = {
+            let rule = RecurrenceRule(
+                recurrenceWith: .weekly,
+                interval: 2,
+                daysOfTheWeek: [DayOfWeek(.sunday), DayOfWeek(.monday)],
+                end: .occurrenceCount(10)
+            )
+            return .selected(title: "Weekly on Each Sunday, 10 times", rule: rule)
+        }()
 
+        static let customPreset: FrequencyPreset = {
+            let rule = RecurrenceRule(recurrenceWith: .daily, interval: 1, end: .occurrenceCount(1))
+            return .custom(rule)
         }()
     }
 
+    private var model: SelectEventFrequencyViewModel!
+
+    private var completionCallsCount: Int = 0
     private var completionValue: FrequencySelection?
 
-    override func setUp() {
+    override func tearDown() {
         super.setUp()
         completionValue = nil
+        model = nil
     }
 
     func testInitialization() {
         let frequency = TestConstants.dailyFrequency
-        let model = makeViewModel(
-            TestConstants.eventDate,
-            selected: frequency,
-            originalPreset: .weeklyOnThatDay)
+        model = makeViewModel(
+            selected: frequency.preset,
+            originalPreset: .weeklyOnThatDay
+        )
 
         XCTAssertEqual(model.eventDate, TestConstants.eventDate)
         XCTAssertEqual(model.selectedPreset, frequency.preset)
     }
 
     func testNoRepeatPresetSelected_NoPreSelection() {
-        let model = makeViewModel(TestConstants.eventDate)
+        model = makeViewModel(selected: nil)
 
-        model.selectedPreset = .noRepeat
-        XCTAssertNil(completionValue)
+        triggerSelectingPreset(.noRepeat)
+        XCTAssertEqual(completionCallsCount, 0)
 
         model.didTapBack.send()
-        XCTAssertNil(completionValue)
+        XCTAssertEqual(completionCallsCount, 1)
+        XCTAssertEqual(completionValue, nil)
     }
 
     func testNoRepeatPresetSelected_WithPreSelection() {
-        let model = makeViewModel(
-            TestConstants.eventDate,
-            selected: TestConstants.dailyFrequency
-        )
+        model = makeViewModel(selected: TestConstants.dailyFrequency.preset)
 
         XCTAssertEqual(model.selectedPreset, TestConstants.dailyFrequency.preset)
 
-        model.selectedPreset = .noRepeat
+        triggerSelectingPreset(.noRepeat)
         model.didTapBack.send()
 
-        XCTAssertNil(completionValue)
+        XCTAssertEqual(completionCallsCount, 1)
+        XCTAssertEqual(completionValue, nil)
     }
 
     func testPresetListGivenNoCustomPreSelection() {
-        var model = makeViewModel(TestConstants.eventDate)
-        XCTAssertEqual(model.presetViewModels.map({ $0.preset }), FrequencyPreset.predefinedPresets)
+        model = makeViewModel(selected: nil)
+        XCTAssertEqual(
+            model.presetViewModels.map({ $0.preset }),
+            FrequencyPreset.predefinedPresets + [nil]
+        )
 
-        model = makeViewModel(TestConstants.eventDate, selected: TestConstants.dailyFrequency)
-        XCTAssertEqual(model.presetViewModels.map({ $0.preset }), FrequencyPreset.predefinedPresets)
+        model = makeViewModel(selected: TestConstants.dailyFrequency.preset)
+        XCTAssertEqual(
+            model.presetViewModels.map({ $0.preset }),
+            FrequencyPreset.predefinedPresets + [nil]
+        )
     }
 
     func testPresetListGivenWithCustomPreSelection() {
-        let model = makeViewModel(
-            TestConstants.eventDate,
-            selected: TestConstants.selectedFrequency,
-            originalPreset: TestConstants.selectedFrequency.preset
+        model = makeViewModel(originalPreset: TestConstants.selectedPreset)
+
+        XCTAssertEqual(
+            model.presetViewModels.map({ $0.preset }),
+            FrequencyPreset.predefinedPresets + [TestConstants.selectedPreset, nil]
         )
-
-        let expectedPresetList = FrequencyPreset.predefinedPresets + [
-            TestConstants.selectedFrequency.preset
-        ]
-
-        XCTAssertEqual(model.presetViewModels.map({ $0.preset }), expectedPresetList)
-        XCTAssertEqual(model.presetViewModels.last?.title, TestConstants.selectedFrequency.preset.selectedTitle)
     }
 
     func testCalculativePresetSelected() {
-        let model = makeViewModel(TestConstants.eventDate)
-        model.selectedPreset = TestConstants.dailyFrequency.preset
+        model = makeViewModel()
 
-        XCTAssertNil(completionValue)
+        triggerSelectingPreset(TestConstants.dailyFrequency.preset)
+
+        XCTAssertEqual(completionCallsCount, 0)
 
         model.didTapBack.send()
+        XCTAssertEqual(completionCallsCount, 1)
         XCTAssertEqual(completionValue, TestConstants.dailyFrequency)
     }
 
-    func testCustomPresetSelected() {
+    func testCustomPresetSelectedShouldShowCustomEditScreen() {
         let sourceVC = UIViewController()
-        let model = makeViewModel(TestConstants.eventDate)
+        model = makeViewModel()
 
-        model.didSelectCustomFrequency.send(WeakViewController(sourceVC))
+        triggerSelectingPreset(nil, vc: .init(sourceVC))
 
         guard let lastPresentation = router.viewControllerCalls.last else {
             return XCTFail()
@@ -134,31 +143,70 @@ final class SelectEventFrequencyViewModelTests: CoreTestCase {
         XCTAssertTrue(lastPresentation.0 is CoreHostingController<EditCustomFrequencyScreen>)
         XCTAssertEqual(lastPresentation.1, sourceVC)
         XCTAssertEqual(lastPresentation.2, .push)
+        XCTAssertEqual(completionCallsCount, 0)
+    }
+
+    func testCustomPresetSelectedShouldNotChangeSelection() {
+        model = makeViewModel()
+        triggerSelectingPreset(TestConstants.dailyFrequency.preset)
+
+        triggerSelectingPreset(nil)
+
+        XCTAssertEqual(model.isSelected(TestConstants.dailyFrequency.preset), true)
+
+        model.didTapBack.send()
+        XCTAssertEqual(completionCallsCount, 1)
+        XCTAssertEqual(completionValue, TestConstants.dailyFrequency)
+    }
+
+    func testIsSelectedWhenThereIsNoPreselection() {
+        model = makeViewModel()
+
+        XCTAssertEqual(model.isSelected(.noRepeat), true)
+
+        triggerSelectingPreset(TestConstants.dailyFrequency.preset)
+        XCTAssertEqual(model.isSelected(TestConstants.dailyFrequency.preset), true)
+    }
+
+    func testIsSelectedWhenThereIsCustomPreselection() {
+        model = makeViewModel(selected: TestConstants.customPreset)
+
+        // Custom preset is not stored as is
+        XCTAssertEqual(model.isSelected(TestConstants.customPreset), false)
+
+        // Custom preset is represented as nil
+        XCTAssertEqual(model.isSelected(nil), true)
     }
 
     // MARK: - Helpers
 
     private func makeViewModel(
-        _ eventDate: Date,
-        selected: FrequencySelection? = nil,
-        originalPreset: FrequencyPreset? = nil
+        _ eventDate: Date = TestConstants.eventDate,
+        selected: FrequencyPreset? = nil,
+        originalPreset: FrequencyPreset = .noRepeat
     ) -> SelectEventFrequencyViewModel {
         return SelectEventFrequencyViewModel(
             eventDate: eventDate,
-            selectedFrequency: selected,
-            originalPreset: originalPreset,
+            initiallySelectedPreset: selected,
+            eventsOriginalPreset: originalPreset,
             router: router,
             completion: { [weak self] freq in
+                self?.completionCallsCount += 1
                 self?.completionValue = freq
             }
         )
+    }
+
+    private func triggerSelectingPreset(_ preset: FrequencyPreset?, vc: WeakViewController? = nil) {
+        let vc = vc ?? .init()
+        model.didTapPreset.send((preset, vc))
     }
 }
 
 // MARK: - Helpers
 
-extension FrequencyPreset {
-    fileprivate var selectedTitle: String? {
+private extension FrequencyPreset {
+    var selectedTitle: String? {
         if case .selected(let title, _) = self { return title }
         return nil
     }

@@ -31,12 +31,12 @@ struct SelectEventFrequencyScreen: View, ScreenViewTrackable {
     }
 
     var body: some View {
-        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { geometry in
+        InstUI.BaseScreen(state: .data, config: viewModel.screenConfig) { geometry in
             VStack(alignment: .leading, spacing: 0) {
                 ForEach(viewModel.presetViewModels) { presetVM in
                     FrequencyPresetCell(
                         title: presetVM.title,
-                        isSelected: viewModel.selectedPreset == presetVM.preset,
+                        isSelected: viewModel.isSelected(presetVM.preset),
                         action: {
                             viewModel.didTapPreset.send((presetVM.preset, viewController))
                         }
@@ -93,8 +93,8 @@ private struct FrequencyPresetCell: View {
     SelectEventFrequencyScreen(
         viewModel: SelectEventFrequencyViewModel(
             eventDate: Date(),
-            selectedFrequency: nil,
-            originalPreset: nil,
+            initiallySelectedPreset: nil,
+            eventsOriginalPreset: .noRepeat,
             router: AppEnvironment.shared.router,
             completion: { _ in }
         )

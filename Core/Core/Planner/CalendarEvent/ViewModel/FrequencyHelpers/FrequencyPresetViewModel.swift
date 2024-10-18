@@ -30,6 +30,8 @@ struct FrequencyPresetViewModel: Identifiable {
         self.date = date
     }
 
+    /// This `title` is a simplified one, intended only for the SelectFrequency screen.
+    /// It may not match the title coming from backend or the one calculated from the rule.
     var title: String {
         switch preset {
         case .noRepeat:
@@ -48,8 +50,8 @@ struct FrequencyPresetViewModel: Identifiable {
                 .asFormat(for: date.formatted(format: "MMMM d"))
         case .everyWeekday:
             return String(localized: "Every Weekday (Monday to Friday)", bundle: .core)
-        case .selected(let seriesTitle, let rule):
-            return seriesTitle ?? rule.text
+        case .selected(let title, _):
+            return title
         case .custom, .none:
             return String(localized: "Custom", bundle: .core)
         }

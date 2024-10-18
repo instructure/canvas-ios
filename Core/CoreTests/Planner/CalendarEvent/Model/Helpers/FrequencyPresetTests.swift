@@ -69,7 +69,7 @@ final class FrequencyPresetTests: CoreTestCase {
 
             // Then
             XCTAssertEqual(event.frequencyPreset, useCase.preset)
-            XCTAssertEqual(event.frequencySelection?.value, useCase.expected)
+            XCTAssertEqual(event.frequencySelection?.rule, useCase.expected)
         }
 
         // Given - Selected case
@@ -79,23 +79,24 @@ final class FrequencyPresetTests: CoreTestCase {
             daysOfTheWeek: [DayOfWeek(.sunday), DayOfWeek(.wednesday), DayOfWeek(.thursday)],
             end: .occurrenceCount(33)
         )
+        let selectedTitle = "Weekly on Sunday, Wednesday & Thursday, 33 times"
 
         // When
         event.repetitionRule = randomRule.rruleDescription
-        event.seriesInNaturalLanguage = "Weekly on Sunday, Wednesday & Thursday, 33 times"
+        event.seriesInNaturalLanguage = selectedTitle
 
         XCTAssertEqual(
             event.frequencyPreset,
-            .selected(title: event.seriesInNaturalLanguage, rule: randomRule)
+            .selected(title: selectedTitle, rule: randomRule)
         )
 
         XCTAssertEqual(
             event.frequencySelection?.preset,
-            .selected(title: event.seriesInNaturalLanguage, rule: randomRule)
+            .selected(title: selectedTitle, rule: randomRule)
         )
 
-        XCTAssertEqual(event.frequencySelection?.title, event.seriesInNaturalLanguage)
-        XCTAssertEqual(event.frequencySelection?.value, randomRule)
+        XCTAssertEqual(event.frequencySelection?.title, selectedTitle)
+        XCTAssertEqual(event.frequencySelection?.rule, randomRule)
     }
 }
 

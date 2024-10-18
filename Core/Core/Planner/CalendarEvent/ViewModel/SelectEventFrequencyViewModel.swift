@@ -28,7 +28,6 @@ final class SelectEventFrequencyViewModel: ObservableObject {
     let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
     let presetViewModels: [FrequencyPresetViewModel]
-    @Published private(set) var state: InstUI.ScreenState = .data
     @Published private(set) var selectedPreset: FrequencyPreset
 
     // MARK: - Input
@@ -39,34 +38,37 @@ final class SelectEventFrequencyViewModel: ObservableObject {
     // MARK: - Private
 
     internal let eventDate: Date
-    private let originalPreset: FrequencyPreset?
 
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
+    /// - parameters:
+    ///   - initiallySelectedPreset: The currently selected frequency when frequency selection began.
+    ///   - eventsOriginalPreset: The event's original frequency when editing began.
+    ///                           If this is a `.selected` preset, it will be displayed in it's own row.
+    ///                           If this is a `.custom` preset, it will be ignored. This should not happen.
     init(
         eventDate: Date,
-        selectedFrequency: FrequencySelection?,
-        originalPreset: FrequencyPreset?,
+        initiallySelectedPreset: FrequencyPreset?,
+        eventsOriginalPreset: FrequencyPreset,
         router: Router,
         completion: @escaping (FrequencySelection?) -> Void
     ) {
         self.eventDate = eventDate
-        self.selectedPreset = selectedFrequency?.preset ?? .noRepeat
-        self.originalPreset = originalPreset
+        self.selectedPreset = initiallySelectedPreset ?? .noRepeat
         self.router = router
 
         self.presetViewModels = {
             var presets: [FrequencyPreset?] = FrequencyPreset.predefinedPresets
 
-            if let originalPreset, case .selected(_, let rule) = originalPreset {
-                presets.append(originalPreset)
-                presets.append(.custom(rule))
-            } else {
-                presets.append(nil)
+            if case .selected = eventsOriginalPreset {
+                presets.append(eventsOriginalPreset)
             }
+
+            // Always append a "Custom" row at the end
+            presets.append(nil)
 
             return presets.map { FrequencyPresetViewModel(preset: $0, date: eventDate) }
         }()
@@ -91,6 +93,15 @@ final class SelectEventFrequencyViewModel: ObservableObject {
                 completion(frequency)
             }
             .store(in: &subscriptions)
+    }
+
+    func isSelected(_ preset: FrequencyPreset?) -> Bool {
+        if selectedPreset.isCustom {
+            // custom preset is represented as `nil`
+            preset == nil
+        } else {
+            selectedPreset == preset
+        }
     }
 
     private func showEditCustomFrequencyScreen(

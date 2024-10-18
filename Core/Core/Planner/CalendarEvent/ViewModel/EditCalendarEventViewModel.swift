@@ -72,7 +72,11 @@ final class EditCalendarEventViewModel: ObservableObject {
     }()
 
     var frequencySelectionText: String {
-        return frequency?.title ?? String(localized: "Does Not Repeat", bundle: .core)
+        guard let frequency else {
+            return String(localized: "Does Not Repeat", bundle: .core)
+        }
+
+        return frequency.title ?? String(localized: "Custom", bundle: .core)
     }
 
     var saveErrorAlert: ErrorAlertViewModel {
@@ -108,14 +112,16 @@ final class EditCalendarEventViewModel: ObservableObject {
     // MARK: - Private
 
     private let mode: Mode
-    private let eventFrequencyPreset: FrequencyPreset?
+    private let initialFrequencyPreset: FrequencyPreset
+    private let isInitialEventPartOfSeries: Bool
+
     private let eventInteractor: CalendarEventInteractor
     private let calendarListProviderInteractor: CalendarFilterInteractor
     private let router: Router
+
     private var selectedCalendar = CurrentValueSubject<CDCalendarFilterEntry?, Never>(nil)
     /// Returns true if any of the fields had been modified once by the user. It doesn't compare values.
     private var isFieldsTouched: Bool = false
-    private let isInitialEventPartOfSeries: Bool
     private var saveErrorMessageFromApi: String?
 
     private var subscriptions = Set<AnyCancellable>()
@@ -146,17 +152,18 @@ final class EditCalendarEventViewModel: ObservableObject {
         completion: @escaping (PlannerAssembly.Completion) -> Void
     ) {
         self.eventInteractor = eventInteractor
-        self.eventFrequencyPreset = event?.frequencyPreset
         self.calendarListProviderInteractor = calendarListProviderInteractor
         self.uploadParameters = uploadParameters
         self.router = router
 
         if let event {
             mode = .edit(id: event.id)
+            initialFrequencyPreset = event.frequencyPreset
             isInitialEventPartOfSeries = event.isPartOfSeries
             editConfirmation = makeEditConfirmation(event: event)
         } else {
             mode = .add
+            initialFrequencyPreset = .noRepeat
             isInitialEventPartOfSeries = false
         }
 
@@ -318,8 +325,8 @@ final class EditCalendarEventViewModel: ObservableObject {
             SelectEventFrequencyScreen(
                 viewModel: SelectEventFrequencyViewModel(
                     eventDate: date ?? Clock.now,
-                    selectedFrequency: frequency,
-                    originalPreset: eventFrequencyPreset,
+                    initiallySelectedPreset: frequency?.preset,
+                    eventsOriginalPreset: initialFrequencyPreset,
                     router: router,
                     completion: { [weak self] newSelection in
                         self?.frequency = newSelection
@@ -354,7 +361,7 @@ final class EditCalendarEventViewModel: ObservableObject {
             location: location.nilIfEmpty,
             address: address.nilIfEmpty,
             details: details.nilIfEmpty,
-            rrule: frequency?.value
+            rrule: frequency?.rule
         )
     }
 

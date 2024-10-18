@@ -18,17 +18,21 @@
 
 import Foundation
 
+/// Helper type which groups together various representations of a repeating event's frequency.
 struct FrequencySelection: Equatable {
-    let value: RecurrenceRule
-    let title: String
+    /// The frequency's definition, used by APIrequests.
+    let rule: RecurrenceRule
+
+    /// The frequency's user facing name, used on EditEvent screen.
+    /// NOTE: This value is not used on SelectFrequency screen.
+    let title: String?
+
+    /// The frequency's template, either predefined or custom. It allows decoding to selectable options on SelectFrequency screen.
     let preset: FrequencyPreset
 
-    init(_ value: RecurrenceRule, title: String? = nil, preset: FrequencyPreset) {
-        let customTitle: String? = preset.isCustom
-            ? String(localized: "Custom", bundle: .core)
-            : nil
-        self.title = title ?? customTitle ?? value.text
-        self.value = value
+    init(_ rule: RecurrenceRule, title: String? = nil, preset: FrequencyPreset) {
+        self.title = preset.isCustom ? nil : (title ?? rule.text)
+        self.rule = rule
         self.preset = preset
     }
 }

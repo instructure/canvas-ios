@@ -27,7 +27,7 @@ enum FrequencyPreset: Equatable {
     case yearlyOnThatMonth
     case everyWeekday
 
-    case selected(title: String?, rule: RecurrenceRule)
+    case selected(title: String, rule: RecurrenceRule)
     case custom(RecurrenceRule)
 
     static let calculativePresets: [FrequencyPreset] = [
@@ -112,7 +112,9 @@ extension CalendarEvent {
            let calculativePreset = FrequencyPreset.calculativePreset(matching: recurrenceRule, with: date) {
             return calculativePreset
         } else {
-            return .selected(title: seriesInNaturalLanguage, rule: recurrenceRule)
+            // A `CalendarEvent` with a `recurrenceRule` should always contain a related title. The default value should never be needed.
+            let title = seriesInNaturalLanguage ?? recurrenceRule.text
+            return .selected(title: title, rule: recurrenceRule)
         }
     }
 }
