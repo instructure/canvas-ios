@@ -61,7 +61,7 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
         self?.update()
     }
 
-    static public func create(
+    public static func create(
         courseID: String,
         quizID: String,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> StudentQuizDetailsViewController {

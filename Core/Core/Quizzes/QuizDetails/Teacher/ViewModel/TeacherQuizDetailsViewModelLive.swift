@@ -37,9 +37,9 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
     }
     public var published: Bool { quiz?.published ?? false }
     public var quizDetailsHTML: String? { quiz?.details }
-    public var attributes: [QuizAttribute] {
+    public var attributes: [TeacherQuizAttribute] {
         guard let quiz = quiz else { return [] }
-        return QuizAttributes(quiz: quiz, assignment: assignment).attributes
+        return TeacherQuizAttributes(quiz: quiz, assignment: assignment).attributes
     }
 
     @Published private var quiz: Quiz?

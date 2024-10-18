@@ -34,7 +34,7 @@ public class TeacherQuizDetailsViewModelPreview: TeacherQuizDetailsViewModel {
     public var quizSubmissionBreakdownViewModel: TeacherQuizSubmissionBreakdownViewModelLive?
     public var assignmentDateSectionViewModel: AssignmentDateSectionViewModel?
     public var quizDateSectionViewModel: TeacherQuizDateSectionViewModelLive?
-    public var attributes: [QuizAttribute]
+    public var attributes: [TeacherQuizAttribute]
 
     public init(
         state: QuizDetailsViewModelState,
@@ -45,7 +45,7 @@ public class TeacherQuizDetailsViewModelPreview: TeacherQuizDetailsViewModel {
         pointsPossibleText: String,
         published: Bool,
         quizDetailsHTML: String,
-        attributes: [QuizAttribute]
+        attributes: [TeacherQuizAttribute]
     ) {
         self.state = state
         self.courseColor = courseColor

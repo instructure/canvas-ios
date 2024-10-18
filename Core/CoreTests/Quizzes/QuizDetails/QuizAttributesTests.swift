@@ -23,7 +23,7 @@ class QuizAttributesTests: CoreTestCase {
     func testMinimal() {
         let apiQuiz = APIQuiz.make()
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
-        let testee = QuizAttributes(quiz: quiz, assignment: nil)
+        let testee = TeacherQuizAttributes(quiz: quiz, assignment: nil)
         XCTAssertEqual(testee.attributes.count, 7)
 
         var quizAttribute = testee.attributes.first(where: {$0.id == "Time Limit:"})
@@ -54,7 +54,7 @@ class QuizAttributesTests: CoreTestCase {
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
         let assignment = Assignment.make()
         assignment.assignmentGroup = AssignmentGroup.make()
-        let testee = QuizAttributes(quiz: quiz, assignment: assignment)
+        let testee = TeacherQuizAttributes(quiz: quiz, assignment: assignment)
 
         var quizAttribute = testee.attributes.first(where: {$0.id == "Quiz Type:"})
         XCTAssertEqual(quizAttribute?.value, "Ungraded Survey")
@@ -94,7 +94,7 @@ class QuizAttributesTests: CoreTestCase {
         let assignment = Assignment.make()
         assignment.assignmentGroup = AssignmentGroup.make()
 
-        let testee = QuizAttributes(quiz: quiz, assignment: assignment)
+        let testee = TeacherQuizAttributes(quiz: quiz, assignment: assignment)
         let quizAttribute = testee.attributes.first(where: {$0.id == "Quiz Type:"})
         XCTAssertEqual(quizAttribute?.value, "Graded Quiz")
     }
@@ -105,7 +105,7 @@ class QuizAttributesTests: CoreTestCase {
             one_question_at_a_time: false
         )
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
-        let testee = QuizAttributes(quiz: quiz, assignment: nil)
+        let testee = TeacherQuizAttributes(quiz: quiz, assignment: nil)
 
         var quizAttribute = testee.attributes.first(where: {$0.id == "One Question at a Time:"})
         XCTAssertEqual(quizAttribute?.value, "No")
@@ -121,7 +121,7 @@ class QuizAttributesTests: CoreTestCase {
             show_correct_answers_at: date
         )
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
-        let testee = QuizAttributes(quiz: quiz, assignment: nil)
+        let testee = TeacherQuizAttributes(quiz: quiz, assignment: nil)
 
         let quizAttribute = testee.attributes.first(where: {$0.id == "Show Correct Answers:"})
         let template = String(localized: "After %@", bundle: .core, comment: "e.g. After 01.02.2022")
@@ -136,7 +136,7 @@ class QuizAttributesTests: CoreTestCase {
             show_correct_answers: true
         )
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
-        let testee = QuizAttributes(quiz: quiz, assignment: nil)
+        let testee = TeacherQuizAttributes(quiz: quiz, assignment: nil)
 
         let quizAttribute = testee.attributes.first(where: {$0.id == "Show Correct Answers:"})
         let template = String(localized: "Until %@", bundle: .core, comment: "e.g. Until 01.02.2022")
@@ -154,7 +154,7 @@ class QuizAttributesTests: CoreTestCase {
             show_correct_answers_at: date1
         )
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
-        let testee = QuizAttributes(quiz: quiz, assignment: nil)
+        let testee = TeacherQuizAttributes(quiz: quiz, assignment: nil)
 
         let quizAttribute = testee.attributes.first(where: {$0.id == "Show Correct Answers:"})
         let template = String(localized: "%@ to %@", bundle: .core, comment: "e.g 01.02.2022 to 01.03.2022")
@@ -169,7 +169,7 @@ class QuizAttributesTests: CoreTestCase {
             show_correct_answers_last_attempt: true
         )
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
-        let testee = QuizAttributes(quiz: quiz, assignment: nil)
+        let testee = TeacherQuizAttributes(quiz: quiz, assignment: nil)
 
         let quizAttribute = testee.attributes.first(where: {$0.id == "Show Correct Answers:"})
         XCTAssertEqual(quizAttribute?.value, "After Last Attempt")
@@ -178,7 +178,7 @@ class QuizAttributesTests: CoreTestCase {
     func testShowCorrectAnswersAlways() {
         let apiQuiz = APIQuiz.make(show_correct_answers: true)
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
-        let testee = QuizAttributes(quiz: quiz, assignment: nil)
+        let testee = TeacherQuizAttributes(quiz: quiz, assignment: nil)
 
         let quizAttribute = testee.attributes.first(where: {$0.id == "Show Correct Answers:"})
         XCTAssertEqual(quizAttribute?.value, "Always")
@@ -190,7 +190,7 @@ class QuizAttributesTests: CoreTestCase {
             show_correct_answers: true
         )
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
-        let testee = QuizAttributes(quiz: quiz, assignment: nil)
+        let testee = TeacherQuizAttributes(quiz: quiz, assignment: nil)
 
         let quizAttribute = testee.attributes.first(where: {$0.id == "Show Correct Answers:"})
         XCTAssertNil(quizAttribute)
@@ -199,7 +199,7 @@ class QuizAttributesTests: CoreTestCase {
     func testHideResults() {
         let apiQuiz = APIQuiz.make(hide_results: .always)
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)
-        let testee = QuizAttributes(quiz: quiz, assignment: nil)
+        let testee = TeacherQuizAttributes(quiz: quiz, assignment: nil)
 
         let quizAttribute = testee.attributes.first(where: {$0.id == "Show Correct Answers:"})
         XCTAssertNil(quizAttribute)

@@ -32,7 +32,7 @@ public protocol TeacherQuizDetailsViewModel: ObservableObject, Refreshable {
     var quizSubmissionBreakdownViewModel: TeacherQuizSubmissionBreakdownViewModelLive? { get }
     var assignmentDateSectionViewModel: AssignmentDateSectionViewModel? { get }
     var quizDateSectionViewModel: TeacherQuizDateSectionViewModelLive? { get }
-    var attributes: [QuizAttribute] { get }
+    var attributes: [TeacherQuizAttribute] { get }
 
     func viewDidAppear()
     func editTapped(router: Router, viewController: WeakViewController)
