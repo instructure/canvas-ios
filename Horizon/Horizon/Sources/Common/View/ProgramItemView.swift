@@ -20,61 +20,45 @@ import Core
 import SwiftUI
 
 struct ProgramItemView: View {
-    let screenWidth: Double
     let title: String
-    let icon: Image
+    let subtitle: String
     let duration: String
-    let certificate: String?
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            icon
-                .frame(width: 18, height: 18)
-            BodyTextView(title: title)
-                .lineLimit(2)
-                .padding(.top, 4)
-            Text(duration.uppercased())
-                .font(.regular12)
-                .foregroundStyle(Color.textDark)
-            if let certificate {
-                Text(certificate.uppercased())
-                    .font(.regular12)
-                    .lineLimit(2)
-                    .foregroundStyle(Color.textDarkest)
+        VStack {
+            Size14RegularTextDarkestTitle(title: title)
+                .padding(.bottom, 8)
+            HStack(spacing: 0) {
+                HStack(spacing: 4) {
+                    Image(systemName: "document")
+                        .resizable()
+                        .renderingMode(.template)
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundStyle(Color.textDark)
+                        .frame(width: 18, height: 18)
+                    Size12RegularTextDarkTitle(title: subtitle)
+                        .lineLimit(2)
+                }
+                Spacer()
+                HStack(spacing: 4) {
+                    Image(systemName: "timer")
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundStyle(Color.textDark)
+                        .frame(width: 14, height: 14)
+                    Size12RegularTextDarkTitle(title: "20 Mins")
+                }
             }
         }
-        .padding(.all, 16)
-        .frame(width: (screenWidth - 16 - 8) / 2 - 4, alignment: .leading)
-        .frame(minHeight: certificate == nil ? 90 : 110)
-        .background(Color.backgroundLight)
     }
 }
 
 #Preview {
     HStack(spacing: 8) {
         ProgramItemView(
-            screenWidth: 400,
-            title: "Practice Quiz",
-            icon: Image(systemName: "doc"),
-            duration: "55 mins",
-            certificate: "BIOLOGY #1573"
-        )
-        ProgramItemView(
-            screenWidth: 400,
-            title: "Practice Quiz",
-            icon: Image(systemName: "doc"),
-            duration: "55 mins",
-            certificate: "BIOLOGY #1573"
+            title: "Getting into Business",
+            subtitle: "Page",
+            duration: "55 mins"
         )
     }
-}
-
-#Preview {
-    ProgramItemView(
-        screenWidth: 400,
-        title: "Video Quiz",
-        icon: Image(systemName: "doc"),
-        duration: "20 mins",
-        certificate: nil
-    )
 }

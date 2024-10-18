@@ -19,18 +19,17 @@
 import Core
 import SwiftUI
 
-struct SectionTitleView: View {
+struct Size16RegularTextDarkestTitle: View {
     let title: String
 
     var body: some View {
-        Text(title.uppercased())
-            .font(.regular12)
-            .foregroundColor(.textDark)
+        Text(title.capitalized)
+            .font(.regular16)
+            .foregroundColor(.textDarkest)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 24)
     }
 }
 
 #Preview {
-    SectionTitleView(title: "Biology certificate #17531")
+    Size14RegularTextDarkestTitle(title: "Module Name")
 }

@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Change pacing" : {
-
-    },
     "Content Details" : {
 
     },
@@ -26,6 +23,9 @@
 
     },
     "Programs" : {
+
+    },
+    "Your Programs" : {
 
     }
   },

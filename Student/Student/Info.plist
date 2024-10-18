@@ -78,6 +78,16 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+            <key>canvas-web.inseng.test</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+            </dict>
+            <key>1.canvas-web.inseng.test</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+            </dict>
 			<key>canvas.docker</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
