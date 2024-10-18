@@ -28,6 +28,7 @@ public struct MessageParameters {
     public let conversationID: String?
     public let groupConversation: Bool
     public let includedMessages: [String]?
+    public let bulkMessage: Bool
 
     public init(
         subject: String,
@@ -37,6 +38,7 @@ public struct MessageParameters {
         context: Context,
         conversationID: String? = nil,
         groupConversation: Bool = true,
+        bulkMessage: Bool,
         includedMessages: [String]? = nil
     ) {
         self.subject = subject
@@ -46,6 +48,7 @@ public struct MessageParameters {
         self.context = context
         self.conversationID = conversationID
         self.groupConversation = groupConversation
+        self.bulkMessage = bulkMessage
         self.includedMessages = includedMessages
     }
 }
