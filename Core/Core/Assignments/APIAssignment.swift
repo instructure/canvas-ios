@@ -62,6 +62,7 @@ public struct APIAssignment: Codable, Equatable {
     let unpublishable: Bool?
     let url: URL?
     let use_rubric_for_grading: Bool?
+    let hide_in_gradebook: Bool?
 
     /** This also returns true if the assignment is locked by date, so there's no need to manually check the `lock_at` and `unlock_at` parameters. */
     public var isLockedForUser: Bool { locked_for_user ?? false }
@@ -146,7 +147,8 @@ extension APIAssignment {
         unlock_at: Date? = nil,
         unpublishable: Bool? = true,
         url: URL? = nil,
-        use_rubric_for_grading: Bool? = nil
+        use_rubric_for_grading: Bool? = nil,
+        hide_in_gradebook: Bool? = false
     ) -> APIAssignment {
 
         var submissionList: APIList<APISubmission>?
@@ -198,7 +200,8 @@ extension APIAssignment {
             unlock_at: unlock_at,
             unpublishable: unpublishable,
             url: url,
-            use_rubric_for_grading: use_rubric_for_grading
+            use_rubric_for_grading: use_rubric_for_grading,
+            hide_in_gradebook: hide_in_gradebook
         )
     }
 }
