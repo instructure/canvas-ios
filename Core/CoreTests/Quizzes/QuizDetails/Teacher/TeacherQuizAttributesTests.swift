@@ -19,7 +19,7 @@
 import XCTest
 @testable import Core
 
-class QuizAttributesTests: CoreTestCase {
+class TeacherQuizAttributesTests: CoreTestCase {
     func testMinimal() {
         let apiQuiz = APIQuiz.make()
         let quiz = Quiz.make(from: apiQuiz, courseID: "1", in: databaseClient)

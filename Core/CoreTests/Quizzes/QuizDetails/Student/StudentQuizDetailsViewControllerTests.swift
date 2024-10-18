@@ -18,10 +18,9 @@
 
 import XCTest
 @testable import Core
-@testable import Student
 import TestsFoundation
 
-class QuizDetailsViewControllerTests: StudentTestCase {
+class StudentQuizDetailsViewControllerTests: CoreTestCase {
     lazy var controller = StudentQuizDetailsViewController.create(courseID: "1", quizID: "1")
 
     override func setUp() {

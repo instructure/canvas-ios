@@ -19,10 +19,9 @@
 import XCTest
 import WebKit
 @testable import Core
-@testable import Student
 import TestsFoundation
 
-class QuizWebViewControllerTests: StudentTestCase {
+class StudentQuizWebViewControllerTests: CoreTestCase {
     lazy var controller = StudentQuizWebViewController.create(courseID: "1", quizID: "1")
 
     let to = URL(string: "https://canvas.instructure.com/courses/1/quizzes/1?force_user=1&persist_headless=1&platform=ios")!
