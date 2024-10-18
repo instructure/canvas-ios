@@ -890,6 +890,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				7D630B6A24A5003E0039A45D /* Embed Foundation Extensions */,
 				B43562192C77486A00402DAE /* Embed Frameworks */,
+				CFF824C12CB430F0004721C0 /* Upload dSYMs to Firebase */,
 			);
 			buildRules = (
 			);
@@ -1135,7 +1136,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PROJECT_DIR}/../scripts/swiftLint.sh\n";
+			shellScript = "${PROJECT_DIR}/../scripts/xcode-build-phases/swiftLint.sh\n";
+		};
+		CFF824C12CB430F0004721C0 /* Upload dSYMs to Firebase */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = "Upload dSYMs to Firebase";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\n# This file is part of Canvas.\n# Copyright (C) 2024-present  Instructure, Inc.\n#\n# This program is free software: you can redistribute it and/or modify\n# it under the terms of the GNU Affero General Public License as\n# published by the Free Software Foundation, either version 3 of the\n# License, or (at your option) any later version.\n#\n# This program is distributed in the hope that it will be useful,\n# but WITHOUT ANY WARRANTY; without even the implied warranty of\n# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n# GNU Affero General Public License for more details.\n#\n# You should have received a copy of the GNU Affero General Public License\n# along with this program.  If not, see <https://www.gnu.org/licenses/>.\n#\n\nif [ -z ${UPLOAD_DSYM+x} ]; then\n    echo \"Skipping dSYM upload because the UPLOAD_DSYM variable is not set.\"\nelse\n    echo \"Uploading dSYMs to Firebase.\"\n    ${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

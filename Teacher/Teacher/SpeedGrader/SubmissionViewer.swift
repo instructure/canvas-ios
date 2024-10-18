@@ -77,7 +77,12 @@ struct SubmissionViewer: View {
         case .media_recording:
             VideoPlayer(url: submission.mediaComment?.url)
         case .online_text_entry:
-            WebView(html: submission.body, canToggleTheme: true).onLink(handleLink)
+            WebView(
+                html: submission.body,
+                baseURL: env.currentSession?.baseURL,
+                canToggleTheme: true
+            )
+            .onLink(handleLink)
         case .online_upload:
             let file = submission.attachments?.first { fileID == $0.id } ??
                 submission.attachments?.sorted(by: File.idCompare).first
