@@ -21,12 +21,13 @@ import Foundation
 struct FrequencyPresetViewModel: Identifiable {
 
     let id = Foundation.UUID()
-    let date: Date
-    let preset: FrequencyPreset
+    let preset: FrequencyPreset?
 
-    init(date: Date, preset: FrequencyPreset) {
-        self.date = date
+    private let date: Date
+
+    init(preset: FrequencyPreset?, date: Date) {
         self.preset = preset
+        self.date = date
     }
 
     var title: String {
@@ -49,8 +50,8 @@ struct FrequencyPresetViewModel: Identifiable {
             return String(localized: "Every Weekday (Monday to Friday)", bundle: .core)
         case .selected(let seriesTitle, let rule):
             return seriesTitle ?? rule.text
-        case .custom:
-            return String(localized: "Custom", bundle: .core) // Should not fall to this case
+        case .custom, .none:
+            return String(localized: "Custom", bundle: .core)
         }
     }
 }

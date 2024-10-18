@@ -29,12 +29,12 @@ final class SelectEventFrequencyViewModel: ObservableObject {
 
     let presetViewModels: [FrequencyPresetViewModel]
     @Published private(set) var state: InstUI.ScreenState = .data
-    @Published var selectedPreset: FrequencyPreset
+    @Published private(set) var selectedPreset: FrequencyPreset
 
     // MARK: - Input
 
+    let didTapPreset = PassthroughSubject<(FrequencyPreset?, WeakViewController), Never>()
     let didTapBack = PassthroughSubject<Void, Never>()
-    let didSelectCustomFrequency = PassthroughSubject<WeakViewController, Never>()
 
     // MARK: - Private
 
@@ -59,17 +59,26 @@ final class SelectEventFrequencyViewModel: ObservableObject {
         self.router = router
 
         self.presetViewModels = {
-            var presetViewModels = FrequencyPreset.predefinedPresets
-                .map { FrequencyPresetViewModel(date: eventDate, preset: $0) }
-            if let originalPreset, case .selected = originalPreset {
-                presetViewModels.append(FrequencyPresetViewModel(date: eventDate, preset: originalPreset))
+            var presets: [FrequencyPreset?] = FrequencyPreset.predefinedPresets
+
+            if let originalPreset, case .selected(_, let rule) = originalPreset {
+                presets.append(originalPreset)
+                presets.append(.custom(rule))
+            } else {
+                presets.append(nil)
             }
-            return presetViewModels
+
+            return presets.map { FrequencyPresetViewModel(preset: $0, date: eventDate) }
         }()
 
-        didSelectCustomFrequency
-            .sink { [weak self] weakVC in
-                self?.showCustomFrequencyScreen(from: weakVC, completion: completion)
+        didTapPreset
+            .sink { [weak self] (preset, weakVC) in
+                guard let preset, !preset.isCustom else {
+                    self?.showEditCustomFrequencyScreen(from: weakVC, completion: completion)
+                    return // do not select Custom preset
+                }
+
+                self?.selectedPreset = preset
             }
             .store(in: &subscriptions)
 
@@ -84,14 +93,14 @@ final class SelectEventFrequencyViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func showCustomFrequencyScreen(
+    private func showEditCustomFrequencyScreen(
         from source: WeakViewController,
         completion: @escaping (FrequencySelection?) -> Void
     ) {
         let vc = CoreHostingController(
             EditCustomFrequencyScreen(
                 viewModel: EditCustomFrequencyViewModel(
-                    rule: selectedPreset.isCustom ? selectedPreset.rule(given: eventDate) : nil,
+                    rule: selectedPreset.rule(given: eventDate),
                     proposedDate: eventDate,
                     router: router,
                     completion: { newRule in

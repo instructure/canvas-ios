@@ -36,17 +36,12 @@ struct SelectEventFrequencyScreen: View, ScreenViewTrackable {
                 ForEach(viewModel.presetViewModels) { presetVM in
                     FrequencyPresetCell(
                         title: presetVM.title,
-                        isSelected: viewModel.selectedPreset == presetVM.preset) {
-                            viewModel.selectedPreset = presetVM.preset
+                        isSelected: viewModel.selectedPreset == presetVM.preset,
+                        action: {
+                            viewModel.didTapPreset.send((presetVM.preset, viewController))
                         }
+                    )
                 }
-
-                FrequencyPresetCell(
-                    title: String(localized: "Custom", bundle: .core),
-                    isSelected: viewModel.selectedPreset.isCustom) {
-                        viewModel.didSelectCustomFrequency.send(viewController)
-                    }
-
                 Spacer()
             }
             .frame(minHeight: geometry.size.height)
