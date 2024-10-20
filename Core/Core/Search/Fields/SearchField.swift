@@ -22,7 +22,7 @@ struct SearchTextField: View {
 
     @State private var minWidth = DeferredValue<CGFloat?>(value: nil)
     @Binding private var text: String
-    
+
     private let prompt: String
     private let clearButtonColor: Color
     private let onSubmit: () -> Void
