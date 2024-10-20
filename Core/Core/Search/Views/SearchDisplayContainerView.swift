@@ -18,9 +18,6 @@
 
 import SwiftUI
 
-//public typealias SearchDisplayProvider<Filter, Display: View> = (Binding<Filter?>) -> Display
-//public typealias SearchFilterEditorProvider<Filter, FilterEditor: View> = (Binding<Filter?>) -> FilterEditor
-
 struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDescriptor>: View {
 
     @Environment(\.appEnvironment) private var env
