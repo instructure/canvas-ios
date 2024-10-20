@@ -39,16 +39,30 @@ struct CourseSearchResultRowView: View {
             HStack(alignment: .top, spacing: 16) {
                 result.content_type.icon.foregroundStyle(color)
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(result.title).font(.semibold16).foregroundStyle(color)
+                    KeywordHighlightingText(
+                        text: result.title,
+                        keyword: searchContext.searchText.value,
+                        customization: .init(
+                            font: .scaledNamedFont(.semibold16),
+                            lineLimit: nil,
+                            backgroundColor: .init(hexString: "#C6DFEF") ?? .backgroundDark
+                        )
+                    )
+                    .foregroundStyle(color)
+
                     if showsType {
                         Text(result.readable_type).font(.regular14).foregroundStyle(color)
                     }
                     if result.body.isNotEmpty {
-                        Text(result.body)
-                            .font(.regular14)
-                            .foregroundStyle(Color.textDark)
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(3)
+                        KeywordHighlightingText(
+                            text: result.body,
+                            keyword: searchContext.searchText.value,
+                            customization: .init(
+                                backgroundColor: .init(hexString: "#C6DFEF") ?? .backgroundDark
+                            )
+                        )
+                        .foregroundStyle(Color.textDark)
+                        .multilineTextAlignment(.leading)
                     }
                 }
                 Spacer()
