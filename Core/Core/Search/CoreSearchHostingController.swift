@@ -28,11 +28,11 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
     @MainActor required dynamic init?(coder aDecoder: NSCoder) { nil }
     private enum SearchFieldState { case visible, hidden, removed }
 
-    private let searchContext: CoreSearchContext<Info>
-    private var searchDescriptor: Descriptor
+    let searchContext: CoreSearchContext<Info>
+    let searchDescriptor: Descriptor
     private let router: Router
 
-    private var selectedFilter: Descriptor.Filter?
+    private(set) var selectedFilter: Descriptor.Filter?
     private var leftItems: [UIBarButtonItem]?
 
     private var searchFieldState: SearchFieldState = .removed
@@ -47,7 +47,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
                 self?.showSearchField()
             }
         )
-    )
+    ).with({ $0.accessibilityIdentifier = "search_bar_button" })
 
     private lazy var closeBarItem = UIBarButtonItem(
         image: .xLine,
@@ -56,7 +56,10 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
                 self?.hideSearchField()
             }
         )
-    ).with({ $0.tintColor = .textLightest })
+    ).with({
+        $0.tintColor = .textLightest
+        $0.accessibilityIdentifier = "close_bar_button"
+    })
 
     private lazy var filterBarItem = UIBarButtonItem(
         image: .filterLine,
@@ -65,7 +68,10 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
                 self?.showFilterEditor()
             }
         )
-    ).with({ $0.tintColor = .textLightest })
+    ).with({
+        $0.tintColor = .textLightest
+        $0.accessibilityIdentifier = "filter_bar_button"
+    })
 
     private lazy var supportBarItem: UIBarButtonItem? = {
         guard let support = searchDescriptor.support else { return nil }
@@ -78,7 +84,10 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
                 }
             )
         )
-        .with({ $0.tintColor = .textLightest })
+        .with({
+            $0.tintColor = .textLightest
+            $0.accessibilityIdentifier = "support_bar_button"
+        })
     }()
 
     // MARK: Initialization & Setup
@@ -133,6 +142,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
             )
         )
 
+        searchView.field.accessibilityIdentifier = "ui_search_field"
         searchView.field.placeholder = searchContext.searchPrompt
         searchView.field.text = searchContext.searchText.value
         searchView.field.delegate = self
@@ -187,7 +197,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
                 .filterEditorView(filter)
                 .environment(Info.environmentKeyPath, searchContext)
         )
-
+        filterEditorVC.view.accessibilityIdentifier = "filter_editor_view"
         router.show(filterEditorVC, from: self, options: .modal(.formSheet, animated: true))
     }
 
@@ -216,11 +226,11 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
         }
 
         let splitView = CoreSplitViewController()
-        let containeNav = CoreNavigationController(rootViewController: coverVC)
-        containeNav.delegate = self
+        let containerNav = CoreNavigationController(rootViewController: coverVC)
+        containerNav.delegate = self
 
         splitView.viewControllers = [
-            containeNav,
+            containerNav,
             CoreNavigationController(rootViewController: EmptyViewController())
         ]
 
