@@ -22,6 +22,8 @@ import XCTest
 import TestsFoundation
 
 class RoutesTests: XCTestCase {
+    typealias CourseDetailsViewController = CoreHostingController<SearchHostingBaseView<CourseSmartSearch, CourseDetailsView>>
+
     lazy var login = TestLogin()
     class TestLogin: LoginDelegate {
         func userDidLogin(session: LoginSession) {}
@@ -176,7 +178,7 @@ class RoutesTests: XCTestCase {
 
         // Non-K5 account login
         env.k5.userDidLogin(isK5Account: false)
-        XCTAssert(router.match("/courses/1") is CoreHostingController<SearchHostingBaseView<CourseDetailsView>>)
+        XCTAssert(router.match("/courses/1") is CourseDetailsViewController)
     }
 
     func testRegularCourseDetailsInK5Mode() {
@@ -191,7 +193,7 @@ class RoutesTests: XCTestCase {
         // Opened course is a non-K5 one
         DashboardCard.save(.make(isK5Subject: false), position: 0, in: env.database.viewContext)
 
-        XCTAssert(router.match("/courses/1") is CoreHostingController<SearchHostingBaseView<CourseDetailsView>>)
+        XCTAssert(router.match("/courses/1") is CourseDetailsViewController)
     }
 
     func testMissingDashboardCardInfoWhenOpeningK5SubjectRoute() {
