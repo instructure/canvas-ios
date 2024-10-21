@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class GetCalendarFiltersTests: CoreTestCase {
+class GetStudentCalendarFiltersTests: CoreTestCase {
 
     /// If a course's end date has passed and "Restrict students from viewing course after course end date"
     /// is checked then fetching events for a group in this course will give 403 unauthorized.
@@ -40,10 +40,12 @@ class GetCalendarFiltersTests: CoreTestCase {
             ]
         )
 
-        let testee = GetCalendarFilters(currentUserName: "",
-                                        currentUserId: "",
-                                        states: [],
-                                        filterUnpublishedCourses: true)
+        let testee = GetStudentCalendarFilters(
+            currentUserName: "",
+            currentUserId: "",
+            states: [],
+            filterUnpublishedCourses: true
+        )
         let requestCompleted = expectation(description: "requestCompleted")
 
         testee.makeRequest(environment: environment) { response, _, _ in
