@@ -58,11 +58,11 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         XCTAssertEqual(assignment.gradingPeriod, nil)
     }
 
-    private func mockMultipleGradingPeriods() {
+    private func mockMultipleGradingPeriods(hideInGradeBook: Bool = false) {
         // Grading period 1 assignment and group
         let groups1: [APIAssignmentGroup] = [
             .make(id: "1", name: "TestGroup1", position: 1, assignments: [
-                .make(assignment_group_id: "1", grading_type: .points, id: "1", name: "Points1", position: 1)
+                .make(assignment_group_id: "1", grading_type: .points, id: "1", name: "Points1", position: 1, hide_in_gradebook: hideInGradeBook)
             ])
         ]
         let groupsRequest1 = GetAssignmentGroupsRequest(
@@ -126,6 +126,20 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         XCTAssertEqual(assignment2.name, "Points2")
         XCTAssertEqual(assignment2.assignmentGroup?.name, "TestGroup2")
         XCTAssertEqual(assignment2.gradingPeriod?.title, "GP2")
+    }
+
+    func testFetchesAssignmentsForEachGradingPeriodWhenHideGradeIsFalse() {
+        // GIVEN
+        mockMultipleGradingPeriods(hideInGradeBook: true)
+        let testee = GetAssignmentsByGroup(courseID: "tc")
+        let store = environment.subscribe(testee)
+
+        // WHEN
+        XCTAssertFinish(store.refreshWithFuture())
+
+        // THEN
+        waitForExpectations(timeout: 1)
+        XCTAssertEqual(store.numberOfSections, 1)
     }
 
     func testFetchesAssignmentsForEachGradingPeriodAndReturnsAssignmentsForAGradingPeriod() {

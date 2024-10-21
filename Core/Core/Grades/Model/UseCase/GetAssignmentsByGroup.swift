@@ -60,6 +60,7 @@ public class GetAssignmentsByGroup: UseCase {
             if let gradingPeriodID {
                 predicate = predicate.and(NSPredicate(format: "gradingPeriod.id == %@", gradingPeriodID))
             }
+            predicate = predicate.and(NSPredicate(key: #keyPath(Assignment.hideInGradeBook), equals: false))
 
             return predicate
         }()
