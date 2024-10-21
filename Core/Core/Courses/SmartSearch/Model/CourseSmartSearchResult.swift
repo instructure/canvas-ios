@@ -21,7 +21,7 @@ import SwiftUI
 struct CourseSmartSearchResult: Codable, Identifiable {
     var id: ID { content_id }
 
-    enum ContentType: String, Codable {
+    enum ContentType: String, Codable, CaseIterable {
         case page = "WikiPage"
         case assignment = "Assignment"
         case announcement = "Announcement"

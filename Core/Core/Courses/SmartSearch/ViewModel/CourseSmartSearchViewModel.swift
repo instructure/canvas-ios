@@ -71,7 +71,6 @@ class CourseSmartSearchViewModel: ObservableObject {
         using env: AppEnvironment
     ) {
         guard let courseId = context.info.context.courseId else { return }
-
         phase = .loading
 
         env
@@ -90,12 +89,23 @@ class CourseSmartSearchViewModel: ObservableObject {
             )
     }
 
-    func updateResults(_ results: [CourseSmartSearchResult]?) {
-        self.results = results ?? []
-        applyFilters()
+    private func updateResults(_ results: [CourseSmartSearchResult]?) {
+        self.results = (results ?? [])
+            .sorted(by: { (result1, result2) in
+                // First: Sort on relevance
+                // Ideally, API should be returning results sorted according to relevance,
+                // This is to double check on this, in addition to unit testing.
+                if result1.relevance != result2.relevance {
+                    return result1.relevance > result2.relevance
+                }
+
+                // Then: Sort on alphabetical order
+                return result1.title < result2.title
+            })
+        applyFilter()
     }
 
-    func applyFilters() {
+    private func applyFilter() {
 
         // No match
         if self.results.isEmpty {

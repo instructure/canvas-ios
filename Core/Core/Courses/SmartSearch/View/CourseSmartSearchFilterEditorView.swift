@@ -19,32 +19,14 @@
 import SwiftUI
 
 public struct CourseSmartSearchFilterEditorView: View {
-    private typealias ContentType = CourseSmartSearchResult.ContentType
-
-    private struct ResultType {
-        let contentType: ContentType
-        var checked: Bool = true
-    }
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.courseSmartSearchContext) private var searchContext
 
-    @State private var sortMode: CourseSmartSearchFilter.SortMode? = .relevance
-    @State private var resultTypes: [ResultType]
+    @StateObject var viewModel: CourseSearchFilterEditorViewModel
 
-    let onSubmit: (CourseSmartSearchFilter?) -> Void
-
-    public init(filter: CourseSmartSearchFilter?, onSubmit: @escaping (CourseSmartSearchFilter?) -> Void) {
-        self.onSubmit = onSubmit
-        self._sortMode = State(initialValue: filter?.sortMode ?? .relevance)
-
-        let included = filter?.includedTypes.nilIfEmpty ?? ContentType.filterableTypes
-        self._resultTypes = State(
-            initialValue: ContentType.filterableTypes.map({ type in
-                let checked = included.contains(type)
-                return ResultType(contentType: type, checked: checked)
-            })
-        )
+    public init(model: CourseSearchFilterEditorViewModel) {
+        self._viewModel = StateObject(wrappedValue: model)
     }
 
     public var body: some View {
@@ -66,7 +48,7 @@ public struct CourseSmartSearchFilterEditorView: View {
                     InstUI.RadioButtonCell(
                         title: "Relevance",
                         value: .relevance,
-                        selectedValue: $sortMode,
+                        selectedValue: $viewModel.sortMode,
                         color: contextColor,
                         seperator: false
                     )
@@ -76,24 +58,17 @@ public struct CourseSmartSearchFilterEditorView: View {
                     InstUI.RadioButtonCell(
                         title: "Type",
                         value: .type,
-                        selectedValue: $sortMode,
+                        selectedValue: $viewModel.sortMode,
                         color: contextColor
                     )
 
                     HStack {
                         Text("Result type").font(.semibold14).foregroundStyle(Color.textDark)
                         Spacer()
-                        Button(allSelected ? "Deselect all" : "Select all") {
-                            if allSelected {
-                                $resultTypes.forEach { type in
-                                    type.checked.wrappedValue = false
-                                }
-                            } else {
-                                $resultTypes.forEach { type in
-                                    type.checked.wrappedValue = true
-                                }
-                            }
-                        }
+                        Button(
+                            viewModel.allSelectionMode.title,
+                            action: viewModel.allSelectionButtonTapped
+                        )
                         .font(.semibold14)
                     }
                     .padding(16)
@@ -101,18 +76,18 @@ public struct CourseSmartSearchFilterEditorView: View {
 
                     InstUI.Divider()
 
-                    ForEach($resultTypes, id: \.contentType) { type in
+                    ForEach($viewModel.resultTypes, id: \.type) { type in
                         InstUI.CheckboxCell(
-                            title: type.wrappedValue.contentType.title,
+                            title: type.wrappedValue.type.title,
                             isSelected: type.checked,
                             color: contextColor,
                             seperator: false,
                             icon: {
-                                type.wrappedValue.contentType.icon.foregroundStyle(contextColor)
+                                type.wrappedValue.type.icon.foregroundStyle(contextColor)
                             }
                         )
 
-                        if type.wrappedValue.contentType != resultTypes.last?.contentType {
+                        if viewModel.isLastResultType(type.wrappedValue) == false {
                             InstUI.Divider().padding(.horizontal, 16)
                         }
                     }
@@ -126,7 +101,7 @@ public struct CourseSmartSearchFilterEditorView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") {
-                        onSubmit(filter)
+                        viewModel.submit()
                         dismiss()
                     }
                 }
@@ -134,26 +109,7 @@ public struct CourseSmartSearchFilterEditorView: View {
         }
         .tint(contextColor)
     }
-
-    private var filter: CourseSmartSearchFilter? {
-        let allChecked = resultTypes.allSatisfy({ $0.checked })
-        let allUnchecked = resultTypes.allSatisfy({ $0.checked == false })
-
-        if (sortMode ?? .relevance) == .relevance,
-            allChecked || allUnchecked { return nil } // This is invalid case
-
-        return CourseSmartSearchFilter(
-            sortMode: sortMode ?? .relevance,
-            includedTypes: resultTypes
-                .filter({ $0.checked })
-                .map({ $0.contentType })
-        )
-    }
-
-    private var allSelected: Bool {
-        return resultTypes.allSatisfy({ $0.checked })
-    }
-
+    
     private var contextColor: Color {
         return Color(uiColor: searchContext.info.color ?? .textDarkest)
     }
