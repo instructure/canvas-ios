@@ -43,8 +43,8 @@ public class TabBarBadgeCounts: NSObject {
     }
 
     private static func updateApplicationIconBadgeNumber() {
-        let count = (unreadMessageCount + todoListCount)
-        application?.applicationIconBadgeNumber = Int(count)
+        let count = Int(unreadMessageCount + todoListCount)
+        UNUserNotificationCenter.current().setBadgeCount(count)
     }
 
     private static func updateUnreadMessageCount() {
