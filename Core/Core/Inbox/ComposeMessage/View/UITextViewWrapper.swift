@@ -30,25 +30,26 @@ struct UITextViewWrapper: UIViewRepresentable {
     }
 
     func updateUIView(_ textView: UITextView, context: UIViewRepresentableContext<UITextViewWrapper>) {
-        textView.text = text
+        if text != textView.text {
+            textView.text = text
+        }
     }
 
     func makeCoordinator() -> Coordinator {
-      let coordinator = Coordinator(self)
-
-      return coordinator
+        let coordinator = Coordinator(self)
+        return coordinator
     }
 
     class Coordinator: NSObject, UITextViewDelegate {
 
-      var parent: UITextViewWrapper
+        var parent: UITextViewWrapper
 
-      init(_ textField: UITextViewWrapper) {
-        self.parent = textField
-      }
+        init(_ textField: UITextViewWrapper) {
+            self.parent = textField
+        }
 
-      func textViewDidChange(_ textView: UITextView) {
-        self.parent.text = textView.text
-      }
+        func textViewDidChange(_ textView: UITextView) {
+            parent.text = textView.text
+        }
     }
 }
