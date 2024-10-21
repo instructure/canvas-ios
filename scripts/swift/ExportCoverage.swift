@@ -73,7 +73,7 @@ struct ExportCoverage: ParsableCommand {
 
     func run() throws {
         let archiveIds = try (
-            cmd("xcrun", "xcresulttool", "--legacy", "get", "--path", "scripts/coverage/citests.xcresult", "--format", "json") |
+            cmd("xcrun", "xcresulttool", "get", "--path", "scripts/coverage/citests.xcresult", "--format", "json", "--legacy") |
                 cmd("jq", "[.actions._values[].actionResult.coverage.archiveRef.id._value]")
             ).runJSON([String?].self)
 
