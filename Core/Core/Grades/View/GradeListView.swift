@@ -114,6 +114,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         }
         .accessibilityLabel(Text("Filter", bundle: .core))
         .accessibilityHint(Text("Filter grades options", bundle: .core))
+        .accessibilityIdentifier("GradeList.filterButton")
     }
 
     private func contentView(geometry: GeometryProxy) -> some View {
