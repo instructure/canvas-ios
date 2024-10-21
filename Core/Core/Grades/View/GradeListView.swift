@@ -272,6 +272,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         Text(totalGrade)
             .foregroundStyle(Color.textDarkest)
             .font(.semibold22)
+            .multilineTextAlignment(.center)
             .accessibilityLabel(Text("Total grade is \(totalGrade)", bundle: .core))
             .accessibilityIdentifier("CourseTotalGrade")
     }

@@ -314,6 +314,7 @@ public struct PostConversationRequest: APIRequestable {
         public let attachment_ids: [String]?
         public let group_conversation: Bool?
         public let force_new: Bool? = nil // Setting this seems to cause the api to ignore group_conversation
+        public let bulk_message: Bool
     }
 
     public let body: Body?

@@ -101,12 +101,14 @@ class CourseSyncSelectorViewModel: ObservableObject {
         updateSelectAllButtonTitle(selectorInteractor)
         updateNavBarSubtitle(selectorInteractor)
 
-        handleCancelButtonTap(cancelConfirmAlert: cancelConfirmAlert)
         handleLeftNavBarTap(selectorInteractor)
         handleSyncButtonTap(
             selectorInteractor: selectorInteractor,
             syncConfirmAlert: syncConfirmAlert
         )
+
+        dismissScreenInLoadingAndErrorState(on: cancelButtonDidTap)
+        showConfirmationAlertInDataState(on: cancelButtonDidTap, cancelConfirmAlert: cancelConfirmAlert)
 
         syncButtonDidTap.logReceiveOutput(
             "offline_sync_button_tapped",
@@ -114,8 +116,25 @@ class CourseSyncSelectorViewModel: ObservableObject {
         )
     }
 
-    private func handleCancelButtonTap(cancelConfirmAlert: ConfirmationAlertViewModel) {
-        cancelButtonDidTap
+    private func dismissScreenInLoadingAndErrorState(on publisher: PassthroughRelay<WeakViewController>) {
+        publisher
+            .filter { [unowned self] _ in
+                state == .loading || state == .error
+            }
+            .sink { [unowned router] viewController in
+                router.dismiss(viewController)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func showConfirmationAlertInDataState(
+        on publisher: PassthroughRelay<WeakViewController>,
+        cancelConfirmAlert: ConfirmationAlertViewModel
+    ) {
+        publisher
+            .filter { [unowned self] _ in
+                state == .data
+            }
             .handleEvents(receiveOutput: { [unowned self] _ in
                 isShowingCancelConfirmationDialog = true
             })
