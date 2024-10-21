@@ -28,7 +28,6 @@ public class CreateConversation: APIUseCase {
     let mediaCommentID: String?
     let mediaCommentType: MediaCommentType?
     let attachmentIDs: [String]?
-    let groupConversation: Bool
     let bulkMessage: Bool
     let canvasContextID: String?
 
@@ -40,7 +39,6 @@ public class CreateConversation: APIUseCase {
         mediaCommentID: String? = nil,
         mediaCommentType: MediaCommentType? = nil,
         attachmentIDs: [String]? = nil,
-        groupConversation: Bool = true,
         bulkMessage: Bool = false
     ) {
         self.subject = subject
@@ -50,7 +48,6 @@ public class CreateConversation: APIUseCase {
         self.mediaCommentID = mediaCommentID
         self.mediaCommentType = mediaCommentType
         self.attachmentIDs = attachmentIDs
-        self.groupConversation = groupConversation
         self.bulkMessage = bulkMessage
     }
 
@@ -65,7 +62,6 @@ public class CreateConversation: APIUseCase {
             media_comment_id: mediaCommentID,
             media_comment_type: mediaCommentType,
             attachment_ids: attachmentIDs,
-            group_conversation: groupConversation,
             bulk_message: bulkMessage
         ))
     }
