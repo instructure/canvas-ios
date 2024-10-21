@@ -80,11 +80,11 @@ struct CourseSmartSearchGroupedResultsView: View {
                             })
                     LazyVStack(spacing: 0) {
 
-                        ForEach($resultSections, id: \.type) { sec in
-                            let section = sec.wrappedValue
+                        ForEach($resultSections, id: \.type) { sectionBinding in
+                            let section = sectionBinding.wrappedValue
                             let title = "\(section.type.title) (\(section.results.count))"
 
-                            DisclosureGroup(title, isExpanded: sec.expanded) {
+                            DisclosureGroup(title, isExpanded: sectionBinding.expanded) {
                                 ForEach(section.results) { result in
                                     CourseSearchResultRowView(
                                         selected: $selected,
@@ -158,7 +158,7 @@ private struct RowDivider: View {
         SwiftUI
             .Divider()
             .overlay {
-                // This to fix an issue on collapse/expanding of disclosure group
+                // This is to fix an issue on collapse/expanding of disclosure group
                 Color.borderMedium.frame(maxHeight: 0.5)
             }
             .padding(.horizontal, withPadding ? 16 : 0)
