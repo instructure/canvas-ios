@@ -350,7 +350,7 @@ let router = Router(routes: [
                 url: url
             )
         }
-        return QuizDetailsViewController.create(courseID: courseID, quizID: quizID)
+        return StudentQuizDetailsViewController.create(courseID: courseID, quizID: quizID)
     },
 
     // No native support, fall back to web

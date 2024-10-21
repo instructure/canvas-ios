@@ -144,7 +144,7 @@ class SubmissionButtonPresenter: NSObject {
         case .online_quiz:
             Analytics.shared.logEvent("assignment_detail_quizlaunch")
             guard let quizID = assignment.quizID else { return }
-            env.router.show(QuizWebViewController.create(
+            env.router.show(StudentQuizWebViewController.create(
                 courseID: courseID,
                 quizID: quizID
             ), from: view, options: .modal(.fullScreen, isDismissable: false, embedInNav: true))
