@@ -30,16 +30,21 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
 
         static var results: [CourseSmartSearchResult] = [
             .make(type: .page),
+            .make(type: .page),
             .make(type: .assignment),
             .make(type: .assignment),
-            .make(type: .discussion),
-            .make(type: .discussion),
             .make(type: .announcement),
-            .make(type: .page)
+            .make(type: .discussion),
+            .make(type: .discussion)
         ]
     }
 
-    func test_searching_phases() throws {
+    override func setUp() {
+        super.setUp()
+        API.resetMocks()
+    }
+
+    func test_searching_results() throws {
         // Given
         let searchWord = "Demo Search"
         let context = TestConstants.searchContext
@@ -73,7 +78,41 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         drainMainQueue()
 
         // Then
-        XCTAssertEqual(model.results, TestConstants.results)
+        XCTAssertEqual(model.results, TestConstants.results.sorted(by: model.sortStrategy))
+    }
+
+    func test_searching_no_match() throws {
+        // Given
+        let searchWord = "Search Nothing"
+        let context = TestConstants.searchContext
+
+        let mockRequest = api.mock(
+            CourseSmartSearchRequest(
+                courseId: TestConstants.courseId,
+                searchText: searchWord,
+                filter: nil
+            ),
+            value: nil
+        )
+        mockRequest.suspend()
+
+        // When
+        let model = CourseSmartSearchViewModel()
+        // Then
+        XCTAssertEqual(model.phase, .start)
+
+        // When
+        model.startSearch(of: searchWord, in: context, using: environment)
+        // Then
+        XCTAssertEqual(model.phase, .loading)
+
+        // When
+        mockRequest.resume()
+        drainMainQueue()
+
+        // Then
+        XCTAssertEqual(model.phase, .noMatch)
+        XCTAssertEqual(model.results, [])
     }
 
     func test_searching_filtered() throws {

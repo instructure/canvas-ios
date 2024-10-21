@@ -43,6 +43,18 @@ class CourseSmartSearchViewModel: ObservableObject {
     @Published private(set) var results: [CourseSmartSearchResult] = []
     @Published var filter: CourseSmartSearchFilter?
 
+    let sortStrategy: (CourseSmartSearchResult, CourseSmartSearchResult) -> Bool = { (result1, result2) in
+        // First: Sort on relevance
+        // Ideally, API should be returning results sorted according to relevance,
+        // This is to double check on this, in addition to unit testing.
+        if result1.relevance != result2.relevance {
+            return result1.relevance > result2.relevance
+        }
+
+        // Then: Sort on alphabetical order
+        return result1.title < result2.title
+    }
+
     var sectionedResults: [CourseSmartSearchResultsSection] {
         let filtered = filter.flatMap { filter in
             return results.filter(filter.apply(to:))
@@ -90,18 +102,7 @@ class CourseSmartSearchViewModel: ObservableObject {
     }
 
     private func updateResults(_ results: [CourseSmartSearchResult]?) {
-        self.results = (results ?? [])
-            .sorted(by: { (result1, result2) in
-                // First: Sort on relevance
-                // Ideally, API should be returning results sorted according to relevance,
-                // This is to double check on this, in addition to unit testing.
-                if result1.relevance != result2.relevance {
-                    return result1.relevance > result2.relevance
-                }
-
-                // Then: Sort on alphabetical order
-                return result1.title < result2.title
-            })
+        self.results = (results ?? []).sorted(by: sortStrategy)
         applyFilter()
     }
 
