@@ -36,7 +36,7 @@ public struct AssignmentGroupView: View {
                         AssignmentCellView(viewModel: assignmentCellViewModel)
 
                         if viewModel.assignments.last != assignment {
-                            Divider()
+                            InstUI.Divider()
                         }
                     }
                 }
@@ -48,23 +48,10 @@ public struct AssignmentGroupView: View {
 
     @ViewBuilder
     private func headerView() -> some View {
-        HStack {
-            Button {
-                isExpanded.toggle()
-            } label: {
-                Text(viewModel.name)
-            }
-            .accessibilityRemoveTraits(.isButton)
-            .accessibilityAddTraits(.isHeader)
-            .accessibilityHint(
-                isExpanded ? String(
-                    localized: "Expanded",
-                    bundle: .core
-                ) : String(
-                    localized: "Collapsed",
-                    bundle: .core
-                )
-            )
+        Button {
+            isExpanded.toggle()
+        } label: {
+            Text(viewModel.name)
             Spacer()
             Image.arrowOpenUpLine
                 .size(16)
@@ -72,11 +59,17 @@ public struct AssignmentGroupView: View {
                 .accessibilityHidden(true)
                 .animation(.smooth, value: isExpanded)
         }
+        .accessibilityAddTraits(.isHeader)
+        .accessibilityHint(
+            isExpanded ? String(
+                localized: "Expanded",
+                bundle: .core
+            ) : String(
+                localized: "Collapsed",
+                bundle: .core
+            )
+        )
         .padding(.vertical, 8)
-        .contentShape(Rectangle())
-        .onTapGesture {
-            isExpanded.toggle()
-        }
     }
 }
 

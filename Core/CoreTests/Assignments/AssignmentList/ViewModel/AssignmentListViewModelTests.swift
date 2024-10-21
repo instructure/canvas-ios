@@ -142,7 +142,7 @@ class AssignmentListViewModelTests: CoreTestCase {
             .make(id: "AG1", name: "AGroup1", position: 1, assignments: [.make(assignment_group_id: "AG1", id: "1", name: "Assignment1")])
         ])
 
-        testee.filterOptionsDidUpdate(testee.gradingPeriods[1])
+        testee.filterOptionsDidUpdate(gradingPeriod: testee.gradingPeriods[1])
 
         guard case .data(let groupViewModels) = testee.state else {
             XCTFail("State doesn't contain any view models.")

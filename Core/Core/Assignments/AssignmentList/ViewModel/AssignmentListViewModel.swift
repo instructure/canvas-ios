@@ -19,15 +19,15 @@
 import SwiftUI
 
 public enum AssignmentArrangementOptions: String, CaseIterable {
-    case groupName
     case dueDate
+    case groupName
 
     var title: String {
         switch self {
-        case .groupName:
-            return String(localized: "Group", bundle: .core)
         case .dueDate:
             return String(localized: "Due Date", bundle: .core)
+        case .groupName:
+            return String(localized: "Group", bundle: .core)
         }
     }
 }
@@ -45,6 +45,11 @@ public class AssignmentListViewModel: ObservableObject {
         case data(T)
     }
 
+    private struct AssignmentListPreferenceSettings: Codable {
+        let filterOptionIds: [String]
+        let sortingOptionId: String
+    }
+
     // MARK: - Outputs
 
     @Published public private(set) var state: ViewModelState<[AssignmentGroupViewModel]> = .loading
@@ -56,12 +61,15 @@ public class AssignmentListViewModel: ObservableObject {
     // MARK: - Variables
 
     public var isFilterIconFilled: Bool = false
-    public let defaultGradingPeriod: GradingPeriod? = nil
-    public let defaultSortingOption: AssignmentArrangementOptions = .groupName
+    public var defaultGradingPeriod: GradingPeriod?
+    public let defaultSortingOption: AssignmentArrangementOptions = .dueDate
     public var selectedGradingPeriod: GradingPeriod?
-    public var selectedSortingOption: AssignmentArrangementOptions = .groupName
+    public var selectedSortingOption: AssignmentArrangementOptions = .dueDate
     private var sortingOptions = AssignmentArrangementOptions.allCases
+    private var selectedFilterOptions: [AssignmentFilterOption] = AssignmentFilterOption.allCases
     private let env = AppEnvironment.shared
+    private var userDefaults: SessionDefaults?
+    private var assignmentListPreferenceSettings: AssignmentListPreferenceSettings?
     let courseID: String
 
     public private(set) lazy var gradingPeriods: Store<LocalUseCase<GradingPeriod>> = {
@@ -73,9 +81,12 @@ public class AssignmentListViewModel: ObservableObject {
         return env.subscribe(LocalUseCase(scope: scope)) { }
     }()
 
-    private lazy var assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
-        self?.assignmentGroupsDidUpdate()
-    }
+    private lazy var assignmentGroups = env.subscribe(
+            GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: defaultGradingPeriod?.id)
+        ) { [weak self] in
+            self?.assignmentGroupsDidUpdate()
+        }
+
     private lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.courseDidUpdate()
     }
@@ -84,17 +95,29 @@ public class AssignmentListViewModel: ObservableObject {
     private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID)))
 
     // MARK: - Init
-    public init(context: Context) {
+    public init(context: Context, userDefaults: SessionDefaults? = AppEnvironment.shared.userDefaults) {
+        self.userDefaults = userDefaults
         self.courseID = context.id
+        self.selectedGradingPeriod = self.defaultGradingPeriod
 
+        loadAssignmentListPreferenceSettings()
         featureFlags.refresh()
     }
 
     // MARK: - Functions
 
-    public func filterOptionsDidUpdate(_ gradingPeriod: GradingPeriod?, _ sortingOption: AssignmentArrangementOptions? = nil) {
+    public func filterOptionsDidUpdate(
+        gradingPeriod: GradingPeriod?,
+        sortingOption: AssignmentArrangementOptions? = nil,
+        filterOptions: [AssignmentFilterOption]? = nil
+    ) {
+        if gradingPeriod == selectedGradingPeriod && sortingOption == selectedSortingOption && filterOptions == selectedFilterOptions {
+            return
+        }
+
         selectedGradingPeriod = gradingPeriod
-        selectedSortingOption = sortingOption ?? .groupName
+        selectedSortingOption = sortingOption ?? selectedSortingOption
+        selectedFilterOptions = filterOptions ?? selectedFilterOptions
 
         isFilterIconFilled = gradingPeriod != defaultGradingPeriod || sortingOption != defaultSortingOption
 
@@ -106,6 +129,7 @@ public class AssignmentListViewModel: ObservableObject {
 
     public func viewDidAppear() {
         gradingPeriods.refresh()
+        filterOptionsDidUpdate(gradingPeriod: defaultGradingPeriod)
         course.refresh()
         assignmentGroups.refresh(force: true)
     }
@@ -115,32 +139,34 @@ public class AssignmentListViewModel: ObservableObject {
 
         isShowingGradingPeriods = assignmentGroups.count > 1
         var assignmentGroups: [AssignmentGroupViewModel] = []
+        let assignments: [Assignment] = filterAssignments(self.assignmentGroups.compactMap { $0 })
 
         switch selectedSortingOption {
         case .groupName:
             for section in 0..<(self.assignmentGroups.sections?.count ?? 0) {
                 if let group = self.assignmentGroups[IndexPath(row: 0, section: section)]?.assignmentGroup {
-                    let assignments: [Assignment] = self.assignmentGroups.filter { $0.assignmentGroup == group }
-                    assignmentGroups.append(AssignmentGroupViewModel(
-                        assignmentGroup: group,
-                        assignments: assignments,
-                        courseColor: courseColor
-                    ))
+                    let groupAssignments: [Assignment] = assignments.filter { $0.assignmentGroup == group }
+                    if !groupAssignments.isEmpty {
+                        assignmentGroups.append(AssignmentGroupViewModel(
+                            assignmentGroup: group,
+                            assignments: groupAssignments,
+                            courseColor: courseColor
+                        ))
+                    }
                 }
             }
         case .dueDate:
-            let all = self.assignmentGroups.compactMap { $0 }
-            let overdue = all.filter { $0.dueAt ?? Date.distantFuture < Date.now }
+            let overdue = assignments.filter { $0.dueAt ?? Date.distantFuture < Date.now }
             if !overdue.isEmpty {
                 let overdueGroup = AssignmentDateGroup(id: "overdue", name: "Overdue Assignments", assignments: overdue)
                 assignmentGroups.append(AssignmentGroupViewModel(assignmentDateGroup: overdueGroup, courseColor: courseColor))
             }
-            let upcoming = all.filter { $0.dueAt ?? Date.distantPast > Date.now }
+            let upcoming = assignments.filter { $0.dueAt ?? Date.distantPast > Date.now }
             if !upcoming.isEmpty {
                 let upcomingGroup = AssignmentDateGroup(id: "upcoming", name: "Upcoming Assignments", assignments: upcoming)
                 assignmentGroups.append(AssignmentGroupViewModel(assignmentDateGroup: upcomingGroup, courseColor: courseColor))
             }
-            let undated = all.filter { $0.dueAt == nil }
+            let undated = assignments.filter { $0.dueAt == nil }
             if !undated.isEmpty {
                 let undatedGroup = AssignmentDateGroup(id: "undated", name: "Undated Assignments", assignments: undated)
                 assignmentGroups.append(AssignmentGroupViewModel(assignmentDateGroup: undatedGroup, courseColor: courseColor))
@@ -148,6 +174,25 @@ public class AssignmentListViewModel: ObservableObject {
         }
 
         state = (assignmentGroups.isEmpty ? .empty : .data(assignmentGroups))
+    }
+
+    private func filterAssignments(_ assignments: [Assignment]) -> [Assignment] {
+        var filteredAssignments: [Assignment] = []
+
+        // all filter selected is the same as no filter selected
+        if selectedFilterOptions.count == AssignmentFilterOption.allCases.count || selectedFilterOptions.isEmpty {
+            return assignments
+        }
+
+        assignments.forEach { assignment in
+            selectedFilterOptions.forEach { filterOption in
+                if let submission = assignment.submission, !filteredAssignments.contains(assignment), filterOption.submissionRule(submission) {
+                    filteredAssignments.append(assignment)
+                }
+            }
+        }
+
+        return filteredAssignments
     }
 
     private func courseDidUpdate() {
@@ -172,10 +217,16 @@ public class AssignmentListViewModel: ObservableObject {
             initialGradingPeriod: selectedGradingPeriod,
             sortingOptions: sortingOptions,
             initialSortingOption: selectedSortingOption,
+            initialFilterOptions: selectedFilterOptions,
+            courseId: courseID,
             courseName: courseName,
-            completion: { [weak self] filterOptions in
-                self?.filterOptionsDidUpdate(filterOptions?.gradingPeriod, filterOptions?.sortingOption)
-                self?.env.router.dismiss(weakVC)
+            completion: { [weak self] assignmentListPreferences in
+                self?.filterOptionsDidUpdate(
+                    gradingPeriod: assignmentListPreferences.gradingPeriod,
+                    sortingOption: assignmentListPreferences.sortingOption,
+                    filterOptions: assignmentListPreferences.filterOptions
+                )
+                self?.saveAssignmentListPreferenceSettings()
             })
         let controller = CoreHostingController(AssignmentFilterScreen(viewModel: viewModel))
         weakVC.setValue(controller)
@@ -184,12 +235,45 @@ public class AssignmentListViewModel: ObservableObject {
             from: viewController,
             options: .modal(
                 .automatic,
-                isDismissable: false,
+                isDismissable: true,
                 embedInNav: true,
                 addDoneButton: false,
                 animated: true
             )
         )
+    }
+
+    private func loadAssignmentListPreferenceSettings() {
+        guard let settingsData = userDefaults?.selectedAssignmentListPreferenceSettingsByCourseId?[courseID] else {
+            return
+        }
+
+        assignmentListPreferenceSettings = try? JSONDecoder().decode(AssignmentListPreferenceSettings.self, from: settingsData)
+
+        selectedFilterOptions = AssignmentFilterOption.allCases.filter {
+            assignmentListPreferenceSettings?.filterOptionIds.contains($0.id) ?? false
+        }
+
+        selectedSortingOption = sortingOptions.filter {
+            assignmentListPreferenceSettings?.sortingOptionId == $0.rawValue
+        }.first ?? selectedSortingOption
+    }
+
+    private func saveAssignmentListPreferenceSettings() {
+        assignmentListPreferenceSettings = AssignmentListPreferenceSettings(
+            filterOptionIds: selectedFilterOptions.map { $0.id },
+            sortingOptionId: selectedSortingOption.rawValue
+        )
+
+        guard let encodedData = try? JSONEncoder().encode(assignmentListPreferenceSettings) else {
+            return
+        }
+
+        if userDefaults?.selectedAssignmentListPreferenceSettingsByCourseId == nil {
+            userDefaults?.selectedAssignmentListPreferenceSettingsByCourseId = [courseID: encodedData]
+        } else {
+            userDefaults?.selectedAssignmentListPreferenceSettingsByCourseId?[courseID] = encodedData
+        }
     }
 
     // MARK: - Preview Support

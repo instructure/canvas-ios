@@ -31,20 +31,21 @@ public struct AssignmentFilterScreen: View {
     // MARK: - Body
     public var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 0) {
+            LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
+                filterSection
+                sortBySection
                 if viewModel.isGradingPeriodsSectionVisible {
                     gradingPeriodsSection
                 }
-                sortBySection
             }
             .navigationTitleStyled(navBarTitleView)
-            .navigationBarItems(leading: cancelButton, trailing: saveButton)
+            .navigationBarItems(trailing: doneButton)
         }
     }
 
     private var navBarTitleView: some View {
         VStack {
-            Text(String(localized: "Assignment Preferences", bundle: .core))
+            Text(String(localized: "Assignment List Preferences", bundle: .core))
                 .foregroundStyle(Color.textDarkest)
                 .font(.semibold16)
             Text(viewModel.courseName ?? "")
@@ -55,7 +56,7 @@ public struct AssignmentFilterScreen: View {
 
     private var gradingPeriodsSection: some View {
         Section {
-            InstUI.RadioButtonCell(title: "All", value: nil, selectedValue: $viewModel.selectedGradingPeriod, color: Color(Brand.shared.primary))
+            InstUI.RadioButtonCell(title: "All Grading Periods", value: nil, selectedValue: $viewModel.selectedGradingPeriod, color: Color(Brand.shared.primary))
             ForEach(viewModel.gradingPeriods, id: \.hashValue) { item in
                 gradingPeriodItem(with: item)
             }
@@ -80,7 +81,7 @@ public struct AssignmentFilterScreen: View {
                 sortByItem(with: item)
             }
         } header: {
-            InstUI.ListSectionHeader(title: String(localized: "Sort By", bundle: .core))
+            InstUI.ListSectionHeader(title: String(localized: "Grouped By", bundle: .core))
         }
     }
 
@@ -94,47 +95,41 @@ public struct AssignmentFilterScreen: View {
         .accessibilityIdentifier("AssignmentFilter.sortByItems.\(item.rawValue)")
     }
 
-    private var saveButton: some View {
-        InstUI.NavigationBarButton.save(isEnabled: viewModel.isSaveButtonEnabled) {
-            viewModel.saveButtonTapped(viewController: viewController)
+    private var doneButton: some View {
+        InstUI.NavigationBarButton.done {
+            viewModel.doneButtonTapped(viewController: viewController)
         }
         .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(Text("Save", bundle: .core))
-        .accessibilityIdentifier("AssignmentFilter.saveButton")
+        .accessibilityLabel(Text("Done", bundle: .core))
+        .accessibilityIdentifier("AssignmentFilter.doneButton")
     }
 
-    private var saveButton2: some View {
-        Button {
-            viewModel.saveButtonTapped(viewController: viewController)
-        } label: {
-            Text(String(localized: "Save", bundle: .core))
-                .font(.semibold16)
-                .foregroundColor(viewModel.isSaveButtonEnabled
-                                 ? .textDarkest
-                                 : .disabledGray)
-
+    private var filterSection: some View {
+        Section {
+            ForEach(AssignmentFilterOption.allCases, id: \.id) { item in
+                filterItem(with: item)
+            }
+        } header: {
+            InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
         }
-        .disabled(!viewModel.isSaveButtonEnabled)
     }
 
-    private var cancelButton: some View {
-        InstUI.NavigationBarButton.cancel {
-            viewModel.dismiss(viewController: viewController)
-        }
-        .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(Text("Cancel", bundle: .core))
-        .accessibilityIdentifier("AssignmentFilter.cancelButton")
+    private func filterItem(with item: AssignmentFilterOption) -> some View {
+        InstUI.CheckboxCell(
+            title: item.title,
+            isSelected: selectionBinding(option: item),
+            color: Color(Brand.shared.primary),
+            subtitle: item.subtitle
+        )
+        .accessibilityIdentifier("AssignmentFilter.filterItems.\(item.id)")
     }
 
-    private var cancelButton2: some View {
-        Button {
-            viewModel.dismiss(viewController: viewController)
-        } label: {
-            Image.xLine
-                .padding(5)
+    private func selectionBinding(option: AssignmentFilterOption) -> Binding<Bool> {
+        Binding {
+            viewModel.selectedAssignmentFilterOptions.contains(option)
+        } set: { isSelected in
+            viewModel.didSelectAssignmentFilterOption(option: option, isSelected: isSelected)
         }
-        .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(Text("Hide", bundle: .core))
     }
 }
 
@@ -145,8 +140,9 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
     private static let context = env.globalDatabase.viewContext
     private static func createGradingPeriods() -> [GradingPeriod] {
         let gradingPeriods = [
-            APIGradingPeriod.make(id: "1", title: "Period X"),
-            APIGradingPeriod.make(id: "2", title: "Period Y")
+            APIGradingPeriod.make(id: "1", title: "Summer"),
+            APIGradingPeriod.make(id: "2", title: "Autumn"),
+            APIGradingPeriod.make(id: "3", title: "Winter")
         ]
         return gradingPeriods.map {
             GradingPeriod.save($0, courseID: "1", in: context)
@@ -162,7 +158,8 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
             gradingPeriods: gradingPeriods,
             initialGradingPeriod: nil,
             sortingOptions: AssignmentArrangementOptions.allCases,
-            initialSortingOption: AssignmentArrangementOptions.groupName,
+            initialSortingOption: AssignmentArrangementOptions.dueDate,
+            courseId: "1",
             courseName: "Sample Course Name",
             completion: { _ in })
         AssignmentFilterScreen(viewModel: viewModel)
