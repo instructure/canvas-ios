@@ -32,7 +32,7 @@ public enum GradeArrangementOptions: Int, CaseIterable {
     }
 }
 
-struct GradeListViewModelConfig: Equatable {
+public struct GradeListViewModelConfig: Equatable {
     var isLoaderVisible = false
     var courseName: String?
     var state: ViewState = .initialLoading
