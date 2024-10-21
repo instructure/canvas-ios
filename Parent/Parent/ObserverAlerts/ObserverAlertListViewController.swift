@@ -39,7 +39,7 @@ class ObserverAlertListViewController: UIViewController {
     }
     private var alerts: [ObserverAlert] = []
     private var thresholds: [AlertThreshold] = []
-    private lazy var observerAlertsInteractor = ObserverAlertsInteractor(studentID: studentID)
+    private lazy var interactor = ObserverAlertsInteractor(studentID: studentID)
     private var subscriptions = Set<AnyCancellable>()
 
     static func create(studentID: String) -> ObserverAlertListViewController {
@@ -89,13 +89,13 @@ class ObserverAlertListViewController: UIViewController {
     }
 
     private func updateTabBarBadgeCount() {
-        let unreadCount = alerts.filter { $0.workflowState == .unread } .count
+        let unreadCount = alerts.filter { $0.isUnread } .count
         tabBarItem.badgeValue = unreadCount <= 0 ? nil :
             NumberFormatter.localizedString(from: NSNumber(value: unreadCount), number: .none)
     }
 
     private func internalRefresh(ignoreCache: Bool) {
-        observerAlertsInteractor
+        interactor
             .refresh(ignoreCache: ignoreCache)
             .sink { [weak self] completion in
                 guard let self else { return }
@@ -142,7 +142,9 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alert = alerts[indexPath.row]
 
-        MarkObserverAlertRead(alertID: alert.id).fetch()
+        if alert.isUnread {
+            markAlertAsRead(id: alert.id)
+        }
 
         guard alert.lockedForUser == false else {
             showItemLockedMessage()
@@ -161,13 +163,51 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let id = alerts[indexPath.row].id
+        let dismissTitle = String(localized: "Dismiss", bundle: .parent)
         return UISwipeActionsConfiguration(actions: [
-            UIContextualAction(style: .destructive, title: String(localized: "Dismiss", bundle: .parent)) { (_, _, completed) in
-                DismissObserverAlert(alertID: id).fetch { (_, _, error) in
-                    completed(error == nil)
-                }
+            UIContextualAction(style: .destructive, title: dismissTitle) { [weak self] (_, _, completion) in
+                self?.dismissAlert(id: id, completion: completion)
             }
         ])
+    }
+
+    private func markAlertAsRead(id: String) {
+        interactor.markAlertAsRead(id: id)
+            .ignoreFailure()
+            .sink { [weak self] in
+                guard let self, let index = alerts.firstIndex(where: { $0.id == id }) else { return }
+
+                // Updating `alerts` manually, because we are not subscribed to changes in CoreData. This also allows for finer animations.
+                // making sure `read` state is set before UI updates
+                alerts[index].workflowState = .read
+
+                tableView.reloadRows(at: [.init(row: index, section: 0)], with: .automatic)
+                // If in the future this will be used in a SplitView, make sure the row is reselected.
+
+                updateTabBarBadgeCount()
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func dismissAlert(id: String, completion: @escaping (Bool) -> Void) {
+        interactor.dismissAlert(id: id)
+            .sink(
+                receiveCompletion: {
+                    switch $0 {
+                    case .finished: completion(true)
+                    case .failure: completion(false)
+                    }
+                },
+                receiveValue: { [weak self] in
+                    guard let self, let index = alerts.firstIndex(where: { $0.id == id }) else { return }
+
+                    // Updating `alerts` manually, because we are not subscribed to changes in CoreData. This also allows for finer animations.
+                    alerts.remove(at: index)
+                    tableView.deleteRows(at: [.init(row: index, section: 0)], with: .automatic)
+                    updateTabBarBadgeCount()
+                }
+            )
+            .store(in: &subscriptions)
     }
 }
 

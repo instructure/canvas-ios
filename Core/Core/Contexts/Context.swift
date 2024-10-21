@@ -37,6 +37,13 @@ public struct Context: Codable, Equatable, Hashable {
     public var pathComponent: String { "\(contextType.pathComponent)/\(id)" }
 
     public init(_ contextType: ContextType, id: String) {
+        if id.isEmpty {
+            Analytics.shared.logError(
+                name: "Context created with invalid contextId",
+                reason: "contextType: \(contextType.rawValue), contextId: \"\(id)\", baseUrl: \(Analytics.analyticsBaseUrl)"
+            )
+        }
+
         self.contextType = contextType
         self.id = ID.expandTildeID(id)
     }
@@ -77,4 +84,8 @@ public extension Context {
     var courseId: String? { contextType == .course ? id : nil }
     var groupId: String? { contextType == .group ? id : nil }
     var userId: String? { contextType == .user ? id : nil }
+
+    var isValid: Bool {
+        id.isNotEmpty
+    }
 }
