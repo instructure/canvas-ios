@@ -18,9 +18,9 @@
 
 import XCTest
 import Combine
-@testable import Core
-import TestsFoundation
 import SwiftUI
+import TestsFoundation
+@testable import Core
 
 class CoreSearchHostingControllerTests: CoreTestCase {
 

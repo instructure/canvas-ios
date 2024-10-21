@@ -28,7 +28,7 @@ struct CourseSearchResultsHeaderView: View {
                 .lineLimit(1)
                 .font(.regular16)
                 .foregroundStyle(Color.textDark)
-            Text(course()?.name ?? "")
+            Text(course?.name ?? "")
                 .font(.semibold16)
                 .foregroundStyle(Color.textDarkest)
         }
@@ -47,7 +47,7 @@ struct CourseSearchResultsHeaderView: View {
         }
     }
 
-    func course() -> Course? {
+    private var course: Course? {
         if let course: Course = env
             .database
             .viewContext

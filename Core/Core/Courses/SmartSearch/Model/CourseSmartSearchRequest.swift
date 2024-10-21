@@ -19,7 +19,7 @@
 import Foundation
 
 struct CourseSmartSearchRequest: APIRequestable {
-    typealias Response = APICourseSmartSearch
+    typealias Response = APICourseSmartSearchResponse
 
     let courseId: String
     let searchText: String
@@ -38,7 +38,7 @@ struct CourseSmartSearchRequest: APIRequestable {
     }
 }
 
-struct APICourseSmartSearch: Codable {
+struct APICourseSmartSearchResponse: Codable {
     let results: [CourseSmartSearchResult]
     let status: String?
     let indexing_progress: Double?
