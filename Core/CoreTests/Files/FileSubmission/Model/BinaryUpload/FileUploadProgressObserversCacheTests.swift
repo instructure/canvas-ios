@@ -52,10 +52,10 @@ class FileUploadProgressObserversCacheTests: CoreTestCase {
     }
 }
 
-class MockFileUploadProgressObserver: FileUploadProgressObserver {
-    var didReceiveProgressCallback = false
-    var didReceiveCompletionCallback = false
-    var didReceiveDataCallback = false
+final class MockFileUploadProgressObserver: FileUploadProgressObserver {
+    nonisolated(unsafe) var didReceiveProgressCallback = false
+    nonisolated(unsafe) var didReceiveCompletionCallback = false
+    nonisolated(unsafe) var didReceiveDataCallback = false
 
     public override func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         didReceiveProgressCallback = true

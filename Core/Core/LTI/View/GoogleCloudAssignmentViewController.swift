@@ -18,7 +18,7 @@
 
 import Foundation
 import UIKit
-import WebKit
+@preconcurrency import WebKit
 
 class GoogleCloudAssignmentViewController: UIViewController {
     let url: URL

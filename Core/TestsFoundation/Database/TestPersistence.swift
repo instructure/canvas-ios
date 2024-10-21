@@ -45,7 +45,7 @@ public func resetSingleSharedTestDatabase() -> NSPersistentContainer {
     return container
 }
 
-class TestDatabase: NSPersistentContainer {
+class TestDatabase: NSPersistentContainer, @unchecked Sendable {
     override func newBackgroundContext() -> NSManagedObjectContext {
         // create a new view context to avoid recursive saves
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)

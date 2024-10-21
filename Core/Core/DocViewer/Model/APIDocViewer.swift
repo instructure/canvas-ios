@@ -240,12 +240,12 @@ struct GetDocViewerAnnotationsRequest: APIRequestable {
 
     static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
-        let formatter1 = ISO8601DateFormatter()
-        formatter1.formatOptions = [ .withInternetDateTime, .withFractionalSeconds ]
-        // This is mainly to support mocking because when the mock encodes APIDocViewerAnnotations it doesn't add franctions so response parsing fails.
-        let formatter2 = ISO8601DateFormatter()
-        formatter2.formatOptions = [ .withInternetDateTime]
         decoder.dateDecodingStrategy = .custom { decoder in
+            let formatter1 = ISO8601DateFormatter()
+            formatter1.formatOptions = [ .withInternetDateTime, .withFractionalSeconds ]
+            // This is mainly to support mocking because when the mock encodes APIDocViewerAnnotations it doesn't add franctions so response parsing fails.
+            let formatter2 = ISO8601DateFormatter()
+            formatter2.formatOptions = [ .withInternetDateTime]
             let dateStr = try decoder.singleValueContainer().decode(String.self)
             guard let date = (formatter1.date(from: dateStr) ?? formatter2.date(from: dateStr)) else {
                 throw APIDocViewerError.badDateFormat(dateStr)

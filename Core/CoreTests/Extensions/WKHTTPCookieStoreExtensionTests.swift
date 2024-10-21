@@ -43,10 +43,12 @@ class WKHTTPCookieStoreExtensionTests: XCTestCase {
         let publisher = cookieStore.getAllCookies()
 
         // THEN
-        XCTAssertSingleOutputEquals(
+        XCTAssertFirstValue(
             publisher,
-            [cookie],
-            timeout: 10
+            timeout: 10,
+            assertions: { [cookie] resultCookies in
+                XCTAssertTrue(cookie.debugEquals(to: resultCookies.first))
+            }
         )
     }
 
@@ -63,10 +65,12 @@ class WKHTTPCookieStoreExtensionTests: XCTestCase {
         XCTAssertFinish(cookieStore.setCookie(cookie))
 
         // THEN
-        XCTAssertSingleOutputEquals(
+        XCTAssertFirstValue(
             cookieStore.getAllCookies(),
-            [cookie],
-            timeout: 10
+            timeout: 10,
+            assertions: { [cookie] resultCookies in
+                XCTAssertTrue(cookie.debugEquals(to: resultCookies.first))
+            }
         )
     }
 
@@ -87,5 +91,28 @@ class WKHTTPCookieStoreExtensionTests: XCTestCase {
             [],
             timeout: 10
         )
+    }
+}
+
+private extension HTTPCookie {
+
+    func debugEquals(to anotherCookie: HTTPCookie?) -> Bool {
+        guard let anotherCookie,
+              properties?.count == anotherCookie.properties?.count
+        else {
+            return false
+        }
+
+        return version == anotherCookie.version &&
+               name == anotherCookie.name &&
+               value == anotherCookie.value &&
+               expiresDate == anotherCookie.expiresDate &&
+               isSessionOnly == anotherCookie.isSessionOnly &&
+               domain == anotherCookie.domain &&
+               path == anotherCookie.path &&
+               isSecure == anotherCookie.isSecure &&
+               isHTTPOnly == anotherCookie.isHTTPOnly &&
+               comment == anotherCookie.comment &&
+               commentURL == anotherCookie.commentURL
     }
 }

@@ -127,7 +127,7 @@ class AboutInfoEntryTests: XCTestCase {
     }
 }
 
-private class MockBundle: Bundle {
+private class MockBundle: Bundle, @unchecked Sendable {
     enum BundleVersion {
         case string(String)
         case int(Int)

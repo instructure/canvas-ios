@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import Core
+import TestsFoundation
 
 class TabBarBadgeCountsTests: CoreTestCase {
     let application = UIApplication.shared
@@ -30,22 +31,30 @@ class TabBarBadgeCountsTests: CoreTestCase {
         TabBarBadgeCounts.todoItem = todoItem
 
         TabBarBadgeCounts.unreadMessageCount = 7
-        XCTAssertEqual(application.applicationIconBadgeNumber, 7)
+        waitUntil(shouldFail: true) {
+            application.applicationIconBadgeNumber == 7
+        }
         XCTAssertEqual(messageItem.badgeValue, "7")
         XCTAssertEqual(todoItem.badgeValue, nil)
 
         TabBarBadgeCounts.todoListCount = 2
-        XCTAssertEqual(application.applicationIconBadgeNumber, 9)
+        waitUntil(shouldFail: true) {
+            application.applicationIconBadgeNumber == 9
+        }
         XCTAssertEqual(messageItem.badgeValue, "7")
         XCTAssertEqual(todoItem.badgeValue, "2")
 
         TabBarBadgeCounts.unreadMessageCount = 0
-        XCTAssertEqual(application.applicationIconBadgeNumber, 2)
+        waitUntil(shouldFail: true) {
+            application.applicationIconBadgeNumber == 2
+        }
         XCTAssertEqual(messageItem.badgeValue, nil)
         XCTAssertEqual(todoItem.badgeValue, "2")
 
         TabBarBadgeCounts.todoListCount = 0
-        XCTAssertEqual(application.applicationIconBadgeNumber, 0)
+        waitUntil(shouldFail: true) {
+            application.applicationIconBadgeNumber == 0
+        }
         XCTAssertEqual(messageItem.badgeValue, nil)
         XCTAssertEqual(todoItem.badgeValue, nil)
 
@@ -55,14 +64,18 @@ class TabBarBadgeCountsTests: CoreTestCase {
 
         TabBarBadgeCounts.unreadMessageCount = 1
         TabBarBadgeCounts.todoListCount = 5
-        XCTAssertEqual(application.applicationIconBadgeNumber, 0)
+        waitUntil(shouldFail: true) {
+            application.applicationIconBadgeNumber == 0
+        }
         XCTAssertEqual(messageItem.badgeValue, nil)
         XCTAssertEqual(todoItem.badgeValue, nil)
 
         TabBarBadgeCounts.application = application
         TabBarBadgeCounts.messageItem = messageItem
         TabBarBadgeCounts.todoItem = todoItem
-        XCTAssertEqual(application.applicationIconBadgeNumber, 6)
+        waitUntil(shouldFail: true) {
+            application.applicationIconBadgeNumber == 6
+        }
         XCTAssertEqual(messageItem.badgeValue, "1")
         XCTAssertEqual(todoItem.badgeValue, "5")
     }

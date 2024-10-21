@@ -245,13 +245,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         submittedIcon?.image = .completeLine.withRenderingMode(.alwaysTemplate)
         submittedIcon?.tintColor = .textDarkest
 
-        gradeSectionBoundsObservation = gradeSection?.observe(\.bounds) { [weak gradeBorderLayer] gradeSection, _ in
-            gradeBorderLayer?.frame = gradeSection.bounds
-            gradeBorderLayer?.path = UIBezierPath(roundedRect: gradeSection.bounds,
-                                                  cornerRadius: 6).cgPath
-            // Remove the placeholder border
-            gradeSection.layer.borderColor = nil
-            gradeSection.layer.borderWidth = 0
+        gradeSectionBoundsObservation = gradeSection?.observe(\.bounds) { [weak self] gradeSection, _ in
+            self?.updateGradeBorder(using: gradeSection)
         }
         presenter?.viewIsReady()
     }
@@ -576,6 +571,15 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             reminderSection.view.trailingAnchor.constraint(equalTo: parentStackView.trailingAnchor)
         ])
         reminderSection.didMove(toParent: self)
+    }
+
+    private func updateGradeBorder(using gradeSection: UIStackView) {
+        gradeBorderLayer?.frame = gradeSection.bounds
+        gradeBorderLayer?.path = UIBezierPath(roundedRect: gradeSection.bounds,
+                                              cornerRadius: 6).cgPath
+        // Remove the placeholder border
+        gradeSection.layer.borderColor = nil
+        gradeSection.layer.borderWidth = 0
     }
 
     // MARK: - Show / Hide Sections

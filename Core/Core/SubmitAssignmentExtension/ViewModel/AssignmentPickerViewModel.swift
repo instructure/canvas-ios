@@ -64,7 +64,7 @@ public class AssignmentPickerViewModel: ObservableObject {
 
                 switch result {
                 case .success(let items): return .data(items.map { AssignmentPickerItem(apiItem: $0, sharedFileExtensions: sharedExtensions) })
-                case .failure(let error): return .error(error)
+                case .failure(let error): return .error(error.localizedDescription)
                 }
             }
             .receive(on: DispatchQueue.main)

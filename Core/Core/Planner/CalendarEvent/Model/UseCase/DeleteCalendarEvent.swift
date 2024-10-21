@@ -24,6 +24,7 @@ import CoreData
 // This is OK for now, because we rely on force refreshing everything.
 final class DeleteCalendarEvent: DeleteUseCase {
     typealias Model = CalendarEvent
+    typealias Response = Request.Response
 
     let request: DeleteCalendarEventRequest
     let cacheKey: String? = nil

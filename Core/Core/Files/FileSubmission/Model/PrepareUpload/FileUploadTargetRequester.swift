@@ -87,7 +87,7 @@ public class FileUploadTargetRequester {
                 try context.saveAndNotify()
             } catch(let error) {
                 fileItem.uploadError = error.localizedDescription
-                result = .failure(error.localizedDescription)
+                result = .failure(error)
             }
 
             promise(result)

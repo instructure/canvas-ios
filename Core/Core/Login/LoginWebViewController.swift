@@ -18,7 +18,7 @@
 
 import UIKit
 import SwiftUI
-import WebKit
+@preconcurrency import WebKit
 
 public enum AuthenticationMethod {
     case normalLogin

@@ -351,7 +351,8 @@ struct SubmissionGrades: View {
     }
 }
 
-extension UIAlertController: UITextFieldDelegate {
+extension UIAlertController {
+
     @objc public func performOKAlertAction() {
         if let ok = actions.first(where: { $0.title == String(localized: "OK", bundle: .teacher) }) as? AlertAction {
             ok.handler?(ok)

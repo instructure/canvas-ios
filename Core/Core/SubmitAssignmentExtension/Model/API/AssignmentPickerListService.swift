@@ -19,9 +19,13 @@
 import Combine
 
 public protocol AssignmentPickerListServiceProtocol: AnyObject {
-    typealias APIResult = Result<[APIAssignmentPickerListItem], String>
+    typealias APIResult = Result<[APIAssignmentPickerListItem], AssignmentPickerListServiceError>
     var result: AnyPublisher<APIResult, Never> { get }
     var courseID: String? { get set }
+}
+
+public enum AssignmentPickerListServiceError: String, Error {
+    case failedToGetAssignments
 }
 
 public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
@@ -54,7 +58,7 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
             return
         }
 
-        let result: Result<[APIAssignmentPickerListItem], String>
+        let result: APIResult
 
         if let response = response {
             let assignments = Self.filterAssignments(response.assignments)
@@ -64,7 +68,7 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
             let errorMessage = error?.localizedDescription ?? String(localized: "Something went wrong", bundle: .core)
             Analytics.shared.logEvent("error_loading_assignments", parameters: ["error": errorMessage])
             Analytics.shared.logError(name: "Assignment list load failed", reason: error?.localizedDescription)
-            result = .failure(errorMessage)
+            result = .failure(.failedToGetAssignments)
         }
 
         resultSubject.send(result)

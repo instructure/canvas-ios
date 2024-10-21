@@ -165,10 +165,15 @@ enum Github {
     }
 
     struct DraftPullRequestReviewThread: Codable {
+        enum CodingKeys: String, CodingKey {
+            case body
+            case path
+            case line
+        }
+
         let body: String
         // let commit_id: String
         let path: String
-
         let line: Int // last line
 
         let side: String = "RIGHT"

@@ -21,6 +21,7 @@ import CoreData
 
 final class UpdateCalendarEvent: APIUseCase {
     typealias Model = CalendarEvent
+    typealias Response = Request.Response
 
     let request: PutCalendarEventRequest
     let cacheKey: String? = nil

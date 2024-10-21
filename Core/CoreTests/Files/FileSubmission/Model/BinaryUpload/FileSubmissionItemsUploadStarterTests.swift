@@ -142,7 +142,7 @@ class FileSubmissionItemsUploadStarterTests: CoreTestCase {
     }
 }
 
-class MockBackgroundURLSessionProvider: BackgroundURLSessionProvider {
+final class MockBackgroundURLSessionProvider: BackgroundURLSessionProvider {
 
     init() {
         super.init(sessionID: "", sharedContainerID: "", uploadProgressObserversCache: MockFileUploadProgressObserversCache())

@@ -416,17 +416,14 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         Course.make()
         Assignment.make()
         let expectation = XCTestExpectation(description: "notification")
-        var notification: Notification?
-        let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) {
-            notification = $0
+        let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { notification in
+            XCTAssertEqual(notification.userInfo?["requirement"] as? ModuleItemCompletionRequirement, .view)
+            XCTAssertEqual(notification.userInfo?["moduleItem"] as? ModuleItemType, .assignment("1"))
+            XCTAssertEqual(notification.userInfo?["courseID"] as? String, "1")
             expectation.fulfill()
         }
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 0.5)
-        XCTAssertNotNil(notification)
-        XCTAssertEqual(notification?.userInfo?["requirement"] as? ModuleItemCompletionRequirement, .view)
-        XCTAssertEqual(notification?.userInfo?["moduleItem"] as? ModuleItemType, .assignment("1"))
-        XCTAssertEqual(notification?.userInfo?["courseID"] as? String, "1")
         NotificationCenter.default.removeObserver(token)
     }
 

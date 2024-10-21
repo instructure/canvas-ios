@@ -33,7 +33,7 @@ packages:
     exactVersion: 9.1.0
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
-    exactVersion: 13.0.1
+    exactVersion: 13.9.1
   FirebaseCrashlytics:
     url: https://github.com/firebase/firebase-ios-sdk.git
     exactVersion: 10.23.1

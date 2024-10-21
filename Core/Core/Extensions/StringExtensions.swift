@@ -117,13 +117,10 @@ extension String {
         allowLossyConversion: Bool = false
     ) throws -> Data {
         guard let data = self.data(using: encoding, allowLossyConversion: allowLossyConversion) else {
-            throw "Failed to convert string to data using encoding \(encoding)."
+            throw NSError.instructureError("Failed to convert string to data using encoding \(encoding).")
         }
         return data
     }
-}
-
-extension String: Error {
 }
 
 extension ReferenceWritableKeyPath {

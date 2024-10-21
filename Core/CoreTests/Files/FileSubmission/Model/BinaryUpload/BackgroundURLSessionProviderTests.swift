@@ -88,10 +88,10 @@ class BackgroundURLSessionProviderTests: CoreTestCase {
     }
 }
 
-class MockFileUploadProgressObserversCache: FileUploadProgressObserversCache {
-    public var receivedProgressUpdate: (bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64)?
-    public var receivedCompletionError: Error?
-    public var receivedData: Data?
+final class MockFileUploadProgressObserversCache: FileUploadProgressObserversCache {
+    public nonisolated(unsafe) var receivedProgressUpdate: (bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64)?
+    public nonisolated(unsafe) var receivedCompletionError: Error?
+    public nonisolated(unsafe) var receivedData: Data?
 
     init() {
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)

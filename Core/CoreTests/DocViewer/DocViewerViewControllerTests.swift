@@ -37,9 +37,10 @@ class DocViewerViewControllerTests: CoreTestCase {
     let navigationItem = UINavigationItem()
     lazy var url = Bundle(for: Self.self).url(forResource: "instructure", withExtension: "pdf")!
 
-    class MockSession: DocViewerSession {
-        var requested: URL?
-        var loading: URL?
+    final class MockSession: DocViewerSession, @unchecked Sendable {
+        nonisolated(unsafe) var requested: URL?
+        nonisolated(unsafe) var loading: URL?
+
         override func load(url: URL, session: LoginSession) {
             requested = url
             notify()

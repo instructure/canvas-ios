@@ -21,14 +21,14 @@ import PackageDescription
 
 let package = Package(
     name: "scripts",
-    platforms: [ .macOS(.v10_14) ],
+    platforms: [ .macOS(.v10_15) ],
     products: [
         .executable(name: "scripts-main", targets: [ "scripts" ]),
     ],
     dependencies: [
         .package(url: "https://github.com/cobbal/swsh.git", .exact("3.0.0")),
         .package(url: "https://github.com/apple/swift-argument-parser", .exact("1.0.1")),
-        .package(url: "https://github.com/davidahouse/XCResultKit", .exact("0.7.0")),
+        .package(url: "https://github.com/davidahouse/XCResultKit", .exact("1.2.1")),
         .package(url: "https://github.com/cobbal/GitDiffSwift.git", .exact("0.0.2")),
     ],
     targets: [

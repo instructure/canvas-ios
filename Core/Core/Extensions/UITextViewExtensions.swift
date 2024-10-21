@@ -18,6 +18,8 @@
 
 import Foundation
 
+private var internalDelegateKey: UInt8 = 0
+
 extension UITextView {
 
     private class PlaceholderLabel: UILabel { }
@@ -72,7 +74,10 @@ extension UITextView {
             placeholderLabel.numberOfLines = 0
             placeholderLabel.accessibilityElementsHidden = true
             updatePlaceholder()
-            textStorage.delegate = self
+
+            let textStorageDelegate = TextStorageDelegate(observedTextView: self)
+            objc_setAssociatedObject(self, &internalDelegateKey, textStorageDelegate, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            textStorage.delegate = textStorageDelegate
         }
     }
 
@@ -85,28 +90,42 @@ extension UITextView {
             placeholderLabel.textColor = newValue
         }
     }
-}
-
-extension UITextView: NSTextStorageDelegate {
-    public func textStorage(
-        _ textStorage: NSTextStorage,
-        didProcessEditing editedMask: NSTextStorage.EditActions,
-        range editedRange: NSRange,
-        changeInLength delta: Int
-    ) {
-        if editedMask.contains(.editedCharacters) {
-            placeholderLabel.isHidden = !text.isEmpty
-        }
-    }
 
     public func adjustHeight(to desiredNumberOfLines: Int, heightConstraints: NSLayoutConstraint) {
-        let lineHeight = font!.lineHeight + 5
+        guard let font else {
+            return
+        }
+
+        let lineHeight = font.lineHeight + 5
         let numberOfLines = Int(contentSize.height / lineHeight)
         let padding: CGFloat = 10
         if numberOfLines <= desiredNumberOfLines {
             heightConstraints.constant = CGFloat(numberOfLines) * lineHeight + padding
         } else {
             heightConstraints.constant = CGFloat(desiredNumberOfLines) * lineHeight + padding
+        }
+    }
+
+    private class TextStorageDelegate: NSObject, NSTextStorageDelegate {
+        private weak var observedTextView: UITextView?
+
+        init(observedTextView: UITextView) {
+            self.observedTextView = observedTextView
+            super.init()
+        }
+
+        public func textStorage(
+            _ textStorage: NSTextStorage,
+            didProcessEditing editedMask: NSTextStorage.EditActions,
+            range editedRange: NSRange,
+            changeInLength delta: Int
+        ) {
+            guard let observedTextView else {
+                return
+            }
+            if editedMask.contains(.editedCharacters) {
+                observedTextView.placeholderLabel.isHidden = !observedTextView.text.isEmpty
+            }
         }
     }
 }

@@ -21,17 +21,27 @@ import XCResultKit
 import ArgumentParser
 
 struct TestResult: Codable {
-    let eventType: String = "testResult"
+    enum CodingKeys: String, CodingKey {
+        case duration
+        case identifier
+        case testStatus
+        case `try`
+        case finalTry
+        case message
+    }
+
     let duration: Double?
     let identifier: String
     let testStatus: String
     let `try`: Int
     let finalTry: Bool
+    let message: String?
+
+    let eventType: String = "testResult"
     let workflow = Env.env["BITRISE_TRIGGERED_WORKFLOW_TITLE"]
     let build = Env.env["BITRISE_BUILD_URL"]
     let branch = Env.env["BITRISE_GIT_BRANCH"]
     let commit = Env.env["BITRISE_GIT_COMMIT"]
-    let message: String?
 }
 
 struct SummarizeTestResults: ParsableCommand {
@@ -68,16 +78,17 @@ struct SummarizeTestResults: ParsableCommand {
                             message = titles.joined(separator: "\n")
                         }
 
-                        let testId = test.identifier.trimmingCharacters(in: CharacterSet(charactersIn: "()"))
-                        let fullTestId = (bundleSummary.targetName ?? "") + "/" + testId
+                        if let testId = test.identifier?.trimmingCharacters(in: CharacterSet(charactersIn: "()")) {
+                            let fullTestId = (bundleSummary.targetName ?? "") + "/" + testId
 
-                        results.append(TestResult(
-                                         duration: test.duration,
-                                         identifier: fullTestId,
-                                         testStatus: test.testStatus,
-                                         try: tryNumber,
-                                         finalTry: isFinal,
-                                         message: message))
+                            results.append(TestResult(
+                                             duration: test.duration,
+                                             identifier: fullTestId,
+                                             testStatus: test.testStatus,
+                                             try: tryNumber,
+                                             finalTry: isFinal,
+                                             message: message))
+                        }
                     }
                 }
             }
