@@ -67,30 +67,3 @@ extension APIObserverAlert {
     }
 }
 #endif
-
-// Not documented
-public struct GetObserverAlertsRequest: APIRequestable {
-    public typealias Response = [APIObserverAlert]
-
-    public let studentID: String
-    public var path: String { "users/self/observer_alerts/\(studentID)" }
-    public var query: [APIQueryItem] { [ .perPage(100) ] }
-}
-
-// Not documented
-public struct MarkObserverAlertReadRequest: APIRequestable {
-    public typealias Response = APIObserverAlert
-
-    public let alertID: String
-    public var method: APIMethod { .put }
-    public var path: String { "users/self/observer_alerts/\(alertID)/read" }
-}
-
-// Not documented
-public struct DismissObserverAlertRequest: APIRequestable {
-    public typealias Response = APIObserverAlert
-
-    public let alertID: String
-    public var method: APIMethod { .put }
-    public var path: String { "users/self/observer_alerts/\(alertID)/dismissed" }
-}

@@ -23,36 +23,76 @@ import XCTest
 
 class ObserverAlertsInteractorTests: ParentTestCase {
 
-    func testLoadsAlertsWhereQuantitativeDataIsNotEnabled() {
-        api.mock(GetObserverAlerts(studentID: "testStudent"), value: [
-            .make(alert_type: .courseGradeLow, context_id: "c1", id: "a1", user_id: "testStudent"),
-            .make(alert_type: .courseGradeLow, context_id: "c2", id: "a2", user_id: "testStudent")
-        ])
-        api.mock(GetAlertThresholds(studentID: "testStudent"), value: [])
-        let mockSettingsInteractor = MockCourseSettingsInteractor()
-        // course c2 has restrict quantitative data enabled
-        mockSettingsInteractor.mockedCourseIDsResponse = ["c2"]
-        let testee = ObserverAlertsInteractor(
-            studentID: "testStudent",
-            courseSettingsInteractor: mockSettingsInteractor
+    private enum TestConstants {
+        static let studentID = "some student id"
+        static let alertID = "some alert id"
+    }
+
+    private var courseSettingsInteractor: MockCourseSettingsInteractor!
+    private var testee: ObserverAlertsInteractor!
+
+    override func setUp() {
+        super.setUp()
+        courseSettingsInteractor = .init()
+        testee = .init(
+            studentID: TestConstants.studentID,
+            courseSettingsInteractor: courseSettingsInteractor
         )
+    }
+
+    override func tearDown() {
+        courseSettingsInteractor = nil
+        testee = nil
+        super.tearDown()
+    }
+
+    func testLoadsAlertsWhereQuantitativeDataIsNotEnabled() {
+        api.mock(GetObserverAlerts(studentID: TestConstants.studentID), value: [
+            .make(alert_type: .courseGradeLow, context_id: "c1", id: "a1", user_id: TestConstants.studentID),
+            .make(alert_type: .courseGradeLow, context_id: "c2", id: "a2", user_id: TestConstants.studentID)
+        ])
+        api.mock(GetAlertThresholds(studentID: TestConstants.studentID), value: [])
+        // course c2 has restrict quantitative data enabled
+        courseSettingsInteractor.mockedCourseIDsResponse = ["c2"]
 
         // WHEN
-        let resultPubliser = testee.refresh()
+        let resultPublisher = testee.refresh()
 
         // THEN
-        XCTAssertFirstValueAndCompletion(resultPubliser, timeout: 1) { (alerts, thresholds) in
+        XCTAssertFirstValueAndCompletion(resultPublisher, timeout: 1) { (alerts, thresholds) in
             XCTAssertEqual(alerts.count, 1)
             XCTAssertEqual(alerts.first?.id, "a1")
             XCTAssertEqual(thresholds.isEmpty, true)
         }
-        XCTAssertEqual(mockSettingsInteractor.receivedSettingsKey, \.restrictQuantitativeData)
-        XCTAssertEqual(mockSettingsInteractor.receivedExpectedValue, true)
-        XCTAssertEqual(Set(mockSettingsInteractor.receivedCourseIDs ?? []), Set(["c1", "c2"]))
+        XCTAssertEqual(courseSettingsInteractor.receivedSettingsKey, \.restrictQuantitativeData)
+        XCTAssertEqual(courseSettingsInteractor.receivedExpectedValue, true)
+        XCTAssertEqual(Set(courseSettingsInteractor.receivedCourseIDs ?? []), Set(["c1", "c2"]))
+    }
+
+    func testMarkAlertAsRead() {
+        let useCase = MarkObserverAlertAsRead(id: TestConstants.alertID)
+        let expectation = XCTestExpectation(description: "Request was sent")
+        api.mock(useCase, expectation: expectation)
+
+        let publisher = testee.markAlertAsRead(id: TestConstants.alertID)
+        XCTAssertFinish(publisher, timeout: 1)
+
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testDismissObserverAlert() {
+        let useCase = DismissObserverAlert(id: TestConstants.alertID)
+        let expectation = XCTestExpectation(description: "Request was sent")
+        api.mock(useCase, expectation: expectation)
+
+        let publisher = testee.dismissAlert(id: TestConstants.alertID)
+        XCTAssertFinish(publisher, timeout: 1)
+
+        wait(for: [expectation], timeout: 1)
     }
 }
 
-class MockCourseSettingsInteractor: CourseSettingsInteractor {
+private final class MockCourseSettingsInteractor: CourseSettingsInteractor {
 
     var mockedCourseIDsResponse: [String] = []
     var receivedSettingsKey: KeyPath<CourseSettings, Bool>?

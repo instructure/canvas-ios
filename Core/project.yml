@@ -44,7 +44,7 @@ targets:
       - package: Lottie
       - package: PSPDFKit
     preBuildScripts:
-      - path: ../scripts/swiftLint.sh
+      - path: ../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint
         basedOnDependencyAnalysis: false
     settings:
@@ -83,7 +83,7 @@ targets:
       - target: Core
       - package: Swifter
     preBuildScripts:
-      - path: ../scripts/swiftLint.sh
+      - path: ../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint
         basedOnDependencyAnalysis: false
 schemes:
