@@ -694,7 +694,7 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
 
     private var mockFailedFuture: Future<URLResponse?, Error> {
         Future<URLResponse?, Error> { promise in
-            promise(.failure("Fail"))
+            promise(.failure(NSError.internalError()))
         }
     }
 
