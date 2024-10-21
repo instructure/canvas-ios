@@ -61,10 +61,15 @@ public class MessageViewModel: Identifiable {
         return .handled
     }
 
-    public func handleFileNavigation(file: File, controller: WeakViewController) {
-        guard let url = file.url else { return }
-
-        router.route(to: url.appendingQueryItems(.init(name: "canEdit", value: "false")), from: controller, options: .modal(embedInNav: true, addDoneButton: true))
+    public func handleFileNavigation(url: URL?, controller: WeakViewController) {
+        guard let url else { return }
+        router.route(
+            to: url.appendingQueryItems(
+                .init(name: "canEdit", value: "false")
+            ),
+            from: controller,
+            options: .modal(embedInNav: true, addDoneButton: true)
+        )
     }
 }
 
