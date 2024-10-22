@@ -36,7 +36,7 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         let navigation = UINavigationController(rootViewController: controller)
 
         environment.window?.rootViewController = navigation
-        drainMainQueue()
+        drainMainQueue(thoroughness: 20)
 
         descriptor.enabled.send(enabled)
 
@@ -59,7 +59,7 @@ class CoreSearchHostingControllerTests: CoreTestCase {
 
         // When - Show
         controller.navigationItem.rightBarButtonItem?.primaryAction?.trigger()
-        drainMainQueue()
+        drainMainQueue(thoroughness: 20)
 
         // Then
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.accessibilityIdentifier, "filter_bar_button")
@@ -98,13 +98,13 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         let controller = setupTestSearch()
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.accessibilityIdentifier, "search_bar_button")
 
-        // When - Show
+        // When - Show search
         controller.navigationItem.rightBarButtonItem?.primaryAction?.trigger()
-        drainMainQueue()
+        drainMainQueue(thoroughness: 20)
 
-        // When - Show
+        // When - Tap on filter button
         controller.navigationItem.rightBarButtonItem?.primaryAction?.trigger()
-        drainMainQueue()
+        drainMainQueue(thoroughness: 20)
 
         // Presented
         let searchResultsVC = try XCTUnwrap(router.presented)
