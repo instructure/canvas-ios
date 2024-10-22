@@ -209,7 +209,7 @@ public struct InboxView: View, ScreenViewTrackable {
             model.menuDidTap.send(controller)
         } label: {
             Image.hamburgerSolid
-                .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+                .foregroundColor(AppEnvironment.shared.app == .horizon ? .backgroundDarkest : Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
         }
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("Inbox.profileButton")
@@ -221,7 +221,7 @@ public struct InboxView: View, ScreenViewTrackable {
             model.newMessageDidTap.send(controller)
         } label: {
             Image.addSolid
-                .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+                .foregroundColor(AppEnvironment.shared.app == .horizon ? .backgroundDarkest : Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
         }
         .frame(width: 44, height: 44).padding(.trailing, -6)
         .identifier("Inbox.newMessageButton")

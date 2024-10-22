@@ -45,7 +45,29 @@ enum HorizonRouter {
         RouteHandler("/programs/:programID") { _, _, userInfo in
             guard let program = userInfo?["program"] as? HProgram else { return nil }
             return ProgramsAssembly.makeProgramDetailsViewController(program: program)
-        }
+        },
+        RouteHandler("/conversations/:conversationID") { _, params, userInfo in
+            guard let conversationID = params["conversationID"] else { return nil }
+            let allowArchive: Bool = {
+                if let userInfo, let allowArchiveParam = userInfo["allowArchive"] as? Bool {
+                    return allowArchiveParam
+                } else {
+                    return true
+                }
+            }()
+            return MessageDetailsAssembly.makeViewController(
+                env: AppEnvironment.shared,
+                conversationID: conversationID,
+                allowArchive: allowArchive
+            )
+        },
+        RouteHandler("/courses/:courseID/files/:section/:resourceID/:fileID/offline", factory: offlineFileDetails),
+        RouteHandler("/files/:fileID", factory: fileDetails),
+        RouteHandler("/files/:fileID/download", factory: fileDetails),
+        RouteHandler("/files/:fileID/preview", factory: fileDetails),
+        RouteHandler("/:context/:contextID/files/:fileID", factory: fileDetails),
+        RouteHandler("/:context/:contextID/files/:fileID/download", factory: fileDetails),
+        RouteHandler("/:context/:contextID/files/:fileID/preview", factory: fileDetails)
     ]
 }
 
@@ -60,4 +82,60 @@ private func pageViewController(url: URLComponents, params: [String: String], us
         )
     }
     return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
+}
+
+private func offlineFileDetails(
+    url _: URLComponents,
+    params: [String: String],
+    userInfo _: [String: Any]?
+) -> UIViewController? {
+    guard let courseID = params["courseID"],
+          let section = params["section"],
+          let resourceID = params["resourceID"],
+          let fileID = params["fileID"],
+          let sessionID = AppEnvironment.shared.currentSession?.uniqueID
+    else {
+        return nil
+    }
+
+    let context = Context(.course, id: courseID)
+    let fileSource = OfflineFileSource.privateFile(
+        sessionID: sessionID,
+        courseID: courseID,
+        sectionName: section,
+        resourceID: resourceID,
+        fileID: fileID
+    )
+    return FileDetailsViewController.create(
+        context: context,
+        fileID: fileID,
+        offlineFileSource: fileSource
+    )
+}
+
+private func fileDetails(
+    url: URLComponents,
+    params: [String: String],
+    userInfo _: [String: Any]?
+) -> UIViewController? {
+    guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
+    var context = Context(path: url.path)
+    if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
+        context = Context(.course, id: courseID)
+    }
+    let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
+    if !url.originIsModuleItemDetails, !url.skipModuleItemSequence, let context = context, context.contextType == .course {
+        return ModuleItemSequenceViewController.create(
+            courseID: context.id,
+            assetType: .file,
+            assetID: fileID,
+            url: url
+        )
+    }
+    return FileDetailsViewController.create(
+        context: context,
+        fileID: fileID,
+        originURL: url,
+        assignmentID: assignmentID
+    )
 }
