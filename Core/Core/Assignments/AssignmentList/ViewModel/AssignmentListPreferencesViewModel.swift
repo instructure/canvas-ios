@@ -91,6 +91,8 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
     @Published private(set) var selectedAssignmentFilterOptions: [AssignmentFilterOption]
 
+    @Published private(set) var isStudentApp: Bool
+
     // MARK: - Private variables
 
     private let initialGradingPeriod: GradingPeriod?
@@ -103,6 +105,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
     let courseId: String
     let courseName: String?
+    let env: AppEnvironment
 
     // MARK: - Init
 
@@ -114,6 +117,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         initialFilterOptions: [AssignmentFilterOption] = AssignmentFilterOption.allCases,
         courseId: String,
         courseName: String?,
+        env: AppEnvironment,
         completion: @escaping (AssignmentListPreferences) -> Void
     ) {
         self.gradingPeriods = gradingPeriods
@@ -126,11 +130,14 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         self.initialFilterOptions = initialFilterOptions
         self.courseId = courseId
         self.courseName = courseName
+        self.env = env
         self.completion = completion
 
         if gradingPeriods.count > 1 {
             isGradingPeriodsSectionVisible = true
         }
+
+        self.isStudentApp = env.app == .student
     }
 
     // MARK: - Functions

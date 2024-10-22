@@ -220,6 +220,7 @@ public class AssignmentListViewModel: ObservableObject {
             initialFilterOptions: selectedFilterOptions,
             courseId: courseID,
             courseName: courseName,
+            env: env,
             completion: { [weak self] assignmentListPreferences in
                 self?.filterOptionsDidUpdate(
                     gradingPeriod: assignmentListPreferences.gradingPeriod,

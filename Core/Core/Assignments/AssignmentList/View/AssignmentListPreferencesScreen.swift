@@ -32,7 +32,9 @@ public struct AssignmentListPreferencesScreen: View {
     public var body: some View {
         ScrollView(showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
-                filterSection
+                if viewModel.isStudentApp {
+                    filterSection
+                }
                 sortBySection
                 if viewModel.isGradingPeriodsSectionVisible {
                     gradingPeriodsSection
