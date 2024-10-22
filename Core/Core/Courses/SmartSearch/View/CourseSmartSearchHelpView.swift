@@ -28,6 +28,7 @@ public struct CourseSmartSearchHelpView: View {
         NavigationView {
             VStack {
                 Text(verbatim: ".. Help Content ..")
+                    .foregroundStyle(.secondary)
             }
             .navigationTitle("How it works")
             .navigationBarTitleDisplayMode(.inline)
