@@ -80,7 +80,7 @@ class CoreSearchHostingControllerTests: CoreTestCase {
 
         // When - Show
         controller.navigationItem.rightBarButtonItem?.primaryAction?.trigger()
-        drainMainQueue()
+        drainMainQueue(thoroughness: 20)
 
         // When - Type
         let textField: UITextField = try XCTUnwrap(controller.navigationItem.titleView?.findSubview(accessID: "ui_search_field"))
