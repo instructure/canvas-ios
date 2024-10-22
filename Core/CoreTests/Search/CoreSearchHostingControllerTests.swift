@@ -24,6 +24,13 @@ import TestsFoundation
 
 class CoreSearchHostingControllerTests: CoreTestCase {
 
+    private var subscriptions = Set<AnyCancellable>()
+
+    override func tearDown() {
+        subscriptions.removeAll()
+        super.tearDown()
+    }
+
     private func setupTestSearch(enabled: Bool = true) -> CoreSearchHostingController<TestSearchInfo, TestSearchDescriptor, TestContentView> {
         let descriptor = TestSearchDescriptor()
         let controller = CoreSearchHostingController(
@@ -78,6 +85,13 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         let controller = setupTestSearch()
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.accessibilityIdentifier, "search_bar_button")
 
+        let submitted = CurrentValueSubject<String, Never>("")
+        controller
+            .searchContext
+            .didSubmit
+            .subscribe(submitted)
+            .store(in: &subscriptions)
+
         // When - Show
         controller.navigationItem.rightBarButtonItem?.primaryAction?.trigger()
         drainMainQueue(thoroughness: 20)
@@ -88,6 +102,7 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         _ = textField.delegate?.textFieldShouldReturn?(textField)
 
         XCTAssertEqual(controller.searchContext.searchText.value, "Example")
+        XCTAssertSingleOutputEquals(submitted, "Example")
 
         let searchResultsVC = router.lastViewController as? CoreSplitViewController
         XCTAssertNotNil(searchResultsVC)
