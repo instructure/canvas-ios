@@ -342,6 +342,7 @@ public extension Image {
     static var externalLinkSolid: Image { Image("externalLinkSolid", bundle: .core) }
     static var eyeLine: Image { Image("eyeLine", bundle: .core) }
     static var eyeSolid: Image { Image("eyeSolid", bundle: .core) }
+    static var filterFilled: Image { Image("filterFilled", bundle: .core) }
     static var filterLine: Image { Image("filterLine", bundle: .core) }
     static var filterSolid: Image { Image("filterSolid", bundle: .core) }
     static var folderLine: Image { Image("folderLine", bundle: .core) }

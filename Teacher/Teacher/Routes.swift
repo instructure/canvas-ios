@@ -107,7 +107,7 @@ let router = Router(routes: [
     RouteHandler("/courses/:courseID/assignments") { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
         let viewModel = AssignmentListViewModel(context: context)
-        return CoreHostingController(AssignmentListView(viewModel: viewModel))
+        return CoreHostingController(AssignmentListScreen(viewModel: viewModel))
     },
 
     RouteHandler("/courses/:courseID/assignments/syllabus", factory: syllabus),
