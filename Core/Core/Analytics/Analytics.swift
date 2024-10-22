@@ -113,4 +113,11 @@ public class Analytics: NSObject {
 
         return name
     }
+
+    public static var analyticsBaseUrl: String {
+        guard let session = AppEnvironment.shared.currentSession else {
+            return ""
+        }
+        return session.baseURL.absoluteString
+    }
 }
