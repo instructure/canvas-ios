@@ -1,7 +1,7 @@
 ---
 name: Core
 attributes: {
-  LastUpgradeCheck: "1500"
+  LastUpgradeCheck: "1600"
 }
 options:
   groupSortPosition: top
