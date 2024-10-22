@@ -36,7 +36,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         testee.courseID = "failingID"
         drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
-        XCTAssertEqual(testee.state, .error("Custom error"))
+        XCTAssertEqual(testee.state, .error(AssignmentPickerListServiceError.failedToGetAssignments.localizedDescription))
     }
 
     func testAssignmentFetchSuccessful() {

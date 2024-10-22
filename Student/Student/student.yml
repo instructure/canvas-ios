@@ -29,6 +29,8 @@ targets:
       - path: ../../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint
         basedOnDependencyAnalysis: false
+        inputFiles:
+          - $(SRCROOT)/.swiftlint.yml
     postBuildScripts:
       - path: ../../scripts/xcode-build-phases/uploadDSYMs.sh
         name: Upload dSYMs to Firebase

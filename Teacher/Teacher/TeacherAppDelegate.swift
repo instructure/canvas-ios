@@ -59,7 +59,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
         FontAppearance.update()
-        TabBarBadgeCounts.application = UIApplication.shared
 
         if let session = LoginSession.mostRecent {
             window?.rootViewController = LoadingViewController.create()
