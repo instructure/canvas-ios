@@ -28,7 +28,7 @@ class CourseSmartSearchRequestTests: CoreTestCase {
         let searchWord = "Example Search Word"
 
         // When
-        let request = CourseSmartSearchRequest(courseId: courseId, searchText: searchWord, filter: [])
+        let request = CourseSmartSearchRequest(courseId: courseId, searchText: searchWord, filter: nil)
 
         // Then
         XCTAssertEqual(request.method, .get)
