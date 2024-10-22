@@ -244,14 +244,14 @@ extension InstUI.NavigationBarButton {
         isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
         isAvailableOffline: Bool = true,
-        isFilled: Bool = false,
+        isSolid: Bool = false,
         action: @escaping () -> Void
     ) -> Self {
         .init(
             isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
             isAvailableOffline: isAvailableOffline,
-            image: isFilled ? .filterFilled : .filterLine,
+            image: isSolid ? .filterSolid : .filterLine,
             accessibilityLabel: String(localized: "Filter", bundle: .core),
             action: action
         )

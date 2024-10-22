@@ -18,13 +18,13 @@
 
 import SwiftUI
 
-public struct AssignmentFilterScreen: View {
+public struct AssignmentListPreferencesScreen: View {
     // MARK: - Properties
     @Environment(\.viewController) private var viewController
-    @ObservedObject private var viewModel: AssignmentFilterViewModel
+    @ObservedObject private var viewModel: AssignmentListPreferencesViewModel
 
     // MARK: - Init
-    public init(viewModel: AssignmentFilterViewModel) {
+    public init(viewModel: AssignmentListPreferencesViewModel) {
         self.viewModel = viewModel
     }
 
@@ -54,26 +54,38 @@ public struct AssignmentFilterScreen: View {
         }
     }
 
-    private var gradingPeriodsSection: some View {
+    private var doneButton: some View {
+        InstUI.NavigationBarButton.done {
+            viewModel.doneButtonTapped(viewController: viewController)
+        }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(Text("Done", bundle: .core))
+        .accessibilityIdentifier("AssignmentFilter.doneButton")
+    }
+
+    // MARK: - Filter Section
+
+    private var filterSection: some View {
         Section {
-            InstUI.RadioButtonCell(title: "All Grading Periods", value: nil, selectedValue: $viewModel.selectedGradingPeriod, color: Color(Brand.shared.primary))
-            ForEach(viewModel.gradingPeriods, id: \.hashValue) { item in
-                gradingPeriodItem(with: item)
+            ForEach(AssignmentFilterOption.allCases, id: \.id) { item in
+                filterItem(with: item)
             }
         } header: {
-            InstUI.ListSectionHeader(title: String(localized: "Grading Period", bundle: .core))
+            InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
         }
     }
 
-    private func gradingPeriodItem(with item: GradingPeriod) -> some View {
-        InstUI.RadioButtonCell(
-            title: item.title ?? "",
-            value: item,
-            selectedValue: $viewModel.selectedGradingPeriod,
-            color: Color(Brand.shared.primary)
+    private func filterItem(with item: AssignmentFilterOption) -> some View {
+        InstUI.CheckboxCell(
+            title: item.title,
+            isSelected: selectionBinding(option: item),
+            color: Color(Brand.shared.primary),
+            subtitle: item.subtitle
         )
-        .accessibilityIdentifier("AssignmentFilter.gradingPeriodItems.\(item.id ?? "0")")
+        .accessibilityIdentifier("AssignmentFilter.filterItems.\(item.id)")
     }
+
+    // MARK: - Sort By Section
 
     private var sortBySection: some View {
         Section {
@@ -95,34 +107,30 @@ public struct AssignmentFilterScreen: View {
         .accessibilityIdentifier("AssignmentFilter.sortByItems.\(item.rawValue)")
     }
 
-    private var doneButton: some View {
-        InstUI.NavigationBarButton.done {
-            viewModel.doneButtonTapped(viewController: viewController)
-        }
-        .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(Text("Done", bundle: .core))
-        .accessibilityIdentifier("AssignmentFilter.doneButton")
-    }
+    // MARK: - Grading Period Section
 
-    private var filterSection: some View {
+    private var gradingPeriodsSection: some View {
         Section {
-            ForEach(AssignmentFilterOption.allCases, id: \.id) { item in
-                filterItem(with: item)
+            InstUI.RadioButtonCell(title: "All Grading Periods", value: nil, selectedValue: $viewModel.selectedGradingPeriod, color: Color(Brand.shared.primary))
+            ForEach(viewModel.gradingPeriods, id: \.hashValue) { item in
+                gradingPeriodItem(with: item)
             }
         } header: {
-            InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
+            InstUI.ListSectionHeader(title: String(localized: "Grading Period", bundle: .core))
         }
     }
 
-    private func filterItem(with item: AssignmentFilterOption) -> some View {
-        InstUI.CheckboxCell(
-            title: item.title,
-            isSelected: selectionBinding(option: item),
-            color: Color(Brand.shared.primary),
-            subtitle: item.subtitle
+    private func gradingPeriodItem(with item: GradingPeriod) -> some View {
+        InstUI.RadioButtonCell(
+            title: item.title ?? "",
+            value: item,
+            selectedValue: $viewModel.selectedGradingPeriod,
+            color: Color(Brand.shared.primary)
         )
-        .accessibilityIdentifier("AssignmentFilter.filterItems.\(item.id)")
+        .accessibilityIdentifier("AssignmentFilter.gradingPeriodItems.\(item.id ?? "0")")
     }
+
+    // MARK: - Additional functions
 
     private func selectionBinding(option: AssignmentFilterOption) -> Binding<Bool> {
         Binding {
@@ -154,7 +162,7 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
         let _ = UITableView.setupDefaultSectionHeaderTopPadding()
 
         let gradingPeriods = createGradingPeriods()
-        let viewModel = AssignmentFilterViewModel(
+        let viewModel = AssignmentListPreferencesViewModel(
             gradingPeriods: gradingPeriods,
             initialGradingPeriod: nil,
             sortingOptions: AssignmentArrangementOptions.allCases,
@@ -162,7 +170,7 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
             courseId: "1",
             courseName: "Sample Course Name",
             completion: { _ in })
-        AssignmentFilterScreen(viewModel: viewModel)
+        AssignmentListPreferencesScreen(viewModel: viewModel)
     }
 }
 

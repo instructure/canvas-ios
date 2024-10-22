@@ -18,6 +18,8 @@
 
 import Foundation
 
+// MARK: - Structs
+
 public struct AssignmentFilterOption: CaseIterable, Equatable {
     public static func == (lhs: AssignmentFilterOption, rhs: AssignmentFilterOption) -> Bool {
         lhs.id == rhs.id && lhs.title == rhs.title && lhs.subtitle == rhs.subtitle
@@ -68,11 +70,13 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     ]
 }
 
-public final class AssignmentFilterViewModel: ObservableObject {
+// MARK: - ViewModel
+
+public final class AssignmentListPreferencesViewModel: ObservableObject {
     struct AssignmentListPreferences {
         let filterOptions: [AssignmentFilterOption]
         let gradingPeriod: GradingPeriod?
-        let sortingOption: AssignmentArrangementOptions?
+        let sortingOption: AssignmentArrangementOptions
         let courseId: String
     }
 
@@ -81,19 +85,24 @@ public final class AssignmentFilterViewModel: ObservableObject {
     @Published private(set) var isGradingPeriodsSectionVisible = false
     @Published private(set) var gradingPeriods: [GradingPeriod] = []
     @Published var selectedGradingPeriod: GradingPeriod?
+
     @Published private(set) var sortingOptions: [AssignmentArrangementOptions] = []
     @Published var selectedSortingOption: AssignmentArrangementOptions?
-    @Published private(set) var selectedAssignmentFilterOptions: [AssignmentFilterOption]
 
-    let courseId: String
-    let courseName: String?
+    @Published private(set) var selectedAssignmentFilterOptions: [AssignmentFilterOption]
 
     // MARK: - Private variables
 
     private let initialGradingPeriod: GradingPeriod?
     private let initialSortingOption: AssignmentArrangementOptions
     private let initialFilterOptions: [AssignmentFilterOption]?
+
     private let completion: (AssignmentListPreferences) -> Void
+
+    // MARK: - Variables
+
+    let courseId: String
+    let courseName: String?
 
     // MARK: - Init
 
@@ -132,7 +141,7 @@ public final class AssignmentFilterViewModel: ObservableObject {
             AssignmentListPreferences(
                 filterOptions: selectedAssignmentFilterOptions,
                 gradingPeriod: selectedGradingPeriod,
-                sortingOption: selectedSortingOption,
+                sortingOption: selectedSortingOption ?? AssignmentArrangementOptions.dueDate,
                 courseId: courseId
             )
         )
