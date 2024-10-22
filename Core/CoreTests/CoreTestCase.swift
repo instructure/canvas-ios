@@ -143,11 +143,11 @@ class CoreTestCase: XCTestCase {
 private let mainViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
 
 extension CoreTestCase {
-    public func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
+    public func hostSwiftUIController<V: View>(_ view: V, thoroughness: Int = 10) -> CoreHostingController<V> {
         let controller = CoreHostingController(view)
         window.rootViewController = controller
         var count = 0
-        while controller.testTree == nil, count < 10 {
+        while controller.testTree == nil, count < thoroughness {
             count += 1
             let expectation = XCTestExpectation()
             DispatchQueue.main.async { expectation.fulfill() }
