@@ -62,6 +62,7 @@ public class CreateConversation: APIUseCase {
             media_comment_id: mediaCommentID,
             media_comment_type: mediaCommentType,
             attachment_ids: attachmentIDs,
+            group_conversation: true, /// `group_conversation` is always true
             bulk_message: bulkMessage
         ))
     }

@@ -61,4 +61,18 @@ class CreateConversationTests: CoreTestCase {
         XCTAssertEqual(conversation.contextCode, course.canvasContextID)
         XCTAssertEqual(conversation.contextName, course.name)
     }
+
+    func test_groupConversationIsTrue() {
+        let useCase = CreateConversation(
+            subject: "subject",
+            body: "body",
+            recipientIDs: ["1"],
+            canvasContextID: "course_1",
+            mediaCommentID: "1",
+            mediaCommentType: .audio,
+            attachmentIDs: ["1"]
+        )
+        let groupConversation = useCase.request.body?.group_conversation ?? false
+        XCTAssertTrue(groupConversation)
+    }
 }
