@@ -71,7 +71,12 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         // Then
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.accessibilityIdentifier, "filter_bar_button")
         XCTAssertEqual(controller.navigationItem.leftBarButtonItem?.accessibilityIdentifier, "close_bar_button")
-        XCTAssertNotNil(controller.navigationItem.titleView?.findSubview(accessID: "ui_search_field"))
+
+        try waitForView(
+            of: UITextField.self,
+            withAccessID: "ui_search_field",
+            in: controller.navigationItem.titleView
+        )
 
         // When - Hide
         controller.navigationItem.leftBarButtonItem?.primaryAction?.trigger()
@@ -97,7 +102,11 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         drainMainQueue(thoroughness: 20)
 
         // When - Type
-        let textField: UITextField = try XCTUnwrap(controller.navigationItem.titleView?.findSubview(accessID: "ui_search_field"))
+        let textField: UITextField = try waitForView(
+            withAccessID: "ui_search_field",
+            in: controller.navigationItem.titleView
+        )
+
         textField.text = "Example"
         _ = textField.delegate?.textFieldShouldReturn?(textField)
 
@@ -180,32 +189,5 @@ extension UIAction {
         typealias ActionHandlerBlock = @convention(block) (UIAction) -> Void
         let handler = value(forKey: "handler") as AnyObject
         return unsafeBitCast(handler, to: ActionHandlerBlock.self)
-    }
-}
-
-extension UIView {
-
-    func findSubview(accessID: String) -> UIView? {
-        for subview in subviews {
-            if subview.accessibilityIdentifier == accessID {
-                return subview
-            }
-            if let found = subview.findSubview(accessID: accessID) {
-                return found
-            }
-        }
-        return nil
-    }
-
-    func findSubview<V: UIView>(of type: V.Type = V.self, accessID: String) -> V? {
-        for subview in subviews {
-            if let found = subview as? V, found.accessibilityIdentifier == accessID {
-                return found
-            }
-            if let found = subview.findSubview(of: type, accessID: accessID) {
-                return found
-            }
-        }
-        return nil
     }
 }
