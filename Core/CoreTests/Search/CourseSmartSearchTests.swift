@@ -71,7 +71,7 @@ extension CourseSmartSearchResult {
             content_id: 32453,
             content_type: .page,
             readable_type: "Page",
-            title: "Page title",
+            title: "Page Title",
             body: ".. Page Content ..",
             html_url: URL(string: "https://www.instructure.com/canvas"),
             distance: distance,
