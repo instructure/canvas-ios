@@ -49,6 +49,8 @@ extension CGSize {
 
 // MARK: - Deferred Value
 
+/// Use this to defer triggering update cycle of SwiftUI View's to
+/// point of your choosing by calling `update()`
 public struct DeferredValue<Value: Equatable>: Equatable {
     public static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.value == rhs.value
@@ -62,7 +64,7 @@ public struct DeferredValue<Value: Equatable>: Equatable {
     }
 
     private let box: Box<Value>
-    var value: Value
+    private(set) var value: Value
     var deferred: Value {
         get { box.value }
         set { box.value = newValue }
