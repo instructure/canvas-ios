@@ -429,8 +429,11 @@ final class ComposeMessageViewModel: ObservableObject {
         if subject.isEmpty {
             subject = title
         }
+        /// `bulkMessage` refers to:
+        /// 1. Sending a message to a group or individuals.
+        /// 2. Setting it to true if you are sending a message to more than 100 recipients.
         let isExceedsRecipientsLimit = recipientIDs.count > maxRecipientCount
-        let groupConversation = isExceedsRecipientsLimit ? true : !sendIndividual
+        let bulkMessage = isExceedsRecipientsLimit ? true : sendIndividual
         return MessageParameters(
             subject: subject,
             body: body,
@@ -438,8 +441,7 @@ final class ComposeMessageViewModel: ObservableObject {
             attachmentIDs: attachments.compactMap { $0.id },
             context: context.context,
             conversationID: conversation?.id,
-            groupConversation: groupConversation,
-            bulkMessage: isExceedsRecipientsLimit,
+            bulkMessage: bulkMessage,
             includedMessages: includedMessages.map { $0.id }
         )
     }
