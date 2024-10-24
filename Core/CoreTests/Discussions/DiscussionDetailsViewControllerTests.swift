@@ -37,7 +37,8 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
     let webView = MockWebView(features: [])
     class MockWebView: CoreWebView {
         @objc var runningCount = 0
-        override func evaluateJavaScript(_ javaScriptString: String, completionHandler: ((Any?, Error?) -> Void)? = nil) {
+
+        override func evaluateJavaScript(_ javaScriptString: String, completionHandler: (@MainActor (Any?, (any Error)?) -> Void)? = nil) {
             runningCount += 1
             super.evaluateJavaScript(javaScriptString) { result, error in
                 self.runningCount -= 1

@@ -45,6 +45,7 @@ public class GetCourse: APIUseCase {
 
 public class GetCourses: CollectionUseCase {
     public typealias Model = Course
+    public typealias Response = GetCoursesRequest.Response
 
     let showFavorites: Bool
     let enrollmentState: GetCoursesRequest.EnrollmentState?
@@ -86,6 +87,7 @@ public class GetCourses: CollectionUseCase {
 
 public class GetAllCourses: CollectionUseCase {
     public typealias Model = Course
+    public typealias Response = [APICourse]
 
     public let cacheKey: String? = "courses"
 
@@ -118,6 +120,7 @@ public class GetAllCourses: CollectionUseCase {
 
 public class GetUserCourses: CollectionUseCase {
     public typealias Model = Course
+    public typealias Response = Request.Response
 
     let userID: String
 

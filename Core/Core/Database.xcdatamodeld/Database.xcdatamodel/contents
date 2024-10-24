@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23G93" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23231" systemVersion="23G93" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -242,7 +242,7 @@
     </entity>
     <entity name="ContextColor" representedClassName="Core.ContextColor" syncable="YES">
         <attribute name="canvasContextID" attributeType="String"/>
-        <attribute name="color" attributeType="Transformable" valueTransformerName="UIColorTransformer" customClassName="UIKit.UIColor"/>
+        <attribute name="color" attributeType="Transformable" valueTransformerName="UIColorTransformer"/>
         <relationship name="card" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardCard" inverseName="contextColor" inverseEntity="DashboardCard"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="contextColor" inverseEntity="Course"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="contextColor" inverseEntity="Group"/>
@@ -917,6 +917,7 @@
         <attribute name="unpublishable" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="allDates" toMany="YES" deletionRule="Cascade" destinationEntity="AssignmentDate" inverseName="quiz" inverseEntity="AssignmentDate"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="QuizSubmission" inverseName="quiz" inverseEntity="QuizSubmission"/>
+        <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="quiz" inverseEntity="Todo"/>
     </entity>
     <entity name="QuizSubmission" representedClassName="Core.QuizSubmission" syncable="YES">
         <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -1083,7 +1084,7 @@
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="todo" inverseEntity="Assignment"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="todos" inverseEntity="Course"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="todos" inverseEntity="Group"/>
-        <relationship name="quiz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz"/>
+        <relationship name="quiz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="todos" inverseEntity="Quiz"/>
     </entity>
     <entity name="TTL" representedClassName="Core.TTL" syncable="YES">
         <attribute name="key" attributeType="String"/>
