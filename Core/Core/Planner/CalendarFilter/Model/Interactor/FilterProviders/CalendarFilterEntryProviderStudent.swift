@@ -35,10 +35,12 @@ struct CalendarFilterEntryProviderStudent: CalendarFilterEntryProvider {
             return nil
         }
 
-        let useCase = GetCalendarFilters(currentUserName: userName,
-                                         currentUserId: userId,
-                                         states: [.current_and_concluded],
-                                         filterUnpublishedCourses: true)
+        let useCase = GetStudentCalendarFilters(
+            currentUserName: userName,
+            currentUserId: userId,
+            states: [.current_and_concluded],
+            filterUnpublishedCourses: true
+        )
         return ReactiveStore(useCase: useCase).getEntities(ignoreCache: ignoreCache)
     }
 }

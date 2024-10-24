@@ -56,7 +56,7 @@ final class ComposeMessageViewModel: ObservableObject {
     public let didSelectRecipient = PassthroughRelay<Recipient>()
     public let didRemoveRecipient = PassthroughRelay<Recipient>()
     public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
-    public var didSelectFile = PassthroughRelay<(WeakViewController, File)>()
+    public var didSelectFile = PassthroughRelay<(WeakViewController, URL?)>()
     public let didRemoveFile = PassthroughRelay<File>()
 
     // MARK: - Inputs / Outputs
@@ -504,11 +504,13 @@ final class ComposeMessageViewModel: ObservableObject {
                 }
             })
             .store(in: &subscriptions)
-
-        didSelectFile.sink(receiveCompletion: { _ in }, receiveValue: { (controller, file) in
-            guard let url = file.url, let fileController = router.match(url.appendingQueryItems(.init(name: "canEdit", value: "false"))) else { return }
-
-            router.show(fileController, from: controller, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
+        didSelectFile.sink(receiveCompletion: { _ in }, receiveValue: { (controller, url) in
+            guard let url else { return }
+            router.route(
+                to: url.appendingQueryItems(.init(name: "canEdit", value: "false")),
+                from: controller,
+                options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
+            )
         })
         .store(in: &subscriptions)
 
