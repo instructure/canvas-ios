@@ -21,26 +21,50 @@ import XCTest
 import TestsFoundation
 
 class ObserverAlertTests: CoreTestCase {
-    func testProperties() {
+
+    private var alert: ObserverAlert!
+
+    override func setUp() {
+        super.setUp()
         let alert: ObserverAlert = databaseClient.insert()
+        self.alert = alert
+    }
+
+    override func tearDown() {
+        alert = nil
+        super.tearDown()
+    }
+
+    func testAlertType() {
         alert.alertTypeRaw = "bogus"
         XCTAssertEqual(alert.alertType, .institutionAnnouncement)
-        alert.alertType = .courseAnnouncement
+
+        alert.alertTypeRaw = "course_announcement"
         XCTAssertEqual(alert.alertType, .courseAnnouncement)
 
+        alert.alertType = .assignmentMissing
+        XCTAssertEqual(alert.alertTypeRaw, "assignment_missing")
+    }
+
+    func testWorkflowState() {
         alert.workflowStateRaw = "bogus"
         XCTAssertEqual(alert.workflowState, .unread)
-        alert.workflowState = .dismissed
+        XCTAssertEqual(alert.isUnread, true)
+
+        alert.workflowStateRaw = "dismissed"
         XCTAssertEqual(alert.workflowState, .dismissed)
+        XCTAssertEqual(alert.isUnread, false)
+
+        alert.workflowState = .read
+        XCTAssertEqual(alert.workflowStateRaw, "read")
+        XCTAssertEqual(alert.isUnread, false)
     }
 
     func testLockedForUserDefaultValue() {
-        let alert: ObserverAlert = databaseClient.insert()
         XCTAssertEqual(alert.lockedForUser, false)
     }
 
     func testLockedForUserAPIMapping() {
-        let alert: ObserverAlert = databaseClient.insert()
         alert.id = "testId"
 
         ObserverAlert.save(.make(id: "testId", locked_for_user: nil), in: databaseClient)
@@ -54,7 +78,6 @@ class ObserverAlertTests: CoreTestCase {
     }
 
     func testCourseID() {
-        let alert: ObserverAlert = databaseClient.insert()
         alert.contextID = "contextID"
         alert.htmlURL = URL(string: "https://test.com/courses/courseID/assignments/1434231")!
 
