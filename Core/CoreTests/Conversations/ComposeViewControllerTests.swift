@@ -92,7 +92,7 @@ class ComposeViewControllerTests: CoreTestCase {
             context_code: controller.context.canvasContextID,
             media_comment_id: nil,
             media_comment_type: nil,
-            attachment_ids: [], 
+            attachment_ids: [],
             group_conversation: true,
             bulk_message: false
         )
@@ -115,7 +115,7 @@ class ComposeViewControllerTests: CoreTestCase {
             context_code: controller.context.canvasContextID,
             media_comment_id: nil,
             media_comment_type: nil,
-            attachment_ids: [], 
+            attachment_ids: [],
             group_conversation: true,
             bulk_message: false
         )), error: NSError.instructureError("Error")
