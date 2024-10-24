@@ -122,21 +122,16 @@ extension InstUI.SelectionMenuCell {
 
 #if DEBUG
 
-private struct SelectionMenuCellPreview: View {
-    @State var selection: String?
-
-    var body: some View {
-        InstUI.SelectionMenuCell(
-            label: Text(verbatim: "Example"),
-            options: (1 ... 5).map { "No. \($0)" },
-            id: \.self,
-            text: \.self,
-            selection: $selection)
-    }
-}
-
+@available(iOS 17.0, *)
 #Preview {
-    SelectionMenuCellPreview()
+    @Previewable @State var selection: String?
+
+    return InstUI.SelectionMenuCell(
+        label: Text(verbatim: "Example"),
+        options: (1 ... 5).map { "No. \($0)" },
+        id: \.self,
+        text: \.self,
+        selection: $selection)
 }
 
 #endif
