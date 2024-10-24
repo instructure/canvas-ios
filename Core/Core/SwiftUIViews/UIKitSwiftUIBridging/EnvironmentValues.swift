@@ -22,7 +22,7 @@ extension AppEnvironment: EnvironmentKey {
     public static var defaultValue: AppEnvironment { AppEnvironment.shared }
 }
 
-extension UIViewController: EnvironmentKey {
+struct ViewControllerKey: EnvironmentKey {
     public static var defaultValue: WeakViewController { WeakViewController() }
 }
 
@@ -41,8 +41,8 @@ extension EnvironmentValues {
     }
 
     public var viewController: WeakViewController {
-        get { self[UIViewController.self] }
-        set { self[UIViewController.self] = newValue }
+        get { self[ViewControllerKey.self] }
+        set { self[ViewControllerKey.self] = newValue }
     }
 
     /**

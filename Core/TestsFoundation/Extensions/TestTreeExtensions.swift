@@ -18,23 +18,7 @@
 
 @testable import Core
 
-extension TestTree: CustomStringConvertible {
-    public var description: String { description(indent: "", after: "").joined(separator: "\n") }
-    private func description(indent: String, after: String) -> [String] {
-        var result = ["\(indent)\(subtrees.isEmpty ? "" : "┬") \(id ?? "type: \(String(reflecting: type))")"]
-        if let info = info {
-            for line in String(reflecting: info).split(separator: "\n") {
-                result.append("\(after)\(subtrees.isEmpty ? "" : "│")   \(line)")
-            }
-        }
-        for subtree in subtrees.dropLast() {
-            result.append(contentsOf: subtree.description(indent: "\(after)├─", after: "\(after)│ "))
-        }
-        if let subtree = subtrees.last {
-            result.append(contentsOf: subtree.description(indent: "\(after)└─", after: "\(after)  "))
-        }
-        return result
-    }
+extension TestTree {
 
     public struct NotFoundError: Error {
         let description: String
