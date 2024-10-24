@@ -42,7 +42,7 @@ extension HTTPCookie {
 
     /// The default equality check returns false even when all properties match
     /// so we created this custom comparison to test property equality between this and another cookie.
-    public func equalsProperties(to anotherCookie: HTTPCookie?) -> Bool {
+    public func isEqualProperties(to anotherCookie: HTTPCookie?) -> Bool {
         guard let anotherCookie,
               properties?.count == anotherCookie.properties?.count
         else {
