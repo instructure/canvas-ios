@@ -98,3 +98,11 @@ final public class CalendarEvent: NSManagedObject, WriteableModel {
         return model
     }
 }
+
+// MARK: - Frequency
+
+extension CalendarEvent {
+    var recurrenceRule: RecurrenceRule? {
+        repetitionRule.flatMap { RecurrenceRule(rruleDescription: $0) }
+    }
+}

@@ -20,7 +20,7 @@ import Foundation
 
 public extension Date {
     func isoString() -> String {
-        return ISO8601DateFormatter.string(from: self, timeZone: TimeZone(abbreviation: "UTC")!, formatOptions: .withInternetDateTime)
+        ISO8601DateFormatter.string(from: self, timeZone: TimeZone(abbreviation: "UTC")!, formatOptions: .withInternetDateTime)
     }
 
     init?(fromISOString: String, formatOptions: ISO8601DateFormatter.Options? = nil) {
@@ -34,53 +34,74 @@ public extension Date {
 
     // MARK: - Components
 
+    var months: Int {
+        Cal.currentCalendar.component(.month, from: self)
+    }
+
+    var daysOfMonth: Int {
+        Cal.currentCalendar.component(.day, from: self)
+    }
+
     var hours: Int {
-        return Cal.currentCalendar.component(.hour, from: self)
+        Cal.currentCalendar.component(.hour, from: self)
     }
 
     var minutes: Int {
-        return Cal.currentCalendar.component(.minute, from: self)
+        Cal.currentCalendar.component(.minute, from: self)
     }
 
     // MARK: - add methods
 
     func addYears(_ years: Int) -> Date {
-        return Calendar.current.date(byAdding: .year, value: years, to: self) ?? self
+        Cal.currentCalendar.date(byAdding: .year, value: years, to: self)
+            ?? self
     }
 
     func addMonths(_ numberOfMonths: Int) -> Date {
-        let endDate = Calendar.current.date(byAdding: .month, value: numberOfMonths, to: self)
-        return endDate ?? Date()
+        Cal.currentCalendar.date(byAdding: .month, value: numberOfMonths, to: self)
+            ?? Date()
     }
 
     func addDays(_ days: Int) -> Date {
-        let endDate = Calendar.current.date(byAdding: .day, value: days, to: self)
-        return endDate ?? Date()
+        Cal.currentCalendar.date(byAdding: .day, value: days, to: self)
+            ?? Date()
     }
 
     func addHours(_ hours: Int) -> Date {
-        let endDate = Cal.currentCalendar.date(byAdding: .hour, value: hours, to: self)
-        return endDate ?? Date()
+        Cal.currentCalendar.date(byAdding: .hour, value: hours, to: self)
+            ?? Date()
     }
 
     func addMinutes(_ minutes: Int) -> Date {
-        let endDate = Calendar.current.date(byAdding: .minute, value: minutes, to: self)
-        return endDate ?? Date()
+        Cal.currentCalendar.date(byAdding: .minute, value: minutes, to: self)
+            ?? Date()
     }
 
     func addSeconds(_ seconds: Int) -> Date {
-        Cal.currentCalendar.date(byAdding: .second, value: seconds, to: self) ?? Date()
+        Cal.currentCalendar.date(byAdding: .second, value: seconds, to: self)
+            ?? Date()
     }
 
     // MARK: - start/end methods
 
+    func startOfMonth() -> Date {
+        Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.year, .month], from: startOfDay()))
+            ?? Date()
+    }
+
+    func endOfMonth() -> Date {
+        Cal.currentCalendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth())
+            ?? Date()
+    }
+
     func startOfWeek() -> Date {
-        return Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) ?? Date()
+        Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))
+            ?? Date()
     }
 
     func endOfWeek() -> Date {
-        let start = startOfWeek()
-        return Cal.currentCalendar.date(byAdding: .weekOfYear, value: 1, to: start) ?? Date()
+        Cal.currentCalendar.date(byAdding: .weekOfYear, value: 1, to: startOfWeek())
+            ?? Date()
     }
 
     func startOfDay() -> Date {
@@ -88,19 +109,12 @@ public extension Date {
     }
 
     func endOfDay() -> Date {
-        Cal.currentCalendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay()) ?? Date()
-    }
-
-    func startOfMonth() -> Date {
-        return Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.year, .month], from: startOfDay())) ?? Date()
-    }
-
-    func endOfMonth() -> Date {
-        return Cal.currentCalendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth()) ?? Date()
+        Cal.currentCalendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay())
+            ?? Date()
     }
 
     func startOfHour() -> Date {
-        return startOfDay().addHours(hours)
+        startOfDay().addHours(hours)
     }
 
     // MARK: - Formatters
@@ -209,7 +223,7 @@ public extension Date {
     }
 
     func formatted(format: String, locale: Locale = .current, calendar: Calendar = Cal.currentCalendar) -> String {
-        return Date
+        Date
             .formatter(withFormat: format, locale: locale, calendar: calendar)
             .string(from: self)
     }
@@ -237,7 +251,7 @@ public extension Date {
     }
 
     func intervalStringTo(_ to: Date) -> String {
-        return Date.intervalDateTimeFormatter.string(from: self, to: to)
+        Date.intervalDateTimeFormatter.string(from: self, to: to)
     }
 
     /**

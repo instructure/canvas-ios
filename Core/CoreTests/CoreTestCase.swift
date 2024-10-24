@@ -143,6 +143,7 @@ class CoreTestCase: XCTestCase {
 private let mainViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
 
 extension CoreTestCase {
+    /// Do not use repeatedly in the same test method, because it could cause flaky `testTree`.
     public func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
         let controller = CoreHostingController(view)
         window.rootViewController = controller

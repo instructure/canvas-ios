@@ -22,7 +22,7 @@ import Foundation
 struct DeletePlannerNoteRequest: APIRequestable {
     typealias Response = APIPlannerNote
 
-    let method: APIMethod = .delete
+    var method: APIMethod { .delete }
     var path: String { "planner_notes/\(id)" }
 
     let id: String

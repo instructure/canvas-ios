@@ -440,7 +440,7 @@ private extension EditCustomFrequencyViewModelTests {
 // MARK: - Helpers
 
 private extension EditCustomFrequencyViewModel.DayOfMonth {
-    static func proposed(by date: Date) -> Self { .day(date.monthDay) }
+    static func proposed(by date: Date) -> Self { .day(date.daysOfMonth) }
 }
 
 private extension EditCustomFrequencyViewModel.DayOfYear {

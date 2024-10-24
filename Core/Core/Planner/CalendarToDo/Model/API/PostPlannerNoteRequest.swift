@@ -31,8 +31,8 @@ struct PostPlannerNoteRequest: APIRequestable {
         let linked_object_id: String?
     }
 
-    let method: APIMethod = .post
-    let path: String = "planner_notes"
+    var method: APIMethod { .post }
+    var path: String { "planner_notes" }
 
     let body: Body?
 }

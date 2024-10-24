@@ -22,7 +22,7 @@ import Foundation
 struct PutCalendarEventRequest: APIRequestable {
     typealias Response = [APICalendarEvent]
 
-    let method: APIMethod = .put
+    var method: APIMethod { .put }
     var path: String { "calendar_events/\(id)" }
 
     let id: String

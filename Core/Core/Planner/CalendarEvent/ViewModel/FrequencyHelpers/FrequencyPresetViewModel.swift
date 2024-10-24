@@ -18,23 +18,20 @@
 
 import Foundation
 
-struct FrequencyChoice: Identifiable {
-
-    static func allCases(given date: Date) -> [FrequencyChoice] {
-        return FrequencyPreset
-            .choicesPresets
-            .map { FrequencyChoice(date: date, preset: $0) }
-    }
+struct FrequencyPresetViewModel: Identifiable {
 
     let id = Foundation.UUID()
-    let date: Date
-    let preset: FrequencyPreset
+    let preset: FrequencyPreset?
 
-    init(date: Date, preset: FrequencyPreset) {
-        self.date = date
+    private let date: Date
+
+    init(preset: FrequencyPreset?, date: Date) {
         self.preset = preset
+        self.date = date
     }
 
+    /// This `title` is a simplified one, intended only for the SelectFrequency screen.
+    /// It may not match the title coming from backend or the one calculated from the rule.
     var title: String {
         switch preset {
         case .noRepeat:
@@ -53,16 +50,10 @@ struct FrequencyChoice: Identifiable {
                 .asFormat(for: date.formatted(format: "MMMM d"))
         case .everyWeekday:
             return String(localized: "Every Weekday (Monday to Friday)", bundle: .core)
-        case .selected(let seriesTitle, let rule):
-            return seriesTitle ?? rule.text
-        case .custom:
-            return String(localized: "Custom", bundle: .core) // Should not fall to this case
+        case .selected(let title, _):
+            return title
+        case .custom, .none:
+            return String(localized: "Custom", bundle: .core)
         }
-    }
-}
-
-extension FrequencyPreset {
-    static var choicesPresets: [FrequencyPreset] {
-        return [.noRepeat] + calculativePresets
     }
 }
