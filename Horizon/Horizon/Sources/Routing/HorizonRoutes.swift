@@ -27,7 +27,6 @@ enum HorizonRoutes {
 
     private static let routes = [
         splashRoutes,
-        contentRoutes,
         moduleRoutes,
         pageRoutes,
         programRoutes,
@@ -41,14 +40,6 @@ enum HorizonRoutes {
             RouteHandler("/splash") { _, _, _ in
                 SplashAssembly.makeViewController()
             }
-        ]
-    }
-
-    private static var contentRoutes: [RouteHandler] {
-        [
-//            RouteHandler("/contentDetails") { _, _, _ in
-//                ContentDetailsAssembly.makeViewController()
-//            }
         ]
     }
 
