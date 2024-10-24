@@ -144,13 +144,7 @@ enum HorizonRoutes {
                     conversationID: conversationID,
                     allowArchive: allowArchive
                 )
-            },
-            RouteHandler("/files/:fileID", factory: fileDetails),
-            RouteHandler("/files/:fileID/download", factory: fileDetails),
-            RouteHandler("/files/:fileID/preview", factory: fileDetails),
-            RouteHandler("/:context/:contextID/files/:fileID", factory: fileDetails),
-            RouteHandler("/:context/:contextID/files/:fileID/download", factory: fileDetails),
-            RouteHandler("/:context/:contextID/files/:fileID/preview", factory: fileDetails)
+            }
         ]
     }
 }
@@ -202,32 +196,5 @@ extension HorizonRoutes {
             )
         }
         return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
-    }
-
-    private func fileDetails(
-        url: URLComponents,
-        params: [String: String],
-        userInfo _: [String: Any]?
-    ) -> UIViewController? {
-        guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
-        var context = Context(path: url.path)
-        if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
-            context = Context(.course, id: courseID)
-        }
-        let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
-        if !url.originIsModuleItemDetails, !url.skipModuleItemSequence, let context = context, context.contextType == .course {
-            return ModuleItemSequenceViewController.create(
-                courseID: context.id,
-                assetType: .file,
-                assetID: fileID,
-                url: url
-            )
-        }
-        return FileDetailsViewController.create(
-            context: context,
-            fileID: fileID,
-            originURL: url,
-            assignmentID: assignmentID
-        )
     }
 }
