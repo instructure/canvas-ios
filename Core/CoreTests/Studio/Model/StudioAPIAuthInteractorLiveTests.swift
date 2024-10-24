@@ -106,10 +106,7 @@ class StudioAPIAuthInteractorLiveTests: CoreTestCase {
             return nil
         }
 
-        override func evaluateJavaScript(
-            _ javaScriptString: String,
-            completionHandler: ((Any?, (any Error)?) -> Void)? = nil
-        ) {
+        override func evaluateJavaScript(_ javaScriptString: String, completionHandler: (@MainActor (Any?, (any Error)?) -> Void)? = nil) {
             switch javaScriptString {
             case "sessionStorage.getItem('token')":
                 receivedQueryForToken = true

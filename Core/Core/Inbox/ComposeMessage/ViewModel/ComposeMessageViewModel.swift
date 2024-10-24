@@ -34,6 +34,7 @@ final class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var isSubjectDisabled: Bool = false
     @Published public private(set) var isMessageDisabled: Bool = false
     @Published public private(set) var isIndividualDisabled: Bool = false
+    @Published public private(set) var isSendIndividualToggleDisabled: Bool = false
     @Published public var isShowingErrorDialog = false
     @Published private(set) var searchedRecipients: [Recipient] = []
     @Published public private(set) var expandedIncludedMessageIds = [String]()
@@ -55,7 +56,7 @@ final class ComposeMessageViewModel: ObservableObject {
     public let didSelectRecipient = PassthroughRelay<Recipient>()
     public let didRemoveRecipient = PassthroughRelay<Recipient>()
     public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
-    public var didSelectFile = PassthroughRelay<(WeakViewController, File)>()
+    public var didSelectFile = PassthroughRelay<(WeakViewController, URL?)>()
     public let didRemoveFile = PassthroughRelay<File>()
 
     // MARK: - Inputs / Outputs
@@ -103,6 +104,8 @@ final class ComposeMessageViewModel: ObservableObject {
     private var hiddenMessage: String = ""
     private var autoTeacherSelect: Bool = false
     private var teacherOnly: Bool = false
+    private var sendIndividualToggleLastValue: Bool = false
+    private let maxRecipientCount = 100
 
     // MARK: Public interface
     public init(
@@ -325,6 +328,24 @@ final class ComposeMessageViewModel: ObservableObject {
 
         interactor.attachments
             .assign(to: &$attachments)
+
+        $recipients
+            .map { [maxRecipientCount] in
+                $0.flatMap { $0.ids }.count > maxRecipientCount
+            }
+            .sink { [weak self] isExceedRecipientLimit in
+                guard let self else {
+                    return
+                }
+                self.isSendIndividualToggleDisabled = isExceedRecipientLimit
+                if isExceedRecipientLimit {
+                    self.sendIndividualToggleLastValue = self.sendIndividual
+                    self.sendIndividual = true
+                } else {
+                    self.sendIndividual = sendIndividualToggleLastValue
+                }
+            }
+            .store(in: &subscriptions)
     }
 
     private func setOptionItems(options: ComposeMessageOptions) {
@@ -408,7 +429,8 @@ final class ComposeMessageViewModel: ObservableObject {
         if subject.isEmpty {
             subject = title
         }
-
+        let isExceedsRecipientsLimit = recipientIDs.count > maxRecipientCount
+        let groupConversation = isExceedsRecipientsLimit ? true : !sendIndividual
         return MessageParameters(
             subject: subject,
             body: body,
@@ -416,7 +438,8 @@ final class ComposeMessageViewModel: ObservableObject {
             attachmentIDs: attachments.compactMap { $0.id },
             context: context.context,
             conversationID: conversation?.id,
-            groupConversation: !sendIndividual,
+            groupConversation: groupConversation,
+            bulkMessage: isExceedsRecipientsLimit,
             includedMessages: includedMessages.map { $0.id }
         )
     }
@@ -479,11 +502,13 @@ final class ComposeMessageViewModel: ObservableObject {
                 }
             })
             .store(in: &subscriptions)
-
-        didSelectFile.sink(receiveCompletion: { _ in }, receiveValue: { (controller, file) in
-            guard let url = file.url, let fileController = router.match(url.appendingQueryItems(.init(name: "canEdit", value: "false"))) else { return }
-
-            router.show(fileController, from: controller, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
+        didSelectFile.sink(receiveCompletion: { _ in }, receiveValue: { (controller, url) in
+            guard let url else { return }
+            router.route(
+                to: url.appendingQueryItems(.init(name: "canEdit", value: "false")),
+                from: controller,
+                options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
+            )
         })
         .store(in: &subscriptions)
 

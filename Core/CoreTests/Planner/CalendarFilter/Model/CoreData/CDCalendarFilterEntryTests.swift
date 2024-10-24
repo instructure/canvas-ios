@@ -26,10 +26,13 @@ class CDCalendarFilterEntryTests: CoreTestCase {
         let testee: CDCalendarFilterEntry = databaseClient.insert()
         let testContext = Context(.group, id: "g1")
 
+        XCTAssertEqual(testee.wrappedContext, nil)
+
         testee.context = testContext
 
         XCTAssertEqual(testee.rawContextID, testContext.canvasContextID)
         XCTAssertEqual(testee.context, testContext)
+        XCTAssertEqual(testee.wrappedContext, testContext)
     }
 
     func testSort() {
@@ -80,5 +83,42 @@ class CDCalendarFilterEntryTests: CoreTestCase {
 
         testee.context = .group("1")
         XCTAssertEqual(testee.courseName, nil)
+    }
+
+    func testSaveWhenContextIsValid() {
+        let result = CDCalendarFilterEntry.save(
+            context: .group("42"),
+            observedUserId: "7",
+            name: "some name",
+            purpose: .viewing,
+            in: databaseClient
+        )
+        XCTAssertNoThrow(try databaseClient.save())
+
+        let fetched: CDCalendarFilterEntry? = databaseClient.fetch().first
+
+        XCTAssertEqual(result?.rawContextID, "group_42")
+        XCTAssertEqual(result?.observedUserId, "7")
+        XCTAssertEqual(result?.name, "some name")
+        XCTAssertEqual(result?.rawPurpose, CDCalendarFilterPurpose.viewing.rawValue)
+
+        XCTAssertEqual(fetched?.context, result?.context)
+        XCTAssertEqual(fetched?.observedUserId, result?.observedUserId)
+        XCTAssertEqual(fetched?.name, result?.name)
+        XCTAssertEqual(fetched?.purpose, result?.purpose)
+    }
+
+    func testSaveWhenContextIsNotValid() {
+        let result = CDCalendarFilterEntry.save(
+            context: .group(""),
+            name: "name",
+            in: databaseClient
+        )
+        XCTAssertNoThrow(try databaseClient.save())
+
+        let fetched: CDCalendarFilterEntry? = databaseClient.fetch().first
+
+        XCTAssertEqual(result, nil)
+        XCTAssertEqual(fetched, nil)
     }
 }

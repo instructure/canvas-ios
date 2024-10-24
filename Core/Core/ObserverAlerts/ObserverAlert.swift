@@ -47,6 +47,10 @@ public final class ObserverAlert: NSManagedObject {
         set { workflowStateRaw = newValue.rawValue }
     }
 
+    public var isUnread: Bool {
+        workflowState == .unread
+    }
+
     public var courseID: String? {
         switch alertType {
         case .courseGradeHigh, .courseGradeLow:

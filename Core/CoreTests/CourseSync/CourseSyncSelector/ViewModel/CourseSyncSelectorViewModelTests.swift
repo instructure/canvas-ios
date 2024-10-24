@@ -135,11 +135,57 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         XCTAssertEqual(testee.navBarSubtitle, "Test Name")
     }
 
-    func testCancelTap() {
+    func testCancelTapInLoadingState() {
         let controller = UIViewController()
         let weakController = WeakViewController(controller)
+        XCTAssertEqual(testee.state, .loading)
+
+        // WHEN
         testee.cancelButtonDidTap.accept(weakController)
+
+        // THEN
+        XCTAssertEqual(testee.isShowingCancelConfirmationDialog, false)
+        XCTAssertEqual(router.dismissed, controller)
+    }
+
+    func testCancelTapInErrorState() {
+        let controller = UIViewController()
+        let weakController = WeakViewController(controller)
+        mockSelectorInteractor.courseSyncEntriesSubject.send(
+            completion: .failure(NSError.internalError())
+        )
+        waitUntil(1, shouldFail: true) {
+            testee.state == .error
+        }
+
+        // WHEN
+        testee.cancelButtonDidTap.accept(weakController)
+
+        // THEN
+        XCTAssertEqual(testee.isShowingCancelConfirmationDialog, false)
+        XCTAssertEqual(router.dismissed, controller)
+    }
+
+    func testCancelTapInDataState() {
+        let controller = UIViewController()
+        let weakController = WeakViewController(controller)
+        mockSelectorInteractor.courseSyncEntriesSubject.send([])
+
+        waitUntil(1, shouldFail: true) {
+            testee.state == .data
+        }
+
+        // WHEN
+        testee.cancelButtonDidTap.accept(weakController)
+
+        // THEN
+        XCTAssertEqual(testee.isShowingCancelConfirmationDialog, true)
+        XCTAssertEqual(router.dismissed, nil)
+
+        // WHEN
         testee.cancelConfirmAlert.notifyCompletion(isConfirmed: true)
+
+        // THEN
         XCTAssertEqual(router.dismissed, controller)
     }
 

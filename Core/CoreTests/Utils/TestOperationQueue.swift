@@ -18,7 +18,7 @@
 
 import Foundation
 
-class TestOperationQueue: OperationQueue {
+class TestOperationQueue: OperationQueue, @unchecked Sendable {
     override init() {
         super.init()
         maxConcurrentOperationCount = 1

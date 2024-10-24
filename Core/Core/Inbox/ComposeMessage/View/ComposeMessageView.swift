@@ -292,7 +292,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             Spacer()
 
             addRecipientButton
-                .frame(maxHeight: .infinity, alignment: .center)
+                .frame(maxHeight: .infinity, alignment: .top)
                 .accessibilitySortPriority(2)
         }
         .animation(.easeInOut, value: model.recipients.isEmpty)
@@ -349,11 +349,21 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     private var individualView: some View {
         Toggle(isOn: $model.sendIndividual) {
-            Text("Send individual message to each recipient", bundle: .core)
-                .font(.regular16, lineHeight: .condensed)
-                .foregroundColor(.textDarkest)
+            VStack(alignment: .leading, spacing: .zero) {
+                Text("Send individual message to each recipient", bundle: .core)
+                    .font(.regular16, lineHeight: .condensed)
+                    .foregroundColor(model.isSendIndividualToggleDisabled ? .disabledGray : .textDarkest)
+
+               if model.isSendIndividualToggleDisabled {
+                   Text("You can only send individual messages over 100 recipients.", bundle: .core)
+                       .font(.regular14)
+                       .foregroundColor(.textDark)
+               }
+            }
+
         }
         .tint(.accentColor)
+        .disabled(model.isSendIndividualToggleDisabled)
         .padding(.horizontal, defaultHorizontalPaddingValue)
         .padding(.vertical, defaultVerticalPaddingValue)
         .contentShape(Rectangle())
@@ -472,8 +482,12 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                                 .lineLimit(isExpanded ? nil : 1)
                         }
                     }
-                    if isExpanded && !message.attachments.isEmpty {
-                        AttachmentsView(attachments: message.attachments, didSelectAttachment: { model.didSelectFile.accept(($1, $0))})
+                    if isExpanded && (!message.attachments.isEmpty || message.mediaComment != nil) {
+                        AttachmentsView(attachments: message.attachments,
+                                        mediaComment: message.mediaComment,
+                                        didSelectAttachment: {
+                            model.didSelectFile.accept(($1, $0))
+                        })
                             .padding(.top, defaultVerticalPaddingValue)
                     }
                 }
@@ -485,7 +499,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     private var attachmentsView: some View {
         ConversationAttachmentsCardView(files: model.attachments) { file in
-            model.didSelectFile.accept((controller, file))
+            model.didSelectFile.accept((controller, file.url))
         } removeHandler: { file in
             model.didRemoveFile.accept(file)
         }

@@ -140,7 +140,6 @@ public struct APIFile: Codable, Equatable {
         uuid = try container.decode(String.self, forKey: .uuid)
         folder_id = try container.decode(ID.self, forKey: .folder_id)
         display_name = try container.decode(String.self, forKey: .display_name)
-        filename = try container.decode(String.self, forKey: .filename)
         contentType = try container.decode(String.self, forKey: .contentType)
         url = try container.decodeURLIfPresent(forKey: .url)
         size = try container.decodeIfPresent(Int.self, forKey: .size)
@@ -161,6 +160,14 @@ public struct APIFile: Codable, Equatable {
         avatar = try container.decodeIfPresent(APIFileToken.self, forKey: .avatar)
         usage_rights = try container.decodeIfPresent(APIUsageRights.self, forKey: .usage_rights)
         visibility_level = try container.decodeIfPresent(String.self, forKey: .visibility_level)
+
+        do {
+            /// We've seen instances where filename is `null` in the JSON.
+            /// We fall back to `display_name` in this case since these two are usually the same.
+            filename = try container.decode(String.self, forKey: .filename)
+        } catch {
+            filename = display_name
+        }
     }
 }
 

@@ -18,52 +18,59 @@
 
 import XCTest
 @testable import Core
+import TestsFoundation
 
 class TabBarBadgeCountsTests: CoreTestCase {
-    let application = UIApplication.shared
     let messageItem = UITabBarItem()
     let todoItem = UITabBarItem()
 
-    func testUpdates() throws {
-        TabBarBadgeCounts.application = application
+    func testUpdatesExistingNotificationCountWhenNotificationCenterUpdated() {
+        // GIVEN
         TabBarBadgeCounts.messageItem = messageItem
         TabBarBadgeCounts.todoItem = todoItem
-
         TabBarBadgeCounts.unreadMessageCount = 7
-        XCTAssertEqual(application.applicationIconBadgeNumber, 7)
-        XCTAssertEqual(messageItem.badgeValue, "7")
-        XCTAssertEqual(todoItem.badgeValue, nil)
-
         TabBarBadgeCounts.todoListCount = 2
-        XCTAssertEqual(application.applicationIconBadgeNumber, 9)
+
+        // WHEN
+        TabBarBadgeCounts.notificationCenter = notificationCenter
+
+        // THEN
+        XCTAssertEqual(notificationCenter.badgeCount, 9)
         XCTAssertEqual(messageItem.badgeValue, "7")
         XCTAssertEqual(todoItem.badgeValue, "2")
+    }
 
-        TabBarBadgeCounts.unreadMessageCount = 0
-        XCTAssertEqual(application.applicationIconBadgeNumber, 2)
-        XCTAssertEqual(messageItem.badgeValue, nil)
-        XCTAssertEqual(todoItem.badgeValue, "2")
-
-        TabBarBadgeCounts.todoListCount = 0
-        XCTAssertEqual(application.applicationIconBadgeNumber, 0)
-        XCTAssertEqual(messageItem.badgeValue, nil)
-        XCTAssertEqual(todoItem.badgeValue, nil)
-
-        TabBarBadgeCounts.application = nil
-        TabBarBadgeCounts.messageItem = nil
-        TabBarBadgeCounts.todoItem = nil
-
-        TabBarBadgeCounts.unreadMessageCount = 1
-        TabBarBadgeCounts.todoListCount = 5
-        XCTAssertEqual(application.applicationIconBadgeNumber, 0)
-        XCTAssertEqual(messageItem.badgeValue, nil)
-        XCTAssertEqual(todoItem.badgeValue, nil)
-
-        TabBarBadgeCounts.application = application
+    func testUpdatesNotificationCountOnExistingNotificationCenter() {
+        // GIVEN
+        TabBarBadgeCounts.notificationCenter = notificationCenter
         TabBarBadgeCounts.messageItem = messageItem
         TabBarBadgeCounts.todoItem = todoItem
-        XCTAssertEqual(application.applicationIconBadgeNumber, 6)
-        XCTAssertEqual(messageItem.badgeValue, "1")
-        XCTAssertEqual(todoItem.badgeValue, "5")
+
+        // WHEN
+        TabBarBadgeCounts.unreadMessageCount = 7
+        TabBarBadgeCounts.todoListCount = 2
+
+        // THEN
+        XCTAssertEqual(notificationCenter.badgeCount, 9)
+        XCTAssertEqual(messageItem.badgeValue, "7")
+        XCTAssertEqual(todoItem.badgeValue, "2")
+    }
+
+    func testResetsNotificationCounts() {
+        // GIVEN
+        TabBarBadgeCounts.notificationCenter = notificationCenter
+        TabBarBadgeCounts.messageItem = messageItem
+        TabBarBadgeCounts.todoItem = todoItem
+        TabBarBadgeCounts.unreadMessageCount = 7
+        TabBarBadgeCounts.todoListCount = 2
+
+        // WHEN
+        TabBarBadgeCounts.unreadMessageCount = 0
+        TabBarBadgeCounts.todoListCount = 0
+
+        // THEN
+        XCTAssertEqual(notificationCenter.badgeCount, 0)
+        XCTAssertEqual(messageItem.badgeValue, nil)
+        XCTAssertEqual(todoItem.badgeValue, nil)
     }
 }
