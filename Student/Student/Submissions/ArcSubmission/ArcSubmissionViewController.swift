@@ -17,7 +17,7 @@
 //
 
 import Core
-import WebKit
+@preconcurrency import WebKit
 
 protocol ArcSubmissionDelegate: AnyObject {
     func arcSubmission(_ controller: ArcSubmissionViewController, didFinishWithURL url: URL)

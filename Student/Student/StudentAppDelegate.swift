@@ -59,7 +59,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         DocViewerViewController.setup(.studentPSPDFKitLicense)
         setupDefaultErrorHandling()
         setupPageViewLogging()
-        TabBarBadgeCounts.application = UIApplication.shared
         PushNotificationsInteractor.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()

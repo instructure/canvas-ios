@@ -34,6 +34,12 @@ class WKWebViewExtensionsTests: CoreTestCase {
             get { return _userContentController }
             set { _userContentController = newValue as! TestContentController }
         }
+
+        override func copy(with zone: NSZone? = nil) -> Any {
+            let result = super.copy(with: zone) as! Self
+            result._userContentController = _userContentController
+            return result
+        }
     }
 
     func testAddScript() {
@@ -46,16 +52,22 @@ class WKWebViewExtensionsTests: CoreTestCase {
     }
 
     func testHandle() {
-        let configuration = TestConfiguration()
-        let webView = WKWebView(frame: .zero, configuration: configuration)
+        let webView = WKWebView(frame: .zero, configuration: TestConfiguration())
         let expectation = XCTestExpectation(description: "handler")
         webView.handle("test") { _ in
             expectation.fulfill()
         }
-        let handler = configuration._userContentController.handlers["test"]
+        guard let testConfiguration = webView.configuration as? TestConfiguration else {
+            return XCTFail("Test configuration not found")
+        }
+        let handler = testConfiguration._userContentController.handlers["test"]
         XCTAssertNotNil(handler)
         let message = WKScriptMessage()
-        handler?.userContentController(configuration.userContentController, didReceive: message)
+
+        // WHEN
+        handler?.userContentController(webView.configuration.userContentController, didReceive: message)
+
+        // THEN
         wait(for: [expectation], timeout: 0.1)
     }
 

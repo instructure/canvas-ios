@@ -13061,7 +13061,7 @@
       }
     },
     "Regarding: %@, %@" : {
-      "comment" : "Regarding <John Doe>, <Grades | Syllabus>\nRegarding <Name>, <URL>",
+      "comment" : "Regarding <John Doe>, <Grades | Syllabus>\nRegarding <John Doe>, [link to grades or syllabus]\nRegarding <Name>, <URL>",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

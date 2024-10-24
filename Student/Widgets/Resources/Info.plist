@@ -43,7 +43,7 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>../../Frameworks/Core.framework/lato-semibolditalic.ttf</string>
+		<string>../../Frameworks/Core.framework/lato_semibolditalic.ttf</string>
 		<string>../../Frameworks/Core.framework/lato_semibold.ttf</string>
 		<string>../../Frameworks/Core.framework/lato_italic.ttf</string>
 		<string>../../Frameworks/Core.framework/lato_bolditalic.ttf</string>

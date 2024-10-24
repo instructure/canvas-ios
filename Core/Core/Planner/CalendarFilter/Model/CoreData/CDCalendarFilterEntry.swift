@@ -37,7 +37,7 @@ public class CDCalendarFilterEntry: NSManagedObject {
     @NSManaged public var name: String
     /// For the observer role we have a separate list of filters for each observed student
     @NSManaged public var observedUserId: String?
-    @NSManaged public private(set) var rawContextID: String
+    @NSManaged public private(set) var rawContextID: String // example: "course_42"
     @NSManaged public var rawPurpose: Int16
 
     public var context: Context {
@@ -47,6 +47,10 @@ public class CDCalendarFilterEntry: NSManagedObject {
         set {
             rawContextID = newValue.canvasContextID
         }
+    }
+
+    public var wrappedContext: Context? {
+        Context(canvasContextID: rawContextID)
     }
 
     public var purpose: CDCalendarFilterPurpose {
@@ -79,6 +83,81 @@ public class CDCalendarFilterEntry: NSManagedObject {
 
     public var courseName: String? {
         context.contextType == .course ? name : nil
+    }
+
+    @discardableResult
+    public static func save(
+        context: Context,
+        observedUserId: String? = nil,
+        name: String,
+        purpose: CDCalendarFilterPurpose = .unknown,
+        in moContext: NSManagedObjectContext
+    ) -> CDCalendarFilterEntry? {
+        guard context.isValid else {
+            Analytics.shared.logError(
+                name: "CDCalendarFilterEntry save failed with invalid contextId",
+                reason: "contextType: \(context.contextType.rawValue), contextId: \"\(context.id)\", baseUrl: \(Analytics.analyticsBaseUrl)"
+            )
+            return nil
+        }
+
+        let canvasContextID = context.canvasContextID
+
+        let predicate = NSPredicate(key: (\CDCalendarFilterEntry.rawContextID).string, equals: canvasContextID)
+            .and(NSPredicate(key: (\CDCalendarFilterEntry.observedUserId).string, equals: observedUserId))
+
+        let model: CDCalendarFilterEntry = moContext.fetch(predicate).first ?? moContext.insert()
+        model.rawContextID = canvasContextID
+        model.observedUserId = observedUserId
+        model.name = name
+        model.purpose = purpose
+        return model
+    }
+
+    @discardableResult
+    public static func save(
+        userId: String,
+        userName: String,
+        courses: [APICourse],
+        groups: [APIGroup],
+        observedUserId: String? = nil,
+        purpose: CDCalendarFilterPurpose = .unknown,
+        in moContext: NSManagedObjectContext
+    ) -> [CDCalendarFilterEntry] {
+        // save user filter
+        let userFilters = [
+            CDCalendarFilterEntry.save(
+                context: .user(userId),
+                observedUserId: observedUserId,
+                name: userName,
+                purpose: purpose,
+                in: moContext
+            )
+        ].compactMap { $0 }
+
+        // save course filters
+        let courseFilters = courses.compactMap { course in
+            CDCalendarFilterEntry.save(
+                context: .course(course.id.value),
+                observedUserId: observedUserId,
+                name: course.name ?? "",
+                purpose: purpose,
+                in: moContext
+            )
+        }
+
+        // save group filters
+        let groupFilters = groups.compactMap { group in
+            CDCalendarFilterEntry.save(
+                context: .group(group.id.value),
+                observedUserId: observedUserId,
+                name: group.name,
+                purpose: purpose,
+                in: moContext
+            )
+        }
+
+        return userFilters + courseFilters + groupFilters
     }
 }
 
