@@ -35,4 +35,13 @@ enum ReceiptStub {
         .init(id: "4", name: "Canvas 4", avatarURL: nil),
         .init(id: "5", name: "ios Test", avatarURL: nil)
     ]
+
+    static func getRecipientExceedMaxLimit() -> [Recipient] {
+        var recipients: [Recipient] = []
+        for id in 0...105 {
+            recipients.append(.init(id: "\(id)", name: "", avatarURL: nil))
+        }
+
+        return  recipients
+    }
 }
