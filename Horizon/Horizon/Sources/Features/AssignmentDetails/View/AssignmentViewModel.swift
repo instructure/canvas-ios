@@ -17,10 +17,8 @@
 //
 
 import Foundation
-import Core
 
-final class ContentDetailsAssembly {
-    static func makeViewController() -> UIViewController {
-        CoreHostingController(ContentDetailsView())
-    }
+@Observable
+final class AssignmentViewModel {
+    let assignment: HAssignment = .mock()
 }
