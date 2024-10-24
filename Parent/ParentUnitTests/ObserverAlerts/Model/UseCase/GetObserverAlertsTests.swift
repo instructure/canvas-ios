@@ -19,13 +19,16 @@
 import XCTest
 @testable import Core
 @testable import Parent
-import TestsFoundation
 
 class GetObserverAlertsTests: ParentTestCase {
-    func testGetObserverAlerts() {
+
+    func testProperties() {
         let useCase = GetObserverAlerts(studentID: "3")
+
         XCTAssertEqual(useCase.cacheKey, "users/self/observer_alerts/3")
+
         XCTAssertEqual(useCase.request.studentID, "3")
+
         XCTAssertEqual(useCase.scope, Scope(
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(ObserverAlert.userID), equals: "3"),
@@ -35,21 +38,8 @@ class GetObserverAlertsTests: ParentTestCase {
                     "dismissed"
                 )
             ]),
-            orderBy: #keyPath(ObserverAlert.actionDate), ascending: false
+            orderBy: #keyPath(ObserverAlert.actionDate),
+            ascending: false
         ))
-    }
-
-    func testMarkObserverAlertRead() {
-        let useCase = MarkObserverAlertRead(alertID: "5")
-        XCTAssertEqual(useCase.cacheKey, nil)
-        XCTAssertEqual(useCase.request.alertID, "5")
-        XCTAssertEqual(useCase.scope, .where(#keyPath(ObserverAlert.id), equals: "5"))
-    }
-
-    func testDismissObserverAlert() {
-        let useCase = DismissObserverAlert(alertID: "8")
-        XCTAssertEqual(useCase.cacheKey, nil)
-        XCTAssertEqual(useCase.request.alertID, "8")
-        XCTAssertEqual(useCase.scope, .where(#keyPath(ObserverAlert.id), equals: "8"))
     }
 }

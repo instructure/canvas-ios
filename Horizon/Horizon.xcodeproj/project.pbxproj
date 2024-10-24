@@ -291,6 +291,7 @@
 		7390577B05038C0CD1F93EA2 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				74E5E6E965591650058F492B /* AssignmentDetails */,
 				5DDA3C162757268F2D1BDD91 /* ContentDetails */,
 				6ABC3CB283580C0CA604906A /* Dashboard */,
 				87019C932F1A6BEBAFED3230 /* Journey */,
@@ -301,6 +302,13 @@
 				7869B63B08EFFB68FC40D74E /* HorizonTabBarController.swift */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		74E5E6E965591650058F492B /* AssignmentDetails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AssignmentDetails;
 			sourceTree = "<group>";
 		};
 		7DD2D726FB99C07AA0D3F913 /* View */ = {
@@ -821,7 +829,7 @@
 			repositoryURL = "https://github.com/PSPDFKit/PSPDFKit-SP";
 			requirement = {
 				kind = exactVersion;
-				version = 13.0.1;
+				version = 13.9.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

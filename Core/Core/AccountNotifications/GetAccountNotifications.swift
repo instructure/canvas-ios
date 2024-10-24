@@ -21,6 +21,7 @@ import CoreData
 
 struct GetAccountNotifications: CollectionUseCase {
     typealias Model = AccountNotification
+    typealias Response = Request.Response
 
     var cacheKey: String? { "accounts/self/account_notifications" }
     var request: GetAccountNotificationsRequest { GetAccountNotificationsRequest() }

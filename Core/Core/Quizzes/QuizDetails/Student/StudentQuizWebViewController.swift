@@ -17,7 +17,7 @@
 //
 
 import UIKit
-import WebKit
+@preconcurrency import WebKit
 
 public class StudentQuizWebViewController: UIViewController {
     var courseID = ""
