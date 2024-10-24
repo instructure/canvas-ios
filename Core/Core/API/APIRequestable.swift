@@ -99,7 +99,7 @@ extension Array where Element == String {
     }
 }
 
-public class APIJSONDecoder: JSONDecoder {
+public class APIJSONDecoder: JSONDecoder, @unchecked Sendable {
     public override init() {
         super.init()
         dateDecodingStrategy = .iso8601
@@ -108,11 +108,11 @@ public class APIJSONDecoder: JSONDecoder {
     // Can decode dates like "2019-06-02T18:07:28.000Z" that RN generates
     public static var extendedPrecisionDecoder: APIJSONDecoder {
         let decoder = APIJSONDecoder()
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withFractionalSeconds]
         decoder.dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()
             let dateString = try container.decode(String.self)
+            let formatter = ISO8601DateFormatter()
+            formatter.formatOptions = [.withFractionalSeconds]
             guard let date = formatter.date(from: dateString) else {
                 throw DecodingError.dataCorruptedError(
                     in: container,
@@ -125,7 +125,7 @@ public class APIJSONDecoder: JSONDecoder {
     }
 }
 
-public class APIJSONEncoder: JSONEncoder {
+public class APIJSONEncoder: JSONEncoder, @unchecked Sendable {
     public override init() {
         super.init()
         dateEncodingStrategy = .iso8601

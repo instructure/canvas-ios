@@ -26,9 +26,21 @@ targets:
       - target: SubmitAssignment
       - target: Widgets
     preBuildScripts:
-      - path: ../../scripts/swiftLint.sh
+      - path: ../../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint
         basedOnDependencyAnalysis: false
+        inputFiles:
+          - $(SRCROOT)/.swiftlint.yml
+    postBuildScripts:
+      - path: ../../scripts/xcode-build-phases/uploadDSYMs.sh
+        name: Upload dSYMs to Firebase
+        basedOnDependencyAnalysis: false
+        inputFiles:
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist
+          - $(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)
 schemes:
   Student:
     build:

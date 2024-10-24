@@ -641,6 +641,30 @@ class ComposeMessageViewModelTests: CoreTestCase {
         // Then
         XCTAssertTrue(testee.searchedRecipients.isEmpty)
     }
+
+    func test_selectedRecipients_disableToggle() {
+        // Given
+        let recipient = ReceiptStub.getRecipientExceedMaxLimit()
+        // When
+        testee.selectedRecipients.send(recipient)
+        // Then
+        XCTAssertTrue(testee.isSendIndividualToggleDisabled)
+        XCTAssertTrue(testee.sendIndividual)
+    }
+
+    func test_selectedRecipients_setSendIndividualToPreviousState() {
+        // Given
+        testee.sendIndividual = false
+        let recipientNotExceedMaxLimit = ReceiptStub.recipients
+        let recipientExceedMaxLimit  = ReceiptStub.getRecipientExceedMaxLimit()
+
+        testee.selectedRecipients.send(recipientExceedMaxLimit)
+        XCTAssertTrue(testee.sendIndividual)
+
+        // SendIndividual back to the pervious state
+        testee.selectedRecipients.send(recipientNotExceedMaxLimit)
+        XCTAssertFalse(testee.sendIndividual)
+    }
 }
 
 private class ComposeMessageInteractorMock: ComposeMessageInteractor {
@@ -694,7 +718,7 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
 
     private var mockFailedFuture: Future<URLResponse?, Error> {
         Future<URLResponse?, Error> { promise in
-            promise(.failure("Fail"))
+            promise(.failure(NSError.internalError()))
         }
     }
 

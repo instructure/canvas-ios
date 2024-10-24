@@ -25,6 +25,7 @@ public struct AudioPickerView: View {
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var playbackScrollTimer: Timer?
+    @State private var delayedScrollPosition: TimeInterval = 0
 
     let backgroundColor: Color = .init(hexString: "#111213") ?? Color.black
     let textColor: Color = .init(hexString: "#F5F5F5") ?? Color.textLightest.variantForLightMode
@@ -99,7 +100,7 @@ public struct AudioPickerView: View {
     }
 
     private func playbackPlotView(maxSize: CGSize) -> some View {
-        return ScrollViewReader { proxy in
+        ScrollViewReader { proxy in
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(alignment: .center, spacing: viewModel.spaceWidth) {
                     Spacer()
@@ -135,10 +136,13 @@ public struct AudioPickerView: View {
                     } else {
                         playbackScrollTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
                             DispatchQueue.main.async {
-                                proxy.scrollTo(value, anchor: .top)
+                                delayedScrollPosition = value
                             }
                         }
                     }
+                }
+                .onChange(of: delayedScrollPosition) { delayedScrollPosition in
+                    proxy.scrollTo(delayedScrollPosition, anchor: .top)
                 }
                 .simultaneousGesture(DragGesture().onChanged { _ in
                     viewModel.pauseAudioButtonDidTap.accept(())

@@ -23,17 +23,14 @@ import Foundation
 class NotificationExtensionTests: XCTestCase {
     func testPostModuleItemCompletedRequirement() {
         let expectation = XCTestExpectation(description: "notification")
-        var notification: Notification?
-        let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) {
-            notification = $0
+        let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { notification in
+            XCTAssertEqual(notification.userInfo?["requirement"] as? ModuleItemCompletionRequirement, .submit)
+            XCTAssertEqual(notification.userInfo?["moduleItem"] as? ModuleItemType, .assignment("2"))
+            XCTAssertEqual(notification.userInfo?["courseID"] as? String, "1")
             expectation.fulfill()
         }
         NotificationCenter.default.post(moduleItem: .assignment("2"), completedRequirement: .submit, courseID: "1")
         wait(for: [expectation], timeout: 0.5)
-        XCTAssertNotNil(notification)
-        XCTAssertEqual(notification?.userInfo?["requirement"] as? ModuleItemCompletionRequirement, .submit)
-        XCTAssertEqual(notification?.userInfo?["moduleItem"] as? ModuleItemType, .assignment("2"))
-        XCTAssertEqual(notification?.userInfo?["courseID"] as? String, "1")
         NotificationCenter.default.removeObserver(token)
     }
 }

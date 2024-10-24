@@ -92,18 +92,15 @@ class CreateSubmissionTests: CoreTestCase {
         let request = CreateSubmissionRequest(context: context, assignmentID: "2", body: .init(submission: .init(group_comment: nil, submission_type: .online_text_entry)))
         api.mock(request, value: nil)
         let expectation = XCTestExpectation(description: "notification")
-        var notification: Notification?
-        let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) {
-            notification = $0
+        let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { notification in
+            XCTAssertEqual(notification.userInfo?["requirement"] as? ModuleItemCompletionRequirement, .submit)
+            XCTAssertEqual(notification.userInfo?["moduleItem"] as? ModuleItemType, .assignment("2"))
+            XCTAssertEqual(notification.userInfo?["courseID"] as? String, "1")
             expectation.fulfill()
         }
         let useCase = CreateSubmission(context: context, assignmentID: "2", userID: "3", submissionType: .online_text_entry)
         useCase.makeRequest(environment: environment) { _, _, _ in }
         wait(for: [expectation], timeout: 0.5)
-        XCTAssertNotNil(notification)
-        XCTAssertEqual(notification?.userInfo?["requirement"] as? ModuleItemCompletionRequirement, .submit)
-        XCTAssertEqual(notification?.userInfo?["moduleItem"] as? ModuleItemType, .assignment("2"))
-        XCTAssertEqual(notification?.userInfo?["courseID"] as? String, "1")
         NotificationCenter.default.removeObserver(token)
     }
 

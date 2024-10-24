@@ -77,7 +77,7 @@ public class LocalNotificationsInteractor {
     func sendOfflineSyncFailedNotification() -> Future<Void, Error> {
         Future<Void, Error> { [self] promise in
             let isScheduled = sendOfflineSyncFailedNotificationAndWait()
-            promise(isScheduled ? .success(()) : .failure(""))
+            promise(isScheduled ? .success(()) : .failure(NSError.internalError()))
         }
     }
 
