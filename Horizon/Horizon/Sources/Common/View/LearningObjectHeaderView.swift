@@ -19,7 +19,14 @@
 import Core
 import SwiftUI
 
-struct ContentDetailsView: View {
+struct LearningObjectHeaderView: View {
+    let type: String
+    let duration: String
+    let courseName: String
+    let courseProgress: Double
+    let courseDueDate: String
+    let courseState: String
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 4) {
@@ -29,22 +36,16 @@ struct ContentDetailsView: View {
                     .aspectRatio(contentMode: .fit)
                     .foregroundStyle(Color.textDarkest)
                     .frame(width: 14, height: 14)
-                Text(verbatim: "Reading Material")
-                    .foregroundColor(.textDarkest)
-                    .font(.regular12)
+                Size12RegularTextDarkestTitle(title: type)
                 Spacer()
                 Image(systemName: "timer")
                     .resizable()
                     .renderingMode(.template)
                     .foregroundStyle(Color.textDarkest)
                     .frame(width: 14, height: 14)
-                Text(verbatim: "20 mins")
-                    .foregroundColor(.textDarkest)
-                    .font(.regular12)
+                Size12RegularTextDarkestTitle(title: duration)
             }
-            Text(verbatim: "Biology Certificate")
-                .foregroundColor(.textDark)
-                .font(.regular12)
+            Size12RegularTextDarkTitle(title: courseName)
                 .padding(.top, 2)
             ContentProgressBar(
                 progress: 0.30
@@ -52,19 +53,22 @@ struct ContentDetailsView: View {
             .padding(.top, 12)
 
             HStack(spacing: 0) {
-                Text(verbatim: "Not Started")
+                Size12RegularTextDarkestTitle(title: courseState)
                 Spacer()
-                Text(verbatim: "Due 12/01/2024")
+                Size12RegularTextDarkestTitle(title: courseDueDate)
             }
-            Spacer()
+            .padding(.top, 2)
         }
-        .padding(.horizontal, 16)
-        .frame(maxHeight: .infinity)
-        .navigationTitle("Content Details")
-        .toolbarBackground(.visible, for: .navigationBar)
     }
 }
 
 #Preview {
-    ContentDetailsView()
+    LearningObjectHeaderView(
+        type: "Assignment",
+        duration: "20 mins",
+        courseName: "Design Thinking Workshop",
+        courseProgress: 0.75,
+        courseDueDate: "01/12/2024",
+        courseState: "Not Started"
+    )
 }
