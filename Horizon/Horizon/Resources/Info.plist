@@ -134,5 +134,7 @@
 	<true/>
 	<key>VersionName</key>
 	<string>Innovative Panda</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Attach audio recordings to messages and discussion posts or turn them in as assignment submissions.</string>
 </dict>
 </plist>
