@@ -49,6 +49,7 @@
         <attribute name="gradingTypeRaw" attributeType="String"/>
         <attribute name="groupCategoryID" optional="YES" attributeType="String"/>
         <attribute name="hasOverrides" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="hideInGradeBook" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hideRubricPoints" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="htmlURL" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
