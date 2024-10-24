@@ -33,6 +33,7 @@ public enum InboxAssembly {
         )
 
         let inboxVC = CoreHostingController(InboxView(model: viewModel))
+        // TODO: Remove the condition once horizon-specific logic is no longer needed.
         if AppEnvironment.shared.app != .horizon {
             inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
         }

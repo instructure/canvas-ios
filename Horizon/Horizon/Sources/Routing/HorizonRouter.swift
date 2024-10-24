@@ -61,7 +61,6 @@ enum HorizonRouter {
                 allowArchive: allowArchive
             )
         },
-        RouteHandler("/courses/:courseID/files/:section/:resourceID/:fileID/offline", factory: offlineFileDetails),
         RouteHandler("/files/:fileID", factory: fileDetails),
         RouteHandler("/files/:fileID/download", factory: fileDetails),
         RouteHandler("/files/:fileID/preview", factory: fileDetails),
@@ -82,35 +81,6 @@ private func pageViewController(url: URLComponents, params: [String: String], us
         )
     }
     return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
-}
-
-private func offlineFileDetails(
-    url _: URLComponents,
-    params: [String: String],
-    userInfo _: [String: Any]?
-) -> UIViewController? {
-    guard let courseID = params["courseID"],
-          let section = params["section"],
-          let resourceID = params["resourceID"],
-          let fileID = params["fileID"],
-          let sessionID = AppEnvironment.shared.currentSession?.uniqueID
-    else {
-        return nil
-    }
-
-    let context = Context(.course, id: courseID)
-    let fileSource = OfflineFileSource.privateFile(
-        sessionID: sessionID,
-        courseID: courseID,
-        sectionName: section,
-        resourceID: resourceID,
-        fileID: fileID
-    )
-    return FileDetailsViewController.create(
-        context: context,
-        fileID: fileID,
-        offlineFileSource: fileSource
-    )
 }
 
 private func fileDetails(

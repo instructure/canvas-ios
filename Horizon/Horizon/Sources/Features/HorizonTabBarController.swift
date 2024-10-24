@@ -82,7 +82,7 @@ class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
         let title = "Inbox"
         inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
         inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
-        inboxSplit.tabBarItem.makeUnavailableInOfflineMode()
+//        inboxSplit.tabBarItem.makeUnavailableInOfflineMode()
         inboxSplit.extendedLayoutIncludesOpaqueBars = true
         TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem
         return inboxSplit
