@@ -32,11 +32,11 @@ class AssignmentPickerViewModelTests: CoreTestCase {
     }
 
     func testAPIError() {
-        mockService.mockResult = .failure("Custom error")
+        mockService.mockResult = .failure(.failedToGetAssignments)
         testee.courseID = "failingID"
         drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
-        XCTAssertEqual(testee.state, .error("Custom error"))
+        XCTAssertEqual(testee.state, .error(AssignmentPickerListServiceError.failedToGetAssignments.localizedDescription))
     }
 
     func testAssignmentFetchSuccessful() {
@@ -85,7 +85,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
             .init(id: "A1", name: "online upload")
         ]))
 
-        mockService.mockResult = .failure("Custom error")
+        mockService.mockResult = .failure(.failedToGetAssignments)
         testee.courseID = "successID"
         drainMainQueue()
         XCTAssertNil(testee.selectedAssignment)
@@ -173,7 +173,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
 class MockAssignmentPickerListService: AssignmentPickerListServiceProtocol {
     public private(set) lazy var result: AnyPublisher<APIResult, Never> = resultSubject.eraseToAnyPublisher()
     public var courseID: String? {
-        didSet { resultSubject.send(mockResult ?? .failure("No mock result")) }
+        didSet { resultSubject.send(mockResult ?? .failure(.failedToGetAssignments)) }
     }
 
     var mockResult: APIResult?

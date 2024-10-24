@@ -21,6 +21,7 @@ import Foundation
 
 final class GetObserverAlerts: CollectionUseCase {
     typealias Model = ObserverAlert
+    typealias Response = Request.Response
 
     let request: GetObserverAlertsRequest
     var cacheKey: String? { "users/self/observer_alerts/\(studentID)" }

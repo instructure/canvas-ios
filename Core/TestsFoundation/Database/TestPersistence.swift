@@ -18,14 +18,16 @@
 
 import Foundation
 import CoreData
-import Core
+@testable import Core
 
-public var singleSharedTestDatabase: NSPersistentContainer  = resetSingleSharedTestDatabase()
+public var singleSharedTestDatabase: NSPersistentContainer = resetSingleSharedTestDatabase()
 
 public func resetSingleSharedTestDatabase() -> NSPersistentContainer {
     let bundle = Bundle.core
     let modelURL = bundle.url(forResource: "Database", withExtension: "momd")!
     let model = NSManagedObjectModel(contentsOf: modelURL)!
+    FileUploadTargetTransformer.register()
+    UIColorTransformer.register()
     let container = TestDatabase(name: "Database", managedObjectModel: model)
     let description = NSPersistentStoreDescription()
     description.type = NSInMemoryStoreType
@@ -45,7 +47,7 @@ public func resetSingleSharedTestDatabase() -> NSPersistentContainer {
     return container
 }
 
-class TestDatabase: NSPersistentContainer {
+class TestDatabase: NSPersistentContainer, @unchecked Sendable {
     override func newBackgroundContext() -> NSManagedObjectContext {
         // create a new view context to avoid recursive saves
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)

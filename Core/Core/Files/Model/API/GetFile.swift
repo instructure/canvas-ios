@@ -46,6 +46,7 @@ class GetFile: APIUseCase {
 
 public class GetFolderFiles: CollectionUseCase {
     public typealias Model = File
+    public typealias Response = Request.Response
 
     let context: Context
 

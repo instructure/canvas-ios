@@ -53,26 +53,27 @@ class ParentSubmissionInteractorTests: ParentTestCase {
             loginSession: loginSession,
             api: api
         )
+        let expectedCookie = HTTPCookie(
+            properties: [
+                .name: "k5_observed_user_for_\(parentID)",
+                .value: studentID,
+                .domain: host,
+                .path: "/",
+                .version: 1
+            ]
+        )!
 
         // WHEN
         XCTAssertFinish(testee.loadParentFeedbackView(webView: mockWebView), timeout: 10)
 
         // THEN
         wait(for: [sessionRequested], timeout: 1)
-        XCTAssertSingleOutputEquals(
+        XCTAssertFirstValue(
             mockWebView.configuration.websiteDataStore.httpCookieStore.getAllCookies(),
-            [
-                HTTPCookie(
-                    properties: [
-                        .name: "k5_observed_user_for_\(parentID)",
-                        .value: studentID,
-                        .domain: host,
-                        .path: "/",
-                        .version: 1
-                    ]
-                )!
-            ],
-            timeout: 10
+            timeout: 10,
+            assertions: { cookies in
+                XCTAssertTrue(expectedCookie.isEqualProperties(to: cookies.first))
+            }
         )
         XCTAssertEqual(mockWebView.receivedRequestToLoad, URLRequest(url: authenticatedSessionURL))
         XCTAssertEqual(mockWebView.isLoadingChecked, true)
