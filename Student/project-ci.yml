@@ -1,5 +1,8 @@
 ---
 name: Student
+attributes: {
+  LastUpgradeCheck: "1600"
+}
 options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure.icanvas
@@ -9,6 +12,7 @@ options:
 settings:
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
+  ENABLE_USER_SCRIPT_SANDBOXING: true
   CURRENT_PROJECT_VERSION: 0.0.1
   MARKETING_VERSION: 0.0.1
   platform: iOS

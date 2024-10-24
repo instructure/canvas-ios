@@ -18,11 +18,11 @@
 
 import Foundation
 
-public extension HTTPCookie {
+extension HTTPCookie {
 
 #if DEBUG
 
-    static func make(
+    public static func make(
         name: String = "testName",
         value: String = "testValue",
         path: String = "/login",
@@ -38,6 +38,28 @@ public extension HTTPCookie {
                 .version: 1
             ]
         )!
+    }
+
+    /// The default equality check returns false even when all properties match
+    /// so we created this custom comparison to test property equality between this and another cookie.
+    public func equalsProperties(to anotherCookie: HTTPCookie?) -> Bool {
+        guard let anotherCookie,
+              properties?.count == anotherCookie.properties?.count
+        else {
+            return false
+        }
+
+        return version == anotherCookie.version &&
+               name == anotherCookie.name &&
+               value == anotherCookie.value &&
+               expiresDate == anotherCookie.expiresDate &&
+               isSessionOnly == anotherCookie.isSessionOnly &&
+               domain == anotherCookie.domain &&
+               path == anotherCookie.path &&
+               isSecure == anotherCookie.isSecure &&
+               isHTTPOnly == anotherCookie.isHTTPOnly &&
+               comment == anotherCookie.comment &&
+               commentURL == anotherCookie.commentURL
     }
 
 #endif
