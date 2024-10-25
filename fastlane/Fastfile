@@ -27,7 +27,7 @@ platform :ios do
   end
 
   desc "Tests lane"
-  lane :hello-world do
+  lane :hello_world do
     puts "Hello World!"
   end
 

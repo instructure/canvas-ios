@@ -28,7 +28,7 @@ jobs:
       - run: bundle install
       - run:
           name: Fastlane
-          command: bundle exec fastlane hello-world
+          command: bundle exec fastlane hello_world
 
       - run:
           name: Set System Time to America
