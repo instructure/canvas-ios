@@ -32,7 +32,7 @@ enum HorizonRoutes {
         programRoutes,
         fileRoutes,
         quizRoutes,
-        assignmentRoutes
+        assignmentRoutes,
         inboxRoutes
     ]
 
