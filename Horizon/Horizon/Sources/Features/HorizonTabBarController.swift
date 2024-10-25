@@ -27,7 +27,8 @@ class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
             dashboardTab(),
             programsTab(),
             journeyTab(),
-            portfolioTab()
+            portfolioTab(),
+            inboxTab()
         ]
         tabBar.tintColor = .textDark
         UINavigationBar.appearance().tintColor = .textDarkest
@@ -67,5 +68,23 @@ class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
         vc.tabBarItem.title = String(localized: "Portfolio", bundle: .horizon)
         vc.tabBarItem.image = UIImage(systemName: "newspaper")
         return vc
+    }
+
+    private func inboxTab() -> UIViewController {
+        let inboxController: UIViewController
+        let inboxSplit = CoreSplitViewController()
+
+        inboxController = InboxAssembly.makeInboxViewController()
+
+        let empty = CoreNavigationController()
+
+        inboxSplit.viewControllers = [inboxController, empty]
+        let title = "Inbox"
+        inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
+        inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
+//        inboxSplit.tabBarItem.makeUnavailableInOfflineMode()
+        inboxSplit.extendedLayoutIncludesOpaqueBars = true
+        TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem
+        return inboxSplit
     }
 }

@@ -32,7 +32,8 @@ enum HorizonRoutes {
         pageRoutes,
         programRoutes,
         fileRoutes,
-        quizRoutes
+        quizRoutes,
+        inboxRoutes
     ]
 
     private static var splashRoutes: [RouteHandler] {
@@ -123,6 +124,26 @@ enum HorizonRoutes {
                     )
                 }
                 return StudentQuizDetailsViewController.create(courseID: courseID, quizID: quizID)
+            }
+        ]
+    }
+
+    private static var inboxRoutes: [RouteHandler] {
+        [
+            RouteHandler("/conversations/:conversationID") { _, params, userInfo in
+                guard let conversationID = params["conversationID"] else { return nil }
+                let allowArchive: Bool = {
+                    if let userInfo, let allowArchiveParam = userInfo["allowArchive"] as? Bool {
+                        return allowArchiveParam
+                    } else {
+                        return true
+                    }
+                }()
+                return MessageDetailsAssembly.makeViewController(
+                    env: AppEnvironment.shared,
+                    conversationID: conversationID,
+                    allowArchive: allowArchive
+                )
             }
         ]
     }
