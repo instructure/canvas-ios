@@ -89,7 +89,7 @@ jobs:
       - run:
           name: Build and Archive with Xcode
           command: |
-            xcodebuild clean -workspace $BITRISE_PROJECT_PATH -scheme Student -configuration Release -archivePath $CIRCLE_ARTIFACTS/Student.xcarchive archive \
+            xcodebuild clean -workspace Canvas.xcworkspace -scheme Student -configuration Release -archivePath $CIRCLE_ARTIFACTS/Student.xcarchive archive \
             CODE_SIGN_STYLE=Automatic \
             -allowProvisioningUpdates
 
