@@ -14,7 +14,7 @@ jobs:
       - run:
           name: decode Certificates
           context: org-global
-          command: base64 -D -o Certificates.p12 \<< $DISTRIBUTION_CERTIFICATE
+          command: base64 -D -o Certificates.p12 \<<< $DISTRIBUTION_CERTIFICATE
 
       - run:
           name: make Provisioning Profiles directory
@@ -23,7 +23,7 @@ jobs:
       - run:
           name: decode Provisioning Profiles
           context: org-global
-          command: base64 -D -o ~/Library/MobileDevice/Provisioning\ Profiles/App_Store.mobileprovision \<< $STUDENT_PROVISION
+          command: base64 -D -o ~/Library/MobileDevice/Provisioning\ Profiles/App_Store.mobileprovision \<<< $STUDENT_PROVISION
 
       - run: bundle install
       - run:
