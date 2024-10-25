@@ -62,11 +62,11 @@ jobs:
             cd $CIRCLE_WORKING_DIRECTORY
             make provision-ci
 
-      - run:
-          name: Install Build Tools
-          command: |
-            set -euo pipefail
-            rm -rf "$CIRCLE_WORKING_DIRECTORY/Pods/Target Support Files/yoga"
+      # - run:
+      #     name: Install Build Tools
+      #     command: |
+      #       set -euo pipefail
+      #       rm -rf "$CIRCLE_WORKING_DIRECTORY/Pods/Target Support Files/yoga"
 
       - run:
           name: Run make sync
