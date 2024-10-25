@@ -68,6 +68,7 @@ struct HAssignment {
     }
 }
 
+// swiftlint:disable line_length
 #if DEBUG
 extension HAssignment {
     static func mock() -> HAssignment {
@@ -89,3 +90,4 @@ extension HAssignment {
     }
 }
 #endif
+// swiftlint:enable line_length
