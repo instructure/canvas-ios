@@ -120,5 +120,9 @@ jobs:
 workflows:
   adhoc_build_student:
     jobs:
-      - adhoc-build-student
+      - adhoc-build-student:
+          filters:
+            branches:
+              only:
+                - circleci-project-setup
 
