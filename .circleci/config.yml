@@ -22,12 +22,12 @@ jobs:
           fingerprints:
             - "your_ssh_key_fingerprint_here"  # Update this with the SSH key fingerprint if necessary
 
-      - run:
-          name: Canvas iOS Secrets
-          command: |
-            git clone git@github.com:instructure/steps-canvas-ios-secrets.git
-            cd steps-canvas-ios-secrets
-            # Further commands as needed for secret management
+      # - run:
+      #     name: Canvas iOS Secrets
+      #     command: |
+      #       git clone git@github.com:instructure/steps-canvas-ios-secrets.git
+      #       cd steps-canvas-ios-secrets
+      #       # Further commands as needed for secret management
 
       - run:
           name: Install XcodeGen
