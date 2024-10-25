@@ -27,12 +27,12 @@ enum HorizonRoutes {
 
     private static let routes = [
         splashRoutes,
-        contentRoutes,
         moduleRoutes,
         pageRoutes,
         programRoutes,
         fileRoutes,
         quizRoutes,
+        assignmentRoutes,
         inboxRoutes
     ]
 
@@ -40,14 +40,6 @@ enum HorizonRoutes {
         [
             RouteHandler("/splash") { _, _, _ in
                 SplashAssembly.makeViewController()
-            }
-        ]
-    }
-
-    private static var contentRoutes: [RouteHandler] {
-        [
-            RouteHandler("/contentDetails") { _, _, _ in
-                ContentDetailsAssembly.makeViewController()
             }
         ]
     }
@@ -124,6 +116,26 @@ enum HorizonRoutes {
                     )
                 }
                 return StudentQuizDetailsViewController.create(courseID: courseID, quizID: quizID)
+            }
+        ]
+    }
+
+    private static var assignmentRoutes: [RouteHandler] {
+        [
+            RouteHandler("/courses/:courseID/assignments/:assignmentID") { url, params, _ in
+                guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
+                if assignmentID == "syllabus" {
+                    return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
+                }
+                if !url.originIsModuleItemDetails {
+                    return ModuleItemSequenceViewController.create(
+                        courseID: ID.expandTildeID(courseID),
+                        assetType: .assignment,
+                        assetID: ID.expandTildeID(assignmentID),
+                        url: url
+                    )
+                }
+                return AssignmentDetailsAssembly.makeViewController()
             }
         ]
     }

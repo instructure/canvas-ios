@@ -109,7 +109,8 @@ extension SessionInteractor {
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
         PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        // TODO: Revisit when implementing notifications
+        //        UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
     }
