@@ -12,6 +12,25 @@ jobs:
       - checkout  # Clone repository
 
       - run:
+          name: decode Certificates
+          context: org-global
+          command: base64 -D -o Certificates.p12 <<< $DISTRIBUTION_CERTIFICATE
+
+      - run:
+          name: make Provisioning Profiles directory
+          command: mkdir -pv ~/Library/MobileDevice/Provisioning\ Profiles/
+
+      - run:
+          name: decode Provisioning Profiles
+          context: org-global
+          command: base64 -D -o ~/Library/MobileDevice/Provisioning\ Profiles/App_Store.mobileprovision <<< $STUDENT_PROVISION
+
+      - run: bundle install
+      - run:
+          name: Fastlane
+          command: bundle exec fastlane hello-world
+
+      - run:
           name: Set System Time to America
           command: |
             sudo systemsetup -settimezone America/Denver
