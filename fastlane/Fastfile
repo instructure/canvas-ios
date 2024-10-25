@@ -22,7 +22,7 @@ platform :ios do
       keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
       keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
       certificate_path: 'Certificates.p12',
-      certificate_password: ENV["CERTIFICATE_PASSWORD"] || "default"
+      certificate_password: ENV["DISTRIBUTION_CERTIFICATE_PASSWORD"] || "default"
     )
   end
 
