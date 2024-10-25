@@ -51,9 +51,9 @@ jobs:
             cd $CIRCLE_WORKING_DIRECTORY
             make sync-ci
 
-      - run:
-          name: Set Xcode Build Number
-          command: /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $CIRCLE_BUILD_NUM" Horizon/Horizon/Resources/Info.plist
+      # - run:
+      #     name: Set Xcode Build Number
+      #     command: /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $CIRCLE_BUILD_NUM" Horizon/Horizon/Resources/Info.plist
 
       - run:
           name: Stamp App Icon with Version Number
