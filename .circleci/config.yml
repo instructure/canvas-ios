@@ -1,31 +1,85 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
-    docker:
-      # Specify the version you desire here
-      # See: https://circleci.com/developer/images/image/cimg/base
-      - image: cimg/base:current
-
-    # Add steps to the job
-    # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
+  adhoc-build-horizon:
+    macos:
+      xcode: "15.4.0"
+    resource_class: m2pro.medium
+    environment:
+      BITRISE_CONFIGURATION: "Adhoc"
+      BITRISE_SCHEME: "Student"
     steps:
-      # Checkout the code as the first step.
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+      - checkout  # Clone repo
 
-# Orchestrate jobs using workflows
-# See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
+      - run:
+          name: Set System Time to America
+          command: |
+            sudo systemsetup -settimezone America/Denver
+            echo "Github pullrequest is: ${CIRCLE_PULL_REQUEST}"
+            echo $CIRCLE_PULL_REQUEST
+
+      - add_ssh_keys:
+          fingerprints:
+            - "your_ssh_key_fingerprint_here"  # Update this with the SSH key fingerprint if necessary
+
+      - run:
+          name: Canvas iOS Secrets
+          command: |
+            git clone git@github.com:instructure/steps-canvas-ios-secrets.git
+            cd steps-canvas-ios-secrets
+            # Further commands as needed for secret management
+
+      - run:
+          name: Install XcodeGen
+          command: |
+            set -ex
+            set -o pipefail
+            cd $CIRCLE_WORKING_DIRECTORY
+            make provision-ci
+
+      - run:
+          name: Install Build Tools
+          command: |
+            set -euo pipefail
+            rm -rf "$CIRCLE_WORKING_DIRECTORY/Pods/Target Support Files/yoga"
+
+      - run:
+          name: Run make sync
+          command: |
+            set -ex
+            set -o pipefail
+            cd $CIRCLE_WORKING_DIRECTORY
+            make sync-ci
+
+      - run:
+          name: Set Xcode Build Number
+          command: /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $CIRCLE_BUILD_NUM" Horizon/Horizon/Resources/Info.plist
+
+      - run:
+          name: Stamp App Icon with Version Number
+          command: |
+            # Add script to stamp icon with version number, like PR number
+            echo "Stamping app icon with version $CIRCLE_PR_NUMBER"
+            # Additional commands for icon stamping can be added here
+
+      - run:
+          name: Build and Archive with Xcode
+          command: |
+            xcodebuild clean -workspace $BITRISE_PROJECT_PATH -scheme Horizon -configuration Release -archivePath $CIRCLE_ARTIFACTS/Horizon.xcarchive archive \
+            CODE_SIGN_STYLE=Automatic \
+            -allowProvisioningUpdates
+
+      - store_artifacts:
+          path: /path/to/artifact/dir  # Update path as needed for storing artifacts
+
+      - run:
+          name: Create QR Code for Install Page
+          command: |
+            # Generate QR code command if available, can use external tools or CircleCI's orb if relevant
+
+
 workflows:
-  say-hello-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
+  adhoc_build_workflow:
     jobs:
-      - say-hello
+      - adhoc-build-horizon
+
