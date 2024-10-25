@@ -127,5 +127,5 @@ struct DashboardView: View {
 }
 
 #Preview {
-    DashboardView(viewModel: .init(interactor: GetProgramsInteractor()))
+    DashboardView(viewModel: .init(interactor: GetProgramsInteractorLive(appEnvironment: .shared)))
 }

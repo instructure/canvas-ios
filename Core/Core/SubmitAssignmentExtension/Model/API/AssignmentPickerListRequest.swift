@@ -19,9 +19,9 @@
 public struct AssignmentPickerListRequest: APIGraphQLRequestable {
     public typealias Response = AssignmentPickerListResponse
 
-    static let operationName = "AssignmentPickerList"
+    public static let operationName = "AssignmentPickerList"
     /**`gradingPeriodId: null` is to return all assignments irrespective of their grading period in the course. */
-    static let query = """
+    public static let query = """
         query \(operationName)($courseID: ID!) {
           course(id: $courseID) {
             assignmentsConnection(filter: { gradingPeriodId: null }) {

@@ -17,10 +17,11 @@
 //
 
 import Foundation
+import Core
 
 final class DashboardAssembly {
     static func makeGetProgramsInteractor() -> GetProgramsInteractor {
-        GetProgramsInteractor()
+        GetProgramsInteractorLive(appEnvironment: AppEnvironment.shared)
     }
     static func makeView() -> DashboardView {
         DashboardView(viewModel: .init(interactor: makeGetProgramsInteractor()))

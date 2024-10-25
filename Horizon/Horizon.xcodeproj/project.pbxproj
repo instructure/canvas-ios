@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		023834751BE1AE85F5D509C1 /* ContentProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15192E48982507B886F9E73B /* ContentProgressBar.swift */; };
+		04C2D71E2CCBB64C005443E1 /* GetCoursesProgressionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2D71D2CCBB64C005443E1 /* GetCoursesProgressionResponse.swift */; };
 		04FBC8E441EE6A2FE17BAD78 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED7199B426F89179546237 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		06DE8BCB00A3AFA9D063B50E /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6ADB5EDE85D2FF9CC5DEF68 /* DashboardViewModel.swift */; };
 		0A8A4904B7D52C0A312710E7 /* PortfolioAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDEE3C9B0FD71A1B82674 /* PortfolioAssembly.swift */; };
@@ -31,6 +32,7 @@
 		7011B831189B9DF0777465AE /* ProgramItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64E4DC2DF371ED601149398 /* ProgramItemView.swift */; };
 		7D55A90806A34664576046CD /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC16FDFB815642C82768097E /* DashboardView.swift */; };
 		7FF9727E6AAB2C83F9239548 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E0CF6B14E0331072707C9 /* SplashView.swift */; };
+		825085B90B4645791C2F8D52 /* GetCoursesProgressionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F6834C2C5B6DEF917737E /* GetCoursesProgressionRequest.swift */; };
 		84C518D0F43318BD14E15031 /* ProgramsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA155FF18B2AAB3C61415DF /* ProgramsViewModel.swift */; };
 		8F5B3D11D772C4E75DE6C430 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3018AB6A54CFAEFFF18A67B /* SplashViewModel.swift */; };
 		993D7543883F42D2F5851749 /* ContentDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062414AAEF80AEA11FC78616 /* ContentDetailsView.swift */; };
@@ -92,12 +94,14 @@
 /* Begin PBXFileReference section */
 		01CB18B349EFFD80257532CA /* JourneyAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyAssembly.swift; sourceTree = "<group>"; };
 		023E7C84D2463F1B861DA9D8 /* Size12RegularTextDarkTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size12RegularTextDarkTitle.swift; sourceTree = "<group>"; };
+		04C2D71D2CCBB64C005443E1 /* GetCoursesProgressionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesProgressionResponse.swift; sourceTree = "<group>"; };
 		062414AAEF80AEA11FC78616 /* ContentDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailsView.swift; sourceTree = "<group>"; };
 		07B17BF83CEED78105ADED77 /* ProgramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsView.swift; sourceTree = "<group>"; };
 		0B8A0CFCDCB519AC3CB745B8 /* SessionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInteractor.swift; sourceTree = "<group>"; };
 		15192E48982507B886F9E73B /* ContentProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProgressBar.swift; sourceTree = "<group>"; };
 		19E18B1A6BFF4E19E32C50E3 /* HModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HModule.swift; sourceTree = "<group>"; };
 		1A04AA67527214E50E65A4FD /* ProgramDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDetailsView.swift; sourceTree = "<group>"; };
+		1A7F6834C2C5B6DEF917737E /* GetCoursesProgressionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesProgressionRequest.swift; sourceTree = "<group>"; };
 		22E1B76C3FAF2281B5810EC1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		34D5D240CEE95E43BE413812 /* Size14RegularTextDarkestTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size14RegularTextDarkestTitle.swift; sourceTree = "<group>"; };
 		475018934291ABE32049E593 /* HProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HProgram.swift; sourceTree = "<group>"; };
@@ -154,6 +158,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04C2D7192CCBB637005443E1 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				04C2D71F2CCBB788005443E1 /* CourseProgression */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		04C2D71F2CCBB788005443E1 /* CourseProgression */ = {
+			isa = PBXGroup;
+			children = (
+				1A7F6834C2C5B6DEF917737E /* GetCoursesProgressionRequest.swift */,
+				04C2D71D2CCBB64C005443E1 /* GetCoursesProgressionResponse.swift */,
+			);
+			path = CourseProgression;
+			sourceTree = "<group>";
+		};
 		05DDBD2571AE67CD98344C43 /* Routing */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +203,7 @@
 		0B29C92AB6137CCA5A6CB132 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				04C2D7192CCBB637005443E1 /* API */,
 				5DDE7EA661A88674D3221B5E /* HCourse.swift */,
 				19E18B1A6BFF4E19E32C50E3 /* HModule.swift */,
 				56DB2FB9D49D1B61A6754FF1 /* HModuleItem.swift */,
@@ -558,6 +580,7 @@
 				7D55A90806A34664576046CD /* DashboardView.swift in Sources */,
 				06DE8BCB00A3AFA9D063B50E /* DashboardViewModel.swift in Sources */,
 				41EFDB92980DFE03C0483F21 /* ExpandingModuleView.swift in Sources */,
+				825085B90B4645791C2F8D52 /* GetCoursesProgressionRequest.swift in Sources */,
 				341E151F9FE8B0C4F113C01A /* GetProgramsInteractor.swift in Sources */,
 				C25ABAF2A3AA7BAA36558525 /* HCourse.swift in Sources */,
 				3F82EB862BB02A4FE1D74F16 /* HModule.swift in Sources */,
@@ -575,6 +598,7 @@
 				BCCEE877AD932FFFB7EF2226 /* ProgramsAssembly.swift in Sources */,
 				410AE96224CF3327A4027C6E /* ProgramsView.swift in Sources */,
 				84C518D0F43318BD14E15031 /* ProgramsViewModel.swift in Sources */,
+				04C2D71E2CCBB64C005443E1 /* GetCoursesProgressionResponse.swift in Sources */,
 				C2B449676582D8604C120987 /* SessionInteractor.swift in Sources */,
 				56F0237BD9FB8F02E6AE4568 /* Size12RegularTextDarkTitle.swift in Sources */,
 				5812D7E7C840572DEAE694BE /* Size12RegularTextDarkestTitle.swift in Sources */,

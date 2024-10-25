@@ -45,7 +45,7 @@ struct ProgramsView: View {
                                 HStack(spacing: 0) {
                                     Size12RegularTextDarkTitle(title: program.progressString)
                                     Spacer()
-                                    Size12RegularTextDarkTitle(title: ProgressState.allCases.randomElement()?.rawValue ?? "")
+                                    Size12RegularTextDarkTitle(title: program.progressState.rawValue)
                                 }
                             }
                             .padding(.all, 24)
@@ -58,11 +58,5 @@ struct ProgramsView: View {
             }
         }
         .navigationTitle("Your Programs")
-    }
-
-    private enum ProgressState: String, CaseIterable {
-        case onTrack = "On Track"
-        case overdue = "Overdue"
-        case targetDate = "XX/XX"
     }
 }

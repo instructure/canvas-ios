@@ -20,7 +20,7 @@ import Core
 
 final class ProgramsAssembly {
     static func makeGetProgramsInteractor() -> GetProgramsInteractor {
-        GetProgramsInteractor()
+        GetProgramsInteractorLive(appEnvironment: AppEnvironment.shared)
     }
 
     static func makeProgramsView() -> ProgramsView {
