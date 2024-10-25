@@ -54,6 +54,7 @@ public struct PostAccountUserRequest: APIRequestable {
     public typealias Response = APIUser
     public let method: APIMethod = .post
     public var body: Body?
+    public let shouldAddNoVerifierQuery = false
     let baseURL: URL
     let accountID: String
     public var shouldHandleCookies: Bool = false

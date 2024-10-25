@@ -165,6 +165,8 @@ public protocol APIRequestable {
     /// If this parameter is set to true, then we will use a custom percent encoding for every `URLQueryItem`  where the `"+"` sign is encoded alongside with the `urlHostAllowed` CharacterSet.
     /// Some APIs expect Date strings with the time zone attached where we need to encode the `+` sign.
     var useExtendedPercentEncoding: Bool { get }
+    /// This will make the API to omit the file verifier parameter when returning course file links in rich content.
+    var shouldAddNoVerifierQuery: Bool { get }
 
     func urlRequest(relativeTo: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest
     func decode(_ data: Data) throws -> Response
@@ -204,6 +206,8 @@ extension APIRequestable {
     public var isBodyFromURL: Bool { false }
 
     public var useExtendedPercentEncoding: Bool { false }
+
+    public var shouldAddNoVerifierQuery: Bool { true }
 
     public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
         guard var components = URLComponents(string: path) else { throw APIRequestableError.invalidPath(path) }
@@ -278,19 +282,7 @@ extension APIRequestable {
             extraQueryItems.append(URLQueryItem(name: "as_user_id", value: actAsUserID))
         }
 
-        let ignoreNoVerifierQueryRequests: [any APIRequestable.Type] = [
-            LoginWebRequest.self,
-            GetMobileVerifyRequest.self,
-            PostAccountUserRequest.self
-        ]
-        let shouldAddNoVerifierQuery: Bool = {
-            !ignoreNoVerifierQueryRequests.contains { ignorableType in
-                (type(of: self) == ignorableType)
-            }
-        }()
-
         if shouldAddNoVerifierQuery {
-            /// This will make the API to omit the file verifier parameter when linking course files.
             extraQueryItems.append(URLQueryItem(name: "no_verifiers", value: "1"))
         }
 

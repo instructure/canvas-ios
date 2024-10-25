@@ -134,6 +134,7 @@ struct GetMobileVerifyRequest: APIRequestable {
         HttpHeader.accept: "application/json",
         HttpHeader.authorization: nil
     ]
+    let shouldAddNoVerifierQuery = false
 }
 
 // https://canvas.instructure.com/doc/api/file.oauth_endpoints.html#post-login-oauth2-token
