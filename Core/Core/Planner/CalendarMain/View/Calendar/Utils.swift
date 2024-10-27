@@ -38,30 +38,11 @@ extension CGSize {
 }
 
 extension FormatStyle where Self == Date.FormatStyle {
-    static func dateTime(calendar: Calendar) -> Self {
-        var format = dateTime
+
+    func calendar(_ calendar: Calendar) -> Self {
+        var format = self
         format.calendar = calendar
         return format
-    }
-}
-
-extension Date {
-
-    public func formatted(date: Date.FormatStyle.DateStyle,
-                          time: Date.FormatStyle.TimeStyle,
-                          locale: Locale = .autoupdatingCurrent,
-                          calendar: Calendar = .autoupdatingCurrent,
-                          timeZone: TimeZone = .autoupdatingCurrent,
-                          capitalizationContext: FormatStyleCapitalizationContext = .unknown) -> String {
-
-        return formatted(
-            Date.FormatStyle(date: date,
-                             time: time,
-                             locale: locale,
-                             calendar: calendar,
-                             timeZone: timeZone,
-                             capitalizationContext: capitalizationContext)
-        )
     }
 }
 

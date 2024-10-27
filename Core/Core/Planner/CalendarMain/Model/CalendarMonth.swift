@@ -25,12 +25,18 @@ struct CalendarMonth: Equatable {
 
     let calendar: Calendar
     let startDate: Date
+    let endDate: Date
 
     init(calendar: Calendar, date: Date) {
         self.calendar = calendar
-        let dayStart = calendar.startOfDay(for: date)
-        let startOfMonth = calendar.dateInterval(of: .month, for: dayStart)?.start
-        self.startDate = startOfMonth ?? dayStart
+
+        let interval = calendar.dateInterval(of: .month, for: date)
+        let startDate = interval?.start ?? calendar.startOfDay(for: date)
+
+        self.startDate = startDate
+        self.endDate = interval?.end
+            ?? calendar.date(byAdding: .month, value: 1, to: startDate)
+            ?? startDate.addingTimeInterval(30 * 24 * 3600)
     }
 
     private var components: (month: Int, year: Int) {
@@ -53,19 +59,18 @@ struct CalendarMonth: Equatable {
     }
 
     var dateInterval: DateInterval {
-        return calendar.dateInterval(of: .month, for: startDate)
-            ?? DateInterval(start: startDate, end: startDate)
+        return DateInterval(start: startDate, end: endDate)
     }
 
-    var endDate: Date {
-        return calendar.date(byAdding: .month, value: 1, to: startDate) ?? startDate
+    var weeksDateInterval: DateInterval? {
+        guard let start = weeks.first?.dateInterval.start,
+              let end = weeks.last?.dateInterval.end
+        else { return nil }
+        return DateInterval(start: start, end: end)
     }
 
     func containsDateInWeeks(_ edate: Date) -> Bool {
-        guard let start = weeks.first?.dateInterval.start,
-              let end = weeks.last?.dateInterval.end
-        else { return false }
-        let interval = DateInterval(start: start, end: end)
+        guard let interval = weeksDateInterval else { return false }
         return interval.contains(edate)
     }
 

@@ -44,15 +44,17 @@ struct CalendarWeek: Equatable, Identifiable {
             calendar: calendar,
             year: year,
             month: month,
-            weekday: 1,
+            weekday: calendar.firstWeekday,
             weekOfMonth: weekOfMonth
         )
     }
 
     var dateInterval: DateInterval {
-        let date = weekday(of: 1).date
+        guard let date = components.date else {
+            return DateInterval(start: .now, duration: 1)
+        }
         return calendar.dateInterval(of: .weekOfMonth, for: date)
-            ?? DateInterval(start: date, end: date)
+        ?? DateInterval(start: date, duration: 1)
     }
 
     var endDate: Date {
@@ -86,7 +88,7 @@ struct CalendarWeekday: Equatable, Identifiable {
         let path = [week.year, week.month, week.weekOfMonth, weekday]
             .map({ "\($0)" })
             .joined(separator: "-")
-        return "day-\(path)"
+        return "weekday-\(path)"
     }
 
     var date: Date {
@@ -102,7 +104,7 @@ struct CalendarWeekday: Equatable, Identifiable {
     }
 
     var title: String {
-        return date.formatted(Date.FormatStyle.dateTime(calendar: calendar).day())
+        return date.formatted(.dateTime.day().calendar(calendar))
     }
 
     var calendarDay: CalendarDay {

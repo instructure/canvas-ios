@@ -26,15 +26,17 @@ struct CalendarView: View {
 
     private var year: String {
         return selectedDay.date.formatted(
-            .dateTime(calendar: selectedDay.calendar)
+            .dateTime
             .year(.extended())
+            .calendar(selectedDay.calendar)
         )
     }
 
     private var month: String {
         return selectedDay.date.formatted(
-            .dateTime(calendar: selectedDay.calendar)
+            .dateTime
             .month(.wide)
+            .calendar(selectedDay.calendar)
         )
     }
 
