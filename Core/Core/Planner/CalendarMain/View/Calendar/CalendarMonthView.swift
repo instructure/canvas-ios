@@ -29,12 +29,7 @@ struct CalendarMonthView: View {
     fileprivate var month: CalendarMonth { calendarDay.month }
 
     private let space = UUID()
-    private var calendarWeekday: CalendarWeekday {
-        let week = calendarDay.week
-        let weekday = calendarDay.weekday
-        return CalendarWeekday(weekday: weekday, week: week)
-    }
-
+    
     var body: some View {
 
         Grid(horizontalSpacing: 0, verticalSpacing: 0) {
@@ -44,7 +39,7 @@ struct CalendarMonthView: View {
                 GridRow {
 
                     ForEach(week.weekdays) { wday in
-                        let selected = calendarWeekday == wday
+                        let selected = calendarDay.date == wday.date
                         let count = eventsCount(for: wday)
 
                         CalendarMonthDayView(day: wday, dots: count, selected: selected)

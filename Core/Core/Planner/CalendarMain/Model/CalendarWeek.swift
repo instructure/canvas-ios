@@ -22,57 +22,29 @@ struct CalendarWeek: Equatable, Identifiable {
     let calendar: Calendar
 
     var weekOfMonth: Int
-    var month: Int
-    var year: Int
+    let month: Int
+    let year: Int
+    let dateInterval: DateInterval
 
-    init(calendar: Calendar, date: Date) {
+    init(calendar: Calendar, year: Int? = nil, month: Int? = nil, weekOfMonth: Int? = nil, date: Date) {
         self.calendar = calendar
-        self.weekOfMonth = calendar.component(.weekOfMonth, from: date)
-        self.month = calendar.component(.month, from: date)
-        self.year = calendar.component(.year, from: date)
-    }
 
-    init(calendar: Calendar, weekOfMonth: Int, month: Int, year: Int) {
-        self.calendar = calendar
-        self.weekOfMonth = weekOfMonth
-        self.month = month
-        self.year = year
-    }
+        let interval = calendar.dateInterval(of: .weekOfMonth, for: date)
 
-    fileprivate var components: DateComponents {
-        return DateComponents(
-            calendar: calendar,
-            year: year,
-            month: month,
-            weekday: calendar.firstWeekday,
-            weekOfMonth: weekOfMonth
-        )
-    }
-
-    var dateInterval: DateInterval {
-        guard let date = components.date else {
-            return DateInterval(start: .now, duration: 1)
-        }
-        return calendar.dateInterval(of: .weekOfMonth, for: date)
-        ?? DateInterval(start: date, duration: 1)
-    }
-
-    var endDate: Date {
-        return dateInterval.end
+        self.dateInterval = interval ?? DateInterval(start: date, duration: .day * Double(calendar.weekdaysCount))
+        self.weekOfMonth = weekOfMonth ?? calendar.component(.weekOfMonth, from: date)
+        self.month = month ?? calendar.component(.month, from: date)
+        self.year = year ?? calendar.component(.year, from: date)
     }
 
     var id: String {
         return "week-\(year)-\(month)-\(weekOfMonth)"
     }
 
-    func weekday(of component: Int) -> CalendarWeekday {
-        return CalendarWeekday(weekday: component, week: self)
-    }
-
     var weekdays: [CalendarWeekday] {
-        return calendar.orderedWeekdays.map({ wday in
-            return CalendarWeekday(weekday: wday, week: self)
-        })
+        return (0 ..< calendar.weekdaysCount).map { offset in
+            CalendarWeekday(offset: offset, week: self)
+        }
     }
 
     func containsDate(_ edate: Date) -> Bool {
@@ -81,26 +53,24 @@ struct CalendarWeek: Equatable, Identifiable {
 }
 
 struct CalendarWeekday: Equatable, Identifiable {
-    let weekday: Int
+    let offset: Int
     let week: CalendarWeek
 
     var id: String {
-        let path = [week.year, week.month, week.weekOfMonth, weekday]
+        let path = [week.year, week.month, week.weekOfMonth, offset]
             .map({ "\($0)" })
             .joined(separator: "-")
         return "weekday-\(path)"
     }
 
     var date: Date {
-        var comps = week.components
-        comps.weekday = weekday
-        return comps.date ?? .now
+        let weekStart = week.dateInterval.start
+        return calendar.date(byAdding: .day, value: offset, to: weekStart)
+            ?? weekStart.addingTimeInterval(.day * Double(offset))
     }
 
     var isValid: Bool {
-        var comps = week.components
-        comps.weekday = weekday
-        return comps.isValidDate
+        return week.month == calendar.component(.month, from: date)
     }
 
     var title: String {
@@ -118,4 +88,8 @@ struct CalendarWeekday: Equatable, Identifiable {
     func containsDate(_ edate: Date) -> Bool {
         return calendar.isDate(edate, inSameDayAs: date)
     }
+}
+
+private extension TimeInterval {
+    static var day: TimeInterval { 24 * 3600 }
 }

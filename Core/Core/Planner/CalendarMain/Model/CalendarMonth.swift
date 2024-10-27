@@ -24,19 +24,18 @@ struct CalendarMonth: Equatable {
     }
 
     let calendar: Calendar
-    let startDate: Date
-    let endDate: Date
+    let firstWeekStartDate: Date
+    private let dateInterval: DateInterval
 
     init(calendar: Calendar, date: Date) {
         self.calendar = calendar
 
         let interval = calendar.dateInterval(of: .month, for: date)
         let startDate = interval?.start ?? calendar.startOfDay(for: date)
+        let firstWeekDate = calendar.dateInterval(of: .weekOfMonth, for: startDate)?.start
 
-        self.startDate = startDate
-        self.endDate = interval?.end
-            ?? calendar.date(byAdding: .month, value: 1, to: startDate)
-            ?? startDate.addingTimeInterval(30 * 24 * 3600)
+        self.firstWeekStartDate = firstWeekDate ?? startDate
+        self.dateInterval = interval ?? DateInterval(start: startDate, duration: .day * 30)
     }
 
     private var components: (month: Int, year: Int) {
@@ -47,20 +46,31 @@ struct CalendarMonth: Equatable {
 
     var weeks: [CalendarWeek] {
         let (month, year) = components
+
         return (calendar.range(of: .weekOfMonth, in: .month, for: startDate) ?? .zero)
-            .map {
-                CalendarWeek(
+            .map { wk in
+
+                let weekOffset = wk - 1
+                let weekDate = calendar
+                    .date(
+                        byAdding: .weekOfMonth,
+                        value: weekOffset,
+                        to: firstWeekStartDate
+                    ) ?? firstWeekStartDate
+                    .addingTimeInterval(.day * Double(weekOffset) * Double(calendar.weekdaysCount))
+                
+                return CalendarWeek(
                     calendar: calendar,
-                    weekOfMonth: $0,
+                    year: year,
                     month: month,
-                    year: year
+                    weekOfMonth: wk,
+                    date: weekDate
                 )
             }
     }
 
-    var dateInterval: DateInterval {
-        return DateInterval(start: startDate, end: endDate)
-    }
+    var startDate: Date { dateInterval.start }
+    var endDate: Date { dateInterval.end }
 
     var weeksDateInterval: DateInterval? {
         guard let start = weeks.first?.dateInterval.start,
