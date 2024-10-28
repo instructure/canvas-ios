@@ -22,8 +22,8 @@ import Foundation
 struct PostCalendarEventRequest: APIRequestable {
     typealias Response = APICalendarEvent
 
-    let method: APIMethod = .post
-    let path: String = "calendar_events"
+    var method: APIMethod { .post }
+    var path: String { "calendar_events" }
 
     let body: APICalendarEventRequestBody?
 }
