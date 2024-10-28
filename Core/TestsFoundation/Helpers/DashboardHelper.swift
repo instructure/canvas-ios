@@ -89,6 +89,7 @@ public class DashboardHelper: BaseHelper {
             public static var notAvailableOfflineLabel: XCUIElement { app.find(labelContaining: "not available offline", type: .staticText) }
 
             // Course content selection
+            public static var assignmentsButton: XCUIElement { app.find(label: "Assignments", type: .staticText) }
             public static var discussionsButton: XCUIElement { app.find(label: "Discussions", type: .staticText) }
             public static var gradesButton: XCUIElement { app.find(label: "Grades", type: .staticText) }
             public static var peopleButton: XCUIElement { app.find(label: "People", type: .staticText) }
