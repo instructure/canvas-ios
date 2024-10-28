@@ -18,31 +18,11 @@ default_platform(:ios)
 platform :ios do
   before_all do
     setup_circle_ci
-    prepare_certificates
   end
 
-  private_lane :prepare_certificates do |options|
-    sh("base64 -D -o Certificates.p12 <<< \"#{ENV['DISTRIBUTION_CERTIFICATE']}\"", log: false)
-    create_keychain(
-        name: "default_keychain",
-        default_keychain: true,
-        unlock: true,
-        password: "default"
-    )
-    import_certificate(
-      certificate_path: "fastlane/Certificates.p12",
-      certificate_password: ENV['DISTRIBUTION_CERTIFICATE_PASSWORD'],
-      keychain_name: "default_keychain",
-      keychain_password: "default"
-    )
-
-    unlock_keychain(path:"default_keychain", password:"default")
-    sh "security set-keychain-settings -t 3600 -l ~/Library/Keychains/default_keychain-db"   
-end
-
-  desc "Tests lane"
-  lane :hello_world do
-    puts "Hello World!"
+  desc "Ad-hoc Student Build"
+  lane :adhoc_student do
+    match(type: "adhoc")
+    gym(export_method: "ad-hoc")
   end
-
 end
