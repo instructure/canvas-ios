@@ -94,7 +94,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
             self.daysOfTheWeek = rule?.daysOfTheWeek?.map { $0.weekday } ?? []
         }
 
-        self.proposedDayOfMonth = DayOfMonth.day(date.monthDay)
+        self.proposedDayOfMonth = DayOfMonth.day(date.daysOfMonth)
         self.dayOfMonth = proposedDayOfMonth
         if case .monthly = frequency {
             if let weekDay = rule?.daysOfTheWeek?.first {
