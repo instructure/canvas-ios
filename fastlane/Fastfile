@@ -37,8 +37,8 @@ platform :ios do
     )
 
     unlock_keychain(path:"default_keychain", password:"default")
-    sh "security set-keychain-settings -t 3600 -l ~/Library/Keychains/default_keychain-db"
-   
+    sh "security set-keychain-settings -t 3600 -l ~/Library/Keychains/default_keychain-db"   
+end
 
   desc "Tests lane"
   lane :hello_world do
