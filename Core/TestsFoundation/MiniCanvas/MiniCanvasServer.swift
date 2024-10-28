@@ -218,7 +218,7 @@ public class MiniCanvasServer {
         return try handler(request)
     }
 
-    open class MiniCanvasExpectation: XCTestExpectation {
+    open class MiniCanvasExpectation: XCTestExpectation, @unchecked Sendable {
         public var lastRequest: HttpRequest?
     }
 }

@@ -19,7 +19,7 @@
 import Foundation
 
 public class TabBarBadgeCounts: NSObject {
-    public static weak var application: UIApplication? {
+    public static var notificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current() {
         didSet { updateApplicationIconBadgeNumber() }
     }
     public static weak var messageItem: UITabBarItem? {
@@ -43,8 +43,8 @@ public class TabBarBadgeCounts: NSObject {
     }
 
     private static func updateApplicationIconBadgeNumber() {
-        let count = (unreadMessageCount + todoListCount)
-        application?.applicationIconBadgeNumber = Int(count)
+        let count = Int(unreadMessageCount + todoListCount)
+        notificationCenter.setBadgeCount(count) { _ in }
     }
 
     private static func updateUnreadMessageCount() {

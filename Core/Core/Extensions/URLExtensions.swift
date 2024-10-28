@@ -258,7 +258,7 @@ public extension URL {
     func writeVideoPreview(to url: URL) throws {
         let previewImage = try videoPreview()
         guard let imageData = previewImage.pngData() else {
-            throw "Failed to convert preview data to png."
+            throw NSError.instructureError("Failed to convert preview data to png.")
         }
         try FileManager.default.createDirectory(
             at: url.deletingLastPathComponent(),

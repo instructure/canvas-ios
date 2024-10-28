@@ -25,6 +25,8 @@ public class MockUserNotificationCenter: UserNotificationCenterProtocol {
     public var error: Error?
     public var authorized = true
     public var authError: Error?
+    public var badgeCount: Int?
+    public var mockBadgeError: (any Error)?
     public weak var delegate: UNUserNotificationCenterDelegate?
 
     public private(set) var authorizationRequestOptions: UNAuthorizationOptions?
@@ -48,5 +50,10 @@ public class MockUserNotificationCenter: UserNotificationCenterProtocol {
 
     public func removePendingNotificationRequests(withIdentifiers identifiers: [String]) {
         requests = requests.filter { !identifiers.contains($0.identifier) }
+    }
+
+    public func setBadgeCount(_ newBadgeCount: Int, withCompletionHandler completionHandler: (((any Error)?) -> Void)?) {
+        badgeCount = newBadgeCount
+        completionHandler?(mockBadgeError)
     }
 }

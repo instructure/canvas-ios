@@ -37,7 +37,7 @@ struct PutPlannerNoteRequest: APIRequestable {
         }
     }
 
-    let method: APIMethod = .put
+    var method: APIMethod { .put }
     var path: String { "planner_notes/\(id)" }
 
     let id: String
