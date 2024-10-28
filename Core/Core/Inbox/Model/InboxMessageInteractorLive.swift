@@ -53,6 +53,16 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             .store(in: &subscriptions)
 
         messageListStore
+            .allObjects
+            .map({ messages in
+                return UInt(messages.count(where: { $0.state == .unread }))
+            })
+            .sink(receiveValue: { count in
+                TabBarBadgeCounts.unreadMessageCount = count
+            })
+            .store(in: &subscriptions)
+
+        messageListStore
             .statePublisher
             .subscribe(state)
             .store(in: &subscriptions)
