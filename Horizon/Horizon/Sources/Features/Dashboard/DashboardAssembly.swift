@@ -26,4 +26,12 @@ final class DashboardAssembly {
     static func makeView() -> DashboardView {
         DashboardView(viewModel: .init(interactor: makeGetProgramsInteractor()))
     }
+
+#if DEBUG
+    static func makePreview() -> DashboardView {
+        let interactor = GetProgramsInteractorLive(appEnvironment: .shared)
+        let viewModel = DashboardViewModel(interactor: interactor)
+        return DashboardView(viewModel: viewModel)
+    }
+#endif
 }

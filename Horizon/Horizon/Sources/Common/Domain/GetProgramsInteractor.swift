@@ -26,17 +26,22 @@ protocol GetProgramsInteractor {
 
 final class GetProgramsInteractorLive: GetProgramsInteractor {
     // MARK: - Properties
+
     private let appEnvironment: AppEnvironment
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
-    init(appEnvironment: AppEnvironment,
-         scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    private var subscriptions = Set<AnyCancellable>()
+    init(
+        appEnvironment: AppEnvironment,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
         self.appEnvironment = appEnvironment
         self.scheduler = scheduler
     }
 
     // MARK: - Functions
+
     func getPrograms() -> AnyPublisher<[HProgram], Never> {
         Publishers.Zip(fetchPrograms(), fetchCourseProgression())
             .receive(on: scheduler)
