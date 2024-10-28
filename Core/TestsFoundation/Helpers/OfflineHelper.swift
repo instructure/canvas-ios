@@ -23,5 +23,12 @@ public class OfflineHelper: BaseHelper {
     public static var offlineModeAlertTitleText: XCUIElement { offlineModeAlert.find(label: "Offline mode", type: .staticText) }
     public static var offlineModeAlertMessageText: XCUIElement { offlineModeAlert.find(label: "This item is not available offline.", type: .staticText) }
     public static var offlineModeAlertOkButton: XCUIElement { offlineModeAlert.find(label: "OK", type: .button) }
-    
+
+
+    public static func assertOfflineAlertDialogContent() {
+        XCTAssertTrue(OfflineHelper.offlineModeAlert.isVisible)
+        XCTAssertTrue(OfflineHelper.offlineModeAlertTitleText.isVisible && OfflineHelper.offlineModeAlertTitleText.hasLabel(label: "Offline mode"))
+        XCTAssertTrue(OfflineHelper.offlineModeAlertMessageText.isVisible && OfflineHelper.offlineModeAlertMessageText.hasLabel(label: "This item is not available offline."))
+        XCTAssertTrue(offlineModeAlertOkButton.isVisible && offlineModeAlertOkButton.isHittable)
+    }
 }

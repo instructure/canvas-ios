@@ -538,22 +538,11 @@ class OfflineContentSyncTests: OfflineE2ETest {
         
         // MARK: Tap on the 'Submission & Rubric' and 'Submit Assignment' buttons and check if the offline mode dialog displayed and dismiss the dialog by hit the 'OK' button on it
         submissionButton.hit()
-        
-        XCTAssertTrue(OfflineHelper.offlineModeAlert.isVisible)
-        XCTAssertTrue(OfflineHelper.offlineModeAlertTitleText.isVisible && OfflineHelper.offlineModeAlertTitleText.hasLabel(label: "Offline mode"))
-        XCTAssertTrue(OfflineHelper.offlineModeAlertMessageText.isVisible && OfflineHelper.offlineModeAlertMessageText.hasLabel(label: "This item is not available offline."))
-        
-        let offlineModeAlertOkButton = OfflineHelper.offlineModeAlertOkButton
-        XCTAssertTrue(offlineModeAlertOkButton.isVisible && offlineModeAlertOkButton.isHittable)
-        offlineModeAlertOkButton.hit()
+        OfflineHelper.assertOfflineAlertDialogContent()
+        OfflineHelper.offlineModeAlertOkButton.hit()
         
         submitAssignmentButton.hit()
-        
-        XCTAssertTrue(OfflineHelper.offlineModeAlert.isVisible)
-        XCTAssertTrue(OfflineHelper.offlineModeAlertTitleText.isVisible && OfflineHelper.offlineModeAlertTitleText.hasLabel(label: "Offline mode"))
-        XCTAssertTrue(OfflineHelper.offlineModeAlertMessageText.isVisible && OfflineHelper.offlineModeAlertMessageText.hasLabel(label: "This item is not available offline."))
-        
-        XCTAssertTrue(offlineModeAlertOkButton.isVisible && offlineModeAlertOkButton.isHittable)
-        offlineModeAlertOkButton.hit()
+        OfflineHelper.assertOfflineAlertDialogContent()
+        OfflineHelper.offlineModeAlertOkButton.hit()
     }
 }
