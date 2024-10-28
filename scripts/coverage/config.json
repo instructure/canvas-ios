@@ -51,7 +51,8 @@
   "ignoreContent": [
     "makeUIViewController(context:",
     "makeUIView(context:",
-    "var body: some View"
+    "var body: some View",
+    "func body(content: Content) -> some View"
   ],
   "fileMinCoverage": 0.5,
   "totalMinCoverage": 0.9

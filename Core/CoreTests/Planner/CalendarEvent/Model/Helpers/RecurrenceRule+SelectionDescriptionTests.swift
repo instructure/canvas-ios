@@ -16,14 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
+@testable import Core
 
-// https://canvas.instructure.com/doc/api/calendar_events.html#method.calendar_events_api.create
-struct PostCalendarEventRequest: APIRequestable {
-    typealias Response = APICalendarEvent
+final class RecurrenceRuleSelectionDescriptionTests: XCTestCase {
 
-    var method: APIMethod { .post }
-    var path: String { "calendar_events" }
-
-    let body: APICalendarEventRequestBody?
+    func test_selectionText() {
+        XCTAssertEqual(RecurrenceFrequency.daily.selectionText, String(localized: "Daily", bundle: .core))
+        XCTAssertEqual(RecurrenceFrequency.weekly.selectionText, String(localized: "Weekly", bundle: .core))
+        XCTAssertEqual(RecurrenceFrequency.monthly.selectionText, String(localized: "Monthly", bundle: .core))
+        XCTAssertEqual(RecurrenceFrequency.yearly.selectionText, String(localized: "Yearly", bundle: .core))
+    }
 }

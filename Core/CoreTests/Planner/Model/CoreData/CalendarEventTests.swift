@@ -50,4 +50,18 @@ class CalendarEventTests: CoreTestCase {
         event.seriesInNaturalLanguage = "anything"
         XCTAssertEqual(event.isPartOfSeries, true)
     }
+
+    func testRecurrenceRule() {
+        let event = CalendarEvent.make()
+
+        event.repetitionRule = nil
+        XCTAssertEqual(event.recurrenceRule, nil)
+
+        event.repetitionRule = "invalid raw value"
+        XCTAssertEqual(event.recurrenceRule, nil)
+
+        let rule = RecurrenceRule(recurrenceWith: .monthly, interval: 2)
+        event.repetitionRule = rule.rruleDescription
+        XCTAssertEqual(event.recurrenceRule, rule)
+    }
 }

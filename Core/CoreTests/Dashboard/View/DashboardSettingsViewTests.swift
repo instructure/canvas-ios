@@ -47,20 +47,24 @@ class DashboardSettingsViewTests: CoreTestCase {
         XCTAssertNotNil(tree.find(id: "DashboardSettings.Switch.ColorOverlay"))
     }
 
-    func testSwitchesInitialStates() {
+    func testSwitchesInitialStatesWhenSwitchesAreVisible() {
         let interactor = DashboardSettingsInteractorPreview(isGradesSwitchVisible: true,
                                                             isColorOverlaySwitchVisible: true)
         interactor.showGrades.send(true)
         interactor.colorOverlay.send(true)
-        var tree = createView(interactor: interactor)
+        let tree = createView(interactor: interactor)
         XCTAssertEqual(tree.find(id: "DashboardSettings.Switch.Grades")?.info("selected"),
                        true)
         XCTAssertEqual(tree.find(id: "DashboardSettings.Switch.ColorOverlay")?.info("selected"),
                        true)
+    }
 
+    func testSwitchesInitialStatesWhenSwitchesAreNotVisible() {
+        let interactor = DashboardSettingsInteractorPreview(isGradesSwitchVisible: true,
+                                                            isColorOverlaySwitchVisible: true)
         interactor.showGrades.send(false)
         interactor.colorOverlay.send(false)
-        tree = createView(interactor: interactor)
+        let tree = createView(interactor: interactor)
         XCTAssertEqual(tree.find(id: "DashboardSettings.Switch.Grades")?.info("selected"),
                        false)
         XCTAssertEqual(tree.find(id: "DashboardSettings.Switch.ColorOverlay")?.info("selected"),
