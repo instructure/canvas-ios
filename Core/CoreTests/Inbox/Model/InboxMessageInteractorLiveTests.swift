@@ -79,7 +79,7 @@ class InboxMessageInteractorLiveTests: CoreTestCase {
                 .make(id: "m6", workflow_state: .read),
                 .make(id: "m7", workflow_state: .unread),
                 .make(id: "m8", workflow_state: .read),
-                .make(id: "m9", workflow_state: .unread),
+                .make(id: "m9", workflow_state: .unread)
             ],
             scope: .inbox,
             context: context
