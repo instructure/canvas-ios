@@ -56,7 +56,7 @@ final class ComposeMessageViewModel: ObservableObject {
     public let didSelectRecipient = PassthroughRelay<Recipient>()
     public let didRemoveRecipient = PassthroughRelay<Recipient>()
     public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
-    public var didSelectFile = PassthroughRelay<(WeakViewController, File)>()
+    public var didSelectFile = PassthroughRelay<(WeakViewController, URL?)>()
     public let didRemoveFile = PassthroughRelay<File>()
 
     // MARK: - Inputs / Outputs
@@ -429,8 +429,11 @@ final class ComposeMessageViewModel: ObservableObject {
         if subject.isEmpty {
             subject = title
         }
+        /// `bulkMessage` refers to:
+        /// 1. Sending a message to a group or individuals.
+        /// 2. Setting it to true if you are sending a message to more than 100 recipients.
         let isExceedsRecipientsLimit = recipientIDs.count > maxRecipientCount
-        let groupConversation = isExceedsRecipientsLimit ? true : !sendIndividual
+        let bulkMessage = isExceedsRecipientsLimit ? true : sendIndividual
         return MessageParameters(
             subject: subject,
             body: body,
@@ -438,8 +441,7 @@ final class ComposeMessageViewModel: ObservableObject {
             attachmentIDs: attachments.compactMap { $0.id },
             context: context.context,
             conversationID: conversation?.id,
-            groupConversation: groupConversation,
-            bulkMessage: isExceedsRecipientsLimit,
+            bulkMessage: bulkMessage,
             includedMessages: includedMessages.map { $0.id }
         )
     }
@@ -502,11 +504,13 @@ final class ComposeMessageViewModel: ObservableObject {
                 }
             })
             .store(in: &subscriptions)
-
-        didSelectFile.sink(receiveCompletion: { _ in }, receiveValue: { (controller, file) in
-            guard let url = file.url, let fileController = router.match(url.appendingQueryItems(.init(name: "canEdit", value: "false"))) else { return }
-
-            router.show(fileController, from: controller, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
+        didSelectFile.sink(receiveCompletion: { _ in }, receiveValue: { (controller, url) in
+            guard let url else { return }
+            router.route(
+                to: url.appendingQueryItems(.init(name: "canEdit", value: "false")),
+                from: controller,
+                options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
+            )
         })
         .store(in: &subscriptions)
 
