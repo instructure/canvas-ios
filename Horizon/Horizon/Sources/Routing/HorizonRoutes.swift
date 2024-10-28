@@ -27,26 +27,19 @@ enum HorizonRoutes {
 
     private static let routes = [
         splashRoutes,
-        contentRoutes,
         moduleRoutes,
         pageRoutes,
         programRoutes,
         fileRoutes,
-        quizRoutes
+        quizRoutes,
+        assignmentRoutes,
+        inboxRoutes
     ]
 
     private static var splashRoutes: [RouteHandler] {
         [
             RouteHandler("/splash") { _, _, _ in
                 SplashAssembly.makeViewController()
-            }
-        ]
-    }
-
-    private static var contentRoutes: [RouteHandler] {
-        [
-            RouteHandler("/contentDetails") { _, _, _ in
-                ContentDetailsAssembly.makeViewController()
             }
         ]
     }
@@ -123,6 +116,46 @@ enum HorizonRoutes {
                     )
                 }
                 return StudentQuizDetailsViewController.create(courseID: courseID, quizID: quizID)
+            }
+        ]
+    }
+
+    private static var assignmentRoutes: [RouteHandler] {
+        [
+            RouteHandler("/courses/:courseID/assignments/:assignmentID") { url, params, _ in
+                guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
+                if assignmentID == "syllabus" {
+                    return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
+                }
+                if !url.originIsModuleItemDetails {
+                    return ModuleItemSequenceViewController.create(
+                        courseID: ID.expandTildeID(courseID),
+                        assetType: .assignment,
+                        assetID: ID.expandTildeID(assignmentID),
+                        url: url
+                    )
+                }
+                return AssignmentDetailsAssembly.makeViewController()
+            }
+        ]
+    }
+
+    private static var inboxRoutes: [RouteHandler] {
+        [
+            RouteHandler("/conversations/:conversationID") { _, params, userInfo in
+                guard let conversationID = params["conversationID"] else { return nil }
+                let allowArchive: Bool = {
+                    if let userInfo, let allowArchiveParam = userInfo["allowArchive"] as? Bool {
+                        return allowArchiveParam
+                    } else {
+                        return true
+                    }
+                }()
+                return MessageDetailsAssembly.makeViewController(
+                    env: AppEnvironment.shared,
+                    conversationID: conversationID,
+                    allowArchive: allowArchive
+                )
             }
         ]
     }
