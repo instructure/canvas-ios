@@ -160,9 +160,6 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        // swiftlint:disable:next redundant_discardable_let
-        let _ = UITableView.setupDefaultSectionHeaderTopPadding()
-
         let gradingPeriods = createGradingPeriods()
         let viewModel = AssignmentListPreferencesViewModel(
             gradingPeriods: gradingPeriods,
