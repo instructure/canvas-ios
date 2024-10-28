@@ -171,6 +171,7 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
             initialSortingOption: AssignmentArrangementOptions.dueDate,
             courseId: "1",
             courseName: "Sample Course Name",
+            env: AppEnvironment.shared,
             completion: { _ in })
         AssignmentListPreferencesScreen(viewModel: viewModel)
     }
