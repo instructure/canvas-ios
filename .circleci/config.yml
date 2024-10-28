@@ -11,25 +11,8 @@ jobs:
     steps:
       - checkout  # Clone repository
 
-      - run:
-          name: decode Certificates
-          context: org-global
-          command: base64 -D -o Certificates.p12 \<<< $DISTRIBUTION_CERTIFICATE
-
-      - run:
-          name: make Provisioning Profiles directory
-          command: mkdir -pv ~/Library/MobileDevice/Provisioning\ Profiles/
-
-      - run:
-          name: decode Provisioning Profiles
-          context: org-global
-          command: base64 -D -o ~/Library/MobileDevice/Provisioning\ Profiles/App_Store.mobileprovision \<<< $STUDENT_PROVISION
-
       - run: bundle install
-      - run:
-          name: Fastlane
-          command: bundle exec fastlane hello_world
-
+      
       - run:
           name: Set System Time to America
           command: |
@@ -105,12 +88,7 @@ jobs:
             # Add script or command to stamp app icon with version number or PR number
             echo "Stamping app icon with version $CIRCLE_PR_NUMBER"
 
-      - run:
-          name: Build and Archive with Xcode
-          command: |
-            xcodebuild clean -workspace Canvas.xcworkspace -scheme Student -configuration Release -archivePath $CIRCLE_ARTIFACTS/Student.xcarchive archive \
-            CODE_SIGN_STYLE=Automatic \
-            -allowProvisioningUpdates
+      - run: bundle exec fastlane adhoc_student
 
       - store_artifacts:
           path: /path/to/artifact/dir  # Specify path for artifacts storage
