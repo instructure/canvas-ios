@@ -30,12 +30,44 @@ public struct PlannerScreen: View {
 
     public var body: some View {
         List {
+
             Section {
-                ForEach(viewModel.dayPlannables, id: \.id) { item in
-                    PlannerListRowView(item: item)
-                        .onTapGesture {
-                            viewModel.showPlannableDetails.send((item, viewController))
+
+                switch viewModel.state {
+                case .data:
+
+                    if viewModel.dayPlannables.isEmpty {
+                        emptyView
+                    } else {
+                        ForEach(viewModel.dayPlannables, id: \.id) { item in
+                            PlannerListRowView(item: item)
+                                .onTapGesture {
+                                    viewModel.showPlannableDetails.send((item, viewController))
+                                }
                         }
+                    }
+
+                case .empty:
+                    emptyView
+
+                case .error:
+                    VStack {
+                        Spacer()
+                        InteractivePanda(config: .error()).fixedSize(horizontal: false, vertical: true)
+                        Spacer()
+                    }
+                    .padding(.vertical)
+
+                case .loading:
+                    HStack {
+                        Spacer()
+                        ProgressView()
+                            .progressViewStyle(.indeterminateCircle(size: 32))
+                            .padding(.top, 16)
+                            .padding(.bottom, 8)
+                        Spacer()
+                    }
+                    .padding(.vertical)
                 }
             }
             .listSectionSeparator(.hidden)
@@ -51,6 +83,14 @@ public struct PlannerScreen: View {
             .environment(\.plannerViewModel, viewModel.wrapped())
         }
         .toolbar(content: { toolbarContent })
+    }
+
+    private var emptyView: some View {
+        EmptyPanda(
+            .NoEvents,
+            title: Text("No Events Today!", bundle: .core),
+            message: Text("It looks like a great day to rest, relax, and recharge.", bundle: .core)
+        )
     }
 
     @ToolbarContentBuilder
