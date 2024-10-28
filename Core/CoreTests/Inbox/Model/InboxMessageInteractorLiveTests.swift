@@ -38,6 +38,7 @@ class InboxMessageInteractorLiveTests: CoreTestCase {
     override func tearDown() {
         super.tearDown()
         subscriptions.removeAll()
+        TabBarBadgeCounts.unreadMessageCount = 0
     }
 
     func testReadsMessagesFromUseCase() {
@@ -63,6 +64,46 @@ class InboxMessageInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(testee.state.value, .data)
         XCTAssertEqual(testee.messages.value.count, 1)
         XCTAssertEqual(testee.messages.value.first?.id, "3")
+    }
+
+    func testUnreadMessagesCountBadgeUpdate() {
+        // Given
+        let context = Context(.course, id: "course_3244")
+        mockMessageList(
+            entities: [
+                .make(id: "m1", workflow_state: .read),
+                .make(id: "m2", workflow_state: .read),
+                .make(id: "m3", workflow_state: .unread),
+                .make(id: "m4", workflow_state: .read),
+                .make(id: "m5", workflow_state: .read),
+                .make(id: "m6", workflow_state: .read),
+                .make(id: "m7", workflow_state: .unread),
+                .make(id: "m8", workflow_state: .read),
+                .make(id: "m9", workflow_state: .unread),
+            ],
+            scope: .inbox,
+            context: context
+        )
+
+        // When
+        testee
+            .setContext(context)
+            .sink()
+            .store(in: &subscriptions)
+
+        testee
+            .setScope(.inbox)
+            .sink()
+            .store(in: &subscriptions)
+
+        drainMainQueue(thoroughness: 10)
+
+        waitForState()
+
+        // Then
+        XCTAssertEqual(testee.state.value, .data)
+        XCTAssertEqual(testee.messages.value.count, 9)
+        XCTAssertEqual(TabBarBadgeCounts.unreadMessageCount, 3)
     }
 
     func testRefreshesMessagesList() {
@@ -134,22 +175,28 @@ class InboxMessageInteractorLiveTests: CoreTestCase {
     }
 
     func testRequestsNextPage() {
-        // MARK: - GIVEN
+        // Given - 1
         mockMessageListWithNextPage()
+
+        // When
         testee
             .refresh()
             .sink()
             .store(in: &subscriptions)
-        waitForState()
-        api.mock(url: URL(string: "https://next.url")!, error: NSError.instructureError("2nd page error"))
 
-        // MARK: - WHEN
+        // Then
+        waitForState(.data)
+
+        // Given -2
+        api.mock(url: URL(string: "https://next.url?no_verifiers=1")!, error: NSError.instructureError("2nd page error"))
+
+        // When
         testee
             .loadNextPage()
             .sink()
             .store(in: &subscriptions)
 
-        // MARK: - THEN
+        // Then
         waitForState(.error)
     }
 
