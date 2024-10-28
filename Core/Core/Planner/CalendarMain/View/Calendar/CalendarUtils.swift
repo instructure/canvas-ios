@@ -33,10 +33,6 @@ extension Range<Int> {
     static let zero: Range<Int> = 0 ..< 0
 }
 
-extension CGSize {
-    static let small = CGSize(width: 100, height: 100)
-}
-
 extension FormatStyle where Self == Date.FormatStyle {
 
     func calendar(_ calendar: Calendar) -> Self {
@@ -47,7 +43,7 @@ extension FormatStyle where Self == Date.FormatStyle {
 }
 
 @discardableResult
-public func withAnimation<Result>(
+func withAnimation<Result>(
     duration: Double,
     _ body: () throws -> Result,
     completion: @escaping () -> Void
@@ -58,5 +54,23 @@ public func withAnimation<Result>(
         let result = try withAnimation(.spring(duration: duration), body)
         DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: completion)
         return result
+    }
+}
+
+extension TimeInterval {
+    static var day: TimeInterval { 24 * 3600 }
+}
+
+extension CGSize {
+    
+    var isZero: Bool { width == 0 && height == 0 }
+
+    func isForward(_ layoutDirection: LayoutDirection) -> Bool {
+        switch layoutDirection {
+        case .rightToLeft:
+            return width >= 0
+        default:
+            return width < 0
+        }
     }
 }

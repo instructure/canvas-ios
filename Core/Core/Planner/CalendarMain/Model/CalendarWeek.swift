@@ -89,7 +89,3 @@ struct CalendarWeekday: Equatable, Identifiable {
         return calendar.isDate(edate, inSameDayAs: date)
     }
 }
-
-private extension TimeInterval {
-    static var day: TimeInterval { 24 * 3600 }
-}

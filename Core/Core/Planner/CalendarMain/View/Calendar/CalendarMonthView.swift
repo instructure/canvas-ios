@@ -28,8 +28,6 @@ struct CalendarMonthView: View {
     @State fileprivate var dates: [Date] = []
     fileprivate var month: CalendarMonth { calendarDay.month }
 
-    private let space = UUID()
-    
     var body: some View {
 
         Grid(horizontalSpacing: 0, verticalSpacing: 0) {
@@ -144,16 +142,6 @@ struct CalendarMonthDayView: View {
     }
 }
 
-private struct WeekOffset: Equatable {
-    let week: Int
-    let offset: CGPoint
-}
-
-private struct WeekOffsetKey: PreferenceKey {
-    static var defaultValue = WeekOffset(week: 0, offset: .zero)
-    static func reduce(value: inout WeekOffset, nextValue: () -> WeekOffset) { }
-}
-
 // MARK: - Dots Fetching
 
 private protocol CalendarMonthViewProtocol: View {
@@ -185,3 +173,15 @@ extension CalendarMonthViewProtocol {
 
 extension CalendarMonthView: CalendarMonthViewProtocol {}
 extension CalendarStaticMonthView: CalendarMonthViewProtocol {}
+
+// MARK: - Utils
+
+private struct WeekOffset: Equatable {
+    let week: Int
+    let offset: CGPoint
+}
+
+private struct WeekOffsetKey: PreferenceKey {
+    static var defaultValue = WeekOffset(week: 0, offset: .zero)
+    static func reduce(value: inout WeekOffset, nextValue: () -> WeekOffset) { }
+}

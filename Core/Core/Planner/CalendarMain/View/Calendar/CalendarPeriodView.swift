@@ -101,14 +101,16 @@ struct CalendarPeriodView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     struct PreviewView: View {
         @State var selectedDay = CalendarDay(calendar: .current, date: .now)
         @State var isCollapsed: Bool = false
 
         var body: some View {
-            CalendarView(isCollapsed: $isCollapsed, selectedDay: $selectedDay, calendarsTapped: {})
+            CalendarView(selectedDay: $selectedDay, calendarsTapped: {})
         }
     }
     return PreviewView()
 }
+#endif

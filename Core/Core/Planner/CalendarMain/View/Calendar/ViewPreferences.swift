@@ -54,10 +54,6 @@ extension View {
     }
 }
 
-extension CGSize {
-    var isZero: Bool { width == 0 && height == 0 }
-}
-
 // MARK: - Collapsable
 
 struct CollapsableViewSize: Equatable {

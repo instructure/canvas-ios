@@ -43,7 +43,6 @@ public struct PlannerScreen: View {
         .listStyle(.plain)
         .safeAreaInset(edge: .top) {
             CalendarView(
-                isCollapsed: $viewModel.isCollapsed,
                 selectedDay: $viewModel.selectedDay,
                 calendarsTapped: {
                     viewModel.showCalendars.send(viewController)

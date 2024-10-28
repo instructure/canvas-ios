@@ -20,49 +20,29 @@ import SwiftUI
 
 struct CalendarView: View {
 
-    @Binding var isCollapsed: Bool
+    // MARK: Parameters
+
     @Binding var selectedDay: CalendarDay
     var calendarsTapped: () -> Void
 
-    private var year: String {
-        return selectedDay.date.formatted(
-            .dateTime
-            .year(.extended())
-            .calendar(selectedDay.calendar)
-        )
-    }
+    // MARK: Privates
 
-    private var month: String {
-        return selectedDay.date.formatted(
-            .dateTime
-            .month(.wide)
-            .calendar(selectedDay.calendar)
-        )
-    }
+    @State private var cardInteraction = CalendarCardInteractionState()
 
-    @State private var expansionRatio: CGFloat?
-
-    private var stateAngle: Angle {
-        if let ratio = expansionRatio {
-            return .degrees(ratio * 180)
-        }
-        return .degrees(isCollapsed ? 0 : 180)
-    }
-
-    private let chevronDown = Image.chevronDown
+    // MARK: Body
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(year).font(.regular12).foregroundStyle(.secondary)
+                    Text(yearFormatted).font(.regular12).foregroundStyle(.secondary)
                     Button {
                         withAnimation {
-                            isCollapsed.toggle()
+                            cardInteraction.isCollapsed.toggle()
                         }
                     } label: {
                         HStack {
-                            Text(month).font(.semibold22)
+                            Text(monthFormatted).font(.semibold22)
                             Image.chevronDown.rotationEffect(stateAngle)
                         }
                     }
@@ -88,9 +68,8 @@ struct CalendarView: View {
             .padding(.horizontal, 5)
             Spacer().frame(height: 5)
             CalendarCardView(
-                isCollapsed: $isCollapsed,
                 selectedDay: $selectedDay,
-                expansion: $expansionRatio
+                interaction: $cardInteraction
             )
         }
         .padding(.vertical, 10)
@@ -99,52 +78,52 @@ struct CalendarView: View {
             Divider()
         }
     }
+
+    // MARK: Formatted Texts
+
+    private var yearFormatted: String {
+        return selectedDay.date.formatted(
+            .dateTime
+            .year(.extended())
+            .calendar(selectedDay.calendar)
+        )
+    }
+
+    private var monthFormatted: String {
+        return selectedDay.date.formatted(
+            .dateTime
+            .month(.wide)
+            .calendar(selectedDay.calendar)
+        )
+    }
+
+    // MARK: Calculation
+
+    private var stateAngle: Angle {
+        if let ratio = cardInteraction.expansionRatio {
+            return .degrees(ratio * 180)
+        }
+        return .degrees(cardInteraction.isCollapsed ? 0 : 180)
+    }
 }
 
-struct CalendarCardView: View {
+// MARK: - Card View
 
+struct CalendarCardView: View {
     @Environment(\.layoutDirection) var layoutDirection
 
-    private enum Mode {
-        case stable
-        case draggingHorizontal
-        case completionNext
-        case completionPrev
-        case draggingVertical
-        case collapsing
-        case expanding
-    }
+    // MARK: Properties
 
-    @State var translation: CGSize = .zero
-    @State private var mode: Mode = .stable
-
-    @State private var prevFullSize: CGSize = .small
-    @State private var currentFullSize: CGSize = .small
-    @State private var nextFullSize: CGSize = .small
-    @State private var collapsedSize: CGSize = .small
-
-    @Binding var isCollapsed: Bool
     @Binding var selectedDay: CalendarDay
-    @Binding var expansion: CGFloat?
+    @Binding var interaction: CalendarCardInteractionState
+    @State var periodSizes: CalendarCardPeriodViewSizes = .small
 
-    private let spaceID = Foundation.UUID()
-
-    private func nextDay() -> CalendarDay {
-        return isCollapsed
-        ? selectedDay.sameDayNextWeek()
-        : selectedDay.sameDayNextMonth()
-    }
-
-    private func prevDay() -> CalendarDay {
-        return isCollapsed
-        ? selectedDay.sameDayPrevWeek()
-        : selectedDay.sameDayPrevMonth()
-    }
+    // MARK: Body
 
     var body: some View {
-        let height = maxHeight()
+        let height = interaction.maxHeight(for: self)
         GeometryReader { g in
-            let offset = offset(given: g)
+            let offset = interaction.offset(for: self, given: g)
             HStack(alignment: .top, spacing: 0) {
                 prevPeriodView.frame(width: g.size.width)
                 currentPeriodView.frame(width: g.size.width)
@@ -153,168 +132,80 @@ struct CalendarCardView: View {
             .offset(x: offset)
             .frame(maxHeight: height, alignment: .top)
             .clipped()
-            .coordinateSpace(name: spaceID)
         }
         .frame(maxHeight: height)
         .background(Color.backgroundLightest)
         .gesture(dragGesture)
     }
 
+    // MARK: Period Views (Pages)
+
     private var prevPeriodView: some View {
-        CalendarPeriodView(collapsed: isCollapsed, day: prevDay())
-            .onCollapsableViewSized { sizes in
-                prevFullSize = sizes.expanded
-            }
+        CalendarPeriodView(
+            collapsed: interaction.isCollapsed,
+            day: interaction.prevDay(to: selectedDay)
+        )
+        .onCollapsableViewSized { sizes in
+            periodSizes.prev = sizes.expanded
+        }
     }
 
     private var currentPeriodView: some View {
         CalendarCurrentPeriodView(
-            collapsed: isCollapsed,
-            expansion: expansion,
+            collapsed: interaction.isCollapsed,
+            expansion: interaction.expansionRatio,
             day: $selectedDay
         )
         .onCollapsableViewSized { sizes in
-            collapsedSize = sizes.collapsed
-            currentFullSize = sizes.expanded
+            periodSizes.collapsed = sizes.collapsed
+            periodSizes.current = sizes.expanded
         }
     }
 
     private var nextPeriodView: some View {
-        CalendarPeriodView(collapsed: isCollapsed, day: nextDay())
-            .onCollapsableViewSized { sizes in
-                nextFullSize = sizes.expanded
-            }
-    }
-
-    private func offset(given g: GeometryProxy) -> CGFloat {
-        switch mode {
-        case .completionNext:
-            return -2 * g.size.width
-        case .completionPrev:
-            return 0
-        case .draggingHorizontal:
-            return layoutDirection == .rightToLeft
-                ? -1 * translation.width - g.size.width
-                : translation.width - g.size.width
-        default:
-            return -1 * g.size.width
+        CalendarPeriodView(
+            collapsed: interaction.isCollapsed,
+            day: interaction.nextDay(to: selectedDay)
+        )
+        .onCollapsableViewSized { sizes in
+            periodSizes.next = sizes.expanded
         }
     }
 
-    private func maxHeight() -> CGFloat {
-        switch mode {
-        case .collapsing:
-            return collapsedSize.height
-        case .expanding:
-            return currentFullSize.height
-        case .draggingVertical:
-            let base = isCollapsed ? collapsedSize.height : currentFullSize.height
-            return max(collapsedSize.height, min(base + translation.height, currentFullSize.height))
-        case .draggingHorizontal where isCollapsed == false:
-            let targetHeight = (isTranslationForward ? nextFullSize : prevFullSize).height
-            return max(targetHeight, currentFullSize.height)
-        case .completionNext where isCollapsed == false:
-            return nextFullSize.height
-        case .completionPrev where isCollapsed == false:
-            return prevFullSize.height
-        default:
-            return isCollapsed ? collapsedSize.height : currentFullSize.height
-        }
-    }
+    // MARK: Drag Gesture
 
     private var dragGesture: some Gesture {
         DragGesture()
-            .onChanged({ value in
-                translation = value.translation
-
-                if case .stable = mode {
-                    let velocity = value.velocity
-                    mode = abs(velocity.height) > abs(velocity.width) ? .draggingVertical : .draggingHorizontal
-                }
-
-                if case .draggingVertical = mode {
-                    let base = isCollapsed ? collapsedSize.height : currentFullSize.height
-                    let maxHeight = base + translation.height
-                    let dh = (maxHeight - collapsedSize.height) / (currentFullSize.height - collapsedSize.height)
-                    expansion = min(max(dh, 0), 1)
-                } else {
-                    expansion = nil
-                }
+            .onChanged({
+                interaction.dragChanged(with: $0, in: self)
             })
-            .onEnded({ value in
-
-                switch mode {
-                case .draggingHorizontal:
-
-                    var shouldSwitch = abs(translation.width) / currentFullSize.width > 0.4
-                                    || abs(value.velocity.width) > 30
-
-                    if value.velocity.width.sign != translation.width.sign {
-                        shouldSwitch = false
-                    }
-
-                    let increment: Mode = isTranslationForward ? .completionNext : .completionPrev
-
-                    withAnimation(duration: 0.4) {
-                        mode = shouldSwitch ? increment : .stable
-                    } completion: {
-                        guard shouldSwitch else { return }
-
-                        withAnimation {
-                            if case .completionNext = increment {
-                                selectedDay = nextDay()
-                            } else if case .completionPrev = increment {
-                                selectedDay = prevDay()
-                            }
-                            mode = .stable
-                            translation = .zero
-                            expansion = nil
-                        }
-                    }
-
-                case .draggingVertical:
-
-                    var shouldCollapse = abs(translation.height) / currentFullSize.height > 0.4 || abs(value.velocity.height) > 30
-
-                    if value.velocity.height.sign != translation.height.sign {
-                        shouldCollapse = false
-                    }
-
-                    let increment: Mode = translation.height < 0 ? .collapsing : .expanding
-
-                    withAnimation(duration: 0.4) {
-                        mode = shouldCollapse ? increment : .stable
-                        expansion = shouldCollapse ? (increment == .collapsing ? 0 : 1) : nil
-                    } completion: {
-                        guard shouldCollapse else { return }
-
-                        isCollapsed = increment == .collapsing ? true : false
-                        mode = .stable
-                        translation = .zero
-                        expansion = nil
-                    }
-
-                default: break
-                }
+            .onEnded({
+                interaction.dragEnded(with: $0, in: self)
             })
-    }
-
-    private var isTranslationForward: Bool {
-        return translation.isForward(layoutDirection)
     }
 }
 
-extension CGSize {
-    func isForward(_ layoutDirection: LayoutDirection) -> Bool {
-        switch layoutDirection {
-        case .rightToLeft:
-            return width >= 0
-        default:
-            return width < 0
-        }
+// MARK: - Period View Sizes
+
+struct CalendarCardPeriodViewSizes {
+
+    static var small: CalendarCardPeriodViewSizes {
+        let small = CGSize(width: 100, height: 100)
+        return CalendarCardPeriodViewSizes(
+            collapsed: small,
+            prev: small,
+            current: small,
+            next: small
+        )
     }
+
+    var collapsed: CGSize
+    var prev: CGSize
+    var current: CGSize
+    var next: CGSize
 }
 
+#if DEBUG
 #Preview {
 
     struct PreviewView: View {
@@ -324,15 +215,15 @@ extension CGSize {
             return calendar
         }()
 
-        @State var isCollapsed: Bool = false
         @State var selectedDay = CalendarDay(calendar: calendar, date: .now)
 
         var body: some View {
             VStack {
-                CalendarView(isCollapsed: $isCollapsed, selectedDay: $selectedDay, calendarsTapped: {})
+                CalendarView(selectedDay: $selectedDay, calendarsTapped: {})
                 Spacer()
             }
         }
     }
     return PreviewView()
 }
+#endif

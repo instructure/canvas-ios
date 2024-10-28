@@ -22,8 +22,6 @@ import SwiftUI
 public class PlannerViewModel: ObservableObject {
 
     @Published var selectedDay: CalendarDay
-    @Published var isCollapsed: Bool = true
-
     @Published var dayPlannables: [Plannable] = []
     @Published var plannables: [Plannable] = []
     @Published var state: StoreState = .empty
