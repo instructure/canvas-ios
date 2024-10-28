@@ -72,7 +72,7 @@ class ParentSubmissionInteractorTests: ParentTestCase {
             mockWebView.configuration.websiteDataStore.httpCookieStore.getAllCookies(),
             timeout: 10,
             assertions: { cookies in
-                XCTAssertTrue(expectedCookie.equalsProperties(to: cookies.first))
+                XCTAssertTrue(expectedCookie.isEqualProperties(to: cookies.first))
             }
         )
         XCTAssertEqual(mockWebView.receivedRequestToLoad, URLRequest(url: authenticatedSessionURL))

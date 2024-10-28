@@ -298,8 +298,8 @@ public extension XCUIElement {
         return coordinate(withNormalizedOffset: CGVector(dx: x, dy: y))
     }
 
-    func pullToRefresh(x: CGFloat = 0.5) {
-        relativeCoordinate(x: x, y: 0.2).press(forDuration: 0.05, thenDragTo: relativeCoordinate(x: x, y: 1.0))
+    func pullToRefresh(x: CGFloat = 0.5, y: CGFloat = 1.0) {
+        relativeCoordinate(x: x, y: 0.2).press(forDuration: 0.05, thenDragTo: relativeCoordinate(x: x, y: y))
     }
 
     func tapAt(_ point: CGPoint) {

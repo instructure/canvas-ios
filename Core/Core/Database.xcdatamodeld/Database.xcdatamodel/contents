@@ -49,6 +49,7 @@
         <attribute name="gradingTypeRaw" attributeType="String"/>
         <attribute name="groupCategoryID" optional="YES" attributeType="String"/>
         <attribute name="hasOverrides" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="hideInGradeBook" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hideRubricPoints" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="htmlURL" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
@@ -242,7 +243,7 @@
     </entity>
     <entity name="ContextColor" representedClassName="Core.ContextColor" syncable="YES">
         <attribute name="canvasContextID" attributeType="String"/>
-        <attribute name="color" attributeType="Transformable" valueTransformerName="UIColorTransformer" customClassName="UIKit.UIColor"/>
+        <attribute name="color" attributeType="Transformable" valueTransformerName="UIColorTransformer"/>
         <relationship name="card" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardCard" inverseName="contextColor" inverseEntity="DashboardCard"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="contextColor" inverseEntity="Course"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="contextColor" inverseEntity="Group"/>
