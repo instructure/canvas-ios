@@ -75,7 +75,7 @@ struct ExpandingModuleView: View {
         items: [
             .init(id: "1", title: "Intro to biology", url: nil),
             .init(id: "2", title: "Intro to sports", url: nil)
-        ], 
+        ],
         routeToURL: { _ in }
     )
 }
