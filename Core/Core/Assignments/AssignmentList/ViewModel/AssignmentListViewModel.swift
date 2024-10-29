@@ -285,6 +285,7 @@ public class AssignmentListViewModel: ObservableObject {
     init(state: ViewModelState<[AssignmentGroupViewModel]>) {
         self.courseID = ""
         self.state = state
+        self.defaultGradingPeriod = nil
     }
 
 #endif
