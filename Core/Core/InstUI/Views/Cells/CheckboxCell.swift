@@ -46,7 +46,7 @@ extension InstUI {
                             color: color
                         )
                         .animation(.default, value: isSelected)
-                        VStack(spacing: 0) {
+                        VStack(spacing: 2) {
                             Text(title)
                                 .font(.regular16, lineHeight: .fit)
                                 .multilineTextAlignment(.leading)

@@ -47,37 +47,6 @@ extension InstUI {
             }
         }
     }
-
-    public struct ListSectionCollapsableHeader: View {
-        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-
-        private let title: String?
-        private let icon: AnyView?
-
-        public init(title: String?, icon: AnyView? = nil) {
-            self.title = title
-            self.icon = icon
-        }
-
-        @ViewBuilder
-        public var body: some View {
-            if let title {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(title)
-                        .font(.semibold14)
-                        .foregroundStyle(Color.textDark)
-                        .paddingStyle(.all, .standard)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    InstUI.Divider()
-                    icon
-                }
-                .background(Color.backgroundLight)
-                .accessibilityAddTraits([.isHeader])
-            } else {
-                SwiftUI.EmptyView()
-            }
-        }
-    }
 }
 
 #if DEBUG

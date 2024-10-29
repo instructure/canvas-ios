@@ -82,16 +82,12 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     // MARK: - Outputs
 
     // Filter Options
-    @Published private(set) var isFilterSectionVisible: Bool
     @Published private(set) var selectedAssignmentFilterOptions: [AssignmentFilterOption]
 
     // Sorting Options
-    @Published private(set) var sortingOptions: [AssignmentArrangementOptions] = []
     @Published var selectedSortingOption: AssignmentArrangementOptions?
 
     // Grading Periods
-    @Published private(set) var isGradingPeriodsSectionVisible = false
-    @Published private(set) var gradingPeriods: [GradingPeriod] = []
     @Published var selectedGradingPeriod: GradingPeriod?
 
     // MARK: - Private variables
@@ -102,10 +98,14 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
     private let completion: (AssignmentListPreferences) -> Void
 
-    // MARK: - Variables
+    // MARK: - Other variables and literals
+
+    let sortingOptions: [AssignmentArrangementOptions]
+    let gradingPeriods: [GradingPeriod]
 
     let courseName: String
-    let env: AppEnvironment
+    let isFilterSectionVisible: Bool
+    let isGradingPeriodsSectionVisible: Bool
 
     // MARK: - Init
 
@@ -135,19 +135,15 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
         // Other
         self.courseName = courseName
-        self.env = env
         self.completion = completion
 
-        if gradingPeriods.count > 1 {
-            isGradingPeriodsSectionVisible = true
-        }
-
+        self.isGradingPeriodsSectionVisible = gradingPeriods.count > 1
         self.isFilterSectionVisible = env.app == .student
     }
 
     // MARK: - Functions
 
-    func doneButtonTapped(viewController: WeakViewController) {
+    func didTapDone(viewController: WeakViewController) {
         dismiss(viewController: viewController)
         completion(
             AssignmentListPreferences(

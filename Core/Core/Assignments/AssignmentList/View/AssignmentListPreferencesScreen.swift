@@ -41,25 +41,20 @@ public struct AssignmentListPreferencesScreen: View {
                     gradingPeriodsSection
                 }
             }
-            .navigationTitle("Assignment List Preferences", subtitle: viewModel.courseName)
+            .navigationTitle(
+                String(
+                    localized: "Assignment List Preferences",
+                    bundle: .core
+                ),
+                subtitle: viewModel.courseName
+            )
             .navigationBarItems(trailing: doneButton)
         }
     }
 
-//    private var navBarTitleView: some View {
-//        VStack {
-//            Text(String(localized: "Assignment List Preferences", bundle: .core))
-//                .foregroundStyle(Color.textDarkest)
-//                .font(.semibold16)
-//            Text(viewModel.courseName ?? "")
-//                .foregroundStyle(Color.textDark)
-//                .font(.regular12)
-//        }
-//    }
-
     private var doneButton: some View {
         InstUI.NavigationBarButton.done {
-            viewModel.doneButtonTapped(viewController: viewController)
+            viewModel.didTapDone(viewController: viewController)
         }
         .accessibilityIdentifier("AssignmentFilter.doneButton")
     }
@@ -77,18 +72,18 @@ public struct AssignmentListPreferencesScreen: View {
     }
 
     private func filterItem(with item: AssignmentFilterOption) -> some View {
-        func filterSelectionBinding(option: AssignmentFilterOption) -> Binding<Bool> {
+        var filterSelectionBinding: Binding<Bool> {
             Binding {
-                viewModel.selectedAssignmentFilterOptions.contains(option)
+                viewModel.selectedAssignmentFilterOptions.contains(item)
             } set: { isSelected in
-                viewModel.didSelectAssignmentFilterOption(option, isSelected: isSelected)
+                viewModel.didSelectAssignmentFilterOption(item, isSelected: isSelected)
             }
         }
 
         return InstUI.CheckboxCell(
             title: item.title,
             subtitle: item.subtitle,
-            isSelected: filterSelectionBinding(option: item),
+            isSelected: filterSelectionBinding,
             color: color
         )
         .accessibilityIdentifier("AssignmentFilter.filterItems.\(item.id)")

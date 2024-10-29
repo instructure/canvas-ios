@@ -152,9 +152,6 @@ struct AssignmentListScreen_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        // swiftlint:disable:next redundant_discardable_let
-        let _ = UITableView.setupDefaultSectionHeaderTopPadding()
-
         let assignments = createAssignments()
         let assignmentGroups: [AssignmentGroupViewModel] = [
             AssignmentGroupViewModel(name: "Assignment Group 1", id: "1", assignments: assignments, courseColor: .red),

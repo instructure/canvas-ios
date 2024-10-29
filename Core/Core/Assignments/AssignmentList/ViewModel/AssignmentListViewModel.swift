@@ -60,11 +60,11 @@ public class AssignmentListViewModel: ObservableObject {
     // MARK: - Variables
 
     public var isFilterIconSolid: Bool = false
-    public var defaultGradingPeriod: GradingPeriod?
+    public let defaultGradingPeriod: GradingPeriod?
     public let defaultSortingOption: AssignmentArrangementOptions = .dueDate
     public var selectedGradingPeriod: GradingPeriod?
     public var selectedSortingOption: AssignmentArrangementOptions = .dueDate
-    private var sortingOptions = AssignmentArrangementOptions.allCases
+    private let sortingOptions = AssignmentArrangementOptions.allCases
     private var selectedFilterOptions: [AssignmentFilterOption] = AssignmentFilterOption.allCases
     private let env = AppEnvironment.shared
     private var userDefaults: SessionDefaults?
@@ -93,9 +93,14 @@ public class AssignmentListViewModel: ObservableObject {
     private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID)))
 
     // MARK: - Init
-    public init(context: Context, userDefaults: SessionDefaults? = AppEnvironment.shared.userDefaults) {
+    public init(
+        context: Context,
+        userDefaults: SessionDefaults? = AppEnvironment.shared.userDefaults,
+        defaultGradingPeriod: GradingPeriod? = nil
+    ) {
         self.userDefaults = userDefaults
         self.courseID = context.id
+        self.defaultGradingPeriod = defaultGradingPeriod
         self.selectedGradingPeriod = self.defaultGradingPeriod
 
         loadAssignmentListPreferences()
