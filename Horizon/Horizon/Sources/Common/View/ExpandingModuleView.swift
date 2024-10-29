@@ -22,6 +22,7 @@ import SwiftUI
 struct ExpandingModuleView: View {
     let title: String
     let items: [HModuleItem]
+    let routeToURL: (URL) -> Void
     @State private var isExpanded = false
 
     var body: some View {
@@ -43,12 +44,18 @@ struct ExpandingModuleView: View {
             if isExpanded {
                 VStack(alignment: .leading, spacing: 16) {
                     ForEach(items) { item in
-                        ProgramItemView(
-                            title: item.title,
-                            subtitle: "Placeholder Text",
-                            duration: "20 mins"
-                        )
-                        .padding(.all, 12)
+                        Button {
+                            if let url = item.htmlURL {
+                                routeToURL(url)
+                            }
+                        } label: {
+                            ProgramItemView(
+                                title: item.title,
+                                subtitle: "Placeholder Text",
+                                duration: "20 mins"
+                            )
+                            .padding(.all, 12)
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(Color.backgroundLight)
@@ -66,8 +73,9 @@ struct ExpandingModuleView: View {
     ExpandingModuleView(
         title: "Intro Module",
         items: [
-            .init(id: "1", title: "Intro to biology", url: nil),
-            .init(id: "2", title: "Intro to sports", url: nil)
-        ]
+            .init(id: "1", title: "Intro to biology", htmlURL: nil),
+            .init(id: "2", title: "Intro to sports", htmlURL: nil)
+        ],
+        routeToURL: { _ in }
     )
 }

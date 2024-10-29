@@ -29,12 +29,23 @@ final class ProgramDetailsViewModel: ObservableObject {
 
     // MARK: - Private
 
+    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
-    init(program: HProgram) {
+    init(
+        router: Router,
+        program: HProgram
+    ) {
+        self.router = router
         self.program = program
         self.state = .data
+    }
+
+    // MARK: - Inputs
+
+    func moduleItemDidTap(url: URL, from: WeakViewController) {
+        router.route(to: url, from: from)
     }
 }
