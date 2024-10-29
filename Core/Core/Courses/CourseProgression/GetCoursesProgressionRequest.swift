@@ -17,23 +17,22 @@
 //
 
 import Foundation
-import Core
 
-struct GetCoursesProgressionRequest: APIGraphQLRequestable {
+public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
 
-    typealias Response = GetCoursesProgressionResponse
-    let variables: Input
+    public typealias Response = GetCoursesProgressionResponse
+    public let variables: Input
 
-    struct Input: Codable, Equatable {
+    public struct Input: Codable, Equatable {
         var userId: String
     }
 
-    init(userId: String) {
+    public init(userId: String) {
         variables = Input(userId: userId)
     }
-    static let operationName = "courseProgressionQuery"
+    public static let operationName = "courseProgressionQuery"
 
-    static var query: String = """
+    public static var query: String = """
             query \(operationName)($userId: ID!) {
               user: legacyNode(_id: $userId, type: User) {
                 ... on User {

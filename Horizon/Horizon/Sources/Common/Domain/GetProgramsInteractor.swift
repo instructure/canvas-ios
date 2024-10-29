@@ -45,22 +45,15 @@ final class GetProgramsInteractorLive: GetProgramsInteractor {
     func getPrograms() -> AnyPublisher<[HProgram], Never> {
         Publishers.Zip(fetchPrograms(), fetchCourseProgression())
             .receive(on: scheduler)
-            .map { programs, enrollmentCourses in
+            .map { programs, coursesProgression in
                 programs.map { program in
-                    guard let progression = enrollmentCourses.first(
-                        where: { $0.course?.id == program.course.id }) else {
+                    guard let progression = coursesProgression.first(
+                        where: { $0.courseID == program.course.id }) else {
                         return program
                     }
 
                     var updatedProgram = program
-                    let completionPercentage = progression.course?
-                        .usersConnection?
-                        .nodes?
-                        .first?
-                        .courseProgression?
-                        .requirements?
-                        .completionPercentage ?? 0
-
+                    let completionPercentage = progression.completionPercentage
                     updatedProgram.percentage = completionPercentage
                     updatedProgram.progressState = HProgram.ProgressState(from: completionPercentage)
                     return updatedProgram
@@ -93,16 +86,11 @@ final class GetProgramsInteractorLive: GetProgramsInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func fetchCourseProgression() -> AnyPublisher<[GetCoursesProgressionResponse.EnrollmentModel], Never> {
+    private func fetchCourseProgression() -> AnyPublisher<[CDCourseProgression], Never> {
         let userId = appEnvironment.currentSession?.userID ?? ""
-        let request = GetCoursesProgressionRequest(userId: userId)
-
-        return Future<[GetCoursesProgressionResponse.EnrollmentModel], Never> { [appEnvironment] promise in
-            appEnvironment.api.makeRequest(request) { response, _, _ in
-                let enrollments = response?.data?.user?.enrollments ?? []
-                promise(.success(enrollments))
-            }
-        }
-        .eraseToAnyPublisher()
+        return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId))
+            .getEntities()
+            .replaceError(with: [])
+            .eraseToAnyPublisher()
     }
 }

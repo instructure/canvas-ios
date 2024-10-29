@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct GetCoursesProgressionResponse: Codable {
+public struct GetCoursesProgressionResponse: Codable {
     let data: DataModel?
 
     struct DataModel: Codable {
@@ -29,7 +29,7 @@ struct GetCoursesProgressionResponse: Codable {
         let enrollments: [EnrollmentModel]?
     }
 
-    struct EnrollmentModel: Codable {
+    public struct EnrollmentModel: Codable {
         let course: CourseModel?
     }
 
@@ -45,20 +45,20 @@ struct GetCoursesProgressionResponse: Codable {
     }
 
     struct UsersConnection: Codable {
-        let nodes: [NodeModel]?
+        public  let nodes: [NodeModel]?
     }
 
     struct NodeModel: Codable {
-        let courseProgression: CourseProgression?
+        public let courseProgression: CourseProgression?
     }
 
     struct CourseProgression: Codable {
-        let requirements: Requirements?
+        public let requirements: Requirements?
     }
 
     struct Requirements: Codable {
         let completed: Int?
-        let completionPercentage: Double?
+        public   let completionPercentage: Double?
         let total: Int?
     }
 }

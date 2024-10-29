@@ -29,7 +29,7 @@ final class DashboardAssembly {
 
 #if DEBUG
     static func makePreview() -> DashboardView {
-        let interactor = GetProgramsInteractorLive(appEnvironment: .shared)
+        let interactor = GetProgramsInteractorPreview()
         let viewModel = DashboardViewModel(interactor: interactor)
         return DashboardView(viewModel: viewModel)
     }
