@@ -23,11 +23,11 @@ jobs:
       - run:
           name: Add vault ssh deploy key
           command: |
-            echo $SSH_KEY
             echo -e $SSH_KEY | base64 -d > key
             chmod 400 key
             eval $(ssh-agent -s)
             ssh-add key
+            ssh-add -l
 
       - add_ssh_keys:
           fingerprints:
