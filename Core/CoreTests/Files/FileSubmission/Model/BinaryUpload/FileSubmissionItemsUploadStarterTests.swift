@@ -93,7 +93,7 @@ class FileSubmissionItemsUploadStarterTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.2)
+        waitForExpectations(timeout: 0.1)
         XCTAssertNil(item.uploadError)
 
         guard let mockAPITask = apiMock.queue.first else {
