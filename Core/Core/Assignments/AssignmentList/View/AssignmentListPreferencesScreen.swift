@@ -22,6 +22,7 @@ public struct AssignmentListPreferencesScreen: View {
     // MARK: - Properties
     @Environment(\.viewController) private var viewController
     @ObservedObject private var viewModel: AssignmentListPreferencesViewModel
+    private let color: Color = .init(Brand.shared.primary)
 
     // MARK: - Init
     public init(viewModel: AssignmentListPreferencesViewModel) {
@@ -32,7 +33,7 @@ public struct AssignmentListPreferencesScreen: View {
     public var body: some View {
         ScrollView(showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
-                if viewModel.isStudentApp {
+                if viewModel.isFilterSectionVisible {
                     filterSection
                 }
                 sortBySection
@@ -40,28 +41,26 @@ public struct AssignmentListPreferencesScreen: View {
                     gradingPeriodsSection
                 }
             }
-            .navigationTitleStyled(navBarTitleView)
+            .navigationTitle("Assignment List Preferences", subtitle: viewModel.courseName)
             .navigationBarItems(trailing: doneButton)
         }
     }
 
-    private var navBarTitleView: some View {
-        VStack {
-            Text(String(localized: "Assignment List Preferences", bundle: .core))
-                .foregroundStyle(Color.textDarkest)
-                .font(.semibold16)
-            Text(viewModel.courseName ?? "")
-                .foregroundStyle(Color.textDark)
-                .font(.regular12)
-        }
-    }
+//    private var navBarTitleView: some View {
+//        VStack {
+//            Text(String(localized: "Assignment List Preferences", bundle: .core))
+//                .foregroundStyle(Color.textDarkest)
+//                .font(.semibold16)
+//            Text(viewModel.courseName ?? "")
+//                .foregroundStyle(Color.textDark)
+//                .font(.regular12)
+//        }
+//    }
 
     private var doneButton: some View {
         InstUI.NavigationBarButton.done {
             viewModel.doneButtonTapped(viewController: viewController)
         }
-        .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(Text("Done", bundle: .core))
         .accessibilityIdentifier("AssignmentFilter.doneButton")
     }
 
@@ -78,11 +77,19 @@ public struct AssignmentListPreferencesScreen: View {
     }
 
     private func filterItem(with item: AssignmentFilterOption) -> some View {
-        InstUI.CheckboxCell(
+        func filterSelectionBinding(option: AssignmentFilterOption) -> Binding<Bool> {
+            Binding {
+                viewModel.selectedAssignmentFilterOptions.contains(option)
+            } set: { isSelected in
+                viewModel.didSelectAssignmentFilterOption(option, isSelected: isSelected)
+            }
+        }
+
+        return InstUI.CheckboxCell(
             title: item.title,
-            isSelected: selectionBinding(option: item),
-            color: Color(Brand.shared.primary),
-            subtitle: item.subtitle
+            subtitle: item.subtitle,
+            isSelected: filterSelectionBinding(option: item),
+            color: color
         )
         .accessibilityIdentifier("AssignmentFilter.filterItems.\(item.id)")
     }
@@ -104,7 +111,7 @@ public struct AssignmentListPreferencesScreen: View {
             title: item.title,
             value: item,
             selectedValue: $viewModel.selectedSortingOption,
-            color: Color(Brand.shared.primary)
+            color: color
         )
         .accessibilityIdentifier("AssignmentFilter.sortByItems.\(item.rawValue)")
     }
@@ -127,19 +134,9 @@ public struct AssignmentListPreferencesScreen: View {
             title: item.title ?? "",
             value: item,
             selectedValue: $viewModel.selectedGradingPeriod,
-            color: Color(Brand.shared.primary)
+            color: color
         )
         .accessibilityIdentifier("AssignmentFilter.gradingPeriodItems.\(item.id ?? "0")")
-    }
-
-    // MARK: - Additional functions
-
-    private func selectionBinding(option: AssignmentFilterOption) -> Binding<Bool> {
-        Binding {
-            viewModel.selectedAssignmentFilterOptions.contains(option)
-        } set: { isSelected in
-            viewModel.didSelectAssignmentFilterOption(option: option, isSelected: isSelected)
-        }
     }
 }
 
@@ -162,11 +159,10 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
     static var previews: some View {
         let gradingPeriods = createGradingPeriods()
         let viewModel = AssignmentListPreferencesViewModel(
-            gradingPeriods: gradingPeriods,
-            initialGradingPeriod: nil,
             sortingOptions: AssignmentArrangementOptions.allCases,
             initialSortingOption: AssignmentArrangementOptions.dueDate,
-            courseId: "1",
+            gradingPeriods: gradingPeriods,
+            initialGradingPeriod: nil,
             courseName: "Sample Course Name",
             env: AppEnvironment.shared,
             completion: { _ in })

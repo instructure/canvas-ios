@@ -61,13 +61,9 @@ public struct AssignmentGroupView: View {
         }
         .accessibilityAddTraits(.isHeader)
         .accessibilityHint(
-            isExpanded ? String(
-                localized: "Expanded",
-                bundle: .core
-            ) : String(
-                localized: "Collapsed",
-                bundle: .core
-            )
+            isExpanded
+                ? String(localized: "Expanded", bundle: .core)
+                : String(localized: "Collapsed", bundle: .core)
         )
         .padding(.vertical, 8)
     }

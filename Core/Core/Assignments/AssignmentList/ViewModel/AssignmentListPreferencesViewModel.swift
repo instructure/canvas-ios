@@ -75,60 +75,65 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
 public final class AssignmentListPreferencesViewModel: ObservableObject {
     struct AssignmentListPreferences {
         let filterOptions: [AssignmentFilterOption]
-        let gradingPeriod: GradingPeriod?
         let sortingOption: AssignmentArrangementOptions
-        let courseId: String
+        let gradingPeriod: GradingPeriod?
     }
 
     // MARK: - Outputs
 
+    // Filter Options
+    @Published private(set) var isFilterSectionVisible: Bool
+    @Published private(set) var selectedAssignmentFilterOptions: [AssignmentFilterOption]
+
+    // Sorting Options
+    @Published private(set) var sortingOptions: [AssignmentArrangementOptions] = []
+    @Published var selectedSortingOption: AssignmentArrangementOptions?
+
+    // Grading Periods
     @Published private(set) var isGradingPeriodsSectionVisible = false
     @Published private(set) var gradingPeriods: [GradingPeriod] = []
     @Published var selectedGradingPeriod: GradingPeriod?
 
-    @Published private(set) var sortingOptions: [AssignmentArrangementOptions] = []
-    @Published var selectedSortingOption: AssignmentArrangementOptions?
-
-    @Published private(set) var selectedAssignmentFilterOptions: [AssignmentFilterOption]
-
-    @Published private(set) var isStudentApp: Bool
-
     // MARK: - Private variables
 
-    private let initialGradingPeriod: GradingPeriod?
-    private let initialSortingOption: AssignmentArrangementOptions
     private let initialFilterOptions: [AssignmentFilterOption]?
+    private let initialSortingOption: AssignmentArrangementOptions
+    private let initialGradingPeriod: GradingPeriod?
 
     private let completion: (AssignmentListPreferences) -> Void
 
     // MARK: - Variables
 
-    let courseId: String
-    let courseName: String?
+    let courseName: String
     let env: AppEnvironment
 
     // MARK: - Init
 
     init(
-        gradingPeriods: [GradingPeriod],
-        initialGradingPeriod: GradingPeriod?,
+        initialFilterOptions: [AssignmentFilterOption] = AssignmentFilterOption.allCases,
         sortingOptions: [AssignmentArrangementOptions],
         initialSortingOption: AssignmentArrangementOptions,
-        initialFilterOptions: [AssignmentFilterOption] = AssignmentFilterOption.allCases,
-        courseId: String,
-        courseName: String?,
+        gradingPeriods: [GradingPeriod],
+        initialGradingPeriod: GradingPeriod?,
+        courseName: String,
         env: AppEnvironment,
         completion: @escaping (AssignmentListPreferences) -> Void
     ) {
-        self.gradingPeriods = gradingPeriods
-        self.selectedGradingPeriod = initialGradingPeriod
-        self.initialGradingPeriod = initialGradingPeriod
+        // Filter Options
+        self.selectedAssignmentFilterOptions = initialFilterOptions
+        self.initialFilterOptions = initialFilterOptions
+
+        // Sorting Options
         self.sortingOptions = sortingOptions
         self.selectedSortingOption = initialSortingOption
         self.initialSortingOption = initialSortingOption
-        self.selectedAssignmentFilterOptions = initialFilterOptions
-        self.initialFilterOptions = initialFilterOptions
-        self.courseId = courseId
+
+        // Grading Periods
+        self.gradingPeriods = gradingPeriods
+        self.selectedGradingPeriod = initialGradingPeriod
+        self.initialGradingPeriod = initialGradingPeriod
+
+        // Other
         self.courseName = courseName
         self.env = env
         self.completion = completion
@@ -137,7 +142,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
             isGradingPeriodsSectionVisible = true
         }
 
-        self.isStudentApp = env.app == .student
+        self.isFilterSectionVisible = env.app == .student
     }
 
     // MARK: - Functions
@@ -147,9 +152,8 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         completion(
             AssignmentListPreferences(
                 filterOptions: selectedAssignmentFilterOptions,
-                gradingPeriod: selectedGradingPeriod,
                 sortingOption: selectedSortingOption ?? AssignmentArrangementOptions.dueDate,
-                courseId: courseId
+                gradingPeriod: selectedGradingPeriod
             )
         )
     }
@@ -158,13 +162,16 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         AppEnvironment.shared.router.dismiss(viewController)
     }
 
-    func didSelectAssignmentFilterOption(option: AssignmentFilterOption, isSelected: Bool) {
-        if selectedAssignmentFilterOptions.contains(option) {
-            if !isSelected {
-                selectedAssignmentFilterOptions.remove(at: selectedAssignmentFilterOptions.firstIndex(of: option)!)
+    func didSelectAssignmentFilterOption(_ option: AssignmentFilterOption, isSelected: Bool) {
+        guard let indexOfOption = selectedAssignmentFilterOptions.firstIndex(of: option) else {
+            if isSelected {
+                selectedAssignmentFilterOptions.insert(option)
             }
-        } else if isSelected {
-            selectedAssignmentFilterOptions.insert(option)
+            return
+        }
+
+        if !isSelected {
+            selectedAssignmentFilterOptions.remove(at: indexOfOption)
         }
     }
 }

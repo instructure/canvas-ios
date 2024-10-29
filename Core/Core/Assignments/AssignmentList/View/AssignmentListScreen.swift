@@ -40,6 +40,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             case .loading:
                 loadingView
             case .data(let groups):
+                gradingPeriodTitle
                 assignmentList(groups)
             }
         }
@@ -63,9 +64,24 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             text = Text(gradingPeriodTitle)
         }
 
-        return text
-            .font(.heavy24)
-            .accessibility(addTraits: .isHeader)
+        return Section(
+            header: ListSectionHeaderOld {
+                HStack {
+                    Text(
+                        "Grading Period:"
+                    )
+                    Spacer()
+                    text.font(
+                        .heavy24
+                    )
+                }
+                .padding(.vertical, 8)
+                .accessibility(addTraits: .isHeader)
+            },
+            content: { }
+        )
+        .listRowInsets(EdgeInsets())
+        .listRowSeparator(.hidden)
     }
 
     @ViewBuilder

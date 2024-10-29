@@ -213,13 +213,12 @@ public class AssignmentListViewModel: ObservableObject {
     func navigateToPreferences(viewController: WeakViewController) {
         let weakVC = WeakViewController()
         let viewModel = AssignmentListPreferencesViewModel(
-            gradingPeriods: gradingPeriods.all,
-            initialGradingPeriod: selectedGradingPeriod,
+            initialFilterOptions: selectedFilterOptions,
             sortingOptions: sortingOptions,
             initialSortingOption: selectedSortingOption,
-            initialFilterOptions: selectedFilterOptions,
-            courseId: courseID,
-            courseName: courseName,
+            gradingPeriods: gradingPeriods.all,
+            initialGradingPeriod: selectedGradingPeriod,
+            courseName: courseName ?? "",
             env: env,
             completion: { [weak self] assignmentListPreferences in
                 self?.filterOptionsDidUpdate(
