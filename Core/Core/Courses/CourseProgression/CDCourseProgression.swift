@@ -19,7 +19,6 @@
 import Foundation
 import CoreData
 
-
 public final class CDCourseProgression: NSManagedObject, WriteableModel {
     public typealias JSON = GetCoursesProgressionResponse.EnrollmentModel
 
@@ -43,7 +42,6 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
             .courseProgression?
             .requirements?
             .completionPercentage ?? 0.0
-
         return model
     }
 }

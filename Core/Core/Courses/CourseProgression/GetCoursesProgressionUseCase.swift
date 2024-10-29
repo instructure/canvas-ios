@@ -20,6 +20,7 @@ import Foundation
 import CoreData
 
 public class GetCoursesProgressionUseCase: APIUseCase {
+
     // MARK: - Typealias
 
     public typealias Model = CDCourseProgression
@@ -35,7 +36,7 @@ public class GetCoursesProgressionUseCase: APIUseCase {
     }
 
     // MARK: - Init
-    
+
     public init(userId: String) {
         self.userId = userId
     }
