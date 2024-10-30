@@ -20,7 +20,6 @@ import SwiftUI
 
 struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDescriptor>: View {
 
-    @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @Environment(Info.environmentKeyPath) private var searchContext
 
@@ -29,14 +28,17 @@ struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDes
 
     @State private var isFilterEditorPresented: Bool = false
 
+    private let router: Router
     private let searchDescriptor: Descriptor
 
     init(
         ofInfoType type: Info.Type,
+        router: Router,
         descriptor: Descriptor,
         searchText: String,
         filter: Descriptor.Filter?
     ) {
+        self.router = router
         self.searchDescriptor = descriptor
         self._filter = State(initialValue: filter)
         self._searchText = State(initialValue: searchText)
@@ -74,7 +76,7 @@ struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDes
                 if let support = searchDescriptor.support {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            support.action.triggered(with: env.router, from: controller.value)
+                            support.action.triggered(with: router, from: controller.value)
                         } label: {
                             support.icon.image()
                         }
@@ -84,7 +86,7 @@ struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDes
 
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
-                        env.router.dismiss(controller.value)
+                        router.dismiss(controller.value)
                     } label: {
                         Image(systemName: "chevron.backward")
                     }

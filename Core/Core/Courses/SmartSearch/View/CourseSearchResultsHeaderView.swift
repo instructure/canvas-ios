@@ -19,9 +19,9 @@
 import SwiftUI
 
 struct CourseSearchResultsHeaderView: View {
-    @Environment(\.appEnvironment) private var env
-    @Environment(\.courseSmartSearchContext) private var searchContext
 
+    let course: Course?
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("Results in course")
@@ -45,16 +45,5 @@ struct CourseSearchResultsHeaderView: View {
         .overlay(alignment: .bottom) {
             InstUI.Divider()
         }
-    }
-
-    private var course: Course? {
-        if let course: Course = env
-            .database
-            .viewContext
-            .fetch(scope: .where(#keyPath(Course.id), equals: searchContext.info.context.id))
-            .first {
-            return course
-        }
-        return nil
     }
 }

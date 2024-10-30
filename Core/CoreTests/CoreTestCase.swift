@@ -118,6 +118,20 @@ class CoreTestCase: XCTestCase {
         wait(for: [main], timeout: 1)
     }
 
+    @discardableResult
+    func waitForView<V: UIView>(of type: V.Type = V.self, withAccessID accessID: String, in parent: UIView?) throws -> V {
+        var count: Int = 0
+        var view: V?
+
+        repeat {
+            waitForMainAsync()
+            view = parent?.findSubview(of: type, accessID: accessID)
+            count += 1
+        } while view == nil && count < 100
+
+        return try XCTUnwrap(view)
+    }
+
     private func resetBrandConfig() {
         Brand.shared = Brand(
             buttonPrimaryBackground: nil,
@@ -144,11 +158,11 @@ private let mainViewController = UIStoryboard(name: "Main", bundle: .main).insta
 
 extension CoreTestCase {
     /// Do not use repeatedly in the same test method, because it could cause flaky `testTree`.
-    public func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
+    public func hostSwiftUIController<V: View>(_ view: V, thoroughness: Int = 10) -> CoreHostingController<V> {
         let controller = CoreHostingController(view)
         window.rootViewController = controller
         var count = 0
-        while controller.testTree == nil, count < 10 {
+        while controller.testTree == nil, count < thoroughness {
             count += 1
             let expectation = XCTestExpectation()
             DispatchQueue.main.async { expectation.fulfill() }
@@ -158,5 +172,32 @@ extension CoreTestCase {
     }
     public func hostSwiftUI<V: View>(_ view: V) -> V {
         return hostSwiftUIController(view).rootView.content
+    }
+}
+
+extension UIView {
+
+    func findSubview(accessID: String) -> UIView? {
+        for subview in subviews {
+            if subview.accessibilityIdentifier == accessID {
+                return subview
+            }
+            if let found = subview.findSubview(accessID: accessID) {
+                return found
+            }
+        }
+        return nil
+    }
+
+    func findSubview<V: UIView>(of type: V.Type = V.self, accessID: String) -> V? {
+        for subview in subviews {
+            if let found = subview as? V, found.accessibilityIdentifier == accessID {
+                return found
+            }
+            if let found = subview.findSubview(of: type, accessID: accessID) {
+                return found
+            }
+        }
+        return nil
     }
 }

@@ -39,9 +39,12 @@ public struct CourseSmartSearchDisplayView: View {
             case .noMatch:
                 SearchNoMatchView()
             case .results:
-                CourseSmartSearchResultsView(results: viewModel.results)
+                CourseSmartSearchResultsView(course: viewModel.course, results: viewModel.results)
             case .groupedResults:
-                CourseSmartSearchGroupedResultsView(resultSections: viewModel.sectionedResults)
+                CourseSmartSearchGroupedResultsView(
+                    course: viewModel.course,
+                    resultSections: viewModel.sectionedResults
+                )
             }
         }
         .ignoresSafeArea()
@@ -49,6 +52,7 @@ public struct CourseSmartSearchDisplayView: View {
         .onAppear {
             guard case .start = viewModel.phase else { return }
             viewModel.filter = filter
+            viewModel.fetchCourse(in: searchContext, using: env)
             startLoading()
         }
         .onReceive(searchContext.didSubmit, perform: { newTerm in

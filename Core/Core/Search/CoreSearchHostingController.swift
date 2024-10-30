@@ -214,6 +214,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
         let coverVC = CoreHostingController(
             SearchDisplayContainerView(
                 ofInfoType: Info.self,
+                router: router,
                 descriptor: searchDescriptor,
                 searchText: searchTerm,
                 filter: selectedFilter

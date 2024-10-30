@@ -115,6 +115,24 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         XCTAssertEqual(model.results, [])
     }
 
+    func test_course_fetch() throws {
+        // Given
+        let courseID = ID(TestConstants.courseId)
+        let apiCourse = APICourse.make(id: courseID, name: "Random Course Name")
+        Course.save(apiCourse, in: databaseClient)
+
+        // When
+        let model = CourseSmartSearchViewModel()
+
+        // When
+        model.fetchCourse(in: TestConstants.searchContext, using: environment)
+
+        // Then
+        let course: Course = try XCTUnwrap(model.course)
+        XCTAssertEqual(course.id, apiCourse.id.rawValue)
+        XCTAssertEqual(course.name, apiCourse.name)
+    }
+
     func test_searching_filtered() throws {
         // Given
         let searchWord = "Filtered Search"

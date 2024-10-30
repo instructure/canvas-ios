@@ -19,15 +19,17 @@
 import SwiftUI
 
 struct CourseSmartSearchResultsView: View {
-    @State private var selected: ID?
-
+    
+    let course: Course?
     let results: [CourseSmartSearchResult]
+
+    @State private var selected: ID?
 
     var body: some View {
         GeometryReader { g in
             ScrollView {
                 VStack(spacing: 0) {
-                    CourseSearchResultsHeaderView()
+                    CourseSearchResultsHeaderView(course: course)
                         .anchorPreference(
                             key: OffsetKey.self,
                             value: .top,
@@ -60,10 +62,12 @@ struct CourseSmartSearchResultsView: View {
 
 struct CourseSmartSearchGroupedResultsView: View {
 
+    private let course: Course?
     @State private var resultSections: [CourseSmartSearchResultsSection]
     @State private var selected: ID?
 
-    init(resultSections: [CourseSmartSearchResultsSection]) {
+    init(course: Course?, resultSections: [CourseSmartSearchResultsSection]) {
+        self.course = course
         self._resultSections = State(initialValue: resultSections)
     }
 
@@ -71,7 +75,7 @@ struct CourseSmartSearchGroupedResultsView: View {
         GeometryReader { g in
             ScrollView {
                 VStack(spacing: 0) {
-                    CourseSearchResultsHeaderView()
+                    CourseSearchResultsHeaderView(course: course)
                         .anchorPreference(
                             key: OffsetKey.self,
                             value: .top,

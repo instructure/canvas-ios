@@ -40,6 +40,7 @@ class CourseSmartSearchViewModel: ObservableObject {
         }
     }
 
+    @Published var course: Course?
     @Published private(set) var results: [CourseSmartSearchResult] = []
     @Published var filter: CourseSmartSearchFilter?
 
@@ -54,7 +55,7 @@ class CourseSmartSearchViewModel: ObservableObject {
         // Then: Sort on alphabetical order
         return result1.title < result2.title
     }
-
+    
     var sectionedResults: [CourseSmartSearchResultsSection] {
         let filtered = filter.flatMap { filter in
             return results.filter(filter.apply(to:))
@@ -75,6 +76,14 @@ class CourseSmartSearchViewModel: ObservableObject {
         }
 
         return list
+    }
+
+    func fetchCourse(in context: CoreSearchContext<CourseSmartSearch>, using env: AppEnvironment) {
+        course = env
+            .database
+            .viewContext
+            .fetch(scope: .where(#keyPath(Course.id), equals: context.info.context.id))
+            .first
     }
 
     func startSearch(
