@@ -41,7 +41,7 @@ class K5SubjectViewMasqueradedSessionTests: CoreTestCase {
 
     func testFetchesSessionURL() {
         let sessionExpectation = expectation(description: "Session fetched from API")
-        let request = GetWebSessionRequest(to: URL(string: "/first_tab_url")!, path: "login/session_token")
+        let request = GetWebSessionRequest(to: URL(string: "/first_tab_url")!)
         api.mock(request, value: .init(session_url: URL(string: "/session_url")!, requires_terms_acceptance: false))
 
         let testee = K5SubjectViewMasqueradedSession(env: environment)
