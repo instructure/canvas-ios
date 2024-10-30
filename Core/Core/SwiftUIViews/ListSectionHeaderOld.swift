@@ -21,23 +21,29 @@ import SwiftUI
 public struct ListSectionHeaderOld<Content: View>: View {
     public let content: Content
     private let isLarge: Bool
+    private let backgroundColor: Color
 
-    public init(isLarge: Bool = false, @ViewBuilder content: () -> Content) {
+    public init(
+        isLarge: Bool = false,
+        backgroundColor: Color = .backgroundGrouped,
+        @ViewBuilder content: () -> Content
+    ) {
         self.content = content()
         self.isLarge = isLarge
+        self.backgroundColor = backgroundColor
     }
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Divider()
+            InstUI.Divider()
             content
                 .font(.semibold14)
                 .foregroundColor(.textDark)
                 .padding(16)
                 .padding(.vertical, isLarge ? 0 : -12)
-            Divider()
+            InstUI.Divider()
         }
-        .background(Color.backgroundGrouped)
+        .background(backgroundColor)
     }
 }
 

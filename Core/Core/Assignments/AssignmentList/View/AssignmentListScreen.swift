@@ -36,6 +36,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
         VStack(spacing: 0) {
             switch viewModel.state {
             case .empty:
+                gradingPeriodTitle
                 emptyPanda
             case .loading:
                 loadingView
@@ -65,15 +66,15 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
         }
 
         return Section(
-            header: ListSectionHeaderOld {
+            header: ListSectionHeaderOld(backgroundColor: .backgroundLightest) {
                 HStack {
-                    Text(
-                        "Grading Period:"
-                    )
+                    Text("Grading Period:")
+                        .font(.regular14)
+                        .fontWeight(.light)
                     Spacer()
-                    text.font(
-                        .heavy24
-                    )
+                    text
+                        .font(.semibold22)
+                        .foregroundStyle(Color(.textDarkest))
                 }
                 .padding(.vertical, 8)
                 .accessibility(addTraits: .isHeader)
@@ -115,7 +116,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
 
     private func assignmentList(_ groups: [AssignmentGroupViewModel]) -> some View {
         ScrollView {
-            LazyVStack(pinnedViews: .sectionHeaders) {
+            LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 ForEach(groups, id: \.id) { assignmentGroup in
                     AssignmentGroupView(viewModel: assignmentGroup)
                         .accessibilityIdentifier("AssignmentList.assignmentGroups.\(assignmentGroup.id)")

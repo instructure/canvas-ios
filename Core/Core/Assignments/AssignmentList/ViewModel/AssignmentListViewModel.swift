@@ -118,7 +118,7 @@ public class AssignmentListViewModel: ObservableObject {
             return
         }
 
-        isFilterIconSolid = gradingPeriod != selectedGradingPeriod || ([1, 2].contains(filterOptions?.count) && filterOptions != selectedFilterOptions)
+        isFilterIconSolid = gradingPeriod != defaultGradingPeriod || ([1, 2].contains(filterOptions?.count) && filterOptions != selectedFilterOptions)
 
         selectedGradingPeriod = gradingPeriod
         selectedSortingOption = sortingOption ?? selectedSortingOption
@@ -143,7 +143,7 @@ public class AssignmentListViewModel: ObservableObject {
         if !assignmentGroups.requested || assignmentGroups.pending { return }
 
         isShowingGradingPeriods = assignmentGroups.count > 1
-        var assignmentGroups: [AssignmentGroupViewModel] = []
+        var assignmentGroupViewModels: [AssignmentGroupViewModel] = []
         let assignments: [Assignment] = filterAssignments(self.assignmentGroups.compactMap { $0 })
 
         switch selectedSortingOption {
@@ -152,7 +152,7 @@ public class AssignmentListViewModel: ObservableObject {
                 if let group = self.assignmentGroups[IndexPath(row: 0, section: section)]?.assignmentGroup {
                     let groupAssignments: [Assignment] = assignments.filter { $0.assignmentGroup == group }
                     if !groupAssignments.isEmpty {
-                        assignmentGroups.append(AssignmentGroupViewModel(
+                        assignmentGroupViewModels.append(AssignmentGroupViewModel(
                             assignmentGroup: group,
                             assignments: groupAssignments,
                             courseColor: courseColor
@@ -161,24 +161,26 @@ public class AssignmentListViewModel: ObservableObject {
                 }
             }
         case .dueDate:
-            let overdue = assignments.filter { $0.dueAt ?? Date.distantFuture < Date.now }
+            let rightNow = Clock.now
+
+            let overdue = assignments.filter { $0.dueAt ?? Date.distantFuture < rightNow }
             if !overdue.isEmpty {
                 let overdueGroup = AssignmentDateGroup(id: "overdue", name: "Overdue Assignments", assignments: overdue)
-                assignmentGroups.append(AssignmentGroupViewModel(assignmentDateGroup: overdueGroup, courseColor: courseColor))
+                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: overdueGroup, courseColor: courseColor))
             }
-            let upcoming = assignments.filter { $0.dueAt ?? Date.distantPast > Date.now }
+            let upcoming = assignments.filter { $0.dueAt ?? Date.distantPast > rightNow }
             if !upcoming.isEmpty {
                 let upcomingGroup = AssignmentDateGroup(id: "upcoming", name: "Upcoming Assignments", assignments: upcoming)
-                assignmentGroups.append(AssignmentGroupViewModel(assignmentDateGroup: upcomingGroup, courseColor: courseColor))
+                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: upcomingGroup, courseColor: courseColor))
             }
             let undated = assignments.filter { $0.dueAt == nil }
             if !undated.isEmpty {
                 let undatedGroup = AssignmentDateGroup(id: "undated", name: "Undated Assignments", assignments: undated)
-                assignmentGroups.append(AssignmentGroupViewModel(assignmentDateGroup: undatedGroup, courseColor: courseColor))
+                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: undatedGroup, courseColor: courseColor))
             }
         }
 
-        state = (assignmentGroups.isEmpty ? .empty : .data(assignmentGroups))
+        state = (assignmentGroupViewModels.isEmpty ? .empty : .data(assignmentGroupViewModels))
     }
 
     private func filterAssignments(_ assignments: [Assignment]) -> [Assignment] {

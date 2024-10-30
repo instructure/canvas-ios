@@ -28,7 +28,7 @@ public struct AssignmentGroupView: View {
     }
 
     public var body: some View {
-        Section(header: ListSectionHeaderOld { headerView() }) {
+        Section(header: ListSectionHeaderOld(backgroundColor: .backgroundLightest) { headerView() }) {
             if isExpanded {
                 ForEach(viewModel.assignments, id: \.id) { assignment in
                     let assignmentCellViewModel = AssignmentCellViewModel(assignment: assignment, courseColor: viewModel.courseColor)
