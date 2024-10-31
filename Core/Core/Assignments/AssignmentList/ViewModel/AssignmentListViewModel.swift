@@ -77,7 +77,7 @@ public class AssignmentListViewModel: ObservableObject {
             equals: courseID,
             orderBy: #keyPath(GradingPeriod.startDate)
         )
-        return env.subscribe(LocalUseCase(scope: scope)) { }
+        return env.subscribe(LocalUseCase(scope: scope))
     }()
 
     private lazy var assignmentGroups = env.subscribe(
@@ -115,7 +115,9 @@ public class AssignmentListViewModel: ObservableObject {
         sortingOption: AssignmentArrangementOptions? = nil,
         gradingPeriod: GradingPeriod?
     ) {
-        if gradingPeriod == selectedGradingPeriod && sortingOption == selectedSortingOption && filterOptions == selectedFilterOptions {
+        if gradingPeriod == selectedGradingPeriod
+            && sortingOption == selectedSortingOption
+            && filterOptions == selectedFilterOptions {
             return
         }
 

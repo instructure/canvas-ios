@@ -39,8 +39,8 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
 
     static let notYetSubmitted = Self(
         id: "notYetSubmitted",
-        title: "Not Yet Submitted",
-        subtitle: "Missing, Not Submitted",
+        title: String(localized: "Not Yet Submitted", bundle: .core),
+        subtitle: String(localized: "Missing, Not Submitted", bundle: .core),
         submissionRule: { submission in
             submission.missing && submission.submittedAt == nil
         }
@@ -48,8 +48,8 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
 
     static let toBeGraded = Self(
         id: "toBeGraded",
-        title: "To Be Graded",
-        subtitle: "Late, Submitted",
+        title: String(localized: "To Be Graded", bundle: .core),
+        subtitle: String(localized: "Late, Submitted", bundle: .core),
         submissionRule: { submission in
             submission.late && submission.submittedAt != nil
         }
@@ -57,7 +57,7 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
 
     static let graded = Self(
         id: "graded",
-        title: "Graded",
+        title: String(localized: "Graded", bundle: .core),
         submissionRule: { submission in
             submission.gradedAt != nil
         }

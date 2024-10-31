@@ -46,7 +46,6 @@ public struct AssignmentGroupView: View {
         .listRowSeparator(.hidden)
     }
 
-    @ViewBuilder
     private func headerView() -> some View {
         Button {
             isExpanded.toggle()
