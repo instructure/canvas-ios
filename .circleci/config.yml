@@ -6,6 +6,7 @@ jobs:
       xcode: "16.1"
     resource_class: m2pro.medium
     environment:
+      FL_OUTPUT_DIR: output
       BITRISE_CONFIGURATION: "Adhoc"
       BITRISE_SCHEME: "Student"
     steps:
@@ -100,7 +101,7 @@ jobs:
       - run: bundle exec fastlane adhoc_student
 
       - store_artifacts:
-          path: /path/to/artifact/dir  # Specify path for artifacts storage
+          path: output
 
       - run:
           name: Create QR Code for Install Page
