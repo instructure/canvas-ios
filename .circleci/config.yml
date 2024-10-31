@@ -29,9 +29,9 @@ jobs:
             ssh-add key
             ssh-add -l
 
-      - add_ssh_keys:
-          fingerprints:
-            - "your_ssh_key_fingerprint_here"  # Update with the actual SSH key fingerprint if needed
+      # - add_ssh_keys:
+      #     fingerprints:
+      #       - "your_ssh_key_fingerprint_here"  # Update with the actual SSH key fingerprint if needed
 
       # - run:
       #     name: Verify PR
