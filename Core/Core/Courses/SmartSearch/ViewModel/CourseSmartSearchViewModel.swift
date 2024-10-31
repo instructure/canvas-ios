@@ -17,10 +17,11 @@
 //
 
 import SwiftUI
+import Combine
 
 class CourseSmartSearchViewModel: ObservableObject {
 
-    enum Phase {
+    public enum Phase {
         case start
         case loading
         case noMatch
@@ -28,8 +29,8 @@ class CourseSmartSearchViewModel: ObservableObject {
         case groupedResults
     }
 
-    private var feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
-
+    @Published private(set) var course: Course?
+    @Published private(set) var results: [CourseSmartSearchResult] = []
     @Published private(set) var phase: Phase = .start {
         didSet {
             switch phase {
@@ -40,22 +41,17 @@ class CourseSmartSearchViewModel: ObservableObject {
         }
     }
 
-    @Published var course: Course?
-    @Published private(set) var results: [CourseSmartSearchResult] = []
     @Published var filter: CourseSmartSearchFilter?
 
-    let sortStrategy: (CourseSmartSearchResult, CourseSmartSearchResult) -> Bool = { (result1, result2) in
-        // First: Sort on relevance
-        // Ideally, API should be returning results sorted according to relevance,
-        // This is to double check on this, in addition to unit testing.
-        if result1.relevance != result2.relevance {
-            return result1.relevance > result2.relevance
-        }
+    private let context: Context
+    private var interactor: CourseSmartSearchInteractor
+    private var feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
 
-        // Then: Sort on alphabetical order
-        return result1.title < result2.title
+    init(context: Context, interactor: CourseSmartSearchInteractor) {
+        self.context = context
+        self.interactor = interactor
     }
-    
+
     var sectionedResults: [CourseSmartSearchResultsSection] {
         let filtered = filter.flatMap { filter in
             return results.filter(filter.apply(to:))
@@ -78,62 +74,35 @@ class CourseSmartSearchViewModel: ObservableObject {
         return list
     }
 
-    func fetchCourse(in context: CoreSearchContext<CourseSmartSearch>, using env: AppEnvironment) {
-        course = env
-            .database
-            .viewContext
-            .fetch(scope: .where(#keyPath(Course.id), equals: context.info.context.id))
-            .first
+    func fetchCourse() {
+        interactor
+            .fetchCourse(context: context)
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$course)
     }
 
-    func startSearch(
-        of searchTerm: String,
-        in context: CoreSearchContext<CourseSmartSearch>,
-        using env: AppEnvironment
-    ) {
-        guard let courseId = context.info.context.courseId else { return }
+    func startSearch(of searchTerm: String) {
         phase = .loading
 
-        env
-            .api
-            .makeRequest(
-                CourseSmartSearchRequest(
-                    courseId: courseId,
-                    searchText: searchTerm,
-                    filter: filter?.includedTypes.map({ $0.filterValue })
-                ),
-                callback: { results, _, _ in
-                    DispatchQueue.main.async { [weak self] in
-                        self?.updateResults(results?.results)
-                    }
+        let share = interactor
+            .startSearch(in: context, of: searchTerm, filter: filter)
+            .receive(on: DispatchQueue.main)
+            .share()
+
+        share
+            .assign(to: &$results)
+
+        share
+            .map { [weak self] results in
+                guard results.isEmpty == false else { return .noMatch }
+                guard let filter = self?.filter else { return .results }
+
+                if case .type = filter.sortMode {
+                    return .groupedResults
+                } else {
+                    return .results
                 }
-            )
-    }
-
-    private func updateResults(_ results: [CourseSmartSearchResult]?) {
-        self.results = (results ?? []).sorted(by: sortStrategy)
-        applyFilter()
-    }
-
-    private func applyFilter() {
-
-        // No match
-        if self.results.isEmpty {
-            phase = .noMatch
-            return
-        }
-
-        guard let filter else {
-            // No filter
-            phase = .results
-            return
-        }
-
-        // Filterd results
-        if case .type = filter.sortMode {
-            phase = .groupedResults
-        } else {
-            phase = .results
-        }
+            }
+            .assign(to: &$phase)
     }
 }

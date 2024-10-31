@@ -111,7 +111,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
         leftItems = navigationItem.leftBarButtonItems
 
         self.searchDescriptor
-            .enabledPublished
+            .isEnabled
             .sink { [weak self] isEnabled in
                 self?.setupSearchItem(isEnabled)
             }

@@ -22,28 +22,18 @@ import Combine
 public class CourseSmartSearchDescriptor: SearchDescriptor {
 
     private let context: Context
-    private let featureFlags: Store<GetEnabledFeatureFlags>
-    private var subscriptions = Set<AnyCancellable>()
+    private let interactor: CourseSmartSearchInteractor
 
-    public init(env: AppEnvironment, context: Context) {
+    public init(context: Context, interactor: CourseSmartSearchInteractor? = nil) {
         self.context = context
-        self.featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context))
-
-        featureFlags
-            .allObjects
-            .map({ fetched in
-                return fetched.contains(where: { $0.name == "smart_search" })
-            })
-            .subscribe(enabledSubject)
-            .store(in: &subscriptions)
-
-        featureFlags
-            .refresh(force: true)
+        self.interactor = interactor ?? CourseSmartSearchInteractorLive()
     }
 
-    private var enabledSubject = CurrentValueSubject<Bool, Never>(false)
-    public var enabledPublished: AnyPublisher<Bool, Never> {
-        enabledSubject.receive(on: DispatchQueue.main).eraseToAnyPublisher()
+    public var isEnabled: AnyPublisher<Bool, Never> {
+        interactor
+            .isEnabled(context: context)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 
     public func filterEditorView(_ filter: Binding<CourseSmartSearchFilter?>) -> some View {
@@ -64,6 +54,9 @@ public class CourseSmartSearchDescriptor: SearchDescriptor {
     }
 
     public func searchDisplayView(_ filter: Binding<CourseSmartSearchFilter?>) -> some View {
-        CourseSmartSearchDisplayView(filter: filter)
+        CourseSmartSearchDisplayView(
+            viewModel: CourseSmartSearchViewModel(context: context, interactor: interactor),
+            filter: filter
+        )
     }
 }

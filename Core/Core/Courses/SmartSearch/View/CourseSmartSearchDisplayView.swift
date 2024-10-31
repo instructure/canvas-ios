@@ -20,15 +20,15 @@ import SwiftUI
 
 public struct CourseSmartSearchDisplayView: View {
 
-    @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @Environment(\.courseSmartSearchContext) private var searchContext
 
-    @StateObject private var viewModel = CourseSmartSearchViewModel()
+    @StateObject private var viewModel: CourseSmartSearchViewModel
     @Binding private var filter: CourseSmartSearchFilter?
 
-    public init(filter: Binding<CourseSmartSearchFilter?>) {
+    init(viewModel: CourseSmartSearchViewModel, filter: Binding<CourseSmartSearchFilter?>) {
         self._filter = filter
+        self._viewModel = .init(wrappedValue: viewModel)
     }
 
     public var body: some View {
@@ -52,7 +52,7 @@ public struct CourseSmartSearchDisplayView: View {
         .onAppear {
             guard case .start = viewModel.phase else { return }
             viewModel.filter = filter
-            viewModel.fetchCourse(in: searchContext, using: env)
+            viewModel.fetchCourse()
             startLoading()
         }
         .onReceive(searchContext.didSubmit, perform: { newTerm in
@@ -65,11 +65,18 @@ public struct CourseSmartSearchDisplayView: View {
     }
 
     private func startLoading(with term: String? = nil) {
-        let searchTerm = term ?? searchContext.searchText.value
-        viewModel.startSearch(of: searchTerm, in: searchContext, using: env)
+        viewModel.startSearch(of: term ?? searchContext.searchText.value)
     }
 }
 
+#if DEBUG
 #Preview {
-    CourseSmartSearchDisplayView(filter: .constant(nil))
+    CourseSmartSearchDisplayView(
+        viewModel: CourseSmartSearchViewModel(
+            context: .course("4234"),
+            interactor: CourseSmartSearchInteractorPreview()
+        ),
+        filter: .constant(nil)
+    )
 }
+#endif

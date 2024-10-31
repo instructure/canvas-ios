@@ -39,15 +39,22 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         ]
     }
 
+    private var interactor: CourseSmartSearchInteractor!
+
     override func setUp() {
         super.setUp()
         API.resetMocks()
+        interactor = CourseSmartSearchInteractorLive()
+    }
+
+    override func tearDown() {
+        interactor = nil
+        super.tearDown()
     }
 
     func test_searching_results() throws {
         // Given
         let searchWord = "Demo Search"
-        let context = TestConstants.searchContext
 
         let mockRequest = api.mock(
             CourseSmartSearchRequest(
@@ -64,12 +71,16 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         mockRequest.suspend()
 
         // When
-        let model = CourseSmartSearchViewModel()
+        let model = CourseSmartSearchViewModel(
+            context: TestConstants.context,
+            interactor: interactor
+        )
+
         // Then
         XCTAssertEqual(model.phase, .start)
 
         // When
-        model.startSearch(of: searchWord, in: context, using: environment)
+        model.startSearch(of: searchWord)
         // Then
         XCTAssertEqual(model.phase, .loading)
 
@@ -78,13 +89,12 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         drainMainQueue()
 
         // Then
-        XCTAssertEqual(model.results, TestConstants.results.sorted(by: model.sortStrategy))
+        XCTAssertEqual(model.results, TestConstants.results.sorted(by: CourseSmartSearchResult.sortStrategy))
     }
 
     func test_searching_no_match() throws {
         // Given
         let searchWord = "Search Nothing"
-        let context = TestConstants.searchContext
 
         let mockRequest = api.mock(
             CourseSmartSearchRequest(
@@ -97,12 +107,15 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         mockRequest.suspend()
 
         // When
-        let model = CourseSmartSearchViewModel()
+        let model = CourseSmartSearchViewModel(
+            context: TestConstants.context,
+            interactor: interactor
+        )
         // Then
         XCTAssertEqual(model.phase, .start)
 
         // When
-        model.startSearch(of: searchWord, in: context, using: environment)
+        model.startSearch(of: searchWord)
         // Then
         XCTAssertEqual(model.phase, .loading)
 
@@ -119,13 +132,17 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         // Given
         let courseID = ID(TestConstants.courseId)
         let apiCourse = APICourse.make(id: courseID, name: "Random Course Name")
-        Course.save(apiCourse, in: databaseClient)
+        api.mock(GetCourse(courseID: TestConstants.courseId), value: apiCourse)
 
         // When
-        let model = CourseSmartSearchViewModel()
+        let model = CourseSmartSearchViewModel(
+            context: TestConstants.context,
+            interactor: interactor
+        )
 
         // When
-        model.fetchCourse(in: TestConstants.searchContext, using: environment)
+        model.fetchCourse()
+        drainMainQueue()
 
         // Then
         let course: Course = try XCTUnwrap(model.course)
@@ -136,7 +153,6 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
     func test_searching_filtered() throws {
         // Given
         let searchWord = "Filtered Search"
-        let context = TestConstants.searchContext
 
         let filterTypes: [CourseSmartSearchResultType] = [.announcement, .assignment]
         let filter = CourseSmartSearchFilter(sortMode: .type, includedTypes: filterTypes)
@@ -155,9 +171,12 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         )
 
         // When
-        let model = CourseSmartSearchViewModel()
+        let model = CourseSmartSearchViewModel(
+            context: TestConstants.context,
+            interactor: interactor
+        )
         model.filter = filter
-        model.startSearch(of: searchWord, in: context, using: environment)
+        model.startSearch(of: searchWord)
         drainMainQueue()
 
         // Then
@@ -180,11 +199,5 @@ extension CourseSmartSearchResult {
             distance: Double.random(in: 0.3 ... 0.99),
             relevance: Int.random(in: 40 ... 95)
         )
-    }
-}
-
-extension CourseSmartSearchResult: Equatable {
-    public static func == (lhs: CourseSmartSearchResult, rhs: CourseSmartSearchResult) -> Bool {
-        return lhs.content_id == rhs.content_id
     }
 }

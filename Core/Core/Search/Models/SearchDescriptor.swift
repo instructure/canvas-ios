@@ -26,7 +26,7 @@ public protocol SearchDescriptor {
     associatedtype Display: View
 
     var support: SearchSupportOption<Support>? { get }
-    var enabledPublished: AnyPublisher<Bool, Never> { get }
+    var isEnabled: AnyPublisher<Bool, Never> { get }
 
     func searchDisplayView(_ filter: Binding<Filter?>) -> Display
     func filterEditorView(_ filter: Binding<Filter?>) -> FilterEditor

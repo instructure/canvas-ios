@@ -45,7 +45,7 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         environment.window?.rootViewController = navigation
         drainMainQueue(thoroughness: 20)
 
-        descriptor.enabled.send(enabled)
+        descriptor.enabledValue = enabled
 
         return controller
     }
@@ -54,7 +54,8 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         let controller = setupTestSearch(enabled: false)
         XCTAssertNil(controller.navigationItem.rightBarButtonItem)
 
-        controller.searchDescriptor.enabled.send(true)
+        controller.searchDescriptor.enabledValue = true
+        
         XCTAssertNotNil(controller.navigationItem.rightBarButtonItem)
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.accessibilityIdentifier, "search_bar_button")
     }
@@ -144,9 +145,9 @@ private class TestSearchDescriptor: SearchDescriptor {
     typealias Support = NoSearchSupportAction
     typealias Display = Text
 
-    var enabled = CurrentValueSubject<Bool, Never>(false)
-    var enabledPublished: AnyPublisher<Bool, Never> {
-        enabled.eraseToAnyPublisher()
+    var enabledValue: Bool = false
+    var isEnabled: AnyPublisher<Bool, Never> {
+        return Just(enabledValue).eraseToAnyPublisher()
     }
 
     var support: Core.SearchSupportOption<Core.NoSearchSupportAction>?

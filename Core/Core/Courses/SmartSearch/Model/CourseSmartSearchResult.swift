@@ -18,8 +18,8 @@
 
 import SwiftUI
 
-struct CourseSmartSearchResult: Codable, Identifiable {
-    var id: ID { content_id }
+public struct CourseSmartSearchResult: Codable, Identifiable, Equatable {
+    public var id: ID { content_id }
 
     enum ContentType: String, Codable, CaseIterable {
         case page = "WikiPage"

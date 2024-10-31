@@ -28,6 +28,18 @@ final class CourseSmartSearchDescriptorTests: CoreTestCase {
         static var context: Context { Context(.course, id: courseId) }
     }
 
+    private var interactor: CourseSmartSearchInteractor!
+
+    override func setUp() {
+        super.setUp()
+        interactor = CourseSmartSearchInteractorLive()
+    }
+
+    override func tearDown() {
+        interactor = nil
+        super.tearDown()
+    }
+
     func test_enablement() throws {
         // Given
         let context = Context.course("course_12345")
@@ -39,11 +51,14 @@ final class CourseSmartSearchDescriptorTests: CoreTestCase {
             "dummy_flag_2"
         ])
 
-        let descriptor = CourseSmartSearchDescriptor(env: environment, context: context)
+        let descriptor = CourseSmartSearchDescriptor(
+            context: context,
+            interactor: interactor
+        )
         drainMainQueue()
 
         // Then
-        XCTAssertSingleOutputEquals(descriptor.enabledPublished, true)
+        XCTAssertSingleOutputEquals(descriptor.isEnabled, true)
 
         // When
         let featureFlag: FeatureFlag? = databaseClient.first(scope: .where("name", equals: "smart_search"))
@@ -53,7 +68,7 @@ final class CourseSmartSearchDescriptorTests: CoreTestCase {
         drainMainQueue()
 
         // Then
-        XCTAssertSingleOutputEquals(descriptor.enabledPublished, false)
+        XCTAssertSingleOutputEquals(descriptor.isEnabled, false)
     }
 }
 
