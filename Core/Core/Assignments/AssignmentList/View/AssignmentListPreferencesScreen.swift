@@ -50,7 +50,7 @@ public struct AssignmentListPreferencesScreen: View {
             )
             .navigationBarItems(trailing: doneButton)
         }
-        .onDisappear{
+        .onDisappear {
             viewModel.didTapDone(viewController: viewController)
         }
     }
