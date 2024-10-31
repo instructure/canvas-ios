@@ -24,7 +24,7 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
 
     // MARK: - Properties
 
-    @NSManaged public var courseID: String?
+    @NSManaged public var courseID: String
     @NSManaged public var completionPercentage: Double
 
     @discardableResult
