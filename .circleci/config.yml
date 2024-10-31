@@ -20,14 +20,14 @@ jobs:
             echo "Github pullrequest is: ${CIRCLE_PULL_REQUEST}"
             echo $CIRCLE_PULL_REQUEST
 
-      - run:
-          name: Add vault ssh deploy key
-          command: |
-            echo -e $SSH_KEY | base64 -d > key
-            chmod 400 key
-            eval $(ssh-agent -s)
-            ssh-add key
-            ssh-add -l
+      # - run:
+      #     name: Add vault ssh deploy key
+      #     command: |
+      #       echo -e $SSH_KEY | base64 -d > key
+      #       chmod 400 key
+      #       eval $(ssh-agent -s)
+      #       ssh-add key
+      #       ssh-add -l
 
       # - add_ssh_keys:
       #     fingerprints:
