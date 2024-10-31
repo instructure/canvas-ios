@@ -23,6 +23,9 @@ platform :ios do
   desc "Ad-hoc Student Build"
   lane :adhoc_student do
     match(type: "adhoc")
-    gym(export_method: "ad-hoc")
+    gym(
+      scheme: "Student",
+      export_method: "ad-hoc"
+    )
   end
 end
