@@ -96,6 +96,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     private let initialSortingOption: AssignmentArrangementOptions
     private let initialGradingPeriod: GradingPeriod?
 
+    private let env: AppEnvironment
     private let completion: (AssignmentListPreferences) -> Void
 
     // MARK: - Other variables and literals
@@ -137,14 +138,15 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         self.courseName = courseName
         self.completion = completion
 
+        self.env = env
         self.isGradingPeriodsSectionVisible = gradingPeriods.count > 1
-        self.isFilterSectionVisible = env.app == .student
+        self.isFilterSectionVisible = self.env.app == .student
     }
 
     // MARK: - Functions
 
     func didTapDone(viewController: WeakViewController) {
-        dismiss(viewController: viewController)
+        env.router.dismiss(viewController)
         completion(
             AssignmentListPreferences(
                 filterOptions: selectedAssignmentFilterOptions,
@@ -152,10 +154,6 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
                 gradingPeriod: selectedGradingPeriod
             )
         )
-    }
-
-    func dismiss(viewController: WeakViewController) {
-        AppEnvironment.shared.router.dismiss(viewController)
     }
 
     func didSelectAssignmentFilterOption(_ option: AssignmentFilterOption, isSelected: Bool) {

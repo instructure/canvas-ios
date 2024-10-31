@@ -65,6 +65,7 @@ public class AssignmentListViewModel: ObservableObject {
     public var selectedGradingPeriod: GradingPeriod?
     public var selectedSortingOption: AssignmentArrangementOptions = .dueDate
     private let sortingOptions = AssignmentArrangementOptions.allCases
+    private var initialFilterOptions: [AssignmentFilterOption] = AssignmentFilterOption.allCases
     private var selectedFilterOptions: [AssignmentFilterOption] = AssignmentFilterOption.allCases
     private let env = AppEnvironment.shared
     private var userDefaults: SessionDefaults?
@@ -110,15 +111,15 @@ public class AssignmentListViewModel: ObservableObject {
     // MARK: - Functions
 
     public func filterOptionsDidUpdate(
-        gradingPeriod: GradingPeriod?,
+        filterOptions: [AssignmentFilterOption]? = nil,
         sortingOption: AssignmentArrangementOptions? = nil,
-        filterOptions: [AssignmentFilterOption]? = nil
+        gradingPeriod: GradingPeriod?
     ) {
         if gradingPeriod == selectedGradingPeriod && sortingOption == selectedSortingOption && filterOptions == selectedFilterOptions {
             return
         }
 
-        isFilterIconSolid = gradingPeriod != defaultGradingPeriod || ([1, 2].contains(filterOptions?.count) && filterOptions != selectedFilterOptions)
+        isFilterIconSolid = gradingPeriod != defaultGradingPeriod || ([1, 2].contains(filterOptions?.count) && filterOptions != initialFilterOptions)
 
         selectedGradingPeriod = gradingPeriod
         selectedSortingOption = sortingOption ?? selectedSortingOption
@@ -132,7 +133,7 @@ public class AssignmentListViewModel: ObservableObject {
 
     public func viewDidAppear() {
         gradingPeriods.refresh()
-        filterOptionsDidUpdate(gradingPeriod: defaultGradingPeriod)
+        filterOptionsDidUpdate(filterOptions: initialFilterOptions, gradingPeriod: defaultGradingPeriod)
         course.refresh()
         assignmentGroups.refresh(force: true)
 
@@ -144,12 +145,12 @@ public class AssignmentListViewModel: ObservableObject {
 
         isShowingGradingPeriods = assignmentGroups.count > 1
         var assignmentGroupViewModels: [AssignmentGroupViewModel] = []
-        let assignments: [Assignment] = filterAssignments(self.assignmentGroups.compactMap { $0 })
+        let assignments: [Assignment] = filterAssignments(assignmentGroups.compactMap { $0 })
 
         switch selectedSortingOption {
         case .groupName:
-            for section in 0..<(self.assignmentGroups.sections?.count ?? 0) {
-                if let group = self.assignmentGroups[IndexPath(row: 0, section: section)]?.assignmentGroup {
+            for section in 0..<(assignmentGroups.sections?.count ?? 0) {
+                if let group = assignmentGroups[IndexPath(row: 0, section: section)]?.assignmentGroup {
                     let groupAssignments: [Assignment] = assignments.filter { $0.assignmentGroup == group }
                     if !groupAssignments.isEmpty {
                         assignmentGroupViewModels.append(AssignmentGroupViewModel(
@@ -229,9 +230,9 @@ public class AssignmentListViewModel: ObservableObject {
             env: env,
             completion: { [weak self] assignmentListPreferences in
                 self?.filterOptionsDidUpdate(
-                    gradingPeriod: assignmentListPreferences.gradingPeriod,
+                    filterOptions: assignmentListPreferences.filterOptions,
                     sortingOption: assignmentListPreferences.sortingOption,
-                    filterOptions: assignmentListPreferences.filterOptions
+                    gradingPeriod: assignmentListPreferences.gradingPeriod
                 )
                 self?.saveAssignmentListPreferences()
             })
@@ -260,6 +261,7 @@ public class AssignmentListViewModel: ObservableObject {
         }
 
         selectedFilterOptions = AssignmentFilterOption.allCases.filter { filterSettingsData.contains($0.id) }
+        initialFilterOptions = selectedFilterOptions
 
         selectedSortingOption = sortingOptions.filter { groupBySettingData == $0.rawValue }.first ?? selectedSortingOption
     }
