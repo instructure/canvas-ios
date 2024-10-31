@@ -5,7 +5,6 @@ provision: ## Environment setup
 
 provision-ci: ## CI environment setup
 	@brew install "xcodegen"
-	@brew install robotsandpencils/made/xcodes
 
 sync: ## xproj file generation
 	@echo 🟡 Running xcodegen
