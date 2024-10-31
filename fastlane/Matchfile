@@ -3,7 +3,8 @@ app_identifier([
   "com.instructure.icanvas.SubmitAssignment",
   "com.instructure.icanvas.widgets"
 ])
-git_url("git@github.com:instructure/canvas-ios-vault.git")
+
+git_url("git@github.com:instructure/canvas-ios-certs.git")
 
 storage_mode("git")
 
