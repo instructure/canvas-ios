@@ -33,7 +33,8 @@ enum HorizonRoutes {
         fileRoutes,
         quizRoutes,
         assignmentRoutes,
-        inboxRoutes
+        inboxRoutes,
+        externalToolRoutes
     ]
 
     private static var splashRoutes: [RouteHandler] {
@@ -47,6 +48,24 @@ enum HorizonRoutes {
     private static var moduleRoutes: [RouteHandler] {
         [
             RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _ in
+                guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
+                return ModuleItemSequenceViewController.create(
+                    courseID: courseID,
+                    assetType: .moduleItem,
+                    assetID: itemID,
+                    url: url
+                )
+            },
+            RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _ in
+                guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
+                return ModuleItemSequenceViewController.create(
+                    courseID: courseID,
+                    assetType: .moduleItem,
+                    assetID: itemID,
+                    url: url
+                )
+            },
+            RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _ in
                 guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
                 return ModuleItemSequenceViewController.create(
                     courseID: courseID,
@@ -156,6 +175,18 @@ enum HorizonRoutes {
                     conversationID: conversationID,
                     allowArchive: allowArchive
                 )
+            }
+        ]
+    }
+
+    private static var externalToolRoutes: [RouteHandler] {
+        [
+            RouteHandler("/courses/:courseID/external_tools/:toolID") { _, params, _ in
+                guard let courseID = params["courseID"], let toolID = params["toolID"] else { return nil }
+                guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
+                let tools = LTITools(context: .course(courseID), id: toolID)
+                tools.presentTool(from: vc, animated: true)
+                return nil
             }
         ]
     }
