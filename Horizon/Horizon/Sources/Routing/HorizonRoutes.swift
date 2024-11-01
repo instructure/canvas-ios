@@ -135,7 +135,7 @@ enum HorizonRoutes {
                         url: url
                     )
                 }
-                return AssignmentDetailsAssembly.makeViewController()
+                return AssignmentDetailsAssembly.makeViewController(courseID: courseID, assignmentID: assignmentID)
             }
         ]
     }

@@ -32,6 +32,10 @@ struct HAssignment {
     let courseState: String = "Not Started"
     let courseProgress: Double = 0.75
     let courseDueDate: String = "Due 01/12/2024"
+    let workflowState: SubmissionWorkflowState?
+    let submittedAt: Date?
+    var course: Course?
+    var showSubmitButton = false
 
     init(
         id: String,
@@ -42,7 +46,9 @@ struct HAssignment {
         allowedAttempts: Int,
         submissionTypes: [SubmissionType],
         courseID: String,
-        courseName: String
+        courseName: String,
+        workflowState: SubmissionWorkflowState?,
+        submittedAt: Date?
     ) {
         self.id = id
         self.name = name
@@ -53,9 +59,11 @@ struct HAssignment {
         self.submissionTypes = submissionTypes
         self.courseID = courseID
         self.courseName = courseName
+        self.workflowState = workflowState
+        self.submittedAt = submittedAt
     }
 
-    init(from assignment: Assignment, course: Course) {
+    init(from assignment: Assignment) {
         self.id = assignment.id
         self.name = assignment.name
         self.details = assignment.details
@@ -63,8 +71,22 @@ struct HAssignment {
         self.dueAt = assignment.dueText
         self.allowedAttempts = assignment.allowedAttempts
         self.submissionTypes = assignment.submissionTypes
+        self.workflowState = assignment.submission?.workflowState
+        self.submittedAt = assignment.submission?.submittedAt
         self.courseID = assignment.id
-        self.courseName = course.name ?? ""
+        self.courseName = assignment.course?.name ?? ""
+        self.course = assignment.course
+        self.showSubmitButton = assignment.hasAttemptsLeft
+    }
+
+    var submitButtonTitle: String {
+        let isUnsubmittedBefore = workflowState == .unsubmitted || submittedAt == nil
+        return isUnsubmittedBefore ? "Submit Assignment" : "Resubmit Assignment"
+    }
+
+    var assignmentTypes: [AssignmentType] {
+       let isContainsTextEntry = submissionTypes.contains { $0 == .online_text_entry }
+       return isContainsTextEntry ? [.textEntry] : []
     }
 }
 
@@ -84,7 +106,9 @@ extension HAssignment {
             allowedAttempts: -1,
             submissionTypes: [.online_text_entry],
             courseID: "1",
-            courseName: "Design Thinking Workshop"
+            courseName: "Design Thinking Workshop",
+            workflowState: .unsubmitted,
+            submittedAt: Date()
         )
     }
 }

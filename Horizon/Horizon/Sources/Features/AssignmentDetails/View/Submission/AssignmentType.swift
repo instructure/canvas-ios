@@ -18,7 +18,25 @@
 
 import Foundation
 
-@Observable
-final class AssignmentViewModel {
-    let assignment: HAssignment = .mock()
+enum AssignmentType {
+    case textEntry
+    case uploadFile
+
+    var title: String {
+        switch self {
+        case .textEntry:
+            "Text Entry"
+        case .uploadFile:
+            "File Upload"
+        }
+    }
+
+    var imageName: String {
+        switch self {
+        case .textEntry:
+            "square.and.pencil"
+        case .uploadFile:
+            "arrow.up.page.on.clipboard"
+        }
+    }
 }

@@ -19,11 +19,30 @@
 import Core
 
 final class AssignmentDetailsAssembly {
-    static func makeViewModel() -> AssignmentViewModel {
-        AssignmentViewModel()
+    static func makeViewModel(
+        courseID: String,
+        assignmentID: String
+    ) -> AssignmentDetailsViewModel {
+        let interactor = AssignmentInteractorLive(
+            courseID: courseID,
+            assignmentID: assignmentID,
+            appEnvironment: .shared
+        )
+        return AssignmentDetailsViewModel(interactor: interactor)
     }
 
-    static func makeViewController() -> UIViewController {
-        CoreHostingController(AssignmentDetails(viewModel: makeViewModel()))
+    static func makeViewController(
+        courseID: String,
+        assignmentID: String
+    ) -> UIViewController {
+        CoreHostingController(AssignmentDetails(viewModel: makeViewModel(courseID: courseID, assignmentID: assignmentID)))
     }
+
+#if DEBUG
+    static func makePreview() -> AssignmentDetails {
+        let interactor = AssignmentInteractorPreview()
+        let viewModel = AssignmentDetailsViewModel(interactor: interactor)
+        return AssignmentDetails(viewModel: viewModel)
+    }
+#endif
 }
