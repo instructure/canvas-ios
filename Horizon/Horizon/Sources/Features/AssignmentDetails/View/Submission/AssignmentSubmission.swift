@@ -47,13 +47,11 @@ struct AssignmentSubmission: View {
             } else {
                 showSubmissionTypesButton
             }
+            Rectangle()
+                .fill(.clear)
+                .frame(height: 150)
+                .id(keyboardObserveID)
 
-            if isFocused {
-                Rectangle()
-                    .fill(.clear)
-                    .frame(height: 150)
-                    .id(keyboardObserveID)
-            }
         }
         .onChange(of: isFocused) {
             if isFocused { onStartTyping?() }

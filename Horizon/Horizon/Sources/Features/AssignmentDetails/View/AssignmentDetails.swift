@@ -32,7 +32,7 @@ struct AssignmentDetails: View {
     var body: some View {
         InstUI.BaseScreen(
             state: viewModel.state,
-            config: .init(refreshable: true)
+            config: .init(refreshable: false)
         ) { geometry in
             ScrollViewReader { reader in
                 VStack(spacing: 10) {
