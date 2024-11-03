@@ -23,10 +23,7 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
 
     enum TestConstants {
         static let courseId: String = "demo_course_id"
-        static let color: UIColor = .red
         static var context: Context { Context(.course, id: courseId) }
-        static var info: CourseSmartSearch { CourseSmartSearch(context: context, color: color) }
-        static var searchContext: CoreSearchContext<CourseSmartSearch> { .init(info: info) }
 
         static var results: [CourseSmartSearchResult] = [
             .make(type: .page),
@@ -39,12 +36,11 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         ]
     }
 
-    private var interactor: CourseSmartSearchInteractor!
+    private var interactor: CourseSmartSearchInteractorPreview!
 
     override func setUp() {
         super.setUp()
-        API.resetMocks()
-        interactor = CourseSmartSearchInteractorLive()
+        interactor = CourseSmartSearchInteractorPreview()
     }
 
     override func tearDown() {
@@ -54,21 +50,7 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
 
     func test_searching_results() throws {
         // Given
-        let searchWord = "Demo Search"
-
-        let mockRequest = api.mock(
-            CourseSmartSearchRequest(
-                courseId: TestConstants.courseId,
-                searchText: searchWord,
-                filter: nil
-            ),
-            value: APICourseSmartSearchResponse(
-                results: TestConstants.results,
-                status: nil,
-                indexing_progress: nil
-            )
-        )
-        mockRequest.suspend()
+        interactor.results = TestConstants.results
 
         // When
         let model = CourseSmartSearchViewModel(
@@ -80,47 +62,36 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         XCTAssertEqual(model.phase, .start)
 
         // When
-        model.startSearch(of: searchWord)
+        model.startSearch(of: "Example Search")
         // Then
         XCTAssertEqual(model.phase, .loading)
 
         // When
-        mockRequest.resume()
         drainMainQueue()
 
         // Then
-        XCTAssertEqual(model.results, TestConstants.results.sorted(by: CourseSmartSearchResult.sortStrategy))
+        XCTAssertEqual(model.results, TestConstants.results)
     }
 
     func test_searching_no_match() throws {
         // Given
-        let searchWord = "Search Nothing"
-
-        let mockRequest = api.mock(
-            CourseSmartSearchRequest(
-                courseId: TestConstants.courseId,
-                searchText: searchWord,
-                filter: nil
-            ),
-            value: nil
-        )
-        mockRequest.suspend()
+        interactor.results = []
 
         // When
         let model = CourseSmartSearchViewModel(
             context: TestConstants.context,
             interactor: interactor
         )
+
         // Then
         XCTAssertEqual(model.phase, .start)
 
         // When
-        model.startSearch(of: searchWord)
+        model.startSearch(of: "Search Word")
         // Then
         XCTAssertEqual(model.phase, .loading)
 
         // When
-        mockRequest.resume()
         drainMainQueue()
 
         // Then
@@ -130,9 +101,10 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
 
     func test_course_fetch() throws {
         // Given
-        let courseID = ID(TestConstants.courseId)
-        let apiCourse = APICourse.make(id: courseID, name: "Random Course Name")
-        api.mock(GetCourse(courseID: TestConstants.courseId), value: apiCourse)
+        let mockCourse = Course(context: databaseClient)
+        mockCourse.id = TestConstants.courseId
+        mockCourse.name = "Random Name"
+        interactor.courseValue = mockCourse
 
         // When
         let model = CourseSmartSearchViewModel(
@@ -146,37 +118,25 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
 
         // Then
         let course: Course = try XCTUnwrap(model.course)
-        XCTAssertEqual(course.id, apiCourse.id.rawValue)
-        XCTAssertEqual(course.name, apiCourse.name)
+        XCTAssertEqual(course.id, mockCourse.id)
+        XCTAssertEqual(course.name, mockCourse.name)
     }
 
     func test_searching_filtered() throws {
         // Given
-        let searchWord = "Filtered Search"
-
+        interactor.results = TestConstants.results
         let filterTypes: [CourseSmartSearchResultType] = [.announcement, .assignment]
         let filter = CourseSmartSearchFilter(sortMode: .type, includedTypes: filterTypes)
 
-        api.mock(
-            CourseSmartSearchRequest(
-                courseId: TestConstants.courseId,
-                searchText: searchWord,
-                filter: filter.includedTypes.map({ $0.filterValue })
-            ),
-            value: APICourseSmartSearchResponse(
-                results: TestConstants.results,
-                status: nil,
-                indexing_progress: nil
-            )
-        )
 
         // When
         let model = CourseSmartSearchViewModel(
             context: TestConstants.context,
             interactor: interactor
         )
+
         model.filter = filter
-        model.startSearch(of: searchWord)
+        model.startSearch(of: "Some search phrase")
         drainMainQueue()
 
         // Then
