@@ -19,8 +19,6 @@
 import SwiftUI
 
 public struct CourseSmartSearchResult: Codable, Identifiable, Equatable {
-    public var id: ID { content_id }
-
     enum ContentType: String, Codable, CaseIterable {
         case page = "WikiPage"
         case assignment = "Assignment"
@@ -49,6 +47,10 @@ public struct CourseSmartSearchResult: Codable, Identifiable, Equatable {
     let html_url: URL?
     let distance: Double
     let relevance: Int
+
+    public var id: ID {
+        content_id
+    }
 }
 
 struct CourseSmartSearchResultsSection {
