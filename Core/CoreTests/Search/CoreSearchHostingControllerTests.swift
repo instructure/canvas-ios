@@ -33,6 +33,8 @@ class CoreSearchHostingControllerTests: CoreTestCase {
 
     private func setupTestSearch(enabled: Bool = true) -> CoreSearchHostingController<TestSearchInfo, TestSearchDescriptor, TestContentView> {
         let descriptor = TestSearchDescriptor()
+        descriptor.enabledSubject.value = enabled
+
         let controller = CoreSearchHostingController(
             router: router,
             info: TestSearchInfo(),
@@ -45,8 +47,6 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         environment.window?.rootViewController = navigation
         drainMainQueue(thoroughness: 20)
 
-        descriptor.enabledValue = enabled
-
         return controller
     }
 
@@ -54,8 +54,9 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         let controller = setupTestSearch(enabled: false)
         XCTAssertNil(controller.navigationItem.rightBarButtonItem)
 
-        controller.searchDescriptor.enabledValue = true
-        
+        controller.searchDescriptor.enabledSubject.send(true)
+        drainMainQueue()
+
         XCTAssertNotNil(controller.navigationItem.rightBarButtonItem)
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.accessibilityIdentifier, "search_bar_button")
     }
@@ -145,9 +146,9 @@ private class TestSearchDescriptor: SearchDescriptor {
     typealias Support = NoSearchSupportAction
     typealias Display = Text
 
-    var enabledValue: Bool = false
+    var enabledSubject = CurrentValueSubject<Bool, Never>(false)
     var isEnabled: AnyPublisher<Bool, Never> {
-        return Just(enabledValue).eraseToAnyPublisher()
+        enabledSubject.receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
 
     var support: Core.SearchSupportOption<Core.NoSearchSupportAction>?

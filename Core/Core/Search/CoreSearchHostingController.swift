@@ -121,7 +121,6 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
     private func setupSearchItem(_ installed: Bool) {
         if installed == (searchFieldState != .removed) { return }
         if installed {
-            navigationItem.rightBarButtonItems = [searchBarItem]
             hideSearchField()
         } else {
             removeSearchField()
