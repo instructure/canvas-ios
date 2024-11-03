@@ -21,7 +21,7 @@ import SwiftUI
 struct CourseSearchResultsHeaderView: View {
 
     let course: Course?
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("Results in course")

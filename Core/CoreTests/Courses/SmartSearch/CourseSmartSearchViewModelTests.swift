@@ -128,7 +128,6 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         let filterTypes: [CourseSmartSearchResultType] = [.announcement, .assignment]
         let filter = CourseSmartSearchFilter(sortMode: .type, includedTypes: filterTypes)
 
-
         // When
         let model = CourseSmartSearchViewModel(
             context: TestConstants.context,

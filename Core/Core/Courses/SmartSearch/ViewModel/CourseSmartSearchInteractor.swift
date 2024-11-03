@@ -83,7 +83,6 @@ class CourseSmartSearchInteractorLive: CourseSmartSearchInteractor {
     }
 }
 
-
 extension CourseSmartSearchResult {
     static let sortStrategy: (CourseSmartSearchResult, CourseSmartSearchResult) -> Bool = { (result1, result2) in
         // First: Sort on relevance
