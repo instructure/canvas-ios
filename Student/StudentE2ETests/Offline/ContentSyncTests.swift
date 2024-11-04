@@ -426,16 +426,16 @@ class OfflineContentSyncTests: OfflineE2ETest {
         XCTAssertTrue(syllabusBodyLabel.isVisible)
         XCTAssertTrue(syllabusBodyLabel.hasLabel(label: course.syllabus_body!))
     }
-    
+
     func testAssignmentSync() {
         typealias Assignment = AssignmentsHelper
         typealias DetailsHelper = Assignment.Details
-    
+
         // MARK: Seed the usual stuff with a course containing a syllabus
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
-        
+
         let assignment = Assignment.createAssignment(course: course, submissionTypes: [.online_text_entry])
 
         // MARK: Get the user logged in, open "Dashboard Options", open "Manage Offline Content"
@@ -497,12 +497,12 @@ class OfflineContentSyncTests: OfflineE2ETest {
         // MARK: Navigate to Assignment List Page
         assignmentsButton.hit()
         let navBar = Assignment.navBar(course: course).waitUntil(.visible)
-        
+
         XCTAssertTrue(navBar.isVisible)
         let assignmentButton = Assignment.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
         XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name + ", No Due Date"))
-        
+
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
         let nameLabel = DetailsHelper.name.waitUntil(.visible)
@@ -534,7 +534,7 @@ class OfflineContentSyncTests: OfflineE2ETest {
         XCTAssertTrue(submitAssignmentButton.hasLabel(label: "Submit Assignment"))
         let submissionButton = DetailsHelper.submissionAndRubricButton.waitUntil(.visible)
         XCTAssertTrue(submissionButton.isVisible)
-        
+
         // MARK: Tap on the 'Submission & Rubric' and 'Submit Assignment' buttons and check if the offline mode dialog displayed and dismiss the dialog by hit the 'OK' button on it
         submissionButton.hit()
 
@@ -547,7 +547,7 @@ class OfflineContentSyncTests: OfflineE2ETest {
         XCTAssertTrue(Offline.offlineModeAlertOkButton.waitUntil(.vanish).isVanished)
 
         submitAssignmentButton.hit()
-        
+
         XCTAssertTrue(Offline.offlineModeAlert.isVisible)
         XCTAssertTrue(Offline.offlineModeAlertTitleText.isVisible && Offline.offlineModeAlertTitleText.hasLabel(label: "Offline mode"))
         XCTAssertTrue(Offline.offlineModeAlertMessageText.isVisible && Offline.offlineModeAlertMessageText.hasLabel(label: "This item is not available offline."))
