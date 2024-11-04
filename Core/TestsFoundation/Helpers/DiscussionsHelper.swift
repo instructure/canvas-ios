@@ -90,8 +90,8 @@ public class DiscussionsHelper: BaseHelper {
         public static var viewSplitScreenButton: XCUIElement { app.find(labelContaining: "View Split Screen", type: .button) }
         public static var viewInlineButton: XCUIElement { app.find(labelContaining: "View Inline", type: .button) }
         public static var manageDiscussionButton: XCUIElement { app.find(label: "Manage Discussion", type: .button) }
-        public static var subscribeButton: XCUIElement { app.find(label: "Unsubscribed", type: .button) }
-        public static var unsubscribeButton: XCUIElement { app.find(label: "Subscribed", type: .button) }
+        public static var subscribeButton: XCUIElement { app.find(label: "Unsubscribed", type: .switch) }
+        public static var unsubscribeButton: XCUIElement { app.find(label: "Subscribed", type: .switch) }
         public static var replyButton: XCUIElement { app.find(label: "Reply", type: .button) }
         public static var markAllAsRead: XCUIElement { app.find(label: "Mark All as Read", type: .menuItem) }
         public static var markAllAsUnread: XCUIElement { app.find(label: "Mark All as Unread", type: .menuItem) }
