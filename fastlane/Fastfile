@@ -48,5 +48,10 @@ platform :ios do
         provisioningProfiles: provisioning_profiles_ad_hoc
       }
     )
+
+    firebase_app_distribution(
+      service_credentials_file: "#{ENV['HOME']}/gservice-key.json"
+    )
+
   end
 end
