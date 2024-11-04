@@ -126,6 +126,8 @@ struct DashboardView: View {
     }
 }
 
+#if DEBUG
 #Preview {
-    DashboardView(viewModel: .init(interactor: GetProgramsInteractor()))
+    DashboardAssembly.makePreview()
 }
+#endif

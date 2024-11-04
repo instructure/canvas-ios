@@ -24,7 +24,7 @@ public struct GraphQLBody<Variables: Codable & Equatable>: Codable, Equatable {
     let variables: Variables
 }
 
-protocol APIGraphQLRequestable: APIRequestable {
+public protocol APIGraphQLRequestable: APIRequestable {
     associatedtype Variables: Codable, Equatable
 
     static var query: String { get }

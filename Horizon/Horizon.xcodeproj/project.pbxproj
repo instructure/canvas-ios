@@ -35,6 +35,7 @@
 		7B3D4D038C5CC6E897E70CE1 /* AssignmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88114C15E1D383DD98152FE /* AssignmentViewModel.swift */; };
 		7D55A90806A34664576046CD /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC16FDFB815642C82768097E /* DashboardView.swift */; };
 		7FF9727E6AAB2C83F9239548 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E0CF6B14E0331072707C9 /* SplashView.swift */; };
+		8031414D135BF4A32D1A97F5 /* GetProgramsInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E0E56C150D870B1036E47 /* GetProgramsInteractorPreview.swift */; };
 		84C518D0F43318BD14E15031 /* ProgramsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA155FF18B2AAB3C61415DF /* ProgramsViewModel.swift */; };
 		8F5B3D11D772C4E75DE6C430 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3018AB6A54CFAEFFF18A67B /* SplashViewModel.swift */; };
 		91F8AB5F127218139B3D9C25 /* LearningObjectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6160FD173852A664C46FAC5 /* LearningObjectHeaderView.swift */; };
@@ -101,6 +102,7 @@
 		1539BB6B0B6588E38DEE1268 /* AssignmentDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetails.swift; sourceTree = "<group>"; };
 		19E18B1A6BFF4E19E32C50E3 /* HModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HModule.swift; sourceTree = "<group>"; };
 		1A04AA67527214E50E65A4FD /* ProgramDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDetailsView.swift; sourceTree = "<group>"; };
+		1D6E0E56C150D870B1036E47 /* GetProgramsInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProgramsInteractorPreview.swift; sourceTree = "<group>"; };
 		22E1B76C3FAF2281B5810EC1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2A73840CAB398BAB7DB56F5F /* HAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAssignment.swift; sourceTree = "<group>"; };
 		34D5D240CEE95E43BE413812 /* Size14RegularTextDarkestTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size14RegularTextDarkestTitle.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				F019A2E1914235682B5AF6B9 /* GetProgramsInteractor.swift */,
+				1D6E0E56C150D870B1036E47 /* GetProgramsInteractorPreview.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				06DE8BCB00A3AFA9D063B50E /* DashboardViewModel.swift in Sources */,
 				41EFDB92980DFE03C0483F21 /* ExpandingModuleView.swift in Sources */,
 				341E151F9FE8B0C4F113C01A /* GetProgramsInteractor.swift in Sources */,
+				8031414D135BF4A32D1A97F5 /* GetProgramsInteractorPreview.swift in Sources */,
 				59B1BD3B9AEBB80E48D1C99B /* HAssignment.swift in Sources */,
 				C25ABAF2A3AA7BAA36558525 /* HCourse.swift in Sources */,
 				3F82EB862BB02A4FE1D74F16 /* HModule.swift in Sources */,
