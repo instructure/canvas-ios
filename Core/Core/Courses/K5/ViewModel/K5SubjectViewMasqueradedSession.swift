@@ -52,7 +52,7 @@ public class K5SubjectViewMasqueradedSession {
 
     private func startMasqueradedSession(for url: URL, itemIndex: Int) {
         masqueradedSessionRequest?.cancel()
-        masqueradedSessionRequest = env.api.makeRequest(GetWebSessionRequest(to: url, path: "login/session_token")) { [weak self] response, _, _ in
+        masqueradedSessionRequest = env.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, _ in
             performUIUpdate {
                 let safeURL = response?.session_url ?? url
                 self?.masqueradedSessionURLSubject.send(safeURL)

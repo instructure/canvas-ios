@@ -26,7 +26,7 @@ struct DeleteCalendarEventRequest: APIRequestable {
         let which: APICalendarEventSeriesModificationType?
     }
 
-    let method: APIMethod = .delete
+    var method: APIMethod { .delete }
     var path: String { "calendar_events/\(id)" }
 
     let id: String

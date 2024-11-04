@@ -22,7 +22,7 @@ import XCTest
 
 class AssignmentPickerListServiceTests: CoreTestCase {
     private var testee: AssignmentPickerListService!
-    private var receivedResult: Result<[APIAssignmentPickerListItem], String>?
+    private var receivedResult: Result<[APIAssignmentPickerListItem], AssignmentPickerListServiceError>?
     private var resultSubscription: AnyCancellable?
 
     override func setUp() {
@@ -41,17 +41,11 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         resultSubscription?.cancel()
     }
 
-    func testUnknownAPIError() {
-        testee.courseID = "failingID"
-        waitForExpectations(timeout: 0.1)
-        XCTAssertEqual(receivedResult, .failure("Something went wrong"))
-    }
-
     func testAPIError() {
         api.mock(AssignmentPickerListRequest(courseID: "failingID"), data: nil, response: nil, error: NSError.instructureError("Custom error"))
         testee.courseID = "failingID"
         waitForExpectations(timeout: 0.1)
-        XCTAssertEqual(receivedResult, .failure("Custom error"))
+        XCTAssertEqual(receivedResult, .failure(.failedToGetAssignments))
     }
 
     func testAssignmentFetchSuccessful() {

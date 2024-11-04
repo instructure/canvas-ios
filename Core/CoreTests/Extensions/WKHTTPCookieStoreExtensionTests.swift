@@ -43,10 +43,12 @@ class WKHTTPCookieStoreExtensionTests: XCTestCase {
         let publisher = cookieStore.getAllCookies()
 
         // THEN
-        XCTAssertSingleOutputEquals(
+        XCTAssertFirstValue(
             publisher,
-            [cookie],
-            timeout: 10
+            timeout: 10,
+            assertions: { [cookie] resultCookies in
+                XCTAssertTrue(cookie.isEqualProperties(to: resultCookies.first))
+            }
         )
     }
 
@@ -63,10 +65,12 @@ class WKHTTPCookieStoreExtensionTests: XCTestCase {
         XCTAssertFinish(cookieStore.setCookie(cookie))
 
         // THEN
-        XCTAssertSingleOutputEquals(
+        XCTAssertFirstValue(
             cookieStore.getAllCookies(),
-            [cookie],
-            timeout: 10
+            timeout: 10,
+            assertions: { [cookie] resultCookies in
+                XCTAssertTrue(cookie.isEqualProperties(to: resultCookies.first))
+            }
         )
     }
 

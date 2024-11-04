@@ -20,6 +20,7 @@ import CoreData
 
 public class GetLatestAnnouncements: CollectionUseCase {
     public typealias Model = LatestAnnouncement
+    public typealias Response = Request.Response
 
     public var cacheKey: String? { "announcements(\(courseContextIds.sorted().joined(separator: ",")))" }
     public var request: GetAllAnnouncementsRequest { GetAllAnnouncementsRequest(contextCodes: courseContextIds, activeOnly: true, latestOnly: true) }

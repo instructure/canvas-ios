@@ -17,9 +17,10 @@
 //
 
 import XCTest
+import TestsFoundation
 @testable import Core
 
-class APIOAuthTests: XCTestCase {
+class APIOAuthTests: CoreTestCase {
     func testGetMobileVerifyRequest() {
         XCTAssertEqual(GetMobileVerifyRequest(domain: "cgnu").path, "https://canvas.instructure.com/api/v1/mobile_verify.json")
         XCTAssertEqual(GetMobileVerifyRequest(domain: "cgnu").queryItems, [
@@ -61,11 +62,24 @@ class APIOAuthTests: XCTestCase {
         XCTAssertEqual(DeleteLoginOAuthRequest().path, "/login/oauth2/token")
     }
 
-    func testGetWebSessionRequest() {
+    func testGetWebSessionRequestWhenNotMasquerading() {
         XCTAssertEqual(GetWebSessionRequest(to: nil).path, "/login/session_token")
         XCTAssertEqual(GetWebSessionRequest(to: nil).queryItems, [])
         XCTAssertEqual(GetWebSessionRequest(to: URL(string: "/")).queryItems, [
             URLQueryItem(name: "return_to", value: "/?display=borderless")
+        ])
+    }
+
+    func testGetWebSessionRequestWhenMasquerading() {
+        environment.currentSession = .make(
+            masquerader: URL(string: "something"),
+            userID: "42"
+        )
+
+        XCTAssertEqual(GetWebSessionRequest(to: nil).path, "/api/v1/login/session_token")
+        XCTAssertEqual(GetWebSessionRequest(to: nil).queryItems, [])
+        XCTAssertEqual(GetWebSessionRequest(to: URL(string: "/")).queryItems, [
+            URLQueryItem(name: "return_to", value: "/?display=borderless&as_user_id=42")
         ])
     }
 }

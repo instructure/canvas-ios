@@ -25,10 +25,10 @@ import TestsFoundation
 class ObserverAlertListViewControllerTests: ParentTestCase {
 
     private enum TestConstants {
-        static let date0630 = DateComponents(calendar: .current, year: 2020, month: 6, day: 30).date!
-        static let date0625 = DateComponents(calendar: .current, year: 2020, month: 6, day: 25).date!
-        static let date0615 = DateComponents(calendar: .current, year: 2020, month: 6, day: 15).date!
-        static let date0605 = DateComponents(calendar: .current, year: 2020, month: 6, day: 5).date!
+        static let date0630 = Date.make(year: 2020, month: 6, day: 30)
+        static let date0625 = Date.make(year: 2020, month: 6, day: 25)
+        static let date0615 = Date.make(year: 2020, month: 6, day: 15)
+        static let date0605 = Date.make(year: 2020, month: 6, day: 5)
     }
 
     lazy var controller = ObserverAlertListViewController.create(studentID: "1")
@@ -91,8 +91,8 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 4)
 
-        var index = IndexPath(row: 0, section: 0)
-        var cell = controller.tableView.cellForRow(at: index) as? ObserverAlertListCell
+        var indexPath = IndexPath(row: 0, section: 0)
+        var cell = alertListCell(at: indexPath)
         XCTAssertEqual(cell?.unreadView.isHidden, false)
         XCTAssertEqual(cell?.typeLabel.text, "Course Grade Above 90")
         XCTAssertEqual(cell?.titleLabel.text, "Course grade: 95% in C1")
@@ -100,11 +100,11 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.iconView.image, .infoLine)
         XCTAssertEqual(cell?.iconView.tintColor, .textInfo)
 
-        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index)
+        selectRow(at: indexPath)
         XCTAssert(router.lastRoutedTo("/courses/1/grades"))
 
-        index.row = 1
-        cell = controller.tableView.cellForRow(at: index) as? ObserverAlertListCell
+        indexPath.row = 1
+        cell = alertListCell(at: indexPath)
         XCTAssertEqual(cell?.unreadView.isHidden, true)
         XCTAssertEqual(cell?.typeLabel.text, "Institution Announcement")
         XCTAssertEqual(cell?.titleLabel.text, "Institution announcement: \"Finals will be cancelled\"")
@@ -112,11 +112,11 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.iconView.image, .infoLine)
         XCTAssertEqual(cell?.iconView.tintColor, .textDark)
 
-        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index)
+        selectRow(at: indexPath)
         XCTAssert(router.lastRoutedTo("/accounts/self/account_notifications/1"))
 
-        index.row = 2
-        cell = controller.tableView.cellForRow(at: index) as? ObserverAlertListCell
+        indexPath.row = 2
+        cell = alertListCell(at: indexPath)
         XCTAssertEqual(cell?.unreadView.isHidden, true)
         XCTAssertEqual(cell?.typeLabel.text, "Assignment Grade Below 0")
         XCTAssertEqual(cell?.titleLabel.text, "Assignment graded: 46% on Practice Worksheet 3 in C1")
@@ -124,8 +124,8 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.iconView.image, .warningLine)
         XCTAssertEqual(cell?.iconView.tintColor, .textDanger)
 
-        index.row = 3
-        cell = controller.tableView.cellForRow(at: index) as? ObserverAlertListCell
+        indexPath.row = 3
+        cell = alertListCell(at: indexPath)
         XCTAssertEqual(cell?.unreadView.isHidden, false)
         XCTAssertEqual(cell?.typeLabel.text, "Course Grade Above 90 • Locked")
         XCTAssertEqual(cell?.titleLabel.text, "Course grade: 95% in C1")
@@ -133,14 +133,14 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.iconView.image, .lockLine)
         XCTAssertEqual(cell?.iconView.tintColor, .textInfo)
 
-        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index)
+        selectRow(at: indexPath)
         XCTAssert(router.last is UIAlertController)
 
-        index.row = 2
-        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index)
+        indexPath.row = 2
+        selectRow(at: indexPath)
         XCTAssert(router.lastRoutedTo("/courses/1/assignments/1"))
 
-        let swipe = controller.tableView(controller.tableView, trailingSwipeActionsConfigurationForRowAt: index)
+        let swipe = controller.tableView(controller.tableView, trailingSwipeActionsConfigurationForRowAt: indexPath)
         XCTAssertEqual(swipe?.actions.count, 1)
         XCTAssertEqual(swipe?.actions.first?.title, "Dismiss")
         swipe?.actions[0].handler(swipe!.actions[0], UIView()) { isSuccess in
@@ -158,5 +158,13 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.emptyView.isHidden, false)
         XCTAssertEqual(controller.emptyTitleLabel.text, "No Alerts")
         XCTAssertEqual(controller.emptyMessageLabel.text, "There's nothing to be notified of yet.")
+    }
+
+    private func alertListCell(at indexPath: IndexPath) -> ObserverAlertListCell? {
+        controller.tableView.cellForRow(at: indexPath) as? ObserverAlertListCell
+    }
+
+    private func selectRow(at indexPath: IndexPath) {
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: indexPath)
     }
 }
