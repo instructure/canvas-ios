@@ -49,11 +49,11 @@ class GetProgramsInteractorPreview: GetProgramsInteractor {
                 name: "Introduction",
                 courseID: "1",
                 items: [
-                    .init(id: "15", title: "Sub title", url: nil),
-                    .init(id: "20", title: "Sub title 44", url: nil)
+                    .init(id: "15", title: "Sub title", htmlURL: nil),
+                    .init(id: "20", title: "Sub title 44", htmlURL: nil)
                 ]
             ),
-            .init(id: "13", name: "Assginemts", courseID: "2", items: [.init(id: "14", title: "Sub title 2", url: nil)])
+            .init(id: "13", name: "Assginemts", courseID: "2", items: [.init(id: "14", title: "Sub title 2", htmlURL: nil)])
         ]
     }
 
