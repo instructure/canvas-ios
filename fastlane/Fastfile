@@ -51,14 +51,16 @@ platform :ios do
     gym(
       scheme: "Student",
       export_method: "ad-hoc",
-      export_options({    
-        method: "ad-hoc",    
-        provisioningProfiles: {
-          "com.instructure.icanvas" => "match AdHoc com.instructure.icanvas",
-          "com.instructure.icanvas.SubmitAssignment" => "match AdHoc com.instructure.icanvas.SubmitAssignment",
-          "com.instructure.icanvas.widgets" => "match AdHoc com.instructure.icanvas.widgets"
-        }
-      })
+      export_options: { 
+        signingCertificate: "Apple Distribution: Instructure, Inc. (B6333T4PXQ)",
+        provisioningProfiles: provisioning_profiles_ad_hoc
+      }
     )
   end
 end
+
+provisioning_profiles_ad_hoc = {
+  "com.instructure.icanvas": "match AdHoc com.instructure.icanvas",
+  "com.instructure.icanvas.SubmitAssignment": "match AdHoc com.instructure.icanvas.SubmitAssignment",
+  "com.instructure.icanvas.widgets": "match AdHoc com.instructure.icanvas.widgets"
+}
