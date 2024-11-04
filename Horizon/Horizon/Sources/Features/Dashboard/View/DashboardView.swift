@@ -126,6 +126,8 @@ struct DashboardView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     DashboardAssembly.makePreview()
 }
+#endif
