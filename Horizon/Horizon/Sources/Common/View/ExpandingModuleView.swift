@@ -45,7 +45,7 @@ struct ExpandingModuleView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     ForEach(items) { item in
                         Button {
-                            if let url = item.url {
+                            if let url = item.htmlURL {
                                 routeToURL(url)
                             }
                         } label: {
@@ -73,8 +73,8 @@ struct ExpandingModuleView: View {
     ExpandingModuleView(
         title: "Intro Module",
         items: [
-            .init(id: "1", title: "Intro to biology", url: nil),
-            .init(id: "2", title: "Intro to sports", url: nil)
+            .init(id: "1", title: "Intro to biology", htmlURL: nil),
+            .init(id: "2", title: "Intro to sports", htmlURL: nil)
         ],
         routeToURL: { _ in }
     )

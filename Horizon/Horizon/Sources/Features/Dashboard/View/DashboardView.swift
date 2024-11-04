@@ -104,7 +104,7 @@ struct DashboardView: View {
                     }
                 }
                 Button {
-                    if let url = moduleItem.url {
+                    if let url = moduleItem.htmlURL {
                         AppEnvironment.shared.router.route(to: url, from: viewController)
                     }
                 } label: {
