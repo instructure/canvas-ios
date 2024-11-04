@@ -557,7 +557,7 @@ extension FileDetailsViewController: QLPreviewControllerDataSource, QLPreviewCon
     }
 }
 
-extension FileDetailsViewController: PDFViewControllerDelegate {
+extension FileDetailsViewController: PDFViewControllerDelegate, FlexibleToolbarContainerDelegate {
     func embedPDFView(for url: URL) {
         guard DocViewerViewController.hasPSPDFKitLicense else {
             return embedWebView(for: url)
@@ -581,7 +581,8 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
             // Override the override
             builder.overrideClass(AnnotationToolbar.self, with: AnnotationToolbar.self)
         })
-        controller.annotationToolbarController?.toolbar.toolbarPosition = .left
+        controller.annotationToolbarController?.annotationToolbar.toolbarPosition = defaultToolbarPosition()
+        controller.annotationToolbarController?.delegate = self
 
         let appearance = UIToolbarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -608,6 +609,29 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
         NotificationCenter.default.post(name: .init("FileViewControllerBarButtonItemsDidChange"), object: nil)
 
         doneLoading()
+    }
+
+    private func defaultToolbarPosition() -> FlexibleToolbar.Position {
+        let isRegular = view.traitCollection.horizontalSizeClass == .regular
+        let isRightToLeft = view.traitCollection.layoutDirection == .rightToLeft
+        return !isRegular || isRightToLeft ? .left : .right
+    }
+
+    public func flexibleToolbarContainerContentRect(_ container: FlexibleToolbarContainer, for position: FlexibleToolbar.Position) -> CGRect {
+
+        let isCompact = container.traitCollection.horizontalSizeClass == .compact
+        let padding: CGFloat = isCompact ? 10 : 16
+
+        let safeInsets = container.safeAreaInsets
+        let contentFrame = contentView.convert(contentView.bounds, to: container)
+        let toolbarRect = CGRect(
+            x: safeInsets.left + padding,
+            y: contentFrame.origin.y,
+            width: container.bounds.width - safeInsets.left - safeInsets.right - 2 * padding,
+            height: contentFrame.height
+        )
+
+        return toolbarRect
     }
 
     func saveAnnotations() {
