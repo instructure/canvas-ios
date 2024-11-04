@@ -23,6 +23,7 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
     public typealias JSON = GetCoursesProgressionResponse.EnrollmentModel
 
     // MARK: - Properties
+    
     @NSManaged public var courseID: String
     @NSManaged public var completionPercentage: Double
 
