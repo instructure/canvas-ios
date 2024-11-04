@@ -25,13 +25,40 @@ platform :ios do
     match(type: "adhoc")
 
     update_code_signing_settings(
-      use_automatic_signing: true,
-      path: "Student/Student.xcodeproj"
+      use_automatic_signing: false,
+      targets: ["Student"],
+      path: "Student/Student.xcodeproj",
+      code_sign_identity: "Apple Distribution: Instructure, Inc. (B6333T4PXQ)",
+      profile_name: "match AdHoc com.instructure.icanvas"  
+    )
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      targets: ["SubmitAssignment"],
+      path: "Student/Student.xcodeproj",
+      code_sign_identity: "Apple Distribution: Instructure, Inc. (B6333T4PXQ)",
+      profile_name: "match com.instructure.icanvas.SubmitAssignment"  
+    )
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      targets: ["Widgets"],
+      path: "Student/Student.xcodeproj",
+      code_sign_identity: "Apple Distribution: Instructure, Inc. (B6333T4PXQ)",
+      profile_name: "match AdHoc com.instructure.icanvas.widgets"  
     )
 
     gym(
       scheme: "Student",
-      export_method: "ad-hoc"
+      export_method: "ad-hoc",
+      export_options({    
+        method: "ad-hoc",    
+        provisioningProfiles: {
+          "com.instructure.icanvas" => "match AdHoc com.instructure.icanvas",
+          "com.instructure.icanvas.SubmitAssignment" => "match AdHoc com.instructure.icanvas.SubmitAssignment",
+          "com.instructure.icanvas.widgets" => "match AdHoc com.instructure.icanvas.widgets"
+        }
+      })
     )
   end
 end
