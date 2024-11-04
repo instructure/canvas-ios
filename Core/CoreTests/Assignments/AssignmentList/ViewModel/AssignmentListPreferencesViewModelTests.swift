@@ -35,7 +35,7 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
         ]
 
         testee = AssignmentListPreferencesViewModel(
-            sortingOptions: AssignmentArrangementOptions.allCases,
+            sortingOptions: AssignmentListViewModel.AssignmentArrangementOptions.allCases,
             initialSortingOption: .dueDate,
             gradingPeriods: gradingPeriods,
             initialGradingPeriod: nil,
@@ -50,10 +50,10 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
     func testInitialState() {
         XCTAssertEqual(testee.courseName, "Test Course")
         XCTAssertEqual(testee.gradingPeriods, gradingPeriods)
-        XCTAssertEqual(testee.sortingOptions, AssignmentArrangementOptions.allCases)
+        XCTAssertEqual(testee.sortingOptions, AssignmentListViewModel.AssignmentArrangementOptions.allCases)
         XCTAssertTrue(testee.isFilterSectionVisible)
         XCTAssertTrue(testee.isGradingPeriodsSectionVisible)
-        XCTAssertEqual(testee.selectedSortingOption, AssignmentArrangementOptions.dueDate)
+        XCTAssertEqual(testee.selectedSortingOption, AssignmentListViewModel.AssignmentArrangementOptions.dueDate)
         XCTAssertEqual(testee.selectedGradingPeriod, nil)
         XCTAssertEqual(testee.selectedAssignmentFilterOptions, AssignmentFilterOption.allCases)
     }
@@ -123,9 +123,8 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
     }
 
     func testCompletion() {
-        let controller = CoreHostingController(AssignmentListPreferencesScreen(viewModel: testee))
         testee.selectedSortingOption = nil
-        testee.didTapDone(viewController: controller)
+        testee.didDismiss()
         XCTAssertNotNil(listPreferences)
         XCTAssertNotNil(listPreferences!.sortingOption)
         XCTAssertEqual(listPreferences!.sortingOption, AssignmentListViewModel.AssignmentArrangementOptions.dueDate)
