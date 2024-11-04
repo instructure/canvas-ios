@@ -104,7 +104,6 @@ public class AssignmentListViewModel: ObservableObject {
         self.defaultGradingPeriod = defaultGradingPeriod
         self.selectedGradingPeriod = self.defaultGradingPeriod
 
-        loadAssignmentListPreferences()
         featureFlags.refresh()
     }
 
@@ -134,6 +133,7 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     public func viewDidAppear() {
+        loadAssignmentListPreferences()
         gradingPeriods.refresh()
         filterOptionsDidUpdate(filterOptions: initialFilterOptions, gradingPeriod: defaultGradingPeriod)
         course.refresh()
