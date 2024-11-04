@@ -18,31 +18,30 @@
 
 import SwiftUI
 
-// MARK: - Enums, Structs
-
-public enum AssignmentArrangementOptions: String, CaseIterable {
-    case dueDate
-    case groupName
-
-    var title: String {
-        switch self {
-        case .dueDate:
-            return String(localized: "Due Date", bundle: .core)
-        case .groupName:
-            return String(localized: "Group", bundle: .core)
-        }
-    }
-}
-
-public struct AssignmentDateGroup {
-    public let id: String
-    public let name: String
-    public let assignments: [Assignment]
-}
-
 // MARK: - ViewModel
 
 public class AssignmentListViewModel: ObservableObject {
+
+    public enum AssignmentArrangementOptions: String, CaseIterable {
+        case dueDate
+        case groupName
+
+        var title: String {
+            switch self {
+            case .dueDate:
+                return String(localized: "Due Date", bundle: .core)
+            case .groupName:
+                return String(localized: "Group", bundle: .core)
+            }
+        }
+    }
+
+    public struct AssignmentDateGroup {
+        public let id: String
+        public let name: String
+        public let assignments: [Assignment]
+    }
+
     public enum ViewModelState<T: Equatable>: Equatable {
         case loading
         case empty
@@ -57,13 +56,14 @@ public class AssignmentListViewModel: ObservableObject {
     @Published public private(set) var defaultDetailViewRoute = "/empty"
     @Published public private(set) var isShowingGradingPeriods: Bool = false
 
-    // MARK: - Variables
-
     public var isFilterIconSolid: Bool = false
     public let defaultGradingPeriod: GradingPeriod?
     public let defaultSortingOption: AssignmentArrangementOptions = .dueDate
     public var selectedGradingPeriod: GradingPeriod?
     public var selectedSortingOption: AssignmentArrangementOptions = .dueDate
+
+    // MARK: - Private properties
+
     private let sortingOptions = AssignmentArrangementOptions.allCases
     private var initialFilterOptions: [AssignmentFilterOption] = AssignmentFilterOption.allCases
     private var selectedFilterOptions: [AssignmentFilterOption] = AssignmentFilterOption.allCases
@@ -221,7 +221,6 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     func navigateToPreferences(viewController: WeakViewController) {
-        let weakVC = WeakViewController()
         let viewModel = AssignmentListPreferencesViewModel(
             initialFilterOptions: selectedFilterOptions,
             sortingOptions: sortingOptions,
@@ -239,7 +238,6 @@ public class AssignmentListViewModel: ObservableObject {
                 self?.saveAssignmentListPreferences()
             })
         let controller = CoreHostingController(AssignmentListPreferencesScreen(viewModel: viewModel))
-        weakVC.setValue(controller)
         env.router.show(
             controller,
             from: viewController,

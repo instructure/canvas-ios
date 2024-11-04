@@ -81,8 +81,6 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             },
             content: { }
         )
-        .listRowInsets(EdgeInsets())
-        .listRowSeparator(.hidden)
     }
 
     @ViewBuilder

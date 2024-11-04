@@ -35,9 +35,7 @@ public struct AssignmentGroupView: View {
                     VStack(spacing: 0) {
                         AssignmentCellView(viewModel: assignmentCellViewModel)
 
-                        if viewModel.assignments.last != assignment {
-                            InstUI.Divider()
-                        }
+                        InstUI.Divider()
                     }
                 }
             }

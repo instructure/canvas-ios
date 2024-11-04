@@ -35,13 +35,13 @@ public struct ListSectionHeaderOld<Content: View>: View {
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            InstUI.Divider()
             content
                 .font(.semibold14)
                 .foregroundColor(.textDark)
                 .padding(16)
                 .padding(.vertical, isLarge ? 0 : -12)
             InstUI.Divider()
+                .clipped()
         }
         .background(backgroundColor)
     }

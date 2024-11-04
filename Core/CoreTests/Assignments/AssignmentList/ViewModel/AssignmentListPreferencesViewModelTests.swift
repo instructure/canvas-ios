@@ -123,13 +123,11 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
     }
 
     func testCompletion() {
-        let weakVC = WeakViewController()
         let controller = CoreHostingController(AssignmentListPreferencesScreen(viewModel: testee))
-        weakVC.setValue(controller)
         testee.selectedSortingOption = nil
-        testee.didTapDone(viewController: weakVC)
+        testee.didTapDone(viewController: controller)
         XCTAssertNotNil(listPreferences)
         XCTAssertNotNil(listPreferences!.sortingOption)
-        XCTAssertEqual(listPreferences!.sortingOption, AssignmentArrangementOptions.dueDate)
+        XCTAssertEqual(listPreferences!.sortingOption, AssignmentListViewModel.AssignmentArrangementOptions.dueDate)
     }
 }

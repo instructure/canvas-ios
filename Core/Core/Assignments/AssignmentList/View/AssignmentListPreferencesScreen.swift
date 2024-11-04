@@ -41,17 +41,11 @@ public struct AssignmentListPreferencesScreen: View {
                     gradingPeriodsSection
                 }
             }
-            .navigationTitle(
-                String(
-                    localized: "Assignment List Preferences",
-                    bundle: .core
-                ),
-                subtitle: viewModel.courseName
-            )
-            .navigationBarItems(trailing: doneButton)
         }
+        .navigationTitleStyled(navBarTitleView)
+        .navigationBarItems(trailing: doneButton)
         .onDisappear {
-            viewModel.didTapDone(viewController: viewController)
+            viewModel.didDismiss()
         }
     }
 
@@ -60,6 +54,17 @@ public struct AssignmentListPreferencesScreen: View {
             viewModel.didTapDone(viewController: viewController)
         }
         .accessibilityIdentifier("AssignmentFilter.doneButton")
+    }
+
+    private var navBarTitleView: some View {
+        VStack {
+            Text(String(localized: "Assignment List Preferences", bundle: .core))
+                .foregroundStyle(Color.textDarkest)
+                .font(.semibold16)
+            Text(viewModel.courseName)
+                .foregroundStyle(Color.textDark)
+                .font(.regular12)
+        }
     }
 
     // MARK: - Filter Section
@@ -104,7 +109,7 @@ public struct AssignmentListPreferencesScreen: View {
         }
     }
 
-    private func sortByItem(with item: AssignmentArrangementOptions) -> some View {
+    private func sortByItem(with item: AssignmentListViewModel.AssignmentArrangementOptions) -> some View {
         InstUI.RadioButtonCell(
             title: item.title,
             value: item,
@@ -157,8 +162,8 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
     static var previews: some View {
         let gradingPeriods = createGradingPeriods()
         let viewModel = AssignmentListPreferencesViewModel(
-            sortingOptions: AssignmentArrangementOptions.allCases,
-            initialSortingOption: AssignmentArrangementOptions.dueDate,
+            sortingOptions: AssignmentListViewModel.AssignmentArrangementOptions.allCases,
+            initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions.dueDate,
             gradingPeriods: gradingPeriods,
             initialGradingPeriod: nil,
             courseName: "Sample Course Name",
