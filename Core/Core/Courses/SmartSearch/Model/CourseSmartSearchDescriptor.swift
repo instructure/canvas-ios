@@ -21,17 +21,19 @@ import Combine
 
 public class CourseSmartSearchDescriptor: SearchDescriptor {
 
-    private let context: Context
     private let interactor: CourseSmartSearchInteractor
 
-    public init(context: Context, interactor: CourseSmartSearchInteractor? = nil) {
-        self.context = context
-        self.interactor = interactor ?? CourseSmartSearchInteractorLive()
+    public init(interactor: CourseSmartSearchInteractor) {
+        self.interactor = interactor
+    }
+
+    public convenience init(context: Context) {
+        self.init(interactor: CourseSmartSearchInteractorLive(context: context))
     }
 
     public var isEnabled: AnyPublisher<Bool, Never> {
         interactor
-            .isEnabled(context: context)
+            .isEnabled()
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
@@ -55,7 +57,7 @@ public class CourseSmartSearchDescriptor: SearchDescriptor {
 
     public func searchDisplayView(_ filter: Binding<CourseSmartSearchFilter?>) -> some View {
         CourseSmartSearchDisplayView(
-            viewModel: CourseSmartSearchViewModel(context: context, interactor: interactor),
+            viewModel: CourseSmartSearchViewModel(interactor: interactor),
             filter: filter
         )
     }

@@ -22,9 +22,7 @@ import XCTest
 final class CourseSmartSearchViewModelTests: CoreTestCase {
 
     enum TestConstants {
-        static let courseId: String = "demo_course_id"
-        static var context: Context { Context(.course, id: courseId) }
-
+        
         static var results: [CourseSmartSearchResult] = [
             .make(type: .page),
             .make(type: .page),
@@ -53,10 +51,7 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         interactor.results = TestConstants.results
 
         // When
-        let model = CourseSmartSearchViewModel(
-            context: TestConstants.context,
-            interactor: interactor
-        )
+        let model = CourseSmartSearchViewModel(interactor: interactor)
 
         // Then
         XCTAssertEqual(model.phase, .start)
@@ -78,10 +73,7 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         interactor.results = []
 
         // When
-        let model = CourseSmartSearchViewModel(
-            context: TestConstants.context,
-            interactor: interactor
-        )
+        let model = CourseSmartSearchViewModel(interactor: interactor)
 
         // Then
         XCTAssertEqual(model.phase, .start)
@@ -102,15 +94,12 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
     func test_course_fetch() throws {
         // Given
         let mockCourse = Course(context: databaseClient)
-        mockCourse.id = TestConstants.courseId
+        mockCourse.id = "course_4324"
         mockCourse.name = "Random Name"
         interactor.courseValue = mockCourse
 
         // When
-        let model = CourseSmartSearchViewModel(
-            context: TestConstants.context,
-            interactor: interactor
-        )
+        let model = CourseSmartSearchViewModel(interactor: interactor)
 
         // When
         model.fetchCourse()
@@ -129,10 +118,7 @@ final class CourseSmartSearchViewModelTests: CoreTestCase {
         let filter = CourseSmartSearchFilter(sortMode: .type, includedTypes: filterTypes)
 
         // When
-        let model = CourseSmartSearchViewModel(
-            context: TestConstants.context,
-            interactor: interactor
-        )
+        let model = CourseSmartSearchViewModel(interactor: interactor)
 
         model.filter = filter
         model.startSearch(of: "Some search phrase")

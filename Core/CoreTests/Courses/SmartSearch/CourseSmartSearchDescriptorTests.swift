@@ -28,22 +28,9 @@ final class CourseSmartSearchDescriptorTests: CoreTestCase {
         static var context: Context { Context(.course, id: courseId) }
     }
 
-    private var interactor: CourseSmartSearchInteractor!
-
-    override func setUp() {
-        super.setUp()
-        interactor = CourseSmartSearchInteractorLive()
-    }
-
-    override func tearDown() {
-        interactor = nil
-        super.tearDown()
-    }
-
     func test_enablement() throws {
         // Given
-        let context = Context.course("course_12345")
-        let request = GetEnabledFeatureFlagsRequest(context: context)
+        let request = GetEnabledFeatureFlagsRequest(context: TestConstants.context)
 
         // When
         api.mock(request, value: [
@@ -52,8 +39,7 @@ final class CourseSmartSearchDescriptorTests: CoreTestCase {
         ])
 
         let descriptor = CourseSmartSearchDescriptor(
-            context: context,
-            interactor: interactor
+            context: TestConstants.context
         )
         drainMainQueue()
 

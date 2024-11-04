@@ -73,7 +73,6 @@ public struct CourseSmartSearchDisplayView: View {
 #Preview {
     CourseSmartSearchDisplayView(
         viewModel: CourseSmartSearchViewModel(
-            context: .course("4234"),
             interactor: CourseSmartSearchInteractorPreview()
         ),
         filter: .constant(nil)

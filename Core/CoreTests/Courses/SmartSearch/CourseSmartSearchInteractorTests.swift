@@ -50,10 +50,10 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
         ])
 
         // When
-        let interactor = CourseSmartSearchInteractorLive()
+        let interactor = CourseSmartSearchInteractorLive(context: context)
 
         // Then
-        XCTAssertSingleOutputEquals(interactor.isEnabled(context: context), true)
+        XCTAssertSingleOutputEquals(interactor.isEnabled(), true)
 
         // When
         useCase.reset(context: databaseClient)
@@ -62,13 +62,13 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
         ])
 
         // Then
-        XCTAssertSingleOutputEquals(interactor.isEnabled(context: context), false)
+        XCTAssertSingleOutputEquals(interactor.isEnabled(), false)
     }
 
     func test_searching_results() throws {
         // Given
         let searchWord = "Demo Search"
-        let interactor = CourseSmartSearchInteractorLive()
+        let interactor = CourseSmartSearchInteractorLive(context: TestConstants.context)
 
         api.mock(
             CourseSmartSearchRequest(
@@ -84,7 +84,7 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
         )
 
         // When
-        let results = interactor.startSearch(in: TestConstants.context, of: searchWord, filter: nil)
+        let results = interactor.search(for: searchWord, filter: nil)
 
         // Then
         XCTAssertSingleOutputEquals(results, TestConstants.results.sorted(by: CourseSmartSearchResult.sortStrategy))
@@ -92,7 +92,7 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
 
     func test_searching_with_filter() throws {
         // Given
-        let interactor = CourseSmartSearchInteractorLive()
+        let interactor = CourseSmartSearchInteractorLive(context: TestConstants.context)
         let searchWord = "Filtered Search"
 
         let filterTypes: [CourseSmartSearchResultType] = [.announcement, .assignment]
@@ -112,7 +112,7 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
         )
 
         // When
-        let results = interactor.startSearch(in: TestConstants.context, of: searchWord, filter: filter)
+        let results = interactor.search(for: searchWord, filter: filter)
 
         // Then
         XCTAssertSingleOutputEquals(results, TestConstants.results.sorted(by: CourseSmartSearchResult.sortStrategy))
@@ -120,14 +120,14 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
 
     func test_course_fetch() throws {
         // Given
-        let interactor = CourseSmartSearchInteractorLive()
+        let interactor = CourseSmartSearchInteractorLive(context: TestConstants.context)
 
         let courseID = ID(TestConstants.courseId)
         let apiCourse = APICourse.make(id: courseID, name: "Random Course Name")
         api.mock(GetCourse(courseID: TestConstants.courseId), value: apiCourse)
 
         // When
-        let courseFetcher = interactor.fetchCourse(context: TestConstants.context)
+        let courseFetcher = interactor.fetchCourse()
 
         // Then
         XCTAssertFirstValue(courseFetcher) { fetched in

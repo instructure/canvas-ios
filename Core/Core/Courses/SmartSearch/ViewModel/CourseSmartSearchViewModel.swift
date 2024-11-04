@@ -43,12 +43,10 @@ class CourseSmartSearchViewModel: ObservableObject {
 
     @Published var filter: CourseSmartSearchFilter?
 
-    private let context: Context
     private var interactor: CourseSmartSearchInteractor
     private var feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
 
-    init(context: Context, interactor: CourseSmartSearchInteractor) {
-        self.context = context
+    init(interactor: CourseSmartSearchInteractor) {
         self.interactor = interactor
     }
 
@@ -76,7 +74,7 @@ class CourseSmartSearchViewModel: ObservableObject {
 
     func fetchCourse() {
         interactor
-            .fetchCourse(context: context)
+            .fetchCourse()
             .receive(on: DispatchQueue.main)
             .assign(to: &$course)
     }
@@ -85,7 +83,7 @@ class CourseSmartSearchViewModel: ObservableObject {
         phase = .loading
 
         let share = interactor
-            .startSearch(in: context, of: searchTerm, filter: filter)
+            .search(for: searchTerm, filter: filter)
             .receive(on: DispatchQueue.main)
             .share()
 

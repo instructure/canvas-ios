@@ -20,46 +20,50 @@ import Foundation
 import Combine
 
 public protocol CourseSmartSearchInteractor {
+    func isEnabled() -> AnyPublisher<Bool, Never>
+    func fetchCourse() -> AnyPublisher<Course?, Never>
 
-    func isEnabled(context: Context) -> AnyPublisher<Bool, Never>
-
-    func fetchCourse(context: Context) -> AnyPublisher<Course?, Never>
-
-    func startSearch(
-        in context: Context,
-        of searchTerm: String,
+    func search(
+        for searchTerm: String,
         filter: CourseSmartSearchFilter?
     ) -> AnyPublisher<[CourseSmartSearchResult], Never>
 }
 
 class CourseSmartSearchInteractorLive: CourseSmartSearchInteractor {
 
-    func isEnabled(context: Context) -> AnyPublisher<Bool, Never> {
-        return ReactiveStore(useCase: GetEnabledFeatureFlags(context: context))
-            .getEntities()
+    private lazy var flagsStore = ReactiveStore(useCase: GetEnabledFeatureFlags(context: context))
+    private lazy var courseStore: ReactiveStore<GetCourse>? = {
+        guard let courseId = context.courseId else { return nil }
+        return ReactiveStore(useCase: GetCourse(courseID: courseId))
+    }()
+
+    let context: Context
+    init(context: Context) {
+        self.context = context
+    }
+
+    func isEnabled() -> AnyPublisher<Bool, Never> {
+        flagsStore
+            .getEntities(ignoreCache: true)
             .replaceError(with: [])
             .map({ $0.contains(where: { $0.name == "smart_search" }) })
             .eraseToAnyPublisher()
     }
 
-    func fetchCourse(context: Context) -> AnyPublisher<Course?, Never> {
-        guard let courseId = context.courseId else {
+    func fetchCourse() -> AnyPublisher<Course?, Never> {
+        guard let store = courseStore else {
             return Just(nil).eraseToAnyPublisher()
         }
 
-        return ReactiveStore(useCase: GetCourse(courseID: courseId))
+        return store
             .getEntities()
             .replaceError(with: [])
-            .map({ list in
-                print(list)
-                return list.first
-            })
+            .map({ $0.first })
             .eraseToAnyPublisher()
     }
 
-    func startSearch(
-        in context: Context,
-        of searchTerm: String,
+    func search(
+        for searchTerm: String,
         filter: CourseSmartSearchFilter?
     ) -> AnyPublisher<[CourseSmartSearchResult], Never> {
 
@@ -102,17 +106,17 @@ extension CourseSmartSearchResult {
 class CourseSmartSearchInteractorPreview: CourseSmartSearchInteractor {
 
     var enabledValue: Bool = false
-    func isEnabled(context: Context) -> AnyPublisher<Bool, Never> {
+    func isEnabled() -> AnyPublisher<Bool, Never> {
         Just(enabledValue).eraseToAnyPublisher()
     }
 
     var courseValue: Course?
-    func fetchCourse(context: Context) -> AnyPublisher<Course?, Never> {
+    func fetchCourse() -> AnyPublisher<Course?, Never> {
         Just(courseValue).eraseToAnyPublisher()
     }
 
     var results: [CourseSmartSearchResult] = []
-    func startSearch(in context: Context, of searchTerm: String, filter: CourseSmartSearchFilter?) -> AnyPublisher<[CourseSmartSearchResult], Never> {
+    func search(for searchTerm: String, filter: CourseSmartSearchFilter?) -> AnyPublisher<[CourseSmartSearchResult], Never> {
         Just(results).eraseToAnyPublisher()
     }
 }
