@@ -82,7 +82,6 @@ scripts/.build
 scripts/.swiftpm
 scripts/Package.resolved
 screenlog.0
-Package.resolved
 
 # Secrets
 **/*.xcassets/Secrets/*.dataset
