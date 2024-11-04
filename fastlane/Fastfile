@@ -29,7 +29,7 @@ platform :ios do
       targets: ["SubmitAssignment"],
       path: "Student/Student.xcodeproj",
       code_sign_identity: "Apple Distribution: Instructure, Inc. (B6333T4PXQ)",
-      profile_name: "match com.instructure.icanvas.SubmitAssignment"  
+      profile_name: "match AdHoc com.instructure.icanvas.SubmitAssignment"  
     )
 
     update_code_signing_settings(
