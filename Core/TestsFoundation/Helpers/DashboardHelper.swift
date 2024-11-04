@@ -88,6 +88,12 @@ public class DashboardHelper: BaseHelper {
             public static var alertSyncOfflineContentLabel: XCUIElement { app.find(label: "Sync Offline Content?", type: .staticText) }
             public static var notAvailableOfflineLabel: XCUIElement { app.find(labelContaining: "not available offline", type: .staticText) }
 
+            // No Internet Connection Alert
+            public static var offlineModeAlert: XCUIElement { app.find(label: "Offline mode", type: .alert) }
+            public static var offlineModeAlertTitleText: XCUIElement { offlineModeAlert.find(label: "Offline mode", type: .staticText) }
+            public static var offlineModeAlertMessageText: XCUIElement { offlineModeAlert.find(label: "This item is not available offline.", type: .staticText) }
+            public static var offlineModeAlertOkButton: XCUIElement { offlineModeAlert.find(label: "OK", type: .button) }
+            
             // Course content selection
             public static var assignmentsButton: XCUIElement { app.find(label: "Assignments", type: .staticText) }
             public static var discussionsButton: XCUIElement { app.find(label: "Discussions", type: .staticText) }
