@@ -139,7 +139,7 @@ public class AssignmentListViewModel: ObservableObject {
         course.refresh()
         assignmentGroups.refresh(force: true)
 
-        isFilterIconSolid = ![0, 3].contains(selectedFilterOptions.count)
+        isFilterIconSolid = ![0, AssignmentFilterOption.allCases.count].contains(selectedFilterOptions.count)
     }
 
     private func assignmentGroupsDidUpdate() {
@@ -196,7 +196,10 @@ public class AssignmentListViewModel: ObservableObject {
 
         assignments.forEach { assignment in
             selectedFilterOptions.forEach { filterOption in
-                if let submission = assignment.submission, !filteredAssignments.contains(assignment), filterOption.submissionRule(submission) {
+                if let submission = assignment.submission,
+                   !filteredAssignments.contains(assignment),
+                   filterOption.submissionRule(submission),
+                   filterOption.assignmentRule(assignment) {
                     filteredAssignments.append(assignment)
                 }
             }

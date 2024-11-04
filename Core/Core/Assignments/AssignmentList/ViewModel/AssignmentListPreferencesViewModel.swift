@@ -29,12 +29,20 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     let title: String
     let subtitle: String?
     var submissionRule: (Submission) -> Bool
+    var assignmentRule: (Assignment) -> Bool
 
-    private init(id: String, title: String, subtitle: String? = nil, submissionRule: @escaping (Submission) -> Bool) {
+    private init(
+        id: String,
+        title: String,
+        subtitle: String? = nil,
+        submissionRule: @escaping (Submission) -> Bool,
+        assignmentRule: @escaping (Assignment) -> Bool
+    ) {
         self.id = id
         self.title = title
         self.subtitle = subtitle
         self.submissionRule = submissionRule
+        self.assignmentRule = assignmentRule
     }
 
     static let notYetSubmitted = Self(
@@ -42,7 +50,10 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
         title: String(localized: "Not Yet Submitted", bundle: .core),
         subtitle: String(localized: "Missing, Not Submitted", bundle: .core),
         submissionRule: { submission in
-            submission.missing && submission.submittedAt == nil
+            submission.missing || submission.submittedAt == nil && !submission.isGraded
+        },
+        assignmentRule: { assignment in
+            !(assignment.submissionTypes.contains(SubmissionType.none) || assignment.submissionTypes.contains(SubmissionType.on_paper))
         }
     )
 
@@ -51,22 +62,35 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
         title: String(localized: "To Be Graded", bundle: .core),
         subtitle: String(localized: "Late, Submitted", bundle: .core),
         submissionRule: { submission in
-            submission.late && submission.submittedAt != nil
-        }
+            submission.late || submission.submittedAt != nil
+        },
+        assignmentRule: { _ in true }
     )
 
     static let graded = Self(
         id: "graded",
         title: String(localized: "Graded", bundle: .core),
         submissionRule: { submission in
-            submission.gradedAt != nil
+            submission.isGraded
+        },
+        assignmentRule: { _ in true }
+    )
+
+    static let noSubmission = Self(
+        id: "noSubmission",
+        title: String(localized: "No Submission Needed", bundle: .core),
+        subtitle: String(localized: "On Paper, No Submission, Excused", bundle: .core),
+        submissionRule: { _ in true},
+        assignmentRule: { assignment in
+            assignment.submissionTypes.contains(SubmissionType.none) || assignment.submissionTypes.contains(SubmissionType.on_paper) || assignment.submission?.excused == true
         }
     )
 
     public static let allCases: [AssignmentFilterOption] = [
         .notYetSubmitted,
         .toBeGraded,
-        .graded
+        .graded,
+        .noSubmission
     ]
 }
 
