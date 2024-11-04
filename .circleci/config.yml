@@ -27,30 +27,6 @@ jobs:
             echo $GSERVICE_KEY | base64 --decode > ${HOME}/gservice-key.json
    
       # - run:
-      #     name: Add vault ssh deploy key
-      #     command: |
-      #       echo -e $SSH_KEY | base64 -d > key
-      #       chmod 400 key
-      #       eval $(ssh-agent -s)
-      #       ssh-add key
-      #       ssh-add -l
-
-      # - add_ssh_keys:
-      #     fingerprints:
-      #       - "your_ssh_key_fingerprint_here"  # Update with the actual SSH key fingerprint if needed
-
-      # - run:
-      #     name: Verify PR
-      #     command: |
-      #       git clone https://github.com/instructure/steps-verify-pr.git
-      #       cd steps-verify-pr
-      #       # Run specific PR verification commands here if needed
-
-      # - run:
-      #     name: Reset Repository
-      #     command: git reset --hard
-
-      # - run:
       #     name: Set GitHub Status to Pending
       #     command: |
       #       curl -X POST -H "Authorization: token $DANGER_GITHUB_API_TOKEN" \
@@ -64,12 +40,12 @@ jobs:
       #       echo 'BITRISE_CONFIGURATION=Adhoc' >> $BASH_ENV
       #       echo 'BITRISE_SCHEME=Student' >> $BASH_ENV
 
-      # - run:
-      #     name: Canvas iOS Secrets
-      #     command: |
-      #       git clone git@github.com:instructure/steps-canvas-ios-secrets.git
-      #       cd steps-canvas-ios-secrets
-            # Add any further commands if needed
+      - run:
+          name: Add Canvas iOS Secrets
+          command: |
+            git clone git@github.com:instructure/steps-canvas-ios-secrets.git
+            cd $CIRCLE_WORKING_DIRECTORY
+            ../steps-canvas-ios-secrets/scripts/setup-student-secrets.sh
 
       - run:
           name: Install XcodeGen
