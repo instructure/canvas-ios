@@ -44,7 +44,8 @@ jobs:
           name: Add Canvas iOS Secrets
           command: |
             git clone git@github.com:instructure/steps-canvas-ios-secrets.git
-            cd $CIRCLE_WORKING_DIRECTORY
+            echo $CIRCLE_WORKING_DIRECTORY
+            cd canvas-ios
             ../steps-canvas-ios-secrets/scripts/setup-student-secrets.sh
 
       - run:
