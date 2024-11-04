@@ -23,6 +23,11 @@ platform :ios do
   desc "Ad-hoc Student Build"
   lane :adhoc_student do
     match(type: "adhoc")
+
+    update_code_signing_settings(
+      use_automatic_signing: true
+    )
+    
     gym(
       scheme: "Student",
       export_method: "ad-hoc"
