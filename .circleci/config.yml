@@ -21,6 +21,11 @@ jobs:
             echo "Github pullrequest is: ${CIRCLE_PULL_REQUEST}"
             echo $CIRCLE_PULL_REQUEST
 
+      - run:
+          name: Decode and save Google Credentials
+          command: |
+            echo $GSERVICE_KEY | base64 --decode > ${HOME}/gservice-key.json
+   
       # - run:
       #     name: Add vault ssh deploy key
       #     command: |
