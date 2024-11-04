@@ -25,9 +25,10 @@ platform :ios do
     match(type: "adhoc")
 
     update_code_signing_settings(
-      use_automatic_signing: true
+      use_automatic_signing: true,
+      path: "Student/Student.xcodeproj"
     )
-    
+
     gym(
       scheme: "Student",
       export_method: "ad-hoc"
