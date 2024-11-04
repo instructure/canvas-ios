@@ -21,6 +21,7 @@ import SwiftUI
 
 struct ProgramDetailsViewView: View {
     @ObservedObject private var viewModel: ProgramDetailsViewModel
+    @Environment(\.viewController) private var viewController
     @State private var selectedCourseIndex: Int?
     @State private var selectedCourseDetailsIndex = 0
 
@@ -119,7 +120,9 @@ struct ProgramDetailsViewView: View {
                             ExpandingModuleView(
                                 title: module.name,
                                 items: module.items
-                            )
+                            ) { url in
+                                viewModel.moduleItemDidTap(url: url, from: viewController)
+                            }
                             .frame(minHeight: 44)
                             .background(Color.backgroundLightest)
                             .cornerRadius(8)

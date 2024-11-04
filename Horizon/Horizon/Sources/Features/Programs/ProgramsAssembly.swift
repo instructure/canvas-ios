@@ -34,7 +34,12 @@ final class ProgramsAssembly {
 
     static func makeProgramDetailsViewController(program: HProgram) -> UIViewController {
         CoreHostingController(
-            ProgramDetailsViewView(viewModel: .init(program: program))
+            ProgramDetailsViewView(
+                viewModel: .init(
+                    router: AppEnvironment.shared.router,
+                    program: program
+                )
+            )
         )
     }
 }
