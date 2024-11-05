@@ -120,11 +120,13 @@ public class AssignmentListViewModel: ObservableObject {
             return
         }
 
-        isFilterIconSolid = gradingPeriod != defaultGradingPeriod || ([1, 2].contains(filterOptions?.count) && filterOptions != initialFilterOptions)
-
         selectedGradingPeriod = gradingPeriod
         selectedSortingOption = sortingOption ?? selectedSortingOption
         selectedFilterOptions = filterOptions ?? selectedFilterOptions
+
+        isFilterIconSolid = gradingPeriod != defaultGradingPeriod
+        || ![0, AssignmentFilterOption.allCases.count].contains(selectedFilterOptions.count)
+            && selectedFilterOptions != initialFilterOptions
 
         assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriod?.id)) { [weak self] in
             self?.assignmentGroupsDidUpdate()
@@ -135,7 +137,7 @@ public class AssignmentListViewModel: ObservableObject {
     public func viewDidAppear() {
         loadAssignmentListPreferences()
         gradingPeriods.refresh()
-        filterOptionsDidUpdate(filterOptions: initialFilterOptions, gradingPeriod: defaultGradingPeriod)
+        filterOptionsDidUpdate(filterOptions: selectedFilterOptions, gradingPeriod: defaultGradingPeriod)
         course.refresh()
         assignmentGroups.refresh(force: true)
 
@@ -145,7 +147,7 @@ public class AssignmentListViewModel: ObservableObject {
     private func assignmentGroupsDidUpdate() {
         if !assignmentGroups.requested || assignmentGroups.pending { return }
 
-        isShowingGradingPeriods = assignmentGroups.count > 1
+        isShowingGradingPeriods = gradingPeriods.count > 1
         var assignmentGroupViewModels: [AssignmentGroupViewModel] = []
         let assignments: [Assignment] = filterAssignments(assignmentGroups.compactMap { $0 })
 
@@ -260,8 +262,8 @@ public class AssignmentListViewModel: ObservableObject {
             return
         }
 
+        print("Filter settings data: \(filterSettingsData)")
         selectedFilterOptions = AssignmentFilterOption.allCases.filter { filterSettingsData.contains($0.id) }
-        initialFilterOptions = selectedFilterOptions
 
         selectedSortingOption = sortingOptions.filter { groupBySettingData == $0.rawValue }.first ?? selectedSortingOption
     }
