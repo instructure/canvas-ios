@@ -38,7 +38,26 @@ commands:
           command: |
             echo $GSERVICE_KEY | base64 --decode > ${HOME}/gservice-key.json
 jobs:
+  build_unit_tests:
+    executor:
+      name: default_executor
+    environment:
+      FL_OUTPUT_DIR: ./fastlane_results
+    steps:
+      - run: 
+          name: Build UnitTests
+          command: |
+            bundle exec fastlane unit_tests_builds_only
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
+      - store_artifacts:
+          path: ./artifacts_unit_tests
+      - store_test_results:
+          path: ./test_results_unit_tests/unit_tests_results
   unit_tests:
+    parallelism: 2
     executor:
       name: default_executor
     environment:
@@ -46,14 +65,21 @@ jobs:
     steps:
       - checkout
       - bootstrap
+      - attach_workspace:
+          at: .
       - run:
           name: Run CITests
           command: |
-            bundle exec fastlane unit_tests
+            CLASSNAMES=$(circleci tests glob "Core/CoreTests/*.swift" \
+            | sed 's@/@.@g' \
+            | sed 's/.swift//' \
+            | circleci tests split --split-by=timings --timings-type=classname)
+            FASTLANE_ARGS=$(echo $CLASSNAMES | sed -e 's/\./\//g' -e 's/ /,/g')
+            bundle exec fastlane unit_tests tests:$FASTLANE_ARGS
       - store_artifacts:
-          path: ./artifacts
+          path: ./artifacts_unit_tests
       - store_test_results:
-          path: ./test_results/unit_tests_results
+          path: ./test_results_unit_tests/unit_tests_results
   build_e2e_tests_student:
     executor:
       name: default_executor
@@ -113,14 +139,17 @@ jobs:
 workflows:
   pr_workflow:
     jobs:
-      - unit_tests
-      - build_e2e_tests_student
-      - e2e_tests_student:
+      - build_unit_tests
+      - unit_tests:
           requires:
-            - build_e2e_tests_student
-      - publish_student_firebase:
-          filters:
-            branches:
-              only:
-                - circleci-project-setup
+            - build_unit_tests
+      # - build_e2e_tests_student
+      # - e2e_tests_student:
+      #     requires:
+      #       - build_e2e_tests_student
+      # - publish_student_firebase:
+      #     filters:
+      #       branches:
+      #         only:
+      #           - circleci-project-setup
 

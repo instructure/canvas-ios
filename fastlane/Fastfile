@@ -27,14 +27,30 @@ platform :ios do
     setup_circle_ci
   end
 
-  desc "Run UnitTests"
-  lane :unit_tests do
+  desc "Build UnitTests"
+  lane :unit_tests_build_only do
     run_tests(
       code_coverage: true,
       output_directory: "./unit_tests_output",
       result_bundle: true,
       scheme: "CITests",
-      devices: ["iPhone 16 (18.0.1)"]
+      device: "iPhone 16",
+      derived_data_path: "dist",
+      build_for_testing: true
+    )
+  end
+
+  desc "Run UnitTests"
+  lane :unit_tests do |options|
+    run_tests(
+      code_coverage: true,
+      output_directory: "./unit_tests_output",
+      result_bundle: true,
+      scheme: "CITests",
+      device: "iPhone 16",
+      only_testing: options[:tests],
+      derived_data_path: "dist",
+      test_without_building: true
     )
   end
 
