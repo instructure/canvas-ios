@@ -52,7 +52,7 @@ jobs:
     executor:
       name: default_executor
     environment:
-      FL_OUTPUT_DIR: output
+      FL_OUTPUT_DIR: ./fastlane_results
     steps:
       - checkout
       - bootstrap
@@ -61,14 +61,14 @@ jobs:
           command: |
             bundle exec fastlane unit_tests
       - store_artifacts:
-          path: ./output
+          path: ./artifacts
       - store_test_results:
-          path: ./output/unit_tests_results
+          path: ./test_results/unit_tests_results
   e2e-tests-student:
     executor:
       name: default_executor
     environment:
-      FL_OUTPUT_DIR: output
+      FL_OUTPUT_DIR: ./fastlane_results
     steps:
       - checkout
       - bootstrap      
@@ -79,14 +79,14 @@ jobs:
           command: |
             bundle exec fastlane e2e_tests_student
       - store_artifacts:
-          path: ./output
+          path: ./artifacts
       - store_test_results:
-          path: ./output/e2e_tests_student_result
+          path: ./test_results/unit_tests_results
   build_adhoc_student:
     executor:
       name: default_executor
     environment:
-      FL_OUTPUT_DIR: output
+      FL_OUTPUT_DIR: ./fastlane_results
     steps:
       - checkout
       - bootstrap
@@ -97,7 +97,7 @@ jobs:
           command: |
             bundle exec fastlane adhoc_student
       - store_artifacts:
-          path: output
+          path: ./artifacts
 
 workflows:
   pr_workflow:
