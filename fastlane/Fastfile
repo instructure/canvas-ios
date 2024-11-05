@@ -1,10 +1,24 @@
 # Ad-Hoc
+provisioning_profile_student_ad_hoc = "match AdHoc com.instructure.icanvas"
+provisioning_profile_submitAssignment_ad_hoc = "match AdHoc com.instructure.icanvas.SubmitAssignment"
+provisioning_profile_widgets_ad_hoc = "match AdHoc com.instructure.icanvas.widgets"
+
 provisioning_profiles_ad_hoc = {
-  "com.instructure.icanvas": "match AdHoc com.instructure.icanvas",
-  "com.instructure.icanvas.SubmitAssignment": "match AdHoc com.instructure.icanvas.SubmitAssignment",
-  "com.instructure.icanvas.widgets": "match AdHoc com.instructure.icanvas.widgets"
+  "com.instructure.icanvas": provisioning_profile_student_ad_hoc,
+  "com.instructure.icanvas.SubmitAssignment": provisioning_profile_submitAssignment_ad_hoc,
+  "com.instructure.icanvas.widgets": provisioning_profile_widgets_ad_hoc
 }
 
+# Code Sign Identity 
+code_sign_identity = "Apple Distribution: Instructure, Inc. (B6333T4PXQ)"
+
+# Project paths
+student_project_path = "Student/Student.xcodeproj"
+teacher_project_path = "Teacher/Teacher.xcodeproj"
+parent_project_path = "Parent/Parent.xcodeproj"
+horizon_project_path = "Horizon/Horizon.xcodeproj"
+
+# Lanes
 default_platform(:ios)
 
 platform :ios do
@@ -15,43 +29,44 @@ platform :ios do
   desc "Ad-hoc Student Build"
   lane :adhoc_student do
     match(type: "adhoc")
-
-    update_code_signing_settings(
-      use_automatic_signing: false,
-      targets: ["Student"],
-      path: "Student/Student.xcodeproj",
-      code_sign_identity: "Apple Distribution: Instructure, Inc. (B6333T4PXQ)",
-      profile_name: "match AdHoc com.instructure.icanvas"  
-    )
-
-    update_code_signing_settings(
-      use_automatic_signing: false,
-      targets: ["SubmitAssignment"],
-      path: "Student/Student.xcodeproj",
-      code_sign_identity: "Apple Distribution: Instructure, Inc. (B6333T4PXQ)",
-      profile_name: "match AdHoc com.instructure.icanvas.SubmitAssignment"  
-    )
-
-    update_code_signing_settings(
-      use_automatic_signing: false,
-      targets: ["Widgets"],
-      path: "Student/Student.xcodeproj",
-      code_sign_identity: "Apple Distribution: Instructure, Inc. (B6333T4PXQ)",
-      profile_name: "match AdHoc com.instructure.icanvas.widgets"  
-    )
-
+    disable_code_signing_student
     gym(
       scheme: "Student",
       export_method: "ad-hoc",
       export_options: { 
-        signingCertificate: "Apple Distribution: Instructure, Inc. (B6333T4PXQ)",
+        signingCertificate: code_sign_identity,
         provisioningProfiles: provisioning_profiles_ad_hoc
       }
     )
-
     firebase_app_distribution(
       service_credentials_file: "#{ENV['HOME']}/gservice-key.json"
     )
 
   end
+end
+
+def disable_code_signing_student
+  update_code_signing_settings(
+    use_automatic_signing: false,
+    targets: ["Student"],
+    path: student_project_path,
+    code_sign_identity: code_sign_identity,
+    profile_name: provisioning_profile_student_ad_hoc  
+  )
+
+  update_code_signing_settings(
+    use_automatic_signing: false,
+    targets: ["SubmitAssignment"],
+    path: student_project_path,
+    code_sign_identity: code_sign_identity,
+    profile_name: provisioning_profile_submitAssignment_ad_hoc  
+  )
+
+  update_code_signing_settings(
+    use_automatic_signing: false,
+    targets: ["Widgets"],
+    path: student_project_path,
+    code_sign_identity: code_sign_identity,
+    profile_name: provisioning_profile_widgets_ad_hoc 
+  )
 end
