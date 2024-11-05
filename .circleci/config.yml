@@ -88,6 +88,7 @@ jobs:
               | sed 's/.swift//' \
               | circleci tests split --split-by=timings --timings-type=classname)
             FASTLANE_ARGS=$(echo $CLASSNAMES | sed -e 's/\./\//g' -e 's/ /,/g')
+            echo $CLASSNAMES
             bundle exec fastlane e2e_tests_student tests:$FASTLANE_ARGS
       - store_artifacts:
           path: ./artifacts
