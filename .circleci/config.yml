@@ -64,7 +64,19 @@ jobs:
           path: ./artifacts
       - store_test_results:
           path: ./test_results/unit_tests_results
-  e2e-tests-student:
+  build_e2e_tests_student:
+    executor:
+      name: default_executor
+    steps:
+      - checkout
+      - bootstrap
+      - run: bundle exec fastlane e2e_tests_student_build_only
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
+  e2e_tests_student:
+    parallelism: 4
     executor:
       name: default_executor
     environment:
@@ -74,14 +86,21 @@ jobs:
       - bootstrap      
       - setup_app_secrets_dev
       - bootstrap_yarn
+      - attach_workspace:
+          at: .
       - run:
-          name: Run E2ETests-Student
+          name: Split tests and run UITests
           command: |
-            bundle exec fastlane e2e_tests_student
+            CLASSNAMES=$(circleci tests glob "Student/StudentE2ETests/*.swift" \
+              | sed 's@/@.@g' \
+              | sed 's/.swift//' \
+              | circleci tests split --split-by=timings --timings-type=classname)
+            FASTLANE_ARGS=$(echo $CLASSNAMES | sed -e 's/\./\//g' -e 's/ /,/g')
+            bundle exec fastlane e2e_tests_student tests:$FASTLANE_ARGS
       - store_artifacts:
           path: ./artifacts
       - store_test_results:
-          path: ./test_results/unit_tests_results
+          path: ./test_results/unit_tests_results.junit
   build_adhoc_student:
     executor:
       name: default_executor
@@ -103,7 +122,10 @@ workflows:
   pr_workflow:
     jobs:
       - unit_tests
-      - e2e-tests-student     
+      - build_e2e_tests_student
+      - e2e_tests_student:
+          requires:
+            - build_e2e_tests_student
       - build_adhoc_student:
           filters:
             branches:
