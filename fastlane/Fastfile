@@ -27,13 +27,24 @@ platform :ios do
     setup_circle_ci
   end
 
-  desc "Run all UnitTests"
-  lane :unit_test_all do
+  desc "Run UnitTests"
+  lane :unit_tests do
     run_tests(
       code_coverage: true,
-      output_directory: "./test_output",
+      output_directory: "./unit_tests_output",
       result_bundle: true,
       scheme: "CITests",
+      devices: ["iPhone 16 (16.1)"]
+    )
+  end
+
+  desc "Run E2ETests-Student"
+  lane :e2e_tests_student do
+    run_tests(
+      code_coverage: true,
+      output_directory: "./unit_tests_output",
+      result_bundle: true,
+      scheme: "E2ETests-Student",
       devices: ["iPhone 16 (16.1)"]
     )
   end
@@ -54,7 +65,7 @@ platform :ios do
       service_credentials_file: "#{ENV['HOME']}/gservice-key.json"
     )
   end
-  
+
 end
 
 def disable_code_signing_student

@@ -25,7 +25,7 @@ commands:
           command: |
             echo $GSERVICE_KEY | base64 --decode > ${HOME}/gservice-key.json
 jobs:
-  unit_test_all:
+  unit_tests:
     macos:
       xcode: "16.1"
     resource_class: m2pro.medium
@@ -37,11 +37,28 @@ jobs:
       - run:
           name: Run CITests
           command: |
-            bundle exec fastlane unit_test_all
+            bundle exec fastlane unit_tests
       - store_artifacts:
           path: ./output
       - store_test_results:
-          path: ./output/unit_test_all_report.xml
+          path: ./output/unit_tests_results
+  e2e-tests-student:
+    macos:
+      xcode: "16.1"
+    resource_class: m2pro.medium
+    environment:
+      FL_OUTPUT_DIR: output
+    steps:
+      - checkout
+      - bootstrap
+      - run:
+          name: Run CITests
+          command: |
+            bundle exec fastlane e2e_tests_student
+      - store_artifacts:
+          path: ./output
+      - store_test_results:
+          path: ./output/e2e_tests_student_result
   build_adhoc_student:
     macos:
       xcode: "16.1"
@@ -63,7 +80,8 @@ jobs:
 workflows:
   pr_workflow:
     jobs:
-      - unit_test_all     
+      - unit_tests
+      - e2e-tests-student     
       - build_adhoc_student:
           filters:
             branches:
