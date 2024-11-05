@@ -66,7 +66,7 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
                 return false
             }
             if let submission = assignment.submission {
-                return submission.late && submission.excused != true || submission.submittedAt != nil
+                return submission.late && submission.excused != true || submission.submittedAt != nil && !submission.isGraded
             }
             return false
         }
