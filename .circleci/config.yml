@@ -11,6 +11,23 @@ commands:
             cd $CIRCLE_WORKING_DIRECTORY
             make bootstrap-ci
             make sync-ci
+  bootstrap_yarn:
+    steps:
+      - run:
+          name: Setup yarn dependencies
+          command: |
+            set -ex
+            set -o pipefail
+            cd $CIRCLE_WORKING_DIRECTORY
+            yarn install
+            yarn terminal-service
+  setup_app_secrets_dev:
+    steps:
+      - run:
+          name: Setup App Secrets
+          command: |
+            git clone git@github.com:instructure/steps-canvas-ios-secrets.git                        
+            ./steps-canvas-ios-secrets/scripts/setup-dev-secrets.sh
   setup_app_secrets_student:
     steps:
       - run:
@@ -50,9 +67,11 @@ jobs:
       FL_OUTPUT_DIR: output
     steps:
       - checkout
-      - bootstrap
+      - bootstrap      
+      - setup_app_secrets_dev
+      - bootstrap_yarn
       - run:
-          name: Run CITests
+          name: Run E2ETests-Student
           command: |
             bundle exec fastlane e2e_tests_student
       - store_artifacts:
