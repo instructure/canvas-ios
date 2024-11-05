@@ -45,7 +45,7 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     static let notYetSubmitted = Self(
         id: "notYetSubmitted",
         title: String(localized: "Not Yet Submitted", bundle: .core),
-        subtitle: String(localized: "Needs To Be Submitted", bundle: .core),
+        subtitle: String(localized: "Missing, Not Submitted", bundle: .core),
         rule: { assignment in
             if assignment.submissionTypes.contains(SubmissionType.none) || assignment.submissionTypes.contains(SubmissionType.on_paper) {
                 return false
@@ -60,7 +60,7 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     static let toBeGraded = Self(
         id: "toBeGraded",
         title: String(localized: "To Be Graded", bundle: .core),
-        subtitle: String(localized: "Needs To Be Graded", bundle: .core),
+        subtitle: String(localized: "Late, Submitted", bundle: .core),
         rule: { assignment in
             if assignment.submissionTypes.contains(.not_graded) {
                 return false
@@ -75,7 +75,6 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     static let graded = Self(
         id: "graded",
         title: String(localized: "Graded", bundle: .core),
-        subtitle: String(localized: "Submitted and Graded", bundle: .core),
         rule: { assignment in
             if let submission = assignment.submission {
                 return submission.isGraded
@@ -86,7 +85,7 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
 
     static let noSubmission = Self(
         id: "noSubmission",
-        title: String(localized: "No Submission Needed", bundle: .core),
+        title: String(localized: "Other", bundle: .core),
         subtitle: String(localized: "On Paper, No Submission, Excused", bundle: .core),
         rule: { assignment in
             return assignment.submissionTypes.contains(SubmissionType.none)
