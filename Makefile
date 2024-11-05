@@ -7,6 +7,7 @@ bootstrap: ## Local developer environment setup
 bootstrap-ci: ## CI environment setup
 	@brew install "xcodegen"
 	@bundle install
+	@yarn install
 
 sync: ## xproj file generation
 	@echo 🟡 Running xcodegen

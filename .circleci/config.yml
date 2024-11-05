@@ -4,7 +4,7 @@ executors:
   default_executor:
     macos:
       xcode: 16.1
-      resource_class: m2pro.medium
+      resource_class: m2pro.large
 
 commands:
   bootstrap:
@@ -17,16 +17,6 @@ commands:
             cd $CIRCLE_WORKING_DIRECTORY
             make bootstrap-ci
             make sync-ci
-  bootstrap_yarn:
-    steps:
-      - run:
-          name: Setup yarn dependencies
-          command: |
-            set -ex
-            set -o pipefail
-            cd $CIRCLE_WORKING_DIRECTORY
-            yarn install
-            yarn terminal-service
   setup_app_secrets_dev:
     steps:
       - run:
@@ -70,13 +60,16 @@ jobs:
     steps:
       - checkout
       - bootstrap
-      - run: bundle exec fastlane e2e_tests_student_build_only
+      - run: 
+          name: Build E2ETests-Student
+          command: |
+            bundle exec fastlane e2e_tests_student_build_only
       - persist_to_workspace:
           root: .
           paths:
             - dist
   e2e_tests_student:
-    parallelism: 4
+    parallelism: 2
     executor:
       name: default_executor
     environment:
@@ -85,11 +78,10 @@ jobs:
       - checkout
       - bootstrap      
       - setup_app_secrets_dev
-      - bootstrap_yarn
       - attach_workspace:
           at: .
       - run:
-          name: Split tests and run UITests
+          name: Run E2ETests-Student
           command: |
             CLASSNAMES=$(circleci tests glob "Student/StudentE2ETests/*.swift" \
               | sed 's@/@.@g' \
