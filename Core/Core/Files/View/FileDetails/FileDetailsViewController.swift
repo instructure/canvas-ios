@@ -233,8 +233,8 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
             // File is in CoreData and was downloaded as a course file in the Files course tab.
             downloadFile(at: url)
         } else {
-            isPresentingOfflineModeAlert = true
             // This is a file that was not downloaded for offline mode.
+            isPresentingOfflineModeAlert = true
             UIAlertController.showItemNotAvailableInOfflineAlert { [weak self] in
                 guard let self else { return }
                 env.router.dismiss(self)
