@@ -48,7 +48,7 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     static let notYetSubmitted = Self(
         id: "notYetSubmitted",
         title: String(localized: "Not Yet Submitted", bundle: .core),
-        subtitle: String(localized: "Missing, Not Submitted", bundle: .core),
+        subtitle: String(localized: "Needs To Be Submitted", bundle: .core),
         submissionRule: { submission in
             submission.missing || submission.submittedAt == nil && !submission.isGraded
         },
@@ -60,16 +60,19 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     static let toBeGraded = Self(
         id: "toBeGraded",
         title: String(localized: "To Be Graded", bundle: .core),
-        subtitle: String(localized: "Late, Submitted", bundle: .core),
+        subtitle: String(localized: "Needs To Be Graded", bundle: .core),
         submissionRule: { submission in
-            submission.late || submission.submittedAt != nil
+            submission.late && submission.excused != true || submission.submittedAt != nil
         },
-        assignmentRule: { _ in true }
+        assignmentRule: { assignment in
+            !assignment.submissionTypes.contains(.not_graded)
+        }
     )
 
     static let graded = Self(
         id: "graded",
         title: String(localized: "Graded", bundle: .core),
+        subtitle: String(localized: "Submitted and Graded", bundle: .core),
         submissionRule: { submission in
             submission.isGraded
         },
