@@ -216,7 +216,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
 
     private func handleOfflineFileLoad() {
         if isFileLocalURLAvailable {
-            /// File is already loaded, nothing to do, this is just un unnecessary update() call.
+            // File is already loaded, nothing to do, this is just an unnecessary update() call.
             return
         }
 
