@@ -1,25 +1,26 @@
-# Ad-Hoc
-provisioning_profile_student_ad_hoc = "match AdHoc com.instructure.icanvas"
-provisioning_profile_submitAssignment_ad_hoc = "match AdHoc com.instructure.icanvas.SubmitAssignment"
-provisioning_profile_widgets_ad_hoc = "match AdHoc com.instructure.icanvas.widgets"
+default_platform(:ios)
 
-provisioning_profiles_ad_hoc = {
-  "com.instructure.icanvas": provisioning_profile_student_ad_hoc,
-  "com.instructure.icanvas.SubmitAssignment": provisioning_profile_submitAssignment_ad_hoc,
-  "com.instructure.icanvas.widgets": provisioning_profile_widgets_ad_hoc
+# Ad-Hoc
+PROVISIONING_PROFILE_STUDENT_AD_HOC = "match AdHoc com.instructure.icanvas"
+PROVISIONING_PROFILE_SUBMITASSIGNMENT_AD_HOC = "match AdHoc com.instructure.icanvas.SubmitAssignment"
+PROVISIONING_PROFILE_WIDGETS_AD_HOC = "match AdHoc com.instructure.icanvas.widgets"
+
+PROVISIONING_PROFILES_AD_HOC = {
+  "com.instructure.icanvas": PROVISIONING_PROFILE_STUDENT_AD_HOC,
+  "com.instructure.icanvas.SubmitAssignment": PROVISIONING_PROFILE_SUBMITASSIGNMENT_AD_HOC,
+  "com.instructure.icanvas.widgets": PROVISIONING_PROFILE_WIDGETS_AD_HOC
 }
 
 # Code Sign Identity 
-code_sign_identity = "Apple Distribution: Instructure, Inc. (B6333T4PXQ)"
+CODE_SIGN_IDENTITY = "Apple Distribution: Instructure, Inc. (B6333T4PXQ)"
 
 # Project paths
-student_project_path = "Student/Student.xcodeproj"
-teacher_project_path = "Teacher/Teacher.xcodeproj"
-parent_project_path = "Parent/Parent.xcodeproj"
-horizon_project_path = "Horizon/Horizon.xcodeproj"
+STUDENT_PROJECT_PATH = "Student/Student.xcodeproj"
+TEACHER_PROJECT_PATH = "Teacher/Teacher.xcodeproj"
+PARENT_PROJECT_PATH = "Parent/Parent.xcodeproj"
+HORIZON_PROJECT_PATH = "Horizon/Horizon.xcodeproj"
 
 # Lanes
-default_platform(:ios)
 
 platform :ios do
   before_all do    
@@ -34,8 +35,8 @@ platform :ios do
       scheme: "Student",
       export_method: "ad-hoc",
       export_options: { 
-        signingCertificate: code_sign_identity,
-        provisioningProfiles: provisioning_profiles_ad_hoc
+        signingCertificate: CODE_SIGN_IDENTITY,
+        provisioningProfiles: PROVISIONING_PROFILES_AD_HOC
       }
     )
     firebase_app_distribution(
@@ -49,24 +50,24 @@ def disable_code_signing_student
   update_code_signing_settings(
     use_automatic_signing: false,
     targets: ["Student"],
-    path: student_project_path,
-    code_sign_identity: code_sign_identity,
-    profile_name: provisioning_profile_student_ad_hoc  
+    path: STUDENT_PROJECT_PATH,
+    code_sign_identity: CODE_SIGN_IDENTITY,
+    profile_name: PROVISIONING_PROFILE_STUDENT_AD_HOC  
   )
 
   update_code_signing_settings(
     use_automatic_signing: false,
     targets: ["SubmitAssignment"],
-    path: student_project_path,
-    code_sign_identity: code_sign_identity,
-    profile_name: provisioning_profile_submitAssignment_ad_hoc  
+    path: STUDENT_PROJECT_PATH,
+    code_sign_identity: CODE_SIGN_IDENTITY,
+    profile_name: PROVISIONING_PROFILE_SUBMITASSIGNMENT_AD_HOC  
   )
 
   update_code_signing_settings(
     use_automatic_signing: false,
     targets: ["Widgets"],
-    path: student_project_path,
-    code_sign_identity: code_sign_identity,
-    profile_name: provisioning_profile_widgets_ad_hoc 
+    path: STUDENT_PROJECT_PATH,
+    code_sign_identity: CODE_SIGN_IDENTITY,
+    profile_name: PROVISIONING_PROFILE_WIDGETS_AD_HOC 
   )
 end
