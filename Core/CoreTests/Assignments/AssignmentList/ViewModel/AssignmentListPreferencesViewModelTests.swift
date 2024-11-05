@@ -60,46 +60,47 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
 
     func testAssignmentFilterOptionRules() {
         // Not Yet Submitted
-        let submission = Submission.make()
-        submission.missing = true
-        submission.submittedAt = nil
-        XCTAssertTrue(AssignmentFilterOption.notYetSubmitted.submissionRule(submission))
+        let assignment = Assignment.make()
+        assignment.submission = Submission.make()
+        assignment.submission?.missing = true
+        assignment.submission?.submittedAt = nil
+        XCTAssertTrue(AssignmentFilterOption.notYetSubmitted.rule(assignment))
 
-        submission.missing = false
-        submission.submittedAt = nil
-        XCTAssertFalse(AssignmentFilterOption.notYetSubmitted.submissionRule(submission))
+        assignment.submission?.missing = false
+        assignment.submission?.submittedAt = nil
+        XCTAssertFalse(AssignmentFilterOption.notYetSubmitted.rule(assignment))
 
-        submission.missing = true
-        submission.submittedAt = Clock.now.addHours(-1)
-        XCTAssertFalse(AssignmentFilterOption.notYetSubmitted.submissionRule(submission))
+        assignment.submission?.missing = true
+        assignment.submission?.submittedAt = Clock.now.addHours(-1)
+        XCTAssertFalse(AssignmentFilterOption.notYetSubmitted.rule(assignment))
 
-        submission.missing = false
-        submission.submittedAt = Clock.now.addHours(-1)
-        XCTAssertFalse(AssignmentFilterOption.notYetSubmitted.submissionRule(submission))
+        assignment.submission?.missing = false
+        assignment.submission?.submittedAt = Clock.now.addHours(-1)
+        XCTAssertFalse(AssignmentFilterOption.notYetSubmitted.rule(assignment))
 
         // To Be Graded
-        submission.late = true
-        submission.submittedAt = Clock.now.addHours(-1)
-        XCTAssertTrue(AssignmentFilterOption.toBeGraded.submissionRule(submission))
+        assignment.submission?.late = true
+        assignment.submission?.submittedAt = Clock.now.addHours(-1)
+        XCTAssertTrue(AssignmentFilterOption.toBeGraded.rule(assignment))
 
-        submission.late = true
-        submission.submittedAt = nil
-        XCTAssertFalse(AssignmentFilterOption.toBeGraded.submissionRule(submission))
+        assignment.submission?.late = true
+        assignment.submission?.submittedAt = nil
+        XCTAssertFalse(AssignmentFilterOption.toBeGraded.rule(assignment))
 
-        submission.late = false
-        submission.submittedAt = Clock.now.addHours(-1)
-        XCTAssertFalse(AssignmentFilterOption.toBeGraded.submissionRule(submission))
+        assignment.submission?.late = false
+        assignment.submission?.submittedAt = Clock.now.addHours(-1)
+        XCTAssertFalse(AssignmentFilterOption.toBeGraded.rule(assignment))
 
-        submission.late = false
-        submission.submittedAt = nil
-        XCTAssertFalse(AssignmentFilterOption.toBeGraded.submissionRule(submission))
+        assignment.submission?.late = false
+        assignment.submission?.submittedAt = nil
+        XCTAssertFalse(AssignmentFilterOption.toBeGraded.rule(assignment))
 
         // Graded
-        submission.gradedAt = Clock.now.addHours(-1)
-        XCTAssertTrue(AssignmentFilterOption.graded.submissionRule(submission))
+        assignment.submission?.gradedAt = Clock.now.addHours(-1)
+        XCTAssertTrue(AssignmentFilterOption.graded.rule(assignment))
 
-        submission.gradedAt = nil
-        XCTAssertFalse(AssignmentFilterOption.graded.submissionRule(submission))
+        assignment.submission?.gradedAt = nil
+        XCTAssertFalse(AssignmentFilterOption.graded.rule(assignment))
     }
 
     func testDidSelectAssignmentFilterOption() {
