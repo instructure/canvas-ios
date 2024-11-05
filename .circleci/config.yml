@@ -1,5 +1,11 @@
 version: 2.1
 
+executors:
+  default_executor:
+    macos:
+      xcode: 16.1
+      resource_class: m2pro.medium
+
 commands:
   bootstrap:
     steps:
@@ -43,9 +49,8 @@ commands:
             echo $GSERVICE_KEY | base64 --decode > ${HOME}/gservice-key.json
 jobs:
   unit_tests:
-    macos:
-      xcode: "16.1"
-    resource_class: m2pro.medium
+    executor:
+      name: default_executor
     environment:
       FL_OUTPUT_DIR: output
     steps:
@@ -60,9 +65,8 @@ jobs:
       - store_test_results:
           path: ./output/unit_tests_results
   e2e-tests-student:
-    macos:
-      xcode: "16.1"
-    resource_class: m2pro.medium
+    executor:
+      name: default_executor
     environment:
       FL_OUTPUT_DIR: output
     steps:
@@ -79,9 +83,8 @@ jobs:
       - store_test_results:
           path: ./output/e2e_tests_student_result
   build_adhoc_student:
-    macos:
-      xcode: "16.1"
-    resource_class: m2pro.medium
+    executor:
+      name: default_executor
     environment:
       FL_OUTPUT_DIR: output
     steps:
