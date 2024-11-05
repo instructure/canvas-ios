@@ -38,6 +38,10 @@ jobs:
           name: Run CITests
           command: |
             bundle exec fastlane unit_test_all
+      - store_artifacts:
+          path: ./output
+      - store_test_results:
+          path: ./output/unit_test_all_report.xml
   build_adhoc_student:
     macos:
       xcode: "16.1"
