@@ -34,7 +34,7 @@ platform :ios do
       output_directory: "./test_output",
       result_bundle: true,
       scheme: "CITests",
-      devices: ["iPhone 16 (16.1)"]
+      devices: ["iPhone 16 (16.1)"],
       build_for_testing: true
     )
 
