@@ -62,8 +62,8 @@ platform :ios do
     )
   end
 
-  desc "Ad-hoc Student Build"
-  lane :adhoc_student do
+  desc "Publish Student to Firebase"
+  lane :publish_student_firebase do
     match(type: "adhoc")
     disable_code_signing_student
     gym(
