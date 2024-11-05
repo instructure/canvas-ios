@@ -10,48 +10,56 @@ commands:
             set -o pipefail
             cd $CIRCLE_WORKING_DIRECTORY
             make bootstrap-ci
-      - run:
-          name: Run make sync
-          command: |
-            set -ex
-            set -o pipefail
-            cd $CIRCLE_WORKING_DIRECTORY
             make sync-ci
   setup-app-secrets-student:
     steps:
       - run:
-          name: Add Canvas iOS Secrets
+          name: Setup App Secrets
           command: |
             git clone git@github.com:instructure/steps-canvas-ios-secrets.git                        
             steps-canvas-ios-secrets/scripts/setup-student-secrets.sh
-  setup-gcloud-key:
+  setup-gservice-key:
     steps:
       - run:
-          name: Decode and save Google Credentials
+          name: Setup Google Service Key
           command: |
-            echo $GSERVICE_KEY | base64 --decode > ${HOME}/gservice-key.json
-
+            base64 --decode > ${HOME}/gservice-key.json
 jobs:
+  unit-test-all:
+    macos:
+      xcode: "16.1"
+    resource_class: m2pro.medium
+    environment:
+      FL_OUTPUT_DIR: output
+    steps:
+      - checkout
+      - bootstrap
+      - run:
+          name: Run CITests
+          command: |
+            bundle exec fastlane unit_test_all
   build-adhoc-student:
     macos:
       xcode: "16.1"
     resource_class: m2pro.medium
     environment:
       FL_OUTPUT_DIR: output
-      BITRISE_CONFIGURATION: "Adhoc"
-      BITRISE_SCHEME: "Student"
     steps:
       - checkout
       - bootstrap
-      - setup-gcloud-key
+      - setup-gservice-key
       - setup-app-secrets-student
-      - run: bundle exec fastlane adhoc_student
+      - run: 
+          name: Run fastlane adhoc_student
+          command: |
+            bundle exec fastlane adhoc_student
       - store_artifacts:
           path: output
 
 workflows:
   pr-workflow:
     jobs:
+      - unit-test-all:      
       - build-adhoc-student:
           filters:
             branches:
