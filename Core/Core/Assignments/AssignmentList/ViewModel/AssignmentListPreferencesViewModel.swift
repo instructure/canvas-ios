@@ -28,32 +28,32 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     let id: String
     let title: String
     let subtitle: String?
-    var submissionRule: (Submission) -> Bool
-    var assignmentRule: (Assignment) -> Bool
+    let rule: (Assignment) -> Bool
 
     private init(
         id: String,
         title: String,
         subtitle: String? = nil,
-        submissionRule: @escaping (Submission) -> Bool,
-        assignmentRule: @escaping (Assignment) -> Bool
+        rule: @escaping (Assignment) -> Bool
     ) {
         self.id = id
         self.title = title
         self.subtitle = subtitle
-        self.submissionRule = submissionRule
-        self.assignmentRule = assignmentRule
+        self.rule = rule
     }
 
     static let notYetSubmitted = Self(
         id: "notYetSubmitted",
         title: String(localized: "Not Yet Submitted", bundle: .core),
         subtitle: String(localized: "Needs To Be Submitted", bundle: .core),
-        submissionRule: { submission in
-            submission.missing || submission.submittedAt == nil && !submission.isGraded
-        },
-        assignmentRule: { assignment in
-            !(assignment.submissionTypes.contains(SubmissionType.none) || assignment.submissionTypes.contains(SubmissionType.on_paper))
+        rule: { assignment in
+            if assignment.submissionTypes.contains(SubmissionType.none) || assignment.submissionTypes.contains(SubmissionType.on_paper) {
+                return false
+            }
+            if let submission = assignment.submission {
+                return submission.missing || submission.submittedAt == nil && !submission.isGraded
+            }
+            return false
         }
     )
 
@@ -61,11 +61,14 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
         id: "toBeGraded",
         title: String(localized: "To Be Graded", bundle: .core),
         subtitle: String(localized: "Needs To Be Graded", bundle: .core),
-        submissionRule: { submission in
-            submission.late && submission.excused != true || submission.submittedAt != nil
-        },
-        assignmentRule: { assignment in
-            !assignment.submissionTypes.contains(.not_graded)
+        rule: { assignment in
+            if assignment.submissionTypes.contains(.not_graded) {
+                return false
+            }
+            if let submission = assignment.submission {
+                return submission.late && submission.excused != true || submission.submittedAt != nil
+            }
+            return false
         }
     )
 
@@ -73,19 +76,22 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
         id: "graded",
         title: String(localized: "Graded", bundle: .core),
         subtitle: String(localized: "Submitted and Graded", bundle: .core),
-        submissionRule: { submission in
-            submission.isGraded
-        },
-        assignmentRule: { _ in true }
+        rule: { assignment in
+            if let submission = assignment.submission {
+                return submission.isGraded
+            }
+            return false
+        }
     )
 
     static let noSubmission = Self(
         id: "noSubmission",
         title: String(localized: "No Submission Needed", bundle: .core),
         subtitle: String(localized: "On Paper, No Submission, Excused", bundle: .core),
-        submissionRule: { _ in true},
-        assignmentRule: { assignment in
-            assignment.submissionTypes.contains(SubmissionType.none) || assignment.submissionTypes.contains(SubmissionType.on_paper) || assignment.submission?.excused == true
+        rule: { assignment in
+            return assignment.submissionTypes.contains(SubmissionType.none)
+                || assignment.submissionTypes.contains(SubmissionType.on_paper)
+                || assignment.submission?.excused == true
         }
     )
 

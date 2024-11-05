@@ -196,10 +196,7 @@ public class AssignmentListViewModel: ObservableObject {
 
         assignments.forEach { assignment in
             selectedFilterOptions.forEach { filterOption in
-                if let submission = assignment.submission,
-                   !filteredAssignments.contains(assignment),
-                   filterOption.submissionRule(submission),
-                   filterOption.assignmentRule(assignment) {
+                if !filteredAssignments.contains(assignment), filterOption.rule(assignment) {
                     filteredAssignments.append(assignment)
                 }
             }
