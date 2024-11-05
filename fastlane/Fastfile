@@ -37,6 +37,7 @@ platform :ios do
       devices: ["iPhone 16 (16.1)"],
       build_for_testing: true
     )
+  end
 
   desc "Ad-hoc Student Build"
   lane :adhoc_student do
@@ -53,8 +54,8 @@ platform :ios do
     firebase_app_distribution(
       service_credentials_file: "#{ENV['HOME']}/gservice-key.json"
     )
-
   end
+  
 end
 
 def disable_code_signing_student
