@@ -34,7 +34,7 @@ platform :ios do
       output_directory: "./unit_tests_output",
       result_bundle: true,
       scheme: "CITests",
-      devices: ["iPhone 16 (16.1)"]
+      devices: ["iPhone 16 (18.0.1)"]
     )
   end
 
@@ -42,7 +42,7 @@ platform :ios do
   lane :e2e_tests_student_build_only do
     run_tests(
       scheme: "E2ETests-Student",
-      devices: ["iPhone 16 (16.1)"],
+      devices: ["iPhone 16 (18.0.1)"],
       derived_data_path: "dist",
       build_for_testing: true
     )
@@ -55,7 +55,7 @@ platform :ios do
       output_directory: "./unit_tests_output",
       result_bundle: true,
       scheme: "E2ETests-Student",
-      devices: ["iPhone 16 (16.1)"],
+      devices: ["iPhone 16 (18.0.1)"],
       only_testing: options[:tests],
       derived_data_path: "dist",
       test_without_building: true
