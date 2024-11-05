@@ -41,25 +41,27 @@ class CommandLine {
     }
 
     static func isOffline() throws -> Bool {
-        for service in try networkServices() {
-            let output = try exec("networksetup -getnetworkserviceenabled '\(service)'")
-            guard output == "Disabled" else { return false }
-        }
-        return true
+        false
+//        for service in try networkServices() {
+//            let output = try exec("networksetup -getnetworkserviceenabled '\(service)'")
+//            guard output == "Disabled" else { return false }
+//        }
+//        return true
     }
 
     static func isOnline() throws -> Bool {
-        for service in try networkServices() {
-            let output = try exec("networksetup -getnetworkserviceenabled '\(service)'")
-            guard output == "Enabled" else { return false }
-        }
-        return true
+        true
+//        for service in try networkServices() {
+//            let output = try exec("networksetup -getnetworkserviceenabled '\(service)'")
+//            guard output == "Enabled" else { return false }
+//        }
+//        return true
     }
 
     static func setConnection(state: ConnectionState) throws {
-        for service in try networkServices() {
-            try exec("networksetup -setnetworkserviceenabled '\(service)' \(state) || true")
-        }
+//        for service in try networkServices() {
+//            try exec("networksetup -setnetworkserviceenabled '\(service)' \(state) || true")
+//        }
     }
 
     @discardableResult
