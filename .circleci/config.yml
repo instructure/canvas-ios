@@ -11,21 +11,21 @@ commands:
             cd $CIRCLE_WORKING_DIRECTORY
             make bootstrap-ci
             make sync-ci
-  setup-app-secrets-student:
+  setup_app_secrets_student:
     steps:
       - run:
           name: Setup App Secrets
           command: |
             git clone git@github.com:instructure/steps-canvas-ios-secrets.git                        
-            steps-canvas-ios-secrets/scripts/setup-student-secrets.sh
-  setup-gservice-key:
+            ./steps-canvas-ios-secrets/scripts/setup-student-secrets.sh
+  setup_gservice_key:
     steps:
       - run:
           name: Setup Google Service Key
           command: |
-            base64 --decode > ${HOME}/gservice-key.json
+            echo $GSERVICE_KEY | base64 --decode > ${HOME}/gservice-key.json
 jobs:
-  unit-test-all:
+  unit_test_all:
     macos:
       xcode: "16.1"
     resource_class: m2pro.medium
@@ -38,7 +38,7 @@ jobs:
           name: Run CITests
           command: |
             bundle exec fastlane unit_test_all
-  build-adhoc-student:
+  build_adhoc_student:
     macos:
       xcode: "16.1"
     resource_class: m2pro.medium
@@ -47,8 +47,8 @@ jobs:
     steps:
       - checkout
       - bootstrap
-      - setup-gservice-key
-      - setup-app-secrets-student
+      - setup_gservice_key
+      - setup_app_secrets_student
       - run: 
           name: Run fastlane adhoc_student
           command: |
@@ -57,10 +57,10 @@ jobs:
           path: output
 
 workflows:
-  pr-workflow:
+  pr_workflow:
     jobs:
-      - unit-test-all:      
-      - build-adhoc-student:
+      - unit_test_all     
+      - build_adhoc_student:
           filters:
             branches:
               only:
