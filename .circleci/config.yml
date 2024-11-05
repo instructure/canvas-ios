@@ -104,7 +104,7 @@ jobs:
       - setup_gservice_key
       - setup_app_secrets_student
       - run: 
-          name: Run fastlane adhoc_student
+          name: Publish Student to Firebase
           command: |
             bundle exec fastlane publish_student_firebase
       - store_artifacts:
