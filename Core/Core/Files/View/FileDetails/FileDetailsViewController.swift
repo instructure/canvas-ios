@@ -221,8 +221,8 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         }
 
         if isPresentingOfflineModeAlert {
-            /// We failed to load the offline file and the error dialog is alread presented.
-            /// Nothing to do, this is just an unnecessary update() call.
+            // We failed to load the offline file and the error dialog is already presented.
+            // Nothing to do, this is just an unnecessary update() call.
             return
         }
 
