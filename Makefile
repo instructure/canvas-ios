@@ -1,10 +1,12 @@
-provision: ## Environment setup
+bootstrap: ## Local developer environment setup
 	@git config commit.template .gitcommit
 	@brew config && brew update
 	@brew bundle
+	@bundle install
 
-provision-ci: ## CI environment setup
+bootstrap-ci: ## CI environment setup
 	@brew install "xcodegen"
+	@bundle install
 
 sync: ## xproj file generation
 	@echo 🟡 Running xcodegen

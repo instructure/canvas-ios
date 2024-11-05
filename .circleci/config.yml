@@ -1,7 +1,38 @@
 version: 2.1
 
+commands:
+  bootstrap:
+    steps:
+      - run:
+          name: Setup CI environment
+          command: |
+            set -ex
+            set -o pipefail
+            cd $CIRCLE_WORKING_DIRECTORY
+            make bootstrap-ci
+      - run:
+          name: Run make sync
+          command: |
+            set -ex
+            set -o pipefail
+            cd $CIRCLE_WORKING_DIRECTORY
+            make sync-ci
+  setup-app-secrets-student:
+    steps:
+      - run:
+          name: Add Canvas iOS Secrets
+          command: |
+            git clone git@github.com:instructure/steps-canvas-ios-secrets.git                        
+            steps-canvas-ios-secrets/scripts/setup-student-secrets.sh
+  setup-gcloud-key:
+    steps:
+      - run:
+          name: Decode and save Google Credentials
+          command: |
+            echo $GSERVICE_KEY | base64 --decode > ${HOME}/gservice-key.json
+
 jobs:
-  adhoc-build-student:
+  build-adhoc-student:
     macos:
       xcode: "16.1"
     resource_class: m2pro.medium
@@ -10,104 +41,18 @@ jobs:
       BITRISE_CONFIGURATION: "Adhoc"
       BITRISE_SCHEME: "Student"
     steps:
-      - checkout  # Clone repository
-
-      - run: bundle install
-      
-      - run:
-          name: Set System Time to America
-          command: |
-            sudo systemsetup -settimezone America/Denver
-            echo "Github pullrequest is: ${CIRCLE_PULL_REQUEST}"
-            echo $CIRCLE_PULL_REQUEST
-
-      - run:
-          name: Decode and save Google Credentials
-          command: |
-            echo $GSERVICE_KEY | base64 --decode > ${HOME}/gservice-key.json
-   
-      # - run:
-      #     name: Set GitHub Status to Pending
-      #     command: |
-      #       curl -X POST -H "Authorization: token $DANGER_GITHUB_API_TOKEN" \
-      #       -d '{ "state": "pending", "context": "ci/circleci/$CIRCLE_PROJECT_REPONAME/$CIRCLE_JOB", "description": "In progress: $CIRCLE_JOB" }' \
-      #       https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/statuses/$CIRCLE_SHA1
-
-      # - run:
-      #     name: Update timezone to MST
-      #     command: |
-      #       sudo systemsetup -settimezone America/Denver
-      #       echo 'BITRISE_CONFIGURATION=Adhoc' >> $BASH_ENV
-      #       echo 'BITRISE_SCHEME=Student' >> $BASH_ENV
-
-      - run:
-          name: Add Canvas iOS Secrets
-          command: |
-            git clone git@github.com:instructure/steps-canvas-ios-secrets.git                        
-            steps-canvas-ios-secrets/scripts/setup-student-secrets.sh
-
-      - run:
-          name: Install XcodeGen
-          command: |
-            set -ex
-            set -o pipefail
-            cd $CIRCLE_WORKING_DIRECTORY
-            make provision-ci
-
-      # - run:
-      #     name: Install Build Tools
-      #     command: |
-      #       set -euo pipefail
-      #       rm -rf "$CIRCLE_WORKING_DIRECTORY/Pods/Target Support Files/yoga"
-
-      - run:
-          name: Run make sync
-          command: |
-            set -ex
-            set -o pipefail
-            cd $CIRCLE_WORKING_DIRECTORY
-            make sync-ci
-
-      - run:
-          name: Set Xcode Build Number
-          command: /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $CIRCLE_BUILD_NUM" Student/Student/Info.plist
-
-      - run:
-          name: Stamp App Icon with Version Number
-          command: |
-            # Add script or command to stamp app icon with version number or PR number
-            echo "Stamping app icon with version $CIRCLE_PR_NUMBER"
-
+      - checkout
+      - bootstrap
+      - setup-gcloud-key
+      - setup-app-secrets-student
       - run: bundle exec fastlane adhoc_student
-
       - store_artifacts:
           path: output
 
-      - run:
-          name: Create QR Code for Install Page
-          command: |
-            # Generate QR code command if available, using external tools or a CircleCI orb if applicable
-
-      - run:
-          name: Set GitHub Status to Finished
-          command: |
-            curl -X POST -H "Authorization: token $DANGER_GITHUB_API_TOKEN" \
-            -d '{ "state": "success", "context": "ci/circleci/$CIRCLE_PROJECT_REPONAME/$CIRCLE_JOB", "description": "Finished: $CIRCLE_JOB" }' \
-            https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/statuses/$CIRCLE_SHA1
-
-      - run:
-          name: Comment on GitHub PR with QR Code
-          when: on_success
-          command: |
-            curl -X POST -H "Authorization: token $DANGER_GITHUB_API_TOKEN" \
-            -d '{ "body": "<details><summary>Student Build QR Code:</summary><img src=\"$BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL\" /></details>", "tag": "StudentBuild" }' \
-            https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/pulls/$CIRCLE_PR_NUMBER/comments
-
-
 workflows:
-  adhoc_build_student:
+  pr-workflow:
     jobs:
-      - adhoc-build-student:
+      - build-adhoc-student:
           filters:
             branches:
               only:
