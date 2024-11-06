@@ -262,7 +262,6 @@ public class AssignmentListViewModel: ObservableObject {
             return
         }
 
-        print("Filter settings data: \(filterSettingsData)")
         selectedFilterOptions = AssignmentFilterOption.allCases.filter { filterSettingsData.contains($0.id) }
 
         selectedSortingOption = sortingOptions.filter { groupBySettingData == $0.rawValue }.first ?? selectedSortingOption
