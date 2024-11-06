@@ -24,11 +24,13 @@ extension InstUI {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let title: String
+        private let subtitle: String?
         @Binding private var isSelected: Bool
         private let color: Color
 
-        public init(title: String, isSelected: Binding<Bool>, color: Color) {
+        public init(title: String, subtitle: String? = nil, isSelected: Binding<Bool>, color: Color) {
             self.title = title
+            self.subtitle = subtitle
             self._isSelected = isSelected
             self.color = color
         }
@@ -44,12 +46,22 @@ extension InstUI {
                             color: color
                         )
                         .animation(.default, value: isSelected)
-                        Text(title)
-                            .font(.regular16, lineHeight: .fit)
-                            .multilineTextAlignment(.leading)
-                            .foregroundStyle(Color.textDarkest)
-                            .frame(maxWidth: .infinity,
-                                   alignment: .leading)
+                        VStack(spacing: 2) {
+                            Text(title)
+                                .font(.regular16, lineHeight: .fit)
+                                .multilineTextAlignment(.leading)
+                                .foregroundStyle(Color.textDarkest)
+                                .frame(maxWidth: .infinity,
+                                       alignment: .leading)
+                            if let subtitle {
+                                Text(subtitle)
+                                    .font(.regular14, lineHeight: .fit)
+                                    .multilineTextAlignment(.leading)
+                                    .foregroundStyle(Color.textDark)
+                                    .frame(maxWidth: .infinity,
+                                           alignment: .leading)
+                            }
+                        }
                     }
                     .paddingStyle(set: .iconCell)
                 }
@@ -72,6 +84,7 @@ private struct Container: View {
     var body: some View {
         InstUI.CheckboxCell(
             title: "Checkbox here",
+            subtitle: "Subtitle",
             isSelected: $isSelected,
             color: .orange
         )

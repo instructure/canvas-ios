@@ -239,4 +239,15 @@ public struct SessionDefaults {
         get { self["selectedSortByOptionIDs"] as? [String: Int] }
         set { self["selectedSortByOptionIDs"] = newValue }
     }
+
+    // MARK: - Assignments
+    public var assignmentListGroupBySettingByCourseId: [String: String]? {
+        get { self["assignmentListGroupBySettingByCourseId"] as? [String: String] }
+        set { self["assignmentListGroupBySettingByCourseId"] = newValue }
+    }
+
+    public var assignmentListFilterSettingsByCourseId: [String: [String]]? {
+        get { self["assignmentListFilterSettingsByCourseId"] as? [String: [String]] }
+        set { self["assignmentListFilterSettingsByCourseId"] = newValue }
+    }
 }
