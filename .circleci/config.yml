@@ -69,7 +69,7 @@ jobs:
       - store_artifacts:
           path: ./artifacts
   e2e_tests_student:
-    parallelism: 2
+    # parallelism: 2
     executor:
       name: default_executor
     environment:
