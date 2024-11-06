@@ -51,7 +51,7 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
                 return false
             }
             if let submission = assignment.submission {
-                return submission.missing || submission.submittedAt == nil && !submission.isGraded
+                return (submission.missing || submission.submittedAt == nil) && (!submission.isGraded)
             }
             return false
         }
@@ -66,7 +66,7 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
                 return false
             }
             if let submission = assignment.submission {
-                return submission.late && submission.excused != true || submission.submittedAt != nil && !submission.isGraded
+                return (submission.late || submission.submittedAt != nil) && (submission.excused != true) && (!submission.isGraded)
             }
             return false
         }
@@ -88,9 +88,9 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
         title: String(localized: "Other", bundle: .core),
         subtitle: String(localized: "On Paper, No Submission, Excused", bundle: .core),
         rule: { assignment in
-            return assignment.submissionTypes.contains(SubmissionType.none)
-                || assignment.submissionTypes.contains(SubmissionType.on_paper)
-                || assignment.submission?.excused == true
+            return (assignment.submissionTypes.contains(SubmissionType.none))
+                || (assignment.submissionTypes.contains(SubmissionType.on_paper))
+                || (assignment.submission?.excused == true)
         }
     )
 
