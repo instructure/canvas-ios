@@ -58,7 +58,8 @@ platform :ios do
       device: "iPhone 16",
       only_testing: options[:tests],
       derived_data_path: "dist",
-      test_without_building: true
+      test_without_building: true,
+      timeout: 60
     )
   end
 
