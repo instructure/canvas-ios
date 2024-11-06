@@ -346,7 +346,13 @@ extension Submission {
     public var status: SubmissionStatus {
         if late { return .late }
         if missing { return .missing }
-        if submittedAt != nil { return .submitted}
+        if submittedAt != nil { return .submitted }
+
+        if let submissionTypes = assignment?.submissionTypes {
+            if submissionTypes.contains(.on_paper) { return .onPaper }
+            if submissionTypes.contains(.none) { return .noSubmission }
+        }
+
         return .notSubmitted
     }
 }
@@ -355,6 +361,8 @@ public enum SubmissionStatus {
     case late
     case missing
     case submitted
+    case onPaper
+    case noSubmission
     case notSubmitted
 
     public var text: String {
@@ -367,6 +375,10 @@ public enum SubmissionStatus {
             return String(localized: "Submitted", bundle: .core)
         case .notSubmitted:
             return String(localized: "Not Submitted", bundle: .core)
+        case .onPaper:
+            return String(localized: "On Paper", bundle: .core)
+        case .noSubmission:
+            return String(localized: "No Submission", bundle: .core)
         }
     }
 
@@ -378,7 +390,7 @@ public enum SubmissionStatus {
             return .textDanger
         case .submitted:
             return .textSuccess
-        case .notSubmitted:
+        case .notSubmitted, .onPaper, .noSubmission:
             return .textDark
         }
     }
@@ -389,7 +401,7 @@ public enum SubmissionStatus {
             return .completeSolid
         case .late:
             return .clockSolid
-        case .missing, .notSubmitted:
+        case .missing, .notSubmitted, .onPaper, .noSubmission:
             return .noSolid
         }
     }
