@@ -59,7 +59,7 @@ platform :ios do
       only_testing: options[:tests],
       derived_data_path: "dist",
       test_without_building: true,
-      xcargs: "-test-timeouts-enabled YES -test-timeout 60",
+      xcargs: "-test-timeouts-enabled YES -maximum-test-execution-time-allowance 60",
       verbose: true
     )
   end
