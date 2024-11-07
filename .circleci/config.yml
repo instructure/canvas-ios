@@ -50,6 +50,10 @@ jobs:
       - checkout
       - bootstrap
       - run:
+          name: Danger
+          command: |
+            yarn danger ci
+      - run:
           name: Run CITests
           command: |
             bundle exec fastlane unit_tests
