@@ -23,8 +23,8 @@ public class AssignmentsHelper: BaseHelper {
         return app.find(id: "Assignments, \(course.name)")
     }
 
-    public static func assignmentButton(assignment: DSAssignment? = nil, assignmentId: String? = nil) -> XCUIElement {
-        return app.find(id: "assignment-list.assignment-list-row.cell-\(assignment?.id ?? assignmentId!)")
+    public static func assignmentButton(assignment: DSAssignment) -> XCUIElement {
+        return app.find(id: "AssignmentList.\(assignment.id)")
     }
 
     public static func pointsOutOf(actualScore: String, maxScore: String) -> XCUIElement {
