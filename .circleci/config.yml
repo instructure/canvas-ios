@@ -6,6 +6,9 @@ executors:
       xcode: 16.1
       resource_class: m2pro.large
 
+orbs:
+  macos: circleci/macos
+
 commands:
   bootstrap:
     steps:
@@ -78,6 +81,9 @@ jobs:
       - checkout
       - bootstrap      
       - setup_app_secrets_dev
+      - macos/preboot-simulator:
+          device: iPhone 16
+          version: "18.1"
       - attach_workspace:
           at: .
       - run:
