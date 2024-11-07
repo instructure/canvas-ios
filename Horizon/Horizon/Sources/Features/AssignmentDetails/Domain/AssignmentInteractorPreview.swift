@@ -22,6 +22,18 @@ import Core
 import Combine
 
 class AssignmentInteractorPreview: AssignmentInteractor {
+
+    var attachments = CurrentValueSubject<[File], Never>([])
+    var didUploadFiles = PassthroughSubject<Result<Void, Error>, Never>()
+
+    func cancelFile(_ file: File) { }
+
+    func cancelAllFiles() { }
+
+    func uploadFiles() { }
+
+    func addFile(url: URL) { }
+
     func getAssignmentDetails() -> AnyPublisher<HAssignment, Never> {
         Just(HAssignment.mock())
             .eraseToAnyPublisher()

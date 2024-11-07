@@ -20,6 +20,7 @@ import SwiftUI
 
 public extension InstUI {
     struct Divider: View {
+        public init() { }
         public var body: some View {
             SwiftUI.Divider().overlay(Color.borderMedium)
         }

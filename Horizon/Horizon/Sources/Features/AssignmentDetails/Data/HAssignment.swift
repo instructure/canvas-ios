@@ -36,7 +36,7 @@ struct HAssignment {
     let submittedAt: Date?
     var course: Course?
     var showSubmitButton = false
-
+    var allowedExtensions: [String] = []
     init(
         id: String,
         name: String,
@@ -77,6 +77,7 @@ struct HAssignment {
         self.courseName = assignment.course?.name ?? ""
         self.course = assignment.course
         self.showSubmitButton = assignment.hasAttemptsLeft
+        self.allowedExtensions = assignment.allowedExtensions
     }
 
     var submitButtonTitle: String {
@@ -85,8 +86,11 @@ struct HAssignment {
     }
 
     var assignmentTypes: [AssignmentType] {
-       let isContainsTextEntry = submissionTypes.contains { $0 == .online_text_entry }
-       return isContainsTextEntry ? [.textEntry] : []
+        submissionTypes.compactMap { AssignmentType(rawValue: $0.rawValue) }
+    }
+
+    var fileExtensions: [UTI] {
+        submissionTypes.allowedUTIs( allowedExtensions: allowedExtensions)
     }
 }
 

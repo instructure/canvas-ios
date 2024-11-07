@@ -23,7 +23,6 @@ struct AssignmentDetails: View {
     // MARK: - Properties
 
     @State private var viewModel: AssignmentDetailsViewModel
-    private let keyboardObserveID = "keyboardObserveID"
 
     init(viewModel: AssignmentDetailsViewModel) {
         self.viewModel = viewModel
@@ -58,12 +57,10 @@ struct AssignmentDetails: View {
                         Size14RegularTextDarkestTitle(title: "Last Submitted: \(lastSubmitted)")
                     }
 
-                    AssignmentSubmission(
-                        submissionButtonTitle: viewModel.assignment?.submitButtonTitle ?? "",
-                        geometry: geometry,
-                        submissions: viewModel.assignment?.assignmentTypes ?? [],
-                        onSelectSubmissionType: viewModel.onSelectSubmissionType) {
-                            reader.scrollTo(keyboardObserveID)
+                    AssignmentSubmissionView(
+                        viewModel: viewModel,
+                        geometry: geometry) {
+                            reader.scrollTo(viewModel.keyboardObserveID)
                         }
                         .disabled(viewModel.didSubmitAssignment)
                         .opacity(viewModel.didSubmitAssignment ? 0.5 : 1)
@@ -76,13 +73,14 @@ struct AssignmentDetails: View {
         .avoidKeyboardArea()
         .scrollDismissesKeyboard(.immediately)
         .scrollIndicators(.hidden)
-        .safeAreaInset(edge: .top) {
-            if viewModel.state == .data {
-                header
-            }
-        }
+        .safeAreaInset(edge: .top) { if viewModel.state == .data { header } }
         .navigationTitle(viewModel.assignment?.name ?? "")
         .toolbarBackground(.visible, for: .navigationBar)
+        .alert("Error", isPresented: $viewModel.isShowAlertVisible) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(viewModel.errorMessage)
+        }
     }
 
     private var header: some View {

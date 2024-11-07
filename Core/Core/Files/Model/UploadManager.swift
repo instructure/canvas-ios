@@ -18,7 +18,7 @@
 
 import Foundation
 import CoreData
-
+import Combine
 /// Errors most likely caused by our code.
 enum FileUploaderError: Error {
     case urlNotFound
@@ -37,6 +37,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     var environment: AppEnvironment { .shared }
     private var validSession: URLSession?
     private let submissionsStatus = FileSubmissionsStatus()
+    public let didUploadFile = PassthroughSubject<Result<Void, Error>, Never>()
     var backgroundSession: URLSession {
         if let validSession = validSession {
             return validSession
@@ -159,6 +160,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                                   baseURL: baseURL,
                                   callback: callback)
             } catch {
+                didUploadFile.send(.failure(error))
                 complete(file: file, error: error)
                 callback?()
             }
@@ -184,7 +186,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             }
         }()
 
-        api.makeRequest(request) { response, _, error in
+        api.makeRequest(request) { [didUploadFile] response, _, error in
             self.context.performAndWait {
                 defer { callback?() }
                 guard let file = try? self.context.existingObject(with: fileObjectID) as? File else {
@@ -203,6 +205,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                     try self.context.save()
                     task.resume()
                 } catch let error {
+                    didUploadFile.send(.failure(error))
                     self.complete(file: file, error: error)
                 }
             }
@@ -336,7 +339,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         // This is to make the background task wait until we receive the submission response from the API.
         let semaphore = DispatchSemaphore(value: 0)
         let objectID = file.objectID
-        process.performExpiringActivity(reason: "submit assignment") { expired in
+        process.performExpiringActivity(reason: "submit assignment") { [didUploadFile] expired in
             if expired {
                 task?.cancel()
             }
@@ -356,6 +359,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                         self.complete(file: file, error: error)
                         return
                     }
+                    didUploadFile.send(.success)
                     NotificationCenter.default.post(
                         name: UploadManager.AssignmentSubmittedNotification,
                         object: nil,

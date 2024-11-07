@@ -19,29 +19,26 @@
 import SwiftUI
 import Core
 
-struct AssignmentSubmission: View {
+struct AssignmentSubmissionView: View {
     // MARK: - Private Properties
-    @State private var textEntry: String = ""
-    @State private var isShowSubmissionTypes = false
-    @State private var selectedSubmission: AssignmentType?
+
+    @State private var importFile = false
+    @State private var selectedFileURL: URL?
     @FocusState private var isFocused: Bool
-    @Environment(\.viewController) private var controller
-    private let keyboardObserveID = "keyboardObserveID"
 
     // MARK: - Dependence Properties
-    let submissionButtonTitle: String
+
+    @Bindable var viewModel: AssignmentDetailsViewModel
     let geometry: GeometryProxy
-    let submissions: [AssignmentType]
-    var onSelectSubmissionType: ((Events) -> Void)? = { _ in}
     var onStartTyping: (() -> Void)? = { }
 
     var body: some View {
         VStack(spacing: 5) {
-            if isShowSubmissionTypes {
+            if viewModel.isShowSubmitButton {
                 submissionTypes
 
-                if let selectedSubmission, selectedSubmission == .textEntry {
-                    textEntry(geometry: geometry)
+                if let selectedSubmission = viewModel.selectedSubmission {
+                    setSubmissionTypes(selectedSubmission)
                     submissionButton
                 }
             } else {
@@ -50,25 +47,36 @@ struct AssignmentSubmission: View {
             Rectangle()
                 .fill(.clear)
                 .frame(height: 150)
-                .id(keyboardObserveID)
+                .id(viewModel.keyboardObserveID)
 
         }
         .onChange(of: isFocused) {
             if isFocused { onStartTyping?() }
         }
+        .fileImporter(
+            isPresented: $importFile,
+            allowedContentTypes: (viewModel.assignment?.fileExtensions ?? [])
+            .compactMap { $0.uttype }) { result in
+            switch result {
+            case .success(let success):
+                self.viewModel.submissionEvents.send(.uploadFile(url: success))
+            case .failure(let failure):
+                debugPrint(failure)
+            }
+        }
     }
 }
 
 // MARK: - Custom Views
-extension AssignmentSubmission {
+extension AssignmentSubmissionView {
 
     private var showSubmissionTypesButton: some View {
         Button {
             withAnimation {
-                isShowSubmissionTypes = true
+                viewModel.isShowSubmitButton = true
             }
         } label: {
-            Text(submissionButtonTitle)
+            Text(viewModel.assignment?.submitButtonTitle ?? "")
                 .font(.regular14)
                 .foregroundStyle(Color.textDarkest)
                 .frame(maxWidth: .infinity)
@@ -79,18 +87,18 @@ extension AssignmentSubmission {
     }
 
     private var submissionTypes: some View {
-        ForEach(submissions, id: \.self) { item in
+        ForEach(viewModel.assignment?.assignmentTypes ?? [], id: \.self) { item in
             Button {
-                selectedSubmission = item
+                viewModel.selectedSubmission = item
                 isFocused = item == .textEntry
             } label: {
-                HAssignmentButton(isSelected: selectedSubmission ==  item, assignment: item)
+                HAssignmentButton(isSelected: viewModel.selectedSubmission ==  item, assignment: item)
             }
         }
     }
 
     private func textEntry(geometry: GeometryProxy) -> some View {
-        UITextViewWrapper(text: $textEntry) {
+        UITextViewWrapper(text: $viewModel.textEntry) {
             let tv = UITextView()
             tv.isScrollEnabled = false
             tv.textContainer.widthTracksTextView = true
@@ -111,14 +119,39 @@ extension AssignmentSubmission {
         .frame(minHeight: 100)
     }
 
+    private var pickupFileView: some View {
+        VStack(spacing: .zero) {
+            AttachedFilesView(files: viewModel.attachments) { deletedFile in
+                viewModel.submissionEvents.send(.deleteFile(file: deletedFile))
+            }
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(5)
+            Spacer()
+            InstUI.Divider()
+            Button {
+                importFile.toggle()
+            } label: {
+                Image.addDocumentLine
+                    .padding(5)
+                    .padding(.bottom, 5)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .frame(minHeight: 100)
+        .overlay {
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.disabledGray, lineWidth: 1)
+        }
+    }
+
     private var submissionButton: some View {
         Button {
-            let selectedSubmission = selectedSubmission ?? .textEntry
+            let selectedSubmission = viewModel.selectedSubmission ?? .textEntry
             switch selectedSubmission {
             case .textEntry:
-                onSelectSubmissionType?(.onTextEntry(text: textEntry, controller: controller))
+                viewModel.submissionEvents.send(.onTextEntry)
             case .uploadFile:
-                break
+                viewModel.submissionEvents.send(.sendFileTapped)
             }
         } label: {
             Text("Submit Assignment")
@@ -128,16 +161,30 @@ extension AssignmentSubmission {
                 .frame(height: 40)
                 .background(Color.backgroundInfo)
                 .cornerRadius(8)
-                .opacity(textEntry.isEmpty  ? 0.3 : 1)
-                .disabled(textEntry.isEmpty)
+                .opacity(viewModel.isSubmitButtonDisable ? 0.3 : 1)
+
+        }
+        .disabled(viewModel.isSubmitButtonDisable)
+    }
+
+    @ViewBuilder
+    private func setSubmissionTypes(_ type: AssignmentType) -> some View {
+        switch type {
+        case .textEntry:
+            textEntry(geometry: geometry)
+        case .uploadFile:
+            pickupFileView
         }
     }
 }
 
 // MARK: - Events
-extension AssignmentSubmission {
+extension AssignmentSubmissionView {
     enum Events {
-        case onTextEntry(text: String, controller: WeakViewController)
+        case onTextEntry
+        case uploadFile(url: URL)
+        case sendFileTapped
+        case deleteFile(file: File)
     }
 }
 
@@ -145,10 +192,9 @@ extension AssignmentSubmission {
 #Preview {
     GeometryReader { geometry in
         ScrollView {
-            AssignmentSubmission(
-                submissionButtonTitle: "Submit Assignment",
-                geometry: geometry,
-                submissions: [.textEntry]
+            AssignmentSubmissionView(
+                viewModel: AssignmentDetailsAssembly.makeAssignmentSubmissionViewModel(),
+                geometry: geometry
             )
             .padding()
         }

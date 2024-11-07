@@ -24,19 +24,44 @@ import Core
 @Observable
 final class AssignmentDetailsViewModel {
     // MARK: - Output Properties
+
     private(set) var assignment: HAssignment?
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var didSubmitAssignment = false
+    private(set) var attachments: [File] = []
+    private(set) var errorMessage = ""
+    private(set) var submissionEvents = PassthroughSubject<AssignmentSubmissionView.Events, Never>()
+    let keyboardObserveID = "keyboardObserveID"
+    var textEntry: String = ""
+    var selectedSubmission: AssignmentType?
+    var isShowSubmitButton = false
+    var isShowAlertVisible = false
+    var isSubmitButtonDisable: Bool {
+        let selectedSubmission = selectedSubmission ?? .textEntry
+        switch selectedSubmission {
+        case .textEntry:
+            return textEntry.isEmpty
+        case .uploadFile:
+            return attachments.isEmpty
+        }
+    }
+
+    // MARK: - Properties
+
     private var subscriptions = Set<AnyCancellable>()
+    var controller: WeakViewController = .init()
 
-    // MARK: - Input Properties
-    var onSelectSubmissionType: ((AssignmentSubmission.Events) -> Void)?
+    // MARK: - Dependancies
 
-    // MARK: - Dependance
     private let interactor: AssignmentInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
+
+    deinit {
+        interactor.cancelAllFiles()
+    }
+
     init(
         interactor: AssignmentInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
@@ -57,31 +82,59 @@ final class AssignmentDetailsViewModel {
     }
 
     private func bindSubmissionAssignmentEvents() {
-        onSelectSubmissionType = { [weak self] event in
+        submissionEvents.sink { [weak self] event in
+            guard let self else {
+                return
+            }
             switch event {
-            case .onTextEntry(text: let text, controller: let controller):
-                self?.submitTextEntry(with: text, controller: controller)
+            case .onTextEntry:
+                submitTextEntry()
+            case .uploadFile(url: let url):
+                interactor.addFile(url: url)
+            case .sendFileTapped:
+                state = .loading
+                interactor.uploadFiles()
+            case .deleteFile(file: let file):
+                interactor.cancelFile(file)
             }
-        }
-    }
-
-    private func submitTextEntry(with text: String, controller: WeakViewController) {
-        state = .loading
-        interactor.submitTextEntry(with: text)
-            .sink { [weak self] completion in
-            self?.state = .data
-            if case .failure(let error) = completion {
-                self?.showAlertError(with: error.localizedDescription, controller: controller)
-            }
-        } receiveValue: { [weak self] _ in
-            self?.didSubmitAssignment = true
         }
         .store(in: &subscriptions)
+
+        interactor.attachments
+            .receive(on: scheduler)
+            .sink { [weak self] values in
+                self?.attachments = values
+            }
+            .store(in: &subscriptions)
+
+        interactor
+            .didUploadFiles
+            .receive(on: scheduler)
+            .sink { [weak self] result in
+                switch result {
+                case .success:
+                    self?.state = .data
+                    self?.didSubmitAssignment = true
+                case .failure(let error):
+                    self?.state = .data
+                    self?.isShowAlertVisible = true
+                    self?.errorMessage = error.localizedDescription
+                }
+            }.store(in: &subscriptions)
     }
 
-    private func showAlertError(with message: String, controller: WeakViewController) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String(localized: "OK", bundle: .core), style: .default))
-        AppEnvironment.shared.router.show(alert, from: controller)
+    private func submitTextEntry() {
+        state = .loading
+        interactor.submitTextEntry(with: textEntry)
+            .sink { [weak self] completion in
+                self?.state = .data
+                if case .failure(let error) = completion {
+                    self?.isShowAlertVisible = true
+                    self?.errorMessage = error.localizedDescription
+                }
+            } receiveValue: { [weak self] _ in
+                self?.didSubmitAssignment = true
+            }
+            .store(in: &subscriptions)
     }
 }

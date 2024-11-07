@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		023834751BE1AE85F5D509C1 /* ContentProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15192E48982507B886F9E73B /* ContentProgressBar.swift */; };
+		046933CB2CD92B4800918336 /* AttachedFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046933CA2CD92B4800918336 /* AttachedFilesView.swift */; };
 		04FBC8E441EE6A2FE17BAD78 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED7199B426F89179546237 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		06DE8BCB00A3AFA9D063B50E /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6ADB5EDE85D2FF9CC5DEF68 /* DashboardViewModel.swift */; };
 		0A8A4904B7D52C0A312710E7 /* PortfolioAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDEE3C9B0FD71A1B82674 /* PortfolioAssembly.swift */; };
@@ -63,10 +64,31 @@
 		F20BD1D6F5B7FDE2940C5E95 /* DashboardAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E568BE2530AFAB502E3367DA /* DashboardAssembly.swift */; };
 		F97CACE305281B388A9505E3 /* JourneyAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB18B349EFFD80257532CA /* JourneyAssembly.swift */; };
 		FBEBCFAFD19F4A370436323F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60A47E05ED8A779B909585C6 /* LaunchScreen.storyboard */; };
-		FE70D80D420A4271D1C9AF92 /* AssignmentSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B32A7A529E028878C793EB /* AssignmentSubmission.swift */; };
+		FE70D80D420A4271D1C9AF92 /* AssignmentSubmissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B32A7A529E028878C793EB /* AssignmentSubmissionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		046933CF2CD92B4800918336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
+			remoteInfo = CoreTester;
+		};
+		046933D12CD92B4800918336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
+			remoteInfo = CoreTests;
+		};
+		046933D32CD92B4800918336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 0F2B4D06F2ACF62293B119C4;
+			remoteInfo = TestsFoundation;
+		};
 		287762C99D46AE8961068231 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F475EC6814456E8041E96A1A /* Core */;
@@ -100,6 +122,7 @@
 /* Begin PBXFileReference section */
 		01CB18B349EFFD80257532CA /* JourneyAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyAssembly.swift; sourceTree = "<group>"; };
 		023E7C84D2463F1B861DA9D8 /* Size12RegularTextDarkTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size12RegularTextDarkTitle.swift; sourceTree = "<group>"; };
+		046933CA2CD92B4800918336 /* AttachedFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedFilesView.swift; sourceTree = "<group>"; };
 		07B17BF83CEED78105ADED77 /* ProgramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsView.swift; sourceTree = "<group>"; };
 		0B8A0CFCDCB519AC3CB745B8 /* SessionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInteractor.swift; sourceTree = "<group>"; };
 		15192E48982507B886F9E73B /* ContentProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProgressBar.swift; sourceTree = "<group>"; };
@@ -149,7 +172,7 @@
 		F475EC6814456E8041E96A1A /* Core */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
 		F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8E7191B980D0E8899E8C175 /* Horizon.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Horizon.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9B32A7A529E028878C793EB /* AssignmentSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSubmission.swift; sourceTree = "<group>"; };
+		F9B32A7A529E028878C793EB /* AssignmentSubmissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSubmissionView.swift; sourceTree = "<group>"; };
 		FC16FDFB815642C82768097E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -361,7 +384,8 @@
 		8D295095DE60C1FC502762DA /* Submission */ = {
 			isa = PBXGroup;
 			children = (
-				F9B32A7A529E028878C793EB /* AssignmentSubmission.swift */,
+				F9B32A7A529E028878C793EB /* AssignmentSubmissionView.swift */,
+				046933CA2CD92B4800918336 /* AttachedFilesView.swift */,
 				A65D34D43E12CE7EF4AC16AE /* AssignmentType.swift */,
 				6CC395CC735FE969E7E65C26 /* HAssignmentButton.swift */,
 			);
@@ -429,6 +453,9 @@
 			isa = PBXGroup;
 			children = (
 				7DED7199B426F89179546237 /* Core.framework */,
+				046933D02CD92B4800918336 /* CoreTester.app */,
+				046933D22CD92B4800918336 /* CoreTests.xctest */,
+				046933D42CD92B4800918336 /* TestsFoundation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -537,6 +564,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		046933D02CD92B4800918336 /* CoreTester.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CoreTester.app;
+			remoteRef = 046933CF2CD92B4800918336 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		046933D22CD92B4800918336 /* CoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreTests.xctest;
+			remoteRef = 046933D12CD92B4800918336 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		046933D42CD92B4800918336 /* TestsFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TestsFoundation.framework;
+			remoteRef = 046933D32CD92B4800918336 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		7DED7199B426F89179546237 /* Core.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -592,7 +640,7 @@
 				513D7CA34D4B0BD83978960E /* AssignmentDetailsViewModel.swift in Sources */,
 				8F9F7532CA4E941FCE2BB7F2 /* AssignmentInteractor.swift in Sources */,
 				B5812E682986E705DFADA366 /* AssignmentInteractorPreview.swift in Sources */,
-				FE70D80D420A4271D1C9AF92 /* AssignmentSubmission.swift in Sources */,
+				FE70D80D420A4271D1C9AF92 /* AssignmentSubmissionView.swift in Sources */,
 				D9C944E37EE80EF89D75D1E6 /* AssignmentType.swift in Sources */,
 				A51387187690E8DA93F7A8D0 /* BaseHorizonScreen.swift in Sources */,
 				256C0F2B20ADE76D83ADBF6A /* BundleExtension.swift in Sources */,
@@ -606,6 +654,7 @@
 				341E151F9FE8B0C4F113C01A /* GetProgramsInteractor.swift in Sources */,
 				59B1BD3B9AEBB80E48D1C99B /* HAssignment.swift in Sources */,
 				DCA1DFDCA3EC27573695DD77 /* HAssignmentButton.swift in Sources */,
+				046933CB2CD92B4800918336 /* AttachedFilesView.swift in Sources */,
 				C25ABAF2A3AA7BAA36558525 /* HCourse.swift in Sources */,
 				3F82EB862BB02A4FE1D74F16 /* HModule.swift in Sources */,
 				4BD1843CFE6151E09D0189F4 /* HModuleItem.swift in Sources */,

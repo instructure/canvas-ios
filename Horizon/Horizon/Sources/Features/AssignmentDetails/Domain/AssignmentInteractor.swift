@@ -23,26 +23,64 @@ import Combine
 protocol AssignmentInteractor {
     func getAssignmentDetails() -> AnyPublisher<HAssignment, Never>
     func submitTextEntry(with text: String) -> AnyPublisher<[CreateSubmission.Model], Error>
+    func addFile(url: URL)
+    func cancelFile(_ file: File)
+    func cancelAllFiles()
+    func uploadFiles()
+    var attachments: CurrentValueSubject<[File], Never> { get }
+    var didUploadFiles: PassthroughSubject<Result<Void, Error>, Never> { get }
 }
 
 final class AssignmentInteractorLive: AssignmentInteractor {
+    // MARK: - Outputs
+
+    public let attachments = CurrentValueSubject<[File], Never>([])
+    public let didUploadFiles = PassthroughSubject<Result<Void, Error>, Never>()
+
     // MARK: - Properties
+
+    private lazy var fileStore = uploadManager.subscribe(batchID: batchId, eventHandler: {})
+    private var subscriptions = Set<AnyCancellable>()
+    private var batchId: String {
+        "assignment-\(assignmentID)"
+    }
+    // MARK: - Dependancies
 
     private let courseID: String
     private let assignmentID: String
     private let appEnvironment: AppEnvironment
+    private let uploadManager: UploadManager
+
+    // MARK: - Init
 
     init(
         courseID: String,
         assignmentID: String,
-        appEnvironment: AppEnvironment
+        appEnvironment: AppEnvironment,
+        uploadManager: UploadManager
     ) {
         self.courseID = courseID
         self.assignmentID = assignmentID
         self.appEnvironment = appEnvironment
+        self.uploadManager = uploadManager
+
+        fileStore.refresh()
+
+        fileStore
+            .allObjects
+            .replaceError(with: [])
+            .sink { [weak self] files in
+                self?.attachments.send(files)
+            }
+            .store(in: &subscriptions)
+
+        uploadManager
+            .didUploadFile
+            .subscribe(didUploadFiles)
+            .store(in: &subscriptions)
     }
 
-     func getAssignmentDetails() -> AnyPublisher<HAssignment, Never> {
+    func getAssignmentDetails() -> AnyPublisher<HAssignment, Never> {
         let includes: [GetAssignmentRequest.GetAssignmentInclude] = [.submission, .score_statistics]
         return ReactiveStore(useCase: GetAssignment(courseID: courseID, assignmentID: assignmentID, include: includes))
             .getEntities()
@@ -63,5 +101,25 @@ final class AssignmentInteractorLive: AssignmentInteractor {
         )
         return ReactiveStore(useCase: createSubmission)
             .getEntities()
+    }
+
+    func addFile(url: URL) {
+        do {
+            try uploadManager.add(url: url, batchID: batchId)
+            fileStore.refresh()
+        } catch { debugPrint(error) }
+    }
+
+    func cancelFile(_ file: File) {
+        uploadManager.cancel(file: file)
+    }
+
+    func uploadFiles() {
+        let context = FileUploadContext.submission(courseID: courseID, assignmentID: assignmentID, comment: nil)
+        UploadManager.shared.upload(batch: batchId, to: context)
+    }
+
+    func cancelAllFiles() {
+        uploadManager.cancel(batchID: batchId)
     }
 }

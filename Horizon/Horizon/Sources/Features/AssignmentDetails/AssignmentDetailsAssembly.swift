@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 final class AssignmentDetailsAssembly {
     static func makeViewModel(
@@ -26,7 +27,8 @@ final class AssignmentDetailsAssembly {
         let interactor = AssignmentInteractorLive(
             courseID: courseID,
             assignmentID: assignmentID,
-            appEnvironment: .shared
+            appEnvironment: .shared,
+            uploadManager: .shared
         )
         return AssignmentDetailsViewModel(interactor: interactor)
     }
@@ -44,5 +46,11 @@ final class AssignmentDetailsAssembly {
         let viewModel = AssignmentDetailsViewModel(interactor: interactor)
         return AssignmentDetails(viewModel: viewModel)
     }
+
+    static func makeAssignmentSubmissionViewModel() -> AssignmentDetailsViewModel {
+        let interactor = AssignmentInteractorPreview()
+        return AssignmentDetailsViewModel(interactor: interactor)
+    }
+
 #endif
 }

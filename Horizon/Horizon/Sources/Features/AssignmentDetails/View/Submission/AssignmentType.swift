@@ -18,9 +18,9 @@
 
 import Foundation
 
-enum AssignmentType {
-    case textEntry
-    case uploadFile
+enum AssignmentType: String {
+    case textEntry = "online_text_entry"
+    case uploadFile = "online_upload"
 
     var title: String {
         switch self {
@@ -36,7 +36,7 @@ enum AssignmentType {
         case .textEntry:
             "square.and.pencil"
         case .uploadFile:
-            "arrow.up.page.on.clipboard"
+            "square.and.arrow.up"
         }
     }
 }
