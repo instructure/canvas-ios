@@ -55,7 +55,8 @@ extension UIViewController {
 
     /// This property returns a human readable name for the given view controller.
     /// In case of split view controllers and navigation controllers this method
-    /// tries to extract the wrapped view controller and returns the name of that .
+    /// tries to extract the wrapped view controller and returns the name of that.
+    /// If a view controllers hosts a SwiftUI view then the name of the view will be returned.
     public var developerAnalyticsName: String {
         let splitViewContent: UIViewController = {
             if let split = self as? UISplitViewController {

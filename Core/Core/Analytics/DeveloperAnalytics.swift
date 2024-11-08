@@ -21,40 +21,50 @@ public protocol DeveloperAnalyticsHandler: AnyObject {
     func handleBreadcrumb(_ name: String)
 }
 
+/// This entity encapsulates methods that log debug data for developers to make crash / error debugging easier.
 public struct DeveloperAnalytics {
     public static var shared: DeveloperAnalytics = DeveloperAnalytics()
 
     public weak var handler: DeveloperAnalyticsHandler?
 
     #if DEBUG
-    public var logScreenViewToConsole = true
+    /// If this property is true, then in addition to reporting to the analytics handler, events are also printed to the console.
+    public var logToConsole = false
     #endif
 
     public init() {}
 
-    /// Use this method to collect screen view events which will be uploaded when a crash happens
-    /// so we'll be better be able to locate and reproduce the crash.
+    /// Use this method to collect routing events which will be uploaded when a crash happens
+    /// so we'll be better be able to locate and reproduce the crash based on the routes log.
     public func logBreadcrumb(
         route: String,
         viewController: UIViewController? = nil
     ) {
+        let message = "Routing to: \(route) (\(viewController.developerAnalyticsName))"
+
         #if DEBUG
-            if logScreenViewToConsole {
-                print("Routing to: \(route) (\(viewController.developerAnalyticsName))")
+            if logToConsole {
+                print(message)
             }
         #endif
 
-        handler?.handleBreadcrumb("Routing to: \(route) (\(viewController.developerAnalyticsName))")
+        handler?.handleBreadcrumb(message)
     }
 
-    /**
-     Use this method to report errors to Crashlytics.
-
-     - parameters:
-        - name: The name of the error type. Errors with the same name will be grouped on Crashlytics to a single error entry.
-        - reason: The arbitrary error reason.
-     */
+    /// Use this method to report errors to Crashlytics.
+    ///
+    /// - parameters:
+    ///    - name: The name of the error type. Errors with the same name will be grouped on Crashlytics to a single error entry.
+    ///    - reason: The arbitrary error reason.
     public func logError(name: String, reason: String? = nil) {
-        handler?.handleError(name, reason: reason ?? "Unknown reason.")
+        let reason = reason ?? "Unknown reason."
+
+        #if DEBUG
+            if logToConsole {
+                print("\(name) - \(reason)")
+            }
+        #endif
+
+        handler?.handleError(name, reason: reason)
     }
 }
