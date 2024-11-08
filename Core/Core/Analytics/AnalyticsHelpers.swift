@@ -50,3 +50,46 @@ extension Publisher {
             .store(in: &set)
     }
 }
+
+extension UIViewController {
+
+    /// This property returns a human readable name for the given view controller.
+    /// In case of split view controllers and navigation controllers this method
+    /// tries to extract the wrapped view controller and returns the name of that .
+    public var developerAnalyticsName: String {
+        let splitViewContent: UIViewController = {
+            if let split = self as? UISplitViewController {
+                return split.viewControllers.first ?? split
+            } else {
+                return self
+            }
+        }()
+        let navViewContent: UIViewController = {
+            if let nav = splitViewContent as? UINavigationController {
+                return nav.topViewController ?? nav
+            } else {
+                return self
+            }
+        }()
+
+        var name = String(describing: type(of: navViewContent))
+
+        // Extracts "Type" from a pattern of CoreHostingController<Type>
+        if let genericsStart = name.firstIndex(of: "<") {
+            name = name.suffix(from: name.index(after: genericsStart)).replacingOccurrences(of: ">", with: "")
+        }
+
+        return name
+    }
+}
+
+extension Optional where Wrapped == UIViewController {
+
+    public var developerAnalyticsName: String {
+        guard let self else {
+            return "unknown"
+        }
+
+        return self.developerAnalyticsName
+    }
+}

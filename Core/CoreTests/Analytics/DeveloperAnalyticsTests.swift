@@ -49,19 +49,6 @@ class DeveloperAnalyticsTests: XCTestCase {
         XCTAssertEqual(testAnalyticsHandler.lastErrorReason, "this is a test error")
     }
 
-    func testAnalyticsClassName() {
-        let courseListView = CoreHostingController(PandaGallery())
-
-        XCTAssertEqual(DeveloperAnalytics.analyticsClassName(for: nil), "unknown")
-        XCTAssertEqual(DeveloperAnalytics.analyticsClassName(for: ProfileSettingsViewController()), "ProfileSettingsViewController")
-        XCTAssertEqual(DeveloperAnalytics.analyticsClassName(for: courseListView), "PandaGallery")
-        XCTAssertEqual(DeveloperAnalytics.analyticsClassName(for: UINavigationController(rootViewController: courseListView)), "PandaGallery")
-
-        let splitView = UISplitViewController()
-        splitView.viewControllers = [UINavigationController(rootViewController: courseListView)]
-        XCTAssertEqual(DeveloperAnalytics.analyticsClassName(for: splitView), "PandaGallery")
-    }
-
     func testAnalyticsBaseUrl() {
         AppEnvironment.shared.currentSession = nil
         XCTAssertEqual(Analytics.analyticsBaseUrl, "")

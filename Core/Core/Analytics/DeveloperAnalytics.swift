@@ -40,11 +40,11 @@ public struct DeveloperAnalytics {
     ) {
         #if DEBUG
             if logScreenViewToConsole {
-                print("Routing to: \(route) (\(Self.analyticsClassName(for: viewController)))")
+                print("Routing to: \(route) (\(viewController.developerAnalyticsName))")
             }
         #endif
 
-        handler?.handleBreadcrumb("Routing to: \(route) (\(Self.analyticsClassName(for: viewController)))")
+        handler?.handleBreadcrumb("Routing to: \(route) (\(viewController.developerAnalyticsName))")
     }
 
     /**
@@ -56,35 +56,5 @@ public struct DeveloperAnalytics {
      */
     public func logError(name: String, reason: String? = nil) {
         handler?.handleError(name, reason: reason ?? "Unknown reason.")
-    }
-
-    public static func analyticsClassName(for viewController: UIViewController?) -> String {
-        guard let viewController = viewController else {
-            return "unknown"
-        }
-
-        let splitViewContent: UIViewController = {
-            if let split = viewController as? UISplitViewController {
-                return split.viewControllers.first ?? split
-            } else {
-                return viewController
-            }
-        }()
-        let navViewContent: UIViewController = {
-            if let nav = splitViewContent as? UINavigationController {
-                return nav.topViewController ?? nav
-            } else {
-                return viewController
-            }
-        }()
-
-        var name = String(describing: type(of: navViewContent))
-
-        // Extracts "Type" from a pattern of CoreHostingController<Type>
-        if let genericsStart = name.firstIndex(of: "<") {
-            name = name.suffix(from: name.index(after: genericsStart)).replacingOccurrences(of: ">", with: "")
-        }
-
-        return name
     }
 }
