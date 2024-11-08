@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,14 +18,20 @@
 
 import Core
 
-class MockAnalyticsHandler: AnalyticsHandler {
-    var lastEvent: String?
-    var lastEventParameters: [String: Any]?
-    var totalEventCount = 0
+class MockDeveloperAnalyticsHandler: DeveloperAnalyticsHandler {
+    var breadCrumbs: [String] = []
 
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        lastEvent = name
-        lastEventParameters = parameters
-        totalEventCount += 1
+    var lastErrorName: String?
+    var lastErrorReason: String?
+    var totalErrorCount = 0
+
+    func handleError(_ name: String, reason: String) {
+        lastErrorName = name
+        lastErrorReason = reason
+        totalErrorCount += 1
+    }
+
+    func handleBreadcrumb(_ name: String) {
+        breadCrumbs.append(name)
     }
 }

@@ -96,7 +96,7 @@ public extension UseCase {
                             callback?(response, urlResponse, error)
                         } catch let error {
                             Logger.shared.error(error.localizedDescription)
-                            Analytics.shared.logError(name: "CoreData save failed",
+                            DeveloperAnalytics.shared.logError(name: "CoreData save failed",
                                                       reason: error.localizedDescription)
                             callback?(response, urlResponse, error)
                         }
@@ -132,7 +132,7 @@ public extension UseCase {
                             promise(.success(urlResponse))
                         } catch let dbError {
                             Logger.shared.error(dbError.localizedDescription)
-                            Analytics.shared.logError(name: "CoreData save failed",
+                            DeveloperAnalytics.shared.logError(name: "CoreData save failed",
                                                       reason: dbError.localizedDescription)
                             performUIUpdate {
                                 promise(.failure(dbError))

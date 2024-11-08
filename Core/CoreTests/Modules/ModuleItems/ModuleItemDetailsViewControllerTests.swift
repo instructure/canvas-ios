@@ -239,8 +239,8 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
     }
 
     func testReportsScreenViewForLoadedChildViewController() {
-        let mockAnalyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = mockAnalyticsHandler
+        let mockDeveloperAnalyticsHandler = MockDeveloperAnalyticsHandler()
+        DeveloperAnalytics.shared.handler = mockDeveloperAnalyticsHandler
         router.mock("/courses/1/assignments/2?origin=module_item_details") {
             DetailViewController()
         }
@@ -255,7 +255,9 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         )
         controller.view.layoutIfNeeded()
 
-        XCTAssertEqual(mockAnalyticsHandler.lastScreenName, "/courses/:courseId")
-        XCTAssertEqual(mockAnalyticsHandler.lastScreenClass, "DetailViewController")
+        XCTAssertEqual(
+            mockDeveloperAnalyticsHandler.breadCrumbs.last,
+            "Routing to: /courses/:courseId (DetailViewController)"
+        )
     }
 }

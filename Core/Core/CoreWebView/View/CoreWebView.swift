@@ -401,7 +401,7 @@ extension CoreWebView: WKNavigationDelegate {
     }
 
     public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
-        Analytics.shared.logError(name: "WebKit process terminated", reason: nil)
+        DeveloperAnalytics.shared.logError(name: "WebKit process terminated", reason: nil)
         CoreWebViewContentErrorViewEmbed.embed(errorDelegate: errorDelegate)
     }
 }

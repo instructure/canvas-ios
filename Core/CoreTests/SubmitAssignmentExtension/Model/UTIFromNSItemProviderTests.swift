@@ -26,14 +26,14 @@ class UTIFromNSItemProviderTests: XCTestCase {
     }
 
     func testValidUTIReportsNothingToAnalytics() {
-        let mockAnalyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = mockAnalyticsHandler
+        let mockDeveloperAnalyticsHandler = MockDeveloperAnalyticsHandler()
+        DeveloperAnalytics.shared.handler = mockDeveloperAnalyticsHandler
 
         _ = MockNSItemProvider(isSupported: true).uti
 
-        XCTAssertEqual(mockAnalyticsHandler.totalErrorCount, 0)
-        XCTAssertNil(mockAnalyticsHandler.lastErrorName)
-        XCTAssertNil(mockAnalyticsHandler.lastErrorReason)
+        XCTAssertEqual(mockDeveloperAnalyticsHandler.totalErrorCount, 0)
+        XCTAssertNil(mockDeveloperAnalyticsHandler.lastErrorName)
+        XCTAssertNil(mockDeveloperAnalyticsHandler.lastErrorReason)
     }
 
     func testInvalidUTI() {
@@ -41,14 +41,14 @@ class UTIFromNSItemProviderTests: XCTestCase {
     }
 
     func testInvalidUTIReportsToAnalytics() {
-        let mockAnalyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = mockAnalyticsHandler
+        let mockDeveloperAnalyticsHandler = MockDeveloperAnalyticsHandler()
+        DeveloperAnalytics.shared.handler = mockDeveloperAnalyticsHandler
 
         _ = MockNSItemProvider(isSupported: false).uti
 
-        XCTAssertEqual(mockAnalyticsHandler.totalErrorCount, 1)
-        XCTAssertEqual(mockAnalyticsHandler.lastErrorName, "Unsupported file type")
-        XCTAssertEqual(mockAnalyticsHandler.lastErrorReason, "test.pcx")
+        XCTAssertEqual(mockDeveloperAnalyticsHandler.totalErrorCount, 1)
+        XCTAssertEqual(mockDeveloperAnalyticsHandler.lastErrorName, "Unsupported file type")
+        XCTAssertEqual(mockDeveloperAnalyticsHandler.lastErrorReason, "test.pcx")
     }
 }
 

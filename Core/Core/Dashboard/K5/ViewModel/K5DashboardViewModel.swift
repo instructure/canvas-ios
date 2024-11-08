@@ -61,7 +61,7 @@ public class K5DashboardViewModel: ObservableObject {
         topBarViewModel.selectedItemIndexPublisher
             .removeDuplicates()
             .compactMap { [weak self] index in self?.topBarViewModel.items[index].id }
-            .sink { Analytics.shared.logScreenView(route: "/homeroom\($0)") }
+            .sink { DeveloperAnalytics.shared.logBreadcrumb(route: "/homeroom\($0)") }
             .store(in: &subscriptions)
     }
 }

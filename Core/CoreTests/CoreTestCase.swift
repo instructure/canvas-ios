@@ -34,6 +34,7 @@ class CoreTestCase: XCTestCase {
     var router: TestRouter!
     var logger: TestLogger!
     var analytics = MockAnalyticsHandler()
+    var developerAnalytics = MockDeveloperAnalyticsHandler()
 
     lazy var environment = TestEnvironment()
     var currentSession: LoginSession!

@@ -76,12 +76,12 @@ public class BackgroundActivity {
             if expired {
                 if isStarted {
                     Logger.shared.error("performExpiringActivity was aborted by the OS")
-                    Analytics.shared.logError(name: "performExpiringActivity was aborted by the OS")
+                    DeveloperAnalytics.shared.logError(name: "performExpiringActivity was aborted by the OS")
                     abortHandler?()
                     semaphore?.signal()
                 } else {
                     Logger.shared.error("performExpiringActivity failed to start")
-                    Analytics.shared.logError(name: "performExpiringActivity failed to start")
+                    DeveloperAnalytics.shared.logError(name: "performExpiringActivity failed to start")
                     promise(.success(()))
                 }
                 abortHandler = nil

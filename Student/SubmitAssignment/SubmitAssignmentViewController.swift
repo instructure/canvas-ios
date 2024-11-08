@@ -74,14 +74,11 @@ class SubmitAssignmentViewController: UIViewController {
         guard FirebaseOptions.defaultOptions()?.apiKey != nil else { return }
         FirebaseApp.configure()
         Core.Analytics.shared.handler = self
+        DeveloperAnalytics.shared.handler = self
     }
 }
 
 extension SubmitAssignmentViewController: Core.AnalyticsHandler {
-
-    func handleScreenView(screenName: String, screenClass: String, application: String) {
-        Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
-    }
 
     func handleError(_ name: String, reason: String) {
         let model = ExceptionModel(name: name, reason: reason)
@@ -91,5 +88,12 @@ extension SubmitAssignmentViewController: Core.AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         // Google Analytics needs to be disabled for now
 //        Analytics.logEvent("sharex_\(name)", parameters: parameters)
+    }
+}
+
+extension SubmitAssignmentViewController: DeveloperAnalyticsHandler {
+
+    func handleBreadcrumb(_ name: String) {
+        Firebase.Crashlytics.crashlytics().log(name)
     }
 }

@@ -160,7 +160,7 @@ open class Router {
         let url = cleanURL(url)
 
         if url.isExternalWebsite, !url.originIsNotification, let url = url.url {
-            Analytics.shared.logScreenView(route: "/external_url")
+            DeveloperAnalytics.shared.logBreadcrumb(route: "/external_url")
             AppEnvironment.shared.loginDelegate?.openExternalURL(url)
             return
         }
@@ -171,14 +171,10 @@ open class Router {
 
         for route in handlers {
             if let params = route.match(url) {
-                var analyticsViewController: UIViewController?
-
                 if let view = route.factory(url, params, userInfo) {
-                    analyticsViewController = view
-                    show(view, from: from, options: options, analyticsRoute: nil)
+                    show(view, from: from, options: options, analyticsRoute: route.template)
                 }
 
-                Analytics.shared.logScreenView(route: route.template, viewController: analyticsViewController)
                 return // don't fall back if a matched route returns no view
             }
         }
@@ -191,12 +187,19 @@ open class Router {
      - parameters:
         - analyticsRoute: The route to be reported as screen\_view analytics event. If nil, no route is reported but this is only for internal usage to avoid both the `route` and `show` functions reporting the same event.
      */
-    open func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = DefaultRouteOptions, analyticsRoute: String? = "/unknown", completion: (() -> Void)? = nil) {
-        if view is UIAlertController { return from.present(view, animated: true, completion: completion) }
-
-        if let analyticsRoute = analyticsRoute {
-            Analytics.shared.logScreenView(route: analyticsRoute, viewController: view)
+    open func show(
+        _ view: UIViewController,
+        from: UIViewController,
+        options: RouteOptions = DefaultRouteOptions,
+        analyticsRoute: String? = "/unknown",
+        completion: (() -> Void)? = nil
+    ) {
+        // Log the screen view for Crashlytics before presentation so we can see where a crash occurs if it happens during presentation
+        if let analyticsRoute {
+            DeveloperAnalytics.shared.logBreadcrumb(route: analyticsRoute, viewController: view)
         }
+
+        if view is UIAlertController { return from.present(view, animated: true, completion: completion) }
 
         if let displayModeButton = from.splitDisplayModeButtonItem,
             from.splitViewController?.isCollapsed == false,
@@ -233,7 +236,7 @@ open class Router {
                 // and will cause a crash since `view` already has a parent view controller (its freshly created navigation controller).
                 // This case is most probably an unintended navigation so we swallow it.
                 if presenterViewWithoutNavController, viewIsEmbeddedInNavController {
-                    Analytics.shared.logError(name: "Invalid presentation state.", reason: nil)
+                    DeveloperAnalytics.shared.logError(name: "Invalid presentation state.", reason: nil)
                 } else {
                     from.show(view, sender: nil)
                 }
@@ -275,7 +278,7 @@ open class Router {
     // MARK: - External URL
 
     public static func open(url: URLComponents) {
-        Analytics.shared.logScreenView(route: "/external_url")
+        DeveloperAnalytics.shared.logBreadcrumb(route: "/external_url")
 
         var components = url
         // Canonicalize relative & schemes we know about.

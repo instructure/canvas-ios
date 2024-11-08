@@ -117,7 +117,7 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
             detailNavController.syncStyles(from: nav, to: detailNavController)
 
             if let routeTemplate = AppEnvironment.shared.router.template(for: defaultRoute) {
-                Analytics.shared.logScreenView(route: routeTemplate, viewController: defaultViewController)
+                DeveloperAnalytics.shared.logBreadcrumb(route: routeTemplate, viewController: defaultViewController)
             }
 
             return detailNavController

@@ -73,7 +73,7 @@ public class AttachmentCopyService {
         }
         attachment.loadItem(forTypeIdentifier: uti.rawValue, options: nil) { data, error in
             guard let coding = data, error == nil else {
-                Analytics.shared.logError(name: "Failed to get encoded attachment data", reason: error?.localizedDescription)
+                DeveloperAnalytics.shared.logError(name: "Failed to get encoded attachment data", reason: error?.localizedDescription)
                 callback(.failure(error ?? NSError.internalError()))
                 return
             }
@@ -104,7 +104,7 @@ public class AttachmentCopyService {
                 }
                 callback(.success(newURL))
             } catch {
-                Analytics.shared.logError(name: "Failed to copy shared file to container folder", reason: error.localizedDescription)
+                DeveloperAnalytics.shared.logError(name: "Failed to copy shared file to container folder", reason: error.localizedDescription)
                 callback(.failure(error))
             }
         }
