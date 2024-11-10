@@ -24,7 +24,7 @@ extension InstUI {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
         @Binding private var selectedValue: Value?
         private let title: String
-        private let value: Value
+        private let value: Value?
         private let color: Color
         private let seperator: Bool
 
@@ -33,7 +33,7 @@ extension InstUI {
         ///   - selectedValue: This binding holds the currently selected value belonging to the radio button group. The value is equatable so this cell can decide when to display the selected state.
         public init(
             title: String,
-            value: Value,
+            value: Value?,
             selectedValue: Binding<Value?>,
             color: Color,
             seperator: Bool = true

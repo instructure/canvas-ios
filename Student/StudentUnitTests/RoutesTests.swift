@@ -70,7 +70,7 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/2/discussion_topics/new") is CoreHostingController<DiscussionEditorView>)
         XCTAssert(router.match("/courses/2/discussion_topics/5/edit") is CoreHostingController<DiscussionEditorView>)
 
-        XCTAssert(router.match("/courses/1/assignments") is CoreHostingController<AssignmentListView>)
+        XCTAssert(router.match("/courses/1/assignments") is CoreHostingController<AssignmentListScreen>)
         XCTAssert(router.match("/courses/2/assignments/3") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/1/assignments/1/submissions/2") is SubmissionDetailsViewController)
 

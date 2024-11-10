@@ -25,6 +25,7 @@ xctestrun/
 **/IDEWorkspaceChecks.plist
 Core/Core.xcodeproj/
 Student/Student.xcodeproj/
+Brewfile.lock
 
 # AppCode
 .idea
@@ -80,6 +81,7 @@ scripts/apiModelCodegen/input.json
 scripts/.build
 scripts/.swiftpm
 scripts/Package.resolved
+screenlog.0
 
 # Secrets
 **/*.xcassets/Secrets/*.dataset
