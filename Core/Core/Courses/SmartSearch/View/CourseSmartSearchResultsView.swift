@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct CourseSmartSearchResultsView: View {
-    
     let course: Course?
     let results: [CourseSmartSearchResult]
 

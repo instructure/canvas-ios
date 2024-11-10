@@ -28,7 +28,7 @@ final class CourseSmartSearchDescriptorTests: CoreTestCase {
         static var context: Context { Context(.course, id: courseId) }
     }
 
-    func test_enablement() throws {
+    func test_enabled() throws {
         // Given
         let request = GetEnabledFeatureFlagsRequest(context: TestConstants.context)
 
@@ -45,12 +45,21 @@ final class CourseSmartSearchDescriptorTests: CoreTestCase {
 
         // Then
         XCTAssertSingleOutputEquals(descriptor.isEnabled, true)
+    }
+
+    func test_disabled() throws {
+        // Given
+        let request = GetEnabledFeatureFlagsRequest(context: TestConstants.context)
 
         // When
-        let featureFlag: FeatureFlag? = databaseClient.first(scope: .where("name", equals: "smart_search"))
-        featureFlag?.enabled = false
+        api.mock(request, value: [
+            "dummy_flag",
+            "dummy_flag_2"
+        ])
 
-        databaseClient.saveIfNeeded()
+        let descriptor = CourseSmartSearchDescriptor(
+            context: TestConstants.context
+        )
         drainMainQueue()
 
         // Then

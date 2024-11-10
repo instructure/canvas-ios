@@ -22,7 +22,6 @@ import XCTest
 final class CourseSmartSearchViewModelTests: CoreTestCase {
 
     enum TestConstants {
-        
         static var results: [CourseSmartSearchResult] = [
             .make(type: .page),
             .make(type: .page),
