@@ -20,23 +20,21 @@ import SwiftUI
 
 public struct CourseSmartSearchHelpView: View {
 
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.viewController) private var controller
 
     public init() { }
 
     public var body: some View {
-        NavigationView {
-            VStack {
-                Text(verbatim: ".. Help Content ..")
-                    .foregroundStyle(.secondary)
-            }
-            .navigationTitle("How it works")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Close") {
-                        dismiss()
-                    }
+        VStack {
+            Text(verbatim: ".. Help Content ..")
+                .foregroundStyle(.secondary)
+        }
+        .navigationTitle("How it works")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Close") {
+                    controller.value.dismiss(animated: true)
                 }
             }
         }

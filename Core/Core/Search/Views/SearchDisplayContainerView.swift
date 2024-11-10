@@ -89,6 +89,8 @@ struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDes
                         router.dismiss(controller.value)
                     } label: {
                         Image(systemName: "chevron.backward")
+                            .font(.body)
+                            .fontWeight(.semibold)
                     }
                     .tint(Color.textLightest)
                 }

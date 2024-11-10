@@ -39,7 +39,10 @@ public struct CourseSmartSearchDisplayView: View {
             case .noMatch:
                 SearchNoMatchView()
             case .results:
-                CourseSmartSearchResultsView(course: viewModel.course, results: viewModel.results)
+                CourseSmartSearchResultsView(
+                    course: viewModel.course,
+                    results: viewModel.results
+                )
             case .groupedResults:
                 CourseSmartSearchGroupedResultsView(
                     course: viewModel.course,
@@ -47,7 +50,6 @@ public struct CourseSmartSearchDisplayView: View {
                 )
             }
         }
-        .ignoresSafeArea()
         .background(Color.backgroundLight)
         .onAppear {
             guard case .start = viewModel.phase else { return }

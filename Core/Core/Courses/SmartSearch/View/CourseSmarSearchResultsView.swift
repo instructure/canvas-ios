@@ -53,6 +53,7 @@ struct CourseSmartSearchResultsView: View {
                     Color.backgroundLight.frame(height: max(offset, 0))
                     Color.backgroundLightest.frame(maxHeight: .infinity)
                 }
+                .ignoresSafeArea()
             })
         }
     }
@@ -112,6 +113,7 @@ struct CourseSmartSearchGroupedResultsView: View {
                     Color.backgroundLight.frame(height: max(offset, 0))
                     Color.backgroundLightest.frame(maxHeight: .infinity)
                 }
+                .ignoresSafeArea()
             })
         }
     }

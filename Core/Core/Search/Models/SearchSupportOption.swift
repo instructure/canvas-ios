@@ -74,7 +74,7 @@ public struct SearchSupportSheet<Content: View>: SearchSupportAction {
         router.show(
             CoreHostingController(content()),
             from: controller,
-            options: .modal(.formSheet)
+            options: .modal(.formSheet, embedInNav: true)
         )
     }
 }

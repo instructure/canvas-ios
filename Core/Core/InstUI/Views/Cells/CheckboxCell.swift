@@ -87,8 +87,20 @@ extension InstUI {
 }
 
 extension InstUI.CheckboxCell where Icon == SwiftUI.EmptyView {
-    public init(title: String, isSelected: Binding<Bool>, color: Color, seperator: Bool = true) {
-        self.init(title: title, isSelected: isSelected, color: color, seperator: seperator, icon: nil)
+    public init(
+        title: String,
+        subtitle: String? = nil,
+        isSelected: Binding<Bool>,
+        color: Color,
+        seperator: Bool = true
+    ) {
+        self.init(
+            title: title,
+            subtitle: subtitle,
+            isSelected: isSelected,
+            color: color,
+            seperator: seperator, icon: nil
+        )
     }
 }
 
