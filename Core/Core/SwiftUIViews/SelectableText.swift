@@ -18,65 +18,102 @@
 
 import SwiftUI
 
-public struct SelectableText: UIViewRepresentable {
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+public struct SelectableText: View {
 
-    // MARK: - Properties
-
-    private let text: String?
-    private let attributedText: AttributedString?
+    private let attributedText: AttributedString
     private let font: UIFont.Name
+    private let lineHeight: Typography.LineHeight?
     private let textColor: Color
-
-    // MARK: - Init
 
     public init(
         text: String,
         font: UIFont.Name,
+        lineHeight: Typography.LineHeight? = nil,
         textColor: Color
     ) {
-        self.text = text
+        self.attributedText = AttributedString(text)
         self.font = font
+        self.lineHeight = lineHeight
         self.textColor = textColor
-        self.attributedText = nil
     }
 
     public init(
         attributedText: AttributedString,
         font: UIFont.Name,
+        lineHeight: Typography.LineHeight? = nil,
         textColor: Color
     ) {
         self.attributedText = attributedText
         self.font = font
+        self.lineHeight = lineHeight
         self.textColor = textColor
-        self.text = nil
+    }
+
+    public var body: some View {
+        WrappedSelectableTextView(
+            attributedText: attributedText,
+            font: font,
+            lineHeight: lineHeight,
+            textColor: textColor
+        )
+        .padding(.vertical, 1)
+    }
+}
+
+private struct WrappedSelectableTextView: UIViewRepresentable {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    // MARK: - Properties
+
+    private let attributedText: AttributedString
+    private let font: UIFont.Name
+    private let lineHeight: Typography.LineHeight?
+    private let textColor: Color
+
+    // MARK: - Init
+
+    init(
+        attributedText: AttributedString,
+        font: UIFont.Name,
+        lineHeight: Typography.LineHeight? = nil,
+        textColor: Color
+    ) {
+        self.attributedText = attributedText
+        self.font = font
+        self.lineHeight = lineHeight
+        self.textColor = textColor
     }
 
     // MARK: - UIViewRepresentable methods
 
-    public func makeUIView(context: Self.Context) -> UITextView {
+    func makeUIView(context: Self.Context) -> UITextView {
         let textView = UITextView()
-        textView.font = UIFont.scaledNamedFont(font)
         textView.backgroundColor = .clear
         textView.isSelectable = true
-        textView.textContainerInset = .zero
         textView.isEditable = false
+        textView.textContainerInset = .zero
         textView.textContainer.lineFragmentPadding = 0
         textView.isScrollEnabled = false
         return textView
     }
 
-    public func updateUIView(_ textView: UITextView, context: Self.Context) {
-        if let attributedText {
-            textView.attributedText = NSAttributedString(attributedText)
-        } else {
-            textView.text = text
+    func updateUIView(_ textView: UITextView, context: Self.Context) {
+        let uiFont = UIFont.scaledNamedFont(font)
+        var attributedText = attributedText
+        attributedText.font = uiFont
+
+        if let lineHeight {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = lineHeight.lineSpacing(for: uiFont)
+
+            attributedText.mergeAttributes(.init([.paragraphStyle: paragraphStyle]))
         }
+
+        textView.attributedText = NSAttributedString(attributedText)
         textView.textColor = UIColor(textColor)
-        textView.font = UIFont.scaledNamedFont(font)
     }
 
-    public func sizeThatFits(
+    func sizeThatFits(
         _ proposal: ProposedViewSize,
         uiView: UITextView,
         context: Self.Context
