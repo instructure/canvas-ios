@@ -84,12 +84,12 @@ jobs:
     steps:
       - checkout
       - bootstrap      
-      - setup_app_secrets_dev
       - macos/preboot-simulator:
           device: iPhone 16
           version: "18.1"
       - attach_workspace:
           at: .
+      - setup_app_secrets_dev
       - run:
           name: Run E2ETests-Student
           command: |
