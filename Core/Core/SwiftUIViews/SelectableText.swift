@@ -19,14 +19,17 @@
 import SwiftUI
 
 public struct SelectableText: UIViewRepresentable {
-    // MARK: - Properties
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    // MARK: - Properties
+
     private let text: String?
     private let attributedText: AttributedString?
     private let font: UIFont.Name
     private let textColor: Color
 
-    // MARK: - Inits
+    // MARK: - Init
+
     public init(
         text: String,
         font: UIFont.Name,
@@ -48,6 +51,8 @@ public struct SelectableText: UIViewRepresentable {
         self.textColor = textColor
         self.text = nil
     }
+
+    // MARK: - UIViewRepresentable methods
 
     public func makeUIView(context: Self.Context) -> UITextView {
         let textView = UITextView()
@@ -76,33 +81,23 @@ public struct SelectableText: UIViewRepresentable {
         uiView: UITextView,
         context: Self.Context
     ) -> CGSize? {
-        let dimensions = proposal.replacingUnspecifiedDimensions(
-            by: .init(
-                width: 0,
-                height: CGFloat.greatestFiniteMagnitude
-            )
-        )
+        let proposedWidth = proposal.width ?? 0
+        let calculatedHeight = calculateTextViewHeight(with: proposedWidth, for: uiView.attributedText)
 
-        let calculatedHeight = calculateTextViewHeight(
-            containerSize: dimensions,
-            attributedString: uiView.attributedText
-        )
-
-        return .init(
-            width: dimensions.width,
-            height: calculatedHeight
-        )
+        return CGSize(width: proposedWidth, height: calculatedHeight)
     }
 
     private func calculateTextViewHeight(
-        containerSize: CGSize,
-        attributedString: NSAttributedString
+        with width: CGFloat,
+        for attributedString: NSAttributedString
     ) -> CGFloat {
         let boundingRect = attributedString.boundingRect(
-            with: .init(width: containerSize.width, height: .greatestFiniteMagnitude),
+            with: .init(width: width, height: .greatestFiniteMagnitude),
             options: [.usesLineFragmentOrigin, .usesFontLeading],
             context: nil
         )
-        return boundingRect.height
+
+        // the calculated height must be ceiled, according to the `boundingRect` documentation
+        return ceil(boundingRect.height)
     }
 }
