@@ -62,8 +62,12 @@ class OfflineBannerView: UIView {
 
         viewModel
             .$isVisible
-            .map { !$0 }
-            .assign(to: \.accessibilityElementsHidden, on: self, ownership: .weak)
+            .sink { [weak self] isVisible in
+                UIView.animate(withDuration: isVisible ? 0 : 0.3) {
+                    self?.alpha = isVisible ? 1 : 0
+                }
+                self?.accessibilityElementsHidden = !isVisible
+            }
             .store(in: &subscriptions)
     }
 }
