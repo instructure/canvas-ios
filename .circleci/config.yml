@@ -76,7 +76,7 @@ jobs:
       - store_artifacts:
           path: ./artifacts
   e2e_tests_student:
-    parallelism: 4
+#    parallelism: 4
     executor:
       name: default_executor
     environment:
@@ -93,13 +93,14 @@ jobs:
       - run:
           name: Run E2ETests-Student
           command: |
-            CLASSNAMES=$(circleci tests glob "Student/StudentE2ETests/**/*.swift" \
-              | sed 's@/@.@g' \
-              | sed 's/.swift//' \
-              | circleci tests split --split-by=timings --timings-type=classname)
-            FASTLANE_ARGS=$(echo $CLASSNAMES | sed -e 's/\./\//g' -e 's/ /,/g')
-            echo $CLASSNAMES
-            bundle exec fastlane e2e_tests_student tests:$FASTLANE_ARGS
+#            CLASSNAMES=$(circleci tests glob "Student/StudentE2ETests/**/*.swift" \
+#              | sed 's@/@.@g' \
+#              | sed 's/.swift//' \
+#              | circleci tests split --split-by=timings --timings-type=classname)
+#            FASTLANE_ARGS=$(echo $CLASSNAMES | sed -e 's/\./\//g' -e 's/ /,/g')
+#            echo $CLASSNAMES
+#            bundle exec fastlane e2e_tests_student tests:$FASTLANE_ARGS
+            bundle exec fastlane e2e_tests_student
       - store_artifacts:
           path: ./artifacts
       - store_test_results:
@@ -125,12 +126,18 @@ workflows:
   pr_workflow:
     jobs:      
       - unit_tests
-#      - build_e2e_tests_student
-#      - e2e_tests_student:
-#          requires:
-#            - build_e2e_tests_student
       - publish_student_firebase:
           filters:
             branches:
               only:
                 - circleci-project-setup
+  nightly:
+    jobs:
+      - hold:
+        type: approval
+      - build_e2e_tests_student:
+          requires:
+            - hold
+      - e2e_tests_student:
+          requires:
+            - build_e2e_tests_student
