@@ -35,7 +35,7 @@ extension LocalFileURLCreator {
         if mimeClass == "pdf" {
             // If the user already downloaded and modified the file locally, we don't want to download it again.
             // Instead, return the url pointing to the locally modified version.
-            let docsURL = URL.Directories.documents.appendingPathComponent(fileName)
+            let docsURL = URL.Directories.annotatedPDFs.appendingPathComponent(fileName)
             if FileManager.default.fileExists(atPath: docsURL.path) { return docsURL }
         }
 

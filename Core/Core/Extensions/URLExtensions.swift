@@ -54,6 +54,11 @@ public extension URL {
             FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         }
 
+        /// The `AnnotatedPDFs` directory in the application documents' private folder.
+        public static var annotatedPDFs: URL {
+            documents.appending(component: URL.Paths.annotatedPDFs, directoryHint: .isDirectory)
+        }
+
         public static var library: URL {
             FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
         }
@@ -85,6 +90,8 @@ public extension URL {
     }
 
     enum Paths {
+        static let annotatedPDFs = "AnnotatedPDFs"
+
         public enum Offline {
 
             public static func rootURL(
