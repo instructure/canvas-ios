@@ -134,7 +134,7 @@ workflows:
   nightly:
     jobs:
       - hold:
-        type: approval
+          type: approval
       - build_e2e_tests_student:
           requires:
             - hold
