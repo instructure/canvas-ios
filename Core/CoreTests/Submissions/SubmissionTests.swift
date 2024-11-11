@@ -266,6 +266,23 @@ class SubmissionTests: CoreTestCase {
 
         let notSubmitted = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
         XCTAssertEqual(notSubmitted.status, .notSubmitted)
+
+        // No Submission
+        let assignment = Assignment.make()
+        assignment.submissionTypes = [.none]
+
+        let noSubmission = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
+        noSubmission.assignment = assignment
+
+        XCTAssertEqual(notSubmitted.status, .noSubmission)
+
+        // On Paper Submission
+        assignment.submissionTypes = [.on_paper]
+
+        let onPaperSubmission = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
+        onPaperSubmission.assignment = assignment
+
+        XCTAssertEqual(notSubmitted.status, .onPaper)
     }
 }
 
