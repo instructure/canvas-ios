@@ -158,7 +158,7 @@ public class DiscussionsHelper: BaseHelper {
         public static var titleField: XCUIElement { app.find(id: "DiscussionEditor.titleField") }
         public static var availableFromButton: XCUIElement { app.find(label: "Available from", type: .button) }
         public static var availableUntilButton: XCUIElement { app.find(label: "Available until", type: .button) }
-        public static var descriptionField: XCUIElement { richContentEditorWebView.find(type: .textField) }
+        public static var descriptionField: XCUIElement { app.find(label: "Description", type: .textView) }
 
         public static var richContentEditorWebView: XCUIElement { app.find(id: "RichContentEditor.webView") }
     }
