@@ -76,7 +76,9 @@ struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDes
                 if let support = searchDescriptor.support {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            support.action.triggered(with: router, from: controller.value)
+                            support
+                                .action
+                                .trigger(for: searchContext, with: router, from: controller.value)
                         } label: {
                             support.icon.image()
                         }

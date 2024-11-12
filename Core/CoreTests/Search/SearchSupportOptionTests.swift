@@ -25,24 +25,26 @@ class SearchSupportOptionTests: CoreTestCase {
 
     func test_sheet_action() throws {
         // Given
+        let searchContext = CoreSearchContext(info: TestSearchInfo(value: 1))
         let action = SearchSupportSheet(content: Text(".. Sheet Content .."))
-        let startVC = UIViewController()
 
         // When
-        action.triggered(with: router, from: startVC)
+        action.trigger(for: searchContext, with: router, from: UIViewController())
 
         // Then
-        let presented = router.presented as? CoreHostingController<Text>
+        let presented = router.presented as? CoreHostingController<SearchHostingBaseView<TestSearchInfo, Text>>
         XCTAssertNotNil(presented)
     }
 
     func test_simple_action() throws {
         // Given
+        let searchContext = CoreSearchContext(info: TestSearchInfo(value: 1))
+
         var actionCalled = false
         let action = SearchSupportTrigger({ actionCalled = true })
 
         // When
-        action.triggered(with: router, from: UIViewController())
+        action.trigger(for: searchContext, with: router, from: UIViewController())
 
         // Then
         XCTAssertTrue(actionCalled)

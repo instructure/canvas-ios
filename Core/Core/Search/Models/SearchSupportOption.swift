@@ -45,11 +45,19 @@ public struct SearchSupportIcon {
 // MARK: - Actions
 
 public protocol SearchSupportAction {
-    func triggered(with router: Router, from controller: UIViewController)
+    func trigger<Info: SearchContextInfo>(
+        for searchContext: CoreSearchContext<Info>,
+        with router: Router,
+        from controller: UIViewController
+    )
 }
 
 public struct NoSearchSupportAction: SearchSupportAction {
-    public func triggered(with router: Router, from controller: UIViewController) {}
+    public func trigger<Info>(
+        for searchContext: CoreSearchContext<Info>,
+        with router: Router,
+        from controller: UIViewController
+    ) where Info : SearchContextInfo {}
 }
 
 public struct SearchSupportTrigger: SearchSupportAction {
@@ -59,7 +67,11 @@ public struct SearchSupportTrigger: SearchSupportAction {
         self.action = action
     }
 
-    public func triggered(with router: Router, from controller: UIViewController) {
+    public func trigger<Info>(
+        for searchContext: CoreSearchContext<Info>,
+        with router: Router,
+        from controller: UIViewController
+    ) where Info: SearchContextInfo {
         action()
     }
 }
@@ -70,9 +82,15 @@ public struct SearchSupportSheet<Content: View>: SearchSupportAction {
         self.content = content
     }
 
-    public func triggered(with router: Router, from controller: UIViewController) {
+    public func trigger<Info>(
+        for searchContext: CoreSearchContext<Info>,
+        with router: Router,
+        from controller: UIViewController
+    ) where Info: SearchContextInfo {
         router.show(
-            CoreHostingController(content()),
+            CoreHostingController(
+                SearchHostingBaseView(content: content(), searchContext: searchContext)
+            ),
             from: controller,
             options: .modal(.formSheet, embedInNav: true)
         )

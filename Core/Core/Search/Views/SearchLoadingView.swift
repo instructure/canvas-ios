@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import Lottie
 
 struct SearchLoadingView: View {
     var body: some View {
@@ -24,16 +25,16 @@ struct SearchLoadingView: View {
             Spacer()
             VStack {
                 Spacer()
-                Image("searching-panda", bundle: .core)
-                Text("Hang Tight, We're Fetching Your Results!")
+                LottieView(name: "panda_searching", loopMode: .loop)
+                    .frame(height: 170)
+                Text("Hang Tight, We're Fetching Your Results!", bundle: .core)
                     .textStyle(.heading)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
-                Text("We’re working hard to find the best matches for your search. This won't take long! Thank you for your patience.")
+                Text("We’re working hard to find the best matches for your search. This won't take long! Thank you for your patience.", bundle: .core)
                     .font(.regular16, lineHeight: .normal)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: 300)
-                ProgressView()
                 Spacer()
             }
             Spacer()

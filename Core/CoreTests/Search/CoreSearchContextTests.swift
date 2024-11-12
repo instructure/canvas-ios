@@ -74,7 +74,7 @@ class CoreSearchContextTests: CoreTestCase {
 
 // MARK: - Mocks
 
-private struct TestSearchInfo: SearchContextInfo {
+struct TestSearchInfo: SearchContextInfo {
     static var environmentKeyPath: EnvironmentKeyPath { \.testSearchContext }
     static var defaultInfo = TestSearchInfo()
 
@@ -85,7 +85,7 @@ private struct TestSearchInfo: SearchContextInfo {
     var clearButtonColor: UIColor?
 }
 
-private extension EnvironmentValues {
+extension EnvironmentValues {
     var testSearchContext: CoreSearchContext<TestSearchInfo> {
         get { self[TestSearchInfo.EnvironmentKey.self] }
         set { self[TestSearchInfo.EnvironmentKey.self] = newValue }

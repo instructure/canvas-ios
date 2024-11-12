@@ -31,7 +31,7 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         super.tearDown()
     }
 
-    private func setupTestSearch(enabled: Bool = true) -> CoreSearchHostingController<TestSearchInfo, TestSearchDescriptor, TestContentView> {
+    private func setupTestSearch(enabled: Bool = true) -> CoreSearchHostingController<TestSearchInfo, TestSearchDescriptor, Text> {
         let descriptor = TestSearchDescriptor()
         descriptor.enabledSubject.value = enabled
 
@@ -39,7 +39,7 @@ class CoreSearchHostingControllerTests: CoreTestCase {
             router: router,
             info: TestSearchInfo(),
             descriptor: descriptor,
-            content: TestContentView()
+            content: Text(verbatim: ".. Content ..")
         )
 
         let navigation = UINavigationController(rootViewController: controller)
@@ -159,27 +159,6 @@ private class TestSearchDescriptor: SearchDescriptor {
 
     func filterEditorView(_ filter: Binding<Never?>) -> Text {
         Text("Filter Editor")
-    }
-}
-
-private struct TestContentView: View {
-    var body: some View {
-        Text("Content")
-    }
-}
-
-private struct TestSearchInfo: SearchContextInfo {
-    static var environmentKeyPath: EnvironmentKeyPath { \.testSearchContext }
-    static var defaultInfo = TestSearchInfo()
-
-    var searchPrompt: String { "Search placeholder" }
-    var value: Int = 0
-}
-
-private extension EnvironmentValues {
-    var testSearchContext: CoreSearchContext<TestSearchInfo> {
-        get { self[TestSearchInfo.EnvironmentKey.self] }
-        set { self[TestSearchInfo.EnvironmentKey.self] = newValue }
     }
 }
 

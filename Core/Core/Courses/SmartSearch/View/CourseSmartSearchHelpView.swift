@@ -19,7 +19,7 @@
 import SwiftUI
 
 public struct CourseSmartSearchHelpView: View {
-
+    @Environment(\.courseSmartSearchContext) private var searchContext
     @Environment(\.viewController) private var controller
 
     public init() { }
@@ -36,7 +36,12 @@ public struct CourseSmartSearchHelpView: View {
                 Button("Close") {
                     controller.value.dismiss(animated: true)
                 }
+                .tint(contextColor)
             }
         }
+    }
+
+    private var contextColor: Color {
+        return Color(uiColor: searchContext.info.color ?? .textDarkest)
     }
 }
