@@ -140,7 +140,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
     func mock(_ file: APIFile, isExistingPDFFileWithAnnotations: Bool = false) {
         api.mock(controller.files, value: file)
-        let base = isExistingPDFFileWithAnnotations ? URL.Directories.documents : URL.Directories.temporary
+        let base = isExistingPDFFileWithAnnotations ? URL.Directories.annotatedPDFs : URL.Directories.temporary
         let url = base.appendingPathComponent("\(currentSession.uniqueID)/1/\(file.filename)")
         XCTAssertNoThrow(try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true))
         XCTAssertTrue(FileManager.default.createFile(atPath: url.path, contents: Data()))
@@ -230,15 +230,16 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
     func testPrepLocalURLWithExistingPDFFile() {
         let fileName = "\(currentSession.uniqueID)/1/File.pdf"
-        let docsUrl = URL.Directories.documents.appendingPathComponent(fileName)
+        let docsUrl = URL.Directories.annotatedPDFs.appendingPathComponent(fileName)
         mock(APIFile.make(filename: "File.pdf", contentType: "application/pdf", mime_class: "pdf"), isExistingPDFFileWithAnnotations: true)
         controller.view.layoutIfNeeded()
         let result = controller.prepareLocalURL(fileName: fileName, mimeClass: "pdf", location: URL.Directories.temporary)
+        print(result)
         XCTAssertEqual(result, docsUrl)
     }
 
     func testMutatedPdfFileSavesToDocumentsDirectory() {
-        let expectedURL = URL.Directories.documents.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
+        let expectedURL = URL.Directories.annotatedPDFs.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
         try? FileManager.default.removeItem(atPath: expectedURL.path)
         XCTAssertFalse( FileManager.default.fileExists(atPath: expectedURL.path) )
         DocViewerViewController.hasPSPDFKitLicense = true
