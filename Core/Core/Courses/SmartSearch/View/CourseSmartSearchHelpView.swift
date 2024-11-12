@@ -27,18 +27,48 @@ public struct CourseSmartSearchHelpView: View {
 
     public var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: spacing)  {
+            VStack(alignment: .leading, spacing: spacing) {
                 ParagraphView(title: Text("About Smart Search", bundle: .core)) {
-                    Text("Smart Search, currently in development for Canvas, uses semantic algorithms and AI to understand query context and semantic meaning, not just keyword matching.", bundle: .core)
+                    Text(
+                         """
+                         Smart Search, currently in development for Canvas, uses semantic \
+                         algorithms and AI to understand query context and semantic meaning, \
+                         not just keyword matching.
+                         """,
+                         bundle: .core
+                    )
                 }
                 ParagraphView(title: Text("Using Smart Search", bundle: .core)) {
-                    Text("Smart Search employs \"embeddings\" to mathematically represent content and queries for comparison, understanding keywords or general queries in any language, thanks to its multilingual AI model. Write search queries using keywords, questions, sentences, or whatever is most natural for you to describe what you are trying to find.", bundle: .core)
+                    Text(
+                        """
+                        Smart Search employs \"embeddings\" to mathematically represent \
+                        content and queries for comparison, understanding keywords or general \
+                        queries in any language, thanks to its multilingual AI model. Write \
+                        search queries using keywords, questions, sentences, or whatever is \
+                        most natural for you to describe what you are trying to find.
+                        """,
+                        bundle: .core
+                    )
                 }
                 ParagraphView(title: Text("Searchable Content", bundle: .core)) {
-                    Text("As of June 1, 2024, searchable items include content pages, announcements, discussion prompts, and assignment descriptions, with plans to expand.", bundle: .core)
+                    Text(
+                        """
+                        As of June 1, 2024, searchable items include content pages, \
+                        announcements, discussion prompts, and assignment descriptions, \
+                        with plans to expand.
+                        """,
+                        bundle: .core
+                    )
                 }
                 ParagraphView(title: Text("Contributing to Development", bundle: .core)) {
-                    Text("Smart Search is in feature preview. Feedback can be provided through result ratings and the Canvas Community space for Smart Search Beta. Canvas community space can be found here:", bundle: .core)
+                    Text(
+                        """
+                        Smart Search is in feature preview. Feedback can be provided through \
+                        result ratings and the Canvas Community space for Smart Search Beta. \
+                        Canvas community space can be found here:
+                        """,
+                        bundle: .core
+                    )
                     Link(destination: URL(string: "https://community.canvaslms.com/t5/Smart-Search/gh-p/smart_search")!) {
                         Text("Smart Search Community", bundle: .core)
                     }
@@ -94,7 +124,7 @@ private struct ParagraphView<Content: View>: View {
         let spacing = UIFontMetrics.default.scaledValue(for: 10)
         VStack(alignment: .leading, spacing: spacing) {
             title.textStyle(.heading)
-            content().font(.regular17)
+            content().font(.regular16)
         }
     }
 }
