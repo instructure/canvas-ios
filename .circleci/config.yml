@@ -65,6 +65,7 @@ jobs:
     steps:
       - checkout
       - bootstrap
+      - setup_app_secrets_dev
       - run: 
           name: Build E2ETests-Student
           command: |
@@ -89,7 +90,6 @@ jobs:
           version: "18.1"
       - attach_workspace:
           at: .
-      - setup_app_secrets_dev
       - run:
           name: Run E2ETests-Student
           command: |
