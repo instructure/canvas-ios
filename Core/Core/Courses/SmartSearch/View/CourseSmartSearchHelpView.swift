@@ -70,9 +70,9 @@ public struct CourseSmartSearchHelpView: View {
                 } label: {
                     Text("Close", bundle: .core)
                 }
+                .tint(contextColor)
             }
         }
-        .tint(contextColor)
     }
 
     private var spacing: CGFloat {
@@ -96,5 +96,11 @@ private struct ParagraphView<Content: View>: View {
             title.textStyle(.heading)
             content()
         }
+    }
+}
+
+#Preview {
+    NavigationView {
+        CourseSmartSearchHelpView()
     }
 }
