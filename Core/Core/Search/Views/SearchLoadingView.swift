@@ -26,7 +26,7 @@ struct SearchLoadingView: View {
             VStack {
                 Spacer()
                 LottieView(name: "panda_searching", loopMode: .loop)
-                    .frame(height: 170)
+                    .frame(width: 120, height: 170)
                 Text("Hang Tight, We're Fetching Your Results!", bundle: .core)
                     .textStyle(.heading)
                     .multilineTextAlignment(.center)
