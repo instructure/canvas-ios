@@ -26,7 +26,6 @@ public struct CourseSmartSearchHelpView: View {
     public init() { }
 
     public var body: some View {
-        let spacing = UIFontMetrics.default.scaledValue(for: 25)
         ScrollView {
             VStack(alignment: .leading, spacing: spacing)  {
                 ParagraphView(title: Text("About Smart Search", bundle: .core)) {
@@ -74,6 +73,10 @@ public struct CourseSmartSearchHelpView: View {
             }
         }
         .tint(contextColor)
+    }
+
+    private var spacing: CGFloat {
+        return UIFontMetrics.default.scaledValue(for: 25)
     }
 
     private var contextColor: Color {
