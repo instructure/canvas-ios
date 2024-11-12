@@ -38,6 +38,32 @@ platform :ios do
     )
   end
 
+  desc "Build E2ETests-Parent"
+  lane :e2e_tests_parent_build_only do
+    run_tests(
+      scheme: "E2ETests-Parent",
+      device: "iPhone 16",
+      derived_data_path: "dist",
+      build_for_testing: true
+    )
+  end
+
+  desc "Run E2ETests-Parent"
+  lane :e2e_tests_parent do |options|
+    run_tests(
+      code_coverage: true,
+      output_directory: "./reports",
+      result_bundle: true,
+      scheme: "E2ETests-Parent",
+      device: "iPhone 16",
+      only_testing: options[:tests],
+      derived_data_path: "dist",
+      test_without_building: true,
+      xcargs: "-test-timeouts-enabled YES -maximum-test-execution-time-allowance 60",
+      verbose: true
+    )
+  end
+
   desc "Build E2ETests-Student"
   lane :e2e_tests_student_build_only do
     run_tests(
