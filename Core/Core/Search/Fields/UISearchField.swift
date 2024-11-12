@@ -45,10 +45,7 @@ class UISearchField: UIView {
             container.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor)
         ])
 
-        let config = UIImage.SymbolConfiguration(textStyle: .caption1)
-        let icon = UIImageView(
-            image: UIImage(systemName: "magnifyingglass")?.applyingSymbolConfiguration(config)
-        )
+        let icon = UIImageView(image: UIImage.smartSearchSmallLine)
         icon.tintColor = .secondaryLabel
         icon.contentMode = .center
         icon.setContentHuggingPriority(.required, for: .horizontal)

@@ -41,7 +41,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
     // MARK: Bar Button Items
 
     private lazy var searchBarItem = UIBarButtonItem(
-        systemItem: .search,
+        image: .smartSearchLine,
         primaryAction: UIAction(
             handler: { [weak self] _ in
                 self?.showSearchField()
@@ -188,7 +188,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
         } set: { [weak self] newFilter in
             guard let self else { return }
             selectedFilter = newFilter
-            filterBarItem.image = newFilter != nil ? .filterSolid : .filterLine
+            filterBarItem.image = newFilter != nil ? .filterActiveSolid : .filterLine
         }
 
         let filterEditorVC = CoreHostingController(

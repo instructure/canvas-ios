@@ -216,6 +216,11 @@ public extension UIImage {
     static var warningBorderlessSolid: UIImage { UIImage(named: "warningBorderlessSolid", in: .core, compatibleWith: nil)! }
     static var xLine: UIImage { UIImage(named: "xLine", in: .core, compatibleWith: nil)! }
     static var xSolid: UIImage { UIImage(named: "xSolid", in: .core, compatibleWith: nil)! }
+
+    static var filterActiveSolid: UIImage { UIImage(named: "filterActiveSolid", in: .core, compatibleWith: nil)! }
+    static var smartSearchLine: UIImage { UIImage(named: "smartSearchLine", in: .core, compatibleWith: nil)! }
+    static var smartSearchSmallLine: UIImage { UIImage(named: "smartSearchSmallLine", in: .core, compatibleWith: nil)! }
+
     static var addAudioLine: UIImage { UIImage(named: "addAudioLine", in: .core, compatibleWith: nil)! }
     static var addCameraLine: UIImage { UIImage(named: "addCameraLine", in: .core, compatibleWith: nil)! }
     static var addDocumentLine: UIImage { UIImage(named: "addDocumentLine", in: .core, compatibleWith: nil)! }
@@ -466,6 +471,10 @@ public extension Image {
     static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
+
+    static var filterActiveSolid: Image { Image("filterActiveSolid", bundle: .core) }
+    static var smartSearchLine: Image { Image("smartSearchLine", bundle: .core) }
+    static var smartSearchSmallLine: Image { Image("smartSearchSmallLine", bundle: .core) }
 
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
