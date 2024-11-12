@@ -94,7 +94,7 @@ jobs:
           name: Run E2ETests-Student
           command: |
             # bundle exec fastlane e2e_tests_student
-            CLASSNAMES=$(circleci tests glob "StudentE2ETests/**/*.swift" \
+            CLASSNAMES=$(cd student && circleci tests glob "StudentE2ETests/**/*.swift" \
               | sed 's@/@.@g' \
               | sed 's/.swift//' \
               | circleci tests split --split-by=timings --timings-type=classname)
