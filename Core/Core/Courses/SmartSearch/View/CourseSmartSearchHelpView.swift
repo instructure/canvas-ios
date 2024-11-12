@@ -94,7 +94,7 @@ private struct ParagraphView<Content: View>: View {
         let spacing = UIFontMetrics.default.scaledValue(for: 10)
         VStack(alignment: .leading, spacing: spacing) {
             title.textStyle(.heading)
-            content()
+            content().font(.regular17)
         }
     }
 }
