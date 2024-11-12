@@ -41,7 +41,7 @@ platform :ios do
   desc "Build E2ETests-Student"
   lane :e2e_tests_student_build_only do
     run_tests(
-      scheme: "Student",
+      scheme: "E2ETests-Student",
       device: "iPhone 16",
       derived_data_path: "dist",
       build_for_testing: true
@@ -54,7 +54,7 @@ platform :ios do
       code_coverage: true,
       output_directory: "./reports",
       result_bundle: true,
-      scheme: "Student",
+      scheme: "E2ETests-Student",
       device: "iPhone 16",
       only_testing: options[:tests],
       derived_data_path: "dist",
