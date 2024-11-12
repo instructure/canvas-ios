@@ -25,11 +25,11 @@ struct SearchNoMatchView: View {
             VStack {
                 Spacer()
                 Image("no-match-panda", bundle: .core)
-                Text("No Perfect Match")
+                Text("No Perfect Match", bundle: .core)
                     .textStyle(.heading)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
-                Text("We didn’t find exactly what you’re looking for. Maybe try searching for something else?")
+                Text("We didn’t find exactly what you’re looking for. Maybe try searching for something else?", bundle: .core)
                     .font(.regular16, lineHeight: .normal)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: 300)

@@ -80,7 +80,9 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
             primaryAction: UIAction(
                 handler: { [weak self] _ in
                     guard let self else { return }
-                    support.action.triggered(with: self.router, from: self)
+                    support
+                        .action
+                        .trigger(for: self.searchContext, with: self.router, from: self)
                 }
             )
         )
