@@ -344,6 +344,10 @@ public extension XCUIElement {
         return descendants(matching: type).matching(value: value).firstMatch
     }
 
+    func find(placeholderValue: String, type: ElementType = .any) -> XCUIElement {
+        return descendants(matching: type).matching(placeholderValue: placeholderValue).firstMatch
+    }
+
     func find(type: ElementType) -> XCUIElement {
         return descendants(matching: type).firstMatch
     }
