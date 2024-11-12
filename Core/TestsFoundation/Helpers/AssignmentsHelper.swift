@@ -237,6 +237,7 @@ public class AssignmentsHelper: BaseHelper {
         public static var cancelButton: XCUIElement { app.find(id: "screen.dismiss") }
         public static var submitButton: XCUIElement { app.find(id: "TextSubmission.submitButton") }
         public static var textField: XCUIElement { app.find(id: "RichContentEditor.webView").find(type: .textField) }
+        public static var textView: XCUIElement { app.find(label: "Submission text", type: .textView) }
 
         public static var pandaFilePicker: XCUIElement { app.find(id: "PandaFilePicker") }
         public static var filesButton: XCUIElement { app.find(id: "FilePicker.filesButton") }
@@ -301,7 +302,8 @@ public class AssignmentsHelper: BaseHelper {
         PhotosAppHelper.selectAssignment(assignment: assignment)
         PhotosAppHelper.tapSubmitButton()
 
-        let result = PhotosAppHelper.photosApp.staticTexts["Submission Success!"].waitForExistence(timeout: 50)
+        let successMessage = PhotosAppHelper.photosApp.descendants(matching: .staticText).matching(label: "Submission Success!").firstMatch
+        let result = successMessage.waitForExistence(timeout: 50)
         if result {
             PhotosAppHelper.tapDoneButton()
             PhotosAppHelper.closeApp()

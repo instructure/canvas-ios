@@ -255,7 +255,7 @@ public extension XCUIElement {
     }
 
     @discardableResult
-    func writeText(text: String, hitGo: Bool = false, customApp: XCUIApplication? = nil) -> XCUIElement {
+    func writeText(text: String, hitGo: Bool = false, hitEnter: Bool = false, customApp: XCUIApplication? = nil) -> XCUIElement {
         let appInUse = customApp ?? app
         hit()
         let keyboard = appInUse.find(type: .keyboard)
@@ -264,6 +264,8 @@ public extension XCUIElement {
         typeText(text)
         if hitGo {
             keyboard.find(id: "Go", type: .button).hit()
+        } else if hitEnter {
+            typeText("\n")
         } else {
             keyboard.actionUntilElementCondition(action: .hideKeyboard, condition: .vanish)
         }

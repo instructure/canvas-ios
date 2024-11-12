@@ -117,7 +117,7 @@ public class DiscussionsHelper: BaseHelper {
         }
 
         public struct Reply {
-            public static var textInput: XCUIElement { app.find(labelContaining: "Rich Text Area", type: .other).find(type: .textField) }
+            public static var textInput: XCUIElement { app.find(labelContaining: "Rich Text Area", type: .other).find(type: .textView) }
             public static var attachButton: XCUIElement { app.find(label: "Attach", type: .button) }
             public static var replyButton: XCUIElement { app.find(label: "Reply", type: .button) }
             public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
