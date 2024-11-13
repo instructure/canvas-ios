@@ -358,7 +358,6 @@ extension Submission {
         }()
 
         // Graded check
-        
         switch desc {
         case .byStatus(.submitted):
             return needsGrading == false ? .graded : desc // Maintaining the old logic
