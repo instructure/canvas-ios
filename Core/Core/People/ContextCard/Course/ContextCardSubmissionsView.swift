@@ -33,7 +33,7 @@ struct ContextCardSubmissionsView: View {
                 submitted += 1
             case .missing:
                 missing += 1
-            case .notSubmitted, .onPaper, .noSubmission:
+            case .notSubmitted, .onPaper, .noSubmission, .graded:
                 break
             }
         }

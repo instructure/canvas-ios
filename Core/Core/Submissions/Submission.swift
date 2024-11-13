@@ -347,6 +347,7 @@ extension Submission {
         if late { return .late }
         if missing { return .missing }
         if submittedAt != nil { return .submitted }
+        if isGraded { return .graded }
 
         if let submissionTypes = assignment?.submissionTypes {
             if submissionTypes.contains(.on_paper) { return .onPaper }
@@ -362,6 +363,7 @@ public enum SubmissionStatus {
     case missing
     case submitted
     case onPaper
+    case graded
     case noSubmission
     case notSubmitted
 
@@ -377,6 +379,8 @@ public enum SubmissionStatus {
             return String(localized: "Not Submitted", bundle: .core)
         case .onPaper:
             return String(localized: "On Paper", bundle: .core)
+        case .graded:
+            return String(localized: "Graded", bundle: .core)
         case .noSubmission:
             return String(localized: "No Submission", bundle: .core)
         }
@@ -388,7 +392,7 @@ public enum SubmissionStatus {
             return .textWarning
         case .missing:
             return .textDanger
-        case .submitted:
+        case .submitted, .graded:
             return .textSuccess
         case .notSubmitted, .onPaper, .noSubmission:
             return .textDark
@@ -397,7 +401,7 @@ public enum SubmissionStatus {
 
     public var icon: UIImage {
         switch self {
-        case .submitted:
+        case .submitted, .graded:
             return .completeSolid
         case .late:
             return .clockSolid

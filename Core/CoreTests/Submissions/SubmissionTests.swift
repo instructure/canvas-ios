@@ -274,7 +274,7 @@ class SubmissionTests: CoreTestCase {
         let noSubmission = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
         noSubmission.assignment = assignment
 
-        XCTAssertEqual(notSubmitted.status, .noSubmission)
+        XCTAssertEqual(noSubmission.status, .noSubmission)
 
         // On Paper Submission
         assignment.submissionTypes = [.on_paper]
@@ -282,7 +282,17 @@ class SubmissionTests: CoreTestCase {
         let onPaperSubmission = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
         onPaperSubmission.assignment = assignment
 
-        XCTAssertEqual(notSubmitted.status, .onPaper)
+        XCTAssertEqual(onPaperSubmission.status, .onPaper)
+
+        // On Paper/Graded Submission
+        assignment.submissionTypes = [.on_paper]
+
+        let onPaperGradedSubmission = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
+        onPaperGradedSubmission.score = 7
+        onPaperGradedSubmission.workflowState = .graded
+        onPaperGradedSubmission.assignment = assignment
+
+        XCTAssertEqual(onPaperGradedSubmission.status, .graded)
     }
 }
 
