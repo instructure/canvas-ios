@@ -333,28 +333,82 @@ extension Submission {
         return excused == true || (score != nil && workflowState == .graded)
     }
 
-    /// Returns the appropriate status text.
-    /// If the submission has been submitted and it's graded already, then it returns "Graded".
-    /// Otherwise it returns the submissions's status.
-    /// Graded submissions that have been resubmitted will return "Submitted".
-    public var statusText: String {
-        status == .submitted && needsGrading == false
-            ? String(localized: "Graded", bundle: .core)
-            : status.text
-    }
-
     public var status: SubmissionStatus {
         if late { return .late }
         if missing { return .missing }
         if submittedAt != nil { return .submitted }
-        if isGraded { return .graded }
-
-        if let submissionTypes = assignment?.submissionTypes {
-            if submissionTypes.contains(.on_paper) { return .onPaper }
-            if submissionTypes.contains(.none) { return .noSubmission }
-        }
-
         return .notSubmitted
+    }
+
+    /// Returns the appropriate status description considering onPaper & noSubmission scenarios.
+    /// If the submission has been submitted and it's graded already, then it returns "Graded".
+    /// Otherwise it returns the submissions's status.
+    /// Graded submissions that have been resubmitted will return "Submitted".
+    public var statusDescription: SubmissionStatusDescription {
+        let desc: SubmissionStatusDescription = {
+            if case .notSubmitted = status {
+                if let submissionTypes = assignment?.submissionTypes {
+                    if submissionTypes.contains(.on_paper) { return .onPaper }
+                    if submissionTypes.contains(.none) { return .noSubmission }
+                }
+                return .byStatus(.notSubmitted)
+            } else {
+                return .byStatus(status)
+            }
+        }()
+
+        // Graded check
+        
+        switch desc {
+        case .byStatus(.submitted):
+            return needsGrading == false ? .graded : desc // Maintaining the old logic
+        case .onPaper, .noSubmission:
+            return isGraded ? .graded : desc
+        default:
+            return desc
+        }
+    }
+}
+
+public enum SubmissionStatusDescription: Equatable {
+    case byStatus(SubmissionStatus)
+    case onPaper
+    case noSubmission
+    case graded
+
+    public var text: String {
+        switch self {
+        case .byStatus(let status):
+            return status.text
+        case .onPaper:
+            return String(localized: "On Paper", bundle: .core)
+        case .graded:
+            return String(localized: "Graded", bundle: .core)
+        case .noSubmission:
+            return String(localized: "No Submission", bundle: .core)
+        }
+    }
+
+    public var color: UIColor {
+        switch self {
+        case .byStatus(let status):
+            return status.color
+        case .graded:
+            return .textSuccess
+        default:
+            return .textDark
+        }
+    }
+
+    public var icon: UIImage {
+        switch self {
+        case .byStatus(let status):
+            return status.icon
+        case .graded:
+            return .completeSolid
+        default:
+            return .noSolid
+        }
     }
 }
 
@@ -362,9 +416,6 @@ public enum SubmissionStatus {
     case late
     case missing
     case submitted
-    case onPaper
-    case graded
-    case noSubmission
     case notSubmitted
 
     public var text: String {
@@ -377,12 +428,6 @@ public enum SubmissionStatus {
             return String(localized: "Submitted", bundle: .core)
         case .notSubmitted:
             return String(localized: "Not Submitted", bundle: .core)
-        case .onPaper:
-            return String(localized: "On Paper", bundle: .core)
-        case .graded:
-            return String(localized: "Graded", bundle: .core)
-        case .noSubmission:
-            return String(localized: "No Submission", bundle: .core)
         }
     }
 
@@ -392,20 +437,20 @@ public enum SubmissionStatus {
             return .textWarning
         case .missing:
             return .textDanger
-        case .submitted, .graded:
+        case .submitted:
             return .textSuccess
-        case .notSubmitted, .onPaper, .noSubmission:
+        case .notSubmitted:
             return .textDark
         }
     }
 
     public var icon: UIImage {
         switch self {
-        case .submitted, .graded:
+        case .submitted:
             return .completeSolid
         case .late:
             return .clockSolid
-        case .missing, .notSubmitted, .onPaper, .noSubmission:
+        case .missing, .notSubmitted:
             return .noSolid
         }
     }

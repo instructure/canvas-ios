@@ -266,6 +266,21 @@ class SubmissionTests: CoreTestCase {
 
         let notSubmitted = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
         XCTAssertEqual(notSubmitted.status, .notSubmitted)
+    }
+
+    func testSubmissionStatusDescription() {
+        let late = Submission.make(from: .make(late: true))
+        XCTAssertEqual(late.statusDescription, .byStatus(.late))
+
+        let missing = Submission.make(from: .make(missing: true))
+        XCTAssertEqual(missing.statusDescription, .byStatus(.missing))
+
+        let submitted = Submission.make(from: .make(submitted_at: Date()))
+        submitted.typeRaw = SubmissionType.online_text_entry.rawValue
+        XCTAssertEqual(submitted.statusDescription, .byStatus(.submitted))
+
+        let notSubmitted = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
+        XCTAssertEqual(notSubmitted.statusDescription, .byStatus(.notSubmitted))
 
         // No Submission
         let assignment = Assignment.make()
@@ -274,7 +289,7 @@ class SubmissionTests: CoreTestCase {
         let noSubmission = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
         noSubmission.assignment = assignment
 
-        XCTAssertEqual(noSubmission.status, .noSubmission)
+        XCTAssertEqual(noSubmission.statusDescription, .noSubmission)
 
         // On Paper Submission
         assignment.submissionTypes = [.on_paper]
@@ -282,7 +297,7 @@ class SubmissionTests: CoreTestCase {
         let onPaperSubmission = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
         onPaperSubmission.assignment = assignment
 
-        XCTAssertEqual(onPaperSubmission.status, .onPaper)
+        XCTAssertEqual(onPaperSubmission.statusDescription, .onPaper)
 
         // On Paper/Graded Submission
         assignment.submissionTypes = [.on_paper]
@@ -292,7 +307,7 @@ class SubmissionTests: CoreTestCase {
         onPaperGradedSubmission.workflowState = .graded
         onPaperGradedSubmission.assignment = assignment
 
-        XCTAssertEqual(onPaperGradedSubmission.status, .graded)
+        XCTAssertEqual(onPaperGradedSubmission.statusDescription, .graded)
     }
 }
 

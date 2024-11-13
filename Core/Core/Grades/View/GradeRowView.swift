@@ -62,10 +62,10 @@ public struct GradeRowView: View {
                 .multilineTextAlignment(.leading)
 
             let submission = assignment.submissions?.first { $0.userID == userID }
-            let status = submission?.status ?? .notSubmitted
+            let statusDescription = submission?.statusDescription ?? .byStatus(.notSubmitted)
 
-            Text(submission?.statusText ?? "")
-                .foregroundStyle(Color(status.color))
+            Text(statusDescription.text)
+                .foregroundStyle(Color(statusDescription.color))
                 .font(.regular14)
         }
     }

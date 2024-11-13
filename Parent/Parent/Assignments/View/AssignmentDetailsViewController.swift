@@ -180,7 +180,8 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
 
     func update() {
         guard let assignment = assignment.first else { return }
-        let status = assignment.submissions?.first(where: { $0.userID == studentID })?.status ?? .notSubmitted
+        let submission = assignment.submissions?.first(where: { $0.userID == studentID })
+        let statusDescription = submission?.statusDescription ?? .byStatus(.notSubmitted)
         title = course.first?.name ?? String(localized: "Assignment Details", bundle: .parent)
 
         titleLabel.text = assignment.name
@@ -191,11 +192,11 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             return assignment.pointsPossibleText
         }()
         statusIconView.isHidden = assignment.submissionStatusIsHidden
-        statusIconView.image = status.icon
-        statusIconView.tintColor = status.color
+        statusIconView.image = statusDescription.icon
+        statusIconView.tintColor = statusDescription.color
         statusLabel.isHidden = assignment.submissionStatusIsHidden
-        statusLabel.textColor = status.color
-        statusLabel?.text = assignment.submissions?.first(where: { $0.userID == studentID })?.statusText
+        statusLabel.textColor = statusDescription.color
+        statusLabel?.text = statusDescription.text
         dateLabel.text = assignment.dueAt?.dateTimeString ?? String(localized: "No Due Date", bundle: .parent)
         reminderSwitch.isEnabled = true
         reminderDateButton.isEnabled = true
