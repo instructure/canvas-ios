@@ -81,7 +81,7 @@ class StudioVideoPosterInteractorLiveTests: CoreTestCase {
 
         // THEN
         XCTAssertEqual(posterURL, nil)
-        XCTAssertEqual(developerAnalytics.totalErrorCount, 0)
+        XCTAssertEqual(remoteLogHandler.totalErrorCount, 0)
     }
 
     func testReportsUnknownErrors() {
@@ -98,8 +98,8 @@ class StudioVideoPosterInteractorLiveTests: CoreTestCase {
 
         // THEN
         XCTAssertEqual(posterURL, nil)
-        XCTAssertEqual(developerAnalytics.totalErrorCount, 1)
-        XCTAssertEqual(developerAnalytics.lastErrorName, "Studio Offline Sync Failed")
-        XCTAssertEqual(developerAnalytics.lastErrorReason, "random error")
+        XCTAssertEqual(remoteLogHandler.totalErrorCount, 1)
+        XCTAssertEqual(remoteLogHandler.lastErrorName, "Studio Offline Sync Failed")
+        XCTAssertEqual(remoteLogHandler.lastErrorReason, "random error")
     }
 }

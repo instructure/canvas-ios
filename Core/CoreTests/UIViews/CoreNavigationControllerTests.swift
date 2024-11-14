@@ -34,15 +34,15 @@ class CoreNavigationControllerTests: CoreTestCase {
 
         // THEN
         XCTAssertEqual(
-            developerAnalytics.lastErrorName,
+            remoteLogHandler.lastErrorName,
             "Pushing nav controller from CoreNavigationController was prevented"
         )
         XCTAssertEqual(
-            developerAnalytics.lastErrorReason,
+            remoteLogHandler.lastErrorReason,
             "CoreNavigationController [EmptyViewController, EmptyView]"
         )
         XCTAssertEqual(
-            developerAnalytics.totalErrorCount,
+            remoteLogHandler.totalErrorCount,
             1
         )
     }

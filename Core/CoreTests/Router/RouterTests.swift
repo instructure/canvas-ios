@@ -417,13 +417,13 @@ class RouterTests: CoreTestCase {
                 return UIViewController()
             }
         ]) { _, _, _, _ in }
-        let developerAnalyticsHandler = MockRemoteLogHandler()
-        RemoteLogger.shared.handler = developerAnalyticsHandler
+        let mockRemoteLogHandler = MockRemoteLogHandler()
+        RemoteLogger.shared.handler = mockRemoteLogHandler
 
         router.route(to: URLComponents(string: "/courses/1234/assignments")!, from: mockView, options: .modal())
 
         XCTAssertEqual(
-            developerAnalyticsHandler.breadCrumbs,
+            mockRemoteLogHandler.breadCrumbs,
             ["Routing to: /courses/:courseId/assignments (UIViewController)"]
         )
     }
@@ -431,13 +431,13 @@ class RouterTests: CoreTestCase {
     func testAnalyticsReportOnShow() {
         let mockView = MockViewController()
         let router = Router(routes: []) { _, _, _, _ in }
-        let developerAnalyticsHandler = MockRemoteLogHandler()
-        RemoteLogger.shared.handler = developerAnalyticsHandler
+        let mockRemoteLogHandler = MockRemoteLogHandler()
+        RemoteLogger.shared.handler = mockRemoteLogHandler
 
         router.show(mockView, from: UIViewController(), analyticsRoute: "/courses/:courseId/assignments")
 
         XCTAssertEqual(
-            developerAnalyticsHandler.breadCrumbs,
+            mockRemoteLogHandler.breadCrumbs,
             ["Routing to: /courses/:courseId/assignments (MockViewController)"]
         )
     }
@@ -503,13 +503,13 @@ class RouterTests: CoreTestCase {
         let mockViewController = MockViewController()
         let testee = Router(routes: []) { _, _, _, _ in }
         let externalURL = URL(string: "https://example.com/courses")!
-        let developerAnalyticsHandler = MockRemoteLogHandler()
-        RemoteLogger.shared.handler = developerAnalyticsHandler
+        let mockRemoteLogHandler = MockRemoteLogHandler()
+        RemoteLogger.shared.handler = mockRemoteLogHandler
 
         testee.route(to: externalURL, from: mockViewController)
 
         XCTAssertEqual(
-            developerAnalyticsHandler.breadCrumbs,
+            mockRemoteLogHandler.breadCrumbs,
             ["Routing to: /external_url (unknown)"]
         )
     }

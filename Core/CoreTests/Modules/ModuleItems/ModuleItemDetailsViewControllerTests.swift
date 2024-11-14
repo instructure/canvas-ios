@@ -239,8 +239,8 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
     }
 
     func testReportsScreenViewForLoadedChildViewController() {
-        let mockDeveloperAnalyticsHandler = MockRemoteLogHandler()
-        RemoteLogger.shared.handler = mockDeveloperAnalyticsHandler
+        let mockRemoteLogHandler = MockRemoteLogHandler()
+        RemoteLogger.shared.handler = mockRemoteLogHandler
         router.mock("/courses/1/assignments/2?origin=module_item_details") {
             DetailViewController()
         }
@@ -256,7 +256,7 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
 
         XCTAssertEqual(
-            mockDeveloperAnalyticsHandler.breadCrumbs.last,
+            mockRemoteLogHandler.breadCrumbs.last,
             "Routing to: /courses/:courseId (DetailViewController)"
         )
     }

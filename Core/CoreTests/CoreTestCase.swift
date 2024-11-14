@@ -34,7 +34,7 @@ class CoreTestCase: XCTestCase {
     var router: TestRouter!
     var logger: TestLogger!
     var analytics = MockAnalyticsHandler()
-    var developerAnalytics = MockRemoteLogHandler()
+    var remoteLogHandler = MockRemoteLogHandler()
 
     lazy var environment = TestEnvironment()
     var currentSession: LoginSession!
@@ -84,7 +84,7 @@ class CoreTestCase: XCTestCase {
         UUID.reset()
         ExperimentalFeature.allEnabled = false
         Analytics.shared.handler = analytics
-        RemoteLogger.shared.handler = developerAnalytics
+        RemoteLogger.shared.handler = remoteLogHandler
         environment.app = .student
         environment.window = window
         environment.k5.userDidLogout()
