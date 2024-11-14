@@ -21,17 +21,20 @@ import Core
 struct HProgram {
     let course: HCourse
     let modules: [HModule]
+    var percentage: Double = 0.0
+    var progressState: ProgressState = .notStarted
 
     var name: String {
         course.name
     }
 
     var progress: Double {
-        0.75
+        percentage / 100
     }
 
     var progressString: String {
-        "75%"
+        let percentageRound = round(percentage * 100) / 100.0
+        return "\(percentageRound)%"
     }
 
     var institutionName: String {
@@ -78,5 +81,24 @@ struct HProgram {
 extension HProgram: Identifiable {
     var id: String {
         course.id
+    }
+}
+
+extension HProgram {
+    enum ProgressState: String, CaseIterable {
+        case onTrack = "On Track"
+        case notStarted = "Not Started"
+        case completed = "Completed"
+
+        init(from value: Double) {
+            switch value {
+            case 0:
+                self = .notStarted
+            case 100:
+                self = .completed
+            default:
+                self = .onTrack
+            }
+        }
     }
 }

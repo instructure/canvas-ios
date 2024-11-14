@@ -64,8 +64,8 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
         variables = Variables(courseID: courseID, filter: filter, cursor: cursor, pageSize: pageSize)
     }
 
-    static let operationName = "AssignmentList"
-    static let query = """
+    public static let operationName = "AssignmentList"
+    public static let query = """
         query \(operationName)($courseID: ID!, $pageSize: Int!, $cursor: String, $filter: AssignmentFilter!) {
           course(id: $courseID) {
             name

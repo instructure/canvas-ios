@@ -17,10 +17,52 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
 
-final class GetProgramsInteractor {
+protocol GetProgramsInteractor {
+    func getPrograms() -> AnyPublisher<[HProgram], Never>
+}
+
+final class GetProgramsInteractorLive: GetProgramsInteractor {
+    // MARK: - Properties
+
+    private let appEnvironment: AppEnvironment
+    private let scheduler: AnySchedulerOf<DispatchQueue>
+
+    // MARK: - Init
+    private var subscriptions = Set<AnyCancellable>()
+    init(
+        appEnvironment: AppEnvironment,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
+        self.appEnvironment = appEnvironment
+        self.scheduler = scheduler
+    }
+
+    // MARK: - Functions
+
     func getPrograms() -> AnyPublisher<[HProgram], Never> {
+        Publishers.Zip(fetchPrograms(), fetchCourseProgression())
+            .receive(on: scheduler)
+            .map { programs, coursesProgression in
+                programs.map { program in
+                    guard let progression = coursesProgression.first(
+                        where: { $0.courseID == program.course.id }) else {
+                        return program
+                    }
+
+                    var updatedProgram = program
+                    let completionPercentage = progression.completionPercentage
+                    updatedProgram.percentage = completionPercentage
+                    updatedProgram.progressState = HProgram.ProgressState(from: completionPercentage)
+                    return updatedProgram
+                }
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func fetchPrograms() -> AnyPublisher<[HProgram], Never> {
         ReactiveStore(useCase: GetCourses())
             .getEntities()
             .replaceError(with: [])
@@ -41,6 +83,14 @@ final class GetProgramsInteractor {
                     }
                     .collect()
             }
+            .eraseToAnyPublisher()
+    }
+
+    private func fetchCourseProgression() -> AnyPublisher<[CDCourseProgression], Never> {
+        let userId = appEnvironment.currentSession?.userID ?? ""
+        return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId))
+            .getEntities()
+            .replaceError(with: [])
             .eraseToAnyPublisher()
     }
 }
