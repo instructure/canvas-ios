@@ -146,6 +146,42 @@ public struct LoginSession: Codable, Hashable {
         )
     }
 
+    // MARK: - Migrate Previously-saved annotated PDF documents
+
+    public func migrateSavedAnnotatedPDFs() {
+        let fileManager = FileManager.default
+
+        do {
+            // Make sure `AnnotatedPDFs` folder exists.
+            try fileManager.createDirectory(at: URL.Directories.annotatedPDFs, withIntermediateDirectories: true)
+
+            // Fetch `Documents` shallow contents
+            let urls = try fileManager.contentsOfDirectory(at: URL.Directories.documents, includingPropertiesForKeys: nil)
+
+            guard let folderUrl = urls.first(where: { $0.hasDirectoryPath && $0.lastPathComponent == uniqueID })
+            else { return }
+
+            print("Moving previously-saved documents folder for session (\(uniqueID)) ..")
+
+            let dest = URL.Directories
+                .annotatedPDFs
+                .appending(component: folderUrl.lastPathComponent, directoryHint: .isDirectory)
+
+            if fileManager.fileExists(atPath: dest.path()) {
+                try? fileManager
+                    .contentsOfDirectory(at: folderUrl, includingPropertiesForKeys: nil)
+                    .forEach({ content in
+                        try fileManager.moveItem(at: content, to: dest.appending(component: content.lastPathComponent))
+                    })
+            } else {
+                try? fileManager.moveItem(at: folderUrl, to: dest)
+            }
+
+        } catch {
+            Logger.shared.error("Failure moving previously saved PDFs to AnnotatedPDFs folder: \(error.localizedDescription)")
+        }
+    }
+
     // MARK: - Persistence into keychain
 
     public enum Key: String, CaseIterable {
