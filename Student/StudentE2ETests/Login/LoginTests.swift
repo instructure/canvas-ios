@@ -154,11 +154,11 @@ class LoginTests: E2ETestCase {
         let emailInput = LoginHelper.Login.emailField.waitUntil(.visible)
         XCTAssertTrue(emailInput.isVisible)
 
-        let requestPasswordButton = LoginHelper.Login.loginButton.waitUntil(.visible)
+        let requestPasswordButton = LoginHelper.Login.requestPasswordButton.waitUntil(.visible)
         XCTAssertTrue(requestPasswordButton.isVisible)
         XCTAssertTrue(requestPasswordButton.hasLabel(label: "Request Password"))
 
-        let backToLoginButton = LoginHelper.Login.forgotPasswordButton.waitUntil(.visible)
+        let backToLoginButton = LoginHelper.Login.backToLoginButton.waitUntil(.visible)
         XCTAssertTrue(backToLoginButton.isVisible)
         XCTAssertTrue(backToLoginButton.hasLabel(label: "Back to Login"))
     }
