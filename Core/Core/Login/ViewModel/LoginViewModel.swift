@@ -25,7 +25,7 @@ public class LoginViewModel {
     public func showLoginView(on window: UIWindow, loginDelegate: LoginDelegate, app: App) {
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft) {
             window.rootViewController = LoginNavigationController.create(loginDelegate: loginDelegate, app: app)
-            DeveloperAnalytics.shared.logBreadcrumb(route: "/login", viewController: window.rootViewController)
+            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window.rootViewController)
         }
     }
 }

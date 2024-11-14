@@ -418,7 +418,7 @@ class RouterTests: CoreTestCase {
             }
         ]) { _, _, _, _ in }
         let developerAnalyticsHandler = MockDeveloperAnalyticsHandler()
-        DeveloperAnalytics.shared.handler = developerAnalyticsHandler
+        RemoteLogger.shared.handler = developerAnalyticsHandler
 
         router.route(to: URLComponents(string: "/courses/1234/assignments")!, from: mockView, options: .modal())
 
@@ -432,7 +432,7 @@ class RouterTests: CoreTestCase {
         let mockView = MockViewController()
         let router = Router(routes: []) { _, _, _, _ in }
         let developerAnalyticsHandler = MockDeveloperAnalyticsHandler()
-        DeveloperAnalytics.shared.handler = developerAnalyticsHandler
+        RemoteLogger.shared.handler = developerAnalyticsHandler
 
         router.show(mockView, from: UIViewController(), analyticsRoute: "/courses/:courseId/assignments")
 
@@ -504,7 +504,7 @@ class RouterTests: CoreTestCase {
         let testee = Router(routes: []) { _, _, _, _ in }
         let externalURL = URL(string: "https://example.com/courses")!
         let developerAnalyticsHandler = MockDeveloperAnalyticsHandler()
-        DeveloperAnalytics.shared.handler = developerAnalyticsHandler
+        RemoteLogger.shared.handler = developerAnalyticsHandler
 
         testee.route(to: externalURL, from: mockViewController)
 

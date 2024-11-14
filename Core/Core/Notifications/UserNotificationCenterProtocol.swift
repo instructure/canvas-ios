@@ -54,7 +54,7 @@ public extension UserNotificationCenterProtocol {
         Future<Void, Error> { [self] promise in
             add(request) { error in
                 if let error {
-                    DeveloperAnalytics.shared.logError(name: "Failed to schedule local notification",
+                    RemoteLogger.shared.logError(name: "Failed to schedule local notification",
                                               reason: error.localizedDescription)
                     promise(.failure(error))
                 } else {

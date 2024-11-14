@@ -84,7 +84,7 @@ class CoreTestCase: XCTestCase {
         UUID.reset()
         ExperimentalFeature.allEnabled = false
         Analytics.shared.handler = analytics
-        DeveloperAnalytics.shared.handler = developerAnalytics
+        RemoteLogger.shared.handler = developerAnalytics
         environment.app = .student
         environment.window = window
         environment.k5.userDidLogout()

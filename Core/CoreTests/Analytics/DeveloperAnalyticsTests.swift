@@ -22,12 +22,12 @@ import TestsFoundation
 
 class DeveloperAnalyticsTests: XCTestCase {
     private var testAnalyticsHandler: MockDeveloperAnalyticsHandler!
-    private var testee: DeveloperAnalytics!
+    private var testee: RemoteLogger!
 
     override func setUp() {
         super.setUp()
         testAnalyticsHandler = MockDeveloperAnalyticsHandler()
-        testee = DeveloperAnalytics()
+        testee = RemoteLogger()
         testee.handler = testAnalyticsHandler
     }
 

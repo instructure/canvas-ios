@@ -108,7 +108,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
             }
             .catch { (error: Error) -> Just<Void> in
                 Logger.shared.error("Studio Offline Sync Failed: " + error.localizedDescription)
-                DeveloperAnalytics.shared.logError(
+                RemoteLogger.shared.logError(
                     name: "Studio Offline Sync Failed",
                     reason: error.localizedDescription
                 )

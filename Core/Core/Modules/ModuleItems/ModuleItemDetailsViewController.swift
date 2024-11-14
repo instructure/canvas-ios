@@ -153,7 +153,7 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
             let itemViewController = env.router.match(preparedURL)
 
             if let itemViewController, let routeTemplate = env.router.template(for: preparedURL) {
-                DeveloperAnalytics.shared.logBreadcrumb(route: routeTemplate, viewController: itemViewController)
+                RemoteLogger.shared.logBreadcrumb(route: routeTemplate, viewController: itemViewController)
             }
 
             return itemViewController

@@ -80,7 +80,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .student)
             window?.makeKeyAndVisible()
-            DeveloperAnalytics.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
+            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
 
         return true
@@ -357,7 +357,7 @@ extension StudentAppDelegate {
             FirebaseApp.configure()
             configureRemoteConfig()
             Core.Analytics.shared.handler = self
-            DeveloperAnalytics.shared.handler = self
+            RemoteLogger.shared.handler = self
         }
     }
 
@@ -372,7 +372,7 @@ extension StudentAppDelegate {
     }
 }
 
-extension StudentAppDelegate: DeveloperAnalyticsHandler {
+extension StudentAppDelegate: RemoteLogHandler {
 
     func handleBreadcrumb(_ name: String) {
         Firebase.Crashlytics.crashlytics().log(name)
@@ -426,7 +426,7 @@ extension StudentAppDelegate {
             let loginNav = LoginNavigationController.create(loginDelegate: self, app: .student)
             loginNav.login(host: host)
             window?.rootViewController = loginNav
-            DeveloperAnalytics.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
+            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
         // the student app doesn't have as predictable of a tab bar setup and for
         // several views, does not have a route configured for them so for now we

@@ -16,16 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public protocol DeveloperAnalyticsHandler: AnyObject {
+public protocol RemoteLogHandler: AnyObject {
     func handleError(_ name: String, reason: String)
     func handleBreadcrumb(_ name: String)
 }
 
 /// This entity encapsulates methods that log debug data for developers to make crash / error debugging easier.
-public struct DeveloperAnalytics {
-    public static var shared: DeveloperAnalytics = DeveloperAnalytics()
+public struct RemoteLogger {
+    public static var shared: RemoteLogger = RemoteLogger()
 
-    public weak var handler: DeveloperAnalyticsHandler?
+    public weak var handler: RemoteLogHandler?
 
     #if DEBUG
     /// If this property is true, then in addition to reporting to the analytics handler, events are also printed to the console.
@@ -35,7 +35,7 @@ public struct DeveloperAnalytics {
     public init() {}
 
     /// Use this method to collect routing events which will be uploaded when a crash happens
-    /// so we'll be better be able to locate and reproduce the crash based on the routes log.
+    /// so we'll be better able to locate and reproduce the crash based on the routes log.
     public func logBreadcrumb(
         route: String,
         viewController: UIViewController? = nil

@@ -114,7 +114,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
     private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {
         let map = ["dashboard", "calendar", "todo", "conversations"]
         let event = map[tabIndex]
-        DeveloperAnalytics.shared.logBreadcrumb(route: "/tabs/" + event, viewController: viewController)
+        RemoteLogger.shared.logBreadcrumb(route: "/tabs/" + event, viewController: viewController)
     }
 
     @objc private func checkForPolicyChanges() {

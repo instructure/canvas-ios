@@ -67,7 +67,7 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
         } else {
             let errorMessage = error?.localizedDescription ?? String(localized: "Something went wrong", bundle: .core)
             Analytics.shared.logEvent("error_loading_assignments", parameters: ["error": errorMessage])
-            DeveloperAnalytics.shared.logError(name: "Assignment list load failed", reason: error?.localizedDescription)
+            RemoteLogger.shared.logError(name: "Assignment list load failed", reason: error?.localizedDescription)
             result = .failure(.failedToGetAssignments)
         }
 

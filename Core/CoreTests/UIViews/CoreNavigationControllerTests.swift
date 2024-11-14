@@ -24,7 +24,6 @@ class CoreNavigationControllerTests: CoreTestCase {
 
     func testPushNavigationControllerNotCrashes() {
         let testee = CoreNavigationController()
-        testee.developerAnalytics.handler = developerAnalytics
 
         // Pushing a subclass of UINavigationController to check if our guard works for subclasses as well
         let navigationController = CoreNavigationController(rootViewController: EmptyViewController())
@@ -36,7 +35,7 @@ class CoreNavigationControllerTests: CoreTestCase {
         // THEN
         XCTAssertEqual(
             developerAnalytics.lastErrorName,
-            "Pushing nav controller was prevented"
+            "Pushing nav controller from CoreNavigationController was prevented"
         )
         XCTAssertEqual(
             developerAnalytics.lastErrorReason,

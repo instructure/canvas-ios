@@ -34,7 +34,7 @@ extension UNCalendarNotificationTrigger {
         }()
 
         guard let triggerDate = Calendar.current.date(byAdding: negativeBeforeTime, to: assignmentDueDate) else {
-            DeveloperAnalytics.shared.logError(
+            RemoteLogger.shared.logError(
                 name: "Could not create assignment reminder trigger date",
                 reason: "negativeBeforeTime: \(negativeBeforeTime)"
             )

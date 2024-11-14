@@ -67,7 +67,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .teacher)
             window?.makeKeyAndVisible()
-            DeveloperAnalytics.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
+            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
 
         handleLaunchOptionsNotifications(launchOptions)
@@ -412,12 +412,12 @@ extension TeacherAppDelegate {
             FirebaseApp.configure()
             configureRemoteConfig()
             Core.Analytics.shared.handler = self
-            DeveloperAnalytics.shared.handler = self
+            RemoteLogger.shared.handler = self
         }
     }
 }
 
-extension TeacherAppDelegate: DeveloperAnalyticsHandler {
+extension TeacherAppDelegate: RemoteLogHandler {
 
     func handleBreadcrumb(_ name: String) {
         Firebase.Crashlytics.crashlytics().log(name)
@@ -437,7 +437,7 @@ extension TeacherAppDelegate {
             let loginNav = LoginNavigationController.create(loginDelegate: self, app: .teacher)
             loginNav.login(host: host)
             window?.rootViewController = loginNav
-            DeveloperAnalytics.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
+            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
 
         let tabRoutes = [["/", "", "/courses", "/groups"], ["/to-do"], ["/conversations", "/inbox"]]

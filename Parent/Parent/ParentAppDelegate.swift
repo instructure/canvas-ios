@@ -61,7 +61,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             userDidLogin(session: session)
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .parent)
-            DeveloperAnalytics.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
+            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
         window?.makeKeyAndVisible()
         return true
@@ -171,7 +171,7 @@ extension ParentAppDelegate: LoginDelegate {
         disableTracking()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .parent)
-            DeveloperAnalytics.shared.logBreadcrumb(route: "/login", viewController: window.rootViewController)
+            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window.rootViewController)
         }, completion: nil)
     }
 
@@ -183,7 +183,7 @@ extension ParentAppDelegate: LoginDelegate {
                 let safari = SFSafariViewController(url: url)
                 safari.modalPresentationStyle = .fullScreen
                 topVC.present(safari, animated: true, completion: nil)
-                DeveloperAnalytics.shared.logBreadcrumb(route: "/external_url")
+                RemoteLogger.shared.logBreadcrumb(route: "/external_url")
             }
         } else {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -279,12 +279,12 @@ extension ParentAppDelegate {
             FirebaseApp.configure()
             configureRemoteConfig()
             Analytics.shared.handler = self
-            DeveloperAnalytics.shared.handler = self
+            RemoteLogger.shared.handler = self
         }
     }
 }
 
-extension ParentAppDelegate: DeveloperAnalyticsHandler {
+extension ParentAppDelegate: RemoteLogHandler {
 
     func handleBreadcrumb(_ name: String) {
         Firebase.Crashlytics.crashlytics().log(name)

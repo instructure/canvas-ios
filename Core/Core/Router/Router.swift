@@ -160,7 +160,7 @@ open class Router {
         let url = cleanURL(url)
 
         if url.isExternalWebsite, !url.originIsNotification, let url = url.url {
-            DeveloperAnalytics.shared.logBreadcrumb(route: "/external_url")
+            RemoteLogger.shared.logBreadcrumb(route: "/external_url")
             AppEnvironment.shared.loginDelegate?.openExternalURL(url)
             return
         }
@@ -196,7 +196,7 @@ open class Router {
     ) {
         // Log the screen view for Crashlytics before presentation so we can see where a crash occurs if it happens during presentation
         if let analyticsRoute {
-            DeveloperAnalytics.shared.logBreadcrumb(route: analyticsRoute, viewController: view)
+            RemoteLogger.shared.logBreadcrumb(route: analyticsRoute, viewController: view)
         }
 
         if view is UIAlertController { return from.present(view, animated: true, completion: completion) }
@@ -236,7 +236,7 @@ open class Router {
                 // and will cause a crash since `view` already has a parent view controller (its freshly created navigation controller).
                 // This case is most probably an unintended navigation so we swallow it.
                 if presenterViewWithoutNavController, viewIsEmbeddedInNavController {
-                    DeveloperAnalytics.shared.logError(name: "Invalid presentation state.", reason: nil)
+                    RemoteLogger.shared.logError(name: "Invalid presentation state.", reason: nil)
                 } else {
                     from.show(view, sender: nil)
                 }
@@ -278,7 +278,7 @@ open class Router {
     // MARK: - External URL
 
     public static func open(url: URLComponents) {
-        DeveloperAnalytics.shared.logBreadcrumb(route: "/external_url")
+        RemoteLogger.shared.logBreadcrumb(route: "/external_url")
 
         var components = url
         // Canonicalize relative & schemes we know about.
