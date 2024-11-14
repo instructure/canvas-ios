@@ -33,6 +33,7 @@ public struct APISubmission: Codable, Equatable {
     var grade: String?
     var graded_at: Date?
     let grade_matches_current_submission: Bool
+    let grading_period_id: ID?
     let group: APISubmissionGroup?
     let id: ID
     let late: Bool?
@@ -152,6 +153,7 @@ extension APISubmission {
         grade: String? = nil,
         graded_at: Date? = nil,
         grade_matches_current_submission: Bool = true,
+        grading_period_id: String? = nil,
         group: APISubmissionGroup? = nil,
         id: String = "1",
         late: Bool = false,
@@ -187,6 +189,7 @@ extension APISubmission {
             grade: grade,
             graded_at: graded_at,
             grade_matches_current_submission: grade_matches_current_submission,
+            grading_period_id: ID(grading_period_id),
             group: group,
             id: ID(id),
             late: late,
