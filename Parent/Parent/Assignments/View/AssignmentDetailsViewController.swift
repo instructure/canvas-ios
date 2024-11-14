@@ -181,7 +181,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     func update() {
         guard let assignment = assignment.first else { return }
         let submission = assignment.submissions?.first(where: { $0.userID == studentID })
-        let statusDescription = submission?.statusDescription ?? .byStatus(.notSubmitted)
+        let statusDescription = submission?.statusDescription ?? .usingStatus(.notSubmitted)
         title = course.first?.name ?? String(localized: "Assignment Details", bundle: .parent)
 
         titleLabel.text = assignment.name

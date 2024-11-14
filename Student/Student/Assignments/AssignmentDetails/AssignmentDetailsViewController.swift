@@ -385,7 +385,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         nameLabel?.text = assignment.name
         pointsLabel?.text = hideScores ? nil : assignment.pointsPossibleText
         pointsLabel?.isHidden = pointsLabel?.text == nil
-        let statusDescription = assignment.submission?.statusDescription ?? .byStatus(.notSubmitted)
+        let statusDescription = assignment.submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
         statusIconView?.isHidden = assignment.submissionStatusIsHidden
         statusIconView?.image = statusDescription.icon
         statusIconView?.tintColor = statusDescription.color

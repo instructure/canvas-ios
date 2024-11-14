@@ -333,33 +333,29 @@ extension Submission {
         return excused == true || (score != nil && workflowState == .graded)
     }
 
-    public var status: SubmissionStatus {
-        if late { return .late }
-        if missing { return .missing }
-        if submittedAt != nil { return .submitted }
-        return .notSubmitted
-    }
-
-    /// Returns the appropriate status description considering onPaper & noSubmission scenarios.
-    /// If the submission has been submitted and it's graded already, then it returns "Graded".
+    /// Returns the appropriate display properties for submission, with consideration for
+    /// `onPaper` & `noSubmission` submission type.
+    /// If the submission has been submitted and it's graded already, then it returns `Graded`.
     /// Otherwise it returns the submissions's status.
-    /// Graded submissions that have been resubmitted will return "Submitted".
-    public var statusDescription: SubmissionStatusDescription {
-        let desc: SubmissionStatusDescription = {
+    /// `Graded` submissions that have been resubmitted will return `Submitted`.
+    /// For `onPaper` & `noSubmission`, it would return `Graded` only for when the submission
+    /// **has a** grade associated with it.
+    public var stateDisplayProperties: SubmissionStateDisplayProperties {
+        let desc: SubmissionStateDisplayProperties = {
             if case .notSubmitted = status {
                 if let submissionTypes = assignment?.submissionTypes {
                     if submissionTypes.contains(.on_paper) { return .onPaper }
                     if submissionTypes.contains(.none) { return .noSubmission }
                 }
-                return .byStatus(.notSubmitted)
+                return .usingStatus(.notSubmitted)
             } else {
-                return .byStatus(status)
+                return .usingStatus(status)
             }
         }()
 
         // Graded check
         switch desc {
-        case .byStatus(.submitted):
+        case .usingStatus(.submitted):
             return needsGrading == false ? .graded : desc // Maintaining the old logic
         case .onPaper, .noSubmission:
             return isGraded ? .graded : desc
@@ -367,46 +363,57 @@ extension Submission {
             return desc
         }
     }
+
+    public var status: SubmissionStatus {
+        if late { return .late }
+        if missing { return .missing }
+        if submittedAt != nil { return .submitted }
+        return .notSubmitted
+    }
 }
 
-public enum SubmissionStatusDescription: Equatable {
-    case byStatus(SubmissionStatus)
+/// This is merely used to properly describe the state of submission in certain contexts.
+/// It is not strictly matching `SubmissionStatus` in all cases. And it is not
+/// meant to replace status cases, or be used in all related areas of the apps.
+/// i.e. use with caution.
+public enum SubmissionStateDisplayProperties: Equatable {
+    case usingStatus(SubmissionStatus)
     case onPaper
     case noSubmission
     case graded
 
     public var text: String {
         switch self {
-        case .byStatus(let status):
+        case .usingStatus(let status):
             return status.text
         case .onPaper:
             return String(localized: "On Paper", bundle: .core)
-        case .graded:
-            return String(localized: "Graded", bundle: .core)
         case .noSubmission:
             return String(localized: "No Submission", bundle: .core)
+        case .graded:
+            return String(localized: "Graded", bundle: .core)
         }
     }
 
     public var color: UIColor {
         switch self {
-        case .byStatus(let status):
+        case .usingStatus(let status):
             return status.color
+        case .onPaper, .noSubmission:
+            return .textDark
         case .graded:
             return .textSuccess
-        default:
-            return .textDark
         }
     }
 
     public var icon: UIImage {
         switch self {
-        case .byStatus(let status):
+        case .usingStatus(let status):
             return status.icon
+        case .onPaper, .noSubmission:
+            return .noSolid
         case .graded:
             return .completeSolid
-        default:
-            return .noSolid
         }
     }
 }
