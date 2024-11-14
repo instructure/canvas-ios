@@ -239,7 +239,7 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
     }
 
     func testReportsScreenViewForLoadedChildViewController() {
-        let mockDeveloperAnalyticsHandler = MockDeveloperAnalyticsHandler()
+        let mockDeveloperAnalyticsHandler = MockRemoteLogHandler()
         RemoteLogger.shared.handler = mockDeveloperAnalyticsHandler
         router.mock("/courses/1/assignments/2?origin=module_item_details") {
             DetailViewController()

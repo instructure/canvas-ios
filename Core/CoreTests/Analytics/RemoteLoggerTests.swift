@@ -20,15 +20,15 @@ import XCTest
 @testable import Core
 import TestsFoundation
 
-class DeveloperAnalyticsTests: XCTestCase {
-    private var testAnalyticsHandler: MockDeveloperAnalyticsHandler!
+class RemoteLoggerTests: XCTestCase {
+    private var mockLogHandler: MockRemoteLogHandler!
     private var testee: RemoteLogger!
 
     override func setUp() {
         super.setUp()
-        testAnalyticsHandler = MockDeveloperAnalyticsHandler()
+        mockLogHandler = MockRemoteLogHandler()
         testee = RemoteLogger()
-        testee.handler = testAnalyticsHandler
+        testee.handler = mockLogHandler
     }
 
     func testBreadcrumb() {
@@ -38,22 +38,14 @@ class DeveloperAnalyticsTests: XCTestCase {
         )
 
         XCTAssertEqual(
-            testAnalyticsHandler.breadCrumbs,
+            mockLogHandler.breadCrumbs,
             ["Routing to: /testRoute (ProfileSettingsViewController)"]
         )
     }
 
     func testLogError() {
         testee.logError(name: "test_error", reason: "this is a test error")
-        XCTAssertEqual(testAnalyticsHandler.lastErrorName, "test_error")
-        XCTAssertEqual(testAnalyticsHandler.lastErrorReason, "this is a test error")
-    }
-
-    func testAnalyticsBaseUrl() {
-        AppEnvironment.shared.currentSession = nil
-        XCTAssertEqual(Analytics.analyticsBaseUrl, "")
-
-        AppEnvironment.shared.currentSession = .make(baseURL: URL(string: "https://canvas.instructure.com")!)
-        XCTAssertEqual(Analytics.analyticsBaseUrl, "https://canvas.instructure.com")
+        XCTAssertEqual(mockLogHandler.lastErrorName, "test_error")
+        XCTAssertEqual(mockLogHandler.lastErrorReason, "this is a test error")
     }
 }

@@ -19,7 +19,7 @@
 import Foundation
 
 public class CoreNavigationController: UINavigationController {
-    public var developerAnalytics = RemoteLogger.shared
+    public var remoteLogger = RemoteLogger.shared
     public override var prefersStatusBarHidden: Bool {
         topViewController?.prefersStatusBarHidden ?? super.prefersStatusBarHidden
     }
@@ -66,7 +66,7 @@ public class CoreNavigationController: UINavigationController {
             let navStack = navController.viewControllers
                 .map { $0.loggableName }
                 .joined(separator: ", ")
-            developerAnalytics.logError(
+            remoteLogger.logError(
                 name: "Pushing nav controller from CoreNavigationController was prevented",
                 reason: "\(navControllerName) [\(navStack)]"
             )

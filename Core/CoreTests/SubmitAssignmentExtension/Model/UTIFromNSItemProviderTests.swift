@@ -26,7 +26,7 @@ class UTIFromNSItemProviderTests: XCTestCase {
     }
 
     func testValidUTIReportsNothingToAnalytics() {
-        let mockDeveloperAnalyticsHandler = MockDeveloperAnalyticsHandler()
+        let mockDeveloperAnalyticsHandler = MockRemoteLogHandler()
         RemoteLogger.shared.handler = mockDeveloperAnalyticsHandler
 
         _ = MockNSItemProvider(isSupported: true).uti
@@ -41,7 +41,7 @@ class UTIFromNSItemProviderTests: XCTestCase {
     }
 
     func testInvalidUTIReportsToAnalytics() {
-        let mockDeveloperAnalyticsHandler = MockDeveloperAnalyticsHandler()
+        let mockDeveloperAnalyticsHandler = MockRemoteLogHandler()
         RemoteLogger.shared.handler = mockDeveloperAnalyticsHandler
 
         _ = MockNSItemProvider(isSupported: false).uti

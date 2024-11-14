@@ -56,4 +56,12 @@ class AnalyticsTests: XCTestCase {
 
         defaults.reset()
     }
+
+    func testAnalyticsBaseUrl() {
+        AppEnvironment.shared.currentSession = nil
+        XCTAssertEqual(Analytics.analyticsBaseUrl, "")
+
+        AppEnvironment.shared.currentSession = .make(baseURL: URL(string: "https://canvas.instructure.com")!)
+        XCTAssertEqual(Analytics.analyticsBaseUrl, "https://canvas.instructure.com")
+    }
 }

@@ -18,7 +18,7 @@
 
 import Core
 
-class MockDeveloperAnalyticsHandler: RemoteLogHandler {
+class MockRemoteLogHandler: RemoteLogHandler {
     var breadCrumbs: [String] = []
 
     var lastErrorName: String?
