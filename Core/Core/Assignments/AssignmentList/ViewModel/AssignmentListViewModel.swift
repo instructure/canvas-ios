@@ -57,7 +57,7 @@ public class AssignmentListViewModel: ObservableObject {
     @Published public private(set) var isShowingGradingPeriods: Bool = false
 
     public var isFilterIconSolid: Bool = false
-    public let defaultGradingPeriod: GradingPeriod?
+    public var defaultGradingPeriod: GradingPeriod?
     public let defaultSortingOption: AssignmentArrangementOptions = .dueDate
     public var selectedGradingPeriod: GradingPeriod?
     public var selectedSortingOption: AssignmentArrangementOptions = .dueDate
@@ -76,7 +76,9 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
-        self?.assignmentGroupsDidUpdate()
+        self?.defaultGradingPeriod = self?.currentGradingPeriod
+        self?.selectedGradingPeriod = self?.defaultGradingPeriod
+        self?.assignmentGroups.refresh()
     }
 
     private lazy var assignmentGroups = env.subscribe(GetAssignmentGroups(courseID: courseID)) { [weak self] in
@@ -86,6 +88,16 @@ public class AssignmentListViewModel: ObservableObject {
     /** This is required for the router to help decide if the hybrid discussion details or the native one should be launched. */
     private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID)))
 
+    private var currentGradingPeriod: GradingPeriod? {
+        gradingPeriods.filter {
+            let rightNow = Clock.now
+            if let start = $0.startDate, let end = $0.endDate {
+                return start < rightNow && end > rightNow
+            }
+            return false
+        }.first
+    }
+
     // MARK: - Init
     public init(
         context: Context,
@@ -94,8 +106,6 @@ public class AssignmentListViewModel: ObservableObject {
     ) {
         self.userDefaults = userDefaults
         self.courseID = context.id
-        self.defaultGradingPeriod = defaultGradingPeriod
-        self.selectedGradingPeriod = self.defaultGradingPeriod
 
         featureFlags.refresh()
     }
@@ -106,7 +116,6 @@ public class AssignmentListViewModel: ObservableObject {
         loadAssignmentListPreferences()
         course.refresh(force: true)
         gradingPeriods.refresh(force: true)
-        assignmentGroups.refresh(force: true)
         filterOptionsDidUpdate(filterOptions: selectedFilterOptions, gradingPeriod: defaultGradingPeriod)
 
         isFilterIconSolid = ![0, AssignmentFilterOption.allCases.count].contains(selectedFilterOptions.count)
@@ -131,11 +140,12 @@ public class AssignmentListViewModel: ObservableObject {
         || ![0, AssignmentFilterOption.allCases.count].contains(selectedFilterOptions.count)
             && selectedFilterOptions != initialFilterOptions
 
-        assignmentGroups.refresh()
+        assignmentGroupsDidUpdate()
     }
 
     private func assignmentGroupsDidUpdate() {
         if !assignmentGroups.requested || assignmentGroups.pending { return }
+        if !gradingPeriods.requested || gradingPeriods.pending { return }
 
         isShowingGradingPeriods = gradingPeriods.count > 1
         var assignmentGroupViewModels: [AssignmentGroupViewModel] = []
@@ -181,6 +191,12 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private func filterAssignments(_ assignments: [Assignment]) -> [Assignment] {
+        // Filtering by grading period except if all is selected (nil)
+        var assignments = assignments
+        if let selectedGradingPeriod {
+            assignments = assignments.filter { $0.submission?.gradingPeriodId == selectedGradingPeriod.id }
+        }
+
         var filteredAssignments: [Assignment] = []
 
         // all filter selected is the same as no filter selected
