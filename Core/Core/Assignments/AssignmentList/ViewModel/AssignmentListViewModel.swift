@@ -95,7 +95,8 @@ public class AssignmentListViewModel: ObservableObject {
                 return start < rightNow && end > rightNow
             }
             return false
-        }.first
+        }
+        .first
     }
 
     // MARK: - Init
