@@ -385,13 +385,13 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         nameLabel?.text = assignment.name
         pointsLabel?.text = hideScores ? nil : assignment.pointsPossibleText
         pointsLabel?.isHidden = pointsLabel?.text == nil
-        let statusDescription = assignment.submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
+        let displayProperties = assignment.submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
         statusIconView?.isHidden = assignment.submissionStatusIsHidden
-        statusIconView?.image = statusDescription.icon
-        statusIconView?.tintColor = statusDescription.color
+        statusIconView?.image = displayProperties.icon
+        statusIconView?.tintColor = displayProperties.color
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
-        statusLabel?.textColor = statusDescription.color
-        statusLabel?.text = statusDescription.text
+        statusLabel?.textColor = displayProperties.color
+        statusLabel?.text = displayProperties.text
         dueSection?.subHeader.text = assignment.dueAt.flatMap {
             $0.dateTimeString
         } ?? String(localized: "No Due Date", bundle: .student)
