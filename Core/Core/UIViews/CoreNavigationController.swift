@@ -64,7 +64,7 @@ public class CoreNavigationController: UINavigationController {
         if let navController = viewController as? UINavigationController {
             let navControllerName = String(describing: type(of: navController))
             let navStack = navController.viewControllers
-                .map { $0.developerAnalyticsName }
+                .map { $0.loggableName }
                 .joined(separator: ", ")
             developerAnalytics.logError(
                 name: "Pushing nav controller from CoreNavigationController was prevented",

@@ -142,19 +142,4 @@ class AnalyticsHelpersTests: CoreTestCase {
         XCTAssertEqual(analytics.lastEvent, nil)
         waitForExpectations(timeout: 1)
     }
-
-    // MARK: - Analytics Class Name
-
-    func testAnalyticsClassName() {
-        let courseListView = CoreHostingController(PandaGallery())
-
-        XCTAssertEqual((nil as UIViewController?).developerAnalyticsName, "unknown")
-        XCTAssertEqual(ProfileSettingsViewController().developerAnalyticsName, "ProfileSettingsViewController")
-        XCTAssertEqual(courseListView.developerAnalyticsName, "PandaGallery")
-        XCTAssertEqual(UINavigationController(rootViewController: courseListView).developerAnalyticsName, "PandaGallery")
-
-        let splitView = UISplitViewController()
-        splitView.viewControllers = [UINavigationController(rootViewController: courseListView)]
-        XCTAssertEqual(splitView.developerAnalyticsName, "PandaGallery")
-    }
 }

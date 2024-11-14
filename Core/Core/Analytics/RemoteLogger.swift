@@ -40,7 +40,7 @@ public struct RemoteLogger {
         route: String,
         viewController: UIViewController? = nil
     ) {
-        let message = "Routing to: \(route) (\(viewController.developerAnalyticsName))"
+        let message = "Routing to: \(route) (\(viewController.loggableName))"
 
         #if DEBUG
             if logToConsole {
