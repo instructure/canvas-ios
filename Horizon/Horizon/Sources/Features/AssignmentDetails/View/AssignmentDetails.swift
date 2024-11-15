@@ -23,6 +23,9 @@ struct AssignmentDetails: View {
     // MARK: - Properties
 
     @State private var viewModel: AssignmentDetailsViewModel
+    @Environment(\.viewController) private var viewController
+
+    // MARK: - Init
 
     init(viewModel: AssignmentDetailsViewModel) {
         self.viewModel = viewModel
@@ -70,11 +73,19 @@ struct AssignmentDetails: View {
             .paddingStyle(.horizontal, .standard)
             .padding(.bottom, 100)
         }
-        .avoidKeyboardArea()
         .scrollDismissesKeyboard(.immediately)
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top) { if viewModel.state == .data { header } }
-        .navigationTitle(viewModel.assignment?.name ?? "")
+        .safeAreaInset(edge: .bottom) {
+            if !viewModel.isKeyboardVisible {
+                AIButtonsView { selectedButton in
+                    viewModel.aiEvents.send((selectedButton, viewController))
+                }
+                .padding(.bottom)
+            }
+        }
+        .onAppear { viewModel.showTabBar() }
+        .avoidKeyboardArea()
         .toolbarBackground(.visible, for: .navigationBar)
         .alert("Error", isPresented: $viewModel.isShowAlertVisible) {
             Button("OK", role: .cancel) { }

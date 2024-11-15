@@ -1,34 +1,73 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Continue learning" : {
+    "• Deep Learning (DL): A subset of ML that uses neural networks with many layers to process complex data patterns, often used in image and speech recognition." : {
 
     },
-    "Dashboard" : {
+    "• Machine Learning (ML): Algorithms that enable systems to learn from data and improve over time. Key ML techniques include supervised learning" : {
+
+    },
+    "• Natural Language Processing (NLP): Techniques that help machines understand and generate human language, enabling applications like chatbots and language translation." : {
+
+    },
+    "1. Narrow AI (Weak AI): Designed for specific tasks, such as facial recognition, recommendation systems, or language translation. These systems" : {
+
+    },
+    "2. General AI (Strong AI): A theoretical form of AI that would perform any intellectual task a human can do. This level of AI doesn't yet exist" : {
+
+    },
+    "AI Categories" : {
+
+    },
+    "AI has vast applications across industries like healthcare, finance, transportation, and entertainment" : {
+
+    },
+    "AI Learning Assist" : {
+
+    },
+    "AI relies on several techniques, including Machine Learning (ML), Deep Learning (DL), and Natural Language Processing (NLP)." : {
+
+    },
+    "AI Summary" : {
+
+    },
+    "AI Tutor" : {
+
+    },
+    "Applications and Considerations" : {
+
+    },
+    "Artificial Intelligence (AI)" : {
+
+    },
+    "Artificial Intelligence (AI) is a branch of computer science focused on creating systems capable of performing tasks that typically require human intelligence." : {
+
+    },
+    "Career" : {
+
+    },
+    "Continue learning" : {
 
     },
     "Error" : {
 
     },
-    "Hello, Journey!" : {
+    "Hello, Career!" : {
 
     },
-    "Hello, Portfolio!" : {
+    "Home" : {
 
     },
-    "Journey" : {
+    "Learn" : {
 
     },
     "OK" : {
 
     },
-    "Portfolio" : {
-
-    },
-    "Programs" : {
-
-    },
     "Submit Assignment" : {
+
+    },
+    "Techniques in AI" : {
 
     },
     "Your Programs" : {

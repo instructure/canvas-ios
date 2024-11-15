@@ -18,8 +18,22 @@
 
 import Foundation
 
-final class PortfolioAssembly {
-    static func makeView() -> PortfolioView {
-        PortfolioView()
+enum AIButtonsType: CaseIterable {
+    case message
+    case sound
+    case bookmark
+    case assist
+
+    var imageName: String {
+        switch self {
+        case .message:
+            "bubble.left"
+        case .sound:
+            "speaker.wave.2"
+        case .bookmark:
+            "bookmark"
+        case .assist:
+            "sparkles"
+        }
     }
 }

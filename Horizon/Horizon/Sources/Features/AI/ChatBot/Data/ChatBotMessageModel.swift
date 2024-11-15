@@ -18,8 +18,9 @@
 
 import Foundation
 
-final class JourneyAssembly {
-    static func makeView() -> JourneyView {
-        JourneyView()
-    }
+struct ChatBotMessageModel: Identifiable, Equatable {
+    let id = UUID()
+    var content: String = ""
+    let isMine: Bool // Whether the message is from the user or AI
+    var isLoading: Bool = false
 }

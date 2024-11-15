@@ -18,14 +18,33 @@
 
 import SwiftUI
 
-struct PortfolioView: View {
+struct AITutorButton: View {
+    let item: AITutorType
+    let onSelect: (AITutorType) -> Void
+
     var body: some View {
-        BaseHorizonScreen {
-            Text("Hello, Portfolio!")
+        Button {
+            onSelect(item)
+        } label: {
+            labelButton
         }
+    }
+
+    private var labelButton: some View {
+        Text(item.titel)
+            .foregroundStyle(Color.white)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 10)
+            .frame(height: 55)
+            .background(
+                RoundedRectangle(cornerRadius: 14)
+                    .fill(Color.white.opacity(0.4))
+            )
     }
 }
 
+#if DEBUG
 #Preview {
-    PortfolioView()
+    AITutorButton(item: .summary, onSelect: { _ in})
 }
+#endif

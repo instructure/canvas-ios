@@ -167,4 +167,9 @@ open class AppEnvironment {
         let data = try? APIJSONEncoder().encode(lastLoginAccount)
         UserDefaults.standard.set(data, forKey: "lastLoginAccount")
     }
+
+    public func tabBar(isVisible: Bool) {
+        let currentTabBar = (window?.rootViewController as? UITabBarController)
+        currentTabBar?.tabBar.isHidden = !isVisible
+    }
 }

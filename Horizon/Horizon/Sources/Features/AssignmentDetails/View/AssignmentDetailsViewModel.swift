@@ -23,7 +23,7 @@ import Core
 
 @Observable
 final class AssignmentDetailsViewModel {
-    // MARK: - Output Properties
+    // MARK: - Properties
 
     private(set) var assignment: HAssignment?
     private(set) var state: InstUI.ScreenState = .loading
@@ -31,11 +31,13 @@ final class AssignmentDetailsViewModel {
     private(set) var attachments: [File] = []
     private(set) var errorMessage = ""
     private(set) var submissionEvents = PassthroughSubject<AssignmentSubmissionView.Events, Never>()
+    private(set) var aiEvents = PassthroughSubject<(AIButtonsType, WeakViewController), Never>()
     let keyboardObserveID = "keyboardObserveID"
     var textEntry: String = ""
     var selectedSubmission: AssignmentType?
     var isShowSubmitButton = false
     var isShowAlertVisible = false
+    var isKeyboardVisible = false
     var isSubmitButtonDisable: Bool {
         let selectedSubmission = selectedSubmission ?? .textEntry
         switch selectedSubmission {
@@ -54,6 +56,7 @@ final class AssignmentDetailsViewModel {
     // MARK: - Dependancies
 
     private let interactor: AssignmentInteractor
+    private let appEnvironment: AppEnvironment
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
@@ -64,13 +67,21 @@ final class AssignmentDetailsViewModel {
 
     init(
         interactor: AssignmentInteractor,
+        appEnvironment: AppEnvironment,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
+        self.appEnvironment = appEnvironment
         self.scheduler = scheduler
         fetchAssignmentDetails()
         bindSubmissionAssignmentEvents()
     }
+
+    // MARK: - Public Functions
+
+    func showTabBar() { appEnvironment.tabBar(isVisible: true) }
+
+    // MARK: - Private Functions
 
     private func fetchAssignmentDetails() {
         interactor.getAssignmentDetails()
@@ -121,6 +132,16 @@ final class AssignmentDetailsViewModel {
                     self?.errorMessage = error.localizedDescription
                 }
             }.store(in: &subscriptions)
+
+        aiEvents.sink {  [weak self] event, controller in
+            switch event {
+            case .assist:
+                self?.appEnvironment.router.route(to: "/tutor", from: controller)
+            default:
+                break
+
+            }
+        }.store(in: &subscriptions)
     }
 
     private func submitTextEntry() {
