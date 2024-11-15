@@ -60,7 +60,7 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
 
         // Step 5 - Download actual video files
         let mockDownloadInteractor = MockStudioVideoDownloadInteractor()
-        let mockOfflineVideo = StudioOfflineVideo(
+        let mockOfflineVideo = try! StudioOfflineVideo(
             ltiLaunchID: StudioTestData.ltiLaunchID,
             videoLocation: .make(),
             videoPosterLocation: .make(),

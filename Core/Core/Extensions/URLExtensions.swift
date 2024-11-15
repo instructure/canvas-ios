@@ -223,6 +223,23 @@ public extension URL {
         return components.url
     }
 
+    func makeRelativePath(toBaseUrl: URL) throws -> String {
+        guard self.absoluteString.hasPrefix(toBaseUrl.absoluteString) else {
+            throw NSError.instructureError("No common ancestor", code: 0)
+        }
+
+        let relativePath = self
+            .pathComponents
+            .dropFirst(toBaseUrl.pathComponents.count)
+            .joined(separator: "/")
+
+        guard let relativeURL = URL(string: relativePath, relativeTo: baseURL) else {
+            throw NSError.instructureError("Failed to create URL", code: 0)
+        }
+
+        return relativeURL.path()
+    }
+
     #if DEBUG
 
     static func make(_ string: String = "/") -> URL {
