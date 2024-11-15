@@ -42,7 +42,6 @@ final class ChatBotViewModel {
     private let router: Router
 
     // MARK: - Init
-
     init(router: Router) {
         self.router = router
     }
