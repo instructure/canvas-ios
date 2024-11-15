@@ -37,11 +37,10 @@
 		6857FA660906F8D64DEA7AF4 /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = 3353F2BA79620AE7174A5B05 /* Heap */; };
 		7011B831189B9DF0777465AE /* ProgramItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64E4DC2DF371ED601149398 /* ProgramItemView.swift */; };
 		748708C274C78526E0825CB3 /* AITutorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B83ED332028381EE239F54 /* AITutorType.swift */; };
-		792783CDC8A474370C339ACA /* ChatBotMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7DC5BB28B12646651F2250 /* ChatBotMessageModel.swift */; };
 		7D55A90806A34664576046CD /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC16FDFB815642C82768097E /* DashboardView.swift */; };
 		7FF9727E6AAB2C83F9239548 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E0CF6B14E0331072707C9 /* SplashView.swift */; };
 		8031414D135BF4A32D1A97F5 /* GetProgramsInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E0E56C150D870B1036E47 /* GetProgramsInteractorPreview.swift */; };
-		84441B9029CE02BCF0B778A3 /* HorizonGradientModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FB14C7CED23938006CFF /* HorizonGradientModifier.swift */; };
+		84441B9029CE02BCF0B778A3 /* HorizonGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FB14C7CED23938006CFF /* HorizonGradient.swift */; };
 		84C518D0F43318BD14E15031 /* ProgramsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA155FF18B2AAB3C61415DF /* ProgramsViewModel.swift */; };
 		8F5B3D11D772C4E75DE6C430 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3018AB6A54CFAEFFF18A67B /* SplashViewModel.swift */; };
 		8F9F7532CA4E941FCE2BB7F2 /* AssignmentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0958555451321BC0A0FDAA2 /* AssignmentInteractor.swift */; };
@@ -52,6 +51,7 @@
 		A0455D85BC3B7B8A8E4973C0 /* AIButtonsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C710412180D9AF542ACF9594 /* AIButtonsType.swift */; };
 		A51387187690E8DA93F7A8D0 /* BaseHorizonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36C84BF05EC6AC10C0ADCF /* BaseHorizonScreen.swift */; };
 		A621720DA5F3AFF733E16212 /* Size14RegularTextDarkestTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D5D240CEE95E43BE413812 /* Size14RegularTextDarkestTitle.swift */; };
+		A9220EF9701F61BD0EB8A6B9 /* ChatBotMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDC37E3745E408761E88CA0 /* ChatBotMessageModel.swift */; };
 		AC65D230D896B3CEEB8C7AE5 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 6C49041BE2282B9B33D84838 /* FirebaseRemoteConfig */; };
 		B1E5B2540C53D7C2A07D4360 /* CareerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AA25AFFA3637FB3E63BAF /* CareerAssembly.swift */; };
 		B5812E682986E705DFADA366 /* AssignmentInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB524DBF6E9104972CA7BB /* AssignmentInteractorPreview.swift */; };
@@ -82,21 +82,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		04F1C8032CE761F1007B6BE5 /* PBXContainerItemProxy */ = {
+		0435DBC82CE77DD200CAAC54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F475EC6814456E8041E96A1A /* Core */;
 			proxyType = 2;
 			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
 			remoteInfo = CoreTester;
 		};
-		04F1C8052CE761F1007B6BE5 /* PBXContainerItemProxy */ = {
+		0435DBCA2CE77DD200CAAC54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F475EC6814456E8041E96A1A /* Core */;
 			proxyType = 2;
 			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
 			remoteInfo = CoreTests;
 		};
-		04F1C8072CE761F1007B6BE5 /* PBXContainerItemProxy */ = {
+		0435DBCC2CE77DD200CAAC54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F475EC6814456E8041E96A1A /* Core */;
 			proxyType = 2;
@@ -166,7 +166,6 @@
 		7869B63B08EFFB68FC40D74E /* HorizonTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonTabBarController.swift; sourceTree = "<group>"; };
 		796D4DE79BFCFC39C7022359 /* AITutorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITutorView.swift; sourceTree = "<group>"; };
 		7C5A1E0EF5662144D613F921 /* AssignmentDetailsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsAssembly.swift; sourceTree = "<group>"; };
-		7F7DC5BB28B12646651F2250 /* ChatBotMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBotMessageModel.swift; sourceTree = "<group>"; };
 		7FE56F9ADA98440A3EB81F22 /* AssignmentSubmissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSubmissionView.swift; sourceTree = "<group>"; };
 		81BB524DBF6E9104972CA7BB /* AssignmentInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentInteractorPreview.swift; sourceTree = "<group>"; };
 		82DD459C300CD1347648998F /* CertificateProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateProgressBar.swift; sourceTree = "<group>"; };
@@ -189,6 +188,7 @@
 		D12E731317B48FD226CF8853 /* ChatBotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBotViewModel.swift; sourceTree = "<group>"; };
 		D12F50779768D77FA758DBD3 /* ProgramDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDetailsViewModel.swift; sourceTree = "<group>"; };
 		DF52A0697AB0370D32960483 /* AIButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIButtonsView.swift; sourceTree = "<group>"; };
+		DFDC37E3745E408761E88CA0 /* ChatBotMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBotMessageModel.swift; sourceTree = "<group>"; };
 		E568BE2530AFAB502E3367DA /* DashboardAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardAssembly.swift; sourceTree = "<group>"; };
 		E64E4DC2DF371ED601149398 /* ProgramItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramItemView.swift; sourceTree = "<group>"; };
 		E6ADB5EDE85D2FF9CC5DEF68 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 		F475EC6814456E8041E96A1A /* Core */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
 		F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8E7191B980D0E8899E8C175 /* Horizon.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Horizon.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FBD1FB14C7CED23938006CFF /* HorizonGradientModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonGradientModifier.swift; sourceTree = "<group>"; };
+		FBD1FB14C7CED23938006CFF /* HorizonGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonGradient.swift; sourceTree = "<group>"; };
 		FC16FDFB815642C82768097E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -310,7 +310,7 @@
 				82DD459C300CD1347648998F /* CertificateProgressBar.swift */,
 				15192E48982507B886F9E73B /* ContentProgressBar.swift */,
 				581C446A807F61D5C4A430CB /* ExpandingModuleView.swift */,
-				FBD1FB14C7CED23938006CFF /* HorizonGradientModifier.swift */,
+				FBD1FB14C7CED23938006CFF /* HorizonGradient.swift */,
 				A6160FD173852A664C46FAC5 /* LearningObjectHeaderView.swift */,
 				E64E4DC2DF371ED601149398 /* ProgramItemView.swift */,
 				949E28BBA03DA7E79460065C /* Size12RegularTextDarkestTitle.swift */,
@@ -364,7 +364,7 @@
 		67742E259BFD60AA2A29C63F /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				7F7DC5BB28B12646651F2250 /* ChatBotMessageModel.swift */,
+				DFDC37E3745E408761E88CA0 /* ChatBotMessageModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -515,9 +515,9 @@
 			isa = PBXGroup;
 			children = (
 				7DED7199B426F89179546237 /* Core.framework */,
-				04F1C8042CE761F1007B6BE5 /* CoreTester.app */,
-				04F1C8062CE761F1007B6BE5 /* CoreTests.xctest */,
-				04F1C8082CE761F1007B6BE5 /* TestsFoundation.framework */,
+				0435DBC92CE77DD200CAAC54 /* CoreTester.app */,
+				0435DBCB2CE77DD200CAAC54 /* CoreTests.xctest */,
+				0435DBCD2CE77DD200CAAC54 /* TestsFoundation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -670,25 +670,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		04F1C8042CE761F1007B6BE5 /* CoreTester.app */ = {
+		0435DBC92CE77DD200CAAC54 /* CoreTester.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = CoreTester.app;
-			remoteRef = 04F1C8032CE761F1007B6BE5 /* PBXContainerItemProxy */;
+			remoteRef = 0435DBC82CE77DD200CAAC54 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		04F1C8062CE761F1007B6BE5 /* CoreTests.xctest */ = {
+		0435DBCB2CE77DD200CAAC54 /* CoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = CoreTests.xctest;
-			remoteRef = 04F1C8052CE761F1007B6BE5 /* PBXContainerItemProxy */;
+			remoteRef = 0435DBCA2CE77DD200CAAC54 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		04F1C8082CE761F1007B6BE5 /* TestsFoundation.framework */ = {
+		0435DBCD2CE77DD200CAAC54 /* TestsFoundation.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = TestsFoundation.framework;
-			remoteRef = 04F1C8072CE761F1007B6BE5 /* PBXContainerItemProxy */;
+			remoteRef = 0435DBCC2CE77DD200CAAC54 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		7DED7199B426F89179546237 /* Core.framework */ = {
@@ -756,7 +756,6 @@
 				B5812E682986E705DFADA366 /* AssignmentInteractorPreview.swift in Sources */,
 				40624305A8A7E8B1A0D088B2 /* AssignmentSubmissionView.swift in Sources */,
 				D9C944E37EE80EF89D75D1E6 /* AssignmentType.swift in Sources */,
-				792783CDC8A474370C339ACA /* ChatBotMessageModel.swift in Sources */,
 				157129706EE1D192176785DE /* AttachedFilesView.swift in Sources */,
 				A51387187690E8DA93F7A8D0 /* BaseHorizonScreen.swift in Sources */,
 				256C0F2B20ADE76D83ADBF6A /* BundleExtension.swift in Sources */,
@@ -764,6 +763,7 @@
 				E01A0E90B7058C7A6437FFF4 /* CareerView.swift in Sources */,
 				E43A4ECD7F431763B904F25B /* CertificateProgressBar.swift in Sources */,
 				9EBF743C36B4FDE8A3738A33 /* ChatBotMessageBubbleView.swift in Sources */,
+				A9220EF9701F61BD0EB8A6B9 /* ChatBotMessageModel.swift in Sources */,
 				DCAAC1233B60DAAF7266A9D4 /* ChatBotView.swift in Sources */,
 				0EA53572542AD0B290F2DAB7 /* ChatBotViewModel.swift in Sources */,
 				CD138C3D41D0330FD375B81C /* CommonAssembly.swift in Sources */,
@@ -780,7 +780,7 @@
 				3F82EB862BB02A4FE1D74F16 /* HModule.swift in Sources */,
 				4BD1843CFE6151E09D0189F4 /* HModuleItem.swift in Sources */,
 				44DBA58302439467D77480A3 /* HProgram.swift in Sources */,
-				84441B9029CE02BCF0B778A3 /* HorizonGradientModifier.swift in Sources */,
+				84441B9029CE02BCF0B778A3 /* HorizonGradient.swift in Sources */,
 				E180BD83DC0CE99C58D77A76 /* HorizonRoutes.swift in Sources */,
 				F2F054584749F34B1FF90F74 /* HorizonTabBar.swift in Sources */,
 				1A7194AA245058A4306ECECB /* HorizonTabBarController.swift in Sources */,

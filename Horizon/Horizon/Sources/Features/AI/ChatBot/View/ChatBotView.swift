@@ -21,7 +21,7 @@ import Core
 
 struct ChatBotView: View {
     // MARK: - Properties
-    
+
     @State var viewModel: ChatBotViewModel
     @FocusState private var isFocused: Bool
     @Environment(\.viewController) private var viewController
