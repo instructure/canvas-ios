@@ -50,7 +50,7 @@ public struct CourseSmartSearchFilterEditorView: View {
                         value: .relevance,
                         selectedValue: $viewModel.sortMode,
                         color: contextColor,
-                        seperator: false
+                        hasDivider: false
                     )
 
                     InstUI.Divider().padding(.horizontal, 16)
@@ -81,8 +81,8 @@ public struct CourseSmartSearchFilterEditorView: View {
                             title: type.wrappedValue.type.title,
                             isSelected: type.checked,
                             color: contextColor,
-                            seperator: false,
-                            icon: {
+                            hasDivider: false,
+                            accessory: {
                                 type.wrappedValue.type.icon.foregroundStyle(contextColor)
                             }
                         )

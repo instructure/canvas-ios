@@ -20,24 +20,55 @@ import SwiftUI
 
 extension InstUI {
 
-    public struct CheckboxCell<Icon: View>: View {
+    public struct CheckboxCell<Accessory: View>: View {
+
+        // MARK: Private Properties
+
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let title: String
         private let subtitle: String?
         @Binding private var isSelected: Bool
         private let color: Color
-        private let seperator: Bool
-        private let icon: (() -> Icon)?
+        private let hasDivider: Bool
+        private let accessoryView: (() -> Accessory)?
 
-        public init(title: String, subtitle: String? = nil, isSelected: Binding<Bool>, color: Color, seperator: Bool = true, icon: (() -> Icon)?) {
+        // MARK: Initializers
+
+        public init(
+            title: String,
+            subtitle: String? = nil,
+            isSelected: Binding<Bool>,
+            color: Color,
+            hasDivider: Bool = true,
+            accessory: (() -> Accessory)?
+        ) {
             self.title = title
             self.subtitle = subtitle
             self._isSelected = isSelected
             self.color = color
-            self.seperator = seperator
-            self.icon = icon
+            self.hasDivider = hasDivider
+            self.accessoryView = accessory
         }
+
+        public init(
+            title: String,
+            subtitle: String? = nil,
+            isSelected: Binding<Bool>,
+            color: Color,
+            hasDivider: Bool = true
+        ) where Accessory == SwiftUI.EmptyView  {
+            self.init(
+                title: title,
+                subtitle: subtitle,
+                isSelected: isSelected,
+                color: color,
+                hasDivider: hasDivider,
+                accessory: nil
+            )
+        }
+
+        // MARK: Body
 
         public var body: some View {
             VStack(spacing: 0) {
@@ -68,14 +99,14 @@ extension InstUI {
                             }
                         }
 
-                        if let icon {
+                        if let accessoryView {
                             Spacer()
-                            icon()
+                            accessoryView()
                         }
                     }
                     .paddingStyle(set: .iconCell)
                 }
-                if seperator { InstUI.Divider() }
+                if hasDivider { InstUI.Divider() }
             }
             .accessibilityRepresentation {
                 Toggle(isOn: $isSelected) {
@@ -83,24 +114,6 @@ extension InstUI {
                 }
             }
         }
-    }
-}
-
-extension InstUI.CheckboxCell where Icon == SwiftUI.EmptyView {
-    public init(
-        title: String,
-        subtitle: String? = nil,
-        isSelected: Binding<Bool>,
-        color: Color,
-        seperator: Bool = true
-    ) {
-        self.init(
-            title: title,
-            subtitle: subtitle,
-            isSelected: isSelected,
-            color: color,
-            seperator: seperator, icon: nil
-        )
     }
 }
 
