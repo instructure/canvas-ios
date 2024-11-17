@@ -57,7 +57,7 @@ public struct NoSearchSupportAction: SearchSupportAction {
         for searchContext: CoreSearchContext<Info>,
         with router: Router,
         from controller: UIViewController
-    ) where Info : SearchContextInfo {}
+    ) where Info: SearchContextInfo {}
 }
 
 public struct SearchSupportTrigger: SearchSupportAction {
