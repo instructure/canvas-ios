@@ -161,8 +161,6 @@ public struct LoginSession: Codable, Hashable {
             guard let folderUrl = urls.first(where: { $0.hasDirectoryPath && $0.lastPathComponent == uniqueID })
             else { return }
 
-            print("Moving previously-saved documents folder for session (\(uniqueID)) ..")
-
             let dest = URL.Directories
                 .annotatedPDFs
                 .appending(component: folderUrl.lastPathComponent, directoryHint: .isDirectory)
