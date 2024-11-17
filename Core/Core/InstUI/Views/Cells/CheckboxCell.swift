@@ -57,7 +57,7 @@ extension InstUI {
             isSelected: Binding<Bool>,
             color: Color,
             hasDivider: Bool = true
-        ) where Accessory == SwiftUI.EmptyView  {
+        ) where Accessory == SwiftUI.EmptyView {
             self.init(
                 title: title,
                 subtitle: subtitle,
