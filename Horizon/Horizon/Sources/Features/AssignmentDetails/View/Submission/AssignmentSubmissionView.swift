@@ -18,6 +18,7 @@
 
 import SwiftUI
 import Core
+import UniformTypeIdentifiers
 
 struct AssignmentSubmissionView: View {
     // MARK: - Private Properties
@@ -34,7 +35,7 @@ struct AssignmentSubmissionView: View {
 
     var body: some View {
         VStack(spacing: 5) {
-            if viewModel.isShowSubmitButton {
+            if viewModel.isSubmitButtonVisible {
                 submissionTypes
 
                 if let selectedSubmission = viewModel.selectedSubmission {
@@ -74,7 +75,7 @@ extension AssignmentSubmissionView {
     private var showSubmissionTypesButton: some View {
         Button {
             withAnimation {
-                viewModel.isShowSubmitButton = true
+                viewModel.isSubmitButtonVisible = true
             }
         } label: {
             Text(viewModel.assignment?.submitButtonTitle ?? "")
@@ -162,10 +163,9 @@ extension AssignmentSubmissionView {
                 .frame(height: 40)
                 .background(Color.backgroundInfo)
                 .cornerRadius(8)
-                .opacity(viewModel.isSubmitButtonDisable ? 0.3 : 1)
-
+                .opacity(viewModel.isSubmitButtonDisabled ? 0.3 : 1)
         }
-        .disabled(viewModel.isSubmitButtonDisable)
+        .disabled(viewModel.isSubmitButtonDisabled)
     }
 
     @ViewBuilder

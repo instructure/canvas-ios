@@ -24,11 +24,16 @@ final class AssignmentDetailsAssembly {
         courseID: String,
         assignmentID: String
     ) -> AssignmentDetailsViewModel {
+        let uploadManager = HUploadFileManagerLive(
+            uploadManager: .shared,
+            assignmentID: assignmentID,
+            courseID: courseID
+        )
         let interactor = AssignmentInteractorLive(
             courseID: courseID,
             assignmentID: assignmentID,
-            appEnvironment: .shared,
-            uploadManager: .shared
+            uploadManager: uploadManager,
+            appEnvironment: .shared
         )
         let appEnvironment = AppEnvironment.shared
         return AssignmentDetailsViewModel(interactor: interactor, appEnvironment: appEnvironment)

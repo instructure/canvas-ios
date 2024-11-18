@@ -20,15 +20,9 @@ import Foundation
 import Core
 import Combine
 
-protocol AssignmentInteractor {
+protocol AssignmentInteractor: HUploadFileManager {
     func getAssignmentDetails() -> AnyPublisher<HAssignment, Never>
     func submitTextEntry(with text: String) -> AnyPublisher<[CreateSubmission.Model], Error>
-    func addFile(url: URL)
-    func cancelFile(_ file: File)
-    func cancelAllFiles()
-    func uploadFiles()
-    var attachments: CurrentValueSubject<[File], Never> { get }
-    var didUploadFiles: PassthroughSubject<Result<Void, Error>, Never> { get }
 }
 
 final class AssignmentInteractorLive: AssignmentInteractor {
@@ -39,43 +33,34 @@ final class AssignmentInteractorLive: AssignmentInteractor {
 
     // MARK: - Properties
 
-    private lazy var fileStore = uploadManager.subscribe(batchID: batchId, eventHandler: {})
     private var subscriptions = Set<AnyCancellable>()
-    private var batchId: String {
-        "assignment-\(assignmentID)"
-    }
+
     // MARK: - Dependancies
 
     private let courseID: String
     private let assignmentID: String
+    private let uploadManager: HUploadFileManager
     private let appEnvironment: AppEnvironment
-    private let uploadManager: UploadManager
 
     // MARK: - Init
 
     init(
         courseID: String,
         assignmentID: String,
-        appEnvironment: AppEnvironment,
-        uploadManager: UploadManager
+        uploadManager: HUploadFileManager,
+        appEnvironment: AppEnvironment
     ) {
         self.courseID = courseID
         self.assignmentID = assignmentID
-        self.appEnvironment = appEnvironment
         self.uploadManager = uploadManager
+        self.appEnvironment = appEnvironment
 
-        fileStore.refresh()
-
-        fileStore
-            .allObjects
-            .replaceError(with: [])
-            .sink { [weak self] files in
-                self?.attachments.send(files)
-            }
+        uploadManager.attachments
+            .subscribe(attachments)
             .store(in: &subscriptions)
 
         uploadManager
-            .didUploadFile
+            .didUploadFiles
             .subscribe(didUploadFiles)
             .store(in: &subscriptions)
     }
@@ -104,22 +89,18 @@ final class AssignmentInteractorLive: AssignmentInteractor {
     }
 
     func addFile(url: URL) {
-        do {
-            try uploadManager.add(url: url, batchID: batchId)
-            fileStore.refresh()
-        } catch { debugPrint(error) }
+        uploadManager.addFile(url: url)
     }
 
     func cancelFile(_ file: File) {
-        uploadManager.cancel(file: file)
+        uploadManager.cancelFile(file)
     }
 
     func uploadFiles() {
-        let context = FileUploadContext.submission(courseID: courseID, assignmentID: assignmentID, comment: nil)
-        UploadManager.shared.upload(batch: batchId, to: context)
+        uploadManager.uploadFiles()
     }
 
     func cancelAllFiles() {
-        uploadManager.cancel(batchID: batchId)
+        uploadManager.cancelAllFiles()
     }
 }

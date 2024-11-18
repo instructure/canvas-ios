@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -55,6 +55,7 @@
 		AC65D230D896B3CEEB8C7AE5 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 6C49041BE2282B9B33D84838 /* FirebaseRemoteConfig */; };
 		B1E5B2540C53D7C2A07D4360 /* CareerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AA25AFFA3637FB3E63BAF /* CareerAssembly.swift */; };
 		B5812E682986E705DFADA366 /* AssignmentInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB524DBF6E9104972CA7BB /* AssignmentInteractorPreview.swift */; };
+		B6770A82F0511792B87C5ED8 /* HUploadFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAE5626575758BE196ED882 /* HUploadFileManager.swift */; };
 		B6B315CD9A3B2139B3C02097 /* ProgramDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A04AA67527214E50E65A4FD /* ProgramDetailsView.swift */; };
 		BB8D504E2E31F18D69332ED6 /* ProgramDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12F50779768D77FA758DBD3 /* ProgramDetailsViewModel.swift */; };
 		BCCEE877AD932FFFB7EF2226 /* ProgramsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6564F7EA04D5D54B6DD4CEEC /* ProgramsAssembly.swift */; };
@@ -132,6 +133,7 @@
 		3AD6A09F6867E5958A929EE6 /* AttachedFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedFilesView.swift; sourceTree = "<group>"; };
 		3F4AD5586A5F3F4E402B8705 /* HorizonTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonTabBar.swift; sourceTree = "<group>"; };
 		475018934291ABE32049E593 /* HProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HProgram.swift; sourceTree = "<group>"; };
+		4BAE5626575758BE196ED882 /* HUploadFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUploadFileManager.swift; sourceTree = "<group>"; };
 		4CDA94E6C2EB2ED8BBF674DA /* ModuleBottomsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBottomsType.swift; sourceTree = "<group>"; };
 		51302AFC53EA233D02658D36 /* Size24RegularTextDarkestTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size24RegularTextDarkestTitle.swift; sourceTree = "<group>"; };
 		56DB2FB9D49D1B61A6754FF1 /* HModuleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HModuleItem.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 			children = (
 				F0958555451321BC0A0FDAA2 /* AssignmentInteractor.swift */,
 				81BB524DBF6E9104972CA7BB /* AssignmentInteractorPreview.swift */,
+				4BAE5626575758BE196ED882 /* HUploadFileManager.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				3F82EB862BB02A4FE1D74F16 /* HModule.swift in Sources */,
 				4BD1843CFE6151E09D0189F4 /* HModuleItem.swift in Sources */,
 				44DBA58302439467D77480A3 /* HProgram.swift in Sources */,
+				B6770A82F0511792B87C5ED8 /* HUploadFileManager.swift in Sources */,
 				F8AAC0BAFB11FCDA34943313 /* HorizonGradient.swift in Sources */,
 				E180BD83DC0CE99C58D77A76 /* HorizonRoutes.swift in Sources */,
 				F2F054584749F34B1FF90F74 /* HorizonTabBar.swift in Sources */,
