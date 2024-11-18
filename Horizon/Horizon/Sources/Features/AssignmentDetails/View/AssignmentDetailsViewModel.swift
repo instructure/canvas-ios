@@ -23,20 +23,26 @@ import Core
 
 @Observable
 final class AssignmentDetailsViewModel {
-    // MARK: - Output Properties
+    // MARK: - Input
+
+    private(set) var submissionEvents = PassthroughSubject<AssignmentSubmissionView.Events, Never>()
+    var isSubmitButtonVisible = false
+    var selectedSubmission: AssignmentType?
+
+    // MARK: - Input / Output
+    var isKeyboardVisible = false
+    var textEntry: String = ""
+    var isAlertVisible = false
+
+    // MARK: - Output
 
     private(set) var assignment: HAssignment?
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var didSubmitAssignment = false
     private(set) var attachments: [File] = []
     private(set) var errorMessage = ""
-    private(set) var submissionEvents = PassthroughSubject<AssignmentSubmissionView.Events, Never>()
     let keyboardObserveID = "keyboardObserveID"
-    var textEntry: String = ""
-    var selectedSubmission: AssignmentType?
-    var isShowSubmitButton = false
-    var isShowAlertVisible = false
-    var isSubmitButtonDisable: Bool {
+    var isSubmitButtonDisabled: Bool {
         let selectedSubmission = selectedSubmission ?? .textEntry
         switch selectedSubmission {
         case .textEntry:
@@ -49,7 +55,6 @@ final class AssignmentDetailsViewModel {
     // MARK: - Properties
 
     private var subscriptions = Set<AnyCancellable>()
-    var controller: WeakViewController = .init()
 
     // MARK: - Dependancies
 
@@ -117,7 +122,7 @@ final class AssignmentDetailsViewModel {
                     self?.didSubmitAssignment = true
                 case .failure(let error):
                     self?.state = .data
-                    self?.isShowAlertVisible = true
+                    self?.isAlertVisible = true
                     self?.errorMessage = error.localizedDescription
                 }
             }.store(in: &subscriptions)
@@ -129,7 +134,7 @@ final class AssignmentDetailsViewModel {
             .sink { [weak self] completion in
                 self?.state = .data
                 if case .failure(let error) = completion {
-                    self?.isShowAlertVisible = true
+                    self?.isAlertVisible = true
                     self?.errorMessage = error.localizedDescription
                 }
             } receiveValue: { [weak self] _ in

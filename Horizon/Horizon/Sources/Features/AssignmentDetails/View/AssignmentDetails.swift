@@ -57,14 +57,16 @@ struct AssignmentDetails: View {
                         Size14RegularTextDarkestTitle(title: "Last Submitted: \(lastSubmitted)")
                     }
 
-                    AssignmentSubmissionView(
-                        viewModel: viewModel,
-                        geometry: geometry) {
-                            reader.scrollTo(viewModel.keyboardObserveID)
-                        }
-                        .disabled(viewModel.didSubmitAssignment)
-                        .opacity(viewModel.didSubmitAssignment ? 0.5 : 1)
-                        .hidden(!(viewModel.assignment?.showSubmitButton ?? false))
+                    if !(viewModel.assignment?.assignmentTypes.isEmpty ?? false) {
+                        AssignmentSubmissionView(
+                            viewModel: viewModel,
+                            geometry: geometry) {
+                                reader.scrollTo(viewModel.keyboardObserveID)
+                            }
+                            .disabled(viewModel.didSubmitAssignment)
+                            .opacity(viewModel.didSubmitAssignment ? 0.5 : 1)
+                            .hidden(!(viewModel.assignment?.showSubmitButton ?? false))
+                    }
                 }
             }
             .paddingStyle(.horizontal, .standard)
@@ -76,7 +78,7 @@ struct AssignmentDetails: View {
         .safeAreaInset(edge: .top) { if viewModel.state == .data { header } }
         .navigationTitle(viewModel.assignment?.name ?? "")
         .toolbarBackground(.visible, for: .navigationBar)
-        .alert("Error", isPresented: $viewModel.isShowAlertVisible) {
+        .alert("Error", isPresented: $viewModel.isAlertVisible) {
             Button("OK", role: .cancel) { }
         } message: {
             Text(viewModel.errorMessage)

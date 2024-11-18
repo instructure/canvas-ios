@@ -8,18 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		023834751BE1AE85F5D509C1 /* ContentProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15192E48982507B886F9E73B /* ContentProgressBar.swift */; };
-		046933CB2CD92B4800918336 /* AttachedFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046933CA2CD92B4800918336 /* AttachedFilesView.swift */; };
 		04FBC8E441EE6A2FE17BAD78 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED7199B426F89179546237 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		06DE8BCB00A3AFA9D063B50E /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6ADB5EDE85D2FF9CC5DEF68 /* DashboardViewModel.swift */; };
 		0A8A4904B7D52C0A312710E7 /* PortfolioAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDEE3C9B0FD71A1B82674 /* PortfolioAssembly.swift */; };
 		0DD34C5B7893FAEB1CB71B32 /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = 139B6C6DC3CBFF9C5B35C383 /* PSPDFKit */; };
 		0F148FA2282D9705F7B530D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2080A9B6DE0E54D41F56D23 /* Assets.xcassets */; };
+		157129706EE1D192176785DE /* AttachedFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6A09F6867E5958A929EE6 /* AttachedFilesView.swift */; };
 		1A568CA7B0A36BD6EBEC5F94 /* Size24BoldTextDarkestTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE44D47A55CF46B33C97B8F0 /* Size24BoldTextDarkestTitle.swift */; };
 		1A7194AA245058A4306ECECB /* HorizonTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7869B63B08EFFB68FC40D74E /* HorizonTabBarController.swift */; };
 		256C0F2B20ADE76D83ADBF6A /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0AD9FDC99C9A599145CF29 /* BundleExtension.swift */; };
 		29E9B523C38F6A2F53138201 /* AssignmentDetailsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A1E0EF5662144D613F921 /* AssignmentDetailsAssembly.swift */; };
 		341E151F9FE8B0C4F113C01A /* GetProgramsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F019A2E1914235682B5AF6B9 /* GetProgramsInteractor.swift */; };
 		3F82EB862BB02A4FE1D74F16 /* HModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E18B1A6BFF4E19E32C50E3 /* HModule.swift */; };
+		40624305A8A7E8B1A0D088B2 /* AssignmentSubmissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE56F9ADA98440A3EB81F22 /* AssignmentSubmissionView.swift */; };
 		40A7EA58A99AC7080BEF1B83 /* AssignmentDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1539BB6B0B6588E38DEE1268 /* AssignmentDetails.swift */; };
 		410AE96224CF3327A4027C6E /* ProgramsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B17BF83CEED78105ADED77 /* ProgramsView.swift */; };
 		41EFDB92980DFE03C0483F21 /* ExpandingModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581C446A807F61D5C4A430CB /* ExpandingModuleView.swift */; };
@@ -46,6 +47,7 @@
 		A621720DA5F3AFF733E16212 /* Size14RegularTextDarkestTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D5D240CEE95E43BE413812 /* Size14RegularTextDarkestTitle.swift */; };
 		AC65D230D896B3CEEB8C7AE5 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 6C49041BE2282B9B33D84838 /* FirebaseRemoteConfig */; };
 		B5812E682986E705DFADA366 /* AssignmentInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB524DBF6E9104972CA7BB /* AssignmentInteractorPreview.swift */; };
+		B6770A82F0511792B87C5ED8 /* HUploadFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAE5626575758BE196ED882 /* HUploadFileManager.swift */; };
 		B6B315CD9A3B2139B3C02097 /* ProgramDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A04AA67527214E50E65A4FD /* ProgramDetailsView.swift */; };
 		BB8D504E2E31F18D69332ED6 /* ProgramDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12F50779768D77FA758DBD3 /* ProgramDetailsViewModel.swift */; };
 		BCCEE877AD932FFFB7EF2226 /* ProgramsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6564F7EA04D5D54B6DD4CEEC /* ProgramsAssembly.swift */; };
@@ -65,31 +67,9 @@
 		F20BD1D6F5B7FDE2940C5E95 /* DashboardAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E568BE2530AFAB502E3367DA /* DashboardAssembly.swift */; };
 		F97CACE305281B388A9505E3 /* JourneyAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB18B349EFFD80257532CA /* JourneyAssembly.swift */; };
 		FBEBCFAFD19F4A370436323F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60A47E05ED8A779B909585C6 /* LaunchScreen.storyboard */; };
-		FE70D80D420A4271D1C9AF92 /* AssignmentSubmissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B32A7A529E028878C793EB /* AssignmentSubmissionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		046933CF2CD92B4800918336 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F475EC6814456E8041E96A1A /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
-			remoteInfo = CoreTester;
-		};
-		046933D12CD92B4800918336 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F475EC6814456E8041E96A1A /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
-			remoteInfo = CoreTests;
-		};
-		046933D32CD92B4800918336 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F475EC6814456E8041E96A1A /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = 0F2B4D06F2ACF62293B119C4;
-			remoteInfo = TestsFoundation;
-		};
 		287762C99D46AE8961068231 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F475EC6814456E8041E96A1A /* Core */;
@@ -123,7 +103,6 @@
 /* Begin PBXFileReference section */
 		01CB18B349EFFD80257532CA /* JourneyAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyAssembly.swift; sourceTree = "<group>"; };
 		023E7C84D2463F1B861DA9D8 /* Size12RegularTextDarkTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size12RegularTextDarkTitle.swift; sourceTree = "<group>"; };
-		046933CA2CD92B4800918336 /* AttachedFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedFilesView.swift; sourceTree = "<group>"; };
 		07B17BF83CEED78105ADED77 /* ProgramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsView.swift; sourceTree = "<group>"; };
 		0B8A0CFCDCB519AC3CB745B8 /* SessionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInteractor.swift; sourceTree = "<group>"; };
 		15192E48982507B886F9E73B /* ContentProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProgressBar.swift; sourceTree = "<group>"; };
@@ -134,7 +113,9 @@
 		22E1B76C3FAF2281B5810EC1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2A73840CAB398BAB7DB56F5F /* HAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAssignment.swift; sourceTree = "<group>"; };
 		34D5D240CEE95E43BE413812 /* Size14RegularTextDarkestTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size14RegularTextDarkestTitle.swift; sourceTree = "<group>"; };
+		3AD6A09F6867E5958A929EE6 /* AttachedFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedFilesView.swift; sourceTree = "<group>"; };
 		475018934291ABE32049E593 /* HProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HProgram.swift; sourceTree = "<group>"; };
+		4BAE5626575758BE196ED882 /* HUploadFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUploadFileManager.swift; sourceTree = "<group>"; };
 		51302AFC53EA233D02658D36 /* Size24RegularTextDarkestTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size24RegularTextDarkestTitle.swift; sourceTree = "<group>"; };
 		56DB2FB9D49D1B61A6754FF1 /* HModuleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HModuleItem.swift; sourceTree = "<group>"; };
 		581C446A807F61D5C4A430CB /* ExpandingModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingModuleView.swift; sourceTree = "<group>"; };
@@ -148,6 +129,7 @@
 		722F3AC23432C71FFB27E59D /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		7869B63B08EFFB68FC40D74E /* HorizonTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonTabBarController.swift; sourceTree = "<group>"; };
 		7C5A1E0EF5662144D613F921 /* AssignmentDetailsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsAssembly.swift; sourceTree = "<group>"; };
+		7FE56F9ADA98440A3EB81F22 /* AssignmentSubmissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSubmissionView.swift; sourceTree = "<group>"; };
 		81BB524DBF6E9104972CA7BB /* AssignmentInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentInteractorPreview.swift; sourceTree = "<group>"; };
 		82DD459C300CD1347648998F /* CertificateProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateProgressBar.swift; sourceTree = "<group>"; };
 		84DF380C02D41A8B87240A35 /* HorizonRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonRoutes.swift; sourceTree = "<group>"; };
@@ -174,7 +156,6 @@
 		F475EC6814456E8041E96A1A /* Core */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
 		F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8E7191B980D0E8899E8C175 /* Horizon.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Horizon.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9B32A7A529E028878C793EB /* AssignmentSubmissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSubmissionView.swift; sourceTree = "<group>"; };
 		FC16FDFB815642C82768097E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -386,9 +367,9 @@
 		8D295095DE60C1FC502762DA /* Submission */ = {
 			isa = PBXGroup;
 			children = (
-				F9B32A7A529E028878C793EB /* AssignmentSubmissionView.swift */,
-				046933CA2CD92B4800918336 /* AttachedFilesView.swift */,
+				7FE56F9ADA98440A3EB81F22 /* AssignmentSubmissionView.swift */,
 				A65D34D43E12CE7EF4AC16AE /* AssignmentType.swift */,
+				3AD6A09F6867E5958A929EE6 /* AttachedFilesView.swift */,
 				6CC395CC735FE969E7E65C26 /* HAssignmentButton.swift */,
 			);
 			path = Submission;
@@ -456,9 +437,6 @@
 			isa = PBXGroup;
 			children = (
 				7DED7199B426F89179546237 /* Core.framework */,
-				046933D02CD92B4800918336 /* CoreTester.app */,
-				046933D22CD92B4800918336 /* CoreTests.xctest */,
-				046933D42CD92B4800918336 /* TestsFoundation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -468,6 +446,7 @@
 			children = (
 				F0958555451321BC0A0FDAA2 /* AssignmentInteractor.swift */,
 				81BB524DBF6E9104972CA7BB /* AssignmentInteractorPreview.swift */,
+				4BAE5626575758BE196ED882 /* HUploadFileManager.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -567,27 +546,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		046933D02CD92B4800918336 /* CoreTester.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = CoreTester.app;
-			remoteRef = 046933CF2CD92B4800918336 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		046933D22CD92B4800918336 /* CoreTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CoreTests.xctest;
-			remoteRef = 046933D12CD92B4800918336 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		046933D42CD92B4800918336 /* TestsFoundation.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = TestsFoundation.framework;
-			remoteRef = 046933D32CD92B4800918336 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		7DED7199B426F89179546237 /* Core.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -643,8 +601,9 @@
 				513D7CA34D4B0BD83978960E /* AssignmentDetailsViewModel.swift in Sources */,
 				8F9F7532CA4E941FCE2BB7F2 /* AssignmentInteractor.swift in Sources */,
 				B5812E682986E705DFADA366 /* AssignmentInteractorPreview.swift in Sources */,
-				FE70D80D420A4271D1C9AF92 /* AssignmentSubmissionView.swift in Sources */,
+				40624305A8A7E8B1A0D088B2 /* AssignmentSubmissionView.swift in Sources */,
 				D9C944E37EE80EF89D75D1E6 /* AssignmentType.swift in Sources */,
+				157129706EE1D192176785DE /* AttachedFilesView.swift in Sources */,
 				A51387187690E8DA93F7A8D0 /* BaseHorizonScreen.swift in Sources */,
 				256C0F2B20ADE76D83ADBF6A /* BundleExtension.swift in Sources */,
 				E43A4ECD7F431763B904F25B /* CertificateProgressBar.swift in Sources */,
@@ -658,11 +617,11 @@
 				8031414D135BF4A32D1A97F5 /* GetProgramsInteractorPreview.swift in Sources */,
 				59B1BD3B9AEBB80E48D1C99B /* HAssignment.swift in Sources */,
 				DCA1DFDCA3EC27573695DD77 /* HAssignmentButton.swift in Sources */,
-				046933CB2CD92B4800918336 /* AttachedFilesView.swift in Sources */,
 				C25ABAF2A3AA7BAA36558525 /* HCourse.swift in Sources */,
 				3F82EB862BB02A4FE1D74F16 /* HModule.swift in Sources */,
 				4BD1843CFE6151E09D0189F4 /* HModuleItem.swift in Sources */,
 				44DBA58302439467D77480A3 /* HProgram.swift in Sources */,
+				B6770A82F0511792B87C5ED8 /* HUploadFileManager.swift in Sources */,
 				E180BD83DC0CE99C58D77A76 /* HorizonRoutes.swift in Sources */,
 				1A7194AA245058A4306ECECB /* HorizonTabBarController.swift in Sources */,
 				F97CACE305281B388A9505E3 /* JourneyAssembly.swift in Sources */,

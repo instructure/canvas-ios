@@ -34,7 +34,6 @@ struct HAssignment {
     let courseDueDate: String = "Due 01/12/2024"
     let workflowState: SubmissionWorkflowState?
     let submittedAt: Date?
-    var course: Course?
     var showSubmitButton = false
     var allowedExtensions: [String] = []
     init(
@@ -75,7 +74,6 @@ struct HAssignment {
         self.submittedAt = assignment.submission?.submittedAt
         self.courseID = assignment.id
         self.courseName = assignment.course?.name ?? ""
-        self.course = assignment.course
         self.showSubmitButton = assignment.hasAttemptsLeft
         self.allowedExtensions = assignment.allowedExtensions
     }

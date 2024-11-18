@@ -20,9 +20,7 @@ import Foundation
 import Core
 import Combine
 
-protocol AssignmentInteractor {
-    func getAssignmentDetails() -> AnyPublisher<HAssignment, Never>
-    func submitTextEntry(with text: String) -> AnyPublisher<[CreateSubmission.Model], Error>
+protocol HUploadFileManager {
     func addFile(url: URL)
     func cancelFile(_ file: File)
     func cancelAllFiles()
@@ -31,7 +29,7 @@ protocol AssignmentInteractor {
     var didUploadFiles: PassthroughSubject<Result<Void, Error>, Never> { get }
 }
 
-final class AssignmentInteractorLive: AssignmentInteractor {
+final class HUploadFileManagerLive: HUploadFileManager {
     // MARK: - Outputs
 
     public let attachments = CurrentValueSubject<[File], Never>([])
@@ -39,74 +37,64 @@ final class AssignmentInteractorLive: AssignmentInteractor {
 
     // MARK: - Properties
 
+    private lazy var fileStore = uploadManager.subscribe(batchID: batchId, eventHandler: {})
     private var subscriptions = Set<AnyCancellable>()
+    private var batchId: String {
+        "assignment-\(assignmentID)"
+    }
 
     // MARK: - Dependancies
 
     private let courseID: String
+    private let uploadManager: UploadManager
     private let assignmentID: String
-    private let uploadManager: HUploadFileManager
-    private let appEnvironment: AppEnvironment
 
     // MARK: - Init
-
     init(
-        courseID: String,
+        uploadManager: UploadManager,
         assignmentID: String,
-        uploadManager: HUploadFileManager,
-        appEnvironment: AppEnvironment
+        courseID: String
     ) {
-        self.courseID = courseID
-        self.assignmentID = assignmentID
         self.uploadManager = uploadManager
-        self.appEnvironment = appEnvironment
+        self.assignmentID = assignmentID
+        self.courseID = courseID
 
-        uploadManager.attachments
-            .subscribe(attachments)
+        fileStore.refresh()
+
+        fileStore
+            .allObjects
+            .replaceError(with: [])
+            .sink { [weak self] files in
+                self?.attachments.send(files)
+            }
             .store(in: &subscriptions)
 
         uploadManager
-            .didUploadFiles
+            .didUploadFile
             .subscribe(didUploadFiles)
             .store(in: &subscriptions)
     }
 
-    func getAssignmentDetails() -> AnyPublisher<HAssignment, Never> {
-        let includes: [GetAssignmentRequest.GetAssignmentInclude] = [.submission, .score_statistics]
-        return ReactiveStore(useCase: GetAssignment(courseID: courseID, assignmentID: assignmentID, include: includes))
-            .getEntities()
-            .replaceError(with: [])
-            .compactMap { $0.first }
-            .map { HAssignment(from: $0)}
-            .eraseToAnyPublisher()
-    }
-
-    func submitTextEntry(with text: String) -> AnyPublisher<[CreateSubmission.Model], Error> {
-        let userID = appEnvironment.currentSession?.userID ?? ""
-        let createSubmission = CreateSubmission(
-            context: .course(courseID),
-            assignmentID: assignmentID,
-            userID: userID,
-            submissionType: .online_text_entry,
-            body: text
-        )
-        return ReactiveStore(useCase: createSubmission)
-            .getEntities()
-    }
-
     func addFile(url: URL) {
-        uploadManager.addFile(url: url)
+        if url.startAccessingSecurityScopedResource() {
+            do {
+                try uploadManager.add(url: url, batchID: batchId)
+                fileStore.refresh()
+            } catch { debugPrint(error) }
+        }
+        url.stopAccessingSecurityScopedResource()
     }
 
     func cancelFile(_ file: File) {
-        uploadManager.cancelFile(file)
+        uploadManager.cancel(file: file)
     }
 
     func uploadFiles() {
-        uploadManager.uploadFiles()
+        let context = FileUploadContext.submission(courseID: courseID, assignmentID: assignmentID, comment: nil)
+        UploadManager.shared.upload(batch: batchId, to: context)
     }
 
     func cancelAllFiles() {
-        uploadManager.cancelAllFiles()
+        uploadManager.cancel(batchID: batchId)
     }
 }
