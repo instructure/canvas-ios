@@ -18,13 +18,34 @@
 
 import XCTest
 import TestsFoundation
+import SwiftUI
 @testable import Core
+
+
 
 final class CourseSearchFilterEditorViewModelTests: CoreTestCase {
 
+    private var selectedFilter: CourseSmartSearchFilter?
+
+    override func setUp() {
+        super.setUp()
+        selectedFilter = nil
+    }
+
+    func selectionBinding() -> Binding<CourseSmartSearchFilter?> {
+        return Binding<CourseSmartSearchFilter?>(
+            get: { [weak self] in
+                self?.selectedFilter
+            },
+            set: { [weak self] newFilter in
+                self?.selectedFilter = newFilter
+            }
+        )
+    }
+
     func test_all_selection_tapped() throws {
         // Given
-        let model = CourseSearchFilterEditorViewModel(filter: nil) { _ in }
+        let model = CourseSearchFilterEditorViewModel(selection: selectionBinding())
 
         // Initially all should be selected
         XCTAssertTrue(model.resultTypes.allSatisfy({ $0.checked }))
@@ -54,17 +75,14 @@ final class CourseSearchFilterEditorViewModelTests: CoreTestCase {
 
     func test_filter_submission() throws {
         // Given
-        var submitted: CourseSmartSearchFilter?
-        let model = CourseSearchFilterEditorViewModel(filter: nil) {
-            submitted = $0
-        }
+        let model = CourseSearchFilterEditorViewModel(selection: selectionBinding())
 
         // When - selecting only sort
         model.sortMode = .type
-        model.submit()
+        waitForMainAsync()
 
         // Then
-        var selected = try XCTUnwrap(submitted)
+        var selected = try XCTUnwrap(selectedFilter)
         XCTAssertEqual(selected.sortMode, .type)
         XCTAssertEqual(selected.includedTypes, CourseSmartSearchResultType.filterableTypes)
 
@@ -73,10 +91,10 @@ final class CourseSearchFilterEditorViewModelTests: CoreTestCase {
         model.sortMode = .relevance
         model.resultTypes[0].checked = true
         model.resultTypes[1].checked = true
-        model.submit()
+        waitForMainAsync()
 
         // Then
-        selected = try XCTUnwrap(submitted)
+        selected = try XCTUnwrap(selectedFilter)
         let expected = model.resultTypes.prefix(2).map({ $0.type })
         XCTAssertEqual(selected.sortMode, .relevance)
         XCTAssertEqual(selected.includedTypes, expected)
