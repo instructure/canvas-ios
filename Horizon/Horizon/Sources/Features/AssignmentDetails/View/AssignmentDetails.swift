@@ -73,6 +73,7 @@ struct AssignmentDetails: View {
             .paddingStyle(.horizontal, .standard)
             .padding(.bottom, 100)
         }
+        .background(Color.backgroundLight)
         .scrollDismissesKeyboard(.immediately)
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top) { if viewModel.state == .data { header } }

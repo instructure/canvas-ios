@@ -127,9 +127,9 @@ extension UINavigationBar {
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor = .clear
         appearance.shadowColor = .clear
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.textDarkest]
 
-        tintColor = .black
+        tintColor = UIColor.textDarkest
         standardAppearance = appearance
         scrollEdgeAppearance = appearance
         compactAppearance = appearance
