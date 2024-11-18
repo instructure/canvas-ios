@@ -41,8 +41,7 @@ class CourseSmartSearchViewModel: ObservableObject {
         }
     }
 
-    @Published var filter: CourseSmartSearchFilter?
-
+    var filter: CourseSmartSearchFilter?
     private var interactor: CourseSmartSearchInteractor
     private var feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
 

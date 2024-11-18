@@ -45,15 +45,18 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
 
     // MARK: Properties
 
-    @Published var sortMode: CourseSmartSearchFilter.SortMode? = .relevance
+    @Published var sortMode: CourseSmartSearchFilter.SortMode?
     @Published var resultTypes: [ResultTypeSelection]
 
-    private let onSubmit: (CourseSmartSearchFilter?) -> Void
+    private var selection: Binding<CourseSmartSearchFilter?>
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: Initialization
 
-    init(filter: CourseSmartSearchFilter?, onSubmit: @escaping (CourseSmartSearchFilter?) -> Void) {
-        self.onSubmit = onSubmit
+    init(selection: Binding<CourseSmartSearchFilter?>) {
+        self.selection = selection
+
+        let filter = selection.wrappedValue
         self.sortMode = filter?.sortMode ?? .relevance
 
         let included = filter?.includedTypes.nilIfEmpty ?? ResultType.filterableTypes
@@ -61,6 +64,20 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
             let checked = included.contains(type)
             return ResultTypeSelection(type: type, checked: checked)
         })
+
+        Publishers
+            .CombineLatest(
+                $sortMode,
+                $resultTypes
+            )
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (modeSelection, typesSelection) in
+                self?.updateSelection(
+                    sortMode: modeSelection,
+                    resultTypes: typesSelection
+                )
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: Exposed to View
@@ -85,20 +102,21 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
         }
     }
 
-    func submit() {
-        onSubmit(selectedFilter)
-    }
-
     // MARK: Privates
 
-    private var selectedFilter: CourseSmartSearchFilter? {
+    private func updateSelection(
+        sortMode: CourseSmartSearchFilter.SortMode?,
+        resultTypes: [ResultTypeSelection]
+    ) {
         let allChecked = resultTypes.allSatisfy({ $0.checked })
         let allUnchecked = resultTypes.allSatisfy({ $0.checked == false })
 
-        if (sortMode ?? .relevance) == .relevance,
-            allChecked || allUnchecked { return nil } // This is invalid case
+        if sortMode == .relevance, allChecked || allUnchecked {  // This is invalid case
+            selection.wrappedValue = nil
+            return
+        }
 
-        return CourseSmartSearchFilter(
+        selection.wrappedValue = CourseSmartSearchFilter(
             sortMode: sortMode ?? .relevance,
             includedTypes: resultTypes
                 .filter({ $0.checked })

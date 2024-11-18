@@ -41,10 +41,7 @@ public class CourseSmartSearchDescriptor: SearchDescriptor {
     public func filterEditorView(_ filter: Binding<CourseSmartSearchFilter?>) -> some View {
         CourseSmartSearchFilterEditorView(
             model: CourseSearchFilterEditorViewModel(
-                filter: filter.wrappedValue,
-                onSubmit: { newSelection in
-                    filter.wrappedValue = newSelection
-                }
+                selection: filter
             )
         )
     }

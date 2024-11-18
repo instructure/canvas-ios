@@ -53,17 +53,20 @@ public struct CourseSmartSearchDisplayView: View {
         .background(Color.backgroundLight)
         .onAppear {
             guard case .start = viewModel.phase else { return }
-            viewModel.filter = filter
             viewModel.fetchCourse()
-            startLoading()
+            resetFilter(filter)
         }
         .onReceive(searchContext.didSubmit, perform: { newTerm in
             startLoading(with: newTerm)
         })
         .onChange(of: filter) { newFilter in
-            viewModel.filter = newFilter
-            startLoading()
+            resetFilter(newFilter)
         }
+    }
+
+    private func resetFilter(_ filter: CourseSmartSearchFilter?) {
+        viewModel.filter = filter
+        startLoading()
     }
 
     private func startLoading(with term: String? = nil) {

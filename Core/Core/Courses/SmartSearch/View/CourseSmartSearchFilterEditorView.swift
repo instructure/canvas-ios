@@ -101,7 +101,6 @@ public struct CourseSmartSearchFilterEditorView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") {
-                        viewModel.submit()
                         dismiss()
                     }
                 }

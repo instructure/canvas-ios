@@ -26,6 +26,7 @@ struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDes
     @State var searchText: String
     @State var filter: Descriptor.Filter?
 
+    @State private var editingFilter: Descriptor.Filter?
     @State private var isFilterEditorPresented: Bool = false
 
     private let router: Router
@@ -41,6 +42,7 @@ struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDes
         self.router = router
         self.searchDescriptor = descriptor
         self._filter = State(initialValue: filter)
+        self._editingFilter = State(initialValue: filter)
         self._searchText = State(initialValue: searchText)
     }
 
@@ -62,6 +64,7 @@ struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDes
 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
+                        editingFilter = filter
                         isFilterEditorPresented = true
                     } label: {
                         if filter != nil {
@@ -100,9 +103,15 @@ struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDes
             .onChange(of: searchText) { newValue in
                 searchContext.searchText.send(newValue)
             }
-            .sheet(isPresented: $isFilterEditorPresented, content: {
-                searchDescriptor.filterEditorView($filter)
-            })
+            .sheet(
+                isPresented: $isFilterEditorPresented,
+                onDismiss: {
+                    filter = editingFilter
+                },
+                content: {
+                    searchDescriptor.filterEditorView($editingFilter)
+                }
+            )
     }
 
     private var clearButtonColor: Color {
