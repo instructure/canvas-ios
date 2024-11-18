@@ -76,8 +76,10 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
-        self?.defaultGradingPeriod = self?.currentGradingPeriod
-        self?.selectedGradingPeriod = self?.defaultGradingPeriod
+        if self?.selectedGradingPeriod == nil {
+            self?.defaultGradingPeriod = self?.currentGradingPeriod
+            self?.selectedGradingPeriod = self?.defaultGradingPeriod
+        }
         self?.assignmentGroups.refresh()
     }
 
@@ -102,8 +104,7 @@ public class AssignmentListViewModel: ObservableObject {
     // MARK: - Init
     public init(
         context: Context,
-        userDefaults: SessionDefaults? = AppEnvironment.shared.userDefaults,
-        defaultGradingPeriod: GradingPeriod? = nil
+        userDefaults: SessionDefaults? = AppEnvironment.shared.userDefaults
     ) {
         self.userDefaults = userDefaults
         self.courseID = context.id
@@ -117,9 +118,10 @@ public class AssignmentListViewModel: ObservableObject {
         loadAssignmentListPreferences()
         course.refresh(force: true)
         gradingPeriods.refresh(force: true)
-        filterOptionsDidUpdate(filterOptions: selectedFilterOptions, gradingPeriod: defaultGradingPeriod)
+        filterOptionsDidUpdate(filterOptions: selectedFilterOptions, gradingPeriod: selectedGradingPeriod)
 
-        isFilterIconSolid = ![0, AssignmentFilterOption.allCases.count].contains(selectedFilterOptions.count)
+        isFilterIconSolid = (1 ..< AssignmentFilterOption.allCases.count).contains(selectedFilterOptions.count)
+            || selectedGradingPeriod != defaultGradingPeriod
     }
 
     public func filterOptionsDidUpdate(

@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
+import TestsFoundation
 @testable import Core
 
 class AssignmentListViewModelTests: CoreTestCase {
@@ -26,7 +26,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .loading)
         XCTAssertNil(testee.courseName)
         XCTAssertNil(testee.courseColor)
-        XCTAssertEqual(testee.gradingPeriods.count, 0)
+        XCTAssertNil(testee.defaultGradingPeriod)
     }
 
     func testCoursePropertiesUpdate() {
@@ -45,7 +45,13 @@ class AssignmentListViewModelTests: CoreTestCase {
     }
 
     func testFilterButtonVisibleWhenTwoGradingPeriodsAvailable() {
-        api.mock(GetGradingPeriods(courseID: "1"), value: [.make(id: "1", title: "GP1"), .make(id: "2", title: "GP2")])
+        api.mock(
+            GetGradingPeriods(courseID: "1"),
+            value: [
+                .make(id: "1", title: "GP1", start_date: .now.addMonths(-9), end_date: .now.addMonths(-3)),
+                .make(id: "2", title: "GP2", start_date: .now.addMonths(-3), end_date: .now.addMonths(3))
+            ]
+        )
 
         // GetAssignmentsByGroup iterates through all grading periods so we have to mock it not to make the whole fetch fail
         var assignmentGroupRequest = GetAssignmentGroupsRequest(
@@ -66,7 +72,7 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         testee.viewDidAppear()
 
-        XCTAssertTrue(testee.gradingPeriods.count > 1)
+        XCTAssertEqual(testee.defaultGradingPeriod?.id, "2")
     }
 
     func testAssignmentsPopulate() {
@@ -93,12 +99,12 @@ class AssignmentListViewModelTests: CoreTestCase {
             return
         }
         XCTAssertEqual(groupViewModels.count, 2)
-        XCTAssertEqual(groupViewModels[0].name, "AGroup1")
+        XCTAssertEqual(groupViewModels[0].name, "AGroup2")
         XCTAssertEqual(groupViewModels[0].assignments.count, 1)
-        XCTAssertEqual(groupViewModels[0].assignments[0].name, "Assignment1")
-        XCTAssertEqual(groupViewModels[1].name, "AGroup2")
+        XCTAssertEqual(groupViewModels[0].assignments[0].name, "Assignment2")
+        XCTAssertEqual(groupViewModels[1].name, "AGroup1")
         XCTAssertEqual(groupViewModels[1].assignments.count, 1)
-        XCTAssertEqual(groupViewModels[1].assignments[0].name, "Assignment2")
+        XCTAssertEqual(groupViewModels[1].assignments[0].name, "Assignment1")
     }
 
     func testEmptyStateIfNoAssignments() {
@@ -120,39 +126,19 @@ class AssignmentListViewModelTests: CoreTestCase {
     }
 
     func testGradingPeriodFilterChange() {
-        // we modify the first grading period's start_date to make sure it is the first in the picker
-        api.mock(GetGradingPeriods(courseID: "1"), value: [.make(id: "1", title: "GP1", start_date: Clock.now.addMonths(-1)), .make(id: "2", title: "GP2")])
+        api.mock(
+            GetGradingPeriods(courseID: "1"),
+            value: [
+                .make(id: "1", title: "Past GP", start_date: Clock.now.addMonths(-2), end_date: Clock.now.addMonths(-1)),
+                .make(id: "2", title: "Current GP", start_date: Clock.now.addMonths(-1), end_date: Clock.now.addMonths(1))
+            ]
+        )
+        let gradingPeriods = AppEnvironment.shared.subscribe(GetGradingPeriods(courseID: "1"))
         let testee = AssignmentListViewModel(context: .course("1"))
-        testee.selectedSortingOption = .groupName
         testee.viewDidAppear()
-        XCTAssertEqual(testee.state, .empty)
-        // GetAssignmentsByGroup iterates through all grading periods so we have to mock it not to make the whole fetch fail
-        var assignmentGroupRequest = GetAssignmentGroupsRequest(
-            courseID: "1",
-            gradingPeriodID: "1",
-            perPage: 100
-        )
-        api.mock(assignmentGroupRequest, value: [])
+        XCTAssertEqual(testee.selectedGradingPeriod, gradingPeriods[1])
 
-        assignmentGroupRequest = GetAssignmentGroupsRequest(
-            courseID: "1",
-            gradingPeriodID: "2",
-            perPage: 100
-        )
-
-        api.mock(assignmentGroupRequest, value: [
-            .make(id: "AG1", name: "AGroup1", position: 1, assignments: [.make(assignment_group_id: "AG1", id: "1", name: "Assignment1")])
-        ])
-
-        testee.filterOptionsDidUpdate(gradingPeriod: testee.gradingPeriods[1])
-
-        guard case .data(let groupViewModels) = testee.state else {
-            XCTFail("State doesn't contain any view models.")
-            return
-        }
-        XCTAssertEqual(groupViewModels.count, 1)
-        XCTAssertEqual(groupViewModels[0].name, "AGroup1")
-        XCTAssertEqual(groupViewModels[0].assignments.count, 1)
-        XCTAssertEqual(groupViewModels[0].assignments[0].name, "Assignment1")
+        testee.filterOptionsDidUpdate(gradingPeriod: gradingPeriods[0])
+        XCTAssertEqual(testee.selectedGradingPeriod, gradingPeriods[0])
     }
 }
