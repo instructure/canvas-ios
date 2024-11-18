@@ -50,6 +50,7 @@ class UISearchField: UIView {
         icon.contentMode = .center
         icon.setContentHuggingPriority(.required, for: .horizontal)
 
+        field.autocapitalizationType = .none
         field.translatesAutoresizingMaskIntoConstraints = false
         field.setContentHuggingPriority(.defaultLow, for: .horizontal)
         field.clearButtonMode = .always

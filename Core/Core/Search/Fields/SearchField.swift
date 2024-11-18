@@ -49,6 +49,7 @@ struct SearchTextField: View {
             Spacer(minLength: 5)
 
             TextField("", text: $text, prompt: Text(prompt))
+                .textInputAutocapitalization(.never)
                 .labelsHidden()
                 .submitLabel(.search)
                 .font(.subheadline)

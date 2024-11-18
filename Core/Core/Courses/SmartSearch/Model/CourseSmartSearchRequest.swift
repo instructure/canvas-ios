@@ -29,9 +29,12 @@ struct CourseSmartSearchRequest: APIRequestable {
         "/api/v1/courses/\(courseId)/smartsearch"
     }
 
+    var shouldAddNoVerifierQuery: Bool { false }
+
     var query: [APIQueryItem] {
         return [
             .value("q", searchText),
+            .perPage(25),
             filter.flatMap { .array("filter", $0) }
         ]
         .compactMap({ $0 })

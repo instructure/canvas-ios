@@ -37,6 +37,13 @@ class CourseSmartSearchInteractorLive: CourseSmartSearchInteractor {
         return ReactiveStore(useCase: GetCourse(courseID: courseId))
     }()
 
+    private lazy var searchResults = FetchedCollection(
+        ofRequest: CourseSmartSearchRequest.self,
+        transform: {
+            $0.results.sorted(by: CourseSmartSearchResult.sortStrategy)
+        }
+    )
+
     let context: Context
     init(context: Context) {
         self.context = context
@@ -71,19 +78,14 @@ class CourseSmartSearchInteractorLive: CourseSmartSearchInteractor {
             return Just([]).eraseToAnyPublisher()
         }
 
-        return AppEnvironment
-            .shared
-            .api
-            .makeRequest(
+        return searchResults
+            .fetch(
                 CourseSmartSearchRequest(
                     courseId: courseId,
                     searchText: searchTerm,
                     filter: filter?.includedTypes.map({ $0.filterValue })
                 )
             )
-            .map({ $0.body.results.sorted(by: CourseSmartSearchResult.sortStrategy) })
-            .replaceError(with: [])
-            .eraseToAnyPublisher()
     }
 }
 
