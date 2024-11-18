@@ -28,34 +28,74 @@ struct DashboardView: View {
     }
 
     var body: some View {
-        BaseHorizonScreen {
-            InstUI.BaseScreen(
-                state: viewModel.state,
-                config: .init(refreshable: true)
-            ) { proxy in
-                VStack(spacing: 0) {
-                    ForEach(viewModel.programs) { program in
-                        if program.currentModuleItem != nil, !program.upcomingModuleItems.isEmpty {
-                            VStack(alignment: .leading, spacing: 12) {
-                                Size24BoldTextDarkestTitle(title: program.name)
-                                    .padding(.top, 16)
-                                CertificateProgressBar(
-                                    maxWidth: proxy.size.width - 2 * 16,
-                                    progress: program.progress,
-                                    progressString: program.progressString
-                                )
-                                moduleView(program: program)
-                            }
-                            .padding(.horizontal, 16)
-                            .background(Color.backgroundLight)
+        InstUI.BaseScreen(
+            state: viewModel.state,
+            config: .init(refreshable: true)
+        ) { proxy in
+            VStack(spacing: 0) {
+                ForEach(viewModel.programs) { program in
+                    if program.currentModuleItem != nil, !program.upcomingModuleItems.isEmpty {
+                        VStack(alignment: .leading, spacing: 12) {
+                            Size24BoldTextDarkestTitle(title: program.name)
+                                .padding(.top, 16)
+                            CertificateProgressBar(
+                                maxWidth: proxy.size.width - 2 * 16,
+                                progress: program.progress,
+                                progressString: program.progressString
+                            )
+                            moduleView(program: program)
                         }
+                        .padding(.horizontal, 16)
+                        .background(Color.backgroundLight)
                     }
                 }
             }
-            .navigationBarItems(trailing: logoutButton)
-            .scrollIndicators(.hidden, axes: .vertical)
         }
+        .navigationBarItems(leading: nameLabel)
+        .navigationBarItems(trailing: icons)
+        .scrollIndicators(.hidden, axes: .vertical)
         .background(Color.backgroundLight)
+    }
+
+    private var nameLabel: some View {
+        Size16RegularTextDarkestTitle(title: viewModel.title)
+    }
+
+    private var icons: some View {
+        HStack(spacing: 0) {
+            Button {
+                viewModel.notebookDidTap()
+            } label: {
+                Image(systemName: "book.closed")
+                    .tint(.backgroundDark)
+                    .frame(width: 40, height: 40)
+                    .background(Color.backgroundLightest)
+                    .clipShape(.circle)
+                    .shadow(color: .backgroundDark, radius: 2)
+            }
+
+            Button {
+                viewModel.notificationsDidTap()
+            } label: {
+                Image(systemName: "bell.badge")
+                    .tint(.backgroundDark)
+                    .frame(width: 40, height: 40)
+                    .background(Color.backgroundLightest)
+                    .clipShape(.circle)
+                    .shadow(color: .backgroundDark, radius: 2)
+            }
+
+            Button {
+                viewModel.profileDidTap()
+            } label: {
+                Image(systemName: "person")
+                    .tint(.backgroundDark)
+                    .frame(width: 40, height: 40)
+                    .background(Color.backgroundLightest)
+                    .clipShape(.circle)
+                    .shadow(color: .backgroundDark, radius: 2)
+            }
+        }
     }
 
     private var logoutButton: some View {
