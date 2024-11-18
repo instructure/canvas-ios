@@ -22,6 +22,7 @@ import SwiftUI
 struct AssignmentDetails: View {
     // MARK: - Properties
 
+    @Environment(\.viewController) private var viewController
     @Bindable private var viewModel: AssignmentDetailsViewModel
 
     init(viewModel: AssignmentDetailsViewModel) {
