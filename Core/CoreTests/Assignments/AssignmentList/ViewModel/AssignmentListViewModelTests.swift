@@ -98,13 +98,24 @@ class AssignmentListViewModelTests: CoreTestCase {
             XCTFail("State doesn't contain any view models.")
             return
         }
+
+        guard let firstGroupViewModel = groupViewModels.filter({ $0.name == "AGroup1" }).first else {
+            XCTFail("AssignmentGroup1 View Model is not available.")
+            return
+        }
+
+        guard let secondGroupViewModel = groupViewModels.filter({ $0.name == "AGroup2" }).first else {
+            XCTFail("AssignmentGroup2 View Model is not available.")
+            return
+        }
+
         XCTAssertEqual(groupViewModels.count, 2)
-        XCTAssertEqual(groupViewModels[0].name, "AGroup2")
-        XCTAssertEqual(groupViewModels[0].assignments.count, 1)
-        XCTAssertEqual(groupViewModels[0].assignments[0].name, "Assignment2")
-        XCTAssertEqual(groupViewModels[1].name, "AGroup1")
-        XCTAssertEqual(groupViewModels[1].assignments.count, 1)
-        XCTAssertEqual(groupViewModels[1].assignments[0].name, "Assignment1")
+        XCTAssertEqual(firstGroupViewModel.name, "AGroup1")
+        XCTAssertEqual(firstGroupViewModel.assignments.count, 1)
+        XCTAssertEqual(firstGroupViewModel.assignments[0].name, "Assignment1")
+        XCTAssertEqual(secondGroupViewModel.name, "AGroup2")
+        XCTAssertEqual(secondGroupViewModel.assignments.count, 1)
+        XCTAssertEqual(secondGroupViewModel.assignments[0].name, "Assignment2")
     }
 
     func testEmptyStateIfNoAssignments() {
