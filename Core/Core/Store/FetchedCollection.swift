@@ -40,7 +40,7 @@ public class FetchedCollection<Request: APIRequestable, Element: Decodable> {
         self.next = nil
         self.collected = []
 
-        let published = env
+        return env
             .api
             .makeRequest(request)
             .map({ [weak self] response in
@@ -49,16 +49,14 @@ public class FetchedCollection<Request: APIRequestable, Element: Decodable> {
                 if let urlResponse = response.urlResponse {
                     next = request.getNext(from: urlResponse)
                 }
-                return transform(response.body)
+
+                let newList = transform(response.body)
+                collected = newList
+
+                return newList
             })
             .replaceError(with: [] as [Element])
-            .share()
-
-        published
-            .sink(receiveValue: { [weak self] in self?.collected = $0 })
-            .store(in: &subscriptions)
-
-        return published.eraseToAnyPublisher()
+            .eraseToAnyPublisher()
     }
 
     public func fetchNext() -> AnyPublisher<[Element], Never> {
@@ -66,12 +64,11 @@ public class FetchedCollection<Request: APIRequestable, Element: Decodable> {
             return Just(collected).eraseToAnyPublisher()
         }
 
-        let published = env
+        return env
             .api
             .makeRequest(request)
             .map({ [weak self] response in
                 guard let self else { return [] }
-
                 if let urlResponse = response.urlResponse {
                     next = request.getNext(from: urlResponse)
                 }
@@ -79,14 +76,11 @@ public class FetchedCollection<Request: APIRequestable, Element: Decodable> {
             })
             .replaceError(with: [] as [Element])
             .map { [weak self] newElements in
-                return (self?.collected ?? []) + newElements
+                guard let self else { return newElements }
+                let newList = collected + newElements
+                collected = newList
+                return newList
             }
-            .share()
-
-        published
-            .sink(receiveValue: { [weak self] in self?.collected = $0 })
-            .store(in: &subscriptions)
-
-        return published.eraseToAnyPublisher()
+            .eraseToAnyPublisher()
     }
 }

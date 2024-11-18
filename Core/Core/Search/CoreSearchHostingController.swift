@@ -190,7 +190,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
         } set: { [weak self] newFilter in
             guard let self else { return }
             selectedFilter = newFilter
-            filterBarItem.image = newFilter != nil ? .filterActiveSolid : .filterLine
+            filterBarItem.image = newFilter != nil ? .filterSolid : .filterLine
         }
 
         let filterEditorVC = CoreHostingController(

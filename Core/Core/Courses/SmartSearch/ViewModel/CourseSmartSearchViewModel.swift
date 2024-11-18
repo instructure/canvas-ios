@@ -83,7 +83,6 @@ class CourseSmartSearchViewModel: ObservableObject {
 
         let share = interactor
             .search(for: searchTerm, filter: filter)
-            .map({ $0.filter({ $0.relevance >= 50 }) })
             .receive(on: DispatchQueue.main)
             .share()
 

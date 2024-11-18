@@ -33,7 +33,7 @@ class CourseSmartSearchRequestTests: CoreTestCase {
         // Then
         XCTAssertEqual(request.method, .get)
         XCTAssertEqual(request.path, "/api/v1/courses/course_1234/smartsearch")
-        XCTAssertEqual(request.query, [.value("q", searchWord)])
+        XCTAssertEqual(request.query, [.value("q", searchWord), .perPage(50)])
     }
 
     func test_request_with_filter() {
@@ -49,6 +49,6 @@ class CourseSmartSearchRequestTests: CoreTestCase {
         // Then
         XCTAssertEqual(request.method, .get)
         XCTAssertEqual(request.path, "/api/v1/courses/course_1234/smartsearch")
-        XCTAssertEqual(request.query, [.value("q", searchWord), .array("filter", filter)])
+        XCTAssertEqual(request.query, [.value("q", searchWord), .perPage(50), .array("filter", filter)])
     }
 }

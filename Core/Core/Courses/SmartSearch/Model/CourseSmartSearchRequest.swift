@@ -34,7 +34,7 @@ struct CourseSmartSearchRequest: APIRequestable {
     var query: [APIQueryItem] {
         return [
             .value("q", searchText),
-            .perPage(25),
+            .perPage(50),
             filter.flatMap { .array("filter", $0) }
         ]
         .compactMap({ $0 })

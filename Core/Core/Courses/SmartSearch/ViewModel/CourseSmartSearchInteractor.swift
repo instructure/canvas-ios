@@ -37,10 +37,12 @@ class CourseSmartSearchInteractorLive: CourseSmartSearchInteractor {
         return ReactiveStore(useCase: GetCourse(courseID: courseId))
     }()
 
-    private lazy var searchResults = FetchedCollection(
+    private lazy var resultsCollection = FetchedCollection(
         ofRequest: CourseSmartSearchRequest.self,
         transform: {
-            $0.results.sorted(by: CourseSmartSearchResult.sortStrategy)
+            $0.results
+                .sorted(by: CourseSmartSearchResult.sortStrategy)
+                .filter({ $0.relevance >= 50 })
         }
     )
 
@@ -78,7 +80,7 @@ class CourseSmartSearchInteractorLive: CourseSmartSearchInteractor {
             return Just([]).eraseToAnyPublisher()
         }
 
-        return searchResults
+        return resultsCollection
             .fetch(
                 CourseSmartSearchRequest(
                     courseId: courseId,

@@ -68,7 +68,7 @@ struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDes
                         isFilterEditorPresented = true
                     } label: {
                         if filter != nil {
-                            Image.filterActiveSolid
+                            Image.filterSolid
                         } else {
                             Image.filterLine
                         }

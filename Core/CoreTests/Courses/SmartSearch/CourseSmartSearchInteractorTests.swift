@@ -36,6 +36,12 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
             .make(type: .discussion),
             .make(type: .discussion)
         ]
+
+        static var expected: [CourseSmartSearchResult] = {
+            return results
+                .sorted(by: CourseSmartSearchResult.sortStrategy)
+                .filter({ $0.relevance >= 50 })
+        }()
     }
 
     func test_enablement() throws {
@@ -87,7 +93,7 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
         let results = interactor.search(for: searchWord, filter: nil)
 
         // Then
-        XCTAssertSingleOutputEquals(results, TestConstants.results.sorted(by: CourseSmartSearchResult.sortStrategy))
+        XCTAssertSingleOutputEquals(results, TestConstants.expected)
     }
 
     func test_searching_with_filter() throws {
@@ -115,7 +121,7 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
         let results = interactor.search(for: searchWord, filter: filter)
 
         // Then
-        XCTAssertSingleOutputEquals(results, TestConstants.results.sorted(by: CourseSmartSearchResult.sortStrategy))
+        XCTAssertSingleOutputEquals(results, TestConstants.expected)
     }
 
     func test_course_fetch() throws {
