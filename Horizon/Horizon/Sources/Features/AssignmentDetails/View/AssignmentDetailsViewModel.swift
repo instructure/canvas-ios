@@ -31,7 +31,7 @@ final class AssignmentDetailsViewModel {
     private(set) var attachments: [File] = []
     private(set) var errorMessage = ""
     private(set) var submissionEvents = PassthroughSubject<AssignmentSubmissionView.Events, Never>()
-    private(set) var aiEvents = PassthroughSubject<(AIButtonsType, WeakViewController), Never>()
+    private(set) var aiEvents = PassthroughSubject<(ModuleBottomsType, WeakViewController), Never>()
     let keyboardObserveID = "keyboardObserveID"
     var textEntry: String = ""
     var selectedSubmission: AssignmentType?

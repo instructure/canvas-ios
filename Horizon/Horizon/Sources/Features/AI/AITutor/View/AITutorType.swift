@@ -28,15 +28,15 @@ enum AITutorType: CaseIterable {
     var titel: String {
         switch self {
         case .quiz:
-            "Quiz me on this material"
+            String(localized: "Quiz me on this material", bundle: .horizon)
         case .summary:
-            "Summarize this material"
+            String(localized: "Summarize this material", bundle: .horizon)
         case .takeAway:
-            "Give me key takeaways"
+            String(localized: "Give me key takeaways", bundle: .horizon)
         case .tellMeMore:
-            "Tell me more about this topic"
+            String(localized: "Tell me more about this topic", bundle: .horizon)
         case .flashCard:
-            "Generate some study flashcards"
+            String(localized: "Generate some study flashcards", bundle: .horizon)
         }
     }
 }

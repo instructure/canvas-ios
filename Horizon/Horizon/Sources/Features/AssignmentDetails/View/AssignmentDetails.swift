@@ -78,7 +78,7 @@ struct AssignmentDetails: View {
         .safeAreaInset(edge: .top) { if viewModel.state == .data { header } }
         .safeAreaInset(edge: .bottom) {
             if !viewModel.isKeyboardVisible {
-                AIButtonsView { selectedButton in
+                ModuleBottomNavBar { selectedButton in
                     viewModel.aiEvents.send((selectedButton, viewController))
                 }
                 .padding(.bottom)

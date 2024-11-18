@@ -19,9 +19,9 @@
 import SwiftUI
 import Core
 
-struct AIButtonsView: View {
-    private let iconNames = AIButtonsType.allCases
-    var onSelect: (AIButtonsType) -> Void
+struct ModuleBottomNavBar: View {
+    private let iconNames = ModuleBottomsType.allCases
+    var onSelect: (ModuleBottomsType) -> Void
 
     var body: some View {
         HStack(spacing: 20) {
@@ -34,7 +34,7 @@ struct AIButtonsView: View {
         .clipShape(.capsule)
     }
 
-    private func buttonView(icon: AIButtonsType) -> some View {
+    private func buttonView(icon: ModuleBottomsType) -> some View {
         Button {
             onSelect(icon)
         } label: {
@@ -42,7 +42,7 @@ struct AIButtonsView: View {
         }
     }
 
-    private func labelButton(icon: AIButtonsType) -> some View {
+    private func labelButton(icon: ModuleBottomsType) -> some View {
         Circle()
             .fill(Color.disabledGray.opacity(0.2))
             .frame(width: 50, height: 50)
@@ -55,6 +55,6 @@ struct AIButtonsView: View {
 
 #if DEBUG
 #Preview {
-    AIButtonsView(onSelect: { _ in })
+    ModuleBottomNavBar(onSelect: { _ in })
 }
 #endif

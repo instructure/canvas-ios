@@ -20,7 +20,7 @@ import SwiftUI
 import Core
 
 struct AITutorView: View {
-    @State var viewModel: AITutorViewModel
+    let viewModel: AITutorViewModel
     @Environment(\.viewController) private var viewController
     private let types = AITutorType.allCases
 
@@ -40,7 +40,7 @@ struct AITutorView: View {
         .navigationTitle("AI Tutor")
         .paddingStyle([.horizontal, .top], .standard)
         .applyHorizonGradient()
-        .onAppear { viewModel.controller = viewController }
+        .onFirstAppear { viewModel.controller = viewController }
     }
 
     private var chatBotButton: some View {

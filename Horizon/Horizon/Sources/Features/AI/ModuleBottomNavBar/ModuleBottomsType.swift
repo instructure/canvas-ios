@@ -18,7 +18,7 @@
 
 import Foundation
 
-enum AIButtonsType: CaseIterable {
+enum ModuleBottomsType: CaseIterable {
     case message
     case sound
     case bookmark

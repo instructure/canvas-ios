@@ -32,8 +32,8 @@ struct ChatBotView: View {
             InstUI.BaseScreen(
                 state: viewModel.state,
                 config: .init(refreshable: false)
-            ) { proxy in
-                contentView(proxy: proxy)
+            ) { _ in
+                contentView()
             }
             .scrollDismissesKeyboard(.immediately)
             Spacer()
@@ -65,11 +65,11 @@ struct ChatBotView: View {
         }
     }
 
-    private func contentView(proxy: GeometryProxy) -> some View {
+    private func contentView() -> some View {
         ScrollViewReader { scrollViewProxy in
             LazyVStack(alignment: .leading, spacing: 12) {
                 ForEach(viewModel.messages) { message in
-                    ChatBotMessageBubbleView(message: message, maxWidth: proxy.size.width - 50)
+                    ChatBotMessageBubbleView(message: message)
                         .id(message.id)
                 }
             }

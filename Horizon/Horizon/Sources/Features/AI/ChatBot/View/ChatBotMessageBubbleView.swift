@@ -21,7 +21,6 @@ import Core
 
 struct ChatBotMessageBubbleView: View {
     let message: ChatBotMessageModel
-    let maxWidth: CGFloat
 
     var body: some View {
         HStack {
@@ -47,16 +46,18 @@ struct ChatBotMessageBubbleView: View {
             .background(message.isMine ? Color.backgroundLightest : Color.backgroundLightest.opacity(0.2))
             .foregroundColor(message.isMine ? Color.textDarkest : Color.backgroundLightest)
             .cornerRadius(16)
-            .frame(maxWidth: maxWidth, alignment: message.isMine ? .trailing : .leading)
+            .containerRelativeFrame(.horizontal, alignment: message.isMine ? .trailing : .leading) { width, _ in
+                width * 0.9
+            }
     }
 }
 
 #if DEBUG
 #Preview {
     VStack {
-        ChatBotMessageBubbleView(message: .init(content: "Hi Horizon App", isMine: true), maxWidth: 250)
-        ChatBotMessageBubbleView(message: .init(content: "Hi Horizon App", isMine: false), maxWidth: 250)
-        ChatBotMessageBubbleView(message: .init(isMine: false, isLoading: true), maxWidth: 250)
+        ChatBotMessageBubbleView(message: .init(content: "Hi Horizon App", isMine: true))
+        ChatBotMessageBubbleView(message: .init(content: "Hi Horizon App", isMine: false))
+        ChatBotMessageBubbleView(message: .init(isMine: false, isLoading: true))
     }
     .frame(maxHeight: .infinity)
     .applyHorizonGradient()

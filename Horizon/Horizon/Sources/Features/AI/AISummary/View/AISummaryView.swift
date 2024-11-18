@@ -24,38 +24,38 @@ struct AISummaryView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 10) {
-                Text("Artificial Intelligence (AI)")
+                Text(verbatim: "Artificial Intelligence (AI)")
                     .font(.title)
                     .fontWeight(.bold)
                     .padding(.bottom, 5)
 
-                Text("Artificial Intelligence (AI) is a branch of computer science focused on creating systems capable of performing tasks that typically require human intelligence.")
+                Text(verbatim: "Artificial Intelligence (AI) is a branch of computer science focused on creating systems capable of performing tasks that typically require human intelligence.")
 
-                Text("AI Categories")
+                Text(verbatim: "AI Categories")
                     .font(.headline)
                     .padding(.top, 5)
 
-                Text("1. Narrow AI (Weak AI): Designed for specific tasks, such as facial recognition, recommendation systems, or language translation. These systems")
+                Text(verbatim: "1. Narrow AI (Weak AI): Designed for specific tasks, such as facial recognition, recommendation systems, or language translation. These systems")
 
-                Text("2. General AI (Strong AI): A theoretical form of AI that would perform any intellectual task a human can do. This level of AI doesn't yet exist")
+                Text(verbatim: "2. General AI (Strong AI): A theoretical form of AI that would perform any intellectual task a human can do. This level of AI doesn't yet exist")
 
-                Text("Techniques in AI")
+                Text(verbatim: "Techniques in AI")
                     .font(.headline)
                     .padding(.top, 5)
 
-                Text("AI relies on several techniques, including Machine Learning (ML), Deep Learning (DL), and Natural Language Processing (NLP).")
+                Text(verbatim: "AI relies on several techniques, including Machine Learning (ML), Deep Learning (DL), and Natural Language Processing (NLP).")
 
-                Text("• Machine Learning (ML): Algorithms that enable systems to learn from data and improve over time. Key ML techniques include supervised learning")
+                Text(verbatim: "• Machine Learning (ML): Algorithms that enable systems to learn from data and improve over time. Key ML techniques include supervised learning")
 
-                Text("• Deep Learning (DL): A subset of ML that uses neural networks with many layers to process complex data patterns, often used in image and speech recognition.")
+                Text(verbatim: "• Deep Learning (DL): A subset of ML that uses neural networks with many layers to process complex data patterns, often used in image and speech recognition.")
 
-                Text("• Natural Language Processing (NLP): Techniques that help machines understand and generate human language, enabling applications like chatbots and language translation.")
+                Text(verbatim: "• Natural Language Processing (NLP): Techniques that help machines understand and generate human language, enabling applications like chatbots")
 
-                Text("Applications and Considerations")
+                Text(verbatim: "Applications and Considerations")
                     .font(.headline)
                     .padding(.top, 5)
 
-                Text("AI has vast applications across industries like healthcare, finance, transportation, and entertainment")
+                Text(verbatim: "AI has vast applications across industries like healthcare, finance, transportation, and entertainment")
             }
             .foregroundStyle(Color.backgroundLightest)
         }
@@ -65,6 +65,8 @@ struct AISummaryView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     AISummaryView()
 }
+#endif
