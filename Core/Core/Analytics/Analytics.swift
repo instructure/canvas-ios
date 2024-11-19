@@ -51,11 +51,4 @@ public class Analytics: NSObject {
         }
         return session.baseURL.absoluteString
     }
-
-    public static var analyticsBaseUrl: String {
-        guard let session = AppEnvironment.shared.currentSession else {
-            return ""
-        }
-        return session.baseURL.absoluteString
-    }
 }

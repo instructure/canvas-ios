@@ -37,13 +37,13 @@ public struct UITextViewWrapper: UIViewRepresentable {
         return tv
     }
 
-    func updateUIView(_ textView: UITextView, context: UIViewRepresentableContext<UITextViewWrapper>) {
+    public func updateUIView(_ textView: UITextView, context: UIViewRepresentableContext<UITextViewWrapper>) {
         if text != textView.text {
             textView.text = text
         }
     }
 
-    func makeCoordinator() -> Coordinator {
+    public func makeCoordinator() -> Coordinator {
         let coordinator = Coordinator(self)
         return coordinator
     }
@@ -56,7 +56,7 @@ public struct UITextViewWrapper: UIViewRepresentable {
             self.parent = textField
         }
 
-        func textViewDidChange(_ textView: UITextView) {
+        public func textViewDidChange(_ textView: UITextView) {
             parent.text = textView.text
         }
     }
