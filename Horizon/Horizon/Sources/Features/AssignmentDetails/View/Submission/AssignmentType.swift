@@ -16,16 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Foundation
 
-struct PortfolioView: View {
-    var body: some View {
-        BaseHorizonScreen {
-            Text("Hello, Portfolio!")
+enum AssignmentType: String {
+    case textEntry = "online_text_entry"
+    case uploadFile = "online_upload"
+
+    var title: String {
+        switch self {
+        case .textEntry:
+            "Text Entry"
+        case .uploadFile:
+            "File Upload"
         }
     }
-}
 
-#Preview {
-    PortfolioView()
+    var imageName: String {
+        switch self {
+        case .textEntry:
+            "square.and.pencil"
+        case .uploadFile:
+            "square.and.arrow.up"
+        }
+    }
 }

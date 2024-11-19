@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,20 +18,33 @@
 
 import SwiftUI
 
-extension View {
+struct AITutorButton: View {
+    let item: AITutorType
+    let onSelect: (AITutorType) -> Void
 
-    func style(_ style: Typography.Style) -> some View {
-        self.font(style.fontName, lineHeight: style.lineHeight)
+    var body: some View {
+        Button {
+            onSelect(item)
+        } label: {
+            labelButton
+        }
     }
 
-    public func font(_ fontName: UIFont.Name, lineHeight: Typography.LineHeight) -> some View {
-        let font = UIFont.scaledNamedFont(fontName)
-        let spacing = lineHeight.lineSpacing(for: font)
-        let styledSelf = self
-            .lineSpacing(spacing)
-            .font(Font(font))
-            .padding(.top, spacing/2)
-            .padding(.bottom, spacing/2)
-        return styledSelf
+    private var labelButton: some View {
+        Text(item.titel)
+            .foregroundStyle(Color.white)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 10)
+            .frame(height: 55)
+            .background(
+                RoundedRectangle(cornerRadius: 14)
+                    .fill(Color.white.opacity(0.4))
+            )
     }
 }
+
+#if DEBUG
+#Preview {
+    AITutorButton(item: .summary, onSelect: { _ in})
+}
+#endif

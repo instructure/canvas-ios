@@ -69,7 +69,7 @@ public class MessageViewModel: Identifiable {
 }
 
 extension String {
-    func toAttributedStringWithLinks(type: NSTextCheckingResult.CheckingType = .allTypes) -> AttributedString {
+    public func toAttributedStringWithLinks(type: NSTextCheckingResult.CheckingType = .allTypes) -> AttributedString {
 
         var attributedString = AttributedString(self)
 
