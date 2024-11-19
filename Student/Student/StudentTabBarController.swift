@@ -100,8 +100,16 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 
     func calendarTab() -> UIViewController {
         let split = CoreSplitViewController()
+
+        let planner: UIViewController
+        if ExperimentalFeature.rebuiltCalendar.isEnabled {
+            planner = PlannerAssembly.makeNewPlannerViewController()
+        } else {
+            planner = CoreNavigationController(rootViewController: PlannerViewController.create())
+        }
+
         split.viewControllers = [
-            CoreNavigationController(rootViewController: PlannerViewController.create()),
+            planner,
             CoreNavigationController(rootViewController: EmptyViewController())
         ]
         split.view.tintColor = Brand.shared.primary
