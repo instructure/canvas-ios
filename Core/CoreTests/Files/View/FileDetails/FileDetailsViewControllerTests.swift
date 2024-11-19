@@ -234,7 +234,6 @@ class FileDetailsViewControllerTests: CoreTestCase {
         mock(APIFile.make(filename: "File.pdf", contentType: "application/pdf", mime_class: "pdf"), isExistingPDFFileWithAnnotations: true)
         controller.view.layoutIfNeeded()
         let result = controller.prepareLocalURL(fileName: fileName, mimeClass: "pdf", location: URL.Directories.temporary)
-        print(result)
         XCTAssertEqual(result, docsUrl)
     }
 
