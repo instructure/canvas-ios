@@ -98,7 +98,7 @@ public class LocalNotificationsInteractor {
         )
         notificationCenter.add(request) { error in
             if let error = error {
-                Analytics.shared.logError(name: "Failed to schedule local notification",
+                RemoteLogger.shared.logError(name: "Failed to schedule local notification",
                                           reason: error.localizedDescription)
             }
             completion?(error)

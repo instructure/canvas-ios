@@ -44,9 +44,17 @@ public extension SnackBarProvider where Self: UITabBarController {
         let snackView = snackBarController.view!
         view.addSubview(snackView)
         snackView.pin(inside: view, bottom: nil)
-        snackView.bottomAnchor.constraint(
-            equalTo: tabBar.topAnchor,
-            constant: 0
-        ).isActive = true
+
+        if isRegularBottomTabBarEnsured {
+            // constrain to `tabBar` only if it is ensured that it is part of the view hierarchy
+            snackView.bottomAnchor.constraint(equalTo: tabBar.topAnchor, constant: 0).isActive = true
+        } else {
+            // as a fallback, constrain to `view` which will result in the snackbar overlapping some of the tabbar
+            snackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        }
+    }
+
+    private var isRegularBottomTabBarEnsured: Bool {
+        view.subviews.contains(tabBar)
     }
 }

@@ -90,8 +90,8 @@ public class DiscussionsHelper: BaseHelper {
         public static var viewSplitScreenButton: XCUIElement { app.find(labelContaining: "View Split Screen", type: .button) }
         public static var viewInlineButton: XCUIElement { app.find(labelContaining: "View Inline", type: .button) }
         public static var manageDiscussionButton: XCUIElement { app.find(label: "Manage Discussion", type: .button) }
-        public static var subscribeButton: XCUIElement { app.find(label: "Unsubscribed", type: .button) }
-        public static var unsubscribeButton: XCUIElement { app.find(label: "Subscribed", type: .button) }
+        public static var subscribeButton: XCUIElement { app.find(label: "Unsubscribed", type: .switch) }
+        public static var unsubscribeButton: XCUIElement { app.find(label: "Subscribed", type: .switch) }
         public static var replyButton: XCUIElement { app.find(label: "Reply", type: .button) }
         public static var markAllAsRead: XCUIElement { app.find(label: "Mark All as Read", type: .menuItem) }
         public static var markAllAsUnread: XCUIElement { app.find(label: "Mark All as Unread", type: .menuItem) }
@@ -117,7 +117,7 @@ public class DiscussionsHelper: BaseHelper {
         }
 
         public struct Reply {
-            public static var textInput: XCUIElement { app.find(labelContaining: "Rich Text Area", type: .other).find(type: .textField) }
+            public static var textInput: XCUIElement { app.find(labelContaining: "Rich Text Area", type: .other).find(type: .textView) }
             public static var attachButton: XCUIElement { app.find(label: "Attach", type: .button) }
             public static var replyButton: XCUIElement { app.find(label: "Reply", type: .button) }
             public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
@@ -158,7 +158,7 @@ public class DiscussionsHelper: BaseHelper {
         public static var titleField: XCUIElement { app.find(id: "DiscussionEditor.titleField") }
         public static var availableFromButton: XCUIElement { app.find(label: "Available from", type: .button) }
         public static var availableUntilButton: XCUIElement { app.find(label: "Available until", type: .button) }
-        public static var descriptionField: XCUIElement { richContentEditorWebView.find(type: .textField) }
+        public static var descriptionField: XCUIElement { app.find(label: "Description", type: .textView) }
 
         public static var richContentEditorWebView: XCUIElement { app.find(id: "RichContentEditor.webView") }
     }

@@ -35,4 +35,7 @@ public extension XCUIElementQuery {
     func matching(value: String) -> XCUIElementQuery {
         return matching(NSPredicate(format: "%K == %@", #keyPath(XCUIElement.value), value))
     }
+    func matching(placeholderValue: String) -> XCUIElementQuery {
+        return matching(NSPredicate(format: "%K == %@", #keyPath(XCUIElement.placeholderValue), placeholderValue))
+    }
 }

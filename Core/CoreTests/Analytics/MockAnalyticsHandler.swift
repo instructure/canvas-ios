@@ -23,28 +23,6 @@ class MockAnalyticsHandler: AnalyticsHandler {
     var lastEventParameters: [String: Any]?
     var totalEventCount = 0
 
-    var lastErrorName: String?
-    var lastErrorReason: String?
-    var totalErrorCount = 0
-
-    var lastScreenName: String?
-    var lastScreenClass: String?
-    var lastScreenViewApp: String?
-    var totalScreenViewCount = 0
-
-    func handleScreenView(screenName: String, screenClass: String, application: String) {
-        lastScreenName = screenName
-        lastScreenClass = screenClass
-        lastScreenViewApp = application
-        totalScreenViewCount += 1
-    }
-
-    func handleError(_ name: String, reason: String) {
-        lastErrorName = name
-        lastErrorReason = reason
-        totalErrorCount += 1
-    }
-
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         lastEvent = name
         lastEventParameters = parameters

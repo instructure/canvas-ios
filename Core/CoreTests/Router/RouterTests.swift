@@ -417,30 +417,29 @@ class RouterTests: CoreTestCase {
                 return UIViewController()
             }
         ]) { _, _, _, _ in }
-        AppEnvironment.shared.app = .teacher
-        let analyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = analyticsHandler
+        let mockRemoteLogHandler = MockRemoteLogHandler()
+        RemoteLogger.shared.handler = mockRemoteLogHandler
 
         router.route(to: URLComponents(string: "/courses/1234/assignments")!, from: mockView, options: .modal())
 
-        XCTAssertEqual(analyticsHandler.lastScreenName, "/courses/:courseId/assignments")
-        XCTAssertEqual(analyticsHandler.lastScreenClass, "UIViewController")
-        XCTAssertEqual(analyticsHandler.lastScreenViewApp, "teacher")
+        XCTAssertEqual(
+            mockRemoteLogHandler.breadCrumbs,
+            ["Routing to: /courses/:courseId/assignments (UIViewController)"]
+        )
     }
 
     func testAnalyticsReportOnShow() {
         let mockView = MockViewController()
         let router = Router(routes: []) { _, _, _, _ in }
-        AppEnvironment.shared.app = .parent
-        let analyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = analyticsHandler
+        let mockRemoteLogHandler = MockRemoteLogHandler()
+        RemoteLogger.shared.handler = mockRemoteLogHandler
 
         router.show(mockView, from: UIViewController(), analyticsRoute: "/courses/:courseId/assignments")
 
-        XCTAssertEqual(analyticsHandler.totalScreenViewCount, 1)
-        XCTAssertEqual(analyticsHandler.lastScreenName, "/courses/:courseId/assignments")
-        XCTAssertEqual(analyticsHandler.lastScreenClass, "MockViewController")
-        XCTAssertEqual(analyticsHandler.lastScreenViewApp, "parent")
+        XCTAssertEqual(
+            mockRemoteLogHandler.breadCrumbs,
+            ["Routing to: /courses/:courseId/assignments (MockViewController)"]
+        )
     }
 
     func testRouteTemplate() {
@@ -504,14 +503,14 @@ class RouterTests: CoreTestCase {
         let mockViewController = MockViewController()
         let testee = Router(routes: []) { _, _, _, _ in }
         let externalURL = URL(string: "https://example.com/courses")!
-        let analyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = analyticsHandler
+        let mockRemoteLogHandler = MockRemoteLogHandler()
+        RemoteLogger.shared.handler = mockRemoteLogHandler
 
         testee.route(to: externalURL, from: mockViewController)
 
-        XCTAssertEqual(analyticsHandler.totalScreenViewCount, 1)
-        XCTAssertEqual(analyticsHandler.lastScreenName, "/external_url")
-        XCTAssertEqual(analyticsHandler.lastScreenClass, "unknown")
-        XCTAssertEqual(analyticsHandler.lastScreenViewApp, "student")
+        XCTAssertEqual(
+            mockRemoteLogHandler.breadCrumbs,
+            ["Routing to: /external_url (unknown)"]
+        )
     }
 }

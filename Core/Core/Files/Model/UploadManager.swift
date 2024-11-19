@@ -356,7 +356,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                         Analytics.shared.logEvent("submit_fileupload_failed", parameters: [
                             "error": error?.localizedDescription ?? "unknown"
                         ])
-                        Analytics.shared.logError(name: "File upload failed during submission", reason: error?.localizedDescription)
+                        RemoteLogger.shared.logError(name: "File upload failed during submission", reason: error?.localizedDescription)
                         self.complete(file: file, error: error)
                         return
                     }
@@ -407,7 +407,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             Analytics.shared.logEvent("fileupload_failed", parameters: [
                 "error": error.localizedDescription
             ])
-            Analytics.shared.logError(name: "File upload failed", reason: error.localizedDescription)
+            RemoteLogger.shared.logError(name: "File upload failed", reason: error.localizedDescription)
         }
         context.performAndWait {
             file.uploadError = error?.localizedDescription

@@ -19,45 +19,13 @@
 import Foundation
 
 public protocol AnalyticsHandler: AnyObject {
-    func handleScreenView(screenName: String, screenClass: String, application: String)
-    func handleError(_ name: String, reason: String)
     func handleEvent(_ name: String, parameters: [String: Any]?)
 }
 
-@objc(Analytics)
 public class Analytics: NSObject {
-    @objc public static var shared: Analytics = Analytics()
+    public static var shared: Analytics = Analytics()
+
     public weak var handler: AnalyticsHandler?
-    #if DEBUG
-    public var logScreenViewToConsole = false
-    #endif
-
-    /**
-     Use this method to collect screen view events which will be uploaded when a crash happens
-     so we'll be better be able to locate and reproduce the crash.
-     */
-    @objc(logScreenView:viewController:)
-    public func logScreenView(route: String, viewController: UIViewController? = nil) {
-        #if DEBUG
-        if logScreenViewToConsole {
-            print("ScreenView: \(route) (\(Self.analyticsClassName(for: viewController)))")
-        }
-        #endif
-        handler?.handleScreenView(screenName: route,
-                                  screenClass: Self.analyticsClassName(for: viewController),
-                                  application: Self.analyticsAppName)
-    }
-
-    /**
-     Use this method to report errors to Crashlytics.
-
-     - parameters:
-        - name: The name of the error type. Errors with the same name will be grouped on Crashlytics to a single error entry.
-        - reason: The arbitrary error reason.
-     */
-    public func logError(name: String, reason: String? = nil) {
-        handler?.handleError(name, reason: reason ?? "Unknown reason.")
-    }
 
     /**
      This method is mainly used to track user and application actions for usage statistics.
@@ -77,41 +45,11 @@ public class Analytics: NSObject {
         }
     }
 
-    public static var analyticsAppName: String {
-        guard let app = AppEnvironment.shared.app else {
-            return "unknown"
+    public static var analyticsBaseUrl: String {
+        guard let session = AppEnvironment.shared.currentSession else {
+            return ""
         }
-        return app.rawValue
-    }
-
-    public static func analyticsClassName(for viewController: UIViewController?) -> String {
-        guard let viewController = viewController else {
-            return "unknown"
-        }
-
-        let splitViewContent: UIViewController = {
-            if let split = viewController as? UISplitViewController {
-                return split.viewControllers.first ?? split
-            } else {
-                return viewController
-            }
-        }()
-        let navViewContent: UIViewController = {
-            if let nav = splitViewContent as? UINavigationController {
-                return nav.topViewController ?? nav
-            } else {
-                return viewController
-            }
-        }()
-
-        var name = String(describing: type(of: navViewContent))
-
-        // Extracts "Type" from a pattern of CoreHostingController<Type>
-        if let genericsStart = name.firstIndex(of: "<") {
-            name = name.suffix(from: name.index(after: genericsStart)).replacingOccurrences(of: ">", with: "")
-        }
-
-        return name
+        return session.baseURL.absoluteString
     }
 
     public static var analyticsBaseUrl: String {

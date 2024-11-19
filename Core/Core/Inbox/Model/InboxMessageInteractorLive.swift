@@ -53,6 +53,15 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
             .store(in: &subscriptions)
 
         messageListStore
+            .allObjects
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { messages in
+                let unreadMessages = messages.filter { $0.state == .unread }
+                TabBarBadgeCounts.unreadMessageCount = UInt(unreadMessages.count)
+            })
+            .store(in: &subscriptions)
+
+        messageListStore
             .statePublisher
             .subscribe(state)
             .store(in: &subscriptions)

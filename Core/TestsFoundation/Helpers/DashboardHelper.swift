@@ -88,7 +88,14 @@ public class DashboardHelper: BaseHelper {
             public static var alertSyncOfflineContentLabel: XCUIElement { app.find(label: "Sync Offline Content?", type: .staticText) }
             public static var notAvailableOfflineLabel: XCUIElement { app.find(labelContaining: "not available offline", type: .staticText) }
 
+            // No Internet Connection Alert
+            public static var offlineModeAlert: XCUIElement { app.find(label: "Offline mode", type: .alert) }
+            public static var offlineModeAlertTitleText: XCUIElement { offlineModeAlert.find(label: "Offline mode", type: .staticText) }
+            public static var offlineModeAlertMessageText: XCUIElement { offlineModeAlert.find(label: "This item is not available offline.", type: .staticText) }
+            public static var offlineModeAlertOkButton: XCUIElement { offlineModeAlert.find(label: "OK", type: .button) }
+
             // Course content selection
+            public static var assignmentsButton: XCUIElement { app.find(label: "Assignments", type: .staticText) }
             public static var discussionsButton: XCUIElement { app.find(label: "Discussions", type: .staticText) }
             public static var gradesButton: XCUIElement { app.find(label: "Grades", type: .staticText) }
             public static var peopleButton: XCUIElement { app.find(label: "People", type: .staticText) }
@@ -134,21 +141,18 @@ public class DashboardHelper: BaseHelper {
 
         public struct CustomizeCourse {
             public enum CourseColor: String, CaseIterable {
-                case brick = "Brick"
-                case red = "Red"
-                case magenta = "Magenta"
-                case purple = "Purple"
-                case deepPurple = "Deep Purple"
-                case indigo = "Indigo"
-                case blue = "Blue"
-                case lightBlue = "Light Blue"
-                case cyan = "Cyan"
-                case teal = "Teal"
-                case green = "Green"
-                case olive = "Olive"
-                case pumpkin = "Pumpkin"
-                case orange = "Orange"
-                case pink = "Pink"
+                case plum = "Plum"
+                case fuchsia = "Fuchsia"
+                case violet = "Violet"
+                case ocean = "Ocean"
+                case sky = "Sky"
+                case sea = "Sea"
+                case aurora = "Aurora"
+                case forest = "Forest"
+                case honey = "Honey"
+                case copper = "Copper"
+                case rose = "Rose"
+                case stone = "Stone"
             }
 
             public static var nicknameTextField: XCUIElement { app.find(label: "Nickname", type: .textField) }
