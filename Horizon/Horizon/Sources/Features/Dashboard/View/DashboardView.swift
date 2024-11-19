@@ -98,14 +98,6 @@ struct DashboardView: View {
         }
     }
 
-    private var logoutButton: some View {
-        Button {
-            SessionInteractor().logout()
-        } label: {
-            Image.logout.tint(Color.textDarkest)
-        }
-    }
-
     @ViewBuilder
     private func moduleView(program: HProgram) -> some View {
         if let module = program.currentModule, let moduleItem = program.currentModuleItem {

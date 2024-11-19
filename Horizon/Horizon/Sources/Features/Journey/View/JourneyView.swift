@@ -23,6 +23,15 @@ struct JourneyView: View {
         BaseHorizonScreen {
             Text("Hello, Journey!")
         }
+        .navigationBarItems(trailing: logoutButton)
+    }
+
+    private var logoutButton: some View {
+        Button {
+            SessionInteractor().logout()
+        } label: {
+            Image.logout.tint(Color.textDarkest)
+        }
     }
 }
 
