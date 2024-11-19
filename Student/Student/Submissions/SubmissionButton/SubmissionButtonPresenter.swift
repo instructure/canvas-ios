@@ -34,6 +34,8 @@ enum ArcID: Equatable {
 
 class SubmissionButtonPresenter: NSObject {
     var assignment: Assignment?
+    var instanceHost: String?
+
     let assignmentID: String
     let env = AppEnvironment.shared
     lazy var batchID = "assignment-\(assignmentID)"
@@ -112,6 +114,17 @@ class SubmissionButtonPresenter: NSObject {
         show(alert)
     }
 
+    private func agent(from assignment: Assignment) -> SubmissionAgent? {
+        guard let userID = assignment.submission?.userID else { return nil }
+
+        return SubmissionAgent(
+            courseID: assignment.courseID,
+            assignmentID: assignment.id,
+            userID: userID,
+            instanceHost: instanceHost
+        )
+    }
+
     func submitType(_ type: SubmissionType, for assignment: Assignment, button: UIView) {
         Analytics.shared.logEvent("assignment_submit_selected")
         guard let view = view as? UIViewController else { return }
@@ -135,11 +148,9 @@ class SubmissionButtonPresenter: NSObject {
             pickFiles(for: assignment, selectedSubmissionTypes: [type])
         case .online_text_entry:
             Analytics.shared.logEvent("submit_textentry_selected")
-            guard let userID = assignment.submission?.userID else { return }
+            guard let agent = agent(from: assignment) else { return }
             env.router.show(TextSubmissionViewController.create(
-                courseID: courseID,
-                assignmentID: assignment.id,
-                userID: userID
+                agent: agent
             ), from: view, options: .modal(isDismissable: false, embedInNav: true))
         case .online_quiz:
             Analytics.shared.logEvent("assignment_detail_quizlaunch")
@@ -153,11 +164,9 @@ class SubmissionButtonPresenter: NSObject {
             pickFiles(for: assignment, selectedSubmissionTypes: [type])
         case .online_url:
             Analytics.shared.logEvent("submit_url_selected")
-            guard let userID = assignment.submission?.userID else { return }
+            guard let agent = agent(from: assignment) else { return }
             env.router.show(UrlSubmissionViewController.create(
-                courseID: courseID,
-                assignmentID: assignment.id,
-                userID: userID
+                agent: agent
             ), from: view, options: .modal(.formSheet, embedInNav: true))
         case .student_annotation:
             presentStudentAnnotation(assignment: assignment, view: view)
@@ -171,7 +180,7 @@ class SubmissionButtonPresenter: NSObject {
 
         guard
             let submissionId = assignment.submission?.id,
-            let userID = assignment.submission?.userID,
+            let agent = agent(from: assignment),
             let course: Course = env.database.viewContext.fetch(scope: courseScope).first
         else {
             return
@@ -182,13 +191,13 @@ class SubmissionButtonPresenter: NSObject {
                 return
             }
 
-            let viewModel = StudentAnnotationSubmissionViewModel(documentURL: docViewerSessionURL.rawValue,
-                                                                 courseID: assignment.courseID,
-                                                                 assignmentID: assignment.id,
-                                                                 userID: userID,
-                                                                 annotatableAttachmentID: assignment.annotatableAttachmentID,
-                                                                 assignmentName: assignment.name,
-                                                                 courseColor: course.color)
+            let viewModel = StudentAnnotationSubmissionViewModel(
+                documentURL: docViewerSessionURL.rawValue,
+                agent: agent,
+                annotatableAttachmentID: assignment.annotatableAttachmentID,
+                assignmentName: assignment.name,
+                courseColor: course.color
+            )
             let submissionView = StudentAnnotationSubmissionView(viewModel: viewModel)
 
             performUIUpdate {
@@ -201,8 +210,8 @@ class SubmissionButtonPresenter: NSObject {
     // MARK: - arc
     func submitArc(assignment: Assignment) {
         Analytics.shared.logEvent("submit_arc_selected")
-        guard case let .some(arcID) = arcID, let userID = assignment.submission?.userID else { return }
-        let arc = ArcSubmissionViewController.create(environment: env, courseID: assignment.courseID, assignmentID: assignment.id, userID: userID, arcID: arcID)
+        guard case let .some(arcID) = arcID, let agent = agent(from: assignment) else { return }
+        let arc = ArcSubmissionViewController.create(environment: env, agent: agent, arcID: arcID)
         let nav = UINavigationController(rootViewController: arc)
         nav.modalPresentationStyle = .fullScreen
         show(nav)
@@ -306,7 +315,7 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
     }
 
     func submitMediaType(_ type: MediaCommentType, url: URL, callback: @escaping (Error?) -> Void = { _ in }) {
-        guard let assignment = assignment, let userID = assignment.submission?.userID else { return }
+        guard let assignment = assignment, let agent = agent(from: assignment) else { return }
         let env = self.env
         let mediaUploader = UploadMedia(type: type, url: url)
         let uploading = SubmissionButtonAlertView.uploadingAlert(mediaUploader)
@@ -335,9 +344,7 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
         let createSubmission = { (mediaID: String?, error: Error?) in
             guard error == nil else { return doneUploading(error) }
             CreateSubmission(
-                context: .course(assignment.courseID),
-                assignmentID: assignment.id,
-                userID: userID,
+                agent: agent,
                 submissionType: .media_recording,
                 mediaCommentID: mediaID,
                 mediaCommentType: type

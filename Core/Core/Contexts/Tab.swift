@@ -51,6 +51,10 @@ public class Tab: NSManagedObject {
         set { visibilityRaw = newValue.rawValue }
     }
 
+    public var apiInstanceHost: String? {
+        return fullURL?.host()
+    }
+
     public var name: TabName {
         TabName(rawValue: id) ?? .custom
     }

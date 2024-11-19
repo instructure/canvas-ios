@@ -67,6 +67,9 @@ class AssignmentDetailsPresenter {
     lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
     }
+    lazy var tabs = env.subscribe(GetContextTabs(context: .course(courseID))) { [weak self] in
+        self?.updatePresenter()
+    }
     lazy var features = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID))) { [weak self] in
         self?.updateSubmissionPickerButton()
         self?.update()
@@ -151,6 +154,12 @@ class AssignmentDetailsPresenter {
                 self?.onlineUploadState = .completed
             }
         }
+    }
+
+    func updatePresenter() {
+        guard let apiInstanceHost = tabs.first?.apiInstanceHost else { return }
+        guard env.api.baseURL.host() != apiInstanceHost else { return }
+        submissionButtonPresenter.instanceHost = apiInstanceHost
     }
 
     func update() {
@@ -254,6 +263,7 @@ class AssignmentDetailsPresenter {
     }
 
     func viewIsReady() {
+        tabs.refresh()
         colors.refresh()
         courses.refresh(force: true)
         assignments.refresh(force: true)

@@ -23,19 +23,15 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
 
-    var assignmentID: String!
-    var courseID: String!
+    var agent: SubmissionAgent!
     var editor: RichContentEditorViewController!
     let env = AppEnvironment.shared
     var keyboard: KeyboardTransitioning?
-    var userID: String!
 
-    static func create(courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
+    static func create(agent: SubmissionAgent) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
-        controller.assignmentID = assignmentID
-        controller.courseID = courseID
-        controller.userID = userID
-        controller.editor = RichContentEditorViewController.create(context: .course(courseID), uploadTo: .myFiles)
+        controller.agent = agent
+        controller.editor = RichContentEditorViewController.create(context: agent.context, uploadTo: .myFiles)
         return controller
     }
 
@@ -71,11 +67,10 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
     }
 
     @objc func submit() {
+
         editor.getHTML { (html: String) in
             CreateSubmission(
-                context: .course(self.courseID),
-                assignmentID: self.assignmentID,
-                userID: self.userID,
+                agent: self.agent,
                 submissionType: .online_text_entry,
                 body: html
             ).fetch { (_, _, error) in performUIUpdate {

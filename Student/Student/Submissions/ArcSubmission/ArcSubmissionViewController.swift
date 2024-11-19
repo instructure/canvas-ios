@@ -31,14 +31,12 @@ class ArcSubmissionViewController: UIViewController, ArcSubmissionView {
     weak var delegate: ArcSubmissionDelegate?
     var presenter: ArcSubmissionPresenter?
 
-    static func create(environment: AppEnvironment = .shared, courseID: String, assignmentID: String, userID: String, arcID: String) -> ArcSubmissionViewController {
+    static func create(environment: AppEnvironment = .shared, agent: SubmissionAgent, arcID: String) -> ArcSubmissionViewController {
         let controller = loadFromStoryboard()
         let presenter = ArcSubmissionPresenter(
             environment: environment,
             view: controller,
-            courseID: courseID,
-            assignmentID: assignmentID,
-            userID: userID,
+            agent: agent,
             arcID: arcID
         )
         controller.presenter = presenter
