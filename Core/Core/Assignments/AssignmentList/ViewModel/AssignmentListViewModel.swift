@@ -67,6 +67,12 @@ public class AssignmentListViewModel: ObservableObject {
     private let sortingOptions = AssignmentArrangementOptions.allCases
     private var initialFilterOptions: [AssignmentFilterOption] = AssignmentFilterOption.allCases
     private var selectedFilterOptions: [AssignmentFilterOption] = AssignmentFilterOption.allCases
+
+    private var isFilteringCustom: Bool {
+        // all filters selected is the same as no filter selected
+        !selectedFilterOptions.isEmpty && selectedFilterOptions.count != AssignmentFilterOption.allCases.count
+    }
+
     private let env = AppEnvironment.shared
     private var userDefaults: SessionDefaults?
     let courseID: String
@@ -76,11 +82,12 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
-        if self?.selectedGradingPeriod == nil {
-            self?.defaultGradingPeriod = self?.currentGradingPeriod
-            self?.selectedGradingPeriod = self?.defaultGradingPeriod
+        guard let self else { return }
+        if selectedGradingPeriod == nil {
+            defaultGradingPeriod = currentGradingPeriod
+            selectedGradingPeriod = defaultGradingPeriod
         }
-        self?.assignmentGroups.refresh()
+        assignmentGroups.refresh()
     }
 
     private lazy var assignmentGroups = env.subscribe(GetAssignmentGroups(courseID: courseID)) { [weak self] in
@@ -120,8 +127,7 @@ public class AssignmentListViewModel: ObservableObject {
         gradingPeriods.refresh(force: true)
         filterOptionsDidUpdate(filterOptions: selectedFilterOptions, gradingPeriod: selectedGradingPeriod)
 
-        isFilterIconSolid = (1 ..< AssignmentFilterOption.allCases.count).contains(selectedFilterOptions.count)
-            || selectedGradingPeriod != defaultGradingPeriod
+        isFilterIconSolid = isFilteringCustom || selectedGradingPeriod != defaultGradingPeriod
     }
 
     public func filterOptionsDidUpdate(
@@ -139,9 +145,7 @@ public class AssignmentListViewModel: ObservableObject {
         selectedSortingOption = sortingOption ?? selectedSortingOption
         selectedFilterOptions = filterOptions ?? selectedFilterOptions
 
-        isFilterIconSolid = gradingPeriod != defaultGradingPeriod
-        || ![0, AssignmentFilterOption.allCases.count].contains(selectedFilterOptions.count)
-            && selectedFilterOptions != initialFilterOptions
+        isFilterIconSolid = gradingPeriod != defaultGradingPeriod || isFilteringCustom && selectedFilterOptions != initialFilterOptions
 
         assignmentGroupsDidUpdate()
     }
@@ -162,13 +166,12 @@ public class AssignmentListViewModel: ObservableObject {
         case .groupName:
             assignmentGroups.forEach { group in
                 let groupAssignments: [Assignment] = assignments.filter { $0.assignmentGroup == group }
-                if !groupAssignments.isEmpty {
-                    assignmentGroupViewModels.append(AssignmentGroupViewModel(
-                        assignmentGroup: group,
-                        assignments: groupAssignments,
-                        courseColor: courseColor
-                    ))
-                }
+                guard !groupAssignments.isEmpty else { return }
+                assignmentGroupViewModels.append(AssignmentGroupViewModel(
+                    assignmentGroup: group,
+                    assignments: groupAssignments,
+                    courseColor: courseColor
+                ))
             }
         case .dueDate:
             let rightNow = Clock.now
@@ -194,7 +197,7 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private func filterAssignments(_ assignments: [Assignment]) -> [Assignment] {
-        // Filtering by grading period except if all is selected (nil)
+        // Filtering by grading period except if "All" is selected (nil)
         var assignments = assignments
         if let selectedGradingPeriod {
             assignments = assignments.filter { $0.submission?.gradingPeriodId == selectedGradingPeriod.id }
@@ -203,7 +206,7 @@ public class AssignmentListViewModel: ObservableObject {
         var filteredAssignments: [Assignment] = []
 
         // all filter selected is the same as no filter selected
-        if selectedFilterOptions.count == AssignmentFilterOption.allCases.count || selectedFilterOptions.isEmpty {
+        guard isFilteringCustom else {
             return assignments
         }
 
