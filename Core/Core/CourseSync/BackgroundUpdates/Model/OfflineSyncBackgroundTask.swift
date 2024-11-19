@@ -155,7 +155,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
                     self?.syncScheduler.updateNextSyncDate(sessionUniqueID: session.uniqueID)
                     Logger.shared.log("Offline: Sync finished")
                 case .failure(let error):
-                    Analytics.shared.logError(name: "Background offline sync failed", reason: error.localizedDescription)
+                    RemoteLogger.shared.logError(name: "Background offline sync failed", reason: error.localizedDescription)
                     Logger.shared.log("Offline: Sync failed with error: \(error.localizedDescription)")
                 }
 

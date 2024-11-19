@@ -179,7 +179,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {
         let map = [AppEnvironment.shared.k5.isK5Enabled ? "homeroom": "dashboard", "calendar", "todo", "notifications", "conversations"]
         let event = map[tabIndex]
-        Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
+        RemoteLogger.shared.logBreadcrumb(route: "/tabs/" + event, viewController: viewController)
     }
 
     @objc private func checkForPolicyChanges() {

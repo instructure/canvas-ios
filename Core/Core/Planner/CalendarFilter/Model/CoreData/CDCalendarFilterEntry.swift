@@ -94,7 +94,7 @@ public class CDCalendarFilterEntry: NSManagedObject {
         in moContext: NSManagedObjectContext
     ) -> CDCalendarFilterEntry? {
         guard context.isValid else {
-            Analytics.shared.logError(
+            RemoteLogger.shared.logError(
                 name: "CDCalendarFilterEntry save failed with invalid contextId",
                 reason: "contextType: \(context.contextType.rawValue), contextId: \"\(context.id)\", baseUrl: \(Analytics.analyticsBaseUrl)"
             )
