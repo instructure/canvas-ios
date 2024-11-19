@@ -34,7 +34,6 @@ extension Range<Int> {
 }
 
 extension FormatStyle where Self == Date.FormatStyle {
-
     func calendar(_ calendar: Calendar) -> Self {
         var format = self
         format.calendar = calendar
@@ -62,7 +61,7 @@ extension TimeInterval {
 }
 
 extension CGSize {
-    
+
     var isZero: Bool { width == 0 && height == 0 }
 
     func isForward(_ layoutDirection: LayoutDirection) -> Bool {

@@ -58,7 +58,7 @@ struct CalendarMonth: Equatable {
                         to: firstWeekStartDate
                     ) ?? firstWeekStartDate
                     .addingTimeInterval(.day * Double(weekOffset) * Double(calendar.weekdaysCount))
-                
+
                 return CalendarWeek(
                     calendar: calendar,
                     year: year,
