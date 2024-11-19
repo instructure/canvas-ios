@@ -60,6 +60,17 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
         let vc = CoreNavigationController(
             rootViewController: CoreHostingController(DashboardAssembly.makeView())
         )
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .backgroundLight
+        appearance.shadowImage = UIImage()
+        appearance.shadowColor = nil
+
+        vc.navigationBar.shadowImage = UIImage()
+        vc.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        vc.navigationBar.standardAppearance = appearance
+        vc.navigationBar.scrollEdgeAppearance = appearance
+
         vc.tabBarItem.title = String(localized: "Home", bundle: .horizon)
         vc.tabBarItem.image = UIImage(systemName: "house")
         return vc

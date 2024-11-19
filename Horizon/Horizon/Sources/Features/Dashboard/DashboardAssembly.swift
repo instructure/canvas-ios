@@ -16,22 +16,36 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import Core
+import Foundation
 
 final class DashboardAssembly {
     static func makeGetProgramsInteractor() -> GetProgramsInteractor {
         GetProgramsInteractorLive(appEnvironment: AppEnvironment.shared)
     }
-    static func makeView() -> DashboardView {
-        DashboardView(viewModel: .init(interactor: makeGetProgramsInteractor()))
+
+    static func makeGetUserInteractor() -> GetUserInteractor {
+        GetUserInteractorLive()
     }
 
-#if DEBUG
+    static func makeView() -> DashboardView {
+        DashboardView(
+            viewModel: .init(
+                programsInteractor: makeGetProgramsInteractor(),
+                userInteractor: makeGetUserInteractor()
+            )
+        )
+    }
+
+    #if DEBUG
     static func makePreview() -> DashboardView {
-        let interactor = GetProgramsInteractorPreview()
-        let viewModel = DashboardViewModel(interactor: interactor)
+        let getProgramsInteractorPreview = GetProgramsInteractorPreview()
+        let getUserInteractorPreview = GetUserInteractorPreview()
+        let viewModel = DashboardViewModel(
+            programsInteractor: getProgramsInteractorPreview,
+            userInteractor: getUserInteractorPreview
+        )
         return DashboardView(viewModel: viewModel)
     }
-#endif
+    #endif
 }

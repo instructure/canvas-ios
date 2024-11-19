@@ -16,25 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Combine
+import Core
 
-struct CareerView: View {
-    var body: some View {
-        BaseHorizonScreen {
-            Text("Hello, Career!")
-        }
-        .navigationBarItems(trailing: logoutButton)
-    }
+#if DEBUG
+final class GetUserInteractorPreview: GetUserInteractor {
+    func getUser() -> AnyPublisher<UserProfile, Error> {
+        let user = UserProfile(context: AppEnvironment.shared.database.viewContext)
+        user.id = "1"
+        user.name = "John Doe"
+        user.email = "john@doe.com"
+        user.locale = "en-US"
+        user.loginID = "1"
+        user.pronouns = "he/him"
+        user.isK5User = false
 
-    private var logoutButton: some View {
-        Button {
-            SessionInteractor().logout()
-        } label: {
-            Image.logout.tint(Color.textDarkest)
-        }
+        return Just(user)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }
-
-#Preview {
-    CareerView()
-}
+#endif

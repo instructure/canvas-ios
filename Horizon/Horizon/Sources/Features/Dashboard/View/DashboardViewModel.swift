@@ -24,7 +24,7 @@ final class DashboardViewModel: ObservableObject {
     // MARK: - Outputs
 
     @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var title: String = "Welcome back, Justine"
+    @Published private(set) var title: String = "Hi, John"
     @Published private(set) var programs: [HProgram] = []
 
     // MARK: - Private variables
@@ -33,14 +33,31 @@ final class DashboardViewModel: ObservableObject {
 
     // MARK: - Init
 
-    init(interactor: GetProgramsInteractor) {
+    init(
+        programsInteractor: GetProgramsInteractor,
+        userInteractor: GetUserInteractor
+    ) {
         unowned let unownedSelf = self
 
-        interactor.getPrograms()
+        programsInteractor.getPrograms()
             .sink { programs in
                 unownedSelf.programs = programs
                 unownedSelf.state = .data
             }
             .store(in: &subscriptions)
+
+        userInteractor.getUser()
+            .map { $0.name }
+            .map { "Hi, \($0)" }
+            .replaceError(with: "")
+            .assign(to: &$title)
     }
+
+    // MARK: - Inputs
+
+    func notebookDidTap() {}
+
+    func notificationsDidTap() {}
+
+    func profileDidTap() {}
 }
