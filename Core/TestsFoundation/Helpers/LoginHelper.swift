@@ -48,10 +48,12 @@ public class LoginHelper: BaseHelper {
 
         public static var navBar: XCUIElement { app.find(id: user.host) }
         public static var hostLabel: XCUIElement { navBar.find(type: .staticText) }
-        public static var emailField: XCUIElement { webView.find(type: .textField) }
-        public static var passwordField: XCUIElement { webView.find(type: .secureTextField) }
-        public static var loginButton: XCUIElement { webView.find(type: .button) }
-        public static var forgotPasswordButton: XCUIElement { linksOfWebView[1] }
+        public static var emailField: XCUIElement { app.find(placeholderValue: "Email", type: .textField) }
+        public static var passwordField: XCUIElement { app.find(placeholderValue: "Password", type: .secureTextField) }
+        public static var loginButton: XCUIElement { app.find(label: "Log In", type: .button) }
+        public static var forgotPasswordButton: XCUIElement { app.find(label: "Forgot Password?", type: .link) }
+        public static var requestPasswordButton: XCUIElement { app.find(label: "Request Password", type: .button) }
+        public static var backToLoginButton: XCUIElement { app.find(label: "Back to Login", type: .link) }
         public static var needAccountButton: XCUIElement { linksOfWebView[0] }
         public static var noPasswordLabel: XCUIElement { app.find(labelContaining: "No password was given") }
 
