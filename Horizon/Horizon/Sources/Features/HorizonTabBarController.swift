@@ -19,19 +19,41 @@
 import Core
 import UIKit
 
-class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
+final class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
+    // MARK: - Properties
+
+    private let horizonTabBar = HorizonTabBar()
+    private let router = AppEnvironment.shared.router
+
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
+        setValue(horizonTabBar, forKey: "tabBar")
+        horizonTabBar.backgroundColor = .backgroundLightest
+
         viewControllers = [
             dashboardTab(),
             programsTab(),
-            journeyTab(),
-            portfolioTab(),
+            fakeTab(),
+            careerTab(),
             inboxTab()
         ]
-        tabBar.tintColor = .textDark
+        tabBar.tintColor = .textDarkest
         UINavigationBar.appearance().tintColor = .textDarkest
+        guard let tabBar = tabBar as? HorizonTabBar else { return }
+
+        tabBar.didTapButton = { [weak self] in
+            self?.presentChatBot()
+        }
+    }
+
+    // MARK: - Functions
+
+    private func presentChatBot() {
+        let vc = CoreHostingController(AIAssembly.makeChatBotView())
+        router.show(vc, from: self, options: .modal(isDismissable: false))
     }
 
     private func dashboardTab() -> UIViewController {
@@ -58,26 +80,21 @@ class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
         let vc = CoreNavigationController(
             rootViewController: CoreHostingController(ProgramsAssembly.makeProgramsView())
         )
-        vc.tabBarItem.title = String(localized: "Programs", bundle: .horizon)
-        vc.tabBarItem.image = UIImage(systemName: "books.vertical")
+        vc.tabBarItem.title = String(localized: "Learn", bundle: .horizon)
+        vc.tabBarItem.image = UIImage(systemName: "list.bullet")
         return vc
     }
 
-    private func journeyTab() -> UIViewController {
-        let vc = CoreNavigationController(
-            rootViewController: CoreHostingController(JourneyAssembly.makeView())
-        )
-        vc.tabBarItem.title = String(localized: "Journey", bundle: .horizon)
-        vc.tabBarItem.image = UIImage(systemName: "graduationcap")
-        return vc
+    private func fakeTab() -> UIViewController {
+        .init()
     }
 
-    private func portfolioTab() -> UIViewController {
+    private func careerTab() -> UIViewController {
         let vc = CoreNavigationController(
-            rootViewController: CoreHostingController(PortfolioAssembly.makeView())
+            rootViewController: CoreHostingController(CareerAssembly.makeView())
         )
-        vc.tabBarItem.title = String(localized: "Portfolio", bundle: .horizon)
-        vc.tabBarItem.image = UIImage(systemName: "newspaper")
+        vc.tabBarItem.title = String(localized: "Career", bundle: .horizon)
+        vc.tabBarItem.image = UIImage(systemName: "point.bottomleft.filled.forward.to.point.topright.scurvepath")
         return vc
     }
 
@@ -97,5 +114,18 @@ class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
         inboxSplit.extendedLayoutIncludesOpaqueBars = true
         TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem
         return inboxSplit
+    }
+}
+
+extension HorizonTabBarController {
+    func tabBarController(
+        _ tabBarController: UITabBarController,
+        shouldSelect viewController: UIViewController
+    ) -> Bool {
+        guard let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
+            return true
+        }
+        if selectedIndex == 2 { return false }
+        return true
     }
 }

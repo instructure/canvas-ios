@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,22 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Foundation
 
-extension View {
-
-    func style(_ style: Typography.Style) -> some View {
-        self.font(style.fontName, lineHeight: style.lineHeight)
-    }
-
-    public func font(_ fontName: UIFont.Name, lineHeight: Typography.LineHeight) -> some View {
-        let font = UIFont.scaledNamedFont(fontName)
-        let spacing = lineHeight.lineSpacing(for: font)
-        let styledSelf = self
-            .lineSpacing(spacing)
-            .font(Font(font))
-            .padding(.top, spacing/2)
-            .padding(.bottom, spacing/2)
-        return styledSelf
+final class CareerAssembly {
+    static func makeView() -> CareerView {
+        CareerView()
     }
 }

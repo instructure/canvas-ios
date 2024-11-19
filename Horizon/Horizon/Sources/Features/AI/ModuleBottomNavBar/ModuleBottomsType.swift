@@ -18,7 +18,22 @@
 
 import Foundation
 
-@Observable
-final class AssignmentViewModel {
-    let assignment: HAssignment = .mock()
+enum ModuleBottomsType: CaseIterable {
+    case message
+    case sound
+    case bookmark
+    case assist
+
+    var imageName: String {
+        switch self {
+        case .message:
+            "bubble.left"
+        case .sound:
+            "speaker.wave.2"
+        case .bookmark:
+            "bookmark"
+        case .assist:
+            "sparkles"
+        }
+    }
 }

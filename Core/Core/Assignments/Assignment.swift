@@ -99,6 +99,9 @@ public class Assignment: NSManagedObject {
      */
     @NSManaged public var submissions: Set<Submission>?
 
+    public var course: Course? {
+        managedObjectContext?.first(where: #keyPath(Course.id), equals: courseID)
+    }
     public var hideQuantitativeData: Bool {
         let course: Course? = managedObjectContext?.first(where: #keyPath(Course.id), equals: courseID)
         return course?.hideQuantitativeData ?? false

@@ -16,10 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
 
-final class PortfolioAssembly {
-    static func makeView() -> PortfolioView {
-        PortfolioView()
+struct HorizonGradientModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color(red: 2/255, green: 103/255, blue: 45/255),
+                        Color(red: 9/255, green: 80/255, blue: 140/255)
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            )
+    }
+}
+
+extension View {
+    func applyHorizonGradient() -> some View {
+        self.modifier(HorizonGradientModifier())
     }
 }

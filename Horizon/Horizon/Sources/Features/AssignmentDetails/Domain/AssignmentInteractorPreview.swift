@@ -16,16 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+#if DEBUG
+import Foundation
+import Core
+import Combine
 
-struct PortfolioView: View {
-    var body: some View {
-        BaseHorizonScreen {
-            Text("Hello, Portfolio!")
-        }
+class AssignmentInteractorPreview: AssignmentInteractor {
+
+    var attachments = CurrentValueSubject<[File], Never>([])
+    var didUploadFiles = PassthroughSubject<Result<Void, Error>, Never>()
+
+    func cancelFile(_ file: File) { }
+
+    func cancelAllFiles() { }
+
+    func uploadFiles() { }
+
+    func addFile(url: URL) { }
+
+    func getAssignmentDetails() -> AnyPublisher<HAssignment, Never> {
+        Just(HAssignment.mock())
+            .eraseToAnyPublisher()
+    }
+
+    func submitTextEntry(with text: String) -> AnyPublisher<[CreateSubmission.Model], Error> {
+        Just([])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }
 
-#Preview {
-    PortfolioView()
-}
+#endif

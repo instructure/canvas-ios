@@ -17,24 +17,41 @@
 //
 
 import SwiftUI
+import Core
 
-struct JourneyView: View {
+struct AttachedFilesView: View {
+    let files: [File]
+    let onDeleteFile: (File) -> Void
+
     var body: some View {
-        BaseHorizonScreen {
-            Text("Hello, Journey!")
+        VStack(spacing: 5) {
+            ForEach(files, id: \.self) { file in
+                fileView(file)
+                    .padding(5)
+                    .background(Color.disabledGray.opacity(0.2))
+                    .clipShape(.rect(cornerRadius: 8))
+            }
         }
-        .navigationBarItems(trailing: logoutButton)
     }
 
-    private var logoutButton: some View {
-        Button {
-            SessionInteractor().logout()
-        } label: {
-            Image.logout.tint(Color.textDarkest)
+    private func fileView(_ file: File) -> some View {
+        HStack {
+            Size16RegularTextDarkestTitle(title: file.filename)
+            Spacer()
+            Button {
+                withAnimation {
+                    onDeleteFile(file)
+                }
+            } label: {
+                Image.troubleLine
+                    .padding(5)
+            }
         }
     }
 }
 
+#if DEBUG
 #Preview {
-    JourneyView()
+    AttachedFilesView(files: [], onDeleteFile: { _ in })
 }
+#endif

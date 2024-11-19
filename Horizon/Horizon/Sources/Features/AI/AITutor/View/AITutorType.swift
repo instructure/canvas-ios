@@ -16,33 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Foundation
 
-public extension InstUI {
-    struct Divider: View {
-        public init() { }
-        public var body: some View {
-            SwiftUI.Divider().overlay(Color.borderMedium)
+enum AITutorType: CaseIterable {
+    case quiz
+    case summary
+    case takeAway
+    case tellMeMore
+    case flashCard
+
+    var titel: String {
+        switch self {
+        case .quiz:
+            String(localized: "Quiz me on this material", bundle: .horizon)
+        case .summary:
+            String(localized: "Summarize this material", bundle: .horizon)
+        case .takeAway:
+            String(localized: "Give me key takeaways", bundle: .horizon)
+        case .tellMeMore:
+            String(localized: "Tell me more about this topic", bundle: .horizon)
+        case .flashCard:
+            String(localized: "Generate some study flashcards", bundle: .horizon)
         }
     }
 }
-
-#if DEBUG
-
-#Preview("Vertical") {
-    VStack {
-        Text(verbatim: "AAA")
-        InstUI.Divider()
-        Text(verbatim: "BBB")
-    }
-}
-
-#Preview("Horizontal") {
-    HStack {
-        Text(verbatim: "AAA")
-        InstUI.Divider()
-        Text(verbatim: "BBB")
-    }
-}
-
-#endif
