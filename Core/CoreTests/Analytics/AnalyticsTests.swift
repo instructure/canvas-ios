@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class AnalyticsTests: XCTestCase {
     private var testAnalyticsHandler: MockAnalyticsHandler!
@@ -55,14 +55,6 @@ class AnalyticsTests: XCTestCase {
         XCTAssertEqual(testAnalyticsHandler.lastEvent, "auth_expiring_token")
 
         defaults.reset()
-    }
-
-    func testAnalyticsBaseUrl() {
-        AppEnvironment.shared.currentSession = nil
-        XCTAssertEqual(Analytics.analyticsBaseUrl, "")
-
-        AppEnvironment.shared.currentSession = .make(baseURL: URL(string: "https://canvas.instructure.com")!)
-        XCTAssertEqual(Analytics.analyticsBaseUrl, "https://canvas.instructure.com")
     }
 
     func testAnalyticsBaseUrl() {
