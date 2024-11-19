@@ -34,6 +34,7 @@ class CoreTestCase: XCTestCase {
     var router: TestRouter!
     var logger: TestLogger!
     var analytics = MockAnalyticsHandler()
+    var remoteLogHandler = MockRemoteLogHandler()
 
     lazy var environment = TestEnvironment()
     var currentSession: LoginSession!
@@ -83,6 +84,7 @@ class CoreTestCase: XCTestCase {
         UUID.reset()
         ExperimentalFeature.allEnabled = false
         Analytics.shared.handler = analytics
+        RemoteLogger.shared.handler = remoteLogHandler
         environment.app = .student
         environment.window = window
         environment.k5.userDidLogout()
@@ -143,6 +145,7 @@ class CoreTestCase: XCTestCase {
 private let mainViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
 
 extension CoreTestCase {
+    /// Do not use repeatedly in the same test method, because it could cause flaky `testTree`.
     public func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
         let controller = CoreHostingController(view)
         window.rootViewController = controller

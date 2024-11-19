@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct AssignmentGroupView: View {
 
+    @State private var isExpanded: Bool = true
     @ObservedObject private var viewModel: AssignmentGroupViewModel
 
     public init(viewModel: AssignmentGroupViewModel) {
@@ -27,20 +28,41 @@ public struct AssignmentGroupView: View {
     }
 
     public var body: some View {
-        Section(header: ListSectionHeaderOld { Text(viewModel.name) }) {
-            ForEach(viewModel.assignments, id: \.id) { assignment in
-                let assignmentCellViewModel = AssignmentCellViewModel(assignment: assignment, courseColor: viewModel.courseColor)
-                VStack(spacing: 0) {
-                    AssignmentCellView(viewModel: assignmentCellViewModel)
+        Section(header: ListSectionHeaderOld(backgroundColor: .backgroundLightest) { headerView() }) {
+            if isExpanded {
+                ForEach(viewModel.assignments, id: \.id) { assignment in
+                    let assignmentCellViewModel = AssignmentCellViewModel(assignment: assignment, courseColor: viewModel.courseColor)
+                    VStack(spacing: 0) {
+                        AssignmentCellView(viewModel: assignmentCellViewModel)
 
-                    if viewModel.assignments.last != assignment {
-                        Divider()
+                        InstUI.Divider()
                     }
                 }
             }
         }
         .listRowInsets(EdgeInsets())
         .listRowSeparator(.hidden)
+    }
+
+    private func headerView() -> some View {
+        Button {
+            isExpanded.toggle()
+        } label: {
+            Text(viewModel.name)
+            Spacer()
+            Image.arrowOpenUpLine
+                .size(16)
+                .rotationEffect(isExpanded ? .degrees(0) : .degrees(180))
+                .accessibilityHidden(true)
+                .animation(.smooth, value: isExpanded)
+        }
+        .accessibilityAddTraits(.isHeader)
+        .accessibilityHint(
+            isExpanded
+                ? String(localized: "Expanded", bundle: .core)
+                : String(localized: "Collapsed", bundle: .core)
+        )
+        .padding(.vertical, 8)
     }
 }
 

@@ -63,22 +63,6 @@ yarn build-secrets "studentPSPDFKitLicense=token1" "teacherPSPDFKitLicense=token
 
 You will need to purchase PSPDFKitLicenses to distribute custom apps. Instructure's licenses are only used for official builds and are not included in the repository.
 
-
-### Debugging Redux
-
-To get redux logs you can add [redux-logger](https://github.com/LogRocket/redux-logger) as a middleware to the redux store.
-
-We don't want to keep the logger in because it slows down the runtime quite a lot.
-
-In src/redux/store.js
-```js
-import logger from 'redux-logger'
-
-let middleware = [promiseMiddleware, errorHandler, createPersisteMiddleware(500), logger]
-```
-
-The redux logs will now show up in the React Native Debugger.
-
 ## Contributing Guiding Principles
 
 ### Simple
@@ -107,6 +91,8 @@ Writing code in a testable way is paramount for long term success. These apps ar
 ### Conventions
 
 We make and keep strong [conventions](./guidelines/CONVENTIONS.md) in order to reduce mental overhead.
+
+We adhere to our [Swift Style Guide](./guidelines/swift-style-guide.md).
 
 ### No Tricky Stuff
 

@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class AnalyticsTests: XCTestCase {
     private var testAnalyticsHandler: MockAnalyticsHandler!
@@ -38,12 +38,6 @@ class AnalyticsTests: XCTestCase {
         XCTAssertEqual(testAnalyticsHandler.lastEventParameters?["bar"] as? String, "foo")
     }
 
-    func testLogError() {
-        Analytics.shared.logError(name: "test_error", reason: "this is a test error")
-        XCTAssertEqual(testAnalyticsHandler.lastErrorName, "test_error")
-        XCTAssertEqual(testAnalyticsHandler.lastErrorReason, "this is a test error")
-    }
-
     func testLogSession() {
         var session = LoginSession.make(expiresAt: nil)
         var defaults = SessionDefaults(sessionID: session.uniqueID)
@@ -61,41 +55,6 @@ class AnalyticsTests: XCTestCase {
         XCTAssertEqual(testAnalyticsHandler.lastEvent, "auth_expiring_token")
 
         defaults.reset()
-    }
-
-    func testScreenView() {
-        AppEnvironment.shared.app = .student
-        Analytics.shared.logScreenView(route: "/testRoute", viewController: ProfileSettingsViewController())
-        XCTAssertEqual(testAnalyticsHandler.lastScreenName, "/testRoute")
-        XCTAssertEqual(testAnalyticsHandler.lastScreenClass, "ProfileSettingsViewController")
-        XCTAssertEqual(testAnalyticsHandler.lastScreenViewApp, "student")
-    }
-
-    func testAnalyticsClassName() {
-        let courseListView = CoreHostingController(PandaGallery())
-
-        XCTAssertEqual(Analytics.analyticsClassName(for: nil), "unknown")
-        XCTAssertEqual(Analytics.analyticsClassName(for: ProfileSettingsViewController()), "ProfileSettingsViewController")
-        XCTAssertEqual(Analytics.analyticsClassName(for: courseListView), "PandaGallery")
-        XCTAssertEqual(Analytics.analyticsClassName(for: UINavigationController(rootViewController: courseListView)), "PandaGallery")
-
-        let splitView = UISplitViewController()
-        splitView.viewControllers = [UINavigationController(rootViewController: courseListView)]
-        XCTAssertEqual(Analytics.analyticsClassName(for: splitView), "PandaGallery")
-    }
-
-    func testAnalyticsAppName() {
-        AppEnvironment.shared.app = nil
-        XCTAssertEqual(Analytics.analyticsAppName, "unknown")
-
-        AppEnvironment.shared.app = .parent
-        XCTAssertEqual(Analytics.analyticsAppName, "parent")
-
-        AppEnvironment.shared.app = .student
-        XCTAssertEqual(Analytics.analyticsAppName, "student")
-
-        AppEnvironment.shared.app = .teacher
-        XCTAssertEqual(Analytics.analyticsAppName, "teacher")
     }
 
     func testAnalyticsBaseUrl() {

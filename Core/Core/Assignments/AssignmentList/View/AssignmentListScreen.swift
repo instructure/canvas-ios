@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct AssignmentListView: View, ScreenViewTrackable {
+public struct AssignmentListScreen: View, ScreenViewTrackable {
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: AssignmentListViewModel
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
@@ -34,21 +34,14 @@ public struct AssignmentListView: View, ScreenViewTrackable {
 
     public var body: some View {
         VStack(spacing: 0) {
-            HStack(alignment: .firstTextBaseline) {
-                gradingPeriodTitle
-                Spacer(minLength: 8)
-                if viewModel.shouldShowFilterButton {
-                    gradingPeriodButton
-                }
-            }
-            .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
-
             switch viewModel.state {
             case .empty:
+                gradingPeriodTitle
                 emptyPanda
             case .loading:
                 loadingView
             case .data(let groups):
+                gradingPeriodTitle
                 assignmentList(groups)
             }
         }
@@ -56,6 +49,11 @@ public struct AssignmentListView: View, ScreenViewTrackable {
         .navigationBarStyle(.color(viewModel.courseColor))
         .navigationTitle(String(localized: "Assignments", bundle: .core), subtitle: viewModel.courseName)
         .navigationBarGenericBackButton()
+        .navBarItems(
+            trailing: .filterIcon(isBackgroundContextColor: true, isSolid: viewModel.isFilterIconSolid) {
+                viewModel.navigateToPreferences(viewController: controller)
+            }
+        )
         .onAppear(perform: viewModel.viewDidAppear)
         .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
     }
@@ -67,41 +65,22 @@ public struct AssignmentListView: View, ScreenViewTrackable {
             text = Text(gradingPeriodTitle)
         }
 
-        return text
-            .font(.heavy24)
-            .accessibility(addTraits: .isHeader)
-    }
-
-    @ViewBuilder
-    private var gradingPeriodButton: some View {
-        if viewModel.selectedGradingPeriod == nil {
-            Button {
-                isShowingGradingPeriodPicker = true
-            } label: {
-                Text("Filter", bundle: .core)
-                    .font(.semibold16)
-                    .foregroundColor(Color(Brand.shared.linkColor))
-            }.actionSheet(isPresented: $isShowingGradingPeriodPicker) {
-                ActionSheet(title: Text("Filter by", bundle: .core), buttons: gradingPeriodButtons)
-            }
-        } else {
-            Button(action: viewModel.gradingPeriodFilterCleared) {
-                Text("Clear Filter", bundle: .core)
-                    .font(.semibold16)
-                    .foregroundColor(Color(Brand.shared.linkColor))
-            }
-        }
-    }
-
-    private var gradingPeriodButtons: [ActionSheet.Button] {
-        var buttons: [ActionSheet.Button] = viewModel.gradingPeriods.all.map { gradingPeriod in
-            ActionSheet.Button.default(Text(gradingPeriod.title ?? "")) {
-                viewModel.gradingPeriodSelected(gradingPeriod)
-                isShowingGradingPeriodPicker = false
-            }
-        }
-        buttons.append(.cancel(Text("Cancel", bundle: .core)))
-        return buttons
+        return Section(
+            header: ListSectionHeaderOld(backgroundColor: .backgroundLightest) {
+                HStack {
+                    Text("Grading Period:", bundle: .core)
+                        .font(.regular14)
+                        .fontWeight(.light)
+                    Spacer()
+                    text
+                        .font(.semibold22)
+                        .foregroundStyle(Color(.textDarkest))
+                }
+                .padding(.vertical, 8)
+                .accessibility(addTraits: .isHeader)
+            },
+            content: { }
+        )
     }
 
     @ViewBuilder
@@ -135,7 +114,7 @@ public struct AssignmentListView: View, ScreenViewTrackable {
 
     private func assignmentList(_ groups: [AssignmentGroupViewModel]) -> some View {
         ScrollView {
-            LazyVStack(pinnedViews: .sectionHeaders) {
+            LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 ForEach(groups, id: \.id) { assignmentGroup in
                     AssignmentGroupView(viewModel: assignmentGroup)
                 }
@@ -154,7 +133,7 @@ public struct AssignmentListView: View, ScreenViewTrackable {
 
 #if DEBUG
 
-struct AssignmentListView_Previews: PreviewProvider {
+struct AssignmentListScreen_Previews: PreviewProvider {
     private static let env = PreviewEnvironment()
     private static let context = env.globalDatabase.viewContext
     private static func createAssignments() -> [Assignment] {
@@ -171,22 +150,19 @@ struct AssignmentListView_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        // swiftlint:disable:next redundant_discardable_let
-        let _ = UITableView.setupDefaultSectionHeaderTopPadding()
-
         let assignments = createAssignments()
         let assignmentGroups: [AssignmentGroupViewModel] = [
             AssignmentGroupViewModel(name: "Assignment Group 1", id: "1", assignments: assignments, courseColor: .red),
             AssignmentGroupViewModel(name: "Assignment Group 2", id: "2", assignments: assignments, courseColor: .red)
         ]
         let viewModel = AssignmentListViewModel(state: .data(assignmentGroups))
-        AssignmentListView(viewModel: viewModel)
+        AssignmentListScreen(viewModel: viewModel)
 
         let emptyModel = AssignmentListViewModel(state: .empty)
-        AssignmentListView(viewModel: emptyModel)
+        AssignmentListScreen(viewModel: emptyModel)
 
         let loadingModel = AssignmentListViewModel(state: .loading)
-        AssignmentListView(viewModel: loadingModel)
+        AssignmentListScreen(viewModel: loadingModel)
     }
 }
 

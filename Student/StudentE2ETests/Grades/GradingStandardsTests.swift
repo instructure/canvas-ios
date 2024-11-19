@@ -41,13 +41,17 @@ class GradingStandardsTests: E2ETestCase {
         // MARK: Navigate to grades
         GradesHelper.navigateToGrades(course: course)
         let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
-        XCTAssertTrue(totalGrade.hasLabel(label: "Total grade is N/A (F)"))
+        let assignmentItem = GradesHelper.cell(assignment: assignments.first).waitUntil(.visible)
+        XCTAssertTrue(totalGrade.hasLabel(label: "Total grade is N/A"))
+        XCTAssertTrue(assignmentItem.isVisible)
 
         // MARK: Check if total is updating accordingly
         GradesHelper.gradeAssignments(grades: ["100"], course: course, assignments: [assignments[0]], user: student)
+        assignmentItem.waitUntil(.visible).pullToRefresh(y: 1)
         XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 100% (A)"))
 
         GradesHelper.gradeAssignments(grades: ["0"], course: course, assignments: [assignments[1]], user: student)
+        assignmentItem.waitUntil(.visible).pullToRefresh(y: 1)
         XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 50% (F)"))
     }
 }

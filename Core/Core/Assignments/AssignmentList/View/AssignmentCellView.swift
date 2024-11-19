@@ -53,7 +53,7 @@ public struct AssignmentCellView: View {
         })
             .background(Color.backgroundLightest)
             .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
-            .accessibility(identifier: "assignment-list.assignment-list-row.cell-\(viewModel.assignment.id)")
+            .accessibility(identifier: "AssignmentList.\(viewModel.assignment.id)")
     }
 
     private var icon: some View {

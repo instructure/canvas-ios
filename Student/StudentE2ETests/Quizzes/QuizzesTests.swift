@@ -155,7 +155,8 @@ class QuizzesTests: E2ETestCase {
         XCTAssertTrue(detailsTakeQuizButton.hasLabel(label: "View Results"))
     }
 
-    func testNewQuiz() {
+    func testNewQuiz() throws {
+        try XCTSkipIf(true, "Skipped because of constant API issues on Beta.")
         // MARK: Seed the usual stuff with a New Quiz
         let student = seeder.createUser()
         let course = seeder.createCourse()

@@ -376,7 +376,7 @@ class LoginStartViewController: UIViewController {
                 guard let session = session, error == nil else {
                     loading?.dismiss(animated: true) {
                         self?.showQRCodeError()
-                        Analytics.shared.logError(name: "QR code login failed", reason: error?.localizedDescription)
+                        RemoteLogger.shared.logError(name: "QR code login failed", reason: error?.localizedDescription)
                     }
                     return
                 }

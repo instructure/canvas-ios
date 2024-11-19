@@ -128,7 +128,7 @@ class CalendarTests: E2ETestCase {
 
         calendarTab.hit()
 
-        // MARK: Navigate to dates and check the events
+        // MARK: Navigate to the dates and check the events
         let yesterdaysEventItem = Helper.navigateToEvent(event: events.yesterdays!)
         XCTAssertTrue(yesterdaysEventItem.isVisible)
 

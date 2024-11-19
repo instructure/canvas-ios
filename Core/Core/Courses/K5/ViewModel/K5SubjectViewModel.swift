@@ -116,7 +116,7 @@ public class K5SubjectViewModel: ObservableObject {
         topBarViewModel.selectedItemIndexPublisher
             .removeDuplicates()
             .compactMap { topBarViewModel.items[$0].id }
-            .sink { Analytics.shared.logScreenView(route: "/homeroom/subject/\($0)") }
+            .sink { RemoteLogger.shared.logBreadcrumb(route: "/homeroom/subject/\($0)") }
             .store(in: &subscriptions)
     }
 
