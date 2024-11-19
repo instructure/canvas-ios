@@ -52,7 +52,7 @@ struct DashboardView: View {
             }
         }
         .navigationBarItems(leading: nameLabel)
-        .navigationBarItems(trailing: icons)
+        .navigationBarItems(trailing: navBarIcons)
         .scrollIndicators(.hidden, axes: .vertical)
         .background(Color.backgroundLight)
     }
@@ -61,7 +61,7 @@ struct DashboardView: View {
         Size16RegularTextDarkestTitle(title: viewModel.title)
     }
 
-    private var icons: some View {
+    private var navBarIcons: some View {
         HStack(spacing: 0) {
             Button {
                 viewModel.notebookDidTap()

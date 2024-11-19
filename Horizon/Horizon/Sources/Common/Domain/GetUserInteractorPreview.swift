@@ -21,7 +21,7 @@ import Core
 
 #if DEBUG
 final class GetUserInteractorPreview: GetUserInteractor {
-    func getUser() -> AnyPublisher<UserProfile, any Error> {
+    func getUser() -> AnyPublisher<UserProfile, Error> {
         let user = UserProfile(context: AppEnvironment.shared.database.viewContext)
         user.id = "1"
         user.name = "John Doe"
