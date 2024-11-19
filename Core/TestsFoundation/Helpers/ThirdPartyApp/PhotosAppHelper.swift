@@ -27,64 +27,62 @@ public class PhotosAppHelper: BaseHelper {
     }
 
     public static func tapContinue() {
-        if photosApp.buttons["Continue"].waitForExistence(timeout: 5) {
-            photosApp.buttons["Continue"].hit()
-        }
+        let continueButton = photosApp.descendants(matching: .button).matching(label: "Continue").firstMatch
+        guard continueButton.waitForExistence(timeout: 5) else { return }
+        continueButton.tap()
     }
 
     public static func tapFirstPicture() {
-        if photosApp.collectionViews["PhotosGridView"].cells.firstMatch.waitForExistence(timeout: defaultTimeout) {
-            photosApp.collectionViews["PhotosGridView"].cells.firstMatch.hit()
-        }
+        let recentlySaved = photosApp.descendants(matching: .any).matching(label: "Recently Saved").firstMatch
+        guard recentlySaved.waitForExistence(timeout: defaultTimeout) else { return }
+        recentlySaved.tap()
+        let thePhoto = photosApp.descendants(matching: .image).matching(labelContaining: "Photo, March").firstMatch
+        guard thePhoto.waitForExistence(timeout: defaultTimeout) else { return }
+        thePhoto.tap()
     }
 
     public static func tapShare() {
-        if photosApp.buttons["Share"].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons["Share"].hit()
-        }
+        let share = photosApp.descendants(matching: .button).matching(label: "Share").firstMatch
+        guard share.waitForExistence(timeout: defaultTimeout) else { return }
+        share.tap()
     }
 
     public static func tapCanvasButton() {
-        let elements = photosApp
-            .descendants(matching: .any)
-            .matching(NSPredicate(format: "label CONTAINS 'Canvas'"))
-            .allElementsBoundByIndex
-
-        if elements[0].waitForExistence(timeout: defaultTimeout) {
-            elements[0].hit()
-        }
+        let canvas = photosApp.descendants(matching: .any).matching(labelContaining: "Canvas").firstMatch
+        guard canvas.waitForExistence(timeout: defaultTimeout) else { return }
+        canvas.tap()
     }
 
     public static func selectCourse(course: DSCourse) {
-        if photosApp.buttons["Select course"].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons["Select course"].hit()
-        }
+        let courseSelector = photosApp.descendants(matching: .button).matching(label: "Select course").firstMatch
+        guard courseSelector.waitForExistence(timeout: defaultTimeout) else { return }
+        courseSelector.tap()
 
-        if photosApp.buttons[course.name].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons[course.name].hit()
-        }
+        let theCourse = photosApp.descendants(matching: .button).matching(label: course.name).firstMatch
+        guard theCourse.waitForExistence(timeout: defaultTimeout) else { return }
+        theCourse.tap()
     }
 
     public static func selectAssignment(assignment: DSAssignment) {
-        if photosApp.buttons["Select assignment"].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons["Select assignment"].hit()
-        }
+        let assignmentSelector = photosApp.descendants(matching: .button).matching(label: "Select assignment").firstMatch
+        guard assignmentSelector.waitForExistence(timeout: defaultTimeout) else { return }
+        assignmentSelector.tap()
 
-        if photosApp.buttons[assignment.name].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons[assignment.name].hit()
-        }
+        let theAssignment = photosApp.descendants(matching: .button).matching(label: assignment.name).firstMatch
+        guard theAssignment.waitForExistence(timeout: defaultTimeout) else { return }
+        theAssignment.tap()
     }
 
     public static func tapSubmitButton() {
-        if photosApp.buttons["Submit"].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons["Submit"].hit()
-        }
+        let submit = photosApp.descendants(matching: .button).matching(label: "Submit").firstMatch
+        guard submit.waitForExistence(timeout: defaultTimeout) else { return }
+        submit.tap()
     }
 
     public static func tapDoneButton() {
-        if photosApp.buttons["Done"].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons["Done"].hit()
-        }
+        let done = photosApp.descendants(matching: .button).matching(label: "Done").firstMatch
+        guard done.waitForExistence(timeout: defaultTimeout) else { return }
+        done.tap()
     }
 
     public static func closeApp() {

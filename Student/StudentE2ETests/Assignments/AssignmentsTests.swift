@@ -140,12 +140,12 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(submissionSubmitButton.isDisabled)
         XCTAssertTrue(submissionSubmitButton.hasLabel(label: "Submit"))
 
-        let textField = SubmissionHelper.textField.waitUntil(.visible)
-        XCTAssertTrue(textField.isVisible)
+        let textView = SubmissionHelper.textView.waitUntil(.visible)
+        XCTAssertTrue(textView.isVisible)
 
         // MARK: Write some text and submit the assignment
         let testText = "SubmitAssignment test"
-        textField.pasteText(text: testText)
+        textView.writeText(text: testText)
 
         submissionSubmitButton = SubmissionHelper.submitButton.waitUntil(.visible)
         XCTAssertTrue(submissionSubmitButton.isEnabled)

@@ -42,7 +42,7 @@ class FilesTests: E2ETestCase {
         addressLabel.waitUntil(.visible)
         XCTAssertTrue(addressLabel.isVisible)
 
-        addressLabel.writeText(text: FilesHelper.TestPDF.url, hitGo: true, customApp: SafariAppHelper.safariApp)
+        addressLabel.writeText(text: FilesHelper.TestPDF.url, hitEnter: true, customApp: SafariAppHelper.safariApp)
         let shareButton = SafariAppHelper.shareButton.waitUntil(.visible)
         XCTAssertTrue(shareButton.isVisible)
 

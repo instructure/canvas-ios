@@ -112,6 +112,7 @@ public struct MessageView: View {
             SelectableText(
                 attributedText: model.body.toAttributedStringWithLinks(),
                 font: .regular16,
+                lineHeight: .fit,
                 textColor: .textDarkest
             )
             .accessibilityIdentifier("MessageDetails.body")
