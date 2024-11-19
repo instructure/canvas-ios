@@ -1,34 +1,52 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Continue learning" : {
+    "AI Learning Assist" : {
 
     },
-    "Dashboard" : {
+    "AI Summary" : {
+
+    },
+    "AI Tutor" : {
+
+    },
+    "Career" : {
+
+    },
+    "Continue learning" : {
 
     },
     "Error" : {
 
     },
-    "Hello, Journey!" : {
+    "Generate some study flashcards" : {
 
     },
-    "Hello, Portfolio!" : {
+    "Give me key takeaways" : {
 
     },
-    "Journey" : {
+    "Hello, Career!" : {
+
+    },
+    "Home" : {
+
+    },
+    "Learn" : {
 
     },
     "OK" : {
 
     },
-    "Portfolio" : {
-
-    },
-    "Programs" : {
+    "Quiz me on this material" : {
 
     },
     "Submit Assignment" : {
+
+    },
+    "Summarize this material" : {
+
+    },
+    "Tell me more about this topic" : {
 
     },
     "Your Programs" : {

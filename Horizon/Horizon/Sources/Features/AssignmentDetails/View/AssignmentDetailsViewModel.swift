@@ -26,6 +26,7 @@ final class AssignmentDetailsViewModel {
     // MARK: - Input
 
     private(set) var submissionEvents = PassthroughSubject<AssignmentSubmissionView.Events, Never>()
+    private(set) var aiEvents = PassthroughSubject<(ModuleBottomsType, WeakViewController), Never>()
     var isSubmitButtonVisible = false
     var selectedSubmission: AssignmentType?
 
@@ -59,6 +60,7 @@ final class AssignmentDetailsViewModel {
     // MARK: - Dependancies
 
     private let interactor: AssignmentInteractor
+    private let appEnvironment: AppEnvironment
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
@@ -69,13 +71,21 @@ final class AssignmentDetailsViewModel {
 
     init(
         interactor: AssignmentInteractor,
+        appEnvironment: AppEnvironment,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
+        self.appEnvironment = appEnvironment
         self.scheduler = scheduler
         fetchAssignmentDetails()
         bindSubmissionAssignmentEvents()
     }
+
+    // MARK: - Public Functions
+
+    func showTabBar() { appEnvironment.tabBar(isVisible: true) }
+
+    // MARK: - Private Functions
 
     private func fetchAssignmentDetails() {
         interactor.getAssignmentDetails()
@@ -126,6 +136,16 @@ final class AssignmentDetailsViewModel {
                     self?.errorMessage = error.localizedDescription
                 }
             }.store(in: &subscriptions)
+
+        aiEvents.sink {  [weak self] event, controller in
+            switch event {
+            case .assist:
+                self?.appEnvironment.router.route(to: "/tutor", from: controller)
+            default:
+                break
+
+            }
+        }.store(in: &subscriptions)
     }
 
     private func submitTextEntry() {

@@ -16,16 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Foundation
 
-struct JourneyView: View {
-    var body: some View {
-        BaseHorizonScreen {
-            Text("Hello, Journey!")
+enum ModuleBottomsType: CaseIterable {
+    case message
+    case sound
+    case bookmark
+    case assist
+
+    var imageName: String {
+        switch self {
+        case .message:
+            "bubble.left"
+        case .sound:
+            "speaker.wave.2"
+        case .bookmark:
+            "bookmark"
+        case .assist:
+            "sparkles"
         }
     }
-}
-
-#Preview {
-    JourneyView()
 }

@@ -22,6 +22,7 @@ import SwiftUI
 struct AssignmentDetails: View {
     // MARK: - Properties
 
+    @Environment(\.viewController) private var viewController
     @Bindable private var viewModel: AssignmentDetailsViewModel
 
     init(viewModel: AssignmentDetailsViewModel) {
@@ -72,11 +73,20 @@ struct AssignmentDetails: View {
             .paddingStyle(.horizontal, .standard)
             .padding(.bottom, 100)
         }
-        .avoidKeyboardArea()
+        .background(Color.backgroundLight)
         .scrollDismissesKeyboard(.immediately)
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top) { if viewModel.state == .data { header } }
-        .navigationTitle(viewModel.assignment?.name ?? "")
+        .safeAreaInset(edge: .bottom) {
+            if !viewModel.isKeyboardVisible {
+                ModuleBottomNavBar { selectedButton in
+                    viewModel.aiEvents.send((selectedButton, viewController))
+                }
+                .padding(.bottom)
+            }
+        }
+        .onAppear { viewModel.showTabBar() }
+        .avoidKeyboardArea()
         .toolbarBackground(.visible, for: .navigationBar)
         .alert("Error", isPresented: $viewModel.isAlertVisible) {
             Button("OK", role: .cancel) { }

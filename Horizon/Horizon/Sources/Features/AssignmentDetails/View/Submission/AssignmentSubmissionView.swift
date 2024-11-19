@@ -52,6 +52,7 @@ struct AssignmentSubmissionView: View {
 
         }
         .onChange(of: isFocused) {
+            viewModel.isKeyboardVisible = isFocused
             if isFocused { onStartTyping?() }
         }
         .fileImporter(

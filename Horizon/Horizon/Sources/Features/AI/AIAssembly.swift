@@ -16,16 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
 import SwiftUI
+import Core
 
-struct PortfolioView: View {
-    var body: some View {
-        BaseHorizonScreen {
-            Text("Hello, Portfolio!")
-        }
+final class AIAssembly {
+
+    static func makeChatBotView() -> ChatBotView {
+        let router = AppEnvironment.shared.router
+        let viewModel = ChatBotViewModel(router: router)
+        return ChatBotView(viewModel: viewModel)
     }
-}
 
-#Preview {
-    PortfolioView()
+    static func makeAITutorView() -> UIViewController {
+        let appEnvironment = AppEnvironment.shared
+        let viewModel = AITutorViewModel(router: appEnvironment.router)
+        let view = AITutorView(viewModel: viewModel)
+        appEnvironment.tabBar(isVisible: false)
+        return CoreHostingController(view)
+    }
+
+    static func makeAISummaryView() -> UIViewController {
+        CoreHostingController(AISummaryView())
+    }
 }

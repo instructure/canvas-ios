@@ -20,15 +20,9 @@ import Foundation
 import Core
 import Combine
 
-protocol AssignmentInteractor {
+protocol AssignmentInteractor: HUploadFileManager {
     func getAssignmentDetails() -> AnyPublisher<HAssignment, Never>
     func submitTextEntry(with text: String) -> AnyPublisher<[CreateSubmission.Model], Error>
-    func addFile(url: URL)
-    func cancelFile(_ file: File)
-    func cancelAllFiles()
-    func uploadFiles()
-    var attachments: CurrentValueSubject<[File], Never> { get }
-    var didUploadFiles: PassthroughSubject<Result<Void, Error>, Never> { get }
 }
 
 final class AssignmentInteractorLive: AssignmentInteractor {

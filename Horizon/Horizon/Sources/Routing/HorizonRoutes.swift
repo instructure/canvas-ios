@@ -34,7 +34,8 @@ enum HorizonRoutes {
         quizRoutes,
         assignmentRoutes,
         inboxRoutes,
-        externalToolRoutes
+        externalToolRoutes,
+        aiRoutes
     ]
 
     private static var splashRoutes: [RouteHandler] {
@@ -187,6 +188,17 @@ enum HorizonRoutes {
                 let tools = LTITools(context: .course(courseID), id: toolID)
                 tools.presentTool(from: vc, animated: true)
                 return nil
+            }
+        ]
+    }
+
+    private static var aiRoutes: [RouteHandler] {
+        [
+            RouteHandler("/tutor") {_, _, _ in
+                AIAssembly.makeAITutorView()
+            },
+            RouteHandler("/summary") {_, _, _ in
+                AIAssembly.makeAISummaryView()
             }
         ]
     }
