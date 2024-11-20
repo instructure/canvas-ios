@@ -36,7 +36,7 @@ public struct BackgroundProcessingInteractor {
         let isRegistered = scheduler.register(forTaskWithIdentifier: taskID,
                                               using: nil) { backgroundTask in
             guard let task = BackgroundProcessingAssembly.resolveTask(for: backgroundTask.identifier) else {
-                Analytics.shared.logError(name: "Background task ID \(taskID) couldn't be resolved to a task.")
+                RemoteLogger.shared.logError(name: "Background task ID \(taskID) couldn't be resolved to a task.")
                 backgroundTask.setTaskCompleted(success: true)
                 return
             }
@@ -44,7 +44,7 @@ public struct BackgroundProcessingInteractor {
             let startTime = Date()
 
             backgroundTask.expirationHandler = {
-                Analytics.shared.logError(name: "Background task \(taskID) expired.",
+                RemoteLogger.shared.logError(name: "Background task \(taskID) expired.",
                                           reason: "Sync time: \(Self.ElapsedTimeFormatter.string(from: startTime, to: Date()) ?? "unknown")")
                 task.cancel()
                 backgroundTask.setTaskCompleted(success: false)
@@ -56,7 +56,7 @@ public struct BackgroundProcessingInteractor {
         }
 
         if !isRegistered {
-            Analytics.shared.logError(name: "Failed to register background task \(taskID).")
+            RemoteLogger.shared.logError(name: "Failed to register background task \(taskID).")
         }
     }
 
@@ -64,7 +64,7 @@ public struct BackgroundProcessingInteractor {
         do {
             try scheduler.submit(task)
         } catch(let error) {
-            Analytics.shared.logError(name: "Failed to schedule background task \(task.identifier).", reason: error.localizedDescription)
+            RemoteLogger.shared.logError(name: "Failed to schedule background task \(task.identifier).", reason: error.localizedDescription)
         }
     }
 

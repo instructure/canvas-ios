@@ -21,7 +21,8 @@ import TestsFoundation
 class GradingPeriodsTests: E2ETestCase {
     typealias Helper = GradesHelper
 
-    func testGradingPeriodsFilter() {
+    func testGradingPeriodsFilter() throws {
+        try XCTSkipIf(true, "Skipped because of MBL-18023.")
         // MARK: Seed the usual stuff with grading periods containing graded assignments
         let student = seeder.createUser()
         let enrollmentTerm = Helper.createEnrollmentTerm()

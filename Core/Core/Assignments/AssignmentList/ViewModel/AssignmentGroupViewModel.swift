@@ -36,7 +36,7 @@ public class AssignmentGroupViewModel: ObservableObject {
     }
 
     public convenience init(assignmentDateGroup: AssignmentListViewModel.AssignmentDateGroup, courseColor: UIColor?) {
-        self.init(name: assignmentDateGroup.name, id: assignmentDateGroup.name, assignments: assignmentDateGroup.assignments, courseColor: courseColor)
+        self.init(name: assignmentDateGroup.name, id: assignmentDateGroup.id, assignments: assignmentDateGroup.assignments, courseColor: courseColor)
     }
 }
 

@@ -31,14 +31,14 @@ public protocol StudioVideoPosterInteractor {
 public class StudioVideoPosterInteractorLive: StudioVideoPosterInteractor {
     public typealias PosterFactory = (_ videoFile: URL, _ posterLocation: URL) throws -> Void
 
-    private let analytics: Analytics
+    private let analytics: RemoteLogger
     private let posterFactory: PosterFactory
 
     /// - parameters:
     ///   - analytics: Since poster creation is not a blocker step we don't throw any errors from here only report them to analytics.
     ///   - posterFactory: For testing purposes. Live implementation should have a default value for this parameter.
     public init(
-        analytics: Analytics = .shared,
+        analytics: RemoteLogger = .shared,
         posterFactory: @escaping PosterFactory = defaultPosterFactory
     ) {
         self.analytics = analytics

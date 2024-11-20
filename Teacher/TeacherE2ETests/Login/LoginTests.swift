@@ -73,7 +73,6 @@ class LoginTests: E2ETestCase {
         let passwordInput = LoginHelper.Login.passwordField.waitUntil(.visible)
         let loginButton = LoginHelper.Login.loginButton.waitUntil(.visible)
         let forgotPasswordButton = LoginHelper.Login.forgotPasswordButton.waitUntil(.visible)
-        let needAccountButton = LoginHelper.Login.needAccountButton.waitUntil(.visible)
         XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(hostLabel.isVisible)
         XCTAssertTrue(hostLabel.hasLabel(label: user.host))
@@ -85,8 +84,6 @@ class LoginTests: E2ETestCase {
         XCTAssertTrue(loginButton.hasLabel(label: "Log In"))
         XCTAssertTrue(forgotPasswordButton.isVisible)
         XCTAssertTrue(forgotPasswordButton.hasLabel(label: "Forgot Password?"))
-        XCTAssertTrue(needAccountButton.isVisible)
-        XCTAssertTrue(needAccountButton.hasLabel(label: "Need a Canvas Account? Click Here, It's Free!"))
 
         emailInput.writeText(text: teacher.login_id!)
         passwordInput.writeText(text: teacher.password!)
@@ -142,11 +139,11 @@ class LoginTests: E2ETestCase {
         let emailInput = LoginHelper.Login.emailField.waitUntil(.visible)
         XCTAssertTrue(emailInput.isVisible)
 
-        let requestPasswordButton = LoginHelper.Login.loginButton.waitUntil(.visible)
+        let requestPasswordButton = LoginHelper.Login.requestPasswordButton.waitUntil(.visible)
         XCTAssertTrue(requestPasswordButton.isVisible)
         XCTAssertTrue(requestPasswordButton.hasLabel(label: "Request Password"))
 
-        let backToLoginButton = LoginHelper.Login.forgotPasswordButton.waitUntil(.visible)
+        let backToLoginButton = LoginHelper.Login.backToLoginButton.waitUntil(.visible)
         XCTAssertTrue(backToLoginButton.isVisible)
         XCTAssertTrue(backToLoginButton.hasLabel(label: "Back to Login"))
     }

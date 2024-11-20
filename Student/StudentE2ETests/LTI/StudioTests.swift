@@ -20,7 +20,8 @@ import TestsFoundation
 
 class StudioTests: E2ETestCase {
 
-    func testStudioAvailabilityAndEmbeddedVideo() {
+    func testStudioAvailabilityAndEmbeddedVideo() throws {
+        try XCTSkipIf(true, "Skipped because of a recent Studio change.")
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = LTIHelper.Studio.course
