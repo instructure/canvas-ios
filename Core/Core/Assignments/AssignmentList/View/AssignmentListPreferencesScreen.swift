@@ -129,8 +129,7 @@ public struct AssignmentListPreferencesScreen: View {
 
     private var gradingPeriodsSection: some View {
         Section {
-            InstUI.RadioButtonCell(title: "All Grading Periods", value: nil, selectedValue: $viewModel.selectedGradingPeriod, color: Color(Brand.shared.primary))
-            ForEach(viewModel.gradingPeriods, id: \.hashValue) { item in
+            ForEach(viewModel.gradingPeriods, id: \.id) { item in
                 gradingPeriodItem(with: item)
             }
         } header: {
@@ -138,9 +137,9 @@ public struct AssignmentListPreferencesScreen: View {
         }
     }
 
-    private func gradingPeriodItem(with item: GradingPeriod) -> some View {
+    private func gradingPeriodItem(with item: GradingPeriodOption) -> some View {
         InstUI.RadioButtonCell(
-            title: item.title ?? "",
+            title: item.name ?? "",
             value: item,
             selectedValue: $viewModel.selectedGradingPeriod,
             color: color
