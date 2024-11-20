@@ -43,10 +43,17 @@ public struct AssignmentListPreferencesScreen: View {
             }
         }
         .navigationTitleStyled(navBarTitleView)
-        .navigationBarItems(trailing: doneButton)
+        .navigationBarItems(leading: cancelButton, trailing: doneButton)
         .onDisappear {
             viewModel.didDismiss()
         }
+    }
+
+    private var cancelButton: some View {
+        InstUI.NavigationBarButton.cancel {
+            viewModel.didTapCancel(viewController: viewController)
+        }
+        .accessibilityIdentifier("AssignmentFilter.cancelButton")
     }
 
     private var doneButton: some View {

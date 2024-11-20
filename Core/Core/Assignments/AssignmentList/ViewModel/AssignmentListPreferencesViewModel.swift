@@ -45,7 +45,6 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     static let notYetSubmitted = Self(
         id: "notYetSubmitted",
         title: String(localized: "Not Yet Submitted", bundle: .core),
-        subtitle: String(localized: "Missing, Not Submitted", bundle: .core),
         rule: { assignment in
             if assignment.submissionTypes.contains(SubmissionType.none) || assignment.submissionTypes.contains(SubmissionType.on_paper) {
                 return false
@@ -60,7 +59,6 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     static let toBeGraded = Self(
         id: "toBeGraded",
         title: String(localized: "To Be Graded", bundle: .core),
-        subtitle: String(localized: "Late, Submitted", bundle: .core),
         rule: { assignment in
             if assignment.submissionTypes.contains(.not_graded) {
                 return false
@@ -86,7 +84,6 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     static let noSubmission = Self(
         id: "noSubmission",
         title: String(localized: "Other", bundle: .core),
-        subtitle: String(localized: "On Paper, No Submission, Excused", bundle: .core),
         rule: { assignment in
             return assignment.submissionTypes.contains(SubmissionType.none)
                 || assignment.submissionTypes.contains(SubmissionType.on_paper)
@@ -176,6 +173,13 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     }
 
     // MARK: - Functions
+
+    func didTapCancel(viewController: WeakViewController) {
+        selectedAssignmentFilterOptions = initialFilterOptions ?? AssignmentFilterOption.allCases
+        selectedSortingOption = initialSortingOption
+        selectedGradingPeriod = initialGradingPeriod
+        env.router.dismiss(viewController)
+    }
 
     func didTapDone(viewController: WeakViewController) {
         env.router.dismiss(viewController)
