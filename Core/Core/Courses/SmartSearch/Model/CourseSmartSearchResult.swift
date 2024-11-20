@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-// https://canvas.instructure.com/doc/api/smart_search.html
+// https://canvas.instructure.com/doc/api/smart_search.html#SearchResult
 public struct CourseSmartSearchResult: Codable, Identifiable, Equatable {
     enum ContentType: String, Codable, CaseIterable {
         case page = "WikiPage"
