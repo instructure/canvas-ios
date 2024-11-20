@@ -145,7 +145,7 @@ public class AssignmentListViewModel: ObservableObject {
         selectedSortingOption = sortingOption ?? selectedSortingOption
         selectedFilterOptions = filterOptions ?? selectedFilterOptions
 
-        isFilterIconSolid = gradingPeriod != defaultGradingPeriod || isFilteringCustom && selectedFilterOptions != initialFilterOptions
+        isFilterIconSolid = gradingPeriod != defaultGradingPeriod || (isFilteringCustom && selectedFilterOptions != initialFilterOptions)
 
         assignmentGroupsDidUpdate()
     }
