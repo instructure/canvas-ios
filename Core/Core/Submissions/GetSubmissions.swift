@@ -52,12 +52,12 @@ public struct SubmissionDestination {
         self.apiInstanceHost = apiInstanceHost
     }
 
-    var baseURL: URL? {
+    func baseURL(in env: AppEnvironment) -> URL? {
         guard let host = apiInstanceHost else { return nil }
 
         var urlComps = URLComponents()
         urlComps.host = host
-        urlComps.scheme = AppEnvironment.shared.api.baseURL.scheme
+        urlComps.scheme = env.api.baseURL.scheme
         return urlComps.url
     }
 }
@@ -142,7 +142,6 @@ public class CreateSubmission: APIUseCase {
 }
 
 protocol SubmissionApiCoordinator: AnyObject {
-    init(destination: SubmissionDestination)
     func api(environment: AppEnvironment) -> API
 }
 
@@ -156,7 +155,7 @@ class DefaultSubmissionApiCoordinator: SubmissionApiCoordinator {
 
     func api(environment: AppEnvironment) -> API {
         let shared = environment.api
-        guard let baseURL = destination.baseURL else { return shared }
+        guard let baseURL = destination.baseURL(in: environment) else { return shared }
 
         if let api,
            api.baseURL == baseURL,
