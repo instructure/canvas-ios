@@ -25,12 +25,12 @@ class UrlSubmissionViewController: UIViewController {
     @IBOutlet weak var webView: CoreWebView!
     @IBOutlet weak var loadingView: UIView!
     var presenter: UrlSubmissionPresenter!
-    var agent: SubmissionAgent!
+    var destination: SubmissionDestination!
 
-    static func create(agent: SubmissionAgent) -> UrlSubmissionViewController {
+    static func create(destination: SubmissionDestination) -> UrlSubmissionViewController {
         let controller = loadFromStoryboard()
-        controller.agent = agent
-        controller.presenter = UrlSubmissionPresenter(view: controller, agent: agent)
+        controller.destination = destination
+        controller.presenter = UrlSubmissionPresenter(view: controller, destination: destination)
         return controller
     }
 

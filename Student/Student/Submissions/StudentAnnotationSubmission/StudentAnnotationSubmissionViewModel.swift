@@ -30,15 +30,17 @@ public class StudentAnnotationSubmissionViewModel: ObservableObject {
 
     private let submissionUseCase: CreateSubmission
 
-    public init(documentURL: URL, agent: SubmissionAgent, annotatableAttachmentID: String?, assignmentName: String, courseColor: UIColor) {
+    public init(documentURL: URL, destination: SubmissionDestination, annotatableAttachmentID: String?, assignmentName: String, courseColor: UIColor) {
         self.documentURL = documentURL
         self.navBar = (title: String(localized: "Student Annotation", bundle: .student),
                        subtitle: assignmentName,
                        color: courseColor,
                        closeButtonTitle: String(localized: "Close", bundle: .student))
-        self.submissionUseCase = CreateSubmission(agent: agent,
-                                                  submissionType: .student_annotation,
-                                                  annotatableAttachmentID: annotatableAttachmentID)
+        self.submissionUseCase = CreateSubmission(
+            destination: destination,
+            submissionType: .student_annotation,
+            annotatableAttachmentID: annotatableAttachmentID
+        )
     }
 
     public func postSubmission() {

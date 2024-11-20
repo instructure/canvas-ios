@@ -159,7 +159,7 @@ class AssignmentDetailsPresenter {
     func updatePresenter() {
         guard let apiInstanceHost = tabs.first?.apiInstanceHost else { return }
         guard env.api.baseURL.host() != apiInstanceHost else { return }
-        submissionButtonPresenter.instanceHost = apiInstanceHost
+        submissionButtonPresenter.apiInstanceHost = apiInstanceHost
     }
 
     func update() {

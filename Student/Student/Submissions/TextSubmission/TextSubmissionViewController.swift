@@ -23,15 +23,15 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
 
-    var agent: SubmissionAgent!
+    var destination: SubmissionDestination!
     var editor: RichContentEditorViewController!
     let env = AppEnvironment.shared
     var keyboard: KeyboardTransitioning?
 
-    static func create(agent: SubmissionAgent) -> TextSubmissionViewController {
+    static func create(destination: SubmissionDestination) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
-        controller.agent = agent
-        controller.editor = RichContentEditorViewController.create(context: agent.context, uploadTo: .myFiles)
+        controller.destination = destination
+        controller.editor = RichContentEditorViewController.create(context: destination.context, uploadTo: .myFiles)
         return controller
     }
 
@@ -70,7 +70,7 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
 
         editor.getHTML { (html: String) in
             CreateSubmission(
-                agent: self.agent,
+                destination: self.destination,
                 submissionType: .online_text_entry,
                 body: html
             ).fetch { (_, _, error) in performUIUpdate {

@@ -38,35 +38,35 @@ public struct GetRecentlyGradedSubmissions: CollectionUseCase {
     }
 }
 
-public struct SubmissionAgent {
+public struct SubmissionDestination {
     public let courseID: String
     public let assignmentID: String
     public let userID: String
-    public let instanceHost: String?
+    public let apiInstanceHost: String?
 
-    public init(courseID: String, assignmentID: String, userID: String, instanceHost: String? = nil) {
+    public init(courseID: String, assignmentID: String, userID: String, apiInstanceHost: String? = nil) {
+        self.userID = userID
         self.courseID = courseID
         self.assignmentID = assignmentID
-        self.userID = userID
-        self.instanceHost = instanceHost
+        self.apiInstanceHost = apiInstanceHost
     }
 
     public var context: Context { .course(courseID) }
     public var baseURL: URL? {
         var urlComps = URLComponents()
-        urlComps.host = instanceHost
+        urlComps.host = apiInstanceHost
         urlComps.scheme = AppEnvironment.shared.api.baseURL.scheme
         return urlComps.url
     }
 }
 
 public class CreateSubmission: APIUseCase {
-    let agent: SubmissionAgent
+    let destination: SubmissionDestination
     public let request: CreateSubmissionRequest
     public typealias Model = Submission
 
     public init(
-        agent: SubmissionAgent,
+        destination: SubmissionDestination,
         submissionType: SubmissionType,
         textComment: String? = nil,
         isGroupComment: Bool? = nil,
@@ -77,7 +77,7 @@ public class CreateSubmission: APIUseCase {
         mediaCommentType: MediaCommentType? = nil,
         annotatableAttachmentID: String? = nil
     ) {
-        self.agent = agent
+        self.destination = destination
 
         let submission = CreateSubmissionRequest.Body.Submission(
             annotatable_attachment_id: annotatableAttachmentID,
@@ -92,8 +92,8 @@ public class CreateSubmission: APIUseCase {
         )
 
         request = CreateSubmissionRequest(
-            context: agent.context,
-            assignmentID: agent.assignmentID,
+            context: destination.context,
+            assignmentID: destination.assignmentID,
             body: .init(submission: submission)
         )
     }
@@ -103,29 +103,28 @@ public class CreateSubmission: APIUseCase {
     public var scope: Scope { Scope(
         predicate: NSPredicate(
             format: "%K == %@ AND %K == %@",
-            #keyPath(Submission.assignmentID), agent.assignmentID,
-            #keyPath(Submission.userID), agent.userID
+            #keyPath(Submission.assignmentID), destination.assignmentID,
+            #keyPath(Submission.userID), destination.userID
         ),
         orderBy: #keyPath(Submission.attempt),
         ascending: false
     ) }
 
     private lazy var api: API = {
-        API(
-            AppEnvironment.shared.api.loginSession,
-            baseURL: agent.baseURL,
-            urlSession: AppEnvironment.shared.api.urlSession
+        let shared = AppEnvironment.shared.api
+        return API(
+            shared.loginSession,
+            baseURL: destination.baseURL,
+            urlSession: shared.urlSession
         )
     }()
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APISubmission?, URLResponse?, Error?) -> Void) {
-
         api
             .makeRequest(request) { [weak self] response, urlResponse, error in
-                guard let self = self else { return }
-                let agent = self.agent
+                guard let dest = self?.destination else { return }
                 if error == nil {
-                    NotificationCenter.default.post(moduleItem: .assignment(agent.assignmentID), completedRequirement: .submit, courseID: agent.courseID)
+                    NotificationCenter.default.post(moduleItem: .assignment(dest.assignmentID), completedRequirement: .submit, courseID: dest.courseID)
                     NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
                 }
                 completionHandler(response, urlResponse, error)
@@ -139,7 +138,7 @@ public class CreateSubmission: APIUseCase {
         Submission.save(item, in: client)
         if item.late != true {
             NotificationCenter.default.post(name: .celebrateSubmission, object: nil, userInfo: [
-                "assignmentID": agent.assignmentID
+                "assignmentID": destination.assignmentID
             ])
         }
     }

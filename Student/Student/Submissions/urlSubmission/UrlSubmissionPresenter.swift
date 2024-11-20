@@ -26,13 +26,13 @@ protocol UrlSubmissionViewProtocol: ErrorViewController {
 
 class UrlSubmissionPresenter {
     weak var view: UrlSubmissionViewProtocol?
-    let agent: SubmissionAgent
+    let destination: SubmissionDestination
     let env: AppEnvironment
 
-    init(view: UrlSubmissionViewProtocol?, agent: SubmissionAgent, env: AppEnvironment = .shared) {
+    init(view: UrlSubmissionViewProtocol?, destination: SubmissionDestination, env: AppEnvironment = .shared) {
         self.view = view
         self.env = env
-        self.agent = agent
+        self.destination = destination
     }
 
     func scrubUrl(text: String?) -> URL? {
@@ -54,7 +54,7 @@ class UrlSubmissionPresenter {
 
     func submit(_ text: String?) {
         if let url = scrubUrl(text: text) {
-            let useCase = CreateSubmission(agent: agent, submissionType: .online_url, url: url)
+            let useCase = CreateSubmission(destination: destination, submissionType: .online_url, url: url)
             useCase.fetch(environment: env) { [weak self] (_, _, error) in
                 DispatchQueue.main.async {
                     if let error = error {

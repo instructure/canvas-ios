@@ -26,18 +26,18 @@ protocol ArcSubmissionView: ErrorViewController {
 class ArcSubmissionPresenter {
     let env: AppEnvironment
     weak var view: ArcSubmissionView?
-    let agent: SubmissionAgent
+    let destination: SubmissionDestination
     let arcID: String
 
-    init(environment: AppEnvironment = .shared, view: ArcSubmissionView, agent: SubmissionAgent, arcID: String) {
+    init(environment: AppEnvironment = .shared, view: ArcSubmissionView, destination: SubmissionDestination, arcID: String) {
         self.env = environment
         self.view = view
-        self.agent = agent
+        self.destination = destination
         self.arcID = arcID
     }
 
     func viewIsReady() {
-        let context = agent.context
+        let context = destination.context
         let url = env.api.baseURL.appendingPathComponent("\(context.pathComponent)/external_tools/\(arcID)/resource_selection")
         view?.load(url)
     }
@@ -59,7 +59,7 @@ class ArcSubmissionPresenter {
 
     func submit(url: URL, callback: @escaping (Error?) -> Void) {
         CreateSubmission(
-            agent: agent,
+            destination: destination,
             submissionType: .basic_lti_launch,
             url: url
         ).fetch(environment: env) { _, _, error in
