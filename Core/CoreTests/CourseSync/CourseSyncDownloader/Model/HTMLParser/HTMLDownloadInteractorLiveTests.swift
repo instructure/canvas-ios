@@ -26,45 +26,45 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
     let testCourseId = "1"
     let testResourceId = "2"
     let testFileId = "3"
-    let testSectionName = "test"
+    let testSectionName = "testSection"
     let testURL = URL(string: "https://www.instructure.com/logo.txt")!
 
     func testDownload() {
-        var subscriptions: [AnyCancellable] = []
-        let testee = HTMLDownloadInteractorLive(loginSession: environment.currentSession!, sectionName: testSectionName, scheduler: .main)
         let mockPublisherProvider = URLSessionDataTaskPublisherProviderMock()
-        var resultString: String?
-        let expectation = self.expectation(description: "downloadImage")
-        testee.download(testURL, courseId: testCourseId, resourceId: testResourceId, publisherProvider: mockPublisherProvider)
-            .sink(receiveCompletion: { _ in }, receiveValue: { result in
-                resultString = result
-                expectation.fulfill()
-            })
-            .store(in: &subscriptions)
+        let testee = HTMLDownloadInteractorLive(
+            loginSession: environment.currentSession!,
+            sectionName: testSectionName,
+            scheduler: .main,
+            downloadTaskProvider: mockPublisherProvider
+        )
+        let expectedURL = "\(environment.currentSession!.uniqueID)/Offline/course-\(testCourseId)/\(testSectionName)/\(testSectionName)-\(testResourceId)/logo.txt"
 
-        waitForExpectations(timeout: 10)
-        XCTAssertNotEqual(resultString, testURL.path)
-        XCTAssertEqual(String(resultString?.split(separator: "/").last ?? ""), testURL.lastPathComponent)
+        // WHEN
+        let publisher = testee
+            .download(
+                testURL,
+                courseId: testCourseId,
+                resourceId: testResourceId,
+                documentsDirectory: URL.Directories.documents
+            )
+
+        // THEN
+        XCTAssertSingleOutputEquals(publisher, expectedURL, timeout: 10)
     }
 
     func testFileDownload() {
         let testURL = URL(string: "https://www.instructure.com/\(testFileId)")!
-        var subscriptions: [AnyCancellable] = []
-        let testee = HTMLDownloadInteractorLive(loginSession: environment.currentSession!, sectionName: testSectionName, scheduler: .main)
         let mockPublisherProvider = URLSessionDataTaskPublisherProviderMock()
+        let testee = HTMLDownloadInteractorLive(
+            loginSession: environment.currentSession!,
+            sectionName: testSectionName,
+            scheduler: .main,
+            downloadTaskProvider: mockPublisherProvider
+        )
+        let publisher = testee.downloadFile(testURL, courseId: testCourseId, resourceId: testResourceId)
 
-        let expectation = self.expectation(description: "downloadFile")
-        var resultString: String?
-        testee.downloadFile(testURL, courseId: testCourseId, resourceId: testResourceId, publisherProvider: mockPublisherProvider)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { _ in expectation.fulfill() }, receiveValue: { result in
-                resultString = result
-            })
-            .store(in: &subscriptions)
-
-        waitForExpectations(timeout: 10)
-        XCTAssertNotEqual(resultString, testURL.path)
-        XCTAssertEqual(resultString, "\(self.environment.currentSession!.baseURL)/courses/\(self.testCourseId)/files/\(self.testSectionName)/\(self.testResourceId)/\(self.testFileId)/offline")
+        let expectedURL = "\(self.environment.currentSession!.baseURL)/courses/\(self.testCourseId)/files/\(self.testSectionName)/\(self.testResourceId)/\(self.testFileId)/offline"
+        XCTAssertSingleOutputEquals(publisher, expectedURL, timeout: 10)
     }
 
     func testBaseContentSave() {
