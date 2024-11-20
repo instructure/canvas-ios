@@ -161,19 +161,21 @@ public struct LoginSession: Codable, Hashable {
             guard let folderUrl = urls.first(where: { $0.hasDirectoryPath && $0.lastPathComponent == uniqueID })
             else { return }
 
-            let dest = URL.Directories
+            let sessionFolder = URL
+                .Directories
                 .annotatedPDFs
                 .appending(component: folderUrl.lastPathComponent, directoryHint: .isDirectory)
 
-            if fileManager.fileExists(atPath: dest.path()) {
-                try? fileManager
-                    .contentsOfDirectory(at: folderUrl, includingPropertiesForKeys: nil)
-                    .forEach({ content in
-                        try fileManager.moveItem(at: content, to: dest.appending(component: content.lastPathComponent))
-                    })
-            } else {
-                try? fileManager.moveItem(at: folderUrl, to: dest)
+            if fileManager.fileExists(atPath: sessionFolder.path()) == false {
+                try fileManager.createDirectory(at: sessionFolder, withIntermediateDirectories: true)
             }
+
+            try? fileManager
+                .contentsOfDirectory(at: folderUrl, includingPropertiesForKeys: nil)
+                .filter({ $0.lastPathComponent.hasPrefix(URL.Paths.offline) == false })
+                .forEach({ content in
+                    try fileManager.moveItem(at: content, to: sessionFolder.appending(component: content.lastPathComponent))
+                })
 
         } catch {
             Logger.shared.error("Failure moving previously saved PDFs to AnnotatedPDFs folder: \(error.localizedDescription)")
