@@ -121,7 +121,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
     // MARK: - Private properties
 
-    private let initialFilterOptions: [AssignmentFilterOption]?
+    private let initialFilterOptions: [AssignmentFilterOption]
     private let initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions
     private let initialGradingPeriod: GradingPeriod?
 
@@ -175,7 +175,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     // MARK: - Functions
 
     func didTapCancel(viewController: WeakViewController) {
-        selectedAssignmentFilterOptions = initialFilterOptions ?? AssignmentFilterOption.allCases
+        selectedAssignmentFilterOptions = initialFilterOptions
         selectedSortingOption = initialSortingOption
         selectedGradingPeriod = initialGradingPeriod
         env.router.dismiss(viewController)

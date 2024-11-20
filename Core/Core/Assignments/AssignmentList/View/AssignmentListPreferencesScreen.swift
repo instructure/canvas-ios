@@ -97,7 +97,6 @@ public struct AssignmentListPreferencesScreen: View {
 
         return InstUI.CheckboxCell(
             title: item.title,
-            subtitle: item.subtitle,
             isSelected: filterSelectionBinding,
             color: color
         )

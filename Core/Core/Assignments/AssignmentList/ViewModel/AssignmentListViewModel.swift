@@ -70,7 +70,7 @@ public class AssignmentListViewModel: ObservableObject {
 
     private var isFilteringCustom: Bool {
         // all filters selected is the same as no filter selected
-        !selectedFilterOptions.isEmpty && selectedFilterOptions.count != AssignmentFilterOption.allCases.count
+        (!selectedFilterOptions.isEmpty) && selectedFilterOptions.count != AssignmentFilterOption.allCases.count
     }
 
     private let env = AppEnvironment.shared
@@ -87,6 +87,7 @@ public class AssignmentListViewModel: ObservableObject {
             defaultGradingPeriod = currentGradingPeriod
             selectedGradingPeriod = defaultGradingPeriod
         }
+        filterOptionsDidUpdate(filterOptions: selectedFilterOptions, gradingPeriod: selectedGradingPeriod)
         assignmentGroups.refresh()
     }
 
@@ -125,7 +126,6 @@ public class AssignmentListViewModel: ObservableObject {
         loadAssignmentListPreferences()
         course.refresh(force: true)
         gradingPeriods.refresh(force: true)
-        filterOptionsDidUpdate(filterOptions: selectedFilterOptions, gradingPeriod: selectedGradingPeriod)
 
         isFilterIconSolid = isFilteringCustom || selectedGradingPeriod != defaultGradingPeriod
     }
@@ -198,22 +198,20 @@ public class AssignmentListViewModel: ObservableObject {
 
     private func filterAssignments(_ assignments: [Assignment]) -> [Assignment] {
         // Filtering by grading period except if "All" is selected (nil)
-        var assignments = assignments
+        var filteredAssignments = assignments
         if let selectedGradingPeriod {
-            assignments = assignments.filter { $0.submission?.gradingPeriodId == selectedGradingPeriod.id }
+            filteredAssignments = filteredAssignments.filter { $0.submission?.gradingPeriodId == selectedGradingPeriod.id }
         }
-
-        var filteredAssignments: [Assignment] = []
 
         // all filter selected is the same as no filter selected
         guard isFilteringCustom else {
-            return assignments
+            return filteredAssignments
         }
 
-        assignments.forEach { assignment in
+        filteredAssignments.forEach { assignment in
             selectedFilterOptions.forEach { filterOption in
-                if !filteredAssignments.contains(assignment), filterOption.rule(assignment) {
-                    filteredAssignments.append(assignment)
+                if let indexOfAssignment = filteredAssignments.firstIndex(of: assignment), !filterOption.rule(assignment) {
+                    filteredAssignments.remove(at: indexOfAssignment)
                 }
             }
         }
