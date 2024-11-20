@@ -18,6 +18,7 @@
 
 import Foundation
 
+// https://canvas.instructure.com/doc/api/smart_search.html#method.smart_search.search
 struct CourseSmartSearchRequest: APIRequestable {
     typealias Response = APICourseSmartSearchResponse
 

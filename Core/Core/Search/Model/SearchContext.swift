@@ -16,27 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import UIKit
 import Combine
 
-public protocol SearchContextInfo {
-    typealias EnvironmentKey = SearchEnvironmentKey<Self>
-    typealias EnvironmentKeyPath = WritableKeyPath<EnvironmentValues, CoreSearchContext<Self>>
-
-    static var environmentKeyPath: EnvironmentKeyPath { get }
-    static var defaultInfo: Self { get }
-
-    var searchPrompt: String { get }
-    var navBarColor: UIColor? { get }
-    var clearButtonColor: UIColor? { get }
-}
-
-extension SearchContextInfo {
-    var navBarColor: UIColor? { nil }
-    var clearButtonColor: UIColor? { nil }
-}
-
-public class CoreSearchContext<Info: SearchContextInfo> {
+public class SearchContext<Info: SearchContextInfo> {
     let info: Info
     var didSubmit = PassthroughSubject<String, Never>()
     var searchText = CurrentValueSubject<String, Never>("")
@@ -63,15 +46,6 @@ public class CoreSearchContext<Info: SearchContextInfo> {
         searchText.value = ""
     }
 
-    var navBarColor: UIColor? { info.navBarColor }
-    var clearButtonColor: UIColor? { info.clearButtonColor }
+    var accentColor: UIColor? { info.accentColor }
     var searchPrompt: String { info.searchPrompt }
-}
-
-// MARK: - Environment Property
-
-public struct SearchEnvironmentKey<Info: SearchContextInfo>: EnvironmentKey {
-    public static var defaultValue: CoreSearchContext<Info> {
-        return CoreSearchContext<Info>(info: .defaultInfo)
-    }
 }

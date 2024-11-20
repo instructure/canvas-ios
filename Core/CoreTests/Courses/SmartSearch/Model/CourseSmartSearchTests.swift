@@ -27,8 +27,7 @@ class CourseSmartSearchTests: CoreTestCase {
         let context = Context(.course, id: "124234")
         let info = CourseSmartSearch(context: context, color: .red)
 
-        XCTAssertEqual(info.navBarColor, .red)
-        XCTAssertEqual(info.clearButtonColor, .red)
+        XCTAssertEqual(info.accentColor, .red)
     }
 
     func test_search_result_dots() {

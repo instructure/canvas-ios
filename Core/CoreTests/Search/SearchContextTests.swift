@@ -22,7 +22,7 @@ import SwiftUI
 import Combine
 @testable import Core
 
-class CoreSearchContextTests: CoreTestCase {
+class SearchContextTests: CoreTestCase {
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -33,18 +33,17 @@ class CoreSearchContextTests: CoreTestCase {
 
     func test_coloring() throws {
         // Given
-        let info = TestSearchInfo(value: 5, navBarColor: .red, clearButtonColor: .green)
-        let context = CoreSearchContext(info: info)
+        let info = TestSearchInfo(value: 5, accentColor: .red)
+        let context = SearchContext(info: info)
 
         // Then
-        XCTAssertEqual(context.navBarColor, .red)
-        XCTAssertEqual(context.clearButtonColor, .green)
+        XCTAssertEqual(context.accentColor, .red)
     }
 
     func test_visited_logic() throws {
         // Given
         let info = TestSearchInfo(value: 10)
-        let context = CoreSearchContext(info: info)
+        let context = SearchContext(info: info)
         var visited: Set<ID> = []
 
         context
@@ -81,12 +80,11 @@ struct TestSearchInfo: SearchContextInfo {
     var value: Int = 0
     var searchPrompt: String { "Search placeholder" }
 
-    var navBarColor: UIColor?
-    var clearButtonColor: UIColor?
+    var accentColor: UIColor?
 }
 
 extension EnvironmentValues {
-    var testSearchContext: CoreSearchContext<TestSearchInfo> {
+    var testSearchContext: SearchContext<TestSearchInfo> {
         get { self[TestSearchInfo.EnvironmentKey.self] }
         set { self[TestSearchInfo.EnvironmentKey.self] = newValue }
     }

@@ -17,17 +17,26 @@
 //
 
 import SwiftUI
-import Combine
 
-public protocol SearchDescriptor {
-    associatedtype Filter
-    associatedtype FilterEditor: View
-    associatedtype Support: SearchSupportAction
-    associatedtype Display: View
+public protocol SearchContextInfo {
+    typealias EnvironmentKey = SearchEnvironmentKey<Self>
+    typealias EnvironmentKeyPath = WritableKeyPath<EnvironmentValues, SearchContext<Self>>
 
-    var support: SearchSupportButtonModel<Support>? { get }
-    var isEnabled: AnyPublisher<Bool, Never> { get }
+    static var environmentKeyPath: EnvironmentKeyPath { get }
+    static var defaultInfo: Self { get }
 
-    func searchDisplayView(_ filter: Binding<Filter?>) -> Display
-    func filterEditorView(_ filter: Binding<Filter?>) -> FilterEditor
+    var searchPrompt: String { get }
+    var accentColor: UIColor? { get }
+}
+
+extension SearchContextInfo {
+    var accentColor: UIColor? { nil }
+}
+
+// MARK: - Environment Property
+
+public struct SearchEnvironmentKey<Info: SearchContextInfo>: EnvironmentKey {
+    public static var defaultValue: SearchContext<Info> {
+        return SearchContext<Info>(info: .defaultInfo)
+    }
 }

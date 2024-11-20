@@ -21,12 +21,12 @@ import TestsFoundation
 import SwiftUI
 @testable import Core
 
-class SearchSupportOptionTests: CoreTestCase {
+class SearchSupportButtonModelTests: CoreTestCase {
 
     func test_sheet_action() throws {
         // Given
-        let searchContext = CoreSearchContext(info: TestSearchInfo(value: 1))
-        let action = SearchSupportSheet(content: Text(".. Sheet Content .."))
+        let searchContext = SearchContext(info: TestSearchInfo(value: 1))
+        let action = SearchSupportSheetAction(content: Text(".. Sheet Content .."))
 
         // When
         action.trigger(for: searchContext, with: router, from: UIViewController())
@@ -38,10 +38,10 @@ class SearchSupportOptionTests: CoreTestCase {
 
     func test_simple_action() throws {
         // Given
-        let searchContext = CoreSearchContext(info: TestSearchInfo(value: 1))
+        let searchContext = SearchContext(info: TestSearchInfo(value: 1))
 
         var actionCalled = false
-        let action = SearchSupportTrigger({ actionCalled = true })
+        let action = SearchSupportClosureAction { actionCalled = true }
 
         // When
         action.trigger(for: searchContext, with: router, from: UIViewController())

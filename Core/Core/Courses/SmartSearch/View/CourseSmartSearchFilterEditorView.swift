@@ -110,7 +110,7 @@ public struct CourseSmartSearchFilterEditorView: View {
     }
 
     private var contextColor: Color {
-        return Color(uiColor: searchContext.info.color ?? .textDarkest)
+        return Color(uiColor: searchContext.accentColor ?? .textDarkest)
     }
 }
 

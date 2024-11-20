@@ -143,7 +143,7 @@ class CoreSearchHostingControllerTests: CoreTestCase {
 private class TestSearchDescriptor: SearchDescriptor {
     typealias Filter = Never
     typealias FilterEditor = Text
-    typealias Support = NoSearchSupportAction
+    typealias Support = SearchSupportVoidAction
     typealias Display = Text
 
     var enabledSubject = CurrentValueSubject<Bool, Never>(false)
@@ -151,7 +151,7 @@ private class TestSearchDescriptor: SearchDescriptor {
         enabledSubject.receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
 
-    var support: Core.SearchSupportOption<Core.NoSearchSupportAction>?
+    var support: SearchSupportButtonModel<Support>?
 
     func searchDisplayView(_ filter: Binding<Never?>) -> Text {
         Text("Search Display")

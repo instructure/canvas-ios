@@ -115,6 +115,6 @@ struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDes
     }
 
     private var clearButtonColor: Color {
-        return searchContext.clearButtonColor.flatMap({ Color(uiColor: $0) }) ?? .secondary
+        return searchContext.accentColor.flatMap({ Color(uiColor: $0) }) ?? .secondary
     }
 }

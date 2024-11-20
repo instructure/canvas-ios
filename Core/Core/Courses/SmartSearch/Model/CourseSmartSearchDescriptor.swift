@@ -46,9 +46,9 @@ public class CourseSmartSearchDescriptor: SearchDescriptor {
         )
     }
 
-    public var support: SearchSupportOption<some SearchSupportAction>? {
-        return SearchSupportOption(
-            action: SearchSupportSheet(content: CourseSmartSearchHelpView())
+    public var support: SearchSupportButtonModel<some SearchSupportAction>? {
+        return SearchSupportButtonModel(
+            action: SearchSupportSheetAction(content: CourseSmartSearchHelpView())
         )
     }
 

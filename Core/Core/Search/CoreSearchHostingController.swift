@@ -28,7 +28,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
     private enum SearchFieldState { case visible, hidden, removed }
     private let minSearchTermLength: Int = 2
 
-    let searchContext: CoreSearchContext<Info>
+    let searchContext: SearchContext<Info>
     let searchDescriptor: Descriptor
     private let router: Router
 
@@ -103,7 +103,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
         searchView.field.accessibilityIdentifier = "ui_search_field"
         searchView.field.delegate = self
 
-        if let clearColor = searchContext.clearButtonColor {
+        if let clearColor = searchContext.accentColor {
             searchView.field.clearButtonColor = clearColor
         }
 
@@ -119,7 +119,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
         content: Content
     ) {
         self.router = router
-        self.searchContext = CoreSearchContext(info: info)
+        self.searchContext = SearchContext(info: info)
         self.searchDescriptor = descriptor
 
         super.init(SearchHostingBaseView(content: content, searchContext: searchContext))
@@ -208,7 +208,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
             .environment(Info.environmentKeyPath, searchContext)
         )
 
-        if let contextColor = searchContext.navBarColor {
+        if let contextColor = searchContext.accentColor {
             coverVC.navigationBarStyle = .color(contextColor)
         }
 
@@ -299,7 +299,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
 
 public struct SearchHostingBaseView<Info: SearchContextInfo, Content: View>: View {
     public var content: Content
-    let searchContext: CoreSearchContext<Info>
+    let searchContext: SearchContext<Info>
 
     public var body: some View {
         content.environment(Info.environmentKeyPath, searchContext)

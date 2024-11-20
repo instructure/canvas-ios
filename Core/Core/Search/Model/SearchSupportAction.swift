@@ -18,49 +18,23 @@
 
 import SwiftUI
 
-public struct SearchSupportOption<Action: SearchSupportAction> {
-    let action: Action
-    let icon: SearchSupportIcon
-
-    public init(action: Action, icon: SearchSupportIcon = .help) {
-        self.action = action
-        self.icon = icon
-    }
-}
-
-// MARK: - Icon
-
-public struct SearchSupportIcon {
-    public static var help = SearchSupportIcon(image: .questionLine, uiImage: .questionLine)
-
-    let image: () -> Image
-    let uiImage: () -> UIImage?
-
-    public init(image: @autoclosure @escaping () -> Image, uiImage: @autoclosure @escaping () -> UIImage?) {
-        self.image = image
-        self.uiImage = uiImage
-    }
-}
-
-// MARK: - Actions
-
 public protocol SearchSupportAction {
     func trigger<Info: SearchContextInfo>(
-        for searchContext: CoreSearchContext<Info>,
+        for searchContext: SearchContext<Info>,
         with router: Router,
         from controller: UIViewController
     )
 }
 
-public struct NoSearchSupportAction: SearchSupportAction {
+public struct SearchSupportVoidAction: SearchSupportAction {
     public func trigger<Info>(
-        for searchContext: CoreSearchContext<Info>,
+        for searchContext: SearchContext<Info>,
         with router: Router,
         from controller: UIViewController
     ) where Info: SearchContextInfo {}
 }
 
-public struct SearchSupportTrigger: SearchSupportAction {
+public struct SearchSupportClosureAction: SearchSupportAction {
 
     let action: () -> Void
     public init(_ action: @escaping () -> Void) {
@@ -68,7 +42,7 @@ public struct SearchSupportTrigger: SearchSupportAction {
     }
 
     public func trigger<Info>(
-        for searchContext: CoreSearchContext<Info>,
+        for searchContext: SearchContext<Info>,
         with router: Router,
         from controller: UIViewController
     ) where Info: SearchContextInfo {
@@ -76,14 +50,14 @@ public struct SearchSupportTrigger: SearchSupportAction {
     }
 }
 
-public struct SearchSupportSheet<Content: View>: SearchSupportAction {
+public struct SearchSupportSheetAction<Content: View>: SearchSupportAction {
     let content: () -> Content
     public init(content: @autoclosure @escaping () -> Content) {
         self.content = content
     }
 
     public func trigger<Info>(
-        for searchContext: CoreSearchContext<Info>,
+        for searchContext: SearchContext<Info>,
         with router: Router,
         from controller: UIViewController
     ) where Info: SearchContextInfo {

@@ -577,9 +577,7 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
         if ExperimentalFeature.courseSmartSearch.isEnabled {
             let viewController = CoreSearchHostingController(
                 info: CourseSmartSearch(context: context, color: url.contextColor),
-                descriptor: CourseSmartSearchDescriptor(
-                    context: context
-                ),
+                descriptor: CourseSmartSearchDescriptor(context: context),
                 content: CourseDetailsView(viewModel: viewModel)
             )
 

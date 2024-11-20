@@ -73,7 +73,7 @@ private extension NSManagedObjectContext {
         do {
             try save()
         } catch {
-            print(error.localizedDescription)
+            XCTFail(error.localizedDescription)
         }
     }
 }

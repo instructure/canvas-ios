@@ -21,25 +21,20 @@ import Lottie
 
 struct SearchLoadingView: View {
     var body: some View {
-        HStack {
-            Spacer()
-            VStack {
-                Spacer()
-                LottieView(name: "panda_searching", loopMode: .loop)
-                    .frame(width: 120, height: 170)
-                Text("Hang Tight, We're Fetching Your Results!", bundle: .core)
-                    .textStyle(.heading)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
-                Text("We’re working hard to find the best matches for your search. This won't take long! Thank you for your patience.", bundle: .core)
-                    .font(.regular16, lineHeight: .normal)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: 300)
-                Spacer()
-            }
-            Spacer()
+        VStack {
+            LottieView(name: "panda_searching", loopMode: .loop)
+                .frame(width: 120, height: 170)
+            Text("Hang Tight, We're Fetching Your Results!", bundle: .core)
+                .textStyle(.heading)
+                .multilineTextAlignment(.center)
+                .lineLimit(3)
+            Text("We’re working hard to find the best matches for your search. This won't take long! Thank you for your patience.", bundle: .core)
+                .font(.regular16, lineHeight: .normal)
+                .multilineTextAlignment(.center)
         }
         .padding(.horizontal, 20)
+        .frame(maxWidth: 400)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }
 }
 

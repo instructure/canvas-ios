@@ -25,7 +25,7 @@ struct CourseSearchResultRowView: View {
 
     @State private var isVisited: Bool = false
 
-    @Binding var selected: ID?
+    @Binding var selectedId: ID?
 
     let result: CourseSmartSearchResult
     var showsType: Bool = true
@@ -34,10 +34,11 @@ struct CourseSearchResultRowView: View {
         Button {
             env.router.route(to: routePath, from: controller, options: .detail)
             searchContext.markVisited(result.content_id)
-            selected = result.content_id
+            selectedId = result.content_id
         } label: {
-            HStack(alignment: .top, spacing: 16) {
+            HStack(alignment: .top, spacing: 0) {
                 result.content_type.icon.foregroundStyle(color)
+                Spacer(minLength: InstUI.Styles.Padding.cellIconText.rawValue)
                 VStack(alignment: .leading, spacing: 5) {
                     Text(result.title).font(.semibold16).foregroundStyle(color)
                     if showsType {
@@ -51,7 +52,7 @@ struct CourseSearchResultRowView: View {
                             .lineLimit(3)
                     }
                 }
-                Spacer()
+                Spacer(minLength: InstUI.Styles.Padding.cellAccessoryPadding.rawValue)
                 VStack {
                     Spacer()
                     HStack(spacing: 2) {
@@ -68,19 +69,17 @@ struct CourseSearchResultRowView: View {
                     Spacer()
                 }
             }
-            .padding(.horizontal, 16)
-            .padding(.top, 12)
-            .padding(.bottom, 14)
+            .paddingStyle(set: .iconCell)
             .contentShape(Rectangle())
         }
-        .buttonStyle(.contextButton(color: searchContext.info.color, state: buttonState))
+        .buttonStyle(.contextButton(color: searchContext.accentColor, state: buttonState))
         .onReceive(searchContext.visitedRecordPublisher) { history in
             isVisited = history.contains(result.content_id)
         }
     }
 
     private var buttonState: ContextButtonState {
-        if selected == result.id { return .selected }
+        if selectedId == result.id { return .selected }
         if isVisited { return .highlighted }
         return .normal
     }
@@ -93,6 +92,6 @@ struct CourseSearchResultRowView: View {
     }
 
     private var color: Color {
-        Color(uiColor: searchContext.info.color ?? .gray)
+        Color(uiColor: searchContext.accentColor ?? .gray)
     }
 }

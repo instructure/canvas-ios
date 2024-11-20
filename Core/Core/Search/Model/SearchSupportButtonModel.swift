@@ -17,17 +17,27 @@
 //
 
 import SwiftUI
-import Combine
 
-public protocol SearchDescriptor {
-    associatedtype Filter
-    associatedtype FilterEditor: View
-    associatedtype Support: SearchSupportAction
-    associatedtype Display: View
+public struct SearchSupportButtonModel<Action: SearchSupportAction> {
+    let action: Action
+    let icon: SearchSupportIcon
 
-    var support: SearchSupportButtonModel<Support>? { get }
-    var isEnabled: AnyPublisher<Bool, Never> { get }
+    public init(action: Action, icon: SearchSupportIcon = .help) {
+        self.action = action
+        self.icon = icon
+    }
+}
 
-    func searchDisplayView(_ filter: Binding<Filter?>) -> Display
-    func filterEditorView(_ filter: Binding<Filter?>) -> FilterEditor
+// MARK: - Icon
+
+public struct SearchSupportIcon {
+    public static var help = SearchSupportIcon(image: .questionLine, uiImage: .questionLine)
+
+    let image: () -> Image
+    let uiImage: () -> UIImage?
+
+    public init(image: @autoclosure @escaping () -> Image, uiImage: @autoclosure @escaping () -> UIImage?) {
+        self.image = image
+        self.uiImage = uiImage
+    }
 }

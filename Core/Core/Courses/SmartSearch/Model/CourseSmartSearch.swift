@@ -25,21 +25,21 @@ public struct CourseSmartSearch: SearchContextInfo {
     }
 
     let context: Context
-    let color: UIColor?
+    public private(set) var accentColor: UIColor?
 
     public init(context: Context, color: UIColor?) {
         self.context = context
-        self.color = color
+        self.accentColor = color
     }
 
-    public var clearButtonColor: UIColor? { color }
-    public var navBarColor: UIColor? { color }
-    public var searchPrompt: String { String(localized: "Search in this course", bundle: .core) }
+    public var searchPrompt: String {
+        String(localized: "Search in this course", bundle: .core)
+    }
 }
 
 extension EnvironmentValues {
 
-    var courseSmartSearchContext: CoreSearchContext<CourseSmartSearch> {
+    var courseSmartSearchContext: SearchContext<CourseSmartSearch> {
         get { self[CourseSmartSearch.EnvironmentKey.self] }
         set { self[CourseSmartSearch.EnvironmentKey.self] = newValue }
     }

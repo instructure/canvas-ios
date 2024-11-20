@@ -21,8 +21,6 @@ import TestsFoundation
 import SwiftUI
 @testable import Core
 
-
-
 final class CourseSearchFilterEditorViewModelTests: CoreTestCase {
 
     private var selectedFilter: CourseSmartSearchFilter?

@@ -22,7 +22,7 @@ struct CourseSmartSearchResultsView: View {
     let course: Course?
     let results: [CourseSmartSearchResult]
 
-    @State private var selected: ID?
+    @State private var selectedId: ID?
 
     var body: some View {
         GeometryReader { g in
@@ -37,7 +37,7 @@ struct CourseSmartSearchResultsView: View {
                             })
                     LazyVStack(spacing: 0) {
                         ForEach(results) { result in
-                            CourseSearchResultRowView(selected: $selected, result: result)
+                            CourseSearchResultRowView(selectedId: $selectedId, result: result)
                             RowDivider(withPadding: results.last?.id != result.id)
                         }
                     }
@@ -64,7 +64,7 @@ struct CourseSmartSearchGroupedResultsView: View {
 
     private let course: Course?
     @State private var resultSections: [CourseSmartSearchResultsSection]
-    @State private var selected: ID?
+    @State private var selectedId: ID?
 
     init(course: Course?, resultSections: [CourseSmartSearchResultsSection]) {
         self.course = course
@@ -91,7 +91,7 @@ struct CourseSmartSearchGroupedResultsView: View {
                             DisclosureGroup(title, isExpanded: sectionBinding.expanded) {
                                 ForEach(section.results) { result in
                                     CourseSearchResultRowView(
-                                        selected: $selected,
+                                        selectedId: $selectedId,
                                         result: result,
                                         showsType: false
                                     )
