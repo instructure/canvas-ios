@@ -51,7 +51,7 @@ public struct SubmissionDestination {
         self.assignmentID = assignmentID
         self.apiInstanceHost = apiInstanceHost
     }
-    
+
     var baseURL: URL? {
         guard let host = apiInstanceHost else { return nil }
 
