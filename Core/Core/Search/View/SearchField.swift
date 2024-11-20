@@ -52,7 +52,7 @@ struct SearchTextField: View {
                 .textInputAutocapitalization(.never)
                 .labelsHidden()
                 .submitLabel(.search)
-                .font(.subheadline)
+                .font(.regular14)
                 .foregroundStyle(Color.textDarkest)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 8)
@@ -61,7 +61,7 @@ struct SearchTextField: View {
                     onSubmit()
                 }
 
-            if text.isEmpty == false {
+            if text.isNotEmpty {
                 Button {
                     text = ""
                 } label: {

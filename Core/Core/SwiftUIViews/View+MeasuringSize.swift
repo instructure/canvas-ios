@@ -18,8 +18,6 @@
 
 import SwiftUI
 
-// MARK: Measuring Size
-
 private struct MeasuredSizeKey: PreferenceKey {
     static var defaultValue: CGSize = .zero
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
@@ -40,60 +38,5 @@ extension View {
         measuringSize { newSize in
             value.wrappedValue = newSize
         }
-    }
-}
-
-extension CGSize {
-    public var isZero: Bool { width == 0 && height == 0 }
-}
-
-// MARK: - Deferred Value
-
-/// Use this to defer triggering update cycle of SwiftUI View's to
-/// point of your choosing by calling `update()`
-public struct DeferredValue<Value: Equatable>: Equatable {
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.value == rhs.value
-    }
-
-    private class Box<V> {
-        var value: V
-        init(value: V) {
-            self.value = value
-        }
-    }
-
-    private let box: Box<Value>
-    private(set) var value: Value
-    var deferred: Value {
-        get { box.value }
-        set { box.value = newValue }
-    }
-
-    public init(value: Value) {
-        self.box = Box(value: value)
-        self.value = value
-    }
-
-    mutating func update() {
-        value = box.value
-    }
-}
-
-// MARK: - Helpers
-
-extension String {
-    var isSearchValid: Bool {
-        return count >= 2
-    }
-}
-
-protocol Customizable: AnyObject { }
-extension NSObject: Customizable { }
-
-extension Customizable {
-    func with(_ block: (Self) -> Void) -> Self {
-        block(self)
-        return self
     }
 }

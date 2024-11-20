@@ -21,19 +21,19 @@ import UIKit
 import Combine
 
 public protocol CoreSearchController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {}
-public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: SearchDescriptor, Content: View>:
-    CoreHostingController<SearchHostingBaseView<Info, Content>>,
-    CoreSearchController {
 
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) { nil }
+public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: SearchDescriptor, Content: View>:
+    CoreHostingController<SearchHostingBaseView<Info, Content>>, CoreSearchController
+{
     private enum SearchFieldState { case visible, hidden, removed }
+    private let minSearchTermLength: Int = 2
 
     let searchContext: CoreSearchContext<Info>
     let searchDescriptor: Descriptor
     private let router: Router
 
     private(set) var selectedFilter: Descriptor.Filter?
-    private var leftItems: [UIBarButtonItem]?
+    private var leftBarButtonItemsToRestore: [UIBarButtonItem]?
 
     private var searchFieldState: SearchFieldState = .removed
     private var subscriptions: Set<AnyCancellable> = []
@@ -47,19 +47,19 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
                 self?.showSearchField()
             }
         )
-    ).with({ $0.accessibilityIdentifier = "search_bar_button" })
+    ).with { $0.accessibilityIdentifier = "search_bar_button" }
 
     private lazy var closeBarItem = UIBarButtonItem(
         image: .xLine,
         primaryAction: UIAction(
             handler: { [weak self] _ in
-                self?.hideSearchField()
+                self?.hideSearchBarAndShowSearchButton()
             }
         )
-    ).with({
+    ).with {
         $0.tintColor = .textLightest
         $0.accessibilityIdentifier = "close_bar_button"
-    })
+    }
 
     private lazy var filterBarItem = UIBarButtonItem(
         image: .filterLine,
@@ -68,10 +68,10 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
                 self?.showFilterEditor()
             }
         )
-    ).with({
+    ).with {
         $0.tintColor = .textLightest
         $0.accessibilityIdentifier = "filter_bar_button"
-    })
+    }
 
     private lazy var supportBarItem: UIBarButtonItem? = {
         guard let support = searchDescriptor.support else { return nil }
@@ -80,16 +80,34 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
             primaryAction: UIAction(
                 handler: { [weak self] _ in
                     guard let self else { return }
-                    support
-                        .action
+                    support.action
                         .trigger(for: self.searchContext, with: self.router, from: self)
                 }
             )
         )
-        .with({
+        .with {
             $0.tintColor = .textLightest
             $0.accessibilityIdentifier = "support_bar_button"
-        })
+        }
+    }()
+
+    private lazy var searchFieldView: UISearchField = {
+
+        let searchView = UISearchField(
+            frame: CGRect(
+                origin: .zero,
+                size: CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
+            )
+        )
+        searchView.field.placeholder = searchContext.searchPrompt
+        searchView.field.accessibilityIdentifier = "ui_search_field"
+        searchView.field.delegate = self
+
+        if let clearColor = searchContext.clearButtonColor {
+            searchView.field.clearButtonColor = clearColor
+        }
+
+        return searchView
     }()
 
     // MARK: Initialization & Setup
@@ -108,24 +126,26 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
         self.searchContext.controller = self
     }
 
+    @MainActor required dynamic init?(coder aDecoder: NSCoder) { nil }
+
     public override func viewDidLoad() {
         super.viewDidLoad()
-        leftItems = navigationItem.leftBarButtonItems
+        leftBarButtonItemsToRestore = navigationItem.leftBarButtonItems
 
-        self.searchDescriptor
+        searchDescriptor
             .isEnabled
             .sink { [weak self] isEnabled in
-                self?.setupSearchItem(isEnabled)
+                self?.setupOrRemoveSearchBar(isEnabled)
             }
             .store(in: &subscriptions)
     }
 
-    private func setupSearchItem(_ installed: Bool) {
-        if installed == (searchFieldState != .removed) { return }
-        if installed {
-            hideSearchField()
+    private func setupOrRemoveSearchBar(_ isSearchEnabled: Bool) {
+        if isSearchEnabled == (searchFieldState != .removed) { return }
+        if isSearchEnabled {
+            hideSearchBarAndShowSearchButton()
         } else {
-            removeSearchField()
+            removeSearchBarAndButton()
         }
     }
 
@@ -134,27 +154,13 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
     private func showSearchField() {
         selectedFilter = nil
         filterBarItem.image = .filterLine
+
         searchContext.reset()
-
-        let searchView = UISearchField(
-            frame: CGRect(
-                origin: .zero,
-                size: CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
-            )
-        )
-
-        searchView.field.accessibilityIdentifier = "ui_search_field"
-        searchView.field.placeholder = searchContext.searchPrompt
-        searchView.field.text = searchContext.searchText.value
-        searchView.field.delegate = self
-
-        if let clearColor = searchContext.clearButtonColor {
-            searchView.field.clearButtonColor = clearColor
-        }
+        searchFieldView.field.text = searchContext.searchText.value
 
         navigationItem.leftBarButtonItems = [closeBarItem]
         navigationItem.hidesBackButton = true
-        navigationItem.titleView = searchView
+        navigationItem.titleView = searchFieldView
         navigationItem.rightBarButtonItems = [
             supportBarItem,
             filterBarItem
@@ -162,50 +168,29 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
 
         searchFieldState = .visible
         applyNavBarTransition(.fadeIn)
-        searchView.field.becomeFirstResponder()
+        searchFieldView.field.becomeFirstResponder()
     }
 
-    private func hideSearchField() {
+    private func hideSearchBarAndShowSearchButton() {
         navigationItem.titleView = nil
         navigationItem.hidesBackButton = false
-        navigationItem.leftBarButtonItems = leftItems
+        navigationItem.leftBarButtonItems = leftBarButtonItemsToRestore
         navigationItem.rightBarButtonItems = [searchBarItem]
 
         searchFieldState = .hidden
         applyNavBarTransition(.fadeOut)
     }
 
-    private func removeSearchField() {
+    private func removeSearchBarAndButton() {
         navigationItem.titleView = nil
         navigationItem.hidesBackButton = false
-        navigationItem.leftBarButtonItems = leftItems
+        navigationItem.leftBarButtonItems = leftBarButtonItemsToRestore
         navigationItem.rightBarButtonItems = nil
         searchFieldState = .removed
     }
 
-    private func showFilterEditor() {
-
-        let filter: Binding<Descriptor.Filter?> = Binding { [ weak self] in
-            self?.selectedFilter
-        } set: { [weak self] newFilter in
-            guard let self else { return }
-            selectedFilter = newFilter
-            filterBarItem.image = newFilter != nil ? .filterSolid : .filterLine
-        }
-
-        let filterEditorVC = CoreHostingController(
-            searchDescriptor
-                .filterEditorView(filter)
-                .environment(Info.environmentKeyPath, searchContext)
-        )
-        filterEditorVC.view.accessibilityIdentifier = "filter_editor_view"
-        router.show(filterEditorVC, from: self, options: .modal(.formSheet, animated: true))
-    }
-
     private func applyNavBarTransition(_ transition: NavBarTransition) {
-        navigationController?
-            .navigationBar
-            .layer
+        navigationController?.navigationBar.layer
             .add(transition.caTransition, forKey: transition.rawValue)
     }
 
@@ -243,9 +228,28 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
             from: self,
             options: .modal(.overFullScreen, animated: true),
             completion: { [weak self] in
-                self?.hideSearchField()
+                self?.hideSearchBarAndShowSearchButton()
             }
         )
+    }
+
+    private func showFilterEditor() {
+
+        let filter: Binding<Descriptor.Filter?> = Binding { [ weak self] in
+            self?.selectedFilter
+        } set: { [weak self] newFilter in
+            guard let self else { return }
+            selectedFilter = newFilter
+            filterBarItem.image = newFilter != nil ? .filterSolid : .filterLine
+        }
+
+        let filterEditorVC = CoreHostingController(
+            searchDescriptor
+                .filterEditorView(filter)
+                .environment(Info.environmentKeyPath, searchContext)
+        )
+        filterEditorVC.view.accessibilityIdentifier = "filter_editor_view"
+        router.show(filterEditorVC, from: self, options: .modal(.formSheet, animated: true))
     }
 
     // MARK: Delegate Methods
@@ -259,9 +263,11 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
         searchContext.searchText.send(textField.text ?? "")
     }
 
-    public  func textField(_ textField: UITextField,
-                           shouldChangeCharactersIn range: NSRange,
-                           replacementString string: String) -> Bool {
+    public  func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
         let newValue = NSString(string: textField.text ?? "").replacingCharacters(in: range, with: string)
         searchContext.searchText.send(newValue)
         return true
@@ -271,7 +277,8 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
         textField.resignFirstResponder()
 
         let searchTerm = textField.text ?? ""
-        guard searchTerm.isSearchValid else { return false }
+        let isSearchTermValid = searchTerm.count >= minSearchTermLength
+        guard isSearchTermValid else { return false }
 
         searchContext.didSubmit.send(searchTerm)
         startSearchExperience(with: searchTerm)

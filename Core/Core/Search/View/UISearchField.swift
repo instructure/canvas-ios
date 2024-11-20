@@ -54,7 +54,7 @@ class UISearchField: UIView {
         field.translatesAutoresizingMaskIntoConstraints = false
         field.setContentHuggingPriority(.defaultLow, for: .horizontal)
         field.clearButtonMode = .always
-        field.font = .preferredFont(forTextStyle: .subheadline)
+        field.font = .scaledNamedFont(.regular14)
         field.returnKeyType = .search
         field.tintColor = .systemBlue // caret color
         field.textColor = UIColor.textDarkest
@@ -95,7 +95,9 @@ class CoreTextField: UITextField {
         tweakClearButton()
     }
 
-    func tweakClearButton() {
+    /// This is to apply tint color to the default Clear Button of UITextField by
+    /// looping through subviews as UITextField doesn't have a property to customize that.
+    private func tweakClearButton() {
         guard clearButton == nil else { return }
 
         for view in subviews {
