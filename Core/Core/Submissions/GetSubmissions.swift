@@ -43,6 +43,7 @@ public struct SubmissionDestination {
     public let assignmentID: String
     public let userID: String
     public let apiInstanceHost: String?
+    public var context: Context { .course(courseID) }
 
     public init(courseID: String, assignmentID: String, userID: String, apiInstanceHost: String? = nil) {
         self.userID = userID
@@ -50,11 +51,12 @@ public struct SubmissionDestination {
         self.assignmentID = assignmentID
         self.apiInstanceHost = apiInstanceHost
     }
+    
+    var baseURL: URL? {
+        guard let host = apiInstanceHost else { return nil }
 
-    public var context: Context { .course(courseID) }
-    public var baseURL: URL? {
         var urlComps = URLComponents()
-        urlComps.host = apiInstanceHost
+        urlComps.host = host
         urlComps.scheme = AppEnvironment.shared.api.baseURL.scheme
         return urlComps.url
     }
@@ -62,6 +64,8 @@ public struct SubmissionDestination {
 
 public class CreateSubmission: APIUseCase {
     let destination: SubmissionDestination
+    var apiCoordinator: SubmissionApiCoordinator
+
     public let request: CreateSubmissionRequest
     public typealias Model = Submission
 
@@ -78,6 +82,7 @@ public class CreateSubmission: APIUseCase {
         annotatableAttachmentID: String? = nil
     ) {
         self.destination = destination
+        self.apiCoordinator = DefaultSubmissionApiCoordinator(destination: destination)
 
         let submission = CreateSubmissionRequest.Body.Submission(
             annotatable_attachment_id: annotatableAttachmentID,
@@ -110,17 +115,9 @@ public class CreateSubmission: APIUseCase {
         ascending: false
     ) }
 
-    private lazy var api: API = {
-        let shared = AppEnvironment.shared.api
-        return API(
-            shared.loginSession,
-            baseURL: destination.baseURL,
-            urlSession: shared.urlSession
-        )
-    }()
-
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APISubmission?, URLResponse?, Error?) -> Void) {
-        api
+        apiCoordinator
+            .api(environment: environment)
             .makeRequest(request) { [weak self] response, urlResponse, error in
                 guard let dest = self?.destination else { return }
                 if error == nil {
@@ -141,6 +138,41 @@ public class CreateSubmission: APIUseCase {
                 "assignmentID": destination.assignmentID
             ])
         }
+    }
+}
+
+protocol SubmissionApiCoordinator: AnyObject {
+    init(destination: SubmissionDestination)
+    func api(environment: AppEnvironment) -> API
+}
+
+class DefaultSubmissionApiCoordinator: SubmissionApiCoordinator {
+    private let destination: SubmissionDestination
+    private var api: API?
+
+    required init(destination: SubmissionDestination) {
+        self.destination = destination
+    }
+
+    func api(environment: AppEnvironment) -> API {
+        let shared = environment.api
+        guard let baseURL = destination.baseURL else { return shared }
+
+        if let api,
+           api.baseURL == baseURL,
+           api.loginSession == shared.loginSession,
+           api.urlSession == shared.urlSession {
+            return api
+        }
+
+        let instanceAPI = API(
+            shared.loginSession,
+            baseURL: baseURL,
+            urlSession: shared.urlSession
+        )
+
+        self.api = instanceAPI
+        return instanceAPI
     }
 }
 

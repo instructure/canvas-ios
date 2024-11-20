@@ -56,7 +56,6 @@ class CreateSubmissionTests: CoreTestCase {
     func testItCreatesAssignmentSubmission() {
         //  given
         let submissionType = SubmissionType.online_url
-        let context = Context(.course, id: "1")
         let url = URL(string: "http://www.instructure.com")!
         let template: APISubmission = APISubmission.make(
             assignment_id: "1",
@@ -71,7 +70,8 @@ class CreateSubmissionTests: CoreTestCase {
         )
 
         //  when
-        let createSubmission = CreateSubmission(context: context, assignmentID: "1", userID: "1", submissionType: submissionType, url: url)
+        let dest = SubmissionDestination(courseID: "1", assignmentID: "1", userID: "1")
+        let createSubmission = CreateSubmission(destination: dest, submissionType: submissionType, url: url)
         createSubmission.write(response: template, urlResponse: nil, to: databaseClient)
 
         //  then
@@ -88,8 +88,8 @@ class CreateSubmissionTests: CoreTestCase {
     }
 
     func testItPostsModuleCompletedRequirement() {
-        let context = Context(.course, id: "1")
-        let request = CreateSubmissionRequest(context: context, assignmentID: "2", body: .init(submission: .init(group_comment: nil, submission_type: .online_text_entry)))
+        let dest = SubmissionDestination(courseID: "1", assignmentID: "2", userID: "3")
+        let request = CreateSubmissionRequest(context: dest.context, assignmentID: "2", body: .init(submission: .init(group_comment: nil, submission_type: .online_text_entry)))
         api.mock(request, value: nil)
         let expectation = XCTestExpectation(description: "notification")
         let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { notification in
@@ -98,22 +98,22 @@ class CreateSubmissionTests: CoreTestCase {
             XCTAssertEqual(notification.userInfo?["courseID"] as? String, "1")
             expectation.fulfill()
         }
-        let useCase = CreateSubmission(context: context, assignmentID: "2", userID: "3", submissionType: .online_text_entry)
+        let useCase = CreateSubmission(destination: dest, submissionType: .online_text_entry)
         useCase.makeRequest(environment: environment) { _, _, _ in }
         wait(for: [expectation], timeout: 0.5)
         NotificationCenter.default.removeObserver(token)
     }
 
     func testItDoesNotPostModuleCompletedRequirementIfError() {
-        let context = Context(.course, id: "1")
-        let request = CreateSubmissionRequest(context: context, assignmentID: "2", body: .init(submission: .init(group_comment: nil, submission_type: .online_text_entry)))
+        let dest = SubmissionDestination(courseID: "1", assignmentID: "2", userID: "3")
+        let request = CreateSubmissionRequest(context: dest.context, assignmentID: "2", body: .init(submission: .init(group_comment: nil, submission_type: .online_text_entry)))
         api.mock(request, error: NSError.instructureError("oops"))
         let expectation = XCTestExpectation(description: "notification")
         expectation.isInverted = true
         let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { _ in
             expectation.fulfill()
         }
-        let useCase = CreateSubmission(context: context, assignmentID: "2", userID: "3", submissionType: .online_text_entry)
+        let useCase = CreateSubmission(destination: dest, submissionType: .online_text_entry)
         useCase.makeRequest(environment: environment) { _, _, _ in }
         wait(for: [expectation], timeout: 0.2)
         NotificationCenter.default.removeObserver(token)

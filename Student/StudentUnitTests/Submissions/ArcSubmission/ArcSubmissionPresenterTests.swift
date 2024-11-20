@@ -38,7 +38,12 @@ class ArcSubmissionPresenterTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
-        presenter = ArcSubmissionPresenter(environment: env, view: view, courseID: "1", assignmentID: "2", userID: "3", arcID: "4")
+        presenter = ArcSubmissionPresenter(
+            environment: env,
+            view: view,
+            destination: .init(courseID: "1", assignmentID: "2", userID: "3"),
+            arcID: "4"
+        )
     }
 
     func testViewIsReady() {

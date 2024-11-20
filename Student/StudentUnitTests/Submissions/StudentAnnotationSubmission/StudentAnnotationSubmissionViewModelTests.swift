@@ -23,9 +23,11 @@ import XCTest
 
 class StudentAnnotationSubmissionViewModelTests: StudentTestCase {
     private let testee = StudentAnnotationSubmissionViewModel(documentURL: URL(string: "a.b")!,
-                                                              courseID: "123",
-                                                              assignmentID: "321",
-                                                              userID: "111",
+                                                              destination: .init(
+                                                                courseID: "123",
+                                                                assignmentID: "321",
+                                                                userID: "111"
+                                                              ),
                                                               annotatableAttachmentID: "3",
                                                               assignmentName: "Test Assignment",
                                                               courseColor: UIColor(hexString: "#BEEF00")!)
@@ -84,7 +86,8 @@ class StudentAnnotationSubmissionViewModelTests: StudentTestCase {
     }
 
     func testSubmissionError() {
-        let mockUseCase = CreateSubmission(context: .course("123"), assignmentID: "321", userID: "111", submissionType: .student_annotation)
+        let dest = SubmissionDestination(courseID: "123", assignmentID: "321", userID: "111")
+        let mockUseCase = CreateSubmission(destination: dest, submissionType: .student_annotation)
         api.mock(mockUseCase, value: nil, response: nil, error: NSError.instructureError("This is a test error"))
 
         let errorExpectation = expectation(description: "error forwarded to view")
@@ -100,7 +103,8 @@ class StudentAnnotationSubmissionViewModelTests: StudentTestCase {
     }
 
     func testSubmissionSuccessDismissesView() {
-        let mockUseCase = CreateSubmission(context: .course("123"), assignmentID: "321", userID: "111", submissionType: .student_annotation)
+        let dest = SubmissionDestination(courseID: "123", assignmentID: "321", userID: "111")
+        let mockUseCase = CreateSubmission(destination: dest, submissionType: .student_annotation)
         api.mock(mockUseCase, value: .make())
 
         let dismissExpectation = expectation(description: "view dismissed")
