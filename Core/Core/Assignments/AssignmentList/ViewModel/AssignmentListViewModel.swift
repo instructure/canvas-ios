@@ -161,7 +161,7 @@ public class AssignmentListViewModel: ObservableObject {
         case .groupName:
             for section in 0..<(assignmentGroups.sections?.count ?? 0) {
                 if let group = assignmentGroups[IndexPath(row: 0, section: section)]?.assignmentGroup {
-                    let groupAssignments: [Assignment] = assignmentGroups.compactMap{ $0 }.filter { $0.assignmentGroup == group }
+                    let groupAssignments: [Assignment] = assignmentGroups.compactMap { $0 }.filter { $0.assignmentGroup == group }
                     if !groupAssignments.isEmpty {
                         assignmentGroupViewModels.append(AssignmentGroupViewModel(
                             assignmentGroup: group,
