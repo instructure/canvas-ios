@@ -26,14 +26,14 @@ class UTIFromNSItemProviderTests: XCTestCase {
     }
 
     func testValidUTIReportsNothingToAnalytics() {
-        let mockAnalyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = mockAnalyticsHandler
+        let mockRemoteLogHandler = MockRemoteLogHandler()
+        RemoteLogger.shared.handler = mockRemoteLogHandler
 
         _ = MockNSItemProvider(isSupported: true).uti
 
-        XCTAssertEqual(mockAnalyticsHandler.totalErrorCount, 0)
-        XCTAssertNil(mockAnalyticsHandler.lastErrorName)
-        XCTAssertNil(mockAnalyticsHandler.lastErrorReason)
+        XCTAssertEqual(mockRemoteLogHandler.totalErrorCount, 0)
+        XCTAssertNil(mockRemoteLogHandler.lastErrorName)
+        XCTAssertNil(mockRemoteLogHandler.lastErrorReason)
     }
 
     func testInvalidUTI() {
@@ -41,14 +41,14 @@ class UTIFromNSItemProviderTests: XCTestCase {
     }
 
     func testInvalidUTIReportsToAnalytics() {
-        let mockAnalyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = mockAnalyticsHandler
+        let mockRemoteLogHandler = MockRemoteLogHandler()
+        RemoteLogger.shared.handler = mockRemoteLogHandler
 
         _ = MockNSItemProvider(isSupported: false).uti
 
-        XCTAssertEqual(mockAnalyticsHandler.totalErrorCount, 1)
-        XCTAssertEqual(mockAnalyticsHandler.lastErrorName, "Unsupported file type")
-        XCTAssertEqual(mockAnalyticsHandler.lastErrorReason, "test.pcx")
+        XCTAssertEqual(mockRemoteLogHandler.totalErrorCount, 1)
+        XCTAssertEqual(mockRemoteLogHandler.lastErrorName, "Unsupported file type")
+        XCTAssertEqual(mockRemoteLogHandler.lastErrorReason, "test.pcx")
     }
 }
 

@@ -267,6 +267,48 @@ class SubmissionTests: CoreTestCase {
         let notSubmitted = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
         XCTAssertEqual(notSubmitted.status, .notSubmitted)
     }
+
+    func testSubmissionStateDisplayProperties() {
+        let late = Submission.make(from: .make(late: true))
+        XCTAssertEqual(late.stateDisplayProperties, .usingStatus(.late))
+
+        let missing = Submission.make(from: .make(missing: true))
+        XCTAssertEqual(missing.stateDisplayProperties, .usingStatus(.missing))
+
+        let submitted = Submission.make(from: .make(submitted_at: Date()))
+        submitted.typeRaw = SubmissionType.online_text_entry.rawValue
+        XCTAssertEqual(submitted.stateDisplayProperties, .usingStatus(.submitted))
+
+        let notSubmitted = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
+        XCTAssertEqual(notSubmitted.stateDisplayProperties, .usingStatus(.notSubmitted))
+
+        // No Submission
+        let assignment = Assignment.make()
+        assignment.submissionTypes = [.none]
+
+        let noSubmission = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
+        noSubmission.assignment = assignment
+
+        XCTAssertEqual(noSubmission.stateDisplayProperties, .noSubmission)
+
+        // On Paper Submission
+        assignment.submissionTypes = [.on_paper]
+
+        let onPaperSubmission = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
+        onPaperSubmission.assignment = assignment
+
+        XCTAssertEqual(onPaperSubmission.stateDisplayProperties, .onPaper)
+
+        // On Paper/Graded Submission
+        assignment.submissionTypes = [.on_paper]
+
+        let onPaperGradedSubmission = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
+        onPaperGradedSubmission.score = 7
+        onPaperGradedSubmission.workflowState = .graded
+        onPaperGradedSubmission.assignment = assignment
+
+        XCTAssertEqual(onPaperGradedSubmission.stateDisplayProperties, .graded)
+    }
 }
 
 class SubmissionTypeTests: XCTestCase {

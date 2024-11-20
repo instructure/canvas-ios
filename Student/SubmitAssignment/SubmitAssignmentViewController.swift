@@ -74,22 +74,26 @@ class SubmitAssignmentViewController: UIViewController {
         guard FirebaseOptions.defaultOptions()?.apiKey != nil else { return }
         FirebaseApp.configure()
         Core.Analytics.shared.handler = self
+        RemoteLogger.shared.handler = self
     }
 }
 
 extension SubmitAssignmentViewController: Core.AnalyticsHandler {
 
-    func handleScreenView(screenName: String, screenClass: String, application: String) {
-        Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
+        // Google Analytics needs to be disabled for now
+//        Analytics.logEvent("sharex_\(name)", parameters: parameters)
+    }
+}
+
+extension SubmitAssignmentViewController: RemoteLogHandler {
+
+    func handleBreadcrumb(_ name: String) {
+        Firebase.Crashlytics.crashlytics().log(name)
     }
 
     func handleError(_ name: String, reason: String) {
         let model = ExceptionModel(name: name, reason: reason)
         Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
-    }
-
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        // Google Analytics needs to be disabled for now
-//        Analytics.logEvent("sharex_\(name)", parameters: parameters)
     }
 }

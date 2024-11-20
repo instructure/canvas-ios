@@ -19,6 +19,16 @@
 import Foundation
 
 public class CoreNavigationController: UINavigationController {
+    public var remoteLogger = RemoteLogger.shared
+    public override var prefersStatusBarHidden: Bool {
+        topViewController?.prefersStatusBarHidden ?? super.prefersStatusBarHidden
+    }
+    public override var childForStatusBarStyle: UIViewController? {
+        topViewController?.preferredStatusBarStyle != .default ? topViewController : nil
+    }
+
+    // MARK: - Initializers
+
     public init() {
         let emptyViewController = EmptyViewController(nibName: nil, bundle: nil)
         super.init(rootViewController: emptyViewController)
@@ -35,21 +45,35 @@ public class CoreNavigationController: UINavigationController {
         view.backgroundColor = .backgroundLightest
     }
 
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle Methods
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.interactivePopGestureRecognizer?.delegate = self
     }
 
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    // MARK: - Navigation Methods
 
-    public override var prefersStatusBarHidden: Bool {
-        return topViewController?.prefersStatusBarHidden ?? super.prefersStatusBarHidden
-    }
+    override public func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        // Pushing a navigation controller raises an exception
+        // so we prevent that and send an error report to Crashlytics about it.
+        if let navController = viewController as? UINavigationController {
+            let navControllerName = String(describing: type(of: navController))
+            let navStack = navController.viewControllers
+                .map { $0.loggableName }
+                .joined(separator: ", ")
+            remoteLogger.logError(
+                name: "Pushing nav controller from CoreNavigationController was prevented",
+                reason: "\(navControllerName) [\(navStack)]"
+            )
+            return
+        }
 
-    public override var childForStatusBarStyle: UIViewController? {
-        topViewController?.preferredStatusBarStyle != .default ? topViewController : nil
+        super.pushViewController(viewController, animated: animated)
     }
 }
 

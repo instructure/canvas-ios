@@ -40,7 +40,7 @@ public struct ID: Codable, Equatable, Hashable, CustomStringConvertible, RawRepr
             return
         }
 
-        Analytics.shared.logError(
+        RemoteLogger.shared.logError(
             name: "Empty ID decoded from unhandled data",
             reason: "baseUrl: \(Analytics.analyticsBaseUrl)"
         )

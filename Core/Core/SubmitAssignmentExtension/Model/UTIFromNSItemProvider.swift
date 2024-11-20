@@ -23,7 +23,7 @@ extension NSItemProvider {
         let uti = Self.SupportedUTIs.first { hasItemConformingToTypeIdentifier($0.rawValue) }
 
         if uti == nil {
-            Analytics.shared.logError(name: "Unsupported file type", reason: suggestedName)
+            RemoteLogger.shared.logError(name: "Unsupported file type", reason: suggestedName)
         }
 
         return uti
