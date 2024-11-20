@@ -178,7 +178,12 @@ public struct LoginSession: Codable, Hashable {
                 })
 
         } catch {
-            Logger.shared.error("Failure moving previously saved PDFs to AnnotatedPDFs folder: \(error.localizedDescription)")
+            RemoteLogger
+                .shared
+                .logError(
+                    name: "Failure moving previously saved PDFs to AnnotatedPDFs folder",
+                    reason: error.localizedDescription
+                )
         }
     }
 
