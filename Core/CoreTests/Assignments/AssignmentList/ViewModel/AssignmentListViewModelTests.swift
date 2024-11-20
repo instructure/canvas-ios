@@ -26,7 +26,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .loading)
         XCTAssertNil(testee.courseName)
         XCTAssertNil(testee.courseColor)
-        XCTAssertNil(testee.defaultGradingPeriod)
+        XCTAssertNil(testee.defaultGradingPeriodId)
     }
 
     func testCoursePropertiesUpdate() {
@@ -72,7 +72,7 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         testee.viewDidAppear()
 
-        XCTAssertEqual(testee.defaultGradingPeriod?.id, "2")
+        XCTAssertEqual(testee.defaultGradingPeriodId, "2")
     }
 
     func testAssignmentsPopulate() {
@@ -147,9 +147,9 @@ class AssignmentListViewModelTests: CoreTestCase {
         let gradingPeriods = AppEnvironment.shared.subscribe(GetGradingPeriods(courseID: "1"))
         let testee = AssignmentListViewModel(context: .course("1"))
         testee.viewDidAppear()
-        XCTAssertEqual(testee.selectedGradingPeriod, gradingPeriods[1])
+        XCTAssertEqual(testee.selectedGradingPeriodId, gradingPeriods[1]?.id)
 
-        testee.filterOptionsDidUpdate(gradingPeriod: gradingPeriods[0])
-        XCTAssertEqual(testee.selectedGradingPeriod, gradingPeriods[0])
+        testee.filterOptionsDidUpdate(gradingPeriodId: gradingPeriods[0]?.id)
+        XCTAssertEqual(testee.selectedGradingPeriodId, gradingPeriods[0]?.id)
     }
 }

@@ -21,17 +21,15 @@ import Foundation
 // MARK: - Structs
 
 public struct GradingPeriodOption: Identifiable, Equatable {
+    static let allGradingPeriods = Self(id: nil, title: String(localized: "All Grading Periods", bundle: .core))
+
     public let id: String?
-    let gradingPeriod: GradingPeriod?
-    let name: String?
+    public let title: String?
 
-    init(id: String? = nil, gradingPeriod: GradingPeriod? = nil, name: String? = nil) {
-        self.id = id ?? UUID.string
-        self.gradingPeriod = gradingPeriod
-        self.name = name
+    init(id: String?, title: String?) {
+        self.id = id
+        self.title = title
     }
-
-    static let allGradingPeriods = Self(name: String(localized: "All Grading Periods", bundle: .core))
 }
 
 public struct AssignmentFilterOption: CaseIterable, Equatable {
@@ -119,7 +117,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     struct AssignmentListPreferences {
         let filterOptions: [AssignmentFilterOption]
         let sortingOption: AssignmentListViewModel.AssignmentArrangementOptions
-        let gradingPeriod: GradingPeriod?
+        let gradingPeriodId: String?
     }
 
     // MARK: - Outputs
@@ -173,14 +171,13 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         self.initialSortingOption = initialSortingOption
 
         // Grading Periods
-        self.gradingPeriods = [GradingPeriodOption.allGradingPeriods] + gradingPeriods.map { GradingPeriodOption(id: $0.id, gradingPeriod: $0, name: $0.title) }
+        self.gradingPeriods = [GradingPeriodOption.allGradingPeriods] + gradingPeriods.map { GradingPeriodOption(id: $0.id ?? "", title: $0.title ?? "") }
 
         var initialGradingPeriodOption: GradingPeriodOption
         if let initialGradingPeriod {
             initialGradingPeriodOption = GradingPeriodOption(
-                id: initialGradingPeriod.id,
-                gradingPeriod: initialGradingPeriod,
-                name: initialGradingPeriod.title
+                id: initialGradingPeriod.id ?? "",
+                title: initialGradingPeriod.title ?? ""
             )
         } else {
             initialGradingPeriodOption = GradingPeriodOption.allGradingPeriods
@@ -215,7 +212,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
             AssignmentListPreferences(
                 filterOptions: selectedAssignmentFilterOptions,
                 sortingOption: selectedSortingOption ?? AssignmentListViewModel.AssignmentArrangementOptions.dueDate,
-                gradingPeriod: selectedGradingPeriod?.gradingPeriod
+                gradingPeriodId: selectedGradingPeriod?.id
             )
         )
     }
