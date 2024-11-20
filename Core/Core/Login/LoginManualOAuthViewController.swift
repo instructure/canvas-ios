@@ -21,7 +21,6 @@ import UIKit
 class LoginManualOAuthViewController: UIViewController {
     @IBOutlet weak var clientIDField: UITextField!
     @IBOutlet weak var clientSecretField: UITextField!
-    @IBOutlet weak var continueButton: UIButton!
 
     var authenticationProvider: String?
     let env = AppEnvironment.shared
