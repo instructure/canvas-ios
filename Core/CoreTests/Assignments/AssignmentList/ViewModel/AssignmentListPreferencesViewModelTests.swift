@@ -49,12 +49,12 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
 
     func testInitialState() {
         XCTAssertEqual(testee.courseName, "Test Course")
-        XCTAssertEqual(testee.gradingPeriods, gradingPeriods)
+        XCTAssertEqual(testee.gradingPeriods.filter { $0.gradingPeriod != nil }.map { $0.gradingPeriod }, gradingPeriods)
         XCTAssertEqual(testee.sortingOptions, AssignmentListViewModel.AssignmentArrangementOptions.allCases)
         XCTAssertTrue(testee.isFilterSectionVisible)
         XCTAssertTrue(testee.isGradingPeriodsSectionVisible)
         XCTAssertEqual(testee.selectedSortingOption, AssignmentListViewModel.AssignmentArrangementOptions.dueDate)
-        XCTAssertEqual(testee.selectedGradingPeriod, nil)
+        XCTAssertEqual(testee.selectedGradingPeriod!.gradingPeriod, nil)
         XCTAssertEqual(testee.selectedAssignmentFilterOptions, AssignmentFilterOption.allCases)
     }
 
