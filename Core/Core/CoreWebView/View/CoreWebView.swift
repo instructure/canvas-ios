@@ -635,10 +635,7 @@ extension CoreWebView {
         content: String?,
         originalBaseURL: URL?
     ) {
-        if let filePath,
-           isOffline == true,
-           FileManager.default.fileExists(atPath: filePath.path)
-        {
+        if let filePath, isOffline == true, FileManager.default.fileExists(atPath: filePath.path) {
             loadFileURL(
                 URL.Directories.documents,
                 allowingReadAccessTo: URL.Directories.documents
