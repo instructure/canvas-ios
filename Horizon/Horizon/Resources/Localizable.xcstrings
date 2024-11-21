@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "Continue learning" : {
 
     },
@@ -16,10 +19,16 @@
     "Journey" : {
 
     },
+    "Notebook" : {
+
+    },
     "Portfolio" : {
 
     },
     "Programs" : {
+
+    },
+    "Search" : {
 
     },
     "Your Programs" : {

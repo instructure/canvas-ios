@@ -52,7 +52,10 @@ struct DashboardView: View {
                     }
                 }
             }
-            .navigationBarItems(trailing: logoutButton)
+            .navigationBarItems(trailing: HStack {
+                notebookButton
+                logoutButton
+            })
             .scrollIndicators(.hidden, axes: .vertical)
         }
         .background(Color.backgroundLight)
@@ -63,6 +66,14 @@ struct DashboardView: View {
             SessionInteractor().logout()
         } label: {
             Image.logout.tint(Color.textDarkest)
+        }
+    }
+
+    private var notebookButton: some View {
+        Button {
+            AppEnvironment.shared.router.route(to: "/notebook", from: viewController)
+        } label: {
+            Image("book", bundle: .main).tint(Color.textDarkest)
         }
     }
 

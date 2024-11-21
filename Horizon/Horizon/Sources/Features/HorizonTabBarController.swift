@@ -62,9 +62,7 @@ class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
 
     private func portfolioTab() -> UIViewController {
-        let vc = CoreNavigationController(
-            rootViewController: CoreHostingController(PortfolioAssembly.makeView())
-        )
+        let vc = CoreNavigationController()
         vc.tabBarItem.title = String(localized: "Portfolio", bundle: .horizon)
         vc.tabBarItem.image = UIImage(systemName: "newspaper")
         return vc

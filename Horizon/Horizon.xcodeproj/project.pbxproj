@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -39,6 +39,11 @@
 		84C518D0F43318BD14E15031 /* ProgramsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA155FF18B2AAB3C61415DF /* ProgramsViewModel.swift */; };
 		8F5B3D11D772C4E75DE6C430 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3018AB6A54CFAEFFF18A67B /* SplashViewModel.swift */; };
 		91F8AB5F127218139B3D9C25 /* LearningObjectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6160FD173852A664C46FAC5 /* LearningObjectHeaderView.swift */; };
+		998E9A9E2CED1288001C1928 /* NotebookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998E9A9D2CED1284001C1928 /* NotebookView.swift */; };
+		998E9AA02CED12AC001C1928 /* NotebookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998E9A9F2CED12A7001C1928 /* NotebookViewModel.swift */; };
+		998E9AA32CED12C6001C1928 /* NotebookAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998E9AA22CED12C1001C1928 /* NotebookAssembly.swift */; };
+		998E9AA82CEE8B98001C1928 /* GetCoursesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998E9AA72CEE8B7F001C1928 /* GetCoursesUseCase.swift */; };
+		998E9AAA2CEE8C2A001C1928 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998E9AA92CEE8C28001C1928 /* Course.swift */; };
 		9FAF94301C5721716CC618F8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2872865BC52D4DC11EDEDDB7 /* FirebaseCrashlytics */; };
 		A51387187690E8DA93F7A8D0 /* BaseHorizonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36C84BF05EC6AC10C0ADCF /* BaseHorizonScreen.swift */; };
 		A621720DA5F3AFF733E16212 /* Size14RegularTextDarkestTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D5D240CEE95E43BE413812 /* Size14RegularTextDarkestTitle.swift */; };
@@ -76,6 +81,48 @@
 			proxyType = 1;
 			remoteGlobalIDString = B90FCF66245CD7327BEE2CBF;
 			remoteInfo = Core;
+		};
+		992F49542CEBDF30004DB111 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
+			remoteInfo = CoreTester;
+		};
+		992F49562CEBDF30004DB111 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
+			remoteInfo = CoreTests;
+		};
+		992F49582CEBDF30004DB111 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 0F2B4D06F2ACF62293B119C4;
+			remoteInfo = TestsFoundation;
+		};
+		992F495A2CEBDF30004DB111 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 992F49262CEBDE24004DB111;
+			remoteInfo = "CoreTester copy";
+		};
+		992F495C2CEBDF30004DB111 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 992F49392CEBDE2B004DB111;
+			remoteInfo = "CoreTester copy copy";
+		};
+		992F495E2CEBDF30004DB111 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F475EC6814456E8041E96A1A /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 992F494C2CEBDE2C004DB111;
+			remoteInfo = "CoreTester copy copy copy";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -123,6 +170,11 @@
 		8FF9390E19F72268D52E4723 /* SplashAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAssembly.swift; sourceTree = "<group>"; };
 		949E28BBA03DA7E79460065C /* Size12RegularTextDarkestTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size12RegularTextDarkestTitle.swift; sourceTree = "<group>"; };
 		9650B908EFF77457D752B7E7 /* CommonAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAssembly.swift; sourceTree = "<group>"; };
+		998E9A9D2CED1284001C1928 /* NotebookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookView.swift; sourceTree = "<group>"; };
+		998E9A9F2CED12A7001C1928 /* NotebookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookViewModel.swift; sourceTree = "<group>"; };
+		998E9AA22CED12C1001C1928 /* NotebookAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookAssembly.swift; sourceTree = "<group>"; };
+		998E9AA72CEE8B7F001C1928 /* GetCoursesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesUseCase.swift; sourceTree = "<group>"; };
+		998E9AA92CEE8C28001C1928 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		9BDA1DDCAA5D9E94487D061D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A56E0CF6B14E0331072707C9 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		A6160FD173852A664C46FAC5 /* LearningObjectHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningObjectHeaderView.swift; sourceTree = "<group>"; };
@@ -141,7 +193,7 @@
 		F3018AB6A54CFAEFFF18A67B /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		F475EC6814456E8041E96A1A /* Core */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
 		F4E19BA2FA2C1222ECA3752E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F8E7191B980D0E8899E8C175 /* Horizon.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Horizon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8E7191B980D0E8899E8C175 /* Horizon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Horizon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC16FDFB815642C82768097E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -299,6 +351,7 @@
 		7390577B05038C0CD1F93EA2 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				998E9A9C2CED1270001C1928 /* Notebook */,
 				74E5E6E965591650058F492B /* AssignmentDetails */,
 				6ABC3CB283580C0CA604906A /* Dashboard */,
 				87019C932F1A6BEBAFED3230 /* Journey */,
@@ -388,6 +441,58 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		998E9A9C2CED1270001C1928 /* Notebook */ = {
+			isa = PBXGroup;
+			children = (
+				998E9AAC2CEEB43B001C1928 /* Course */,
+				998E9AAB2CEEB422001C1928 /* CourseList */,
+			);
+			path = Notebook;
+			sourceTree = "<group>";
+		};
+		998E9AA12CED12B2001C1928 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				998E9A9D2CED1284001C1928 /* NotebookView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		998E9AA52CED12F5001C1928 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				998E9A9F2CED12A7001C1928 /* NotebookViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		998E9AA62CEE8B77001C1928 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				998E9AA92CEE8C28001C1928 /* Course.swift */,
+				998E9AA72CEE8B7F001C1928 /* GetCoursesUseCase.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		998E9AAB2CEEB422001C1928 /* CourseList */ = {
+			isa = PBXGroup;
+			children = (
+				998E9AA62CEE8B77001C1928 /* Model */,
+				998E9AA52CED12F5001C1928 /* ViewModel */,
+				998E9AA22CED12C1001C1928 /* NotebookAssembly.swift */,
+				998E9AA12CED12B2001C1928 /* View */,
+			);
+			path = CourseList;
+			sourceTree = "<group>";
+		};
+		998E9AAC2CEEB43B001C1928 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
 		9BCEBC0023162DBDF3EFE350 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,6 +515,12 @@
 			isa = PBXGroup;
 			children = (
 				7DED7199B426F89179546237 /* Core.framework */,
+				992F49552CEBDF30004DB111 /* CoreTester.app */,
+				992F49572CEBDF30004DB111 /* CoreTests.xctest */,
+				992F49592CEBDF30004DB111 /* TestsFoundation.framework */,
+				992F495B2CEBDF30004DB111 /* CoreTester copy.app */,
+				992F495D2CEBDF30004DB111 /* CoreTester copy copy.app */,
+				992F495F2CEBDF30004DB111 /* CoreTester copy copy copy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -473,7 +584,6 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					8A70486345F78B79281EC178 = {
-						DevelopmentTeam = B6333T4PXQ;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -516,6 +626,48 @@
 			remoteRef = 287762C99D46AE8961068231 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		992F49552CEBDF30004DB111 /* CoreTester.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CoreTester.app;
+			remoteRef = 992F49542CEBDF30004DB111 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		992F49572CEBDF30004DB111 /* CoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreTests.xctest;
+			remoteRef = 992F49562CEBDF30004DB111 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		992F49592CEBDF30004DB111 /* TestsFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TestsFoundation.framework;
+			remoteRef = 992F49582CEBDF30004DB111 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		992F495B2CEBDF30004DB111 /* CoreTester copy.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "CoreTester copy.app";
+			remoteRef = 992F495A2CEBDF30004DB111 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		992F495D2CEBDF30004DB111 /* CoreTester copy copy.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "CoreTester copy copy.app";
+			remoteRef = 992F495C2CEBDF30004DB111 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		992F495F2CEBDF30004DB111 /* CoreTester copy copy copy.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "CoreTester copy copy copy.app";
+			remoteRef = 992F495E2CEBDF30004DB111 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -549,7 +701,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\n# This file is part of Canvas.\n# Copyright (C) 2022-present  Instructure, Inc.\n#\n# This program is free software: you can redistribute it and/or modify\n# it under the terms of the GNU Affero General Public License as\n# published by the Free Software Foundation, either version 3 of the\n# License, or (at your option) any later version.\n#\n# This program is distributed in the hope that it will be useful,\n# but WITHOUT ANY WARRANTY; without even the implied warranty of\n# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n# GNU Affero General Public License for more details.\n#\n# You should have received a copy of the GNU Affero General Public License\n# along with this program.  If not, see <https://www.gnu.org/licenses/>.\n#\n\nif test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n\tswiftlint;\nelse\n\techo \"warning: SwiftLint not installed\"\nfi";
+			shellScript = "#\n# This file is part of Canvas.\n# Copyright (C) 2022-present  Instructure, Inc.\n#\n# This program is free software: you can redistribute it and/or modify\n# it under the terms of the GNU Affero General Public License as\n# published by the Free Software Foundation, either version 3 of the\n# License, or (at your option) any later version.\n#\n# This program is distributed in the hope that it will be useful,\n# but WITHOUT ANY WARRANTY; without even the implied warranty of\n# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n# GNU Affero General Public License for more details.\n#\n# You should have received a copy of the GNU Affero General Public License\n# along with this program.  If not, see <https://www.gnu.org/licenses/>.\n#\n\nif test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n\tswiftlint;\nelse\n\techo \"warning: SwiftLint not installed\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -571,14 +723,18 @@
 				7D55A90806A34664576046CD /* DashboardView.swift in Sources */,
 				06DE8BCB00A3AFA9D063B50E /* DashboardViewModel.swift in Sources */,
 				41EFDB92980DFE03C0483F21 /* ExpandingModuleView.swift in Sources */,
+				998E9AA82CEE8B98001C1928 /* GetCoursesUseCase.swift in Sources */,
 				341E151F9FE8B0C4F113C01A /* GetProgramsInteractor.swift in Sources */,
+				998E9AA02CED12AC001C1928 /* NotebookViewModel.swift in Sources */,
 				8031414D135BF4A32D1A97F5 /* GetProgramsInteractorPreview.swift in Sources */,
 				59B1BD3B9AEBB80E48D1C99B /* HAssignment.swift in Sources */,
 				C25ABAF2A3AA7BAA36558525 /* HCourse.swift in Sources */,
 				3F82EB862BB02A4FE1D74F16 /* HModule.swift in Sources */,
 				4BD1843CFE6151E09D0189F4 /* HModuleItem.swift in Sources */,
 				44DBA58302439467D77480A3 /* HProgram.swift in Sources */,
+				998E9A9E2CED1288001C1928 /* NotebookView.swift in Sources */,
 				E180BD83DC0CE99C58D77A76 /* HorizonRoutes.swift in Sources */,
+				998E9AAA2CEE8C2A001C1928 /* Course.swift in Sources */,
 				1A7194AA245058A4306ECECB /* HorizonTabBarController.swift in Sources */,
 				F97CACE305281B388A9505E3 /* JourneyAssembly.swift in Sources */,
 				6CEC39DA59A5049CE5BE075C /* JourneyView.swift in Sources */,
@@ -588,6 +744,7 @@
 				B6B315CD9A3B2139B3C02097 /* ProgramDetailsView.swift in Sources */,
 				BB8D504E2E31F18D69332ED6 /* ProgramDetailsViewModel.swift in Sources */,
 				7011B831189B9DF0777465AE /* ProgramItemView.swift in Sources */,
+				998E9AA32CED12C6001C1928 /* NotebookAssembly.swift in Sources */,
 				BCCEE877AD932FFFB7EF2226 /* ProgramsAssembly.swift in Sources */,
 				410AE96224CF3327A4027C6E /* ProgramsView.swift in Sources */,
 				84C518D0F43318BD14E15031 /* ProgramsViewModel.swift in Sources */,
@@ -621,6 +778,7 @@
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = Horizon/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -639,6 +797,7 @@
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = Horizon/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
