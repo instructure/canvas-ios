@@ -19,8 +19,8 @@
 import Foundation
 import Combine
 
-public protocol CourseSmartSearchInteractor {
-    func isEnabled() -> AnyPublisher<Bool, Never>
+public protocol CourseSmartSearchInteractor: SearchInteractor {
+    var isEnabled: AnyPublisher<Bool, Never> { get }
     func fetchCourse() -> AnyPublisher<Course?, Never>
 
     func search(
@@ -51,7 +51,7 @@ class CourseSmartSearchInteractorLive: CourseSmartSearchInteractor {
         self.context = context
     }
 
-    func isEnabled() -> AnyPublisher<Bool, Never> {
+    var isEnabled: AnyPublisher<Bool, Never> {
         flagsStore
             .getEntities(ignoreCache: true)
             .replaceError(with: [])
@@ -110,7 +110,7 @@ extension CourseSmartSearchResult {
 class CourseSmartSearchInteractorPreview: CourseSmartSearchInteractor {
 
     var enabledValue: Bool = false
-    func isEnabled() -> AnyPublisher<Bool, Never> {
+    var isEnabled: AnyPublisher<Bool, Never> {
         Just(enabledValue).eraseToAnyPublisher()
     }
 

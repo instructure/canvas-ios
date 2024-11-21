@@ -19,25 +19,14 @@
 import SwiftUI
 import Combine
 
-public class CourseSmartSearchDescriptor: SearchDescriptor {
+public class CourseSmartSearchViewsProvider: SearchViewsProvider {
 
-    private let interactor: CourseSmartSearchInteractor
+    let interactor: CourseSmartSearchInteractor
 
     public init(interactor: CourseSmartSearchInteractor) {
         self.interactor = interactor
     }
-
-    public convenience init(context: Context) {
-        self.init(interactor: CourseSmartSearchInteractorLive(context: context))
-    }
-
-    public var isEnabled: AnyPublisher<Bool, Never> {
-        interactor
-            .isEnabled()
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-    }
-
+    
     public func filterEditorView(_ filter: Binding<CourseSmartSearchFilter?>) -> some View {
         CourseSmartSearchFilterEditorView(
             model: CourseSearchFilterEditorViewModel(
@@ -52,7 +41,7 @@ public class CourseSmartSearchDescriptor: SearchDescriptor {
         )
     }
 
-    public func searchDisplayView(_ filter: Binding<CourseSmartSearchFilter?>) -> some View {
+    public func contentView(_ filter: Binding<CourseSmartSearchFilter?>) -> some View {
         CourseSmartSearchDisplayView(
             viewModel: CourseSmartSearchViewModel(interactor: interactor),
             filter: filter

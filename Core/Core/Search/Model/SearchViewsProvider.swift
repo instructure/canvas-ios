@@ -17,17 +17,15 @@
 //
 
 import SwiftUI
-import Combine
 
-public protocol SearchDescriptor {
+public protocol SearchViewsProvider {
     associatedtype Filter
     associatedtype FilterEditor: View
     associatedtype Support: SearchSupportAction
-    associatedtype Display: View
+    associatedtype SearchContent: View
 
     var support: SearchSupportButtonModel<Support>? { get }
-    var isEnabled: AnyPublisher<Bool, Never> { get }
 
-    func searchDisplayView(_ filter: Binding<Filter?>) -> Display
+    func contentView(_ filter: Binding<Filter?>) -> SearchContent
     func filterEditorView(_ filter: Binding<Filter?>) -> FilterEditor
 }

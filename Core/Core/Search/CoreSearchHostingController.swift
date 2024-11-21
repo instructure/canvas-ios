@@ -22,17 +22,22 @@ import Combine
 
 public protocol CoreSearchController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {}
 
-public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: SearchDescriptor, Content: View>:
-    CoreHostingController<SearchHostingBaseView<Info, Content>>, CoreSearchController
-{
+public class CoreSearchHostingController<
+        Attributes: SearchViewAttributes,
+        ViewsProvider: SearchViewsProvider,
+        Interactor: SearchInteractor,
+        Content: View
+    >: CoreHostingController<SearchHostingBaseView<Attributes, Content>>, CoreSearchController {
+
     private enum SearchFieldState { case visible, hidden, removed }
     private let minSearchTermLength: Int = 2
 
-    let searchContext: SearchContext<Info>
-    let searchDescriptor: Descriptor
+    let searchContext: SearchViewContext<Attributes>
+    let searchViewsProvider: ViewsProvider
+    let searchInteractor: Interactor
     private let router: Router
 
-    private(set) var selectedFilter: Descriptor.Filter?
+    private(set) var selectedFilter: ViewsProvider.Filter?
     private var leftBarButtonItemsToRestore: [UIBarButtonItem]?
 
     private var searchFieldState: SearchFieldState = .removed
@@ -74,7 +79,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
     }
 
     private lazy var supportBarItem: UIBarButtonItem? = {
-        guard let support = searchDescriptor.support else { return nil }
+        guard let support = searchViewsProvider.support else { return nil }
         return UIBarButtonItem(
             image: support.icon.uiImage(),
             primaryAction: UIAction(
@@ -114,16 +119,22 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
 
     public init(
         router: Router = AppEnvironment.shared.router,
-        info: Info,
-        descriptor: Descriptor,
+        attributes: Attributes,
+        provider: ViewsProvider,
+        interactor: Interactor,
         content: Content
     ) {
         self.router = router
-        self.searchContext = SearchContext(info: info)
-        self.searchDescriptor = descriptor
+        self.searchContext = SearchViewContext(attributes: attributes)
+        self.searchViewsProvider = provider
+        self.searchInteractor = interactor
 
         super.init(SearchHostingBaseView(content: content, searchContext: searchContext))
         self.searchContext.controller = self
+
+        if let contextColor = attributes.accentColor {
+            navigationBarStyle = .color(contextColor)
+        }
     }
 
     @MainActor required dynamic init?(coder aDecoder: NSCoder) { nil }
@@ -132,8 +143,9 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
         super.viewDidLoad()
         leftBarButtonItemsToRestore = navigationItem.leftBarButtonItems
 
-        searchDescriptor
+        searchInteractor
             .isEnabled
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] isEnabled in
                 self?.setupOrRemoveSearchBar(isEnabled)
             }
@@ -198,14 +210,14 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
 
     private func startSearchExperience(with searchTerm: String) {
         let coverVC = CoreHostingController(
-            SearchDisplayContainerView(
-                ofInfoType: Info.self,
+            SearchContentContainerView(
+                ofAttributesType: Attributes.self,
                 router: router,
-                descriptor: searchDescriptor,
+                provider: searchViewsProvider,
                 searchText: searchTerm,
                 filter: selectedFilter
             )
-            .environment(Info.environmentKeyPath, searchContext)
+            .environment(Attributes.Environment.keyPath, searchContext)
         )
 
         if let contextColor = searchContext.accentColor {
@@ -235,7 +247,7 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
 
     private func showFilterEditor() {
 
-        let filter: Binding<Descriptor.Filter?> = Binding { [ weak self] in
+        let filter: Binding<ViewsProvider.Filter?> = Binding { [ weak self] in
             self?.selectedFilter
         } set: { [weak self] newFilter in
             guard let self else { return }
@@ -244,9 +256,9 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
         }
 
         let filterEditorVC = CoreHostingController(
-            searchDescriptor
+            searchViewsProvider
                 .filterEditorView(filter)
-                .environment(Info.environmentKeyPath, searchContext)
+                .environment(Attributes.Environment.keyPath, searchContext)
         )
         filterEditorVC.view.accessibilityIdentifier = "filter_editor_view"
         router.show(filterEditorVC, from: self, options: .modal(.formSheet, animated: true))
@@ -297,12 +309,12 @@ public class CoreSearchHostingController<Info: SearchContextInfo, Descriptor: Se
 
 // MARK: - Base View
 
-public struct SearchHostingBaseView<Info: SearchContextInfo, Content: View>: View {
-    public var content: Content
-    let searchContext: SearchContext<Info>
+public struct SearchHostingBaseView<Attributes: SearchViewAttributes, Content: View>: View {
+    let content: Content
+    let searchContext: SearchViewContext<Attributes>
 
     public var body: some View {
-        content.environment(Info.environmentKeyPath, searchContext)
+        content.environment(Attributes.Environment.keyPath, searchContext)
     }
 }
 

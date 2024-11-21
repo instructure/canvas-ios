@@ -19,16 +19,16 @@
 import UIKit
 import Combine
 
-public class SearchContext<Info: SearchContextInfo> {
-    let info: Info
+public class SearchViewContext<Attributes: SearchViewAttributes> {
+    let attributes: Attributes
     var didSubmit = PassthroughSubject<String, Never>()
     var searchText = CurrentValueSubject<String, Never>("")
 
     private var visitedRecord = CurrentValueSubject<Set<ID>, Never>([])
     weak var controller: CoreSearchController?
 
-    public init(info: Info) {
-        self.info = info
+    public init(attributes: Attributes) {
+        self.attributes = attributes
     }
 
     var visitedRecordPublisher: AnyPublisher<Set<ID>, Never> {
@@ -46,6 +46,6 @@ public class SearchContext<Info: SearchContextInfo> {
         searchText.value = ""
     }
 
-    var accentColor: UIColor? { info.accentColor }
-    var searchPrompt: String { info.searchPrompt }
+    var accentColor: UIColor? { attributes.accentColor }
+    var searchPrompt: String { attributes.searchPrompt }
 }

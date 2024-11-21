@@ -18,10 +18,11 @@
 
 import SwiftUI
 
-public struct CourseSmartSearch: SearchContextInfo {
-    public static var environmentKeyPath: EnvironmentKeyPath { \.courseSmartSearchContext }
-    public static var defaultInfo: CourseSmartSearch {
-        return CourseSmartSearch(context: .currentUser, color: nil)
+public struct CourseSmartSearchViewAttributes: SearchViewAttributes {
+    public typealias Environment = CourseSmartSearchViewEnvironment
+
+    public static var `default`: CourseSmartSearchViewAttributes {
+        return CourseSmartSearchViewAttributes(context: .currentUser, color: nil)
     }
 
     let context: Context
@@ -37,10 +38,16 @@ public struct CourseSmartSearch: SearchContextInfo {
     }
 }
 
-extension EnvironmentValues {
+// MARK: - Environment
 
-    var courseSmartSearchContext: SearchContext<CourseSmartSearch> {
-        get { self[CourseSmartSearch.EnvironmentKey.self] }
-        set { self[CourseSmartSearch.EnvironmentKey.self] = newValue }
+public enum CourseSmartSearchViewEnvironment: SearchViewEnvironment {
+    public typealias Attributes = CourseSmartSearchViewAttributes
+    public static var keyPath: EnvKeyPath { \.courseSmartSearchContext }
+}
+
+extension EnvironmentValues {
+    var courseSmartSearchContext: SearchViewContext<CourseSmartSearchViewAttributes> {
+        get { self[CourseSmartSearchViewAttributes.EnvironmentKey.self] }
+        set { self[CourseSmartSearchViewAttributes.EnvironmentKey.self] = newValue }
     }
 }

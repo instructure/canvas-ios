@@ -18,25 +18,32 @@
 
 import SwiftUI
 
-public protocol SearchContextInfo {
+public protocol SearchViewAttributes {
+    associatedtype Environment: SearchViewEnvironment where Environment.Attributes == Self
     typealias EnvironmentKey = SearchEnvironmentKey<Self>
-    typealias EnvironmentKeyPath = WritableKeyPath<EnvironmentValues, SearchContext<Self>>
 
-    static var environmentKeyPath: EnvironmentKeyPath { get }
-    static var defaultInfo: Self { get }
+    static var `default`: Self { get }
 
     var searchPrompt: String { get }
     var accentColor: UIColor? { get }
 }
 
-extension SearchContextInfo {
+extension SearchViewAttributes {
     var accentColor: UIColor? { nil }
 }
 
 // MARK: - Environment Property
 
-public struct SearchEnvironmentKey<Info: SearchContextInfo>: EnvironmentKey {
-    public static var defaultValue: SearchContext<Info> {
-        return SearchContext<Info>(info: .defaultInfo)
+public protocol SearchViewEnvironment {
+    associatedtype Attributes: SearchViewAttributes
+
+    typealias EnvKeyPath = WritableKeyPath<EnvironmentValues, SearchViewContext<Attributes>>
+
+    static var keyPath: EnvKeyPath { get }
+}
+
+public struct SearchEnvironmentKey<Attributes: SearchViewAttributes>: EnvironmentKey {
+    public static var defaultValue: SearchViewContext<Attributes> {
+        return SearchViewContext<Attributes>(attributes: .default)
     }
 }

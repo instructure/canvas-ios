@@ -19,19 +19,19 @@
 import SwiftUI
 
 public protocol SearchSupportAction {
-    func trigger<Info: SearchContextInfo>(
-        for searchContext: SearchContext<Info>,
+    func trigger<Attrs: SearchViewAttributes>(
+        for searchContext: SearchViewContext<Attrs>,
         with router: Router,
         from controller: UIViewController
     )
 }
 
 public struct SearchSupportVoidAction: SearchSupportAction {
-    public func trigger<Info>(
-        for searchContext: SearchContext<Info>,
+    public func trigger<Attrs>(
+        for searchContext: SearchViewContext<Attrs>,
         with router: Router,
         from controller: UIViewController
-    ) where Info: SearchContextInfo {}
+    ) where Attrs: SearchViewAttributes {}
 }
 
 public struct SearchSupportClosureAction: SearchSupportAction {
@@ -41,11 +41,11 @@ public struct SearchSupportClosureAction: SearchSupportAction {
         self.action = action
     }
 
-    public func trigger<Info>(
-        for searchContext: SearchContext<Info>,
+    public func trigger<Attrs>(
+        for searchContext: SearchViewContext<Attrs>,
         with router: Router,
         from controller: UIViewController
-    ) where Info: SearchContextInfo {
+    ) where Attrs: SearchViewAttributes {
         action()
     }
 }
@@ -56,11 +56,11 @@ public struct SearchSupportSheetAction<Content: View>: SearchSupportAction {
         self.content = content
     }
 
-    public func trigger<Info>(
-        for searchContext: SearchContext<Info>,
+    public func trigger<Attrs>(
+        for searchContext: SearchViewContext<Attrs>,
         with router: Router,
         from controller: UIViewController
-    ) where Info: SearchContextInfo {
+    ) where Attrs: SearchViewAttributes {
         router.show(
             CoreHostingController(
                 SearchHostingBaseView(content: content(), searchContext: searchContext)

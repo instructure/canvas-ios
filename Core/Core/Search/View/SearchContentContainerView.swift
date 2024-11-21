@@ -18,37 +18,37 @@
 
 import SwiftUI
 
-struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDescriptor>: View {
+struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider: SearchViewsProvider>: View {
 
     @Environment(\.viewController) private var controller
-    @Environment(Info.environmentKeyPath) private var searchContext
+    @Environment(Attributes.Environment.keyPath) private var searchContext
 
     @State var searchText: String
-    @State var filter: Descriptor.Filter?
+    @State var filter: ViewProvider.Filter?
 
-    @State private var editingFilter: Descriptor.Filter?
+    @State private var editingFilter: ViewProvider.Filter?
     @State private var isFilterEditorPresented: Bool = false
 
     private let router: Router
-    private let searchDescriptor: Descriptor
+    private let searchViewsProvider: ViewProvider
 
     init(
-        ofInfoType type: Info.Type,
+        ofAttributesType type: Attributes.Type,
         router: Router,
-        descriptor: Descriptor,
+        provider: ViewProvider,
         searchText: String,
-        filter: Descriptor.Filter?
+        filter: ViewProvider.Filter?
     ) {
         self.router = router
-        self.searchDescriptor = descriptor
+        self.searchViewsProvider = provider
         self._filter = State(initialValue: filter)
         self._editingFilter = State(initialValue: filter)
         self._searchText = State(initialValue: searchText)
     }
 
     public var body: some View {
-        searchDescriptor
-            .searchDisplayView($filter)
+        searchViewsProvider
+            .contentView($filter)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
 
@@ -76,7 +76,7 @@ struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDes
                     .tint(Color.textLightest)
                 }
 
-                if let support = searchDescriptor.support {
+                if let support = searchViewsProvider.support {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
                             support
@@ -109,7 +109,7 @@ struct SearchDisplayContainerView<Info: SearchContextInfo, Descriptor: SearchDes
                     filter = editingFilter
                 },
                 content: {
-                    searchDescriptor.filterEditorView($editingFilter)
+                    searchViewsProvider.filterEditorView($editingFilter)
                 }
             )
     }

@@ -575,17 +575,12 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
         let viewModel = CourseDetailsViewModel(context: context, offlineModeInteractor: OfflineModeAssembly.make())
 
         if ExperimentalFeature.courseSmartSearch.isEnabled {
-            let viewController = CoreSearchHostingController(
-                info: CourseSmartSearch(context: context, color: url.contextColor),
-                descriptor: CourseSmartSearchDescriptor(context: context),
-                content: CourseDetailsView(viewModel: viewModel)
+
+            return CourseSmartSearchAssembly.make(
+                context: context,
+                color: url.contextColor,
+                containing: CourseDetailsView(viewModel: viewModel)
             )
-
-            if let contextColor = url.contextColor {
-                viewController.navigationBarStyle = .color(contextColor)
-            }
-
-            return viewController
 
         } else {
 

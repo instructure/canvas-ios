@@ -86,7 +86,7 @@ struct CourseSearchResultRowView: View {
 
     private var routePath: String {
         return "/" + [
-            searchContext.info.context.pathComponent,
+            searchContext.attributes.context.pathComponent,
             result.pathComponent
         ].joined(separator: "/")
     }
