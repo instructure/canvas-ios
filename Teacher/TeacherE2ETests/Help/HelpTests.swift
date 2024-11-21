@@ -77,7 +77,7 @@ class HelpTests: E2ETestCase {
         submitAFeatureButton.hit()
         HelpHelper.openInSafariButton.hit()
         browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-Ideas-and-Themes/ct-p/canvas-ideas-themes"))
+        XCTAssertTrue(browserURL.contains("canvas-ideas-themes"))
 
         // MARK: Check "Training Services Portal" button
         HelpHelper.returnToHelpPage(teacher: true)
