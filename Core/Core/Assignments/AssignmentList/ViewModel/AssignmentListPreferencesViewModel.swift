@@ -24,7 +24,12 @@ public struct GradingPeriodOption: Identifiable, Equatable {
     static let allGradingPeriods = Self(id: nil, title: String(localized: "All Grading Periods", bundle: .core))
 
     public let id: String?
-    public let title: String?
+    public let title: String
+
+    public init(id: String?, title: String) {
+        self.id = id
+        self.title = title
+    }
 }
 
 public struct AssignmentFilterOption: CaseIterable, Equatable {
