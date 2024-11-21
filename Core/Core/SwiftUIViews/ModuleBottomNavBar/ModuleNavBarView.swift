@@ -68,8 +68,12 @@ struct ModuleNavBarView: View {
     }
 }
 
-// #if DEBUG
-// #Preview {
-//    ModuleBottomNavBar(onSelect: { _ in }, isPreviousButtonEnabled: .constant(true), isNextButtonEnabled: .constant(true))
-// }
-// #endif
+ #if DEBUG
+ #Preview {
+     ModuleNavBarView(
+        viewModel: .init(
+            didTapPreviousButton: {},
+            didTapNextButton: {})
+     )
+ }
+ #endif
