@@ -80,7 +80,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .student)
             window?.makeKeyAndVisible()
-            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
+            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
 
         return true
@@ -286,16 +286,9 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
+// MARK: - Usage Analytics
+
 extension StudentAppDelegate: Core.AnalyticsHandler {
-
-    func handleScreenView(screenName: String, screenClass: String, application: String) {
-        Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
-    }
-
-    func handleError(_ name: String, reason: String) {
-        let model = ExceptionModel(name: name, reason: reason)
-        Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
-    }
 
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         if Heap.isTrackingEnabled() {
@@ -364,6 +357,7 @@ extension StudentAppDelegate {
             FirebaseApp.configure()
             configureRemoteConfig()
             Core.Analytics.shared.handler = self
+            RemoteLogger.shared.handler = self
         }
     }
 
@@ -375,6 +369,18 @@ extension StudentAppDelegate {
                 print("  \(symbol)")
             }
         }
+    }
+}
+
+extension StudentAppDelegate: RemoteLogHandler {
+
+    func handleBreadcrumb(_ name: String) {
+        Firebase.Crashlytics.crashlytics().log(name)
+    }
+
+    func handleError(_ name: String, reason: String) {
+        let model = ExceptionModel(name: name, reason: reason)
+        Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
     }
 }
 
@@ -420,7 +426,7 @@ extension StudentAppDelegate {
             let loginNav = LoginNavigationController.create(loginDelegate: self, app: .student)
             loginNav.login(host: host)
             window?.rootViewController = loginNav
-            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
+            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
         // the student app doesn't have as predictable of a tab bar setup and for
         // several views, does not have a route configured for them so for now we

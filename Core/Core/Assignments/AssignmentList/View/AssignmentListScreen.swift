@@ -117,7 +117,6 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 ForEach(groups, id: \.id) { assignmentGroup in
                     AssignmentGroupView(viewModel: assignmentGroup)
-                        .accessibilityIdentifier("AssignmentList.assignmentGroups.\(assignmentGroup.id)")
                 }
             }
         }

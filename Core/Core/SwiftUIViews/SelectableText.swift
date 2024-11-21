@@ -18,91 +18,123 @@
 
 import SwiftUI
 
-public struct SelectableText: UIViewRepresentable {
-    // MARK: - Properties
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    private let text: String?
-    private let attributedText: AttributedString?
+public struct SelectableText: View {
+
+    private let attributedText: AttributedString
     private let font: UIFont.Name
+    private let lineHeight: Typography.LineHeight?
     private let textColor: Color
 
-    // MARK: - Inits
     public init(
         text: String,
         font: UIFont.Name,
+        lineHeight: Typography.LineHeight? = nil,
         textColor: Color
     ) {
-        self.text = text
+        self.attributedText = AttributedString(text)
         self.font = font
+        self.lineHeight = lineHeight
         self.textColor = textColor
-        self.attributedText = nil
     }
 
     public init(
         attributedText: AttributedString,
         font: UIFont.Name,
+        lineHeight: Typography.LineHeight? = nil,
         textColor: Color
     ) {
         self.attributedText = attributedText
         self.font = font
+        self.lineHeight = lineHeight
         self.textColor = textColor
-        self.text = nil
     }
 
-    public func makeUIView(context: Self.Context) -> UITextView {
+    public var body: some View {
+        WrappedSelectableTextView(
+            attributedText: attributedText,
+            font: font,
+            lineHeight: lineHeight,
+            textColor: textColor
+        )
+        .padding(.vertical, 1)
+    }
+}
+
+private struct WrappedSelectableTextView: UIViewRepresentable {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    // MARK: - Properties
+
+    private let attributedText: AttributedString
+    private let font: UIFont.Name
+    private let lineHeight: Typography.LineHeight?
+    private let textColor: Color
+
+    // MARK: - Init
+
+    init(
+        attributedText: AttributedString,
+        font: UIFont.Name,
+        lineHeight: Typography.LineHeight? = nil,
+        textColor: Color
+    ) {
+        self.attributedText = attributedText
+        self.font = font
+        self.lineHeight = lineHeight
+        self.textColor = textColor
+    }
+
+    // MARK: - UIViewRepresentable methods
+
+    func makeUIView(context: Self.Context) -> UITextView {
         let textView = UITextView()
-        textView.font = UIFont.scaledNamedFont(font)
         textView.backgroundColor = .clear
         textView.isSelectable = true
-        textView.textContainerInset = .zero
         textView.isEditable = false
+        textView.textContainerInset = .zero
         textView.textContainer.lineFragmentPadding = 0
         textView.isScrollEnabled = false
         return textView
     }
 
-    public func updateUIView(_ textView: UITextView, context: Self.Context) {
-        if let attributedText {
-            textView.attributedText = NSAttributedString(attributedText)
-        } else {
-            textView.text = text
+    func updateUIView(_ textView: UITextView, context: Self.Context) {
+        let uiFont = UIFont.scaledNamedFont(font)
+        var attributedText = attributedText
+        attributedText.font = uiFont
+
+        if let lineHeight {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = lineHeight.lineSpacing(for: uiFont)
+
+            attributedText.mergeAttributes(.init([.paragraphStyle: paragraphStyle]))
         }
+
+        textView.attributedText = NSAttributedString(attributedText)
         textView.textColor = UIColor(textColor)
-        textView.font = UIFont.scaledNamedFont(font)
     }
 
-    public func sizeThatFits(
+    func sizeThatFits(
         _ proposal: ProposedViewSize,
         uiView: UITextView,
         context: Self.Context
     ) -> CGSize? {
-        let dimensions = proposal.replacingUnspecifiedDimensions(
-            by: .init(
-                width: 0,
-                height: CGFloat.greatestFiniteMagnitude
-            )
-        )
+        let proposedWidth = proposal.width ?? 0
+        let calculatedHeight = calculateTextViewHeight(with: proposedWidth, for: uiView.attributedText)
 
-        let calculatedHeight = calculateTextViewHeight(
-            containerSize: dimensions,
-            attributedString: uiView.attributedText
-        )
-
-        return .init(
-            width: dimensions.width,
-            height: calculatedHeight
-        )
+        return CGSize(width: proposedWidth, height: calculatedHeight)
     }
 
     private func calculateTextViewHeight(
-        containerSize: CGSize,
-        attributedString: NSAttributedString
+        with width: CGFloat,
+        for attributedString: NSAttributedString
     ) -> CGFloat {
         let boundingRect = attributedString.boundingRect(
-            with: .init(width: containerSize.width, height: .greatestFiniteMagnitude),
+            with: .init(width: width, height: .greatestFiniteMagnitude),
             options: [.usesLineFragmentOrigin, .usesFontLeading],
             context: nil
         )
-        return boundingRect.height
+
+        // the calculated height must be ceiled, according to the `boundingRect` documentation
+        return ceil(boundingRect.height)
     }
 }

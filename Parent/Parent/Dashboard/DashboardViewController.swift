@@ -262,7 +262,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {
         let map = ["courses", "calendar", "alerts"]
         let event = map[tabIndex]
-        Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
+        RemoteLogger.shared.logBreadcrumb(route: "/tabs/" + event, viewController: viewController)
     }
 
     @objc private func checkForPolicyChanges() {
