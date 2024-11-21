@@ -146,20 +146,24 @@ class CoreSearchHostingControllerTests: CoreTestCase {
 // MARK: - Mocks
 
 private class TestSearchViewsProvider: SearchViewsProvider {
-    typealias Filter = Never
+    typealias Filter = TestFilter
     typealias FilterEditor = Text
     typealias Support = SearchSupportVoidAction
     typealias SearchContent = Text
 
     var support: SearchSupportButtonModel<Support>?
 
-    func contentView(_ filter: Binding<Never?>) -> Text {
+    func contentView(_ filter: Binding<Filter?>) -> Text {
         Text("Search Display")
     }
 
-    func filterEditorView(_ filter: Binding<Never?>) -> Text {
+    func filterEditorView(_ filter: Binding<Filter?>) -> Text {
         Text("Filter Editor")
     }
+}
+
+enum TestFilter: SearchPreference {
+    var isActive: Bool { false }
 }
 
 private class TestSearchInteractor: SearchInteractor {
