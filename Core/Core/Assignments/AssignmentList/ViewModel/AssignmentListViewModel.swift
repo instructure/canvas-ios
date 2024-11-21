@@ -60,6 +60,7 @@ public class AssignmentListViewModel: ObservableObject {
     public var defaultGradingPeriodId: String?
     public let defaultSortingOption: AssignmentArrangementOptions = .dueDate
     public var selectedGradingPeriodId: String?
+    public var selectedGradingPeriodTitle: String? { gradingPeriods.filter({ $0.id == selectedGradingPeriodId }).first?.title }
     public var selectedSortingOption: AssignmentArrangementOptions = .dueDate
 
     // MARK: - Private properties

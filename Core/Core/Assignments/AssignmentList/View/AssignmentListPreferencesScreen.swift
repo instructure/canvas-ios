@@ -139,7 +139,7 @@ public struct AssignmentListPreferencesScreen: View {
 
     private func gradingPeriodItem(with item: GradingPeriodOption) -> some View {
         InstUI.RadioButtonCell(
-            title: item.title ?? "",
+            title: item.title,
             value: item,
             selectedValue: $viewModel.selectedGradingPeriod,
             color: color
