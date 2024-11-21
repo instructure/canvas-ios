@@ -82,7 +82,7 @@ public class AssignmentListViewModel: ObservableObject {
         self?.courseDidUpdate()
     }
 
-    lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
+    private lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
         guard let self else { return }
         if selectedGradingPeriodId == nil {
             defaultGradingPeriodId = currentGradingPeriod?.id
