@@ -25,11 +25,6 @@ public struct GradingPeriodOption: Identifiable, Equatable {
 
     public let id: String?
     public let title: String?
-
-    init(id: String?, title: String?) {
-        self.id = id
-        self.title = title
-    }
 }
 
 public struct AssignmentFilterOption: CaseIterable, Equatable {
