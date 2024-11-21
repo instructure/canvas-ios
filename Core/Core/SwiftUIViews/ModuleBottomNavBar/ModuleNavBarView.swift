@@ -19,8 +19,13 @@
 import SwiftUI
 
 struct ModuleNavBarView: View {
+    // MARK: - Dependencies
+
     @ObservedObject var viewModel: ModuleBottomNavBarViewModel
 
+    // MARK: - Properties
+
+    @Environment(\.viewController) private var viewController
     private let contentButtons = ModuleNavBarButtons.contentButtons
 
     var body: some View {
@@ -52,7 +57,7 @@ struct ModuleNavBarView: View {
 
     private func buttonView(type: ModuleNavBarButtons) -> some View {
         Button {
-            viewModel.didSelectButton(type: type)
+            viewModel.didSelectButton(type: type, viewController: viewController)
         } label: {
             iconView(type: type)
         }
@@ -68,12 +73,14 @@ struct ModuleNavBarView: View {
     }
 }
 
- #if DEBUG
- #Preview {
-     ModuleNavBarView(
+#if DEBUG
+#Preview {
+    ModuleNavBarView(
         viewModel: .init(
             didTapPreviousButton: {},
-            didTapNextButton: {})
-     )
- }
- #endif
+            didTapNextButton: {},
+            router: AppEnvironment.shared.router
+        )
+    )
+}
+#endif

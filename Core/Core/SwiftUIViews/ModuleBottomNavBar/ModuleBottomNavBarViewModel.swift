@@ -22,6 +22,8 @@ class ModuleBottomNavBarViewModel: ObservableObject {
     // These actions are triggered from UIKit ModuleItemSequenceViewController class.
     let didTapPreviousButton: (() -> Void)
     let didTapNextButton: (() -> Void)
+    
+    let router: Router
 
     // MARK: - Outputs
 
@@ -32,15 +34,18 @@ class ModuleBottomNavBarViewModel: ObservableObject {
 
     init(
         didTapPreviousButton: @escaping () -> Void,
-        didTapNextButton: @escaping () -> Void
+        didTapNextButton: @escaping () -> Void,
+        router: Router
     ) {
         self.didTapPreviousButton = didTapPreviousButton
         self.didTapNextButton = didTapNextButton
+        self.router = router
     }
 
     // MARK: - Inputs
 
     func didSelectButton(type: ModuleNavBarButtons) {
-        print(type)
+        // router.to()
     }
+    
 }
