@@ -61,6 +61,7 @@ public class AssignmentListViewModel: ObservableObject {
     public let defaultSortingOption: AssignmentArrangementOptions = .dueDate
     public var selectedGradingPeriodId: String?
     public var selectedGradingPeriodTitle: String? { gradingPeriods.filter({ $0.id == selectedGradingPeriodId }).first?.title }
+    public var wasCurrentPeriodPreselected: Bool = false
     public var selectedSortingOption: AssignmentArrangementOptions = .dueDate
 
     // MARK: - Private properties
@@ -83,31 +84,13 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
-        guard let self else { return }
-        if selectedGradingPeriodId == nil {
-            let currentId = currentGradingPeriod?.id
-            defaultGradingPeriodId = currentId
-            selectedGradingPeriodId = currentId
-        }
-        filterOptionsDidUpdate(filterOptions: selectedFilterOptions, gradingPeriodId: selectedGradingPeriodId)
-        assignmentGroups?.refresh()
+        self?.gradingPeriodsDidUpdate()
     }
 
     private var assignmentGroups: Store<GetAssignmentsByGroup>?
 
     /** This is required for the router to help decide if the hybrid discussion details or the native one should be launched. */
     private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID)))
-
-    private var currentGradingPeriod: GradingPeriod? {
-        gradingPeriods.filter {
-            let rightNow = Clock.now
-            if let start = $0.startDate, let end = $0.endDate {
-                return start < rightNow && end > rightNow
-            }
-            return false
-        }
-        .first
-    }
 
     // MARK: - Init
     public init(
@@ -131,7 +114,28 @@ public class AssignmentListViewModel: ObservableObject {
         isFilterIconSolid = isFilteringCustom || selectedGradingPeriodId != defaultGradingPeriodId
     }
 
-    public func filterOptionsDidUpdate(
+    private func gradingPeriodsDidUpdate() {
+        if !gradingPeriods.requested || gradingPeriods.pending { return }
+
+        let currentGradingPeriod = gradingPeriods.filter {
+            let rightNow = Clock.now
+            if let start = $0.startDate, let end = $0.endDate {
+                return start < rightNow && end > rightNow
+            }
+            return false
+        }
+        .first
+
+        if !wasCurrentPeriodPreselected, let currentId = currentGradingPeriod?.id  {
+            defaultGradingPeriodId = currentId
+            selectedGradingPeriodId = currentId
+            wasCurrentPeriodPreselected = true
+        }
+        filterOptionsDidUpdate(filterOptions: selectedFilterOptions, gradingPeriodId: selectedGradingPeriodId)
+        assignmentGroups?.refresh()
+    }
+
+    private func filterOptionsDidUpdate(
         filterOptions: [AssignmentFilterOption]? = nil,
         sortingOption: AssignmentArrangementOptions? = nil,
         gradingPeriodId: String?
