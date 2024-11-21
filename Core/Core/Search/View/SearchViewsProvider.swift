@@ -27,39 +27,5 @@ public protocol SearchViewsProvider {
     var support: SearchSupportButtonModel<Support>? { get }
 
     func contentView(_ filter: Binding<Filter?>) -> SearchContent
-    func filterEditorView(_ filter: Binding<FilterSelection<Filter>>) -> FilterEditor
-}
-
-public struct FilterSelection<Filter>: ReferrableValue {
-    public static var defaultValue: FilterSelection<Filter> { .init() }
-
-    public var editedFilter: Filter?
-    public var submitted: ((Filter?) -> Void)?
-
-    internal var presented: Bool = false
-    private var cancelled: Bool = false
-
-    mutating func present(with initialValue: Filter?) {
-        editedFilter = initialValue
-        cancelled = false
-        presented = true
-    }
-
-    public mutating func cancel() {
-        cancelled = true
-    }
-
-    public mutating func submit() {
-        submitted?(editedFilter)
-    }
-
-    func resolve(with target: Binding<Filter?>) {
-        guard cancelled == false else { return }
-        target.wrappedValue = editedFilter
-    }
-
-    func resolve(with submitChange: (Filter?) -> Void) {
-        guard cancelled == false else { return }
-        submitChange(editedFilter)
-    }
+    func filterEditorView(_ filter: Binding<Filter?>) -> FilterEditor
 }

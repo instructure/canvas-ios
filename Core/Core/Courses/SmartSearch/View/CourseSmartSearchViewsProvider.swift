@@ -27,10 +27,10 @@ public class CourseSmartSearchViewsProvider: SearchViewsProvider {
         self.interactor = interactor
     }
     
-    public func filterEditorView(_ filterSelection: Binding<FilterSelection<CourseSmartSearchFilter>>) -> some View {
+    public func filterEditorView(_ filter: Binding<CourseSmartSearchFilter?>) -> some View {
         CourseSmartSearchFilterEditorView(
             model: CourseSearchFilterEditorViewModel(
-                selection: filterSelection
+                selection: filter
             )
         )
     }

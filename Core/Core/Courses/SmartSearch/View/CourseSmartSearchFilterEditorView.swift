@@ -99,16 +99,8 @@ public struct CourseSmartSearchFilterEditorView: View {
             .navigationTitle("Search Preferences")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel") {
-                        viewModel.cancel()
-                        dismiss()
-                    }
-                }
-
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") {
-                        viewModel.submit()
                         dismiss()
                     }
                 }
