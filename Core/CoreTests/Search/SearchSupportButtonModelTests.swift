@@ -25,20 +25,20 @@ class SearchSupportButtonModelTests: CoreTestCase {
 
     func test_sheet_action() throws {
         // Given
-        let searchContext = SearchContext(info: TestSearchInfo(value: 1))
+        let searchContext = SearchViewContext(attributes: TestSearchViewAttributes(value: 1))
         let action = SearchSupportSheetAction(content: Text(".. Sheet Content .."))
 
         // When
         action.trigger(for: searchContext, with: router, from: UIViewController())
 
         // Then
-        let presented = router.presented as? CoreHostingController<SearchHostingBaseView<TestSearchInfo, Text>>
+        let presented = router.presented as? CoreHostingController<SearchHostingBaseView<TestSearchViewAttributes, Text>>
         XCTAssertNotNil(presented)
     }
 
     func test_simple_action() throws {
         // Given
-        let searchContext = SearchContext(info: TestSearchInfo(value: 1))
+        let searchContext = SearchViewContext(attributes: TestSearchViewAttributes(value: 1))
 
         var actionCalled = false
         let action = SearchSupportClosureAction { actionCalled = true }

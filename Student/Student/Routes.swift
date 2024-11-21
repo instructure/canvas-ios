@@ -576,7 +576,7 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
 
         if ExperimentalFeature.courseSmartSearch.isEnabled {
 
-            return CourseSmartSearchAssembly.make(
+            return CourseSmartSearchAssembly.makeHostController(
                 context: context,
                 color: url.contextColor,
                 containing: CourseDetailsView(viewModel: viewModel)

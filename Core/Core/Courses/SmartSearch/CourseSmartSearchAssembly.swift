@@ -20,7 +20,7 @@ import SwiftUI
 
 public enum CourseSmartSearchAssembly {
 
-    public static func make<Content: View>(context: Context, color: UIColor?, containing content: Content) -> UIViewController {
+    public static func makeHostController<Content: View>(context: Context, color: UIColor?, containing content: Content) -> UIViewController {
         let attributes = CourseSmartSearchViewAttributes(context: context, color: color)
         let interactor = CourseSmartSearchInteractorLive(context: context)
         let provider = CourseSmartSearchViewsProvider(interactor: interactor)
@@ -33,7 +33,7 @@ public enum CourseSmartSearchAssembly {
     }
 
     #if DEBUG
-    public static func makePreview<Content: View>(context: Context, color: UIColor?, containing content: Content) -> UIViewController {
+    public static func makeHostControllerPreview<Content: View>(context: Context, color: UIColor?, containing content: Content) -> UIViewController {
         let attributes = CourseSmartSearchViewAttributes(context: context, color: color)
         let interactor = CourseSmartSearchInteractorPreview()
         let provider = CourseSmartSearchViewsProvider(interactor: interactor)

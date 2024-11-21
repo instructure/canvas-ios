@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct CourseSmartSearchDisplayView: View {
+public struct CourseSmartSearchContentView: View {
 
     @Environment(\.viewController) private var controller
     @Environment(\.courseSmartSearchContext) private var searchContext
@@ -76,7 +76,7 @@ public struct CourseSmartSearchDisplayView: View {
 
 #if DEBUG
 #Preview {
-    CourseSmartSearchDisplayView(
+    CourseSmartSearchContentView(
         viewModel: CourseSmartSearchViewModel(
             interactor: CourseSmartSearchInteractorPreview()
         ),

@@ -22,7 +22,7 @@ import SwiftUI
 import Combine
 @testable import Core
 
-class SearchContextTests: CoreTestCase {
+class SearchViewContextTests: CoreTestCase {
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -33,8 +33,8 @@ class SearchContextTests: CoreTestCase {
 
     func test_coloring() throws {
         // Given
-        let info = TestSearchInfo(value: 5, accentColor: .red)
-        let context = SearchContext(info: info)
+        let attrs = TestSearchViewAttributes(value: 5, accentColor: .red)
+        let context = SearchViewContext(attributes: attrs)
 
         // Then
         XCTAssertEqual(context.accentColor, .red)
@@ -42,8 +42,8 @@ class SearchContextTests: CoreTestCase {
 
     func test_visited_logic() throws {
         // Given
-        let info = TestSearchInfo(value: 10)
-        let context = SearchContext(info: info)
+        let attrs = TestSearchViewAttributes(value: 10)
+        let context = SearchViewContext(attributes: attrs)
         var visited: Set<ID> = []
 
         context
@@ -73,19 +73,23 @@ class SearchContextTests: CoreTestCase {
 
 // MARK: - Mocks
 
-struct TestSearchInfo: SearchContextInfo {
-    static var environmentKeyPath: EnvironmentKeyPath { \.testSearchContext }
-    static var defaultInfo = TestSearchInfo()
+struct TestSearchViewAttributes: SearchViewAttributes {
+    typealias Environment = TestSearchViewEnvironment
+    static var `default`: TestSearchViewAttributes { .init() }
 
     var value: Int = 0
-    var searchPrompt: String { "Search placeholder" }
-
     var accentColor: UIColor?
+    var searchPrompt: String { "Search placeholder" }
+}
+
+struct TestSearchViewEnvironment: SearchViewEnvironment {
+    typealias Attributes = TestSearchViewAttributes
+    static var keyPath: EnvKeyPath { \.testSearchContext }
 }
 
 extension EnvironmentValues {
-    var testSearchContext: SearchContext<TestSearchInfo> {
-        get { self[TestSearchInfo.EnvironmentKey.self] }
-        set { self[TestSearchInfo.EnvironmentKey.self] = newValue }
+    var testSearchContext: SearchViewContext<TestSearchViewAttributes> {
+        get { self[TestSearchViewAttributes.EnvironmentKey.self] }
+        set { self[TestSearchViewAttributes.EnvironmentKey.self] = newValue }
     }
 }

@@ -42,7 +42,7 @@ public class CourseSmartSearchViewsProvider: SearchViewsProvider {
     }
 
     public func contentView(_ filter: Binding<CourseSmartSearchFilter?>) -> some View {
-        CourseSmartSearchDisplayView(
+        CourseSmartSearchContentView(
             viewModel: CourseSmartSearchViewModel(interactor: interactor),
             filter: filter
         )

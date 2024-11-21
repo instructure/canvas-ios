@@ -59,7 +59,7 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
         let interactor = CourseSmartSearchInteractorLive(context: context)
 
         // Then
-        XCTAssertSingleOutputEquals(interactor.isEnabled(), true)
+        XCTAssertSingleOutputEquals(interactor.isEnabled, true)
 
         // When
         useCase.reset(context: databaseClient)
@@ -68,7 +68,7 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
         ])
 
         // Then
-        XCTAssertSingleOutputEquals(interactor.isEnabled(), false)
+        XCTAssertSingleOutputEquals(interactor.isEnabled, false)
     }
 
     func test_searching_results() throws {

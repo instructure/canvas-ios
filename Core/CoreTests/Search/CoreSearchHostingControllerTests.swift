@@ -31,14 +31,19 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         super.tearDown()
     }
 
-    private func setupTestSearch(enabled: Bool = true) -> CoreSearchHostingController<TestSearchInfo, TestSearchDescriptor, Text> {
-        let descriptor = TestSearchDescriptor()
-        descriptor.enabledSubject.value = enabled
+    private func setupTestSearch(enabled: Bool = true) -> CoreSearchHostingController<
+        TestSearchViewAttributes, TestSearchViewsProvider, TestSearchInteractor, Text
+    > {
+
+        let provider = TestSearchViewsProvider()
+        let interactor = TestSearchInteractor()
+        interactor.enabledSubject.value = enabled
 
         let controller = CoreSearchHostingController(
             router: router,
-            info: TestSearchInfo(),
-            descriptor: descriptor,
+            attributes: TestSearchViewAttributes(),
+            provider: provider,
+            interactor: interactor,
             content: Text(verbatim: ".. Content ..")
         )
 
@@ -54,7 +59,7 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         let controller = setupTestSearch(enabled: false)
         XCTAssertNil(controller.navigationItem.rightBarButtonItem)
 
-        controller.searchDescriptor.enabledSubject.send(true)
+        controller.searchInteractor.enabledSubject.send(true)
         drainMainQueue()
 
         XCTAssertNotNil(controller.navigationItem.rightBarButtonItem)
@@ -140,25 +145,27 @@ class CoreSearchHostingControllerTests: CoreTestCase {
 
 // MARK: - Mocks
 
-private class TestSearchDescriptor: SearchDescriptor {
+private class TestSearchViewsProvider: SearchViewsProvider {
     typealias Filter = Never
     typealias FilterEditor = Text
     typealias Support = SearchSupportVoidAction
-    typealias Display = Text
-
-    var enabledSubject = CurrentValueSubject<Bool, Never>(false)
-    var isEnabled: AnyPublisher<Bool, Never> {
-        enabledSubject.receive(on: DispatchQueue.main).eraseToAnyPublisher()
-    }
+    typealias SearchContent = Text
 
     var support: SearchSupportButtonModel<Support>?
 
-    func searchDisplayView(_ filter: Binding<Never?>) -> Text {
+    func contentView(_ filter: Binding<Never?>) -> Text {
         Text("Search Display")
     }
 
     func filterEditorView(_ filter: Binding<Never?>) -> Text {
         Text("Filter Editor")
+    }
+}
+
+private class TestSearchInteractor: SearchInteractor {
+    var enabledSubject = CurrentValueSubject<Bool, Never>(false)
+    var isEnabled: AnyPublisher<Bool, Never> {
+        enabledSubject.receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
 }
 

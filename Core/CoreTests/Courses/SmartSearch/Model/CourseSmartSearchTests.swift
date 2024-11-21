@@ -25,9 +25,9 @@ class CourseSmartSearchTests: CoreTestCase {
 
     func test_coloring() throws {
         let context = Context(.course, id: "124234")
-        let info = CourseSmartSearch(context: context, color: .red)
+        let attributes = CourseSmartSearchViewAttributes(context: context, color: .red)
 
-        XCTAssertEqual(info.accentColor, .red)
+        XCTAssertEqual(attributes.accentColor, .red)
     }
 
     func test_search_result_dots() {
