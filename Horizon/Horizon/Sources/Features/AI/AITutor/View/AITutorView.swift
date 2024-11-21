@@ -37,7 +37,12 @@ struct AITutorView: View {
             }
             chatBotButton
         }
-        .navigationTitle("AI Tutor")
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("AI Tutor", bundle: .horizon)
+                    .foregroundStyle(Color.white)
+            }
+        }
         .paddingStyle([.horizontal, .top], .standard)
         .applyHorizonGradient()
         .onFirstAppear { viewModel.controller = viewController }

@@ -172,4 +172,11 @@ open class AppEnvironment {
         let currentTabBar = (window?.rootViewController as? UITabBarController)
         currentTabBar?.tabBar.isHidden = !isVisible
     }
+
+    public func changeNavBar(foregroundColor: UIColor, for tabBarIndex: Int) {
+        let currentTabBar = (window?.rootViewController as? UITabBarController)
+        let coreNavigation = (currentTabBar?.viewControllers?[tabBarIndex] as? CoreNavigationController)
+        coreNavigation?.navigationBar.barTintColor = foregroundColor
+        coreNavigation?.navigationBar.tintColor = foregroundColor
+    }
 }

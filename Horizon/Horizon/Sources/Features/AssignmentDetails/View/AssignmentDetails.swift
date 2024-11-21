@@ -85,7 +85,7 @@ struct AssignmentDetails: View {
                 .padding(.bottom)
             }
         }
-        .onAppear { viewModel.showTabBar() }
+        .onAppear { viewModel.updateNavBarAndShowTabBar() }
         .avoidKeyboardArea()
         .toolbarBackground(.visible, for: .navigationBar)
         .alert("Error", isPresented: $viewModel.isAlertVisible) {

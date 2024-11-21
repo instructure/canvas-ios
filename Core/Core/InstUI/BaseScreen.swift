@@ -39,6 +39,7 @@ public extension InstUI {
         public let scrollAxes: Axis.Set
         public let errorPandaConfig: InteractivePanda.Config
         public let emptyPandaConfig: InteractivePanda.Config
+        public let loaderBackgroundColor: Color
 
         /**
          - parameters:
@@ -51,13 +52,16 @@ public extension InstUI {
             showsScrollIndicators: Bool = true,
             scrollAxes: Axis.Set = .vertical,
             errorPandaConfig: InteractivePanda.Config = .error(),
-            emptyPandaConfig: InteractivePanda.Config = .empty()
+            emptyPandaConfig: InteractivePanda.Config = .empty(),
+            loaderBackgroundColor: Color = .backgroundLightest
+
         ) {
             self.refreshable = refreshable
             self.showsScrollIndicators = showsScrollIndicators
             self.scrollAxes = scrollAxes
             self.errorPandaConfig = errorPandaConfig
             self.emptyPandaConfig = emptyPandaConfig
+            self.loaderBackgroundColor = loaderBackgroundColor
         }
     }
 
@@ -117,7 +121,7 @@ public extension InstUI {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(showOverlay
                     ? Color.backgroundGrouped.opacity(0.5)
-                    : Color.backgroundLightest
+                    : config.loaderBackgroundColor
                 )
         }
 

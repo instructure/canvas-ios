@@ -53,7 +53,7 @@ final class AITutorViewModel {
                 }
                 switch type {
                 case .quiz:
-                    break
+                    presentAIQuiz()
                 case .summary:
                     router.route(to: "/summary", from: controller)
                 case .takeAway:
@@ -66,5 +66,10 @@ final class AITutorViewModel {
 
             }
             .store(in: &subscriptions)
+    }
+
+    private func presentAIQuiz() {
+        let vc = CoreHostingController(AIAssembly.makeAIQuizView())
+        router.show(vc, from: controller, options: .modal(isDismissable: false))
     }
 }

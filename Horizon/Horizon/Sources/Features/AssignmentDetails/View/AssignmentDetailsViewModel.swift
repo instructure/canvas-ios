@@ -83,7 +83,14 @@ final class AssignmentDetailsViewModel {
 
     // MARK: - Public Functions
 
-    func showTabBar() { appEnvironment.tabBar(isVisible: true) }
+    func updateNavBarAndShowTabBar() {
+        appEnvironment
+            .changeNavBar(
+                foregroundColor: .textDarkest,
+                for: HorizonTabBarType.learn.rawValue
+            )
+        appEnvironment.tabBar(isVisible: true)
+    }
 
     // MARK: - Private Functions
 

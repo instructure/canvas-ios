@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "AI Assist" : {
+
+    },
     "AI Learning Assist" : {
 
     },
@@ -11,6 +14,9 @@
 
     },
     "Career" : {
+
+    },
+    "Check Answer" : {
 
     },
     "Continue learning" : {
@@ -31,6 +37,9 @@
     "Home" : {
 
     },
+    "How was this question?" : {
+
+    },
     "Learn" : {
 
     },
@@ -40,6 +49,9 @@
     "Quiz me on this material" : {
 
     },
+    "Regenerate" : {
+
+    },
     "Submit Assignment" : {
 
     },
@@ -47,6 +59,9 @@
 
     },
     "Tell me more about this topic" : {
+
+    },
+    "Try Again" : {
 
     },
     "Your Programs" : {
