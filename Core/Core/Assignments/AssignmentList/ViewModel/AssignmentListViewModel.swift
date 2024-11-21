@@ -126,7 +126,7 @@ public class AssignmentListViewModel: ObservableObject {
         }
         .first
 
-        if !wasCurrentPeriodPreselected, let currentId = currentGradingPeriod?.id  {
+        if !wasCurrentPeriodPreselected, let currentId = currentGradingPeriod?.id {
             defaultGradingPeriodId = currentId
             selectedGradingPeriodId = currentId
             wasCurrentPeriodPreselected = true
