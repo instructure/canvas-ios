@@ -207,12 +207,12 @@ public class AssignmentListViewModel: ObservableObject {
         guard isFilteringCustom else {
             return assignments
         }
-        var filteredAssignments = assignments
+        var filteredAssignments: [Assignment] = []
 
-        filteredAssignments.forEach { assignment in
+        assignments.forEach { assignment in
             selectedFilterOptions.forEach { filterOption in
-                if let indexOfAssignment = filteredAssignments.firstIndex(of: assignment), !filterOption.rule(assignment) {
-                    filteredAssignments.remove(at: indexOfAssignment)
+                if !filteredAssignments.contains(assignment), filterOption.rule(assignment) {
+                    filteredAssignments.append(assignment)
                 }
             }
         }
