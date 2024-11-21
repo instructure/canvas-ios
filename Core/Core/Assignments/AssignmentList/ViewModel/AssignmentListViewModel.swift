@@ -135,7 +135,7 @@ public class AssignmentListViewModel: ObservableObject {
         assignmentGroups?.refresh()
     }
 
-    private func filterOptionsDidUpdate(
+    func filterOptionsDidUpdate(
         filterOptions: [AssignmentFilterOption]? = nil,
         sortingOption: AssignmentArrangementOptions? = nil,
         gradingPeriodId: String?
