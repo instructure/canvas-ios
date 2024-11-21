@@ -16,24 +16,31 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+class ModuleBottomNavBarViewModel: ObservableObject {
+    // MARK: - Dependencies
 
-enum ModuleBottomsType: CaseIterable {
-    case message
-    case sound
-    case bookmark
-    case assist
+    // These actions are triggered from UIKit ModuleItemSequenceViewController class.
+    let didTapPreviousButton: (() -> Void)
+    let didTapNextButton: (() -> Void)
 
-    var imageName: String {
-        switch self {
-        case .message:
-            "bubble.left"
-        case .sound:
-            "speaker.wave.2"
-        case .bookmark:
-            "bookmark"
-        case .assist:
-            "sparkles"
-        }
+    // MARK: - Outputs
+
+    @Published var isPreviousButtonEnabled = true
+    @Published var isNextButtonEnabled = true
+
+    // MARK: - Init
+
+    init(
+        didTapPreviousButton: @escaping () -> Void,
+        didTapNextButton: @escaping () -> Void
+    ) {
+        self.didTapPreviousButton = didTapPreviousButton
+        self.didTapNextButton = didTapNextButton
+    }
+
+    // MARK: - Inputs
+
+    func didSelectButton(type: ModuleNavBarButtons) {
+        print(type)
     }
 }

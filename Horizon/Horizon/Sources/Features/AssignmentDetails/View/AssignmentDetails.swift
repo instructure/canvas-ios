@@ -77,15 +77,6 @@ struct AssignmentDetails: View {
         .scrollDismissesKeyboard(.immediately)
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top) { if viewModel.state == .data { header } }
-        .safeAreaInset(edge: .bottom) {
-            if !viewModel.isKeyboardVisible {
-                ModuleBottomNavBar { selectedButton in
-                    viewModel.aiEvents.send((selectedButton, viewController))
-                }
-                .padding(.bottom)
-            }
-        }
-        .onAppear { viewModel.showTabBar() }
         .avoidKeyboardArea()
         .toolbarBackground(.visible, for: .navigationBar)
         .alert("Error", isPresented: $viewModel.isAlertVisible) {
