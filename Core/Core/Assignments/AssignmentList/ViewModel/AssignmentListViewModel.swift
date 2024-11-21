@@ -85,8 +85,9 @@ public class AssignmentListViewModel: ObservableObject {
     private lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
         guard let self else { return }
         if selectedGradingPeriodId == nil {
-            defaultGradingPeriodId = currentGradingPeriod?.id
-            selectedGradingPeriodId = currentGradingPeriod?.id
+            let currentId = currentGradingPeriod?.id
+            defaultGradingPeriodId = currentId
+            selectedGradingPeriodId = currentId
         }
         filterOptionsDidUpdate(filterOptions: selectedFilterOptions, gradingPeriodId: selectedGradingPeriodId)
         assignmentGroups?.refresh()
@@ -116,13 +117,14 @@ public class AssignmentListViewModel: ObservableObject {
         self.userDefaults = userDefaults
         self.courseID = context.id
 
+        loadAssignmentListPreferences()
+
         featureFlags.refresh()
     }
 
     // MARK: - Functions
 
     public func viewDidAppear() {
-        loadAssignmentListPreferences()
         gradingPeriods.refresh()
         course.refresh()
 
@@ -157,12 +159,13 @@ public class AssignmentListViewModel: ObservableObject {
 
         isShowingGradingPeriods = gradingPeriods.count > 1
         var assignmentGroupViewModels: [AssignmentGroupViewModel] = []
+        let assignments: [Assignment] = filterAssignments(assignmentGroups.compactMap { $0 })
 
         switch selectedSortingOption {
         case .groupName:
             for section in 0..<(assignmentGroups.sections?.count ?? 0) {
                 if let group = assignmentGroups[IndexPath(row: 0, section: section)]?.assignmentGroup {
-                    let groupAssignments: [Assignment] = assignmentGroups.compactMap { $0 }.filter { $0.assignmentGroup == group }
+                    let groupAssignments: [Assignment] = assignments.filter { $0.assignmentGroup == group }
                     if !groupAssignments.isEmpty {
                         assignmentGroupViewModels.append(AssignmentGroupViewModel(
                             assignmentGroup: group,
@@ -175,17 +178,17 @@ public class AssignmentListViewModel: ObservableObject {
         case .dueDate:
             let rightNow = Clock.now
 
-            let overdue = assignmentGroups.filter { $0.dueAt ?? Date.distantFuture < rightNow }
+            let overdue = assignments.filter { $0.dueAt ?? Date.distantFuture < rightNow }
             if !overdue.isEmpty {
                 let overdueGroup = AssignmentDateGroup(id: "overdue", name: "Overdue Assignments", assignments: overdue)
                 assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: overdueGroup, courseColor: courseColor))
             }
-            let upcoming = assignmentGroups.filter { $0.dueAt ?? Date.distantPast > rightNow }
+            let upcoming = assignments.filter { $0.dueAt ?? Date.distantPast > rightNow }
             if !upcoming.isEmpty {
                 let upcomingGroup = AssignmentDateGroup(id: "upcoming", name: "Upcoming Assignments", assignments: upcoming)
                 assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: upcomingGroup, courseColor: courseColor))
             }
-            let undated = assignmentGroups.filter { $0.dueAt == nil }
+            let undated = assignments.filter { $0.dueAt == nil }
             if !undated.isEmpty {
                 let undatedGroup = AssignmentDateGroup(id: "undated", name: "Undated Assignments", assignments: undated)
                 assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: undatedGroup, courseColor: courseColor))
