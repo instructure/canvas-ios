@@ -49,6 +49,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
     private lazy var store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: assetType, assetID: assetID)) { [weak self] in
         self?.update(embed: true)
     }
+
     private var sequence: ModuleItemSequence? { store.first }
 
     private lazy var moduleNavigationViewModel = ModuleBottomNavBarViewModel(
@@ -77,7 +78,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
         return controller
     }
 
-    public override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         leftBarButtonItems = navigationItem.leftBarButtonItems
         rightBarButtonItems = navigationItem.rightBarButtonItems
@@ -94,7 +95,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
 
         // Sometimes module links within Pages are referenced by their pageId ("/pages/my-module") instead of their id.
         // When downloading module item sequences for offline usage, we always download with the id field so we need to
-        // find the matching `ModuleItem` and replace the assetID for the `GetModuleItemSequence` request. 
+        // find the matching `ModuleItem` and replace the assetID for the `GetModuleItemSequence` request.
         if offlineModeInteractor.isOfflineModeEnabled() {
             if Int(assetID) == nil, let model: ModuleItem = env.database.viewContext.fetch(scope: .where(#keyPath(ModuleItem.pageId), equals: assetID)).first {
                 store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: .moduleItem, assetID: model.id)) { [weak self] in
@@ -134,7 +135,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
         ])
         hostingVC.didMove(toParent: self)
     }
-    
+
     private func setupModuleNavigationBarForCanvas() {
         // places the next arrow on the opposite side
         let transform = CGAffineTransform(scaleX: -1, y: 1)
@@ -142,7 +143,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
         nextButton.titleLabel?.transform = transform
         nextButton.imageView?.transform = transform
     }
-    
+
     private func update(embed: Bool) {
         if store.requested, store.pending {
             return
@@ -179,12 +180,12 @@ public final class ModuleItemSequenceViewController: UIViewController {
             buttonsContainer.isHidden = show == false
             buttonsHeightConstraint.constant = show ? 56 : 0
             previousButton.isHidden = prev == false
-            nextButton.isHidden = next == false    
+            nextButton.isHidden = next == false
         }
-        
+
         view.layoutIfNeeded()
     }
-    
+
     private func show(item: ModuleItemSequenceNode, direction: PagesViewController.Direction? = nil) {
         let details = ModuleItemDetailsViewController.create(courseID: courseID, moduleID: item.moduleID, itemID: item.id)
         setCurrentPage(details, direction: direction)
