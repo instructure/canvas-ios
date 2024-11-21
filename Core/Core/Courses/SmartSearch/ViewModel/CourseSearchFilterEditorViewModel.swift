@@ -48,15 +48,15 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
     @Published var sortMode: CourseSmartSearchFilter.SortMode?
     @Published var resultTypes: [ResultTypeSelection]
 
-    private var selection: Binding<CourseSmartSearchFilter?>
+    private var selection: Binding<FilterSelection<CourseSmartSearchFilter>>
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: Initialization
 
-    init(selection: Binding<CourseSmartSearchFilter?>) {
+    init(selection: Binding<FilterSelection<CourseSmartSearchFilter>>) {
         self.selection = selection
 
-        let filter = selection.wrappedValue
+        let filter = selection.wrappedValue.editedFilter
         self.sortMode = filter?.sortMode ?? .relevance
 
         let included = filter?.includedTypes.nilIfEmpty ?? ResultType.filterableTypes
@@ -102,6 +102,14 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
         }
     }
 
+    func cancel() {
+        selection.wrappedValue.cancel()
+    }
+
+    func submit() {
+        selection.wrappedValue.submit()
+    }
+
     // MARK: Privates
 
     private func updateSelection(
@@ -112,11 +120,11 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
         let allUnchecked = resultTypes.allSatisfy({ $0.checked == false })
 
         if sortMode == .relevance, allChecked || allUnchecked {  // This is invalid case
-            selection.wrappedValue = nil
+            selection.wrappedValue.editedFilter = nil
             return
         }
 
-        selection.wrappedValue = CourseSmartSearchFilter(
+        selection.wrappedValue.editedFilter = CourseSmartSearchFilter(
             sortMode: sortMode ?? .relevance,
             includedTypes: resultTypes
                 .filter({ $0.checked })

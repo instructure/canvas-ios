@@ -20,7 +20,10 @@ import SwiftUI
 import UIKit
 import Combine
 
-public protocol CoreSearchController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {}
+public protocol CoreSearchController: UIViewController,
+                                        UITextFieldDelegate,
+                                        UINavigationControllerDelegate,
+                                        UIAdaptivePresentationControllerDelegate {}
 
 public class CoreSearchHostingController<
         Attributes: SearchViewAttributes,
@@ -38,6 +41,8 @@ public class CoreSearchHostingController<
     private let router: Router
 
     private(set) var selectedFilter: ViewsProvider.Filter?
+    private var filterSelection = ValueReference<FilterSelection<ViewsProvider.Filter>>()
+
     private var leftBarButtonItemsToRestore: [UIBarButtonItem]?
 
     private var searchFieldState: SearchFieldState = .removed
@@ -245,26 +250,30 @@ public class CoreSearchHostingController<
         )
     }
 
-    private func showFilterEditor() {
+    private lazy var onFilterSubmission: (ViewsProvider.Filter?) -> Void = { [weak self] newFilter in
+        self?.selectedFilter = newFilter
+        self?.filterBarItem.image = newFilter != nil ? .filterSolid : .filterLine
+    }
 
-        let filter: Binding<ViewsProvider.Filter?> = Binding { [ weak self] in
-            self?.selectedFilter
-        } set: { [weak self] newFilter in
-            guard let self else { return }
-            selectedFilter = newFilter
-            filterBarItem.image = newFilter != nil ? .filterSolid : .filterLine
-        }
+    private func showFilterEditor() {
+        filterSelection.value.present(with: selectedFilter)
+        filterSelection.value.submitted = onFilterSubmission
 
         let filterEditorVC = CoreHostingController(
             searchViewsProvider
-                .filterEditorView(filter)
+                .filterEditorView(filterSelection.binding)
                 .environment(Attributes.Environment.keyPath, searchContext)
         )
         filterEditorVC.view.accessibilityIdentifier = "filter_editor_view"
+        filterEditorVC.presentationController?.delegate = self
         router.show(filterEditorVC, from: self, options: .modal(.formSheet, animated: true))
     }
 
     // MARK: Delegate Methods
+
+    public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        filterSelection.value.resolve(with: onFilterSubmission)
+    }
 
     public func textFieldShouldClear(_ textField: UITextField) -> Bool {
         searchContext.searchText.send("")
@@ -343,4 +352,24 @@ private enum NavBarTransition: String {
             return fade
         }
     }
+}
+
+public protocol ReferrableValue {
+    static var defaultValue: Self { get }
+}
+
+public class ValueReference<Value: ReferrableValue> {
+    public var value: Value
+    public init(value: Value = .defaultValue) {
+        self.value = value
+    }
+
+    public lazy var binding = Binding(
+        get: { [weak self] in
+            self?.value ?? Value.defaultValue
+        },
+        set: { [weak self] newValue in
+            self?.value = newValue
+        }
+    )
 }

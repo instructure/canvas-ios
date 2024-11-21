@@ -26,8 +26,7 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
     @State var searchText: String
     @State var filter: ViewProvider.Filter?
 
-    @State private var editingFilter: ViewProvider.Filter?
-    @State private var isFilterEditorPresented: Bool = false
+    @State private var filterSelection = FilterSelection<ViewProvider.Filter>()
 
     private let router: Router
     private let searchViewsProvider: ViewProvider
@@ -42,7 +41,6 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
         self.router = router
         self.searchViewsProvider = provider
         self._filter = State(initialValue: filter)
-        self._editingFilter = State(initialValue: filter)
         self._searchText = State(initialValue: searchText)
     }
 
@@ -64,8 +62,7 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        editingFilter = filter
-                        isFilterEditorPresented = true
+                        filterSelection.present(with: filter)
                     } label: {
                         if filter != nil {
                             Image.filterSolid
@@ -104,12 +101,12 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
                 searchContext.searchText.send(newValue)
             }
             .sheet(
-                isPresented: $isFilterEditorPresented,
+                isPresented: $filterSelection.presented,
                 onDismiss: {
-                    filter = editingFilter
+                    filterSelection.resolve(with: $filter)
                 },
                 content: {
-                    searchViewsProvider.filterEditorView($editingFilter)
+                    searchViewsProvider.filterEditorView($filterSelection)
                 }
             )
     }
@@ -118,3 +115,4 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
         return searchContext.accentColor.flatMap({ Color(uiColor: $0) }) ?? .secondary
     }
 }
+
