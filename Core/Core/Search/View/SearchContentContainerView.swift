@@ -67,7 +67,7 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
                         editingFilter = filter
                         isFilterEditorPresented = true
                     } label: {
-                        if filter != nil {
+                        if filter?.isActive ?? false {
                             Image.filterSolid
                         } else {
                             Image.filterLine

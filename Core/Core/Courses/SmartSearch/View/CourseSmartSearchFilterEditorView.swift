@@ -37,7 +37,9 @@ public struct CourseSmartSearchFilterEditorView: View {
                     InstUI.Divider()
 
                     HStack {
-                        Text("Sort By").font(.semibold14).foregroundStyle(Color.textDark)
+                        Text("Sort By", bundle: .core)
+                            .font(.semibold14)
+                            .foregroundStyle(Color.textDark)
                         Spacer()
                     }
                     .padding(16)
@@ -63,7 +65,9 @@ public struct CourseSmartSearchFilterEditorView: View {
                     )
 
                     HStack {
-                        Text("Result type").font(.semibold14).foregroundStyle(Color.textDark)
+                        Text("Result type", bundle: .core)
+                            .font(.semibold14)
+                            .foregroundStyle(Color.textDark)
                         Spacer()
                         Button(
                             viewModel.allSelectionMode.title,
@@ -96,12 +100,24 @@ public struct CourseSmartSearchFilterEditorView: View {
                 }
             }
             .listStyle(.plain)
-            .navigationTitle("Search Preferences")
+            .navigationTitle(Text("Search Preferences", bundle: .core))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") {
+
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        viewModel.cancel()
                         dismiss()
+                    } label: {
+                        Text("Cancel", bundle: .core)
+                    }
+                }
+
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Done", bundle: .core)
                     }
                 }
             }

@@ -19,40 +19,21 @@
 import Foundation
 
 class UISearchField: UIView {
-    required init?(coder: NSCoder) { nil }
-
     let field = CoreTextField()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setContentHuggingPriority(.defaultLow, for: .horizontal)
-    }
-
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        guard subviews.isEmpty else { return }
-
+    private lazy var container: CapsuleView = {
         let container = CapsuleView()
         container.translatesAutoresizingMaskIntoConstraints = false
         container.backgroundColor = UIColor.backgroundLightest
-        addSubview(container)
-
-        NSLayoutConstraint.activate([
-            container.leadingAnchor.constraint(equalTo: leadingAnchor),
-            container.trailingAnchor.constraint(equalTo: trailingAnchor),
-            container.centerYAnchor.constraint(equalTo: centerYAnchor).with({ $0.priority = .defaultHigh }),
-            container.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
-            container.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor)
-        ])
 
         let icon = UIImageView(image: UIImage.smartSearchSmallLine)
         icon.tintColor = .secondaryLabel
         icon.contentMode = .center
         icon.setContentHuggingPriority(.required, for: .horizontal)
+        icon.setContentCompressionResistancePriority(.required, for: .horizontal)
 
         field.autocapitalizationType = .none
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.setContentHuggingPriority(.defaultLow, for: .horizontal)
         field.clearButtonMode = .always
         field.font = .scaledNamedFont(.regular14)
         field.returnKeyType = .search
@@ -73,9 +54,31 @@ class UISearchField: UIView {
 
         NSLayoutConstraint.activate([
             stack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
-            stack.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
+            stack.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -5),
             stack.topAnchor.constraint(equalTo: container.topAnchor, constant: 7.5),
             stack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -7.5)
+        ])
+
+        return container
+    }()
+
+    override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+
+        if newSuperview != superview {
+            container.removeFromSuperview()
+        }
+
+        guard newSuperview != nil else { return }
+
+        addSubview(container)
+        NSLayoutConstraint.activate([
+            container.leadingAnchor.constraint(equalTo: leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: trailingAnchor),
+            container.centerYAnchor.constraint(equalTo: centerYAnchor)
+                .with { $0.priority = .defaultHigh },
+            container.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
+            container.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor)
         ])
     }
 }

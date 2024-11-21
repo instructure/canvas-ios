@@ -97,13 +97,7 @@ public class CoreSearchHostingController<
     }()
 
     private lazy var searchFieldView: UISearchField = {
-
-        let searchView = UISearchField(
-            frame: CGRect(
-                origin: .zero,
-                size: CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
-            )
-        )
+        let searchView = UISearchField()
         searchView.field.placeholder = searchContext.searchPrompt
         searchView.field.accessibilityIdentifier = "ui_search_field"
         searchView.field.delegate = self
@@ -111,7 +105,6 @@ public class CoreSearchHostingController<
         if let clearColor = searchContext.accentColor {
             searchView.field.clearButtonColor = clearColor
         }
-
         return searchView
     }()
 
@@ -168,7 +161,12 @@ public class CoreSearchHostingController<
         filterBarItem.image = .filterLine
 
         searchContext.reset()
+
         searchFieldView.field.text = searchContext.searchText.value
+        searchFieldView.frame.size = CGSize(
+            width: CGFloat.greatestFiniteMagnitude,
+            height: CGFloat.greatestFiniteMagnitude
+        )
 
         navigationItem.leftBarButtonItems = [closeBarItem]
         navigationItem.hidesBackButton = true
@@ -252,7 +250,7 @@ public class CoreSearchHostingController<
         } set: { [weak self] newFilter in
             guard let self else { return }
             selectedFilter = newFilter
-            filterBarItem.image = newFilter != nil ? .filterSolid : .filterLine
+            filterBarItem.image = (newFilter?.isActive ?? false) ? .filterSolid : .filterLine
         }
 
         let filterEditorVC = CoreHostingController(

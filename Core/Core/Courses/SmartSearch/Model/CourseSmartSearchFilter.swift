@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct CourseSmartSearchFilter: Equatable {
+public struct CourseSmartSearchFilter: Equatable, SearchPreference {
     public enum SortMode {
         case relevance
         case type
@@ -34,6 +34,11 @@ public struct CourseSmartSearchFilter: Equatable {
 
     func apply(to result: CourseSmartSearchResult) -> Bool {
         return includedTypes.contains(result.content_type)
+    }
+
+    public var isActive: Bool {
+        return (1 ..< CourseSmartSearchResultType.allCases.count)
+            .contains(includedTypes.count)
     }
 }
 

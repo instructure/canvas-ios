@@ -48,6 +48,7 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
     @Published var sortMode: CourseSmartSearchFilter.SortMode?
     @Published var resultTypes: [ResultTypeSelection]
 
+    private var initialFilter: CourseSmartSearchFilter?
     private var selection: Binding<CourseSmartSearchFilter?>
     private var subscriptions = Set<AnyCancellable>()
 
@@ -57,6 +58,7 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
         self.selection = selection
 
         let filter = selection.wrappedValue
+        self.initialFilter = filter
         self.sortMode = filter?.sortMode ?? .relevance
 
         let included = filter?.includedTypes.nilIfEmpty ?? ResultType.filterableTypes
@@ -100,6 +102,10 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
                 resultTypes[index].checked = true
             }
         }
+    }
+
+    func cancel() {
+        selection.wrappedValue = initialFilter
     }
 
     // MARK: Privates

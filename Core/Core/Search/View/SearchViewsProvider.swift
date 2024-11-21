@@ -19,7 +19,7 @@
 import SwiftUI
 
 public protocol SearchViewsProvider {
-    associatedtype Filter
+    associatedtype Filter: SearchPreference
     associatedtype FilterEditor: View
     associatedtype Support: SearchSupportAction
     associatedtype SearchContent: View
@@ -28,4 +28,8 @@ public protocol SearchViewsProvider {
 
     func contentView(_ filter: Binding<Filter?>) -> SearchContent
     func filterEditorView(_ filter: Binding<Filter?>) -> FilterEditor
+}
+
+public protocol SearchPreference {
+    var isActive: Bool { get }
 }

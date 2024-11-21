@@ -24,7 +24,7 @@ struct CourseSearchResultsHeaderView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("Results in course")
+            Text("Results in course", bundle: .core)
                 .lineLimit(1)
                 .font(.regular16)
                 .foregroundStyle(Color.textDark)
