@@ -62,7 +62,7 @@ public struct CourseDetailsCellView: View {
             .contentShape(Rectangle())
             .frame(minHeight: 54)
         }
-        .buttonStyle(.contextButton(color: viewModel.courseColor, isSelected: viewModel.isHighlighted))
+        .buttonStyle(.contextButton(color: viewModel.courseColor, isHighlighted: viewModel.isHighlighted))
         .accessibility(identifier: viewModel.a11yIdentifier)
         .accessibility(addTraits: viewModel.isHighlighted ? .isSelected : [])
         .alert(isPresented: $viewModel.showGenericError) {

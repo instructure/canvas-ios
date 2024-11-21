@@ -39,4 +39,15 @@ extension View {
             value.wrappedValue = newSize
         }
     }
+
+    @ViewBuilder
+    func measuringSizeOnce(_ value: Binding<CGSize>) -> some View {
+        if value.wrappedValue.isZero {
+            measuringSize { newSize in
+                value.wrappedValue = newSize
+            }
+        } else {
+            self
+        }
+    }
 }

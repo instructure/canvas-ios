@@ -24,7 +24,6 @@ struct CourseSearchResultRowView: View {
     @Environment(\.courseSmartSearchContext) private var searchContext
 
     @State private var isVisited: Bool = false
-
     @Binding var selectedId: ID?
 
     let result: CourseSmartSearchResult
@@ -37,12 +36,12 @@ struct CourseSearchResultRowView: View {
             selectedId = result.content_id
         } label: {
             HStack(alignment: .top, spacing: 0) {
-                result.content_type.icon.foregroundStyle(color)
-                Spacer(minLength: InstUI.Styles.Padding.cellIconText.rawValue)
+                result.content_type.icon.foregroundStyle(accentColor)
+                Spacer().frame(width: InstUI.Styles.Padding.cellIconText.rawValue)
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(result.title).font(.semibold16).foregroundStyle(color)
+                    Text(result.title).font(.semibold16).foregroundStyle(titleColor)
                     if showsType {
-                        Text(result.readable_type).font(.regular14).foregroundStyle(color)
+                        Text(result.readable_type).font(.regular14).foregroundStyle(accentColor)
                     }
                     if result.body.isNotEmpty {
                         Text(result.body)
@@ -72,17 +71,13 @@ struct CourseSearchResultRowView: View {
             .paddingStyle(set: .iconCell)
             .contentShape(Rectangle())
         }
-        .buttonStyle(.contextButton(color: searchContext.accentColor, state: buttonState))
+        .buttonStyle(.contextButton(color: searchContext.accentColor, isHighlighted: isHighlighted))
         .onReceive(searchContext.visitedRecordPublisher) { history in
             isVisited = history.contains(result.content_id)
         }
     }
 
-    private var buttonState: ContextButtonState {
-        if selectedId == result.id { return .selected }
-        if isVisited { return .highlighted }
-        return .normal
-    }
+    private var isHighlighted: Bool { selectedId == result.id }
 
     private var routePath: String {
         return "/" + [
@@ -91,7 +86,12 @@ struct CourseSearchResultRowView: View {
         ].joined(separator: "/")
     }
 
-    private var color: Color {
-        Color(uiColor: searchContext.accentColor ?? .gray)
+    private var accentColor: Color {
+        Color(uiColor: searchContext.accentColor ?? .textDarkest)
+    }
+
+    private var titleColor: Color {
+        let visitedColor = searchContext.accentColor ?? .textDarkest
+        return Color(uiColor: isVisited ? visitedColor : .textDarkest)
     }
 }

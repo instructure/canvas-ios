@@ -55,6 +55,9 @@ struct CourseSmartSearchResultsView: View {
                 .ignoresSafeArea()
             })
         }
+        .onAppear {
+            selectedId = nil
+        }
     }
 }
 
@@ -114,6 +117,9 @@ struct CourseSmartSearchGroupedResultsView: View {
                 }
                 .ignoresSafeArea()
             })
+        }
+        .onAppear {
+            selectedId = nil
         }
     }
 }

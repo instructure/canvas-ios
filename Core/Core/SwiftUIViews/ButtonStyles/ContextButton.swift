@@ -18,65 +18,43 @@
 
 import SwiftUI
 
-public enum ContextButtonState {
-    case normal
-    case selected
-    case highlighted
-}
-
 /**
  This button style adds a narrow vertical line to the left of the button using the given context color while changing the button's background to light gray in a pressed down state.
  */
 public struct ContextButton: ButtonStyle {
     private let selectionBackgroundColor: UIColor = .backgroundLight
     private let contextColor: UIColor
-    private let state: ContextButtonState
+    private let forceHighlight: Bool
 
     /**
      - parameters:
-        - state: If this parameter is set to `.highlighted` or `.selected`, then the button will show its highlighted state even if it isn't pressed down. With `.highlighted` state not showing the vertical line on the left. default is `.normal`.
+        - isHighlighted: If this parameter is true, then the button will show its highlighted state even if it isn't pressed down. Useful to indicate selected state.
      */
-    public init(contextColor: UIColor?, state: ContextButtonState) {
-        self.contextColor = contextColor?.ensureContrast(against: .backgroundLightest) ?? selectionBackgroundColor
-        self.state = state
-    }
-
-    public init(contextColor: UIColor?) {
-        self.contextColor = contextColor?.ensureContrast(against: .backgroundLightest) ?? selectionBackgroundColor
-        self.state = .normal
+    public init(contextColor: UIColor?, isHighlighted: Bool = false) {
+        self.contextColor = contextColor ?? selectionBackgroundColor
+        self.forceHighlight = isHighlighted
     }
 
     public func makeBody(configuration: Configuration) -> some View {
-        configuration.label.background(selectionIndicator(given: configuration))
+        configuration.label
+            .background(selectionIndicator(configuration.isPressed || forceHighlight))
     }
 
-    private func selectionIndicator(given configuration: Configuration) -> some View {
-        let visible = configuration.isPressed || state != .normal
-        return HStack(spacing: 0) {
-            if configuration.isPressed || state == .selected {
-                Color(contextColor)
-                    .frame(width: 3)
-            }
+    private func selectionIndicator(_ isSelected: Bool) -> some View {
+        HStack(spacing: 0) {
+            Color(contextColor)
+                .frame(width: 3)
             Color(selectionBackgroundColor)
         }
-        .opacity(visible ? 1 : 0)
+        .opacity(isSelected ? 1 : 0)
     }
 }
 
 // MARK: - ViewModifier Friendly methods
 
 public extension ButtonStyle where Self == ContextButton {
-
-    static func contextButton(color: UIColor?) -> Self {
-        ContextButton(contextColor: color)
-    }
-
-    static func contextButton(color: UIColor?, isSelected: Bool) -> Self {
-        ContextButton(contextColor: color, state: isSelected ? .selected : .normal)
-    }
-
-    static func contextButton(color: UIColor?, state: ContextButtonState) -> Self {
-        ContextButton(contextColor: color, state: state)
+    static func contextButton(color: UIColor?, isHighlighted: Bool = false) -> Self {
+        ContextButton(contextColor: color, isHighlighted: isHighlighted)
     }
 }
 
