@@ -61,7 +61,6 @@ extension TimeInterval {
 }
 
 extension CGSize {
-    
     func isForward(_ layoutDirection: LayoutDirection) -> Bool {
         switch layoutDirection {
         case .rightToLeft:

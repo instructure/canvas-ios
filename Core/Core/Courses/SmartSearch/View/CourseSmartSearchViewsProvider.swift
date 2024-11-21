@@ -26,7 +26,7 @@ public class CourseSmartSearchViewsProvider: SearchViewsProvider {
     public init(interactor: CourseSmartSearchInteractor) {
         self.interactor = interactor
     }
-    
+
     public func filterEditorView(_ filter: Binding<CourseSmartSearchFilter?>) -> some View {
         CourseSmartSearchFilterEditorView(
             model: CourseSearchFilterEditorViewModel(
