@@ -77,7 +77,6 @@ struct AssignmentDetails: View {
         .scrollDismissesKeyboard(.immediately)
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top) { if viewModel.state == .data { header } }
-        .avoidKeyboardArea()
         .toolbarBackground(.visible, for: .navigationBar)
         .alert("Error", isPresented: $viewModel.isAlertVisible) {
             Button("OK", role: .cancel) { }
