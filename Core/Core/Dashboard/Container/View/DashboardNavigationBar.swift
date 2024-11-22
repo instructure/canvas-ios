@@ -36,7 +36,7 @@ struct DashboardNavigationBar: ViewModifier {
                         navBarLogo
                     }
                 }
-                .onChange(of: horizontalSizeClass, initial: true) { oldValue, newValue in
+                .onChange(of: horizontalSizeClass, initial: true) { _, newValue in
                     updateNavBarLogoVisibility(horizontalSizeClass: newValue)
                 }
         } else {
