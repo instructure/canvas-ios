@@ -38,7 +38,7 @@ public struct Context: Codable, Equatable, Hashable {
 
     public init(_ contextType: ContextType, id: String) {
         if id.isEmpty {
-            Analytics.shared.logError(
+            RemoteLogger.shared.logError(
                 name: "Context created with invalid contextId",
                 reason: "contextType: \(contextType.rawValue), contextId: \"\(id)\", baseUrl: \(Analytics.analyticsBaseUrl)"
             )

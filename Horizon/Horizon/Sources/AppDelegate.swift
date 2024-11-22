@@ -44,7 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate, L
 }
 
 extension AppDelegate {
-    func openExternalURL(_: URL) {}
+    func openExternalURL(_ url: URL) {
+        UIApplication.shared.open(url)
+    }
 
     func userDidLogin(session _: Core.LoginSession) {}
 

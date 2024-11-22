@@ -21,6 +21,7 @@ import SwiftUI
 public struct MessageDetailsView: View {
     @ObservedObject private var model: MessageDetailsViewModel
     @Environment(\.viewController) private var controller
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     init(model: MessageDetailsViewModel) {
         self.model = model

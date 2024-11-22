@@ -21599,7 +21599,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Segur que voleu marxar d'aquesta prova?"
+            "value" : "Segur que voleu deixar aquesta prova?"
           }
         },
         "cy" : {
@@ -21671,7 +21671,7 @@
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¿Estás seguro de que quieres abandonar esta prueba?"
+            "value" : "¿Seguro que quieres abandonar esta prueba?"
           }
         },
         "fi" : {
@@ -52055,7 +52055,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sortir"
+            "value" : "Quitter"
           }
         },
         "fr-CA" : {
@@ -63788,7 +63788,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anweisungen"
+            "value" : "Anleitungen"
           }
         },
         "en-AU" : {
@@ -63842,7 +63842,7 @@
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rubriikki"
+            "value" : "Ohjeet"
           }
         },
         "fr" : {
@@ -67116,7 +67116,7 @@
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ออก"
+            "value" : "ฝาก"
           }
         },
         "vi" : {
@@ -88045,7 +88045,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Annen"
+            "value" : "Annet"
           }
         },
         "nl" : {
@@ -101049,7 +101049,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuar el examen"
+            "value" : "Continuar la evaluación"
           }
         },
         "es-ES" : {
@@ -101061,13 +101061,13 @@
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jatka kyselyä"
+            "value" : "Jatka testiä"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reprendre le questionnaire"
+            "value" : "Reprendre le quiz"
           }
         },
         "fr-CA" : {
@@ -101305,7 +101305,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Volver a realizar el examen"
+            "value" : "Volver a realizar la evaluación"
           }
         },
         "es-ES" : {
@@ -101323,7 +101323,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recommencer le questionnaire"
+            "value" : "Recommencer le quiz"
           }
         },
         "fr-CA" : {
@@ -113235,7 +113235,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entregat el %@"
+            "value" : "S’ha entregat %@"
           }
         },
         "cy" : {
@@ -113367,13 +113367,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "タスクの評定を送信%@"
+            "value" : "提出済み%@"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kua tukuna %@"
+            "value" : "Kua Tukuna %@"
           }
         },
         "ms" : {
@@ -113397,7 +113397,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingediend %@"
+            "value" : "Ingeleverd %@"
           }
         },
         "pl" : {
@@ -113433,13 +113433,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inskickat %@"
+            "value" : "Skickad %@"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inskickat %@"
+            "value" : "Inskickad %@"
           }
         },
         "th" : {
@@ -115682,7 +115682,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Programme"
+            "value" : "Plan de cours"
           }
         },
         "ga" : {
@@ -117234,7 +117234,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tomar el examen"
+            "value" : "Tomar la evaluación"
           }
         },
         "es-ES" : {
@@ -117252,7 +117252,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Répondre au questionnaire"
+            "value" : "Répondre au quiz"
           }
         },
         "fr-CA" : {
@@ -137904,19 +137904,19 @@
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "View results"
+            "value" : "View Results"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "View results"
+            "value" : "View Results"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "View results"
+            "value" : "View Results"
           }
         },
         "es" : {

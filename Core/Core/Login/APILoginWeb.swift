@@ -25,6 +25,7 @@ struct LoginWebRequest: APIRequestable {
     let provider: String?
 
     let path = "/login/oauth2/auth"
+    let shouldAddNoVerifierQuery = false
 
     var query: [APIQueryItem] {
         var items: [APIQueryItem] = [

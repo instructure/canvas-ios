@@ -1,22 +1,31 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
+    "AI Learning Assist" : {
+
+    },
+    "AI Summary" : {
+
+    },
+    "AI Tutor" : {
+
+    },
+    "Career" : {
 
     },
     "Continue learning" : {
 
     },
-    "Dashboard" : {
+    "Error" : {
 
     },
-    "Hello, Journey!" : {
+    "Generate some study flashcards" : {
 
     },
-    "Hello, Portfolio!" : {
+    "Give me key takeaways" : {
 
     },
-    "Journey" : {
+    "Hello, Career!" : {
 
     },
     "Monday, 12/12/2024" : {
@@ -25,7 +34,25 @@
     "Portfolio" : {
 
     },
-    "Programs" : {
+    "Home" : {
+
+    },
+    "Learn" : {
+
+    },
+    "OK" : {
+
+    },
+    "Quiz me on this material" : {
+
+    },
+    "Submit Assignment" : {
+
+    },
+    "Summarize this material" : {
+
+    },
+    "Tell me more about this topic" : {
 
     },
     "Search" : {

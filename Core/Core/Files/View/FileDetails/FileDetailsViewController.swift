@@ -64,9 +64,17 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     private var subscriptions = Set<AnyCancellable>()
     private var offlineFileInteractor: OfflineFileInteractor?
     private var imageLoader: ImageLoader?
+    private var isFileLocalURLAvailable: Bool { localURL != nil }
+    private var isPresentingOfflineModeAlert = false
 
-    public static func create(context: Context?, fileID: String, originURL: URLComponents? = nil, assignmentID: String? = nil, canEdit: Bool = true,
-                              offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileDetailsViewController {
+    public static func create(
+        context: Context?,
+        fileID: String,
+        originURL: URLComponents? = nil,
+        assignmentID: String? = nil,
+        canEdit: Bool = true,
+        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
+    ) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.context = context
@@ -85,10 +93,10 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     }
 
     public static func create(
-            context: Context?,
-            fileID: String,
-            offlineFileSource: OfflineFileSource,
-            offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
+        context: Context?,
+        fileID: String,
+        offlineFileSource: OfflineFileSource,
+        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
     ) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
@@ -167,7 +175,11 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     }
 
     func update() {
-        guard let file = files.first, offlineFileInteractor?.isOffline == false else {
+        if offlineFileInteractor?.isOffline == true {
+            return handleOfflineFileLoad()
+        }
+
+        guard let file = files.first else {
             if let error = files.error {
                 // If file download failed because of a forbidden error and we have a verifier token, then we modify the url and try to open the file in a webview.
                 if var url = originURL, url.containsVerifier, error.isForbidden {
@@ -183,8 +195,6 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
                 } else {
                     showError(error)
                 }
-            } else if offlineFileInteractor?.isItemAvailableOffline(source: offlineFileSource) == true, localURL == nil {
-                downloadFile(at: nil)
             } else if files.requested, !files.pending, localURL == nil {
                 // File was deleted, go back.
                 env.router.dismiss(self)
@@ -201,6 +211,34 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         } else if let file = files.first, let url = file.url, remoteURL != url {
             remoteURL = url
             downloadFile(at: url)
+        }
+    }
+
+    private func handleOfflineFileLoad() {
+        if isFileLocalURLAvailable {
+            // File is already loaded, nothing to do, this is just an unnecessary update() call.
+            return
+        }
+
+        if isPresentingOfflineModeAlert {
+            // We failed to load the offline file and the error dialog is already presented.
+            // Nothing to do, this is just an unnecessary update() call.
+            return
+        }
+
+        if offlineFileInteractor?.isItemAvailableOffline(source: offlineFileSource) == true {
+            // File is not in CoreData but downloaded via rich content parsing
+           downloadFile(at: nil)
+        } else if let file = files.first, let url = file.url {
+            // File is in CoreData and was downloaded as a course file in the Files course tab.
+            downloadFile(at: url)
+        } else {
+            // This is a file that was not downloaded for offline mode.
+            isPresentingOfflineModeAlert = true
+            UIAlertController.showItemNotAvailableInOfflineAlert { [weak self] in
+                guard let self else { return }
+                env.router.dismiss(self)
+            }
         }
     }
 
@@ -557,7 +595,7 @@ extension FileDetailsViewController: QLPreviewControllerDataSource, QLPreviewCon
     }
 }
 
-extension FileDetailsViewController: PDFViewControllerDelegate {
+extension FileDetailsViewController: PDFViewControllerDelegate, FlexibleToolbarContainerDelegate {
     func embedPDFView(for url: URL) {
         guard DocViewerViewController.hasPSPDFKitLicense else {
             return embedWebView(for: url)
@@ -581,7 +619,8 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
             // Override the override
             builder.overrideClass(AnnotationToolbar.self, with: AnnotationToolbar.self)
         })
-        controller.annotationToolbarController?.toolbar.toolbarPosition = .left
+        controller.annotationToolbarController?.annotationToolbar.toolbarPosition = defaultToolbarPosition()
+        controller.annotationToolbarController?.delegate = self
 
         let appearance = UIToolbarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -608,6 +647,29 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
         NotificationCenter.default.post(name: .init("FileViewControllerBarButtonItemsDidChange"), object: nil)
 
         doneLoading()
+    }
+
+    private func defaultToolbarPosition() -> FlexibleToolbar.Position {
+        let isRegular = view.traitCollection.horizontalSizeClass == .regular
+        let isRightToLeft = view.traitCollection.layoutDirection == .rightToLeft
+        return !isRegular || isRightToLeft ? .left : .right
+    }
+
+    public func flexibleToolbarContainerContentRect(_ container: FlexibleToolbarContainer, for position: FlexibleToolbar.Position) -> CGRect {
+
+        let isCompact = container.traitCollection.horizontalSizeClass == .compact
+        let padding: CGFloat = isCompact ? 10 : 16
+
+        let safeInsets = container.safeAreaInsets
+        let contentFrame = contentView.convert(contentView.bounds, to: container)
+        let toolbarRect = CGRect(
+            x: safeInsets.left + padding,
+            y: contentFrame.origin.y,
+            width: container.bounds.width - safeInsets.left - safeInsets.right - 2 * padding,
+            height: contentFrame.height
+        )
+
+        return toolbarRect
     }
 
     func saveAnnotations() {

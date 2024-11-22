@@ -100,8 +100,16 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 
     func calendarTab() -> UIViewController {
         let split = CoreSplitViewController()
+
+        let planner: UIViewController
+        if ExperimentalFeature.rebuiltCalendar.isEnabled {
+            planner = PlannerAssembly.makeNewPlannerViewController()
+        } else {
+            planner = CoreNavigationController(rootViewController: PlannerViewController.create())
+        }
+
         split.viewControllers = [
-            CoreNavigationController(rootViewController: PlannerViewController.create()),
+            planner,
             CoreNavigationController(rootViewController: EmptyViewController())
         ]
         split.view.tintColor = Brand.shared.primary
@@ -171,7 +179,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {
         let map = [AppEnvironment.shared.k5.isK5Enabled ? "homeroom": "dashboard", "calendar", "todo", "notifications", "conversations"]
         let event = map[tabIndex]
-        Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
+        RemoteLogger.shared.logBreadcrumb(route: "/tabs/" + event, viewController: viewController)
     }
 
     @objc private func checkForPolicyChanges() {

@@ -77,7 +77,7 @@ class FileSubmissionItemsUploadStarterTests: CoreTestCase {
         item.uploadTarget = FileUploadTarget(upload_url: URL(string: "/uploadURL")!, upload_params: [:])
         item.fileSubmission = submission
 
-        let apiMock = api.mock(url: URL(string: "///uploadURL")!, method: .post)
+        let apiMock = api.mock(url: URL(string: "///uploadURL?no_verifiers=1")!, method: .post)
         apiMock.suspend()
 
         let completionEvent = expectation(description: "completion event fire")

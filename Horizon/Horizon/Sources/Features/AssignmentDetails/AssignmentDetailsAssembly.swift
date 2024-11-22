@@ -17,13 +17,48 @@
 //
 
 import Core
+import Foundation
 
 final class AssignmentDetailsAssembly {
-    static func makeViewModel() -> AssignmentViewModel {
-        AssignmentViewModel()
+    static func makeViewModel(
+        courseID: String,
+        assignmentID: String
+    ) -> AssignmentDetailsViewModel {
+        let uploadManager = HUploadFileManagerLive(
+            uploadManager: .shared,
+            assignmentID: assignmentID,
+            courseID: courseID
+        )
+        let interactor = AssignmentInteractorLive(
+            courseID: courseID,
+            assignmentID: assignmentID,
+            uploadManager: uploadManager,
+            appEnvironment: .shared
+        )
+        let appEnvironment = AppEnvironment.shared
+        return AssignmentDetailsViewModel(interactor: interactor, appEnvironment: appEnvironment)
     }
 
-    static func makeViewController() -> UIViewController {
-        CoreHostingController(AssignmentDetails(viewModel: makeViewModel()))
+    static func makeViewController(
+        courseID: String,
+        assignmentID: String
+    ) -> UIViewController {
+        CoreHostingController(AssignmentDetails(viewModel: makeViewModel(courseID: courseID, assignmentID: assignmentID)))
     }
+
+#if DEBUG
+    static func makePreview() -> AssignmentDetails {
+        let interactor = AssignmentInteractorPreview()
+        let appEnvironment = AppEnvironment.shared
+        let viewModel = AssignmentDetailsViewModel(interactor: interactor, appEnvironment: appEnvironment)
+        return AssignmentDetails(viewModel: viewModel)
+    }
+
+    static func makeAssignmentSubmissionViewModel() -> AssignmentDetailsViewModel {
+        let interactor = AssignmentInteractorPreview()
+        let appEnvironment = AppEnvironment.shared
+        return AssignmentDetailsViewModel(interactor: interactor, appEnvironment: appEnvironment)
+    }
+
+#endif
 }

@@ -26,7 +26,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .loading)
         XCTAssertNil(testee.courseName)
         XCTAssertNil(testee.courseColor)
-        XCTAssertFalse(testee.shouldShowFilterButton)
+        XCTAssertEqual(testee.gradingPeriods.count, 0)
     }
 
     func testCoursePropertiesUpdate() {
@@ -66,7 +66,7 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         testee.viewDidAppear()
 
-        XCTAssertTrue(testee.shouldShowFilterButton)
+        XCTAssertTrue(testee.gradingPeriods.count > 1)
     }
 
     func testAssignmentsPopulate() {
@@ -85,6 +85,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         api.mock(assignmentGroupRequest, value: assignmentGroups)
         let testee = AssignmentListViewModel(context: .course("1"))
 
+        testee.selectedSortingOption = .groupName
         testee.viewDidAppear()
 
         guard case .data(let groupViewModels) = testee.state else {
@@ -122,6 +123,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         // we modify the first grading period's start_date to make sure it is the first in the picker
         api.mock(GetGradingPeriods(courseID: "1"), value: [.make(id: "1", title: "GP1", start_date: Clock.now.addMonths(-1)), .make(id: "2", title: "GP2")])
         let testee = AssignmentListViewModel(context: .course("1"))
+        testee.selectedSortingOption = .groupName
         testee.viewDidAppear()
         XCTAssertEqual(testee.state, .empty)
         // GetAssignmentsByGroup iterates through all grading periods so we have to mock it not to make the whole fetch fail
@@ -142,7 +144,7 @@ class AssignmentListViewModelTests: CoreTestCase {
             .make(id: "AG1", name: "AGroup1", position: 1, assignments: [.make(assignment_group_id: "AG1", id: "1", name: "Assignment1")])
         ])
 
-        testee.gradingPeriodSelected(testee.gradingPeriods[1])
+        testee.filterOptionsDidUpdate(gradingPeriod: testee.gradingPeriods[1])
 
         guard case .data(let groupViewModels) = testee.state else {
             XCTFail("State doesn't contain any view models.")

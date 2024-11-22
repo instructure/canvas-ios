@@ -35,7 +35,8 @@ enum HorizonRoutes {
         assignmentRoutes,
         inboxRoutes,
         externalToolRoutes,
-        notebookRoutes
+        notebookRoutes,
+        aiRoutes
     ]
 
     private static var splashRoutes: [RouteHandler] {
@@ -155,7 +156,7 @@ enum HorizonRoutes {
                         url: url
                     )
                 }
-                return AssignmentDetailsAssembly.makeViewController()
+                return AssignmentDetailsAssembly.makeViewController(courseID: courseID, assignmentID: assignmentID)
             }
         ]
     }
@@ -202,6 +203,17 @@ enum HorizonRoutes {
                 guard let courseID = params["courseID"] else { return nil }
                 let controller = NotebookCourseAssembly.make(courseID: courseID)
                 return controller
+            }
+        ]
+    }
+
+    private static var aiRoutes: [RouteHandler] {
+        [
+            RouteHandler("/tutor") {_, _, _ in
+                AIAssembly.makeAITutorView()
+            },
+            RouteHandler("/summary") {_, _, _ in
+                AIAssembly.makeAISummaryView()
             }
         ]
     }

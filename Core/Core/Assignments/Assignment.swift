@@ -73,6 +73,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var unlockAt: Date?
     @NSManaged public var url: URL?
     @NSManaged public var useRubricForGrading: Bool
+    @NSManaged public var hideInGradeBook: Bool
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -99,6 +100,9 @@ public class Assignment: NSManagedObject {
      */
     @NSManaged public var submissions: Set<Submission>?
 
+    public var course: Course? {
+        managedObjectContext?.first(where: #keyPath(Course.id), equals: courseID)
+    }
     public var hideQuantitativeData: Bool {
         let course: Course? = managedObjectContext?.first(where: #keyPath(Course.id), equals: courseID)
         return course?.hideQuantitativeData ?? false
@@ -198,6 +202,7 @@ extension Assignment {
         unlockAt = item.unlock_at
         url = item.url
         useRubricForGrading = item.use_rubric_for_grading ?? false
+        hideInGradeBook = item.hide_in_gradebook ?? false
 
         if anonymousSubmissions == true {
             anonymizeStudents = true

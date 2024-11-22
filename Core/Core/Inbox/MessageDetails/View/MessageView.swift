@@ -112,12 +112,17 @@ public struct MessageView: View {
             SelectableText(
                 attributedText: model.body.toAttributedStringWithLinks(),
                 font: .regular16,
+                lineHeight: .fit,
                 textColor: .textDarkest
             )
             .accessibilityIdentifier("MessageDetails.body")
 
             if model.showAttachments {
-                AttachmentsView(attachments: model.attachments, didSelectAttachment: model.handleFileNavigation)
+                AttachmentsView(
+                    attachments: model.attachments,
+                    mediaComment: model.mediaComment,
+                    didSelectAttachment: model.handleFileNavigation
+                )
             }
         }
         .onAppear {
