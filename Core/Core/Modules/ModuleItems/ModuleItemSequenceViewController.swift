@@ -29,7 +29,6 @@ public final class ModuleItemSequenceViewController: UIViewController {
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var pagesContainerBottomConstraint: NSLayoutConstraint!
-    
 
     /// These should get set only once in viewDidLoad
     private var leftBarButtonItems: [UIBarButtonItem]?

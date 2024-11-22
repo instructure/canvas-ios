@@ -33,15 +33,15 @@ enum ModuleNavBarButtons: CaseIterable {
             .notebook
         ]
     }
-    
+
     var image: Image {
         switch self {
         case .previous:
             Image(systemName: "arrow.left")
         case .tts:
-            Image(systemName:"speaker.wave.2")
+            Image(systemName: "speaker.wave.2")
         case .assist:
-            Image("chatBot")            
+            Image("chatBot")
         case .notebook:
             Image(systemName: "bookmark")
         case .next:
