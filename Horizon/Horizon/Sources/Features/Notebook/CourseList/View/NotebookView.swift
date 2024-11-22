@@ -22,63 +22,16 @@ import SwiftUICore
 
 struct NotebookView: View {
 
-    @Bindable var state: NotebookViewModel
+    @Bindable var viewModel: NotebookViewModel
 
-    private let beige = Color(hexString: "#FBF5ED")
+    init(_ viewModel: NotebookViewModel) {
+        self.viewModel = viewModel
+    }
 
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView {
-                VStack {
-                    NavigationBar(onBack: state.onBack)
-                    SearchBar(onSearch: state.onSearch)
-                        .padding(.vertical, 24)
-                    ListViewItems(listItems: $state.listItems, onTap: state.onTap)
-                }
-                .padding(.horizontal, 24)
-                .padding(.bottom, 24)
-            }
-            .navigationBarBackButtonHidden(true)
-            .contentMargins(.top, geometry.safeAreaInsets.top)
-            .background(beige)
-            .ignoresSafeArea(edges: .top)
-        }
-    }
-
-    struct NavigationBar: View {
-        var onBack: (() -> Void)?
-
-        var body: some View {
-            VStack {
-                ZStack {
-                    BackButton(action: onBack).frame(
-                        maxWidth: .infinity, maxHeight: .infinity,
-                        alignment: Alignment(horizontal: .leading, vertical: .center))
-                    Text("Notebook").font(.regular20)
-                }
-            }
-        }
-    }
-
-    struct SearchBar: View {
-
-        let onSearch: ((String) -> Void)
-
-        @State private var searchText = ""
-
-        var body: some View {
-            ZStack(alignment: .leading) {
-                TextField("", text: $searchText, prompt: Text("Search"))
-                    .frame(height: 48)
-                    .padding(.leading, 48)
-                    .background(Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 32))
-                    .shadow(color: Color.black.opacity(0.2), radius: 8, x: 1, y: 2)
-                    .onChange(of: searchText) { onSearch(searchText) }
-                Image(systemName: "magnifyingglass")
-                    .foregroundColor(.textDarkest)
-                    .padding(.leading, 16)
-            }
+        NotesBody(title: "Notebook", router: viewModel.router) {
+            NotebookSearchBar(onSearch: viewModel.onSearch).padding(.vertical, 24)
+            ListViewItems(listItems: $viewModel.listItems, onTap: viewModel.onTap)
         }
     }
 
@@ -104,30 +57,11 @@ struct NotebookView: View {
         let item: NotebookListItem
 
         var body: some View {
-            VStack(alignment: .leading) {
+            NotebookCard {
                 Text(item.institution).font(.regular12).multilineTextAlignment(.leading)
                 Text(item.course).font(.regular22).multilineTextAlignment(.leading)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(24)
-            .background(Color.white)
-            .cornerRadius(16)
-            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 1, y: 2)
             .onTapGesture { onTap(item) }
-        }
-    }
-
-    struct BackButton: View {
-        let action: (() -> Void)?
-
-        var body: some View {
-            Button(action: action ?? {}) {
-                Image(systemName: "arrow.left")
-                    .foregroundColor(.textDarkest)
-                    .frame(width: 50, height: 50)
-            }.background(Color.white)
-                .clipShape(Circle())
-                .shadow(color: Color.black.opacity(0.2), radius: 8, x: 1, y: 2)
         }
     }
 }
@@ -136,7 +70,7 @@ struct NotebookView: View {
     struct NotebookView_Previews: PreviewProvider {
         static var previews: some View {
             NotebookView(
-                state: NotebookViewModel(
+                NotebookViewModel(
                     router: AppEnvironment.shared.router,
                     getCoursesUseCase: GetCoursesUseCase()
                 )

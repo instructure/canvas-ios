@@ -73,7 +73,7 @@ struct DashboardView: View {
         Button {
             AppEnvironment.shared.router.route(to: "/notebook", from: viewController)
         } label: {
-            Image("book", bundle: .main).tint(Color.textDarkest)
+            Image("Book", bundle: .main).tint(Color.textDarkest)
         }
     }
 

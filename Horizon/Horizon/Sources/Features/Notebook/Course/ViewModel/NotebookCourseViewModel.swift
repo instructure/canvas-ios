@@ -16,23 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
 import Core
+import SwiftUI
 
-final class NotebookAssembly {
-    static func make() -> CoreHostingController<NotebookView> {
-        let env = AppEnvironment.shared
-        guard let rootViewController = env.window?.rootViewController else {
-            fatalError("No root view controller")
-        }
-        return CoreHostingController(
-            NotebookView(
-                NotebookViewModel(
-                    router: env.router,
-                    getCoursesUseCase: GetCoursesUseCase(),
-                    viewController: rootViewController
-                )
-            )
-        )
+@Observable final class NotebookCourseViewModel {
+    let router: Router?
+
+    var title: String = ""
+
+    private let viewController: UIViewController?
+
+    init(courseID: String, router: Router? = nil, viewController: UIViewController? = nil) {
+        self.router = router
+        self.viewController = viewController
+
+        title = "Notebook for Course \(courseID)"
     }
 }

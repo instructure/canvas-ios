@@ -24,18 +24,19 @@ import Core
 
     var listItems: [NotebookListItem] = []
 
-    private let router: Router
+    let router: Router
 
     private let getCoursesUseCase: GetCoursesUseCase
 
-    var viewController: UIViewController?
+    private let viewController: UIViewController?
 
     private var getCoursesCancellable: AnyCancellable?
 
     private var searchTextCancellable: AnyCancellable?
 
     init(router: Router,
-         getCoursesUseCase: GetCoursesUseCase) {
+         getCoursesUseCase: GetCoursesUseCase,
+         viewController: UIViewController? = nil) {
         self.router = router
         self.getCoursesUseCase = getCoursesUseCase
         self.viewController = viewController
@@ -46,12 +47,6 @@ import Core
             }
         }
         onSearch("")
-    }
-
-    func onBack() {
-        guard let viewController = viewController else { return }
-
-        router.pop(from: viewController)
     }
 
     func onSearch(_ text: String) {
