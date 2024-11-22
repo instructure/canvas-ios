@@ -30,13 +30,17 @@ final class DashboardViewModel: ObservableObject {
     // MARK: - Private variables
 
     private var subscriptions = Set<AnyCancellable>()
+    private let router: Router?
 
     // MARK: - Init
 
     init(
         programsInteractor: GetProgramsInteractor,
-        userInteractor: GetUserInteractor
+        userInteractor: GetUserInteractor,
+        router: Router? = nil
     ) {
+        self.router = router
+
         unowned let unownedSelf = self
 
         programsInteractor.getPrograms()
@@ -55,7 +59,9 @@ final class DashboardViewModel: ObservableObject {
 
     // MARK: - Inputs
 
-    func notebookDidTap() {}
+    func notebookDidTap(viewController: WeakViewController) {
+        router?.route(to: "/notebook", from: viewController)
+    }
 
     func notificationsDidTap() {}
 

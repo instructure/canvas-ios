@@ -28,18 +28,14 @@ import Core
 
     private let getCoursesUseCase: GetCoursesUseCase
 
-    private let viewController: UIViewController?
-
     private var getCoursesCancellable: AnyCancellable?
 
     private var searchTextCancellable: AnyCancellable?
 
     init(router: Router,
-         getCoursesUseCase: GetCoursesUseCase,
-         viewController: UIViewController? = nil) {
+         getCoursesUseCase: GetCoursesUseCase) {
         self.router = router
         self.getCoursesUseCase = getCoursesUseCase
-        self.viewController = viewController
 
         getCoursesCancellable = getCoursesUseCase.get().sink { _ in } receiveValue: { [weak self] courses in
             self?.listItems = courses.map {
@@ -53,9 +49,7 @@ import Core
         getCoursesUseCase.search(for: text)
     }
 
-    func onTap(_ listItem: NotebookListItem) {
-        guard let viewController = viewController else { return }
-
+    func onTap(_ listItem: NotebookListItem, viewController: WeakViewController) {
         router.route(
             to: "/notebook/\(listItem.id)",
             from: viewController

@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "AI Learning Assist" : {
 
     },
@@ -28,22 +31,22 @@
     "Hello, Career!" : {
 
     },
-    "Monday, 12/12/2024" : {
-
-    },
-    "Portfolio" : {
-
-    },
     "Home" : {
 
     },
     "Learn" : {
 
     },
+    "Monday, 12/12/2024" : {
+
+    },
     "OK" : {
 
     },
     "Quiz me on this material" : {
+
+    },
+    "Search" : {
 
     },
     "Submit Assignment" : {
@@ -53,9 +56,6 @@
 
     },
     "Tell me more about this topic" : {
-
-    },
-    "Search" : {
 
     },
     "This is a note" : {

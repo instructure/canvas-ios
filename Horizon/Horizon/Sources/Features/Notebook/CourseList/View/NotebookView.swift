@@ -24,14 +24,16 @@ struct NotebookView: View {
 
     @Bindable var viewModel: NotebookViewModel
 
-    init(_ viewModel: NotebookViewModel) {
+    @Environment(\.viewController) var viewController
+
+    init(viewModel: NotebookViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
         NotesBody(title: "Notebook", router: viewModel.router) {
             NotebookSearchBar(onSearch: viewModel.onSearch).padding(.vertical, 24)
-            ListViewItems(listItems: $viewModel.listItems, onTap: viewModel.onTap)
+            ListViewItems(listItems: $viewModel.listItems, onTap: viewModel.onTap, viewController: viewController)
         }
     }
 
@@ -39,12 +41,14 @@ struct NotebookView: View {
 
         @Binding var listItems: [NotebookListItem]
 
-        let onTap: ((NotebookListItem) -> Void)
+        let onTap: ((NotebookListItem, WeakViewController) -> Void)
+
+        let viewController: WeakViewController
 
         var body: some View {
             VStack(spacing: 16) {
                 ForEach(listItems, id: \.id) { listItem in
-                    ListViewItem(onTap: onTap, item: listItem)
+                    ListViewItem(onTap: onTap, item: listItem, viewController: viewController)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -52,16 +56,18 @@ struct NotebookView: View {
     }
 
     struct ListViewItem: View {
-        let onTap: ((NotebookListItem) -> Void)
+        let onTap: ((NotebookListItem, WeakViewController) -> Void)
 
         let item: NotebookListItem
+
+        let viewController: WeakViewController
 
         var body: some View {
             NotebookCard {
                 Text(item.institution).font(.regular12).multilineTextAlignment(.leading)
                 Text(item.course).font(.regular22).multilineTextAlignment(.leading)
             }
-            .onTapGesture { onTap(item) }
+            .onTapGesture { onTap(item, viewController) }
         }
     }
 }
@@ -70,7 +76,7 @@ struct NotebookView: View {
     struct NotebookView_Previews: PreviewProvider {
         static var previews: some View {
             NotebookView(
-                NotebookViewModel(
+                viewModel: .init(
                     router: AppEnvironment.shared.router,
                     getCoursesUseCase: GetCoursesUseCase()
                 )

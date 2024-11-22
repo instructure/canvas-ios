@@ -32,7 +32,8 @@ final class DashboardAssembly {
         DashboardView(
             viewModel: .init(
                 programsInteractor: makeGetProgramsInteractor(),
-                userInteractor: makeGetUserInteractor()
+                userInteractor: makeGetUserInteractor(),
+                router: AppEnvironment.shared.router
             )
         )
     }

@@ -21,16 +21,11 @@ import Core
 
 final class NotebookAssembly {
     static func make() -> CoreHostingController<NotebookView> {
-        let env = AppEnvironment.shared
-        guard let rootViewController = env.window?.rootViewController else {
-            fatalError("No root view controller")
-        }
-        return CoreHostingController(
+        CoreHostingController(
             NotebookView(
-                NotebookViewModel(
-                    router: env.router,
-                    getCoursesUseCase: GetCoursesUseCase(),
-                    viewController: rootViewController
+                viewModel: .init(
+                    router: AppEnvironment.shared.router,
+                    getCoursesUseCase: GetCoursesUseCase()
                 )
             )
         )

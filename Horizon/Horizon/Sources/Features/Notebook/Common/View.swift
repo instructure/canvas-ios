@@ -27,6 +27,8 @@ struct NotesBody: View {
 
     private let builder: () -> AnyView
 
+    private let backgroundColor = Color(hexString: "#FBF5ED")!
+
     init(
         title: String,
         router: Router?,
@@ -41,7 +43,6 @@ struct NotesBody: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack {
-                    NavigationBar(title: title, backButton: BackButton(router: router))
                     builder()
                 }
                 .padding(.horizontal, 24)
@@ -49,66 +50,56 @@ struct NotesBody: View {
             }
             .frame(maxWidth: .infinity)
             .navigationBarBackButtonHidden(true)
+            .navigationTitle(title)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    BackButton(router: router)
+                }
+            }
+            .toolbarBackground(backgroundColor, for: .navigationBar)
             .contentMargins(.top, geometry.safeAreaInsets.top)
             .contentMargins(.bottom, geometry.safeAreaInsets.bottom)
-            .background(Color(hexString: "#FBF5ED"))
+            .background(backgroundColor)
             .ignoresSafeArea()
         }
     }
 }
 
-struct NavigationBar: View {
+struct IconButton: View {
 
-    @State var title: String
+    let action: (() -> Void)?
 
-    let backButton: BackButton
+    let systemName: String
 
     var body: some View {
-        VStack {
-            ZStack {
-                backButton.frame(
-                    maxWidth: .infinity, maxHeight: .infinity,
-                    alignment: Alignment(horizontal: .leading, vertical: .center))
-                Text(title).font(.regular20)
-            }
+        Button {
+            action?()
+        } label: {
+            Image(systemName: systemName)
+                .tint(.backgroundDark)
+                .frame(width: 40, height: 40)
+                .background(Color.backgroundLightest)
+                .clipShape(.circle)
+                .shadow(color: .backgroundDark, radius: 2)
         }
     }
 }
 
 struct BackButton: View {
-    let action: (() -> Void)?
-
     let router: Router?
 
     @Environment(\.viewController) private var viewController
 
-    init(action: @escaping (() -> Void)) {
-        self.action = action
-        router = nil
-    }
-
     init(router: Router?) {
         self.router = router
-        action = nil
     }
 
     var body: some View {
-        Button(action: onBack) {
-            Image(systemName: "arrow.left")
-                .foregroundColor(.textDarkest)
-                .frame(width: 50, height: 50)
-        }.background(Color.white)
-            .clipShape(Circle())
-            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 1, y: 2)
+        IconButton(action: onBack, systemName: "arrow.left")
     }
 
     func onBack() {
-        if let router = router {
-            router.pop(
-                from: viewController
-            )
-            action?()
-        }
+        router?.pop(from: viewController)
     }
 }
 

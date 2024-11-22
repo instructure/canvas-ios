@@ -64,7 +64,7 @@ struct DashboardView: View {
     private var navBarIcons: some View {
         HStack(spacing: 0) {
             Button {
-                viewModel.notebookDidTap()
+                viewModel.notebookDidTap(viewController: viewController)
             } label: {
                 Image(systemName: "book.closed")
                     .tint(.backgroundDark)
@@ -95,14 +95,6 @@ struct DashboardView: View {
                     .clipShape(.circle)
                     .shadow(color: .backgroundDark, radius: 2)
             }
-        }
-    }
-
-    private var notebookButton: some View {
-        Button {
-            AppEnvironment.shared.router.route(to: "/notebook", from: viewController)
-        } label: {
-            Image("Book", bundle: .main).tint(Color.textDarkest)
         }
     }
 
