@@ -47,6 +47,9 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
         addSnackBar()
+
+        // This changes the elevated tab bar's text color
+        view.tintColor = Brand.shared.primary
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -82,7 +85,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             tabBarImageSelected = .homeroomTabActive
         } else {
             let dashboard = CoreHostingController(DashboardContainerView(shouldShowGroupList: true,
-                                                                    showOnlyTeacherEnrollment: false))
+                                                                         showOnlyTeacherEnrollment: false))
             result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
 
             tabBarTitle = String(localized: "Dashboard", bundle: .student, comment: "dashboard page title")
@@ -190,6 +193,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 }
 
 extension StudentTabBarController: UITabBarControllerDelegate {
+
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         tabBarController.resetViewControllerIfSelected(viewController)
 
@@ -198,5 +202,13 @@ extension StudentTabBarController: UITabBarControllerDelegate {
         }
 
         return true
+    }
+
+    func tabBarController(
+        _ tabBarController: UITabBarController,
+        animationControllerForTransitionFrom fromVC: UIViewController,
+        to toVC: UIViewController
+    ) -> (any UIViewControllerAnimatedTransitioning)? {
+        InstUI.TabChangeTransition()
     }
 }

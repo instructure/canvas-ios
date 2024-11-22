@@ -36,6 +36,9 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
         NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
         addSnackBar()
+
+        // This changes the elevated tab bar's text color
+        view.tintColor = Brand.shared.primary
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -132,5 +135,13 @@ extension TeacherTabBarController: UITabBarControllerDelegate {
         }
 
         return true
+    }
+
+    func tabBarController(
+        _ tabBarController: UITabBarController,
+        animationControllerForTransitionFrom fromVC: UIViewController,
+        to toVC: UIViewController
+    ) -> (any UIViewControllerAnimatedTransitioning)? {
+        InstUI.TabChangeTransition()
     }
 }

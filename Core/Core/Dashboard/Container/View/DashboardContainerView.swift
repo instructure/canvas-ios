@@ -76,7 +76,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
             }
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
-        .navigationBarGlobal()
+        .navigationBarDashboard()
         .navigationBarItems(leading: profileMenuButton, trailing: rightNavBarButtons)
         .onAppear {
             refresh(force: false) {
