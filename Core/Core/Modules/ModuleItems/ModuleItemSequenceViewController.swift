@@ -59,7 +59,8 @@ public final class ModuleItemSequenceViewController: UIViewController {
         didTapNextButton: { [weak self] in
             self?.goNext()
         },
-        router: AppEnvironment.shared.router
+        router: AppEnvironment.shared.router,
+        hostingViewController: self
     )
 
     public static func create(

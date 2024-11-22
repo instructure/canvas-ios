@@ -19,11 +19,12 @@
 class ModuleBottomNavBarViewModel: ObservableObject {
     // MARK: - Dependencies
 
+    let router: Router
+    let hostingViewController: UIViewController?
+
     // These actions are triggered from UIKit ModuleItemSequenceViewController class.
     let didTapPreviousButton: () -> Void
     let didTapNextButton: () -> Void
-
-    let router: Router
 
     // MARK: - Outputs
 
@@ -35,16 +36,19 @@ class ModuleBottomNavBarViewModel: ObservableObject {
     init(
         didTapPreviousButton: @escaping () -> Void,
         didTapNextButton: @escaping () -> Void,
-        router: Router
+        router: Router,
+        hostingViewController: UIViewController?
     ) {
         self.didTapPreviousButton = didTapPreviousButton
         self.didTapNextButton = didTapNextButton
         self.router = router
+        self.hostingViewController = hostingViewController
     }
 
     // MARK: - Inputs
 
-    func didSelectButton(type _: ModuleNavBarButtons, viewController _: WeakViewController) {
-        // router.to()
+    func didSelectButton(type _: ModuleNavBarButtons) {
+        guard let hostingViewController else { return }
+        router.route(to: "/tutor", from: hostingViewController, options: .modal())
     }
 }

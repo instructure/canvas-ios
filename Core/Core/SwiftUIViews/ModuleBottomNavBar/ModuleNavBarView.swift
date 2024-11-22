@@ -25,7 +25,6 @@ struct ModuleNavBarView: View {
 
     // MARK: - Properties
 
-    @Environment(\.viewController) private var viewController
     private let contentButtons = ModuleNavBarButtons.contentButtons
 
     var body: some View {
@@ -57,7 +56,7 @@ struct ModuleNavBarView: View {
 
     private func buttonView(type: ModuleNavBarButtons) -> some View {
         Button {
-            viewModel.didSelectButton(type: type, viewController: viewController)
+            viewModel.didSelectButton(type: type)
         } label: {
             iconView(type: type)
         }
@@ -79,7 +78,8 @@ struct ModuleNavBarView: View {
         viewModel: .init(
             didTapPreviousButton: {},
             didTapNextButton: {},
-            router: AppEnvironment.shared.router
+            router: AppEnvironment.shared.router,
+            hostingViewController: nil
         )
     )
 }
