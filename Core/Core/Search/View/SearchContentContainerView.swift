@@ -106,6 +106,8 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
             .sheet(
                 isPresented: $isFilterEditorPresented,
                 onDismiss: {
+                    // This is to only apply changes when user
+                    // is done editing.
                     filter = editingFilter
                 },
                 content: {
