@@ -20,7 +20,7 @@ import Combine
 import Foundation
 import CombineExt
 
-class GetCoursesUseCase {
+class GetCoursesInteractor {
 
     let publisher = PassthroughSubject<[NotebookCourse], Never>()
 

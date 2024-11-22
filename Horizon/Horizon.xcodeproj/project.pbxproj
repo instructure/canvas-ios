@@ -40,7 +40,7 @@
 		642CA75F30259EA74F5B92B2 /* NotebookCourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391E9AE676A187DB47D2B18A /* NotebookCourseViewModel.swift */; };
 		6857FA660906F8D64DEA7AF4 /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = 3353F2BA79620AE7174A5B05 /* Heap */; };
 		7011B831189B9DF0777465AE /* ProgramItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64E4DC2DF371ED601149398 /* ProgramItemView.swift */; };
-		74681CA9ECC8B55A742AEA9F /* GetCoursesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F92972CAEE0275DE8C2D5A /* GetCoursesUseCase.swift */; };
+		74681CA9ECC8B55A742AEA9F /* GetCoursesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F92972CAEE0275DE8C2D5A /* GetCoursesInteractor.swift */; };
 		748708C274C78526E0825CB3 /* AITutorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B83ED332028381EE239F54 /* AITutorType.swift */; };
 		7D55A90806A34664576046CD /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC16FDFB815642C82768097E /* DashboardView.swift */; };
 		7FF9727E6AAB2C83F9239548 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E0CF6B14E0331072707C9 /* SplashView.swift */; };
@@ -199,7 +199,7 @@
 		9650B908EFF77457D752B7E7 /* CommonAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAssembly.swift; sourceTree = "<group>"; };
 		969AD4F859C948A83EDC6AC2 /* HorizonGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonGradient.swift; sourceTree = "<group>"; };
 		9BDA1DDCAA5D9E94487D061D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		A0F92972CAEE0275DE8C2D5A /* GetCoursesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesUseCase.swift; sourceTree = "<group>"; };
+		A0F92972CAEE0275DE8C2D5A /* GetCoursesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesInteractor.swift; sourceTree = "<group>"; };
 		A56E0CF6B14E0331072707C9 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		A6160FD173852A664C46FAC5 /* LearningObjectHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningObjectHeaderView.swift; sourceTree = "<group>"; };
 		A65D34D43E12CE7EF4AC16AE /* AssignmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentType.swift; sourceTree = "<group>"; };
@@ -273,7 +273,7 @@
 		0A266F063987AB856E36E935 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A0F92972CAEE0275DE8C2D5A /* GetCoursesUseCase.swift */,
+				A0F92972CAEE0275DE8C2D5A /* GetCoursesInteractor.swift */,
 				06EF6EF20BFDE5712F952E34 /* NotebookCourse.swift */,
 			);
 			path = Model;
@@ -870,7 +870,7 @@
 				7D55A90806A34664576046CD /* DashboardView.swift in Sources */,
 				06DE8BCB00A3AFA9D063B50E /* DashboardViewModel.swift in Sources */,
 				41EFDB92980DFE03C0483F21 /* ExpandingModuleView.swift in Sources */,
-				74681CA9ECC8B55A742AEA9F /* GetCoursesUseCase.swift in Sources */,
+				74681CA9ECC8B55A742AEA9F /* GetCoursesInteractor.swift in Sources */,
 				341E151F9FE8B0C4F113C01A /* GetProgramsInteractor.swift in Sources */,
 				8031414D135BF4A32D1A97F5 /* GetProgramsInteractorPreview.swift in Sources */,
 				CE5BF89A4A0ADEF1668E169A /* GetUserInteractor.swift in Sources */,

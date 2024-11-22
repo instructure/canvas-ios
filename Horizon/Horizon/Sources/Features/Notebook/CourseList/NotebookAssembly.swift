@@ -25,7 +25,7 @@ final class NotebookAssembly {
             NotebookView(
                 viewModel: .init(
                     router: AppEnvironment.shared.router,
-                    getCoursesUseCase: GetCoursesUseCase()
+                    getCoursesInteractor: GetCoursesInteractor()
                 )
             )
         )

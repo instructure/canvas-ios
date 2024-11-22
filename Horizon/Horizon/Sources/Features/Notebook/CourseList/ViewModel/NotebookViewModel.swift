@@ -26,18 +26,17 @@ import Core
 
     let router: Router
 
-    private let getCoursesUseCase: GetCoursesUseCase
+    private let getCoursesInteractor: GetCoursesInteractor
 
     private var getCoursesCancellable: AnyCancellable?
 
     private var searchTextCancellable: AnyCancellable?
 
-    init(router: Router,
-         getCoursesUseCase: GetCoursesUseCase) {
+    init(router: Router, getCoursesInteractor: GetCoursesInteractor) {
         self.router = router
-        self.getCoursesUseCase = getCoursesUseCase
+        self.getCoursesInteractor = getCoursesInteractor
 
-        getCoursesCancellable = getCoursesUseCase.get().sink { _ in } receiveValue: { [weak self] courses in
+        getCoursesCancellable = getCoursesInteractor.get().sink { _ in } receiveValue: { [weak self] courses in
             self?.listItems = courses.map {
                 NotebookListItem(institution: $0.institution, course: $0.name)
             }
@@ -46,7 +45,7 @@ import Core
     }
 
     func onSearch(_ text: String) {
-        getCoursesUseCase.search(for: text)
+        getCoursesInteractor.search(for: text)
     }
 
     func onTap(_ listItem: NotebookListItem, viewController: WeakViewController) {

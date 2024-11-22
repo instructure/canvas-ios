@@ -78,7 +78,7 @@ struct NotebookView: View {
             NotebookView(
                 viewModel: .init(
                     router: AppEnvironment.shared.router,
-                    getCoursesUseCase: GetCoursesUseCase()
+                    getCoursesInteractor: GetCoursesInteractor()
                 )
             )
         }
