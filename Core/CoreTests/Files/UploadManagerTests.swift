@@ -112,7 +112,7 @@ class UploadManagerTests: CoreTestCase {
         let file = try manager.add(url: url, batchID: "1")
         let mock = mockUpload(fileURL: file.localFileURL!, target: mockTarget(name: url.lastPathComponent, size: 0, context: uploadContext))
         mock.suspend()
-        manager.upload(batch: "1", to: uploadContext)
+        manager.upload(batch: "1", to: uploadContext, baseURL: nil)
         XCTAssertEqual(mock.queue.first?.state, .running)
     }
 

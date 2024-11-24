@@ -43,7 +43,6 @@ public struct SubmissionDestination {
     public let assignmentID: String
     public let userID: String
     public let apiInstanceHost: String?
-    public var context: Context { .course(courseID) }
 
     public init(courseID: String, assignmentID: String, userID: String, apiInstanceHost: String? = nil) {
         self.userID = userID
@@ -52,9 +51,10 @@ public struct SubmissionDestination {
         self.apiInstanceHost = apiInstanceHost
     }
 
-    func baseURL(in env: AppEnvironment) -> URL? {
-        guard let host = apiInstanceHost else { return nil }
+    public var context: Context { .course(courseID ) }
 
+    public func baseURL(in env: AppEnvironment) -> URL? {
+        guard let host = apiInstanceHost else { return nil }
         var urlComps = URLComponents()
         urlComps.host = host
         urlComps.scheme = env.api.baseURL.scheme
@@ -64,7 +64,7 @@ public struct SubmissionDestination {
 
 public class CreateSubmission: APIUseCase {
     let destination: SubmissionDestination
-    var apiCoordinator: SubmissionApiCoordinator
+    let apiCoordinator: SubmissionApiCoordinator
 
     public let request: CreateSubmissionRequest
     public typealias Model = Submission
@@ -82,7 +82,7 @@ public class CreateSubmission: APIUseCase {
         annotatableAttachmentID: String? = nil
     ) {
         self.destination = destination
-        self.apiCoordinator = DefaultSubmissionApiCoordinator(destination: destination)
+        self.apiCoordinator = DefaultSubmissionApiCoordinator()
 
         let submission = CreateSubmissionRequest.Body.Submission(
             annotatable_attachment_id: annotatableAttachmentID,
@@ -103,6 +103,16 @@ public class CreateSubmission: APIUseCase {
         )
     }
 
+    init(
+        destination: SubmissionDestination,
+        request: CreateSubmissionRequest,
+        apiCoordinator: SubmissionApiCoordinator
+    ) {
+        self.destination = destination
+        self.request = request
+        self.apiCoordinator = apiCoordinator
+    }
+
     public var cacheKey: String?
 
     public var scope: Scope { Scope(
@@ -117,7 +127,7 @@ public class CreateSubmission: APIUseCase {
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APISubmission?, URLResponse?, Error?) -> Void) {
         apiCoordinator
-            .api(environment: environment)
+            .api(for: destination, in: environment)
             .makeRequest(request) { [weak self] response, urlResponse, error in
                 guard let dest = self?.destination else { return }
                 if error == nil {
@@ -141,37 +151,21 @@ public class CreateSubmission: APIUseCase {
     }
 }
 
-protocol SubmissionApiCoordinator: AnyObject {
-    func api(environment: AppEnvironment) -> API
+protocol SubmissionApiCoordinator {
+    func api(for destination: SubmissionDestination, in environment: AppEnvironment) -> API
 }
 
-class DefaultSubmissionApiCoordinator: SubmissionApiCoordinator {
-    private let destination: SubmissionDestination
-    private var api: API?
+struct DefaultSubmissionApiCoordinator: SubmissionApiCoordinator {
 
-    required init(destination: SubmissionDestination) {
-        self.destination = destination
-    }
-
-    func api(environment: AppEnvironment) -> API {
+    func api(for destination: SubmissionDestination, in environment: AppEnvironment) -> API {
         let shared = environment.api
         guard let baseURL = destination.baseURL(in: environment) else { return shared }
 
-        if let api,
-           api.baseURL == baseURL,
-           api.loginSession == shared.loginSession,
-           api.urlSession == shared.urlSession {
-            return api
-        }
-
-        let instanceAPI = API(
+        return API(
             shared.loginSession,
             baseURL: baseURL,
             urlSession: shared.urlSession
         )
-
-        self.api = instanceAPI
-        return instanceAPI
     }
 }
 

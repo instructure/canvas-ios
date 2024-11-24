@@ -21,7 +21,14 @@ import XCTest
 import TestsFoundation
 
 class UploadFileCommentTests: CoreTestCase {
-    lazy var upload = UploadFileComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, batchID: "5", attempt: nil)
+
+    lazy var destination = SubmissionDestination(courseID: "1", assignmentID: "2", userID: "3")
+    lazy var upload = UploadFileComment(
+        destination: destination,
+        isGroup: false,
+        batchID: "5",
+        attempt: nil
+    )
     var comment: SubmissionComment?
     var error: Error?
     var called: XCTestExpectation?
@@ -58,9 +65,9 @@ class UploadFileCommentTests: CoreTestCase {
 
     func testPutCommentError() {
         api.mock(PutSubmissionGradeRequest(
-            courseID: upload.courseID,
-            assignmentID: upload.assignmentID,
-            userID: upload.userID,
+            courseID: destination.courseID,
+            assignmentID: destination.assignmentID,
+            userID: destination.userID,
             body: .init(comment: .init(fileIDs: ["2"], forGroup: upload.isGroup, attempt: nil), submission: nil)
         ), error: NSError.internalError())
         upload.putComment(fileIDs: ["2"])
@@ -71,9 +78,9 @@ class UploadFileCommentTests: CoreTestCase {
         let context = UploadManager.shared.viewContext
         let file = File.make(batchID: "5", removeID: true, session: currentSession, in: context)
         api.mock(PutSubmissionGradeRequest(
-            courseID: upload.courseID,
-            assignmentID: upload.assignmentID,
-            userID: upload.userID,
+            courseID: destination.courseID,
+            assignmentID: destination.assignmentID,
+            userID: destination.userID,
             body: .init(comment: .init(fileIDs: ["2"], forGroup: upload.isGroup, attempt: nil), submission: nil)
         ), value: APISubmission.make(
             submission_comments: [ APISubmissionComment.make() ]
@@ -94,9 +101,9 @@ class UploadFileCommentTests: CoreTestCase {
         let context = UploadManager.shared.viewContext
         let file = File.make(batchID: "5", removeID: true, session: currentSession, in: context)
         api.mock(PutSubmissionGradeRequest(
-            courseID: upload.courseID,
-            assignmentID: upload.assignmentID,
-            userID: upload.userID,
+            courseID: destination.courseID,
+            assignmentID: destination.assignmentID,
+            userID: destination.userID,
             body: .init(comment: .init(fileIDs: ["1"], forGroup: upload.isGroup, attempt: nil), submission: nil)
         ), value: APISubmission.make(
             submission_comments: [ APISubmissionComment.make() ]
@@ -113,13 +120,15 @@ class UploadFileCommentTests: CoreTestCase {
     }
 
     func testSuccessWithAttemptField() throws {
-        lazy var upload = UploadFileComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, batchID: "5", attempt: 19)
+        lazy var upload = UploadFileComment(
+            destination: destination, isGroup: false, batchID: "5", attempt: 19
+        )
         let context = UploadManager.shared.viewContext
         let file = File.make(batchID: "5", removeID: true, session: currentSession, in: context)
         api.mock(PutSubmissionGradeRequest(
-            courseID: upload.courseID,
-            assignmentID: upload.assignmentID,
-            userID: upload.userID,
+            courseID: destination.courseID,
+            assignmentID: destination.assignmentID,
+            userID: destination.userID,
             body: .init(comment: .init(fileIDs: ["1"], forGroup: upload.isGroup, attempt: 19), submission: nil)
         ), value: APISubmission.make(
             submission_comments: [ APISubmissionComment.make(attempt: 19) ]

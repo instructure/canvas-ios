@@ -31,6 +31,8 @@ protocol SubmissionCommentsViewProtocol: AnyObject {
 
 class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
     let assignmentID: String
+    var apiInstanceHost: String?
+
     let context: Context
     let env: AppEnvironment
     let submissionID: String
@@ -48,6 +50,11 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
     lazy var featuresStore = env.subscribe(GetEnabledFeatureFlags(context: .course(context.id))) { [weak self] in
          self?.update()
     }
+
+    lazy var tabs = env.subscribe(GetContextTabs(context: .course(context.id))) { [weak self] in
+        self?.updateApiInstanceHost()
+    }
+
     private var attempt: Int?
     lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID)) {}
 
@@ -64,6 +71,7 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
         assignment.refresh()
         featuresStore.refresh()
         commentsStore.refresh()
+        tabs.refresh()
         view?.reload()
     }
 
@@ -118,9 +126,12 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
 
     func addFileComment(batchID: String) {
         UploadFileComment(
-            courseID: context.id,
-            assignmentID: assignmentID,
-            userID: userID,
+            destination: SubmissionDestination(
+                courseID: context.id,
+                assignmentID: assignmentID,
+                userID: userID,
+                apiInstanceHost: apiInstanceHost
+            ),
             isGroup: assignment.first?.gradedIndividually == false,
             batchID: batchID,
             attempt: attempt
@@ -134,5 +145,9 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
     func showAttachment(_ attachment: File, from viewController: UIViewController) {
         guard let url = attachment.url else { return }
         env.router.route(to: url, from: viewController, options: .modal(embedInNav: true, addDoneButton: true))
+    }
+
+    private func updateApiInstanceHost() {
+        apiInstanceHost = tabs.first?.apiInstanceHost
     }
 }

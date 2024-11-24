@@ -46,6 +46,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     var path = ""
     var searchTerm: String?
     var results: [APIFile] = []
+    var apiInstanceHost: String?
 
     public lazy var screenViewTrackingParameters: ScreenViewTrackingParameters = {
         var eventName = "\(context == .currentUser ? "" : context.pathComponent)/files"
@@ -70,6 +71,9 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     } : nil
     lazy var uploads = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.updateUploads()
+    }
+    lazy var tabs = env.subscribe(GetContextTabs(context: .course(context.id))) { [weak self] in
+        self?.updateApiInstanceHost()
     }
 
     private var offlineFileInteractor: OfflineFileInteractor?
@@ -219,6 +223,10 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         alert.addAction(AlertAction(String(localized: "Delete", bundle: .core), style: .default, handler: handler))
         env.router.show(alert, from: self, options: .modal())
     }
+
+    private func updateApiInstanceHost() {
+        apiInstanceHost = tabs.first?.apiInstanceHost
+    }
 }
 
 extension FileListViewController: UISearchBarDelegate {
@@ -351,6 +359,14 @@ extension FileListViewController: FilePickerDelegate {
         CreateFolder(context: context, name: name, parentFolderID: folderID).fetch()
     }
 
+    var baseURL: URL? {
+        guard let host = apiInstanceHost else { return nil }
+        var urlComps = URLComponents()
+        urlComps.host = host
+        urlComps.scheme = env.api.baseURL.scheme
+        return urlComps.url
+    }
+
     public func filePicker(didPick url: URL) {
         guard let folderID = folder.first?.id else { return }
         UploadManager.shared.upload(url: url, batchID: batchID, to: .context(Context(.folder, id: folderID)))
@@ -359,7 +375,7 @@ extension FileListViewController: FilePickerDelegate {
 
     public func filePicker(didRetry file: File) {
         guard let folderID = folder.first?.id else { return }
-        UploadManager.shared.upload(file: file, to: .context(Context(.folder, id: folderID)))
+        UploadManager.shared.upload(file: file, to: .context(Context(.folder, id: folderID)), baseURL: baseURL)
     }
 
     func updateUploads() {

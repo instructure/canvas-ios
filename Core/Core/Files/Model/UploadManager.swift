@@ -109,11 +109,16 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         }
     }
 
-    open func upload(batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
+    open func upload(
+        batch batchID: String,
+        to uploadContext: FileUploadContext,
+        baseURL: URL?,
+        callback: (() -> Void)? = nil
+    ) {
         context.performAndWait {
             let files: [File] = context.fetch(filesPredicate(batchID: batchID))
             for file in files {
-                upload(file: file, to: uploadContext, callback: callback)
+                upload(file: file, to: uploadContext, baseURL: baseURL, callback: callback)
             }
         }
     }
@@ -177,8 +182,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
         let api: API = {
             if let baseURL {
-                return API(environment.currentSession,
-                           baseURL: baseURL)
+                return API(environment.currentSession, baseURL: baseURL)
             } else {
                 return environment.api
             }
@@ -336,12 +340,13 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         // This is to make the background task wait until we receive the submission response from the API.
         let semaphore = DispatchSemaphore(value: 0)
         let objectID = file.objectID
+        let baseURL = file.baseURL
         process.performExpiringActivity(reason: "submit assignment") { expired in
             if expired {
                 task?.cancel()
             }
             self.submissionsStatus.addTasks(fileIDs: fileIDs)
-            task = API(session).makeRequest(requestable) { response, _, error in
+            task = API(session, baseURL: baseURL).makeRequest(requestable) { response, _, error in
                 self.context.performAndWait {
                     defer {
                         self.submissionsStatus.removeTasks(fileIDs: fileIDs)

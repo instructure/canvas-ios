@@ -250,7 +250,10 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
             submitMediaRecording(controller)
         } else {
             let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
-            UploadManager.shared.upload(batch: self.batchID, to: context)
+            let baseURL = assignment
+                .asSubmissionDestination(targeting: apiInstanceHost)?
+                .baseURL(in: env)
+            UploadManager.shared.upload(batch: self.batchID, to: context, baseURL: baseURL)
         }
     }
 
@@ -387,7 +390,6 @@ extension Assignment {
 
     public func asSubmissionDestination(targeting apiInstanceHost: String?) -> SubmissionDestination? {
         guard let userID = submission?.userID else { return nil }
-
         return SubmissionDestination(
             courseID: courseID,
             assignmentID: id,

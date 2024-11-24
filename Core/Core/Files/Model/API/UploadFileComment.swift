@@ -21,35 +21,36 @@ import CoreData
 
 public class UploadFileComment {
     let env = AppEnvironment.shared
-    let assignmentID: String
+    let destination: SubmissionDestination
     var callback: (SubmissionComment?, Error?) -> Void = { _, _ in }
-    let courseID: String
     let isGroup: Bool
     let batchID: String
     var files: UploadManager.Store?
     var placeholderID: String?
-    let userID: String
     let attempt: Int?
     var task: APITask?
     lazy var context = env.database.newBackgroundContext()
+
     var uploadContext: FileUploadContext {
-        return .submissionComment(courseID: courseID, assignmentID: assignmentID, userID: userID)
+        return .submissionComment(
+            courseID: destination.courseID,
+            assignmentID: destination.assignmentID,
+            userID: destination.userID
+        )
     }
+
+    var apiCoordinator: SubmissionApiCoordinator = DefaultSubmissionApiCoordinator()
 
     private static var placeholderSuffix = 1
 
     public init(
-        courseID: String,
-        assignmentID: String,
-        userID: String,
+        destination: SubmissionDestination,
         isGroup: Bool,
         batchID: String,
         attempt: Int?
     ) {
-        self.assignmentID = assignmentID
-        self.courseID = courseID
+        self.destination = destination
         self.isGroup = isGroup
-        self.userID = userID
         self.batchID = batchID
         self.attempt = attempt
     }
@@ -85,14 +86,14 @@ public class UploadFileComment {
         }
         context.performAndWait {
             let placeholder: SubmissionComment = self.context.insert()
-            placeholder.assignmentID = self.assignmentID
+            placeholder.assignmentID = self.destination.assignmentID
             placeholder.authorAvatarURL = session.userAvatarURL
             placeholder.authorID = session.userID
             placeholder.authorName = session.userName
             placeholder.comment = String(localized: "See attached files.", bundle: .core)
             placeholder.createdAt = Date()
             placeholder.id = "placeholder-\(UploadFileComment.placeholderSuffix)"
-            placeholder.userID = self.userID
+            placeholder.userID = self.destination.userID
             if let attempt = self.attempt {
                 placeholder.attemptFromAPI = NSNumber(value: attempt)
             }
@@ -104,26 +105,35 @@ public class UploadFileComment {
                 self.callback(nil, error)
             }
         }
-        UploadManager.shared.upload(batch: batchID, to: uploadContext)
+        UploadManager.shared.upload(batch: batchID, to: uploadContext, baseURL: destination.baseURL(in: env))
     }
 
     func putComment(fileIDs: [String]) {
         let body = PutSubmissionGradeRequest.Body(comment: .init(fileIDs: fileIDs, forGroup: isGroup, attempt: attempt))
-        task = env.api.makeRequest(PutSubmissionGradeRequest(courseID: courseID, assignmentID: assignmentID, userID: userID, body: body)) { data, _, error in
-            self.task = nil
-            guard error == nil, let submission = data, let comment = submission.submission_comments?.last else {
-                return self.callback(nil, error)
-            }
-            self.context.performAndWait {
-                let comment = SubmissionComment.save(comment, for: submission, replacing: self.placeholderID, in: self.context)
-                var e: Error?
-                defer { self.callback(comment, e) }
-                do {
-                    try self.context.save()
-                } catch {
-                    e = error
+        let request = PutSubmissionGradeRequest(
+            courseID: destination.courseID,
+            assignmentID: destination.assignmentID,
+            userID: destination.userID,
+            body: body
+        )
+
+        task = apiCoordinator
+            .api(for: destination, in: env)
+            .makeRequest(request) { data, _, error in
+                self.task = nil
+                guard error == nil, let submission = data, let comment = submission.submission_comments?.last else {
+                    return self.callback(nil, error)
+                }
+                self.context.performAndWait {
+                    let comment = SubmissionComment.save(comment, for: submission, replacing: self.placeholderID, in: self.context)
+                    var e: Error?
+                    defer { self.callback(comment, e) }
+                    do {
+                        try self.context.save()
+                    } catch {
+                        e = error
+                    }
                 }
             }
-        }
     }
 }

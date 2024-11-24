@@ -134,6 +134,10 @@ final public class File: NSManagedObject {
         }
     }
 
+    var baseURL: URL? {
+        return url?.apiBaseURL
+    }
+
     @objc // For NSFileProviderItem
     public var isUploading: Bool {
         return taskID != nil

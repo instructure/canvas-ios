@@ -41,7 +41,7 @@ public final class MockUploadManager: UploadManager, @unchecked Sendable {
         return try super.add(url: url, batchID: batchID)
     }
 
-    public override func upload(batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
+    public override func upload(batch batchID: String, to uploadContext: FileUploadContext, baseURL: URL?, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
     }
 

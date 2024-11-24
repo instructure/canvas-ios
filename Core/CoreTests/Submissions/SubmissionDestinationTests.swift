@@ -55,8 +55,8 @@ class DefaultSubmissionApiCoordinatorTests: CoreTestCase {
             userID: "456"
         )
 
-        let coordinator = DefaultSubmissionApiCoordinator(destination: destWithNoHost)
-        let api = coordinator.api(environment: environment)
+        let coordinator = DefaultSubmissionApiCoordinator()
+        let api = coordinator.api(for: destWithNoHost, in: environment)
         XCTAssertEqual(api.baseURL, environment.api.baseURL)
         XCTAssertEqual(api.loginSession, environment.api.loginSession)
     }
@@ -69,8 +69,8 @@ class DefaultSubmissionApiCoordinatorTests: CoreTestCase {
             apiInstanceHost: "canvas-034.instructure.com"
         )
 
-        let coordinator = DefaultSubmissionApiCoordinator(destination: destWithHost)
-        let api = coordinator.api(environment: environment)
+        let coordinator = DefaultSubmissionApiCoordinator()
+        let api = coordinator.api(for: destWithHost, in: environment)
         XCTAssertEqual(api.baseURL, destWithHost.baseURL(in: environment))
         XCTAssertEqual(api.loginSession, environment.api.loginSession)
     }
