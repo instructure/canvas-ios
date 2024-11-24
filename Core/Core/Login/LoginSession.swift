@@ -172,9 +172,22 @@ public struct LoginSession: Codable, Hashable {
 
             try? fileManager
                 .contentsOfDirectory(at: folderUrl, includingPropertiesForKeys: nil)
-                .filter({ $0.lastPathComponent.hasPrefix(URL.Paths.offline) == false })
+                .filter({ $0.lastPathComponent.isDigitsOnlyFileName })
                 .forEach({ content in
-                    try fileManager.moveItem(at: content, to: sessionFolder.appending(component: content.lastPathComponent))
+                    
+                    let destFolder = sessionFolder.appending(component: content.lastPathComponent)
+                    try fileManager.createDirectory(at: destFolder, withIntermediateDirectories: true)
+
+                    // Only PDFs
+                    try fileManager
+                        .contentsOfDirectory(at: content, includingPropertiesForKeys: nil)
+                        .filter({ $0.pathExtension.lowercased() == "pdf" })
+                        .forEach({ subContent in
+                            try fileManager.moveItem(
+                                at: subContent,
+                                to: destFolder.appending(component: subContent.lastPathComponent)
+                            )
+                        })
                 })
 
         } catch {
@@ -250,5 +263,17 @@ public struct LoginSession: Codable, Hashable {
 
     private static func setSessions(_ sessions: Set<LoginSession>, in keychain: Keychain = .app, forKey key: Key = .users) {
         _ = try? keychain.setJSON(sessions, for: key.rawValue)
+    }
+}
+
+// MARK: - Utils
+
+private extension String {
+    var isDigitsOnlyFileName: Bool {
+        var string = self
+        if hasSuffix("/") {
+            string.removeLast()
+        }
+        return string.split(separator: /\d+/).isEmpty
     }
 }
