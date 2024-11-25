@@ -16,11 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-class ModuleBottomNavBarViewModel: ObservableObject {
+final class ModuleBottomNavBarViewModel: ObservableObject {
     // MARK: - Dependencies
 
-    let router: Router
-    let hostingViewController: UIViewController?
+    private let router: Router
+    private weak var hostingViewController: UIViewController?
 
     // These actions are triggered from UIKit ModuleItemSequenceViewController class.
     let didTapPreviousButton: () -> Void
