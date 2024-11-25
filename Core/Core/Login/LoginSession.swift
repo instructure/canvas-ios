@@ -174,7 +174,6 @@ public struct LoginSession: Codable, Hashable {
                 .contentsOfDirectory(at: folderUrl, includingPropertiesForKeys: nil)
                 .filter({ $0.lastPathComponent.isDigitsOnlyFileName })
                 .forEach({ content in
-                    
                     let destFolder = sessionFolder.appending(component: content.lastPathComponent)
                     try fileManager.createDirectory(at: destFolder, withIntermediateDirectories: true)
 
