@@ -179,7 +179,8 @@ public class AudioPlayerViewController: UIViewController {
     }
 
     private func formatTime(_ value: TimeInterval) -> String? {
-        return formatter.string(from: value.formatterValid)
+        let correctValue = value.isFinite ? value : 0
+        return formatter.string(from: correctValue)
     }
 }
 
@@ -193,12 +194,5 @@ extension AudioPlayerViewController: AVAudioPlayerDelegate {
     public func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         pause()
         if let error = error { showError(error) }
-    }
-}
-
-private extension TimeInterval {
-    var formatterValid: TimeInterval {
-        guard isFinite && isNaN == false else { return 0 }
-        return self
     }
 }
