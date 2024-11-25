@@ -58,7 +58,7 @@ public class FileSubmissionSubmitter {
             }) else { return promise(.success(nil)) }
 
             let request = GetContextTabs(context: .course(submission.courseID)).request
-            api.makeRequest(request) { response, _, error in
+            api.makeRequest(request) { response, _, _ in
                 guard let baseUrl = response?.first?.full_url?.apiBaseURL else {
                     return promise(.success(nil))
                 }
