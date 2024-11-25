@@ -47,12 +47,15 @@ final class HorizonTabBar: UITabBar {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        let buttonHeight = Double(frame.size.height / 1.2)
+        let frameHeight = frame.size.height
+        let safeAreaBottomHeight = safeAreaInsets.bottom
+        let didv: Double = safeAreaBottomHeight == 0 ? 1.2 : 1.6
+        let buttonHeight = Double(frameHeight / didv)
         chatBotButton.frame.size = CGSize(width: buttonHeight, height: buttonHeight)
         let xPoint = Double(frame.width / 2)
-        let yPoint = frame.size.height / 2
-        let safeAreaBottomHeight = safeAreaInsets.bottom / 2.5
-        chatBotButton.center = CGPoint(x: xPoint, y: yPoint - safeAreaBottomHeight)
+        let yPoint = frameHeight / 2
+        let padding = safeAreaBottomHeight / 2.5
+        chatBotButton.center = CGPoint(x: xPoint, y: yPoint - padding)
     }
 
     private func configureShadow() {
