@@ -252,9 +252,12 @@ struct SubmissionCommentList: View {
             commentAttempt = nil
         }
         UploadFileComment(
-            courseID: assignment.courseID,
-            assignmentID: assignment.id,
-            userID: submission.userID,
+            destination: SubmissionDestination(
+                courseID: assignment.courseID,
+                assignmentID: assignment.id,
+                userID: submission.userID,
+                apiInstanceHost: viewModel.apiInstanceHost
+            ),
             isGroup: assignment.gradedIndividually == false,
             batchID: batchID,
             attempt: commentAttempt

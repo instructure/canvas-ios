@@ -38,11 +38,13 @@ class SubmissionCommentListViewModel: ObservableObject {
     // MARK: - Outputs
 
     @Published private(set) var state: ViewState = .loading
+    @Published private(set) var apiInstanceHost: String?
 
     // MARK: - Private variables
 
     private let submissionCommentsStore: ReactiveStore<GetSubmissionComments>
     private let featureFlagsStore: ReactiveStore<GetEnabledFeatureFlags>
+    private let tabsStore: ReactiveStore<GetContextTabs>
     private var comments: [SubmissionComment] = []
     private var attempt: Int?
     public private(set) var isAssignmentEnhancementsFeatureFlagEnabled = false
@@ -67,6 +69,9 @@ class SubmissionCommentListViewModel: ObservableObject {
         featureFlagsStore = ReactiveStore(
             useCase: GetEnabledFeatureFlags(context: .course(courseID))
         )
+        tabsStore = ReactiveStore(
+            useCase: GetContextTabs(context: .course(courseID))
+        )
 
         unowned let unownedSelf = self
 
@@ -88,6 +93,14 @@ class SubmissionCommentListViewModel: ObservableObject {
         NotificationCenter.default.publisher(for: .SpeedGraderAttemptPickerChanged)
             .compactMap { $0.object as? Int }
             .sink(receiveValue: { unownedSelf.updateComments(attempt: $0) })
+            .store(in: &subscriptions)
+
+        tabsStore
+            .getEntities()
+            .replaceError(with: [])
+            .sink { tabs in
+                unownedSelf.apiInstanceHost = tabs.first?.apiInstanceHost
+            }
             .store(in: &subscriptions)
     }
 
