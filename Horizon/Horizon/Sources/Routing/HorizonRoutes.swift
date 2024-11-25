@@ -194,6 +194,9 @@ enum HorizonRoutes {
 
     private static var aiRoutes: [RouteHandler] {
         [
+            RouteHandler("/tutor") {_, _, _ in
+                AIAssembly.makeAITutorView()
+            },
             RouteHandler("/summary") {_, _, _ in
                 AIAssembly.makeAISummaryView()
             }

@@ -60,7 +60,7 @@ final class AssignmentDetailsViewModel {
     // MARK: - Dependancies
 
     private let interactor: AssignmentInteractor
-    private let appEnvironment: AppEnvironment
+    private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
@@ -71,11 +71,11 @@ final class AssignmentDetailsViewModel {
 
     init(
         interactor: AssignmentInteractor,
-        appEnvironment: AppEnvironment,
+        router: Router,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
-        self.appEnvironment = appEnvironment
+        self.router = router
         self.scheduler = scheduler
         fetchAssignmentDetails()
         bindSubmissionAssignmentEvents()
@@ -136,7 +136,7 @@ final class AssignmentDetailsViewModel {
         aiEvents.sink {  [weak self] event, controller in
             switch event {
             case .assist:
-                self?.appEnvironment.router.show(AIAssembly.makeAITutorView(), from: controller, options: .modal(isDismissable: false))
+                self?.router.route(to: "/tutor", from: controller, options: .modal(isDismissable: false))
             default:
                 break
 

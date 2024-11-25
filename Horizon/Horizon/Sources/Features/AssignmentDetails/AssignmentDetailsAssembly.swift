@@ -35,8 +35,8 @@ final class AssignmentDetailsAssembly {
             uploadManager: uploadManager,
             appEnvironment: .shared
         )
-        let appEnvironment = AppEnvironment.shared
-        return AssignmentDetailsViewModel(interactor: interactor, appEnvironment: appEnvironment)
+        let router = AppEnvironment.shared.router
+        return AssignmentDetailsViewModel(interactor: interactor, router: router)
     }
 
     static func makeViewController(
@@ -49,15 +49,15 @@ final class AssignmentDetailsAssembly {
 #if DEBUG
     static func makePreview() -> AssignmentDetails {
         let interactor = AssignmentInteractorPreview()
-        let appEnvironment = AppEnvironment.shared
-        let viewModel = AssignmentDetailsViewModel(interactor: interactor, appEnvironment: appEnvironment)
+        let router = AppEnvironment.shared.router
+        let viewModel = AssignmentDetailsViewModel(interactor: interactor, router: router)
         return AssignmentDetails(viewModel: viewModel)
     }
 
     static func makeAssignmentSubmissionViewModel() -> AssignmentDetailsViewModel {
         let interactor = AssignmentInteractorPreview()
-        let appEnvironment = AppEnvironment.shared
-        return AssignmentDetailsViewModel(interactor: interactor, appEnvironment: appEnvironment)
+        let router = AppEnvironment.shared.router
+        return AssignmentDetailsViewModel(interactor: interactor, router: router)
     }
 
 #endif

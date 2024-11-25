@@ -117,7 +117,7 @@ extension AIQuizView {
         }
     }
 
-    private var tryAginButton: some View {
+    private var tryAgainButton: some View {
         Button(action: {
             viewModel.regenerateQuiz()
         }) {
@@ -137,7 +137,7 @@ extension AIQuizView {
                 regenerateQuizButton
             } else {
                 AIQuizFeedbackView()
-                tryAginButton
+                tryAgainButton
             }
 
         }
