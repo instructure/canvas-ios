@@ -146,8 +146,8 @@ public class AudioPlayerViewController: UIViewController {
 
     @objc func tick(_ timer: CADisplayLink? = nil) {
         guard let player = player else { return }
-        currentTimeLabel?.text = formatter.string(from: player.currentTime)
-        remainingTimeLabel?.text = formatter.string(from: player.duration)
+        currentTimeLabel?.text = formatTime(player.currentTime)
+        remainingTimeLabel?.text = formatTime(player.duration)
         timeSlider?.accessibilityValue = currentTimeLabel?.text
         timeSlider?.maximumValue = Float(player.duration)
         timeSlider?.setValue(Float(player.currentTime), animated: false)
@@ -177,6 +177,10 @@ public class AudioPlayerViewController: UIViewController {
             play()
         }
     }
+
+    private func formatTime(_ value: TimeInterval) -> String? {
+        return formatter.string(from: value.formatterValid)
+    }
 }
 
 extension AudioPlayerViewController: AVAudioPlayerDelegate {
@@ -189,5 +193,12 @@ extension AudioPlayerViewController: AVAudioPlayerDelegate {
     public func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         pause()
         if let error = error { showError(error) }
+    }
+}
+
+private extension TimeInterval {
+    var formatterValid: TimeInterval {
+        guard isFinite && isNaN == false else { return 0 }
+        return self
     }
 }
