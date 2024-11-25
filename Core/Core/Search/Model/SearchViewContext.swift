@@ -19,15 +19,28 @@
 import UIKit
 import Combine
 
+/// This type includes key variables (search text, visit history) and publishers
+/// that need to be accessed/listened to across search experience components.
+/// Especially after presenting the content view. Therefore, there is only single
+/// instance of it per search experience.
+///
+/// Use this type, by accessing environment object associated with
+/// `Attributes.EnvironmentKey` on one of the inner search content SwiftUI
+/// views, to access the following:
+/// - A publisher for Search field submission.
+/// - A Combine's subject for search text.
+/// - View attributes associated with the current experience.
+/// - A publisher for visited record IDs set.
+/// - A method to add result ID to visited record.
+///
 public class SearchViewContext<Attributes: SearchViewAttributes> {
     let attributes: Attributes
-    var didSubmit = PassthroughSubject<String, Never>()
-    var searchText = CurrentValueSubject<String, Never>("")
 
+    private(set) var didSubmit = PassthroughSubject<String, Never>()
+    private(set) var searchText = CurrentValueSubject<String, Never>("")
     private var visitedRecord = CurrentValueSubject<Set<ID>, Never>([])
-    weak var controller: CoreSearchController?
 
-    public init(attributes: Attributes) {
+    init(attributes: Attributes) {
         self.attributes = attributes
     }
 

@@ -123,7 +123,6 @@ public class CoreSearchHostingController<
         self.searchInteractor = interactor
 
         super.init(SearchHostingBaseView(content: content, searchContext: searchContext))
-        self.searchContext.controller = self
 
         if let contextColor = attributes.accentColor {
             navigationBarStyle = .color(contextColor)
