@@ -73,6 +73,8 @@ open class AppEnvironment {
         api = API(session)
         currentSession = session
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
+        router.courseTabUrlInteractor?.clearEnabledTabs()
+        router.courseTabUrlInteractor?.setupTabSubscription()
 
         if isSilent {
             return

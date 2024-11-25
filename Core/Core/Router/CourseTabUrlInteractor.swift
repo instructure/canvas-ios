@@ -17,23 +17,65 @@
 //
 
 import Foundation
+import Combine
 
 public final class CourseTabUrlInteractor {
 
+    private struct TabModel {
+        let id: String
+        let htmlUrl: String
+    }
+
     private var enabledTabsPerCourse: [Context: [String]] = [:]
+    private var subscriptions = Set<AnyCancellable>()
 
     public init() { }
 
-    public func setEnabledCourseTabs(_ tabs: [APITab], context: Context) {
-        guard context.contextType == .course else { return }
+    public func setupTabSubscription() {
+        let useCase = LocalUseCase<Tab>(scope: .all)
+        return ReactiveStore(useCase: useCase)
+            .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .sink { [weak self] tabs in
+                self?.tabsDidUpdate(tabs)
+            }
+            .store(in: &subscriptions)
+    }
 
-        var tabPaths = tabs.map { $0.html_url.absoluteString }
+    public func clearEnabledTabs() {
+        enabledTabsPerCourse = [:]
+    }
+
+    private func tabsDidUpdate(_ tabs: [Tab]) {
+        var tabModels: [Context: [TabModel]] = [:]
+        tabs.forEach { tab in
+            guard tab.context.contextType == .course, let htmlURL = tab.htmlURL else { return }
+
+            let context = tab.context
+            if !tabModels.keys.contains(context) {
+                tabModels[context] = []
+            }
+            tabModels[context]?.append(.init(id: tab.id, htmlUrl: htmlURL.absoluteString))
+        }
+
+        tabModels.forEach { context, tabs in
+            let tabPaths = pathsForTabs(tabs, context: context)
+            enabledTabsPerCourse[context] = tabPaths
+        }
+    }
+
+    private func pathsForTabs(_ tabs: [TabModel], context: Context) -> [String] {
+        // adding backend-provided paths from `html_url`
+        var tabPaths = tabs.map {
+            logPathFormatIfUnknown(for: $0)
+            return $0.htmlUrl
+        }
 
         // Adding extra paths for some tabs besides the ones from `html_url`.
         // Some have counterparts defined in `routes`, used only for in-app navigation or they are just legacy.
         // Some have related paths and they should be enabled/disabled together.
         tabs.forEach { tab in
-            switch tab.id.value {
+            switch tab.id {
             case "syllabus":
                 // proper path from `html_url`: "course/:courseID/assignments/syllabus"
                 // internal path from `routes`: "course/:courseID/syllabus"
@@ -55,11 +97,7 @@ public final class CourseTabUrlInteractor {
             }
         }
 
-        enabledTabsPerCourse[context] = tabPaths
-    }
-
-    public func clearEnabledCourseTabs() {
-        enabledTabsPerCourse = [:]
+        return tabPaths
     }
 
     /// Returns `true` if `url` is not a course tab URL OR it is but it's not in the list of enabled course tab URLs.
@@ -70,15 +108,31 @@ public final class CourseTabUrlInteractor {
         }
 
         let relativePath = String(url.relativePath.trimmingPrefix("/api/v1"))
-        let parts = relativePath.split(separator: "/").map { String($0) }
 
         // if url doesn't even match known tab path formats -> it's not a tab, allow it
-        guard CourseTabFormat.allCases.contains(where: { $0.isMatch(for: parts) }) else {
+        guard isKnownPathFormat(relativePath) else {
             return true
         }
 
         // it's a tab, if it matches any of the enabled tabs allow it, otherwise block it
         return enabledTabs.contains(relativePath)
+    }
+
+    // expects relative paths, with "/api/v1" already stripped
+    private func isKnownPathFormat(_ path: String) -> Bool {
+        let parts = path.split(separator: "/").map { String($0) }
+        return CourseTabFormat.allCases.contains {
+            $0.isMatch(for: parts)
+        }
+    }
+
+    private func logPathFormatIfUnknown(for tab: TabModel) {
+        guard tab.id != "home" && !isKnownPathFormat(tab.htmlUrl) else { return }
+
+        RemoteLogger.shared.logError(
+            name: "Unexpected Course Tab path format",
+            reason: "tab.id: \(tab.id), tab.html_url: \(tab.htmlUrl), baseUrl: \(Analytics.analyticsBaseUrl)"
+        )
     }
 }
 

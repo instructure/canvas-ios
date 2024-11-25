@@ -39,7 +39,7 @@ public class GetDashboardCourses: CollectionUseCase {
         request = GetCurrentUserCoursesRequest(
             enrollmentState: enrollmentState,
             state: [.current_and_concluded],
-            includes: GetCourseRequest.defaultIncludes
+            includes: GetCourseRequest.defaultIncludes + [.tabs]
         )
     }
 

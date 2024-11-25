@@ -161,6 +161,23 @@ final public class Course: NSManagedObject, WriteableModel {
 
         model.roles = item.enrollments.roles
 
+        if let apiTabs = item.tabs {
+            let courseContext = Context.course(item.id.value)
+
+            let contextPredicate = NSPredicate(
+                format: "%K == %@", #keyPath(Tab.contextRaw),
+                courseContext.canvasContextID
+            )
+
+            context.delete(context.fetch(contextPredicate) as [Tab])
+
+            // not adding tabs to Course, just saving them
+            apiTabs.forEach { apiTab in
+                let tab: Tab = context.insert()
+                tab.save(apiTab, in: context, context: courseContext)
+            }
+        }
+
         return model
     }
 }

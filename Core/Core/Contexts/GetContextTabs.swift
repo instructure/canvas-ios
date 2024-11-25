@@ -57,8 +57,5 @@ public class GetContextTabs: CollectionUseCase {
             let model: Tab = client.fetch(predicate).first ?? client.insert()
             model.save(item, in: client, context: context)
         }
-
-        // update enabled course tabs directly
-        AppEnvironment.shared.router.courseTabUrlInteractor?.setEnabledCourseTabs(response, context: context)
     }
 }
