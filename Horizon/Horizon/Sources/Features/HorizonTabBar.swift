@@ -49,8 +49,8 @@ final class HorizonTabBar: UITabBar {
         super.layoutSubviews()
         let frameHeight = frame.size.height
         let safeAreaBottomHeight = safeAreaInsets.bottom
-        let didv: Double = safeAreaBottomHeight == 0 ? 1.2 : 1.6
-        let buttonHeight = Double(frameHeight / didv)
+        let dividBy: Double = safeAreaBottomHeight == 0 ? 1.2 : 1.6
+        let buttonHeight = Double(frameHeight / dividBy)
         chatBotButton.frame.size = CGSize(width: buttonHeight, height: buttonHeight)
         let xPoint = Double(frame.width / 2)
         let yPoint = frameHeight / 2
