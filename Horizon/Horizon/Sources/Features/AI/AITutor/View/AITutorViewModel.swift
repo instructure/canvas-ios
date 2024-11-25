@@ -45,6 +45,10 @@ final class AITutorViewModel {
         router.show(vc, from: controller, options: .modal(isDismissable: false))
     }
 
+    func dismiss() {
+        router.dismiss(controller)
+    }
+
     private func bindNavigation() {
         didSelectTutorType
             .sink { [weak self] type in

@@ -125,8 +125,8 @@ extension UINavigationBar {
     private func clearNavigation() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = .clear
-        appearance.shadowColor = .clear
+        appearance.backgroundColor = .backgroundLightest
+        appearance.shadowColor = .backgroundLightest
         appearance.titleTextAttributes = [.foregroundColor: UIColor.textDarkest]
 
         tintColor = UIColor.textDarkest
@@ -134,6 +134,6 @@ extension UINavigationBar {
         scrollEdgeAppearance = appearance
         compactAppearance = appearance
         isTranslucent = true
-        self.backgroundColor = .clear
+        self.backgroundColor = .backgroundLightest
     }
 }

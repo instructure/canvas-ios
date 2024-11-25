@@ -32,12 +32,6 @@ final class AIAssembly {
         let appEnvironment = AppEnvironment.shared
         let viewModel = AITutorViewModel(router: appEnvironment.router)
         let view = AITutorView(viewModel: viewModel)
-        appEnvironment.tabBar(isVisible: false)
-        appEnvironment
-            .changeNavBar(
-                foregroundColor: .textLightest,
-                for: HorizonTabBarType.learn.rawValue
-            )
         return CoreHostingController(view)
     }
 

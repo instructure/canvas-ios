@@ -81,17 +81,6 @@ final class AssignmentDetailsViewModel {
         bindSubmissionAssignmentEvents()
     }
 
-    // MARK: - Public Functions
-
-    func updateNavBarAndShowTabBar() {
-        appEnvironment
-            .changeNavBar(
-                foregroundColor: .textDarkest,
-                for: HorizonTabBarType.learn.rawValue
-            )
-        appEnvironment.tabBar(isVisible: true)
-    }
-
     // MARK: - Private Functions
 
     private func fetchAssignmentDetails() {
@@ -147,7 +136,7 @@ final class AssignmentDetailsViewModel {
         aiEvents.sink {  [weak self] event, controller in
             switch event {
             case .assist:
-                self?.appEnvironment.router.route(to: "/tutor", from: controller)
+                self?.appEnvironment.router.show(AIAssembly.makeAITutorView(), from: controller, options: .modal(isDismissable: false))
             default:
                 break
 
