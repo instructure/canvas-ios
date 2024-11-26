@@ -232,7 +232,7 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
     }
 
     func test_clearEnabledTabs_shouldNotRemoveTabsFromDatabase() {
-        saveTab(id:"people", htmlUrl: "/courses/42/users", context: .course("42"))
+        saveTab(id: "people", htmlUrl: "/courses/42/users", context: .course("42"))
 
         testee.clearEnabledTabs()
 

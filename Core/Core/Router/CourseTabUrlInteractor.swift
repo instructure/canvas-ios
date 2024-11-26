@@ -47,18 +47,17 @@ public final class CourseTabUrlInteractor {
     }
 
     private func tabsDidUpdate(_ tabs: [Tab]) {
-        var tabModels: [Context: [TabModel]] = [:]
-        tabs.forEach { tab in
-            guard tab.context.contextType == .course, let htmlURL = tab.htmlURL else { return }
+        let tabsPerContext = Dictionary(grouping: tabs, by: { $0.context })
 
-            let context = tab.context
-            if !tabModels.keys.contains(context) {
-                tabModels[context] = []
+        let tabModelsPerCourse: [Context: [TabModel]] = tabsPerContext.mapValues { tabArray in
+            tabArray.compactMap { tab in
+                guard tab.context.contextType == .course, let htmlURL = tab.htmlURL else { return nil }
+
+                return TabModel(id: tab.id, htmlUrl: htmlURL.absoluteString)
             }
-            tabModels[context]?.append(.init(id: tab.id, htmlUrl: htmlURL.absoluteString))
         }
 
-        tabModels.forEach { context, tabs in
+        tabModelsPerCourse.forEach { context, tabs in
             let tabPaths = pathsForTabs(tabs, context: context)
             enabledTabsPerCourse[context] = tabPaths
         }

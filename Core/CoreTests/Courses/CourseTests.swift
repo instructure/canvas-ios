@@ -300,7 +300,7 @@ class CourseTests: CoreTestCase {
         Course.make(from: .make(
             id: "42",
             tabs: [
-                .make(id: "pages", html_url: URL(string: "/courses/42/wiki")!),
+                .make(id: "pages", html_url: URL(string: "/courses/42/wiki")!)
             ]
         ))
         tabs42 = tabsForCourseId("42")
