@@ -33,8 +33,9 @@ public struct AssignmentListPreferencesScreen: View {
     public var body: some View {
         ScrollView(showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
-                if viewModel.isFilterSectionVisible {
-                    filterSection
+                filterSection
+                if viewModel.isTeacher {
+                    statusFilterSection
                 }
                 sortBySection
                 if viewModel.isGradingPeriodsSectionVisible {
@@ -76,13 +77,24 @@ public struct AssignmentListPreferencesScreen: View {
 
     // MARK: - Filter Section
 
+    @ViewBuilder
     private var filterSection: some View {
-        Section {
-            ForEach(AssignmentFilterOption.allCases, id: \.id) { item in
-                filterItem(with: item)
+        if viewModel.isTeacher {
+            Section {
+                ForEach(AssignmentFilterOptionsTeacher.customFilters, id: \.self) { item in
+                    customFilterItem(with: item)
+                }
+            } header: {
+                InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
             }
-        } header: {
-            InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
+        } else {
+            Section {
+                ForEach(AssignmentFilterOption.allCases, id: \.id) { item in
+                    filterItem(with: item)
+                }
+            } header: {
+                InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
+            }
         }
     }
 
@@ -101,6 +113,38 @@ public struct AssignmentListPreferencesScreen: View {
             color: color
         )
         .accessibilityIdentifier("AssignmentFilter.filterItems.\(item.id)")
+    }
+
+    private func customFilterItem(with item: AssignmentFilterOptionsTeacher) -> some View {
+        InstUI.RadioButtonCell(
+            title: item.title,
+            value: item,
+            selectedValue: $viewModel.selectedCustomFilterOption,
+            color: color
+        )
+        .accessibilityIdentifier("AssignmentFilter.customFilterOptions.\(item.rawValue)")
+    }
+
+    // MARK: - Status Filter Section
+
+    private var statusFilterSection: some View {
+        Section {
+            ForEach(AssignmentFilterOptionsTeacher.statusFilters, id: \.self) { item in
+                statusFilterItem(with: item)
+            }
+        } header: {
+            InstUI.ListSectionHeader(title: String(localized: "Status Filter", bundle: .core))
+        }
+    }
+
+    private func statusFilterItem(with item: AssignmentFilterOptionsTeacher) -> some View {
+        InstUI.RadioButtonCell(
+            title: item.title,
+            value: item,
+            selectedValue: $viewModel.selectedStatusFilterOption,
+            color: color
+        )
+        .accessibilityIdentifier("AssignmentFilter.statusFilterOptions.\(item.rawValue)")
     }
 
     // MARK: - Sort By Section
@@ -167,6 +211,10 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
     static var previews: some View {
         let gradingPeriods = createGradingPeriods()
         let viewModel = AssignmentListPreferencesViewModel(
+            isTeacher: false,
+            initialFilterOptions: AssignmentFilterOption.allCases,
+            initialStatusFilterOption: .allAssignments,
+            initialCustomFilterOption: .allAssignments,
             sortingOptions: AssignmentListViewModel.AssignmentArrangementOptions.allCases,
             initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions.dueDate,
             gradingPeriods: gradingPeriods,

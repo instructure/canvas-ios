@@ -37,9 +37,11 @@ public struct APIAssignment: Codable, Equatable {
     let grade_group_students_individually: Bool?
     let grading_type: GradingType
     let group_category_id: ID?
+    let has_submitted_submissions: Bool?
     let has_overrides: Bool?
     var html_url: URL
     let id: ID
+    let in_closed_grading_period: Bool?
     let locked_for_user: Bool?
     let lock_at: Date?
     let lock_explanation: String?
@@ -122,9 +124,11 @@ extension APIAssignment {
         grade_group_students_individually: Bool? = nil,
         grading_type: GradingType = .points,
         group_category_id: String? = nil,
+        has_submitted_submissions: Bool? = false,
         has_overrides: Bool? = false,
         html_url: URL? = nil,
         id: ID = "1",
+        in_closed_grading_period: Bool? = false,
         locked_for_user: Bool? = false,
         lock_at: Date? = nil,
         lock_explanation: String? = nil,
@@ -176,9 +180,11 @@ extension APIAssignment {
             grade_group_students_individually: grade_group_students_individually,
             grading_type: grading_type,
             group_category_id: ID(group_category_id),
+            has_submitted_submissions: has_submitted_submissions,
             has_overrides: has_overrides,
             html_url: html_url ?? URL(string: "/courses/\(course_id)/assignments/\(id)")!,
             id: id,
+            in_closed_grading_period: in_closed_grading_period,
             locked_for_user: locked_for_user,
             lock_at: lock_at,
             lock_explanation: lock_explanation,

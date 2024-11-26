@@ -250,4 +250,14 @@ public struct SessionDefaults {
         get { self["assignmentListFilterSettingsByCourseId"] as? [String: [String]] }
         set { self["assignmentListFilterSettingsByCourseId"] = newValue }
     }
+
+    public var assignmentListCustomFilterSettingByCourseId: [String: String]? {
+        get { self["assignmentListCustomFilterSettingByCourseId"] as? [String: String] }
+        set { self["assignmentListCustomFilterSettingByCourseId"] = newValue }
+    }
+
+    public var assignmentListStatusFilterSettingByCourseId: [String: String]? {
+        get { self["assignmentListStatusFilterSettingByCourseId"] as? [String: String] }
+        set { self["assignmentListStatusFilterSettingByCourseId"] = newValue }
+    }
 }

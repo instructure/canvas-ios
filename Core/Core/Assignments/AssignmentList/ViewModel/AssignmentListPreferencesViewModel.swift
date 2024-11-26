@@ -111,12 +111,58 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     ]
 }
 
+public enum AssignmentFilterOptionsTeacher: String, CaseIterable {
+    static let customFilters: [Self] = [.allAssignments, .needsGrading, .notSubmitted]
+    static let statusFilters: [Self] = [.allAssignments, .published, .unpublished]
+
+    case allAssignments
+
+    // Custom Filters
+    case needsGrading
+    case notSubmitted
+
+    // Status Filters
+    case published
+    case unpublished
+
+    var title: String {
+        switch self {
+        case .allAssignments:
+            return String(localized: "All Assignments", bundle: .core)
+        case .needsGrading:
+            return String(localized: "Needs Grading", bundle: .core)
+        case .notSubmitted:
+            return String(localized: "Not Submitted", bundle: .core)
+        case .published:
+            return String(localized: "Published", bundle: .core)
+        case .unpublished:
+            return String(localized: "Unpublished", bundle: .core)
+        }
+    }
+
+    var rule: (Assignment) -> Bool {
+        switch self {
+        case .allAssignments: return { _ in true}
+        case .needsGrading:
+            return { $0.needsGradingCount > 0 }
+        case .notSubmitted:
+            return { !$0.hasSubmittedSubmissions }
+        case .published:
+            return { $0.published }
+        case .unpublished:
+            return { !$0.published }
+        }
+    }
+}
+
 // MARK: - ViewModel
 
 public final class AssignmentListPreferencesViewModel: ObservableObject {
     struct AssignmentListPreferences {
         let filterOptions: [AssignmentFilterOption]
-        let sortingOption: AssignmentListViewModel.AssignmentArrangementOptions
+        let customFilterOption: AssignmentFilterOptionsTeacher?
+        let statusFilterOption: AssignmentFilterOptionsTeacher?
+        let sortingOption: AssignmentListViewModel.AssignmentArrangementOptions?
         let gradingPeriodId: String?
     }
 
@@ -124,6 +170,8 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
     // Filter Options
     @Published private(set) var selectedAssignmentFilterOptions: [AssignmentFilterOption]
+    @Published var selectedStatusFilterOption: AssignmentFilterOptionsTeacher?
+    @Published var selectedCustomFilterOption: AssignmentFilterOptionsTeacher?
 
     // Sorting Options
     @Published var selectedSortingOption: AssignmentListViewModel.AssignmentArrangementOptions?
@@ -134,6 +182,8 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     // MARK: - Private properties
 
     private let initialFilterOptions: [AssignmentFilterOption]
+    private let initialCustomFilterOption: AssignmentFilterOptionsTeacher
+    private let initialStatusFilterOption: AssignmentFilterOptionsTeacher
     private let initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions
     private let initialGradingPeriod: GradingPeriodOption?
 
@@ -142,17 +192,20 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
     // MARK: - Other properties and literals
 
+    let isTeacher: Bool
     let sortingOptions: [AssignmentListViewModel.AssignmentArrangementOptions]
     let gradingPeriods: [GradingPeriodOption]
 
     let courseName: String
-    let isFilterSectionVisible: Bool
     let isGradingPeriodsSectionVisible: Bool
 
     // MARK: - Init
 
     init(
-        initialFilterOptions: [AssignmentFilterOption] = AssignmentFilterOption.allCases,
+        isTeacher: Bool,
+        initialFilterOptions: [AssignmentFilterOption],
+        initialStatusFilterOption: AssignmentFilterOptionsTeacher,
+        initialCustomFilterOption: AssignmentFilterOptionsTeacher,
         sortingOptions: [AssignmentListViewModel.AssignmentArrangementOptions],
         initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions,
         gradingPeriods: [GradingPeriod],
@@ -161,9 +214,15 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         env: AppEnvironment,
         completion: @escaping (AssignmentListPreferences) -> Void
     ) {
+        self.isTeacher = isTeacher
+
         // Filter Options
         self.selectedAssignmentFilterOptions = initialFilterOptions
         self.initialFilterOptions = initialFilterOptions
+        self.initialStatusFilterOption = initialStatusFilterOption
+        self.selectedStatusFilterOption = initialStatusFilterOption
+        self.initialCustomFilterOption = initialCustomFilterOption
+        self.selectedCustomFilterOption = initialCustomFilterOption
 
         // Sorting Options
         self.sortingOptions = sortingOptions
@@ -191,7 +250,6 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
         self.env = env
         self.isGradingPeriodsSectionVisible = gradingPeriods.count > 1
-        self.isFilterSectionVisible = self.env.app == .student
     }
 
     // MARK: - Functions
@@ -200,6 +258,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         selectedAssignmentFilterOptions = initialFilterOptions
         selectedSortingOption = initialSortingOption
         selectedGradingPeriod = initialGradingPeriod
+        selectedCustomFilterOption = initialCustomFilterOption
         env.router.dismiss(viewController)
     }
 
@@ -211,7 +270,9 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         completion(
             AssignmentListPreferences(
                 filterOptions: selectedAssignmentFilterOptions,
-                sortingOption: selectedSortingOption ?? AssignmentListViewModel.AssignmentArrangementOptions.dueDate,
+                customFilterOption: selectedCustomFilterOption,
+                statusFilterOption: selectedStatusFilterOption,
+                sortingOption: selectedSortingOption,
                 gradingPeriodId: selectedGradingPeriod?.id
             )
         )
