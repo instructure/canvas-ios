@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import SwiftUI
 import UIKit
 
 public final class ModuleItemSequenceViewController: UIViewController {
@@ -27,12 +28,14 @@ public final class ModuleItemSequenceViewController: UIViewController {
     @IBOutlet weak var buttonsHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var pagesContainerBottomConstraint: NSLayoutConstraint!
 
     /// These should get set only once in viewDidLoad
     private var leftBarButtonItems: [UIBarButtonItem]?
     private var rightBarButtonItems: [UIBarButtonItem]?
 
     private let env = AppEnvironment.shared
+    private lazy var isHorizon = env.app == .horizon
     private var courseID: String!
     private var assetType: AssetType!
     private var assetID: String!
@@ -45,7 +48,19 @@ public final class ModuleItemSequenceViewController: UIViewController {
     private lazy var store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: assetType, assetID: assetID)) { [weak self] in
         self?.update(embed: true)
     }
+
     private var sequence: ModuleItemSequence? { store.first }
+
+    private lazy var moduleNavigationViewModel = ModuleBottomNavBarViewModel(
+        didTapPreviousButton: { [weak self] in
+            self?.goPrevious()
+        },
+        didTapNextButton: { [weak self] in
+            self?.goNext()
+        },
+        router: AppEnvironment.shared.router,
+        hostingViewController: self
+    )
 
     public static func create(
         courseID: String,
@@ -63,7 +78,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
         return controller
     }
 
-    public override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         leftBarButtonItems = navigationItem.leftBarButtonItems
         rightBarButtonItems = navigationItem.rightBarButtonItems
@@ -72,15 +87,15 @@ public final class ModuleItemSequenceViewController: UIViewController {
         pages.scrollView.isScrollEnabled = false
         embed(pages, in: pagesContainer)
 
-        // places the next arrow on the opposite side
-        let transform = CGAffineTransform(scaleX: -1, y: 1)
-        nextButton.transform = transform
-        nextButton.titleLabel?.transform = transform
-        nextButton.imageView?.transform = transform
+        if isHorizon {
+            setupModuleNavigationBarForHorizon()
+        } else {
+            setupModuleNavigationBarForCanvas()
+        }
 
         // Sometimes module links within Pages are referenced by their pageId ("/pages/my-module") instead of their id.
         // When downloading module item sequences for offline usage, we always download with the id field so we need to
-        // find the matching `ModuleItem` and replace the assetID for the `GetModuleItemSequence` request. 
+        // find the matching `ModuleItem` and replace the assetID for the `GetModuleItemSequence` request.
         if offlineModeInteractor.isOfflineModeEnabled() {
             if Int(assetID) == nil, let model: ModuleItem = env.database.viewContext.fetch(scope: .where(#keyPath(ModuleItem.pageId), equals: assetID)).first {
                 store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: .moduleItem, assetID: model.id)) { [weak self] in
@@ -91,6 +106,42 @@ public final class ModuleItemSequenceViewController: UIViewController {
 
         // force refresh because we don't provide a refresh control
         store.refresh(force: true)
+    }
+
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard isHorizon else { return }
+        env.tabBar(isVisible: true)
+    }
+
+    private func setupModuleNavigationBarForHorizon() {
+        AppEnvironment.shared.tabBar(isVisible: false)
+        pagesContainerBottomConstraint.isActive = false
+        buttonsContainer.removeFromSuperview()
+
+        let hostingVC = UIHostingController(rootView: ModuleNavBarView(viewModel: moduleNavigationViewModel))
+
+        hostingVC.view.translatesAutoresizingMaskIntoConstraints = false
+        hostingVC.view.backgroundColor = UIColor(hexString: "#FBF5ED")
+        addChild(hostingVC)
+        view.addSubview(hostingVC.view)
+        view.backgroundColor = UIColor(hexString: "#FBF5ED")
+        NSLayoutConstraint.activate([
+            hostingVC.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            hostingVC.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            hostingVC.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            pagesContainer.bottomAnchor.constraint(equalTo: hostingVC.view.topAnchor)
+
+        ])
+        hostingVC.didMove(toParent: self)
+    }
+
+    private func setupModuleNavigationBarForCanvas() {
+        // places the next arrow on the opposite side
+        let transform = CGAffineTransform(scaleX: -1, y: 1)
+        nextButton.transform = transform
+        nextButton.titleLabel?.transform = transform
+        nextButton.imageView?.transform = transform
     }
 
     private func update(embed: Bool) {
@@ -121,12 +172,18 @@ public final class ModuleItemSequenceViewController: UIViewController {
     }
 
     private func showSequenceButtons(prev: Bool, next: Bool) {
-        let show = prev || next
-        self.buttonsContainer.isHidden = show == false
-        self.buttonsHeightConstraint.constant = show ? 56 : 0
-        previousButton.isHidden = prev == false
-        nextButton.isHidden = next == false
-        self.view.layoutIfNeeded()
+        if isHorizon {
+            moduleNavigationViewModel.isPreviousButtonEnabled = prev
+            moduleNavigationViewModel.isNextButtonEnabled = next
+        } else {
+            let show = prev || next
+            buttonsContainer.isHidden = show == false
+            buttonsHeightConstraint.constant = show ? 56 : 0
+            previousButton.isHidden = prev == false
+            nextButton.isHidden = next == false
+        }
+
+        view.layoutIfNeeded()
     }
 
     private func show(item: ModuleItemSequenceNode, direction: PagesViewController.Direction? = nil) {

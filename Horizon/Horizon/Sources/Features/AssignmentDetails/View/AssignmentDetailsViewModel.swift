@@ -16,21 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Observation
 import Combine
 import CombineSchedulers
 import Core
+import Observation
 
 @Observable
 final class AssignmentDetailsViewModel {
     // MARK: - Input
 
     private(set) var submissionEvents = PassthroughSubject<AssignmentSubmissionView.Events, Never>()
-    private(set) var aiEvents = PassthroughSubject<(ModuleBottomsType, WeakViewController), Never>()
     var isSubmitButtonVisible = false
     var selectedSubmission: AssignmentType?
 
     // MARK: - Input / Output
+
     var isKeyboardVisible = false
     var textEntry: String = ""
     var isAlertVisible = false
@@ -60,7 +60,6 @@ final class AssignmentDetailsViewModel {
     // MARK: - Dependancies
 
     private let interactor: AssignmentInteractor
-    private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
@@ -71,11 +70,9 @@ final class AssignmentDetailsViewModel {
 
     init(
         interactor: AssignmentInteractor,
-        router: Router,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
-        self.router = router
         self.scheduler = scheduler
         fetchAssignmentDetails()
         bindSubmissionAssignmentEvents()
@@ -131,17 +128,8 @@ final class AssignmentDetailsViewModel {
                     self?.isAlertVisible = true
                     self?.errorMessage = error.localizedDescription
                 }
-            }.store(in: &subscriptions)
-
-        aiEvents.sink {  [weak self] event, controller in
-            switch event {
-            case .assist:
-                self?.router.route(to: "/tutor", from: controller, options: .modal(isDismissable: false))
-            default:
-                break
-
             }
-        }.store(in: &subscriptions)
+            .store(in: &subscriptions)
     }
 
     private func submitTextEntry() {
