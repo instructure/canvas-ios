@@ -32,11 +32,16 @@ final class AIAssembly {
         let appEnvironment = AppEnvironment.shared
         let viewModel = AITutorViewModel(router: appEnvironment.router)
         let view = AITutorView(viewModel: viewModel)
-        appEnvironment.tabBar(isVisible: false)
         return CoreHostingController(view)
     }
 
     static func makeAISummaryView() -> UIViewController {
         CoreHostingController(AISummaryView())
+    }
+
+    static func makeAIQuizView() -> AIQuizView {
+        let router = AppEnvironment.shared.router
+        let viewModel = AIQuizViewModel(router: router)
+        return AIQuizView(viewModel: viewModel)
     }
 }

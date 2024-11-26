@@ -25,19 +25,21 @@ struct AITutorView: View {
     private let types = AITutorType.allCases
 
     var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            ScrollView(showsIndicators: false) {
-                VStack {
-                    ForEach(types, id: \.self) { item in
-                        AITutorButton(item: item) { selectedItem in
-                            viewModel.didSelectTutorType.send(selectedItem)
+        VStack {
+            headerView
+            ZStack(alignment: .bottomTrailing) {
+                ScrollView(showsIndicators: false) {
+                    VStack {
+                        ForEach(types, id: \.self) { item in
+                            AITutorButton(item: item) { selectedItem in
+                                viewModel.didSelectTutorType.send(selectedItem)
+                            }
                         }
                     }
                 }
+                chatBotButton
             }
-            chatBotButton
         }
-        .navigationTitle("AI Tutor")
         .paddingStyle([.horizontal, .top], .standard)
         .applyHorizonGradient()
         .onFirstAppear { viewModel.controller = viewController }
@@ -53,6 +55,25 @@ struct AITutorView: View {
                 .background(Color.backgroundLightest)
                 .clipShape(.circle)
                 .shadow(radius: 5)
+        }
+    }
+
+    private var headerView: some View {
+        ZStack(alignment: .trailingLastTextBaseline) {
+            Text("AI Tutor")
+                .foregroundStyle(Color.textLightest)
+                .frame(maxWidth: .infinity)
+                .font(.bold20)
+
+            Button {
+                viewModel.dismiss()
+            } label: {
+                Image(systemName: "xmark")
+                    .foregroundColor(.textLightest)
+                    .padding()
+                    .background(Color.backgroundLightest.opacity(0.2))
+                    .clipShape(.circle)
+            }
         }
     }
 }

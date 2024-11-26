@@ -48,14 +48,12 @@ final class AssignmentDetailsAssembly {
 #if DEBUG
     static func makePreview() -> AssignmentDetails {
         let interactor = AssignmentInteractorPreview()
-        let appEnvironment = AppEnvironment.shared
         let viewModel = AssignmentDetailsViewModel(interactor: interactor)
         return AssignmentDetails(viewModel: viewModel)
     }
 
     static func makeAssignmentSubmissionViewModel() -> AssignmentDetailsViewModel {
         let interactor = AssignmentInteractorPreview()
-        let appEnvironment = AppEnvironment.shared
         return AssignmentDetailsViewModel(interactor: interactor)
     }
 
