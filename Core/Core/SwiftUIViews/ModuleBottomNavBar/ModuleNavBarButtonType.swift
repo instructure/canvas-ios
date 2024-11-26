@@ -17,23 +17,35 @@
 //
 
 import Foundation
+import SwiftUI
 
-enum ModuleBottomsType: CaseIterable {
-    case message
-    case sound
-    case bookmark
+enum ModuleNavBarButtons: CaseIterable {
+    case previous
+    case tts
     case assist
+    case notebook
+    case next
 
-    var imageName: String {
+    static var contentButtons: [ModuleNavBarButtons] {
+        [
+            .tts,
+            .assist,
+            .notebook
+        ]
+    }
+
+    var image: Image {
         switch self {
-        case .message:
-            "bubble.left"
-        case .sound:
-            "speaker.wave.2"
-        case .bookmark:
-            "bookmark"
+        case .previous:
+            Image(systemName: "arrow.left")
+        case .tts:
+            Image(systemName: "speaker.wave.2")
         case .assist:
-            "sparkles"
+            Image("chatBot")
+        case .notebook:
+            Image(systemName: "bookmark")
+        case .next:
+            Image(systemName: "arrow.right")
         }
     }
 }
