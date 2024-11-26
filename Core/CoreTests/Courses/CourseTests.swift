@@ -260,4 +260,53 @@ class CourseTests: CoreTestCase {
                                 ],
                                 settings: .make(restrict_quantitative_data: restrict_quantitative_data)))
     }
+
+    func testSavingTabs() {
+        func tabsForCourseId(_ id: String) -> [Tab] {
+            databaseClient.fetch(scope: .where(#keyPath(Tab.contextRaw), equals: "course_\(id)"))
+        }
+
+        var tabs42: [Tab] = []
+        var tabs7: [Tab] = []
+
+        // save course with tabs
+        Course.make(from: .make(
+            id: "42",
+            tabs: [
+                .make(id: "modules", html_url: URL(string: "/courses/42/modules")!),
+                .make(id: "people", html_url: URL(string: "/courses/42/users")!)
+            ]
+        ))
+        tabs42 = tabsForCourseId("42")
+        XCTAssertEqual(tabs42.count, 2)
+        XCTAssertEqual(tabs42.contains { $0.id == "modules" }, true)
+        XCTAssertEqual(tabs42.contains { $0.id == "people" }, true)
+
+        // save another course with tabs
+        Course.make(from: .make(
+            id: "7",
+            tabs: [
+                .make(id: "grades", html_url: URL(string: "/courses/7/grades")!)
+            ]
+        ))
+        tabs42 = tabsForCourseId("42")
+        XCTAssertEqual(tabs42.count, 2)
+        XCTAssertEqual(tabs42.contains { $0.id == "modules" }, true)
+        XCTAssertEqual(tabs42.contains { $0.id == "people" }, true)
+        tabs7 = tabsForCourseId("7")
+        XCTAssertEqual(tabs7.contains { $0.id == "grades" }, true)
+
+        // save original course with different tab
+        Course.make(from: .make(
+            id: "42",
+            tabs: [
+                .make(id: "pages", html_url: URL(string: "/courses/42/wiki")!),
+            ]
+        ))
+        tabs42 = tabsForCourseId("42")
+        XCTAssertEqual(tabs42.count, 1)
+        XCTAssertEqual(tabs42.contains { $0.id == "pages" }, true)
+        tabs7 = tabsForCourseId("7")
+        XCTAssertEqual(tabs7.contains { $0.id == "grades" }, true)
+    }
 }
