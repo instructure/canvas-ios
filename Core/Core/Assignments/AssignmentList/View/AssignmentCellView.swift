@@ -39,21 +39,19 @@ public struct AssignmentCellView: View {
                 icon
                 VStack(alignment: .leading, spacing: 0) {
                     assignmentName
-                    dueDate
-                    needsGradingBubble
+                    subtitle
                 }
                 .padding(.top, Typography.Spacings.textCellTopPadding)
                 .padding(.bottom, Typography.Spacings.textCellBottomPadding)
                 Spacer()
-                InstDisclosureIndicator()
             }
             .padding(.trailing, 16)
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
         })
-            .background(Color.backgroundLightest)
-            .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
-            .accessibility(identifier: "AssignmentList.\(viewModel.assignment.id)")
+        .background(Color.backgroundLightest)
+        .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
+        .accessibility(identifier: "AssignmentList.\(viewModel.assignment.id)")
     }
 
     private var icon: some View {
@@ -73,22 +71,91 @@ public struct AssignmentCellView: View {
             .lineLimit(2)
     }
 
+    @ViewBuilder
+    private var subtitle: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            if viewModel.isTeacher {
+                dueDate
+                if viewModel.needsGrading {
+                    needsGradingAndPointsPossible
+                }
+            } else {
+                dueDateAndStatus
+                if viewModel.hasPointsPossible {
+                    score
+                }
+            }
+        }
+    }
+
+    private var dueDateAndStatus: some View {
+        return HStack(alignment: .center, spacing: 2) {
+            dueDate
+            subtitleSeparator
+            submissionIcon
+            submissionStatus
+        }
+    }
+
     private var dueDate: some View {
         Text(viewModel.formattedDueDate)
             .style(.textCellSupportingText)
-            .foregroundColor(.textDark)
+            .foregroundColor(viewModel.defaultTextColor)
+            .lineLimit(1)
+    }
+
+    private var subtitleSeparator: some View {
+        InstUI.Divider()
+            .frame(minWidth: 1, maxHeight: 16)
+            .style(.textCellSupportingText)
+            .foregroundColor(viewModel.defaultTextColor)
+            .padding(.horizontal, 2)
+    }
+
+    private var submissionIcon: some View {
+        Image(uiImage: viewModel.submissionIcon)
+            .resizable()
+            .frame(width: 14, height: 14)
+            .foregroundColor(viewModel.submissionColor)
+    }
+
+    private var submissionStatus: some View {
+        Text(viewModel.submissionStatus)
+            .style(.textCellSupportingText)
+            .foregroundColor(viewModel.submissionColor)
+    }
+
+    private var score: some View {
+        return Text(viewModel.scoreLabel ?? "")
+            .style(.textCellSupportingText)
+            .foregroundColor(viewModel.brandColor)
+    }
+
+    private var pointsPossible: some View {
+        return Text(viewModel.pointsPossibleText)
+            .font(.semibold16)
+            .foregroundColor(viewModel.brandColor)
+    }
+
+    private var needsGradingAndPointsPossible: some View {
+        return HStack(alignment: .center, spacing: 2) {
+            needsGradingBubble
+            subtitleSeparator
+            pointsPossible
+        }
     }
 
     @ViewBuilder
     private var needsGradingBubble: some View {
         if let needsGradingText = viewModel.needsGradingText {
             Text(needsGradingText)
-                .font(.medium10)
-                .foregroundColor(.borderInfo)
-                .padding(.horizontal, 6).padding(.vertical, 2)
-                .background(RoundedRectangle(cornerRadius: 9).stroke(Color.borderInfo, lineWidth: 1))
-                .padding(.top, 6)
-                .padding(.bottom, 5)
+                .frame(minHeight: 18)
+                .font(.regular12)
+                .foregroundColor(.textLightest)
+                .padding(.horizontal, 10).padding(.vertical, 4)
+                .background(RoundedRectangle(cornerRadius: 100).fill(viewModel.brandColor))
+                .padding(.top, 4)
+                .padding(.bottom, 4)
         }
     }
 }

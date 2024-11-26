@@ -30,30 +30,52 @@ public class AssignmentCellViewModel: ObservableObject {
     }
 
     public var route: URL? { assignment.htmlURL }
+    var icon: UIImage { assignment.icon ?? .assignmentLine }
+    var name: String { assignment.name }
+    var submissionStatus: String { assignment.submissionStatus.text }
+    var submissionIcon: UIImage { assignment.submissionStatus.icon }
+    var submissionColor: Color { Color(assignment.submissionStatus.color) }
+    let defaultTextColor: Color = .textDark
+    let brandColor: Color = Color(Brand.shared.primary)
+    var hasPointsPossible: Bool { scoreLabel != nil }
+    var pointsPossibleText: String { assignment.pointsPossibleText }
 
-    public var icon: UIImage {
-        assignment.icon ?? .assignmentLine
+    // Teacher
+    var isTeacher: Bool { env.app == .teacher }
+    var needsGrading: Bool { assignment.needsGradingCount > 0 }
+    var needsGradingCount: Int { assignment.needsGradingCount }
+
+    private var formattedDueAt: String? {
+        guard let dueAt = assignment.dueAt else { return nil }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "LLL d, y h:mm a"
+        return dateFormatter.string(from: dueAt)
     }
 
-    public var name: String {
-        assignment.name
+    var scoreLabel: String? {
+        guard let pointsPossible = assignment.pointsPossible else { return nil }
+        var scoreString = "-"
+        if let viewableScore = assignment.viewableScore {
+            scoreString = String(Int(viewableScore))
+        }
+        return "\(scoreString)/\(String(Int(pointsPossible)))"
     }
 
-    public var published: Bool? {
+    var published: Bool? {
         guard isTeacher else { return nil }
         return assignment.published
     }
 
-    public var needsGradingText: String? {
+    var needsGradingText: String? {
         guard assignment.needsGradingCount > 0, assignment.gradingType != .not_graded else {
             return nil
         }
 
         let format = String(localized: "d_needs_grading", bundle: .core)
-        return String.localizedStringWithFormat(format, assignment.needsGradingCount).localizedUppercase
+        return String.localizedStringWithFormat(format, needsGradingCount).localizedCapitalized
     }
 
-    public var formattedDueDate: String {
+    var formattedDueDate: String {
         if let lockAt = assignment.lockAt, Clock.now > lockAt {
             return String(localized: "Availability: Closed", bundle: .core)
         }
@@ -62,15 +84,11 @@ public class AssignmentCellViewModel: ObservableObject {
             return String(localized: "Multiple Due Dates", bundle: .core)
         }
 
-        if let dueAt = assignment.dueAt {
-            let format = String(localized: "Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>")
-            return String.localizedStringWithFormat(format, dueAt.relativeDateTimeString)
+        if let dueAt = formattedDueAt {
+            let format = String(localized: "Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 9:00 PM>")
+            return String.localizedStringWithFormat(format, dueAt)
         }
 
         return String(localized: "No Due Date", bundle: .core)
-    }
-
-    private var isTeacher: Bool {
-        env.app == .teacher
     }
 }
