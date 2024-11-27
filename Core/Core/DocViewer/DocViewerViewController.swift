@@ -102,9 +102,6 @@ public class DocViewerViewController: UIViewController {
         let dragGestureViewModel = AnnotationDragGestureViewModel(pdf: pdf, gestureRecognizer: dragGestureRecognizer)
         self.dragGestureViewModel = dragGestureViewModel
 
-        print(env)
-        print(previewURL?.relativeString)
-
         if let url = URL(string: previewURL?.relativeString ?? "", relativeTo: env.api.baseURL), let loginSession = env.currentSession {
             session.load(url: url, session: loginSession)
         } else {

@@ -148,7 +148,6 @@ let router = Router(routes: [
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions") { url, params, info in
-        print(info)
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         let selectedAttempt = Int(url.queryValue(for: "selectedAttempt") ?? "")
         return SubmissionDetailsViewController.create(
@@ -161,7 +160,6 @@ let router = Router(routes: [
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { url, params, info in
-        print(info)
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else { return nil }
         if url.originIsCalendar || url.originIsNotification {
             return AssignmentDetailsViewController.create(
