@@ -21,10 +21,10 @@ import SwiftUI
 public class AssignmentCellViewModel: ObservableObject {
     public let assignment: Assignment
     public let courseColor: UIColor?
+    private let env: AppEnvironment
 
-    private let env = AppEnvironment.shared
-
-    public init(assignment: Assignment, courseColor: UIColor?) {
+    public init(env: AppEnvironment, assignment: Assignment, courseColor: UIColor?) {
+        self.env = env
         self.assignment = assignment
         self.courseColor = courseColor
     }
@@ -74,3 +74,13 @@ public class AssignmentCellViewModel: ObservableObject {
         env.app == .teacher
     }
 }
+
+// MARK: - Preview
+
+#if DEBUG
+extension AssignmentCellViewModel {
+    public convenience init(assignment: Assignment, courseColor: UIColor?) {
+        self.init(env: .shared, assignment: assignment, courseColor: courseColor)
+    }
+}
+#endif

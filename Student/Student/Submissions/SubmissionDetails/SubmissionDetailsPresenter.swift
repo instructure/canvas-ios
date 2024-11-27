@@ -80,13 +80,13 @@ class SubmissionDetailsPresenter {
     private var docViewerSessionURL: URL?
     private var docViewerSessionRequest: APITask?
 
-    init(env: AppEnvironment = .shared, view: SubmissionDetailsViewProtocol, context: Context, assignmentID: String, userID: String, selectedAttempt: Int? = nil) {
+    init(env: AppEnvironment, view: SubmissionDetailsViewProtocol, context: Context, assignmentID: String, userID: String, selectedAttempt: Int? = nil) {
         self.context = context
         self.assignmentID = assignmentID
         self.userID = userID
         self.env = env
         self.view = view
-        self.submissionButtonPresenter = SubmissionButtonPresenter(view: view, assignmentID: assignmentID)
+        self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: assignmentID)
         self.selectedAttempt = selectedAttempt
     }
 
@@ -196,12 +196,12 @@ class SubmissionDetailsPresenter {
         // still be a submission inside the tool
         if assignment.requiresLTILaunch(toViewSubmission: submission) {
             let tools = LTITools(
-                env: .shared,
+                env: env,
                 context: context,
                 launchType: .assessment,
                 assignmentID: assignmentID
             )
-            return LTIViewController.create(tools: tools)
+            return LTIViewController.create(env: env, tools: tools)
         }
 
         switch submission.type {
@@ -236,6 +236,7 @@ class SubmissionDetailsPresenter {
                     return controller
                 } else if let previewURL = attachment.previewURL {
                     return DocViewerViewController.create(
+                        env: env,
                         filename: attachment.filename,
                         previewURL: previewURL,
                         fallbackURL: url,
@@ -267,14 +268,15 @@ class SubmissionDetailsPresenter {
             return controller
         case .some(.basic_lti_launch):
             let tools = LTITools(
-                env: .shared,
+                env: env,
                 context: context,
                 url: submission.externalToolURL
             )
-            return LTIViewController.create(tools: tools)
+            return LTIViewController.create(env: env, tools: tools)
         case .student_annotation:
             guard let docViewerSessionURL = docViewerSessionURL else { return nil }
             return DocViewerViewController.create(
+                env: env,
                 filename: "", // filename unknown because this isn't a file the user attached but one attached to the assignment
                 previewURL: docViewerSessionURL,
                 fallbackURL: docViewerSessionURL,

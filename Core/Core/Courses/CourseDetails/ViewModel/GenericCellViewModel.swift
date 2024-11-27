@@ -21,6 +21,7 @@ extension Tab: TabViewable {}
 class GenericCellViewModel: CourseDetailsCellViewModel {
     private let isInternalURL: Bool
     private let route: URL?
+    private var baseURL: URL?
 
     public init(tab: Tab, course: Course, selectedCallback: @escaping () -> Void) {
         let route: URL? = {
@@ -43,13 +44,16 @@ class GenericCellViewModel: CourseDetailsCellViewModel {
 
         self.isInternalURL = isInternalURL
         self.route = route
-        super.init(courseColor: course.color,
-                   iconImage: tab.icon,
-                   label: tab.label,
-                   subtitle: nil,
-                   accessoryIconType: isInternalURL ? .disclosure : .externalLink,
-                   tabID: tab.id,
-                   selectedCallback: selectedCallback)
+        self.baseURL = tab.apiBaseURL
+        super.init(
+            courseColor: course.color,
+            iconImage: tab.icon,
+            label: tab.label,
+            subtitle: nil,
+            accessoryIconType: isInternalURL ? .disclosure : .externalLink,
+            tabID: tab.id,
+            selectedCallback: selectedCallback
+        )
     }
 
     public override func selected(router: Router, viewController: WeakViewController) {
@@ -59,7 +63,8 @@ class GenericCellViewModel: CourseDetailsCellViewModel {
         }
 
         if let url = route {
-            router.route(to: url, from: viewController)
+            let info: [String: Any]? = baseURL.flatMap({ ["baseURL": $0] })
+            router.route(to: url, userInfo: info, from: viewController)
         }
     }
 }

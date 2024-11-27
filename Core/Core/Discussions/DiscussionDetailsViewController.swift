@@ -850,7 +850,14 @@ extension DiscussionDetailsViewController {
 
     func editEntry(_ entryID: String) {
         let entry = self.entry(entryID)
-        let controller = DiscussionReplyViewController.create(context: context, topicID: topicID, replyToEntryID: entry?.parentID, editEntryID: entryID)
+        let controller = DiscussionReplyViewController
+            .create(
+                env: env,
+                context: context,
+                topicID: topicID,
+                replyToEntryID: entry?.parentID,
+                editEntryID: entryID
+            )
         env.router.show(controller, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
     }
 

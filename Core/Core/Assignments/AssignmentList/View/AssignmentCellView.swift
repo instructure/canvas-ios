@@ -111,7 +111,7 @@ struct AssignmentCellView_Previews: PreviewProvider {
             Divider()
             ForEach(assignments, id: \.id) {
                 let assignment = Assignment.save($0, in: context, updateSubmission: false, updateScoreStatistics: false)
-                let viewModel = AssignmentCellViewModel(assignment: assignment, courseColor: .red)
+                let viewModel = AssignmentCellViewModel(env: env, assignment: assignment, courseColor: .red)
                 AssignmentCellView(viewModel: viewModel)
                 Divider()
             }

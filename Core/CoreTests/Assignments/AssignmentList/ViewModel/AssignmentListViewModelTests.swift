@@ -22,7 +22,7 @@ import TestsFoundation
 class AssignmentListViewModelTests: CoreTestCase {
 
     func testInitialState() {
-        let testee = AssignmentListViewModel(context: .course("1"))
+        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
         XCTAssertEqual(testee.state, .loading)
         XCTAssertNil(testee.courseName)
         XCTAssertNil(testee.courseColor)
@@ -36,7 +36,7 @@ class AssignmentListViewModelTests: CoreTestCase {
             in: databaseClient
         )
         api.mock(GetCourse(courseID: "1"), value: .make(name: "Test Course"))
-        let testee = AssignmentListViewModel(context: .course("1"))
+        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
 
         testee.viewDidAppear()
 
@@ -68,7 +68,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         )
         api.mock(assignmentGroupRequest, value: [])
 
-        let testee = AssignmentListViewModel(context: .course("1"))
+        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
 
         testee.viewDidAppear()
 
@@ -89,7 +89,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         )
 
         api.mock(assignmentGroupRequest, value: assignmentGroups)
-        let testee = AssignmentListViewModel(context: .course("1"))
+        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
 
         testee.selectedSortingOption = .groupName
         testee.viewDidAppear()
@@ -129,7 +129,7 @@ class AssignmentListViewModelTests: CoreTestCase {
             perPage: 100
         )
         api.mock(assignmentGroupRequest, value: assignmentGroups)
-        let testee = AssignmentListViewModel(context: .course("1"))
+        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
 
         testee.viewDidAppear()
 
@@ -144,8 +144,8 @@ class AssignmentListViewModelTests: CoreTestCase {
                 .make(id: "2", title: "Current GP", start_date: Clock.now.addMonths(-1), end_date: Clock.now.addMonths(1))
             ]
         )
-        let gradingPeriods = AppEnvironment.shared.subscribe(GetGradingPeriods(courseID: "1"))
-        let testee = AssignmentListViewModel(context: .course("1"))
+        let gradingPeriods = environment.subscribe(GetGradingPeriods(courseID: "1"))
+        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
         testee.viewDidAppear()
         XCTAssertEqual(testee.selectedGradingPeriodId, gradingPeriods[1]?.id)
 

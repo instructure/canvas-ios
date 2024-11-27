@@ -30,14 +30,15 @@ public protocol FilePickerDelegate: ErrorViewController {
 }
 
 public class FilePicker: NSObject {
-    let env = AppEnvironment.shared
+    public var env: AppEnvironment
     public weak var delegate: FilePickerDelegate?
     public var batchAction: ((String) -> Void)?
     public var singleAction: ((Result<URL, Error>) -> Void)?
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(delegate: FilePickerDelegate? = nil) {
+    public init(env: AppEnvironment, delegate: FilePickerDelegate? = nil) {
         self.delegate = delegate
+        self.env = env
     }
 
     public func pick(from: UIViewController) {
@@ -174,7 +175,7 @@ extension FilePicker: UIDocumentPickerDelegate {
 extension FilePicker: FilePickerControllerDelegate {
     public func pickAttachments(from: UIViewController, action: @escaping (String) -> Void) {
         batchAction = action
-        let uiViewController = FilePickerViewController.create()
+        let uiViewController = FilePickerViewController.create(env: env)
         uiViewController.delegate = self
         uiViewController.title = String(localized: "Attachments", bundle: .core)
         uiViewController.submitButtonTitle = String(localized: "Send", bundle: .core)

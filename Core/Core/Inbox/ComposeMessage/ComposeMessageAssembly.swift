@@ -34,7 +34,7 @@ public enum ComposeMessageAssembly {
             batchId: batchId,
             uploadFolderPath: "conversation attachments",
             restrictForFolderPath: true,
-            uploadManager: UploadManager(identifier: batchId),
+            uploadManager: UploadManager(env: env, identifier: batchId),
             publisherProvider: URLSessionDataTaskPublisherProviderLive()
         )
         let recipientInteractor = RecipientInteractorLive()

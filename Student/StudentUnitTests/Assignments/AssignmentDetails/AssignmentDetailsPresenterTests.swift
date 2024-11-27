@@ -51,7 +51,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
             submitted = true
         }
     }
-    lazy var mockButton = MockButton(view: mockView, assignmentID: "1")
+    lazy var mockButton = MockButton(env: env, view: mockView, assignmentID: "1")
     lazy var mockView: MockView = {
         let view = MockView()
         view.test = self
@@ -61,9 +61,16 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     override func setUp() {
         super.setUp()
         env.mockStore = true
-        presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: "target")
+        presenter = AssignmentDetailsPresenter(
+            env: env,
+            view: mockView,
+            courseID: "1",
+            assignmentID: "1",
+            fragment: "target"
+        )
         presenter.submissionButtonPresenter = mockButton
-        viewController = AssignmentDetailsViewController.create(courseID: "1", assignmentID: "1")
+        viewController = AssignmentDetailsViewController
+            .create(env: env, courseID: "1", assignmentID: "1")
         viewController.presenter = presenter
         resultingAttemptPickerActiveState = nil
         resultingAttemptPickerItems = nil
@@ -141,7 +148,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         Assignment.make(from: .make(html_url: expected))
 
-        presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: nil)
+        presenter = AssignmentDetailsPresenter(env: env, view: mockView, courseID: "1", assignmentID: "1", fragment: nil)
         presenter.assignments.eventHandler()
 
         XCTAssertEqual(resultingBaseURL, expected)
@@ -154,7 +161,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make(from: .make(html_url: url))
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1#fragment")!
 
-        presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
+        presenter = AssignmentDetailsPresenter(env: env, view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.assignments.eventHandler()
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
@@ -166,7 +173,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         let fragment = ""
         Assignment.make(from: .make(html_url: expected))
-        presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
+        presenter = AssignmentDetailsPresenter(env: env, view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.assignments.eventHandler()
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)

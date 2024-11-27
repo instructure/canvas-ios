@@ -30,7 +30,7 @@ class UploadManagerTests: CoreTestCase {
     }
 
     let uploadContext: FileUploadContext = .context(Context(.course, id: "1"))
-    let manager = UploadManager(identifier: "upload-manager-tests")
+    lazy var  manager = UploadManager(env: environment, identifier: "upload-manager-tests")
     var context: NSManagedObjectContext {
         return UploadManager.shared.viewContext
     }
@@ -70,7 +70,7 @@ class UploadManagerTests: CoreTestCase {
             .sharedContainer(appGroup: "group.com.instructure.icanvas")?
             .appendingPathComponent("uploads/shared/")
             .appendingPathComponent(url.lastPathComponent)
-        let manager = UploadManager(identifier: "test", sharedContainerIdentifier: "group.com.instructure.icanvas")
+        let manager = UploadManager(env: environment, identifier: "test", sharedContainerIdentifier: "group.com.instructure.icanvas")
         XCTAssertEqual(try manager.copyFileToSharedContainer(url), expected)
     }
 

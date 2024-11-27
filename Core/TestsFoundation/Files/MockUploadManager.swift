@@ -28,8 +28,8 @@ public final class MockUploadManager: UploadManager, @unchecked Sendable {
     public nonisolated(unsafe) var cancelWasCalled = false
     public nonisolated(unsafe) var canceledBatchID: String?
 
-   public init() {
-        super.init(identifier: "mock")
+    public init(env: AppEnvironment) {
+        super.init(env: env, identifier: "mock")
     }
 
     public override var database: NSPersistentContainer {

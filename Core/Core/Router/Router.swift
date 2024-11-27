@@ -158,8 +158,11 @@ open class Router {
     }
     open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         let url = cleanURL(url)
+        let env = userInfo?["env-override"] as? AppEnvironment
 
-        if url.isExternalWebsite, !url.originIsNotification, let url = url.url {
+        if url.isExternalWebsite(of: env ?? .shared),
+           !url.originIsNotification,
+            let url = url.url {
             RemoteLogger.shared.logBreadcrumb(route: "/external_url")
             AppEnvironment.shared.loginDelegate?.openExternalURL(url)
             return

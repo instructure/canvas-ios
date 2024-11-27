@@ -26,16 +26,19 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
     var assignmentID: String!
     var courseID: String!
     var editor: RichContentEditorViewController!
-    let env = AppEnvironment.shared
     var keyboard: KeyboardTransitioning?
     var userID: String!
 
-    static func create(courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
+    private var env: AppEnvironment = .defaultValue
+
+    static func create(env: AppEnvironment, courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.courseID = courseID
         controller.userID = userID
-        controller.editor = RichContentEditorViewController.create(context: .course(courseID), uploadTo: .myFiles)
+        controller.env = env
+        controller.editor = RichContentEditorViewController
+            .create(env: env, context: .course(courseID), uploadTo: .myFiles)
         return controller
     }
 
@@ -71,20 +74,26 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
     }
 
     @objc func submit() {
-        editor.getHTML { (html: String) in
+        editor.getHTML { [weak self] (html: String) in
+            guard let self else { return }
+
             CreateSubmission(
                 context: .course(self.courseID),
                 assignmentID: self.assignmentID,
                 userID: self.userID,
                 submissionType: .online_text_entry,
                 body: html
-            ).fetch { (_, _, error) in performUIUpdate {
-                if let error = error {
-                    self.showError(error)
-                } else {
-                    self.dismiss(animated: true, completion: nil)
+            )
+            .fetch(environment: env, { (_, _, error) in
+
+                performUIUpdate {
+                    if let error = error {
+                        self.showError(error)
+                    } else {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
-            } }
+            })
         }
     }
 }

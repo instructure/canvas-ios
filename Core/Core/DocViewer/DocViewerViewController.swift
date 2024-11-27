@@ -29,7 +29,7 @@ public class DocViewerViewController: UIViewController {
     let toolbarContainer = FlexibleToolbarContainer()
 
     var annotationProvider: DocViewerAnnotationProvider?
-    let env = AppEnvironment.shared
+    private var env: AppEnvironment = .defaultValue
     public var fallbackURL: URL!
     var fallbackUsed = false
     public var filename = ""
@@ -55,6 +55,7 @@ public class DocViewerViewController: UIViewController {
     }
 
     public static func create(
+        env: AppEnvironment,
         filename: String,
         previewURL: URL?,
         fallbackURL: URL,
@@ -66,6 +67,7 @@ public class DocViewerViewController: UIViewController {
         let controller = loadFromStoryboard()
         controller.parentNavigationItem = navigationItem
         controller.filename = filename
+        controller.env = env
         controller.previewURL = previewURL
         controller.fallbackURL = fallbackURL
         controller.parentNavigationItem = navigationItem
@@ -100,7 +102,10 @@ public class DocViewerViewController: UIViewController {
         let dragGestureViewModel = AnnotationDragGestureViewModel(pdf: pdf, gestureRecognizer: dragGestureRecognizer)
         self.dragGestureViewModel = dragGestureViewModel
 
-        if let url = URL(string: previewURL?.absoluteString ?? "", relativeTo: env.api.baseURL), let loginSession = env.currentSession {
+        print(env)
+        print(previewURL?.relativeString)
+
+        if let url = URL(string: previewURL?.relativeString ?? "", relativeTo: env.api.baseURL), let loginSession = env.currentSession {
             session.load(url: url, session: loginSession)
         } else {
             loadFallback()

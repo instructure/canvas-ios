@@ -26,7 +26,8 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
     class DetailViewController: UIViewController {}
 
     var subscriptions = Set<AnyCancellable>()
-    lazy var controller = ModuleItemDetailsViewController.create(courseID: "1", moduleID: "2", itemID: "3")
+    lazy var controller = ModuleItemDetailsViewController
+        .create(env: environment, courseID: "1", moduleID: "2", itemID: "3")
 
     override func tearDown() {
         super.tearDown()

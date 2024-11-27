@@ -19,7 +19,7 @@
 import Foundation
 
 public class CreateTextComment {
-    let env = AppEnvironment.shared
+    let env: AppEnvironment
     let assignmentID: String
     var callback: (SubmissionComment?, Error?) -> Void = { _, _ in }
     let courseID: String
@@ -33,6 +33,7 @@ public class CreateTextComment {
     private static var placeholderSuffix = 1
 
     public init(
+        env: AppEnvironment,
         courseID: String,
         assignmentID: String,
         userID: String,
@@ -40,6 +41,7 @@ public class CreateTextComment {
         text: String,
         attempt: Int?
     ) {
+        self.env = env
         self.assignmentID = assignmentID
         self.courseID = courseID
         self.isGroup = isGroup

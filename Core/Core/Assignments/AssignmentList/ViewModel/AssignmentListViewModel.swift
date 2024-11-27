@@ -75,7 +75,7 @@ public class AssignmentListViewModel: ObservableObject {
         (!selectedFilterOptions.isEmpty) && selectedFilterOptions.count != AssignmentFilterOption.allCases.count
     }
 
-    private let env = AppEnvironment.shared
+    private let env: AppEnvironment
     private var userDefaults: SessionDefaults?
     let courseID: String
 
@@ -94,10 +94,13 @@ public class AssignmentListViewModel: ObservableObject {
 
     // MARK: - Init
     public init(
+        env: AppEnvironment,
         context: Context,
-        userDefaults: SessionDefaults? = AppEnvironment.shared.userDefaults
+        userDefaults: SessionDefaults? = nil,
+        defaultGradingPeriod: GradingPeriod? = nil
     ) {
-        self.userDefaults = userDefaults
+        self.env = env
+        self.userDefaults = userDefaults ?? env.userDefaults
         self.courseID = context.id
 
         loadAssignmentListPreferences()
@@ -303,6 +306,7 @@ public class AssignmentListViewModel: ObservableObject {
 #if DEBUG
 
     init(state: ViewModelState<[AssignmentGroupViewModel]>) {
+        self.env = .shared
         self.courseID = ""
         self.state = state
         self.defaultGradingPeriodId = nil

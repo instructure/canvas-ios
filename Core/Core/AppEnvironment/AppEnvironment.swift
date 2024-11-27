@@ -31,6 +31,11 @@ open class AppEnvironment {
         case parent, student, teacher
     }
 
+    public internal(set) lazy var uploadManager = UploadManager(
+        env: self,
+        identifier: "com.instructure.core.file-uploads"
+    )
+
     public var app: App?
     public var api: API
     public var database: NSPersistentContainer

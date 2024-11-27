@@ -35,7 +35,7 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
 
     var assignmentID = ""
     public var color: UIColor?
-    let env = AppEnvironment.shared
+    private var env: AppEnvironment = .defaultValue
     var context = Context.currentUser
     var filter: [GetSubmissions.Filter] = []
     lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
@@ -61,8 +61,9 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
         self?.update()
     }
 
-    public static func create(context: Context, assignmentID: String, filter: [GetSubmissions.Filter]) -> SubmissionListViewController {
+    public static func create(env: AppEnvironment, context: Context, assignmentID: String, filter: [GetSubmissions.Filter]) -> SubmissionListViewController {
         let controller = loadFromStoryboard()
+        controller.env = env
         controller.assignmentID = assignmentID
         controller.context = context
         controller.filter = filter

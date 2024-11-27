@@ -65,6 +65,7 @@ struct SubmissionGrader: View {
     }
 
     init(
+        env: AppEnvironment,
         index: Int,
         assignment: Assignment,
         submission: Submission,
@@ -73,7 +74,7 @@ struct SubmissionGrader: View {
         self.index = index
         self.assignment = assignment
         self.submission = submission
-        attempts = AppEnvironment.shared.subscribe(scope: Scope(
+        attempts = env.subscribe(scope: Scope(
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignment.id),
                 NSPredicate(key: #keyPath(Submission.userID), equals: submission.userID),

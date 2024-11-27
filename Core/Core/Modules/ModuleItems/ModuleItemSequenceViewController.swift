@@ -32,7 +32,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
     private var leftBarButtonItems: [UIBarButtonItem]?
     private var rightBarButtonItems: [UIBarButtonItem]?
 
-    private let env = AppEnvironment.shared
+    private var env: AppEnvironment = .defaultValue
     private var courseID: String!
     private var assetType: AssetType!
     private var assetID: String!
@@ -48,6 +48,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
     private var sequence: ModuleItemSequence? { store.first }
 
     public static func create(
+        env: AppEnvironment,
         courseID: String,
         assetType: AssetType,
         assetID: String,
@@ -58,6 +59,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
         controller.courseID = courseID
         controller.assetType = assetType
         controller.assetID = assetID
+        controller.env = env
         controller.url = url
         controller.offlineModeInteractor = offlineModeInteractor
         return controller
@@ -106,11 +108,12 @@ public final class ModuleItemSequenceViewController: UIViewController {
     private func createCurrentViewController() -> UIViewController? {
         guard let url = url.url else { return nil }
         if let current = sequence?.current {
-            return ModuleItemDetailsViewController.create(courseID: courseID, moduleID: current.moduleID, itemID: current.id)
+            return ModuleItemDetailsViewController.create(env: env, courseID: courseID, moduleID: current.moduleID, itemID: current.id)
         } else if assetType != .moduleItem, let match = env.router.match(url.appendingOrigin("module_item_details")) {
             return match
         } else {
             let external = ExternalURLViewController.create(
+                env: env,
                 name: String(localized: "Unsupported Item", bundle: .core),
                 url: url,
                 courseID: courseID
@@ -130,7 +133,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
     }
 
     private func show(item: ModuleItemSequenceNode, direction: PagesViewController.Direction? = nil) {
-        let details = ModuleItemDetailsViewController.create(courseID: courseID, moduleID: item.moduleID, itemID: item.id)
+        let details = ModuleItemDetailsViewController.create(env: env, courseID: courseID, moduleID: item.moduleID, itemID: item.id)
         setCurrentPage(details, direction: direction)
         store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: .moduleItem, assetID: item.id)) { [weak self] in
             self?.update(embed: false)

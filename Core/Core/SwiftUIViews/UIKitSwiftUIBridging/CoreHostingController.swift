@@ -56,9 +56,15 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     var testTree: TestTree?
     private var screenViewTracker: ScreenViewTrackerLive?
 
-    public init(_ rootView: Content, customization: ((UIViewController) -> Void)? = nil) {
+    public init(_ rootView: Content, env: AppEnvironment = .shared, customization: ((UIViewController) -> Void)? = nil) {
         let ref = WeakViewController()
-        super.init(rootView: CoreHostingBaseView(content: rootView, controller: ref))
+        super.init(
+            rootView: CoreHostingBaseView(
+                content: rootView,
+                controller: ref,
+                env: env
+            )
+        )
         customization?(self)
         ref.setValue(self)
 
@@ -88,12 +94,13 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
 public struct CoreHostingBaseView<Content: View>: View {
     public var content: Content
     let controller: WeakViewController
+    let env: AppEnvironment
 
     public var body: some View {
         content
             .testID()
             .accentColor(Color(Brand.shared.primary))
-            .environment(\.appEnvironment, AppEnvironment.shared)
+            .environment(\.appEnvironment, env)
             .environment(\.viewController, controller)
             .onPreferenceChange(TestTree.self) { testTrees in
                 guard let controller = controller.value as? TestTreeHolder else { return }

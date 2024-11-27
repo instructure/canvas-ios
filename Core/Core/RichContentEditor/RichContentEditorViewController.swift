@@ -41,7 +41,6 @@ public class RichContentEditorViewController: UIViewController {
 
     private let batchID = UUID.string
     public weak var delegate: RichContentEditorDelegate?
-    var env = AppEnvironment.shared
     public var placeholder: String = "" {
         didSet {
             webView.evaluateJavaScript("content.setAttribute('placeholder', \(CoreWebView.jsString(placeholder)))")
@@ -56,10 +55,11 @@ public class RichContentEditorViewController: UIViewController {
     var selection: CGRect = .zero
     public var context = Context.currentUser
     public var uploadContext = FileUploadContext.myFiles
-    let uploadManager = UploadManager.shared
     private var focusObserver: AnyCancellable?
 
-    private lazy var files = uploadManager.subscribe(batchID: batchID) { [weak self] in
+    private var env: AppEnvironment = .defaultValue
+
+    private lazy var files = env.uploadManager.subscribe(batchID: batchID) { [weak self] in
         self?.updateUploadProgress()
     }
 
@@ -67,9 +67,10 @@ public class RichContentEditorViewController: UIViewController {
     /// The base url to be used for API access during file upload.
     public var fileUploadBaseURL: URL?
 
-    public static func create(context: Context, uploadTo uploadContext: FileUploadContext) -> RichContentEditorViewController {
+    public static func create(env: AppEnvironment, context: Context, uploadTo uploadContext: FileUploadContext) -> RichContentEditorViewController {
         let controller = RichContentEditorViewController()
         controller.context = context
+        controller.env = env
         controller.uploadContext = uploadContext
         return controller
     }
@@ -333,10 +334,10 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
     }
 
     private func createFile(_ url: URL, isRetry: Bool, then: @escaping (URL, File, Bool) -> Void) {
-        let context = uploadManager.viewContext
+        let context = env.uploadManager.viewContext
         context.performAndWait {
             do {
-                let url = try self.uploadManager.copyFileToSharedContainer(url)
+                let url = try self.env.uploadManager.copyFileToSharedContainer(url)
                 let file: File = context.insert()
                 file.filename = url.lastPathComponent
                 file.batchID = self.batchID
@@ -361,7 +362,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
                 let datauri = CoreWebView.jsString("data:image/png;base64,\(base64)")
                 webView.evaluateJavaScript("editor.insertImagePlaceholder(\(string), \(datauri))")
             }
-            uploadManager.upload(file: file, to: uploadContext, baseURL: fileUploadBaseURL)
+            env.uploadManager.upload(file: file, to: uploadContext, baseURL: fileUploadBaseURL)
         } catch {
             updateFile(file, error: error)
         }
@@ -378,7 +379,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
     }
 
     private func updateFile(_ file: File, error: Error?, mediaID: String? = nil) {
-        let context = uploadManager.viewContext
+        let context = env.uploadManager.viewContext
         context.performAndWait { [weak self] in
             do {
                 guard let file = try? context.existingObject(with: file.objectID) as? File else { return }
@@ -406,7 +407,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
 
         let completes = files.filter { $0.mediaEntryID != nil || $0.url != nil || $0.uploadError != nil }
         guard !completes.isEmpty else { return }
-        let context = uploadManager.viewContext
+        let context = env.uploadManager.viewContext
         context.performAndWait {
             context.delete(completes)
             try? context.save()
