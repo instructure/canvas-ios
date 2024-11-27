@@ -61,10 +61,15 @@ final class AITutorViewModel {
                 case .tellMeMore:
                     break
                 case .flashCard:
-                    break
+                    presentFlashCard()
                 }
 
             }
             .store(in: &subscriptions)
+    }
+
+    private func presentFlashCard() {
+        let vc = CoreHostingController(AIAssembly.makeAIFlashCardView())
+        router.show(vc, from: controller, options: .modal(isDismissable: false))
     }
 }

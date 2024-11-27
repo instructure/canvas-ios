@@ -39,4 +39,10 @@ final class AIAssembly {
     static func makeAISummaryView() -> UIViewController {
         CoreHostingController(AISummaryView())
     }
+
+    static func makeAIFlashCardView() -> AIFlashCardView {
+        let router = AppEnvironment.shared.router
+        let viewModel = AIFlashCardViewModel(router: router)
+        return AIFlashCardView(viewModel: viewModel)
+    }
 }

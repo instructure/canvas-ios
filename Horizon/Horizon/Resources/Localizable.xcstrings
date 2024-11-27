@@ -1,6 +1,19 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld %@ %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld %2$@ %3$lld"
+          }
+        }
+      }
+    },
+    "AI Assist" : {
+
+    },
     "AI Learning Assist" : {
 
     },
@@ -8,6 +21,9 @@
 
     },
     "AI Tutor" : {
+
+    },
+    "Answer" : {
 
     },
     "Career" : {
@@ -34,7 +50,13 @@
     "Learn" : {
 
     },
+    "of" : {
+
+    },
     "OK" : {
+
+    },
+    "Question" : {
 
     },
     "Quiz me on this material" : {
@@ -44,6 +66,9 @@
 
     },
     "Summarize this material" : {
+
+    },
+    "Tap to flip" : {
 
     },
     "Tell me more about this topic" : {
