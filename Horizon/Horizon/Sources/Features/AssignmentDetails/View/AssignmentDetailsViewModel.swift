@@ -16,21 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Observation
 import Combine
 import CombineSchedulers
 import Core
+import Observation
 
 @Observable
 final class AssignmentDetailsViewModel {
     // MARK: - Input
 
     private(set) var submissionEvents = PassthroughSubject<AssignmentSubmissionView.Events, Never>()
-    private(set) var aiEvents = PassthroughSubject<(ModuleBottomsType, WeakViewController), Never>()
     var isSubmitButtonVisible = false
     var selectedSubmission: AssignmentType?
 
     // MARK: - Input / Output
+
     var isKeyboardVisible = false
     var textEntry: String = ""
     var isAlertVisible = false
@@ -60,7 +60,6 @@ final class AssignmentDetailsViewModel {
     // MARK: - Dependancies
 
     private let interactor: AssignmentInteractor
-    private let appEnvironment: AppEnvironment
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
@@ -71,19 +70,13 @@ final class AssignmentDetailsViewModel {
 
     init(
         interactor: AssignmentInteractor,
-        appEnvironment: AppEnvironment,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
-        self.appEnvironment = appEnvironment
         self.scheduler = scheduler
         fetchAssignmentDetails()
         bindSubmissionAssignmentEvents()
     }
-
-    // MARK: - Public Functions
-
-    func showTabBar() { appEnvironment.tabBar(isVisible: true) }
 
     // MARK: - Private Functions
 
@@ -135,17 +128,8 @@ final class AssignmentDetailsViewModel {
                     self?.isAlertVisible = true
                     self?.errorMessage = error.localizedDescription
                 }
-            }.store(in: &subscriptions)
-
-        aiEvents.sink {  [weak self] event, controller in
-            switch event {
-            case .assist:
-                self?.appEnvironment.router.route(to: "/tutor", from: controller)
-            default:
-                break
-
             }
-        }.store(in: &subscriptions)
+            .store(in: &subscriptions)
     }
 
     private func submitTextEntry() {

@@ -45,6 +45,10 @@ final class AITutorViewModel {
         router.show(vc, from: controller, options: .modal(isDismissable: false))
     }
 
+    func dismiss() {
+        router.dismiss(controller)
+    }
+
     private func bindNavigation() {
         didSelectTutorType
             .sink { [weak self] type in
@@ -53,7 +57,7 @@ final class AITutorViewModel {
                 }
                 switch type {
                 case .quiz:
-                    break
+                    presentAIQuiz()
                 case .summary:
                     router.route(to: "/summary", from: controller)
                 case .takeAway:
@@ -68,7 +72,11 @@ final class AITutorViewModel {
             .store(in: &subscriptions)
     }
 
-    private func presentFlashCard() {
+    private func presentAIQuiz() {
+        let vc = CoreHostingController(AIAssembly.makeAIQuizView())
+        router.show(vc, from: controller, options: .modal(isDismissable: false))
+    }
+private func presentFlashCard() {
         let vc = CoreHostingController(AIAssembly.makeAIFlashCardView())
         router.show(vc, from: controller, options: .modal(isDismissable: false))
     }

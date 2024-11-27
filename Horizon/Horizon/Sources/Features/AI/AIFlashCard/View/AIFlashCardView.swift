@@ -87,7 +87,7 @@ extension AIFlashCardView {
                 }
                 .animation(.easeInOut, value: item.isFlipped)
                 .scrollTransition(.animated, axis: .horizontal) { content, phase in
-                    content.scaleEffect(y: phase.isIdentity ? 1 : 0.9)
+                    content.scaleEffect(y: phase.isIdentity ? 1 : 0.85)
                 }
         }
     }

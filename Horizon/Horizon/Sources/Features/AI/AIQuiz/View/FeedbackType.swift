@@ -18,22 +18,25 @@
 
 import Foundation
 
-enum ModuleBottomsType: CaseIterable {
-    case message
-    case sound
-    case bookmark
-    case assist
+enum FeedbackType: CaseIterable {
+    case like
+    case dislike
 
-    var imageName: String {
+    var selectedImage: String {
         switch self {
-        case .message:
-            "bubble.left"
-        case .sound:
-            "speaker.wave.2"
-        case .bookmark:
-            "bookmark"
-        case .assist:
-            "sparkles"
+        case .like:
+            "hand.thumbsup.fill"
+        case .dislike:
+            "hand.thumbsdown.fill"
+        }
+    }
+
+    var unselectedImage: String {
+        switch self {
+        case .like:
+            "hand.thumbsup"
+        case .dislike:
+            "hand.thumbsdown"
         }
     }
 }

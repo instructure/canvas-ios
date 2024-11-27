@@ -57,9 +57,9 @@ struct ChatBotView: View {
                 viewModel.dismiss(controller: viewController)
             } label: {
                 Image(systemName: "xmark")
-                    .foregroundColor(.white)
+                    .foregroundColor(.textLightest)
                     .padding()
-                    .background(Color.white.opacity(0.2))
+                    .background(Color.backgroundLightest.opacity(0.2))
                     .clipShape(.circle)
             }
         }
