@@ -133,37 +133,37 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
 
 #if DEBUG
 
-//struct AssignmentListScreen_Previews: PreviewProvider {
-//    private static let env = PreviewEnvironment()
-//    private static let context = env.globalDatabase.viewContext
-//    private static func createAssignments() -> [Assignment] {
-//        let assignments: [APIAssignment] = [
-//            APIAssignment.make(needs_grading_count: 0),
-//            APIAssignment.make(id: "2", quiz_id: "1"),
-//            APIAssignment.make(id: "3", submission_types: [.discussion_topic]),
-//            APIAssignment.make(id: "4", submission_types: [.external_tool]),
-//            APIAssignment.make(id: "5", locked_for_user: true)
-//        ]
-//        return assignments.map {
-//            Assignment.save($0, in: context, updateSubmission: false, updateScoreStatistics: false)
-//        }
-//    }
-//
-//    static var previews: some View {
-//        let assignments = createAssignments()
-//        let assignmentGroups: [AssignmentGroupViewModel] = [
-//            AssignmentGroupViewModel(name: "Assignment Group 1", id: "1", assignments: assignments, courseColor: .red),
-//            AssignmentGroupViewModel(name: "Assignment Group 2", id: "2", assignments: assignments, courseColor: .red)
-//        ]
-//        let viewModel = AssignmentListViewModel(state: .data(assignmentGroups))
-//        AssignmentListScreen(viewModel: viewModel)
-//
-//        let emptyModel = AssignmentListViewModel(state: .empty)
-//        AssignmentListScreen(viewModel: emptyModel)
-//
-//        let loadingModel = AssignmentListViewModel(state: .loading)
-//        AssignmentListScreen(viewModel: loadingModel)
-//    }
-//}
+struct AssignmentListScreen_Previews: PreviewProvider {
+    private static let env = PreviewEnvironment()
+    private static let context = env.globalDatabase.viewContext
+    private static func createAssignments() -> [Assignment] {
+        let assignments: [APIAssignment] = [
+            APIAssignment.make(needs_grading_count: 0),
+            APIAssignment.make(id: "2", quiz_id: "1"),
+            APIAssignment.make(id: "3", submission_types: [.discussion_topic]),
+            APIAssignment.make(id: "4", submission_types: [.external_tool]),
+            APIAssignment.make(id: "5", locked_for_user: true)
+        ]
+        return assignments.map {
+            Assignment.save($0, in: context, updateSubmission: false, updateScoreStatistics: false)
+        }
+    }
+
+    static var previews: some View {
+        let assignments = createAssignments()
+        let assignmentGroups: [AssignmentGroupViewModel] = [
+            AssignmentGroupViewModel(name: "Assignment Group 1", id: "1", assignments: assignments, courseColor: .red),
+            AssignmentGroupViewModel(name: "Assignment Group 2", id: "2", assignments: assignments, courseColor: .red)
+        ]
+        let viewModel = AssignmentListViewModel(state: .data(assignmentGroups))
+        AssignmentListScreen(viewModel: viewModel)
+
+        let emptyModel = AssignmentListViewModel(state: .empty)
+        AssignmentListScreen(viewModel: emptyModel)
+
+        let loadingModel = AssignmentListViewModel(state: .loading)
+        AssignmentListScreen(viewModel: loadingModel)
+    }
+}
 
 #endif

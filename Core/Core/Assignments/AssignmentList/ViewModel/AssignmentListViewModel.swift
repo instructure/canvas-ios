@@ -222,7 +222,8 @@ public class AssignmentListViewModel: ObservableObject {
         var assignmentGroupViewModels: [AssignmentGroupViewModel] = []
         let assignments: [Assignment]
         let compactAssignmentGroups = assignmentGroups.compactMap { $0 }
-        assignments = isTeacher ? filterAssignmentsTeacher(compactAssignmentGroups) : filterAssignments(compactAssignmentGroups)
+        let sortedAssignmentGroups = compactAssignmentGroups.sorted { $0.dueAt ?? Date.distantFuture < $1.dueAt ?? Date.distantFuture }
+        assignments = isTeacher ? filterAssignmentsTeacher(sortedAssignmentGroups) : filterAssignments(sortedAssignmentGroups)
 
         switch selectedSortingOption {
         case .groupName, .assignmentGroup:
@@ -257,10 +258,15 @@ public class AssignmentListViewModel: ObservableObject {
                 assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: undatedGroup, courseColor: courseColor))
             }
         case .assignmentType:
-            let normal = assignments.filter { $0.quizID == nil && !$0.isLTIAssignment }
+            let normal = assignments.filter { $0.quizID == nil && !$0.isLTIAssignment && !$0.isDiscussion }
             if !normal.isEmpty {
                 let normalGroup = AssignmentDateGroup(id: "normal", name: "Assignments", assignments: normal)
                 assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: normalGroup, courseColor: courseColor))
+            }
+            let discussions = assignments.filter { $0.isDiscussion }
+            if !discussions.isEmpty {
+                let discussionsGroup = AssignmentDateGroup(id: "discussions", name: "Discussions", assignments: discussions)
+                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: discussionsGroup, courseColor: courseColor))
             }
             let quizzes = assignments.filter { $0.quizID != nil }
             if !quizzes.isEmpty {
@@ -438,15 +444,19 @@ public class AssignmentListViewModel: ObservableObject {
 
     // MARK: - Preview Support
 
-//#if DEBUG
-//
-//    init(state: ViewModelState<[AssignmentGroupViewModel]>) {
-//        self.courseID = ""
-//        self.state = state
-//        self.defaultGradingPeriodId = nil
-//    }
-//
-//#endif
+#if DEBUG
+
+    init(state: ViewModelState<[AssignmentGroupViewModel]>) {
+        self.courseID = ""
+        self.state = state
+        self.defaultGradingPeriodId = nil
+        self.defaultSortingOption = AppEnvironment.shared.app == .teacher ? .assignmentType : .dueDate
+        self.selectedSortingOption = AppEnvironment.shared.app == .teacher ? .assignmentType : .dueDate
+        self.isTeacher = AppEnvironment.shared.app == .teacher
+        self.sortingOptions = AppEnvironment.shared.app == .teacher ? AssignmentArrangementOptions.teacherCases : AssignmentArrangementOptions.studentCases
+    }
+
+#endif
 }
 
 extension AssignmentListViewModel: Refreshable {
