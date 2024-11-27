@@ -139,7 +139,7 @@ class AssignmentDetailsPresenter {
         self.fragment = fragment
         self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: assignmentID)
         if let session = env.currentSession {
-            self.userID = session.userID
+            self.userID = session.userID.localID
         }
         subscribeToSuccessfulSubmissionNotification(assignmentID: assignmentID)
     }
