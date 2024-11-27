@@ -149,6 +149,7 @@
                     <connections>
                         <outlet property="clientIDField" destination="OIC-Dy-yeC" id="hwO-Yk-Fsd"/>
                         <outlet property="clientSecretField" destination="dyr-GQ-FtL" id="buv-1w-TRk"/>
+                        <outlet property="continueButton" destination="Wu5-SA-4Ne" id="1Fp-0j-XIY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQR-JK-n1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
