@@ -32,9 +32,9 @@ public class AssignmentCellViewModel: ObservableObject {
     public var route: URL? { assignment.htmlURL }
     var icon: UIImage { assignment.icon ?? .assignmentLine }
     var name: String { assignment.name }
-    var submissionStatus: String { assignment.submissionStatus.text }
-    var submissionIcon: UIImage { assignment.submissionStatus.icon }
-    var submissionColor: Color { Color(assignment.submissionStatus.color) }
+    var submissionStatus: String { assignment.submission?.stateDisplayProperties.text ?? SubmissionStatus.notSubmitted.text }
+    var submissionIcon: UIImage { assignment.submission?.stateDisplayProperties.icon ?? SubmissionStatus.notSubmitted.icon }
+    var submissionColor: Color { Color(assignment.submission?.stateDisplayProperties.color ?? SubmissionStatus.notSubmitted.color) }
     let defaultTextColor: Color = .textDark
     let brandColor: Color = Color(Brand.shared.primary)
     var hasPointsPossible: Bool { scoreLabel != nil }

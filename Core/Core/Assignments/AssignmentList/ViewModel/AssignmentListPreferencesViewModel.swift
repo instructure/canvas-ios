@@ -160,7 +160,7 @@ public enum AssignmentFilterOptionsTeacher: String, CaseIterable {
 public final class AssignmentListPreferencesViewModel: ObservableObject {
     struct AssignmentListPreferences {
         let filterOptions: [AssignmentFilterOption]
-        let customFilterOption: AssignmentFilterOptionsTeacher?
+        let filterOptionTeacher: AssignmentFilterOptionsTeacher?
         let statusFilterOption: AssignmentFilterOptionsTeacher?
         let sortingOption: AssignmentListViewModel.AssignmentArrangementOptions?
         let gradingPeriodId: String?
@@ -171,7 +171,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     // Filter Options
     @Published private(set) var selectedAssignmentFilterOptions: [AssignmentFilterOption]
     @Published var selectedStatusFilterOption: AssignmentFilterOptionsTeacher?
-    @Published var selectedCustomFilterOption: AssignmentFilterOptionsTeacher?
+    @Published var selectedFilterOptionTeacher: AssignmentFilterOptionsTeacher?
 
     // Sorting Options
     @Published var selectedSortingOption: AssignmentListViewModel.AssignmentArrangementOptions?
@@ -182,7 +182,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     // MARK: - Private properties
 
     private let initialFilterOptions: [AssignmentFilterOption]
-    private let initialCustomFilterOption: AssignmentFilterOptionsTeacher
+    private let initialFilterOptionTeacher: AssignmentFilterOptionsTeacher
     private let initialStatusFilterOption: AssignmentFilterOptionsTeacher
     private let initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions
     private let initialGradingPeriod: GradingPeriodOption?
@@ -205,7 +205,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         isTeacher: Bool,
         initialFilterOptions: [AssignmentFilterOption],
         initialStatusFilterOption: AssignmentFilterOptionsTeacher,
-        initialCustomFilterOption: AssignmentFilterOptionsTeacher,
+        initialFilterOptionTeacher: AssignmentFilterOptionsTeacher,
         sortingOptions: [AssignmentListViewModel.AssignmentArrangementOptions],
         initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions,
         gradingPeriods: [GradingPeriod],
@@ -221,8 +221,8 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         self.initialFilterOptions = initialFilterOptions
         self.initialStatusFilterOption = initialStatusFilterOption
         self.selectedStatusFilterOption = initialStatusFilterOption
-        self.initialCustomFilterOption = initialCustomFilterOption
-        self.selectedCustomFilterOption = initialCustomFilterOption
+        self.initialFilterOptionTeacher = initialFilterOptionTeacher
+        self.selectedFilterOptionTeacher = initialFilterOptionTeacher
 
         // Sorting Options
         self.sortingOptions = sortingOptions
@@ -258,7 +258,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         selectedAssignmentFilterOptions = initialFilterOptions
         selectedSortingOption = initialSortingOption
         selectedGradingPeriod = initialGradingPeriod
-        selectedCustomFilterOption = initialCustomFilterOption
+        selectedFilterOptionTeacher = initialFilterOptionTeacher
         env.router.dismiss(viewController)
     }
 
@@ -270,7 +270,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         completion(
             AssignmentListPreferences(
                 filterOptions: selectedAssignmentFilterOptions,
-                customFilterOption: selectedCustomFilterOption,
+                filterOptionTeacher: selectedFilterOptionTeacher,
                 statusFilterOption: selectedStatusFilterOption,
                 sortingOption: selectedSortingOption,
                 gradingPeriodId: selectedGradingPeriod?.id

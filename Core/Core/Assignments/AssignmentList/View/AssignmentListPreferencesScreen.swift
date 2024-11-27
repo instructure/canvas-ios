@@ -119,7 +119,7 @@ public struct AssignmentListPreferencesScreen: View {
         InstUI.RadioButtonCell(
             title: item.title,
             value: item,
-            selectedValue: $viewModel.selectedCustomFilterOption,
+            selectedValue: $viewModel.selectedFilterOptionTeacher,
             color: color
         )
         .accessibilityIdentifier("AssignmentFilter.customFilterOptions.\(item.rawValue)")
@@ -214,7 +214,7 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
             isTeacher: false,
             initialFilterOptions: AssignmentFilterOption.allCases,
             initialStatusFilterOption: .allAssignments,
-            initialCustomFilterOption: .allAssignments,
+            initialFilterOptionTeacher: .allAssignments,
             sortingOptions: AssignmentListViewModel.AssignmentArrangementOptions.allCases,
             initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions.dueDate,
             gradingPeriods: gradingPeriods,
