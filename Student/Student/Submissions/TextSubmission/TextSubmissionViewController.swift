@@ -84,7 +84,7 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
                 submissionType: .online_text_entry,
                 body: html
             )
-            .fetch(environment: env, { (_, _, error) in
+            .fetch(environment: self.env, { (_, _, error) in
 
                 performUIUpdate {
                     if let error = error {

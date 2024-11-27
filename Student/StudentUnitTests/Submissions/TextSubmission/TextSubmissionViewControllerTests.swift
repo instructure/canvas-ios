@@ -41,11 +41,7 @@ class TextSubmissionViewControllerTests: StudentTestCase {
         super.setUp()
         controller = TextSubmissionViewController
             .create(env: env, courseID: "1", assignmentID: "1", userID: "1")
-        controller.editor = MockEditor.create(
-            env: env,
-            context: .course("1"),
-            uploadTo: .submission(courseID: "1", assignmentID: "1", comment: nil)
-        )
+        controller.editor = MockEditor()
         navigation = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
     }
