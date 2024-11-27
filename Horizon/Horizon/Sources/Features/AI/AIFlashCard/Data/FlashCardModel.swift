@@ -70,7 +70,7 @@ extension FlashCardModel {
             FlashCardModel(
                 id: 4,
                 frontContent: """
-            What is the chemical symbol for water? 
+            What is the chemical symbol for water?
             Explain its molecular composition and discussthe role of water in supporting life on Earth. Mention its use in daily human activities, and its importance in ecosystems.
             """,
                 backContent: "H2O, consisting of two hydrogen atoms and one oxygen atom, vital for life."
