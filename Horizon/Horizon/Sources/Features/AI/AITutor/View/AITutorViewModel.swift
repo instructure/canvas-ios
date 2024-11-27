@@ -76,7 +76,8 @@ final class AITutorViewModel {
         let vc = CoreHostingController(AIAssembly.makeAIQuizView())
         router.show(vc, from: controller, options: .modal(isDismissable: false))
     }
-private func presentFlashCard() {
+
+    private func presentFlashCard() {
         let vc = CoreHostingController(AIAssembly.makeAIFlashCardView())
         router.show(vc, from: controller, options: .modal(isDismissable: false))
     }
