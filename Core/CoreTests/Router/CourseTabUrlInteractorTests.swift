@@ -121,12 +121,12 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
 
         // matching special format -> block
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/assignments/syllabus")), false)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/any_component_here/syllabus")), false)
 
         // matching basic format -> block
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/syllabus")), false)
 
         // not matching format -> allow
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/any_component_here/syllabus")), true)
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/assignments/syllabus/something")), true)
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/syllabus/something")), true)
     }
@@ -150,6 +150,7 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         // matching special format -> block
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/1234")), false)
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/something")), false)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/syllabus")), false)
 
         // matching basic (but still disabled) format -> block
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools")), false)

@@ -33,11 +33,11 @@ public final class CourseTabUrlInteractor {
 
     public func setupTabSubscription() {
         let useCase = LocalUseCase<Tab>(scope: .all)
-        return ReactiveStore(useCase: useCase)
+        ReactiveStore(useCase: useCase)
             .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .sink { [weak self] tabs in
-                self?.tabsDidUpdate(tabs)
+                self?.updateEnabledTabs(with: tabs)
             }
             .store(in: &subscriptions)
     }
@@ -46,7 +46,33 @@ public final class CourseTabUrlInteractor {
         enabledTabsPerCourse = [:]
     }
 
-    private func tabsDidUpdate(_ tabs: [Tab]) {
+    /// Returns `true` if `url` is not a course tab URL OR it is but it's not in the list of enabled course tab URLs.
+    public func isAllowedUrl(_ url: URL) -> Bool {
+        // if url doesn't match ""/courses/:courseID/*" for the known courses -> it's not a tab, allow it
+        guard let context = Context(url: url), let enabledTabs = enabledTabsPerCourse[context] else {
+            return true
+        }
+
+        let relativePath = String(url.relativePath.trimmingPrefix("/api/v1"))
+
+        // if url doesn't even match known tab path formats -> it's not a tab, allow it
+        guard isKnownPathFormat(relativePath) else {
+            return true
+        }
+
+        // it's a tab, if it matches any of the enabled tabs allow it, otherwise block it
+        return enabledTabs.contains(relativePath)
+    }
+
+    /// Expects relative paths, with "/api/v1" already stripped
+    private func isKnownPathFormat(_ path: String) -> Bool {
+        let parts = path.split(separator: "/").map { String($0) }
+        return CourseTabFormat.allCases.contains {
+            $0.isMatch(for: parts)
+        }
+    }
+
+    private func updateEnabledTabs(with tabs: [Tab]) {
         let tabsPerContext = Dictionary(grouping: tabs, by: { $0.context })
 
         let tabModelsPerCourse: [Context: [TabModel]] = tabsPerContext.mapValues { tabArray in
@@ -99,32 +125,6 @@ public final class CourseTabUrlInteractor {
         return tabPaths
     }
 
-    /// Returns `true` if `url` is not a course tab URL OR it is but it's not in the list of enabled course tab URLs.
-    public func isAllowedUrl(_ url: URL) -> Bool {
-        // if url doesn't match ""/courses/:courseID/*" for the known courses -> it's not a tab, allow it
-        guard let context = Context(url: url), let enabledTabs = enabledTabsPerCourse[context] else {
-            return true
-        }
-
-        let relativePath = String(url.relativePath.trimmingPrefix("/api/v1"))
-
-        // if url doesn't even match known tab path formats -> it's not a tab, allow it
-        guard isKnownPathFormat(relativePath) else {
-            return true
-        }
-
-        // it's a tab, if it matches any of the enabled tabs allow it, otherwise block it
-        return enabledTabs.contains(relativePath)
-    }
-
-    // expects relative paths, with "/api/v1" already stripped
-    private func isKnownPathFormat(_ path: String) -> Bool {
-        let parts = path.split(separator: "/").map { String($0) }
-        return CourseTabFormat.allCases.contains {
-            $0.isMatch(for: parts)
-        }
-    }
-
     private func logPathFormatIfUnknown(for tab: TabModel) {
         guard tab.id != "home" && !isKnownPathFormat(tab.htmlUrl) else { return }
 
@@ -159,7 +159,7 @@ private enum CourseTabFormat: CaseIterable {
 
         case .syllabusTab:
             // example: "/courses/42/assignments/syllabus"
-            return parts.count == 4 && parts[3] == "syllabus"
+            return parts.count == 4 && parts[2] == "assignments" && parts[3] == "syllabus"
 
         case .frontPage:
             // example: "/courses/42/pages/front_page"
