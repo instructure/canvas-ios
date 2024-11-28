@@ -20,12 +20,13 @@ import SwiftUI
 
 struct CourseSearchResultsHeaderView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    private let headerString: LocalizedStringKey = "Results in course"
 
     let course: Course?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("Results in course", bundle: .core)
+            Text(headerString, bundle: .core)
                 .font(.regular16)
                 .foregroundStyle(Color.textDark)
             Text(course?.name ?? "")
@@ -45,5 +46,14 @@ struct CourseSearchResultsHeaderView: View {
         .overlay(alignment: .bottom) {
             InstUI.Divider()
         }
+        .accessibilityElement()
+        .accessibilityLabel(headerAccessibilityLabel)
+        .accessibilityAddTraits(.isHeader)
+    }
+
+    private var headerAccessibilityLabel: Text {
+        Text(headerString, bundle: .core) +
+        Text(": ") +
+        Text(course?.name ?? "")
     }
 }

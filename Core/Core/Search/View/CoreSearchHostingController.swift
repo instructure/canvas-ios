@@ -55,7 +55,10 @@ public class CoreSearchHostingController<
                 self?.showSearchBar()
             }
         )
-    ).with { $0.accessibilityIdentifier = "search_bar_button" }
+    ).with {
+        $0.accessibilityIdentifier = "search_bar_button"
+        $0.accessibilityLabel = String(localized: "Search", bundle: .core)
+    }
 
     private lazy var closeBarItem = UIBarButtonItem(
         image: .xLine,
@@ -66,6 +69,7 @@ public class CoreSearchHostingController<
         )
     ).with {
         $0.tintColor = .textLightest
+        $0.accessibilityLabel = String(localized: "Close", bundle: .core)
         $0.accessibilityIdentifier = "close_bar_button"
     }
 
@@ -79,6 +83,7 @@ public class CoreSearchHostingController<
     ).with {
         $0.tintColor = .textLightest
         $0.accessibilityIdentifier = "filter_bar_button"
+        $0.accessibilityLabel = String(localized: "Filter", bundle: .core)
     }
 
     private lazy var supportBarItem: UIBarButtonItem? = {
@@ -96,6 +101,7 @@ public class CoreSearchHostingController<
         .with {
             $0.tintColor = .textLightest
             $0.accessibilityIdentifier = "support_bar_button"
+            $0.accessibilityLabel = String(localized: "Help", bundle: .core)
         }
     }()
 

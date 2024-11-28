@@ -45,6 +45,7 @@ struct SearchTextField: View {
                 .smartSearchSmallLine
                 .foregroundStyle(.secondary)
                 .fixedSize()
+                .accessibilityHidden(true)
 
             Spacer(minLength: 5)
 
@@ -70,6 +71,7 @@ struct SearchTextField: View {
                         .foregroundStyle(clearButtonColor)
                 }
                 .fixedSize()
+                .accessibilityLabel(Text("Clear text", bundle: .core))
             }
         }
         .padding(.leading, 10)

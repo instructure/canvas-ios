@@ -74,6 +74,7 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
                         }
                     }
                     .tint(Color.textLightest)
+                    .accessibilityLabel(Text("Filter", bundle: .core))
                 }
 
                 if let support = searchViewsProvider.supportButtonModel {
@@ -86,6 +87,7 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
                             support.icon.image()
                         }
                         .tint(Color.textLightest)
+                        .accessibilityLabel(Text("Help", bundle: .core))
                     }
                 }
 
@@ -98,6 +100,7 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
                             .fontWeight(.semibold)
                     }
                     .tint(Color.textLightest)
+                    .accessibilityLabel(Text("Close", bundle: .core))
                 }
             }
             .onChange(of: searchText) { newValue in
