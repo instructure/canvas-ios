@@ -19,7 +19,7 @@
 import Foundation
 
 public extension HorizonUI {
-    struct Spaces : Sendable{
+    struct Spaces: Sendable {
         fileprivate init() {}
         let primitives = Primitives()
     }
