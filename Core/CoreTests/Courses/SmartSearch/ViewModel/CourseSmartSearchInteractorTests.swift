@@ -44,37 +44,101 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
         }()
     }
 
-    func test_enablement() throws {
-        // Given
-        let courseID = TestConstants.courseID
-        let useCase = GetEnabledFeatureFlags(context: TestConstants.context)
+    private var subscriptions = Set<AnyCancellable>()
+    private var interactor: CourseSmartSearchInteractorLive!
 
-        // When
-        api.mock(useCase, value: [
-            "smart_search",
-            "dummy_flag_2"
-        ])
+    override func setUp() {
+        super.setUp()
+        interactor = CourseSmartSearchInteractorLive(courseID: TestConstants.courseID)
+    }
 
+    override func tearDown() {
+        subscriptions.removeAll()
+        interactor = nil
+        super.tearDown()
+    }
+
+    func enablementGiven(flags: [String], tabs: [TabName]) {
+        let context = TestConstants.context
+        let flagsUseCase = GetEnabledFeatureFlags(context: TestConstants.context)
+
+        api.mock(flagsUseCase, value: flags)
+
+        for tab in tabs {
+            Tab.make(
+                from: .make(id: .init(tab.rawValue)),
+                context: context,
+                in: databaseClient)
+        }
+    }
+
+    func test_enablement_all_enabled() throws {
         // When
-        let interactor = CourseSmartSearchInteractorLive(courseID: courseID)
+        enablementGiven(
+            flags: ["smart_search", "dummy_flag_2"],
+            tabs: [.announcements, .search]
+        )
 
         // Then
-        XCTAssertSingleOutputEquals(interactor.isEnabled, true)
+        interactor
+            .isEnabled
+            .sink { enabled in
+                XCTAssertTrue(enabled)
+            }
+            .store(in: &subscriptions)
+    }
 
+    func test_enablement_flag_enabled() throws {
         // When
-        useCase.reset(context: databaseClient)
-        api.mock(useCase, value: [
-            "dummy_flag_2"
-        ])
+        enablementGiven(
+            flags: ["smart_search"],
+            tabs: [.announcements, .pages]
+        )
 
         // Then
-        XCTAssertSingleOutputEquals(interactor.isEnabled, false)
+        interactor
+            .isEnabled
+            .sink { enabled in
+                XCTAssertFalse(enabled)
+            }
+            .store(in: &subscriptions)
+    }
+
+    func test_enablement_tab_enabled() throws {
+        // When
+        enablementGiven(
+            flags: ["dummy_flag_2"],
+            tabs: [.announcements, .search]
+        )
+
+        // Then
+        interactor
+            .isEnabled
+            .sink { enabled in
+                XCTAssertFalse(enabled)
+            }
+            .store(in: &subscriptions)
+    }
+
+    func test_enablement_none_enabled() throws {
+        // When
+        enablementGiven(
+            flags: ["dummy_flag_2"],
+            tabs: [.announcements, .pages]
+        )
+
+        // Then
+        interactor
+            .isEnabled
+            .sink { enabled in
+                XCTAssertFalse(enabled)
+            }
+            .store(in: &subscriptions)
     }
 
     func test_searching_results() throws {
         // Given
         let searchWord = "Demo Search"
-        let interactor = CourseSmartSearchInteractorLive(courseID: TestConstants.courseID)
 
         api.mock(
             CourseSmartSearchRequest(
@@ -98,7 +162,6 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
 
     func test_searching_with_filter() throws {
         // Given
-        let interactor = CourseSmartSearchInteractorLive(courseID: TestConstants.courseID)
         let searchWord = "Filtered Search"
 
         let filterTypes: [CourseSmartSearchResultType] = [.announcement, .assignment]
@@ -126,8 +189,6 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
 
     func test_course_fetch() throws {
         // Given
-        let interactor = CourseSmartSearchInteractorLive(courseID: TestConstants.courseID)
-
         let courseID = ID(TestConstants.courseID)
         let apiCourse = APICourse.make(id: courseID, name: "Random Course Name")
         api.mock(GetCourse(courseID: TestConstants.courseID), value: apiCourse)
