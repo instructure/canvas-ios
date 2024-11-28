@@ -20,16 +20,16 @@ import SwiftUI
 
 extension HorizonUI {
     struct Typography: View {
-        enum Name {
+        enum Name: CaseIterable {
             case h1
             case h2
             case h3
 
             var font: Font {
                 switch self {
-                case .h1: return HorizonUI.fonts.regular10
-                case .h2: return HorizonUI.fonts.regular10
-                case .h3: return HorizonUI.fonts.regular10
+                case .h1: return HorizonUI.fonts.regular24
+                case .h2: return HorizonUI.fonts.regular18
+                case .h3: return HorizonUI.fonts.regular12
                 }
             }
         }
@@ -51,8 +51,27 @@ extension HorizonUI {
         var body: some View {
             Text(text)
                 .font(name.font)
-                .padding(.huiSpaces.primitives.xSmall)
                 .foregroundStyle(color)
         }
+    }
+}
+
+#Preview {
+    VStack(spacing: 8) {
+        HorizonUI.Typography(
+            text: "First text",
+            name: .h1,
+            color: .huiColors.primitives.blue57
+        )
+        HorizonUI.Typography(
+            text: "First text",
+            name: .h2,
+            color: .huiColors.primitives.blue57
+        )
+        HorizonUI.Typography(
+            text: "First text",
+            name: .h3,
+            color: .huiColors.primitives.blue57
+        )
     }
 }

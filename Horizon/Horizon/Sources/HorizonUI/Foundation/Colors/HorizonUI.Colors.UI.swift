@@ -22,5 +22,13 @@ extension HorizonUI.Colors {
     // swiftlint:disable:next type_name
     struct UI {
         // TODO: Add UI Colors
+        // let color = Color(hexString: "#000000")
+        
+        // TODO: Make it #if DEBUG later
+        let allColors: [ColorWithID]
+
+        init() {
+            self.allColors = []
+        }
     }
 }

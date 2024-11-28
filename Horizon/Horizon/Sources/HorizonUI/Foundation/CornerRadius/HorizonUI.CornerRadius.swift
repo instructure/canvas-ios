@@ -19,17 +19,14 @@
 import SwiftUI
 
 extension HorizonUI {
-    enum CornerRadius {
-        case level1
-        case level2
+    enum CornerRadius: CGFloat, CaseIterable {
+        case level1 = 8
+        case level2 = 16
 
         // TODO: Add other variants
 
         var clipShape: some Shape {
-            switch self {
-            case .level1: return RoundedRectangle(cornerRadius: 8, style: .continuous)
-            case .level2: return RoundedRectangle(cornerRadius: 16, style: .continuous)
-            }
+            RoundedRectangle(cornerRadius: self.rawValue, style: .continuous)
         }
     }
 }

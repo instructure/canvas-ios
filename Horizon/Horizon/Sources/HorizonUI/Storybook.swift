@@ -18,25 +18,80 @@
 
 import SwiftUI
 
+// TODO: Make it #if DEBUG later
 struct Storybook: View {
     var body: some View {
-        VStack(spacing: 0) {
-            Text("Some text")
-                .foregroundColor(.huiColors.primitives.blue12)
-                .padding(.vertical, .huiSpaces.primitives.xSmall)
-                .font(.huiFonts.regular10)
-                .background(Color.red)
-                .huiCornerRadius(type: .level2)
-
-            HorizonUI.Typography(
-                text: "Some other text",
-                name: .h1,
-                color: .huiColors.primitives.blue12
-            )
+        VStack {
+            List {
+                Section(header: Text("Foundations: Atoms")) {
+                    NavigationLink {
+                        HorizonUI.Colors.Storybook()
+                    } label: {
+                        Text("Colors").tint(Color.black)
+                    }
+                    NavigationLink {
+                        HorizonUI.Typography.Storybook()
+                    } label: {
+                        Text("Typography").tint(Color.black)
+                    }
+                    NavigationLink {
+                        HorizonUI.CornerRadius.Storybook()
+                    } label: {
+                        Text("Corner Radius").tint(Color.black)
+                    }
+                    NavigationLink {} label: {
+                        Text("Border").tint(Color.black)
+                    }
+                    NavigationLink {} label: {
+                        Text("Elevation / Shadows").tint(Color.black)
+                    }
+                    NavigationLink {} label: {
+                        Text("Iconography").tint(Color.black)
+                    }
+                }
+                Section(header: Text("Components: Molecules")) {
+                    NavigationLink {} label: {
+                        Text("Badge").tint(Color.black)
+                    }
+                    NavigationLink {} label: {
+                        Text("Pill").tint(Color.black)
+                    }
+                    NavigationLink {} label: {
+                        Text("Tag").tint(Color.black)
+                    }
+                    NavigationLink {} label: {
+                        Text("Buttons and Links").tint(Color.black)
+                    }
+                    NavigationLink {} label: {
+                        Text("Progress Bar").tint(Color.black)
+                    }
+                    NavigationLink {} label: {
+                        Text("Spinner").tint(Color.black)
+                    }
+                    NavigationLink {} label: {
+                        Text("Tooltip").tint(Color.black)
+                    }
+                }
+                Section(header: Text("Components: Organisms")) {
+                    NavigationLink {} label: {
+                        Text("Controls").tint(Color.black)
+                    }
+                    NavigationLink {} label: {
+                        Text("Inputs and Interactive Fields").tint(Color.black)
+                    }
+                    NavigationLink {} label: {
+                        Text("Cards").tint(Color.black)
+                    }
+                    NavigationLink {} label: {
+                        Text("Navigation").tint(Color.black)
+                    }
+                }
+            }
+            .listStyle(.sidebar)
         }
+        .navigationTitle("Design System")
+        .navigationBarTitleDisplayMode(.large)
     }
-    
-    
 }
 
 #Preview {

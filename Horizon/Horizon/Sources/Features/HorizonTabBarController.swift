@@ -91,8 +91,9 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
 
     private func careerTab() -> UIViewController {
         let vc = CoreNavigationController(
-            rootViewController: CoreHostingController(CareerAssembly.makeView())
+            rootViewController: CoreHostingController(Storybook())
         )
+        vc.navigationBar.prefersLargeTitles = true
         vc.tabBarItem.title = String(localized: "Career", bundle: .horizon)
         vc.tabBarItem.image = UIImage(systemName: "point.bottomleft.filled.forward.to.point.topright.scurvepath")
         return vc

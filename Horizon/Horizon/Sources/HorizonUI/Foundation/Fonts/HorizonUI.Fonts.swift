@@ -23,7 +23,9 @@ extension HorizonUI {
         fileprivate init() {}
 
         // TODO: Import custom font, add actual variants
-        let regular10: Font = .system(size: 10)
+        let regular24: Font = .system(size: 24)
+        let regular18: Font = .system(size: 18)
+        let regular12: Font = .system(size: 12)
     }
 
     static let fonts = HorizonUI.Fonts()
