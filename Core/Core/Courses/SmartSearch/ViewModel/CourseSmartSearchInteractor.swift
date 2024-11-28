@@ -31,8 +31,15 @@ public protocol CourseSmartSearchInteractor: SearchInteractor {
 
 class CourseSmartSearchInteractorLive: CourseSmartSearchInteractor {
 
-    private lazy var flagsStore = ReactiveStore(useCase: GetEnabledFeatureFlags(context: .course(courseID)))
+    private lazy var flagsStore = ReactiveStore(
+        useCase: GetEnabledFeatureFlags(context: .course(courseID))
+    )
+
     private lazy var courseStore = ReactiveStore(useCase: GetCourse(courseID: courseID))
+
+    private lazy var tabsStore = ReactiveStore(
+        useCase: GetContextTabs(context: .course(courseID))
+    )
 
     private lazy var resultsCollection = FetchedCollection(
         ofRequest: CourseSmartSearchRequest.self,
@@ -50,10 +57,23 @@ class CourseSmartSearchInteractorLive: CourseSmartSearchInteractor {
     }
 
     var isEnabled: AnyPublisher<Bool, Never> {
-        flagsStore
+        let isFeatureFlagEnabled = flagsStore
             .getEntities(ignoreCache: true)
             .replaceError(with: [])
-            .map({ $0.contains(where: { $0.name == "smart_search" }) })
+            .map { flags in
+                flags.contains(where: { $0.name == "smart_search" })
+            }
+
+        let isTabEnabled = tabsStore
+            .getEntities(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .map { tabs in
+                tabs.contains(where: { $0.name == .search })
+            }
+
+        return Publishers
+            .CombineLatest(isFeatureFlagEnabled, isTabEnabled)
+            .map { $0 && $1 }
             .eraseToAnyPublisher()
     }
 
