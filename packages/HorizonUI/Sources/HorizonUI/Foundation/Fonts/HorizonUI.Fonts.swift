@@ -18,23 +18,19 @@
 
 import SwiftUI
 
-extension HorizonUI.Colors {
-    struct Primitives {
-        // TODO: Add other variants
+public extension HorizonUI {
+    struct Fonts: Sendable {
+        fileprivate init() {}
 
-        let blue12 = Color(hexString: "#E0EBF5")!
-        let blue45 = Color(hexString: "#2B7ABC")!
-        let blue57 = Color(hexString: "#0E68B3")!
-
-        // TODO: Make it #if DEBUG later
-        let allColors: [ColorWithID]
-
-        init() {
-            self.allColors = [
-                ColorWithID("blue12", blue12),
-                ColorWithID("blue45", blue45),
-                ColorWithID("blue57", blue57)
-            ]
-        }
+        // TODO: Import custom font, add actual variants
+        let regular24: Font = .system(size: 24)
+        let regular18: Font = .system(size: 18)
+        let regular12: Font = .system(size: 12)
     }
+
+    static let fonts = HorizonUI.Fonts()
+}
+
+extension Font {
+    static let huiFonts = HorizonUI.fonts
 }

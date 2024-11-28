@@ -19,10 +19,11 @@
 import SwiftUI
 
 // TODO: Make it #if DEBUG later
-extension HorizonUI.Typography {
+public extension HorizonUI.Typography {
     struct Storybook: View {
         private let text = "This is an example text."
-        var body: some View {
+
+        public var body: some View {
             VStack(spacing: 16) {
                 ForEach(HorizonUI.Typography.Name.allCases) { typography in
                     VStack(alignment: .leading, spacing: 4) {

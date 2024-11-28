@@ -16,14 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-
-extension HorizonUI.Spaces {
-    struct Primitives {
-        let xxxSmall: CGFloat = 2
-        let xxSmall: CGFloat = 4
-        let xSmall: CGFloat = 8
-
-        // TODO: Add other variants
-    }
+public struct HorizonUI {
+    private init() {}
 }

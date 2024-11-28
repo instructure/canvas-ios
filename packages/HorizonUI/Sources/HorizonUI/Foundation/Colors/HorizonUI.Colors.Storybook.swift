@@ -19,9 +19,9 @@
 import SwiftUI
 
 // TODO: Make it #if DEBUG later
-extension HorizonUI.Colors {
+public extension HorizonUI.Colors {
     struct Storybook: View {
-        var body: some View {
+        public var body: some View {
             LazyVGrid(
                 columns: [GridItem(.adaptive(minimum: 40))],
                 spacing: 16
@@ -63,7 +63,7 @@ extension HorizonUI.Colors {
         }
     }
 
-    struct ColorWithID: Identifiable {
+    struct ColorWithID: Identifiable, Sendable {
         let name: String
         let code: Color
 
@@ -72,7 +72,7 @@ extension HorizonUI.Colors {
             self.code = code
         }
 
-        var id: String { name }
+        public var id: String { name }
     }
 }
 

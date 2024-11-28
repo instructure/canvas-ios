@@ -19,8 +19,10 @@
 import SwiftUI
 
 // TODO: Make it #if DEBUG later
-struct Storybook: View {
-    var body: some View {
+public struct Storybook: View {
+    public init() {}
+
+    public var body: some View {
         VStack {
             List {
                 Section(header: Text("Foundations: Atoms")) {

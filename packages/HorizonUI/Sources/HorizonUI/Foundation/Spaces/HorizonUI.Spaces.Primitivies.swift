@@ -18,15 +18,12 @@
 
 import Foundation
 
-extension HorizonUI {
-    struct Spaces {
-        fileprivate init() {}
-        let primitives = Primitives()
+public extension HorizonUI.Spaces {
+    struct Primitives: Sendable {
+        let xxxSmall: CGFloat = 2
+        let xxSmall: CGFloat = 4
+        let xSmall: CGFloat = 8
+
+        // TODO: Add other variants
     }
-
-    static let spaces = HorizonUI.Spaces()
-}
-
-extension CGFloat {
-    static let huiSpaces = HorizonUI.spaces
 }

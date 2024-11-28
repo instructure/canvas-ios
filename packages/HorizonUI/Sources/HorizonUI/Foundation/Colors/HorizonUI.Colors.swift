@@ -18,19 +18,16 @@
 
 import SwiftUI
 
-extension HorizonUI {
-    struct Fonts {
+public extension HorizonUI {
+    struct Colors: Sendable {
         fileprivate init() {}
-
-        // TODO: Import custom font, add actual variants
-        let regular24: Font = .system(size: 24)
-        let regular18: Font = .system(size: 18)
-        let regular12: Font = .system(size: 12)
+        let primitives = Primitives()
+        let ui = UI()
     }
 
-    static let fonts = HorizonUI.Fonts()
+    static let colors = HorizonUI.Colors()
 }
 
-extension Font {
-    static let huiFonts = HorizonUI.fonts
+extension Color {
+    static let huiColors = HorizonUI.colors
 }

@@ -18,16 +18,17 @@
 
 import SwiftUI
 
-extension HorizonUI {
-    struct Colors {
-        fileprivate init() {}
-        let primitives = Primitives()
-        let ui = UI()
+public extension HorizonUI.Colors {
+    // swiftlint:disable:next type_name
+    struct UI: Sendable {
+        // TODO: Add UI Colors
+        // let color = Color(hexString: "#000000")
+        
+        // TODO: Make it #if DEBUG later
+        let allColors: [ColorWithID]
+
+        init() {
+            self.allColors = []
+        }
     }
-
-    static let colors = HorizonUI.Colors()
-}
-
-extension Color {
-    static let huiColors = HorizonUI.colors
 }

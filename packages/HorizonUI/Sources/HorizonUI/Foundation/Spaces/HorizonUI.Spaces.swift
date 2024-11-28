@@ -16,6 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct HorizonUI {
-    private init() {}
+import Foundation
+
+public extension HorizonUI {
+    struct Spaces : Sendable{
+        fileprivate init() {}
+        let primitives = Primitives()
+    }
+
+    static let spaces = HorizonUI.Spaces()
+}
+
+public extension CGFloat {
+    static let huiSpaces = HorizonUI.spaces
 }

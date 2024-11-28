@@ -18,12 +18,18 @@ sources:
   - path: ./
     excludes:
       - ".swiftlint.yml"
+  - path: ../packages
 include:
   - Horizon/horizon.yml
 projectReferences:
   Core:
     path: ../Core/Core.xcodeproj
 packages:
+  # Local
+  HorizonUI:
+    path: ../packages/HorizonUI
+  
+  # Remote
   Heap:
     url: https://github.com/heap/heap-ios-sdk.git
     exactVersion: 9.1.0

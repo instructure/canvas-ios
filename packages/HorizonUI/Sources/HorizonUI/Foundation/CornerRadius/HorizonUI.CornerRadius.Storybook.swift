@@ -19,9 +19,9 @@
 import SwiftUI
 
 // TODO: Make it #if DEBUG later
-extension HorizonUI.CornerRadius {
+public extension HorizonUI.CornerRadius {
     struct Storybook: View {
-        var body: some View {
+        public var body: some View {
             VStack(spacing: 16) {
                 ForEach(HorizonUI.CornerRadius.allCases) { type in
                     VStack(spacing: 4) {
@@ -47,7 +47,7 @@ extension HorizonUI.CornerRadius {
 }
 
 extension HorizonUI.CornerRadius: Identifiable {
-    var id: Self { self }
+    public var id: Self { self }
     var levelString: String {
         let str = "\(id)"
         let components = str.components(separatedBy: "level")

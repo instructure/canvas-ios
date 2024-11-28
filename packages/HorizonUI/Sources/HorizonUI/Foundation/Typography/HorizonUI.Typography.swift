@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-extension HorizonUI {
+public extension HorizonUI {
     struct Typography: View {
         enum Name: CaseIterable {
             case h1
@@ -48,7 +48,7 @@ extension HorizonUI {
             self.color = color
         }
 
-        var body: some View {
+        public var body: some View {
             Text(text)
                 .font(name.font)
                 .foregroundStyle(color)

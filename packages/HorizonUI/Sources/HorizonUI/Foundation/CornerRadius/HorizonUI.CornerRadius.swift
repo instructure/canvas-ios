@@ -18,17 +18,21 @@
 
 import SwiftUI
 
-extension HorizonUI.Colors {
-    // swiftlint:disable:next type_name
-    struct UI {
-        // TODO: Add UI Colors
-        // let color = Color(hexString: "#000000")
-        
-        // TODO: Make it #if DEBUG later
-        let allColors: [ColorWithID]
+public extension HorizonUI {
+    enum CornerRadius: CGFloat, CaseIterable {
+        case level1 = 8
+        case level2 = 16
 
-        init() {
-            self.allColors = []
+        // TODO: Add other variants
+
+        var clipShape: some Shape {
+            RoundedRectangle(cornerRadius: self.rawValue, style: .continuous)
         }
+    }
+}
+
+extension View {
+    func huiCornerRadius(type: HorizonUI.CornerRadius) -> some View {
+        clipShape(type.clipShape)
     }
 }

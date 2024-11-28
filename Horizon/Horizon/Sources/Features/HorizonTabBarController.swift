@@ -18,6 +18,7 @@
 
 import Core
 import UIKit
+import HorizonUI
 
 final class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - Properties

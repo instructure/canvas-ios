@@ -16,12 +16,16 @@ targets:
           - ".swiftlint.yml"
           - "horizon.yml"
     dependencies:
+      # Local
+      - target: Core/Core
+      - package: HorizonUI
+    
+      # Remote
       - package: PSPDFKit
       - package: Heap
       - package: FirebaseCrashlytics
       - package: FirebaseRemoteConfig
       - package: FirebaseRemoteConfigSwift
-      - target: Core/Core
     preBuildScripts:
       - path: ../../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint
