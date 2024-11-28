@@ -31,11 +31,8 @@ public protocol CourseSmartSearchInteractor: SearchInteractor {
 
 class CourseSmartSearchInteractorLive: CourseSmartSearchInteractor {
 
-    private lazy var flagsStore = ReactiveStore(useCase: GetEnabledFeatureFlags(context: context))
-    private lazy var courseStore: ReactiveStore<GetCourse>? = {
-        guard let courseId = context.courseId else { return nil }
-        return ReactiveStore(useCase: GetCourse(courseID: courseId))
-    }()
+    private lazy var flagsStore = ReactiveStore(useCase: GetEnabledFeatureFlags(context: .course(courseID)))
+    private lazy var courseStore = ReactiveStore(useCase: GetCourse(courseID: courseID))
 
     private lazy var resultsCollection = FetchedCollection(
         ofRequest: CourseSmartSearchRequest.self,
@@ -46,9 +43,10 @@ class CourseSmartSearchInteractorLive: CourseSmartSearchInteractor {
         }
     )
 
-    let context: Context
-    init(context: Context) {
-        self.context = context
+    private let courseID: String
+
+    init(courseID: String) {
+        self.courseID = courseID
     }
 
     var isEnabled: AnyPublisher<Bool, Never> {
@@ -60,11 +58,7 @@ class CourseSmartSearchInteractorLive: CourseSmartSearchInteractor {
     }
 
     func fetchCourse() -> AnyPublisher<Course?, Never> {
-        guard let store = courseStore else {
-            return Just(nil).eraseToAnyPublisher()
-        }
-
-        return store
+        return courseStore
             .getEntities()
             .replaceError(with: [])
             .map({ $0.first })
@@ -75,15 +69,10 @@ class CourseSmartSearchInteractorLive: CourseSmartSearchInteractor {
         for searchTerm: String,
         filter: CourseSmartSearchFilter?
     ) -> AnyPublisher<[CourseSmartSearchResult], Never> {
-
-        guard let courseId = context.courseId else {
-            return Just([]).eraseToAnyPublisher()
-        }
-
         return resultsCollection
             .fetch(
                 CourseSmartSearchRequest(
-                    courseId: courseId,
+                    courseId: courseID,
                     searchText: searchTerm,
                     filter: filter?.includedTypes.map({ $0.filterValue })
                 )

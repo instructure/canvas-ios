@@ -20,6 +20,8 @@ import SwiftUI
 import Lottie
 
 struct SearchLoadingView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    
     var body: some View {
         VStack {
             LottieView(name: "panda_searching", loopMode: .loop)
@@ -27,7 +29,6 @@ struct SearchLoadingView: View {
             Text("Hang Tight, We're Fetching Your Results!", bundle: .core)
                 .textStyle(.heading)
                 .multilineTextAlignment(.center)
-                .lineLimit(3)
             Text("We’re working hard to find the best matches for your search. This won't take long! Thank you for your patience.", bundle: .core)
                 .font(.regular16, lineHeight: .normal)
                 .multilineTextAlignment(.center)

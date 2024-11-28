@@ -20,7 +20,10 @@ import SwiftUI
 import UIKit
 import Combine
 
-public protocol CoreSearchController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {}
+public protocol CoreSearchController: UIViewController,
+                                        UITextFieldDelegate,
+                                        UINavigationControllerDelegate,
+                                        UISplitViewControllerDelegate {}
 
 public class CoreSearchHostingController<
         Attributes: SearchViewAttributes,
@@ -49,7 +52,7 @@ public class CoreSearchHostingController<
         image: .smartSearchLine,
         primaryAction: UIAction(
             handler: { [weak self] _ in
-                self?.showSearchField()
+                self?.showSearchBar()
             }
         )
     ).with { $0.accessibilityIdentifier = "search_bar_button" }
@@ -79,7 +82,7 @@ public class CoreSearchHostingController<
     }
 
     private lazy var supportBarItem: UIBarButtonItem? = {
-        guard let support = searchViewsProvider.support else { return nil }
+        guard let support = searchViewsProvider.supportButtonModel else { return nil }
         return UIBarButtonItem(
             image: support.icon.uiImage(),
             primaryAction: UIAction(
@@ -155,11 +158,9 @@ public class CoreSearchHostingController<
 
     // MARK: Show/Hide Search Bar
 
-    private func showSearchField() {
+    private func showSearchBar() {
         selectedFilter = nil
         filterBarItem.image = .filterLine
-
-        searchContext.reset()
 
         searchFieldView.field.text = searchContext.searchText.value
         searchFieldView.frame.size = CGSize(
@@ -225,6 +226,7 @@ public class CoreSearchHostingController<
         let containerNav = CoreNavigationController(rootViewController: coverVC)
         containerNav.delegate = self
 
+        splitView.delegate = self
         splitView.viewControllers = [
             containerNav,
             CoreNavigationController(rootViewController: EmptyViewController())

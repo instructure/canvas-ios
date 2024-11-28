@@ -22,6 +22,7 @@ struct CourseSearchResultRowView: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @Environment(\.courseSmartSearchContext) private var searchContext
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     @State private var isVisited: Bool = false
     @Binding var selectedId: ID?

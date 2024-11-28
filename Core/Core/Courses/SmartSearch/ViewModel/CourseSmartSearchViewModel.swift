@@ -42,8 +42,8 @@ class CourseSmartSearchViewModel: ObservableObject {
     }
 
     var filter: CourseSmartSearchFilter?
-    private var interactor: CourseSmartSearchInteractor
-    private var feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+    private let interactor: CourseSmartSearchInteractor
+    private let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
 
     init(interactor: CourseSmartSearchInteractor) {
         self.interactor = interactor

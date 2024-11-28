@@ -19,13 +19,14 @@
 import SwiftUI
 
 struct SearchNoMatchView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    
     var body: some View {
         VStack {
             Image("no-match-panda", bundle: .core)
             Text("No Perfect Match", bundle: .core)
                 .textStyle(.heading)
                 .multilineTextAlignment(.center)
-                .lineLimit(2)
             Text("We didn’t find exactly what you’re looking for. Maybe try searching for something else?", bundle: .core)
                 .font(.regular16, lineHeight: .normal)
                 .multilineTextAlignment(.center)

@@ -24,7 +24,7 @@ public protocol SearchViewsProvider {
     associatedtype Support: SearchSupportAction
     associatedtype SearchContent: View
 
-    var support: SearchSupportButtonModel<Support>? { get }
+    var supportButtonModel: SearchSupportButtonModel<Support>? { get }
 
     func contentView(_ filter: Binding<Filter?>) -> SearchContent
     func filterEditorView(_ filter: Binding<Filter?>) -> FilterEditor

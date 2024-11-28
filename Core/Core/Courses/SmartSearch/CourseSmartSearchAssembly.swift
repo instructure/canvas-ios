@@ -20,9 +20,9 @@ import SwiftUI
 
 public enum CourseSmartSearchAssembly {
 
-    public static func makeHostController<Content: View>(context: Context, color: UIColor?, containing content: Content) -> UIViewController {
-        let attributes = CourseSmartSearchViewAttributes(context: context, color: color)
-        let interactor = CourseSmartSearchInteractorLive(context: context)
+    public static func makeHostController<Content: View>(courseID: String, color: UIColor?, containing content: Content) -> UIViewController {
+        let attributes = CourseSmartSearchViewAttributes(context: .course(courseID), color: color)
+        let interactor = CourseSmartSearchInteractorLive(courseID: courseID)
         let provider = CourseSmartSearchViewsProvider(interactor: interactor)
         return CoreSearchHostingController(
             attributes: attributes,
@@ -33,8 +33,8 @@ public enum CourseSmartSearchAssembly {
     }
 
     #if DEBUG
-    public static func makeHostControllerPreview<Content: View>(context: Context, color: UIColor?, containing content: Content) -> UIViewController {
-        let attributes = CourseSmartSearchViewAttributes(context: context, color: color)
+    public static func makeHostControllerPreview<Content: View>(courseID: String, color: UIColor?, containing content: Content) -> UIViewController {
+        let attributes = CourseSmartSearchViewAttributes(context: .course(courseID), color: color)
         let interactor = CourseSmartSearchInteractorPreview()
         let provider = CourseSmartSearchViewsProvider(interactor: interactor)
         return CoreSearchHostingController(

@@ -76,7 +76,7 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
                     .tint(Color.textLightest)
                 }
 
-                if let support = searchViewsProvider.support {
+                if let support = searchViewsProvider.supportButtonModel {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
                             support

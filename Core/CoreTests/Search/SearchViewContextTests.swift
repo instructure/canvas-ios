@@ -61,13 +61,6 @@ class SearchViewContextTests: CoreTestCase {
 
         // Then
         XCTAssertTrue(visited.subtracting([5443, 2300, 1234, 7866]).isEmpty)
-
-        // When
-        context.reset()
-
-        // Then
-        XCTAssertTrue(visited.isEmpty)
-        XCTAssertTrue(context.searchText.value.isEmpty)
     }
 }
 

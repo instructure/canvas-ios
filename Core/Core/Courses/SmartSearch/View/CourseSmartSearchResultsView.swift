@@ -19,6 +19,8 @@
 import SwiftUI
 
 struct CourseSmartSearchResultsView: View {
+    @Environment(\.viewController) private var controller
+
     let course: Course?
     let results: [CourseSmartSearchResult]
 
@@ -55,15 +57,21 @@ struct CourseSmartSearchResultsView: View {
                 .ignoresSafeArea()
             })
         }
-        .onAppear {
+        .didAppear {
+            guard isContainerCollapsed else { return }
             selectedId = nil
         }
+    }
+
+    private var isContainerCollapsed: Bool {
+        return controller.value.splitViewController?.isCollapsed ?? true
     }
 }
 
 // MARK: - Grouped Results
 
 struct CourseSmartSearchGroupedResultsView: View {
+    @Environment(\.viewController) private var controller
 
     private let course: Course?
     @State private var resultSections: [CourseSmartSearchResultsSection]
@@ -118,9 +126,14 @@ struct CourseSmartSearchGroupedResultsView: View {
                 .ignoresSafeArea()
             })
         }
-        .onAppear {
+        .didAppear {
+            guard isContainerCollapsed else { return }
             selectedId = nil
         }
+    }
+
+    private var isContainerCollapsed: Bool {
+        return controller.value.splitViewController?.isCollapsed ?? true
     }
 }
 

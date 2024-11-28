@@ -35,7 +35,7 @@ public class CourseSmartSearchViewsProvider: SearchViewsProvider {
         )
     }
 
-    public var support: SearchSupportButtonModel<some SearchSupportAction>? {
+    public var supportButtonModel: SearchSupportButtonModel<some SearchSupportAction>? {
         return SearchSupportButtonModel(
             action: SearchSupportSheetAction(content: CourseSmartSearchHelpView())
         )

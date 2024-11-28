@@ -54,11 +54,6 @@ public class SearchViewContext<Attributes: SearchViewAttributes> {
         visitedRecord.send(list)
     }
 
-    func reset() {
-        visitedRecord.value = []
-        searchText.value = ""
-    }
-
     var accentColor: UIColor? { attributes.accentColor }
     var searchPrompt: String { attributes.searchPrompt }
 }

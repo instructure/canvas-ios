@@ -24,8 +24,8 @@ import XCTest
 class CourseSmartSearchInteractorTests: CoreTestCase {
 
     enum TestConstants {
-        static let courseId: String = "demo_course_id"
-        static var context: Context { Context(.course, id: courseId) }
+        static let courseID: String = "demo_course_id"
+        static var context: Context { Context(.course, id: courseID) }
 
         static var results: [CourseSmartSearchResult] = [
             .make(type: .page),
@@ -46,8 +46,8 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
 
     func test_enablement() throws {
         // Given
-        let context = TestConstants.context
-        let useCase = GetEnabledFeatureFlags(context: context)
+        let courseID = TestConstants.courseID
+        let useCase = GetEnabledFeatureFlags(context: TestConstants.context)
 
         // When
         api.mock(useCase, value: [
@@ -56,7 +56,7 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
         ])
 
         // When
-        let interactor = CourseSmartSearchInteractorLive(context: context)
+        let interactor = CourseSmartSearchInteractorLive(courseID: courseID)
 
         // Then
         XCTAssertSingleOutputEquals(interactor.isEnabled, true)
@@ -74,11 +74,11 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
     func test_searching_results() throws {
         // Given
         let searchWord = "Demo Search"
-        let interactor = CourseSmartSearchInteractorLive(context: TestConstants.context)
+        let interactor = CourseSmartSearchInteractorLive(courseID: TestConstants.courseID)
 
         api.mock(
             CourseSmartSearchRequest(
-                courseId: TestConstants.courseId,
+                courseId: TestConstants.courseID,
                 searchText: searchWord,
                 filter: nil
             ),
@@ -98,7 +98,7 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
 
     func test_searching_with_filter() throws {
         // Given
-        let interactor = CourseSmartSearchInteractorLive(context: TestConstants.context)
+        let interactor = CourseSmartSearchInteractorLive(courseID: TestConstants.courseID)
         let searchWord = "Filtered Search"
 
         let filterTypes: [CourseSmartSearchResultType] = [.announcement, .assignment]
@@ -106,7 +106,7 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
 
         api.mock(
             CourseSmartSearchRequest(
-                courseId: TestConstants.courseId,
+                courseId: TestConstants.courseID,
                 searchText: searchWord,
                 filter: filter.includedTypes.map({ $0.filterValue })
             ),
@@ -126,11 +126,11 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
 
     func test_course_fetch() throws {
         // Given
-        let interactor = CourseSmartSearchInteractorLive(context: TestConstants.context)
+        let interactor = CourseSmartSearchInteractorLive(courseID: TestConstants.courseID)
 
-        let courseID = ID(TestConstants.courseId)
+        let courseID = ID(TestConstants.courseID)
         let apiCourse = APICourse.make(id: courseID, name: "Random Course Name")
-        api.mock(GetCourse(courseID: TestConstants.courseId), value: apiCourse)
+        api.mock(GetCourse(courseID: TestConstants.courseID), value: apiCourse)
 
         // When
         let courseFetcher = interactor.fetchCourse()

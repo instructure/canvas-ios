@@ -151,7 +151,7 @@ private class TestSearchViewsProvider: SearchViewsProvider {
     typealias Support = SearchSupportVoidAction
     typealias SearchContent = Text
 
-    var support: SearchSupportButtonModel<Support>?
+    var supportButtonModel: SearchSupportButtonModel<Support>?
 
     func contentView(_ filter: Binding<Filter?>) -> Text {
         Text("Search Display")
