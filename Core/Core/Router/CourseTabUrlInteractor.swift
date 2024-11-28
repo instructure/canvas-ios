@@ -27,19 +27,23 @@ public final class CourseTabUrlInteractor {
     }
 
     private var enabledTabsPerCourse: [Context: [String]] = [:]
-    private var subscriptions = Set<AnyCancellable>()
+    private var tabSubscription: AnyCancellable?
 
     public init() { }
 
     public func setupTabSubscription() {
         let useCase = LocalUseCase<Tab>(scope: .all)
-        ReactiveStore(useCase: useCase)
+        tabSubscription = ReactiveStore(useCase: useCase)
             .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .sink { [weak self] tabs in
                 self?.updateEnabledTabs(with: tabs)
             }
-            .store(in: &subscriptions)
+    }
+
+    public func cancelTabSubscription() {
+        tabSubscription?.cancel()
+        tabSubscription = nil
     }
 
     public func clearEnabledTabs() {

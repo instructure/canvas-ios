@@ -100,6 +100,7 @@ open class AppEnvironment {
         k5.userDidLogout()
         currentSession = nil
         userDefaults = nil
+        router.courseTabUrlInteractor?.cancelTabSubscription()
         refreshWidgets()
         deleteUserData(session: session)
     }
