@@ -20,7 +20,7 @@ import SwiftUI
 
 struct SearchNoMatchView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    
+
     var body: some View {
         VStack {
             Image("no-match-panda", bundle: .core)

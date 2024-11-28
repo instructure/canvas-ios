@@ -21,7 +21,7 @@ import Lottie
 
 struct SearchLoadingView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    
+
     var body: some View {
         VStack {
             LottieView(name: "panda_searching", loopMode: .loop)
