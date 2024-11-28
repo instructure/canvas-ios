@@ -49,6 +49,7 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var grade: String?
     @NSManaged public var gradedAt: Date?
     @NSManaged public var gradeMatchesCurrentSubmission: Bool
+    @NSManaged public var gradingPeriodId: String?
     @NSManaged public var groupID: String?
     @NSManaged public var groupName: String?
     @NSManaged public var id: String
@@ -161,6 +162,7 @@ extension Submission: WriteableModel {
         model.grade = item.grade
         model.gradedAt = item.graded_at
         model.gradeMatchesCurrentSubmission = item.grade_matches_current_submission
+        model.gradingPeriodId = item.grading_period_id?.value
         model.groupID = item.group?.id?.value
         model.groupName = item.group?.name
         model.id = item.id.value

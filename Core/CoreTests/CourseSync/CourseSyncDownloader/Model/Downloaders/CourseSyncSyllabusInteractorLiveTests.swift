@@ -57,6 +57,8 @@ class CourseSyncSyllabusInteractorLiveTests: CoreTestCase {
         api.mock(GetCalendarEvents(context: .course("testCourse"),
                                    type: .event),
                  value: [.make(id: "2")])
+        api.mock(GetCalendarEvents(context: .course("testCourse")),
+                 value: [.make(id: "1"), .make(id: "2")])
     }
 
     private func getHTMLParser() -> HTMLParser {

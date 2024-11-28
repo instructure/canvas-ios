@@ -125,7 +125,7 @@ public class CalendarHelper: BaseHelper {
         var monthLabelText = monthLabelElement.label
 
         if monthOfEvent != monthLabelText {
-            for _ in 1...13 {
+            for _ in 1...24 {
                 let buttonToSwipe = firstDayButtonOfView.waitUntil(.visible)
                 if monthSwipeDirection == "right" { buttonToSwipe.swipeRight() } else { buttonToSwipe.swipeLeft() }
                 monthLabelElement = monthLabel.waitUntil(.visible)
