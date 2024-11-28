@@ -67,10 +67,10 @@ class LoginFindSchoolViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.searchField.delegate?.textFieldShouldReturn?(controller.searchField), false)
         XCTAssert(router.viewControllerCalls.isEmpty)
-        controller.searchField.text = "test"
+        controller.searchField.text = "localhost"
         XCTAssertEqual(controller.searchField.delegate?.textFieldShouldReturn?(controller.searchField), false)
         let shown = router.viewControllerCalls.first?.0 as? LoginManualOAuthViewController
-        XCTAssertEqual(shown?.host, "test.instructure.com")
+        XCTAssertEqual(shown?.host, "localhost")
     }
 
     func testNextButtonHiddenByDefault() {
