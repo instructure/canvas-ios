@@ -103,9 +103,10 @@ struct SubmissionCommentList: View {
                 case nil:
                     toolbar(containerHeight: geometry.size.height)
                         .transition(.opacity)
-                        .onTapGesture {
-                            showCommentLibrary = commentLibrary.shouldShow
-                        }
+                        .highPriorityGesture( // High priority to take precedence over comment field activation.
+                            TapGesture().onEnded { _ in showCommentLibrary = true },
+                            isEnabled: commentLibrary.shouldShow
+                        )
                         .accessibilityAction(named: Text("Open comment library", bundle: .teacher)) {
                             if commentLibrary.shouldShow {
                                 showCommentLibrary = true
