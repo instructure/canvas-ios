@@ -139,6 +139,7 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         let useCase = GetEnvironmentSettings()
         return ReactiveStore(useCase: useCase)
             .getEntities(ignoreCache: ignoreCache)
+            .map { $0.first }
             .map { $0.calendarFilterCountLimit(isCalendarFilterLimitEnabled: isCalendarFilterLimitEnabled) }
             .eraseToAnyPublisher()
     }
