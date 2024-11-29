@@ -99,8 +99,6 @@ public class AssignmentListViewModel: ObservableObject {
     ) {
         self.userDefaults = userDefaults
         self.courseID = context.id
-        self.defaultGradingPeriod = defaultGradingPeriod
-        self.selectedGradingPeriod = self.defaultGradingPeriod
 
         loadAssignmentListPreferences()
 
