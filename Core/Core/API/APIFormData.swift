@@ -71,10 +71,10 @@ extension APIFormData {
             case .string(let string):
                 outputStream += "\r\n\r\n\(string)"
             case .data(let filename, let type, let contents):
-                outputStream += "; filename=\"\(filename)\"\r\nContent-Type: \(type)\r\n\r\n"
+                outputStream += "; filename=\"\(filename.escaped)\"\r\nContent-Type: \(type)\r\n\r\n"
                 outputStream += contents
             case .file(let filename, let type, let url):
-                outputStream += "; filename=\"\(filename)\"\r\nContent-Type: \(type)\r\n\r\n"
+                outputStream += "; filename=\"\(filename.escaped)\"\r\nContent-Type: \(type)\r\n\r\n"
 
                 if url.isFileURL {
                     guard let inputStream = InputStream(fileAtPath: url.path) else {
@@ -91,5 +91,13 @@ extension APIFormData {
         }
 
         outputStream += "--\(boundary)--\r\n"
+    }
+}
+
+private extension String {
+
+    /// Replaces " with \"
+    var escaped: String {
+        replacingOccurrences(of: "\"", with: "\\\"")
     }
 }
