@@ -685,7 +685,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate, FlexibleToolbarC
 
     public func pdfViewController(_ pdfController: PDFViewController, didSave document: Document, error: Error?) {
         if pdfAnnotationsMutatedMoveToDocsDirectory, let filePathComponent = filePathComponent {
-            let to = URL.Directories.documents.appendingPathComponent(filePathComponent)
+            let to = URL.Directories.annotatedPDFs.appendingPathComponent(filePathComponent)
             if !FileManager.default.fileExists(atPath: to.path), let from = document.fileURL {
                 do {
                     try FileManager.default.createDirectory(at: to.deletingLastPathComponent(), withIntermediateDirectories: true)

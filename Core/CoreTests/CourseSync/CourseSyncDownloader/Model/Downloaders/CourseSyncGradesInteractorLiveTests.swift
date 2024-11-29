@@ -126,8 +126,16 @@ class CourseSyncGradesInteractorLiveTests: CoreTestCase {
         perPage: 100
     )
 
+    private let assignmentsWithoutGradingPeriodRequest = GetAssignmentGroupsRequest(
+        courseID: "testCourse",
+        gradingPeriodID: nil,
+        perPage: 100
+    )
+
     private func mockAssignments() {
         api.mock(assignmentsRequest,
+                 value: [])
+        api.mock(assignmentsWithoutGradingPeriodRequest,
                  value: [])
     }
 

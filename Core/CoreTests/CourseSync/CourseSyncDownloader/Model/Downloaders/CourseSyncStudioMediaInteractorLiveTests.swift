@@ -22,7 +22,7 @@ import XCTest
 
 class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
 
-    func testDownload() {
+    func testDownload() throws {
         let mockOfflineDirectory = URL.make()
 
         // Step 1 - Discover iframes
@@ -60,12 +60,13 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
 
         // Step 5 - Download actual video files
         let mockDownloadInteractor = MockStudioVideoDownloadInteractor()
-        let mockOfflineVideo = StudioOfflineVideo(
+        let mockOfflineVideo = try StudioOfflineVideo(
             ltiLaunchID: StudioTestData.ltiLaunchID,
-            videoLocation: .make(),
-            videoPosterLocation: .make(),
+            videoLocation: .make("/test.mp4"),
+            videoPosterLocation: .make("/poster.png"),
             videoMimeType: "",
-            captionLocations: []
+            captionLocations: [],
+            baseURL: .make()
         )
         mockDownloadInteractor.mockedOfflineVideoReponse = mockOfflineVideo
 

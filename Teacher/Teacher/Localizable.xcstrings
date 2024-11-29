@@ -6403,6 +6403,7 @@
       }
     },
     "Comment library is not available" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

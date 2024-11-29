@@ -20,23 +20,39 @@
 import XCTest
 
 class StudioIFrameReplaceInteractorLiveTests: CoreTestCase {
-    private enum TestData {
-        static let videoURL = URL(string: "/video.mp4")!
-        static let videoPosterURL = URL(string: "/video.png")!
-        static let mimeType = "video/mp4"
-        static let subtitle1URL = URL(string: "/en.srt")!
-        static let subtitle2URL = URL(string: "/hu.srt")!
-        static let iframe = StudioIFrame(
+    private struct TestData {
+        let folder = "StudioIFrameReplaceInteractorLiveTests"
+        let videoFileName = "video.mp4"
+        let videoURL: URL
+        let videoPosterFileName = "video.png"
+        let videoPosterURL: URL
+        let mimeType = "video/mp4"
+        let subtitle1FileName = "en.srt"
+        let subtitle1URL: URL
+        let subtitle2FileName = "hu.srt"
+        let subtitle2URL: URL
+        let iframe = StudioIFrame(
             mediaLTILaunchID: StudioTestData.ltiLaunchID,
             sourceHtml: StudioTestData.iframe
         )
 
+        init(workingDirectory: URL) {
+            videoURL = workingDirectory.appending(path: "\(folder)/\(videoFileName)")
+            videoPosterURL = workingDirectory.appending(path: "\(folder)/\(videoPosterFileName)")
+            subtitle1URL = workingDirectory.appending(path: "\(folder)/\(subtitle1FileName)")
+            subtitle2URL = workingDirectory.appending(path: "\(folder)/\(subtitle2FileName)")
+        }
     }
-    lazy var htmlFileURL = workingDirectory.appending(path: "body.html")
+    private lazy var testData = TestData(workingDirectory: workingDirectory)
+    private lazy var htmlFileURL = workingDirectory.appending(path: "\(testData.folder)/body.html")
 
     override func setUpWithError() throws {
         try super.setUpWithError()
 
+        try FileManager.default.createDirectory(
+            at: htmlFileURL.deletingLastPathComponent(),
+            withIntermediateDirectories: true
+        )
         try StudioTestData.html.write(
             to: htmlFileURL,
             atomically: false,
@@ -50,27 +66,28 @@ class StudioIFrameReplaceInteractorLiveTests: CoreTestCase {
     }
 
     func testReplacesStudioIFrames() throws {
-        let offlineVideo = StudioOfflineVideo(
+        let offlineVideo = try StudioOfflineVideo(
             ltiLaunchID: StudioTestData.ltiLaunchID,
-            videoLocation: TestData.videoURL,
-            videoPosterLocation: TestData.videoPosterURL,
-            videoMimeType: TestData.mimeType,
-            captionLocations: [TestData.subtitle1URL, TestData.subtitle2URL]
+            videoLocation: testData.videoURL,
+            videoPosterLocation: testData.videoPosterURL,
+            videoMimeType: testData.mimeType,
+            captionLocations: [testData.subtitle1URL, testData.subtitle2URL],
+            baseURL: workingDirectory
         )
 
         // WHEN
         try StudioIFrameReplaceInteractorLive().replaceStudioIFrames(
             inHtmlAtURL: htmlFileURL,
-            iframes: [TestData.iframe],
+            iframes: [testData.iframe],
             offlineVideos: [offlineVideo]
         )
 
         let expectedResult = """
         <p>
-        <video controls playsinline preload="auto" poster="/video.png">
-          <source src="\(TestData.videoURL)" type="\(TestData.mimeType)" />
-          <track kind="captions" src="\(TestData.subtitle1URL)" srclang="en" />
-          <track kind="captions" src="\(TestData.subtitle2URL)" srclang="hu" />
+        <video controls playsinline preload="auto" poster="\(offlineVideo.videoPosterRelativePath!)">
+          <source src="\(offlineVideo.videoRelativePath)" type="\(testData.mimeType)" />
+          <track kind="captions" src="\(offlineVideo.captions[0].relativePath)" srclang="en" />
+          <track kind="captions" src="\(offlineVideo.captions[1].relativePath)" srclang="hu" />
         </video>
         </p>
         """
@@ -83,27 +100,28 @@ class StudioIFrameReplaceInteractorLiveTests: CoreTestCase {
     }
 
     func testReplacesStudioIFramesWithoutPosterFile() throws {
-        let offlineVideo = StudioOfflineVideo(
+        let offlineVideo = try StudioOfflineVideo(
             ltiLaunchID: StudioTestData.ltiLaunchID,
-            videoLocation: TestData.videoURL,
+            videoLocation: testData.videoURL,
             videoPosterLocation: nil,
-            videoMimeType: TestData.mimeType,
-            captionLocations: [TestData.subtitle1URL, TestData.subtitle2URL]
+            videoMimeType: testData.mimeType,
+            captionLocations: [testData.subtitle1URL, testData.subtitle2URL],
+            baseURL: workingDirectory
         )
 
         // WHEN
         try StudioIFrameReplaceInteractorLive().replaceStudioIFrames(
             inHtmlAtURL: htmlFileURL,
-            iframes: [TestData.iframe],
+            iframes: [testData.iframe],
             offlineVideos: [offlineVideo]
         )
 
         let expectedResult = """
         <p>
         <video controls playsinline preload="auto">
-          <source src="\(TestData.videoURL)" type="\(TestData.mimeType)" />
-          <track kind="captions" src="\(TestData.subtitle1URL)" srclang="en" />
-          <track kind="captions" src="\(TestData.subtitle2URL)" srclang="hu" />
+          <source src="\(offlineVideo.videoRelativePath)" type="\(testData.mimeType)" />
+          <track kind="captions" src="\(offlineVideo.captions[0].relativePath)" srclang="en" />
+          <track kind="captions" src="\(offlineVideo.captions[1].relativePath)" srclang="hu" />
         </video>
         </p>
         """

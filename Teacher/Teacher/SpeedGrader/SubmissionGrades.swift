@@ -148,7 +148,10 @@ struct SubmissionGrades: View {
     }
 
     private func commentEditor(id: String) -> some View {
-        CommentEditor(text: $rubricComment, action: {
+        CommentEditor(text: $rubricComment,
+                      shouldShowCommentLibrary: false,
+                      showCommentLibrary: .constant(false),
+                      action: {
             var points: Double?
             var ratingID = ""
             if let assessment = rubricAssessments[id] {

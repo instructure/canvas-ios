@@ -87,26 +87,20 @@ public class StudioIFrameReplaceInteractorLive: StudioIFrameReplaceInteractor {
     ) -> String {
         var captionTags = ""
 
-        for caption in studioVideo.captionLocations {
-            let languageCode = caption.lastPathComponent.split(separator: ".").first
-
-            guard let languageCode else {
-                continue
-            }
-
-            captionTags.append("  <track kind=\"captions\" src=\"\(caption.path)\" srclang=\"\(languageCode)\" />\n")
+        for caption in studioVideo.captions {
+            captionTags.append("  <track kind=\"captions\" src=\"\(caption.relativePath)\" srclang=\"\(caption.languageCode)\" />\n")
         }
 
         let posterProperty: String = {
-            guard let posterLocation = studioVideo.videoPosterLocation else {
+            guard let posterLocation = studioVideo.videoPosterRelativePath else {
                 return ""
             }
-            return " poster=\"\(posterLocation.path)\""
+            return " poster=\"\(posterLocation)\""
         }()
 
         let videoTag = """
         <video controls playsinline preload="auto"\(posterProperty)>
-          <source src="\(studioVideo.videoLocation.path)" type="\(studioVideo.videoMimeType)\" />
+          <source src="\(studioVideo.videoRelativePath)" type="\(studioVideo.videoMimeType)\" />
         \(captionTags)</video>
         """
 
