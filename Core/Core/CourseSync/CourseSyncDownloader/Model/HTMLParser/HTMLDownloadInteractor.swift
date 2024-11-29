@@ -22,11 +22,26 @@ import CombineSchedulers
 
 protocol HTMLDownloadInteractor {
     var sectionName: String { get }
-    func download(_ url: URL, courseId: String, resourceId: String, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<String, Error>
-    func download(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error>
-    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Never>
-    func downloadFile(_ url: URL, courseId: String, resourceId: String, publisherProvider: URLSessionDataTaskPublisherProvider) -> AnyPublisher<String, Never>
-    func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error>
+
+    /// - returns: The path to the downloaded file, relative to the app's `Documents` directory.
+    func download(
+        _ url: URL,
+        courseId: String,
+        resourceId: String,
+        documentsDirectory: URL
+    ) -> AnyPublisher<String, Error>
+
+    /// - returns: A remote url of the file prefixed with `/offline` so when we route to this file from rich content the file presenter will know to look for the file locally.
+    func downloadFile(
+        _ url: URL,
+        courseId: String,
+        resourceId: String
+    ) -> AnyPublisher<String, Never>
+
+    func saveBaseContent(
+        content: String,
+        folderURL: URL
+    ) -> AnyPublisher<String, Error>
 }
 
 class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
@@ -34,19 +49,26 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     private let loginSession: LoginSession?
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let fileManager: FileManager
+    private let downloadTaskProvider: URLSessionDataTaskPublisherProvider
 
-    init(loginSession: LoginSession?, sectionName: String, scheduler: AnySchedulerOf<DispatchQueue>, fileManager: FileManager = .default) {
+    init(
+        loginSession: LoginSession?,
+        sectionName: String,
+        scheduler: AnySchedulerOf<DispatchQueue>,
+        fileManager: FileManager = .default,
+        downloadTaskProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
+    ) {
         self.loginSession = loginSession
         self.sectionName = sectionName
         self.scheduler = scheduler
         self.fileManager = fileManager
+        self.downloadTaskProvider = downloadTaskProvider
     }
 
     func downloadFile(
         _ url: URL,
         courseId: String,
-        resourceId: String,
-        publisherProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
+        resourceId: String
     ) -> AnyPublisher<String, Never> {
         let fileID = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
         return Just(url)
@@ -64,55 +86,70 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                     return Just(url).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
             }
-            .flatMap { [loginSession, scheduler] url in
-                if let loginSession, let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID) {
-                    return publisherProvider.getPublisher(for: request)
-                        .receive(on: scheduler)
-                        .flatMap { [weak self] (tempURL: URL, fileName: String) in
-                            if let self {
-                                return self.copyFile(tempURL, fileId: fileID, fileName: fileName, courseId: courseId, resourceId: resourceId)
-                                    .map { [sectionName] _ in
-                                        "\(loginSession.baseURL)/courses/\(courseId)/files/\(sectionName)/\(resourceId)/\(fileID)/offline"
-                                    }
-                                    .eraseToAnyPublisher()
-                            } else {
-                                return Fail(error: NSError.instructureError(String(localized: "Failed to copy file", bundle: .core))).eraseToAnyPublisher()
-                            }
-                        }
-                        .eraseToAnyPublisher()
-                } else {
-                    return Fail(error: NSError.instructureError(String(localized: "Failed to construct request", bundle: .core))).eraseToAnyPublisher()
+            .flatMap { [downloadTaskProvider, loginSession, scheduler, fileManager, sectionName] url in
+                guard
+                    let loginSession,
+                    let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID)
+                else {
+                    let error = NSError.instructureError(String(localized: "Failed to construct request", bundle: .core))
+                    return Fail<String, any Error>(error: error).eraseToAnyPublisher()
                 }
+
+                return downloadTaskProvider
+                    .getPublisher(for: request)
+                    .receive(on: scheduler)
+                    .flatMap { (tempURL: URL, fileName: String) in
+                        return Self.copy(
+                            tempURL,
+                            fileId: fileID,
+                            fileName: fileName,
+                            courseId: courseId,
+                            resourceId: resourceId,
+                            fileManager: fileManager,
+                            sectionName: sectionName,
+                            loginSession: loginSession
+                        )
+                        .map { [sectionName] _ in
+                            "\(loginSession.baseURL)/courses/\(courseId)/files/\(sectionName)/\(resourceId)/\(fileID)/offline"
+                        }
+                    }
+                    .eraseToAnyPublisher()
             }
             .replaceError(with: "")
             .eraseToAnyPublisher()
-    }
-
-    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Never> {
-        return downloadFile(url, courseId: courseId, resourceId: resourceId, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
     func download(
         _ url: URL,
         courseId: String,
         resourceId: String,
-        publisherProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
+        documentsDirectory: URL
     ) -> AnyPublisher<String, Error> {
-        if let loginSession, let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID) {
-            return publisherProvider.getPublisher(for: request)
-                .receive(on: scheduler)
-                .flatMap { [weak self] (tempURL: URL, fileName: String) in
-                    return self?.copy(tempURL, fileName: fileName, courseId: courseId, resourceId: resourceId) ??
-                    Fail(error: NSError.instructureError(String(localized: "Failed to copy file", bundle: .core))).eraseToAnyPublisher()
-                }
-                .eraseToAnyPublisher()
-        } else {
+        guard
+            let loginSession,
+            let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID)
+        else {
             return Fail(error: NSError.instructureError(String(localized: "Failed to construct request", bundle: .core))).eraseToAnyPublisher()
         }
-    }
-
-    func download(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
-        return download(url, courseId: courseId, resourceId: resourceId, publisherProvider: URLSessionDataTaskPublisherProviderLive())
+        return downloadTaskProvider
+            .getPublisher(for: request)
+            .receive(on: scheduler)
+            .flatMap { [fileManager, sectionName] (tempURL: URL, fileName: String) in
+                return Self.copy(
+                    tempURL,
+                    fileId: nil,
+                    fileName: fileName,
+                    courseId: courseId,
+                    resourceId: resourceId,
+                    fileManager: fileManager,
+                    sectionName: sectionName,
+                    loginSession: loginSession
+                )
+                .map { fileUrl in
+                    fileUrl.replacing(documentsDirectory.path(), with: "")
+                }
+            }
+            .eraseToAnyPublisher()
     }
 
     func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error> {
@@ -127,39 +164,33 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         return Result.Publisher(content).eraseToAnyPublisher()
     }
 
-    private func copy(_ tempURL: URL, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
-        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+    /// - returns: The absolute URL of the local file inside the Offline folder.
+    private static func copy(
+        _ tempURL: URL,
+        fileId: String?,
+        fileName: String,
+        courseId: String,
+        resourceId: String,
+        fileManager: FileManager,
+        sectionName: String,
+        loginSession: LoginSession?
+    ) -> AnyPublisher<String, Error> {
+        var rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: loginSession?.uniqueID ?? "",
             courseId: courseId,
             sectionName: sectionName,
             resourceId: resourceId
         )
 
-        let saveURL = rootURL.appendingPathComponent(fileName)
-
-        do {
-            try fileManager.createDirectory(at: rootURL, withIntermediateDirectories: true, attributes: nil)
-            try? FileManager.default.removeItem(at: saveURL)
-            try fileManager.moveItem(at: tempURL, to: saveURL)
-            return Result.Publisher(saveURL.path).eraseToAnyPublisher()
-        } catch {
-            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image", bundle: .core)))).eraseToAnyPublisher()
+        if let fileId {
+            rootURL.append(path: "file-\(fileId)", directoryHint: .isDirectory)
         }
-    }
-
-    private func copyFile(_ tempURL: URL, fileId: String, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
-        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
-            sessionId: loginSession?.uniqueID ?? "",
-            courseId: courseId,
-            sectionName: sectionName,
-            resourceId: resourceId
-        ).appendingPathComponent("file-\(fileId)")
 
         let saveURL = rootURL.appendingPathComponent(fileName)
 
         do {
             try fileManager.createDirectory(at: rootURL, withIntermediateDirectories: true, attributes: nil)
-            try? FileManager.default.removeItem(at: saveURL)
+            try? fileManager.removeItem(at: saveURL)
             try fileManager.moveItem(at: tempURL, to: saveURL)
             return Result.Publisher(saveURL.path).eraseToAnyPublisher()
         } catch {

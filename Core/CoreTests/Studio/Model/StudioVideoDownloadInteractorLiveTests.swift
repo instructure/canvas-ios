@@ -54,6 +54,7 @@ class StudioVideoDownloadInteractorLiveTests: CoreTestCase {
         let mockPosterInteractor = MockStudioVideoPosterInteractor()
         let testee = StudioVideoDownloadInteractorLive(
             rootDirectory: workingDirectory,
+            documentsDirectory: workingDirectory,
             captionsInteractor: mockCaptionsInteractor,
             videoCacheInteractor: mockCacheInteractor,
             posterInteractor: mockPosterInteractor
@@ -66,12 +67,13 @@ class StudioVideoDownloadInteractorLiveTests: CoreTestCase {
         let expectedCaptionURL = workingDirectory.appending(path: "\(TestData.mediaID.value)/\(TestData.caption.srclang).vtt")
         mockCaptionsInteractor.mockedCaptionURL = expectedCaptionURL
 
-        let expectedResult = StudioOfflineVideo(
+        let expectedResult = try! StudioOfflineVideo(
             ltiLaunchID: StudioTestData.ltiLaunchID,
             videoLocation: expectedVideoURL,
             videoPosterLocation: expectedPosterURL,
             videoMimeType: TestData.mimeType,
-            captionLocations: [expectedCaptionURL]
+            captionLocations: [expectedCaptionURL],
+            baseURL: workingDirectory
         )
 
         // WHEN
@@ -90,6 +92,7 @@ class StudioVideoDownloadInteractorLiveTests: CoreTestCase {
         let mockCaptionsInteractor = MockStudioCaptionsInteractor()
         let testee = StudioVideoDownloadInteractorLive(
             rootDirectory: workingDirectory,
+            documentsDirectory: workingDirectory,
             captionsInteractor: mockCaptionsInteractor,
             videoCacheInteractor: mockCacheInteractor,
             posterInteractor: MockStudioVideoPosterInteractor()
