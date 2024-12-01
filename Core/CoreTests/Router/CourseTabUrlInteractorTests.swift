@@ -98,6 +98,16 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         XCTAssertEqual(testee.isAllowedUrl(.make("courses/42/grades")), false)
     }
 
+    func test_isAllowedUrl_whenTabIsEnabled_shouldAllowAllVariants() {
+        saveTab(htmlUrl: "/courses/42/grades", context: .course("42"))
+
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/api/v1/courses/42/grades?per_page=100&include%5B%5D=sections&no_verifiers=1")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/api/v1/courses/42/grades")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades/")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("courses/42/grades")), true)
+    }
+
     func test_isAllowedUrl_whenTabIsDisabled_shouldAllowSubpages() {
         saveTab(htmlUrl: "/courses/42/not_grades", context: .course("42"))
 

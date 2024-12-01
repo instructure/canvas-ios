@@ -52,12 +52,17 @@ public final class CourseTabUrlInteractor {
 
     /// Returns `true` if `url` is not a course tab URL OR it is but it's not in the list of enabled course tab URLs.
     public func isAllowedUrl(_ url: URL) -> Bool {
-        // if url doesn't match ""/courses/:courseID/*" for the known courses -> it's not a tab, allow it
+        // if url doesn't match "/courses/:courseID/*" for the known courses -> it's not a tab, allow it
         guard let context = Context(url: url), let enabledTabs = enabledTabsPerCourse[context] else {
             return true
         }
 
-        let relativePath = String(url.relativePath.trimmingPrefix("/api/v1"))
+        var relativePath = String(url.relativePath.trimmingPrefix("/api/v1"))
+
+        // handle already relative URLs without starting slash
+        if relativePath.hasPrefix("course") {
+            relativePath = "/" + relativePath
+        }
 
         // if url doesn't even match known tab path formats -> it's not a tab, allow it
         guard isKnownPathFormat(relativePath) else {
