@@ -159,12 +159,14 @@ private enum CourseTabFormat: CaseIterable {
             guard parts.count == 3 else { return false }
 
             let lastPart = parts[2]
-            let internalOnlyRouteComponents = [
+            let nonTabRouteComponents = [
                 "tabs",
-                "activity_stream"
+                "activity_stream",
+                "settings",
+                "details"
             ]
-            // if the last part matches an internal only suffix -> it's not a tab
-            return !internalOnlyRouteComponents.contains(lastPart)
+            // if the last part matches a known non-tab suffix -> it's not a tab
+            return !nonTabRouteComponents.contains(lastPart)
 
         case .syllabusTab:
             // example: "/courses/42/assignments/syllabus"

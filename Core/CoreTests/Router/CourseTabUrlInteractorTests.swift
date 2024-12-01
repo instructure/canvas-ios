@@ -118,12 +118,15 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades")), false)
     }
 
-    func test_isAllowedUrl_whenTabIsDisabled_shouldAllowInternalNavigationPaths() {
+    func test_isAllowedUrl_whenTabIsDisabled_shouldAllowNonTabNavigationPaths() {
         saveTab(htmlUrl: "/courses/42/_something_", context: .course("42"))
 
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/tabs")), true)
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/activity_stream")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/users/42/activity_stream")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/settings")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/details")), true)
+
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/something_not_known_but_tablike")), false)
     }
 
     func test_isAllowedUrl_whenSyllabusIsDisabled_shouldBlockSyllabusUrlFormat() {
