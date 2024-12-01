@@ -231,6 +231,12 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades")), false)
     }
 
+    func test_setupEnabledTabs_whenTabIsNotCourse_shouldIgnore() {
+        saveTab(htmlUrl: "/groups/42/not-pages", context: .group("42"))
+
+        XCTAssertEqual(testee.isAllowedUrl(.make("/groups/42/pages")), true)
+    }
+
     func test_setupEnabledTabs_whenSyllabusIsEnabled_shouldEnableAlternativePaths() {
         saveTab(id: "syllabus", htmlUrl: "/courses/42/_something_", context: .course("42"))
 

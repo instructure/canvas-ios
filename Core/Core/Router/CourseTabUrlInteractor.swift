@@ -91,11 +91,12 @@ public final class CourseTabUrlInteractor {
     }
 
     private func updateEnabledTabs(with tabs: [Tab]) {
-        let tabsPerContext = Dictionary(grouping: tabs, by: { $0.context })
+        let courseTabs = tabs.filter { $0.context.contextType == .course }
+        let tabsPerCourse = Dictionary(grouping: courseTabs, by: { $0.context })
 
-        let tabModelsPerCourse: [Context: [TabModel]] = tabsPerContext.mapValues { tabArray in
+        let tabModelsPerCourse: [Context: [TabModel]] = tabsPerCourse.mapValues { tabArray in
             tabArray.compactMap { tab in
-                guard tab.context.contextType == .course, let htmlURL = tab.htmlURL else { return nil }
+                guard let htmlURL = tab.htmlURL else { return nil }
 
                 return TabModel(id: tab.id, htmlUrl: htmlURL.absoluteString)
             }
