@@ -139,7 +139,7 @@ private struct DidAppearViewModifier: ViewModifier {
 }
 
 extension View {
-    func didAppear(perform action: @escaping () -> Void) -> some View {
+    func onDidAppear(perform action: @escaping () -> Void) -> some View {
         modifier(DidAppearViewModifier(action: action))
     }
 }

@@ -100,7 +100,7 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
                             .fontWeight(.semibold)
                     }
                     .tint(Color.textLightest)
-                    .accessibilityLabel(Text("Close", bundle: .core))
+                    .accessibilityLabel(Text("Back", bundle: .core))
                 }
             }
             .onChange(of: searchText) { newValue in

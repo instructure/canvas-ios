@@ -46,14 +46,7 @@ struct CourseSearchResultsHeaderView: View {
         .overlay(alignment: .bottom) {
             InstUI.Divider()
         }
-        .accessibilityElement()
-        .accessibilityLabel(headerAccessibilityLabel)
+        .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isHeader)
-    }
-
-    private var headerAccessibilityLabel: Text {
-        Text(headerString, bundle: .core) +
-        Text(": ") +
-        Text(course?.name ?? "")
     }
 }

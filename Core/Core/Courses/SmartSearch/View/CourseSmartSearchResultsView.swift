@@ -57,9 +57,11 @@ struct CourseSmartSearchResultsView: View {
                 .ignoresSafeArea()
             })
         }
-        .didAppear {
+        .onDidAppear {
             guard isContainerCollapsed else { return }
-            selectedId = nil
+            withAnimation {
+                selectedId = nil
+            }
         }
     }
 
@@ -126,9 +128,11 @@ struct CourseSmartSearchGroupedResultsView: View {
                 .ignoresSafeArea()
             })
         }
-        .didAppear {
+        .onDidAppear {
             guard isContainerCollapsed else { return }
-            selectedId = nil
+            withAnimation {
+                selectedId = nil
+            }
         }
     }
 

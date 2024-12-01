@@ -571,7 +571,7 @@ private func groupContextCard(url _: URLComponents, params: [String: String], us
 
 private func courseDetails(url: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
     guard let context = Context(path: url.path),
-            let courseID = context.courseId else { return nil }
+          let courseID = context.courseId else { return nil }
 
     let regularCourseDetails: () -> UIViewController = {
         let viewModel = CourseDetailsViewModel(context: .course(courseID), offlineModeInteractor: OfflineModeAssembly.make())

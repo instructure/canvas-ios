@@ -48,7 +48,7 @@ public struct CourseSmartSearchFilterEditorView: View {
                     InstUI.Divider()
 
                     InstUI.RadioButtonCell(
-                        title: "Relevance",
+                        title: String(localized: "Relevance", bundle: .core),
                         value: .relevance,
                         selectedValue: $viewModel.sortMode,
                         color: contextColor,
@@ -58,7 +58,7 @@ public struct CourseSmartSearchFilterEditorView: View {
                     InstUI.Divider().padding(.horizontal, 16)
 
                     InstUI.RadioButtonCell(
-                        title: "Type",
+                        title: String(localized: "Type", bundle: .core),
                         value: .type,
                         selectedValue: $viewModel.sortMode,
                         color: contextColor

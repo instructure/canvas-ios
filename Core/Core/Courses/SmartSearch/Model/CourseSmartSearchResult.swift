@@ -89,13 +89,13 @@ extension CourseSmartSearchResultType {
     var title: String {
         switch self {
         case .page:
-            return "Page"
+            return String(localized: "Page", bundle: .core)
         case .discussion:
-            return "Discussion"
+            return String(localized: "Discussion", bundle: .core)
         case .assignment:
-            return "Assignment"
+            return String(localized: "Assignment", bundle: .core)
         case .announcement:
-            return "Announcement"
+            return String(localized: "Announcement", bundle: .core)
         }
     }
 
