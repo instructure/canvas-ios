@@ -69,6 +69,7 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         saveTab(htmlUrl: "/courses/42/_something_", context: .course("42"))
 
         XCTAssertEqual(testee.isAllowedUrl(.make("/groups/42/grades")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/users/self/files")), true)
         XCTAssertEqual(testee.isAllowedUrl(.make("/users/42/settings")), true)
     }
 
@@ -84,6 +85,44 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
 
         // tab in unknown course -> allow
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/0/grades")), true)
+    }
+
+    // MARK: - UserInfo
+
+    func test_isAllowedUrlWithUserInfo_whenBlockDisabledTabIsFalse_shouldAllowDisabledTab() {
+        saveTab(htmlUrl: "/courses/42/not_grades", context: .course("42"))
+
+        let isAllowedUrl = testee.isAllowedUrl(
+            .make("/courses/42/grades"),
+            userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: false]
+        )
+        XCTAssertEqual(isAllowedUrl, true)
+
+        verifyUnrelatedURLsAreAllowed()
+    }
+
+    func test_isAllowedUrlWithUserInfo_whenBlockDisabledTabIsTrue_shouldBlockDisabledTab() {
+        saveTab(htmlUrl: "/courses/42/not_grades", context: .course("42"))
+
+        let isAllowedUrl = testee.isAllowedUrl(
+            .make("/courses/42/grades"),
+            userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: true]
+        )
+        XCTAssertEqual(isAllowedUrl, false)
+
+        verifyUnrelatedURLsAreAllowed()
+    }
+
+    func test_isAllowedUrlWithUserInfo_whenBlockDisabledTabIsNotSet_shouldBlockDisabledTab() {
+        saveTab(htmlUrl: "/courses/42/not_grades", context: .course("42"))
+
+        let isAllowedUrl = testee.isAllowedUrl(
+            .make("/courses/42/grades"),
+            userInfo: [:]
+        )
+        XCTAssertEqual(isAllowedUrl, false)
+
+        verifyUnrelatedURLsAreAllowed()
     }
 
     // MARK: - Tab Format rules
@@ -233,6 +272,19 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         XCTAssertEqual(remoteLogHandler.lastErrorName, "Unexpected Course Tab path format")
     }
 
+    // MARK: - Cancel subscription
+
+    func test_cancelTabSubscription_shouldNotReactToTabObjectChanges() {
+        saveTab(htmlUrl: "/courses/42/users", context: .course("42"))
+
+        testee.cancelTabSubscription()
+
+        saveTab(htmlUrl: "/courses/42/pages", context: .course("42"))
+
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/users")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/pages")), false)
+    }
+
     // MARK: - Clear tabs
 
     func test_clearEnabledTabs_shouldAllowAll() {
@@ -282,5 +334,11 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
 private extension URL {
     static func make(_ string: String) -> URL {
         URL(string: string)!
+    }
+}
+
+private extension CourseTabUrlInteractor {
+    func isAllowedUrl(_ url: URL) -> Bool {
+        isAllowedUrl(url, userInfo: nil)
     }
 }

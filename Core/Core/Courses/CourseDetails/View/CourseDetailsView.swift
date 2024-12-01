@@ -83,7 +83,12 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
         Button {
             if let url = viewModel.homeRoute {
                 selectionViewModel.cellTapped(at: 0)
-                env.router.route(to: url, from: controller, options: .detail)
+                env.router.route(
+                    to: url,
+                    userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: false],
+                    from: controller,
+                    options: .detail
+                )
             }
         } label: {
             HStack(spacing: 13) {
