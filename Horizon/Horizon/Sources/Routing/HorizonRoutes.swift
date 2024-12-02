@@ -201,8 +201,7 @@ enum HorizonRoutes {
 
             RouteHandler("/notebook/:courseID") { _, params, _ in
                 guard let courseID = params["courseID"] else { return nil }
-                let controller = NotebookCourseAssembly.make(courseID: courseID)
-                return controller
+                return NotebookCourseAssembly.make(courseID: courseID)
             }
         ]
     }

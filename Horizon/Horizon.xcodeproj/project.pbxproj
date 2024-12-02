@@ -52,6 +52,9 @@
 		91F8AB5F127218139B3D9C25 /* LearningObjectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6160FD173852A664C46FAC5 /* LearningObjectHeaderView.swift */; };
 		9509B0E48E3AC6B09097F078 /* TypingAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676FC319D5661B55D838E6CB /* TypingAnimationView.swift */; };
 		9931638F9D3AA22C5FB1BC27 /* NotebookAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF6EB040DC161FB04C2786 /* NotebookAssembly.swift */; };
+		99B449172CF0FA4C000B47E5 /* NoteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B449162CF0FA47000B47E5 /* NoteCard.swift */; };
+		99B4491B2CF13782000B47E5 /* GetCourseNotesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B4491A2CF13774000B47E5 /* GetCourseNotesInteractor.swift */; };
+		99B4491F2CF13E65000B47E5 /* CourseNotesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B4491E2CF13E5E000B47E5 /* CourseNotesRepository.swift */; };
 		9EBF743C36B4FDE8A3738A33 /* ChatBotMessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BF384E73491F431D50C462 /* ChatBotMessageBubbleView.swift */; };
 		9FAF94301C5721716CC618F8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2872865BC52D4DC11EDEDDB7 /* FirebaseCrashlytics */; };
 		A51387187690E8DA93F7A8D0 /* BaseHorizonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36C84BF05EC6AC10C0ADCF /* BaseHorizonScreen.swift */; };
@@ -198,6 +201,9 @@
 		949E28BBA03DA7E79460065C /* Size12RegularTextDarkestTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size12RegularTextDarkestTitle.swift; sourceTree = "<group>"; };
 		9650B908EFF77457D752B7E7 /* CommonAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAssembly.swift; sourceTree = "<group>"; };
 		969AD4F859C948A83EDC6AC2 /* HorizonGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonGradient.swift; sourceTree = "<group>"; };
+		99B449162CF0FA47000B47E5 /* NoteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCard.swift; sourceTree = "<group>"; };
+		99B4491A2CF13774000B47E5 /* GetCourseNotesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseNotesInteractor.swift; sourceTree = "<group>"; };
+		99B4491E2CF13E5E000B47E5 /* CourseNotesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseNotesRepository.swift; sourceTree = "<group>"; };
 		9BDA1DDCAA5D9E94487D061D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A0F92972CAEE0275DE8C2D5A /* GetCoursesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesInteractor.swift; sourceTree = "<group>"; };
 		A56E0CF6B14E0331072707C9 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
@@ -582,6 +588,31 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		99B449192CF1375B000B47E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				99B4491A2CF13774000B47E5 /* GetCourseNotesInteractor.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		99B4491C2CF13E4B000B47E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				99B449162CF0FA47000B47E5 /* NoteCard.swift */,
+				FF9F54E199489AB7D0DFEB71 /* View.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		99B4491D2CF13E56000B47E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				99B4491E2CF13E5E000B47E5 /* CourseNotesRepository.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9BCEBC0023162DBDF3EFE350 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,7 +663,8 @@
 		CB63925B71741654C9C84F31 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				FF9F54E199489AB7D0DFEB71 /* View.swift */,
+				99B4491D2CF13E56000B47E5 /* Model */,
+				99B4491C2CF13E4B000B47E5 /* View */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -679,6 +711,7 @@
 		F78D9052BDD119BB9DF55915 /* Course */ = {
 			isa = PBXGroup;
 			children = (
+				99B449192CF1375B000B47E5 /* Model */,
 				147289F7D5D0D1A7119422CA /* View */,
 				304AFA7EEB52AE9A0DA7FCAD /* ViewModel */,
 				BB80E9A5FE3811968BD07C3B /* NotebookCourseAssembly.swift */,
@@ -862,6 +895,7 @@
 				E43A4ECD7F431763B904F25B /* CertificateProgressBar.swift in Sources */,
 				9EBF743C36B4FDE8A3738A33 /* ChatBotMessageBubbleView.swift in Sources */,
 				A9220EF9701F61BD0EB8A6B9 /* ChatBotMessageModel.swift in Sources */,
+				99B4491F2CF13E65000B47E5 /* CourseNotesRepository.swift in Sources */,
 				DCAAC1233B60DAAF7266A9D4 /* ChatBotView.swift in Sources */,
 				1BF96FE3874001A3E7F24D8A /* ChatBotViewModel.swift in Sources */,
 				CD138C3D41D0330FD375B81C /* CommonAssembly.swift in Sources */,
@@ -874,6 +908,7 @@
 				341E151F9FE8B0C4F113C01A /* GetProgramsInteractor.swift in Sources */,
 				8031414D135BF4A32D1A97F5 /* GetProgramsInteractorPreview.swift in Sources */,
 				CE5BF89A4A0ADEF1668E169A /* GetUserInteractor.swift in Sources */,
+				99B4491B2CF13782000B47E5 /* GetCourseNotesInteractor.swift in Sources */,
 				F0A082F4AF336E4286E131D7 /* GetUserInteractorPreview.swift in Sources */,
 				59B1BD3B9AEBB80E48D1C99B /* HAssignment.swift in Sources */,
 				DCA1DFDCA3EC27573695DD77 /* HAssignmentButton.swift in Sources */,
@@ -902,6 +937,7 @@
 				BCCEE877AD932FFFB7EF2226 /* ProgramsAssembly.swift in Sources */,
 				410AE96224CF3327A4027C6E /* ProgramsView.swift in Sources */,
 				84C518D0F43318BD14E15031 /* ProgramsViewModel.swift in Sources */,
+				99B449172CF0FA4C000B47E5 /* NoteCard.swift in Sources */,
 				C2B449676582D8604C120987 /* SessionInteractor.swift in Sources */,
 				56F0237BD9FB8F02E6AE4568 /* Size12RegularTextDarkTitle.swift in Sources */,
 				5812D7E7C840572DEAE694BE /* Size12RegularTextDarkestTitle.swift in Sources */,

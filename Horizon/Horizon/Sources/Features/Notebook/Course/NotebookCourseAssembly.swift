@@ -21,16 +21,14 @@ import SwiftUICore
 
 final class NotebookCourseAssembly {
     static func make(courseID: String) -> CoreHostingController<NotebookCourseView>? {
-        let env = AppEnvironment.shared
-        guard let rootViewController = env.window?.rootViewController else {
-            fatalError("No root view controller")
-        }
-        return CoreHostingController(
+        CoreHostingController(
             NotebookCourseView(
-                NotebookCourseViewModel(
+                .init(
                     courseID: courseID,
-                    router: env.router,
-                    viewController: rootViewController
+                    getCourseNotesInteractor: GetCourseNotesInteractor(
+                        courseNotesRepository: CourseNotesRepository()
+                    ),
+                    router: AppEnvironment.shared.router
                 )
             )
         )

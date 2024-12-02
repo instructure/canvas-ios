@@ -24,7 +24,9 @@ struct NotebookCourseView: View {
 
     @State private var viewModel: NotebookCourseViewModel
 
-    init(_ viewModel: NotebookCourseViewModel = NotebookCourseViewModel(courseID: "")) {
+    @Environment(\.viewController) private var viewController
+
+    init(_ viewModel: NotebookCourseViewModel) {
         self.viewModel = viewModel
     }
 
@@ -33,10 +35,19 @@ struct NotebookCourseView: View {
             title: viewModel.title,
             router: viewModel.router
         ) {
-            NotebookSearchBar() { _ in }.padding(.bottom, 32).padding(.top, 32)
-            NotebookCard {
-                Text("Monday, 12/12/2024").font(.regular12).padding(.bottom, 8)
-                Text("This is a note").font(.regular16)
+            NotebookSearchBar { _ in }.padding(.top, 32)
+            Text("Filter").font(.regular16)
+                .padding(.top, 32)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            HStack(spacing: 8) {
+                FilterButton(type: .confusing)
+                FilterButton(type: .important)
+            }.frame(maxWidth: .infinity)
+            Text("Notes").font(.regular16)
+                .padding(.top, 32)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            ForEach(viewModel.notes) { note in
+                NoteCard(note: note)
             }
         }
     }
@@ -45,7 +56,9 @@ struct NotebookCourseView: View {
 #if DEBUG
     struct NotebookCourseView_Previews: PreviewProvider {
         static var previews: some View {
-            NotebookCourseView()
+            NotebookCourseView(
+                .init(courseID: "", getCourseNotesInteractor: GetCourseNotesInteractor(courseNotesRepository: CourseNotesRepository()))
+            )
         }
     }
 #endif

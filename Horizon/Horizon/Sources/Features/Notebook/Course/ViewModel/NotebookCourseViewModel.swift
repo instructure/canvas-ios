@@ -18,18 +18,45 @@
 
 import Core
 import SwiftUI
+import Combine
 
 @Observable final class NotebookCourseViewModel {
-    let router: Router?
-
     var title: String = ""
 
-    private let viewController: UIViewController?
+    var notes: [NotebookNote] = []
 
-    init(courseID: String, router: Router? = nil, viewController: UIViewController? = nil) {
+    let router: Router?
+
+    private var getCoursesNotesCancellable: AnyCancellable?
+
+    private let formatter = DateFormatter()
+
+    init(courseID: String,
+         getCourseNotesInteractor: GetCourseNotesInteractor,
+         router: Router? = nil) {
         self.router = router
-        self.viewController = viewController
+
+        formatter.dateFormat = "MMM d, yyyy"
 
         title = "Notebook for Course \(courseID)"
+
+        getCoursesNotesCancellable = getCourseNotesInteractor.get().sink { _ in } receiveValue: { [weak self] notes in
+            let notebookNotes = notes.map { note in
+                NotebookNote(
+                    id: note.id,
+                    type: note.type,
+                    title: self?.formatter.string(from: note.date) ?? "",
+                    note: note.note
+                )
+            }
+            self?.notes = notebookNotes
+        }
     }
+}
+
+struct NotebookNote: Identifiable {
+    let id: String
+    let type: NotebookNoteLabel?
+    let title: String
+    let note: String
 }

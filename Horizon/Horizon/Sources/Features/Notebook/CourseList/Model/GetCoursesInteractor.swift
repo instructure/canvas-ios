@@ -21,27 +21,25 @@ import Foundation
 import CombineExt
 
 class GetCoursesInteractor {
+    let courseNotesRepository: CourseNotesRepository
 
     let publisher = PassthroughSubject<[NotebookCourse], Never>()
 
-    let courses = [
-        NotebookCourse(institution: "Instructure", name: "Canvas"),
-        NotebookCourse(institution: "Instructure", name: "Bridge"),
-        NotebookCourse(institution: "Instructure", name: "Arc"),
-        NotebookCourse(institution: "Instructure", name: "Portfolium"),
-        NotebookCourse(institution: "Yale", name: "Intro to Psychology"),
-        NotebookCourse(institution: "Yale", name: "Intro to Philosophy"),
-        NotebookCourse(institution: "Yale", name: "Intro to Biology")
-    ]
+    var cancellable: AnyCancellable?
+
+    init(courseNotesRepository: CourseNotesRepository) {
+        self.courseNotesRepository = courseNotesRepository
+    }
 
     func search(for text: String) {
-        if(text.isEmpty) {
-            publisher.send(courses)
-            return
-        }
-        publisher.send(
-            courses.filter { $0.name.lowercased().contains(text.lowercased()) || $0.institution.lowercased().contains(text.lowercased()) }
-        )
+//        cancellable = courseNotesRepository.get().sink(receiveCompletion: { _ in }, receiveValue: { [weak self] notes in
+//            let courses: [NotebookCourse] = []
+            //notes
+                //.map { note in NotebookCourse(institution: note.institution, name: note.course) }
+                //.filter { text.isEmpty || $0.name.lowercased().contains(text.lowercased()) || $0.institution.lowercased().contains(text.lowercased()) }
+                //.sorted { $0.institution == $1.institution ? $0.name < $1.name : $0.institution < $1.institution }
+//            self?.publisher.send(courses)
+//        })
     }
 
     func get() -> AnyPublisher<[NotebookCourse], Never> {
