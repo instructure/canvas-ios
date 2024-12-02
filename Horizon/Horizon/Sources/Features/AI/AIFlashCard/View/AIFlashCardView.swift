@@ -24,20 +24,18 @@ struct AIFlashCardView: View {
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                headerView
+        VStack {
+            headerView
 
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack {
-                        flashCardsView(geometry: geometry)
-                    }
-                    .scrollTargetLayout()
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack {
+                    flashCardsView
                 }
-                .scrollTargetBehavior(.viewAligned)
-                .contentMargins(.horizontal, 30, for: .scrollContent)
-                .scrollPosition(id: $viewModel.currentCardIndex)
+                .scrollTargetLayout()
             }
+            .scrollTargetBehavior(.viewAligned)
+            .contentMargins(.horizontal, 30, for: .scrollContent)
+            .scrollPosition(id: $viewModel.currentCardIndex)
         }
         .animation(.smooth, value: viewModel.currentCardIndex)
         .paddingStyle(.top, .standard)
@@ -73,11 +71,13 @@ extension AIFlashCardView {
     }
 
     @ViewBuilder
-    private func flashCardsView(geometry: GeometryProxy) -> some View {
+    private var flashCardsView: some View {
         ForEach(Array(viewModel.flashCards.enumerated()), id: \.offset) { index, item in
             FlashCardItemView(item: item)
                 .containerRelativeFrame(.horizontal)
-                .frame(height: geometry.size.height * 0.8)
+                .containerRelativeFrame(.vertical) { height, _ in
+                    height * 0.9
+                }
                 .rotation3DEffect(
                     .degrees(item.isFlipped  ? 180 : 0),
                     axis: (x: 0, y: 1, z: 0)
