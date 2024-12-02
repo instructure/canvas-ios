@@ -29,7 +29,7 @@ public extension HorizonUI {
                 switch self {
                 case .h1: return HorizonUI.fonts.regular24
                 case .h2: return HorizonUI.fonts.regular18
-                case .h3: return HorizonUI.fonts.regular12
+                case .h3: return HorizonUI.fonts.manrope12
                 }
             }
         }
