@@ -657,9 +657,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate, FlexibleToolbarC
 
     public func flexibleToolbarContainerContentRect(_ container: FlexibleToolbarContainer, for position: FlexibleToolbar.Position) -> CGRect {
 
-        let isCompact = container.traitCollection.horizontalSizeClass == .compact
-        let padding: CGFloat = isCompact ? 10 : 16
-
+        let padding: CGFloat = container.isHorizontallyCompact ? 10 : 16
         let safeInsets = container.safeAreaInsets
         let contentFrame = contentView.convert(contentView.bounds, to: container)
         let toolbarRect = CGRect(
@@ -670,6 +668,16 @@ extension FileDetailsViewController: PDFViewControllerDelegate, FlexibleToolbarC
         )
 
         return toolbarRect
+    }
+
+    public func flexibleToolbarContainerWillShow(_ container: FlexibleToolbarContainer) {
+        guard container.isHorizontallyCompact else { return }
+        tabBarController?.tabBar.isHidden = true
+    }
+
+    public func flexibleToolbarContainerWillHide(_ container: FlexibleToolbarContainer) {
+        guard container.isHorizontallyCompact else { return }
+        tabBarController?.tabBar.isHidden = false
     }
 
     func saveAnnotations() {
@@ -748,5 +756,11 @@ extension FileDetailsViewController: PDFViewControllerDelegate, FlexibleToolbarC
     @objc
     func annotationChangedNotification(notification: Notification) {
         pdfAnnotationsMutatedMoveToDocsDirectory = true
+    }
+}
+
+private extension UIView {
+    var isHorizontallyCompact: Bool {
+        traitCollection.horizontalSizeClass == .compact
     }
 }

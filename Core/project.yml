@@ -29,7 +29,7 @@ packages:
     exactVersion: 3.5.0
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
-    exactVersion: 13.9.1
+    exactVersion: 14.1.1
   Swifter:
     url: https://github.com/httpswift/swifter
     version: 1.5.0
