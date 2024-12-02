@@ -26,9 +26,12 @@ public final class CourseTabUrlInteractor {
     private struct TabModel {
         let id: String
         let htmlUrl: String
+        let apiBaseUrlHost: String?
     }
 
     private var enabledTabsPerCourse: [Context: [String]] = [:]
+    public private(set) var tabBaseUrlHosts: Set<String> = []
+
     private var tabSubscription: AnyCancellable?
 
     public init() { }
@@ -97,8 +100,11 @@ public final class CourseTabUrlInteractor {
         let tabModelsPerCourse: [Context: [TabModel]] = tabsPerCourse.mapValues { tabArray in
             tabArray.compactMap { tab in
                 guard let htmlURL = tab.htmlURL else { return nil }
-
-                return TabModel(id: tab.id, htmlUrl: htmlURL.absoluteString)
+                return TabModel(
+                    id: tab.id,
+                    htmlUrl: htmlURL.absoluteString,
+                    apiBaseUrlHost: tab.apiBaseURL?.host()
+                )
             }
         }
 
@@ -106,6 +112,12 @@ public final class CourseTabUrlInteractor {
             let tabPaths = pathsForTabs(tabs, context: context)
             enabledTabsPerCourse[context] = tabPaths
         }
+
+        tabBaseUrlHosts = Set(
+            tabModelsPerCourse
+                .flatMap { $0.value }
+                .compactMap { $0.apiBaseUrlHost }
+        )
     }
 
     private func pathsForTabs(_ tabs: [TabModel], context: Context) -> [String] {

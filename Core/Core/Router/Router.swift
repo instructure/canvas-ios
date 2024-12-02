@@ -165,11 +165,9 @@ open class Router {
     }
     open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         let url = cleanURL(url)
-        let env = userInfo?["env-override"] as? AppEnvironment
+        let isExternalUrl = isExternalWebsiteURL(url, userInfo: userInfo)
 
-        if url.isExternalWebsite(of: env ?? .shared),
-           !url.originIsNotification,
-            let url = url.url {
+        if isExternalUrl, !url.originIsNotification, let url = url.url {
             RemoteLogger.shared.logBreadcrumb(route: "/external_url")
             AppEnvironment.shared.loginDelegate?.openExternalURL(url)
             return
@@ -199,6 +197,26 @@ open class Router {
             }
         }
         fallback(url, userInfo, from, options)
+    }
+
+    private func isExternalWebsiteURL(_ url: URLComponents, userInfo: [String: Any]?) -> Bool {
+        var acceptableHosts: Set<String> = AppEnvironment
+            .shared
+            .currentSession?
+            .baseURL
+            .host()
+            .flatMap({ [$0] }) ?? []
+
+        if let userBaseUrl = userInfo?["baseURL"] as? URL,
+           let host = userBaseUrl.host {
+            acceptableHosts.insert(host)
+        }
+
+        if let courseTabUrlInteractor {
+            acceptableHosts.formUnion(courseTabUrlInteractor.tabBaseUrlHosts)
+        }
+
+        return url.isExternalWebsite(of: acceptableHosts)
     }
 
     // MARK: - View Controller Presentation

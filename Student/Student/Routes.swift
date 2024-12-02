@@ -115,7 +115,7 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments", factory: { url, _, info in
         guard let context = Context(path: url.path) else { return nil }
-        let env: AppEnvironment = .resolved(with: info)
+        let env: AppEnvironment = .resolved(for: url, with: info)
         let viewModel = AssignmentListViewModel(env: env, context: context)
         return CoreHostingController(AssignmentListScreen(viewModel: viewModel), env: env)
     }),
@@ -132,7 +132,7 @@ let router = Router(routes: [
         }
         if !url.originIsModuleItemDetails {
             return ModuleItemSequenceViewController.create(
-                env: .resolved(with: info),
+                env: .resolved(for: url, with: info),
                 courseID: ID.expandTildeID(courseID),
                 assetType: .assignment,
                 assetID: ID.expandTildeID(assignmentID),
@@ -140,7 +140,7 @@ let router = Router(routes: [
             )
         }
         return AssignmentDetailsViewController.create(
-            env: .resolved(with: info),
+            env: .resolved(for: url, with: info),
             courseID: ID.expandTildeID(courseID),
             assignmentID: ID.expandTildeID(assignmentID),
             fragment: url.fragment
@@ -151,7 +151,7 @@ let router = Router(routes: [
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         let selectedAttempt = Int(url.queryValue(for: "selectedAttempt") ?? "")
         return SubmissionDetailsViewController.create(
-            env: .resolved(with: info),
+            env: .resolved(for: url, with: info),
             context: .course(ID.expandTildeID(courseID)),
             assignmentID: ID.expandTildeID(assignmentID),
             userID: "self",
@@ -163,7 +163,7 @@ let router = Router(routes: [
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else { return nil }
         if url.originIsCalendar || url.originIsNotification {
             return AssignmentDetailsViewController.create(
-                env: .resolved(with: info),
+                env: .resolved(for: url, with: info),
                 courseID: ID.expandTildeID(courseID),
                 assignmentID: ID.expandTildeID(assignmentID),
                 fragment: url.fragment
@@ -171,7 +171,7 @@ let router = Router(routes: [
         } else {
             let selectedAttempt = Int(url.queryValue(for: "selectedAttempt") ?? "")
             return SubmissionDetailsViewController.create(
-                env: .resolved(with: info),
+                env: .resolved(for: url, with: info),
                 context: .course(ID.expandTildeID(courseID)),
                 assignmentID: ID.expandTildeID(assignmentID),
                 userID: ID.expandTildeID(userID),
@@ -217,7 +217,7 @@ let router = Router(routes: [
 
     RouteHandler("/:context/:contextID/discussion_topics/:discussionID/reply") { url, params, info in
         guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
-        let env: AppEnvironment = .resolved(with: info)
+        let env: AppEnvironment = .resolved(for: url, with: info)
         return DiscussionReplyViewController.create(env: env, context: context, topicID: topicID)
     },
     RouteHandler("/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies") { url, params, info in
@@ -226,7 +226,7 @@ let router = Router(routes: [
             let discussionID = params["discussionID"],
             let entryID = params["entryID"]
         else { return nil }
-        let env: AppEnvironment = .resolved(with: info)
+        let env: AppEnvironment = .resolved(for: url, with: info)
         return DiscussionReplyViewController.create(env: env, context: context, topicID: discussionID, replyToEntryID: entryID)
     },
 
@@ -469,7 +469,7 @@ private func fileList(url: URLComponents, params: [String: String], userInfo: [S
         return fileDetails(url: url, params: params, userInfo: userInfo)
     }
     return FileListViewController.create(
-        env: .resolved(with: userInfo),
+        env: .resolved(for: url, with: userInfo),
         context: Context(path: url.path) ?? .currentUser,
         path: params["subFolder"]
     )

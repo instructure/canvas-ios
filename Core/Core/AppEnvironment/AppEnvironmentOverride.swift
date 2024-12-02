@@ -109,10 +109,7 @@ private class RouterOverride: Router {
     }
 
     private func mergedInfo(with otherInfo: [String: Any]?) -> [String: Any]? {
-        let baseInfo: [String: Any] = [
-            "baseURL": baseURL,
-            "env-override": env
-        ]
+        let baseInfo: [String: Any] = ["baseURL": baseURL]
         guard let otherInfo else { return baseInfo }
         return baseInfo.merging(otherInfo, uniquingKeysWith: { $1 })
     }
@@ -160,11 +157,29 @@ private class RouterOverride: Router {
 
 public extension AppEnvironment {
 
-    static func resolved(with info: [String: Any]?) -> AppEnvironment {
+    static func resolved(for url: URLComponents, with info: [String: Any]?) -> AppEnvironment {
+        // This is still important to support internal links to assignments tab
         if let baseURL = info?["baseURL"] as? URL, baseURL != shared.api.baseURL {
             return AppEnvironmentOverride(base: shared, baseURL: baseURL)
-        } else {
-            return shared
         }
+
+        // Only check for the host part, if not match, recreate base URL using URL scheme of
+        // the currentSession base URL.
+        if let host = url.host, host != shared.api.baseURL.host(),
+           let baseURL = url.with(scheme: shared.api.baseURL.scheme).url?.apiBaseURL {
+            return AppEnvironmentOverride(base: shared, baseURL: baseURL)
+        }
+
+        return .shared
+    }
+}
+
+// MARK: - Utils
+
+private extension URLComponents {
+    func with(scheme: String?) -> Self {
+        var copy = self
+        copy.scheme = scheme
+        return copy
     }
 }
