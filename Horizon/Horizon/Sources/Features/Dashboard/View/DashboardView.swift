@@ -46,7 +46,7 @@ struct DashboardView: View {
                             moduleView(program: program)
                         }
                         .padding(.horizontal, 16)
-                        .background(Color.backgroundLight)
+                        .background()
                     }
                 }
             }

@@ -16,24 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
 
-enum ModuleBottomsType: CaseIterable {
-    case message
-    case sound
-    case bookmark
-    case assist
-
-    var imageName: String {
-        switch self {
-        case .message:
-            "bubble.left"
-        case .sound:
-            "speaker.wave.2"
-        case .bookmark:
-            "bookmark"
-        case .assist:
-            "sparkles"
-        }
+public extension HorizonUI {
+    struct Colors: Sendable {
+        fileprivate init() {}
+        let primitives = Primitives()
+        let ui = UI()
     }
+
+    static let colors = HorizonUI.Colors()
+}
+
+extension Color {
+    static let huiColors = HorizonUI.colors
 }

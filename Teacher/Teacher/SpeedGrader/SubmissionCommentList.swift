@@ -103,16 +103,6 @@ struct SubmissionCommentList: View {
                 case nil:
                     toolbar(containerHeight: geometry.size.height)
                         .transition(.opacity)
-                        .onTapGesture {
-                            showCommentLibrary = commentLibrary.shouldShow
-                        }
-                        .accessibilityAction(named: Text("Open comment library", bundle: .teacher)) {
-                            if commentLibrary.shouldShow {
-                                showCommentLibrary = true
-                            } else {
-                                UIAccessibility.post(notification: .screenChanged, argument: String(localized: "Comment library is not available", bundle: .teacher))
-                            }
-                        }
                 }
             }.sheet(isPresented: $showCommentLibrary) {
                 CommentLibrarySheet(viewModel: commentLibrary, comment: $comment) {
@@ -157,7 +147,13 @@ struct SubmissionCommentList: View {
                         .cancel()
                     ])
                 }
-            CommentEditor(text: $comment, action: sendComment, containerHeight: containerHeight)
+            CommentEditor(
+                text: $comment,
+                shouldShowCommentLibrary: commentLibrary.shouldShow,
+                showCommentLibrary: $showCommentLibrary,
+                action: sendComment,
+                containerHeight: containerHeight
+            )
                 .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 16))
         }
             .background(Color.backgroundLight)

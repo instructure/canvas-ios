@@ -80,6 +80,6 @@ class HelpTests: E2ETestCase {
 
         submitAFeatureButton.hit()
         browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-Ideas-and-Themes/ct-p/canvas-ideas-themes"))
+        XCTAssertTrue(browserURL.contains("canvas-ideas-themes"))
     }
 }

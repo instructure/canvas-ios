@@ -21,13 +21,9 @@ import UIKit
 final class HorizonTabBar: UITabBar {
     // MARK: - Properties
 
-    private let padding: CGFloat = 10
-    private let tabBarHeight: CGFloat = 90
     var didTapButton: (() -> Void)?
-
     public lazy var chatBotButton: UIButton = {
         let middleButton = UIButton()
-        middleButton.frame.size = CGSize(width: 50, height: 50)
         let image = UIImage(resource: .chatBot)
         middleButton.setImage(image, for: .normal)
         middleButton.addTarget(self, action: #selector(self.chatBotAction), for: .touchUpInside)
@@ -51,7 +47,15 @@ final class HorizonTabBar: UITabBar {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        chatBotButton.center = CGPoint(x: frame.width / 2, y: (self.frame.height / 2) - padding)
+        let frameHeight = frame.size.height
+        let safeAreaBottomHeight = safeAreaInsets.bottom
+        let dividBy: Double = safeAreaBottomHeight == 0 ? 1.2 : 1.6
+        let buttonHeight = Double(frameHeight / dividBy)
+        chatBotButton.frame.size = CGSize(width: buttonHeight, height: buttonHeight)
+        let xPoint = Double(frame.width / 2)
+        let yPoint = frameHeight / 2
+        let padding = safeAreaBottomHeight / 2.5
+        chatBotButton.center = CGPoint(x: xPoint, y: yPoint - padding)
     }
 
     private func configureShadow() {
@@ -67,13 +71,8 @@ final class HorizonTabBar: UITabBar {
         self.shadowImage = UIImage()
     }
 
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
-        var size = super.sizeThatFits(size)
-        size.height = tabBarHeight
-        return size
-    }
-
     // MARK: - Actions
+
     @objc private func chatBotAction(sender: UIButton) {
         didTapButton?()
     }

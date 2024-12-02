@@ -72,6 +72,7 @@ open class AppEnvironment {
         OfflineModeAssembly.make()
         api = API(session)
         currentSession = session
+        currentSession?.migrateSavedAnnotatedPDFs()
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
 
         if isSilent {

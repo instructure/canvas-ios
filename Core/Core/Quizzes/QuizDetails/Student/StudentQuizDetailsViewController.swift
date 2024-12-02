@@ -172,8 +172,7 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
             isOffline: offlineModeInteractor?.isNetworkOffline(),
             filePath: offlinePath,
             content: html,
-            originalBaseURL: quiz?.htmlURL,
-            offlineBaseURL: URL.Paths.Offline.rootURL(sessionID: env.currentSession?.uniqueID ?? "")
+            originalBaseURL: quiz?.htmlURL
         )
 
         scrollView.isHidden = quiz == nil
