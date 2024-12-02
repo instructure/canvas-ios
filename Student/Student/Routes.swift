@@ -457,7 +457,7 @@ let router = Router(routes: [
     RouteHandler("/about") { _, _, _ in
         AboutAssembly.makeAboutViewController()
     }
-])
+], courseTabUrlInteractor: .init())
 
 private func nativeFactory(url _: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let route = params["route"] else { return nil }
@@ -586,17 +586,17 @@ private func groupContextCard(url _: URLComponents, params: [String: String], us
 }
 
 private func courseDetails(url: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
-    guard let context = Context(path: url.path) else { return nil }
+    guard let context = Context(path: url.path),
+          let courseID = context.courseId else { return nil }
 
     let regularCourseDetails: () -> UIViewController = {
-        let viewModel = CourseDetailsViewModel(context: context, offlineModeInteractor: OfflineModeAssembly.make())
-        let viewController = CoreHostingController(CourseDetailsView(viewModel: viewModel))
+        let viewModel = CourseDetailsViewModel(context: .course(courseID), offlineModeInteractor: OfflineModeAssembly.make())
 
-        if let contextColor = url.contextColor {
-            viewController.navigationBarStyle = .color(contextColor)
-        }
-
-        return viewController
+        return CourseSmartSearchAssembly.makeHostController(
+            courseID: courseID,
+            color: url.contextColor,
+            containing: CourseDetailsView(viewModel: viewModel)
+        )
     }
     let k5SubjectView = {
         CoreHostingController(K5SubjectView(context: context, selectedTabId: url.fragment))

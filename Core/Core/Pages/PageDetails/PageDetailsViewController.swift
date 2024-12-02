@@ -139,8 +139,7 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
             isOffline: offlineModeInteractor?.isNetworkOffline(),
             filePath: offlinePath,
             content: page.body,
-            originalBaseURL: page.htmlURL,
-            offlineBaseURL: URL.Paths.Offline.rootURL(sessionID: env.currentSession?.uniqueID ?? "")
+            originalBaseURL: page.htmlURL
         )
     }
 

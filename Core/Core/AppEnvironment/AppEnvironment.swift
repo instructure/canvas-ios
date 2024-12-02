@@ -77,7 +77,10 @@ open class AppEnvironment {
         OfflineModeAssembly.make()
         api = API(session)
         currentSession = session
+        currentSession?.migrateSavedAnnotatedPDFs()
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
+        router.courseTabUrlInteractor?.clearEnabledTabs()
+        router.courseTabUrlInteractor?.setupTabSubscription()
 
         if isSilent {
             return
@@ -103,6 +106,7 @@ open class AppEnvironment {
         k5.userDidLogout()
         currentSession = nil
         userDefaults = nil
+        router.courseTabUrlInteractor?.cancelTabSubscription()
         refreshWidgets()
         deleteUserData(session: session)
     }

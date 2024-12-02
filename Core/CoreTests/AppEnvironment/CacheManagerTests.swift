@@ -57,10 +57,12 @@ class CacheManagerTests: CoreTestCase {
     func testResetAppNecessary() {
         UserDefaults.standard.setValue(true, forKey: "reset_cache_on_next_launch")
         let doc = write("doc", in: URL.Directories.documents)
+        let annotated = write("pdf content annotated", in: URL.Directories.annotatedPDFs)
         LoginSession.add(LoginSession.make())
         CacheManager.resetAppIfNecessary()
         XCTAssertNil(UserDefaults.standard.dictionaryRepresentation()["reset_cache_on_next_launch"])
         XCTAssertFalse(FileManager.default.fileExists(atPath: doc.path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: annotated.path))
         XCTAssert(LoginSession.sessions.isEmpty)
     }
 

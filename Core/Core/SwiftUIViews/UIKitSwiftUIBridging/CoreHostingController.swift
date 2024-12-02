@@ -17,15 +17,21 @@
 //
 
 import SwiftUI
+import Combine
 
 protocol TestTreeHolder: AnyObject {
     var testTree: TestTree? { get set }
 }
 
+public protocol CoreHostingControllerProtocol: UIViewController {
+    var didAppearPublisher: AnyPublisher<Void, Never> { get }
+}
+
 public class CoreHostingController<Content: View>: UIHostingController<CoreHostingBaseView<Content>>,
                                                    NavigationBarStyled,
                                                    TestTreeHolder,
-                                                   DefaultViewProvider {
+                                                   DefaultViewProvider,
+                                                   CoreHostingControllerProtocol {
     // MARK: - UIViewController Overrides
     public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         supportedInterfaceOrientationsValue ?? super.supportedInterfaceOrientations
@@ -55,6 +61,7 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     // MARK: - Private Variables
     var testTree: TestTree?
     private var screenViewTracker: ScreenViewTrackerLive?
+    private var didAppearSubject = PassthroughSubject<Void, Never>()
 
     public init(_ rootView: Content, env: AppEnvironment = .shared, customization: ((UIViewController) -> Void)? = nil) {
         let ref = WeakViewController()
@@ -89,6 +96,15 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
         super.viewWillDisappear(animated)
         screenViewTracker?.stopTrackingTimeOnViewController()
     }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        didAppearSubject.send()
+    }
+
+    public var didAppearPublisher: AnyPublisher<Void, Never> {
+        didAppearSubject.eraseToAnyPublisher()
+    }
 }
 
 public struct CoreHostingBaseView<Content: View>: View {
@@ -106,5 +122,31 @@ public struct CoreHostingBaseView<Content: View>: View {
                 guard let controller = controller.value as? TestTreeHolder else { return }
                 controller.testTree = testTrees.first { $0.type == Content.self }
             }
+    }
+}
+
+// MARK: - Appearance View Modifiers
+
+private struct DidAppearViewModifier: ViewModifier {
+    @Environment(\.viewController) private var controller
+
+    let action: () -> Void
+
+    private var publisher: AnyPublisher<Void, Never> {
+        if let coreHost = controller.value as? CoreHostingControllerProtocol {
+            return coreHost.didAppearPublisher
+        } else {
+            return Empty().eraseToAnyPublisher()
+        }
+    }
+
+    func body(content: Content) -> some View {
+        content.onReceive(publisher, perform: action)
+    }
+}
+
+extension View {
+    func onDidAppear(perform action: @escaping () -> Void) -> some View {
+        modifier(DidAppearViewModifier(action: action))
     }
 }

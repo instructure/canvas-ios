@@ -20,6 +20,7 @@ import Core
 import XCTest
 
 class APIFormDataTests: XCTestCase {
+    let testData = "aaa".data(using: .utf8)!
 
     func testDataEncodeInMemory() {
         let expectedDataEncoding =
@@ -33,8 +34,24 @@ class APIFormDataTests: XCTestCase {
 
         """
 
-        let data = "aaa".data(using: .utf8)!
-        let testee: APIFormData = [(key: "submission", value: .data(filename: "filename.txt", type: "text/plain", data: data))]
+        let testee: APIFormData = [(key: "submission", value: .data(filename: "filename.txt", type: "text/plain", data: testData))]
+        let result = String(data: try! testee.encode(using: "boundary"), encoding: .utf8)
+        XCTAssertEqual(result, expectedDataEncoding)
+    }
+
+    func testDataEncodeInMemoryWithQuotationInFileName() {
+        let expectedDataEncoding =
+        """
+        --boundary\r
+        Content-Disposition: form-data; name=\"submission\"; filename=\"quotation\\\".jpg\"\r
+        Content-Type: text/plain\r
+        \r
+        aaa\r
+        --boundary--\r
+
+        """
+
+        let testee: APIFormData = [(key: "submission", value: .data(filename: "quotation\".jpg", type: "text/plain", data: testData))]
         let result = String(data: try! testee.encode(using: "boundary"), encoding: .utf8)
         XCTAssertEqual(result, expectedDataEncoding)
     }
@@ -51,8 +68,31 @@ class APIFormDataTests: XCTestCase {
 
         """
 
-        let data = "aaa".data(using: .utf8)!
-        let testee: APIFormData = [(key: "submission", value: .data(filename: "filename.txt", type: "text/plain", data: data))]
+        let testee: APIFormData = [(key: "submission", value: .data(filename: "filename.txt", type: "text/plain", data: testData))]
+        let resultURL: URL = try testee.encode(using: "boundary")
+
+        guard let resultData = try? Data(contentsOf: resultURL) else {
+            XCTFail("Failed to read result file.")
+            return
+        }
+
+        let resultString = String(data: resultData, encoding: .utf8)
+        XCTAssertEqual(resultString, expectedDataEncoding)
+    }
+
+    func testDataEncodeToDiskWithQuotationInFileName() throws {
+        let expectedDataEncoding =
+        """
+        --boundary\r
+        Content-Disposition: form-data; name=\"submission\"; filename=\"quotation\\\".jpg\"\r
+        Content-Type: text/plain\r
+        \r
+        aaa\r
+        --boundary--\r
+
+        """
+
+        let testee: APIFormData = [(key: "submission", value: .data(filename: "quotation\".jpg", type: "text/plain", data: testData))]
         let resultURL: URL = try testee.encode(using: "boundary")
 
         guard let resultData = try? Data(contentsOf: resultURL) else {

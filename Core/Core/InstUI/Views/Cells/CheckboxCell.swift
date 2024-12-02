@@ -20,20 +20,55 @@ import SwiftUI
 
 extension InstUI {
 
-    public struct CheckboxCell: View {
+    public struct CheckboxCell<Accessory: View>: View {
+
+        // MARK: Private Properties
+
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let title: String
         private let subtitle: String?
         @Binding private var isSelected: Bool
         private let color: Color
+        private let hasDivider: Bool
+        private let accessoryView: (() -> Accessory)?
 
-        public init(title: String, subtitle: String? = nil, isSelected: Binding<Bool>, color: Color) {
+        // MARK: Initializers
+
+        public init(
+            title: String,
+            subtitle: String? = nil,
+            isSelected: Binding<Bool>,
+            color: Color,
+            hasDivider: Bool = true,
+            accessory: (() -> Accessory)?
+        ) {
             self.title = title
             self.subtitle = subtitle
             self._isSelected = isSelected
             self.color = color
+            self.hasDivider = hasDivider
+            self.accessoryView = accessory
         }
+
+        public init(
+            title: String,
+            subtitle: String? = nil,
+            isSelected: Binding<Bool>,
+            color: Color,
+            hasDivider: Bool = true
+        ) where Accessory == SwiftUI.EmptyView {
+            self.init(
+                title: title,
+                subtitle: subtitle,
+                isSelected: isSelected,
+                color: color,
+                hasDivider: hasDivider,
+                accessory: nil
+            )
+        }
+
+        // MARK: Body
 
         public var body: some View {
             VStack(spacing: 0) {
@@ -46,6 +81,7 @@ extension InstUI {
                             color: color
                         )
                         .animation(.default, value: isSelected)
+
                         VStack(spacing: 2) {
                             Text(title)
                                 .font(.regular16, lineHeight: .fit)
@@ -62,10 +98,15 @@ extension InstUI {
                                            alignment: .leading)
                             }
                         }
+
+                        if let accessoryView {
+                            Spacer()
+                            accessoryView()
+                        }
                     }
                     .paddingStyle(set: .iconCell)
                 }
-                InstUI.Divider()
+                if hasDivider { InstUI.Divider() }
             }
             .accessibilityRepresentation {
                 Toggle(isOn: $isSelected) {

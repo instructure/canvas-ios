@@ -419,8 +419,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             isOffline: offlineModeInteractor?.isNetworkOffline(),
             filePath: offlinePath,
             content: presenter?.assignmentDescription(),
-            originalBaseURL: baseURL,
-            offlineBaseURL: URL.Paths.Offline.rootURL(sessionID: env.currentSession?.uniqueID ?? "")
+            originalBaseURL: baseURL
         )
 
         updateGradeCell(assignment, submission: submission)
