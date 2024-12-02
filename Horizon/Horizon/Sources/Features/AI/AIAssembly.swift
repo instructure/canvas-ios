@@ -44,4 +44,10 @@ final class AIAssembly {
         let viewModel = AIQuizViewModel(router: router)
         return AIQuizView(viewModel: viewModel)
     }
+
+    static func makeAIFlashCardView() -> AIFlashCardView {
+        let router = AppEnvironment.shared.router
+        let viewModel = AIFlashCardViewModel(router: router)
+        return AIFlashCardView(viewModel: viewModel)
+    }
 }

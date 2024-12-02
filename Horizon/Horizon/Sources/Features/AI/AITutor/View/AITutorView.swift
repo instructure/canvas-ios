@@ -40,7 +40,7 @@ struct AITutorView: View {
                 chatBotButton
             }
         }
-        .paddingStyle([.horizontal, .top], .standard)
+        .paddingStyle(.all, .standard)
         .applyHorizonGradient()
         .onFirstAppear { viewModel.controller = viewController }
     }
