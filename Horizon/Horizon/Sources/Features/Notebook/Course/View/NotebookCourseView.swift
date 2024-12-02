@@ -42,10 +42,10 @@ struct NotebookCourseView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             HStack(spacing: 8) {
-                FilterButton(type: .confusing).onTapGesture {
+                FilterButton(.confusing, enabled: viewModel.isConfusingEnabled).onTapGesture {
                     viewModel.onFilter(.confusing)
                 }
-                FilterButton(type: .important).onTapGesture {
+                FilterButton(.important, enabled: viewModel.isImportantEnabled).onTapGesture {
                     viewModel.onFilter(.important)
                 }
             }.frame(maxWidth: .infinity)
@@ -55,7 +55,7 @@ struct NotebookCourseView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             ForEach(viewModel.notes) { note in
-                NoteCard(note: note).onTapGesture {
+                NoteCard(note).onTapGesture {
                     viewModel.onNoteTapped(note, viewController: viewController)
                 }
             }

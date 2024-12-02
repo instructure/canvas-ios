@@ -19,8 +19,14 @@
 import SwiftUICore
 import SwiftUI
 
+private let textDisabledColor = Color(red: 27/100, green: 36/100, blue: 45/100)
+
 struct NoteCard: View {
     let note: NotebookNote
+
+    init(_ note: NotebookNote) {
+        self.note = note
+    }
 
     var body: some View {
         NotebookCard {
@@ -40,7 +46,7 @@ struct NoteCardLabel: View {
 
     var body: some View {
         HStack {
-            NotebookLabelIcon(type: type)
+            NotebookLabelIcon(type)
             Text(labelFromType(type)).font(.regular12).foregroundStyle(colorFromType(type))
         }
         .padding()
@@ -56,40 +62,49 @@ struct NoteCardLabel: View {
 struct FilterButton: View {
     let type: NotebookNoteLabel
 
+    let enabled: Bool
+
+    let textEnabledColor = Color(red: 39/255, green: 53/255, blue: 64/255)
+
+    let backgroundEnabledColor = Color.white
+
+    let backgroundDisabledColor = Color(red: 94/100, green: 95/100, blue: 96/100)
+
+    init(_ type: NotebookNoteLabel, enabled: Bool = true) {
+        self.type = type
+        self.enabled = enabled
+    }
+
     var body: some View {
         HStack {
-            NotebookLabelIcon(type: type).frame(width: 24, height: 24)
-            Text(labelFromType(type)).font(.regular16)
+            NotebookLabelIcon(type, enabled: enabled).frame(width: 24, height: 24)
+            Text(labelFromType(type)).font(.regular16).foregroundColor(
+                enabled ? textEnabledColor : textDisabledColor
+            )
         }
         .frame(height: 48)
         .frame(maxWidth: .infinity)
-        .background(Color.white)
+        .background( enabled ? backgroundEnabledColor : backgroundDisabledColor )
         .cornerRadius(16)
-        .shadow(color: Color.black.opacity(0.2), radius: 8, x: 1, y: 2)
+        .shadow(color: Color.black.opacity(0.2), radius: enabled ? 8 : 0, x: 0, y: 0)
     }
 }
 
 struct NotebookLabelIcon: View {
     let type: NotebookNoteLabel
 
-    var body: some View {
-        if(type == .confusing) {
-            ConfusingIcon()
-        } else {
-            ImportantIcon()
-        }
-    }
-}
+    let enabled: Bool
 
-struct ConfusingIcon: View {
-    var body: some View {
-        Image(systemName: "questionmark.circle").foregroundStyle(colorFromType(.confusing))
+    init(_ type: NotebookNoteLabel, enabled: Bool = true) {
+        self.type = type
+        self.enabled = enabled
     }
-}
 
-struct ImportantIcon: View {
     var body: some View {
-        Image("Flag", bundle: .main).renderingMode(.template).foregroundStyle(colorFromType(.important))
+        let image = type == .confusing ? Image(systemName: "questionmark.circle") : Image("Flag", bundle: .main).renderingMode(.template)
+        return image.foregroundStyle(
+            enabled ? colorFromType(type) : textDisabledColor
+        )
     }
 }
 
@@ -108,10 +123,10 @@ struct ImportantIcon: View {
 struct NoteCard_Previews: PreviewProvider {
     static var previews: some View {
         return VStack {
-            FilterButton(type: .important)
-            FilterButton(type: .confusing)
+            FilterButton(.important)
+            FilterButton(.confusing, enabled: false)
             NoteCard(
-                note: .init(
+                .init(
                     id: "1",
                     type: .important,
                     title: "Title",
@@ -119,7 +134,7 @@ struct NoteCard_Previews: PreviewProvider {
                 )
             )
             NoteCard(
-                note: .init(
+                .init(
                     id: "2",
                     type: .confusing,
                     title: "Title",

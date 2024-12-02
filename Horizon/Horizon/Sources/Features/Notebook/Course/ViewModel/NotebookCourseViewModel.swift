@@ -35,7 +35,7 @@ import Combine
 
     private let getCourseNotesInteractor: GetCourseNotesInteractor
 
-    private var filter: NotebookNoteLabel? {
+    var filter: NotebookNoteLabel? {
         didSet {
             executeSearch()
         }
@@ -46,6 +46,10 @@ import Combine
             executeSearch()
         }
     }
+
+    var isConfusingEnabled: Bool { filter == .confusing }
+
+    var isImportantEnabled: Bool { filter == .important }
 
     init(courseID: String,
          getCourseNotesInteractor: GetCourseNotesInteractor,
@@ -74,7 +78,7 @@ import Combine
     }
 
     func onFilter(_ filter: NotebookNoteLabel) {
-        self.filter = filter
+        self.filter = self.filter == filter ? nil : filter
     }
 
     func onNoteTapped(_ note: NotebookNote, viewController: WeakViewController) {
