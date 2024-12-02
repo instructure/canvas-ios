@@ -26,7 +26,6 @@ struct AIFlashCardView: View {
     var body: some View {
         VStack {
             headerView
-
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
                     flashCardsView
@@ -87,7 +86,9 @@ extension AIFlashCardView {
                 }
                 .animation(.easeInOut, value: item.isFlipped)
                 .scrollTransition(.animated, axis: .horizontal) { content, phase in
-                    content.scaleEffect(y: phase.isIdentity ? 1 : 0.85)
+                    content
+                        .opacity(phase.isIdentity ? 1 : 0.75)
+                        .offset(y: phase.isIdentity ? 0 : 32)
                 }
         }
     }
