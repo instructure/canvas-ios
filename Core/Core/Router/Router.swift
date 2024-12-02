@@ -100,14 +100,21 @@ open class Router {
     public typealias FallbackHandler = (URLComponents, [String: Any]?, UIViewController, RouteOptions) -> Void
     public static let DefaultRouteOptions: RouteOptions = .push
 
+    public let courseTabUrlInteractor: CourseTabUrlInteractor?
+
     public var count: Int { handlers.count }
 
     private let handlers: [RouteHandler]
     private let fallback: FallbackHandler
 
-    public init(routes: [RouteHandler], fallback: @escaping FallbackHandler = { url, _, _, _ in open(url: url) }) {
+    public init(
+        routes: [RouteHandler],
+        fallback: @escaping FallbackHandler = { url, _, _, _ in open(url: url) },
+        courseTabUrlInteractor: CourseTabUrlInteractor? = nil
+    ) {
         self.handlers = routes
         self.fallback = fallback
+        self.courseTabUrlInteractor = courseTabUrlInteractor
     }
 
     // MARK: - Route Matching
@@ -168,6 +175,16 @@ open class Router {
         #if DEBUG
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
         #endif
+
+        // block disabled course tab urls
+        if let courseTabUrlInteractor, let url = url.url, !courseTabUrlInteractor.isAllowedUrl(url, userInfo: userInfo) {
+            let snackBarViewModel = from.findSnackBarViewModel()
+            snackBarViewModel?.showSnack(
+                String(localized: "That page has been disabled for this course.", bundle: .core),
+                swallowDuplicatedSnacks: true
+            )
+            return
+        }
 
         for route in handlers {
             if let params = route.match(url) {
