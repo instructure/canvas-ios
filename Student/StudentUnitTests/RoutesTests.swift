@@ -163,6 +163,7 @@ class RoutesTests: XCTestCase {
     func testK5SubjectViewRoute() {
         // User and accounts are in K5 mode
         ExperimentalFeature.K5Dashboard.isEnabled = true
+
         let env = AppEnvironment.shared
         guard let session = env.currentSession else { XCTFail(); return }
         env.userDidLogin(session: session)
@@ -176,12 +177,13 @@ class RoutesTests: XCTestCase {
 
         // Non-K5 account login
         env.k5.userDidLogin(isK5Account: false)
-        XCTAssert(router.match("/courses/1") is CoreHostingController<CourseDetailsView>)
+        XCTAssert(router.match("/courses/1") is CoreSearchController)
     }
 
     func testRegularCourseDetailsInK5Mode() {
         // User and accounts are in K5 mode
         ExperimentalFeature.K5Dashboard.isEnabled = true
+
         let env = AppEnvironment.shared
         guard let session = env.currentSession else { XCTFail(); return }
         env.userDidLogin(session: session)
@@ -191,7 +193,7 @@ class RoutesTests: XCTestCase {
         // Opened course is a non-K5 one
         DashboardCard.save(.make(isK5Subject: false), position: 0, in: env.database.viewContext)
 
-        XCTAssert(router.match("/courses/1") is CoreHostingController<CourseDetailsView>)
+        XCTAssert(router.match("/courses/1") is CoreSearchController)
     }
 
     func testMissingDashboardCardInfoWhenOpeningK5SubjectRoute() {
