@@ -75,7 +75,7 @@ extension AIFlashCardView {
             FlashCardItemView(item: item)
                 .containerRelativeFrame(.horizontal)
                 .containerRelativeFrame(.vertical) { height, _ in
-                    height * 0.9
+                    height * 0.8
                 }
                 .rotation3DEffect(
                     .degrees(item.isFlipped  ? 180 : 0),
