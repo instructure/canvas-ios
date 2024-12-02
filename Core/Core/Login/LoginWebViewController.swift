@@ -96,7 +96,9 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         setupIndeterminateLoadingIndicator()
 
         // Manual OAuth provided mobileVerifyModel
-        if mobileVerifyModel != nil {
+        if let mobileVerifyModel {
+            // Modify the title to include the url scheme to easily catch http/https errors.
+            title = mobileVerifyModel.base_url?.absoluteString
             return loadLoginWebRequest()
         }
 

@@ -30,17 +30,13 @@ class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
         _ url: URL,
         courseId: String,
         resourceId: String,
-        publisherProvider: Core.URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
+        documentsDirectory: URL
     ) -> AnyPublisher<String, Error> {
         fileNames.append(url.lastPathComponent)
 
         return Just(url.path)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
-    }
-
-    func download(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
-        download(url, courseId: courseId, resourceId: resourceId, publisherProvider: URLSessionDataTaskPublisherProviderLive())
     }
 
     private func copy(_ localURL: URL, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
@@ -52,10 +48,6 @@ class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
     }
 
     func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Never> {
-        return downloadFile(url, courseId: courseId, resourceId: resourceId, publisherProvider: URLSessionDataTaskPublisherProviderLive())
-    }
-
-    func downloadFile(_ url: URL, courseId: String, resourceId: String, publisherProvider: Core.URLSessionDataTaskPublisherProvider) -> AnyPublisher<String, Never> {
         fileNames.append(url.lastPathComponent)
 
         return Just(url.path)

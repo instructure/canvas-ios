@@ -20,6 +20,18 @@ import Foundation
 
 // MARK: - Structs
 
+public struct GradingPeriodOption: Identifiable, Equatable {
+    static let allGradingPeriods = Self(id: nil, title: String(localized: "All Grading Periods", bundle: .core))
+
+    public let id: String?
+    public let title: String
+
+    public init(id: String?, title: String) {
+        self.id = id
+        self.title = title
+    }
+}
+
 public struct AssignmentFilterOption: CaseIterable, Equatable {
     public static func == (lhs: AssignmentFilterOption, rhs: AssignmentFilterOption) -> Bool {
         lhs.id == rhs.id && lhs.title == rhs.title && lhs.subtitle == rhs.subtitle
@@ -45,7 +57,6 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     static let notYetSubmitted = Self(
         id: "notYetSubmitted",
         title: String(localized: "Not Yet Submitted", bundle: .core),
-        subtitle: String(localized: "Missing, Not Submitted", bundle: .core),
         rule: { assignment in
             if assignment.submissionTypes.contains(SubmissionType.none) || assignment.submissionTypes.contains(SubmissionType.on_paper) {
                 return false
@@ -60,7 +71,6 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     static let toBeGraded = Self(
         id: "toBeGraded",
         title: String(localized: "To Be Graded", bundle: .core),
-        subtitle: String(localized: "Late, Submitted", bundle: .core),
         rule: { assignment in
             if assignment.submissionTypes.contains(.not_graded) {
                 return false
@@ -86,7 +96,6 @@ public struct AssignmentFilterOption: CaseIterable, Equatable {
     static let noSubmission = Self(
         id: "noSubmission",
         title: String(localized: "Other", bundle: .core),
-        subtitle: String(localized: "On Paper, No Submission, Excused", bundle: .core),
         rule: { assignment in
             return assignment.submissionTypes.contains(SubmissionType.none)
                 || assignment.submissionTypes.contains(SubmissionType.on_paper)
@@ -108,7 +117,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     struct AssignmentListPreferences {
         let filterOptions: [AssignmentFilterOption]
         let sortingOption: AssignmentListViewModel.AssignmentArrangementOptions
-        let gradingPeriod: GradingPeriod?
+        let gradingPeriodId: String?
     }
 
     // MARK: - Outputs
@@ -120,13 +129,13 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     @Published var selectedSortingOption: AssignmentListViewModel.AssignmentArrangementOptions?
 
     // Grading Periods
-    @Published var selectedGradingPeriod: GradingPeriod?
+    @Published var selectedGradingPeriod: GradingPeriodOption?
 
     // MARK: - Private properties
 
-    private let initialFilterOptions: [AssignmentFilterOption]?
+    private let initialFilterOptions: [AssignmentFilterOption]
     private let initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions
-    private let initialGradingPeriod: GradingPeriod?
+    private let initialGradingPeriod: GradingPeriodOption?
 
     private let env: AppEnvironment
     private let completion: (AssignmentListPreferences) -> Void
@@ -134,7 +143,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     // MARK: - Other properties and literals
 
     let sortingOptions: [AssignmentListViewModel.AssignmentArrangementOptions]
-    let gradingPeriods: [GradingPeriod]
+    let gradingPeriods: [GradingPeriodOption]
 
     let courseName: String
     let isFilterSectionVisible: Bool
@@ -162,9 +171,19 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         self.initialSortingOption = initialSortingOption
 
         // Grading Periods
-        self.gradingPeriods = gradingPeriods
-        self.selectedGradingPeriod = initialGradingPeriod
-        self.initialGradingPeriod = initialGradingPeriod
+        self.gradingPeriods = [GradingPeriodOption.allGradingPeriods] + gradingPeriods.map { GradingPeriodOption(id: $0.id ?? "", title: $0.title ?? "") }
+
+        var initialGradingPeriodOption: GradingPeriodOption
+        if let initialGradingPeriod {
+            initialGradingPeriodOption = GradingPeriodOption(
+                id: initialGradingPeriod.id ?? "",
+                title: initialGradingPeriod.title ?? ""
+            )
+        } else {
+            initialGradingPeriodOption = GradingPeriodOption.allGradingPeriods
+        }
+        self.selectedGradingPeriod = initialGradingPeriodOption
+        self.initialGradingPeriod = initialGradingPeriodOption
 
         // Other
         self.courseName = courseName
@@ -177,6 +196,13 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
     // MARK: - Functions
 
+    func didTapCancel(viewController: WeakViewController) {
+        selectedAssignmentFilterOptions = initialFilterOptions
+        selectedSortingOption = initialSortingOption
+        selectedGradingPeriod = initialGradingPeriod
+        env.router.dismiss(viewController)
+    }
+
     func didTapDone(viewController: WeakViewController) {
         env.router.dismiss(viewController)
     }
@@ -186,7 +212,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
             AssignmentListPreferences(
                 filterOptions: selectedAssignmentFilterOptions,
                 sortingOption: selectedSortingOption ?? AssignmentListViewModel.AssignmentArrangementOptions.dueDate,
-                gradingPeriod: selectedGradingPeriod
+                gradingPeriodId: selectedGradingPeriod?.id
             )
         )
     }

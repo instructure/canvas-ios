@@ -23,6 +23,8 @@ struct CommentEditor: View {
     @Environment(\.viewController) var controller
 
     @Binding var text: String
+    let shouldShowCommentLibrary: Bool
+    @Binding var showCommentLibrary: Bool
     let action: () -> Void
     let containerHeight: CGFloat
 
@@ -33,6 +35,19 @@ struct CommentEditor: View {
                 .lineLimit(10)
                 .accessibility(label: Text("Comment", bundle: .teacher))
                 .identifier("SubmissionComments.commentTextView")
+                .highPriorityGesture( // High priority to take precedence over comment field activation.
+                    TapGesture().onEnded { _ in showCommentLibrary = true },
+                    isEnabled: shouldShowCommentLibrary
+                )
+                .accessibilityActions {
+                    if shouldShowCommentLibrary {
+                        Button {
+                            showCommentLibrary = true
+                        } label: {
+                            Text("Open comment library", bundle: .teacher)
+                        }
+                    }
+                }
             Button(action: {
                 action()
                 controller.view.endEditing(true)
@@ -61,7 +76,10 @@ struct CommentEditor: View {
 
 struct CommentEditor_Previews: PreviewProvider {
     static var previews: some View {
+        @State var showCommentLibrary = false
         CommentEditor(text: .constant("Sample Text"),
+                      shouldShowCommentLibrary: true,
+                      showCommentLibrary: $showCommentLibrary,
                       action: {},
                       containerHeight: 30)
         .frame(width: 200)

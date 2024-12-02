@@ -93,6 +93,21 @@ class GetAssignmentsByGroupTests: CoreTestCase {
             return (groups2, nil, nil)
         }
 
+        // Grading period nil assignment and group
+        let groups3: [APIAssignmentGroup] = [
+            .make(id: "3", name: "TestGroup3", position: 3, assignments: [])
+        ]
+        let groupsRequest3 = GetAssignmentGroupsRequest(
+            courseID: "tc",
+            gradingPeriodID: nil,
+            perPage: 100
+        )
+        let group3Called = expectation(description: "group3Called")
+        api.mock(groupsRequest3) { _ in
+            group3Called.fulfill()
+            return (groups3, nil, nil)
+        }
+
         let gradingPeriodsCalled = expectation(description: "gradingPeriodsCalled")
         api.mock(GetGradingPeriodsRequest(courseID: "tc")) { _ in
             gradingPeriodsCalled.fulfill()

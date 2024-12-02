@@ -61,7 +61,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     private var gradingPeriodTitle: some View {
         var text = Text("All", bundle: .core)
 
-        if let gradingPeriodTitle = viewModel.selectedGradingPeriod?.title {
+        if let gradingPeriodTitle = viewModel.selectedGradingPeriodTitle {
             text = Text(gradingPeriodTitle)
         }
 

@@ -43,10 +43,17 @@ public struct AssignmentListPreferencesScreen: View {
             }
         }
         .navigationTitleStyled(navBarTitleView)
-        .navigationBarItems(trailing: doneButton)
+        .navigationBarItems(leading: cancelButton, trailing: doneButton)
         .onDisappear {
             viewModel.didDismiss()
         }
+    }
+
+    private var cancelButton: some View {
+        InstUI.NavigationBarButton.cancel {
+            viewModel.didTapCancel(viewController: viewController)
+        }
+        .accessibilityIdentifier("AssignmentFilter.cancelButton")
     }
 
     private var doneButton: some View {
@@ -90,7 +97,6 @@ public struct AssignmentListPreferencesScreen: View {
 
         return InstUI.CheckboxCell(
             title: item.title,
-            subtitle: item.subtitle,
             isSelected: filterSelectionBinding,
             color: color
         )
@@ -123,8 +129,7 @@ public struct AssignmentListPreferencesScreen: View {
 
     private var gradingPeriodsSection: some View {
         Section {
-            InstUI.RadioButtonCell(title: "All Grading Periods", value: nil, selectedValue: $viewModel.selectedGradingPeriod, color: Color(Brand.shared.primary))
-            ForEach(viewModel.gradingPeriods, id: \.hashValue) { item in
+            ForEach(viewModel.gradingPeriods, id: \.id) { item in
                 gradingPeriodItem(with: item)
             }
         } header: {
@@ -132,9 +137,9 @@ public struct AssignmentListPreferencesScreen: View {
         }
     }
 
-    private func gradingPeriodItem(with item: GradingPeriod) -> some View {
+    private func gradingPeriodItem(with item: GradingPeriodOption) -> some View {
         InstUI.RadioButtonCell(
-            title: item.title ?? "",
+            title: item.title,
             value: item,
             selectedValue: $viewModel.selectedGradingPeriod,
             color: color

@@ -44,7 +44,12 @@ public class CacheManager {
 
         clear()
         LoginSession.clearAll()
-        clearDirectory(URL.Directories.documents) // Also clear documents, which we normally keep around
+
+        // Also clear documents, which we normally keep around
+        clearDirectory(
+            URL.Directories.documents,
+            excludingPaths: [URL.Paths.annotatedPDFs] // Keeping annotated PDFs
+        )
     }
 
     public static func clearIfNeeded() {
@@ -89,10 +94,11 @@ public class CacheManager {
         try? manifest.write(to: manifestURL, options: .atomic)
     }
 
-    private static func clearDirectory(_ directory: URL) {
+    private static func clearDirectory(_ directory: URL, excludingPaths: [String]? = nil) {
         let fs = FileManager.default
         let urls = (try? fs.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)) ?? []
         for url in urls {
+            if let excludingPaths, excludingPaths.contains(url.lastPathComponent) { continue }
             try? fs.removeItem(at: url)
         }
     }

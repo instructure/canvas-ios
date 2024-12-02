@@ -108,6 +108,10 @@ public class GetAssignmentsByGroup: UseCase {
                                 .map { AssignmentGroupsByGradingPeriod(gradingPeriod: gradingPeriod, assignmentGroups: $0) }
                         }
                         .collect()
+                        .flatMap { assignmentsByGradingPeriods in
+                            getAssignmentGroups(nil)
+                                .map { [AssignmentGroupsByGradingPeriod(gradingPeriod: nil, assignmentGroups: $0)] + assignmentsByGradingPeriods }
+                        }
                         .eraseToAnyPublisher()
                 }
             }

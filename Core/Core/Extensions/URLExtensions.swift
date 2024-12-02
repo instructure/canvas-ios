@@ -54,6 +54,11 @@ public extension URL {
             FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         }
 
+        /// The `AnnotatedPDFs` directory in the application documents' private folder.
+        public static var annotatedPDFs: URL {
+            documents.appending(component: URL.Paths.annotatedPDFs, directoryHint: .isDirectory)
+        }
+
         public static var library: URL {
             FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
         }
@@ -85,6 +90,9 @@ public extension URL {
     }
 
     enum Paths {
+        static let annotatedPDFs = "AnnotatedPDFs"
+        static let offline = "Offline"
+
         public enum Offline {
 
             public static func rootURL(
@@ -221,6 +229,23 @@ public extension URL {
         components.host = host
         components.scheme = scheme
         return components.url
+    }
+
+    func makeRelativePath(toBaseUrl: URL) throws -> String {
+        guard self.absoluteString.hasPrefix(toBaseUrl.absoluteString) else {
+            throw NSError.instructureError("No common ancestor", code: 0)
+        }
+
+        let relativePath = self
+            .pathComponents
+            .dropFirst(toBaseUrl.pathComponents.count)
+            .joined(separator: "/")
+
+        guard let relativeURL = URL(string: relativePath, relativeTo: baseURL) else {
+            throw NSError.instructureError("Failed to create URL", code: 0)
+        }
+
+        return relativeURL.path()
     }
 
     #if DEBUG

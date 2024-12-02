@@ -137,11 +137,10 @@ open class CoreWebView: WKWebView {
         backgroundColor = UIColor.clear
         translatesAutoresizingMaskIntoConstraints = false
 
-#if DEBUG
         if #available(iOS 16.4, *) {
             isInspectable = true
         }
-#endif
+
         addScript(js)
         handle("resize") { [weak self] message in
             guard let self = self,
@@ -626,12 +625,23 @@ extension CoreWebView {
 }
 
 // MARK: Offline parsing
+
 extension CoreWebView {
-    public func loadContent(isOffline: Bool?, filePath: URL?, content: String?, originalBaseURL: URL?, offlineBaseURL: URL?) {
-        if let filePath, isOffline == true && FileManager.default.fileExists(atPath: filePath.path) {
-            loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
+
+    public func loadContent(
+        isOffline: Bool?,
+        filePath: URL?,
+        content: String?,
+        originalBaseURL: URL?
+    ) {
+        if let filePath, isOffline == true, FileManager.default.fileExists(atPath: filePath.path) {
+            loadFileURL(
+                URL.Directories.documents,
+                allowingReadAccessTo: URL.Directories.documents
+            )
             let rawHtmlValue = try? String(contentsOf: filePath, encoding: .utf8)
-            loadHTMLString(rawHtmlValue ?? "", baseURL: offlineBaseURL)
+            // All offline content should have relative links to the documents directory
+            loadHTMLString(rawHtmlValue ?? "", baseURL: URL.Directories.documents)
         } else {
             loadHTMLString(content ?? "", baseURL: originalBaseURL)
         }

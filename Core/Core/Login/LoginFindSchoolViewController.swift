@@ -142,9 +142,12 @@ class LoginFindSchoolViewController: UIViewController {
     private func parseInputAndShowLoginScreen() {
         guard var host = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty else { return }
         host = host.lowercased()
-        if !host.contains(".") {
+
+        // For manual oauth logins we trust the developer and don't modify the host.
+        if method != .manualOAuthLogin, !host.contains(".") {
             host = "\(host).instructure.com"
         }
+
         searchField.resignFirstResponder()
         if let account = accounts.first(where: { $0.domain == host }) {
             env.lastLoginAccount = account

@@ -108,7 +108,12 @@ public class HTMLParserLive: HTMLParser {
                 }
             }
             .flatMap { [interactor] (fileURL, originalURL) in // Download images to local Documents folder, return the (original link - local link) tuple
-                return interactor.download(fileURL, courseId: courseId, resourceId: resourceId)
+                return interactor.download(
+                    fileURL,
+                    courseId: courseId,
+                    resourceId: resourceId,
+                    documentsDirectory: URL.Directories.documents
+                )
                     .map {
                         return (originalURL, $0)
                     }
@@ -124,7 +129,9 @@ public class HTMLParserLive: HTMLParser {
         .map { (fileURLs, imageURLs) in
             return fileURLs + imageURLs
         }
-        .map { [content] urls in // Replace relative links with baseURL based absolute links. The baseURL in the webviews will be different from the original one to load the local images
+        .map { [content] urls in
+            // Replace relative path links with baseURL based absolute links. This is
+            // to normalize all url's for the next step that works with absolute URLs.
             var newContent = content
             relativeURLs.forEach { relativeURL in
                 if let baseURL {
@@ -134,10 +141,11 @@ public class HTMLParserLive: HTMLParser {
             }
             return (newContent, urls)
         }
-        .map { (content: String, urls: [(URL, String)]) in // Replace all original links with the local ones, return the replaced string content
+        .map { (content: String, urls: [(URL, String)]) in
+            // Replace all original links with the local ones, return the replaced string content
             var newContent = content
-            urls.forEach { (originalURL, localPath) in
-                newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: localPath)
+            urls.forEach { (originalURL, offlineURL) in
+                newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: offlineURL)
             }
             return newContent
         }

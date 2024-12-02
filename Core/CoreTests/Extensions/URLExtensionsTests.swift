@@ -147,6 +147,16 @@ class URLExtensionsTests: XCTestCase {
         let testee = url.apiBaseURL
         XCTAssertEqual(testee, URL(string: "https://test.instructure.com")!)
     }
+
+    func testMakesRelativePath() throws {
+        var testee = URL(string: "folder/file")!
+        var result = try testee.makeRelativePath(toBaseUrl: URL(string: "folder")!)
+        XCTAssertEqual(result, "file")
+
+        XCTAssertThrowsError(try testee.makeRelativePath(toBaseUrl: URL(string: "anotherFolder")!)) { error in
+            XCTAssertEqual(error as NSError, NSError.instructureError("No common ancestor", code: 0))
+        }
+    }
 }
 
 class DatabaseURLTests: XCTestCase {
