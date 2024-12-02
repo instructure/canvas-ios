@@ -35,19 +35,29 @@ struct NotebookCourseView: View {
             title: viewModel.title,
             router: viewModel.router
         ) {
-            NotebookSearchBar { _ in }.padding(.top, 32)
+            NotebookSearchBar(onSearch: viewModel.onSearch).padding(.top, 32)
+
             Text("Filter").font(.regular16)
                 .padding(.top, 32)
                 .frame(maxWidth: .infinity, alignment: .leading)
+
             HStack(spacing: 8) {
-                FilterButton(type: .confusing)
-                FilterButton(type: .important)
+                FilterButton(type: .confusing).onTapGesture {
+                    viewModel.onFilter(.confusing)
+                }
+                FilterButton(type: .important).onTapGesture {
+                    viewModel.onFilter(.important)
+                }
             }.frame(maxWidth: .infinity)
+
             Text("Notes").font(.regular16)
                 .padding(.top, 32)
                 .frame(maxWidth: .infinity, alignment: .leading)
+
             ForEach(viewModel.notes) { note in
-                NoteCard(note: note)
+                NoteCard(note: note).onTapGesture {
+                    viewModel.onNoteTapped(note, viewController: viewController)
+                }
             }
         }
     }
@@ -57,7 +67,7 @@ struct NotebookCourseView: View {
     struct NotebookCourseView_Previews: PreviewProvider {
         static var previews: some View {
             NotebookCourseView(
-                .init(courseID: "", getCourseNotesInteractor: GetCourseNotesInteractor(courseNotesRepository: CourseNotesRepository()))
+                .init(courseID: "1", getCourseNotesInteractor: GetCourseNotesInteractor(courseNotesRepository: CourseNotesRepository()))
             )
         }
     }

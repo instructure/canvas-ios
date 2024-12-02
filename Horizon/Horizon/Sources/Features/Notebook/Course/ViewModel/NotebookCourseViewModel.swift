@@ -31,9 +31,27 @@ import Combine
 
     private let formatter = DateFormatter()
 
+    private let courseID: String
+
+    private let getCourseNotesInteractor: GetCourseNotesInteractor
+
+    private var filter: NotebookNoteLabel? {
+        didSet {
+            executeSearch()
+        }
+    }
+
+    private var search: String = "" {
+        didSet {
+            executeSearch()
+        }
+    }
+
     init(courseID: String,
          getCourseNotesInteractor: GetCourseNotesInteractor,
          router: Router? = nil) {
+        self.courseID = courseID
+        self.getCourseNotesInteractor = getCourseNotesInteractor
         self.router = router
 
         formatter.dateFormat = "MMM d, yyyy"
@@ -51,6 +69,23 @@ import Combine
             }
             self?.notes = notebookNotes
         }
+
+        getCourseNotesInteractor.search(courseId: courseID)
+    }
+
+    func onFilter(_ filter: NotebookNoteLabel) {
+        self.filter = filter
+    }
+
+    func onNoteTapped(_ note: NotebookNote, viewController: WeakViewController) {
+    }
+
+    func onSearch(_ text: String) {
+        self.search = text
+    }
+
+    private func executeSearch() {
+        getCourseNotesInteractor.search(courseId: courseID, text: search, filter: filter)
     }
 }
 

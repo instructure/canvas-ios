@@ -32,17 +32,29 @@ class GetCoursesInteractor {
     }
 
     func search(for text: String) {
-//        cancellable = courseNotesRepository.get().sink(receiveCompletion: { _ in }, receiveValue: { [weak self] notes in
-//            let courses: [NotebookCourse] = []
-            //notes
-                //.map { note in NotebookCourse(institution: note.institution, name: note.course) }
-                //.filter { text.isEmpty || $0.name.lowercased().contains(text.lowercased()) || $0.institution.lowercased().contains(text.lowercased()) }
-                //.sorted { $0.institution == $1.institution ? $0.name < $1.name : $0.institution < $1.institution }
-//            self?.publisher.send(courses)
-//        })
+        cancellable = courseNotesRepository.get().sink(receiveCompletion: { _ in }, receiveValue: { [weak self] notes in
+            guard let self = self else { return }
+
+            let courses = notes
+                .map { note in NotebookCourse(id: note.courseId, course: note.course, institution: note.institution) }
+                .filter({ self.filterByText($0, text) })
+
+            let coursesUnique = Array(Set(courses))
+                .sorted(by: self.sortByInstitution)
+
+            self.publisher.send(coursesUnique)
+        })
     }
 
     func get() -> AnyPublisher<[NotebookCourse], Never> {
         publisher.eraseToAnyPublisher()
+    }
+
+    private func filterByText(_ course: NotebookCourse, _ text: String) -> Bool {
+        text.isEmpty || course.course.lowercased().contains(text.lowercased()) || course.institution.lowercased().contains(text.lowercased())
+    }
+
+    private func sortByInstitution(_ courseA: NotebookCourse, _ courseB: NotebookCourse) -> Bool {
+        courseA.institution == courseB.institution ? courseA.course < courseB.course : courseA.institution < courseB.institution
     }
 }

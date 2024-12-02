@@ -38,7 +38,7 @@ import Core
 
         getCoursesCancellable = getCoursesInteractor.get().sink { _ in } receiveValue: { [weak self] courses in
             self?.listItems = courses.map {
-                NotebookListItem(institution: $0.institution, course: $0.name)
+                NotebookListItem(id: $0.id, course: $0.course, institution: $0.institution)
             }
         }
         onSearch("")
@@ -56,17 +56,10 @@ import Core
     }
 }
 
-final class NotebookListItem: Identifiable {
-    let institution: String
+struct NotebookListItem: Identifiable {
+    let id: String
 
     let course: String
 
-    var id: String {
-        "\(institution)-\(course)"
-    }
-
-    init(institution: String, course: String) {
-        self.institution = institution
-        self.course = course
-    }
+    let institution: String
 }

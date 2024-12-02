@@ -16,11 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-final class NotebookCourse {
+struct NotebookCourse: Hashable {
+    let id: String
+
+    let course: String
+
     let institution: String
-    let name: String
-    init(institution: String, name: String) {
-        self.institution = institution
-        self.name = name
+
+    static func == (lhs: NotebookCourse, rhs: NotebookCourse) -> Bool {
+        return lhs.id == rhs.id
     }
 }

@@ -43,8 +43,12 @@ struct NoteCardLabel: View {
             NotebookLabelIcon(type: type)
             Text(labelFromType(type)).font(.regular12).foregroundStyle(colorFromType(type))
         }
+        .padding()
         .frame(height: 31)
-        .border(colorFromType(type), width: 1)
+        .background(
+            RoundedRectangle(cornerRadius: 15.5)
+                .stroke(colorFromType(type), lineWidth: 2)
+        )
         .cornerRadius(15.5)
     }
 }
