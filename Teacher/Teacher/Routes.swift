@@ -106,7 +106,7 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments") { url, _, info in
         guard let context = Context(path: url.path) else { return nil }
-        let env = AppEnvironment.resolved(with: info)
+        let env = AppEnvironment.resolved(for: url, with: info)
         let viewModel = AssignmentListViewModel(env: env, context: context)
         return CoreHostingController(AssignmentListScreen(viewModel: viewModel), env: env)
     },
@@ -118,24 +118,24 @@ let router = Router(routes: [
         return CoreHostingController(SyllabusEditorView(context: context, courseID: courseID))
     },
 
-    RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params, info in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID") { url, params, info in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
-        let env = AppEnvironment.resolved(with: info)
+        let env = AppEnvironment.resolved(for: url, with: info)
         return CoreHostingController(
             AssignmentDetailsView(env: env, courseID: courseID, assignmentID: assignmentID),
             env: env
         )
     },
-    RouteHandler("/courses/:courseID/assignments/:assignmentID/edit") { _, params, info in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID/edit") { url, params, info in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         return CoreHostingController(
             AssignmentEditorView(courseID: courseID, assignmentID: assignmentID),
-            env: .resolved(with: info)
+            env: .resolved(for: url, with: info)
         )
     },
-    RouteHandler("/courses/:courseID/assignments/:assignmentID/due_dates") { _, params, info in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID/due_dates") { url, params, info in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
-        let env = AppEnvironment.resolved(with: info)
+        let env = AppEnvironment.resolved(for: url, with: info)
         return AssignmentDueDatesAssembly
             .makeViewController(env: env, courseID: courseID, assignmentID: assignmentID)
     },
@@ -153,7 +153,7 @@ let router = Router(routes: [
 
         return SubmissionListViewController
             .create(
-                env: .resolved(with: info),
+                env: .resolved(for: url, with: info),
                 context: context,
                 assignmentID: assignmentID,
                 filter: filter
@@ -167,7 +167,7 @@ let router = Router(routes: [
             GetSubmissions.Filter(rawValue: $0)
         } ?? []
         return SpeedGraderViewController(
-            env: .resolved(with: info),
+            env: .resolved(for: url, with: info),
             context: context,
             assignmentID: assignmentID,
             userID: userID,
@@ -443,7 +443,7 @@ private func fileList(url: URLComponents, params: [String: String], userInfo: [S
         return fileDetails(url: url, params: params, userInfo: userInfo)
     }
     return FileListViewController.create(
-        env: .resolved(with: userInfo),
+        env: .resolved(for: url, with: userInfo),
         context: Context(path: url.path) ?? .currentUser,
         path: params["subFolder"]
     )
