@@ -55,6 +55,7 @@
         <attribute name="htmlURL" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="inClosedGradingPeriod" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isQuizLTIAssignment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

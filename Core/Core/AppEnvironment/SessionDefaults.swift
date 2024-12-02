@@ -246,18 +246,18 @@ public struct SessionDefaults {
         set { self["assignmentListGroupBySettingByCourseId"] = newValue }
     }
 
-    public var assignmentListFilterSettingsByCourseId: [String: [String]]? {
-        get { self["assignmentListFilterSettingsByCourseId"] as? [String: [String]] }
-        set { self["assignmentListFilterSettingsByCourseId"] = newValue }
+    public var assignmentListStudentFilterSettingsByCourseId: [String: [String]]? {
+        get { self["assignmentListStudentFilterSettingsByCourseId"] as? [String: [String]] }
+        set { self["assignmentListStudentFilterSettingsByCourseId"] = newValue }
     }
 
-    public var assignmentListCustomFilterSettingByCourseId: [String: String]? {
-        get { self["assignmentListCustomFilterSettingByCourseId"] as? [String: String] }
-        set { self["assignmentListCustomFilterSettingByCourseId"] = newValue }
+    public var assignmentListTeacherFilterSettingByCourseId: [String: String]? {
+        get { self["assignmentListTeacherFilterSettingByCourseId"] as? [String: String] }
+        set { self["assignmentListTeacherFilterSettingByCourseId"] = newValue }
     }
 
-    public var assignmentListStatusFilterSettingByCourseId: [String: String]? {
-        get { self["assignmentListStatusFilterSettingByCourseId"] as? [String: String] }
-        set { self["assignmentListStatusFilterSettingByCourseId"] = newValue }
+    public var assignmentListTeacherStatusFilterSettingByCourseId: [String: String]? {
+        get { self["assignmentListTeacherStatusFilterSettingByCourseId"] as? [String: String] }
+        set { self["assignmentListTeacherStatusFilterSettingByCourseId"] = newValue }
     }
 }

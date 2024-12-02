@@ -35,10 +35,14 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
         ]
 
         testee = AssignmentListPreferencesViewModel(
+            isTeacher: false,
+            initialFilterOptionsStudent: AssignmentFilterOptionStudent.allCases,
+            initialStatusFilterOptionTeacher: .allAssignments,
+            initialFilterOptionTeacher: .allAssignments,
             sortingOptions: AssignmentListViewModel.AssignmentArrangementOptions.allCases,
             initialSortingOption: .dueDate,
             gradingPeriods: gradingPeriods,
-            initialGradingPeriod: nil,
+            initialGradingPeriod: gradingPeriods.last,
             courseName: "Test Course",
             env: PreviewEnvironment.shared,
             completion: { [weak self] assignmentListPreferences in
@@ -49,40 +53,179 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
 
     func testInitialState() {
         XCTAssertEqual(testee.courseName, "Test Course")
+        XCTAssertEqual(testee.gradingPeriods.count, 5)
+        XCTAssertEqual(testee.gradingPeriods.map{ $0.id }, [nil] + gradingPeriods.map { $0.id })
         XCTAssertEqual(testee.gradingPeriods.filter { $0.id != nil }.map { $0.id }, gradingPeriods.map { $0.id })
+        XCTAssertEqual(testee.selectedGradingPeriod, testee.gradingPeriods.last)
         XCTAssertEqual(testee.sortingOptions, AssignmentListViewModel.AssignmentArrangementOptions.allCases)
-        XCTAssertTrue(testee.isFilterSectionVisible)
         XCTAssertTrue(testee.isGradingPeriodsSectionVisible)
         XCTAssertEqual(testee.selectedSortingOption, AssignmentListViewModel.AssignmentArrangementOptions.dueDate)
-        XCTAssertEqual(testee.selectedGradingPeriod!.id, nil)
-        XCTAssertEqual(testee.selectedAssignmentFilterOptions, AssignmentFilterOption.allCases)
+        XCTAssertEqual(testee.selectedGradingPeriod!.id, gradingPeriods.last?.id)
+        XCTAssertEqual(testee.selectedAssignmentFilterOptionsStudent, AssignmentFilterOptionStudent.allCases)
+        XCTAssertEqual(testee.selectedStatusFilterOptionTeacher, AssignmentFilterOptionsTeacher.allAssignments)
+        XCTAssertEqual(testee.selectedFilterOptionTeacher, AssignmentFilterOptionsTeacher.allAssignments)
     }
 
     func testDidSelectAssignmentFilterOption() {
-        testee.didSelectAssignmentFilterOption(AssignmentFilterOption.notYetSubmitted, isSelected: false)
-        XCTAssertFalse(testee.selectedAssignmentFilterOptions.contains(AssignmentFilterOption.notYetSubmitted))
+        testee.didSelectAssignmentFilterOption(AssignmentFilterOptionStudent.notYetSubmitted, isSelected: false)
+        XCTAssertFalse(testee.selectedAssignmentFilterOptionsStudent.contains(AssignmentFilterOptionStudent.notYetSubmitted))
 
-        testee.didSelectAssignmentFilterOption(AssignmentFilterOption.notYetSubmitted, isSelected: true)
-        XCTAssertTrue(testee.selectedAssignmentFilterOptions.contains(AssignmentFilterOption.notYetSubmitted))
+        testee.didSelectAssignmentFilterOption(AssignmentFilterOptionStudent.notYetSubmitted, isSelected: true)
+        XCTAssertTrue(testee.selectedAssignmentFilterOptionsStudent.contains(AssignmentFilterOptionStudent.notYetSubmitted))
 
-        testee.didSelectAssignmentFilterOption(AssignmentFilterOption.toBeGraded, isSelected: false)
-        XCTAssertFalse(testee.selectedAssignmentFilterOptions.contains(AssignmentFilterOption.toBeGraded))
+        testee.didSelectAssignmentFilterOption(AssignmentFilterOptionStudent.toBeGraded, isSelected: false)
+        XCTAssertFalse(testee.selectedAssignmentFilterOptionsStudent.contains(AssignmentFilterOptionStudent.toBeGraded))
 
-        testee.didSelectAssignmentFilterOption(AssignmentFilterOption.toBeGraded, isSelected: true)
-        XCTAssertTrue(testee.selectedAssignmentFilterOptions.contains(AssignmentFilterOption.toBeGraded))
+        testee.didSelectAssignmentFilterOption(AssignmentFilterOptionStudent.toBeGraded, isSelected: true)
+        XCTAssertTrue(testee.selectedAssignmentFilterOptionsStudent.contains(AssignmentFilterOptionStudent.toBeGraded))
 
-        testee.didSelectAssignmentFilterOption(AssignmentFilterOption.graded, isSelected: false)
-        XCTAssertFalse(testee.selectedAssignmentFilterOptions.contains(AssignmentFilterOption.graded))
+        testee.didSelectAssignmentFilterOption(AssignmentFilterOptionStudent.graded, isSelected: false)
+        XCTAssertFalse(testee.selectedAssignmentFilterOptionsStudent.contains(AssignmentFilterOptionStudent.graded))
 
-        testee.didSelectAssignmentFilterOption(AssignmentFilterOption.graded, isSelected: true)
-        XCTAssertTrue(testee.selectedAssignmentFilterOptions.contains(AssignmentFilterOption.graded))
+        testee.didSelectAssignmentFilterOption(AssignmentFilterOptionStudent.graded, isSelected: true)
+        XCTAssertTrue(testee.selectedAssignmentFilterOptionsStudent.contains(AssignmentFilterOptionStudent.graded))
     }
 
-    func testCompletion() {
-        testee.selectedSortingOption = nil
+    func testCompletion() {let weakVC = WeakViewController()
+        let controller = CoreHostingController(AssignmentListPreferencesScreen(viewModel: testee))
+        weakVC.setValue(controller)
+        let expectedFilterOptionsStudent: [AssignmentFilterOptionStudent] = [.notYetSubmitted, .noSubmission, .toBeGraded]
+        let expectedGradingPeriod = testee.gradingPeriods.filter { $0.id == "3" }.first
+        testee.selectedSortingOption = .groupName
+        testee.selectedGradingPeriod = expectedGradingPeriod
+        testee.didSelectAssignmentFilterOption(.graded, isSelected: false)
+        testee.didSelectAssignmentFilterOption(.toBeGraded, isSelected: false)
+        testee.didSelectAssignmentFilterOption(.toBeGraded, isSelected: true)
+        testee.selectedFilterOptionTeacher = .needsGrading
+        testee.selectedStatusFilterOptionTeacher = .published
+        testee.didTapDone(viewController: weakVC)
         testee.didDismiss()
-        XCTAssertNotNil(listPreferences)
-        XCTAssertNotNil(listPreferences!.sortingOption)
-        XCTAssertEqual(listPreferences!.sortingOption, AssignmentListViewModel.AssignmentArrangementOptions.dueDate)
+
+        guard let listPreferences else { return XCTFail() }
+        XCTAssertNotNil(listPreferences.filterOptionsStudent)
+        XCTAssertEqual(listPreferences.filterOptionsStudent, expectedFilterOptionsStudent)
+        XCTAssertNotNil(listPreferences.filterOptionTeacher)
+        XCTAssertEqual(listPreferences.filterOptionTeacher, AssignmentFilterOptionsTeacher.needsGrading)
+        XCTAssertNotNil(listPreferences.statusFilterOptionTeacher)
+        XCTAssertEqual(listPreferences.statusFilterOptionTeacher, AssignmentFilterOptionsTeacher.published)
+        XCTAssertNotNil(listPreferences.sortingOption)
+        XCTAssertEqual(listPreferences.sortingOption, AssignmentListViewModel.AssignmentArrangementOptions.groupName)
+        XCTAssertNotNil(listPreferences.gradingPeriodId)
+        XCTAssertEqual(listPreferences.gradingPeriodId, expectedGradingPeriod?.id)
+    }
+
+    func testDidTapCancel() {
+        let weakVC = WeakViewController()
+        let controller = CoreHostingController(AssignmentListPreferencesScreen(viewModel: testee))
+        weakVC.setValue(controller)
+        let expectedFilterOptionsStudent = AssignmentFilterOptionStudent.allCases
+        let expectedGradingPeriod = testee.gradingPeriods.last
+        testee.selectedSortingOption = .groupName
+        testee.selectedGradingPeriod = testee.gradingPeriods.first
+        testee.didSelectAssignmentFilterOption(.graded, isSelected: false)
+        testee.didSelectAssignmentFilterOption(.toBeGraded, isSelected: false)
+        testee.didSelectAssignmentFilterOption(.toBeGraded, isSelected: true)
+        testee.selectedFilterOptionTeacher = .needsGrading
+        testee.selectedStatusFilterOptionTeacher = .published
+        testee.didTapCancel(viewController: weakVC)
+        testee.didDismiss()
+
+        guard let listPreferences else { return XCTFail() }
+        XCTAssertNotNil(listPreferences.filterOptionsStudent)
+        XCTAssertEqual(listPreferences.filterOptionsStudent, expectedFilterOptionsStudent)
+        XCTAssertNotNil(listPreferences.filterOptionTeacher)
+        XCTAssertEqual(listPreferences.filterOptionTeacher, AssignmentFilterOptionsTeacher.allAssignments)
+        XCTAssertNotNil(listPreferences.statusFilterOptionTeacher)
+        XCTAssertEqual(listPreferences.statusFilterOptionTeacher, AssignmentFilterOptionsTeacher.allAssignments)
+        XCTAssertNotNil(listPreferences.sortingOption)
+        XCTAssertEqual(listPreferences.sortingOption, AssignmentListViewModel.AssignmentArrangementOptions.dueDate)
+        XCTAssertEqual(listPreferences.gradingPeriodId, expectedGradingPeriod?.id)
+    }
+
+    func testAssignmentFilterOptionsTeacher() {
+        XCTAssertEqual(AssignmentFilterOptionsTeacher.allAssignments.title, "All Assignments")
+        XCTAssertEqual(AssignmentFilterOptionsTeacher.needsGrading.title, "Needs Grading")
+        XCTAssertEqual(AssignmentFilterOptionsTeacher.notSubmitted.title, "Not Submitted")
+        XCTAssertEqual(AssignmentFilterOptionsTeacher.published.title, "Published")
+        XCTAssertEqual(AssignmentFilterOptionsTeacher.unpublished.title, "Unpublished")
+
+        let assignment = Assignment.make()
+        assignment.published = false
+        assignment.needsGradingCount = 0
+        assignment.submissions = nil
+        XCTAssertTrue(AssignmentFilterOptionsTeacher.allAssignments.rule(assignment))
+        XCTAssertTrue(AssignmentFilterOptionsTeacher.unpublished.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionsTeacher.published.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionsTeacher.needsGrading.rule(assignment))
+        XCTAssertTrue(AssignmentFilterOptionsTeacher.notSubmitted.rule(assignment))
+
+        assignment.published = true
+        assignment.needsGradingCount = 1
+        let submission = Submission.make()
+        submission.submittedAt = nil
+        submission.type = .online_text_entry
+        assignment.submissions = [submission]
+        XCTAssertTrue(AssignmentFilterOptionsTeacher.needsGrading.rule(assignment))
+        XCTAssertTrue(AssignmentFilterOptionsTeacher.notSubmitted.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionsTeacher.unpublished.rule(assignment))
+        XCTAssertTrue(AssignmentFilterOptionsTeacher.published.rule(assignment))
+
+        submission.submittedAt = Clock.now.addDays(-1)
+        submission.type = .on_paper
+        XCTAssertFalse(AssignmentFilterOptionsTeacher.notSubmitted.rule(assignment))
+
+        submission.type = .online_text_entry
+        XCTAssertFalse(AssignmentFilterOptionsTeacher.notSubmitted.rule(assignment))
+    }
+
+    func testAssignmentFilterOptionsStudent() {
+        XCTAssertTrue(AssignmentFilterOptionStudent.notYetSubmitted == AssignmentFilterOptionStudent.notYetSubmitted)
+        XCTAssertTrue(AssignmentFilterOptionStudent.toBeGraded == AssignmentFilterOptionStudent.toBeGraded)
+        XCTAssertTrue(AssignmentFilterOptionStudent.graded == AssignmentFilterOptionStudent.graded)
+        XCTAssertTrue(AssignmentFilterOptionStudent.noSubmission == AssignmentFilterOptionStudent.noSubmission)
+
+        let assignment = Assignment.make()
+        let submission = Submission.make()
+        assignment.submissionTypes = [.online_text_entry]
+        submission.submittedAt = nil
+        assignment.submissions = [submission]
+        XCTAssertTrue(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionStudent.graded.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
+
+        submission.submittedAt = Clock.now.addDays(-1)
+        XCTAssertFalse(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
+        XCTAssertTrue(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionStudent.graded.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
+
+        submission.excused = true
+        XCTAssertFalse(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
+        XCTAssertTrue(AssignmentFilterOptionStudent.graded.rule(assignment))
+        XCTAssertTrue(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
+
+        submission.excused = false
+        assignment.submissionTypes = [.on_paper]
+        XCTAssertFalse(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
+        XCTAssertTrue(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionStudent.graded.rule(assignment))
+        XCTAssertTrue(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
+
+        submission.workflowState = .graded
+        submission.score = 1.0
+        XCTAssertFalse(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
+        XCTAssertTrue(AssignmentFilterOptionStudent.graded.rule(assignment))
+        XCTAssertTrue(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
+
+        submission.workflowState = .submitted
+        submission.score = nil
+        assignment.submissionTypes = [.not_graded]
+        XCTAssertFalse(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionStudent.graded.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
     }
 }

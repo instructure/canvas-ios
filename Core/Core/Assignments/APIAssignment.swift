@@ -42,6 +42,7 @@ public struct APIAssignment: Codable, Equatable {
     var html_url: URL
     let id: ID
     let in_closed_grading_period: Bool?
+    let is_quiz_lti_assignment: Bool?
     let locked_for_user: Bool?
     let lock_at: Date?
     let lock_explanation: String?
@@ -129,6 +130,7 @@ extension APIAssignment {
         html_url: URL? = nil,
         id: ID = "1",
         in_closed_grading_period: Bool? = false,
+        is_quiz_lti_assignment: Bool? = false,
         locked_for_user: Bool? = false,
         lock_at: Date? = nil,
         lock_explanation: String? = nil,
@@ -185,6 +187,7 @@ extension APIAssignment {
             html_url: html_url ?? URL(string: "/courses/\(course_id)/assignments/\(id)")!,
             id: id,
             in_closed_grading_period: in_closed_grading_period,
+            is_quiz_lti_assignment: is_quiz_lti_assignment,
             locked_for_user: locked_for_user,
             lock_at: lock_at,
             lock_explanation: lock_explanation,

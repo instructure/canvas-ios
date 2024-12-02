@@ -35,7 +35,7 @@ public struct AssignmentListPreferencesScreen: View {
             LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
                 filterSection
                 if viewModel.isTeacher {
-                    statusFilterSection
+                    statusFilterSectionTeacher
                 }
                 sortBySection
                 if viewModel.isGradingPeriodsSectionVisible {
@@ -81,16 +81,16 @@ public struct AssignmentListPreferencesScreen: View {
     private var filterSection: some View {
         if viewModel.isTeacher {
             Section {
-                ForEach(AssignmentFilterOptionsTeacher.customFilters, id: \.self) { item in
-                    customFilterItem(with: item)
+                ForEach(AssignmentFilterOptionsTeacher.filters, id: \.self) { item in
+                    filterItemTeacher(with: item)
                 }
             } header: {
                 InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
             }
         } else {
             Section {
-                ForEach(AssignmentFilterOption.allCases, id: \.id) { item in
-                    filterItem(with: item)
+                ForEach(AssignmentFilterOptionStudent.allCases, id: \.id) { item in
+                    filterItemStudent(with: item)
                 }
             } header: {
                 InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
@@ -98,10 +98,10 @@ public struct AssignmentListPreferencesScreen: View {
         }
     }
 
-    private func filterItem(with item: AssignmentFilterOption) -> some View {
+    private func filterItemStudent(with item: AssignmentFilterOptionStudent) -> some View {
         var filterSelectionBinding: Binding<Bool> {
             Binding {
-                viewModel.selectedAssignmentFilterOptions.contains(item)
+                viewModel.selectedAssignmentFilterOptionsStudent.contains(item)
             } set: { isSelected in
                 viewModel.didSelectAssignmentFilterOption(item, isSelected: isSelected)
             }
@@ -115,7 +115,7 @@ public struct AssignmentListPreferencesScreen: View {
         .accessibilityIdentifier("AssignmentFilter.filterItems.\(item.id)")
     }
 
-    private func customFilterItem(with item: AssignmentFilterOptionsTeacher) -> some View {
+    private func filterItemTeacher(with item: AssignmentFilterOptionsTeacher) -> some View {
         InstUI.RadioButtonCell(
             title: item.title,
             value: item,
@@ -127,21 +127,21 @@ public struct AssignmentListPreferencesScreen: View {
 
     // MARK: - Status Filter Section
 
-    private var statusFilterSection: some View {
+    private var statusFilterSectionTeacher: some View {
         Section {
             ForEach(AssignmentFilterOptionsTeacher.statusFilters, id: \.self) { item in
-                statusFilterItem(with: item)
+                statusFilterItemTeacher(with: item)
             }
         } header: {
             InstUI.ListSectionHeader(title: String(localized: "Status Filter", bundle: .core))
         }
     }
 
-    private func statusFilterItem(with item: AssignmentFilterOptionsTeacher) -> some View {
+    private func statusFilterItemTeacher(with item: AssignmentFilterOptionsTeacher) -> some View {
         InstUI.RadioButtonCell(
             title: item.title,
             value: item,
-            selectedValue: $viewModel.selectedStatusFilterOption,
+            selectedValue: $viewModel.selectedStatusFilterOptionTeacher,
             color: color
         )
         .accessibilityIdentifier("AssignmentFilter.statusFilterOptions.\(item.rawValue)")
@@ -212,8 +212,8 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
         let gradingPeriods = createGradingPeriods()
         let viewModel = AssignmentListPreferencesViewModel(
             isTeacher: false,
-            initialFilterOptions: AssignmentFilterOption.allCases,
-            initialStatusFilterOption: .allAssignments,
+            initialFilterOptionsStudent: AssignmentFilterOptionStudent.allCases,
+            initialStatusFilterOptionTeacher: .allAssignments,
             initialFilterOptionTeacher: .allAssignments,
             sortingOptions: AssignmentListViewModel.AssignmentArrangementOptions.allCases,
             initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions.dueDate,
