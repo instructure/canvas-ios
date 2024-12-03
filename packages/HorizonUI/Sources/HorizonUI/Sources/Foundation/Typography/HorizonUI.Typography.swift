@@ -27,9 +27,9 @@ public extension HorizonUI {
 
             var font: Font {
                 switch self {
-                case .h1: return HorizonUI.fonts.regular24
-                case .h2: return HorizonUI.fonts.regular18
-                case .h3: return HorizonUI.fonts.manrope12
+                case .h1: return .huiFonts.manropeBold28
+                case .h2: return .huiFonts.manropeBold24
+                case .h3: return .huiFonts.manropeBold20
                 }
             }
         }

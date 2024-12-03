@@ -22,10 +22,26 @@ public extension HorizonUI {
     struct Fonts: Sendable {
         fileprivate init() {}
 
-        // TODO: Import custom font, add actual variants
-        let regular24: Font = .system(size: 24)
-        let regular18: Font = .system(size: 18)
-        let regular12: Font = .system(size: 12)
+        enum Variants: String, CaseIterable {
+            case figreeRegular = "Figree-Regular"
+            case figreeSemiBold = "Figtree-SemiBold"
+            case manropeRegular = "Manrope-Regular"
+            case manropeBold = "Manrope-Bold"
+        }
+
+        let manropeRegular12: Font = .scaledFont(name: .manropeRegular, size: 12)
+
+        let manropeBold28: Font = .scaledFont(name: .manropeBold, size: 28)
+        let manropeBold24: Font = .scaledFont(name: .manropeBold, size: 24)
+        let manropeBold20: Font = .scaledFont(name: .manropeBold, size: 20)
+
+        let figtreeRegular16: Font = .scaledFont(name: .figreeRegular, size: 16)
+        let figtreeRegular14: Font = .scaledFont(name: .figreeRegular, size: 14)
+        let figtreeRegular12: Font = .scaledFont(name: .figreeRegular, size: 12)
+
+        let figtreeSemibold16: Font = .scaledFont(name: .figreeSemiBold, size: 16)
+        let figtreeSemibolt14: Font = .scaledFont(name: .figreeSemiBold, size: 14)
+        let figtreeSemibold12: Font = .scaledFont(name: .figreeSemiBold, size: 12)
     }
 
     static let fonts = HorizonUI.Fonts()
@@ -33,4 +49,9 @@ public extension HorizonUI {
 
 extension Font {
     static let huiFonts = HorizonUI.fonts
+
+    fileprivate static func scaledFont(name: HorizonUI.Fonts.Variants, size: Double) -> Font {
+        let scaledSize = UIFontMetrics.default.scaledValue(for: size)
+        return Font.custom(name.rawValue, size: scaledSize)
+    }
 }
