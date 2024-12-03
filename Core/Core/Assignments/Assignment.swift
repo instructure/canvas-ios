@@ -52,7 +52,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var htmlURL: URL?
     @NSManaged public var id: String
     @NSManaged public var inClosedGradingPeriod: Bool
-    @NSManaged public var isQuizLTIAssignment: Bool
+    @NSManaged public var isQuizLTI: Bool
     @NSManaged public var lastUpdatedAt: Date?
     @NSManaged public var lockAt: Date?
     @NSManaged public var lockedForUser: Bool
@@ -188,7 +188,7 @@ extension Assignment {
         htmlURL = item.html_url
         id = item.id.value
         inClosedGradingPeriod = item.in_closed_grading_period ?? false
-        isQuizLTIAssignment = item.is_quiz_lti_assignment ?? false
+        isQuizLTI = item.is_quiz_lti_assignment ?? false
         lastUpdatedAt = Date()
         lockAt = item.lock_at
         lockedForUser = item.locked_for_user ?? false

@@ -246,12 +246,12 @@ public class AssignmentListViewModel: ObservableObject {
                 let discussionsGroup = AssignmentDateGroup(id: "discussions", name: "Discussions", assignments: discussions)
                 assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: discussionsGroup, courseColor: courseColor))
             }
-            let quizzes = assignments.filter { $0.quizID != nil || $0.isQuizLTIAssignment }
+            let quizzes = assignments.filter { $0.quizID != nil || $0.isQuizLTI }
             if !quizzes.isEmpty {
                 let quizzesGroup = AssignmentDateGroup(id: "quizzes", name: "Quiz", assignments: quizzes)
                 assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: quizzesGroup, courseColor: courseColor))
             }
-            let lti = assignments.filter { $0.isLTIAssignment && !$0.isQuizLTIAssignment }
+            let lti = assignments.filter { $0.isLTIAssignment && !$0.isQuizLTI }
             if !lti.isEmpty {
                 let ltiGroup = AssignmentDateGroup(id: "lti", name: "LTI", assignments: lti)
                 assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: ltiGroup, courseColor: courseColor))
