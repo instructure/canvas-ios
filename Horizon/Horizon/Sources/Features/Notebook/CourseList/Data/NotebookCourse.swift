@@ -21,6 +21,12 @@ struct NotebookCourse: Hashable {
     let course: String
     let institution: String
 
+    init(from courseNote: CourseNote) {
+        id = courseNote.courseId
+        course = courseNote.course
+        institution = courseNote.institution
+    }
+
     static func == (lhs: NotebookCourse, rhs: NotebookCourse) -> Bool {
         return lhs.id == rhs.id
     }

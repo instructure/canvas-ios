@@ -24,6 +24,17 @@ struct NotebookCourseNote {
     let id: String
     let note: String
     let type: NotebookNoteLabel?
+
+    init(from courseNote: CourseNote) {
+        let notebookNoteLabel = courseNote.labels.map({ label in
+            NotebookNoteLabel.allCases.first { $0.rawValue.lowercased() == label.lowercased() }
+        }).filter({$0 != nil}).map({$0!}).first
+
+        date = courseNote.date
+        id = courseNote.id
+        note = courseNote.content
+        type = notebookNoteLabel
+    }
 }
 
 enum NotebookNoteLabel: String, CaseIterable {
@@ -38,8 +49,9 @@ class GetCourseNotesInteractor {
 
     // MARK: - Properties
 
-    let publisher = PassthroughSubject<[NotebookCourseNote], Never>()
     private var cancellables = Set<AnyCancellable>()
+    private var termPublisher: CurrentValueSubject<String, Error> = CurrentValueSubject("")
+    private var filterPublisher: CurrentValueSubject<NotebookNoteLabel?, Error> = CurrentValueSubject(nil)
 
     // MARK: - Init
 
@@ -49,50 +61,49 @@ class GetCourseNotesInteractor {
 
     // MARK: - Public
 
-    func get() -> AnyPublisher<[NotebookCourseNote], Never> {
-        publisher.eraseToAnyPublisher()
+    var filter: NotebookNoteLabel? {
+        filterPublisher.value
     }
 
-    func search(courseId: String, text: String = "", filter: NotebookNoteLabel? = nil) {
-        courseNotesRepository.get().first().sink(receiveCompletion: { _ in }, receiveValue: { [weak self] notes in
-            guard let self = self else { return }
-            let courses = notes
-                .sorted(by: self.sortCourseNotesByDate)
-                .filter({ courseNote -> Bool in courseNote.courseId == courseId })
-                .map(self.courseNoteToNotebookCourseNote)
-                .filter({ notebookCourseNote -> Bool in self.filterByQueryText(text, notebookCourseNote) })
-                .filter({ notebookCourseNote -> Bool in self.filterByLabel(filter, notebookCourseNote) })
-            self.publisher.send(courses)
-        }).store(in: &cancellables)
+    func get(courseId: String) -> AnyPublisher<[NotebookCourseNote], Error> {
+        courseNotesRepository.get()
+            .map(sortByDate)
+            .map({notes in notes.filter({note in note.courseId == courseId})})
+            .map(toNotebookCourseNotes)
+            .combineLatest(termPublisher.map({$0.lowercased()}))
+            .map(filterByTerm)
+            .combineLatest(filterPublisher)
+            .map(filterByLabel)
+            .eraseToAnyPublisher()
+    }
+
+    func setTerm(_ term: String) {
+        termPublisher.send(term)
+    }
+
+    func setFilter(_ filter: NotebookNoteLabel?) {
+        filterPublisher.send(filter)
     }
 
     // MARK: - Private
 
-    private func courseNoteToNotebookCourseNote(_ courseNote: CourseNote) -> NotebookCourseNote {
-        let notebookNoteLabel = courseNote.labels.map(labelToNotebookNoteLabel).filter({$0 != nil}).map({$0!}).first
-        return NotebookCourseNote(
-            date: courseNote.date,
-            id: courseNote.id,
-            note: courseNote.content,
-            type: notebookNoteLabel
-        )
+    private func filterByLabel(notes: [NotebookCourseNote], filter: NotebookNoteLabel?) -> [NotebookCourseNote] {
+        notes.filter({ note in
+            guard let filter = filter else { return true } // if no label is specified, all values pass
+            guard let type = note.type else { return false } // if no type is specified on the note but a label is specified, it does not pass
+            return type.rawValue.lowercased() == filter.rawValue.lowercased() // otherwise, the note passes if the type matches the label
+        })
     }
 
-    private func filterByQueryText(_ query: String, _ courseNote: NotebookCourseNote) -> Bool {
-        query.isEmpty || courseNote.note.lowercased().contains(query.lowercased())
+    private func filterByTerm(notes: [NotebookCourseNote], term: String) -> [NotebookCourseNote] {
+        notes.filter({ term.isEmpty || $0.note.lowercased().contains(term.lowercased()) })
     }
 
-    private func filterByLabel(_ label: NotebookNoteLabel?, _ courseNote: NotebookCourseNote) -> Bool {
-        guard let label = label else { return true } // if no label is specified, all values pass
-        guard let type = courseNote.type else { return false } // if no type is specified on the note but a label is specified, it does not pass
-        return type.rawValue.lowercased() == label.rawValue.lowercased() // otherwise, the note passes if the type matches the label
+    private func sortByDate(_ notes: [CourseNote]) -> [CourseNote] {
+        notes.sorted(by: { $0.date > $1.date })
     }
 
-    private func labelToNotebookNoteLabel(_ label: String) -> NotebookNoteLabel? {
-        NotebookNoteLabel.allCases.first { $0.rawValue.lowercased() == label.lowercased() }
-    }
-
-    private func sortCourseNotesByDate(_ a: CourseNote, _ b: CourseNote) -> Bool {
-        a.date > b.date
+    private func toNotebookCourseNotes(_ notes: [CourseNote]) -> [NotebookCourseNote] {
+        notes.map({ courseNote in NotebookCourseNote(from: courseNote) })
     }
 }

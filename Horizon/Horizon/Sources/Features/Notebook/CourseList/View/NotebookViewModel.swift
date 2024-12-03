@@ -49,8 +49,8 @@ final class NotebookViewModel {
 
     // MARK: - Inputs
 
-    func onSearch(_ text: String) {
-        getCoursesInteractor.search(for: text)
+    func onSearch(_ term: String) {
+        getCoursesInteractor.setTerm(term)
     }
 
     func onTap(_ listItem: NotebookListItem, viewController: WeakViewController) {

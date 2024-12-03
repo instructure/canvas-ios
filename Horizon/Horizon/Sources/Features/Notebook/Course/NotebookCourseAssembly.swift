@@ -20,11 +20,11 @@ import Core
 import SwiftUICore
 
 final class NotebookCourseAssembly {
-    static func make(courseID: String) -> CoreHostingController<NotebookCourseView>? {
+    static func make(courseId: String) -> CoreHostingController<NotebookCourseView>? {
         CoreHostingController(
             NotebookCourseView(
                 .init(
-                    courseID: courseID,
+                    courseId: courseId,
                     getCourseNotesInteractor: GetCourseNotesInteractor(
                         courseNotesRepository: CourseNotesRepository()
                     ),

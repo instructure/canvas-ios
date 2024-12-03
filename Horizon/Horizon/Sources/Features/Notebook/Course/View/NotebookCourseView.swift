@@ -22,7 +22,7 @@ import Core
 
 struct NotebookCourseView: View {
 
-    @State private var viewModel: NotebookCourseViewModel
+    private var viewModel: NotebookCourseViewModel
 
     @Environment(\.viewController) private var viewController
 
@@ -37,7 +37,7 @@ struct NotebookCourseView: View {
         ) {
             NotebookSearchBar(onSearch: viewModel.onSearch).padding(.top, 32)
 
-            Text("Filter").font(.regular16)
+            Text(String(localized: "Filter", bundle: .horizon)).font(.regular16)
                 .padding(.top, 32)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -55,7 +55,7 @@ struct NotebookCourseView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             ForEach(viewModel.notes) { note in
-                NoteCard(note).onTapGesture {
+                NoteCardView(note).onTapGesture {
                     viewModel.onNoteTapped(note, viewController: viewController)
                 }
             }
@@ -65,7 +65,7 @@ struct NotebookCourseView: View {
 
 #Preview {
     NotebookCourseView(
-        .init(courseID: "1",
+        .init(courseId: "1",
               getCourseNotesInteractor: GetCourseNotesInteractor(courseNotesRepository: CourseNotesRepository()),
               router: AppEnvironment.shared.router
          )

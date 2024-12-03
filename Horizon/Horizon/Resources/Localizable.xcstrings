@@ -35,6 +35,9 @@
     "Check Answer" : {
 
     },
+    "Confusing" : {
+
+    },
     "Continue learning" : {
 
     },
@@ -59,7 +62,13 @@
     "How was this question?" : {
 
     },
+    "Important" : {
+
+    },
     "Learn" : {
+
+    },
+    "Notebook for Course %@" : {
 
     },
     "Notes" : {

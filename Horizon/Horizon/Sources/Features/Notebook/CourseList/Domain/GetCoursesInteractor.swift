@@ -27,8 +27,7 @@ class GetCoursesInteractor {
 
     // MARK: - Private variables
 
-    private let publisher = PassthroughSubject<[NotebookCourse], Never>()
-    private var cancellables: Set<AnyCancellable> = []
+    private var termPublisher: CurrentValueSubject<String, Error> = CurrentValueSubject("")
 
     // MARK: - Init
 
@@ -38,32 +37,40 @@ class GetCoursesInteractor {
 
     // MARK: - Public
 
-    func search(for text: String) {
-        courseNotesRepository.get().sink(receiveCompletion: { _ in }, receiveValue: { [weak self] notes in
-            guard let self = self else { return }
-
-            let courses = notes
-                .map { note in NotebookCourse(id: note.courseId, course: note.course, institution: note.institution) }
-                .filter({ self.filterByText($0, text) })
-
-            let coursesUnique = Array(Set(courses))
-                .sorted(by: self.sortByInstitution)
-
-            self.publisher.send(coursesUnique)
-        }).store(in: cancellables)
+    func setTerm(_ value: String) {
+        termPublisher.send(value)
     }
 
-    func get() -> AnyPublisher<[NotebookCourse], Never> {
-        publisher.eraseToAnyPublisher()
+    func get() -> AnyPublisher<[NotebookCourse], Error> {
+        courseNotesRepository
+            .get()
+            .map({ notes in notes.map({ NotebookCourse(from: $0) }) })
+            .map(filterToUnique)
+            .combineLatest(termPublisher.map({ $0.lowercased() }))
+            .map(filterByText)
+            .map(sortByInstitution)
+            .eraseToAnyPublisher()
     }
 
     // MARK: - Private
 
-    private func filterByText(_ course: NotebookCourse, _ text: String) -> Bool {
-        text.isEmpty || course.course.lowercased().contains(text.lowercased()) || course.institution.lowercased().contains(text.lowercased())
+    private func filterByText(courses: [NotebookCourse], term: String) -> [NotebookCourse] {
+        return courses.filter({ course in
+            term.isEmpty ||
+            course.course.lowercased().contains(term.lowercased()) ||
+            course.institution.lowercased().contains(term.lowercased())
+        })
     }
 
-    private func sortByInstitution(_ courseA: NotebookCourse, _ courseB: NotebookCourse) -> Bool {
-        courseA.institution == courseB.institution ? courseA.course < courseB.course : courseA.institution < courseB.institution
+    private func filterToUnique(_ courses: [NotebookCourse]) -> [NotebookCourse] {
+        Array(Set(courses))
+    }
+
+    private func sortByInstitution(_ courses: [NotebookCourse]) -> [NotebookCourse] {
+        courses.sorted(by: { lhs, rhs in
+            lhs.institution == rhs.institution ?
+            lhs.course < rhs.course :
+            lhs.institution < rhs.institution
+        })
     }
 }

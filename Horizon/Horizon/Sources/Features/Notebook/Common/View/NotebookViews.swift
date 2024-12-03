@@ -111,7 +111,7 @@ struct NotebookSearchBar: View {
 
     var body: some View {
         ZStack(alignment: .leading) {
-            TextField("", text: $searchText, prompt: Text("Search"))
+            TextField("", text: $searchText, prompt: Text(String(localized: "Search", bundle: .horizon)))
                 .frame(height: 48)
                 .padding(.leading, 48)
                 .background(Color.white)
@@ -133,7 +133,7 @@ struct NotebookCard: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
             builder()
         }
         .frame(maxWidth: .infinity, alignment: .leading)

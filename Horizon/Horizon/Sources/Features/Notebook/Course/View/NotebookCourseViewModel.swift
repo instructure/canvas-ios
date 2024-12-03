@@ -25,9 +25,7 @@ final class NotebookCourseViewModel {
     // MARK: - Outputs
 
     var filter: NotebookNoteLabel? {
-        didSet {
-            executeSearch()
-        }
+        getCourseNotesInteractor.filter
     }
     var isConfusingEnabled: Bool { filter == .confusing }
     var isImportantEnabled: Bool { filter == .important }
@@ -37,30 +35,28 @@ final class NotebookCourseViewModel {
 
     // MARK: - Private variables
 
-    private let courseID: String
+    private let courseId: String
     private let formatter = DateFormatter()
     private let getCourseNotesInteractor: GetCourseNotesInteractor
-    private var search: String = "" {
-        didSet {
-            executeSearch()
-        }
-    }
     private var cancellables: Set<AnyCancellable> = []
 
     // MARK: - Init
 
-    init(courseID: String,
+    init(courseId: String,
          getCourseNotesInteractor: GetCourseNotesInteractor,
          router: Router) {
-        self.courseID = courseID
+        self.courseId = courseId
         self.getCourseNotesInteractor = getCourseNotesInteractor
         self.router = router
 
         formatter.dateFormat = "MMM d, yyyy"
 
-        title = "Notebook for Course \(courseID)"
+        title = String.localizedStringWithFormat(
+            String(localized: "Notebook for Course %@", bundle: .horizon),
+            courseId
+        )
 
-        getCourseNotesInteractor.get().sink { _ in } receiveValue: { [weak self] notes in
+        getCourseNotesInteractor.get(courseId: courseId).sink { _ in } receiveValue: { [weak self] notes in
             let notebookNotes = notes.map { note in
                 NotebookNote(
                     id: note.id,
@@ -71,27 +67,19 @@ final class NotebookCourseViewModel {
             }
             self?.notes = notebookNotes
         }.store(in: &cancellables)
-
-        getCourseNotesInteractor.search(courseId: courseID)
     }
 
     // MARK: - Inputs
 
     func onFilter(_ filter: NotebookNoteLabel) {
-        self.filter = self.filter == filter ? nil : filter
+        getCourseNotesInteractor.setFilter(self.filter == filter ? nil : filter)
     }
 
     func onNoteTapped(_ note: NotebookNote, viewController: WeakViewController) {
     }
 
     func onSearch(_ text: String) {
-        self.search = text
-    }
-
-    // MARK: - Private
-
-    private func executeSearch() {
-        getCourseNotesInteractor.search(courseId: courseID, text: search, filter: filter)
+        getCourseNotesInteractor.setTerm(text)
     }
 }
 

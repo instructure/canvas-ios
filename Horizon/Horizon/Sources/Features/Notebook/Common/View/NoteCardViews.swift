@@ -21,7 +21,7 @@ import SwiftUI
 
 private let textDisabledColor = Color(red: 27/100, green: 36/100, blue: 45/100)
 
-struct NoteCard: View {
+struct NoteCardView: View {
     // MARK: - Properties
 
     let note: NotebookNote
@@ -35,17 +35,21 @@ struct NoteCard: View {
     var body: some View {
         NotebookCard {
             VStack(alignment: .leading, spacing: 8) {
-                Text(note.title).font(.regular12).padding(.bottom, 8)
-                Text(note.note).font(.regular16).padding(.bottom, 8)
+                Text(note.title)
+                    .font(.regular12)
+                    .padding(.bottom, 8)
+                Text(note.note)
+                    .font(.regular16)
+                    .padding(.bottom, 8)
                 if let type = note.type {
-                    NoteCardLabel(type: type)
+                    NoteCardLabelView(type: type)
                 }
             }
         }
     }
 }
 
-struct NoteCardLabel: View {
+struct NoteCardLabelView: View {
     // MARK: - Properties
     let type: NotebookNoteLabel
 
@@ -86,9 +90,11 @@ struct FilterButton: View {
 
     var body: some View {
         HStack {
-            NotebookLabelIcon(type, enabled: enabled).frame(width: 24, height: 24)
-            Text(labelFromType(type)).font(.regular16).foregroundColor(
-                enabled ? textEnabledColor : textDisabledColor
+            NotebookLabelIcon(type, enabled: enabled)
+                .frame(width: 24, height: 24)
+            Text(labelFromType(type))
+                .font(.regular16)
+                .foregroundColor(enabled ? textEnabledColor : textDisabledColor
             )
         }
         .frame(height: 48)
@@ -114,7 +120,9 @@ struct NotebookLabelIcon: View {
     }
 
     var body: some View {
-        let image = type == .confusing ? Image(systemName: "questionmark.circle") : Image("Flag", bundle: .main).renderingMode(.template)
+        let image = type == .confusing ?
+            Image(systemName: "questionmark.circle") :
+            Image("Flag", bundle: .main).renderingMode(.template)
         return image.foregroundStyle(
             enabled ? colorFromType(type) : textDisabledColor
         )
@@ -134,7 +142,9 @@ struct NotebookLabelIcon: View {
 }
 
 @inline(__always) func labelFromType(_ type: NotebookNoteLabel, isBold: Bool = false) -> String {
-    let result = (type == .confusing ? "Confusing": "Important")
+    let result = type == .confusing ?
+                  String(localized: "Confusing", bundle: .horizon):
+                    String(localized: "Important", bundle: .horizon)
     return isBold ? result.uppercased() : result
 }
 
@@ -144,7 +154,7 @@ struct NoteCard_Previews: PreviewProvider {
         return VStack {
             FilterButton(.important)
             FilterButton(.confusing, enabled: false)
-            NoteCard(
+            NoteCardView(
                 .init(
                     id: "1",
                     type: .important,
@@ -152,7 +162,7 @@ struct NoteCard_Previews: PreviewProvider {
                     note: "Note"
                 )
             )
-            NoteCard(
+            NoteCardView(
                 .init(
                     id: "2",
                     type: .confusing,
