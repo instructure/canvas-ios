@@ -114,12 +114,10 @@ struct ExpandingModuleView: View {
                     hasMultipleItems: module.items.count > 1
                 )
             }
-            ZStack {
-                Circle()
-                    .fill(Color.backgroundLightest)
-                    .frame(width: 25, height: 25)
-                ProgramCheckMarkIcon(isCompleted: isCompleted)
-            }
+            Circle()
+                .fill(Color.backgroundLightest)
+                .frame(width: 25, height: 25)
+            ProgramCheckMarkIcon(isCompleted: isCompleted)
 
         }
     }
