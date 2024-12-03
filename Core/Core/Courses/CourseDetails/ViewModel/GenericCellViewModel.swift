@@ -43,15 +43,13 @@ class GenericCellViewModel: CourseDetailsCellViewModel {
 
         self.isInternalURL = isInternalURL
         self.route = route
-        super.init(
-            courseColor: course.color,
-            iconImage: tab.icon,
-            label: tab.label,
-            subtitle: nil,
-            accessoryIconType: isInternalURL ? .disclosure : .externalLink,
-            tabID: tab.id,
-            selectedCallback: selectedCallback
-        )
+        super.init(courseColor: course.color,
+                   iconImage: tab.icon,
+                   label: tab.label,
+                   subtitle: nil,
+                   accessoryIconType: isInternalURL ? .disclosure : .externalLink,
+                   tabID: tab.id,
+                   selectedCallback: selectedCallback)
     }
 
     public override func selected(router: Router, viewController: WeakViewController) {
