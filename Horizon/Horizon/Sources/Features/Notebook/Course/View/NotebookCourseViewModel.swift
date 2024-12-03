@@ -25,13 +25,26 @@ final class NotebookCourseViewModel {
     // MARK: - Outputs
 
     var filter: NotebookNoteLabel? {
-        getCourseNotesInteractor.filter
+        get {
+            getCourseNotesInteractor.filter
+        }
+        set {
+            getCourseNotesInteractor.setFilter(self.filter == newValue ? nil : newValue)
+        }
     }
     var isConfusingEnabled: Bool { filter == .confusing }
     var isImportantEnabled: Bool { filter == .important }
     var notes: [NotebookNote] = []
     let router: Router
     var title: String = ""
+    var term: String {
+        get {
+            getCourseNotesInteractor.term
+        }
+        set {
+            getCourseNotesInteractor.setTerm(newValue)
+        }
+    }
 
     // MARK: - Private variables
 
@@ -71,15 +84,7 @@ final class NotebookCourseViewModel {
 
     // MARK: - Inputs
 
-    func onFilter(_ filter: NotebookNoteLabel) {
-        getCourseNotesInteractor.setFilter(self.filter == filter ? nil : filter)
-    }
-
     func onNoteTapped(_ note: NotebookNote, viewController: WeakViewController) {
-    }
-
-    func onSearch(_ text: String) {
-        getCourseNotesInteractor.setTerm(text)
     }
 }
 

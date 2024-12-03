@@ -31,7 +31,7 @@ struct NotebookView: View {
 
     var body: some View {
         NotesBody(title: "Notebook", router: viewModel.router) {
-            NotebookSearchBar(onSearch: viewModel.onSearch).padding(.vertical, 24)
+            NotebookSearchBar(term: $viewModel.term).padding(.vertical, 24)
             ListViewItems(listItems: $viewModel.listItems, onTap: viewModel.onTap, viewController: viewController)
         }
     }

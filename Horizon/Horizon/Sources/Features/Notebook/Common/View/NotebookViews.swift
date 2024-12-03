@@ -105,19 +105,19 @@ struct BackButton: View {
 
 struct NotebookSearchBar: View {
 
-    let onSearch: ((String) -> Void)
-
-    @State private var searchText = ""
+    @Binding var term: String
 
     var body: some View {
         ZStack(alignment: .leading) {
-            TextField("", text: $searchText, prompt: Text(String(localized: "Search", bundle: .horizon)))
+            TextField("",
+                  text: $term,
+                  prompt: Text(String(localized: "Search", bundle: .horizon))
+                )
                 .frame(height: 48)
                 .padding(.leading, 48)
                 .background(Color.white)
                 .clipShape(RoundedRectangle(cornerRadius: 32))
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 1, y: 2)
-                .onChange(of: searchText) { onSearch(searchText) }
             Image(systemName: "magnifyingglass")
                 .foregroundColor(.textDarkest)
                 .padding(.leading, 16)

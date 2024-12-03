@@ -51,7 +51,13 @@ class GetCourseNotesInteractor {
 
     private var cancellables = Set<AnyCancellable>()
     private var termPublisher: CurrentValueSubject<String, Error> = CurrentValueSubject("")
+    var term: String {
+        termPublisher.value
+    }
     private var filterPublisher: CurrentValueSubject<NotebookNoteLabel?, Error> = CurrentValueSubject(nil)
+    var filter: NotebookNoteLabel? {
+        filterPublisher.value
+    }
 
     // MARK: - Init
 
@@ -60,10 +66,6 @@ class GetCourseNotesInteractor {
     }
 
     // MARK: - Public
-
-    var filter: NotebookNoteLabel? {
-        filterPublisher.value
-    }
 
     func get(courseId: String) -> AnyPublisher<[NotebookCourseNote], Error> {
         courseNotesRepository.get()

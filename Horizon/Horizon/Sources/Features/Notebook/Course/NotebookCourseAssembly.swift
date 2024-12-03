@@ -23,7 +23,7 @@ final class NotebookCourseAssembly {
     static func make(courseId: String) -> CoreHostingController<NotebookCourseView>? {
         CoreHostingController(
             NotebookCourseView(
-                .init(
+                viewModel: NotebookCourseViewModel(
                     courseId: courseId,
                     getCourseNotesInteractor: GetCourseNotesInteractor(
                         courseNotesRepository: CourseNotesRepository()

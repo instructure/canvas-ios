@@ -26,6 +26,11 @@ final class NotebookViewModel {
 
     var listItems: [NotebookListItem] = []
     let router: Router
+    var term: String = "" {
+        didSet {
+            getCoursesInteractor.setTerm(term)
+        }
+    }
 
     // MARK: - Private variables
 
@@ -43,15 +48,9 @@ final class NotebookViewModel {
                 NotebookListItem(id: $0.id, course: $0.course, institution: $0.institution)
             }
         }.store(in: &cancellables)
-
-        onSearch("")
     }
 
     // MARK: - Inputs
-
-    func onSearch(_ term: String) {
-        getCoursesInteractor.setTerm(term)
-    }
 
     func onTap(_ listItem: NotebookListItem, viewController: WeakViewController) {
         router.route(

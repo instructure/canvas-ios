@@ -22,20 +22,16 @@ import Core
 
 struct NotebookCourseView: View {
 
-    private var viewModel: NotebookCourseViewModel
+    @Bindable var viewModel: NotebookCourseViewModel
 
     @Environment(\.viewController) private var viewController
-
-    init(_ viewModel: NotebookCourseViewModel) {
-        self.viewModel = viewModel
-    }
 
     var body: some View {
         return NotesBody(
             title: viewModel.title,
             router: viewModel.router
         ) {
-            NotebookSearchBar(onSearch: viewModel.onSearch).padding(.top, 32)
+            NotebookSearchBar(term: $viewModel.term).padding(.top, 32)
 
             Text(String(localized: "Filter", bundle: .horizon)).font(.regular16)
                 .padding(.top, 32)
@@ -43,10 +39,10 @@ struct NotebookCourseView: View {
 
             HStack(spacing: 8) {
                 FilterButton(.confusing, enabled: viewModel.isConfusingEnabled).onTapGesture {
-                    viewModel.onFilter(.confusing)
+                    viewModel.filter = .confusing
                 }
                 FilterButton(.important, enabled: viewModel.isImportantEnabled).onTapGesture {
-                    viewModel.onFilter(.important)
+                    viewModel.filter = .important
                 }
             }.frame(maxWidth: .infinity)
 
@@ -61,13 +57,4 @@ struct NotebookCourseView: View {
             }
         }
     }
-}
-
-#Preview {
-    NotebookCourseView(
-        .init(courseId: "1",
-              getCourseNotesInteractor: GetCourseNotesInteractor(courseNotesRepository: CourseNotesRepository()),
-              router: AppEnvironment.shared.router
-         )
-    )
 }
