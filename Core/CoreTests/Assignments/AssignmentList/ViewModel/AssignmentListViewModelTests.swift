@@ -88,7 +88,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.defaultGradingPeriodId, "2")
     }
 
-    func testGroupingAssignments() {
+    func testGroupeAssignmentsByAssignmentGroups() {
         api.mock(GetGradingPeriods(courseID: "1"), value: [])
 
         let assignmentGroups = [
@@ -99,8 +99,8 @@ class AssignmentListViewModelTests: CoreTestCase {
                 .make(assignment_group_id: "AG2", due_at: Clock.now.addDays(-1), id: "2", name: "Overdue Assignment", quiz_id: "1")
             ]),
             APIAssignmentGroup.make(id: "AG3", name: "AGroup3", position: 3, assignments: [
-                .make(assignment_group_id: "AG3", id: "3" , name: "Undated Assignment", submission_types: [.external_tool]),
-                .make(assignment_group_id: "AG3", id: "4" , name: "Another Undated Assignment")
+                .make(assignment_group_id: "AG3", id: "3", name: "Undated Assignment", submission_types: [.external_tool]),
+                .make(assignment_group_id: "AG3", id: "4", name: "Another Undated Assignment")
             ])
         ]
         let assignmentGroupRequest = GetAssignmentGroupsRequest(
@@ -110,6 +110,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         )
 
         api.mock(assignmentGroupRequest, value: assignmentGroups)
+
         let testee = AssignmentListViewModel(context: .course("1"))
 
         testee.selectedSortingOption = .groupName
@@ -146,7 +147,32 @@ class AssignmentListViewModelTests: CoreTestCase {
         XCTAssertEqual(thirdGroupViewModel.assignments.count, 2)
         XCTAssertEqual(thirdGroupViewModel.assignments[0].name, "Another Undated Assignment")
         XCTAssertEqual(thirdGroupViewModel.assignments[1].name, "Undated Assignment")
+    }
 
+    func testGroupAssignmentsByDueDate() {
+        api.mock(GetGradingPeriods(courseID: "1"), value: [])
+
+        let assignmentGroups = [
+            APIAssignmentGroup.make(id: "AG1", name: "AGroup1", position: 1, assignments: [
+                .make(assignment_group_id: "AG1", due_at: Clock.now.addDays(1), id: "1", name: "Upcoming Assignment", submission_types: [.discussion_topic])
+            ]),
+            APIAssignmentGroup.make(id: "AG2", name: "AGroup2", position: 2, assignments: [
+                .make(assignment_group_id: "AG2", due_at: Clock.now.addDays(-1), id: "2", name: "Overdue Assignment", quiz_id: "1")
+            ]),
+            APIAssignmentGroup.make(id: "AG3", name: "AGroup3", position: 3, assignments: [
+                .make(assignment_group_id: "AG3", id: "3", name: "Undated Assignment", submission_types: [.external_tool]),
+                .make(assignment_group_id: "AG3", id: "4", name: "Another Undated Assignment")
+            ])
+        ]
+        let assignmentGroupRequest = GetAssignmentGroupsRequest(
+            courseID: "1",
+            gradingPeriodID: nil,
+            perPage: 100
+        )
+
+        api.mock(assignmentGroupRequest, value: assignmentGroups)
+
+        let testee = AssignmentListViewModel(context: .course("1"))
         testee.selectedSortingOption = .dueDate
         testee.viewDidAppear()
 
@@ -184,7 +210,32 @@ class AssignmentListViewModelTests: CoreTestCase {
         XCTAssertEqual(undatedGroupViewModel.assignments.count, 2)
         XCTAssertEqual(undatedGroupViewModel.assignments[0].name, "Another Undated Assignment")
         XCTAssertEqual(undatedGroupViewModel.assignments[1].name, "Undated Assignment")
+    }
 
+    func testGroupAssignmentsByAssignmentType() {
+        api.mock(GetGradingPeriods(courseID: "1"), value: [])
+
+        let assignmentGroups = [
+            APIAssignmentGroup.make(id: "AG1", name: "AGroup1", position: 1, assignments: [
+                .make(assignment_group_id: "AG1", due_at: Clock.now.addDays(1), id: "1", name: "Upcoming Assignment", submission_types: [.discussion_topic])
+            ]),
+            APIAssignmentGroup.make(id: "AG2", name: "AGroup2", position: 2, assignments: [
+                .make(assignment_group_id: "AG2", due_at: Clock.now.addDays(-1), id: "2", name: "Overdue Assignment", quiz_id: "1")
+            ]),
+            APIAssignmentGroup.make(id: "AG3", name: "AGroup3", position: 3, assignments: [
+                .make(assignment_group_id: "AG3", id: "3", name: "Undated Assignment", submission_types: [.external_tool]),
+                .make(assignment_group_id: "AG3", id: "4", name: "Another Undated Assignment")
+            ])
+        ]
+        let assignmentGroupRequest = GetAssignmentGroupsRequest(
+            courseID: "1",
+            gradingPeriodID: nil,
+            perPage: 100
+        )
+
+        api.mock(assignmentGroupRequest, value: assignmentGroups)
+
+        let testee = AssignmentListViewModel(context: .course("1"))
         testee.selectedSortingOption = .assignmentType
         testee.viewDidAppear()
 
@@ -284,7 +335,14 @@ class AssignmentListViewModelTests: CoreTestCase {
             ]
         )
         testee.viewDidAppear()
-        testee.filterOptionsDidUpdate(filterOptionsStudent: [.notYetSubmitted], filterOptionTeacher: .notSubmitted, statusFilterOptionTeacher: .published, sortingOption: .assignmentType, gradingPeriodId: "1")
+        testee.filterOptionsDidUpdate(
+            filterOptionsStudent: [.notYetSubmitted],
+            filterOptionTeacher: .notSubmitted,
+            statusFilterOptionTeacher: .published,
+            sortingOption: .assignmentType,
+            gradingPeriodId: "1"
+        )
+
         XCTAssertEqual(testee.selectedSortingOption, .assignmentType)
         XCTAssertEqual(testee.selectedGradingPeriodId, "1")
         XCTAssertEqual(testee.selectedGradingPeriodTitle, "GP1")

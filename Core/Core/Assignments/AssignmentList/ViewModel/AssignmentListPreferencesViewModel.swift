@@ -149,7 +149,7 @@ public enum AssignmentFilterOptionsTeacher: String, CaseIterable {
             return {
                 if let submissions = $0.submissions {
                     guard submissions.count > 0 else { return true }
-                    return !submissions.filter{ $0.submittedAt == nil && ![SubmissionType.none, SubmissionType.on_paper].contains($0.type) }.isEmpty
+                    return !submissions.filter { $0.submittedAt == nil && ![SubmissionType.none, SubmissionType.on_paper].contains($0.type) }.isEmpty
                 }
                 return true
             }

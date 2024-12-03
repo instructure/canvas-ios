@@ -54,7 +54,7 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
     func testInitialState() {
         XCTAssertEqual(testee.courseName, "Test Course")
         XCTAssertEqual(testee.gradingPeriods.count, 5)
-        XCTAssertEqual(testee.gradingPeriods.map{ $0.id }, [nil] + gradingPeriods.map { $0.id })
+        XCTAssertEqual(testee.gradingPeriods.map { $0.id }, [nil] + gradingPeriods.map { $0.id })
         XCTAssertEqual(testee.gradingPeriods.filter { $0.id != nil }.map { $0.id }, gradingPeriods.map { $0.id })
         XCTAssertEqual(testee.selectedGradingPeriod, testee.gradingPeriods.last)
         XCTAssertEqual(testee.sortingOptions, AssignmentListViewModel.AssignmentArrangementOptions.allCases)
