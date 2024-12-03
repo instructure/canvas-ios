@@ -20,29 +20,34 @@ import Combine
 import SwiftUI
 import Core
 
-@Observable final class NotebookViewModel {
+@Observable
+final class NotebookViewModel {
+    // MARK: - Outputs
 
     var listItems: [NotebookListItem] = []
-
     let router: Router
 
+    // MARK: - Private variables
+
     private let getCoursesInteractor: GetCoursesInteractor
+    private var cancellables: Set<AnyCancellable> = []
 
-    private var getCoursesCancellable: AnyCancellable?
-
-    private var searchTextCancellable: AnyCancellable?
+    // MARK: - Init
 
     init(router: Router, getCoursesInteractor: GetCoursesInteractor) {
         self.router = router
         self.getCoursesInteractor = getCoursesInteractor
 
-        getCoursesCancellable = getCoursesInteractor.get().sink { _ in } receiveValue: { [weak self] courses in
+        getCoursesInteractor.get().sink { _ in } receiveValue: { [weak self] courses in
             self?.listItems = courses.map {
                 NotebookListItem(id: $0.id, course: $0.course, institution: $0.institution)
             }
-        }
+        }.store(in: &cancellables)
+
         onSearch("")
     }
+
+    // MARK: - Inputs
 
     func onSearch(_ text: String) {
         getCoursesInteractor.search(for: text)

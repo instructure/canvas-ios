@@ -22,7 +22,11 @@ import SwiftUI
 private let textDisabledColor = Color(red: 27/100, green: 36/100, blue: 45/100)
 
 struct NoteCard: View {
+    // MARK: - Properties
+
     let note: NotebookNote
+
+    // MARK: - Init
 
     init(_ note: NotebookNote) {
         self.note = note
@@ -42,6 +46,7 @@ struct NoteCard: View {
 }
 
 struct NoteCardLabel: View {
+    // MARK: - Properties
     let type: NotebookNoteLabel
 
     var body: some View {
@@ -60,15 +65,19 @@ struct NoteCardLabel: View {
 }
 
 struct FilterButton: View {
+    // MARK: - Properties
+
     let type: NotebookNoteLabel
-
     let enabled: Bool
-
-    let textEnabledColor = Color(red: 39/255, green: 53/255, blue: 64/255)
-
+    let textEnabledColor = Color(red: 39/255,
+                                 green: 53/255,
+                                 blue: 64/255)
     let backgroundEnabledColor = Color.white
+    let backgroundDisabledColor = Color(red: 94/100,
+                                        green: 95/100,
+                                        blue: 96/100)
 
-    let backgroundDisabledColor = Color(red: 94/100, green: 95/100, blue: 96/100)
+    // MARK: - Init
 
     init(_ type: NotebookNoteLabel, enabled: Bool = true) {
         self.type = type
@@ -86,14 +95,18 @@ struct FilterButton: View {
         .frame(maxWidth: .infinity)
         .background( enabled ? backgroundEnabledColor : backgroundDisabledColor )
         .cornerRadius(16)
-        .shadow(color: Color.black.opacity(0.2), radius: enabled ? 8 : 0, x: 0, y: 0)
+        .shadow(color: Color.black.opacity(0.2),
+                radius: enabled ? 8 : 0, x: 0, y: 0)
     }
 }
 
 struct NotebookLabelIcon: View {
-    let type: NotebookNoteLabel
+    // MARK: - Properties
 
+    let type: NotebookNoteLabel
     let enabled: Bool
+
+    // MARK: - Init
 
     init(_ type: NotebookNoteLabel, enabled: Bool = true) {
         self.type = type
@@ -111,7 +124,13 @@ struct NotebookLabelIcon: View {
 // MARK: - Helpers
 
 @inline(__always) func colorFromType(_ type: NotebookNoteLabel) -> Color {
-    type == .confusing ? Color(red: 0.682, green: 0.106, blue: 0.122) : Color(red: 0.055, green: 0.408, blue: 0.702)
+    type == .confusing ?
+        Color(red: 0.682,
+              green: 0.106,
+              blue: 0.122) :
+        Color(red: 0.055,
+        green: 0.408,
+        blue: 0.702)
 }
 
 @inline(__always) func labelFromType(_ type: NotebookNoteLabel, isBold: Bool = false) -> String {

@@ -18,9 +18,7 @@
 
 struct NotebookCourse: Hashable {
     let id: String
-
     let course: String
-
     let institution: String
 
     static func == (lhs: NotebookCourse, rhs: NotebookCourse) -> Bool {

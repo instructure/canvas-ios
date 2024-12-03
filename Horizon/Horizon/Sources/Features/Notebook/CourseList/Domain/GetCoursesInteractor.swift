@@ -21,18 +21,25 @@ import Foundation
 import CombineExt
 
 class GetCoursesInteractor {
-    let courseNotesRepository: CourseNotesRepository
+    // MARK: - Dependencies
 
-    let publisher = PassthroughSubject<[NotebookCourse], Never>()
+    private let courseNotesRepository: CourseNotesRepository
 
-    var cancellable: AnyCancellable?
+    // MARK: - Private variables
+
+    private let publisher = PassthroughSubject<[NotebookCourse], Never>()
+    private var cancellables: Set<AnyCancellable> = []
+
+    // MARK: - Init
 
     init(courseNotesRepository: CourseNotesRepository) {
         self.courseNotesRepository = courseNotesRepository
     }
 
+    // MARK: - Public
+
     func search(for text: String) {
-        cancellable = courseNotesRepository.get().sink(receiveCompletion: { _ in }, receiveValue: { [weak self] notes in
+        courseNotesRepository.get().sink(receiveCompletion: { _ in }, receiveValue: { [weak self] notes in
             guard let self = self else { return }
 
             let courses = notes
@@ -43,12 +50,14 @@ class GetCoursesInteractor {
                 .sorted(by: self.sortByInstitution)
 
             self.publisher.send(coursesUnique)
-        })
+        }).store(in: cancellables)
     }
 
     func get() -> AnyPublisher<[NotebookCourse], Never> {
         publisher.eraseToAnyPublisher()
     }
+
+    // MARK: - Private
 
     private func filterByText(_ course: NotebookCourse, _ text: String) -> Bool {
         text.isEmpty || course.course.lowercased().contains(text.lowercased()) || course.institution.lowercased().contains(text.lowercased())

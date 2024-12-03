@@ -32,7 +32,6 @@ enum NotebookNoteLabel: String, CaseIterable {
 }
 
 class GetCourseNotesInteractor {
-
     // MARK: - Dependencies
 
     let courseNotesRepository: CourseNotesRepository
@@ -40,7 +39,6 @@ class GetCourseNotesInteractor {
     // MARK: - Properties
 
     let publisher = PassthroughSubject<[NotebookCourseNote], Never>()
-
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Init

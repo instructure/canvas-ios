@@ -23,7 +23,6 @@ import SwiftUICore
 struct NotebookView: View {
 
     @Bindable var viewModel: NotebookViewModel
-
     @Environment(\.viewController) var viewController
 
     init(viewModel: NotebookViewModel) {
@@ -72,17 +71,13 @@ struct NotebookView: View {
     }
 }
 
-#if DEBUG
-    struct NotebookView_Previews: PreviewProvider {
-        static var previews: some View {
-            NotebookView(
-                viewModel: .init(
-                    router: AppEnvironment.shared.router,
-                    getCoursesInteractor: GetCoursesInteractor(
-                        courseNotesRepository: CourseNotesRepository()
-                    )
-                )
+#Preview {
+    NotebookView(
+        viewModel: .init(
+            router: AppEnvironment.shared.router,
+            getCoursesInteractor: GetCoursesInteractor(
+                courseNotesRepository: CourseNotesRepository()
             )
-        }
-    }
-#endif
+        )
+    )
+}

@@ -20,40 +20,38 @@ import Core
 import SwiftUI
 import Combine
 
-@Observable final class NotebookCourseViewModel {
-    var title: String = ""
-
-    var notes: [NotebookNote] = []
-
-    let router: Router?
-
-    private var getCoursesNotesCancellable: AnyCancellable?
-
-    private let formatter = DateFormatter()
-
-    private let courseID: String
-
-    private let getCourseNotesInteractor: GetCourseNotesInteractor
+@Observable
+final class NotebookCourseViewModel {
+    // MARK: - Outputs
 
     var filter: NotebookNoteLabel? {
         didSet {
             executeSearch()
         }
     }
+    var isConfusingEnabled: Bool { filter == .confusing }
+    var isImportantEnabled: Bool { filter == .important }
+    var notes: [NotebookNote] = []
+    let router: Router
+    var title: String = ""
 
+    // MARK: - Private variables
+
+    private let courseID: String
+    private let formatter = DateFormatter()
+    private let getCourseNotesInteractor: GetCourseNotesInteractor
     private var search: String = "" {
         didSet {
             executeSearch()
         }
     }
+    private var cancellables: Set<AnyCancellable> = []
 
-    var isConfusingEnabled: Bool { filter == .confusing }
-
-    var isImportantEnabled: Bool { filter == .important }
+    // MARK: - Init
 
     init(courseID: String,
          getCourseNotesInteractor: GetCourseNotesInteractor,
-         router: Router? = nil) {
+         router: Router) {
         self.courseID = courseID
         self.getCourseNotesInteractor = getCourseNotesInteractor
         self.router = router
@@ -62,7 +60,7 @@ import Combine
 
         title = "Notebook for Course \(courseID)"
 
-        getCoursesNotesCancellable = getCourseNotesInteractor.get().sink { _ in } receiveValue: { [weak self] notes in
+        getCourseNotesInteractor.get().sink { _ in } receiveValue: { [weak self] notes in
             let notebookNotes = notes.map { note in
                 NotebookNote(
                     id: note.id,
@@ -72,10 +70,12 @@ import Combine
                 )
             }
             self?.notes = notebookNotes
-        }
+        }.store(in: &cancellables)
 
         getCourseNotesInteractor.search(courseId: courseID)
     }
+
+    // MARK: - Inputs
 
     func onFilter(_ filter: NotebookNoteLabel) {
         self.filter = self.filter == filter ? nil : filter
@@ -87,6 +87,8 @@ import Combine
     func onSearch(_ text: String) {
         self.search = text
     }
+
+    // MARK: - Private
 
     private func executeSearch() {
         getCourseNotesInteractor.search(courseId: courseID, text: search, filter: filter)

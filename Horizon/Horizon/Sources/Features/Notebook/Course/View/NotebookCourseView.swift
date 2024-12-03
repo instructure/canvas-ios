@@ -63,12 +63,11 @@ struct NotebookCourseView: View {
     }
 }
 
-#if DEBUG
-    struct NotebookCourseView_Previews: PreviewProvider {
-        static var previews: some View {
-            NotebookCourseView(
-                .init(courseID: "1", getCourseNotesInteractor: GetCourseNotesInteractor(courseNotesRepository: CourseNotesRepository()))
-            )
-        }
-    }
-#endif
+#Preview {
+    NotebookCourseView(
+        .init(courseID: "1",
+              getCourseNotesInteractor: GetCourseNotesInteractor(courseNotesRepository: CourseNotesRepository()),
+              router: AppEnvironment.shared.router
+         )
+    )
+}
