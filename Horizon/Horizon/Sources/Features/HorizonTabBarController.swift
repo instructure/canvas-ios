@@ -48,8 +48,6 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
         tabBar.didTapButton = { [weak self] in
             self?.presentChatBot()
         }
-
-        HorizonUI.registerCustomFonts()
     }
 
     // MARK: - Functions
