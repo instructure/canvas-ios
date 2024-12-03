@@ -331,21 +331,18 @@ extension Assignment {
         return submission?.status ?? .notSubmitted
     }
 
-    public var icon: UIImage? {
-        var image: UIImage? = .assignmentLine
-        if quizID != nil {
-            image = .quizLine
-        } else if submissionTypes.contains(.discussion_topic) {
-            image = .discussionLine
-        } else if submissionTypes.contains(.external_tool) || submissionTypes.contains(.basic_lti_launch) {
-            image = .ltiLine
-        }
-
+    public var icon: UIImage {
         if lockedForUser {
-            image = .lockLine
+            .lockLine
+        } else if quizID != nil || isQuizLTI {
+            .quizLine
+        } else if submissionTypes.contains(.discussion_topic) {
+            .discussionLine
+        } else if submissionTypes.contains(.external_tool) || submissionTypes.contains(.basic_lti_launch) {
+            .ltiLine
+        } else {
+            .assignmentLine
         }
-
-        return image
     }
 
     public func requiresLTILaunch(toViewSubmission submission: Submission) -> Bool {

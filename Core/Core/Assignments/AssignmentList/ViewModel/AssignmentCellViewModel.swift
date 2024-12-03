@@ -31,7 +31,7 @@ public class AssignmentCellViewModel: ObservableObject {
     }
 
     public var route: URL? { assignment.htmlURL }
-    public var icon: UIImage { assignment.icon ?? .assignmentLine }
+    public var icon: UIImage { assignment.icon }
     public var name: String { assignment.name }
     public var submissionStatus: String { stateDisplayProperties.text }
     public var submissionIcon: UIImage { stateDisplayProperties.icon }

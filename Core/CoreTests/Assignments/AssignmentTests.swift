@@ -260,6 +260,13 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(icon, expected)
     }
 
+    func testIconForQuizLTI() {
+        let a = Assignment.make(from: .make(id: "1", is_quiz_lti_assignment: true, quiz_id: nil))
+        let icon = a.icon
+        let expected = UIImage.quizLine
+        XCTAssertEqual(icon, expected)
+    }
+
     func testIconForExternalTool() {
         let a = Assignment.make(from: .make(id: "1", submission_types: [ .external_tool ]))
         let icon = a.icon
