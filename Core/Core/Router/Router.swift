@@ -165,7 +165,7 @@ open class Router {
     }
     open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         let url = cleanURL(url)
-        let isExternalUrl = isExternalWebsiteURL(url, userInfo: userInfo)
+        let isExternalUrl = isExternalWebsiteURL(url)
 
         if isExternalUrl, !url.originIsNotification, let url = url.url {
             RemoteLogger.shared.logBreadcrumb(route: "/external_url")
@@ -199,21 +199,14 @@ open class Router {
         fallback(url, userInfo, from, options)
     }
 
-    private func isExternalWebsiteURL(_ url: URLComponents, userInfo: [String: Any]?) -> Bool {
+    private func isExternalWebsiteURL(_ url: URLComponents) -> Bool {
         var acceptableHosts: Set<String> = AppEnvironment
             .shared
-            .currentSession?
-            .baseURL
-            .host()
+            .apiHost
             .flatMap({ [$0] }) ?? []
 
-        if let userBaseUrl = userInfo?["baseURL"] as? URL,
-           let host = userBaseUrl.host {
-            acceptableHosts.insert(host)
-        }
-
         if let courseTabUrlInteractor {
-            acceptableHosts.formUnion(courseTabUrlInteractor.tabBaseUrlHosts)
+            acceptableHosts.formUnion(courseTabUrlInteractor.baseURLHostOverrides)
         }
 
         return url.isExternalWebsite(of: acceptableHosts)
@@ -351,6 +344,11 @@ open class Router {
         // URLComponents does all the encoding we care about except we often have + meaning space in query
         var url = url
         url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
+
+        if let apiHostOverride = courseTabUrlInteractor?.baseUrlHost(for: url) {
+            url.host = apiHostOverride
+        }
+
         return url
     }
 

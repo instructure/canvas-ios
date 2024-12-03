@@ -113,9 +113,9 @@ let router = Router(routes: [
 
     RouteHandler("/:context/:contextID/announcements/:announcementID", factory: discussionViewController),
 
-    RouteHandler("/courses/:courseID/assignments", factory: { url, _, info in
+    RouteHandler("/courses/:courseID/assignments", factory: { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
-        let env: AppEnvironment = .resolved(for: url, with: info)
+        let env: AppEnvironment = .resolved(for: url)
         let viewModel = AssignmentListViewModel(env: env, context: context)
         return CoreHostingController(AssignmentListScreen(viewModel: viewModel), env: env)
     }),
@@ -125,14 +125,14 @@ let router = Router(routes: [
         return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
     },
 
-    RouteHandler("/courses/:courseID/assignments/:assignmentID") { url, params, info in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID") { url, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         if assignmentID == "syllabus" {
             return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
         }
         if !url.originIsModuleItemDetails {
             return ModuleItemSequenceViewController.create(
-                env: .resolved(for: url, with: info),
+                env: .resolved(for: url),
                 courseID: ID.expandTildeID(courseID),
                 assetType: .assignment,
                 assetID: ID.expandTildeID(assignmentID),
@@ -140,18 +140,18 @@ let router = Router(routes: [
             )
         }
         return AssignmentDetailsViewController.create(
-            env: .resolved(for: url, with: info),
+            env: .resolved(for: url),
             courseID: ID.expandTildeID(courseID),
             assignmentID: ID.expandTildeID(assignmentID),
             fragment: url.fragment
         )
     },
 
-    RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions") { url, params, info in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions") { url, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         let selectedAttempt = Int(url.queryValue(for: "selectedAttempt") ?? "")
         return SubmissionDetailsViewController.create(
-            env: .resolved(for: url, with: info),
+            env: .resolved(for: url),
             context: .course(ID.expandTildeID(courseID)),
             assignmentID: ID.expandTildeID(assignmentID),
             userID: "self",
@@ -159,11 +159,11 @@ let router = Router(routes: [
         )
     },
 
-    RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { url, params, info in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { url, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else { return nil }
         if url.originIsCalendar || url.originIsNotification {
             return AssignmentDetailsViewController.create(
-                env: .resolved(for: url, with: info),
+                env: .resolved(for: url),
                 courseID: ID.expandTildeID(courseID),
                 assignmentID: ID.expandTildeID(assignmentID),
                 fragment: url.fragment
@@ -171,7 +171,7 @@ let router = Router(routes: [
         } else {
             let selectedAttempt = Int(url.queryValue(for: "selectedAttempt") ?? "")
             return SubmissionDetailsViewController.create(
-                env: .resolved(for: url, with: info),
+                env: .resolved(for: url),
                 context: .course(ID.expandTildeID(courseID)),
                 assignmentID: ID.expandTildeID(assignmentID),
                 userID: ID.expandTildeID(userID),
@@ -215,18 +215,18 @@ let router = Router(routes: [
         return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: false))
     },
 
-    RouteHandler("/:context/:contextID/discussion_topics/:discussionID/reply") { url, params, info in
+    RouteHandler("/:context/:contextID/discussion_topics/:discussionID/reply") { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
-        let env: AppEnvironment = .resolved(for: url, with: info)
+        let env: AppEnvironment = .resolved(for: url)
         return DiscussionReplyViewController.create(env: env, context: context, topicID: topicID)
     },
-    RouteHandler("/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies") { url, params, info in
+    RouteHandler("/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies") { url, params, _ in
         guard
             let context = Context(path: url.path),
             let discussionID = params["discussionID"],
             let entryID = params["entryID"]
         else { return nil }
-        let env: AppEnvironment = .resolved(for: url, with: info)
+        let env: AppEnvironment = .resolved(for: url)
         return DiscussionReplyViewController.create(env: env, context: context, topicID: discussionID, replyToEntryID: entryID)
     },
 
@@ -469,7 +469,7 @@ private func fileList(url: URLComponents, params: [String: String], userInfo: [S
         return fileDetails(url: url, params: params, userInfo: userInfo)
     }
     return FileListViewController.create(
-        env: .resolved(for: url, with: userInfo),
+        env: .resolved(for: url),
         context: Context(path: url.path) ?? .currentUser,
         path: params["subFolder"]
     )

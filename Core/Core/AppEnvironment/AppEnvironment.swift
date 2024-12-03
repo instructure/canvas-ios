@@ -176,4 +176,8 @@ open class AppEnvironment {
         let data = try? APIJSONEncoder().encode(lastLoginAccount)
         UserDefaults.standard.set(data, forKey: "lastLoginAccount")
     }
+
+    public var apiHost: String? {
+        currentSession?.baseURL.host()
+    }
 }

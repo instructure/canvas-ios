@@ -30,8 +30,7 @@ public final class CourseTabUrlInteractor {
     }
 
     private var enabledTabsPerCourse: [Context: [String]] = [:]
-    public private(set) var tabBaseUrlHosts: Set<String> = []
-
+    private var baseURLHostOverridesPerCourse: [Context: String] = [:]
     private var tabSubscription: AnyCancellable?
 
     public init() { }
@@ -113,11 +112,16 @@ public final class CourseTabUrlInteractor {
             enabledTabsPerCourse[context] = tabPaths
         }
 
-        tabBaseUrlHosts = Set(
+        let defaultHost = AppEnvironment.shared.apiHost
+
+        baseURLHostOverridesPerCourse =
             tabModelsPerCourse
-                .flatMap { $0.value }
-                .compactMap { $0.apiBaseUrlHost }
-        )
+            .reduce(into: [:], { partialResult, pair in
+                pair.value.forEach { tab in
+                    guard let apiHost = tab.apiBaseUrlHost, apiHost != defaultHost else { return }
+                    partialResult[pair.key] = apiHost
+                }
+            })
     }
 
     private func pathsForTabs(_ tabs: [TabModel], context: Context) -> [String] {
@@ -163,6 +167,19 @@ public final class CourseTabUrlInteractor {
             name: "Unexpected Course Tab path format",
             reason: "tab.id: \(tab.id), tab.html_url: \(tab.htmlUrl), baseUrl: \(Analytics.analyticsBaseUrl)"
         )
+    }
+
+    // MARK: Base URL Overrides
+
+    public var baseURLHostOverrides: Set<String> {
+        Set(baseURLHostOverridesPerCourse.values)
+    }
+
+    public func baseUrlHost(for url: URLComponents) -> String? {
+        guard let context = Context(path: url.path) else { return nil }
+        return baseURLHostOverridesPerCourse.first(where: {
+            return $0.key.isEquivalent(to: context)
+        })?.value
     }
 }
 
