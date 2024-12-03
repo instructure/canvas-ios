@@ -20,19 +20,29 @@ import Core
 import SwiftUI
 
 struct ExpandingModuleView: View {
-    let title: String
-    let items: [HModuleItem]
+    let module: HModule
     let routeToURL: (URL) -> Void
     @State private var isExpanded = false
+    @State private var firstItemHeight: CGFloat = 0
+    @State private var lastItemHeight: CGFloat = 0
 
     var body: some View {
         VStack(alignment: .leading) {
             Button {
                 isExpanded.toggle()
             } label: {
-                HStack(alignment: .center) {
-                    Size14RegularTextDarkestTitle(title: title.uppercased())
+                HStack(alignment: .top) {
+                    ProgramCheckMarkIcon(isCompleted: module.isCompleted)
+                    Size14RegularTextDarkestTitle(title: module.name.uppercased())
                     Spacer()
+                    if module.isInProgress {
+                        Text("INCOMPLETE ITEM", bundle: .horizon)
+                            .foregroundStyle(Color.textDanger)
+                            .font(.regular12)
+                            .padding(5)
+                            .overlay(Capsule().stroke(Color.backgroundDanger, lineWidth: 1))
+                    }
+
                     Image(systemName: "chevron.down")
                         .tint(Color.textDark)
                         .frame(width: 18, height: 18)
@@ -42,40 +52,89 @@ struct ExpandingModuleView: View {
             }
 
             if isExpanded {
-                VStack(alignment: .leading, spacing: 16) {
-                    ForEach(items) { item in
-                        Button {
-                            if let url = item.htmlURL {
-                                routeToURL(url)
-                            }
-                        } label: {
-                            ProgramItemView(
-                                title: item.title,
-                                subtitle: "Placeholder Text",
-                                duration: "20 mins"
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(module.items) { item in
+                        let isFirstItem = item == module.items.first
+                        let isLastItem = item == module.items.last
+
+                        HStack {
+                            moduleItemState(
+                                isFirstItem: isFirstItem,
+                                isLastItem: isLastItem,
+                                firstItemLineHeight: firstItemHeight,
+                                lastItemLineHeight: lastItemHeight,
+                                isCompleted: item.isCompleted
                             )
-                            .padding(.all, 12)
+                            moduleItemButton(item: item)
+                                .readingFrame { frame in
+                                    if isFirstItem { firstItemHeight = frame.height }
+                                    if isLastItem { lastItemHeight = frame.height }
+                                }
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color.backgroundLight)
-                    .padding(.leading, 32)
+                    .padding(.leading, 23)
                 }
                 .padding(.bottom, 24)
             }
         }
         .padding(.horizontal, 16)
-        .animation(.easeOut, value: isExpanded)
+        .onFirstAppear { if module.isInProgress { isExpanded = true } }
+    }
+
+    private func moduleItemButton(item: HModuleItem) -> some View {
+        Button {
+            if let url = item.htmlURL {
+                routeToURL(url)
+            }
+        } label: {
+            ProgramItemView(item: item)
+                .padding(.all, 12)
+                .background(RoundedRectangle(cornerRadius: 12).fill(Color.backgroundLightest))
+                .padding(.vertical, 10)
+                .shadow(color: Color.textDark.opacity(0.2), radius: 5, x: 0, y: 0)
+        }
+        .disableWithOpacity(item.isLocked, disabledOpacity: 0.6)
+    }
+
+    private func moduleItemState(
+        isFirstItem: Bool,
+        isLastItem: Bool,
+        firstItemLineHeight: CGFloat,
+        lastItemLineHeight: CGFloat,
+        isCompleted: Bool
+    ) -> some View {
+        ZStack {
+            if module.isSequentialProgressRequired {
+                ProgramLine(
+                    isFirstItem: isFirstItem,
+                    isLastItem: isLastItem,
+                    firstItemLineHeight: firstItemHeight,
+                    lastItemLineHeight: lastItemHeight,
+                    hasMultipleItems: module.items.count > 1
+                )
+            }
+            ZStack {
+                Circle()
+                    .fill(Color.backgroundLightest)
+                    .frame(width: 25, height: 25)
+                ProgramCheckMarkIcon(isCompleted: isCompleted)
+            }
+
+        }
     }
 }
 
+#if DEBUG
 #Preview {
     ExpandingModuleView(
-        title: "Intro Module",
-        items: [
-            .init(id: "1", title: "Intro to biology", htmlURL: nil),
-            .init(id: "2", title: "Intro to sports", htmlURL: nil)
-        ],
+        module: .init(
+            id: "13",
+            name: "Assginemts",
+            courseID: "2",
+            items: [.init(id: "14", title: "Sub title 2", htmlURL: nil)]
+        ),
         routeToURL: { _ in }
     )
 }
+#endif

@@ -23,12 +23,23 @@ struct HModule {
     let name: String
     let courseID: String
     let items: [HModuleItem]
+    let state: ModuleState?
+    let isSequentialProgressRequired: Bool
 
-    init(id: String, name: String, courseID: String, items: [HModuleItem]) {
+    init(
+        id: String,
+        name: String,
+        courseID: String,
+        items: [HModuleItem],
+        state: ModuleState? = .completed,
+        isSequentialProgressRequired: Bool = false
+    ) {
         self.id = id
         self.name = name
         self.courseID = courseID
         self.items = items
+        self.state = state
+        self.isSequentialProgressRequired = isSequentialProgressRequired
     }
 
     init(from entity: Module) {
@@ -36,6 +47,16 @@ struct HModule {
         self.name = entity.name
         self.courseID = entity.courseID
         self.items = entity.items.map { HModuleItem(from: $0) }
+        self.state = entity.state
+        self.isSequentialProgressRequired = entity.requireSequentialProgress ?? false
+    }
+
+    var isCompleted: Bool {
+        state == .completed
+    }
+
+    var isInProgress: Bool {
+        state == .started
     }
 }
 

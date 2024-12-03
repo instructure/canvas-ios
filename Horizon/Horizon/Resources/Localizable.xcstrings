@@ -35,6 +35,9 @@
     "Continue learning" : {
 
     },
+    "Due" : {
+
+    },
     "Error" : {
 
     },
@@ -53,6 +56,9 @@
     "How was this question?" : {
 
     },
+    "INCOMPLETE ITEM" : {
+
+    },
     "Learn" : {
 
     },
@@ -60,6 +66,9 @@
 
     },
     "OK" : {
+
+    },
+    "OVERDUE" : {
 
     },
     "Question" : {

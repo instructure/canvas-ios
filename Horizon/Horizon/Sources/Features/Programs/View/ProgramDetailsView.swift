@@ -117,10 +117,7 @@ struct ProgramDetailsViewView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 16) {
                         ForEach(modules) { module in
-                            ExpandingModuleView(
-                                title: module.name,
-                                items: module.items
-                            ) { url in
+                            ExpandingModuleView(module: module) { url in
                                 viewModel.moduleItemDidTap(url: url, from: viewController)
                             }
                             .frame(minHeight: 44)
