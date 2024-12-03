@@ -19,6 +19,9 @@
 import Foundation
 import Combine
 
+/// This interactor has two purposes
+/// - Provide info on hidden tabs for routing. When routing we shouldn't allow routes for disabled tabs.
+/// - Extract base URLs for courses. We use these base URLs for API calls in case a course is on a different host compared to the the one used to log in.
 public final class CourseTabUrlInteractor {
 
     public static let blockDisabledTabUserInfoKey = "shouldBlockDisabledCourseTabKey"
@@ -175,7 +178,7 @@ public final class CourseTabUrlInteractor {
         Set(baseURLHostOverridesPerCourse.values)
     }
 
-    public func baseUrlHost(for url: URLComponents) -> String? {
+    public func baseUrlHostOverride(for url: URLComponents) -> String? {
         guard let context = Context(path: url.path) else { return nil }
         return baseURLHostOverridesPerCourse.first(where: {
             return $0.key.isEquivalent(to: context)

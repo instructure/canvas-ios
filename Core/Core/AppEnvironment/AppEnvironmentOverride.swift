@@ -19,6 +19,8 @@
 import Foundation
 import CoreData
 
+/// The main purpose of this entity is to create a new `AppEnvironment` that points to a different host
+/// so we can inject this instead of using the `.shared` instance when we need to connect to a different host when a course is on a different URL.
 public final class AppEnvironmentOverride: AppEnvironment {
 
     let base: AppEnvironment
@@ -91,9 +93,9 @@ public final class AppEnvironmentOverride: AppEnvironment {
 
 public extension AppEnvironment {
 
+    /// This method returns an `AppEnvironmentOverride` using the given `url`s host if it
+    /// doesn't match the one on `AppEnvironment.shared`.
     static func resolved(for url: URLComponents) -> AppEnvironment {
-        // Only check for the host part, if not match, recreate base URL using URL scheme of
-        // the currentSession base URL.
         if let host = url.host, host != shared.api.baseURL.host(),
            let baseURL = url.with(scheme: shared.api.baseURL.scheme).url?.apiBaseURL {
             return AppEnvironmentOverride(base: shared, baseURL: baseURL)

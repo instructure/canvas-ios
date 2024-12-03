@@ -345,7 +345,7 @@ open class Router {
         var url = url
         url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
 
-        if let apiHostOverride = courseTabUrlInteractor?.baseUrlHost(for: url) {
+        if let apiHostOverride = courseTabUrlInteractor?.baseUrlHostOverride(for: url) {
             url.host = apiHostOverride
         }
 
