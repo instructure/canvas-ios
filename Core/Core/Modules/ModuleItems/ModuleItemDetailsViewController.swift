@@ -150,7 +150,7 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
                 moduleID: moduleID,
                 moduleItemID: itemID
             )
-            return LTIViewController.create(env: env, tools: tools, name: item.title)
+            return LTIViewController.create(env: env, tools: tools, isQuizLTI: item.isQuizLTI, name: item.title)
         default:
             guard let url = item.url else { return nil }
             let preparedURL = url.appendingOrigin("module_item_details")
