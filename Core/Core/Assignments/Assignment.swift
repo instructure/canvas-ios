@@ -146,6 +146,15 @@ public class Assignment: NSManagedObject {
         set { submissionTypesRaw = newValue.map { $0.rawValue } .joined(separator: ",") }
     }
 
+    public var submissionTypesWithQuizLTIMapping: [SubmissionType] {
+        guard isQuizLTI else { return submissionTypes }
+
+        var types = submissionTypes
+        types.removeAll { $0 == .online_quiz }
+        types.replace([.external_tool], with: [.online_quiz])
+        return types
+    }
+
     public var hasMultipleDueDates: Bool {
         allDates.count > 1
     }

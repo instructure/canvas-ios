@@ -392,4 +392,29 @@ class AssignmentTests: CoreTestCase {
         ]))
         XCTAssertTrue(a.hasMultipleDueDates)
     }
+
+    func testSubmissionTypesWithQuizLTIMapping_whenIsQuizLTIIsFalse() {
+        let a = Assignment.make()
+        a.isQuizLTI = false
+
+        a.submissionTypes = [.external_tool, .media_recording]
+        XCTAssertEqual(a.submissionTypesWithQuizLTIMapping, [.external_tool, .media_recording])
+    }
+
+    func testSubmissionTypesWithQuizLTIMapping_whenIsQuizLTIIsTrue() {
+        let a = Assignment.make()
+        a.isQuizLTI = true
+
+        a.submissionTypes = [.external_tool]
+        XCTAssertEqual(a.submissionTypesWithQuizLTIMapping, [.online_quiz])
+
+        a.submissionTypes = [.external_tool, .media_recording]
+        XCTAssertEqual(a.submissionTypesWithQuizLTIMapping, [.online_quiz, .media_recording])
+
+        a.submissionTypes = [.online_quiz, .external_tool, .media_recording]
+        XCTAssertEqual(a.submissionTypesWithQuizLTIMapping, [.online_quiz, .media_recording])
+        
+        a.submissionTypes = [.basic_lti_launch]
+        XCTAssertEqual(a.submissionTypesWithQuizLTIMapping, [.basic_lti_launch])
+    }
 }

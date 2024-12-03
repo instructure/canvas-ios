@@ -23,15 +23,18 @@ class SubmissionViewableTests: XCTestCase {
     struct Model: SubmissionViewable {
         let submission: Submission?
         let submissionTypes: [SubmissionType]
+        let submissionTypesWithQuizLTIMapping: [SubmissionType]
         let allowedExtensions: [String]
 
         init(
             submission: Submission? = Submission.make(),
             submissionTypes: [SubmissionType] = [.online_text_entry],
+            submissionTypesWithQuizLTIMapping: [SubmissionType]? = nil,
             allowedExtensions: [String] = []
         ) {
             self.submission = submission
             self.submissionTypes = submissionTypes
+            self.submissionTypesWithQuizLTIMapping = submissionTypesWithQuizLTIMapping ?? submissionTypes
             self.allowedExtensions = allowedExtensions
         }
     }

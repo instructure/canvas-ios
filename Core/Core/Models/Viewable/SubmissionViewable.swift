@@ -21,6 +21,7 @@ import UIKit
 public protocol SubmissionViewable {
     var submission: Submission? { get }
     var submissionTypes: [SubmissionType] { get }
+    var submissionTypesWithQuizLTIMapping: [SubmissionType] { get }
     var allowedExtensions: [String] { get }
 }
 
@@ -35,7 +36,7 @@ extension SubmissionViewable {
     }
 
     public var submissionTypeText: String {
-        let list = submissionTypes.map { (type: SubmissionType) in return type.localizedString }
+        let list = submissionTypesWithQuizLTIMapping.map { $0.localizedString }
         return ListFormatter.localizedString(from: list, conjunction: .or)
     }
 

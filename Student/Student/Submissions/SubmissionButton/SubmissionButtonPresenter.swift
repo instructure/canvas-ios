@@ -63,7 +63,9 @@ class SubmissionButtonPresenter: NSObject {
             return String(localized: "View Discussion", bundle: .student)
         }
 
-        if assignment.isLTIAssignment {
+        if assignment.isQuizLTI {
+            return String(localized: "Open the Quiz", bundle: .student)
+        } else if assignment.isLTIAssignment {
             return String(localized: "Launch External Tool", bundle: .student)
         }
 
