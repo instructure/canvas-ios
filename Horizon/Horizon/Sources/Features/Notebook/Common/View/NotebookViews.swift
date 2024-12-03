@@ -21,13 +21,11 @@ import SwiftUI
 import SwiftUICore
 
 struct NotesBody: View {
-    @State private var title: String
-
-    private let router: Router?
 
     private let builder: () -> AnyView
-
     private let backgroundColor = Color(hexString: "#FBF5ED")!
+    private let router: Router?
+    @State private var title: String
 
     init(
         title: String,
@@ -40,28 +38,23 @@ struct NotesBody: View {
     }
 
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView {
-                VStack {
-                    builder()
-                }
-                .padding(.horizontal, 24)
-                .padding(.bottom, 24)
+        ScrollView {
+            VStack {
+                builder()
             }
-            .frame(maxWidth: .infinity)
-            .navigationBarBackButtonHidden(true)
-            .navigationTitle(title)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    BackButton(router: router)
-                }
-            }
-            .toolbarBackground(backgroundColor, for: .navigationBar)
-            .contentMargins(.top, geometry.safeAreaInsets.top)
-            .contentMargins(.bottom, geometry.safeAreaInsets.bottom)
-            .background(backgroundColor)
-            .ignoresSafeArea()
+            .padding(.horizontal, 24)
+            .padding(.bottom, 24)
         }
+        .frame(maxWidth: .infinity)
+        .navigationBarBackButtonHidden(true)
+        .navigationTitle(title)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                BackButton(router: router)
+            }
+        }
+        .toolbarBackground(backgroundColor, for: .navigationBar)
+        .background(backgroundColor)
     }
 }
 
