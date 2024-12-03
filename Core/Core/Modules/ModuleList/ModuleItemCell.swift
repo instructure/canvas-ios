@@ -78,7 +78,13 @@ class ModuleItemCell: UITableViewCell {
         nameLabel.isEnabled = isUserInteractionEnabled
         nameLabel.textColor = nameLabel.isEnabled ? .textDarkest : .textLight
 
-        iconView.image = item.masteryPath?.locked == true ? UIImage.lockLine : item.type?.icon
+        if item.masteryPath?.locked == true {
+            iconView.image = .lockLine
+        } else if item.isQuizLTI {
+            iconView.image = ModuleItemType.quiz("").icon
+        } else {
+            iconView.image = item.type?.icon
+        }
         contentStackView.setCustomSpacing(16, after: iconView)
         iconView.isHidden = (iconView.image == nil)
 
@@ -132,7 +138,7 @@ class ModuleItemCell: UITableViewCell {
 
     private func updateA11yLabel(_ item: ModuleItem, isPublishing: Bool) {
         var a11yLabels: [String?] = [
-            item.type?.label,
+            item.isQuizLTI ? ModuleItemType.quiz("").label : item.type?.label,
             item.title
         ]
 
