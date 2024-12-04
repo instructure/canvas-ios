@@ -93,10 +93,10 @@ class ModuleItemTests: CoreTestCase {
     func testIsQuizLTI() {
         var item = ModuleItem.make(from: .make(quiz_lti: true))
         XCTAssertEqual(item.isQuizLTI, true)
-        
+
         item = ModuleItem.make(from: .make(quiz_lti: false))
         XCTAssertEqual(item.isQuizLTI, false)
-        
+
         item = ModuleItem.make(from: .make(quiz_lti: nil))
         XCTAssertEqual(item.isQuizLTI, false)
     }

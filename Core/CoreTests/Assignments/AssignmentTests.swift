@@ -413,7 +413,7 @@ class AssignmentTests: CoreTestCase {
 
         a.submissionTypes = [.online_quiz, .external_tool, .media_recording]
         XCTAssertEqual(a.submissionTypesWithQuizLTIMapping, [.online_quiz, .media_recording])
-        
+
         a.submissionTypes = [.basic_lti_launch]
         XCTAssertEqual(a.submissionTypesWithQuizLTIMapping, [.basic_lti_launch])
     }
