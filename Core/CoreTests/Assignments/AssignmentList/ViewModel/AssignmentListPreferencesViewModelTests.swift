@@ -62,7 +62,7 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.selectedSortingOption, AssignmentListViewModel.AssignmentArrangementOptions.dueDate)
         XCTAssertEqual(testee.selectedGradingPeriod!.id, gradingPeriods.last?.id)
         XCTAssertEqual(testee.selectedAssignmentFilterOptionsStudent, AssignmentFilterOptionStudent.allCases)
-        XCTAssertEqual(testee.selectedStatusFilterOptionTeacher, AssignmentFilterOptionsTeacher.allAssignments)
+        XCTAssertEqual(testee.selectedStatusFilterOptionTeacher, AssignmentStatusFilterOptionsTeacher.allAssignments)
         XCTAssertEqual(testee.selectedFilterOptionTeacher, AssignmentFilterOptionsTeacher.allAssignments)
     }
 
@@ -107,7 +107,7 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
         XCTAssertNotNil(listPreferences.filterOptionTeacher)
         XCTAssertEqual(listPreferences.filterOptionTeacher, AssignmentFilterOptionsTeacher.needsGrading)
         XCTAssertNotNil(listPreferences.statusFilterOptionTeacher)
-        XCTAssertEqual(listPreferences.statusFilterOptionTeacher, AssignmentFilterOptionsTeacher.published)
+        XCTAssertEqual(listPreferences.statusFilterOptionTeacher, AssignmentStatusFilterOptionsTeacher.published)
         XCTAssertNotNil(listPreferences.sortingOption)
         XCTAssertEqual(listPreferences.sortingOption, AssignmentListViewModel.AssignmentArrangementOptions.groupName)
         XCTAssertNotNil(listPreferences.gradingPeriodId)
@@ -136,7 +136,7 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
         XCTAssertNotNil(listPreferences.filterOptionTeacher)
         XCTAssertEqual(listPreferences.filterOptionTeacher, AssignmentFilterOptionsTeacher.allAssignments)
         XCTAssertNotNil(listPreferences.statusFilterOptionTeacher)
-        XCTAssertEqual(listPreferences.statusFilterOptionTeacher, AssignmentFilterOptionsTeacher.allAssignments)
+        XCTAssertEqual(listPreferences.statusFilterOptionTeacher, AssignmentStatusFilterOptionsTeacher.allAssignments)
         XCTAssertNotNil(listPreferences.sortingOption)
         XCTAssertEqual(listPreferences.sortingOption, AssignmentListViewModel.AssignmentArrangementOptions.dueDate)
         XCTAssertEqual(listPreferences.gradingPeriodId, expectedGradingPeriod?.id)
@@ -146,16 +146,16 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
         XCTAssertEqual(AssignmentFilterOptionsTeacher.allAssignments.title, "All Assignments")
         XCTAssertEqual(AssignmentFilterOptionsTeacher.needsGrading.title, "Needs Grading")
         XCTAssertEqual(AssignmentFilterOptionsTeacher.notSubmitted.title, "Not Submitted")
-        XCTAssertEqual(AssignmentFilterOptionsTeacher.published.title, "Published")
-        XCTAssertEqual(AssignmentFilterOptionsTeacher.unpublished.title, "Unpublished")
+        XCTAssertEqual(AssignmentStatusFilterOptionsTeacher.published.title, "Published")
+        XCTAssertEqual(AssignmentStatusFilterOptionsTeacher.unpublished.title, "Unpublished")
 
         let assignment = Assignment.make()
         assignment.published = false
         assignment.needsGradingCount = 0
         assignment.submissions = nil
         XCTAssertTrue(AssignmentFilterOptionsTeacher.allAssignments.rule(assignment))
-        XCTAssertTrue(AssignmentFilterOptionsTeacher.unpublished.rule(assignment))
-        XCTAssertFalse(AssignmentFilterOptionsTeacher.published.rule(assignment))
+        XCTAssertTrue(AssignmentStatusFilterOptionsTeacher.unpublished.rule(assignment))
+        XCTAssertFalse(AssignmentStatusFilterOptionsTeacher.published.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionsTeacher.needsGrading.rule(assignment))
         XCTAssertTrue(AssignmentFilterOptionsTeacher.notSubmitted.rule(assignment))
 
@@ -167,8 +167,8 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
         assignment.submissions = [submission]
         XCTAssertTrue(AssignmentFilterOptionsTeacher.needsGrading.rule(assignment))
         XCTAssertTrue(AssignmentFilterOptionsTeacher.notSubmitted.rule(assignment))
-        XCTAssertFalse(AssignmentFilterOptionsTeacher.unpublished.rule(assignment))
-        XCTAssertTrue(AssignmentFilterOptionsTeacher.published.rule(assignment))
+        XCTAssertFalse(AssignmentStatusFilterOptionsTeacher.unpublished.rule(assignment))
+        XCTAssertTrue(AssignmentStatusFilterOptionsTeacher.published.rule(assignment))
 
         submission.submittedAt = Clock.now.addDays(-1)
         submission.type = .on_paper
