@@ -63,4 +63,18 @@ class LTIViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Fancy Course")
     }
+
+    func testTextsWhenIsQuizLTI() {
+        let controller = LTIViewController.create(env: environment, tools: .init(), isQuizLTI: true)
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.descriptionLabel.text?.lowercased().contains("quiz"), true)
+        XCTAssertEqual(controller.openButton.titleLabel?.text?.lowercased().contains("quiz"), true)
+    }
+
+    func testTextsWhenIsNotQuizLTI() {
+        let controller = LTIViewController.create(env: environment, tools: .init(), isQuizLTI: false)
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.descriptionLabel.text?.lowercased().contains("quiz"), false)
+        XCTAssertEqual(controller.openButton.titleLabel?.text?.lowercased().contains("quiz"), false)
+    }
 }

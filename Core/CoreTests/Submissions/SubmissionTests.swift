@@ -76,7 +76,7 @@ class SubmissionTests: CoreTestCase {
         XCTAssertNotNil(submission.mediaComment)
     }
 
-    func testIcon() {
+    func testAttemptIcon() {
         let submission = Submission.make()
         let map: [SubmissionType: UIImage] = [
             .basic_lti_launch: .ltiLine,
@@ -108,7 +108,14 @@ class SubmissionTests: CoreTestCase {
         XCTAssertNil(submission.attemptIcon)
     }
 
-    func testSubtitle() {
+    func testAttemptTitle() {
+        let submission = Submission.make()
+        submission.type = .discussion_topic
+        
+        XCTAssertEqual(submission.attemptTitle, "Discussion Comment")
+    }
+
+    func testAttemptSubtitle() {
         let submission = Submission.make(from: .make(
             attachments: [ .make(size: 1234) ],
             attempt: 1,
@@ -142,6 +149,19 @@ class SubmissionTests: CoreTestCase {
 
         submission.type = nil
         XCTAssertNil(submission.attemptSubtitle)
+    }
+
+    func testAttemptPropertiesWhenQuizLTI() {
+        let submission = Submission.make(from: .make(
+            attempt: 1,
+            discussion_entries: [ .make(message: "<p>reply<p>") ]
+        ))
+        submission.assignment = Assignment.make(from: .make(is_quiz_lti_assignment: true))
+        submission.type = .discussion_topic
+
+        XCTAssertEqual(submission.attemptIcon, .quizLine)
+        XCTAssertEqual(submission.attemptTitle, "Quiz")
+        XCTAssertEqual(submission.attemptSubtitle, "Attempt 1")
     }
 
     func testRubricAssessments() {

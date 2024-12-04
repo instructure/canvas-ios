@@ -169,7 +169,23 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         Submission.make(from: .make(submission_type: .external_tool))
         presenter.viewIsReady()
 
-        XCTAssert(view.embedded is LTIViewController)
+        let ltiVC = view.embedded as? LTIViewController
+        XCTAssertNotNil(ltiVC)
+
+        ltiVC?.view.layoutIfNeeded()
+        XCTAssertEqual(ltiVC?.openButton.titleLabel?.text?.lowercased().contains("quiz"), false)
+    }
+
+    func testEmbedQuizLTI() {
+        Assignment.make(from: .make(is_quiz_lti_assignment: true, submission_types: [ .external_tool ]))
+        Submission.make(from: .make(submission_type: .external_tool))
+        presenter.viewIsReady()
+
+        let ltiVC = view.embedded as? LTIViewController
+        XCTAssertNotNil(ltiVC)
+
+        ltiVC?.view.layoutIfNeeded()
+        XCTAssertEqual(ltiVC?.openButton.titleLabel?.text?.lowercased().contains("quiz"), true)
     }
 
     func testEmbedExternalToolOnlineUploadWithAttachment() {

@@ -75,6 +75,9 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "View Discussion")
 
         a.submissionTypes = [ .external_tool ]
+        a.isQuizLTI = true
+        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Open the Quiz")
+        a.isQuizLTI = false
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Launch External Tool")
 
         presenter.arcID = .pending

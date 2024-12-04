@@ -56,6 +56,13 @@ class SubmissionViewableTests: XCTestCase {
         XCTAssertEqual(assignment.submissionTypeText, "Discussion Comment, Quiz, On Paper, No Submission, External Tool, Text Entry, Website URL, File Upload, Media Recording, or Not Graded")
     }
 
+    func testSubmissionTypeTextWithQuizLTIMapping() {
+        let assignment = Model(
+            submissionTypes: [.on_paper, .not_graded ],
+            submissionTypesWithQuizLTIMapping: [.external_tool, .online_text_entry])
+        XCTAssertEqual(assignment.submissionTypeText, "External Tool or Text Entry")
+    }
+
     func testIsSubmitted() {
         XCTAssertFalse(Model(submission: nil).isSubmitted)
         XCTAssertFalse(Model(submission: Submission.make(from: .make(submitted_at: nil))).isSubmitted)
