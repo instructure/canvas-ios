@@ -44,7 +44,7 @@
     "Core\/Extensions\/UISplitViewControllerExtensions.swift",
     "Core\/Extensions\/UITabBarControllerExtensions.swift",
     "Core\/Extensions\/UINavigationControllerExtensions.swift",
-	"Core\/Core\/Planner\/CalendarMain"
+    "Core\/Core\/Planner\/CalendarMain"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",
