@@ -271,35 +271,50 @@ extension Submission: WriteableModel {
 }
 
 extension Submission {
-    public var icon: UIImage? {
-        guard let type = type else { return nil }
-        switch type {
+
+    private var typeWithQuizLTIMapping: SubmissionType? {
+        if let assignment, assignment.isQuizLTI {
+            .online_quiz
+        } else {
+            type
+        }
+    }
+
+    public var attemptIcon: UIImage? {
+        guard let typeWithQuizLTIMapping else { return nil }
+
+        switch typeWithQuizLTIMapping {
         case .basic_lti_launch, .external_tool:
-            return UIImage.ltiLine
+            return .ltiLine
         case .discussion_topic:
-            return UIImage.discussionLine
+            return .discussionLine
         case .media_recording:
-            return mediaComment?.mediaType == .audio ? UIImage.audioLine : UIImage.videoLine
+            return mediaComment?.mediaType == .audio ? .audioLine : .videoLine
         case .online_quiz:
-            return UIImage.quizLine
+            return .quizLine
         case .online_text_entry:
-            return UIImage.textLine
+            return .textLine
         case .online_upload:
             return attachments?.first?.icon
         case .online_url:
-            return UIImage.linkLine
+            return .linkLine
         case .student_annotation:
-            return UIImage.annotateLine
+            return .annotateLine
         case .wiki_page:
-            return UIImage.documentLine
+            return .documentLine
         case .none, .not_graded, .on_paper:
             return nil
         }
     }
 
-    public var subtitle: String? {
-        guard let type = type else { return nil }
-        switch type {
+    public var attemptTitle: String? {
+        typeWithQuizLTIMapping?.localizedString
+    }
+
+    public var attemptSubtitle: String? {
+        guard let typeWithQuizLTIMapping else { return nil }
+
+        switch typeWithQuizLTIMapping {
         case .basic_lti_launch, .external_tool, .online_quiz:
             return String.localizedStringWithFormat(
                 String(localized: "Attempt %d", bundle: .core),
@@ -321,6 +336,9 @@ extension Submission {
             return nil
         }
     }
+}
+
+extension Submission {
 
     /// See canvas-lms submission.rb `def needs_grading?`
     public var needsGrading: Bool {

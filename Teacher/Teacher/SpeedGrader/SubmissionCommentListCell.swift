@@ -166,26 +166,7 @@ struct SubmissionAttempt: View {
     let action: () -> Void
 
     var icon: Image? {
-        switch submission.type {
-        case .basic_lti_launch, .external_tool:
-            return .ltiLine
-        case .discussion_topic:
-            return .discussionLine
-        case .media_recording:
-            return submission.mediaComment?.mediaType == .audio ? .audioLine : .videoLine
-        case .online_quiz:
-            return .quizLine
-        case .online_text_entry:
-            return .textLine
-        case .online_url:
-            return .linkLine
-        case .student_annotation:
-            return .annotateLine
-        case .wiki_page:
-            return .documentLine
-        case .none?, .not_graded, .on_paper, .online_upload, nil:
-            return nil
-        }
+        submission.attemptIcon.map { Image(uiImage: $0) }
     }
 
     var body: some View {
@@ -193,9 +174,9 @@ struct SubmissionAttempt: View {
             HStack(alignment: .top, spacing: 6) {
                 icon?.size(18).foregroundColor(.accentColor)
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(submission.type?.localizedString ?? "")
+                    Text(submission.attemptTitle ?? "")
                         .font(.semibold14).foregroundColor(.textDarkest)
-                    Text(submission.subtitle ?? "")
+                    Text(submission.attemptSubtitle ?? "")
                         .font(.medium12).foregroundColor(.textDark)
                         .lineLimit(1)
                 }
@@ -205,7 +186,7 @@ struct SubmissionAttempt: View {
                 .frame(width: 300)
                 .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderMedium))
         })
-            .accessibility(label: Text("View submission attempt \(submission.attempt). \(submission.type?.localizedString ?? "")", bundle: .teacher))
+            .accessibility(label: Text("View submission attempt \(submission.attempt). \(submission.attemptTitle ?? "")", bundle: .teacher))
     }
 }
 
