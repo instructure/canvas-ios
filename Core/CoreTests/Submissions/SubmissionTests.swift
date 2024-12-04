@@ -111,7 +111,7 @@ class SubmissionTests: CoreTestCase {
     func testAttemptTitle() {
         let submission = Submission.make()
         submission.type = .discussion_topic
-        
+
         XCTAssertEqual(submission.attemptTitle, "Discussion Comment")
     }
 

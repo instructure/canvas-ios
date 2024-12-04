@@ -18,17 +18,17 @@
 
 @testable import Core
 import XCTest
+import TestsFoundation
 
 class PutModuleItemPublishStateTests: CoreTestCase {
 
     func testUpdatesPublishedStateOnModuleItem() {
-        let dbItem: ModuleItem = databaseClient.insert()
+        let dbItem = ModuleItem.make()
         dbItem.id = "testModuleItem"
         dbItem.courseID = "testCourse"
         dbItem.published = nil
-        dbItem.title = ""
-        dbItem.position = 0
         dbItem.moduleID = "testModule"
+
         let mockRequest = PutModuleItemPublishRequest(
             courseId: "testCourse",
             moduleId: "testModule",
@@ -41,6 +41,7 @@ class PutModuleItemPublishStateTests: CoreTestCase {
             response: nil,
             error: nil
         )
+
         let testee = PutModuleItemPublishState(
             courseId: "testCourse",
             moduleId: "testModule",
