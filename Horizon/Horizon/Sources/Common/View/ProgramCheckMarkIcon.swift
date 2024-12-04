@@ -16,21 +16,32 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import SwiftUI
 
-struct Size14RegularTextDarkestTitle: View {
-    let title: String
+struct ProgramCheckMarkIcon: View {
+    let isCompleted: Bool
 
     var body: some View {
-        Text(title.capitalized)
-            .font(.regular14)
-            .foregroundColor(.textDarkest)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .multilineTextAlignment(.leading)
+        ZStack {
+            if isCompleted {
+                Circle()
+                    .fill(Color.green)
+                    .frame(width: 20, height: 20)
+
+                Image(systemName: "checkmark")
+                    .font(.regular10)
+                    .foregroundColor(.backgroundLightest)
+            } else {
+                Circle()
+                    .stroke(Color.backgroundDark, lineWidth: 1)
+                    .frame(width: 20, height: 20)
+            }
+        }
     }
 }
 
+#if DEBUG
 #Preview {
-    Size14RegularTextDarkestTitle(title: "Module Name")
+    ProgramCheckMarkIcon(isCompleted: true)
 }
+#endif
