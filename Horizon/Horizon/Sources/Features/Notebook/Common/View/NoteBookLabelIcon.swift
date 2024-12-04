@@ -16,14 +16,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct NotebookCourse: Hashable {
-    let id: String
-    let course: String
-    let institution: String
+import SwiftUI
 
-    init(from courseNote: CourseNote) {
-        id = courseNote.courseId
-        course = courseNote.course
-        institution = courseNote.institution
+struct NotebookLabelIcon: View {
+    // MARK: - Dependencies
+
+    let type: NotebookNoteLabel
+    let enabled: Bool
+
+    var body: some View {
+        let image = type == .confusing ?
+            Image(systemName: "questionmark.circle") :
+            Image(.flag)
+        return image.foregroundStyle(enabled ? colorFromType(type) : Color.disabledGray)
     }
+}
+
+// MARK: - Helpers
+
+@inline(__always) func colorFromType(_ type: NotebookNoteLabel) -> Color {
+    type == .confusing ?
+        Color(red: 0.682,
+              green: 0.106,
+              blue: 0.122) :
+        Color(red: 0.055,
+        green: 0.408,
+        blue: 0.702)
 }

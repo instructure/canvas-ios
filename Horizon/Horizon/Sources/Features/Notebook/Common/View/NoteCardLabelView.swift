@@ -16,14 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct NotebookCourse: Hashable {
-    let id: String
-    let course: String
-    let institution: String
+import SwiftUI
 
-    init(from courseNote: CourseNote) {
-        id = courseNote.courseId
-        course = courseNote.course
-        institution = courseNote.institution
+struct NoteCardLabelView: View {
+    // MARK: - Properties
+    let type: NotebookNoteLabel
+
+    var body: some View {
+        HStack {
+            NotebookLabelIcon(type: type, enabled: true)
+            Text(labelFromType(type)).font(.regular12).foregroundStyle(colorFromType(type))
+        }
+        .padding()
+        .frame(height: 31)
+        .background(
+            RoundedRectangle(cornerRadius: 15.5)
+                .stroke(colorFromType(type), lineWidth: 2)
+        )
+        .cornerRadius(15.5)
     }
 }

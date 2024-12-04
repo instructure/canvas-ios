@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUICore
 import SwiftUI
 import Core
 
@@ -27,33 +26,36 @@ struct NotebookCourseView: View {
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        return NotesBody(
+        NotesBody(
             title: viewModel.title,
             router: viewModel.router
         ) {
             NotebookSearchBar(term: $viewModel.term).padding(.top, 32)
 
-            Text(String(localized: "Filter", bundle: .horizon)).font(.regular16)
+            Text("Filter", bundle: .horizon).font(.regular16)
                 .padding(.top, 32)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             HStack(spacing: 8) {
-                FilterButton(.confusing, enabled: viewModel.isConfusingEnabled).onTapGesture {
-                    viewModel.filter = .confusing
-                }
-                FilterButton(.important, enabled: viewModel.isImportantEnabled).onTapGesture {
-                    viewModel.filter = .important
-                }
+                NoteCardFilterButton(type: .confusing, enabled: viewModel.isConfusingEnabled)
+                    .onTapGesture {
+                        viewModel.filter = .confusing
+                    }
+                NoteCardFilterButton(type: .important, enabled: viewModel.isImportantEnabled)
+                    .onTapGesture {
+                        viewModel.filter = .important
+                    }
             }.frame(maxWidth: .infinity)
 
-            Text("Notes").font(.regular16)
+            Text("Notes", bundle: .horizon).font(.regular16)
                 .padding(.top, 32)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             ForEach(viewModel.notes) { note in
-                NoteCardView(note).onTapGesture {
-                    viewModel.onNoteTapped(note, viewController: viewController)
-                }
+                NoteCardView(note: note)
+                    .onTapGesture {
+                        viewModel.onNoteTapped(note, viewController: viewController)
+                    }
             }
         }
     }

@@ -42,7 +42,7 @@ enum NotebookNoteLabel: String, CaseIterable {
     case important = "Important"
 }
 
-class GetCourseNotesInteractor {
+final class GetCourseNotesInteractor {
     // MARK: - Dependencies
 
     let courseNotesRepository: CourseNotesRepository

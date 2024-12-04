@@ -17,7 +17,6 @@
 //
 
 import Core
-import SwiftUI
 import Combine
 
 @Observable

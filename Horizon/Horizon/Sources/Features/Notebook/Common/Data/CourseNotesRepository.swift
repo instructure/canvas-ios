@@ -16,20 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import Combine
+import Foundation
 
-struct CourseNote {
-    let id: String
-    let date: Date
-    let content: String
-    let institution: String
-    let courseId: String
-    let course: String
-    let labels: [String] // e.g. "Important", "Confusing", etc.
+protocol CourseNotesRepositoryProtocol {
+    func get() -> AnyPublisher<[CourseNote], any Error>
 }
 
-struct CourseNotesRepository {
+struct CourseNotesRepository: CourseNotesRepositoryProtocol {
     func get() -> AnyPublisher<[CourseNote], any Error> {
         return Just(notes).setFailureType(to: Error.self).eraseToAnyPublisher()
     }

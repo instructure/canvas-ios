@@ -16,14 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct NotebookCourse: Hashable {
-    let id: String
-    let course: String
-    let institution: String
+import Foundation
+import Combine
 
-    init(from courseNote: CourseNote) {
-        id = courseNote.courseId
-        course = courseNote.course
-        institution = courseNote.institution
-    }
+struct CourseNote {
+    let id: String
+    let date: Date
+    let content: String
+    let institution: String
+    let courseId: String
+    let course: String
+    let labels: [String] // e.g. "Important", "Confusing", etc.
 }

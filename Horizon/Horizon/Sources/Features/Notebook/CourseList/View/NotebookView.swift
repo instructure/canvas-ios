@@ -18,10 +18,8 @@
 
 import Core
 import SwiftUI
-import SwiftUICore
 
 struct NotebookView: View {
-
     @Bindable var viewModel: NotebookViewModel
     @Environment(\.viewController) var viewController
 
@@ -30,18 +28,16 @@ struct NotebookView: View {
     }
 
     var body: some View {
-        NotesBody(title: "Notebook", router: viewModel.router) {
+        NotesBody(title: String(localized: "Notebook", bundle: .horizon),
+                  router: viewModel.router) {
             NotebookSearchBar(term: $viewModel.term).padding(.vertical, 24)
-            ListViewItems(listItems: $viewModel.listItems, onTap: viewModel.onTap, viewController: viewController)
+            ListViewItems(listItems: viewModel.listItems, onTap: viewModel.onTap, viewController: viewController)
         }
     }
 
     struct ListViewItems: View {
-
-        @Binding var listItems: [NotebookListItem]
-
+        var listItems: [NotebookListItem]
         let onTap: ((NotebookListItem, WeakViewController) -> Void)
-
         let viewController: WeakViewController
 
         var body: some View {
@@ -56,15 +52,17 @@ struct NotebookView: View {
 
     struct ListViewItem: View {
         let onTap: ((NotebookListItem, WeakViewController) -> Void)
-
         let item: NotebookListItem
-
         let viewController: WeakViewController
 
         var body: some View {
             NotebookCard {
-                Text(item.institution).font(.regular12).multilineTextAlignment(.leading)
-                Text(item.course).font(.regular22).multilineTextAlignment(.leading)
+                Text(item.institution)
+                    .font(.regular12)
+                    .multilineTextAlignment(.leading)
+                Text(item.course)
+                    .font(.regular22)
+                    .multilineTextAlignment(.leading)
             }
             .onTapGesture { onTap(item, viewController) }
         }

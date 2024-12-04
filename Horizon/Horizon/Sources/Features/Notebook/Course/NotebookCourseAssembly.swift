@@ -17,7 +17,6 @@
 //
 
 import Core
-import SwiftUICore
 
 final class NotebookCourseAssembly {
     static func make(courseId: String) -> CoreHostingController<NotebookCourseView>? {
