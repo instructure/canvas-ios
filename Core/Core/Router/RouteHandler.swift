@@ -22,7 +22,8 @@ import UIKit
 // A route is a place you can go in the app
 // Each app defines it's own routes when creating the Router
 public struct RouteHandler {
-    public typealias ViewFactory = (URLComponents, [String: String], [String: Any]?) -> UIViewController?
+    public typealias ViewFactory = (URLComponents, [String: String], [String: Any]?, AppEnvironment) -> UIViewController?
+    public typealias DiscardingEnvironmentViewFactory = (URLComponents, [String: String], [String: Any]?) -> UIViewController?
 
     public enum Segment: Equatable {
         case literal(String)
@@ -34,7 +35,7 @@ public struct RouteHandler {
     public let factory: ViewFactory
     public let segments: [Segment]
 
-    public init(_ template: String, factory: @escaping ViewFactory = { _, _, _ in nil }) {
+    public init(_ template: String, factory: @escaping ViewFactory = { _, _, _, _ in nil }) {
         self.template = template
         self.factory = factory
         self.segments = template.split(separator: "/").map { part in
@@ -44,6 +45,15 @@ public struct RouteHandler {
                 return .param(ID.expandTildeID(String(part.dropFirst())))
             }
             return .literal(String(part))
+        }
+    }
+
+    /// This is to avoid large file changes on Routes.
+    /// We need to remove this while migrating to a state where AppEnvironment instance
+    /// is being passed to all view of routes entry points.
+    public init(_ template: String, factory: @escaping DiscardingEnvironmentViewFactory) {
+        self.init(template) { url, params, userInfo, _ in
+            factory(url, params, userInfo)
         }
     }
 

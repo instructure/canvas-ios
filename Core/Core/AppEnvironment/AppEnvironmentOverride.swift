@@ -66,6 +66,16 @@ public final class AppEnvironmentOverride: AppEnvironment {
         set {}
     }
 
+    public override weak var loginDelegate: LoginDelegate? {
+        get { base.loginDelegate }
+        set { base.loginDelegate = newValue }
+    }
+
+    public override weak var window: UIWindow? {
+        get { base.window }
+        set { base.window = newValue }
+    }
+
     public override var currentSession: LoginSession? {
         get {
             guard let cSession = base.currentSession else { return nil }
@@ -91,7 +101,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
     }
 }
 
-public extension AppEnvironment {
+extension AppEnvironment {
 
     /// This method returns an `AppEnvironmentOverride` using the given `url`s host if it
     /// doesn't match the one on `AppEnvironment.shared`.
