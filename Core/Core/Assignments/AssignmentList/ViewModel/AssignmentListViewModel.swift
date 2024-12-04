@@ -22,7 +22,7 @@ import SwiftUI
 
 public class AssignmentListViewModel: ObservableObject {
 
-    public enum AssignmentArrangementOptions: String, CaseIterable {
+    public enum AssignmentArrangementOptions: String, CaseIterable, Identifiable {
         static let studentCases: [Self] = [.dueDate, .groupName]
         static let teacherCases: [Self] = [.assignmentGroup, .assignmentType]
 
@@ -30,6 +30,8 @@ public class AssignmentListViewModel: ObservableObject {
         case groupName
         case assignmentGroup
         case assignmentType
+
+        public var id: String { rawValue }
 
         var title: String {
             switch self {

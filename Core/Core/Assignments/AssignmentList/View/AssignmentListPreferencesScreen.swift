@@ -81,7 +81,7 @@ public struct AssignmentListPreferencesScreen: View {
     private var filterSection: some View {
         if viewModel.isTeacher {
             Section {
-                ForEach(AssignmentFilterOptionsTeacher.filters, id: \.hashValue) { item in
+                ForEach(AssignmentFilterOptionsTeacher.filters) { item in
                     filterItemTeacher(with: item)
                 }
             } header: {
@@ -89,7 +89,7 @@ public struct AssignmentListPreferencesScreen: View {
             }
         } else {
             Section {
-                ForEach(AssignmentFilterOptionStudent.allCases, id: \.id) { item in
+                ForEach(AssignmentFilterOptionStudent.allCases) { item in
                     filterItemStudent(with: item)
                 }
             } header: {
@@ -129,7 +129,7 @@ public struct AssignmentListPreferencesScreen: View {
 
     private var statusFilterSectionTeacher: some View {
         Section {
-            ForEach(AssignmentFilterOptionsTeacher.statusFilters, id: \.hashValue) { item in
+            ForEach(AssignmentFilterOptionsTeacher.statusFilters) { item in
                 statusFilterItemTeacher(with: item)
             }
         } header: {
@@ -151,7 +151,7 @@ public struct AssignmentListPreferencesScreen: View {
 
     private var sortBySection: some View {
         Section {
-            ForEach(viewModel.sortingOptions, id: \.self) { item in
+            ForEach(viewModel.sortingOptions) { item in
                 sortByItem(with: item)
             }
         } header: {
@@ -173,7 +173,7 @@ public struct AssignmentListPreferencesScreen: View {
 
     private var gradingPeriodsSection: some View {
         Section {
-            ForEach(viewModel.gradingPeriods, id: \.id) { item in
+            ForEach(viewModel.gradingPeriods) { item in
                 gradingPeriodItem(with: item)
             }
         } header: {

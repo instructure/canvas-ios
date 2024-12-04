@@ -32,12 +32,12 @@ public struct GradingPeriodOption: Identifiable, Equatable {
     }
 }
 
-public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
+public struct AssignmentFilterOptionStudent: CaseIterable, Equatable, Identifiable {
     public static func == (lhs: AssignmentFilterOptionStudent, rhs: AssignmentFilterOptionStudent) -> Bool {
         lhs.id == rhs.id && lhs.title == rhs.title && lhs.subtitle == rhs.subtitle
     }
 
-    let id: String
+    public let id: String
     let title: String
     let subtitle: String?
     let rule: (Assignment) -> Bool
@@ -111,7 +111,7 @@ public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
     ]
 }
 
-public enum AssignmentFilterOptionsTeacher: String, CaseIterable {
+public enum AssignmentFilterOptionsTeacher: String, CaseIterable, Identifiable {
     static let filters: [Self] = [.allAssignments, .needsGrading, .notSubmitted]
     static let statusFilters: [Self] = [.allAssignments, .published, .unpublished]
 
@@ -124,6 +124,8 @@ public enum AssignmentFilterOptionsTeacher: String, CaseIterable {
     // Status Filters
     case published
     case unpublished
+
+    public var id: String { rawValue }
 
     var title: String {
         switch self {

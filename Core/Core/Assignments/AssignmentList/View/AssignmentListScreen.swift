@@ -116,7 +116,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     private func assignmentList(_ groups: [AssignmentGroupViewModel]) -> some View {
         ScrollView {
             LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
-                ForEach(groups, id: \.id) { assignmentGroup in
+                ForEach(groups) { assignmentGroup in
                     AssignmentGroupView(viewModel: assignmentGroup)
                 }
             }
