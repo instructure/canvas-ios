@@ -904,7 +904,7 @@
         <attribute name="order" optional="YES" attributeType="String"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="published" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="questionCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="questionCountRaw" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="questionTypesRaw" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
         <attribute name="quizTypeOrder" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="quizTypeRaw" attributeType="String"/>

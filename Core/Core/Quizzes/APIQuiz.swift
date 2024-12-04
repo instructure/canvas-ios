@@ -190,7 +190,7 @@ extension APIQuiz {
         one_question_at_a_time: Bool = false,
         points_possible: Double? = 11.1,
         published: Bool? = true,
-        question_count: Int = 5,
+        question_count: Int? = 5,
         question_types: [QuizQuestionType]? = nil,
         quiz_type: QuizType = .survey,
         require_lockdown_browser_for_results: Bool = false,
