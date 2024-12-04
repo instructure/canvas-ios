@@ -83,10 +83,10 @@ public class AssignmentListViewModel: ObservableObject {
     private var selectedFilterOptionsStudent: [AssignmentFilterOptionStudent] = AssignmentFilterOptionStudent.allCases
 
     // Teacher
-    private let filterOptionsTeacher: [AssignmentFilterOptionsTeacher] = AssignmentFilterOptionsTeacher.filters
-    private let statusFilterOptionsTeacher: [AssignmentFilterOptionsTeacher] = AssignmentFilterOptionsTeacher.statusFilters
-    private var initialStatusFilterOptionTeacher: AssignmentFilterOptionsTeacher = .allAssignments
-    private var selectedStatusFilterOptionTeacher: AssignmentFilterOptionsTeacher = .allAssignments
+    private let filterOptionsTeacher: [AssignmentFilterOptionsTeacher] = AssignmentFilterOptionsTeacher.allCases
+    private let statusFilterOptionsTeacher: [AssignmentStatusFilterOptionsTeacher] = AssignmentStatusFilterOptionsTeacher.allCases
+    private var initialStatusFilterOptionTeacher: AssignmentStatusFilterOptionsTeacher = .allAssignments
+    private var selectedStatusFilterOptionTeacher: AssignmentStatusFilterOptionsTeacher = .allAssignments
     private var initialFilterOptionTeacher: AssignmentFilterOptionsTeacher = .allAssignments
     private var selectedFilterOptionTeacher: AssignmentFilterOptionsTeacher = .allAssignments
 
@@ -165,7 +165,7 @@ public class AssignmentListViewModel: ObservableObject {
     func filterOptionsDidUpdate(
         filterOptionsStudent: [AssignmentFilterOptionStudent]? = nil,
         filterOptionTeacher: AssignmentFilterOptionsTeacher? = nil,
-        statusFilterOptionTeacher: AssignmentFilterOptionsTeacher? = nil,
+        statusFilterOptionTeacher: AssignmentStatusFilterOptionsTeacher? = nil,
         sortingOption: AssignmentArrangementOptions? = nil,
         gradingPeriodId: String?
     ) {
@@ -369,7 +369,7 @@ public class AssignmentListViewModel: ObservableObject {
             customFilterSettingData == $0.rawValue
         }.first ?? selectedFilterOptionTeacher
 
-        selectedStatusFilterOptionTeacher = AssignmentFilterOptionsTeacher.allCases.filter {
+        selectedStatusFilterOptionTeacher = AssignmentStatusFilterOptionsTeacher.allCases.filter {
             statusFilterSettingData == $0.rawValue
         }.first ?? selectedStatusFilterOptionTeacher
 

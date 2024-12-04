@@ -112,20 +112,11 @@ public struct AssignmentFilterOptionStudent: CaseIterable, Equatable, Identifiab
 }
 
 public enum AssignmentFilterOptionsTeacher: String, CaseIterable, Identifiable {
-    static let filters: [Self] = [.allAssignments, .needsGrading, .notSubmitted]
-    static let statusFilters: [Self] = [.allAssignments, .published, .unpublished]
-
     case allAssignments
-
-    // Custom Filters
     case needsGrading
     case notSubmitted
 
-    // Status Filters
-    case published
-    case unpublished
-
-    public var id: String { rawValue }
+    public var id: String { "\(String(describing: type(of: self))).\(rawValue)" }
 
     var title: String {
         switch self {
@@ -135,10 +126,6 @@ public enum AssignmentFilterOptionsTeacher: String, CaseIterable, Identifiable {
             return String(localized: "Needs Grading", bundle: .core)
         case .notSubmitted:
             return String(localized: "Not Submitted", bundle: .core)
-        case .published:
-            return String(localized: "Published", bundle: .core)
-        case .unpublished:
-            return String(localized: "Unpublished", bundle: .core)
         }
     }
 
@@ -155,6 +142,31 @@ public enum AssignmentFilterOptionsTeacher: String, CaseIterable, Identifiable {
                 }
                 return true
             }
+        }
+    }
+}
+
+public enum AssignmentStatusFilterOptionsTeacher: String, CaseIterable, Identifiable {
+    case allAssignments
+    case published
+    case unpublished
+
+    public var id: String { "\(String(describing: type(of: self))).\(rawValue)" }
+
+    var title: String {
+        switch self {
+        case .allAssignments:
+            return String(localized: "All Assignments", bundle: .core)
+        case .published:
+            return String(localized: "Published", bundle: .core)
+        case .unpublished:
+            return String(localized: "Unpublished", bundle: .core)
+        }
+    }
+
+    var rule: (Assignment) -> Bool {
+        switch self {
+        case .allAssignments: return { _ in true}
         case .published:
             return { $0.published }
         case .unpublished:
@@ -169,7 +181,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     struct AssignmentListPreferences {
         let filterOptionsStudent: [AssignmentFilterOptionStudent]
         let filterOptionTeacher: AssignmentFilterOptionsTeacher?
-        let statusFilterOptionTeacher: AssignmentFilterOptionsTeacher?
+        let statusFilterOptionTeacher: AssignmentStatusFilterOptionsTeacher?
         let sortingOption: AssignmentListViewModel.AssignmentArrangementOptions?
         let gradingPeriodId: String?
     }
@@ -178,7 +190,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
     // Filter Options
     @Published private(set) var selectedAssignmentFilterOptionsStudent: [AssignmentFilterOptionStudent]
-    @Published var selectedStatusFilterOptionTeacher: AssignmentFilterOptionsTeacher?
+    @Published var selectedStatusFilterOptionTeacher: AssignmentStatusFilterOptionsTeacher?
     @Published var selectedFilterOptionTeacher: AssignmentFilterOptionsTeacher?
 
     // Sorting Options
@@ -191,7 +203,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
     private let initialFilterOptionsStudent: [AssignmentFilterOptionStudent]
     private let initialFilterOptionTeacher: AssignmentFilterOptionsTeacher
-    private let initialStatusFilterOptionTeacher: AssignmentFilterOptionsTeacher
+    private let initialStatusFilterOptionTeacher: AssignmentStatusFilterOptionsTeacher
     private let initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions
     private let initialGradingPeriod: GradingPeriodOption?
 
@@ -212,7 +224,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     init(
         isTeacher: Bool,
         initialFilterOptionsStudent: [AssignmentFilterOptionStudent],
-        initialStatusFilterOptionTeacher: AssignmentFilterOptionsTeacher,
+        initialStatusFilterOptionTeacher: AssignmentStatusFilterOptionsTeacher,
         initialFilterOptionTeacher: AssignmentFilterOptionsTeacher,
         sortingOptions: [AssignmentListViewModel.AssignmentArrangementOptions],
         initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions,

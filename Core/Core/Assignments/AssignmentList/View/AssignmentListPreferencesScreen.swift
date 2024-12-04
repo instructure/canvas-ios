@@ -81,7 +81,7 @@ public struct AssignmentListPreferencesScreen: View {
     private var filterSection: some View {
         if viewModel.isTeacher {
             Section {
-                ForEach(AssignmentFilterOptionsTeacher.filters) { item in
+                ForEach(AssignmentFilterOptionsTeacher.allCases) { item in
                     filterItemTeacher(with: item)
                 }
             } header: {
@@ -129,7 +129,7 @@ public struct AssignmentListPreferencesScreen: View {
 
     private var statusFilterSectionTeacher: some View {
         Section {
-            ForEach(AssignmentFilterOptionsTeacher.statusFilters) { item in
+            ForEach(AssignmentStatusFilterOptionsTeacher.allCases) { item in
                 statusFilterItemTeacher(with: item)
             }
         } header: {
@@ -137,7 +137,7 @@ public struct AssignmentListPreferencesScreen: View {
         }
     }
 
-    private func statusFilterItemTeacher(with item: AssignmentFilterOptionsTeacher) -> some View {
+    private func statusFilterItemTeacher(with item: AssignmentStatusFilterOptionsTeacher) -> some View {
         InstUI.RadioButtonCell(
             title: item.title,
             value: item,
