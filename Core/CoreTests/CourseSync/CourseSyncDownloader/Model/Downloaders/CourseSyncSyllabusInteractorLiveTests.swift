@@ -21,7 +21,6 @@ import XCTest
 
 class CourseSyncSyllabusInteractorLiveTests: CoreTestCase {
 
-    // FIXME: flaky test (both locally and on CI)
     func testSuccessfulFetch() {
         mockSyllabusContent()
         mockSyllabusSummary()
