@@ -20,8 +20,10 @@ import SwiftUI
 
 public struct AssignmentCellView: View {
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     @ObservedObject private var viewModel: AssignmentCellViewModel
 
@@ -56,7 +58,7 @@ public struct AssignmentCellView: View {
 
     private var icon: some View {
         AccessIcon(image: viewModel.icon, published: viewModel.published)
-            .frame(width: 20, height: 20)
+            .frame(width: uiScale.iconScale * 20, height: uiScale.iconScale * 20)
             .foregroundColor(Color(viewModel.courseColor ?? .textDark))
             .padding(.top, 10)
             .padding(.leading, 18)
@@ -89,7 +91,7 @@ public struct AssignmentCellView: View {
     }
 
     private var dueDateAndStatus: some View {
-        return HStack(alignment: .center, spacing: 2) {
+        HStack(alignment: .center, spacing: 2) {
             dueDate
             subtitleSeparator
             submissionIcon
@@ -106,16 +108,16 @@ public struct AssignmentCellView: View {
 
     private var subtitleSeparator: some View {
         InstUI.Divider()
-            .frame(minWidth: 1, maxHeight: 16)
+            .frame(minWidth: 2, maxHeight: 18)
             .style(.textCellSupportingText)
             .foregroundColor(viewModel.defaultTextColor)
-            .padding(.horizontal, 2)
+            .padding(.horizontal, 4)
     }
 
     private var submissionIcon: some View {
         Image(uiImage: viewModel.submissionIcon)
             .resizable()
-            .frame(width: 14, height: 14)
+            .frame(width: uiScale.iconScale * 18, height: uiScale.iconScale * 18)
             .foregroundColor(viewModel.submissionColor)
     }
 
@@ -126,19 +128,19 @@ public struct AssignmentCellView: View {
     }
 
     private var score: some View {
-        return Text(viewModel.scoreLabel ?? "")
+        Text(viewModel.scoreLabel ?? "")
             .style(.textCellSupportingText)
             .foregroundColor(viewModel.brandColor)
     }
 
     private var pointsPossible: some View {
-        return Text(viewModel.pointsPossibleText)
+        Text(viewModel.pointsPossibleText)
             .font(.semibold16)
             .foregroundColor(viewModel.brandColor)
     }
 
     private var needsGradingAndPointsPossible: some View {
-        return HStack(alignment: .center, spacing: 2) {
+        HStack(alignment: .center, spacing: 2) {
             needsGradingBubble
             subtitleSeparator
             pointsPossible

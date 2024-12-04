@@ -20,8 +20,10 @@ import SwiftUI
 
 public struct AssignmentGroupView: View {
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var isExpanded: Bool = true
     @ObservedObject private var viewModel: AssignmentGroupViewModel
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     public init(viewModel: AssignmentGroupViewModel) {
         self.viewModel = viewModel
@@ -51,7 +53,7 @@ public struct AssignmentGroupView: View {
             Text(viewModel.name)
             Spacer()
             Image.arrowOpenUpLine
-                .size(16)
+                .size(uiScale.iconScale * 16)
                 .rotationEffect(isExpanded ? .degrees(0) : .degrees(180))
                 .accessibilityHidden(true)
                 .animation(.smooth, value: isExpanded)

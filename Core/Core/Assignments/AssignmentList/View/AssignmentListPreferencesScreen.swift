@@ -81,7 +81,7 @@ public struct AssignmentListPreferencesScreen: View {
     private var filterSection: some View {
         if viewModel.isTeacher {
             Section {
-                ForEach(AssignmentFilterOptionsTeacher.filters, id: \.self) { item in
+                ForEach(AssignmentFilterOptionsTeacher.filters, id: \.hashValue) { item in
                     filterItemTeacher(with: item)
                 }
             } header: {
@@ -129,7 +129,7 @@ public struct AssignmentListPreferencesScreen: View {
 
     private var statusFilterSectionTeacher: some View {
         Section {
-            ForEach(AssignmentFilterOptionsTeacher.statusFilters, id: \.self) { item in
+            ForEach(AssignmentFilterOptionsTeacher.statusFilters, id: \.hashValue) { item in
                 statusFilterItemTeacher(with: item)
             }
         } header: {
