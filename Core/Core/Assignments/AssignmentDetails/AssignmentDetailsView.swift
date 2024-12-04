@@ -176,7 +176,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             Button(action: launchLTITool, label: {
                 HStack {
                     Spacer()
-                    Text(launchLtiTitle(for: assignment))
+                    Text(assignment.openLtiButtonTitle)
                         .font(.semibold16).foregroundColor(Color(Brand.shared.buttonPrimaryText))
                     Spacer()
                 }
@@ -211,14 +211,6 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
                 content
             }
                 .padding(16)
-        }
-    }
-
-    private func launchLtiTitle(for assignment: Assignment) -> String {
-        if assignment.isQuizLTI {
-            String(localized: "Open the Quiz", bundle: .core)
-        } else {
-            String(localized: "Launch External Tool", bundle: .core)
         }
     }
 
@@ -266,5 +258,15 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             assignmentID: assignmentID,
             from: controller.value
         )
+    }
+}
+
+private extension Assignment {
+    var openLtiButtonTitle: String {
+        if isQuizLTI {
+            String(localized: "Open the Quiz", bundle: .core)
+        } else {
+            String(localized: "Launch External Tool", bundle: .core)
+        }
     }
 }

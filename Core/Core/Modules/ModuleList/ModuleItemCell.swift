@@ -80,10 +80,8 @@ class ModuleItemCell: UITableViewCell {
 
         if item.masteryPath?.locked == true {
             iconView.image = .lockLine
-        } else if item.isQuizLTI {
-            iconView.image = ModuleItemType.quiz("").icon
         } else {
-            iconView.image = item.type?.icon
+            iconView.image = item.displayedType?.icon
         }
         contentStackView.setCustomSpacing(16, after: iconView)
         iconView.isHidden = (iconView.image == nil)
@@ -138,7 +136,7 @@ class ModuleItemCell: UITableViewCell {
 
     private func updateA11yLabel(_ item: ModuleItem, isPublishing: Bool) {
         var a11yLabels: [String?] = [
-            item.isQuizLTI ? ModuleItemType.quiz("").label : item.type?.label,
+            item.displayedType?.label,
             item.title
         ]
 
@@ -295,6 +293,10 @@ class ModuleItemCell: UITableViewCell {
 private extension ModuleItem {
     var shouldEnablePublishControl: Bool {
         type.isFile || published == false || canBeUnpublished
+    }
+
+    var displayedType: ModuleItemType? {
+        isQuizLTI ? .quiz("") : type
     }
 }
 
