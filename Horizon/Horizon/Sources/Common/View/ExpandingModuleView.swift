@@ -123,7 +123,6 @@ struct ExpandingModuleView: View {
     }
 }
 
-#if DEBUG
 #Preview {
     ExpandingModuleView(
         module: .init(
@@ -135,4 +134,3 @@ struct ExpandingModuleView: View {
         routeToURL: { _ in }
     )
 }
-#endif

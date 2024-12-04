@@ -45,8 +45,6 @@ struct ProgramItemOverdueView: View {
     }
 }
 
-#if DEBUG
 #Preview {
     ProgramItemOverdueView(dutDate: "20-03-2025")
 }
-#endif
