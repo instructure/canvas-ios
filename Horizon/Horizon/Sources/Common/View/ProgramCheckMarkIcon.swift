@@ -16,6 +16,32 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct HorizonUI {
-    private init() {}
+import SwiftUI
+
+struct ProgramCheckMarkIcon: View {
+    let isCompleted: Bool
+
+    var body: some View {
+        ZStack {
+            if isCompleted {
+                Circle()
+                    .fill(Color.green)
+                    .frame(width: 20, height: 20)
+
+                Image(systemName: "checkmark")
+                    .font(.regular10)
+                    .foregroundColor(.backgroundLightest)
+            } else {
+                Circle()
+                    .stroke(Color.backgroundDark, lineWidth: 1)
+                    .frame(width: 20, height: 20)
+            }
+        }
+    }
 }
+
+#if DEBUG
+#Preview {
+    ProgramCheckMarkIcon(isCompleted: true)
+}
+#endif

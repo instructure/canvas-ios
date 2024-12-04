@@ -20,45 +20,57 @@ import Core
 import SwiftUI
 
 struct ProgramItemView: View {
-    let title: String
-    let subtitle: String
-    let duration: String
+    let item: HModuleItem
 
     var body: some View {
-        VStack {
-            Size14RegularTextDarkestTitle(title: title)
+        VStack(alignment: .leading) {
+            Size14RegularTextDarkestTitle(title: item.title)
                 .padding(.bottom, 8)
-            HStack(spacing: 0) {
-                HStack(spacing: 4) {
-                    Image(systemName: "document")
-                        .resizable()
-                        .renderingMode(.template)
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundStyle(Color.textDark)
-                        .frame(width: 18, height: 18)
-                    Size12RegularTextDarkTitle(title: subtitle)
-                        .lineLimit(2)
-                }
+            HStack(spacing: .zero) {
+                programItemType
                 Spacer()
-                HStack(spacing: 4) {
-                    Image(systemName: "timer")
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundStyle(Color.textDark)
-                        .frame(width: 14, height: 14)
-                    Size12RegularTextDarkTitle(title: "20 Mins")
-                }
+                programItemTime
             }
+
+            if item.isOverDue {
+                ProgramItemOverdueView(dutDate: item.dueAt?.dateOnlyString ?? "")
+            }
+        }
+    }
+
+    private var programItemType: some View {
+        HStack(spacing: 4) {
+            if let icon = item.type?.icon {
+                Image(uiImage: icon)
+                    .resizable()
+                    .renderingMode(.template)
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundStyle(Color.textDark)
+                    .frame(width: 18, height: 18)
+            }
+            Size12RegularTextDarkTitle(title: item.type?.label ?? "")
+                .lineLimit(2)
+        }
+    }
+
+    private var programItemTime: some View {
+        HStack(spacing: 4) {
+            Image(systemName: "timer")
+                .resizable()
+                .renderingMode(.template)
+                .foregroundStyle(Color.textDark)
+                .frame(width: 14, height: 14)
+            Size12RegularTextDarkTitle(title: "20 Mins")
         }
     }
 }
 
+#if DEBUG
 #Preview {
     HStack(spacing: 8) {
         ProgramItemView(
-            title: "Getting into Business",
-            subtitle: "Page",
-            duration: "55 mins"
+            item: .init(id: "1", title: "Program item title ", htmlURL: nil)
         )
     }
 }
+#endif

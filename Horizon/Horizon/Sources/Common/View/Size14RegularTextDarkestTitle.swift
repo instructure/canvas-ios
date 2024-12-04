@@ -27,6 +27,7 @@ struct Size14RegularTextDarkestTitle: View {
             .font(.regular14)
             .foregroundColor(.textDarkest)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .multilineTextAlignment(.leading)
     }
 }
 
