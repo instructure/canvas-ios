@@ -17,6 +17,7 @@
 //
 
 import Core
+import HorizonUI
 import UIKit
 
 @main
@@ -35,10 +36,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate, L
         _: UIApplication,
         didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        // MARK: Root view
+
         window = UIWindow()
         _ = environment
         window?.rootViewController = SplashAssembly.makeViewController()
         window?.makeKeyAndVisible()
+
+        // MARK: Setups
+
+        HorizonUI.registerCustomFonts()
+
         return true
     }
 }
