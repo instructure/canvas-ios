@@ -31,8 +31,6 @@ final class AssignmentDetailsViewModel {
 
     // MARK: - Input / Output
 
-    var isKeyboardVisible = false
-    var textEntry: String = ""
     var isAlertVisible = false
 
     // MARK: - Output
@@ -42,12 +40,12 @@ final class AssignmentDetailsViewModel {
     private(set) var didSubmitAssignment = false
     private(set) var attachments: [File] = []
     private(set) var errorMessage = ""
-    let keyboardObserveID = "keyboardObserveID"
+    private(set) var htmlContent = ""
     var isSubmitButtonDisabled: Bool {
         let selectedSubmission = selectedSubmission ?? .textEntry
         switch selectedSubmission {
         case .textEntry:
-            return textEntry.isEmpty
+            return htmlContent.isEmpty
         case .uploadFile:
             return attachments.isEmpty
         }
@@ -60,6 +58,8 @@ final class AssignmentDetailsViewModel {
     // MARK: - Dependancies
 
     private let interactor: AssignmentInteractor
+    private let router: Router
+    private let courseID: String
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
@@ -70,12 +70,29 @@ final class AssignmentDetailsViewModel {
 
     init(
         interactor: AssignmentInteractor,
+        router: Router,
+        courseID: String,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
         self.scheduler = scheduler
+        self.router = router
+        self.courseID = courseID
         fetchAssignmentDetails()
         bindSubmissionAssignmentEvents()
+    }
+
+    // MARK: - Input Actions
+
+    func presentRichContentEditor(controller: WeakViewController) {
+        let richContentEditor = TextSubmissionViewController.create(htmlContent: htmlContent, courseID: courseID)
+        /// Switch the `selectedSubmission` to nil and then back to `.textEntry` after retrieving the HTML content, to reflect the height for webView.
+        selectedSubmission = nil
+        richContentEditor.didSetHtmlContent = { [weak self] html in
+            self?.htmlContent = html
+            self?.selectedSubmission = .textEntry
+        }
+        router.show(richContentEditor, from: controller, options: .modal(isDismissable: false, embedInNav: true))
     }
 
     // MARK: - Private Functions
@@ -134,7 +151,7 @@ final class AssignmentDetailsViewModel {
 
     private func submitTextEntry() {
         state = .loading
-        interactor.submitTextEntry(with: textEntry)
+        interactor.submitTextEntry(with: htmlContent)
             .sink { [weak self] completion in
                 self?.state = .data
                 if case .failure(let error) = completion {

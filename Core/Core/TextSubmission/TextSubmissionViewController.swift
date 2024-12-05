@@ -32,11 +32,11 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
     private let env = AppEnvironment.shared
     private var keyboard: KeyboardTransitioning?
     private var userID: String!
-    private var htmlContent: String?
+    private var htmlContent = ""
     private let isHorizonApp = AppEnvironment.shared.app == .horizon
 
     // MARK: - Public Properties
-    public var didSentHtmlContent: ((String?) -> Void) = { _ in}
+    public var didSetHtmlContent: ((String) -> Void) = { _ in}
 
     public static func create(courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
@@ -47,7 +47,7 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
         return controller
     }
 
-    public static func create(htmlContent: String? = nil, courseID: String) -> TextSubmissionViewController {
+    public static func create(htmlContent: String, courseID: String) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
         controller.editor = RichContentEditorViewController.create(context: .course(courseID), uploadTo: .myFiles)
         controller.htmlContent = htmlContent
@@ -60,32 +60,16 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
         title = String(localized: "Text Entry", bundle: .core)
 
         navigationController?.navigationBar.useModalStyle()
-        if isHorizonApp {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(
-                title: String(localized: "Done", bundle: .core),
-                style: .plain,
-                target: self,
-                action: #selector(sendHTMLContent)
-            )
-        } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(
-                title: String(localized: "Submit", bundle: .core),
-                style: .plain,
-                target: self,
-                action: #selector(submit)
-            )
-        }
         navigationItem.rightBarButtonItem?.accessibilityIdentifier = "TextSubmission.submitButton"
         navigationItem.rightBarButtonItem?.isEnabled = false
-        addCancelButton(side: .left)
-
+        addNavBarButtons()
         editor.delegate = self
         editor.placeholder = String(localized: "Write...", bundle: .core, comment: "Text submission editor placeholder")
         editor.a11yLabel = String(localized: "Submission text", bundle: .core, comment: "Text submission editor accessibility label")
         editor.webView.scrollView.layer.masksToBounds = false
         embed(editor, in: contentView)
 
-        if let htmlContent, isHorizonApp {
+        if htmlContent.isNotEmpty, isHorizonApp {
             editor.setHTML(htmlContent)
         }
     }
@@ -103,14 +87,44 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
         showError(error)
     }
 
+    private func addNavBarButtons() {
+        if isHorizonApp {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: String(localized: "Done", bundle: .core),
+                style: .plain,
+                target: self,
+                action: #selector(sendHTMLContent)
+            )
+            navigationItem.leftBarButtonItem = UIBarButtonItem(
+                title: String(localized: "Cancel", bundle: .core),
+                style: .plain,
+                target: self,
+                action: #selector(cancel)
+            )
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: String(localized: "Submit", bundle: .core),
+                style: .plain,
+                target: self,
+                action: #selector(submit)
+            )
+            addCancelButton(side: .left)
+        }
+    }
+
     @objc private func sendHTMLContent() {
         editor.getHTML { [weak self] html in
             guard let self else {
                 return
             }
-            didSentHtmlContent(html)
+            didSetHtmlContent(html)
             env.router.dismiss(self)
         }
+    }
+
+    @objc private func cancel() {
+        didSetHtmlContent(htmlContent)
+        env.router.dismiss(self)
     }
 
     @objc private func submit() {

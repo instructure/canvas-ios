@@ -111684,6 +111684,7 @@
     },
     "Submission text" : {
       "comment" : "Text submission editor accessibility label",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -120034,6 +120035,7 @@
       }
     },
     "Text Entry" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -140979,6 +140981,7 @@
     },
     "Write..." : {
       "comment" : "Text submission editor placeholder",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
