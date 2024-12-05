@@ -16,10 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public enum CalendarFilterCountLimit: Int {
-    case base = 10
-    case extended = 20
-    case unlimited = 9999
+public enum CalendarFilterCountLimit: Equatable {
+    case base
+    case extended(Int)
+    case unlimited
+
+    public var rawValue: Int {
+        switch self {
+        case .base: return 10
+        case .extended(let value): return value
+        case .unlimited: return 9999
+        }
+    }
 }
 
 public extension Optional where Wrapped == AppEnvironment.App {
@@ -32,7 +40,7 @@ public extension Optional where Wrapped == AppEnvironment.App {
     }
 }
 
-public extension Array where Element == CDEnvironmentSetting {
+public extension Optional where Wrapped == CDEnvironmentSettings {
 
     func calendarFilterCountLimit(
         isCalendarFilterLimitEnabled: Bool
@@ -41,6 +49,10 @@ public extension Array where Element == CDEnvironmentSetting {
             return .unlimited
         }
 
-        return isEnabled(.calendar_contexts_limit) ? .extended : .base
+        if let limit = self?.calendarContextsLimit {
+            return .extended(limit)
+        }
+
+        return .base
     }
 }

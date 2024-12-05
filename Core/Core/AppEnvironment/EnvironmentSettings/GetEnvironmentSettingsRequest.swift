@@ -17,7 +17,9 @@
 //
 
 public struct GetEnvironmentSettingsRequest: APIRequestable {
-    public typealias Response = [String: Bool]
+    public struct Response: Codable {
+        public let calendar_contexts_limit: Int?
+    }
 
     public let path = "settings/environment.json"
 

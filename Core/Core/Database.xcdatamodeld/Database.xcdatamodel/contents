@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23507" systemVersion="23G80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23507" systemVersion="23H222" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -49,10 +49,13 @@
         <attribute name="gradingTypeRaw" attributeType="String"/>
         <attribute name="groupCategoryID" optional="YES" attributeType="String"/>
         <attribute name="hasOverrides" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="hasSubmittedSubmissions" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hideInGradeBook" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hideRubricPoints" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="htmlURL" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="inClosedGradingPeriod" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isQuizLTI" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -180,9 +183,8 @@
         <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="tabID" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="CDEnvironmentSetting" representedClassName="Core.CDEnvironmentSetting" syncable="YES">
-        <attribute name="isEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="name" attributeType="String"/>
+    <entity name="CDEnvironmentSettings" representedClassName="Core.CDEnvironmentSettings" syncable="YES">
+        <attribute name="calendarContextsLimitRaw" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <entity name="CDWidgetAnnouncement" representedClassName="Core.CDWidgetAnnouncement" syncable="YES">
         <attribute name="authorName" attributeType="String"/>

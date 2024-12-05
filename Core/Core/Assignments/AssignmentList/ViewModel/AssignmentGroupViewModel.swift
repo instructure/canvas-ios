@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public class AssignmentGroupViewModel: ObservableObject {
+public class AssignmentGroupViewModel: ObservableObject, Identifiable {
     public let assignments: [Assignment]
     public let name: String
     public let id: String

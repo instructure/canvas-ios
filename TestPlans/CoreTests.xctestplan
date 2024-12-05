@@ -12,8 +12,8 @@
     "codeCoverage" : {
       "targets" : [
         {
-          "containerPath" : "container:..\/Core\/Core.xcodeproj",
-          "identifier" : "2C96482D211E2F1A002C3255",
+          "containerPath" : "container:Core.xcodeproj",
+          "identifier" : "B90FCF66245CD7327BEE2CBF",
           "name" : "Core"
         }
       ]

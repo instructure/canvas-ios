@@ -32,7 +32,7 @@ class MessageDetailsViewModel: ObservableObject {
 
     @Published public var isShowingCancelDialog = false
     public let confirmAlert = ConfirmationAlertViewModel(
-        title: String(localized: "Are your sure?", bundle: .core),
+        title: String(localized: "Are you sure?", bundle: .core),
         message: String(localized: "It will permanently delete this message from your profile.", bundle: .core),
         cancelButtonTitle: String(localized: "No", bundle: .core),
         confirmButtonTitle: String(localized: "Yes", bundle: .core),

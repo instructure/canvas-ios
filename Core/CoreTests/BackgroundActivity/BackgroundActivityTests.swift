@@ -25,13 +25,10 @@ class BackgroundActivityTests: XCTestCase {
     let mockProcessManager = MockProcessManager()
     var subscriptions = Set<AnyCancellable>()
 
-    override func setUp() {
-        super.setUp()
-        mockProcessManager.reset()
-    }
-
     override func tearDown() {
         subscriptions.removeAll()
+        mockProcessManager.expireActivity()
+        mockProcessManager.reset()
         super.tearDown()
     }
 
@@ -66,8 +63,8 @@ class BackgroundActivityTests: XCTestCase {
         testee
             .start(abortHandler: {})
             .sink { completion in
-                futureFinished.fulfill()
                 result = completion
+                futureFinished.fulfill()
             }
             .store(in: &subscriptions)
 

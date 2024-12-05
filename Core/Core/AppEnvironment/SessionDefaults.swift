@@ -246,8 +246,18 @@ public struct SessionDefaults {
         set { self["assignmentListGroupBySettingByCourseId"] = newValue }
     }
 
-    public var assignmentListFilterSettingsByCourseId: [String: [String]]? {
-        get { self["assignmentListFilterSettingsByCourseId"] as? [String: [String]] }
-        set { self["assignmentListFilterSettingsByCourseId"] = newValue }
+    public var assignmentListStudentFilterSettingsByCourseId: [String: [String]]? {
+        get { self["assignmentListStudentFilterSettingsByCourseId"] as? [String: [String]] }
+        set { self["assignmentListStudentFilterSettingsByCourseId"] = newValue }
+    }
+
+    public var assignmentListTeacherFilterSettingByCourseId: [String: String]? {
+        get { self["assignmentListTeacherFilterSettingByCourseId"] as? [String: String] }
+        set { self["assignmentListTeacherFilterSettingByCourseId"] = newValue }
+    }
+
+    public var assignmentListTeacherStatusFilterSettingByCourseId: [String: String]? {
+        get { self["assignmentListTeacherStatusFilterSettingByCourseId"] as? [String: String] }
+        set { self["assignmentListTeacherStatusFilterSettingByCourseId"] = newValue }
     }
 }

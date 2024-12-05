@@ -133,8 +133,8 @@ public struct GetCalendarEventsRequest: APIRequestable {
 
     public init(
         contexts: [Context]? = nil,
-        startDate: Date = Clock.now.addYears(-2),
-        endDate: Date = Clock.now.addYears(1),
+        startDate: Date = Clock.now.addYears(-2).startOfDay(),
+        endDate: Date = Clock.now.addYears(1).endOfDay(),
         calendar: Calendar = .current,
         timeZone: TimeZone = .current,
         type: CalendarEventType = .event,
