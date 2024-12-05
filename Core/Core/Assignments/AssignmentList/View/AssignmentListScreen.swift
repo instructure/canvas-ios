@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct AssignmentListScreen: View, ScreenViewTrackable {
     @Environment(\.viewController) private var controller
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ObservedObject private var viewModel: AssignmentListViewModel
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
@@ -115,7 +116,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     private func assignmentList(_ groups: [AssignmentGroupViewModel]) -> some View {
         ScrollView {
             LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
-                ForEach(groups, id: \.id) { assignmentGroup in
+                ForEach(groups) { assignmentGroup in
                     AssignmentGroupView(viewModel: assignmentGroup)
                 }
             }

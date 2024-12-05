@@ -46,10 +46,13 @@ public class Assignment: NSManagedObject {
     @NSManaged public var gradingPeriod: GradingPeriod?
     @NSManaged public var gradingTypeRaw: String
     @NSManaged public var groupCategoryID: String?
+    @NSManaged public var hasSubmittedSubmissions: Bool
     @NSManaged public var hasOverrides: Bool
     @NSManaged public var hideRubricPoints: Bool
     @NSManaged public var htmlURL: URL?
     @NSManaged public var id: String
+    @NSManaged public var inClosedGradingPeriod: Bool
+    @NSManaged public var isQuizLTI: Bool
     @NSManaged public var lastUpdatedAt: Date?
     @NSManaged public var lockAt: Date?
     @NSManaged public var lockedForUser: Bool
@@ -180,9 +183,12 @@ extension Assignment {
         gradedIndividually = item.grade_group_students_individually ?? true
         gradingType = item.grading_type
         groupCategoryID = item.group_category_id?.value
+        hasSubmittedSubmissions = item.has_submitted_submissions ?? false
         hasOverrides = item.has_overrides == true
         htmlURL = item.html_url
         id = item.id.value
+        inClosedGradingPeriod = item.in_closed_grading_period ?? false
+        isQuizLTI = item.is_quiz_lti_assignment ?? false
         lastUpdatedAt = Date()
         lockAt = item.lock_at
         lockedForUser = item.locked_for_user ?? false
