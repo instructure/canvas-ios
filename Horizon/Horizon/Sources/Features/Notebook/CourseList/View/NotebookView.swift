@@ -28,8 +28,10 @@ struct NotebookView: View {
     }
 
     var body: some View {
-        NotesBody(title: String(localized: "Notebook", bundle: .horizon),
-                  router: viewModel.router) {
+        NotesBody(
+            title: String(localized: "Notebook", bundle: .horizon),
+            onBack: { viewModel.onBack(viewController: viewController) }
+        ) {
             NotebookSearchBar(term: $viewModel.term).padding(.vertical, 24)
             ListViewItems(listItems: viewModel.listItems, onTap: viewModel.onTap, viewController: viewController)
         }

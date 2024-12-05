@@ -27,10 +27,10 @@ struct NotebookCard<Content: View>: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) { content }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(24)
-        .background(Color.white)
-        .cornerRadius(16)
-        .shadow(color: Color.black.opacity(0.2), radius: 8, x: 1, y: 2)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(24)
+            .background(Color.white)
+            .cornerRadius(16)
+            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 1, y: 2)
     }
 }

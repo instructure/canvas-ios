@@ -28,7 +28,7 @@ struct NotebookCourseView: View {
     var body: some View {
         NotesBody(
             title: viewModel.title,
-            router: viewModel.router
+            onBack: { viewModel.onBack(viewController: viewController) }
         ) {
             NotebookSearchBar(term: $viewModel.term).padding(.top, 32)
 

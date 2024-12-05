@@ -21,6 +21,12 @@ import Combine
 
 @Observable
 final class NotebookCourseViewModel {
+    // MARK: - Dependencies
+
+    private let courseId: String
+    private let formatter = DateFormatter()
+    private let getCourseNotesInteractor: GetCourseNotesInteractor
+
     // MARK: - Outputs
 
     var filter: NotebookNoteLabel? {
@@ -34,7 +40,6 @@ final class NotebookCourseViewModel {
     var isConfusingEnabled: Bool { filter == .confusing }
     var isImportantEnabled: Bool { filter == .important }
     var notes: [NotebookNote] = []
-    let router: Router
     var title: String = ""
     var term: String {
         get {
@@ -47,10 +52,8 @@ final class NotebookCourseViewModel {
 
     // MARK: - Private variables
 
-    private let courseId: String
-    private let formatter = DateFormatter()
-    private let getCourseNotesInteractor: GetCourseNotesInteractor
-    private var cancellables: Set<AnyCancellable> = []
+    private let router: Router
+    private var subscriptions: Set<AnyCancellable> = []
 
     // MARK: - Init
 
@@ -68,20 +71,31 @@ final class NotebookCourseViewModel {
             courseId
         )
 
-        getCourseNotesInteractor.get(courseId: courseId).sink { _ in } receiveValue: { [weak self] notes in
-            let notebookNotes = notes.map { note in
-                NotebookNote(
-                    id: note.id,
-                    type: note.type,
-                    title: self?.formatter.string(from: note.date) ?? "",
-                    note: note.note
-                )
+        weak var weakSelf = self
+        getCourseNotesInteractor
+            .get(courseId: courseId)
+            .flatMap {
+                $0.publisher
+                    .map { note in
+                        NotebookNote(
+                            id: note.id,
+                            type: note.type,
+                            title: weakSelf?.formatter.string(from: note.date) ?? "",
+                            note: note.note
+                        )
+                    }
+                    .collect()
             }
-            self?.notes = notebookNotes
-        }.store(in: &cancellables)
+            .replaceError(with: [])
+            .sink { weakSelf?.notes = $0 }
+            .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
+
+    func onBack(viewController: WeakViewController) {
+        router.pop(from: viewController)
+    }
 
     func onNoteTapped(_ note: NotebookNote, viewController: WeakViewController) {
     }

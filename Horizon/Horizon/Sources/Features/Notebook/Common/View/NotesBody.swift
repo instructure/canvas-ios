@@ -23,25 +23,25 @@ struct NotesBody<Content: View>: View {
 
     private let backgroundColor = Color(hexString: "#FBF5ED")!
     private let content: Content
-    private let router: Router
+    private let onBack: () -> Void
     @State private var title: String
     @Environment(\.viewController) private var viewController
 
     init(
         title: String,
-        router: Router,
+        onBack: @escaping () -> Void,
         @ViewBuilder _ content: () -> Content
     ) {
         self.title = title
-        self.router = router
+        self.onBack = onBack
         self.content = content()
     }
 
     var body: some View {
         ScrollView {
             VStack { content }
-            .padding(.horizontal, 24)
-            .padding(.bottom, 24)
+                .padding(.horizontal, 24)
+                .padding(.bottom, 24)
         }
         .frame(maxWidth: .infinity)
         .navigationBarBackButtonHidden(true)
@@ -55,7 +55,7 @@ struct NotesBody<Content: View>: View {
 
     private var navBarButton: some View {
         Button {
-            router.pop(from: viewController)
+            onBack()
         } label: {
             Image(systemName: "arrow.left")
                 .tint(.backgroundDark)

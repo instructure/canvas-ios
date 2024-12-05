@@ -26,9 +26,15 @@ struct NotebookCourseNote {
     let type: NotebookNoteLabel?
 
     init(from courseNote: CourseNote) {
-        let notebookNoteLabel = courseNote.labels.map({ label in
-            NotebookNoteLabel.allCases.first { $0.rawValue.lowercased() == label.lowercased() }
-        }).filter({$0 != nil}).map({$0!}).first
+        let notebookNoteLabel = courseNote.labels
+          .map { label in
+              NotebookNoteLabel.allCases.first {
+                  $0.rawValue.lowercased() == label.lowercased()
+              }
+          }
+          .filter {$0 != nil}
+          .map {$0!}
+          .first
 
         date = courseNote.date
         id = courseNote.id
@@ -49,7 +55,7 @@ final class GetCourseNotesInteractor {
 
     // MARK: - Properties
 
-    private var cancellables = Set<AnyCancellable>()
+    private var subscriptions = Set<AnyCancellable>()
     private var termPublisher: CurrentValueSubject<String, Error> = CurrentValueSubject("")
     var term: String {
         termPublisher.value
@@ -70,7 +76,7 @@ final class GetCourseNotesInteractor {
     func get(courseId: String) -> AnyPublisher<[NotebookCourseNote], Error> {
         courseNotesRepository.get()
             .map(sortByDate)
-            .map({notes in notes.filter({note in note.courseId == courseId})})
+            .map {notes in notes.filter { note in note.courseId == courseId } }
             .map(toNotebookCourseNotes)
             .combineLatest(termPublisher.map({$0.lowercased()}))
             .map(filterByTerm)
@@ -90,15 +96,15 @@ final class GetCourseNotesInteractor {
     // MARK: - Private
 
     private func filterByLabel(notes: [NotebookCourseNote], filter: NotebookNoteLabel?) -> [NotebookCourseNote] {
-        notes.filter({ note in
+        notes.filter { note in
             guard let filter = filter else { return true } // if no label is specified, all values pass
             guard let type = note.type else { return false } // if no type is specified on the note but a label is specified, it does not pass
             return type.rawValue.lowercased() == filter.rawValue.lowercased() // otherwise, the note passes if the type matches the label
-        })
+        }
     }
 
     private func filterByTerm(notes: [NotebookCourseNote], term: String) -> [NotebookCourseNote] {
-        notes.filter({ term.isEmpty || $0.note.lowercased().contains(term.lowercased()) })
+        notes.filter { term.isEmpty || $0.note.lowercased().contains(term.lowercased()) }
     }
 
     private func sortByDate(_ notes: [CourseNote]) -> [CourseNote] {
@@ -106,6 +112,6 @@ final class GetCourseNotesInteractor {
     }
 
     private func toNotebookCourseNotes(_ notes: [CourseNote]) -> [NotebookCourseNote] {
-        notes.map({ courseNote in NotebookCourseNote(from: courseNote) })
+        notes.map { courseNote in NotebookCourseNote(from: courseNote) }
     }
 }

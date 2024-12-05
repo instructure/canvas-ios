@@ -25,7 +25,6 @@ final class NotebookViewModel {
     // MARK: - Outputs
 
     var listItems: [NotebookListItem] = []
-    let router: Router
     var term: String = "" {
         didSet {
             getCoursesInteractor.setTerm(term)
@@ -35,7 +34,8 @@ final class NotebookViewModel {
     // MARK: - Private variables
 
     private let getCoursesInteractor: GetCoursesInteractor
-    private var cancellables: Set<AnyCancellable> = []
+    private let router: Router
+    private var subscriptions: Set<AnyCancellable> = []
 
     // MARK: - Init
 
@@ -43,14 +43,30 @@ final class NotebookViewModel {
         self.router = router
         self.getCoursesInteractor = getCoursesInteractor
 
-        getCoursesInteractor.get().sink { _ in } receiveValue: { [weak self] courses in
-            self?.listItems = courses.map {
-                NotebookListItem(id: $0.id, course: $0.course, institution: $0.institution)
+        getCoursesInteractor.get()
+            .flatMap {
+                $0.publisher
+                    .map { course in
+                        NotebookListItem(
+                            id: course.id,
+                            course: course.course,
+                            institution: course.institution
+                        )
+                    }
+                    .collect()
             }
-        }.store(in: &cancellables)
+            .replaceError(with: [])
+            .sink { [weak self] in
+                self?.listItems = $0
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
+
+    func onBack(viewController: WeakViewController) {
+        router.pop(from: viewController)
+    }
 
     func onTap(_ listItem: NotebookListItem, viewController: WeakViewController) {
         router.route(
@@ -62,8 +78,6 @@ final class NotebookViewModel {
 
 struct NotebookListItem: Identifiable {
     let id: String
-
     let course: String
-
     let institution: String
 }
