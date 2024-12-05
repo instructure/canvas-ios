@@ -39,7 +39,7 @@ public class FileUploadTargetRequester {
      - returns: A `Future` that will fulfill the request. This `Future` keeps the class alive
      so you don't need to keep a strong reference to it.
      */
-    public func requestUploadTarget(baseURL: URL?) -> Future<Void, Error> {
+    public func requestUploadTarget(baseURL: URL? = nil) -> Future<Void, Error> {
         Future<Void, Error> { self.sendRequest(baseURL: baseURL, promise: $0) }
     }
 
