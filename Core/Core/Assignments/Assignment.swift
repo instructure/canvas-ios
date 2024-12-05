@@ -146,6 +146,15 @@ public class Assignment: NSManagedObject {
         set { submissionTypesRaw = newValue.map { $0.rawValue } .joined(separator: ",") }
     }
 
+    public var submissionTypesWithQuizLTIMapping: [SubmissionType] {
+        guard isQuizLTI else { return submissionTypes }
+
+        var types = submissionTypes
+        types.removeAll { $0 == .online_quiz }
+        types.replace([.external_tool], with: [.online_quiz])
+        return types
+    }
+
     public var hasMultipleDueDates: Bool {
         allDates.count > 1
     }
@@ -331,21 +340,18 @@ extension Assignment {
         return submission?.status ?? .notSubmitted
     }
 
-    public var icon: UIImage? {
-        var image: UIImage? = .assignmentLine
-        if quizID != nil {
-            image = .quizLine
-        } else if submissionTypes.contains(.discussion_topic) {
-            image = .discussionLine
-        } else if submissionTypes.contains(.external_tool) || submissionTypes.contains(.basic_lti_launch) {
-            image = .ltiLine
-        }
-
+    public var icon: UIImage {
         if lockedForUser {
-            image = .lockLine
+            .lockLine
+        } else if quizID != nil || isQuizLTI {
+            .quizLine
+        } else if submissionTypes.contains(.discussion_topic) {
+            .discussionLine
+        } else if submissionTypes.contains(.external_tool) || submissionTypes.contains(.basic_lti_launch) {
+            .ltiLine
+        } else {
+            .assignmentLine
         }
-
-        return image
     }
 
     public func requiresLTILaunch(toViewSubmission submission: Submission) -> Bool {

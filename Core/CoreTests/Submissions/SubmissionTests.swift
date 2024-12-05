@@ -76,7 +76,7 @@ class SubmissionTests: CoreTestCase {
         XCTAssertNotNil(submission.mediaComment)
     }
 
-    func testIcon() {
+    func testAttemptIcon() {
         let submission = Submission.make()
         let map: [SubmissionType: UIImage] = [
             .basic_lti_launch: .ltiLine,
@@ -89,26 +89,33 @@ class SubmissionTests: CoreTestCase {
         ]
         for (type, icon) in map {
             submission.type = type
-            XCTAssertEqual(submission.icon, icon)
+            XCTAssertEqual(submission.attemptIcon, icon)
         }
         submission.type = .media_recording
         submission.mediaComment = MediaComment.make(from: .make(media_type: .audio))
-        XCTAssertEqual(submission.icon, UIImage.audioLine)
+        XCTAssertEqual(submission.attemptIcon, UIImage.audioLine)
         submission.mediaComment?.mediaType = .video
-        XCTAssertEqual(submission.icon, UIImage.videoLine)
+        XCTAssertEqual(submission.attemptIcon, UIImage.videoLine)
 
         submission.type = .online_upload
         submission.attachments = Set([ File.make(from: .make(contentType: "application/pdf", mime_class: "pdf")) ])
-        XCTAssertEqual(submission.icon, UIImage.pdfLine)
+        XCTAssertEqual(submission.attemptIcon, UIImage.pdfLine)
 
         submission.type = .on_paper
-        XCTAssertNil(submission.icon)
+        XCTAssertNil(submission.attemptIcon)
 
         submission.type = nil
-        XCTAssertNil(submission.icon)
+        XCTAssertNil(submission.attemptIcon)
     }
 
-    func testSubtitle() {
+    func testAttemptTitle() {
+        let submission = Submission.make()
+        submission.type = .discussion_topic
+
+        XCTAssertEqual(submission.attemptTitle, "Discussion Comment")
+    }
+
+    func testAttemptSubtitle() {
         let submission = Submission.make(from: .make(
             attachments: [ .make(size: 1234) ],
             attempt: 1,
@@ -126,22 +133,35 @@ class SubmissionTests: CoreTestCase {
         ]
         for (type, subtitle) in map {
             submission.type = type
-            XCTAssertEqual(submission.subtitle, subtitle)
+            XCTAssertEqual(submission.attemptSubtitle, subtitle)
         }
         submission.type = .media_recording
         submission.mediaComment = MediaComment.make(from: .make(media_type: .audio))
-        XCTAssertEqual(submission.subtitle, "Audio")
+        XCTAssertEqual(submission.attemptSubtitle, "Audio")
         submission.mediaComment?.mediaType = .video
-        XCTAssertEqual(submission.subtitle, "Video")
+        XCTAssertEqual(submission.attemptSubtitle, "Video")
 
         submission.type = .online_upload
-        XCTAssertEqual(submission.subtitle, "1 KB")
+        XCTAssertEqual(submission.attemptSubtitle, "1 KB")
 
         submission.type = .on_paper
-        XCTAssertNil(submission.subtitle)
+        XCTAssertNil(submission.attemptSubtitle)
 
         submission.type = nil
-        XCTAssertNil(submission.subtitle)
+        XCTAssertNil(submission.attemptSubtitle)
+    }
+
+    func testAttemptPropertiesWhenQuizLTI() {
+        let submission = Submission.make(from: .make(
+            attempt: 1,
+            discussion_entries: [ .make(message: "<p>reply<p>") ]
+        ))
+        submission.assignment = Assignment.make(from: .make(is_quiz_lti_assignment: true))
+        submission.type = .discussion_topic
+
+        XCTAssertEqual(submission.attemptIcon, .quizLine)
+        XCTAssertEqual(submission.attemptTitle, "Quiz")
+        XCTAssertEqual(submission.attemptSubtitle, "Attempt 1")
     }
 
     func testRubricAssessments() {

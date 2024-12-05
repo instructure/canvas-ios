@@ -126,7 +126,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
 
         let types = Section(label: Text("Submission Types", bundle: .core)) {
             Text(ListFormatter.localizedString(
-                from: assignment.submissionTypes.map { $0.localizedString },
+                from: assignment.submissionTypesWithQuizLTIMapping.map { $0.localizedString },
                 conjunction: .or
             ))
                 .font(.regular16).foregroundColor(.textDarkest)
@@ -176,7 +176,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             Button(action: launchLTITool, label: {
                 HStack {
                     Spacer()
-                    Text("Launch External Tool", bundle: .core)
+                    Text(assignment.openLtiButtonTitle)
                         .font(.semibold16).foregroundColor(Color(Brand.shared.buttonPrimaryText))
                     Spacer()
                 }
@@ -258,5 +258,15 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             assignmentID: assignmentID,
             from: controller.value
         )
+    }
+}
+
+private extension Assignment {
+    var openLtiButtonTitle: String {
+        if isQuizLTI {
+            String(localized: "Open the Quiz", bundle: .core)
+        } else {
+            String(localized: "Launch External Tool", bundle: .core)
+        }
     }
 }

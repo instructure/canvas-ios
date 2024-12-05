@@ -121,13 +121,21 @@ struct SubmissionCommentList: View {
         ForEach(comments, id: \.id) { comment in
             SubmissionCommentListCell(
                 assignment: assignment,
-                submission: attempts.first(where: { $0.attempt == comment.attempt }) ?? submission,
+                submission: submissionForComment(comment),
                 comment: comment,
                 attempt: $attempt,
                 fileID: $fileID
             )
                 .scaleEffect(y: -1)
         }
+    }
+
+    private func submissionForComment(_ comment: SubmissionComment) -> Submission {
+        let result = attempts.first(where: { $0.attempt == comment.attempt }) ?? submission
+        if result.assignment == nil {
+            result.assignment = assignment
+        }
+        return result
     }
 
     func toolbar(containerHeight: CGFloat) -> some View {

@@ -163,14 +163,12 @@ class QuizListCell: UITableViewCell {
         } else {
             iconImageView.state = nil
         }
-        dateLabel.setText(quiz?.dueText, style: .textCellSupportingText)
-        dateLabel.accessibilityIdentifier = "dateLabel"
+
+        // title
         titleLabel.setText(quiz?.title, style: .textCellTitle)
         titleLabel.accessibilityIdentifier = "titleLabel"
-        pointsLabel.setText(quiz?.pointsPossibleText, style: .textCellBottomLabel)
-        pointsLabel.accessibilityIdentifier = "pointsLabel"
-        questionsLabel.setText(quiz?.nQuestionsText, style: .textCellBottomLabel)
-        questionsLabel.accessibilityIdentifier = "questionsLabel"
+
+        // status + date
         if let statusText = quiz?.lockStatusText {
             statusLabel.setText(statusText, style: .textCellSupportingText)
             statusLabel.accessibilityIdentifier = "statusLabel"
@@ -180,10 +178,17 @@ class QuizListCell: UITableViewCell {
             statusLabel.isHidden = true
             statusDot.isHidden = true
         }
+        dateLabel.setText(quiz?.dueText, style: .textCellSupportingText)
+        dateLabel.accessibilityIdentifier = "dateLabel"
 
-        if quiz?.hideQuantitativeData == true {
-            pointsLabel.isHidden = true
-            pointsDot.isHidden = true
-        }
+        // points + question count
+        pointsLabel.setText(quiz?.pointsPossibleText, style: .textCellBottomLabel)
+        pointsLabel.accessibilityIdentifier = "pointsLabel"
+        pointsLabel.isHidden = quiz?.hideQuantitativeData == true
+        let nQuestionsText = quiz?.nQuestionsText
+        questionsLabel.setText(nQuestionsText, style: .textCellBottomLabel)
+        questionsLabel.accessibilityIdentifier = "questionsLabel"
+        questionsLabel.isHidden = nQuestionsText == nil
+        pointsDot.isHidden = pointsLabel.isHidden || questionsLabel.isHidden
     }
 }

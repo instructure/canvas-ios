@@ -31,6 +31,7 @@ class SubmissionCommentFileView: UIControl {
         widthAnchor.constraint(equalToConstant: 300).isActive = true
         layer.borderColor = UIColor.borderMedium.cgColor
         layer.borderWidth = 1.0
+        iconView?.tintColor = Brand.shared.primary
         addTarget(self, action: #selector(didTapFile), for: .touchUpInside)
     }
 
@@ -52,11 +53,11 @@ class SubmissionCommentFileView: UIControl {
         accessibilityLabel = String.localizedStringWithFormat(
             String(localized: "View submission attempt %d. %@", bundle: .student),
             submission.attempt,
-            submission.type?.localizedString ?? ""
+            submission.attemptTitle ?? ""
         )
-        iconView?.image = submission.icon
-        nameLabel?.text = submission.type?.localizedString
-        sizeLabel?.text = submission.subtitle
+        iconView?.image = submission.attemptIcon
+        nameLabel?.text = submission.attemptTitle
+        sizeLabel?.text = submission.attemptSubtitle
     }
 
     @IBAction func didTapFile(_ sender: UIControl) {
