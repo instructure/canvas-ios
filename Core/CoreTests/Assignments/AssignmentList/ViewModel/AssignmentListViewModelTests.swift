@@ -173,7 +173,7 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         api.mock(assignmentGroupRequest, value: assignmentGroups)
 
-        let testee = AssignmentListViewModel(context: .course("1"))
+        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
         testee.selectedSortingOption = .dueDate
         testee.viewDidAppear()
 
@@ -236,7 +236,7 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         api.mock(assignmentGroupRequest, value: assignmentGroups)
 
-        let testee = AssignmentListViewModel(context: .course("1"))
+        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
         testee.selectedSortingOption = .assignmentType
         testee.viewDidAppear()
 
@@ -327,7 +327,7 @@ class AssignmentListViewModelTests: CoreTestCase {
     }
 
     func testFilterOptionsDidUpdate() {
-        let testee = AssignmentListViewModel(context: .course("1"))
+        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
         api.mock(
             GetGradingPeriods(courseID: "1"),
             value: [

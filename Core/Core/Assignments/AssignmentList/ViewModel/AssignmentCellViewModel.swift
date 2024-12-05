@@ -20,7 +20,7 @@ import SwiftUI
 
 public class AssignmentCellViewModel: ObservableObject {
     public let assignment: Assignment
-    public let courseColor: UIColor?
+    public let courseColor: Color
 
     private let env: AppEnvironment
 
