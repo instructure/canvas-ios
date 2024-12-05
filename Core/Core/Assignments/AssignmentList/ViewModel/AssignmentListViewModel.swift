@@ -291,42 +291,6 @@ public class AssignmentListViewModel: ObservableObject {
             if !filteredAssignments.contains(assignment), selectedFilterOptionTeacher.rule(assignment), selectedStatusFilterOptionTeacher.rule(assignment) {
                 filteredAssignments.append(assignment)
             }
-        case .dueDate:
-            let rightNow = Clock.now
-
-            let overdue = assignments.filter { $0.dueAt ?? Date.distantFuture < rightNow }
-            if !overdue.isEmpty {
-                let overdueGroup = AssignmentDateGroup(id: "overdue", name: "Overdue Assignments", assignments: overdue)
-                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: overdueGroup, courseColor: courseColor))
-            }
-            let upcoming = assignments.filter { $0.dueAt ?? Date.distantPast > rightNow }
-            if !upcoming.isEmpty {
-                let upcomingGroup = AssignmentDateGroup(id: "upcoming", name: "Upcoming Assignments", assignments: upcoming)
-                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: upcomingGroup, courseColor: courseColor))
-            }
-            let undated = assignments.filter { $0.dueAt == nil }
-            if !undated.isEmpty {
-                let undatedGroup = AssignmentDateGroup(id: "undated", name: "Undated Assignments", assignments: undated)
-                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: undatedGroup, courseColor: courseColor))
-            }
-        }
-
-        return filteredAssignments
-    }
-
-    private func filterAssignments(_ assignments: [Assignment]) -> [Assignment] {
-        // all filter selected is the same as no filter selected
-        guard isFilteringCustom else {
-            return assignments
-        }
-        var filteredAssignments: [Assignment] = []
-
-        assignments.forEach { assignment in
-            selectedFilterOptions.forEach { filterOption in
-                if !filteredAssignments.contains(assignment), filterOption.rule(assignment) {
-                    filteredAssignments.append(assignment)
-                }
-            }
         }
 
         return filteredAssignments
