@@ -24,20 +24,21 @@ public extension HorizonUI.Typography {
         private let text = "This is an example text."
 
         public var body: some View {
-            VStack(spacing: 16) {
-                ForEach(HorizonUI.Typography.Name.allCases) { typography in
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("\(typography)")
-                            .font(typography.font)
-                        HorizonUI.Typography(
-                            text: text,
-                            name: typography.id,
-                            color: .black
-                        )
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 16) {
+                    ForEach(HorizonUI.Typography.Name.allCases) { typography in
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("\(typography)")
+                                .font(typography.font)
+                            HorizonUI.Typography(
+                                text: text,
+                                name: typography.id,
+                                color: .black
+                            )
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                Spacer()
             }
             .padding(.all, 16)
             .navigationTitle("Typography")
