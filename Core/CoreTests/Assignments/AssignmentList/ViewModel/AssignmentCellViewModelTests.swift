@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import Core
+import SwiftUI
 
 class AssignmentCellViewModelTests: CoreTestCase {
 
@@ -40,7 +41,7 @@ class AssignmentCellViewModelTests: CoreTestCase {
         let assignment = Assignment.make(from: .make(name: "Test Assignment 3"))
         let testee = AssignmentCellViewModel(assignment: assignment, courseColor: nil)
         XCTAssertEqual(testee.submissionIcon, .noSolid)
-        XCTAssertEqual(testee.submissionColor.hexString, "#697783")
+        XCTAssertEqual(testee.submissionColor.hexString, Color.textDark.hexString)
         XCTAssertEqual(testee.submissionStatus, "Not Submitted")
 
         assignment.submission = Submission.make()
@@ -48,7 +49,7 @@ class AssignmentCellViewModelTests: CoreTestCase {
         assignment.submission?.workflowState = .graded
         assignment.submission?.score = 1.0
         XCTAssertEqual(testee.submissionIcon, .completeSolid)
-        XCTAssertEqual(testee.submissionColor.hexString, "#03893c")
+        XCTAssertEqual(testee.submissionColor.hexString, Color.textSuccess.hexString)
         XCTAssertEqual(testee.submissionStatus, "Graded")
     }
 
@@ -142,13 +143,9 @@ class AssignmentCellViewModelTests: CoreTestCase {
     }
 
     func testDueDate() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "LLL d, y h:mm a"
-        let now = Clock.now
-        let nowString = dateFormatter.string(from: now)
-        let assignment = Assignment.make(from: .make(due_at: now))
+        let assignment = Assignment.make(from: .make(due_at: Clock.now))
         let testee = AssignmentCellViewModel(assignment: assignment, courseColor: nil)
-        XCTAssertEqual(testee.formattedDueDate, "Due \(nowString)")
+        XCTAssertEqual(testee.formattedDueDate, assignment.dueText)
     }
 
     func testNoDue() {

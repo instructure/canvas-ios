@@ -52,14 +52,14 @@ public struct AssignmentCellView: View {
             .contentShape(Rectangle())
         })
         .background(Color.backgroundLightest)
-        .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
+        .buttonStyle(ContextButton(contextColor: UIColor(viewModel.courseColor)))
         .accessibility(identifier: "AssignmentList.\(viewModel.assignment.id)")
     }
 
     private var icon: some View {
         AccessIcon(image: viewModel.icon, published: viewModel.published)
             .frame(width: uiScale.iconScale * 20, height: uiScale.iconScale * 20)
-            .foregroundColor(Color(viewModel.courseColor ?? .textDark))
+            .foregroundColor(viewModel.courseColor)
             .padding(.top, 10)
             .padding(.leading, 18)
             .frame(maxHeight: .infinity, alignment: .top)
@@ -82,7 +82,8 @@ public struct AssignmentCellView: View {
                     needsGradingAndPointsPossible
                 }
             } else {
-                dueDateAndStatus
+                dueDate
+                submissionInfo
                 if viewModel.hasPointsPossible {
                     score
                 }
@@ -90,10 +91,8 @@ public struct AssignmentCellView: View {
         }
     }
 
-    private var dueDateAndStatus: some View {
+    private var submissionInfo: some View {
         HStack(alignment: .center, spacing: 2) {
-            dueDate
-            subtitleSeparator
             submissionIcon
             submissionStatus
         }
@@ -103,7 +102,6 @@ public struct AssignmentCellView: View {
         Text(viewModel.formattedDueDate)
             .style(.textCellSupportingText)
             .foregroundColor(viewModel.defaultTextColor)
-            .lineLimit(1)
     }
 
     private var subtitleSeparator: some View {
@@ -130,13 +128,13 @@ public struct AssignmentCellView: View {
     private var score: some View {
         Text(viewModel.scoreLabel ?? "")
             .style(.textCellSupportingText)
-            .foregroundColor(viewModel.brandColor)
+            .foregroundColor(viewModel.courseColor)
     }
 
     private var pointsPossible: some View {
         Text(viewModel.pointsPossibleText)
             .font(.semibold16)
-            .foregroundColor(viewModel.brandColor)
+            .foregroundColor(viewModel.courseColor)
     }
 
     private var needsGradingAndPointsPossible: some View {
@@ -155,7 +153,7 @@ public struct AssignmentCellView: View {
                 .font(.regular12)
                 .foregroundColor(.textLightest)
                 .padding(.horizontal, 10).padding(.vertical, 4)
-                .background(RoundedRectangle(cornerRadius: 100).fill(viewModel.brandColor))
+                .background(RoundedRectangle(cornerRadius: 100).fill(viewModel.courseColor))
                 .padding(.top, 4)
                 .padding(.bottom, 4)
         }
