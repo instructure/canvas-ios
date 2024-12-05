@@ -32,7 +32,8 @@ public class FileSubmissionSubmitter {
     }
 
     public func submitFiles(fileSubmissionID: NSManagedObjectID) -> AnyPublisher<APISubmission, FileSubmissionErrors.Submission> {
-        return fetchDestinationBaseURL(fileSubmissionID: fileSubmissionID)
+        return SubmissionPublishers
+            .fetchDestinationBaseURL(fileSubmissionID: fileSubmissionID, api: api, context: context)
             .flatMap { baseURL in
                 Future { [weak self] promise in
                     guard let self else { return promise(.failure(.submissionFailed)) }
@@ -45,26 +46,6 @@ public class FileSubmissionSubmitter {
                 }
             }
             .eraseToAnyPublisher()
-    }
-
-    /** Fetching the proper base URL for submission, by investigating course tabs full_url property. */
-    private func fetchDestinationBaseURL(fileSubmissionID: NSManagedObjectID) -> Future<URL?, Never> {
-
-        return Future<URL?, Never> { [weak self] promise in
-            guard let self else { return promise(.success(nil)) }
-
-            guard let submission = try? context.performAndWait({
-                return try self.context.existingObject(with: fileSubmissionID) as? FileSubmission
-            }) else { return promise(.success(nil)) }
-
-            let request = GetContextTabs(context: .course(submission.courseID)).request
-            api.makeRequest(request) { response, _, _ in
-                guard let baseUrl = response?.first?.full_url?.apiBaseURL else {
-                    return promise(.success(nil))
-                }
-                return promise(.success(baseUrl))
-            }
-        }
     }
 
     /** The result of the request is also written into the underlying `FileSubmission` object.  */
