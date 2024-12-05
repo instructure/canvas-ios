@@ -26,7 +26,8 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
     class DetailViewController: UIViewController {}
 
     var subscriptions = Set<AnyCancellable>()
-    lazy var controller = ModuleItemDetailsViewController.create(courseID: "1", moduleID: "2", itemID: "3")
+    lazy var controller = ModuleItemDetailsViewController
+        .create(env: environment, courseID: "1", moduleID: "2", itemID: "3")
 
     override func tearDown() {
         super.tearDown()
@@ -94,6 +95,19 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(details.tools.moduleID, "2")
         XCTAssertEqual(details.tools.moduleItemID, "3")
         XCTAssertEqual(details.name, "LTI Item Title")
+        XCTAssertEqual(details.openButton.titleLabel?.text?.lowercased().contains("quiz"), false)
+    }
+
+    func testQuizLTI() {
+        api.mock(controller.store, value: .make(
+            id: "3",
+            title: "LTI Item Title",
+            content: .externalTool("5", URL(string: "https://lti.app")!),
+            quiz_lti: true
+        ))
+        controller.view.layoutIfNeeded()
+        let details = controller.children.first as! LTIViewController
+        XCTAssertEqual(details.openButton.titleLabel?.text?.lowercased().contains("quiz"), true)
     }
 
     func testLockedForUser() {

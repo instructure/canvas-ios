@@ -22,7 +22,7 @@ public struct DiscussionEditorView: View {
     let context: Context
     let topicID: String?
     let isAnnouncement: Bool
-    let filePicker = FilePicker()
+    let filePicker = FilePicker(env: .shared)
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -144,6 +144,7 @@ public struct DiscussionEditorView: View {
 
             EditorSection(label: Text("Description", bundle: .core)) {
                 RichContentEditor(
+                    env: env,
                     placeholder: String(localized: "Add description", bundle: .core),
                     a11yLabel: String(localized: "Description", bundle: .core),
                     html: $message,
@@ -341,6 +342,7 @@ public struct DiscussionEditorView: View {
     func load() {
         guard !isLoaded else { return }
         loadIsTeacher()
+        filePicker.env = env
         guard let topicID = topicID else {
             isLoading = false
             isLoaded = true

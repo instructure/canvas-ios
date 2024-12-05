@@ -31,12 +31,29 @@ public class FileSubmissionSubmitter {
         self.context = context
     }
 
-    public func submitFiles(fileSubmissionID: NSManagedObjectID) -> Future<APISubmission, FileSubmissionErrors.Submission> {
-        Future<APISubmission, FileSubmissionErrors.Submission> { self.sendRequest(fileSubmissionID: fileSubmissionID, promise: $0) }
+    public func submitFiles(fileSubmissionID: NSManagedObjectID) -> AnyPublisher<APISubmission, FileSubmissionErrors.Submission> {
+        return SubmissionPublishers
+            .fetchDestinationBaseURL(fileSubmissionID: fileSubmissionID, api: api, context: context)
+            .flatMap { baseURL in
+                Future { [weak self] promise in
+                    guard let self else { return promise(.failure(.submissionFailed)) }
+
+                    sendRequest(
+                        baseURL: baseURL,
+                        fileSubmissionID: fileSubmissionID,
+                        promise: promise
+                    )
+                }
+            }
+            .eraseToAnyPublisher()
     }
 
     /** The result of the request is also written into the underlying `FileSubmission` object.  */
-    private func sendRequest(fileSubmissionID: NSManagedObjectID, promise: @escaping Future<APISubmission, FileSubmissionErrors.Submission>.Promise) {
+    private func sendRequest(
+        baseURL: URL?,
+        fileSubmissionID: NSManagedObjectID,
+        promise: @escaping Future<APISubmission, FileSubmissionErrors.Submission>.Promise
+    ) {
         context.performAndWait {
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else { return }
             let fileIDs = submission.files.compactMap { $0.apiID }
@@ -46,12 +63,15 @@ public class FileSubmissionSubmitter {
                 submission_type: .online_upload,
                 file_ids: fileIDs
             )
-            let request = CreateSubmissionRequest(context: .course(submission.courseID),
-                                                      assignmentID: submission.assignmentID,
-                                                      body: .init(submission: requestedSubmission))
-            api.makeRequest(request) { [self] response, _, error in
-                handleResponse(response, error: error, fileSubmissionID: fileSubmissionID, promise: promise)
-            }
+            let request = CreateSubmissionRequest(
+                context: .course(submission.courseID),
+                assignmentID: submission.assignmentID,
+                body: .init(submission: requestedSubmission)
+            )
+            API(self.api.loginSession, baseURL: baseURL)
+                .makeRequest(request) { [self] response, _, error in
+                    handleResponse(response, error: error, fileSubmissionID: fileSubmissionID, promise: promise)
+                }
         }
     }
 

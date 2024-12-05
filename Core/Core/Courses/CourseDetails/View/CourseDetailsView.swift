@@ -83,7 +83,12 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
         Button {
             if let url = viewModel.homeRoute {
                 selectionViewModel.cellTapped(at: 0)
-                env.router.route(to: url, from: controller, options: .detail)
+                env.router.route(
+                    to: url,
+                    userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: false],
+                    from: controller,
+                    options: .detail
+                )
             }
         } label: {
             HStack(spacing: 13) {
@@ -105,7 +110,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
         }
-        .buttonStyle(ContextButton(contextColor: viewModel.courseColor, isHighlighted: selectionViewModel.selectedIndex == 0))
+        .buttonStyle(.contextButton(color: viewModel.courseColor, isHighlighted: selectionViewModel.selectedIndex == 0))
         .accessibility(addTraits: selectionViewModel.selectedIndex == 0 ? .isSelected : [])
         .accessibilityIdentifier("courses-details.home-cell")
     }

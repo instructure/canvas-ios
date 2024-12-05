@@ -20,24 +20,9 @@ import CoreData
 import Foundation
 
 public class GetEnvironmentSettings: CollectionUseCase {
-    public typealias Model = CDEnvironmentSetting
+    public typealias Model = CDEnvironmentSettings
 
     public let scope: Scope = .all
     public let cacheKey: String? = "environment-settings"
-
-    public var request: GetEnvironmentSettingsRequest {
-        GetEnvironmentSettingsRequest()
-    }
-
-    public func write(
-        response: [String: Bool]?,
-        urlResponse: URLResponse?,
-        to client: NSManagedObjectContext
-    ) {
-        guard let response else { return }
-
-        for (key, isEnabled) in response {
-            CDEnvironmentSetting.save((key, isEnabled), in: client)
-        }
-    }
+    public let request = GetEnvironmentSettingsRequest()
 }

@@ -19,9 +19,12 @@
 import SwiftUI
 
 public struct AssignmentGroupView: View {
+    @Environment(\.appEnvironment) var env
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var isExpanded: Bool = true
     @ObservedObject private var viewModel: AssignmentGroupViewModel
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     public init(viewModel: AssignmentGroupViewModel) {
         self.viewModel = viewModel
@@ -31,7 +34,7 @@ public struct AssignmentGroupView: View {
         Section(header: ListSectionHeaderOld(backgroundColor: .backgroundLightest) { headerView() }) {
             if isExpanded {
                 ForEach(viewModel.assignments, id: \.id) { assignment in
-                    let assignmentCellViewModel = AssignmentCellViewModel(assignment: assignment, courseColor: viewModel.courseColor)
+                    let assignmentCellViewModel = AssignmentCellViewModel(env: env, assignment: assignment, courseColor: viewModel.courseColor)
                     VStack(spacing: 0) {
                         AssignmentCellView(viewModel: assignmentCellViewModel)
 
@@ -51,7 +54,7 @@ public struct AssignmentGroupView: View {
             Text(viewModel.name)
             Spacer()
             Image.arrowOpenUpLine
-                .size(16)
+                .size(uiScale.iconScale * 16)
                 .rotationEffect(isExpanded ? .degrees(0) : .degrees(180))
                 .accessibilityHidden(true)
                 .animation(.smooth, value: isExpanded)

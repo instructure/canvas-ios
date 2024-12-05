@@ -19,32 +19,21 @@
 import Foundation
 import CoreData
 
-public final class CDEnvironmentSetting: NSManagedObject, WriteableModel {
-    public enum EnvironmentSettingName: String {
-        case calendar_contexts_limit
+public final class CDEnvironmentSettings: NSManagedObject, WriteableModel {
+    @NSManaged public var calendarContextsLimitRaw: NSNumber?
+
+    public var calendarContextsLimit: Int? {
+        get { return calendarContextsLimitRaw?.intValue }
+        set { calendarContextsLimitRaw = NSNumber(value: newValue) }
     }
-
-    public typealias JSON = (name: String, isEnabled: Bool)
-
-    @NSManaged public var name: String
-    @NSManaged public var isEnabled: Bool
 
     @discardableResult
     public static func save(
-        _ item: (name: String, isEnabled: Bool),
+        _ apiEntity: GetEnvironmentSettingsRequest.Response,
         in context: NSManagedObjectContext
-    ) -> CDEnvironmentSetting {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(CDEnvironmentSetting.name), item.name)
-        let flag: CDEnvironmentSetting = context.fetch(predicate).first ?? context.insert()
-        flag.name = item.name
-        flag.isEnabled = item.isEnabled
+    ) -> CDEnvironmentSettings {
+        let flag: CDEnvironmentSettings = context.fetch(.all).first ?? context.insert()
+        flag.calendarContextsLimit = apiEntity.calendar_contexts_limit
         return flag
-    }
-}
-
-public extension Array where Element == CDEnvironmentSetting {
-
-    func isEnabled(_ name: CDEnvironmentSetting.EnvironmentSettingName) -> Bool {
-        contains { $0.name == name.rawValue && $0.isEnabled }
     }
 }

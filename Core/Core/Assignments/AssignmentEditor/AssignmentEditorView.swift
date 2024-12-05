@@ -116,6 +116,7 @@ public struct AssignmentEditorView: View, ScreenViewTrackable {
     private var descriptionEditorSection: some View {
         EditorSection(label: Text("Description", bundle: .core)) {
             RichContentEditor(
+                env: env,
                 placeholder: String(localized: "Add description", bundle: .core),
                 a11yLabel: String(localized: "Description", bundle: .core),
                 html: $description,

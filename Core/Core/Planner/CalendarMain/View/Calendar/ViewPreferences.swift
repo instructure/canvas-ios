@@ -18,44 +18,6 @@
 
 import SwiftUI
 
-// MARK: Measuring Size
-
-private struct SizeKey: PreferenceKey {
-    static var defaultValue: CGSize = .zero
-    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
-}
-
-extension View {
-
-    func measuringSize(_ onMeasure: @escaping (CGSize) -> Void) -> some View {
-        background {
-            GeometryReader { g in
-                Color.clear.preference(key: SizeKey.self, value: g.size)
-            }
-            .onPreferenceChange(SizeKey.self, perform: onMeasure)
-        }
-    }
-
-    @ViewBuilder
-    func measuringSizeOnce(_ value: Binding<CGSize>) -> some View {
-        if value.wrappedValue.isZero {
-            measuringSize { newSize in
-                value.wrappedValue = newSize
-            }
-        } else {
-            self
-        }
-    }
-
-    func measuringSize(_ value: Binding<CGSize>) -> some View {
-        measuringSize { newSize in
-            value.wrappedValue = newSize
-        }
-    }
-}
-
-// MARK: - Collapsable
-
 struct CollapsableViewSize: Equatable {
     let collapsed: CGSize
     let expanded: CGSize

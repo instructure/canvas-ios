@@ -44,7 +44,7 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
     lazy var students = env.subscribe(GetObservedStudents(observerID: env.currentSession?.userID ??  "")) { [weak self] in
         self?.update()
     }
-    lazy var filePicker = FilePicker(delegate: self)
+    lazy var filePicker = FilePicker(env: env, delegate: self)
 
     var conversation: Conversation?
     let env = AppEnvironment.shared
@@ -200,11 +200,11 @@ extension ComposeReplyViewController: FilePickerDelegate {
 
     func filePicker(didPick url: URL) {
         _ = attachments // lazy init
-        UploadManager.shared.upload(url: url, batchID: batchID, to: .myFiles, folderPath: "my files/conversation attachments")
+        env.uploadManager.upload(url: url, batchID: batchID, to: .myFiles, folderPath: "my files/conversation attachments")
     }
 
     func filePicker(didRetry file: File) {
-        UploadManager.shared.upload(file: file, to: .myFiles, folderPath: "my files/conversation attachments")
+        env.uploadManager.upload(file: file, to: .myFiles, folderPath: "my files/conversation attachments")
     }
 
     func updateAttachments() {

@@ -33,8 +33,9 @@ public struct AssignmentListPreferencesScreen: View {
     public var body: some View {
         ScrollView(showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
-                if viewModel.isFilterSectionVisible {
-                    filterSection
+                filterSection
+                if viewModel.isTeacher {
+                    statusFilterSectionTeacher
                 }
                 sortBySection
                 if viewModel.isGradingPeriodsSectionVisible {
@@ -76,20 +77,31 @@ public struct AssignmentListPreferencesScreen: View {
 
     // MARK: - Filter Section
 
+    @ViewBuilder
     private var filterSection: some View {
-        Section {
-            ForEach(AssignmentFilterOption.allCases, id: \.id) { item in
-                filterItem(with: item)
+        if viewModel.isTeacher {
+            Section {
+                ForEach(AssignmentFilterOptionsTeacher.allCases) { item in
+                    filterItemTeacher(with: item)
+                }
+            } header: {
+                InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
             }
-        } header: {
-            InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
+        } else {
+            Section {
+                ForEach(AssignmentFilterOptionStudent.allCases) { item in
+                    filterItemStudent(with: item)
+                }
+            } header: {
+                InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
+            }
         }
     }
 
-    private func filterItem(with item: AssignmentFilterOption) -> some View {
+    private func filterItemStudent(with item: AssignmentFilterOptionStudent) -> some View {
         var filterSelectionBinding: Binding<Bool> {
             Binding {
-                viewModel.selectedAssignmentFilterOptions.contains(item)
+                viewModel.selectedAssignmentFilterOptionsStudent.contains(item)
             } set: { isSelected in
                 viewModel.didSelectAssignmentFilterOption(item, isSelected: isSelected)
             }
@@ -103,11 +115,43 @@ public struct AssignmentListPreferencesScreen: View {
         .accessibilityIdentifier("AssignmentFilter.filterItems.\(item.id)")
     }
 
+    private func filterItemTeacher(with item: AssignmentFilterOptionsTeacher) -> some View {
+        InstUI.RadioButtonCell(
+            title: item.title,
+            value: item,
+            selectedValue: $viewModel.selectedFilterOptionTeacher,
+            color: color
+        )
+        .accessibilityIdentifier("AssignmentFilter.customFilterOptions.\(item.rawValue)")
+    }
+
+    // MARK: - Status Filter Section
+
+    private var statusFilterSectionTeacher: some View {
+        Section {
+            ForEach(AssignmentStatusFilterOptionsTeacher.allCases) { item in
+                statusFilterItemTeacher(with: item)
+            }
+        } header: {
+            InstUI.ListSectionHeader(title: String(localized: "Status Filter", bundle: .core))
+        }
+    }
+
+    private func statusFilterItemTeacher(with item: AssignmentStatusFilterOptionsTeacher) -> some View {
+        InstUI.RadioButtonCell(
+            title: item.title,
+            value: item,
+            selectedValue: $viewModel.selectedStatusFilterOptionTeacher,
+            color: color
+        )
+        .accessibilityIdentifier("AssignmentFilter.statusFilterOptions.\(item.rawValue)")
+    }
+
     // MARK: - Sort By Section
 
     private var sortBySection: some View {
         Section {
-            ForEach(viewModel.sortingOptions, id: \.self) { item in
+            ForEach(viewModel.sortingOptions) { item in
                 sortByItem(with: item)
             }
         } header: {
@@ -129,7 +173,7 @@ public struct AssignmentListPreferencesScreen: View {
 
     private var gradingPeriodsSection: some View {
         Section {
-            ForEach(viewModel.gradingPeriods, id: \.id) { item in
+            ForEach(viewModel.gradingPeriods) { item in
                 gradingPeriodItem(with: item)
             }
         } header: {
@@ -167,6 +211,10 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
     static var previews: some View {
         let gradingPeriods = createGradingPeriods()
         let viewModel = AssignmentListPreferencesViewModel(
+            isTeacher: false,
+            initialFilterOptionsStudent: AssignmentFilterOptionStudent.allCases,
+            initialStatusFilterOptionTeacher: .allAssignments,
+            initialFilterOptionTeacher: .allAssignments,
             sortingOptions: AssignmentListViewModel.AssignmentArrangementOptions.allCases,
             initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions.dueDate,
             gradingPeriods: gradingPeriods,

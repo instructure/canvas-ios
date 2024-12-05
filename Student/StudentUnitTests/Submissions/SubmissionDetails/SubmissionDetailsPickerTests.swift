@@ -35,7 +35,8 @@ class SubmissionDetailsPickerTests: StudentTestCase {
         ], submitted_at: Date())
         api.mock(GetSubmission(context: context, assignmentID: "1", userID: "1"), value: submission)
 
-        let testee = SubmissionDetailsViewController.create(context: context, assignmentID: "1", userID: "1")
+        let testee = SubmissionDetailsViewController
+            .create(env: env, context: context, assignmentID: "1", userID: "1")
         testee.loadViewIfNeeded()
 
         XCTAssertFalse(testee.pickerButton!.isEnabled)
@@ -48,7 +49,8 @@ class SubmissionDetailsPickerTests: StudentTestCase {
         ], submitted_at: Date())
         api.mock(GetSubmission(context: context, assignmentID: "1", userID: "1"), value: submission)
 
-        let testee = SubmissionDetailsViewController.create(context: context, assignmentID: "1", userID: "1")
+        let testee = SubmissionDetailsViewController
+            .create(env: env, context: context, assignmentID: "1", userID: "1")
         testee.loadViewIfNeeded()
 
         XCTAssertEqual(testee.picker!.dataSource?.pickerView(testee.picker!, numberOfRowsInComponent: 0), 2)

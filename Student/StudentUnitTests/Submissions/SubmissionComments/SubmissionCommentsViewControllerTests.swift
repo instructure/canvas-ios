@@ -27,12 +27,14 @@ class SubmissionCommentsViewControllerTests: StudentTestCase {
     var userID = "3"
     var submissionID = "4"
     lazy var submissionPresenter: SubmissionDetailsPresenter = SubmissionDetailsPresenter(
+        env: env,
         view: DummyView(),
         context: context,
         assignmentID: assignmentID,
         userID: userID
     )
     lazy var controller: SubmissionCommentsViewController = SubmissionCommentsViewController.create(
+        env: env,
         context: context,
         assignmentID: assignmentID,
         userID: userID,

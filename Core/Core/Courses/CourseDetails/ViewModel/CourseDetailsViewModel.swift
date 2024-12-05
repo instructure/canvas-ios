@@ -192,7 +192,10 @@ public class CourseDetailsViewModel: ObservableObject {
             return
         }
 
-        var tabs = tabs.all.filteredTabsForCourseHome(isStudent: !isTeacher)
+        var tabs = tabs
+            .all
+            .filteredTabsForCourseHome(isStudent: !isTeacher)
+            .filter({ $0.name != .search }) // Remove Smart Search
 
         if let index = tabs.firstIndex(where: { $0.id == "home" }) {
             let homeTab = tabs.remove(at: index)

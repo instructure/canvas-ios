@@ -63,6 +63,9 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         tabBar.useGlobalNavStyle()
+
+        // This changes the elevated tab bar's text color (but for some reason only in light mode)
+        view.tintColor = Brand.shared.tabBarHighlightColor
     }
 
     func dashboardTab() -> UIViewController {
@@ -82,7 +85,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             tabBarImageSelected = .homeroomTabActive
         } else {
             let dashboard = CoreHostingController(DashboardContainerView(shouldShowGroupList: true,
-                                                                    showOnlyTeacherEnrollment: false))
+                                                                         showOnlyTeacherEnrollment: false))
             result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
 
             tabBarTitle = String(localized: "Dashboard", bundle: .student, comment: "dashboard page title")
@@ -190,6 +193,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 }
 
 extension StudentTabBarController: UITabBarControllerDelegate {
+
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         tabBarController.resetViewControllerIfSelected(viewController)
 
@@ -198,5 +202,13 @@ extension StudentTabBarController: UITabBarControllerDelegate {
         }
 
         return true
+    }
+
+    func tabBarController(
+        _ tabBarController: UITabBarController,
+        animationControllerForTransitionFrom fromVC: UIViewController,
+        to toVC: UIViewController
+    ) -> (any UIViewControllerAnimatedTransitioning)? {
+        InstUI.TabChangeTransition()
     }
 }

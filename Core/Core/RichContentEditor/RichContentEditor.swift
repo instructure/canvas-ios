@@ -20,6 +20,7 @@ import SwiftUI
 import Combine
 
 struct RichContentEditor: UIViewControllerRepresentable {
+    private let env: AppEnvironment
     private let placeholder: String
     private let a11yLabel: String
     @Binding private var html: String
@@ -65,6 +66,7 @@ struct RichContentEditor: UIViewControllerRepresentable {
     }
 
     init(
+        env: AppEnvironment,
         placeholder: String,
         a11yLabel: String,
         html: Binding<String>,
@@ -76,6 +78,7 @@ struct RichContentEditor: UIViewControllerRepresentable {
         onFocus: (() -> Void)? = nil,
         focusTrigger: AnyPublisher<Void, Never>? = nil
     ) {
+        self.env = env
         self.placeholder = placeholder
         self.a11yLabel = a11yLabel
         self._html = html
@@ -94,6 +97,7 @@ struct RichContentEditor: UIViewControllerRepresentable {
 
     func makeUIViewController(context: Self.Context) -> RichContentEditorViewController {
         let uiViewController = RichContentEditorViewController.create(
+            env: env,
             context: uploadParameters.context,
             uploadTo: uploadParameters.uploadTo
         )
@@ -134,6 +138,7 @@ struct RichContentEditorView_Previews: PreviewProvider {
         @State var error: Error?
         var body: some View {
             RichContentEditor(
+                env: .shared,
                 placeholder: "Placeholder",
                 a11yLabel: "Editor",
                 html: $html,

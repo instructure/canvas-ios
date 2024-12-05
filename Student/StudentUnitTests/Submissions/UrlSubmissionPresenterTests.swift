@@ -32,7 +32,13 @@ class UrlSubmissionPresenterTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
-        presenter = UrlSubmissionPresenter(view: self, courseID: "1", assignmentID: "1", userID: "1", env: env)
+        presenter = UrlSubmissionPresenter(
+            env: env,
+            view: self,
+            courseID: "1",
+            assignmentID: "1",
+            userID: "1"
+        )
     }
 
     func testScrubUrl() {

@@ -281,6 +281,14 @@ extension DashboardViewController: UITabBarControllerDelegate {
 
         return true
     }
+
+    func tabBarController(
+        _ tabBarController: UITabBarController,
+        animationControllerForTransitionFrom fromVC: UIViewController,
+        to toVC: UIViewController
+    ) -> (any UIViewControllerAnimatedTransitioning)? {
+        InstUI.TabChangeTransition()
+    }
 }
 
 class StudentButton: UIButton {

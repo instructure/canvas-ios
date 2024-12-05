@@ -540,6 +540,20 @@ class ModuleListViewControllerTests: CoreTestCase {
         Clock.reset()
     }
 
+    func testQuizLTIIcon() {
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1")])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(id: "1", title: "", content: .assignment("1"), quiz_lti: false),
+            .make(id: "2", title: "", content: .assignment("2"), quiz_lti: true)
+        ])
+        loadView()
+        XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 2)
+        let cell0 = moduleItemCell(at: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(cell0.iconView.image, .assignmentLine)
+        let cell1 = moduleItemCell(at: IndexPath(row: 1, section: 0))
+        XCTAssertEqual(cell1.iconView.image, .quizLine)
+    }
+
     func testModulesPageDisabled() {
         api.mock(viewController.courses, value: .make(id: "1", name: "Course 1", default_view: .assignments))
         api.mock(viewController.tabs, value: [.make(id: "assignments")])

@@ -31,6 +31,11 @@ open class AppEnvironment {
         case parent, student, teacher, horizon
     }
 
+    public internal(set) lazy var uploadManager = UploadManager(
+        env: self,
+        identifier: "com.instructure.core.file-uploads"
+    )
+
     public var app: App?
     public var api: API
     public var database: NSPersistentContainer
@@ -74,6 +79,8 @@ open class AppEnvironment {
         currentSession = session
         currentSession?.migrateSavedAnnotatedPDFs()
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
+        router.courseTabUrlInteractor?.clearEnabledTabs()
+        router.courseTabUrlInteractor?.setupTabSubscription()
 
         if isSilent {
             return
@@ -99,6 +106,7 @@ open class AppEnvironment {
         k5.userDidLogout()
         currentSession = nil
         userDefaults = nil
+        router.courseTabUrlInteractor?.cancelTabSubscription()
         refreshWidgets()
         deleteUserData(session: session)
     }
@@ -172,5 +180,9 @@ open class AppEnvironment {
     public func tabBar(isVisible: Bool) {
         let currentTabBar = (window?.rootViewController as? UITabBarController)
         currentTabBar?.tabBar.isHidden = !isVisible
+    }
+
+    public var apiHost: String? {
+        currentSession?.baseURL.host()
     }
 }

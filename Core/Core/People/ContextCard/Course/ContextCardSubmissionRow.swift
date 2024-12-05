@@ -67,7 +67,7 @@ struct ContextCardSubmissionRow: View {
             GradeFormatter.string(from: assignment, submission: submission) ?? ""
         }()
         self.icon = {
-            if assignment.submissionTypes.contains(.online_quiz) {
+            if assignment.submissionTypesWithQuizLTIMapping.contains(.online_quiz) {
                 return .quizLine
             } else if assignment.submissionTypes.contains(.discussion_topic) {
                 return .discussionLine

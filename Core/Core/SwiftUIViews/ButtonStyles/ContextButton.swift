@@ -50,6 +50,16 @@ public struct ContextButton: ButtonStyle {
     }
 }
 
+// MARK: - ViewModifier Friendly methods
+
+public extension ButtonStyle where Self == ContextButton {
+    static func contextButton(color: UIColor?, isHighlighted: Bool = false) -> Self {
+        ContextButton(contextColor: color, isHighlighted: isHighlighted)
+    }
+}
+
+// MARK: - Preview
+
 struct ContextButton_Previews: PreviewProvider {
     private static var textButton: some View {
         Button(action: {}) {
@@ -58,9 +68,9 @@ struct ContextButton_Previews: PreviewProvider {
         }
     }
     static var previews: some View {
-        textButton.buttonStyle(ContextButton(contextColor: nil))
+        textButton.buttonStyle(.contextButton(color: nil))
             .previewLayout(.sizeThatFits)
-        textButton.buttonStyle(ContextButton(contextColor: .red))
+        textButton.buttonStyle(.contextButton(color: .red))
             .previewLayout(.sizeThatFits)
     }
 }

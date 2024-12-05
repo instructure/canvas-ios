@@ -132,8 +132,10 @@ class CalendarFilterInteractorTests: CoreTestCase {
 
         // Mock max 10 context filter limit
         let settingsRequest = GetEnvironmentSettingsRequest()
-        api.mock(settingsRequest,
-                 value: [CDEnvironmentSetting.EnvironmentSettingName.calendar_contexts_limit.rawValue: false])
+        api.mock(
+            settingsRequest,
+            value: .init(calendar_contexts_limit: 10)
+        )
 
         let testee = CalendarFilterInteractorLive(
             observedUserId: nil,

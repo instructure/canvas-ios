@@ -21,7 +21,13 @@ import XCTest
 @testable import Teacher
 
 class SubmissionListViewControllerTests: TeacherTestCase {
-    lazy var controller = SubmissionListViewController.create(context: .course("1"), assignmentID: "1", filter: [])
+    lazy var controller = SubmissionListViewController
+        .create(
+            env: environment,
+            context: .course("1"),
+            assignmentID: "1",
+            filter: []
+        )
 
     override func setUp() {
         super.setUp()
