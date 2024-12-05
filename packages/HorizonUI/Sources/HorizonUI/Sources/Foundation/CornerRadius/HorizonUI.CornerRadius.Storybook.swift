@@ -22,24 +22,26 @@ import SwiftUI
 public extension HorizonUI.CornerRadius {
     struct Storybook: View {
         public var body: some View {
-            VStack(spacing: 16) {
-                ForEach(HorizonUI.CornerRadius.allCases) { type in
-                    VStack(spacing: 4) {
-                        Text(verbatim: "\(type.levelString) - \(Int(type.rawValue)) px")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        HStack(spacing: 0) {
-                            Rectangle()
-                                .foregroundStyle(Color.huiColors.primitives.blue45)
-                                .huiCornerRadius(type: type)
-                                .frame(width: 120, height: 56, alignment: .leading)
-                            Spacer()
+            ScrollView {
+                VStack(spacing: 24) {
+                    ForEach(HorizonUI.CornerRadius.allCases) { level in
+                        VStack(spacing: 8) {
+                            Text(verbatim: level.details)
+                                .font(.headline)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            HStack(spacing: 0) {
+                                Rectangle()
+                                    .foregroundStyle(Color.huiColors.primitives.blue45)
+                                    .huiCornerRadius(level: level, corners: [.top])
+                                    .frame(width: 120, height: 56, alignment: .leading)
+                                Spacer()
+                            }
                         }
                     }
+                    Spacer()
                 }
-                Spacer()
+                .padding(.all, 16)
             }
-            .padding(.all, 16)
             .navigationTitle("Corner Radius")
             .navigationBarTitleDisplayMode(.large)
         }
@@ -48,10 +50,12 @@ public extension HorizonUI.CornerRadius {
 
 extension HorizonUI.CornerRadius: Identifiable {
     public var id: Self { self }
-    var levelString: String {
+    var details: String {
         let str = "\(id)"
         let components = str.components(separatedBy: "level")
-        return "Level \(components[1])"
+        
+        let attributesString = "\(Int(self.attributes.radius)) px, \(Int(self.attributes.smoothness))% Smoothing"
+        return "Level \(components[1]) - \(attributesString)"
     }
 }
 
