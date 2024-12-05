@@ -38,10 +38,10 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
 
     let batchID = UUID.string
     public var color: UIColor?
-    let env = AppEnvironment.shared
+    var env: AppEnvironment = .shared
     public let titleSubtitleView = TitleSubtitleView.create()
     var context = Context.currentUser
-    lazy var filePicker = FilePicker(delegate: self)
+    lazy var filePicker = FilePicker(env: env, delegate: self)
     var keyboard: KeyboardTransitioning?
     var path = ""
     var searchTerm: String?
@@ -74,9 +74,10 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
 
     private var offlineFileInteractor: OfflineFileInteractor?
 
-    public static func create(context: Context, path: String? = nil, offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileListViewController {
+    public static func create(env: AppEnvironment, context: Context, path: String? = nil, offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileListViewController {
         let controller = loadFromStoryboard()
         controller.context = context
+        controller.env = env
         controller.path = path ?? ""
         controller.offlineFileInteractor = offlineFileInteractor
         return controller

@@ -21,7 +21,7 @@ import XCTest
 import TestsFoundation
 
 class UploadFileCommentTests: CoreTestCase {
-    lazy var upload = UploadFileComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, batchID: "5", attempt: nil)
+    lazy var upload = UploadFileComment(env: environment, courseID: "1", assignmentID: "2", userID: "3", isGroup: false, batchID: "5", attempt: nil)
     var comment: SubmissionComment?
     var error: Error?
     var called: XCTestExpectation?
@@ -113,7 +113,7 @@ class UploadFileCommentTests: CoreTestCase {
     }
 
     func testSuccessWithAttemptField() throws {
-        lazy var upload = UploadFileComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, batchID: "5", attempt: 19)
+        lazy var upload = UploadFileComment(env: environment, courseID: "1", assignmentID: "2", userID: "3", isGroup: false, batchID: "5", attempt: 19)
         let context = UploadManager.shared.viewContext
         let file = File.make(batchID: "5", removeID: true, session: currentSession, in: context)
         api.mock(PutSubmissionGradeRequest(

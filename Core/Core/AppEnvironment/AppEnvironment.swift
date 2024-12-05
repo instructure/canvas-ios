@@ -31,6 +31,11 @@ open class AppEnvironment {
         case parent, student, teacher
     }
 
+    public internal(set) lazy var uploadManager = UploadManager(
+        env: self,
+        identifier: "com.instructure.core.file-uploads"
+    )
+
     public var app: App?
     public var api: API
     public var database: NSPersistentContainer
@@ -170,5 +175,9 @@ open class AppEnvironment {
         guard let lastLoginAccount = lastLoginAccount, session.baseURL.host == lastLoginAccount.domain else { return }
         let data = try? APIJSONEncoder().encode(lastLoginAccount)
         UserDefaults.standard.set(data, forKey: "lastLoginAccount")
+    }
+
+    public var apiHost: String? {
+        currentSession?.baseURL.host()
     }
 }

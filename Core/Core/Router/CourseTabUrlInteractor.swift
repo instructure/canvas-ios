@@ -19,6 +19,9 @@
 import Foundation
 import Combine
 
+/// This interactor has two purposes
+/// - Provide info on hidden tabs for routing. When routing we shouldn't allow routes for disabled tabs.
+/// - Extract base URLs for courses. We use these base URLs for API calls in case a course is on a different host compared to the the one used to log in.
 public final class CourseTabUrlInteractor {
 
     public static let blockDisabledTabUserInfoKey = "shouldBlockDisabledCourseTabKey"
@@ -26,9 +29,11 @@ public final class CourseTabUrlInteractor {
     private struct TabModel {
         let id: String
         let htmlUrl: String
+        let apiBaseUrlHost: String?
     }
 
     private var enabledTabsPerCourse: [Context: [String]] = [:]
+    private var baseURLHostOverridesPerCourse: [Context: String] = [:]
     private var tabSubscription: AnyCancellable?
 
     public init() { }
@@ -97,8 +102,11 @@ public final class CourseTabUrlInteractor {
         let tabModelsPerCourse: [Context: [TabModel]] = tabsPerCourse.mapValues { tabArray in
             tabArray.compactMap { tab in
                 guard let htmlURL = tab.htmlURL else { return nil }
-
-                return TabModel(id: tab.id, htmlUrl: htmlURL.absoluteString)
+                return TabModel(
+                    id: tab.id,
+                    htmlUrl: htmlURL.absoluteString,
+                    apiBaseUrlHost: tab.apiBaseURL?.host()
+                )
             }
         }
 
@@ -106,6 +114,17 @@ public final class CourseTabUrlInteractor {
             let tabPaths = pathsForTabs(tabs, context: context)
             enabledTabsPerCourse[context] = tabPaths
         }
+
+        let defaultHost = AppEnvironment.shared.apiHost
+
+        baseURLHostOverridesPerCourse =
+            tabModelsPerCourse
+            .reduce(into: [:], { partialResult, pair in
+                pair.value.forEach { tab in
+                    guard let apiHost = tab.apiBaseUrlHost, apiHost != defaultHost else { return }
+                    partialResult[pair.key] = apiHost
+                }
+            })
     }
 
     private func pathsForTabs(_ tabs: [TabModel], context: Context) -> [String] {
@@ -151,6 +170,19 @@ public final class CourseTabUrlInteractor {
             name: "Unexpected Course Tab path format",
             reason: "tab.id: \(tab.id), tab.html_url: \(tab.htmlUrl), baseUrl: \(Analytics.analyticsBaseUrl)"
         )
+    }
+
+    // MARK: Base URL Overrides
+
+    public var baseURLHostOverrides: Set<String> {
+        Set(baseURLHostOverridesPerCourse.values)
+    }
+
+    public func baseUrlHostOverride(for url: URLComponents) -> String? {
+        guard let context = Context(path: url.path) else { return nil }
+        return baseURLHostOverridesPerCourse.first(where: {
+            return $0.key.isEquivalent(to: context)
+        })?.value
     }
 }
 

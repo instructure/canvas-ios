@@ -33,12 +33,12 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
 
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
-    public init(courseID: String, assignmentID: String) {
+    public init(env: AppEnvironment, courseID: String, assignmentID: String) {
         self.assignmentID = assignmentID
         self.courseID = courseID
 
-        assignment = AppEnvironment.shared.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID))
-        course = AppEnvironment.shared.subscribe(GetCourse(courseID: courseID))
+        assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID))
+        course = env.subscribe(GetCourse(courseID: courseID))
 
         screenViewTrackingParameters = ScreenViewTrackingParameters(
             eventName: "/courses/\(courseID)/assignments/\(assignmentID)"

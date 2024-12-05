@@ -25,7 +25,7 @@ import SafariServices
 class LTIViewControllerTests: CoreTestCase {
     func testLayout() {
         let tools = LTITools(id: "1")
-        let controller = LTIViewController.create(tools: tools)
+        let controller = LTIViewController.create(env: environment, tools: tools)
         var task = api.mock(tools.request, value: .make(name: "So Descriptive", url: .make()))
         task.suspend()
 
@@ -49,16 +49,16 @@ class LTIViewControllerTests: CoreTestCase {
     }
 
     func testName() {
-        let tools = LTITools(id: "1")
-        let controller = LTIViewController.create(tools: tools, name: "Fancy Tool")
+        let tools = LTITools(env: environment, id: "1")
+        let controller = LTIViewController.create(env: environment, tools: tools, name: "Fancy Tool")
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.nameLabel.text, "Fancy Tool")
     }
 
     func testCourseSubtitle() {
         let course = APICourse.make(id: "1", name: "Fancy Course")
-        let tools = LTITools(context: .course(course.id.value))
-        let controller = LTIViewController.create(tools: tools)
+        let tools = LTITools(env: environment, context: .course(course.id.value))
+        let controller = LTIViewController.create(env: environment, tools: tools)
         api.mock(controller.courses!, value: course)
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Fancy Course")

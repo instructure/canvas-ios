@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 
 public final class ModuleItemDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
-    private let env = AppEnvironment.shared
+
     var courseID: String!
     var moduleID: String!
     var itemID: String!
@@ -31,6 +31,8 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
     @IBOutlet weak var lockExplanation: CoreWebView!
     @IBOutlet weak var lockedTitleLabel: UILabel!
     @IBOutlet weak var spinnerView: CircleProgressView!
+
+    private var env: AppEnvironment = .defaultValue
 
     private lazy var optionsButton = UIBarButtonItem(image: UIImage.moreLine, style: .plain, target: self, action: #selector(optionsButtonPressed))
 
@@ -51,8 +53,9 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
     private var observations: [NSKeyValueObservation]?
     private var isMarkingModule = false
 
-    public static func create(courseID: String, moduleID: String, itemID: String) -> Self {
+    public static func create(env: AppEnvironment, courseID: String, moduleID: String, itemID: String) -> Self {
         let controller = loadFromStoryboard()
+        controller.env = env
         controller.courseID = courseID
         controller.moduleID = moduleID
         controller.itemID = itemID
@@ -136,9 +139,10 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
         guard let item = item else { return nil }
         switch item.type {
         case .externalURL(let url):
-            return ExternalURLViewController.create(name: item.title, url: url, courseID: item.courseID)
+            return ExternalURLViewController.create(env: env, name: item.title, url: url, courseID: item.courseID)
         case let .externalTool(toolID, url):
             let tools = LTITools(
+                env: env,
                 context: .course(courseID),
                 id: toolID,
                 url: url,
@@ -146,7 +150,7 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
                 moduleID: moduleID,
                 moduleItemID: itemID
             )
-            return LTIViewController.create(tools: tools, name: item.title)
+            return LTIViewController.create(env: env, tools: tools, name: item.title)
         default:
             guard let url = item.url else { return nil }
             let preparedURL = url.appendingOrigin("module_item_details")

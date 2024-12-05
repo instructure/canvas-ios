@@ -48,7 +48,8 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
     override func setUp() {
         super.setUp()
         api.mock(GetEnabledFeatureFlagsRequest(context: context), value: ["rce_enhancements"])
-        controller = RichContentEditorViewController.create(context: context, uploadTo: .myFiles)
+        controller = RichContentEditorViewController
+            .create(env: environment, context: context, uploadTo: .myFiles)
         controller.delegate = self
         controller.placeholder = "Tests are the bests"
         update { controller.view.layoutIfNeeded() }
@@ -151,7 +152,7 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
         controller.imagePickerController(MockPicker(), didFinishPickingMediaWithInfo: [
             .originalImage: UIImage(named: "wordmark", in: .core, compatibleWith: nil) as Any
         ])
-        let context = controller.uploadManager.viewContext
+        let context = environment.uploadManager.viewContext
         context.performAndWait {
             let file: File? = databaseClient.fetch().first
             XCTAssertNotNil(file)

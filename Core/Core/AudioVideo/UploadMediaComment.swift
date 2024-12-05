@@ -19,7 +19,7 @@
 import Foundation
 
 public class UploadMediaComment {
-    let env = AppEnvironment.shared
+    let env: AppEnvironment
     let assignmentID: String
     var callback: (SubmissionComment?, Error?) -> Void = { _, _ in }
     let courseID: String
@@ -35,6 +35,7 @@ public class UploadMediaComment {
     private static var placeholderSuffix = 1
 
     public init(
+        env: AppEnvironment,
         courseID: String,
         assignmentID: String,
         userID: String,
@@ -43,6 +44,7 @@ public class UploadMediaComment {
         url: URL,
         attempt: Int?
     ) {
+        self.env = env
         self.assignmentID = assignmentID
         self.courseID = courseID
         self.isGroup = isGroup

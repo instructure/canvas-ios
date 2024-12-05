@@ -21,7 +21,7 @@ import XCTest
 import TestsFoundation
 
 class UploadMediaCommentTests: CoreTestCase {
-    lazy var upload = UploadMediaComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, type: .audio, url: URL(string: "data:text/plain,abcde")!, attempt: nil)
+    lazy var upload = UploadMediaComment(env: environment, courseID: "1", assignmentID: "2", userID: "3", isGroup: false, type: .audio, url: URL(string: "data:text/plain,abcde")!, attempt: nil)
     var comment: SubmissionComment?
     var error: Error?
     var called: XCTestExpectation?
@@ -93,7 +93,7 @@ class UploadMediaCommentTests: CoreTestCase {
     }
 
     func testSuccessWithAttemptField() {
-        lazy var upload = UploadMediaComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, type: .audio, url: URL(string: "data:text/plain,abcde")!, attempt: 19)
+        lazy var upload = UploadMediaComment(env: environment, courseID: "1", assignmentID: "2", userID: "3", isGroup: false, type: .audio, url: URL(string: "data:text/plain,abcde")!, attempt: 19)
         let baseURL = URL(string: "https://u.edu/")!
         let uapi = API(baseURL: baseURL)
         api.mock(GetMediaServiceRequest(), value: APIMediaService(domain: "u.edu"))

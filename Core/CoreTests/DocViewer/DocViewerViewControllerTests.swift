@@ -25,6 +25,7 @@ import Combine
 class DocViewerViewControllerTests: CoreTestCase {
     lazy var controller: DocViewerViewController = {
         let controller = DocViewerViewController.create(
+            env: environment,
             filename: "instructure.pdf",
             previewURL: url, fallbackURL: url,
             navigationItem: navigationItem,
@@ -104,6 +105,7 @@ class DocViewerViewControllerTests: CoreTestCase {
 
     func testOriginalSession() {
         let controller = DocViewerViewController.create(
+            env: environment,
             filename: "instructure.pdf",
             previewURL: url, fallbackURL: url,
             navigationItem: navigationItem
@@ -160,6 +162,7 @@ class DocViewerViewControllerTests: CoreTestCase {
 
     func testLoadFallbackWhenOfflineModeIsEnabled() {
         controller = DocViewerViewController.create(
+            env: environment,
             filename: "instructure.pdf",
             previewURL: url, fallbackURL: url,
             navigationItem: navigationItem,
@@ -181,6 +184,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         let url = Bundle(for: Self.self).url(forResource: "file_annotation_from_ios", withExtension: "pdf")!
         let controller: DocViewerViewController = {
             let controller = DocViewerViewController.create(
+                env: environment,
                 filename: "file_annotation_from_ios.pdf",
                 previewURL: url, fallbackURL: url
             )

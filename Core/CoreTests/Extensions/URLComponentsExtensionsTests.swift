@@ -118,24 +118,24 @@ class URLComponentsExtensionsTests: XCTestCase {
                                                             userID: "",
                                                             userName: "")
         let relativeURL = URLComponents.parse("/courses")
-        XCTAssertFalse(relativeURL.isExternalWebsite)
+        XCTAssertFalse(relativeURL.isExternalWebsite(of: .shared))
 
         let canvasHttpsURL = URLComponents.parse("https://canvas.com/courses")
-        XCTAssertFalse(canvasHttpsURL.isExternalWebsite)
+        XCTAssertFalse(canvasHttpsURL.isExternalWebsite(of: .shared))
 
         let canvasHttpURL = URLComponents.parse("http://canvas.com/courses")
-        XCTAssertFalse(canvasHttpURL.isExternalWebsite)
+        XCTAssertFalse(canvasHttpURL.isExternalWebsite(of: .shared))
 
         let canvasFtpURL = URLComponents.parse("ftp://canvas.com/courses")
-        XCTAssertFalse(canvasFtpURL.isExternalWebsite)
+        XCTAssertFalse(canvasFtpURL.isExternalWebsite(of: .shared))
 
         let externalFtpURL = URLComponents.parse("ftp://example.com/courses")
-        XCTAssertFalse(externalFtpURL.isExternalWebsite)
+        XCTAssertFalse(externalFtpURL.isExternalWebsite(of: .shared))
 
         let telURL = URLComponents.parse("tel://123456789")
-        XCTAssertFalse(telURL.isExternalWebsite)
+        XCTAssertFalse(telURL.isExternalWebsite(of: .shared))
 
         let externalURL = URLComponents.parse("https://example.com/courses")
-        XCTAssertTrue(externalURL.isExternalWebsite)
+        XCTAssertTrue(externalURL.isExternalWebsite(of: .shared))
     }
 }

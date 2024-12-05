@@ -22,9 +22,10 @@ public class AssignmentCellViewModel: ObservableObject {
     public let assignment: Assignment
     public let courseColor: Color
 
-    private let env = AppEnvironment.shared
+    private let env: AppEnvironment
 
-    public init(assignment: Assignment, courseColor: UIColor?) {
+    public init(env: AppEnvironment, assignment: Assignment, courseColor: UIColor?) {
+        self.env = env
         self.assignment = assignment
         self.courseColor = Color(courseColor ?? .textDark)
     }
@@ -83,3 +84,13 @@ public class AssignmentCellViewModel: ObservableObject {
         assignment.submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
     }
 }
+
+// MARK: - Preview
+
+#if DEBUG
+extension AssignmentCellViewModel {
+    public convenience init(assignment: Assignment, courseColor: UIColor?) {
+        self.init(env: .shared, assignment: assignment, courseColor: courseColor)
+    }
+}
+#endif

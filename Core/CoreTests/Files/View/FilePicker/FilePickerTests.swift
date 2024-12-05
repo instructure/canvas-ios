@@ -38,7 +38,7 @@ class FilePickerTests: CoreTestCase, FilePickerDelegate {
         retriedFile = file
     }
 
-    lazy var picker = FilePicker(delegate: self)
+    lazy var picker = FilePicker(env: environment, delegate: self)
 
     func testPick() throws {
         picker.pick(from: UIViewController())

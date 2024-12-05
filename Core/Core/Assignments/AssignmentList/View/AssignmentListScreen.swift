@@ -21,6 +21,8 @@ import SwiftUI
 public struct AssignmentListScreen: View, ScreenViewTrackable {
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.appEnvironment) private var env
+
     @ObservedObject private var viewModel: AssignmentListViewModel
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 

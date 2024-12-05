@@ -28,11 +28,11 @@ class UrlSubmissionViewController: UIViewController {
     var assignmentID: String!
     var courseID: String!
 
-    static func create(courseID: String, assignmentID: String, userID: String) -> UrlSubmissionViewController {
+    static func create(env: AppEnvironment, courseID: String, assignmentID: String, userID: String) -> UrlSubmissionViewController {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
         controller.assignmentID = assignmentID
-        controller.presenter = UrlSubmissionPresenter(view: controller, courseID: courseID, assignmentID: assignmentID, userID: userID)
+        controller.presenter = UrlSubmissionPresenter(env: env, view: controller, courseID: courseID, assignmentID: assignmentID, userID: userID)
         return controller
     }
 

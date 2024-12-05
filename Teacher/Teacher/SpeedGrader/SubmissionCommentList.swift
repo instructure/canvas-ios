@@ -23,7 +23,7 @@ import Combine
 struct SubmissionCommentList: View {
     let assignment: Assignment
     let submission: Submission
-    let filePicker = FilePicker()
+    let filePicker = FilePicker(env: .shared)
     @Binding var attempt: Int?
     @Binding var fileID: String?
     @Binding var showRecorder: MediaCommentType?
@@ -171,6 +171,7 @@ struct SubmissionCommentList: View {
             commentAttempt = nil
         }
         CreateTextComment(
+            env: env,
             courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID,
@@ -220,6 +221,7 @@ struct SubmissionCommentList: View {
             commentAttempt = nil
         }
         UploadMediaComment(
+            env: env,
             courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID,
@@ -235,6 +237,7 @@ struct SubmissionCommentList: View {
     }
 
     func chooseFile() {
+        filePicker.env = env
         filePicker.pickAttachments(from: controller) {
             sendFileComment(batchID: $0)
         }
@@ -248,6 +251,7 @@ struct SubmissionCommentList: View {
             commentAttempt = nil
         }
         UploadFileComment(
+            env: env,
             courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID,

@@ -23,7 +23,7 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var openButton: UIButton!
 
-    let env = AppEnvironment.shared
+    private var env: AppEnvironment = .defaultValue
     public var tools: LTITools!
     public var name: String?
     public var color: UIColor?
@@ -42,10 +42,11 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
         return tools.context.id
     }
 
-    public static func create(tools: LTITools, name: String? = nil) -> Self {
+    public static func create(env: AppEnvironment, tools: LTITools, name: String? = nil) -> Self {
         let controller = loadFromStoryboard()
         controller.tools = tools
         controller.name = name
+        controller.env = env
         return controller
     }
 

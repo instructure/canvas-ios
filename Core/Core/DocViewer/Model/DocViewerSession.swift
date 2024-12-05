@@ -70,7 +70,7 @@ public class DocViewerSession: NSObject, URLSessionTaskDelegate {
                 return
             }
             self?.error = error
-            if error == nil, let metadata = metadata, let downloadURL = URL(string: metadata.urls.pdf_download.absoluteString, relativeTo: sessionURL) {
+            if error == nil, let metadata = metadata, let downloadURL = URL(string: metadata.urls.pdf_download.relativeString, relativeTo: sessionURL) {
                 self?.metadata = metadata
                 self?.loadAnnotations()
                 self?.loadDocument(downloadURL: downloadURL)

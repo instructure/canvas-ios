@@ -19,6 +19,7 @@
 import SwiftUI
 
 public struct AssignmentGroupView: View {
+    @Environment(\.appEnvironment) var env
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var isExpanded: Bool = true
@@ -33,7 +34,7 @@ public struct AssignmentGroupView: View {
         Section(header: ListSectionHeaderOld(backgroundColor: .backgroundLightest) { headerView() }) {
             if isExpanded {
                 ForEach(viewModel.assignments, id: \.id) { assignment in
-                    let assignmentCellViewModel = AssignmentCellViewModel(assignment: assignment, courseColor: viewModel.courseColor)
+                    let assignmentCellViewModel = AssignmentCellViewModel(env: env, assignment: assignment, courseColor: viewModel.courseColor)
                     VStack(spacing: 0) {
                         AssignmentCellView(viewModel: assignmentCellViewModel)
 

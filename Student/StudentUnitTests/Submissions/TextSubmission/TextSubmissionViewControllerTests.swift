@@ -39,9 +39,9 @@ class TextSubmissionViewControllerTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
-        controller = TextSubmissionViewController.create(courseID: "1", assignmentID: "1", userID: "1")
+        controller = TextSubmissionViewController
+            .create(env: env, courseID: "1", assignmentID: "1", userID: "1")
         controller.editor = MockEditor()
-        controller.editor.env = env
         navigation = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
     }

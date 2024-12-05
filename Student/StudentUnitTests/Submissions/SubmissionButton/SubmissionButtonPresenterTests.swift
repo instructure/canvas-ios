@@ -38,9 +38,9 @@ class SubmissionButtonPresenterTests: StudentTestCase {
     lazy var audioRecorder = AudioRecorderViewController.create()
     lazy var button = UIView()
     lazy var imagePicker = UIImagePickerController()
-    lazy var presenter = SubmissionButtonPresenter(view: view, assignmentID: "1")
+    lazy var presenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: "1")
     lazy var filePicker: FilePickerViewController = {
-        let picker = FilePickerViewController.create(batchID: presenter.batchID)
+        let picker = FilePickerViewController.create(env: env, batchID: presenter.batchID)
         picker.loadViewIfNeeded()
         return picker
     }()
@@ -264,7 +264,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         let url = URL.Directories.temporary.appendingPathComponent("SubmissionButtonPresenterTests-submit-files.txt")
         FileManager.default.createFile(atPath: url.path, contents: "test".data(using: .utf8), attributes: nil)
         try UploadManager.shared.add(url: url, batchID: presenter.batchID)
-        let filePicker = FilePickerViewController.create(batchID: presenter.batchID)
+        let filePicker = FilePickerViewController.create(env: env, batchID: presenter.batchID)
         XCTAssertTrue(presenter.canSubmit(filePicker))
     }
 

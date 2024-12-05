@@ -28,13 +28,17 @@ enum FileUploaderError: Error {
 
 open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
     public static let AssignmentSubmittedNotification = NSNotification.Name(rawValue: "com.instructure.core.assignment-submitted")
-    public static var shared = UploadManager(identifier: "com.instructure.core.file-uploads")
+
+    public static var shared: UploadManager {
+        return AppEnvironment.shared.uploadManager
+    }
 
     public let identifier: String
     public let sharedContainerIdentifier: String?
     var localNotifications: LocalNotificationsInteractor = LocalNotificationsInteractor()
     var process: ProcessManager = ProcessInfo.processInfo
-    var environment: AppEnvironment { .shared }
+    unowned let environment: AppEnvironment
+
     private var validSession: URLSession?
     private let submissionsStatus = FileSubmissionsStatus()
     var backgroundSession: URLSession {
@@ -64,9 +68,10 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return decoder
     }()
 
-    public init(identifier: String, sharedContainerIdentifier: String? = nil) {
+    public init(env: AppEnvironment, identifier: String, sharedContainerIdentifier: String? = nil) {
         self.identifier = identifier
         self.sharedContainerIdentifier = sharedContainerIdentifier
+        self.environment = env
         super.init()
     }
 
@@ -323,7 +328,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
      */
     private func submit(file: File, courseID: String, assignmentID: String, comment: String?) {
         Logger.shared.log()
-        guard let user = file.user, let session = LoginSession.sessions.first(where: { user == $0 }) else { return }
+        guard let user = file.user else { return }
         var files = [file]
         if let batchID = file.batchID {
             files = context.fetch(predicate(userID: user.id, batchID: batchID))
@@ -341,7 +346,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 task?.cancel()
             }
             self.submissionsStatus.addTasks(fileIDs: fileIDs)
-            task = API(session).makeRequest(requestable) { response, _, error in
+            task = self.environment.api.makeRequest(requestable) { response, _, error in
                 self.context.performAndWait {
                     defer {
                         self.submissionsStatus.removeTasks(fileIDs: fileIDs)

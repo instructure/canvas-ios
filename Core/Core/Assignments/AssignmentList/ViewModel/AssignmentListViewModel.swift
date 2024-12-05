@@ -99,7 +99,7 @@ public class AssignmentListViewModel: ObservableObject {
         }
     }
 
-    private let env = AppEnvironment.shared
+    private let env: AppEnvironment
     private var userDefaults: SessionDefaults?
     let courseID: String
 
@@ -118,14 +118,17 @@ public class AssignmentListViewModel: ObservableObject {
 
     // MARK: - Init
     public init(
+        env: AppEnvironment,
         context: Context,
-        userDefaults: SessionDefaults? = AppEnvironment.shared.userDefaults
+        userDefaults: SessionDefaults? = nil,
+        defaultGradingPeriod: GradingPeriod? = nil
     ) {
+        self.env = env
+        self.userDefaults = userDefaults ?? env.userDefaults
         self.isTeacher = env.app == .teacher
         self.sortingOptions = isTeacher ? AssignmentArrangementOptions.teacherCases : AssignmentArrangementOptions.studentCases
         self.defaultSortingOption = isTeacher ? .assignmentGroup : .dueDate
         self.selectedSortingOption = defaultSortingOption
-        self.userDefaults = userDefaults
         self.courseID = context.id
 
         loadAssignmentListPreferences()
@@ -411,6 +414,7 @@ public class AssignmentListViewModel: ObservableObject {
 #if DEBUG
 
     init(state: ViewModelState<[AssignmentGroupViewModel]>) {
+        self.env = .shared
         self.courseID = ""
         self.state = state
         self.defaultGradingPeriodId = nil

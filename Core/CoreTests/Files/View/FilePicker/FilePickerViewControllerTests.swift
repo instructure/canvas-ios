@@ -43,7 +43,8 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
 
     let batchID = "1"
 
-    lazy var controller = FilePickerViewController.create(batchID: batchID)
+    lazy var controller = FilePickerViewController
+        .create(env: environment, batchID: batchID)
 
     func testLayout() {
         let navigation = UINavigationController(rootViewController: controller)

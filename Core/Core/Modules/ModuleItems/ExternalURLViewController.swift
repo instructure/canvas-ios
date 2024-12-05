@@ -27,7 +27,7 @@ public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol
     public var color: UIColor?
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
-    let env = AppEnvironment.shared
+    private var env: AppEnvironment = .defaultValue
     public var name: String!
     public var url: URL!
     public var courseID: String?
@@ -42,10 +42,11 @@ public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol
         self?.updateNavBar()
     }}
 
-    public static func create(name: String, url: URL, courseID: String?) -> Self {
+    public static func create(env: AppEnvironment, name: String, url: URL, courseID: String?) -> Self {
         let controller = loadFromStoryboard()
         controller.name = name
         controller.url = url
+        controller.env = env
         controller.courseID = courseID
         return controller
     }
