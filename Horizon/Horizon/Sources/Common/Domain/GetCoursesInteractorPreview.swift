@@ -20,16 +20,10 @@
 import Combine
 import Foundation
 
-class GetProgramsInteractorPreview: GetProgramsInteractor {
-    func getPrograms() -> AnyPublisher<[HProgram], Never> {
-        Just(programs)
+class GetCoursesInteractorPreview: GetCoursesInteractor {
+    func getCourses() -> AnyPublisher<[HCourse], Never> {
+        Just([course])
             .eraseToAnyPublisher()
-    }
-
-    private var programs: [HProgram] {
-        [
-            .init(course: course, modules: modules)
-        ]
     }
 
     private var course: HCourse {
@@ -38,24 +32,20 @@ class GetProgramsInteractorPreview: GetProgramsInteractor {
             name: "learning AI for business",
             imageURL: URL(
                 string: "https://www.mbaandbeyond.com/wp-content/uploads/2024/05/How-is-AI-revolutionizing-MBA-programs-and-shaping-the-future-of-business-education.png"
-            )
+            ),
+            modules: [
+                .init(
+                    id: "12",
+                    name: "Introduction",
+                    courseID: "1",
+                    items: [
+                        .init(id: "15", title: "Sub title", htmlURL: nil),
+                        .init(id: "20", title: "Sub title 44", htmlURL: nil)
+                    ]
+                ),
+                .init(id: "13", name: "Assginemts", courseID: "2", items: [.init(id: "14", title: "Sub title 2", htmlURL: nil)])
+            ]
         )
     }
-
-    private var modules: [HModule] {
-        [
-            .init(
-                id: "12",
-                name: "Introduction",
-                courseID: "1",
-                items: [
-                    .init(id: "15", title: "Sub title", htmlURL: nil),
-                    .init(id: "20", title: "Sub title 44", htmlURL: nil)
-                ]
-            ),
-            .init(id: "13", name: "Assginemts", courseID: "2", items: [.init(id: "14", title: "Sub title 2", htmlURL: nil)])
-        ]
-    }
-
 }
 #endif

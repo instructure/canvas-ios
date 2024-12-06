@@ -21,15 +21,15 @@ import CombineExt
 import Core
 import Foundation
 
-final class ProgramsViewModel: ObservableObject {
+final class CourseListViewModel: ObservableObject {
     // MARK: - Outputs
 
     @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var programs: [HProgram] = []
+    @Published private(set) var courses: [HCourse] = []
 
     // MARK: - Inputs
 
-    let programDidSelect = PassthroughRelay<(HProgram, WeakViewController)>()
+    let courseDidSelect = PassthroughRelay<(HCourse, WeakViewController)>()
 
     // MARK: - Private
 
@@ -39,20 +39,20 @@ final class ProgramsViewModel: ObservableObject {
 
     init(
         router: Router,
-        interactor: GetProgramsInteractor
+        interactor: GetCoursesInteractor
     ) {
         unowned let unownedSelf = self
 
-        interactor.getPrograms()
-            .sink { programs in
-                unownedSelf.programs = programs
+        interactor.getCourses()
+            .sink { courses in
+                unownedSelf.courses = courses
                 unownedSelf.state = .data
             }
             .store(in: &subscriptions)
 
-        programDidSelect
-            .sink { program, vc in
-                router.route(to: "/programs/\(program.id)", userInfo: ["program": program], from: vc)
+        courseDidSelect
+            .sink { course, vc in
+                router.route(to: "/courses/\(course.id)", userInfo: ["course": course], from: vc)
             }
             .store(in: &subscriptions)
     }

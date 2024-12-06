@@ -25,7 +25,7 @@ final class CourseDetailsViewModel: ObservableObject {
 
     @Published private(set) var state: InstUI.ScreenState = .loading
     @Published private(set) var title: String = "Biology certificate"
-    @Published private(set) var program: HProgram?
+    @Published private(set) var course: HCourse?
 
     // MARK: - Private
 
@@ -36,10 +36,10 @@ final class CourseDetailsViewModel: ObservableObject {
 
     init(
         router: Router,
-        program: HProgram
+        course: HCourse
     ) {
         self.router = router
-        self.program = program
+        self.course = course
         self.state = .data
     }
 

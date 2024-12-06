@@ -29,7 +29,7 @@ enum HorizonRoutes {
         splashRoutes,
         moduleRoutes,
         pageRoutes,
-        programRoutes,
+        courseRoutes,
         fileRoutes,
         quizRoutes,
         assignmentRoutes,
@@ -89,11 +89,11 @@ enum HorizonRoutes {
         ]
     }
 
-    private static var programRoutes: [RouteHandler] {
+    private static var courseRoutes: [RouteHandler] {
         [
-            RouteHandler("/programs/:programID") { _, _, userInfo in
-                guard let program = userInfo?["program"] as? HProgram else { return nil }
-                return LearnAssembly.makeProgramDetailsViewController(program: program)
+            RouteHandler("/courses/:courseID") { _, _, userInfo in
+                guard let course = userInfo?["course"] as? HCourse else { return nil }
+                return LearnAssembly.makeCourseDetailsViewController(course: course)
             }
         ]
     }

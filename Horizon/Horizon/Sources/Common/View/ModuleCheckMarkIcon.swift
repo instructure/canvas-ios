@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct ProgramCheckMarkIcon: View {
+struct ModuleCheckMarkIcon: View {
     let isCompleted: Bool
 
     var body: some View {
@@ -42,6 +42,6 @@ struct ProgramCheckMarkIcon: View {
 
 #if DEBUG
 #Preview {
-    ProgramCheckMarkIcon(isCompleted: true)
+    ModuleCheckMarkIcon(isCompleted: true)
 }
 #endif

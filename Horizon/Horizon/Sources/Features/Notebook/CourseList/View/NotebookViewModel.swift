@@ -33,13 +33,13 @@ final class NotebookViewModel {
 
     // MARK: - Private variables
 
-    private let getCoursesInteractor: GetNoteCoursesInteractor
+    private let getCoursesInteractor: GetNotebookCoursesInteractor
     private let router: Router
     private var subscriptions: Set<AnyCancellable> = []
 
     // MARK: - Init
 
-    init(router: Router, getCoursesInteractor: GetNoteCoursesInteractor) {
+    init(router: Router, getCoursesInteractor: GetNotebookCoursesInteractor) {
         self.router = router
         self.getCoursesInteractor = getCoursesInteractor
 

@@ -36,19 +36,19 @@ struct CourseDetailsViewView: View {
             config: .init(refreshable: false)
         ) { proxy in
             VStack(alignment: .leading, spacing: 0) {
-                if let program = viewModel.program {
-                    Size24BoldTextDarkestTitle(title: program.name)
+                if let course = viewModel.course {
+                    Size24BoldTextDarkestTitle(title: course.name)
                         .padding(.bottom, 4)
-                    Size12RegularTextDarkTitle(title: program.institutionName)
+                    Size12RegularTextDarkTitle(title: course.institutionName)
                         .padding(.bottom, 4)
-                    Size12RegularTextDarkTitle(title: program.targetCompletion)
+                    Size12RegularTextDarkTitle(title: course.targetCompletion)
                     CertificateProgressBar(
                         maxWidth: proxy.size.width,
-                        progress: program.progress,
-                        progressString: program.progressString
+                        progress: course.progress,
+                        progressString: course.progressString
                     )
                     .padding(.bottom, 16)
-                    learningContentView(modules: program.modules)
+                    learningContentView(modules: course.modules)
                 }
             }
             .containerRelativeFrame(.vertical)
