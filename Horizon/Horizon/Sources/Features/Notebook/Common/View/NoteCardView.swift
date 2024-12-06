@@ -30,6 +30,7 @@ struct NoteCardView: View {
                     .font(.regular12)
                     .padding(.bottom, 8)
                 Text(note.note)
+                    .lineLimit(3)
                     .font(.regular16)
                     .padding(.bottom, 8)
                 HStack(spacing: 8) {
