@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%lld %@ %lld" : {
       "localizations" : {
         "en" : {
@@ -32,6 +35,9 @@
     "Check Answer" : {
 
     },
+    "Confusing" : {
+
+    },
     "Continue learning" : {
 
     },
@@ -39,6 +45,9 @@
 
     },
     "Error" : {
+
+    },
+    "Filter" : {
 
     },
     "Generate some study flashcards" : {
@@ -56,10 +65,22 @@
     "How was this question?" : {
 
     },
+    "Important" : {
+    
+    },
     "INCOMPLETE ITEM" : {
 
     },
     "Learn" : {
+
+    },
+    "Notebook" : {
+
+    },
+    "Notebook for Course %@" : {
+
+    },
+    "Notes" : {
 
     },
     "of" : {
@@ -78,6 +99,9 @@
 
     },
     "Regenerate" : {
+
+    },
+    "Search" : {
 
     },
     "Submit Assignment" : {

@@ -64,7 +64,7 @@ struct DashboardView: View {
     private var navBarIcons: some View {
         HStack(spacing: 0) {
             Button {
-                viewModel.notebookDidTap()
+                viewModel.notebookDidTap(viewController)
             } label: {
                 Image(systemName: "book.closed")
                     .tint(.backgroundDark)
