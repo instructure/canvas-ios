@@ -16,21 +16,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import SwiftUI
 
-struct Size14RegularTextDarkestTitle: View {
-    let title: String
+struct NotebookLabelIcon: View {
+    // MARK: - Dependencies
+
+    let type: NotebookNoteLabel
+    let enabled: Bool
 
     var body: some View {
-        Text(title.capitalized)
-            .font(.regular14)
-            .foregroundColor(.textDarkest)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .multilineTextAlignment(.leading)
+        let image = type == .confusing ?
+            Image(systemName: "questionmark.circle") :
+            Image(.flag)
+        return image.foregroundStyle(enabled ? colorFromType(type) : Color.disabledGray)
     }
 }
 
-#Preview {
-    Size14RegularTextDarkestTitle(title: "Module Name")
+// MARK: - Helpers
+
+@inline(__always) func colorFromType(_ type: NotebookNoteLabel) -> Color {
+    type == .confusing ?
+        Color(red: 0.682,
+              green: 0.106,
+              blue: 0.122) :
+        Color(red: 0.055,
+        green: 0.408,
+        blue: 0.702)
 }

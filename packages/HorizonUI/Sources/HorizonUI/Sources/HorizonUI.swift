@@ -16,21 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import SwiftUI
 
-struct Size14RegularTextDarkestTitle: View {
-    let title: String
-
-    var body: some View {
-        Text(title.capitalized)
-            .font(.regular14)
-            .foregroundColor(.textDarkest)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .multilineTextAlignment(.leading)
+public struct HorizonUI {
+    private init() {}
+    
+    public static func registerCustomFonts() {
+        for font in Fonts.Variants.allCases {
+            guard let url = Bundle.module.url(forResource: font.rawValue, withExtension: "ttf") else { continue }
+            CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
+        }
     }
-}
-
-#Preview {
-    Size14RegularTextDarkestTitle(title: "Module Name")
 }

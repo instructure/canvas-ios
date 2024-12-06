@@ -16,21 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
 import Core
-import SwiftUI
 
-struct Size14RegularTextDarkestTitle: View {
-    let title: String
-
-    var body: some View {
-        Text(title.capitalized)
-            .font(.regular14)
-            .foregroundColor(.textDarkest)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .multilineTextAlignment(.leading)
+final class NotebookAssembly {
+    static func make() -> CoreHostingController<NotebookView> {
+        CoreHostingController(
+            NotebookView(
+                viewModel: .init(
+                    router: AppEnvironment.shared.router,
+                    getCoursesInteractor: GetCoursesInteractor(
+                        courseNotesRepository: CourseNotesRepository()
+                    )
+                )
+            )
+        )
     }
-}
-
-#Preview {
-    Size14RegularTextDarkestTitle(title: "Module Name")
 }

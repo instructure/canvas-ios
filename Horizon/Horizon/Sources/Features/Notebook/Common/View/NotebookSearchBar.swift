@@ -19,18 +19,24 @@
 import Core
 import SwiftUI
 
-struct Size14RegularTextDarkestTitle: View {
-    let title: String
+struct NotebookSearchBar: View {
+
+    @Binding var term: String
 
     var body: some View {
-        Text(title.capitalized)
-            .font(.regular14)
-            .foregroundColor(.textDarkest)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .multilineTextAlignment(.leading)
+        ZStack(alignment: .leading) {
+            TextField("",
+                  text: $term,
+                  prompt: Text(String(localized: "Search", bundle: .horizon))
+                )
+                .frame(height: 48)
+                .padding(.leading, 48)
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 32))
+                .shadow(color: Color.black.opacity(0.2), radius: 8, x: 1, y: 2)
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(.textDarkest)
+                .padding(.leading, 16)
+        }
     }
-}
-
-#Preview {
-    Size14RegularTextDarkestTitle(title: "Module Name")
 }

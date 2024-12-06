@@ -16,21 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import SwiftUI
 
-struct Size14RegularTextDarkestTitle: View {
-    let title: String
+struct NoteCardLabelView: View {
+    // MARK: - Properties
+    let type: NotebookNoteLabel
 
     var body: some View {
-        Text(title.capitalized)
-            .font(.regular14)
-            .foregroundColor(.textDarkest)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .multilineTextAlignment(.leading)
+        HStack {
+            NotebookLabelIcon(type: type, enabled: true)
+            Text(labelFromType(type)).font(.regular12).foregroundStyle(colorFromType(type))
+        }
+        .padding()
+        .frame(height: 31)
+        .background(
+            RoundedRectangle(cornerRadius: 15.5)
+                .stroke(colorFromType(type), lineWidth: 2)
+        )
+        .cornerRadius(15.5)
     }
-}
-
-#Preview {
-    Size14RegularTextDarkestTitle(title: "Module Name")
 }

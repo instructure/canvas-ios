@@ -35,6 +35,7 @@ enum HorizonRoutes {
         assignmentRoutes,
         inboxRoutes,
         externalToolRoutes,
+        notebookRoutes,
         aiRoutes
     ]
 
@@ -188,6 +189,19 @@ enum HorizonRoutes {
                 let tools = LTITools(context: .course(courseID), id: toolID)
                 tools.presentTool(from: vc, animated: true)
                 return nil
+            }
+        ]
+    }
+
+    private static var notebookRoutes: [RouteHandler] {
+        [
+            RouteHandler("/notebook") { _, _, _ in
+                return NotebookAssembly.make()
+            },
+
+            RouteHandler("/notebook/:courseID") { _, params, _ in
+                guard let courseId = params["courseID"] else { return nil }
+                return NotebookCourseAssembly.make(courseId: courseId	)
             }
         ]
     }

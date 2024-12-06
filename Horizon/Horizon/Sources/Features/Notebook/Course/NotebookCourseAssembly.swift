@@ -17,20 +17,19 @@
 //
 
 import Core
-import SwiftUI
 
-struct Size14RegularTextDarkestTitle: View {
-    let title: String
-
-    var body: some View {
-        Text(title.capitalized)
-            .font(.regular14)
-            .foregroundColor(.textDarkest)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .multilineTextAlignment(.leading)
+final class NotebookCourseAssembly {
+    static func make(courseId: String) -> CoreHostingController<NotebookCourseView>? {
+        CoreHostingController(
+            NotebookCourseView(
+                viewModel: NotebookCourseViewModel(
+                    courseId: courseId,
+                    getCourseNotesInteractor: GetCourseNotesInteractor(
+                        courseNotesRepository: CourseNotesRepository()
+                    ),
+                    router: AppEnvironment.shared.router
+                )
+            )
+        )
     }
-}
-
-#Preview {
-    Size14RegularTextDarkestTitle(title: "Module Name")
 }

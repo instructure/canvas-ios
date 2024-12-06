@@ -16,6 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct HorizonUI {
-    private init() {}
+import Foundation
+import Combine
+
+struct CourseNote {
+    let id: String
+    let date: Date
+    let content: String
+    let institution: String
+    let courseId: String
+    let course: String
+    let labels: [String] // e.g. "Important", "Confusing", etc.
 }

@@ -16,21 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+struct NotebookCourse: Hashable {
+    let id: String
+    let course: String
+    let institution: String
 
-public extension HorizonUI {
-    struct Fonts: Sendable {
-        fileprivate init() {}
-
-        // TODO: Import custom font, add actual variants
-        let regular24: Font = .system(size: 24)
-        let regular18: Font = .system(size: 18)
-        let regular12: Font = .system(size: 12)
+    init(from courseNote: CourseNote) {
+        id = courseNote.courseId
+        course = courseNote.course
+        institution = courseNote.institution
     }
-
-    static let fonts = HorizonUI.Fonts()
-}
-
-extension Font {
-    static let huiFonts = HorizonUI.fonts
 }

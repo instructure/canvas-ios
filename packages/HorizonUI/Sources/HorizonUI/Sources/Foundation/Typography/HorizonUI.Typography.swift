@@ -24,12 +24,32 @@ public extension HorizonUI {
             case h1
             case h2
             case h3
+            case p1
+            case p2
+            case p3
+            case tag
+            case labelLargeBold
+            case labelMediumBold
+            case labelSmallBold
+            case labelSmall
+            case buttonTextLarge
+            case buttonTextMedium
 
             var font: Font {
                 switch self {
-                case .h1: return HorizonUI.fonts.regular24
-                case .h2: return HorizonUI.fonts.regular18
-                case .h3: return HorizonUI.fonts.regular12
+                case .h1: return .huiFonts.manropeBold28
+                case .h2: return .huiFonts.manropeBold24
+                case .h3: return .huiFonts.manropeBold20
+                case .p1: return .huiFonts.figtreeRegular16
+                case .p2: return .huiFonts.figtreeRegular14
+                case .p3: return .huiFonts.figtreeRegular12
+                case .tag: return .huiFonts.manropeRegular12
+                case .labelLargeBold: return .huiFonts.figtreeSemibold16
+                case .labelMediumBold: return .huiFonts.figtreeSemibolt14
+                case .labelSmallBold: return .huiFonts.figtreeSemibold12
+                case .labelSmall: return .huiFonts.figtreeRegular12
+                case .buttonTextLarge: return .huiFonts.figtreeRegular16
+                case .buttonTextMedium: return .huiFonts.figtreeRegular14
                 }
             }
         }
