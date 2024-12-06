@@ -33,6 +33,7 @@ class GetCoursesInteractorPreview: GetCoursesInteractor {
             imageURL: URL(
                 string: "https://www.mbaandbeyond.com/wp-content/uploads/2024/05/How-is-AI-revolutionizing-MBA-programs-and-shaping-the-future-of-business-education.png"
             ),
+            overviewDescription: "String",
             modules: [
                 .init(
                     id: "12",

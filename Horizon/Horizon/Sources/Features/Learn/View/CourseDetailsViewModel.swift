@@ -25,7 +25,7 @@ final class CourseDetailsViewModel: ObservableObject {
 
     @Published private(set) var state: InstUI.ScreenState = .loading
     @Published private(set) var title: String = "Biology certificate"
-    @Published private(set) var course: HCourse?
+    @Published private(set) var course: HCourse
 
     // MARK: - Private
 

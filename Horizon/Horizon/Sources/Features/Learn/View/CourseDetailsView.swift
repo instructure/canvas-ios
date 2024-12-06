@@ -17,72 +17,67 @@
 //
 
 import Core
+import HorizonUI
 import SwiftUI
 
 struct CourseDetailsViewView: View {
     @ObservedObject private var viewModel: CourseDetailsViewModel
     @Environment(\.viewController) private var viewController
-    @State private var selectedCourseIndex: Int?
-    @State private var selectedCourseDetailsIndex = 0
+    @State private var selectedTabIndex: Int?
+    @State private var selectedTabDetailsIndex = 0
 
     init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
-        self.selectedCourseIndex = 0
+        self.selectedTabIndex = 0
     }
 
     var body: some View {
-        InstUI.BaseScreen(
-            state: viewModel.state,
-            config: .init(refreshable: false)
-        ) { proxy in
-            VStack(alignment: .leading, spacing: 0) {
-                if let course = viewModel.course {
-                    Size24BoldTextDarkestTitle(title: course.name)
-                        .padding(.bottom, 4)
-                    Size12RegularTextDarkTitle(title: course.institutionName)
-                        .padding(.bottom, 4)
-                    Size12RegularTextDarkTitle(title: course.targetCompletion)
-                    CertificateProgressBar(
-                        maxWidth: proxy.size.width,
-                        progress: course.progress,
-                        progressString: course.progressString
-                    )
-                    .padding(.bottom, 16)
-                    learningContentView(modules: course.modules)
-                }
-            }
-            .containerRelativeFrame(.vertical)
+        VStack(alignment: .leading, spacing: 0) {
+            Size24BoldTextDarkestTitle(title: viewModel.course.name)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 4)
+            Size12RegularTextDarkTitle(title: viewModel.course.institutionName)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 4)
+            Size12RegularTextDarkTitle(title: viewModel.course.targetCompletion)
+                .padding(.horizontal, 16)
+            CertificateProgressBar(
+                maxWidth: 325,
+                progress: viewModel.course.progress,
+                progressString: viewModel.course.progressString
+            )
+            .padding([.horizontal, .bottom], 16)
+            learningContentView(course: viewModel.course)
         }
         .containerRelativeFrame(.vertical)
         .safeAreaPadding(.bottom, 16)
         .padding(.top, 16)
-        .padding(.horizontal, 16)
         .background(Color.backgroundLight)
         .onFirstAppear {
-            selectedCourseIndex = 0
+            selectedTabIndex = 0
         }
     }
 
     @ViewBuilder
-    private func learningContentView(modules: [HModule]) -> some View {
+    private func learningContentView(course: HCourse) -> some View {
         VStack {
-            courseSelectorView
-            moduleListView(modules: modules)
+            tabSelectorView
+            tabDetailsView(course: course)
         }
         .background(Color.backgroundLight)
     }
 
-    private var courseSelectorView: some View {
+    private var tabSelectorView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
-                ForEach(0 ..< 6) { index in
+                ForEach(Array(Tabs.allCases.enumerated()), id: \.offset) { index, tab in
                     Button {
-                        selectedCourseIndex = index
-                        selectedCourseDetailsIndex = index
+                        selectedTabIndex = index
+                        selectedTabDetailsIndex = index
                     } label: {
                         VStack {
-                            Size14RegularTextDarkestTitle(title: "Course: \(index)")
-                            if index == selectedCourseIndex {
+                            Size14RegularTextDarkestTitle(title: tab.localizedString)
+                            if index == selectedTabIndex {
                                 Rectangle()
                                     .foregroundColor(Color.red)
                                     .frame(height: 2)
@@ -98,41 +93,107 @@ struct CourseDetailsViewView: View {
         }
         .simultaneousGesture(DragGesture(minimumDistance: 0), including: .all)
         .scrollBounceBehavior(.basedOnSize)
-        .scrollPosition(id: $selectedCourseIndex, anchor: .center)
-        .animation(.smooth, value: selectedCourseIndex)
+        .scrollPosition(id: $selectedTabIndex, anchor: .center)
+        .animation(.smooth, value: selectedTabIndex)
+        .padding(.horizontal, 16)
+
         // Re-enable if ScrollView drag gesture is needed.
         /*
-        .onChange(of: selectedCourseIndex) {
-            if let selectedCourseIndex, selectedCourseIndex != selectedCourseDetailsIndex {
-                selectedCourseDetailsIndex = selectedCourseIndex
-            }
-        }
-        */
+         .onChange(of: selectedCourseIndex) {
+             if let selectedCourseIndex, selectedCourseIndex != selectedCourseDetailsIndex {
+                 selectedCourseDetailsIndex = selectedCourseIndex
+             }
+         }
+         */
     }
 
     @ViewBuilder
-    private func moduleListView(modules: [HModule]) -> some View {
-        TabView(selection: $selectedCourseDetailsIndex) {
-            ForEach(0 ..< 6) { index in
+    private func tabDetailsView(course: HCourse) -> some View {
+        TabView(selection: $selectedTabDetailsIndex) {
+            ForEach(Array(Tabs.allCases.enumerated()), id: \.offset) { index, tab in
                 ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: 16) {
-                        ForEach(modules) { module in
-                            ExpandingModuleView(module: module) { url in
-                                viewModel.moduleItemDidTap(url: url, from: viewController)
-                            }
-                            .frame(minHeight: 44)
-                            .background(Color.backgroundLightest)
-                            .cornerRadius(8)
+                    switch tab {
+                    case .myProgress:
+                        modulesView(modules: course.modules).id(index)
+                    case .overview:
+                        overview(htmlString: course.overviewDescription).id(index)
+                    case .grades:
+                        Text(verbatim: "Grades")
                             .id(index)
-                        }
+                    case .notebook:
+                        Text(verbatim: "Notebook")
+                            .id(index)
+                    case .quickLinks:
+                        Text(verbatim: "Quick Links")
+                            .id(index)
                     }
                 }
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
-        .onChange(of: selectedCourseDetailsIndex) {
-            selectedCourseIndex = selectedCourseDetailsIndex
+        .onChange(of: selectedTabDetailsIndex) {
+            selectedTabIndex = selectedTabDetailsIndex
         }
-        .animation(.smooth, value: selectedCourseDetailsIndex)
+        .animation(.smooth, value: selectedTabDetailsIndex)
+    }
+
+    @ViewBuilder
+    private func modulesView(modules: [HModule]) -> some View {
+        VStack(spacing: 16) {
+            ForEach(modules) { module in
+                ExpandingModuleView(module: module) { url in
+                    viewModel.moduleItemDidTap(url: url, from: viewController)
+                }
+                .frame(minHeight: 44)
+                .background(Color.backgroundLightest)
+                .cornerRadius(8)
+            }
+        }
+        .padding(.horizontal, 16)
+    }
+
+    @ViewBuilder
+    private func overview(htmlString: String?) -> some View {
+        if let htmlString {
+            WebView(html: htmlString)
+                .clipShape(
+                    .rect(
+                        topLeadingRadius: 32,
+                        bottomLeadingRadius: 0,
+                        bottomTrailingRadius: 0,
+                        topTrailingRadius: 32
+                    )
+                )
+                .containerRelativeFrame(.vertical)
+        }
+    }
+}
+
+extension CourseDetailsViewView {
+    enum Tabs: CaseIterable, Identifiable {
+        case myProgress
+        case overview
+        case grades
+        case notebook
+        case quickLinks
+
+        var localizedString: String {
+            switch self {
+            case .myProgress:
+                return String(localized: "My Progress", bundle: .horizon)
+            case .overview:
+                return String(localized: "Overview", bundle: .horizon)
+            case .grades:
+                return String(localized: "Grades", bundle: .horizon)
+            case .notebook:
+                return String(localized: "Notebook", bundle: .horizon)
+            case .quickLinks:
+                return String(localized: "Quick Links", bundle: .horizon)
+            }
+        }
+
+        var id: Self {
+            self
+        }
     }
 }
