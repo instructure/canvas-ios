@@ -19,20 +19,46 @@
 import SwiftUI
 
 public extension HorizonUI {
-    enum CornerRadius: CGFloat, CaseIterable {
-        case level1 = 8
-        case level2 = 16
+    enum CornerRadius: CaseIterable {
+        case level1
+        case level2
+        case level3
+        case level4
+        case level5
+        case level6
+        
+        typealias CornerAttributes = SmoothRoundedRectangle.CornerAttributes
 
-        // TODO: Add other variants
-
-        var clipShape: some Shape {
-            RoundedRectangle(cornerRadius: self.rawValue, style: .continuous)
+        var attributes: CornerAttributes {
+            switch self {
+            case .level1:
+                CornerAttributes(radius: 8, smoothness: 0)
+            case .level2:
+                CornerAttributes(radius: 16, smoothness: 60)
+            case .level3:
+                CornerAttributes(radius: 16, smoothness: 0)
+            case .level4:
+                CornerAttributes(radius: 32, smoothness: 60)
+            case .level5:
+                CornerAttributes(radius: 32, smoothness: 0)
+            case .level6:
+                CornerAttributes(radius: 100, smoothness: 0)
+            }
         }
     }
 }
 
-extension View {
-    func huiCornerRadius(type: HorizonUI.CornerRadius) -> some View {
-        clipShape(type.clipShape)
+public extension View {
+    func huiCornerRadius(
+        level: HorizonUI.CornerRadius,
+        corners: HorizonUI.Corners = [.all]
+    ) -> some View {
+        clipShape(
+            HorizonUI.SmoothRoundedRectangle(
+                radius: level.attributes.radius,
+                corners: corners,
+                smoothness: level.attributes.smoothness
+            )
+        )
     }
 }
