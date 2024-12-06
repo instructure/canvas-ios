@@ -19,21 +19,22 @@
 import SwiftUI
 import Core
 
-struct NotesBody<Content: View>: View {
-
+struct NotesBody<Content: View, Leading: View, Trailing: View>: View {
     private let backgroundColor = Color(hexString: "#FBF5ED")!
     private let content: Content
-    private let onBack: () -> Void
+    private let leading: Leading?
     @State private var title: String
-    @Environment(\.viewController) private var viewController
+    private let trailing: Trailing?
 
     init(
         title: String,
-        onBack: @escaping () -> Void,
+        @ViewBuilder leading: () -> Leading?,
+        @ViewBuilder trailing: () -> Trailing?,
         @ViewBuilder _ content: () -> Content
     ) {
         self.title = title
-        self.onBack = onBack
+        self.leading = leading()
+        self.trailing = trailing()
         self.content = content()
     }
 
@@ -47,22 +48,30 @@ struct NotesBody<Content: View>: View {
         .navigationBarBackButtonHidden(true)
         .navigationTitle(title)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) { navBarButton }
+            if let leading = leading {
+                ToolbarItem(placement: .navigationBarLeading) { leading }
+            }
+            if let trailing = trailing {
+                ToolbarItem(placement: .navigationBarTrailing) { trailing }
+            }
         }
         .toolbarBackground(backgroundColor, for: .navigationBar)
         .background(backgroundColor)
     }
+}
 
-    private var navBarButton: some View {
-        Button {
-            onBack()
-        } label: {
-            Image(systemName: "arrow.left")
-                .tint(.backgroundDark)
-                .frame(width: 40, height: 40)
-                .background(Color.backgroundLightest)
-                .clipShape(.circle)
-                .shadow(color: .backgroundDark, radius: 2)
+#Preview {
+    NavigationView {
+        NotesBody(
+            title: "Title",
+            leading: {
+                Text("Leading")
+            },
+            trailing: {
+                Text("Trailing")
+            }
+        ) {
+            Text("Content")
         }
     }
 }

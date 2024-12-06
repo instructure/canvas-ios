@@ -20,12 +20,14 @@ import SwiftUI
 
 struct NoteCardLabelView: View {
     // MARK: - Properties
-    let type: NotebookNoteLabel
+    let type: CourseNoteLabel
 
     var body: some View {
         HStack {
-            NotebookLabelIcon(type: type, enabled: true)
-            Text(labelFromType(type)).font(.regular12).foregroundStyle(colorFromType(type))
+            NotebookLabelIcon(type: type)
+            Text(labelFromType(type))
+                .font(.regular12)
+                .foregroundStyle(colorFromType(type))
         }
         .padding()
         .frame(height: 31)

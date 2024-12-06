@@ -203,10 +203,20 @@ enum HorizonRoutes {
             RouteHandler("/notebook") { _, _, _ in
                 return NotebookAssembly.make()
             },
-
             RouteHandler("/notebook/:courseID") { _, params, _ in
                 guard let courseId = params["courseID"] else { return nil }
                 return NotebookCourseAssembly.make(courseId: courseId	)
+            },
+            RouteHandler("/notebook/note/:noteID") { _, params, _ in
+                guard let noteId = params["noteID"] else { return nil }
+                guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
+                let router: Router = AppEnvironment.shared.router
+                router.show(
+                    NotebookNoteAssembly.make(noteId: noteId),
+                    from: vc,
+                    options: .modal(.pageSheet)
+                )
+                return nil
             }
         ]
     }

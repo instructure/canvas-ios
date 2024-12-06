@@ -29,10 +29,16 @@
     "Answer" : {
 
     },
+    "Are you sure you want to proceed?" : {
+
+    },
     "Career" : {
 
     },
     "Check Answer" : {
+
+    },
+    "Confirmation" : {
 
     },
     "Confusing" : {
@@ -42,6 +48,9 @@
 
     },
     "Due" : {
+
+    },
+    "Edit" : {
 
     },
     "Error" : {
@@ -66,12 +75,15 @@
 
     },
     "Important" : {
-    
+
     },
     "INCOMPLETE ITEM" : {
 
     },
     "Learn" : {
+
+    },
+    "Note" : {
 
     },
     "Notebook" : {
@@ -101,6 +113,9 @@
     "Regenerate" : {
 
     },
+    "Save" : {
+
+    },
     "Search" : {
 
     },
@@ -117,6 +132,9 @@
 
     },
     "Try Again" : {
+
+    },
+    "Yes" : {
 
     },
     "Your Programs" : {
