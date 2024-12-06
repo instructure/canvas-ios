@@ -49,27 +49,30 @@ enum HorizonRoutes {
 
     private static var moduleRoutes: [RouteHandler] {
         [
-            RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _ in
+            RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _, env in
                 guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
                 return ModuleItemSequenceViewController.create(
+                    env: env,
                     courseID: courseID,
                     assetType: .moduleItem,
                     assetID: itemID,
                     url: url
                 )
             },
-            RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _ in
+            RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _, env in
                 guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
                 return ModuleItemSequenceViewController.create(
+                    env: env,
                     courseID: courseID,
                     assetType: .moduleItem,
                     assetID: itemID,
                     url: url
                 )
             },
-            RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _ in
+            RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _, env in
                 guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
                 return ModuleItemSequenceViewController.create(
+                    env: env,
                     courseID: courseID,
                     assetType: .moduleItem,
                     assetID: itemID,
@@ -126,10 +129,11 @@ enum HorizonRoutes {
                 return QuizListViewController.create(courseID: ID.expandTildeID(courseID))
             },
 
-            RouteHandler("/courses/:courseID/quizzes/:quizID") { url, params, _ in
+            RouteHandler("/courses/:courseID/quizzes/:quizID") { url, params, _, env in
                 guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
                 if !url.originIsModuleItemDetails {
                     return ModuleItemSequenceViewController.create(
+                        env: env,
                         courseID: courseID,
                         assetType: .quiz,
                         assetID: quizID,
@@ -143,13 +147,14 @@ enum HorizonRoutes {
 
     private static var assignmentRoutes: [RouteHandler] {
         [
-            RouteHandler("/courses/:courseID/assignments/:assignmentID") { url, params, _ in
+            RouteHandler("/courses/:courseID/assignments/:assignmentID") { url, params, _, env in
                 guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
                 if assignmentID == "syllabus" {
                     return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
                 }
                 if !url.originIsModuleItemDetails {
                     return ModuleItemSequenceViewController.create(
+                        env: env,
                         courseID: ID.expandTildeID(courseID),
                         assetType: .assignment,
                         assetID: ID.expandTildeID(assignmentID),
@@ -208,10 +213,10 @@ enum HorizonRoutes {
 
     private static var aiRoutes: [RouteHandler] {
         [
-            RouteHandler("/tutor") {_, _, _ in
+            RouteHandler("/tutor") { _, _, _ in
                 AIAssembly.makeAITutorView()
             },
-            RouteHandler("/summary") {_, _, _ in
+            RouteHandler("/summary") { _, _, _ in
                 AIAssembly.makeAISummaryView()
             }
         ]
@@ -221,17 +226,28 @@ enum HorizonRoutes {
 // MARK: - Helper functions
 
 extension HorizonRoutes {
-    private static func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    private static func fileList(
+        url: URLComponents,
+        params: [String: String],
+        userInfo: [String: Any]?,
+        environment: AppEnvironment
+    ) -> UIViewController? {
         guard url.queryItems?.contains(where: { $0.name == "preview" }) != true else {
-            return fileDetails(url: url, params: params, userInfo: userInfo)
+            return fileDetails(url: url, params: params, userInfo: userInfo, environment: environment)
         }
         return FileListViewController.create(
+            env: environment,
             context: Context(path: url.path) ?? .currentUser,
             path: params["subFolder"]
         )
     }
 
-    private static func fileDetails(url: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
+    private static func fileDetails(
+        url: URLComponents,
+        params: [String: String],
+        userInfo _: [String: Any]?,
+        environment: AppEnvironment
+    ) -> UIViewController? {
         guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
         var context = Context(path: url.path)
         if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
@@ -240,6 +256,7 @@ extension HorizonRoutes {
         let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
         if !url.originIsModuleItemDetails, !url.skipModuleItemSequence, let context = context, context.contextType == .course {
             return ModuleItemSequenceViewController.create(
+                env: environment,
                 courseID: context.id,
                 assetType: .file,
                 assetID: fileID,
@@ -254,10 +271,16 @@ extension HorizonRoutes {
         return CoreHostingController(FileEditorView(context: Context(path: url.path), fileID: fileID))
     }
 
-    private static func pageViewController(url: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
+    private static func pageViewController(
+        url: URLComponents,
+        params: [String: String],
+        userInfo _: [String: Any]?,
+        environment: AppEnvironment
+    ) -> UIViewController? {
         guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
         if !url.originIsModuleItemDetails, context.contextType == .course {
             return ModuleItemSequenceViewController.create(
+                env: environment,
                 courseID: context.id,
                 assetType: .page,
                 assetID: pageURL,

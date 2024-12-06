@@ -74,6 +74,6 @@ class DashboardSettingsViewTests: CoreTestCase {
     private func createView(interactor: DashboardSettingsInteractor) -> TestTree {
         let viewModel = DashboardSettingsViewModel(interactor: interactor)
         let view = DashboardSettingsView(viewModel: viewModel)
-        return hostSwiftUIController(view).testTree!
+        return hostSwiftUIController(view, thoroughness: 20).testTree!
     }
 }

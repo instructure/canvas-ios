@@ -19,6 +19,8 @@
 import SwiftUI
 
 public struct DocViewer: UIViewControllerRepresentable {
+    @Environment(\.appEnvironment) private var env
+
     public let filename: String
     public let previewURL: URL?
     public let fallbackURL: URL
@@ -35,7 +37,12 @@ public struct DocViewer: UIViewControllerRepresentable {
         let prev = uiViewController.children.first as? DocViewerViewController
         if prev?.filename != filename || prev?.previewURL != previewURL || prev?.fallbackURL != fallbackURL {
             prev?.unembed()
-            let next = DocViewerViewController.create(filename: filename, previewURL: previewURL, fallbackURL: fallbackURL)
+            let next = DocViewerViewController.create(
+                env: env,
+                filename: filename,
+                previewURL: previewURL,
+                fallbackURL: fallbackURL
+            )
             next.isAnnotatable = true
             uiViewController.embed(next, in: uiViewController.view)
         }

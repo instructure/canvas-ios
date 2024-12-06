@@ -36,7 +36,7 @@ public class ComposeViewController: UIViewController, ErrorViewController {
     lazy var attachments = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.updateAttachments()
     }
-    lazy var filePicker = FilePicker(delegate: self)
+    lazy var filePicker = FilePicker(env: env, delegate: self)
 
     var context = Context.currentUser
     let env = AppEnvironment.shared
@@ -207,7 +207,7 @@ extension ComposeViewController: FilePickerDelegate {
 
     public func filePicker(didPick url: URL) {
         _ = attachments // lazy init
-        UploadManager.shared.upload(url: url, batchID: batchID, to: .myFiles, folderPath: "my files/conversation attachments")
+        env.uploadManager.upload(url: url, batchID: batchID, to: .myFiles, folderPath: "my files/conversation attachments")
     }
 
     public func filePicker(didRetry file: File) {

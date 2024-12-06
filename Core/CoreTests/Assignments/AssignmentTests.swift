@@ -260,6 +260,13 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(icon, expected)
     }
 
+    func testIconForQuizLTI() {
+        let a = Assignment.make(from: .make(id: "1", is_quiz_lti_assignment: true, quiz_id: nil))
+        let icon = a.icon
+        let expected = UIImage.quizLine
+        XCTAssertEqual(icon, expected)
+    }
+
     func testIconForExternalTool() {
         let a = Assignment.make(from: .make(id: "1", submission_types: [ .external_tool ]))
         let icon = a.icon
@@ -384,5 +391,30 @@ class AssignmentTests: CoreTestCase {
             )
         ]))
         XCTAssertTrue(a.hasMultipleDueDates)
+    }
+
+    func testSubmissionTypesWithQuizLTIMapping_whenIsQuizLTIIsFalse() {
+        let a = Assignment.make()
+        a.isQuizLTI = false
+
+        a.submissionTypes = [.external_tool, .media_recording]
+        XCTAssertEqual(a.submissionTypesWithQuizLTIMapping, [.external_tool, .media_recording])
+    }
+
+    func testSubmissionTypesWithQuizLTIMapping_whenIsQuizLTIIsTrue() {
+        let a = Assignment.make()
+        a.isQuizLTI = true
+
+        a.submissionTypes = [.external_tool]
+        XCTAssertEqual(a.submissionTypesWithQuizLTIMapping, [.online_quiz])
+
+        a.submissionTypes = [.external_tool, .media_recording]
+        XCTAssertEqual(a.submissionTypesWithQuizLTIMapping, [.online_quiz, .media_recording])
+
+        a.submissionTypes = [.online_quiz, .external_tool, .media_recording]
+        XCTAssertEqual(a.submissionTypesWithQuizLTIMapping, [.online_quiz, .media_recording])
+
+        a.submissionTypes = [.basic_lti_launch]
+        XCTAssertEqual(a.submissionTypesWithQuizLTIMapping, [.basic_lti_launch])
     }
 }

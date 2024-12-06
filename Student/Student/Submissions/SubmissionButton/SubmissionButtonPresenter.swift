@@ -35,15 +35,16 @@ enum ArcID: Equatable {
 class SubmissionButtonPresenter: NSObject {
     var assignment: Assignment?
     let assignmentID: String
-    let env = AppEnvironment.shared
+    let env: AppEnvironment
     lazy var batchID = "assignment-\(assignmentID)"
-    lazy var files = UploadManager.shared.subscribe(batchID: batchID, eventHandler: {})
+    lazy var files = uploadManager.subscribe(batchID: batchID, eventHandler: {})
     var arcID: ArcID = .pending
     weak var view: SubmissionButtonViewProtocol?
     var selectedSubmissionTypes: [SubmissionType] = []
     lazy var flags = env.subscribe(GetEnabledFeatureFlags(context: .currentUser)) {}
 
-    init(view: SubmissionButtonViewProtocol, assignmentID: String) {
+    init(env: AppEnvironment, view: SubmissionButtonViewProtocol, assignmentID: String) {
+        self.env = env
         self.view = view
         self.assignmentID = assignmentID
         super.init()
@@ -62,7 +63,9 @@ class SubmissionButtonPresenter: NSObject {
             return String(localized: "View Discussion", bundle: .student)
         }
 
-        if assignment.isLTIAssignment {
+        if assignment.isQuizLTI {
+            return String(localized: "Open the Quiz", bundle: .student)
+        } else if assignment.isLTIAssignment {
             return String(localized: "Launch External Tool", bundle: .student)
         }
 
@@ -137,6 +140,7 @@ class SubmissionButtonPresenter: NSObject {
             Analytics.shared.logEvent("submit_textentry_selected")
             guard let userID = assignment.submission?.userID else { return }
             env.router.show(TextSubmissionViewController.create(
+                env: env,
                 courseID: courseID,
                 assignmentID: assignment.id,
                 userID: userID
@@ -155,6 +159,7 @@ class SubmissionButtonPresenter: NSObject {
             Analytics.shared.logEvent("submit_url_selected")
             guard let userID = assignment.submission?.userID else { return }
             env.router.show(UrlSubmissionViewController.create(
+                env: env,
                 courseID: courseID,
                 assignmentID: assignment.id,
                 userID: userID
@@ -217,7 +222,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
     func pickFiles(for assignment: Assignment, selectedSubmissionTypes: [SubmissionType]) {
         self.assignment = assignment
         self.selectedSubmissionTypes = selectedSubmissionTypes
-        let filePicker = FilePickerViewController.create(batchID: isMediaRecording ? UUID.string : batchID)
+        let filePicker = FilePickerViewController.create(env: env, batchID: isMediaRecording ? UUID.string : batchID)
         filePicker.title = String(localized: "Submission", bundle: .student)
         filePicker.cancelButtonTitle = String(localized: "Cancel Submission", bundle: .student)
         let allowedUTIs = selectedSubmissionTypes.allowedUTIs( allowedExtensions: assignment.allowedExtensions )
@@ -243,7 +248,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
             submitMediaRecording(controller)
         } else {
             let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
-            UploadManager.shared.upload(batch: self.batchID, to: context)
+            uploadManager.upload(batch: self.batchID, to: context)
         }
     }
 
@@ -252,16 +257,17 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         let mediaType: MediaCommentType = uti.isAudio ? .audio : .video
         let objectID = file.objectID
         env.router.dismiss(controller) { [weak self] in
-            self?.submitMediaType(mediaType, url: url, callback: { error in
-                guard let file = try? UploadManager.shared.viewContext.existingObject(with: objectID) as? File else { return }
-                UploadManager.shared.complete(file: file, error: error)
+            self?.submitMediaType(mediaType, url: url, callback: { [weak self] error in
+                guard let self else { return }
+                guard let file = try? uploadManager.viewContext.existingObject(with: objectID) as? File else { return }
+                uploadManager.complete(file: file, error: error)
             })
         }
     }
 
     func cancel(_ controller: FilePickerViewController) {
         env.router.dismiss(controller) {
-            UploadManager.shared.cancel(batchID: self.batchID)
+            self.uploadManager.cancel(batchID: self.batchID)
         }
     }
 
@@ -271,6 +277,10 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 
     func canSubmit(_ controller: FilePickerViewController) -> Bool {
         return controller.files.isEmpty == false
+    }
+
+    private var uploadManager: UploadManager {
+        return env.uploadManager
     }
 }
 

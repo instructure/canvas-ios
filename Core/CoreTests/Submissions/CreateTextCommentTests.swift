@@ -20,7 +20,15 @@ import XCTest
 @testable import Core
 
 class CreateTextCommentTests: CoreTestCase {
-    lazy var create = CreateTextComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, text: "comment", attempt: nil)
+    lazy var create = CreateTextComment(
+        env: environment,
+        courseID: "1",
+        assignmentID: "2",
+        userID: "3",
+        isGroup: false,
+        text: "comment",
+        attempt: nil
+    )
     var comment: SubmissionComment?
     var error: Error?
 
@@ -95,7 +103,15 @@ class CreateTextCommentTests: CoreTestCase {
     }
 
     func testSuccessWithAttemptField() {
-        lazy var create = CreateTextComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, text: "comment", attempt: 19)
+        lazy var create = CreateTextComment(
+            env: environment,
+            courseID: "1",
+            assignmentID: "2",
+            userID: "3",
+            isGroup: false,
+            text: "comment",
+            attempt: 19
+        )
         api.mock(PutSubmissionGradeRequest(
             courseID: create.courseID,
             assignmentID: create.assignmentID,

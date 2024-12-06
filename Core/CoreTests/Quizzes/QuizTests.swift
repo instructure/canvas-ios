@@ -57,11 +57,13 @@ class QuizTests: CoreTestCase {
     func testQuestionCountText() {
         XCTAssertEqual(Quiz.make(from: .make(question_count: 1)).questionCountText, "1")
         XCTAssertEqual(Quiz.make(from: .make(question_count: 10)).questionCountText, "10")
+        XCTAssertEqual(Quiz.make(from: .make(question_count: nil)).questionCountText, nil)
     }
 
     func testNQuestionsText() {
         XCTAssertEqual(Quiz.make(from: .make(question_count: 1)).nQuestionsText, "1 Question")
         XCTAssertEqual(Quiz.make(from: .make(question_count: 10)).nQuestionsText, "10 Questions")
+        XCTAssertEqual(Quiz.make(from: .make(question_count: nil)).nQuestionsText, nil)
     }
 
     func testTimeLimitText() {

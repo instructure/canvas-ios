@@ -23,6 +23,7 @@ import XCTest
 
 class ModuleItemSequenceViewControllerTests: CoreTestCase {
     lazy var controller = ModuleItemSequenceViewController.create(
+        env: environment,
         courseID: "1",
         assetType: .moduleItem,
         assetID: "2",
@@ -99,6 +100,7 @@ class ModuleItemSequenceViewControllerTests: CoreTestCase {
             value: .make(items: [.make(current: nil)])
         )
         let controller = ModuleItemSequenceViewController.create(
+            env: environment,
             courseID: "1",
             assetType: .file,
             assetID: "1",
@@ -115,6 +117,7 @@ class ModuleItemSequenceViewControllerTests: CoreTestCase {
             value: .make(items: [.make(current: nil)])
         )
         let controller = ModuleItemSequenceViewController.create(
+            env: environment,
             courseID: "1",
             assetType: .moduleItem,
             assetID: "1",
@@ -147,6 +150,7 @@ class ModuleItemSequenceViewControllerTests: CoreTestCase {
 
         let offlineModeInteractorMock = OfflineModeInteractorMock(mockIsInOfflineMode: true)
         let controller = ModuleItemSequenceViewController.create(
+            env: environment,
             courseID: "1",
             assetType: .page,
             assetID: "my-page",

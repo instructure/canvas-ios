@@ -74,7 +74,7 @@ class AssignmentDetailsPresenter {
 
     var quizzes: Store<GetQuiz>?
 
-    let env = AppEnvironment.shared
+    let env: AppEnvironment
     weak var view: AssignmentDetailsViewProtocol?
     let courseID: String
     let assignmentID: String
@@ -131,14 +131,15 @@ class AssignmentDetailsPresenter {
         }
     }
 
-    init(view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
+    init(env: AppEnvironment, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
+        self.env = env
         self.view = view
         self.courseID = courseID
         self.assignmentID = assignmentID
         self.fragment = fragment
-        self.submissionButtonPresenter = SubmissionButtonPresenter(view: view, assignmentID: assignmentID)
+        self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: assignmentID)
         if let session = env.currentSession {
-            self.userID = session.userID
+            self.userID = session.userID.localID
         }
         subscribeToSuccessfulSubmissionNotification(assignmentID: assignmentID)
     }

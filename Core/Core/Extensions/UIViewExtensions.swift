@@ -132,4 +132,8 @@ extension UIView {
             constraint.firstItem as? NSObject == view || constraint.secondItem as? NSObject == view
         }
     }
+
+    public var isHorizontallyCompact: Bool {
+        traitCollection.horizontalSizeClass == .compact
+    }
 }

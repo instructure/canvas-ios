@@ -139,18 +139,30 @@ public extension URLComponents {
      - returns: True if the ``host`` of this component exists and is different than of the current user's host
      and the url uses the http(s) protocol.
      */
-    var isExternalWebsite: Bool {
+    func isExternalWebsite(of env: AppEnvironment) -> Bool {
         guard let scheme = scheme, scheme.hasPrefix("http") else {
             return false
         }
         guard let host = host,
-              let session = AppEnvironment.shared.currentSession,
+              let session = env.currentSession,
               let sessionHost = session.baseURL.host
         else {
             return false
         }
 
         return host != sessionHost
+    }
+
+    /**
+     - returns: True if the ``host`` of this component exists and is different than of the current user's acceptable hosts
+     and the url uses the http(s) protocol.
+     */
+    func isExternalWebsite(of acceptableHosts: Set<String>) -> Bool {
+        guard let scheme = scheme, scheme.hasPrefix("http") else {
+            return false
+        }
+        guard let host = host else { return false }
+        return acceptableHosts.contains(host) == false
     }
 
     func queryValue(for queryName: String) -> String? {

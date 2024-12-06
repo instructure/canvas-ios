@@ -78,15 +78,20 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
     var context = Context.currentUser
     var editEntryID: String?
     var editHTML: String?
-    lazy var editor = RichContentEditorViewController.create(context: context,
-                                                             uploadTo: fileUploadContext)
+    lazy var editor = RichContentEditorViewController
+        .create(
+            env: env,
+            context: context,
+            uploadTo: fileUploadContext
+        )
+
     private var fileUploadContext: FileUploadContext {
         .makeForRCEUploads(app: env.app,
                            context: context,
                            session: env.currentSession)
     }
-    let env = AppEnvironment.shared
-    lazy var filePicker = FilePicker(delegate: self)
+    private var env: AppEnvironment = .defaultValue
+    lazy var filePicker = FilePicker(env: env, delegate: self)
     var isExpanded = false
     var keyboard: KeyboardTransitioning?
     var replyToEntryID: String?
@@ -116,8 +121,9 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
     }
     private var subscriptions = Set<AnyCancellable>()
 
-    public static func create(context: Context, topicID: String, replyToEntryID: String? = nil, editEntryID: String? = nil) -> DiscussionReplyViewController {
+    public static func create(env: AppEnvironment, context: Context, topicID: String, replyToEntryID: String? = nil, editEntryID: String? = nil) -> DiscussionReplyViewController {
         let controller = loadFromStoryboard()
+        controller.env = env
         controller.context = context
         controller.editEntryID = editEntryID
         controller.replyToEntryID = replyToEntryID

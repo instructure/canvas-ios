@@ -23,15 +23,18 @@ class SubmissionViewableTests: XCTestCase {
     struct Model: SubmissionViewable {
         let submission: Submission?
         let submissionTypes: [SubmissionType]
+        let submissionTypesWithQuizLTIMapping: [SubmissionType]
         let allowedExtensions: [String]
 
         init(
             submission: Submission? = Submission.make(),
             submissionTypes: [SubmissionType] = [.online_text_entry],
+            submissionTypesWithQuizLTIMapping: [SubmissionType]? = nil,
             allowedExtensions: [String] = []
         ) {
             self.submission = submission
             self.submissionTypes = submissionTypes
+            self.submissionTypesWithQuizLTIMapping = submissionTypesWithQuizLTIMapping ?? submissionTypes
             self.allowedExtensions = allowedExtensions
         }
     }
@@ -51,6 +54,13 @@ class SubmissionViewableTests: XCTestCase {
     func testSubmissionTypeText() {
         let assignment = Model(submissionTypes: [ .discussion_topic, .online_quiz, .on_paper, .none, .external_tool, .online_text_entry, .online_url, .online_upload, .media_recording, .not_graded ])
         XCTAssertEqual(assignment.submissionTypeText, "Discussion Comment, Quiz, On Paper, No Submission, External Tool, Text Entry, Website URL, File Upload, Media Recording, or Not Graded")
+    }
+
+    func testSubmissionTypeTextWithQuizLTIMapping() {
+        let assignment = Model(
+            submissionTypes: [.on_paper, .not_graded ],
+            submissionTypesWithQuizLTIMapping: [.external_tool, .online_text_entry])
+        XCTAssertEqual(assignment.submissionTypeText, "External Tool or Text Entry")
     }
 
     func testIsSubmitted() {

@@ -46,19 +46,21 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     /// The cancel button that shows while the files are being uploaded
     public var cancelButtonTitle = String(localized: "Cancel", bundle: .core)
 
-    let env = AppEnvironment.shared
+    private var env: AppEnvironment = .defaultValue
     public weak var delegate: FilePickerControllerDelegate?
     public var sources = FilePickerSource.defaults
     public var utis: [UTI] = [.any]
     public var mediaTypes: [String] = [UTType.movie.identifier, UTType.image.identifier]
     public var batchID = ""
     public var maxFileCount = Int.max
-    public lazy var files = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
+
+    public lazy var files = env.uploadManager.subscribe(batchID: batchID) { [weak self] in
         self?.update()
     }
 
-    public static func create(batchID: String = UUID.string) -> FilePickerViewController {
+    public static func create(env: AppEnvironment, batchID: String = UUID.string) -> FilePickerViewController {
         let controller = loadFromStoryboard()
+        controller.env = env
         controller.batchID = batchID
         return controller
     }
@@ -316,9 +318,9 @@ extension FilePickerViewController: AudioRecorderDelegate {
 
 extension FilePickerViewController: UIDocumentPickerDelegate {
     func add(_ url: URL) {
-        UploadManager.shared.viewContext.performAndWait {
+        env.uploadManager.viewContext.performAndWait {
             do {
-                try UploadManager.shared.add(url: url, batchID: self.batchID)
+                try env.uploadManager.add(url: url, batchID: self.batchID)
                 if self.files.count == self.maxFileCount { self.didReachMaxFileCount() }
             } catch {
                 self.showError(error)
@@ -395,8 +397,8 @@ extension FilePickerViewController: FilePickerCellDelegate {
         let message = String(localized: "Are you sure you want to remove this file?", bundle: .core)
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
-        alert.addAction(AlertAction(String(localized: "Remove", bundle: .core), style: .default, handler: {_ in
-            UploadManager.shared.cancel(file: file)
+        alert.addAction(AlertAction(String(localized: "Remove", bundle: .core), style: .default, handler: { [weak self] _ in
+            self?.env.uploadManager.cancel(file: file)
         }))
         env.router.show(alert, from: self, options: .modal())
     }

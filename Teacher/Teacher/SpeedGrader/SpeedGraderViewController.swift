@@ -25,7 +25,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
 
     let assignmentID: String
     let context: Context
-    let env = AppEnvironment.shared
+    var env: AppEnvironment = .defaultValue
     let filter: [GetSubmissions.Filter]
     var initialIndex: Int?
     let userID: String?
@@ -44,7 +44,8 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         self?.update()
     }
 
-    init(context: Context, assignmentID: String, userID: String, filter: [GetSubmissions.Filter]) {
+    init(env: AppEnvironment, context: Context, assignmentID: String, userID: String, filter: [GetSubmissions.Filter]) {
+        self.env = env
         self.assignmentID = assignmentID
         self.context = context
         self.filter = filter
@@ -133,7 +134,8 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         ProgressView()
             .progressViewStyle(.indeterminateCircle())
             .accessibility(label: Text("Loading", bundle: .teacher))
-            .identifier("SpeedGrader.spinner")
+            .identifier("SpeedGrader.spinner"),
+        env: env
     )
 
     lazy var emptyView: UIViewController = CoreHostingController(
@@ -166,7 +168,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
     }
 
     func controller(for index: Int) -> UIViewController? {
-        let controller = grader(for: index).map { CoreHostingController($0) }
+        let controller = grader(for: index).map { CoreHostingController($0, env: env) }
         controller?.view.backgroundColor = nil
         return controller
     }
@@ -174,6 +176,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
     func grader(for index: Int) -> SubmissionGrader? {
         guard index >= 0, index < submissions.all.count, let assignment = assignment.first else { return nil }
         return SubmissionGrader(
+            env: env,
             index: index,
             assignment: assignment,
             submission: submissions.all[index],

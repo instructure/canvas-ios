@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LTI Tool" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dW-v6-GRg" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="60" width="382" height="20.5"/>
+                                <rect key="frame" x="16" y="64" width="382" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -27,8 +28,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold20"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This page can only be viewed from a web browser." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdo-sp-Qqp" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="113" width="382" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdo-sp-Qqp" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="16" y="117" width="382" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -37,10 +38,9 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FEg-ym-aNw" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FEg-ym-aNw" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="808" width="414" height="54"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="18"/>
-                                <state key="normal" title="Open in Safari"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="buttonPrimaryBackground"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
@@ -51,22 +51,23 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37k-c3-ELz" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="187" y="433" width="40" height="40"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <rect key="frame" x="187" y="435" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="1es-lB-psk"/>
                                     <constraint firstAttribute="width" constant="40" id="hgV-AZ-Cqe"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiZ-T9-6yO">
-                                <rect key="frame" x="16" y="96.5" width="382" height="0.5"/>
+                                <rect key="frame" x="16" y="100.5" width="382" height="0.5"/>
                                 <color key="backgroundColor" name="borderMedium"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="5YL-eH-HJ0"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6vh-22-FCW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="FEg-ym-aNw" firstAttribute="leading" secondItem="6vh-22-FCW" secondAttribute="leading" id="15s-cG-55S"/>
                             <constraint firstItem="ZiZ-T9-6yO" firstAttribute="top" secondItem="2dW-v6-GRg" secondAttribute="bottom" constant="16" id="6qS-YN-mLp"/>
@@ -83,9 +84,9 @@
                             <constraint firstItem="6vh-22-FCW" firstAttribute="trailing" secondItem="ZiZ-T9-6yO" secondAttribute="trailing" constant="16" id="pjA-kN-asM"/>
                             <constraint firstItem="37k-c3-ELz" firstAttribute="centerY" secondItem="6vh-22-FCW" secondAttribute="centerY" id="zUN-5q-efF"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6vh-22-FCW"/>
                     </view>
                     <connections>
+                        <outlet property="descriptionLabel" destination="gdo-sp-Qqp" id="SJx-RO-PTP"/>
                         <outlet property="nameLabel" destination="2dW-v6-GRg" id="dFI-r3-Uuv"/>
                         <outlet property="openButton" destination="FEg-ym-aNw" id="Aok-f3-jIU"/>
                         <outlet property="spinnerView" destination="37k-c3-ELz" id="Y0P-OK-dVi"/>
@@ -98,7 +99,10 @@
     </scenes>
     <resources>
         <namedColor name="borderMedium">
-            <color red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.61960784313725492" green="0.65098039215686276" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

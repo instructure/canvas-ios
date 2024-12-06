@@ -8,13 +8,10 @@
     "Window.\\w+$",
     "TabBar.\\w+$",
     "\\/Views\\/",
-    "CanvasCore\/",
     "Frameworks\/",
     "Parent\/",
-    "Pods\\/",
     "\/SwiftUIViews\/",
     "\/ViewModifiers\/",
-    "Student\/Canvas\/",
     "UITestHelpers\/",
     "\/Teacher\/SpeedGrader\/",
     "SubmissionButtonPresenter.swift",
@@ -46,7 +43,8 @@
     "Core\/InstUI\/",
     "Core\/Extensions\/UISplitViewControllerExtensions.swift",
     "Core\/Extensions\/UITabBarControllerExtensions.swift",
-    "Core\/Extensions\/UINavigationControllerExtensions.swift"
+    "Core\/Extensions\/UINavigationControllerExtensions.swift",
+    "Core\/Core\/Planner\/CalendarMain"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",

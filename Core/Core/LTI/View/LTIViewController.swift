@@ -21,10 +21,12 @@ import Foundation
 public class LTIViewController: UIViewController, ErrorViewController, ColoredNavViewProtocol {
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var openButton: UIButton!
 
-    let env = AppEnvironment.shared
+    private var env: AppEnvironment = .defaultValue
     public var tools: LTITools!
+    public var isQuizLTI: Bool!
     public var name: String?
     public var color: UIColor?
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
@@ -42,10 +44,12 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
         return tools.context.id
     }
 
-    public static func create(tools: LTITools, name: String? = nil) -> Self {
+    public static func create(env: AppEnvironment, tools: LTITools, isQuizLTI: Bool, name: String? = nil) -> Self {
         let controller = loadFromStoryboard()
         controller.tools = tools
+        controller.isQuizLTI = isQuizLTI
         controller.name = name
+        controller.env = env
         return controller
     }
 
@@ -63,6 +67,13 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
                 }
             }
         }
+        descriptionLabel.text = isQuizLTI
+            ? String(localized: "This quiz opens in a web browser. Select \"Open the Quiz\" to proceed.", bundle: .core)
+            : String(localized: "This page can only be viewed from a web browser.", bundle: .core)
+        let openButtonTitle = isQuizLTI
+            ? String(localized: "Open the Quiz", bundle: .core)
+            : String(localized: "Open in Safari", bundle: .core)
+        openButton.setTitle(openButtonTitle, for: .normal)
         colors.refresh()
         courses?.refresh()
     }

@@ -44,7 +44,7 @@ public struct GradeRowView: View {
     }
 
     private var assignmentIcon: some View {
-        Image(uiImage: assignment.icon ?? .assignmentLine)
+        Image(uiImage: assignment.icon)
             .padding(.top, 12)
             .padding(.leading, 22)
             .padding(.trailing, 18)

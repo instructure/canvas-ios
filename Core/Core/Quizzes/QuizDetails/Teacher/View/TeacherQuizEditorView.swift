@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct TeacherQuizEditorView<ViewModel: TeacherQuizEditorViewModel>: View {
 
+    @Environment(\.appEnvironment) var env
     @Environment(\.appEnvironment.router) var router
     @Environment(\.viewController) var controller
 
@@ -111,6 +112,7 @@ public struct TeacherQuizEditorView<ViewModel: TeacherQuizEditorViewModel>: View
 
         EditorSection(label: Text("Description", bundle: .core)) {
             RichContentEditor(
+                env: env,
                 placeholder: String(localized: "Add description", bundle: .core),
                 a11yLabel: String(localized: "Description", bundle: .core),
                 html: $viewModel.description,

@@ -42,7 +42,7 @@ public class Quiz: NSManagedObject {
     @NSManaged public var order: String?
     @NSManaged var pointsPossibleRaw: NSNumber?
     @NSManaged public var published: Bool
-    @NSManaged public var questionCount: Int
+    @NSManaged public var questionCountRaw: NSNumber?
     @NSManaged var questionTypesRaw: [String]
     @NSManaged var quizTypeOrder: Int
     @NSManaged var quizTypeRaw: String
@@ -72,6 +72,11 @@ public class Quiz: NSManagedObject {
     public var pointsPossible: Double? {
         get { return pointsPossibleRaw?.doubleValue }
         set { pointsPossibleRaw = NSNumber(value: newValue) }
+    }
+
+    public var questionCount: Int? {
+        get { return questionCountRaw?.intValue }
+        set { questionCountRaw = NSNumber(value: newValue) }
     }
 
     public var questionTypes: [QuizQuestionType] {
@@ -138,11 +143,15 @@ extension Quiz: DueViewable, GradeViewable, LockStatusViewable {
         return NumberFormatter.localizedString(from: NSNumber(value: allowedAttempts), number: .none)
     }
 
-    public var questionCountText: String {
+    public var questionCountText: String? {
+        guard let questionCount else { return nil }
+
         return NumberFormatter.localizedString(from: NSNumber(value: questionCount), number: .none)
     }
 
-    public var nQuestionsText: String {
+    public var nQuestionsText: String? {
+        guard let questionCount else { return nil }
+
         let format = String(localized: "d_questions", bundle: .core)
         return String.localizedStringWithFormat(format, questionCount)
     }
@@ -189,7 +198,7 @@ extension Quiz {
         model.oneQuestionAtATime = item.one_question_at_a_time ?? false
         model.pointsPossible = item.points_possible
         model.published = item.published == true
-        model.questionCount = item.question_count ?? 0
+        model.questionCount = item.question_count
         model.questionTypes = item.question_types ?? []
         model.quizType = item.quiz_type
         model.quizTypeOrder = QuizType.allCases.firstIndex(of: item.quiz_type) ?? QuizType.allCases.count

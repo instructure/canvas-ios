@@ -72,6 +72,7 @@ public struct SyllabusEditorView: View {
         EditorForm(isSpinning: isLoading || isSaving) {
             EditorSection(label: Text("Content", bundle: .core)) {
                 RichContentEditor(
+                    env: env,
                     placeholder: String(localized: "Add content", bundle: .core),
                     a11yLabel: String(localized: "Syllabus content", bundle: .core),
                     html: $html,
