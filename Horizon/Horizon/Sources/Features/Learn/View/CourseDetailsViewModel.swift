@@ -20,7 +20,7 @@ import Combine
 import Core
 import Foundation
 
-final class ProgramDetailsViewModel: ObservableObject {
+final class CourseDetailsViewModel: ObservableObject {
     // MARK: - Outputs
 
     @Published private(set) var state: InstUI.ScreenState = .loading

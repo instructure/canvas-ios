@@ -19,13 +19,13 @@
 import Core
 import SwiftUI
 
-struct ProgramDetailsViewView: View {
-    @ObservedObject private var viewModel: ProgramDetailsViewModel
+struct CourseDetailsViewView: View {
+    @ObservedObject private var viewModel: CourseDetailsViewModel
     @Environment(\.viewController) private var viewController
     @State private var selectedCourseIndex: Int?
     @State private var selectedCourseDetailsIndex = 0
 
-    init(viewModel: ProgramDetailsViewModel) {
+    init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
         self.selectedCourseIndex = 0
     }

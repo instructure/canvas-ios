@@ -18,7 +18,7 @@
 
 import Core
 
-final class ProgramsAssembly {
+final class LearnAssembly {
     static func makeGetProgramsInteractor() -> GetProgramsInteractor {
         GetProgramsInteractorLive(appEnvironment: AppEnvironment.shared)
     }
@@ -34,7 +34,7 @@ final class ProgramsAssembly {
 
     static func makeProgramDetailsViewController(program: HProgram) -> UIViewController {
         CoreHostingController(
-            ProgramDetailsViewView(
+            CourseDetailsViewView(
                 viewModel: .init(
                     router: AppEnvironment.shared.router,
                     program: program

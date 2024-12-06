@@ -79,7 +79,7 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
 
     private func programsTab() -> UIViewController {
         let vc = CoreNavigationController(
-            rootViewController: CoreHostingController(ProgramsAssembly.makeProgramsView())
+            rootViewController: CoreHostingController(LearnAssembly.makeProgramsView())
         )
         vc.tabBarItem.title = String(localized: "Learn", bundle: .horizon)
         vc.tabBarItem.image = UIImage(systemName: "list.bullet")
