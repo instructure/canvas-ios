@@ -23,21 +23,18 @@ import UniformTypeIdentifiers
 struct AssignmentSubmissionView: View {
     // MARK: - Private Properties
 
+    @Environment(\.viewController) private var viewController
     @State private var importFile = false
     @State private var selectedFileURL: URL?
-    @FocusState private var isFocused: Bool
 
     // MARK: - Dependence Properties
 
     @Bindable var viewModel: AssignmentDetailsViewModel
-    let geometry: GeometryProxy
-    var onStartTyping: (() -> Void)? = { }
 
     var body: some View {
         VStack(spacing: 5) {
             if viewModel.isSubmitButtonVisible {
                 submissionTypes
-
                 if let selectedSubmission = viewModel.selectedSubmission {
                     setSubmissionTypes(selectedSubmission)
                     submissionButton
@@ -45,27 +42,18 @@ struct AssignmentSubmissionView: View {
             } else {
                 showSubmissionTypesButton
             }
-            Rectangle()
-                .fill(.clear)
-                .frame(height: 150)
-                .id(viewModel.keyboardObserveID)
-
-        }
-        .onChange(of: isFocused) {
-            viewModel.isKeyboardVisible = isFocused
-            if isFocused { onStartTyping?() }
         }
         .fileImporter(
             isPresented: $importFile,
             allowedContentTypes: (viewModel.assignment?.fileExtensions ?? [])
-            .compactMap { $0.uttype }) { result in
-            switch result {
-            case .success(let success):
-                self.viewModel.submissionEvents.send(.uploadFile(url: success))
-            case .failure(let failure):
-                debugPrint(failure)
-            }
-        }
+                .compactMap { $0.uttype }) { result in
+                    switch result {
+                    case .success(let success):
+                        self.viewModel.submissionEvents.send(.uploadFile(url: success))
+                    case .failure(let failure):
+                        debugPrint(failure)
+                    }
+                }
     }
 }
 
@@ -92,33 +80,10 @@ extension AssignmentSubmissionView {
         ForEach(viewModel.assignment?.assignmentTypes ?? [], id: \.self) { item in
             Button {
                 viewModel.selectedSubmission = item
-                isFocused = item == .textEntry
             } label: {
                 HAssignmentButton(isSelected: viewModel.selectedSubmission ==  item, assignment: item)
             }
         }
-    }
-
-    private func textEntry(geometry: GeometryProxy) -> some View {
-        UITextViewWrapper(text: $viewModel.textEntry) {
-            let tv = UITextView()
-            tv.isScrollEnabled = false
-            tv.textContainer.widthTracksTextView = true
-            tv.textContainer.lineBreakMode = .byWordWrapping
-            tv.font = UIFont.scaledNamedFont(.regular16)
-            tv.translatesAutoresizingMaskIntoConstraints = false
-            tv.widthAnchor.constraint(equalToConstant: geometry.frame(in: .global).width - (2 * 16)).isActive = true
-            tv.backgroundColor = .backgroundLightest
-            tv.layer.cornerRadius = 8
-            tv.layer.borderWidth = 1
-            tv.layer.borderColor = UIColor.disabledGray.cgColor
-            return tv
-        }
-        .font(.regular16, lineHeight: .condensed)
-        .textInputAutocapitalization(.sentences)
-        .focused($isFocused)
-        .foregroundColor(.textDarkest)
-        .frame(minHeight: 100)
     }
 
     private var pickupFileView: some View {
@@ -156,7 +121,7 @@ extension AssignmentSubmissionView {
                 viewModel.submissionEvents.send(.sendFileTapped)
             }
         } label: {
-            Text("Submit Assignment")
+            Text("Submit Assignment", bundle: .horizon)
                 .font(.bold14)
                 .foregroundStyle(Color.textLightest)
                 .frame(maxWidth: .infinity)
@@ -168,11 +133,46 @@ extension AssignmentSubmissionView {
         .disabled(viewModel.isSubmitButtonDisabled)
     }
 
+    private var textEntryView: some View {
+        VStack(alignment: .leading, spacing: .zero) {
+            WebView(html: viewModel.htmlContent)
+                .frameToFit()
+                .padding(.horizontal, -16)
+                .background(Color.backgroundLight)
+            textEntryButton
+        }
+        .padding(5)
+        .overlay {
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.backgroundInfo, lineWidth: 1)
+        }
+    }
+
+    private var textEntryButton: some View {
+        Button {
+            viewModel.presentRichContentEditor(controller: viewController)
+        } label: {
+            HStack(spacing: 5) {
+                Image(systemName: "square.and.pencil")
+                let editText = String(localized: "Edit", bundle: .horizon)
+                let addText = String(localized: "Add your text", bundle: .horizon)
+                Text(viewModel.htmlContent.isEmpty ? addText : editText)
+                    .font(.regular14)
+            }
+            .foregroundStyle(Color.textDarkest)
+            .padding(2)
+            .frame(maxWidth: .infinity)
+            .frame(height: 35)
+            .background(Color.borderMedium.opacity(0.2))
+            .clipShape(.rect(cornerRadius: 8))
+        }
+    }
+
     @ViewBuilder
     private func setSubmissionTypes(_ type: AssignmentType) -> some View {
         switch type {
         case .textEntry:
-            textEntry(geometry: geometry)
+            textEntryView
         case .uploadFile:
             pickupFileView
         }
@@ -191,14 +191,10 @@ extension AssignmentSubmissionView {
 
 #if DEBUG
 #Preview {
-    GeometryReader { geometry in
-        ScrollView {
-            AssignmentSubmissionView(
-                viewModel: AssignmentDetailsAssembly.makeAssignmentSubmissionViewModel(),
-                geometry: geometry
-            )
+    ScrollView {
+        AssignmentSubmissionView(viewModel: AssignmentDetailsAssembly.makeAssignmentSubmissionViewModel())
             .padding()
-        }
+
     }
 }
 #endif
