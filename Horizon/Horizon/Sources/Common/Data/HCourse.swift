@@ -22,6 +22,7 @@ struct HCourse: Identifiable {
     let id: String
     let name: String
     let imageURL: URL?
+    let overviewDescription: String?
     let modules: [HModule]
 
     var percentage: Double = 0.0
@@ -71,11 +72,13 @@ struct HCourse: Identifiable {
         id: String,
         name: String,
         imageURL: URL?,
+        overviewDescription: String?,
         modules: [HModule]
     ) {
         self.id = id
         self.name = name
         self.imageURL = imageURL
+        self.overviewDescription = overviewDescription
         self.modules = modules
     }
 
@@ -83,6 +86,7 @@ struct HCourse: Identifiable {
         self.id = entity.id
         self.name = entity.name ?? ""
         self.imageURL = entity.imageDownloadURL
+        self.overviewDescription = entity.syllabusBody
         self.modules = modulesEntity.map { HModule(from: $0) }
     }
 }
