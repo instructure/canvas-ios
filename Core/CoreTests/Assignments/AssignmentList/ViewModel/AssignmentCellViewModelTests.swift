@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import Core
+import SwiftUI
 
 class AssignmentCellViewModelTests: CoreTestCase {
 
@@ -25,12 +26,54 @@ class AssignmentCellViewModelTests: CoreTestCase {
         let assignment = Assignment.make(from: .make(locked_for_user: true))
         let testee = AssignmentCellViewModel(assignment: assignment, courseColor: nil)
         XCTAssertEqual(testee.icon, .lockLine)
+        assignment.lockedForUser = false
+
+        XCTAssertEqual(testee.icon, .assignmentLine)
     }
 
     func testName() {
         let assignment = Assignment.make(from: .make(name: "Test Assignment 3"))
         let testee = AssignmentCellViewModel(assignment: assignment, courseColor: nil)
         XCTAssertEqual(testee.name, "Test Assignment 3")
+    }
+
+    func testSubmissionStatusAndIconAndColor() {
+        let assignment = Assignment.make(from: .make(name: "Test Assignment 3"))
+        let testee = AssignmentCellViewModel(assignment: assignment, courseColor: nil)
+        XCTAssertEqual(testee.submissionIcon, .noSolid)
+        XCTAssertEqual(testee.submissionColor.hexString, Color.textDark.hexString)
+        XCTAssertEqual(testee.submissionStatus, "Not Submitted")
+
+        assignment.submission = Submission.make()
+        assignment.submission?.submittedAt = Clock.now
+        assignment.submission?.workflowState = .graded
+        assignment.submission?.score = 1.0
+        XCTAssertEqual(testee.submissionIcon, .completeSolid)
+        XCTAssertEqual(testee.submissionColor.hexString, Color.textSuccess.hexString)
+        XCTAssertEqual(testee.submissionStatus, "Graded")
+    }
+
+    func testNeedsGrading() {
+        let assignment = Assignment.make(from: .make(name: "Test Assignment 3"))
+        let testee = AssignmentCellViewModel(assignment: assignment, courseColor: nil)
+        assignment.needsGradingCount = 0
+        XCTAssertFalse(testee.needsGrading)
+        XCTAssertEqual(testee.needsGradingCount, 0)
+
+        assignment.needsGradingCount = 1
+        XCTAssertTrue(testee.needsGrading)
+        XCTAssertEqual(testee.needsGradingCount, 1)
+    }
+
+    func testHasPointsPossibleAndPointsPossibleText() {
+        let assignment = Assignment.make(from: .make(name: "Test Assignment 3"))
+        let testee = AssignmentCellViewModel(assignment: assignment, courseColor: nil)
+        assignment.pointsPossible = nil
+        XCTAssertFalse(testee.hasPointsPossible)
+
+        assignment.pointsPossible = 1.0
+        XCTAssertTrue(testee.hasPointsPossible)
+        XCTAssertEqual(testee.pointsPossibleText, assignment.pointsPossibleCompleteText)
     }
 
     func testPublishedAsTeacher() {
@@ -81,9 +124,9 @@ class AssignmentCellViewModelTests: CoreTestCase {
         for gradableType in gradableTypes {
             let assignment = Assignment.make(from: .make(grading_type: gradableType, needs_grading_count: 1))
             let testee = AssignmentCellViewModel(assignment: assignment, courseColor: nil)
-            XCTAssertEqual(testee.needsGradingText, "1 NEEDS GRADING")
+            XCTAssertEqual(testee.needsGradingText, "1 Needs Grading")
             assignment.needsGradingCount = 2
-            XCTAssertEqual(testee.needsGradingText, "2 NEED GRADING")
+            XCTAssertEqual(testee.needsGradingText, "2 Need Grading")
         }
     }
 
@@ -100,10 +143,9 @@ class AssignmentCellViewModelTests: CoreTestCase {
     }
 
     func testDueDate() {
-        let now = Clock.now
-        let assignment = Assignment.make(from: .make(due_at: now))
+        let assignment = Assignment.make(from: .make(due_at: Clock.now))
         let testee = AssignmentCellViewModel(assignment: assignment, courseColor: nil)
-        XCTAssertEqual(testee.formattedDueDate, "Due \(now.relativeDateTimeString)")
+        XCTAssertEqual(testee.formattedDueDate, assignment.dueText)
     }
 
     func testNoDue() {

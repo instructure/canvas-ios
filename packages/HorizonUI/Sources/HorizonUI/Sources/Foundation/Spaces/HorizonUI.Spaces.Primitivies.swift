@@ -23,7 +23,11 @@ public extension HorizonUI.Spaces {
         let xxxSmall: CGFloat = 2
         let xxSmall: CGFloat = 4
         let xSmall: CGFloat = 8
-
-        // TODO: Add other variants
+        let smallMedium: CGFloat = 10
+        let small: CGFloat = 12
+        let mediumSmall: CGFloat = 16
+        let medium: CGFloat = 24
+        let large: CGFloat = 36
+        let xLarge: CGFloat = 48        
     }
 }

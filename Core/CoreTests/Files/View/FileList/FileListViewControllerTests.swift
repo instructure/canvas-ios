@@ -21,7 +21,8 @@ import XCTest
 @testable import TestsFoundation
 
 class FileListViewControllerTests: CoreTestCase {
-    lazy var controller = FileListViewController.create(context: .currentUser, path: "Folder A")
+    lazy var controller = FileListViewController
+        .create(env: environment, context: .currentUser, path: "Folder A")
 
     override func setUp() {
         super.setUp()
@@ -40,7 +41,7 @@ class FileListViewControllerTests: CoreTestCase {
     }
 
     func testCreate() {
-        XCTAssertEqual(FileListViewController.create(context: .currentUser, path: nil).path, "")
+        XCTAssertEqual(FileListViewController.create(env: environment, context: .currentUser, path: nil).path, "")
     }
 
     func testLayout() {
@@ -142,7 +143,7 @@ class FileListViewControllerTests: CoreTestCase {
 
     func testCourseContext() {
         api.mock(GetCourse(courseID: "1"), value: .make())
-        controller = FileListViewController.create(context: .course("1"))
+        controller = FileListViewController.create(env: environment, context: .course("1"))
         api.mock(controller.folder, value: [
             .make(context_type: "Course", context_id: "1", id: "2")
         ])
@@ -162,7 +163,7 @@ class FileListViewControllerTests: CoreTestCase {
 
     func testGroupContext() {
         api.mock(GetGroup(groupID: "1"), value: .make())
-        controller = FileListViewController.create(context: .group("1"))
+        controller = FileListViewController.create(env: environment, context: .group("1"))
         api.mock(controller.folder, value: [
             .make(context_type: "Group", context_id: "1", id: "2")
         ])

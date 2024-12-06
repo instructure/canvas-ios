@@ -46,10 +46,13 @@ public class Assignment: NSManagedObject {
     @NSManaged public var gradingPeriod: GradingPeriod?
     @NSManaged public var gradingTypeRaw: String
     @NSManaged public var groupCategoryID: String?
+    @NSManaged public var hasSubmittedSubmissions: Bool
     @NSManaged public var hasOverrides: Bool
     @NSManaged public var hideRubricPoints: Bool
     @NSManaged public var htmlURL: URL?
     @NSManaged public var id: String
+    @NSManaged public var inClosedGradingPeriod: Bool
+    @NSManaged public var isQuizLTI: Bool
     @NSManaged public var lastUpdatedAt: Date?
     @NSManaged public var lockAt: Date?
     @NSManaged public var lockedForUser: Bool
@@ -146,6 +149,15 @@ public class Assignment: NSManagedObject {
         set { submissionTypesRaw = newValue.map { $0.rawValue } .joined(separator: ",") }
     }
 
+    public var submissionTypesWithQuizLTIMapping: [SubmissionType] {
+        guard isQuizLTI else { return submissionTypes }
+
+        var types = submissionTypes
+        types.removeAll { $0 == .online_quiz }
+        types.replace([.external_tool], with: [.online_quiz])
+        return types
+    }
+
     public var hasMultipleDueDates: Bool {
         allDates.count > 1
     }
@@ -183,9 +195,12 @@ extension Assignment {
         gradedIndividually = item.grade_group_students_individually ?? true
         gradingType = item.grading_type
         groupCategoryID = item.group_category_id?.value
+        hasSubmittedSubmissions = item.has_submitted_submissions ?? false
         hasOverrides = item.has_overrides == true
         htmlURL = item.html_url
         id = item.id.value
+        inClosedGradingPeriod = item.in_closed_grading_period ?? false
+        isQuizLTI = item.is_quiz_lti_assignment ?? false
         lastUpdatedAt = Date()
         lockAt = item.lock_at
         lockedForUser = item.locked_for_user ?? false
@@ -328,21 +343,18 @@ extension Assignment {
         return submission?.status ?? .notSubmitted
     }
 
-    public var icon: UIImage? {
-        var image: UIImage? = .assignmentLine
-        if quizID != nil {
-            image = .quizLine
-        } else if submissionTypes.contains(.discussion_topic) {
-            image = .discussionLine
-        } else if submissionTypes.contains(.external_tool) || submissionTypes.contains(.basic_lti_launch) {
-            image = .ltiLine
-        }
-
+    public var icon: UIImage {
         if lockedForUser {
-            image = .lockLine
+            .lockLine
+        } else if quizID != nil || isQuizLTI {
+            .quizLine
+        } else if submissionTypes.contains(.discussion_topic) {
+            .discussionLine
+        } else if submissionTypes.contains(.external_tool) || submissionTypes.contains(.basic_lti_launch) {
+            .ltiLine
+        } else {
+            .assignmentLine
         }
-
-        return image
     }
 
     public func requiresLTILaunch(toViewSubmission submission: Submission) -> Bool {

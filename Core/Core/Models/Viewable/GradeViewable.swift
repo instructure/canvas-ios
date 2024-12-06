@@ -36,6 +36,14 @@ extension GradeViewable {
         return String.localizedStringWithFormat(format, points)
     }
 
+    public var pointsPossibleCompleteText: String {
+        guard let points = pointsPossible else {
+            return String(localized: "Not Graded", bundle: .core)
+        }
+        let format = String(localized: "g_points", bundle: .core)
+        return String.localizedStringWithFormat(format, points)
+    }
+
     public var pointsText: String? {
         guard let score = viewableScore else { return nil }
         let format = String(localized: "plural_points", bundle: .core)

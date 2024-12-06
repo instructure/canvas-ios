@@ -206,7 +206,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         if identifier == FileSubmissionAssembly.ShareExtensionSessionID {
             setupFileSubmissionAssemblyForBackgroundUploads(completion: completionHandler)
         } else {
-            let manager = UploadManager(identifier: identifier)
+            let manager = UploadManager(env: environment, identifier: identifier)
             manager.completionHandler = {
                 DispatchQueue.main.async {
                     completionHandler()

@@ -24,7 +24,8 @@ import TestsFoundation
 
 class DiscussionReplyViewControllerTests: CoreTestCase {
     var context = Context(.course, id: "1")
-    lazy var controller = DiscussionReplyViewController.create(context: context, topicID: "1")
+    lazy var controller = DiscussionReplyViewController
+        .create(env: environment, context: context, topicID: "1")
 
     var baseURL: URL { environment.api.baseURL }
     let webView = MockWebView(features: [])
@@ -134,7 +135,8 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
     func testReplyTo() {
         controller.webView = CoreWebView() // unlink prev controller
         context = Context(.group, id: "1")
-        controller = DiscussionReplyViewController.create(context: context, topicID: "1", replyToEntryID: "1")
+        controller = DiscussionReplyViewController
+            .create(env: environment, context: context, topicID: "1", replyToEntryID: "1")
         setUp()
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.titleSubtitleView.title, "Reply")
@@ -143,7 +145,8 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
     }
 
     func testEdit() {
-        controller = DiscussionReplyViewController.create(context: context, topicID: "1", editEntryID: "1")
+        controller = DiscussionReplyViewController
+            .create(env: environment, context: context, topicID: "1", editEntryID: "1")
         setUp()
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.titleSubtitleView.title, "Edit")

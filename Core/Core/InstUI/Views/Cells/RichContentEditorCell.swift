@@ -23,6 +23,7 @@ extension InstUI {
 
     public struct RichContentEditorCell<Label: View>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+        @Environment(\.appEnvironment) private var env
 
         private let label: Text?
         private let labelTransform: (Text) -> Label
@@ -116,6 +117,7 @@ extension InstUI {
 
         private var rcEditor: some View {
             return RichContentEditor(
+                env: env,
                 placeholder: placeholder,
                 a11yLabel: "",
                 html: $html,

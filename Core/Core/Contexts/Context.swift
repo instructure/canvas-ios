@@ -88,4 +88,10 @@ public extension Context {
     var isValid: Bool {
         id.isNotEmpty
     }
+
+    /// This method compares the `contextType` and the `localID`properties  of the two `Context`s.
+    func isEquivalent(to context: Context) -> Bool {
+        guard context.contextType == contextType else { return false }
+        return context.id.localID == id.localID
+    }
 }

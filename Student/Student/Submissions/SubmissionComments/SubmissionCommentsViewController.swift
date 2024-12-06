@@ -40,9 +40,10 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     var keyboard: KeyboardTransitioning?
     var presenter: SubmissionCommentsPresenter?
     var submissionPresenter: SubmissionDetailsPresenter?
+    var env: AppEnvironment = .shared
 
     static func create(
-        env: AppEnvironment = .shared,
+        env: AppEnvironment,
         context: Context,
         assignmentID: String,
         userID: String,
@@ -50,6 +51,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         submissionPresenter: SubmissionDetailsPresenter
     ) -> SubmissionCommentsViewController {
         let controller = loadFromStoryboard()
+        controller.env = env
         controller.presenter = SubmissionCommentsPresenter(env: env, view: controller, context: context, assignmentID: assignmentID, userID: userID, submissionID: submissionID)
         controller.submissionPresenter = submissionPresenter
         controller.currentUserID = env.currentSession?.userID
@@ -130,12 +132,13 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
             }
         })
         alert.addAction(AlertAction(String(localized: "Choose File", bundle: .student), style: .default) { [weak self] _ in
-            let picker = FilePickerViewController.create()
+            guard let self else { return }
+            let picker = FilePickerViewController.create(env: env)
             picker.delegate = self
             picker.title = String(localized: "Attachments", bundle: .student)
             picker.submitButtonTitle = String(localized: "Send", bundle: .student)
             let nav = UINavigationController(rootViewController: picker)
-            self?.present(nav, animated: true, completion: nil)
+            present(nav, animated: true, completion: nil)
         })
         alert.addAction(AlertAction(String(localized: "Cancel", bundle: .student), style: .cancel))
         alert.popoverPresentationController?.sourceView = sender
@@ -230,8 +233,10 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let comment = presenter?.comments[indexPath.row / 2] else { return UITableViewCell() }
 
+        let isFromAuthor = currentUserID?.localID == comment.authorID?.localID
+
         if indexPath.row % 2 == 1 {
-            let reuseID = currentUserID == comment.authorID ? "myHeader" : "theirHeader"
+            let reuseID = isFromAuthor ? "myHeader" : "theirHeader"
             let cell: SubmissionCommentHeaderCell = tableView.dequeue(withID: reuseID, for: indexPath)
             cell.update(comment: comment)
             cell.transform = CGAffineTransform(scaleX: 1, y: -1)
@@ -241,7 +246,7 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
         if let attempt = comment.attempt {
             let submission = submissionPresenter?.submissions.first { $0.attempt == attempt }
             let cell: SubmissionCommentAttemptCell = tableView.dequeue(for: indexPath)
-            cell.stackView?.alignment = currentUserID == comment.authorID ? .trailing : .leading
+            cell.stackView?.alignment = isFromAuthor ? .trailing : .leading
             cell.update(comment: comment, submission: submission) { [weak self] (submission: Submission?, file: File?) in
                 guard let attempt = submission?.attempt else { return }
                 self?.submissionPresenter?.select(attempt: attempt, fileID: file?.id)
@@ -264,7 +269,7 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
             return cell
         }
 
-        let reuseID = currentUserID == comment.authorID ? "myComment" : "theirComment"
+        let reuseID = isFromAuthor ? "myComment" : "theirComment"
         let cell: SubmissionCommentTextCell = tableView.dequeue(withID: reuseID, for: indexPath)
         cell.update(comment: comment)
         cell.onTapAttachment = { [weak self] file in

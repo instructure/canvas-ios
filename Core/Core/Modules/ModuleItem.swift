@@ -47,6 +47,7 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var masteryPath: MasteryPath?
     @NSManaged public var moduleItem: ModuleItem? // inverse of masteryPathItem
     @NSManaged public var fileAvailabilityRaw: NSNumber?
+    @NSManaged public var isQuizLTI: Bool
 
     /// In case the module item is a file it can have 4 states of availability. Only used for the teacher modules list.
     public var fileAvailability: FileAvailability? {
@@ -176,6 +177,7 @@ public class ModuleItem: NSManagedObject {
         model.completionRequirement = item.completion_requirement
         model.courseID = courseID
         model.fileAvailability = .init(moduleItem: item)
+        model.isQuizLTI = item.quiz_lti ?? false
 
         if updateMasteryPath {
             if let masteryPath = item.mastery_paths, masteryPath.selected_set_id == nil {

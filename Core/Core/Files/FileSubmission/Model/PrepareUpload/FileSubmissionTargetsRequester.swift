@@ -31,18 +31,39 @@ public class FileSubmissionTargetsRequester {
         self.context = context
     }
 
-    public func request(fileSubmissionID: NSManagedObjectID) -> Future<Void, Error> {
-        Future<Void, Error> { self.requestFileUploadTargets(fileSubmissionID: fileSubmissionID, promise: $0) }
+    public func request(fileSubmissionID: NSManagedObjectID) -> AnyPublisher<Void, Error> {
+        return SubmissionPublishers
+            .fetchDestinationBaseURL(fileSubmissionID: fileSubmissionID, api: api, context: context)
+            .flatMap { baseURL in
+                Future { [weak self] promise in
+
+                    guard let self else {
+                        return promise(.failure(FileSubmissionErrors.Submission.submissionFailed))
+                    }
+
+                    requestFileUploadTargets(
+                        baseURL: baseURL,
+                        fileSubmissionID: fileSubmissionID,
+                        promise: promise
+                    )
+                }
+            }
+            .eraseToAnyPublisher()
     }
 
-    private func requestFileUploadTargets(fileSubmissionID: NSManagedObjectID, promise: @escaping Future<Void, Error>.Promise) {
+    private func requestFileUploadTargets(baseURL: URL?, fileSubmissionID: NSManagedObjectID, promise: @escaping Future<Void, Error>.Promise) {
         context.perform { [api, context] in
             guard let submission = try? context.existingObject(with: fileSubmissionID) as? FileSubmission else {
                 promise(.failure(FileSubmissionErrors.CoreData.submissionNotFound))
                 return
             }
 
-            let targetRequests = submission.files.map { FileUploadTargetRequester(api: api, context: context, fileUploadItemID: $0.objectID).requestUploadTarget() }
+            let targetRequests = submission
+                .files
+                .map {
+                    FileUploadTargetRequester(api: api, context: context, fileUploadItemID: $0.objectID)
+                        .requestUploadTarget(baseURL: baseURL)
+                }
 
             var targetRequestsSubmission: AnyCancellable?
             targetRequestsSubmission = targetRequests

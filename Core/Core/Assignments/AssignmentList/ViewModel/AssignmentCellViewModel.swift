@@ -20,23 +20,38 @@ import SwiftUI
 
 public class AssignmentCellViewModel: ObservableObject {
     public let assignment: Assignment
-    public let courseColor: UIColor?
+    public let courseColor: Color
 
-    private let env = AppEnvironment.shared
+    private let env: AppEnvironment
 
-    public init(assignment: Assignment, courseColor: UIColor?) {
+    public init(env: AppEnvironment, assignment: Assignment, courseColor: UIColor?) {
+        self.env = env
         self.assignment = assignment
-        self.courseColor = courseColor
+        self.courseColor = Color(courseColor ?? .textDark)
     }
 
     public var route: URL? { assignment.htmlURL }
+    public var icon: UIImage { assignment.icon }
+    public var name: String { assignment.name }
+    public var submissionStatus: String { stateDisplayProperties.text }
+    public var submissionIcon: UIImage { stateDisplayProperties.icon }
+    public var submissionColor: Color { .init(stateDisplayProperties.color) }
+    public let defaultTextColor: Color = .textDark
+    public var hasPointsPossible: Bool { scoreLabel != nil }
+    public var pointsPossibleText: String { assignment.pointsPossibleCompleteText }
 
-    public var icon: UIImage {
-        assignment.icon ?? .assignmentLine
-    }
+    // Teacher
+    public var isTeacher: Bool { env.app == .teacher }
+    public var needsGrading: Bool { assignment.needsGradingCount > 0 }
+    public var needsGradingCount: Int { assignment.needsGradingCount }
 
-    public var name: String {
-        assignment.name
+    public var scoreLabel: String? {
+        guard !assignment.hideQuantitativeData, let pointsPossible = assignment.pointsPossible else { return nil }
+        var scoreString = "-"
+        if let viewableScore = assignment.viewableScore {
+            scoreString = String(Int(viewableScore))
+        }
+        return "\(scoreString)/\(String(Int(pointsPossible)))"
     }
 
     public var published: Bool? {
@@ -50,7 +65,7 @@ public class AssignmentCellViewModel: ObservableObject {
         }
 
         let format = String(localized: "d_needs_grading", bundle: .core)
-        return String.localizedStringWithFormat(format, assignment.needsGradingCount).localizedUppercase
+        return String.localizedStringWithFormat(format, needsGradingCount).localizedCapitalized
     }
 
     public var formattedDueDate: String {
@@ -62,15 +77,20 @@ public class AssignmentCellViewModel: ObservableObject {
             return String(localized: "Multiple Due Dates", bundle: .core)
         }
 
-        if let dueAt = assignment.dueAt {
-            let format = String(localized: "Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>")
-            return String.localizedStringWithFormat(format, dueAt.relativeDateTimeString)
-        }
-
-        return String(localized: "No Due Date", bundle: .core)
+        return assignment.dueText
     }
 
-    private var isTeacher: Bool {
-        env.app == .teacher
+    private var stateDisplayProperties: SubmissionStateDisplayProperties {
+        assignment.submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
     }
 }
+
+// MARK: - Preview
+
+#if DEBUG
+extension AssignmentCellViewModel {
+    public convenience init(assignment: Assignment, courseColor: UIColor?) {
+        self.init(env: .shared, assignment: assignment, courseColor: courseColor)
+    }
+}
+#endif

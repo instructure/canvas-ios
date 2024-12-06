@@ -20,8 +20,10 @@ import SwiftUI
 
 public struct AssignmentCellView: View {
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     @ObservedObject private var viewModel: AssignmentCellViewModel
 
@@ -39,27 +41,25 @@ public struct AssignmentCellView: View {
                 icon
                 VStack(alignment: .leading, spacing: 0) {
                     assignmentName
-                    dueDate
-                    needsGradingBubble
+                    subtitle
                 }
                 .padding(.top, Typography.Spacings.textCellTopPadding)
                 .padding(.bottom, Typography.Spacings.textCellBottomPadding)
                 Spacer()
-                InstDisclosureIndicator()
             }
             .padding(.trailing, 16)
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
         })
-            .background(Color.backgroundLightest)
-            .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
-            .accessibility(identifier: "AssignmentList.\(viewModel.assignment.id)")
+        .background(Color.backgroundLightest)
+        .buttonStyle(ContextButton(contextColor: UIColor(viewModel.courseColor)))
+        .accessibility(identifier: "AssignmentList.\(viewModel.assignment.id)")
     }
 
     private var icon: some View {
         AccessIcon(image: viewModel.icon, published: viewModel.published)
-            .frame(width: 20, height: 20)
-            .foregroundColor(Color(viewModel.courseColor ?? .textDark))
+            .frame(width: uiScale.iconScale * 20, height: uiScale.iconScale * 20)
+            .foregroundColor(viewModel.courseColor)
             .padding(.top, 10)
             .padding(.leading, 18)
             .frame(maxHeight: .infinity, alignment: .top)
@@ -73,22 +73,89 @@ public struct AssignmentCellView: View {
             .lineLimit(2)
     }
 
+    @ViewBuilder
+    private var subtitle: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            if viewModel.isTeacher {
+                dueDate
+                if viewModel.needsGrading {
+                    needsGradingAndPointsPossible
+                }
+            } else {
+                dueDate
+                submissionInfo
+                if viewModel.hasPointsPossible {
+                    score
+                }
+            }
+        }
+    }
+
+    private var submissionInfo: some View {
+        HStack(alignment: .center, spacing: 2) {
+            submissionIcon
+            submissionStatus
+        }
+    }
+
     private var dueDate: some View {
         Text(viewModel.formattedDueDate)
             .style(.textCellSupportingText)
-            .foregroundColor(.textDark)
+            .foregroundColor(viewModel.defaultTextColor)
+    }
+
+    private var subtitleSeparator: some View {
+        InstUI.Divider()
+            .frame(minWidth: 2, maxHeight: 18)
+            .style(.textCellSupportingText)
+            .foregroundColor(viewModel.defaultTextColor)
+            .padding(.horizontal, 4)
+    }
+
+    private var submissionIcon: some View {
+        Image(uiImage: viewModel.submissionIcon)
+            .resizable()
+            .frame(width: uiScale.iconScale * 18, height: uiScale.iconScale * 18)
+            .foregroundColor(viewModel.submissionColor)
+    }
+
+    private var submissionStatus: some View {
+        Text(viewModel.submissionStatus)
+            .style(.textCellSupportingText)
+            .foregroundColor(viewModel.submissionColor)
+    }
+
+    private var score: some View {
+        Text(viewModel.scoreLabel ?? "")
+            .style(.textCellSupportingText)
+            .foregroundColor(viewModel.courseColor)
+    }
+
+    private var pointsPossible: some View {
+        Text(viewModel.pointsPossibleText)
+            .font(.semibold16)
+            .foregroundColor(viewModel.courseColor)
+    }
+
+    private var needsGradingAndPointsPossible: some View {
+        HStack(alignment: .center, spacing: 2) {
+            needsGradingBubble
+            subtitleSeparator
+            pointsPossible
+        }
     }
 
     @ViewBuilder
     private var needsGradingBubble: some View {
         if let needsGradingText = viewModel.needsGradingText {
             Text(needsGradingText)
-                .font(.medium10)
-                .foregroundColor(.borderInfo)
-                .padding(.horizontal, 6).padding(.vertical, 2)
-                .background(RoundedRectangle(cornerRadius: 9).stroke(Color.borderInfo, lineWidth: 1))
-                .padding(.top, 6)
-                .padding(.bottom, 5)
+                .frame(minHeight: 18)
+                .font(.regular12)
+                .foregroundColor(.textLightest)
+                .padding(.horizontal, 10).padding(.vertical, 4)
+                .background(RoundedRectangle(cornerRadius: 100).fill(viewModel.courseColor))
+                .padding(.top, 4)
+                .padding(.bottom, 4)
         }
     }
 }
@@ -111,7 +178,7 @@ struct AssignmentCellView_Previews: PreviewProvider {
             Divider()
             ForEach(assignments, id: \.id) {
                 let assignment = Assignment.save($0, in: context, updateSubmission: false, updateScoreStatistics: false)
-                let viewModel = AssignmentCellViewModel(assignment: assignment, courseColor: .red)
+                let viewModel = AssignmentCellViewModel(env: env, assignment: assignment, courseColor: .red)
                 AssignmentCellView(viewModel: viewModel)
                 Divider()
             }

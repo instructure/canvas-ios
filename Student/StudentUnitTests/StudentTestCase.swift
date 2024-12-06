@@ -35,7 +35,7 @@ class StudentTestCase: XCTestCase {
     var env: TestEnvironment!
     var logger: TestLogger!
     var router: TestRouter { env.router as! TestRouter }
-    var uploadManager = MockUploadManager()
+    lazy var uploadManager = MockUploadManager(env: env)
     var currentSession: LoginSession!
 
     override func setUp() {
@@ -50,7 +50,7 @@ class StudentTestCase: XCTestCase {
         logger = env.logger as? TestLogger
         currentSession = env.currentSession
         AppEnvironment.shared = env
-        UploadManager.shared = uploadManager
+        AppEnvironment.shared.uploadManager = uploadManager
         MockUploadManager.reset()
     }
 

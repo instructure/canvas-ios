@@ -20,7 +20,7 @@ import Foundation
 import CoreData
 
 public class UploadFileComment {
-    let env = AppEnvironment.shared
+    let env: AppEnvironment
     let assignmentID: String
     var callback: (SubmissionComment?, Error?) -> Void = { _, _ in }
     let courseID: String
@@ -39,6 +39,7 @@ public class UploadFileComment {
     private static var placeholderSuffix = 1
 
     public init(
+        env: AppEnvironment,
         courseID: String,
         assignmentID: String,
         userID: String,
@@ -46,6 +47,7 @@ public class UploadFileComment {
         batchID: String,
         attempt: Int?
     ) {
+        self.env = env
         self.assignmentID = assignmentID
         self.courseID = courseID
         self.isGroup = isGroup
@@ -56,12 +58,12 @@ public class UploadFileComment {
 
     public func cancel() {
         task?.cancel()
-        UploadManager.shared.cancel(batchID: batchID)
+        env.uploadManager.cancel(batchID: batchID)
     }
 
     public func fetch(_ callback: @escaping (SubmissionComment?, Error?) -> Void) {
         self.callback = callback
-        files = UploadManager.shared.subscribe(batchID: batchID) {
+        files = env.uploadManager.subscribe(batchID: batchID) {
             guard let files = self.files, !files.isEmpty else { return }
             if files.allSatisfy({ $0.isUploaded }) == true {
                 let fileIDs = files.compactMap { $0.id }
@@ -104,7 +106,7 @@ public class UploadFileComment {
                 self.callback(nil, error)
             }
         }
-        UploadManager.shared.upload(batch: batchID, to: uploadContext)
+        env.uploadManager.upload(batch: batchID, to: uploadContext)
     }
 
     func putComment(fileIDs: [String]) {

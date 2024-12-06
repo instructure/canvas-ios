@@ -134,7 +134,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
     var assignmentID = ""
     var courseID = ""
-    let env = AppEnvironment.shared
     var fragment: String?
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "/courses/\(courseID)/assignments/\(assignmentID)"
@@ -142,6 +141,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
+
+    private var env: AppEnvironment = .defaultValue
     private let webView = CoreWebView()
     private let isLeftToRightLayout: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
     private weak var gradeBorderLayer: CAShapeLayer?
@@ -149,7 +150,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     private var gradeSectionBoundsObservation: NSKeyValueObservation?
     private lazy var remindersInteractor = AssignmentRemindersInteractorLive(notificationCenter: UNUserNotificationCenter.current())
 
-    static func create(courseID: String,
+    static func create(env: AppEnvironment,
+                       courseID: String,
                        assignmentID: String,
                        fragment: String? = nil,
                        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
@@ -158,7 +160,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         controller.assignmentID = assignmentID
         controller.courseID = courseID
         controller.fragment = fragment
-        controller.presenter = AssignmentDetailsPresenter(view: controller, courseID: courseID, assignmentID: assignmentID, fragment: fragment)
+        controller.env = env
+        controller.presenter = AssignmentDetailsPresenter(env: env, view: controller, courseID: courseID, assignmentID: assignmentID, fragment: fragment)
         controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }

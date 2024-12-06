@@ -100,14 +100,21 @@ open class Router {
     public typealias FallbackHandler = (URLComponents, [String: Any]?, UIViewController, RouteOptions) -> Void
     public static let DefaultRouteOptions: RouteOptions = .push
 
+    public let courseTabUrlInteractor: CourseTabUrlInteractor?
+
     public var count: Int { handlers.count }
 
     private let handlers: [RouteHandler]
     private let fallback: FallbackHandler
 
-    public init(routes: [RouteHandler], fallback: @escaping FallbackHandler = { url, _, _, _ in open(url: url) }) {
+    public init(
+        routes: [RouteHandler],
+        fallback: @escaping FallbackHandler = { url, _, _, _ in open(url: url) },
+        courseTabUrlInteractor: CourseTabUrlInteractor? = nil
+    ) {
         self.handlers = routes
         self.fallback = fallback
+        self.courseTabUrlInteractor = courseTabUrlInteractor
     }
 
     // MARK: - Route Matching
@@ -120,9 +127,10 @@ open class Router {
     }
     open func match(_ url: URLComponents, userInfo: [String: Any]? = nil) -> UIViewController? {
         let url = cleanURL(url)
+        let env = AppEnvironment.resolved(for: url)
         for route in handlers {
             if let params = route.match(url) {
-                return route.factory(url, params, userInfo)
+                return route.factory(url, params, userInfo, env)
             }
         }
         return nil
@@ -158,10 +166,12 @@ open class Router {
     }
     open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         let url = cleanURL(url)
+        let isExternalUrl = isExternalWebsiteURL(url)
+        let env = AppEnvironment.resolved(for: url)
 
-        if url.isExternalWebsite, !url.originIsNotification, let url = url.url {
+        if isExternalUrl, !url.originIsNotification, let url = url.url {
             RemoteLogger.shared.logBreadcrumb(route: "/external_url")
-            AppEnvironment.shared.loginDelegate?.openExternalURL(url)
+            env.loginDelegate?.openExternalURL(url)
             return
         }
 
@@ -169,9 +179,19 @@ open class Router {
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
         #endif
 
+        // block disabled course tab urls
+        if let courseTabUrlInteractor, let url = url.url, !courseTabUrlInteractor.isAllowedUrl(url, userInfo: userInfo) {
+            let snackBarViewModel = from.findSnackBarViewModel()
+            snackBarViewModel?.showSnack(
+                String(localized: "That page has been disabled for this course.", bundle: .core),
+                swallowDuplicatedSnacks: true
+            )
+            return
+        }
+
         for route in handlers {
             if let params = route.match(url) {
-                if let view = route.factory(url, params, userInfo) {
+                if let view = route.factory(url, params, userInfo, env) {
                     show(view, from: from, options: options, analyticsRoute: route.template)
                 }
 
@@ -179,6 +199,19 @@ open class Router {
             }
         }
         fallback(url, userInfo, from, options)
+    }
+
+    private func isExternalWebsiteURL(_ url: URLComponents) -> Bool {
+        var acceptableHosts: Set<String> = AppEnvironment
+            .shared
+            .apiHost
+            .flatMap({ [$0] }) ?? []
+
+        if let courseTabUrlInteractor {
+            acceptableHosts.formUnion(courseTabUrlInteractor.baseURLHostOverrides)
+        }
+
+        return url.isExternalWebsite(of: acceptableHosts)
     }
 
     // MARK: - View Controller Presentation
@@ -322,6 +355,11 @@ open class Router {
         // URLComponents does all the encoding we care about except we often have + meaning space in query
         var url = url
         url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
+
+        if let apiHostOverride = courseTabUrlInteractor?.baseUrlHostOverride(for: url) {
+            url.host = apiHostOverride
+        }
+
         return url
     }
 

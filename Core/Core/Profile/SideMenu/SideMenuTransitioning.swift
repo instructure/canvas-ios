@@ -26,8 +26,8 @@ public class SideMenuOpenTransitioning: NSObject, UIViewControllerAnimatedTransi
         guard
             let from = transitionContext.viewController(forKey: .from)?.view,
             let to = transitionContext.viewController(forKey: .to)?.view
-            else {
-                return transitionContext.completeTransition(false)
+        else {
+            return transitionContext.completeTransition(false)
         }
 
         transitionContext.containerView.insertSubview(to, belowSubview: from)
@@ -89,7 +89,7 @@ public class SideMenuPresentationController: UIPresentationController {
 
     public override func presentationTransitionWillBegin() {
         super.presentationTransitionWillBegin()
-        guard let containerView = containerView else { return }
+        guard let containerView else { return }
 
         let backGroundColor: UIColor = traitCollection.isDarkInterface ? .backgroundLightest : .backgroundDarkest
         dimmer.backgroundColor = backGroundColor.withAlphaComponent(0.9)
@@ -106,9 +106,9 @@ public class SideMenuPresentationController: UIPresentationController {
         dimmer.accessibilityLabel = String(localized: "Close", bundle: .core)
         dimmer.accessibilityFrame = CGRect(x: drawerWidth, y: 0, width: containerView.bounds.width - drawerWidth, height: containerView.bounds.height)
 
-        presentingViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
+        UIView.animate(withDuration: animationDuration) {
             self.dimmer.alpha = 1
-        })
+        }
     }
 
     public override func presentationTransitionDidEnd(_ completed: Bool) {
@@ -120,9 +120,10 @@ public class SideMenuPresentationController: UIPresentationController {
 
     public override func dismissalTransitionWillBegin() {
         super.dismissalTransitionWillBegin()
-        presentingViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
+
+        UIView.animate(withDuration: animationDuration) {
             self.dimmer.alpha = 0
-        })
+        }
     }
 
     public override func dismissalTransitionDidEnd(_ completed: Bool) {

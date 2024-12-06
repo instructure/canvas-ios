@@ -23,7 +23,7 @@ import Combine
 struct SubmissionCommentList: View {
     let assignment: Assignment
     let submission: Submission
-    let filePicker = FilePicker()
+    let filePicker = FilePicker(env: .shared)
     @Binding var attempt: Int?
     @Binding var fileID: String?
     @Binding var showRecorder: MediaCommentType?
@@ -121,13 +121,21 @@ struct SubmissionCommentList: View {
         ForEach(comments, id: \.id) { comment in
             SubmissionCommentListCell(
                 assignment: assignment,
-                submission: attempts.first(where: { $0.attempt == comment.attempt }) ?? submission,
+                submission: submissionForComment(comment),
                 comment: comment,
                 attempt: $attempt,
                 fileID: $fileID
             )
                 .scaleEffect(y: -1)
         }
+    }
+
+    private func submissionForComment(_ comment: SubmissionComment) -> Submission {
+        let result = attempts.first(where: { $0.attempt == comment.attempt }) ?? submission
+        if result.assignment == nil {
+            result.assignment = assignment
+        }
+        return result
     }
 
     func toolbar(containerHeight: CGFloat) -> some View {
@@ -171,6 +179,7 @@ struct SubmissionCommentList: View {
             commentAttempt = nil
         }
         CreateTextComment(
+            env: env,
             courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID,
@@ -220,6 +229,7 @@ struct SubmissionCommentList: View {
             commentAttempt = nil
         }
         UploadMediaComment(
+            env: env,
             courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID,
@@ -235,6 +245,7 @@ struct SubmissionCommentList: View {
     }
 
     func chooseFile() {
+        filePicker.env = env
         filePicker.pickAttachments(from: controller) {
             sendFileComment(batchID: $0)
         }
@@ -248,6 +259,7 @@ struct SubmissionCommentList: View {
             commentAttempt = nil
         }
         UploadFileComment(
+            env: env,
             courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID,

@@ -29,7 +29,7 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
     private var assignmentID: String!
     private var courseID: String!
     private var editor: RichContentEditorViewController!
-    private let env = AppEnvironment.shared
+    private var env = AppEnvironment.shared
     private var keyboard: KeyboardTransitioning?
     private var userID: String!
     private var htmlContent = ""
@@ -38,18 +38,21 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
     // MARK: - Public Properties
     public var didSetHtmlContent: ((String) -> Void) = { _ in}
 
-    public static func create(courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
+    static func create(env: AppEnvironment, courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.courseID = courseID
         controller.userID = userID
-        controller.editor = RichContentEditorViewController.create(context: .course(courseID), uploadTo: .myFiles)
+        controller.env = env
+        controller.editor = RichContentEditorViewController
+            .create(env: env, context: .course(courseID), uploadTo: .myFiles)
         return controller
     }
 
     public static func create(htmlContent: String, courseID: String) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
-        controller.editor = RichContentEditorViewController.create(context: .course(courseID), uploadTo: .myFiles)
+        controller.courseID = courseID
+        controller.editor = RichContentEditorViewController.create(env: .shared, context: .course(courseID), uploadTo: .myFiles)
         controller.htmlContent = htmlContent
         return controller
     }
@@ -127,21 +130,25 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
         env.router.dismiss(self)
     }
 
-    @objc private func submit() {
-        editor.getHTML { (html: String) in
+    @objc func submit() {
+        editor.getHTML { [weak self] (html: String) in
+            guard let self else { return }
             CreateSubmission(
                 context: .course(self.courseID),
                 assignmentID: self.assignmentID,
                 userID: self.userID,
                 submissionType: .online_text_entry,
                 body: html
-            ).fetch { (_, _, error) in performUIUpdate {
-                if let error = error {
-                    self.showError(error)
-                } else {
-                    self.dismiss(animated: true, completion: nil)
+            )
+            .fetch(environment: self.env, { (_, _, error) in
+                performUIUpdate {
+                    if let error = error {
+                        self.showError(error)
+                    } else {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
-            } }
+            })
         }
     }
 }

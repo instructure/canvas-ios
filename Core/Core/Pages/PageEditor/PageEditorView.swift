@@ -88,6 +88,7 @@ public struct PageEditorView: View {
 
             EditorSection(label: Text("Content", bundle: .core)) {
                 RichContentEditor(
+                    env: env,
                     placeholder: String(localized: "Add content", bundle: .core),
                     a11yLabel: String(localized: "Page content", bundle: .core),
                     html: $html,
