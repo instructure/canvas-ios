@@ -18,8 +18,8 @@
 
 import SwiftUI
 
-struct ProgramItemOverdueView: View {
-    let dutDate: String
+struct ModuleItemOverdueView: View {
+    let dueDate: String
 
     var body: some View {
         HStack {
@@ -31,7 +31,7 @@ struct ProgramItemOverdueView: View {
                     .foregroundStyle(Color.textDark)
                     .frame(width: 18, height: 18)
                 let dueText = String(localized: "Due", bundle: .horizon)
-                Size12RegularTextDarkTitle(title: "\(dueText) \(dutDate)")
+                Size12RegularTextDarkTitle(title: "\(dueText) \(dueDate)")
             }
 
             Spacer()
@@ -46,5 +46,5 @@ struct ProgramItemOverdueView: View {
 }
 
 #Preview {
-    ProgramItemOverdueView(dutDate: "20-03-2025")
+    ModuleItemOverdueView(dueDate: "20-03-2025")
 }

@@ -17,43 +17,35 @@
 //
 
 import Combine
-import CombineExt
 import Core
 import Foundation
 
-final class ProgramsViewModel: ObservableObject {
+final class CourseDetailsViewModel: ObservableObject {
     // MARK: - Outputs
 
     @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var programs: [HProgram] = []
-
-    // MARK: - Inputs
-
-    let programDidSelect = PassthroughRelay<(HProgram, WeakViewController)>()
+    @Published private(set) var title: String = "Biology certificate"
+    @Published private(set) var course: HCourse
 
     // MARK: - Private
 
+    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
     init(
         router: Router,
-        interactor: GetProgramsInteractor
+        course: HCourse
     ) {
-        unowned let unownedSelf = self
+        self.router = router
+        self.course = course
+        self.state = .data
+    }
 
-        interactor.getPrograms()
-            .sink { programs in
-                unownedSelf.programs = programs
-                unownedSelf.state = .data
-            }
-            .store(in: &subscriptions)
+    // MARK: - Inputs
 
-        programDidSelect
-            .sink { program, vc in
-                router.route(to: "/programs/\(program.id)", userInfo: ["program": program], from: vc)
-            }
-            .store(in: &subscriptions)
+    func moduleItemDidTap(url: URL, from: WeakViewController) {
+        router.route(to: url, from: from)
     }
 }

@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-struct ProgramItemView: View {
+struct ModuleItemView: View {
     let item: HModuleItem
 
     var body: some View {
@@ -27,18 +27,18 @@ struct ProgramItemView: View {
             Size14RegularTextDarkestTitle(title: item.title)
                 .padding(.bottom, 8)
             HStack(spacing: .zero) {
-                programItemType
+                moduleItemType
                 Spacer()
-                programItemTime
+                moduleItemTime
             }
 
             if item.isOverDue {
-                ProgramItemOverdueView(dutDate: item.dueAt?.dateOnlyString ?? "")
+                ModuleItemOverdueView(dueDate: item.dueAt?.dateOnlyString ?? "")
             }
         }
     }
 
-    private var programItemType: some View {
+    private var moduleItemType: some View {
         HStack(spacing: 4) {
             if let icon = item.type?.icon {
                 Image(uiImage: icon)
@@ -53,7 +53,7 @@ struct ProgramItemView: View {
         }
     }
 
-    private var programItemTime: some View {
+    private var moduleItemTime: some View {
         HStack(spacing: 4) {
             Image(systemName: "timer")
                 .resizable()
@@ -68,7 +68,7 @@ struct ProgramItemView: View {
 #if DEBUG
 #Preview {
     HStack(spacing: 8) {
-        ProgramItemView(
+        ModuleItemView(
             item: .init(id: "1", title: "Program item title ", htmlURL: nil)
         )
     }

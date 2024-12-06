@@ -19,11 +19,11 @@
 import Core
 import SwiftUI
 
-struct ProgramsView: View {
-    @ObservedObject private var viewModel: ProgramsViewModel
+struct CourseListView: View {
+    @ObservedObject private var viewModel: CourseListViewModel
     @Environment(\.viewController) private var viewController
 
-    init(viewModel: ProgramsViewModel) {
+    init(viewModel: CourseListViewModel) {
         self.viewModel = viewModel
     }
 
@@ -33,19 +33,19 @@ struct ProgramsView: View {
                 state: viewModel.state,
                 config: .init(refreshable: false)
             ) { _ in
-                ForEach(viewModel.programs) { program in
+                ForEach(viewModel.courses) { course in
                     VStack(spacing: 16) {
                         Button {
-                            viewModel.programDidSelect.accept((program, viewController))
+                            viewModel.courseDidSelect.accept((course, viewController))
                         } label: {
                             VStack(alignment: .leading, spacing: 12) {
-                                Size12RegularTextDarkestTitle(title: program.institutionName)
-                                Size16RegularTextDarkestTitle(title: program.name)
-                                ContentProgressBar(progress: program.progress)
+                                Size12RegularTextDarkestTitle(title: course.institutionName)
+                                Size16RegularTextDarkestTitle(title: course.name)
+                                ContentProgressBar(progress: course.progress)
                                 HStack(spacing: 0) {
-                                    Size12RegularTextDarkTitle(title: program.progressString)
+                                    Size12RegularTextDarkTitle(title: course.progressString)
                                     Spacer()
-                                    Size12RegularTextDarkTitle(title: program.progressState.rawValue)
+                                    Size12RegularTextDarkTitle(title: course.progressState.rawValue)
                                 }
                             }
                             .padding(.all, 24)
@@ -57,6 +57,6 @@ struct ProgramsView: View {
                 }
             }
         }
-        .navigationTitle("Your Programs")
+        .navigationTitle("Your Courses")
     }
 }

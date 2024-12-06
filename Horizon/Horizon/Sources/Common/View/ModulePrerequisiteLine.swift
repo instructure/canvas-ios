@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-struct ProgramLine: View {
+struct ModulePrerequisiteLine: View {
     // MARK: - Dependencies
 
     let isFirstItem: Bool
@@ -48,7 +48,7 @@ struct ProgramLine: View {
 #if DEBUG
 #Preview {
     VStack {
-        ProgramLine(
+        ModulePrerequisiteLine(
             isFirstItem: true,
             isLastItem: false,
             firstItemLineHeight: 50,

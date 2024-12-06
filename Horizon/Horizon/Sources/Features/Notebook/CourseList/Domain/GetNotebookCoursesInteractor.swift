@@ -20,7 +20,7 @@ import Combine
 import Foundation
 import CombineExt
 
-final class GetCoursesInteractor {
+final class GetNotebookCoursesInteractor {
     // MARK: - Dependencies
 
     private let courseNotesRepository: CourseNotesRepository

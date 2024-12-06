@@ -36,7 +36,7 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
 
         viewControllers = [
             dashboardTab(),
-            programsTab(),
+            learnTab(),
             fakeTab(),
             careerTab(),
             inboxTab()
@@ -77,9 +77,9 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
         return vc
     }
 
-    private func programsTab() -> UIViewController {
+    private func learnTab() -> UIViewController {
         let vc = CoreNavigationController(
-            rootViewController: CoreHostingController(ProgramsAssembly.makeProgramsView())
+            rootViewController: CoreHostingController(LearnAssembly.makeCoursesView())
         )
         vc.tabBarItem.title = String(localized: "Learn", bundle: .horizon)
         vc.tabBarItem.image = UIImage(systemName: "list.bullet")
