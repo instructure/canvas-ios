@@ -62,7 +62,11 @@ public class GroupListInteractorLive: GroupListInteractor {
         return groupListStore
             .getEntities(keepObservingDatabaseChanges: true)
             .filter(with: searchQuery)
-            .map { $0.map { AllCoursesGroupItem(from: $0) }}
+            .map { groups in
+                groups
+                    .filter { $0.isAccessible }
+                    .map { AllCoursesGroupItem(from: $0) }
+            }
             .eraseToAnyPublisher()
     }
 

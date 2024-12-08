@@ -43,6 +43,7 @@ public struct APIGroup: Codable, Equatable {
     // let storage_quota_mb: String
     let permissions: Permissions?
     let is_favorite: Bool?
+    let can_access: Bool?
 
     public var groupType: GroupType {
         if let course_id {
@@ -69,7 +70,8 @@ extension APIGroup {
         course_id: ID? = nil,
         group_category_id: ID = "1",
         permissions: Permissions? = nil,
-        is_favorite: Bool? = true
+        is_favorite: Bool? = true,
+        can_access: Bool? = true
     ) -> APIGroup {
         return APIGroup(
             id: id,
@@ -80,7 +82,8 @@ extension APIGroup {
             course_id: course_id,
             group_category_id: group_category_id,
             permissions: permissions,
-            is_favorite: is_favorite
+            is_favorite: is_favorite,
+            can_access: can_access
         )
     }
 }
