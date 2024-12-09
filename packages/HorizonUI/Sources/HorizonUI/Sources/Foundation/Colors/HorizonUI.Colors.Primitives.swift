@@ -19,7 +19,7 @@
 import SwiftUI
 
 public extension HorizonUI.Colors {
-    struct Primitives: Sendable {
+    struct Primitives: Sendable, ColorCollection {
 
         // MARK: - Blue
 
@@ -223,37 +223,11 @@ public extension HorizonUI.Colors {
         let stone90 = Color(.stone90)
         let stone110 = Color(.stone110)
 
-
         // TODO: Make it #if DEBUG later
         var allColors: [ColorWithID] = []
 
         init() {
-            //            self.allColors = [
-            //                ColorWithID("blue12", blue12),
-            //                ColorWithID("blue45", blue45),
-            //                ColorWithID("blue57", blue57)
-            //            ]
-
-            self.allColors = allColorWithIDs()
-        }
-
-        func allColorWithIDs() -> [ColorWithID] {
-            var colorList: [ColorWithID] = []
-            let mirror = Mirror(reflecting: self)
-
-            for child in mirror.children {
-                if let name = child.label {
-                    if let color = child.value as? Color {
-                        colorList.append(ColorWithID(name, color))
-                    } else if let gradient = child.value as? [Color] {
-                        for (index, gradientColor) in gradient.enumerated() {
-                            colorList.append(ColorWithID("\(name)\(index)", gradientColor))
-                        }
-                    }
-                }
-            }
-
-            return colorList
+            self.allColors = extractColorsWithIDs()
         }
     }
 }

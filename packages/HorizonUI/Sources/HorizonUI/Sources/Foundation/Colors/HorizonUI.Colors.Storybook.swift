@@ -22,32 +22,73 @@ import SwiftUI
 public extension HorizonUI.Colors {
     struct Storybook: View {
         public var body: some View {
-            LazyVGrid(
-                columns: [GridItem(.adaptive(minimum: 40))],
-                spacing: 16
-            ) {
-                Section(
-                    header: headerView("UI and Additional Primitives")
+            ScrollView {
+                LazyVGrid(
+                    columns: [GridItem(.adaptive(minimum: 40), alignment: .bottom)],
+                    alignment: .leading,
+                    spacing: 16
                 ) {
-                    ForEach(Color.huiColors.primitives.allColors) { color in
-                        VStack(spacing: 4) {
-                            Text(color.name).font(.system(size: 8))
-                            Circle().foregroundStyle(color.code)
+                    Section(
+                        header: headerView("UI and Additional Primitives")
+                    ) {
+                        ForEach(Color.huiColors.primitives.allColors) { color in
+                            VStack(spacing: 4) {
+                                Text(color.name).font(.system(size: 8))
+                                Circle().foregroundStyle(color.code)
+                            }
                         }
                     }
-                }
-                Spacer(minLength: 16)
-                Section(
-                    header: headerView("UI Colors")
-                ) {
-                    ForEach(Color.huiColors.ui.allColors) { color in
-                        VStack(spacing: 4) {
-                            Text(color.name).font(.system(size: 8))
-                            Circle().foregroundStyle(color.code)
+                    Spacer(minLength: 16)
+                    Section(
+                        header: headerView("Text Colors")
+                    ) {
+                        ForEach(Color.huiColors.text.allColors) { color in
+                            VStack(spacing: 4) {
+                                Text(color.name).font(.system(size: 8))
+                                Circle().foregroundStyle(color.code)
+                            }
                         }
                     }
+                    Spacer(minLength: 16)
+
+                    Section(
+                        header: headerView("Icon Colors")
+                    ) {
+                        ForEach(Color.huiColors.icon.allColors) { color in
+                            VStack(spacing: 4) {
+                                Text(color.name).font(.system(size: 8))
+                                Circle().foregroundStyle(color.code)
+                            }
+                        }
+                    }
+
+                    Spacer(minLength: 16)
+
+                    Section(
+                        header: headerView("Line & Borders Colors")
+                    ) {
+                        ForEach(Color.huiColors.lineAndBorders.allColors) { color in
+                            VStack(spacing: 4) {
+                                Text(color.name).font(.system(size: 8))
+                                Circle().foregroundStyle(color.code)
+                            }
+                        }
+                    }
+
+                    Spacer(minLength: 16)
+
+                    Section(
+                        header: headerView("Surface Colors")
+                    ) {
+                        ForEach(Color.huiColors.surface.allColors) { color in
+                            VStack(spacing: 4) {
+                                Text(color.name).font(.system(size: 8))
+                                Circle().foregroundStyle(color.code)
+                            }
+                        }
+                    }
+                    Spacer()
                 }
-                Spacer()
             }
             .frame(maxHeight: .infinity, alignment: .top)
             .padding(.all, 16)
@@ -66,13 +107,13 @@ public extension HorizonUI.Colors {
     struct ColorWithID: Identifiable, Sendable {
         let name: String
         let code: Color
+        public let id: String
 
-        init(_ name: String, _ code: Color) {
+        init(_ name: String, _ code: Color , id: String? = nil) {
             self.name = name
             self.code = code
+            self.id = id ?? name
         }
-
-        public var id: String { name }
     }
 }
 
