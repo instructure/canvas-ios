@@ -25,12 +25,11 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
     @IBOutlet private weak var keyboardSpace: NSLayoutConstraint!
 
     // MARK: - Properties
-
+    public var editor: RichContentEditorViewController!
+    public var keyboard: KeyboardTransitioning?
     private var assignmentID: String!
     private var courseID: String!
-    private var editor: RichContentEditorViewController!
     private var env = AppEnvironment.shared
-    private var keyboard: KeyboardTransitioning?
     private var userID: String!
     private var htmlContent = ""
     private let isHorizonApp = AppEnvironment.shared.app == .horizon
