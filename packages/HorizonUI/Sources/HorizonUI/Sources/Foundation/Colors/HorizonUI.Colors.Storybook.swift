@@ -21,73 +21,29 @@ import SwiftUI
 // TODO: Make it #if DEBUG later
 public extension HorizonUI.Colors {
     struct Storybook: View {
+        let colors: [StorybookColorModel] = StorybookColorModel.sections
+
         public var body: some View {
             ScrollView {
+
                 LazyVGrid(
                     columns: [GridItem(.adaptive(minimum: 40), alignment: .bottom)],
                     alignment: .leading,
                     spacing: 16
                 ) {
-                    Section(
-                        header: headerView("UI and Additional Primitives")
-                    ) {
-                        ForEach(Color.huiColors.primitives.allColors) { color in
-                            VStack(spacing: 4) {
-                                Text(color.name).font(.system(size: 8))
-                                Circle().foregroundStyle(color.code)
+
+                    ForEach(colors) { section in
+                        Section(
+                            header: headerView(section.title)
+                        ) {
+                            ForEach(section.colors) { color in
+                                VStack(spacing: 4) {
+                                    Text(color.name).font(.system(size: 8))
+                                    Circle().foregroundStyle(color.code)
+                                }
                             }
                         }
                     }
-                    Spacer(minLength: 16)
-                    Section(
-                        header: headerView("Text Colors")
-                    ) {
-                        ForEach(Color.huiColors.text.allColors) { color in
-                            VStack(spacing: 4) {
-                                Text(color.name).font(.system(size: 8))
-                                Circle().foregroundStyle(color.code)
-                            }
-                        }
-                    }
-                    Spacer(minLength: 16)
-
-                    Section(
-                        header: headerView("Icon Colors")
-                    ) {
-                        ForEach(Color.huiColors.icon.allColors) { color in
-                            VStack(spacing: 4) {
-                                Text(color.name).font(.system(size: 8))
-                                Circle().foregroundStyle(color.code)
-                            }
-                        }
-                    }
-
-                    Spacer(minLength: 16)
-
-                    Section(
-                        header: headerView("Line & Borders Colors")
-                    ) {
-                        ForEach(Color.huiColors.lineAndBorders.allColors) { color in
-                            VStack(spacing: 4) {
-                                Text(color.name).font(.system(size: 8))
-                                Circle().foregroundStyle(color.code)
-                            }
-                        }
-                    }
-
-                    Spacer(minLength: 16)
-
-                    Section(
-                        header: headerView("Surface Colors")
-                    ) {
-                        ForEach(Color.huiColors.surface.allColors) { color in
-                            VStack(spacing: 4) {
-                                Text(color.name).font(.system(size: 8))
-                                Circle().foregroundStyle(color.code)
-                            }
-                        }
-                    }
-                    Spacer()
                 }
             }
             .frame(maxHeight: .infinity, alignment: .top)
@@ -119,4 +75,24 @@ public extension HorizonUI.Colors {
 
 #Preview {
     HorizonUI.Colors.Storybook()
+}
+
+extension HorizonUI.Colors {
+    struct StorybookColorModel: Identifiable {
+        let title: String
+        let colors: [ColorWithID]
+
+        static var sections: [Self] {
+            [
+                .init(title: "UI and Additional Primitives", colors: Color.huiColors.primitives.allColors),
+                .init(title: "Text", colors: Color.huiColors.text.allColors),
+                .init(title: "Icon", colors: Color.huiColors.icon.allColors),
+                .init(title: "Line & Borders ", colors: Color.huiColors.lineAndBorders.allColors),
+                .init(title: "Surfaces", colors: Color.huiColors.surface.allColors),
+
+            ]
+        }
+
+        var id: String { title }
+    }
 }
