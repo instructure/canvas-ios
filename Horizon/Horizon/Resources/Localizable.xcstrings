@@ -14,6 +14,9 @@
         }
       }
     },
+    "Add your text" : {
+
+    },
     "AI Assist" : {
 
     },
@@ -44,6 +47,9 @@
     "Due" : {
 
     },
+    "Edit" : {
+
+    },
     "Error" : {
 
     },
@@ -66,7 +72,7 @@
 
     },
     "Important" : {
-    
+
     },
     "INCOMPLETE ITEM" : {
 
