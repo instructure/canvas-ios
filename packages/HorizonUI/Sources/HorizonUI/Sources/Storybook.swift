@@ -44,7 +44,9 @@ public struct Storybook: View {
                     NavigationLink {} label: {
                         Text("Border").tint(Color.black)
                     }
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.Elevations.Storybook()
+                    } label: {
                         Text("Elevation / Shadows").tint(Color.black)
                     }
                     NavigationLink {} label: {
