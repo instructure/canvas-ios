@@ -9,7 +9,9 @@ struct BlueButtonStyle: ThemedButtonStyle {
     }
     
     func makeBody(configuration: Configuration) -> some View {
-        baseButtonStyle(configuration.label, isPressed: configuration.isPressed, isEnabled: isEnabled)
+        configuration.label
+            .frame(maxWidth: .infinity)
+            .frame(height: size.height)
             .background(ButtonColors.blue)
             .foregroundStyle(ButtonColors.white)
             .cornerRadius(size.cornerRadius)

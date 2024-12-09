@@ -9,8 +9,10 @@ struct BlackButtonStyle: ThemedButtonStyle {
     }
     
     func makeBody(configuration: Configuration) -> some View {
-        baseButtonStyle(configuration.label, isPressed: configuration.isPressed, isEnabled: isEnabled)
-            .background(ButtonColors.darkText)
+        configuration.label
+            .frame(maxWidth: .infinity)
+            .frame(height: size.height)
+            .background(ButtonColors.dark)
             .foregroundStyle(ButtonColors.white)
             .cornerRadius(size.cornerRadius)
             .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)

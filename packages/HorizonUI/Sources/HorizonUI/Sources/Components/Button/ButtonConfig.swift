@@ -17,7 +17,7 @@ enum ButtonSize {
 }
 
 struct ButtonColors {
-    static let darkText = Color(red: 39/255, green: 53/255, blue: 64/255)
+    static let dark = Color(red: 39/255, green: 53/255, blue: 64/255)
     static let white = Color.white
     
     struct AI {
@@ -37,11 +37,5 @@ protocol ThemedButtonStyle: ButtonStyle {
 extension ThemedButtonStyle {
     var size: ButtonSize {
         isSmall ? .small : .regular
-    }
-    
-    func baseButtonStyle<V: View>(_ content: V, isPressed: Bool, isEnabled: Bool) -> some View {
-        content
-            .frame(maxWidth: .infinity)
-            .frame(height: size.height)
     }
 }

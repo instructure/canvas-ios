@@ -9,7 +9,9 @@ struct AIButtonStyle: ThemedButtonStyle {
     }
     
     func makeBody(configuration: Configuration) -> some View {
-        baseButtonStyle(configuration.label, isPressed: configuration.isPressed, isEnabled: isEnabled)
+        configuration.label
+            .frame(maxWidth: .infinity)
+            .frame(height: size.height)
             .background(
                 LinearGradient(
                     gradient: Gradient(colors: [

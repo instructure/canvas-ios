@@ -9,9 +9,11 @@ struct BeigeButtonStyle: ThemedButtonStyle {
     }
     
     func makeBody(configuration: Configuration) -> some View {
-        baseButtonStyle(configuration.label, isPressed: configuration.isPressed, isEnabled: isEnabled)
+        configuration.label
+            .frame(maxWidth: .infinity)
+            .frame(height: size.height)
             .background(ButtonColors.beige)
-            .foregroundStyle(ButtonColors.darkText)
+            .foregroundStyle(ButtonColors.dark)
             .cornerRadius(size.cornerRadius)
             .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
     }
