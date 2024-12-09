@@ -19,16 +19,17 @@
 import SwiftUI
 
 public extension HorizonUI.Colors {
-    // swiftlint:disable:next type_name
-    struct UI: Sendable {
-        // TODO: Add UI Colors
-        // let color = Color(hexString: "#000000")
-        
+    struct LineAndBorders: Sendable, ColorCollection {
+        let containerStroke = Color(.containerStroke)
+        let lineConnector = Color(.lineConnector)
+        let lineDivider = Color(.lineDivider)
+        let lineStroke = Color(.lineStroke)
+
         // TODO: Make it #if DEBUG later
-        let allColors: [ColorWithID]
+        var allColors: [ColorWithID] = []
 
         init() {
-            self.allColors = []
+            allColors = extractColorsWithIDs()
         }
     }
 }
