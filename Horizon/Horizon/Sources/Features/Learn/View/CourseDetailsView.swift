@@ -42,7 +42,6 @@ struct CourseDetailsView: View {
             Size12RegularTextDarkTitle(title: viewModel.course.targetCompletion)
                 .padding(.horizontal, 16)
             CertificateProgressBar(
-                maxWidth: 325,
                 progress: viewModel.course.progress,
                 progressString: viewModel.course.progressString
             )

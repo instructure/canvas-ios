@@ -31,7 +31,7 @@ struct DashboardView: View {
         InstUI.BaseScreen(
             state: viewModel.state,
             config: .init(refreshable: true)
-        ) { proxy in
+        ) { _ in
             VStack(spacing: 0) {
                 ForEach(viewModel.courses) { course in
                     if course.currentModuleItem != nil, !course.upcomingModuleItems.isEmpty {
@@ -39,7 +39,6 @@ struct DashboardView: View {
                             Size24BoldTextDarkestTitle(title: course.name)
                                 .padding(.top, 16)
                             CertificateProgressBar(
-                                maxWidth: proxy.size.width - 2 * 16,
                                 progress: course.progress,
                                 progressString: course.progressString
                             )
