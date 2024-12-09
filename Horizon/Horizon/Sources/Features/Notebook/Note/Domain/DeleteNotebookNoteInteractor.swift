@@ -16,25 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Combine
 
-struct NotebookLabelIcon: View {
+class DeleteNotebookNoteInteractor {
     // MARK: - Dependencies
 
-    let type: CourseNoteLabel
+    private let courseNotesRepository: CourseNotesRepositoryProtocol
 
-    var body: some View {
-        let image = type == .confusing ?
-            Image(systemName: "questionmark.circle") :
-            Image(.flag)
-        return image.foregroundStyle(colorFromType(type))
+    // MARK: - Init
+
+    init(courseNotesRepository: CourseNotesRepositoryProtocol) {
+        self.courseNotesRepository = courseNotesRepository
     }
-}
 
-// MARK: - Helpers
+    // MARK: - Public
 
-@inline(__always) func colorFromType(_ type: CourseNoteLabel) -> Color {
-    type == .confusing ?
-        Color(red: 0.682, green: 0.106, blue: 0.122) :
-        Color(red: 0.055, green: 0.408, blue: 0.702)
+    func delete(noteId: String) -> Future<Void, Error> {
+        courseNotesRepository.delete(id: noteId)
+    }
 }

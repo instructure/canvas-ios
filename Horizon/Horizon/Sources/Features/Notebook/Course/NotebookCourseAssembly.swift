@@ -25,7 +25,7 @@ final class NotebookCourseAssembly {
                 viewModel: NotebookCourseViewModel(
                     courseId: courseId,
                     getCourseNotesInteractor: GetCourseNotesInteractor(
-                        courseNotesRepository: CourseNotesRepository()
+                        courseNotesRepository: StaticCourseNotesRepository.instance
                     ),
                     router: AppEnvironment.shared.router
                 )

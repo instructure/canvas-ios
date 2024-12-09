@@ -32,10 +32,16 @@
     "Answer" : {
 
     },
+    "Are you sure you want to proceed?" : {
+
+    },
     "Career" : {
 
     },
     "Check Answer" : {
+
+    },
+    "Confirmation" : {
 
     },
     "Confusing" : {
@@ -86,6 +92,9 @@
     "My Progress" : {
 
     },
+    "Note" : {
+
+    },
     "Notebook" : {
 
     },
@@ -119,6 +128,9 @@
     "Regenerate" : {
 
     },
+    "Save" : {
+
+    },
     "Search" : {
 
     },
@@ -135,6 +147,9 @@
 
     },
     "Try Again" : {
+
+    },
+    "Yes" : {
 
     },
     "Your Courses" : {

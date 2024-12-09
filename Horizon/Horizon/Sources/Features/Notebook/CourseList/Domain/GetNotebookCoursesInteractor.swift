@@ -23,7 +23,7 @@ import CombineExt
 final class GetNotebookCoursesInteractor {
     // MARK: - Dependencies
 
-    private let courseNotesRepository: CourseNotesRepository
+    private let courseNotesRepository: CourseNotesRepositoryProtocol
 
     // MARK: - Private variables
 
@@ -31,7 +31,7 @@ final class GetNotebookCoursesInteractor {
 
     // MARK: - Init
 
-    init(courseNotesRepository: CourseNotesRepository) {
+    init(courseNotesRepository: CourseNotesRepositoryProtocol) {
         self.courseNotesRepository = courseNotesRepository
     }
 
