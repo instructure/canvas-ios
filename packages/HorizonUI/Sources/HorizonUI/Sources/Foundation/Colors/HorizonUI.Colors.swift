@@ -22,7 +22,10 @@ public extension HorizonUI {
     struct Colors: Sendable {
         fileprivate init() {}
         let primitives = Primitives()
-        let ui = UI()
+        let icon = IconColor()
+        let text = TextColor()
+        let surface = Surface()
+        let lineAndBorders = LineAndBorders()
     }
 
     static let colors = HorizonUI.Colors()
