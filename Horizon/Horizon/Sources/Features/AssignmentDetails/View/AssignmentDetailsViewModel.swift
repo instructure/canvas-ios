@@ -86,8 +86,7 @@ final class AssignmentDetailsViewModel {
 
     func presentRichContentEditor(controller: WeakViewController) {
         let richContentEditor = TextSubmissionViewController.create(htmlContent: htmlContent, courseID: courseID)
-        /// Switch the `selectedSubmission` to nil and then back to `.textEntry`
-        /// after retrieving the HTML content, to reflect the height for webView.
+        /// Switch the `selectedSubmission` to nil and then back to `.textEntry` after retrieving the HTML content, to reflect the height for webView.
         selectedSubmission = nil
         richContentEditor.didSetHtmlContent = { [weak self] html in
             self?.htmlContent = html
