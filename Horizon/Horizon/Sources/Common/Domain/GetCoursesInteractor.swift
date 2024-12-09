@@ -44,7 +44,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
     // MARK: - Functions
 
     func getCourses() -> AnyPublisher<[HCourse], Never> {
-        Publishers.Zip(fethCourses(), fetchCourseProgression())
+        Publishers.Zip(fetchCourses(), fetchCourseProgression())
             .receive(on: scheduler)
             .map { courses, coursesProgression in
                 courses.map { course in
@@ -63,7 +63,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func fethCourses() -> AnyPublisher<[HCourse], Never> {
+    private func fetchCourses() -> AnyPublisher<[HCourse], Never> {
         ReactiveStore(useCase: GetCourses())
             .getEntities()
             .replaceError(with: [])

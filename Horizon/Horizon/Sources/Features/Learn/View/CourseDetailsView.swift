@@ -20,7 +20,7 @@ import Core
 import HorizonUI
 import SwiftUI
 
-struct CourseDetailsViewView: View {
+struct CourseDetailsView: View {
     @ObservedObject private var viewModel: CourseDetailsViewModel
     @Environment(\.viewController) private var viewController
     @State private var selectedTabIndex: Int?
@@ -58,7 +58,6 @@ struct CourseDetailsViewView: View {
         }
     }
 
-    @ViewBuilder
     private func learningContentView(course: HCourse) -> some View {
         VStack {
             tabSelectorView
@@ -107,7 +106,6 @@ struct CourseDetailsViewView: View {
          */
     }
 
-    @ViewBuilder
     private func tabDetailsView(course: HCourse) -> some View {
         TabView(selection: $selectedTabDetailsIndex) {
             ForEach(Array(Tabs.allCases.enumerated()), id: \.offset) { index, tab in
@@ -137,7 +135,6 @@ struct CourseDetailsViewView: View {
         .animation(.smooth, value: selectedTabDetailsIndex)
     }
 
-    @ViewBuilder
     private func modulesView(modules: [HModule]) -> some View {
         VStack(spacing: 16) {
             ForEach(modules) { module in
@@ -169,7 +166,7 @@ struct CourseDetailsViewView: View {
     }
 }
 
-extension CourseDetailsViewView {
+extension CourseDetailsView {
     enum Tabs: CaseIterable, Identifiable {
         case myProgress
         case overview

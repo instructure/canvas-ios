@@ -34,7 +34,7 @@ final class LearnAssembly {
 
     static func makeCourseDetailsViewController(course: HCourse) -> UIViewController {
         CoreHostingController(
-            CourseDetailsViewView(
+            CourseDetailsView(
                 viewModel: .init(
                     router: AppEnvironment.shared.router,
                     course: course
