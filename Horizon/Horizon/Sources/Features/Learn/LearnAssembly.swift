@@ -16,32 +16,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Core
 
-struct ProgramCheckMarkIcon: View {
-    let isCompleted: Bool
+final class LearnAssembly {
+    static func makeGetCoursesInteractor() -> GetCoursesInteractor {
+        GetCoursesInteractorLive(appEnvironment: AppEnvironment.shared)
+    }
 
-    var body: some View {
-        ZStack {
-            if isCompleted {
-                Circle()
-                    .fill(Color.green)
-                    .frame(width: 20, height: 20)
+    static func makeCoursesView() -> CourseListView {
+        CourseListView(
+            viewModel: .init(
+                router: CommonAssembly.makeRouter(),
+                interactor: makeGetCoursesInteractor()
+            )
+        )
+    }
 
-                Image(systemName: "checkmark")
-                    .font(.regular10)
-                    .foregroundColor(.backgroundLightest)
-            } else {
-                Circle()
-                    .stroke(Color.backgroundDark, lineWidth: 1)
-                    .frame(width: 20, height: 20)
-            }
-        }
+    static func makeCourseDetailsViewController(course: HCourse) -> UIViewController {
+        CoreHostingController(
+            CourseDetailsView(
+                viewModel: .init(
+                    router: AppEnvironment.shared.router,
+                    course: course
+                )
+            )
+        )
     }
 }
-
-#if DEBUG
-#Preview {
-    ProgramCheckMarkIcon(isCompleted: true)
-}
-#endif

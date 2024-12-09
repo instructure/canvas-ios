@@ -32,7 +32,7 @@ struct ExpandingModuleView: View {
                 isExpanded.toggle()
             } label: {
                 HStack(alignment: .top) {
-                    ProgramCheckMarkIcon(isCompleted: module.isCompleted)
+                    ModuleCheckMarkIcon(isCompleted: module.isCompleted)
                     Size14RegularTextDarkestTitle(title: module.name.uppercased())
                     Spacer()
                     if module.isInProgress {
@@ -88,7 +88,7 @@ struct ExpandingModuleView: View {
                 routeToURL(url)
             }
         } label: {
-            ProgramItemView(item: item)
+            ModuleItemView(item: item)
                 .padding(.all, 12)
                 .background(RoundedRectangle(cornerRadius: 12).fill(Color.backgroundLightest))
                 .padding(.vertical, 10)
@@ -106,7 +106,7 @@ struct ExpandingModuleView: View {
     ) -> some View {
         ZStack {
             if module.isSequentialProgressRequired {
-                ProgramLine(
+                ModulePrerequisiteLine(
                     isFirstItem: isFirstItem,
                     isLastItem: isLastItem,
                     firstItemLineHeight: firstItemHeight,
@@ -117,7 +117,7 @@ struct ExpandingModuleView: View {
             Circle()
                 .fill(Color.backgroundLightest)
                 .frame(width: 25, height: 25)
-            ProgramCheckMarkIcon(isCompleted: isCompleted)
+            ModuleCheckMarkIcon(isCompleted: isCompleted)
 
         }
     }

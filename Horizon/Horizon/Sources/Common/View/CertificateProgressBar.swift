@@ -20,36 +20,34 @@ import Core
 import SwiftUI
 
 struct CertificateProgressBar: View {
-    let maxWidth: Double
     let progress: Double
     let progressString: String
 
     var body: some View {
-        Rectangle()
-            .fill(Color.backgroundMedium)
-            .frame(width: maxWidth, height: 25)
-            .overlay(alignment: .leading) {
-                Rectangle()
-                    .fill(Color.backgroundDarkest)
-                    .frame(
-                        width: progress * maxWidth,
-                        height: 25
-                    )
-                    .overlay(alignment: .trailing) {
-                        Text(progressString)
-                            .font(.regular12)
-                            .foregroundStyle(Color.textLightest)
-                            .padding(.trailing, 6)
-                    }
-            }
-            .padding(.top, 16)
-            .animation(.easeIn, value: progress)
+        SingleAxisGeometryReader(axis: .horizontal, initialSize: 10) { width in
+            Rectangle()
+                .fill(Color.backgroundMedium)
+                .frame(width: width, height: 25)
+                .overlay(alignment: .leading) {
+                    Rectangle()
+                        .fill(Color.backgroundDarkest)
+                        .frame(width: width * progress, height: 25)
+                        .overlay(alignment: .trailing) {
+                            Text(progressString)
+                                .font(.regular12)
+                                .foregroundStyle(Color.textLightest)
+                                .padding(.trailing, 6)
+                        }
+                }
+                .padding(.top, 16)
+                .animation(.easeIn, value: progress)
+        }
+
     }
 }
 
 #Preview {
     CertificateProgressBar(
-        maxWidth: 450,
         progress: 0.75,
         progressString: "75%"
     )

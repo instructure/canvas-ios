@@ -62,6 +62,9 @@
     "Give me key takeaways" : {
 
     },
+    "Grades" : {
+
+    },
     "Hello, Career!" : {
 
     },
@@ -78,6 +81,9 @@
 
     },
     "Learn" : {
+
+    },
+    "My Progress" : {
 
     },
     "Notebook" : {
@@ -98,7 +104,13 @@
     "OVERDUE" : {
 
     },
+    "Overview" : {
+
+    },
     "Question" : {
+
+    },
+    "Quick Links" : {
 
     },
     "Quiz me on this material" : {
@@ -125,7 +137,7 @@
     "Try Again" : {
 
     },
-    "Your Programs" : {
+    "Your Courses" : {
 
     }
   },

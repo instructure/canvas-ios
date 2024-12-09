@@ -25,7 +25,7 @@ final class DashboardViewModel: ObservableObject {
 
     @Published private(set) var state: InstUI.ScreenState = .loading
     @Published private(set) var title: String = "Hi, John"
-    @Published private(set) var programs: [HProgram] = []
+    @Published private(set) var courses: [HCourse] = []
 
     // MARK: - Private variables
 
@@ -35,22 +35,22 @@ final class DashboardViewModel: ObservableObject {
     // MARK: - Init
 
     init(
-        programsInteractor: GetProgramsInteractor,
-        userInteractor: GetUserInteractor,
+        getCoursesInteractor: GetCoursesInteractor,
+        getUserInteractor: GetUserInteractor,
         router: Router
     ) {
         self.router = router
 
         unowned let unownedSelf = self
 
-        programsInteractor.getPrograms()
-            .sink { programs in
-                unownedSelf.programs = programs
+        getCoursesInteractor.getCourses()
+            .sink { courses in
+                unownedSelf.courses = courses
                 unownedSelf.state = .data
             }
             .store(in: &subscriptions)
 
-        userInteractor.getUser()
+        getUserInteractor.getUser()
             .map { $0.name }
             .map { "Hi, \($0)" }
             .replaceError(with: "")
