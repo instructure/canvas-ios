@@ -41,7 +41,9 @@ public struct Storybook: View {
                     } label: {
                         Text("Corner Radius").tint(Color.black)
                     }
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.Borders.Storybook()
+                    } label: {
                         Text("Border").tint(Color.black)
                     }
                     NavigationLink {} label: {
