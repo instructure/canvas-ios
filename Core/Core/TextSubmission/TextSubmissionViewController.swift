@@ -38,7 +38,7 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
     // MARK: - Public Properties
     public var didSetHtmlContent: ((String) -> Void) = { _ in}
 
-    static func create(env: AppEnvironment, courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
+    public static func create(env: AppEnvironment, courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.courseID = courseID
